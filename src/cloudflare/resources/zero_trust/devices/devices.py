@@ -72,6 +72,14 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
+from .fleet_status import (
+    FleetStatusResource,
+    AsyncFleetStatusResource,
+    FleetStatusResourceWithRawResponse,
+    AsyncFleetStatusResourceWithRawResponse,
+    FleetStatusResourceWithStreamingResponse,
+    AsyncFleetStatusResourceWithStreamingResponse,
+)
 from ....pagination import SyncSinglePage, AsyncSinglePage
 from .override_codes import (
     OverrideCodesResource,
@@ -100,6 +108,10 @@ class DevicesResource(SyncAPIResource):
         return NetworksResource(self._client)
 
     @cached_property
+    def fleet_status(self) -> FleetStatusResource:
+        return FleetStatusResource(self._client)
+
+    @cached_property
     def policies(self) -> PoliciesResource:
         return PoliciesResource(self._client)
 
@@ -125,10 +137,21 @@ class DevicesResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> DevicesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return DevicesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> DevicesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return DevicesResourceWithStreamingResponse(self)
 
     def list(
@@ -223,6 +246,10 @@ class AsyncDevicesResource(AsyncAPIResource):
         return AsyncNetworksResource(self._client)
 
     @cached_property
+    def fleet_status(self) -> AsyncFleetStatusResource:
+        return AsyncFleetStatusResource(self._client)
+
+    @cached_property
     def policies(self) -> AsyncPoliciesResource:
         return AsyncPoliciesResource(self._client)
 
@@ -248,10 +275,21 @@ class AsyncDevicesResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncDevicesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncDevicesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncDevicesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncDevicesResourceWithStreamingResponse(self)
 
     def list(
@@ -356,6 +394,10 @@ class DevicesResourceWithRawResponse:
         return NetworksResourceWithRawResponse(self._devices.networks)
 
     @cached_property
+    def fleet_status(self) -> FleetStatusResourceWithRawResponse:
+        return FleetStatusResourceWithRawResponse(self._devices.fleet_status)
+
+    @cached_property
     def policies(self) -> PoliciesResourceWithRawResponse:
         return PoliciesResourceWithRawResponse(self._devices.policies)
 
@@ -398,6 +440,10 @@ class AsyncDevicesResourceWithRawResponse:
     @cached_property
     def networks(self) -> AsyncNetworksResourceWithRawResponse:
         return AsyncNetworksResourceWithRawResponse(self._devices.networks)
+
+    @cached_property
+    def fleet_status(self) -> AsyncFleetStatusResourceWithRawResponse:
+        return AsyncFleetStatusResourceWithRawResponse(self._devices.fleet_status)
 
     @cached_property
     def policies(self) -> AsyncPoliciesResourceWithRawResponse:
@@ -444,6 +490,10 @@ class DevicesResourceWithStreamingResponse:
         return NetworksResourceWithStreamingResponse(self._devices.networks)
 
     @cached_property
+    def fleet_status(self) -> FleetStatusResourceWithStreamingResponse:
+        return FleetStatusResourceWithStreamingResponse(self._devices.fleet_status)
+
+    @cached_property
     def policies(self) -> PoliciesResourceWithStreamingResponse:
         return PoliciesResourceWithStreamingResponse(self._devices.policies)
 
@@ -486,6 +536,10 @@ class AsyncDevicesResourceWithStreamingResponse:
     @cached_property
     def networks(self) -> AsyncNetworksResourceWithStreamingResponse:
         return AsyncNetworksResourceWithStreamingResponse(self._devices.networks)
+
+    @cached_property
+    def fleet_status(self) -> AsyncFleetStatusResourceWithStreamingResponse:
+        return AsyncFleetStatusResourceWithStreamingResponse(self._devices.fleet_status)
 
     @cached_property
     def policies(self) -> AsyncPoliciesResourceWithStreamingResponse:

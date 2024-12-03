@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Type, Optional, cast
+from typing import List, Type, Optional, cast
 
 import httpx
 
@@ -43,10 +43,21 @@ __all__ = ["IssuesResource", "AsyncIssuesResource"]
 class IssuesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> IssuesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return IssuesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> IssuesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return IssuesResourceWithStreamingResponse(self)
 
     def list(
@@ -72,7 +83,7 @@ class IssuesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePagination[IssueListResponse]:
+    ) -> SyncV4PagePagination[Optional[IssueListResponse]]:
         """
         Get Security Center Issues
 
@@ -95,7 +106,7 @@ class IssuesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/intel/attack-surface-report/issues",
-            page=SyncV4PagePagination[IssueListResponse],
+            page=SyncV4PagePagination[Optional[IssueListResponse]],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -201,7 +212,7 @@ class IssuesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IssueDismissResponse]:
+    ) -> IssueDismissResponse:
         """
         Archive Security Center Insight
 
@@ -220,22 +231,13 @@ class IssuesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not issue_id:
             raise ValueError(f"Expected a non-empty value for `issue_id` but received {issue_id!r}")
-        return cast(
-            Optional[IssueDismissResponse],
-            self._put(
-                f"/accounts/{account_id}/intel/attack-surface-report/{issue_id}/dismiss",
-                body=maybe_transform({"dismiss": dismiss}, issue_dismiss_params.IssueDismissParams),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[IssueDismissResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[IssueDismissResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._put(
+            f"/accounts/{account_id}/intel/attack-surface-report/{issue_id}/dismiss",
+            body=maybe_transform({"dismiss": dismiss}, issue_dismiss_params.IssueDismissParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
+            cast_to=IssueDismissResponse,
         )
 
     def severity(
@@ -374,10 +376,21 @@ class IssuesResource(SyncAPIResource):
 class AsyncIssuesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncIssuesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncIssuesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncIssuesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncIssuesResourceWithStreamingResponse(self)
 
     def list(
@@ -403,7 +416,7 @@ class AsyncIssuesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[IssueListResponse, AsyncV4PagePagination[IssueListResponse]]:
+    ) -> AsyncPaginator[Optional[IssueListResponse], AsyncV4PagePagination[Optional[IssueListResponse]]]:
         """
         Get Security Center Issues
 
@@ -426,7 +439,7 @@ class AsyncIssuesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/intel/attack-surface-report/issues",
-            page=AsyncV4PagePagination[IssueListResponse],
+            page=AsyncV4PagePagination[Optional[IssueListResponse]],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -532,7 +545,7 @@ class AsyncIssuesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IssueDismissResponse]:
+    ) -> IssueDismissResponse:
         """
         Archive Security Center Insight
 
@@ -551,22 +564,13 @@ class AsyncIssuesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not issue_id:
             raise ValueError(f"Expected a non-empty value for `issue_id` but received {issue_id!r}")
-        return cast(
-            Optional[IssueDismissResponse],
-            await self._put(
-                f"/accounts/{account_id}/intel/attack-surface-report/{issue_id}/dismiss",
-                body=await async_maybe_transform({"dismiss": dismiss}, issue_dismiss_params.IssueDismissParams),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[IssueDismissResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[IssueDismissResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._put(
+            f"/accounts/{account_id}/intel/attack-surface-report/{issue_id}/dismiss",
+            body=await async_maybe_transform({"dismiss": dismiss}, issue_dismiss_params.IssueDismissParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
+            cast_to=IssueDismissResponse,
         )
 
     async def severity(

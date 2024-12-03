@@ -2,7 +2,7 @@
 
 from typing import List, Union, Optional
 from datetime import datetime
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 from ..._models import BaseModel
 
@@ -75,9 +75,9 @@ class FeaturesAPIShieldOperationFeatureParameterSchemasParameterSchemasParameter
 class FeaturesAPIShieldOperationFeatureParameterSchemasParameterSchemas(BaseModel):
     last_updated: Optional[datetime] = None
 
-    parameter_schemas: Optional[
-        FeaturesAPIShieldOperationFeatureParameterSchemasParameterSchemasParameterSchemas
-    ] = None
+    parameter_schemas: Optional[FeaturesAPIShieldOperationFeatureParameterSchemasParameterSchemasParameterSchemas] = (
+        None
+    )
     """An operation schema object containing a response."""
 
 
@@ -195,7 +195,7 @@ class FeaturesAPIShieldOperationFeatureSchemaInfo(BaseModel):
     schema_info: Optional[FeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfo] = None
 
 
-Features = Union[
+Features: TypeAlias = Union[
     FeaturesAPIShieldOperationFeatureThresholds,
     FeaturesAPIShieldOperationFeatureParameterSchemas,
     FeaturesAPIShieldOperationFeatureAPIRouting,

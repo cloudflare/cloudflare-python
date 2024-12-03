@@ -29,7 +29,7 @@ class KeylessCertificate(BaseModel):
     name: str
     """The keyless SSL name."""
 
-    permissions: List[object]
+    permissions: List[str]
     """
     Available permissions for the Keyless SSL for the current user requesting the
     item.

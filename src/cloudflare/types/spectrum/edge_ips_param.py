@@ -3,12 +3,12 @@
 from __future__ import annotations
 
 from typing import List, Union
-from typing_extensions import Literal, TypedDict
+from typing_extensions import Literal, TypeAlias, TypedDict
 
-__all__ = ["EdgeIPsParam", "EyeballIPs", "CustomerOwnedIPs"]
+__all__ = ["EdgeIPsParam", "UnionMember0", "UnionMember1"]
 
 
-class EyeballIPs(TypedDict, total=False):
+class UnionMember0(TypedDict, total=False):
     connectivity: Literal["all", "ipv4", "ipv6"]
     """The IP versions supported for inbound connections on Spectrum anycast IPs."""
 
@@ -20,7 +20,7 @@ class EyeballIPs(TypedDict, total=False):
     """
 
 
-class CustomerOwnedIPs(TypedDict, total=False):
+class UnionMember1(TypedDict, total=False):
     ips: List[str]
     """
     The array of customer owned IPs we broadcast via anycast for this hostname and
@@ -35,4 +35,4 @@ class CustomerOwnedIPs(TypedDict, total=False):
     """
 
 
-EdgeIPsParam = Union[EyeballIPs, CustomerOwnedIPs]
+EdgeIPsParam: TypeAlias = Union[UnionMember0, UnionMember1]

@@ -19,8 +19,9 @@ from cloudflare._response import (
 )
 from cloudflare.types.url_scanner import (
     ScanGetResponse,
-    ScanHarResponse,
-    ScanCreateResponse,
+    ScanHARResponse,
+    ScanListResponse,
+    ScanBulkCreateResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -35,18 +36,20 @@ class TestScans:
             account_id="accountId",
             url="https://www.example.com",
         )
-        assert_matches_type(ScanCreateResponse, scan, path=["response"])
+        assert_matches_type(str, scan, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         scan = client.url_scanner.scans.create(
             account_id="accountId",
             url="https://www.example.com",
+            customagent="customagent",
             custom_headers={"foo": "string"},
-            screenshots_resolutions=["desktop", "mobile", "tablet"],
+            referer="referer",
+            screenshots_resolutions=["desktop"],
             visibility="Public",
         )
-        assert_matches_type(ScanCreateResponse, scan, path=["response"])
+        assert_matches_type(str, scan, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
@@ -58,7 +61,7 @@ class TestScans:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         scan = response.parse()
-        assert_matches_type(ScanCreateResponse, scan, path=["response"])
+        assert_matches_type(str, scan, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
@@ -70,7 +73,7 @@ class TestScans:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             scan = response.parse()
-            assert_matches_type(ScanCreateResponse, scan, path=["response"])
+            assert_matches_type(str, scan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -83,19 +86,147 @@ class TestScans:
             )
 
     @parametrize
+    def test_method_list(self, client: Cloudflare) -> None:
+        scan = client.url_scanner.scans.list(
+            account_id="accountId",
+        )
+        assert_matches_type(ScanListResponse, scan, path=["response"])
+
+    @parametrize
+    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
+        scan = client.url_scanner.scans.list(
+            account_id="accountId",
+            q="q",
+            size=100,
+        )
+        assert_matches_type(ScanListResponse, scan, path=["response"])
+
+    @parametrize
+    def test_raw_response_list(self, client: Cloudflare) -> None:
+        response = client.url_scanner.scans.with_raw_response.list(
+            account_id="accountId",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        scan = response.parse()
+        assert_matches_type(ScanListResponse, scan, path=["response"])
+
+    @parametrize
+    def test_streaming_response_list(self, client: Cloudflare) -> None:
+        with client.url_scanner.scans.with_streaming_response.list(
+            account_id="accountId",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            scan = response.parse()
+            assert_matches_type(ScanListResponse, scan, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_list(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.url_scanner.scans.with_raw_response.list(
+                account_id="",
+            )
+
+    @parametrize
+    def test_method_bulk_create(self, client: Cloudflare) -> None:
+        scan = client.url_scanner.scans.bulk_create(
+            account_id="accountId",
+            body=[{"url": "https://www.example.com"}],
+        )
+        assert_matches_type(ScanBulkCreateResponse, scan, path=["response"])
+
+    @parametrize
+    def test_raw_response_bulk_create(self, client: Cloudflare) -> None:
+        response = client.url_scanner.scans.with_raw_response.bulk_create(
+            account_id="accountId",
+            body=[{"url": "https://www.example.com"}],
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        scan = response.parse()
+        assert_matches_type(ScanBulkCreateResponse, scan, path=["response"])
+
+    @parametrize
+    def test_streaming_response_bulk_create(self, client: Cloudflare) -> None:
+        with client.url_scanner.scans.with_streaming_response.bulk_create(
+            account_id="accountId",
+            body=[{"url": "https://www.example.com"}],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            scan = response.parse()
+            assert_matches_type(ScanBulkCreateResponse, scan, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_bulk_create(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.url_scanner.scans.with_raw_response.bulk_create(
+                account_id="",
+                body=[{"url": "https://www.example.com"}],
+            )
+
+    @parametrize
+    def test_method_dom(self, client: Cloudflare) -> None:
+        scan = client.url_scanner.scans.dom(
+            scan_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="accountId",
+        )
+        assert_matches_type(str, scan, path=["response"])
+
+    @parametrize
+    def test_raw_response_dom(self, client: Cloudflare) -> None:
+        response = client.url_scanner.scans.with_raw_response.dom(
+            scan_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="accountId",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        scan = response.parse()
+        assert_matches_type(str, scan, path=["response"])
+
+    @parametrize
+    def test_streaming_response_dom(self, client: Cloudflare) -> None:
+        with client.url_scanner.scans.with_streaming_response.dom(
+            scan_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="accountId",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            scan = response.parse()
+            assert_matches_type(str, scan, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_dom(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.url_scanner.scans.with_raw_response.dom(
+                scan_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `scan_id` but received ''"):
+            client.url_scanner.scans.with_raw_response.dom(
+                scan_id="",
+                account_id="accountId",
+            )
+
+    @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         scan = client.url_scanner.scans.get(
             scan_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="accountId",
-        )
-        assert_matches_type(ScanGetResponse, scan, path=["response"])
-
-    @parametrize
-    def test_method_get_with_all_params(self, client: Cloudflare) -> None:
-        scan = client.url_scanner.scans.get(
-            scan_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            account_id="accountId",
-            full=True,
         )
         assert_matches_type(ScanGetResponse, scan, path=["response"])
 
@@ -145,7 +276,7 @@ class TestScans:
             scan_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="accountId",
         )
-        assert_matches_type(ScanHarResponse, scan, path=["response"])
+        assert_matches_type(ScanHARResponse, scan, path=["response"])
 
     @parametrize
     def test_raw_response_har(self, client: Cloudflare) -> None:
@@ -157,7 +288,7 @@ class TestScans:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         scan = response.parse()
-        assert_matches_type(ScanHarResponse, scan, path=["response"])
+        assert_matches_type(ScanHARResponse, scan, path=["response"])
 
     @parametrize
     def test_streaming_response_har(self, client: Cloudflare) -> None:
@@ -169,7 +300,7 @@ class TestScans:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             scan = response.parse()
-            assert_matches_type(ScanHarResponse, scan, path=["response"])
+            assert_matches_type(ScanHARResponse, scan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -190,7 +321,7 @@ class TestScans:
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     def test_method_screenshot(self, client: Cloudflare, respx_mock: MockRouter) -> None:
-        respx_mock.get("/accounts/accountId/urlscanner/scan/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e/screenshot").mock(
+        respx_mock.get("/accounts/accountId/urlscanner/v2/screenshots/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e.png").mock(
             return_value=httpx.Response(200, json={"foo": "bar"})
         )
         scan = client.url_scanner.scans.screenshot(
@@ -205,7 +336,7 @@ class TestScans:
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     def test_method_screenshot_with_all_params(self, client: Cloudflare, respx_mock: MockRouter) -> None:
-        respx_mock.get("/accounts/accountId/urlscanner/scan/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e/screenshot").mock(
+        respx_mock.get("/accounts/accountId/urlscanner/v2/screenshots/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e.png").mock(
             return_value=httpx.Response(200, json={"foo": "bar"})
         )
         scan = client.url_scanner.scans.screenshot(
@@ -221,7 +352,7 @@ class TestScans:
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     def test_raw_response_screenshot(self, client: Cloudflare, respx_mock: MockRouter) -> None:
-        respx_mock.get("/accounts/accountId/urlscanner/scan/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e/screenshot").mock(
+        respx_mock.get("/accounts/accountId/urlscanner/v2/screenshots/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e.png").mock(
             return_value=httpx.Response(200, json={"foo": "bar"})
         )
 
@@ -238,7 +369,7 @@ class TestScans:
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     def test_streaming_response_screenshot(self, client: Cloudflare, respx_mock: MockRouter) -> None:
-        respx_mock.get("/accounts/accountId/urlscanner/scan/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e/screenshot").mock(
+        respx_mock.get("/accounts/accountId/urlscanner/v2/screenshots/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e.png").mock(
             return_value=httpx.Response(200, json={"foo": "bar"})
         )
         with client.url_scanner.scans.with_streaming_response.screenshot(
@@ -279,18 +410,20 @@ class TestAsyncScans:
             account_id="accountId",
             url="https://www.example.com",
         )
-        assert_matches_type(ScanCreateResponse, scan, path=["response"])
+        assert_matches_type(str, scan, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         scan = await async_client.url_scanner.scans.create(
             account_id="accountId",
             url="https://www.example.com",
+            customagent="customagent",
             custom_headers={"foo": "string"},
-            screenshots_resolutions=["desktop", "mobile", "tablet"],
+            referer="referer",
+            screenshots_resolutions=["desktop"],
             visibility="Public",
         )
-        assert_matches_type(ScanCreateResponse, scan, path=["response"])
+        assert_matches_type(str, scan, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -302,7 +435,7 @@ class TestAsyncScans:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         scan = await response.parse()
-        assert_matches_type(ScanCreateResponse, scan, path=["response"])
+        assert_matches_type(str, scan, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -314,7 +447,7 @@ class TestAsyncScans:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             scan = await response.parse()
-            assert_matches_type(ScanCreateResponse, scan, path=["response"])
+            assert_matches_type(str, scan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -327,19 +460,147 @@ class TestAsyncScans:
             )
 
     @parametrize
+    async def test_method_list(self, async_client: AsyncCloudflare) -> None:
+        scan = await async_client.url_scanner.scans.list(
+            account_id="accountId",
+        )
+        assert_matches_type(ScanListResponse, scan, path=["response"])
+
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        scan = await async_client.url_scanner.scans.list(
+            account_id="accountId",
+            q="q",
+            size=100,
+        )
+        assert_matches_type(ScanListResponse, scan, path=["response"])
+
+    @parametrize
+    async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.url_scanner.scans.with_raw_response.list(
+            account_id="accountId",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        scan = await response.parse()
+        assert_matches_type(ScanListResponse, scan, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.url_scanner.scans.with_streaming_response.list(
+            account_id="accountId",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            scan = await response.parse()
+            assert_matches_type(ScanListResponse, scan, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.url_scanner.scans.with_raw_response.list(
+                account_id="",
+            )
+
+    @parametrize
+    async def test_method_bulk_create(self, async_client: AsyncCloudflare) -> None:
+        scan = await async_client.url_scanner.scans.bulk_create(
+            account_id="accountId",
+            body=[{"url": "https://www.example.com"}],
+        )
+        assert_matches_type(ScanBulkCreateResponse, scan, path=["response"])
+
+    @parametrize
+    async def test_raw_response_bulk_create(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.url_scanner.scans.with_raw_response.bulk_create(
+            account_id="accountId",
+            body=[{"url": "https://www.example.com"}],
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        scan = await response.parse()
+        assert_matches_type(ScanBulkCreateResponse, scan, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_bulk_create(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.url_scanner.scans.with_streaming_response.bulk_create(
+            account_id="accountId",
+            body=[{"url": "https://www.example.com"}],
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            scan = await response.parse()
+            assert_matches_type(ScanBulkCreateResponse, scan, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_bulk_create(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.url_scanner.scans.with_raw_response.bulk_create(
+                account_id="",
+                body=[{"url": "https://www.example.com"}],
+            )
+
+    @parametrize
+    async def test_method_dom(self, async_client: AsyncCloudflare) -> None:
+        scan = await async_client.url_scanner.scans.dom(
+            scan_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="accountId",
+        )
+        assert_matches_type(str, scan, path=["response"])
+
+    @parametrize
+    async def test_raw_response_dom(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.url_scanner.scans.with_raw_response.dom(
+            scan_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="accountId",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        scan = await response.parse()
+        assert_matches_type(str, scan, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_dom(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.url_scanner.scans.with_streaming_response.dom(
+            scan_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="accountId",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            scan = await response.parse()
+            assert_matches_type(str, scan, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_dom(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.url_scanner.scans.with_raw_response.dom(
+                scan_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `scan_id` but received ''"):
+            await async_client.url_scanner.scans.with_raw_response.dom(
+                scan_id="",
+                account_id="accountId",
+            )
+
+    @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         scan = await async_client.url_scanner.scans.get(
             scan_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="accountId",
-        )
-        assert_matches_type(ScanGetResponse, scan, path=["response"])
-
-    @parametrize
-    async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        scan = await async_client.url_scanner.scans.get(
-            scan_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            account_id="accountId",
-            full=True,
         )
         assert_matches_type(ScanGetResponse, scan, path=["response"])
 
@@ -389,7 +650,7 @@ class TestAsyncScans:
             scan_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="accountId",
         )
-        assert_matches_type(ScanHarResponse, scan, path=["response"])
+        assert_matches_type(ScanHARResponse, scan, path=["response"])
 
     @parametrize
     async def test_raw_response_har(self, async_client: AsyncCloudflare) -> None:
@@ -401,7 +662,7 @@ class TestAsyncScans:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         scan = await response.parse()
-        assert_matches_type(ScanHarResponse, scan, path=["response"])
+        assert_matches_type(ScanHARResponse, scan, path=["response"])
 
     @parametrize
     async def test_streaming_response_har(self, async_client: AsyncCloudflare) -> None:
@@ -413,7 +674,7 @@ class TestAsyncScans:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             scan = await response.parse()
-            assert_matches_type(ScanHarResponse, scan, path=["response"])
+            assert_matches_type(ScanHARResponse, scan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -434,7 +695,7 @@ class TestAsyncScans:
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     async def test_method_screenshot(self, async_client: AsyncCloudflare, respx_mock: MockRouter) -> None:
-        respx_mock.get("/accounts/accountId/urlscanner/scan/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e/screenshot").mock(
+        respx_mock.get("/accounts/accountId/urlscanner/v2/screenshots/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e.png").mock(
             return_value=httpx.Response(200, json={"foo": "bar"})
         )
         scan = await async_client.url_scanner.scans.screenshot(
@@ -451,7 +712,7 @@ class TestAsyncScans:
     async def test_method_screenshot_with_all_params(
         self, async_client: AsyncCloudflare, respx_mock: MockRouter
     ) -> None:
-        respx_mock.get("/accounts/accountId/urlscanner/scan/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e/screenshot").mock(
+        respx_mock.get("/accounts/accountId/urlscanner/v2/screenshots/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e.png").mock(
             return_value=httpx.Response(200, json={"foo": "bar"})
         )
         scan = await async_client.url_scanner.scans.screenshot(
@@ -467,7 +728,7 @@ class TestAsyncScans:
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     async def test_raw_response_screenshot(self, async_client: AsyncCloudflare, respx_mock: MockRouter) -> None:
-        respx_mock.get("/accounts/accountId/urlscanner/scan/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e/screenshot").mock(
+        respx_mock.get("/accounts/accountId/urlscanner/v2/screenshots/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e.png").mock(
             return_value=httpx.Response(200, json={"foo": "bar"})
         )
 
@@ -484,7 +745,7 @@ class TestAsyncScans:
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     async def test_streaming_response_screenshot(self, async_client: AsyncCloudflare, respx_mock: MockRouter) -> None:
-        respx_mock.get("/accounts/accountId/urlscanner/scan/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e/screenshot").mock(
+        respx_mock.get("/accounts/accountId/urlscanner/v2/screenshots/182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e.png").mock(
             return_value=httpx.Response(200, json={"foo": "bar"})
         )
         async with async_client.url_scanner.scans.with_streaming_response.screenshot(

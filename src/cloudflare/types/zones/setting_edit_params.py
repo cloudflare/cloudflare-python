@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Optional
-from typing_extensions import Literal, Required, TypedDict
+from typing import List, Union
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .automatic_platform_optimization_param import AutomaticPlatformOptimizationParam
 
@@ -12,61 +12,57 @@ __all__ = [
     "ZeroRTT",
     "AdvancedDDoS",
     "AlwaysOnline",
-    "AlwaysUseHTTPS",
-    "AutomaticHTTPSRewrites",
+    "ZonesSchemasAlwaysUseHTTPS",
+    "ZonesSchemasAutomaticHTTPSRewrites",
     "Brotli",
-    "BrowserCacheTTL",
-    "BrowserCheck",
-    "CacheLevel",
+    "ZonesSchemasBrowserCacheTTL",
+    "ZonesSchemasBrowserCheck",
+    "ZonesSchemasCacheLevel",
     "ChallengeTTL",
     "Ciphers",
     "ZonesCNAMEFlattening",
     "DevelopmentMode",
     "EarlyHints",
-    "ZonesEdgeCacheTTL",
-    "EmailObfuscation",
+    "ZonesSchemasEdgeCacheTTL",
+    "ZonesSchemasEmailObfuscation",
     "H2Prioritization",
     "HotlinkProtection",
     "HTTP2",
     "HTTP3",
     "ImageResizing",
-    "IPGeolocation",
+    "ZonesSchemasIPGeolocation",
     "IPV6",
     "ZonesMaxUpload",
     "MinTLSVersion",
-    "Minify",
-    "MinifyValue",
-    "Mirage",
-    "MobileRedirect",
-    "MobileRedirectValue",
+    "ZonesSchemasMirage",
     "NEL",
     "NELValue",
-    "OpportunisticEncryption",
+    "ZonesSchemasOpportunisticEncryption",
     "OpportunisticOnion",
     "OrangeToOrange",
-    "OriginErrorPagePassThru",
-    "Polish",
+    "ZonesSchemasOriginErrorPagePassThru",
+    "ZonesSchemasPolish",
     "PrefetchPreload",
     "ProxyReadTimeout",
     "PseudoIPV4",
     "ZonesReplaceInsecureJS",
-    "ResponseBuffering",
-    "RocketLoader",
+    "ZonesSchemasResponseBuffering",
+    "ZonesSchemasRocketLoader",
     "ZonesSchemasAutomaticPlatformOptimization",
     "SecurityHeaders",
     "SecurityHeadersValue",
     "SecurityHeadersValueStrictTransportSecurity",
-    "SecurityLevel",
+    "ZonesSchemasSecurityLevel",
     "ServerSideExcludes",
     "ZonesSha1Support",
-    "SortQueryStringForCache",
-    "SSL",
+    "ZonesSchemasSortQueryStringForCache",
+    "ZonesSchemasSSL",
     "SSLRecommender",
     "ZonesTLS1_2Only",
     "TLS1_3",
     "TLSClientAuth",
-    "TrueClientIPHeader",
-    "WAF",
+    "ZonesSchemasTrueClientIPHeader",
+    "ZonesSchemasWAF",
     "WebP",
     "Websocket",
 ]
@@ -105,7 +101,7 @@ class AlwaysOnline(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
-class AlwaysUseHTTPS(TypedDict, total=False):
+class ZonesSchemasAlwaysUseHTTPS(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -116,7 +112,7 @@ class AlwaysUseHTTPS(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
-class AutomaticHTTPSRewrites(TypedDict, total=False):
+class ZonesSchemasAutomaticHTTPSRewrites(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -138,7 +134,7 @@ class Brotli(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
-class BrowserCacheTTL(TypedDict, total=False):
+class ZonesSchemasBrowserCacheTTL(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -180,7 +176,7 @@ class BrowserCacheTTL(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
-class BrowserCheck(TypedDict, total=False):
+class ZonesSchemasBrowserCheck(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -191,7 +187,7 @@ class BrowserCheck(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
-class CacheLevel(TypedDict, total=False):
+class ZonesSchemasCacheLevel(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -259,7 +255,7 @@ class EarlyHints(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
-class ZonesEdgeCacheTTL(TypedDict, total=False):
+class ZonesSchemasEdgeCacheTTL(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -294,7 +290,7 @@ class ZonesEdgeCacheTTL(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
-class EmailObfuscation(TypedDict, total=False):
+class ZonesSchemasEmailObfuscation(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -360,7 +356,7 @@ class ImageResizing(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
-class IPGeolocation(TypedDict, total=False):
+class ZonesSchemasIPGeolocation(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -404,29 +400,7 @@ class MinTLSVersion(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
-class Minify(TypedDict, total=False):
-    zone_id: Required[str]
-    """Identifier"""
-
-    id: Required[Literal["minify"]]
-    """Zone setting identifier."""
-
-    value: Required[MinifyValue]
-    """Current value of the zone setting."""
-
-
-class MinifyValue(TypedDict, total=False):
-    css: Literal["on", "off"]
-    """Automatically minify all CSS files for your website."""
-
-    html: Literal["on", "off"]
-    """Automatically minify all HTML files for your website."""
-
-    js: Literal["on", "off"]
-    """Automatically minify all JavaScript files for your website."""
-
-
-class Mirage(TypedDict, total=False):
+class ZonesSchemasMirage(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -435,38 +409,6 @@ class Mirage(TypedDict, total=False):
 
     value: Required[Literal["on", "off"]]
     """Current value of the zone setting."""
-
-
-class MobileRedirect(TypedDict, total=False):
-    zone_id: Required[str]
-    """Identifier"""
-
-    id: Required[Literal["mobile_redirect"]]
-    """Identifier of the zone setting."""
-
-    value: Required[MobileRedirectValue]
-    """Current value of the zone setting."""
-
-
-class MobileRedirectValue(TypedDict, total=False):
-    mobile_subdomain: Optional[str]
-    """
-    Which subdomain prefix you wish to redirect visitors on mobile devices to
-    (subdomain must already exist).
-    """
-
-    status: Literal["on", "off"]
-    """
-    Deprecated: Use Single Redirects instead
-    https://developers.cloudflare.com/rules/url-forwarding/single-redirects/examples/#perform-mobile-redirects.
-    Whether or not mobile redirect is enabled.
-    """
-
-    strip_uri: bool
-    """
-    Whether to drop the current page path and redirect to the mobile subdomain URL
-    root, or keep the path and redirect to the same page on the mobile subdomain.
-    """
 
 
 class NEL(TypedDict, total=False):
@@ -484,7 +426,7 @@ class NELValue(TypedDict, total=False):
     enabled: bool
 
 
-class OpportunisticEncryption(TypedDict, total=False):
+class ZonesSchemasOpportunisticEncryption(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -517,7 +459,7 @@ class OrangeToOrange(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
-class OriginErrorPagePassThru(TypedDict, total=False):
+class ZonesSchemasOriginErrorPagePassThru(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -528,7 +470,7 @@ class OriginErrorPagePassThru(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
-class Polish(TypedDict, total=False):
+class ZonesSchemasPolish(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -583,7 +525,7 @@ class ZonesReplaceInsecureJS(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
-class ResponseBuffering(TypedDict, total=False):
+class ZonesSchemasResponseBuffering(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -594,7 +536,7 @@ class ResponseBuffering(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
-class RocketLoader(TypedDict, total=False):
+class ZonesSchemasRocketLoader(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -649,7 +591,7 @@ class SecurityHeadersValue(TypedDict, total=False):
     """Strict Transport Security."""
 
 
-class SecurityLevel(TypedDict, total=False):
+class ZonesSchemasSecurityLevel(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -682,7 +624,7 @@ class ZonesSha1Support(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
-class SortQueryStringForCache(TypedDict, total=False):
+class ZonesSchemasSortQueryStringForCache(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -693,7 +635,7 @@ class SortQueryStringForCache(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
-class SSL(TypedDict, total=False):
+class ZonesSchemasSSL(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -748,7 +690,7 @@ class TLSClientAuth(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
-class TrueClientIPHeader(TypedDict, total=False):
+class ZonesSchemasTrueClientIPHeader(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -759,7 +701,7 @@ class TrueClientIPHeader(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
-class WAF(TypedDict, total=False):
+class ZonesSchemasWAF(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
@@ -792,60 +734,58 @@ class Websocket(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
-SettingEditParams = Union[
+SettingEditParams: TypeAlias = Union[
     ZeroRTT,
     AdvancedDDoS,
     AlwaysOnline,
-    AlwaysUseHTTPS,
-    AutomaticHTTPSRewrites,
+    ZonesSchemasAlwaysUseHTTPS,
+    ZonesSchemasAutomaticHTTPSRewrites,
     Brotli,
-    BrowserCacheTTL,
-    BrowserCheck,
-    CacheLevel,
+    ZonesSchemasBrowserCacheTTL,
+    ZonesSchemasBrowserCheck,
+    ZonesSchemasCacheLevel,
     ChallengeTTL,
     Ciphers,
     ZonesCNAMEFlattening,
     DevelopmentMode,
     EarlyHints,
-    ZonesEdgeCacheTTL,
-    EmailObfuscation,
+    ZonesSchemasEdgeCacheTTL,
+    ZonesSchemasEmailObfuscation,
     H2Prioritization,
     HotlinkProtection,
     HTTP2,
     HTTP3,
     ImageResizing,
-    IPGeolocation,
+    ZonesSchemasIPGeolocation,
     IPV6,
     ZonesMaxUpload,
     MinTLSVersion,
-    Minify,
-    Mirage,
-    MobileRedirect,
+    ZonesSchemasMirage,
     NEL,
-    OpportunisticEncryption,
+    ZonesSchemasOpportunisticEncryption,
     OpportunisticOnion,
     OrangeToOrange,
-    OriginErrorPagePassThru,
-    Polish,
+    ZonesSchemasOriginErrorPagePassThru,
+    ZonesSchemasPolish,
     PrefetchPreload,
     ProxyReadTimeout,
     PseudoIPV4,
     ZonesReplaceInsecureJS,
-    ResponseBuffering,
-    RocketLoader,
+    ZonesSchemasResponseBuffering,
+    ZonesSchemasRocketLoader,
     ZonesSchemasAutomaticPlatformOptimization,
     SecurityHeaders,
-    SecurityLevel,
+    ZonesSchemasSecurityLevel,
     ServerSideExcludes,
     ZonesSha1Support,
-    SortQueryStringForCache,
-    SSL,
+    ZonesSchemasSortQueryStringForCache,
+    ZonesSchemasSSL,
     SSLRecommender,
     ZonesTLS1_2Only,
     TLS1_3,
     TLSClientAuth,
-    TrueClientIPHeader,
-    WAF,
+    ZonesSchemasTrueClientIPHeader,
+    ZonesSchemasWAF,
     WebP,
     Websocket,
 ]

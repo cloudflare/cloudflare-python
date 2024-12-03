@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, cast
 
 import httpx
 
@@ -25,10 +25,21 @@ __all__ = ["ReferencesResource", "AsyncReferencesResource"]
 class ReferencesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ReferencesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return ReferencesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> ReferencesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return ReferencesResourceWithStreamingResponse(self)
 
     def get(
@@ -42,7 +53,7 @@ class ReferencesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ReferenceGetResponse]:
+    ) -> ReferenceGetResponse:
         """
         Get the list of resources that reference the provided monitor.
 
@@ -68,19 +79,30 @@ class ReferencesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ReferenceGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[ReferenceGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ReferenceGetResponse]], ResultWrapper[ReferenceGetResponse]),
+            cast_to=cast(Type[ReferenceGetResponse], ResultWrapper[ReferenceGetResponse]),
         )
 
 
 class AsyncReferencesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncReferencesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncReferencesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncReferencesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncReferencesResourceWithStreamingResponse(self)
 
     async def get(
@@ -94,7 +116,7 @@ class AsyncReferencesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ReferenceGetResponse]:
+    ) -> ReferenceGetResponse:
         """
         Get the list of resources that reference the provided monitor.
 
@@ -120,9 +142,9 @@ class AsyncReferencesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ReferenceGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[ReferenceGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ReferenceGetResponse]], ResultWrapper[ReferenceGetResponse]),
+            cast_to=cast(Type[ReferenceGetResponse], ResultWrapper[ReferenceGetResponse]),
         )
 
 

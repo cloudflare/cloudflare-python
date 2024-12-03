@@ -10,10 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.zero_trust.gateway import (
-    Location,
-    LocationDeleteResponse,
-)
+from cloudflare.types.zero_trust.gateway import Location
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -37,7 +34,23 @@ class TestLocations:
             client_default=False,
             dns_destination_ips_id="0e4a32c6-6fb8-4858-9296-98f51631e8e6",
             ecs_support=False,
-            networks=[{"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}],
+            endpoints={
+                "doh": {
+                    "enabled": True,
+                    "networks": [{"network": "2001:85a3::/64"}],
+                    "require_token": True,
+                },
+                "dot": {
+                    "enabled": True,
+                    "networks": [{"network": "2001:85a3::/64"}],
+                },
+                "ipv4": {"enabled": True},
+                "ipv6": {
+                    "enabled": True,
+                    "networks": [{"network": "2001:85a3::/64"}],
+                },
+            },
+            networks=[{"network": "192.0.2.1/32"}],
         )
         assert_matches_type(Optional[Location], location, path=["response"])
 
@@ -93,7 +106,23 @@ class TestLocations:
             client_default=False,
             dns_destination_ips_id="0e4a32c6-6fb8-4858-9296-98f51631e8e6",
             ecs_support=False,
-            networks=[{"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}],
+            endpoints={
+                "doh": {
+                    "enabled": True,
+                    "networks": [{"network": "2001:85a3::/64"}],
+                    "require_token": True,
+                },
+                "dot": {
+                    "enabled": True,
+                    "networks": [{"network": "2001:85a3::/64"}],
+                },
+                "ipv4": {"enabled": True},
+                "ipv6": {
+                    "enabled": True,
+                    "networks": [{"network": "2001:85a3::/64"}],
+                },
+            },
+            networks=[{"network": "192.0.2.1/32"}],
         )
         assert_matches_type(Optional[Location], location, path=["response"])
 
@@ -185,7 +214,7 @@ class TestLocations:
             location_id="ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[LocationDeleteResponse], location, path=["response"])
+        assert_matches_type(object, location, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -197,7 +226,7 @@ class TestLocations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         location = response.parse()
-        assert_matches_type(Optional[LocationDeleteResponse], location, path=["response"])
+        assert_matches_type(object, location, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -209,7 +238,7 @@ class TestLocations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             location = response.parse()
-            assert_matches_type(Optional[LocationDeleteResponse], location, path=["response"])
+            assert_matches_type(object, location, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -295,7 +324,23 @@ class TestAsyncLocations:
             client_default=False,
             dns_destination_ips_id="0e4a32c6-6fb8-4858-9296-98f51631e8e6",
             ecs_support=False,
-            networks=[{"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}],
+            endpoints={
+                "doh": {
+                    "enabled": True,
+                    "networks": [{"network": "2001:85a3::/64"}],
+                    "require_token": True,
+                },
+                "dot": {
+                    "enabled": True,
+                    "networks": [{"network": "2001:85a3::/64"}],
+                },
+                "ipv4": {"enabled": True},
+                "ipv6": {
+                    "enabled": True,
+                    "networks": [{"network": "2001:85a3::/64"}],
+                },
+            },
+            networks=[{"network": "192.0.2.1/32"}],
         )
         assert_matches_type(Optional[Location], location, path=["response"])
 
@@ -351,7 +396,23 @@ class TestAsyncLocations:
             client_default=False,
             dns_destination_ips_id="0e4a32c6-6fb8-4858-9296-98f51631e8e6",
             ecs_support=False,
-            networks=[{"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}],
+            endpoints={
+                "doh": {
+                    "enabled": True,
+                    "networks": [{"network": "2001:85a3::/64"}],
+                    "require_token": True,
+                },
+                "dot": {
+                    "enabled": True,
+                    "networks": [{"network": "2001:85a3::/64"}],
+                },
+                "ipv4": {"enabled": True},
+                "ipv6": {
+                    "enabled": True,
+                    "networks": [{"network": "2001:85a3::/64"}],
+                },
+            },
+            networks=[{"network": "192.0.2.1/32"}],
         )
         assert_matches_type(Optional[Location], location, path=["response"])
 
@@ -443,7 +504,7 @@ class TestAsyncLocations:
             location_id="ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[LocationDeleteResponse], location, path=["response"])
+        assert_matches_type(object, location, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -455,7 +516,7 @@ class TestAsyncLocations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         location = await response.parse()
-        assert_matches_type(Optional[LocationDeleteResponse], location, path=["response"])
+        assert_matches_type(object, location, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -467,7 +528,7 @@ class TestAsyncLocations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             location = await response.parse()
-            assert_matches_type(Optional[LocationDeleteResponse], location, path=["response"])
+            assert_matches_type(object, location, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

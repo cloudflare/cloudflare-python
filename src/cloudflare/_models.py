@@ -37,6 +37,7 @@ from ._utils import (
     PropertyInfo,
     is_list,
     is_given,
+    json_safe,
     lru_cache,
     is_mapping,
     parse_date,
@@ -176,7 +177,7 @@ class BaseModel(pydantic.BaseModel):
     # Based on https://github.com/samuelcolvin/pydantic/issues/1168#issuecomment-817742836.
     @classmethod
     @override
-    def construct(
+    def construct(  # pyright: ignore[reportIncompatibleMethodOverride]
         cls: Type[ModelT],
         _fields_set: set[str] | None = None,
         **values: object,
@@ -248,8 +249,8 @@ class BaseModel(pydantic.BaseModel):
             self,
             *,
             mode: Literal["json", "python"] | str = "python",
-            include: IncEx = None,
-            exclude: IncEx = None,
+            include: IncEx | None = None,
+            exclude: IncEx | None = None,
             by_alias: bool = False,
             exclude_unset: bool = False,
             exclude_defaults: bool = False,
@@ -279,8 +280,8 @@ class BaseModel(pydantic.BaseModel):
             Returns:
                 A dictionary representation of the model.
             """
-            if mode != "python":
-                raise ValueError("mode is only supported in Pydantic v2")
+            if mode not in {"json", "python"}:
+                raise ValueError("mode must be either 'json' or 'python'")
             if round_trip != False:
                 raise ValueError("round_trip is only supported in Pydantic v2")
             if warnings != True:
@@ -289,7 +290,7 @@ class BaseModel(pydantic.BaseModel):
                 raise ValueError("context is only supported in Pydantic v2")
             if serialize_as_any != False:
                 raise ValueError("serialize_as_any is only supported in Pydantic v2")
-            return super().dict(  # pyright: ignore[reportDeprecated]
+            dumped = super().dict(  # pyright: ignore[reportDeprecated]
                 include=include,
                 exclude=exclude,
                 by_alias=by_alias,
@@ -298,13 +299,15 @@ class BaseModel(pydantic.BaseModel):
                 exclude_none=exclude_none,
             )
 
+            return cast(dict[str, Any], json_safe(dumped)) if mode == "json" else dumped
+
         @override
         def model_dump_json(
             self,
             *,
             indent: int | None = None,
-            include: IncEx = None,
-            exclude: IncEx = None,
+            include: IncEx | None = None,
+            exclude: IncEx | None = None,
             by_alias: bool = False,
             exclude_unset: bool = False,
             exclude_defaults: bool = False,
@@ -380,6 +383,8 @@ def is_basemodel(type_: type) -> bool:
 
 def is_basemodel_type(type_: type) -> TypeGuard[type[BaseModel] | type[GenericModel]]:
     origin = get_origin(type_) or type_
+    if not inspect.isclass(origin):
+        return False
     return issubclass(origin, BaseModel) or issubclass(origin, GenericModel)
 
 
@@ -404,6 +409,15 @@ def build(
         )
 
     return cast(_BaseModelT, construct_type(type_=base_model_cls, value=kwargs))
+
+
+def construct_type_unchecked(*, value: object, type_: type[_T]) -> _T:
+    """Loose coercion to the expected type with construction of nested values.
+
+    Note: the returned value from this function is not guaranteed to match the
+    given type.
+    """
+    return cast(_T, construct_type(value=value, type_=type_))
 
 
 def construct_type(*, value: object, type_: object) -> object:

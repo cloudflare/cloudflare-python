@@ -27,6 +27,6 @@ class OSVersionInput(BaseModel):
     os_version_extra: Optional[str] = None
     """Additional version data.
 
-    For Mac or iOS, the Product Verison Extra. For Linux, the kernel release
+    For Mac or iOS, the Product Version Extra. For Linux, the kernel release
     version. (Mac, iOS, and Linux only)
     """

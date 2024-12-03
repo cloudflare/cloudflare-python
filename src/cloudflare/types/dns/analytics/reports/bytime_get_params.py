@@ -7,7 +7,7 @@ from datetime import datetime
 from typing_extensions import Required, Annotated, TypedDict
 
 from ....._utils import PropertyInfo
-from ...firewall.delta import Delta
+from ....dns_firewall.delta import Delta
 
 __all__ = ["BytimeGetParams"]
 

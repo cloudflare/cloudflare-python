@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Union, cast
+from typing import Any, Union, cast
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -63,6 +63,14 @@ from .configurations import (
     ConfigurationsResourceWithStreamingResponse,
     AsyncConfigurationsResourceWithStreamingResponse,
 )
+from .warp_connector import (
+    WARPConnectorResource,
+    AsyncWARPConnectorResource,
+    WARPConnectorResourceWithRawResponse,
+    AsyncWARPConnectorResourceWithRawResponse,
+    WARPConnectorResourceWithStreamingResponse,
+    AsyncWARPConnectorResourceWithStreamingResponse,
+)
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.zero_trust import tunnel_edit_params, tunnel_list_params, tunnel_create_params
 from ....types.zero_trust.tunnel_get_response import TunnelGetResponse
@@ -75,6 +83,10 @@ __all__ = ["TunnelsResource", "AsyncTunnelsResource"]
 
 
 class TunnelsResource(SyncAPIResource):
+    @cached_property
+    def warp_connector(self) -> WARPConnectorResource:
+        return WARPConnectorResource(self._client)
+
     @cached_property
     def configurations(self) -> ConfigurationsResource:
         return ConfigurationsResource(self._client)
@@ -97,10 +109,21 @@ class TunnelsResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> TunnelsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return TunnelsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> TunnelsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return TunnelsResourceWithStreamingResponse(self)
 
     def create(
@@ -108,7 +131,8 @@ class TunnelsResource(SyncAPIResource):
         *,
         account_id: str,
         name: str,
-        tunnel_secret: str,
+        config_src: Literal["local", "cloudflare"] | NotGiven = NOT_GIVEN,
+        tunnel_secret: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -117,12 +141,16 @@ class TunnelsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TunnelCreateResponse:
         """
-        Creates a new Argo Tunnel in an account.
+        Creates a new Cloudflare Tunnel in an account.
 
         Args:
           account_id: Cloudflare account ID
 
           name: A user-friendly name for a tunnel.
+
+          config_src: Indicates if this is a locally or remotely configured tunnel. If `local`, manage
+              the tunnel using a YAML file on the origin machine. If `cloudflare`, manage the
+              tunnel on the Zero Trust dashboard.
 
           tunnel_secret: Sets the password required to run a locally-managed tunnel. Must be at least 32
               bytes and encoded as a base64 string.
@@ -137,23 +165,29 @@ class TunnelsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._post(
-            f"/accounts/{account_id}/tunnels",
-            body=maybe_transform(
-                {
-                    "name": name,
-                    "tunnel_secret": tunnel_secret,
-                },
-                tunnel_create_params.TunnelCreateParams,
+        return cast(
+            TunnelCreateResponse,
+            self._post(
+                f"/accounts/{account_id}/cfd_tunnel",
+                body=maybe_transform(
+                    {
+                        "name": name,
+                        "config_src": config_src,
+                        "tunnel_secret": tunnel_secret,
+                    },
+                    tunnel_create_params.TunnelCreateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[TunnelCreateResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[TunnelCreateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[TunnelCreateResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[TunnelCreateResponse], ResultWrapper[TunnelCreateResponse]),
         )
 
     def list(
@@ -168,7 +202,6 @@ class TunnelsResource(SyncAPIResource):
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         status: Literal["inactive", "degraded", "healthy", "down"] | NotGiven = NOT_GIVEN,
-        tun_types: str | NotGiven = NOT_GIVEN,
         uuid: str | NotGiven = NOT_GIVEN,
         was_active_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         was_inactive_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
@@ -180,7 +213,7 @@ class TunnelsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncV4PagePaginationArray[TunnelListResponse]:
         """
-        Lists and filters all types of Tunnels in an account.
+        Lists and filters Cloudflare Tunnels in an account.
 
         Args:
           account_id: Cloudflare account ID
@@ -191,7 +224,7 @@ class TunnelsResource(SyncAPIResource):
           is_deleted: If `true`, only include deleted tunnels. If `false`, exclude deleted tunnels. If
               empty, all tunnels will be included.
 
-          name: A user-friendly name for the tunnel.
+          name: A user-friendly name for a tunnel.
 
           page: Page number of paginated results.
 
@@ -201,8 +234,6 @@ class TunnelsResource(SyncAPIResource):
               run), `degraded` (tunnel is active and able to serve traffic but in an unhealthy
               state), `healthy` (tunnel is active and able to serve traffic), or `down`
               (tunnel can not serve traffic as it has no connections to the Cloudflare Edge).
-
-          tun_types: The types of tunnels to filter separated by a comma.
 
           uuid: UUID of the tunnel.
 
@@ -217,7 +248,7 @@ class TunnelsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/tunnels",
+            f"/accounts/{account_id}/cfd_tunnel",
             page=SyncV4PagePaginationArray[TunnelListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -234,7 +265,6 @@ class TunnelsResource(SyncAPIResource):
                         "page": page,
                         "per_page": per_page,
                         "status": status,
-                        "tun_types": tun_types,
                         "uuid": uuid,
                         "was_active_at": was_active_at,
                         "was_inactive_at": was_inactive_at,
@@ -258,7 +288,7 @@ class TunnelsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TunnelDeleteResponse:
         """
-        Deletes an Argo Tunnel from an account.
+        Deletes a Cloudflare Tunnel from an account.
 
         Args:
           account_id: Cloudflare account ID
@@ -277,16 +307,21 @@ class TunnelsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return self._delete(
-            f"/accounts/{account_id}/tunnels/{tunnel_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[TunnelDeleteResponse]._unwrapper,
+        return cast(
+            TunnelDeleteResponse,
+            self._delete(
+                f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[TunnelDeleteResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[TunnelDeleteResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[TunnelDeleteResponse], ResultWrapper[TunnelDeleteResponse]),
         )
 
     def edit(
@@ -365,7 +400,7 @@ class TunnelsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TunnelGetResponse:
         """
-        Fetches a single Argo Tunnel.
+        Fetches a single Cloudflare Tunnel.
 
         Args:
           account_id: Cloudflare account ID
@@ -384,20 +419,29 @@ class TunnelsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return self._get(
-            f"/accounts/{account_id}/tunnels/{tunnel_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[TunnelGetResponse]._unwrapper,
+        return cast(
+            TunnelGetResponse,
+            self._get(
+                f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[TunnelGetResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[TunnelGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[TunnelGetResponse], ResultWrapper[TunnelGetResponse]),
         )
 
 
 class AsyncTunnelsResource(AsyncAPIResource):
+    @cached_property
+    def warp_connector(self) -> AsyncWARPConnectorResource:
+        return AsyncWARPConnectorResource(self._client)
+
     @cached_property
     def configurations(self) -> AsyncConfigurationsResource:
         return AsyncConfigurationsResource(self._client)
@@ -420,10 +464,21 @@ class AsyncTunnelsResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncTunnelsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncTunnelsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncTunnelsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncTunnelsResourceWithStreamingResponse(self)
 
     async def create(
@@ -431,7 +486,8 @@ class AsyncTunnelsResource(AsyncAPIResource):
         *,
         account_id: str,
         name: str,
-        tunnel_secret: str,
+        config_src: Literal["local", "cloudflare"] | NotGiven = NOT_GIVEN,
+        tunnel_secret: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -440,12 +496,16 @@ class AsyncTunnelsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TunnelCreateResponse:
         """
-        Creates a new Argo Tunnel in an account.
+        Creates a new Cloudflare Tunnel in an account.
 
         Args:
           account_id: Cloudflare account ID
 
           name: A user-friendly name for a tunnel.
+
+          config_src: Indicates if this is a locally or remotely configured tunnel. If `local`, manage
+              the tunnel using a YAML file on the origin machine. If `cloudflare`, manage the
+              tunnel on the Zero Trust dashboard.
 
           tunnel_secret: Sets the password required to run a locally-managed tunnel. Must be at least 32
               bytes and encoded as a base64 string.
@@ -460,23 +520,29 @@ class AsyncTunnelsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._post(
-            f"/accounts/{account_id}/tunnels",
-            body=await async_maybe_transform(
-                {
-                    "name": name,
-                    "tunnel_secret": tunnel_secret,
-                },
-                tunnel_create_params.TunnelCreateParams,
+        return cast(
+            TunnelCreateResponse,
+            await self._post(
+                f"/accounts/{account_id}/cfd_tunnel",
+                body=await async_maybe_transform(
+                    {
+                        "name": name,
+                        "config_src": config_src,
+                        "tunnel_secret": tunnel_secret,
+                    },
+                    tunnel_create_params.TunnelCreateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[TunnelCreateResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[TunnelCreateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[TunnelCreateResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[TunnelCreateResponse], ResultWrapper[TunnelCreateResponse]),
         )
 
     def list(
@@ -491,7 +557,6 @@ class AsyncTunnelsResource(AsyncAPIResource):
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         status: Literal["inactive", "degraded", "healthy", "down"] | NotGiven = NOT_GIVEN,
-        tun_types: str | NotGiven = NOT_GIVEN,
         uuid: str | NotGiven = NOT_GIVEN,
         was_active_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         was_inactive_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
@@ -503,7 +568,7 @@ class AsyncTunnelsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[TunnelListResponse, AsyncV4PagePaginationArray[TunnelListResponse]]:
         """
-        Lists and filters all types of Tunnels in an account.
+        Lists and filters Cloudflare Tunnels in an account.
 
         Args:
           account_id: Cloudflare account ID
@@ -514,7 +579,7 @@ class AsyncTunnelsResource(AsyncAPIResource):
           is_deleted: If `true`, only include deleted tunnels. If `false`, exclude deleted tunnels. If
               empty, all tunnels will be included.
 
-          name: A user-friendly name for the tunnel.
+          name: A user-friendly name for a tunnel.
 
           page: Page number of paginated results.
 
@@ -524,8 +589,6 @@ class AsyncTunnelsResource(AsyncAPIResource):
               run), `degraded` (tunnel is active and able to serve traffic but in an unhealthy
               state), `healthy` (tunnel is active and able to serve traffic), or `down`
               (tunnel can not serve traffic as it has no connections to the Cloudflare Edge).
-
-          tun_types: The types of tunnels to filter separated by a comma.
 
           uuid: UUID of the tunnel.
 
@@ -540,7 +603,7 @@ class AsyncTunnelsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/tunnels",
+            f"/accounts/{account_id}/cfd_tunnel",
             page=AsyncV4PagePaginationArray[TunnelListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -557,7 +620,6 @@ class AsyncTunnelsResource(AsyncAPIResource):
                         "page": page,
                         "per_page": per_page,
                         "status": status,
-                        "tun_types": tun_types,
                         "uuid": uuid,
                         "was_active_at": was_active_at,
                         "was_inactive_at": was_inactive_at,
@@ -581,7 +643,7 @@ class AsyncTunnelsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TunnelDeleteResponse:
         """
-        Deletes an Argo Tunnel from an account.
+        Deletes a Cloudflare Tunnel from an account.
 
         Args:
           account_id: Cloudflare account ID
@@ -600,16 +662,21 @@ class AsyncTunnelsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return await self._delete(
-            f"/accounts/{account_id}/tunnels/{tunnel_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[TunnelDeleteResponse]._unwrapper,
+        return cast(
+            TunnelDeleteResponse,
+            await self._delete(
+                f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[TunnelDeleteResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[TunnelDeleteResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[TunnelDeleteResponse], ResultWrapper[TunnelDeleteResponse]),
         )
 
     async def edit(
@@ -688,7 +755,7 @@ class AsyncTunnelsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TunnelGetResponse:
         """
-        Fetches a single Argo Tunnel.
+        Fetches a single Cloudflare Tunnel.
 
         Args:
           account_id: Cloudflare account ID
@@ -707,16 +774,21 @@ class AsyncTunnelsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return await self._get(
-            f"/accounts/{account_id}/tunnels/{tunnel_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[TunnelGetResponse]._unwrapper,
+        return cast(
+            TunnelGetResponse,
+            await self._get(
+                f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[TunnelGetResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[TunnelGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[TunnelGetResponse], ResultWrapper[TunnelGetResponse]),
         )
 
 
@@ -739,6 +811,10 @@ class TunnelsResourceWithRawResponse:
         self.get = to_raw_response_wrapper(
             tunnels.get,
         )
+
+    @cached_property
+    def warp_connector(self) -> WARPConnectorResourceWithRawResponse:
+        return WARPConnectorResourceWithRawResponse(self._tunnels.warp_connector)
 
     @cached_property
     def configurations(self) -> ConfigurationsResourceWithRawResponse:
@@ -782,6 +858,10 @@ class AsyncTunnelsResourceWithRawResponse:
         )
 
     @cached_property
+    def warp_connector(self) -> AsyncWARPConnectorResourceWithRawResponse:
+        return AsyncWARPConnectorResourceWithRawResponse(self._tunnels.warp_connector)
+
+    @cached_property
     def configurations(self) -> AsyncConfigurationsResourceWithRawResponse:
         return AsyncConfigurationsResourceWithRawResponse(self._tunnels.configurations)
 
@@ -823,6 +903,10 @@ class TunnelsResourceWithStreamingResponse:
         )
 
     @cached_property
+    def warp_connector(self) -> WARPConnectorResourceWithStreamingResponse:
+        return WARPConnectorResourceWithStreamingResponse(self._tunnels.warp_connector)
+
+    @cached_property
     def configurations(self) -> ConfigurationsResourceWithStreamingResponse:
         return ConfigurationsResourceWithStreamingResponse(self._tunnels.configurations)
 
@@ -862,6 +946,10 @@ class AsyncTunnelsResourceWithStreamingResponse:
         self.get = async_to_streamed_response_wrapper(
             tunnels.get,
         )
+
+    @cached_property
+    def warp_connector(self) -> AsyncWARPConnectorResourceWithStreamingResponse:
+        return AsyncWARPConnectorResourceWithStreamingResponse(self._tunnels.warp_connector)
 
     @cached_property
     def configurations(self) -> AsyncConfigurationsResourceWithStreamingResponse:

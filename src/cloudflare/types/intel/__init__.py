@@ -12,7 +12,6 @@ from .domain_history import DomainHistory as DomainHistory
 from .dns_list_params import DNSListParams as DNSListParams
 from .ip_get_response import IPGetResponse as IPGetResponse
 from .whois_get_params import WhoisGetParams as WhoisGetParams
-from .dns_list_response import DNSListResponse as DNSListResponse
 from .domain_get_params import DomainGetParams as DomainGetParams
 from .whois_get_response import WhoisGetResponse as WhoisGetResponse
 from .ip_list_get_response import IPListGetResponse as IPListGetResponse

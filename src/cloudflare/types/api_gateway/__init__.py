@@ -27,3 +27,4 @@ from .user_schema_create_params import UserSchemaCreateParams as UserSchemaCreat
 from .configuration_update_params import ConfigurationUpdateParams as ConfigurationUpdateParams
 from .user_schema_delete_response import UserSchemaDeleteResponse as UserSchemaDeleteResponse
 from .configuration_update_response import ConfigurationUpdateResponse as ConfigurationUpdateResponse
+from .operation_bulk_delete_response import OperationBulkDeleteResponse as OperationBulkDeleteResponse

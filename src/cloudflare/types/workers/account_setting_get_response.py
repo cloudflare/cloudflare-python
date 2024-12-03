@@ -8,6 +8,6 @@ __all__ = ["AccountSettingGetResponse"]
 
 
 class AccountSettingGetResponse(BaseModel):
-    default_usage_model: Optional[object] = None
+    default_usage_model: Optional[str] = None
 
-    green_compute: Optional[object] = None
+    green_compute: Optional[bool] = None

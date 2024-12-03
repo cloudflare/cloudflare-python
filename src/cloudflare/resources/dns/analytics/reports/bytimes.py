@@ -22,8 +22,8 @@ from ....._response import (
 )
 from ....._wrappers import ResultWrapper
 from ....._base_client import make_request_options
-from .....types.dns.firewall import Delta
-from .....types.dns.firewall.delta import Delta
+from .....types.dns_firewall import Delta
+from .....types.dns_firewall.delta import Delta
 from .....types.dns.analytics.reports import bytime_get_params
 from .....types.dns.analytics.reports.by_time import ByTime
 
@@ -33,10 +33,21 @@ __all__ = ["BytimesResource", "AsyncBytimesResource"]
 class BytimesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> BytimesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return BytimesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> BytimesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return BytimesResourceWithStreamingResponse(self)
 
     def get(
@@ -124,10 +135,21 @@ class BytimesResource(SyncAPIResource):
 class AsyncBytimesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncBytimesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncBytimesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncBytimesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncBytimesResourceWithStreamingResponse(self)
 
     async def get(

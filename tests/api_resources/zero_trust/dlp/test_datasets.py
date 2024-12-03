@@ -32,6 +32,7 @@ class TestDatasets:
             account_id="account_id",
             name="name",
             description="description",
+            encoding_version=0,
             secret=True,
         )
         assert_matches_type(Optional[DatasetCreation], dataset, path=["response"])
@@ -280,6 +281,7 @@ class TestAsyncDatasets:
             account_id="account_id",
             name="name",
             description="description",
+            encoding_version=0,
             secret=True,
         )
         assert_matches_type(Optional[DatasetCreation], dataset, path=["response"])

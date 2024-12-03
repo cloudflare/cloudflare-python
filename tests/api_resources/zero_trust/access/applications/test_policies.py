@@ -10,12 +10,9 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.types.zero_trust.access import ApplicationPolicy
 from cloudflare.types.zero_trust.access.applications import (
-    PolicyGetResponse,
-    PolicyListResponse,
-    PolicyCreateResponse,
     PolicyDeleteResponse,
-    PolicyUpdateResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -29,29 +26,15 @@ class TestPolicies:
     def test_method_create(self, client: Cloudflare) -> None:
         policy = client.zero_trust.access.applications.policies.create(
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            decision="allow",
-            include=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
-            name="Allow devs",
             account_id="account_id",
         )
-        assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
+        assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         policy = client.zero_trust.access.applications.policies.create(
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            decision="allow",
-            include=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
-            name="Allow devs",
             account_id="account_id",
             approval_groups=[
                 {
@@ -66,63 +49,39 @@ class TestPolicies:
                 },
             ],
             approval_required=True,
-            exclude=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
             isolation_required=False,
             precedence=0,
             purpose_justification_prompt="Please enter a justification for entering this protected domain.",
             purpose_justification_required=True,
-            require=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
             session_duration="24h",
         )
-        assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
+        assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.policies.with_raw_response.create(
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            decision="allow",
-            include=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
-            name="Allow devs",
             account_id="account_id",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = response.parse()
-        assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
+        assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.policies.with_streaming_response.create(
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            decision="allow",
-            include=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
-            name="Allow devs",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = response.parse()
-            assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
+            assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -132,39 +91,18 @@ class TestPolicies:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             client.zero_trust.access.applications.policies.with_raw_response.create(
                 app_id="",
-                decision="allow",
-                include=[
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                ],
-                name="Allow devs",
                 account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.applications.policies.with_raw_response.create(
                 app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                decision="allow",
-                include=[
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                ],
-                name="Allow devs",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.access.applications.policies.with_raw_response.create(
                 app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                decision="allow",
-                include=[
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                ],
-                name="Allow devs",
                 account_id="account_id",
             )
 
@@ -174,16 +112,9 @@ class TestPolicies:
         policy = client.zero_trust.access.applications.policies.update(
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            decision="allow",
-            include=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
-            name="Allow devs",
             account_id="account_id",
         )
-        assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
+        assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -191,13 +122,6 @@ class TestPolicies:
         policy = client.zero_trust.access.applications.policies.update(
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            decision="allow",
-            include=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
-            name="Allow devs",
             account_id="account_id",
             approval_groups=[
                 {
@@ -212,23 +136,13 @@ class TestPolicies:
                 },
             ],
             approval_required=True,
-            exclude=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
             isolation_required=False,
             precedence=0,
             purpose_justification_prompt="Please enter a justification for entering this protected domain.",
             purpose_justification_required=True,
-            require=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
             session_duration="24h",
         )
-        assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
+        assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -236,20 +150,13 @@ class TestPolicies:
         response = client.zero_trust.access.applications.policies.with_raw_response.update(
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            decision="allow",
-            include=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
-            name="Allow devs",
             account_id="account_id",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = response.parse()
-        assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
+        assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -257,20 +164,13 @@ class TestPolicies:
         with client.zero_trust.access.applications.policies.with_streaming_response.update(
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            decision="allow",
-            include=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
-            name="Allow devs",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = response.parse()
-            assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
+            assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -281,13 +181,6 @@ class TestPolicies:
             client.zero_trust.access.applications.policies.with_raw_response.update(
                 policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 app_id="",
-                decision="allow",
-                include=[
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                ],
-                name="Allow devs",
                 account_id="account_id",
             )
 
@@ -295,13 +188,6 @@ class TestPolicies:
             client.zero_trust.access.applications.policies.with_raw_response.update(
                 policy_id="",
                 app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                decision="allow",
-                include=[
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                ],
-                name="Allow devs",
                 account_id="account_id",
             )
 
@@ -309,13 +195,6 @@ class TestPolicies:
             client.zero_trust.access.applications.policies.with_raw_response.update(
                 policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                decision="allow",
-                include=[
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                ],
-                name="Allow devs",
                 account_id="",
             )
 
@@ -323,13 +202,6 @@ class TestPolicies:
             client.zero_trust.access.applications.policies.with_raw_response.update(
                 policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                decision="allow",
-                include=[
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                ],
-                name="Allow devs",
                 account_id="account_id",
             )
 
@@ -340,7 +212,7 @@ class TestPolicies:
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
         )
-        assert_matches_type(SyncSinglePage[PolicyListResponse], policy, path=["response"])
+        assert_matches_type(SyncSinglePage[ApplicationPolicy], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -349,7 +221,7 @@ class TestPolicies:
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
         )
-        assert_matches_type(SyncSinglePage[PolicyListResponse], policy, path=["response"])
+        assert_matches_type(SyncSinglePage[ApplicationPolicy], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -362,7 +234,7 @@ class TestPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = response.parse()
-        assert_matches_type(SyncSinglePage[PolicyListResponse], policy, path=["response"])
+        assert_matches_type(SyncSinglePage[ApplicationPolicy], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -375,7 +247,7 @@ class TestPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = response.parse()
-            assert_matches_type(SyncSinglePage[PolicyListResponse], policy, path=["response"])
+            assert_matches_type(SyncSinglePage[ApplicationPolicy], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -489,7 +361,7 @@ class TestPolicies:
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
         )
-        assert_matches_type(Optional[PolicyGetResponse], policy, path=["response"])
+        assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -499,7 +371,7 @@ class TestPolicies:
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
         )
-        assert_matches_type(Optional[PolicyGetResponse], policy, path=["response"])
+        assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -513,7 +385,7 @@ class TestPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = response.parse()
-        assert_matches_type(Optional[PolicyGetResponse], policy, path=["response"])
+        assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -527,7 +399,7 @@ class TestPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = response.parse()
-            assert_matches_type(Optional[PolicyGetResponse], policy, path=["response"])
+            assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -571,29 +443,15 @@ class TestAsyncPolicies:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         policy = await async_client.zero_trust.access.applications.policies.create(
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            decision="allow",
-            include=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
-            name="Allow devs",
             account_id="account_id",
         )
-        assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
+        assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         policy = await async_client.zero_trust.access.applications.policies.create(
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            decision="allow",
-            include=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
-            name="Allow devs",
             account_id="account_id",
             approval_groups=[
                 {
@@ -608,63 +466,39 @@ class TestAsyncPolicies:
                 },
             ],
             approval_required=True,
-            exclude=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
             isolation_required=False,
             precedence=0,
             purpose_justification_prompt="Please enter a justification for entering this protected domain.",
             purpose_justification_required=True,
-            require=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
             session_duration="24h",
         )
-        assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
+        assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.policies.with_raw_response.create(
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            decision="allow",
-            include=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
-            name="Allow devs",
             account_id="account_id",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = await response.parse()
-        assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
+        assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.policies.with_streaming_response.create(
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            decision="allow",
-            include=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
-            name="Allow devs",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = await response.parse()
-            assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
+            assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -674,39 +508,18 @@ class TestAsyncPolicies:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             await async_client.zero_trust.access.applications.policies.with_raw_response.create(
                 app_id="",
-                decision="allow",
-                include=[
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                ],
-                name="Allow devs",
                 account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.applications.policies.with_raw_response.create(
                 app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                decision="allow",
-                include=[
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                ],
-                name="Allow devs",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.access.applications.policies.with_raw_response.create(
                 app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                decision="allow",
-                include=[
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                ],
-                name="Allow devs",
                 account_id="account_id",
             )
 
@@ -716,16 +529,9 @@ class TestAsyncPolicies:
         policy = await async_client.zero_trust.access.applications.policies.update(
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            decision="allow",
-            include=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
-            name="Allow devs",
             account_id="account_id",
         )
-        assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
+        assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -733,13 +539,6 @@ class TestAsyncPolicies:
         policy = await async_client.zero_trust.access.applications.policies.update(
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            decision="allow",
-            include=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
-            name="Allow devs",
             account_id="account_id",
             approval_groups=[
                 {
@@ -754,23 +553,13 @@ class TestAsyncPolicies:
                 },
             ],
             approval_required=True,
-            exclude=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
             isolation_required=False,
             precedence=0,
             purpose_justification_prompt="Please enter a justification for entering this protected domain.",
             purpose_justification_required=True,
-            require=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
             session_duration="24h",
         )
-        assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
+        assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -778,20 +567,13 @@ class TestAsyncPolicies:
         response = await async_client.zero_trust.access.applications.policies.with_raw_response.update(
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            decision="allow",
-            include=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
-            name="Allow devs",
             account_id="account_id",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = await response.parse()
-        assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
+        assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -799,20 +581,13 @@ class TestAsyncPolicies:
         async with async_client.zero_trust.access.applications.policies.with_streaming_response.update(
             policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            decision="allow",
-            include=[
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-                {"email": {"email": "test@example.com"}},
-            ],
-            name="Allow devs",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = await response.parse()
-            assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
+            assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -823,13 +598,6 @@ class TestAsyncPolicies:
             await async_client.zero_trust.access.applications.policies.with_raw_response.update(
                 policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 app_id="",
-                decision="allow",
-                include=[
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                ],
-                name="Allow devs",
                 account_id="account_id",
             )
 
@@ -837,13 +605,6 @@ class TestAsyncPolicies:
             await async_client.zero_trust.access.applications.policies.with_raw_response.update(
                 policy_id="",
                 app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                decision="allow",
-                include=[
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                ],
-                name="Allow devs",
                 account_id="account_id",
             )
 
@@ -851,13 +612,6 @@ class TestAsyncPolicies:
             await async_client.zero_trust.access.applications.policies.with_raw_response.update(
                 policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                decision="allow",
-                include=[
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                ],
-                name="Allow devs",
                 account_id="",
             )
 
@@ -865,13 +619,6 @@ class TestAsyncPolicies:
             await async_client.zero_trust.access.applications.policies.with_raw_response.update(
                 policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                decision="allow",
-                include=[
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                    {"email": {"email": "test@example.com"}},
-                ],
-                name="Allow devs",
                 account_id="account_id",
             )
 
@@ -882,7 +629,7 @@ class TestAsyncPolicies:
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
         )
-        assert_matches_type(AsyncSinglePage[PolicyListResponse], policy, path=["response"])
+        assert_matches_type(AsyncSinglePage[ApplicationPolicy], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -891,7 +638,7 @@ class TestAsyncPolicies:
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
         )
-        assert_matches_type(AsyncSinglePage[PolicyListResponse], policy, path=["response"])
+        assert_matches_type(AsyncSinglePage[ApplicationPolicy], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -904,7 +651,7 @@ class TestAsyncPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = await response.parse()
-        assert_matches_type(AsyncSinglePage[PolicyListResponse], policy, path=["response"])
+        assert_matches_type(AsyncSinglePage[ApplicationPolicy], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -917,7 +664,7 @@ class TestAsyncPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = await response.parse()
-            assert_matches_type(AsyncSinglePage[PolicyListResponse], policy, path=["response"])
+            assert_matches_type(AsyncSinglePage[ApplicationPolicy], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1031,7 +778,7 @@ class TestAsyncPolicies:
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
         )
-        assert_matches_type(Optional[PolicyGetResponse], policy, path=["response"])
+        assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1041,7 +788,7 @@ class TestAsyncPolicies:
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
         )
-        assert_matches_type(Optional[PolicyGetResponse], policy, path=["response"])
+        assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1055,7 +802,7 @@ class TestAsyncPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = await response.parse()
-        assert_matches_type(Optional[PolicyGetResponse], policy, path=["response"])
+        assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1069,7 +816,7 @@ class TestAsyncPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = await response.parse()
-            assert_matches_type(Optional[PolicyGetResponse], policy, path=["response"])
+            assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

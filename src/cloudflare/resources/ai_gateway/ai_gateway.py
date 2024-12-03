@@ -20,6 +20,14 @@ from ..._utils import (
     maybe_transform,
     async_maybe_transform,
 )
+from .datasets import (
+    DatasetsResource,
+    AsyncDatasetsResource,
+    DatasetsResourceWithRawResponse,
+    AsyncDatasetsResourceWithRawResponse,
+    DatasetsResourceWithStreamingResponse,
+    AsyncDatasetsResourceWithStreamingResponse,
+)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -29,8 +37,24 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
+from .evaluations import (
+    EvaluationsResource,
+    AsyncEvaluationsResource,
+    EvaluationsResourceWithRawResponse,
+    AsyncEvaluationsResourceWithRawResponse,
+    EvaluationsResourceWithStreamingResponse,
+    AsyncEvaluationsResourceWithStreamingResponse,
+)
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
+from .evaluation_types import (
+    EvaluationTypesResource,
+    AsyncEvaluationTypesResource,
+    EvaluationTypesResourceWithRawResponse,
+    AsyncEvaluationTypesResourceWithRawResponse,
+    EvaluationTypesResourceWithStreamingResponse,
+    AsyncEvaluationTypesResourceWithStreamingResponse,
+)
 from ...types.ai_gateway import ai_gateway_list_params, ai_gateway_create_params, ai_gateway_update_params
 from ...types.ai_gateway.ai_gateway_get_response import AIGatewayGetResponse
 from ...types.ai_gateway.ai_gateway_list_response import AIGatewayListResponse
@@ -43,15 +67,38 @@ __all__ = ["AIGatewayResource", "AsyncAIGatewayResource"]
 
 class AIGatewayResource(SyncAPIResource):
     @cached_property
+    def evaluation_types(self) -> EvaluationTypesResource:
+        return EvaluationTypesResource(self._client)
+
+    @cached_property
     def logs(self) -> LogsResource:
         return LogsResource(self._client)
 
     @cached_property
+    def datasets(self) -> DatasetsResource:
+        return DatasetsResource(self._client)
+
+    @cached_property
+    def evaluations(self) -> EvaluationsResource:
+        return EvaluationsResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AIGatewayResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AIGatewayResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AIGatewayResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AIGatewayResourceWithStreamingResponse(self)
 
     def create(
@@ -65,6 +112,8 @@ class AIGatewayResource(SyncAPIResource):
         rate_limiting_interval: Optional[int],
         rate_limiting_limit: Optional[int],
         rate_limiting_technique: Literal["fixed", "sliding"],
+        logpush: bool | NotGiven = NOT_GIVEN,
+        logpush_public_key: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -99,6 +148,8 @@ class AIGatewayResource(SyncAPIResource):
                     "rate_limiting_interval": rate_limiting_interval,
                     "rate_limiting_limit": rate_limiting_limit,
                     "rate_limiting_technique": rate_limiting_technique,
+                    "logpush": logpush,
+                    "logpush_public_key": logpush_public_key,
                 },
                 ai_gateway_create_params.AIGatewayCreateParams,
             ),
@@ -123,6 +174,8 @@ class AIGatewayResource(SyncAPIResource):
         rate_limiting_interval: Optional[int],
         rate_limiting_limit: Optional[int],
         rate_limiting_technique: Literal["fixed", "sliding"],
+        logpush: bool | NotGiven = NOT_GIVEN,
+        logpush_public_key: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -158,6 +211,8 @@ class AIGatewayResource(SyncAPIResource):
                     "rate_limiting_interval": rate_limiting_interval,
                     "rate_limiting_limit": rate_limiting_limit,
                     "rate_limiting_technique": rate_limiting_technique,
+                    "logpush": logpush,
+                    "logpush_public_key": logpush_public_key,
                 },
                 ai_gateway_update_params.AIGatewayUpdateParams,
             ),
@@ -175,10 +230,11 @@ class AIGatewayResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        id: str | NotGiven = NOT_GIVEN,
         order_by: str | NotGiven = NOT_GIVEN,
+        order_by_direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
+        search: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -190,9 +246,11 @@ class AIGatewayResource(SyncAPIResource):
         List Gateways
 
         Args:
-          id: gateway id
-
           order_by: Order By Column Name
+
+          order_by_direction: Order By Direction
+
+          search: Search by id
 
           extra_headers: Send extra headers
 
@@ -214,10 +272,11 @@ class AIGatewayResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "id": id,
                         "order_by": order_by,
+                        "order_by_direction": order_by_direction,
                         "page": page,
                         "per_page": per_page,
+                        "search": search,
                     },
                     ai_gateway_list_params.AIGatewayListParams,
                 ),
@@ -241,6 +300,8 @@ class AIGatewayResource(SyncAPIResource):
         Delete a Gateway
 
         Args:
+          id: gateway id
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -310,15 +371,38 @@ class AIGatewayResource(SyncAPIResource):
 
 class AsyncAIGatewayResource(AsyncAPIResource):
     @cached_property
+    def evaluation_types(self) -> AsyncEvaluationTypesResource:
+        return AsyncEvaluationTypesResource(self._client)
+
+    @cached_property
     def logs(self) -> AsyncLogsResource:
         return AsyncLogsResource(self._client)
 
     @cached_property
+    def datasets(self) -> AsyncDatasetsResource:
+        return AsyncDatasetsResource(self._client)
+
+    @cached_property
+    def evaluations(self) -> AsyncEvaluationsResource:
+        return AsyncEvaluationsResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AsyncAIGatewayResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncAIGatewayResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncAIGatewayResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncAIGatewayResourceWithStreamingResponse(self)
 
     async def create(
@@ -332,6 +416,8 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         rate_limiting_interval: Optional[int],
         rate_limiting_limit: Optional[int],
         rate_limiting_technique: Literal["fixed", "sliding"],
+        logpush: bool | NotGiven = NOT_GIVEN,
+        logpush_public_key: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -366,6 +452,8 @@ class AsyncAIGatewayResource(AsyncAPIResource):
                     "rate_limiting_interval": rate_limiting_interval,
                     "rate_limiting_limit": rate_limiting_limit,
                     "rate_limiting_technique": rate_limiting_technique,
+                    "logpush": logpush,
+                    "logpush_public_key": logpush_public_key,
                 },
                 ai_gateway_create_params.AIGatewayCreateParams,
             ),
@@ -390,6 +478,8 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         rate_limiting_interval: Optional[int],
         rate_limiting_limit: Optional[int],
         rate_limiting_technique: Literal["fixed", "sliding"],
+        logpush: bool | NotGiven = NOT_GIVEN,
+        logpush_public_key: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -425,6 +515,8 @@ class AsyncAIGatewayResource(AsyncAPIResource):
                     "rate_limiting_interval": rate_limiting_interval,
                     "rate_limiting_limit": rate_limiting_limit,
                     "rate_limiting_technique": rate_limiting_technique,
+                    "logpush": logpush,
+                    "logpush_public_key": logpush_public_key,
                 },
                 ai_gateway_update_params.AIGatewayUpdateParams,
             ),
@@ -442,10 +534,11 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        id: str | NotGiven = NOT_GIVEN,
         order_by: str | NotGiven = NOT_GIVEN,
+        order_by_direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
+        search: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -457,9 +550,11 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         List Gateways
 
         Args:
-          id: gateway id
-
           order_by: Order By Column Name
+
+          order_by_direction: Order By Direction
+
+          search: Search by id
 
           extra_headers: Send extra headers
 
@@ -481,10 +576,11 @@ class AsyncAIGatewayResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "id": id,
                         "order_by": order_by,
+                        "order_by_direction": order_by_direction,
                         "page": page,
                         "per_page": per_page,
+                        "search": search,
                     },
                     ai_gateway_list_params.AIGatewayListParams,
                 ),
@@ -508,6 +604,8 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         Delete a Gateway
 
         Args:
+          id: gateway id
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -596,8 +694,20 @@ class AIGatewayResourceWithRawResponse:
         )
 
     @cached_property
+    def evaluation_types(self) -> EvaluationTypesResourceWithRawResponse:
+        return EvaluationTypesResourceWithRawResponse(self._ai_gateway.evaluation_types)
+
+    @cached_property
     def logs(self) -> LogsResourceWithRawResponse:
         return LogsResourceWithRawResponse(self._ai_gateway.logs)
+
+    @cached_property
+    def datasets(self) -> DatasetsResourceWithRawResponse:
+        return DatasetsResourceWithRawResponse(self._ai_gateway.datasets)
+
+    @cached_property
+    def evaluations(self) -> EvaluationsResourceWithRawResponse:
+        return EvaluationsResourceWithRawResponse(self._ai_gateway.evaluations)
 
 
 class AsyncAIGatewayResourceWithRawResponse:
@@ -621,8 +731,20 @@ class AsyncAIGatewayResourceWithRawResponse:
         )
 
     @cached_property
+    def evaluation_types(self) -> AsyncEvaluationTypesResourceWithRawResponse:
+        return AsyncEvaluationTypesResourceWithRawResponse(self._ai_gateway.evaluation_types)
+
+    @cached_property
     def logs(self) -> AsyncLogsResourceWithRawResponse:
         return AsyncLogsResourceWithRawResponse(self._ai_gateway.logs)
+
+    @cached_property
+    def datasets(self) -> AsyncDatasetsResourceWithRawResponse:
+        return AsyncDatasetsResourceWithRawResponse(self._ai_gateway.datasets)
+
+    @cached_property
+    def evaluations(self) -> AsyncEvaluationsResourceWithRawResponse:
+        return AsyncEvaluationsResourceWithRawResponse(self._ai_gateway.evaluations)
 
 
 class AIGatewayResourceWithStreamingResponse:
@@ -646,8 +768,20 @@ class AIGatewayResourceWithStreamingResponse:
         )
 
     @cached_property
+    def evaluation_types(self) -> EvaluationTypesResourceWithStreamingResponse:
+        return EvaluationTypesResourceWithStreamingResponse(self._ai_gateway.evaluation_types)
+
+    @cached_property
     def logs(self) -> LogsResourceWithStreamingResponse:
         return LogsResourceWithStreamingResponse(self._ai_gateway.logs)
+
+    @cached_property
+    def datasets(self) -> DatasetsResourceWithStreamingResponse:
+        return DatasetsResourceWithStreamingResponse(self._ai_gateway.datasets)
+
+    @cached_property
+    def evaluations(self) -> EvaluationsResourceWithStreamingResponse:
+        return EvaluationsResourceWithStreamingResponse(self._ai_gateway.evaluations)
 
 
 class AsyncAIGatewayResourceWithStreamingResponse:
@@ -671,5 +805,17 @@ class AsyncAIGatewayResourceWithStreamingResponse:
         )
 
     @cached_property
+    def evaluation_types(self) -> AsyncEvaluationTypesResourceWithStreamingResponse:
+        return AsyncEvaluationTypesResourceWithStreamingResponse(self._ai_gateway.evaluation_types)
+
+    @cached_property
     def logs(self) -> AsyncLogsResourceWithStreamingResponse:
         return AsyncLogsResourceWithStreamingResponse(self._ai_gateway.logs)
+
+    @cached_property
+    def datasets(self) -> AsyncDatasetsResourceWithStreamingResponse:
+        return AsyncDatasetsResourceWithStreamingResponse(self._ai_gateway.datasets)
+
+    @cached_property
+    def evaluations(self) -> AsyncEvaluationsResourceWithStreamingResponse:
+        return AsyncEvaluationsResourceWithStreamingResponse(self._ai_gateway.evaluations)

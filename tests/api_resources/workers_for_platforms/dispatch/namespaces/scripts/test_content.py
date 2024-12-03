@@ -42,7 +42,7 @@ class TestContent:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
-            any_part_name=[b"raw file contents", b"raw file contents", b"raw file contents"],
+            any_part_name=[b"raw file contents"],
             metadata={
                 "body_part": "worker.js",
                 "main_module": "worker.js",
@@ -205,7 +205,7 @@ class TestAsyncContent:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
-            any_part_name=[b"raw file contents", b"raw file contents", b"raw file contents"],
+            any_part_name=[b"raw file contents"],
             metadata={
                 "body_part": "worker.js",
                 "main_module": "worker.js",

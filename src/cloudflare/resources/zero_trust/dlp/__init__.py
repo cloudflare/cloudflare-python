@@ -8,6 +8,22 @@ from .dlp import (
     DLPResourceWithStreamingResponse,
     AsyncDLPResourceWithStreamingResponse,
 )
+from .limits import (
+    LimitsResource,
+    AsyncLimitsResource,
+    LimitsResourceWithRawResponse,
+    AsyncLimitsResourceWithRawResponse,
+    LimitsResourceWithStreamingResponse,
+    AsyncLimitsResourceWithStreamingResponse,
+)
+from .entries import (
+    EntriesResource,
+    AsyncEntriesResource,
+    EntriesResourceWithRawResponse,
+    AsyncEntriesResourceWithRawResponse,
+    EntriesResourceWithStreamingResponse,
+    AsyncEntriesResourceWithStreamingResponse,
+)
 from .datasets import (
     DatasetsResource,
     AsyncDatasetsResource,
@@ -66,6 +82,18 @@ __all__ = [
     "AsyncProfilesResourceWithRawResponse",
     "ProfilesResourceWithStreamingResponse",
     "AsyncProfilesResourceWithStreamingResponse",
+    "LimitsResource",
+    "AsyncLimitsResource",
+    "LimitsResourceWithRawResponse",
+    "AsyncLimitsResourceWithRawResponse",
+    "LimitsResourceWithStreamingResponse",
+    "AsyncLimitsResourceWithStreamingResponse",
+    "EntriesResource",
+    "AsyncEntriesResource",
+    "EntriesResourceWithRawResponse",
+    "AsyncEntriesResourceWithRawResponse",
+    "EntriesResourceWithStreamingResponse",
+    "AsyncEntriesResourceWithStreamingResponse",
     "DLPResource",
     "AsyncDLPResource",
     "DLPResourceWithRawResponse",

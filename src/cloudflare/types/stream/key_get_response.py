@@ -2,6 +2,7 @@
 
 from typing import List, Optional
 from datetime import datetime
+from typing_extensions import TypeAlias
 
 from ..._models import BaseModel
 
@@ -16,4 +17,4 @@ class KeyGetResponseItem(BaseModel):
     """The date and time a signing key was created."""
 
 
-KeyGetResponse = List[KeyGetResponseItem]
+KeyGetResponse: TypeAlias = List[KeyGetResponseItem]

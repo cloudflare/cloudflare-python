@@ -25,10 +25,21 @@ __all__ = ["RecommendationsResource", "AsyncRecommendationsResource"]
 class RecommendationsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> RecommendationsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return RecommendationsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> RecommendationsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return RecommendationsResourceWithStreamingResponse(self)
 
     def get(
@@ -74,10 +85,21 @@ class RecommendationsResource(SyncAPIResource):
 class AsyncRecommendationsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncRecommendationsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncRecommendationsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncRecommendationsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncRecommendationsResourceWithStreamingResponse(self)
 
     async def get(

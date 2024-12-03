@@ -11,6 +11,14 @@ from .ai import (
     AsyncAIResourceWithStreamingResponse,
 )
 from .ai.ai import AIResource, AsyncAIResource
+from .assets import (
+    AssetsResource,
+    AsyncAssetsResource,
+    AssetsResourceWithRawResponse,
+    AsyncAssetsResourceWithRawResponse,
+    AssetsResourceWithStreamingResponse,
+    AsyncAssetsResourceWithStreamingResponse,
+)
 from .domains import (
     DomainsResource,
     AsyncDomainsResource,
@@ -37,6 +45,7 @@ from .subdomains import (
     AsyncSubdomainsResourceWithStreamingResponse,
 )
 from ..._resource import SyncAPIResource, AsyncAPIResource
+from .assets.assets import AssetsResource, AsyncAssetsResource
 from .scripts.scripts import ScriptsResource, AsyncScriptsResource
 from .account_settings import (
     AccountSettingsResource,
@@ -56,6 +65,10 @@ class WorkersResource(SyncAPIResource):
         return AIResource(self._client)
 
     @cached_property
+    def assets(self) -> AssetsResource:
+        return AssetsResource(self._client)
+
+    @cached_property
     def scripts(self) -> ScriptsResource:
         return ScriptsResource(self._client)
 
@@ -73,10 +86,21 @@ class WorkersResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> WorkersResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return WorkersResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> WorkersResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return WorkersResourceWithStreamingResponse(self)
 
 
@@ -84,6 +108,10 @@ class AsyncWorkersResource(AsyncAPIResource):
     @cached_property
     def ai(self) -> AsyncAIResource:
         return AsyncAIResource(self._client)
+
+    @cached_property
+    def assets(self) -> AsyncAssetsResource:
+        return AsyncAssetsResource(self._client)
 
     @cached_property
     def scripts(self) -> AsyncScriptsResource:
@@ -103,10 +131,21 @@ class AsyncWorkersResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncWorkersResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncWorkersResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncWorkersResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncWorkersResourceWithStreamingResponse(self)
 
 
@@ -117,6 +156,10 @@ class WorkersResourceWithRawResponse:
     @cached_property
     def ai(self) -> AIResourceWithRawResponse:
         return AIResourceWithRawResponse(self._workers.ai)
+
+    @cached_property
+    def assets(self) -> AssetsResourceWithRawResponse:
+        return AssetsResourceWithRawResponse(self._workers.assets)
 
     @cached_property
     def scripts(self) -> ScriptsResourceWithRawResponse:
@@ -144,6 +187,10 @@ class AsyncWorkersResourceWithRawResponse:
         return AsyncAIResourceWithRawResponse(self._workers.ai)
 
     @cached_property
+    def assets(self) -> AsyncAssetsResourceWithRawResponse:
+        return AsyncAssetsResourceWithRawResponse(self._workers.assets)
+
+    @cached_property
     def scripts(self) -> AsyncScriptsResourceWithRawResponse:
         return AsyncScriptsResourceWithRawResponse(self._workers.scripts)
 
@@ -169,6 +216,10 @@ class WorkersResourceWithStreamingResponse:
         return AIResourceWithStreamingResponse(self._workers.ai)
 
     @cached_property
+    def assets(self) -> AssetsResourceWithStreamingResponse:
+        return AssetsResourceWithStreamingResponse(self._workers.assets)
+
+    @cached_property
     def scripts(self) -> ScriptsResourceWithStreamingResponse:
         return ScriptsResourceWithStreamingResponse(self._workers.scripts)
 
@@ -192,6 +243,10 @@ class AsyncWorkersResourceWithStreamingResponse:
     @cached_property
     def ai(self) -> AsyncAIResourceWithStreamingResponse:
         return AsyncAIResourceWithStreamingResponse(self._workers.ai)
+
+    @cached_property
+    def assets(self) -> AsyncAssetsResourceWithStreamingResponse:
+        return AsyncAssetsResourceWithStreamingResponse(self._workers.assets)
 
     @cached_property
     def scripts(self) -> AsyncScriptsResourceWithStreamingResponse:

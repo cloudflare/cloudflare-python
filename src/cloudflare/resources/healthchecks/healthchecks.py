@@ -28,7 +28,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...pagination import SyncSinglePage, AsyncSinglePage
+from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.healthchecks import (
     healthcheck_edit_params,
@@ -52,10 +52,21 @@ class HealthchecksResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> HealthchecksResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return HealthchecksResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> HealthchecksResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return HealthchecksResourceWithStreamingResponse(self)
 
     def create(
@@ -147,7 +158,7 @@ class HealthchecksResource(SyncAPIResource):
                     "retries": retries,
                     "suspended": suspended,
                     "tcp_config": tcp_config,
-                    "timeout": healthcheck_timeout,
+                    "healthcheck_timeout": healthcheck_timeout,
                     "type": type,
                 },
                 healthcheck_create_params.HealthcheckCreateParams,
@@ -256,7 +267,7 @@ class HealthchecksResource(SyncAPIResource):
                     "retries": retries,
                     "suspended": suspended,
                     "tcp_config": tcp_config,
-                    "timeout": healthcheck_timeout,
+                    "healthcheck_timeout": healthcheck_timeout,
                     "type": type,
                 },
                 healthcheck_update_params.HealthcheckUpdateParams,
@@ -275,15 +286,15 @@ class HealthchecksResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        page: object | NotGiven = NOT_GIVEN,
-        per_page: object | NotGiven = NOT_GIVEN,
+        page: float | NotGiven = NOT_GIVEN,
+        per_page: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[Healthcheck]:
+    ) -> SyncV4PagePaginationArray[Healthcheck]:
         """
         List configured health checks.
 
@@ -306,7 +317,7 @@ class HealthchecksResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/healthchecks",
-            page=SyncSinglePage[Healthcheck],
+            page=SyncV4PagePaginationArray[Healthcheck],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -461,7 +472,7 @@ class HealthchecksResource(SyncAPIResource):
                     "retries": retries,
                     "suspended": suspended,
                     "tcp_config": tcp_config,
-                    "timeout": healthcheck_timeout,
+                    "healthcheck_timeout": healthcheck_timeout,
                     "type": type,
                 },
                 healthcheck_edit_params.HealthcheckEditParams,
@@ -528,10 +539,21 @@ class AsyncHealthchecksResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncHealthchecksResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncHealthchecksResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncHealthchecksResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncHealthchecksResourceWithStreamingResponse(self)
 
     async def create(
@@ -623,7 +645,7 @@ class AsyncHealthchecksResource(AsyncAPIResource):
                     "retries": retries,
                     "suspended": suspended,
                     "tcp_config": tcp_config,
-                    "timeout": healthcheck_timeout,
+                    "healthcheck_timeout": healthcheck_timeout,
                     "type": type,
                 },
                 healthcheck_create_params.HealthcheckCreateParams,
@@ -732,7 +754,7 @@ class AsyncHealthchecksResource(AsyncAPIResource):
                     "retries": retries,
                     "suspended": suspended,
                     "tcp_config": tcp_config,
-                    "timeout": healthcheck_timeout,
+                    "healthcheck_timeout": healthcheck_timeout,
                     "type": type,
                 },
                 healthcheck_update_params.HealthcheckUpdateParams,
@@ -751,15 +773,15 @@ class AsyncHealthchecksResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        page: object | NotGiven = NOT_GIVEN,
-        per_page: object | NotGiven = NOT_GIVEN,
+        page: float | NotGiven = NOT_GIVEN,
+        per_page: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Healthcheck, AsyncSinglePage[Healthcheck]]:
+    ) -> AsyncPaginator[Healthcheck, AsyncV4PagePaginationArray[Healthcheck]]:
         """
         List configured health checks.
 
@@ -782,7 +804,7 @@ class AsyncHealthchecksResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/healthchecks",
-            page=AsyncSinglePage[Healthcheck],
+            page=AsyncV4PagePaginationArray[Healthcheck],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -937,7 +959,7 @@ class AsyncHealthchecksResource(AsyncAPIResource):
                     "retries": retries,
                     "suspended": suspended,
                     "tcp_config": tcp_config,
-                    "timeout": healthcheck_timeout,
+                    "healthcheck_timeout": healthcheck_timeout,
                     "type": type,
                 },
                 healthcheck_edit_params.HealthcheckEditParams,

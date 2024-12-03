@@ -33,24 +33,16 @@ class TestSummary:
     @parametrize
     def test_method_bitrate_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.attacks.layer3.summary.bitrate(
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             direction="ORIGIN",
             format="JSON",
-            ip_version=["IPv4", "IPv6"],
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
-            protocol=["UDP", "TCP", "ICMP"],
+            ip_version=["IPv4"],
+            location=["string"],
+            name=["string"],
+            protocol=["UDP"],
         )
         assert_matches_type(SummaryBitrateResponse, summary, path=["response"])
 
@@ -82,24 +74,16 @@ class TestSummary:
     @parametrize
     def test_method_duration_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.attacks.layer3.summary.duration(
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             direction="ORIGIN",
             format="JSON",
-            ip_version=["IPv4", "IPv6"],
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
-            protocol=["UDP", "TCP", "ICMP"],
+            ip_version=["IPv4"],
+            location=["string"],
+            name=["string"],
+            protocol=["UDP"],
         )
         assert_matches_type(SummaryDurationResponse, summary, path=["response"])
 
@@ -131,22 +115,14 @@ class TestSummary:
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.attacks.layer3.summary.get(
-            asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            asn=["string"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            location=["string"],
+            name=["string"],
         )
         assert_matches_type(SummaryGetResponse, summary, path=["response"])
 
@@ -178,23 +154,15 @@ class TestSummary:
     @parametrize
     def test_method_ip_version_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.attacks.layer3.summary.ip_version(
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             direction="ORIGIN",
             format="JSON",
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
-            protocol=["UDP", "TCP", "ICMP"],
+            location=["string"],
+            name=["string"],
+            protocol=["UDP"],
         )
         assert_matches_type(SummaryIPVersionResponse, summary, path=["response"])
 
@@ -226,23 +194,15 @@ class TestSummary:
     @parametrize
     def test_method_protocol_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.attacks.layer3.summary.protocol(
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             direction="ORIGIN",
             format="JSON",
-            ip_version=["IPv4", "IPv6"],
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            ip_version=["IPv4"],
+            location=["string"],
+            name=["string"],
         )
         assert_matches_type(SummaryProtocolResponse, summary, path=["response"])
 
@@ -274,24 +234,16 @@ class TestSummary:
     @parametrize
     def test_method_vector_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.attacks.layer3.summary.vector(
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             direction="ORIGIN",
             format="JSON",
-            ip_version=["IPv4", "IPv6"],
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
-            protocol=["UDP", "TCP", "ICMP"],
+            ip_version=["IPv4"],
+            location=["string"],
+            name=["string"],
+            protocol=["UDP"],
         )
         assert_matches_type(SummaryVectorResponse, summary, path=["response"])
 
@@ -327,24 +279,16 @@ class TestAsyncSummary:
     @parametrize
     async def test_method_bitrate_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.attacks.layer3.summary.bitrate(
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             direction="ORIGIN",
             format="JSON",
-            ip_version=["IPv4", "IPv6"],
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
-            protocol=["UDP", "TCP", "ICMP"],
+            ip_version=["IPv4"],
+            location=["string"],
+            name=["string"],
+            protocol=["UDP"],
         )
         assert_matches_type(SummaryBitrateResponse, summary, path=["response"])
 
@@ -376,24 +320,16 @@ class TestAsyncSummary:
     @parametrize
     async def test_method_duration_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.attacks.layer3.summary.duration(
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             direction="ORIGIN",
             format="JSON",
-            ip_version=["IPv4", "IPv6"],
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
-            protocol=["UDP", "TCP", "ICMP"],
+            ip_version=["IPv4"],
+            location=["string"],
+            name=["string"],
+            protocol=["UDP"],
         )
         assert_matches_type(SummaryDurationResponse, summary, path=["response"])
 
@@ -425,22 +361,14 @@ class TestAsyncSummary:
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.attacks.layer3.summary.get(
-            asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            asn=["string"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            location=["string"],
+            name=["string"],
         )
         assert_matches_type(SummaryGetResponse, summary, path=["response"])
 
@@ -472,23 +400,15 @@ class TestAsyncSummary:
     @parametrize
     async def test_method_ip_version_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.attacks.layer3.summary.ip_version(
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             direction="ORIGIN",
             format="JSON",
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
-            protocol=["UDP", "TCP", "ICMP"],
+            location=["string"],
+            name=["string"],
+            protocol=["UDP"],
         )
         assert_matches_type(SummaryIPVersionResponse, summary, path=["response"])
 
@@ -520,23 +440,15 @@ class TestAsyncSummary:
     @parametrize
     async def test_method_protocol_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.attacks.layer3.summary.protocol(
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             direction="ORIGIN",
             format="JSON",
-            ip_version=["IPv4", "IPv6"],
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            ip_version=["IPv4"],
+            location=["string"],
+            name=["string"],
         )
         assert_matches_type(SummaryProtocolResponse, summary, path=["response"])
 
@@ -568,24 +480,16 @@ class TestAsyncSummary:
     @parametrize
     async def test_method_vector_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.attacks.layer3.summary.vector(
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             direction="ORIGIN",
             format="JSON",
-            ip_version=["IPv4", "IPv6"],
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
-            protocol=["UDP", "TCP", "ICMP"],
+            ip_version=["IPv4"],
+            location=["string"],
+            name=["string"],
+            protocol=["UDP"],
         )
         assert_matches_type(SummaryVectorResponse, summary, path=["response"])
 

@@ -14,7 +14,7 @@ class CertificatePackEditResponse(BaseModel):
     id: Optional[str] = None
     """Identifier"""
 
-    certificate_authority: Optional[Literal["google", "lets_encrypt"]] = None
+    certificate_authority: Optional[Literal["google", "lets_encrypt", "ssl_com"]] = None
     """Certificate Authority selected for the order.
 
     For information on any certificate authority specific details or restrictions
@@ -24,7 +24,8 @@ class CertificatePackEditResponse(BaseModel):
     cloudflare_branding: Optional[bool] = None
     """Whether or not to add Cloudflare Branding for the order.
 
-    This will add sni.cloudflaressl.com as the Common Name if set true.
+    This will add a subdomain of sni.cloudflaressl.com as the Common Name if set to
+    true.
     """
 
     hosts: Optional[List[Host]] = None

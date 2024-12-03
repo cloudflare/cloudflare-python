@@ -1,12 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Union, Optional
+from typing_extensions import TypeAlias
 
 from .azure_ad import AzureAD
 from ..._models import BaseModel
-from .scim_config import SCIMConfig
 from .generic_oauth_config import GenericOAuthConfig
 from .identity_provider_type import IdentityProviderType
+from .identity_provider_scim_config import IdentityProviderSCIMConfig
 
 __all__ = [
     "IdentityProvider",
@@ -32,6 +33,7 @@ __all__ = [
     "AccessSAMLConfigHeaderAttribute",
     "AccessYandex",
     "AccessOnetimepin",
+    "AccessOnetimepinConfig",
 ]
 
 
@@ -76,7 +78,7 @@ class AccessCentrify(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[SCIMConfig] = None
+    scim_config: Optional[IdentityProviderSCIMConfig] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -104,7 +106,7 @@ class AccessFacebook(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[SCIMConfig] = None
+    scim_config: Optional[IdentityProviderSCIMConfig] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -132,7 +134,7 @@ class AccessGitHub(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[SCIMConfig] = None
+    scim_config: Optional[IdentityProviderSCIMConfig] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -174,7 +176,7 @@ class AccessGoogle(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[SCIMConfig] = None
+    scim_config: Optional[IdentityProviderSCIMConfig] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -219,7 +221,7 @@ class AccessGoogleApps(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[SCIMConfig] = None
+    scim_config: Optional[IdentityProviderSCIMConfig] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -247,7 +249,7 @@ class AccessLinkedin(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[SCIMConfig] = None
+    scim_config: Optional[IdentityProviderSCIMConfig] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -301,7 +303,7 @@ class AccessOIDC(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[SCIMConfig] = None
+    scim_config: Optional[IdentityProviderSCIMConfig] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -349,7 +351,7 @@ class AccessOkta(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[SCIMConfig] = None
+    scim_config: Optional[IdentityProviderSCIMConfig] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -394,7 +396,7 @@ class AccessOnelogin(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[SCIMConfig] = None
+    scim_config: Optional[IdentityProviderSCIMConfig] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -439,7 +441,7 @@ class AccessPingone(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[SCIMConfig] = None
+    scim_config: Optional[IdentityProviderSCIMConfig] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -507,7 +509,7 @@ class AccessSAML(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[SCIMConfig] = None
+    scim_config: Optional[IdentityProviderSCIMConfig] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
@@ -535,15 +537,19 @@ class AccessYandex(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[SCIMConfig] = None
+    scim_config: Optional[IdentityProviderSCIMConfig] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
     """
 
 
+class AccessOnetimepinConfig(BaseModel):
+    redirect_url: Optional[str] = None
+
+
 class AccessOnetimepin(BaseModel):
-    config: object
+    config: AccessOnetimepinConfig
     """The configuration parameters for the identity provider.
 
     To view the required parameters for a specific provider, refer to our
@@ -563,14 +569,14 @@ class AccessOnetimepin(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[SCIMConfig] = None
+    scim_config: Optional[IdentityProviderSCIMConfig] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
     """
 
 
-IdentityProvider = Union[
+IdentityProvider: TypeAlias = Union[
     AzureAD,
     AccessCentrify,
     AccessFacebook,

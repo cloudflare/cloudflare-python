@@ -1,7 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 __all__ = ["DCVMethod"]
 
-DCVMethod = Literal["http", "txt", "email"]
+DCVMethod: TypeAlias = Literal["http", "txt", "email"]

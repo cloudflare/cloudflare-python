@@ -40,7 +40,7 @@ class TestContent:
         content = client.workers.scripts.content.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            any_part_name=[b"raw file contents", b"raw file contents", b"raw file contents"],
+            any_part_name=[b"raw file contents"],
             metadata={
                 "body_part": "worker.js",
                 "main_module": "worker.js",
@@ -178,7 +178,7 @@ class TestAsyncContent:
         content = await async_client.workers.scripts.content.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            any_part_name=[b"raw file contents", b"raw file contents", b"raw file contents"],
+            any_part_name=[b"raw file contents"],
             metadata={
                 "body_part": "worker.js",
                 "main_module": "worker.js",

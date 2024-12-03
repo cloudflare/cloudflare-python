@@ -25,10 +25,21 @@ __all__ = ["AvailableAlertsResource", "AsyncAvailableAlertsResource"]
 class AvailableAlertsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AvailableAlertsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AvailableAlertsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AvailableAlertsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AvailableAlertsResourceWithStreamingResponse(self)
 
     def list(
@@ -74,10 +85,21 @@ class AvailableAlertsResource(SyncAPIResource):
 class AsyncAvailableAlertsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncAvailableAlertsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncAvailableAlertsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncAvailableAlertsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncAvailableAlertsResourceWithStreamingResponse(self)
 
     async def list(

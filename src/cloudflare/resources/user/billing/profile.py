@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
+from typing import Type, cast
 
 import httpx
 
@@ -25,10 +25,21 @@ __all__ = ["ProfileResource", "AsyncProfileResource"]
 class ProfileResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ProfileResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return ProfileResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> ProfileResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return ProfileResourceWithStreamingResponse(self)
 
     def get(
@@ -42,31 +53,37 @@ class ProfileResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ProfileGetResponse:
         """Accesses your billing profile object."""
-        return cast(
-            ProfileGetResponse,
-            self._get(
-                "/user/billing/profile",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[ProfileGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[ProfileGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._get(
+            "/user/billing/profile",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[ProfileGetResponse]._unwrapper,
             ),
+            cast_to=cast(Type[ProfileGetResponse], ResultWrapper[ProfileGetResponse]),
         )
 
 
 class AsyncProfileResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncProfileResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncProfileResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncProfileResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncProfileResourceWithStreamingResponse(self)
 
     async def get(
@@ -80,21 +97,16 @@ class AsyncProfileResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ProfileGetResponse:
         """Accesses your billing profile object."""
-        return cast(
-            ProfileGetResponse,
-            await self._get(
-                "/user/billing/profile",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[ProfileGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[ProfileGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._get(
+            "/user/billing/profile",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[ProfileGetResponse]._unwrapper,
             ),
+            cast_to=cast(Type[ProfileGetResponse], ResultWrapper[ProfileGetResponse]),
         )
 
 

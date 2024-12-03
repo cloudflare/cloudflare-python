@@ -1,11 +1,11 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
+from typing import List, Optional
 from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["IP", "BelongsToRef"]
+__all__ = ["IP", "BelongsToRef", "RiskType"]
 
 
 class BelongsToRef(BaseModel):
@@ -21,6 +21,14 @@ class BelongsToRef(BaseModel):
     value: Optional[str] = None
 
 
+class RiskType(BaseModel):
+    id: Optional[float] = None
+
+    name: Optional[str] = None
+
+    super_category_id: Optional[float] = None
+
+
 class IP(BaseModel):
     belongs_to_ref: Optional[BelongsToRef] = None
     """
@@ -28,6 +36,6 @@ class IP(BaseModel):
     to.
     """
 
-    ip: Union[str, str, None] = None
+    ip: Optional[str] = None
 
-    risk_types: Optional[List[object]] = None
+    risk_types: Optional[List[RiskType]] = None

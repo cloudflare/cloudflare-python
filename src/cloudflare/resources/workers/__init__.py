@@ -8,6 +8,14 @@ from .ai import (
     AIResourceWithStreamingResponse,
     AsyncAIResourceWithStreamingResponse,
 )
+from .assets import (
+    AssetsResource,
+    AsyncAssetsResource,
+    AssetsResourceWithRawResponse,
+    AsyncAssetsResourceWithRawResponse,
+    AssetsResourceWithStreamingResponse,
+    AsyncAssetsResourceWithStreamingResponse,
+)
 from .domains import (
     DomainsResource,
     AsyncDomainsResource,
@@ -56,6 +64,12 @@ __all__ = [
     "AsyncAIResourceWithRawResponse",
     "AIResourceWithStreamingResponse",
     "AsyncAIResourceWithStreamingResponse",
+    "AssetsResource",
+    "AsyncAssetsResource",
+    "AssetsResourceWithRawResponse",
+    "AsyncAssetsResourceWithRawResponse",
+    "AssetsResourceWithStreamingResponse",
+    "AsyncAssetsResourceWithStreamingResponse",
     "ScriptsResource",
     "AsyncScriptsResource",
     "ScriptsResourceWithRawResponse",

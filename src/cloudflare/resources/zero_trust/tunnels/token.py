@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
+from typing import Type, cast
 
 import httpx
 
@@ -25,10 +25,21 @@ __all__ = ["TokenResource", "AsyncTokenResource"]
 class TokenResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> TokenResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return TokenResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> TokenResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return TokenResourceWithStreamingResponse(self)
 
     def get(
@@ -42,7 +53,7 @@ class TokenResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TokenGetResponse:
+    ) -> str:
         """
         Gets the token used to associate cloudflared with a specific tunnel.
 
@@ -63,31 +74,37 @@ class TokenResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return cast(
-            TokenGetResponse,
-            self._get(
-                f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/token",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[TokenGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[TokenGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._get(
+            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/token",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[TokenGetResponse]._unwrapper,
             ),
+            cast_to=cast(Type[str], ResultWrapper[str]),
         )
 
 
 class AsyncTokenResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncTokenResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncTokenResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncTokenResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncTokenResourceWithStreamingResponse(self)
 
     async def get(
@@ -101,7 +118,7 @@ class AsyncTokenResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TokenGetResponse:
+    ) -> str:
         """
         Gets the token used to associate cloudflared with a specific tunnel.
 
@@ -122,21 +139,16 @@ class AsyncTokenResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return cast(
-            TokenGetResponse,
-            await self._get(
-                f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/token",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[TokenGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[TokenGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._get(
+            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/token",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[TokenGetResponse]._unwrapper,
             ),
+            cast_to=cast(Type[str], ResultWrapper[str]),
         )
 
 

@@ -8,7 +8,8 @@ __all__ = ["AccountUpdateParams", "Settings"]
 
 
 class AccountUpdateParams(TypedDict, total=False):
-    account_id: Required[object]
+    account_id: Required[str]
+    """Account identifier tag."""
 
     name: Required[str]
     """Account name"""
@@ -33,6 +34,9 @@ class Settings(TypedDict, total=False):
     See
     [Custom Nameservers](https://developers.cloudflare.com/dns/additional-options/custom-nameservers/)
     for more information.
+
+    Deprecated in favor of
+    [DNS Settings](https://developers.cloudflare.com/api/operations/dns-settings-for-an-account-update-dns-settings).
     """
 
     enforce_twofactor: bool
@@ -46,5 +50,6 @@ class Settings(TypedDict, total=False):
     Indicates whether new zones should use the account-level custom nameservers by
     default.
 
-    Deprecated in favor of `default_nameservers`.
+    Deprecated in favor of
+    [DNS Settings](https://developers.cloudflare.com/api/operations/dns-settings-for-an-account-update-dns-settings).
     """

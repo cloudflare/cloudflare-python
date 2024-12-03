@@ -3,12 +3,13 @@
 from __future__ import annotations
 
 from typing import Union, Iterable
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
+
+from ..shared_params.role import Role
 
 __all__ = [
     "MemberUpdateParams",
-    "Member",
-    "MemberRole",
+    "IAMUpdateMemberWithRoles",
     "IAMUpdateMemberWithPolicies",
     "IAMUpdateMemberWithPoliciesPolicy",
     "IAMUpdateMemberWithPoliciesPolicyPermissionGroup",
@@ -16,17 +17,12 @@ __all__ = [
 ]
 
 
-class Member(TypedDict, total=False):
+class IAMUpdateMemberWithRoles(TypedDict, total=False):
     account_id: Required[str]
     """Account identifier tag."""
 
-    roles: Iterable[MemberRole]
+    roles: Iterable[Role]
     """Roles assigned to this member."""
-
-
-class MemberRole(TypedDict, total=False):
-    id: Required[str]
-    """Role identifier tag."""
 
 
 class IAMUpdateMemberWithPolicies(TypedDict, total=False):
@@ -58,4 +54,4 @@ class IAMUpdateMemberWithPoliciesPolicy(TypedDict, total=False):
     """A list of resource groups that the policy applies to."""
 
 
-MemberUpdateParams = Union[Member, IAMUpdateMemberWithPolicies]
+MemberUpdateParams: TypeAlias = Union[IAMUpdateMemberWithRoles, IAMUpdateMemberWithPolicies]

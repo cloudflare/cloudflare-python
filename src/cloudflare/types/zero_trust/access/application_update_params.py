@@ -3,121 +3,90 @@
 from __future__ import annotations
 
 from typing import Dict, List, Union, Iterable
-from datetime import datetime
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .decision import Decision
-from ...._utils import PropertyInfo
 from .allowed_idps import AllowedIdPs
 from .application_type import ApplicationType
 from ..access_rule_param import AccessRuleParam
 from .cors_headers_param import CORSHeadersParam
+from .oidc_saas_app_param import OIDCSaaSAppParam
 from .saml_saas_app_param import SAMLSaaSAppParam
 from .self_hosted_domains import SelfHostedDomains
-from .applications.approval_group_param import ApprovalGroupParam
+from .approval_group_param import ApprovalGroupParam
+from .scim_config_mapping_param import SCIMConfigMappingParam
+from .scim_config_authentication_oauth2_param import SCIMConfigAuthenticationOauth2Param
+from .scim_config_authentication_http_basic_param import SCIMConfigAuthenticationHTTPBasicParam
+from .scim_config_authentication_oauth_bearer_token_param import SCIMConfigAuthenticationOAuthBearerTokenParam
 
 __all__ = [
     "ApplicationUpdateParams",
     "SelfHostedApplication",
+    "SelfHostedApplicationDestination",
     "SelfHostedApplicationPolicy",
     "SelfHostedApplicationPolicyAccessAppPolicyLink",
     "SelfHostedApplicationPolicyUnionMember2",
     "SelfHostedApplicationSCIMConfig",
     "SelfHostedApplicationSCIMConfigAuthentication",
-    "SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic",
-    "SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken",
-    "SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2",
-    "SelfHostedApplicationSCIMConfigMapping",
-    "SelfHostedApplicationSCIMConfigMappingOperations",
     "SaaSApplication",
     "SaaSApplicationPolicy",
     "SaaSApplicationPolicyAccessAppPolicyLink",
     "SaaSApplicationPolicyUnionMember2",
     "SaaSApplicationSaaSApp",
-    "SaaSApplicationSaaSAppAccessOIDCSaaSApp",
-    "SaaSApplicationSaaSAppAccessOIDCSaaSAppCustomClaims",
-    "SaaSApplicationSaaSAppAccessOIDCSaaSAppCustomClaimsSource",
-    "SaaSApplicationSaaSAppAccessOIDCSaaSAppHybridAndImplicitOptions",
-    "SaaSApplicationSaaSAppAccessOIDCSaaSAppRefreshTokenOptions",
     "SaaSApplicationSCIMConfig",
     "SaaSApplicationSCIMConfigAuthentication",
-    "SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic",
-    "SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken",
-    "SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2",
-    "SaaSApplicationSCIMConfigMapping",
-    "SaaSApplicationSCIMConfigMappingOperations",
     "BrowserSSHApplication",
+    "BrowserSSHApplicationDestination",
     "BrowserSSHApplicationPolicy",
     "BrowserSSHApplicationPolicyAccessAppPolicyLink",
     "BrowserSSHApplicationPolicyUnionMember2",
     "BrowserSSHApplicationSCIMConfig",
     "BrowserSSHApplicationSCIMConfigAuthentication",
-    "BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic",
-    "BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken",
-    "BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2",
-    "BrowserSSHApplicationSCIMConfigMapping",
-    "BrowserSSHApplicationSCIMConfigMappingOperations",
-    "BrowserVncApplication",
-    "BrowserVncApplicationPolicy",
-    "BrowserVncApplicationPolicyAccessAppPolicyLink",
-    "BrowserVncApplicationPolicyUnionMember2",
-    "BrowserVncApplicationSCIMConfig",
-    "BrowserVncApplicationSCIMConfigAuthentication",
-    "BrowserVncApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic",
-    "BrowserVncApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken",
-    "BrowserVncApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2",
-    "BrowserVncApplicationSCIMConfigMapping",
-    "BrowserVncApplicationSCIMConfigMappingOperations",
+    "BrowserVNCApplication",
+    "BrowserVNCApplicationDestination",
+    "BrowserVNCApplicationPolicy",
+    "BrowserVNCApplicationPolicyAccessAppPolicyLink",
+    "BrowserVNCApplicationPolicyUnionMember2",
+    "BrowserVNCApplicationSCIMConfig",
+    "BrowserVNCApplicationSCIMConfigAuthentication",
     "AppLauncherApplication",
+    "AppLauncherApplicationFooterLink",
+    "AppLauncherApplicationLandingPageDesign",
     "AppLauncherApplicationPolicy",
     "AppLauncherApplicationPolicyAccessAppPolicyLink",
     "AppLauncherApplicationPolicyUnionMember2",
     "AppLauncherApplicationSCIMConfig",
     "AppLauncherApplicationSCIMConfigAuthentication",
-    "AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic",
-    "AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken",
-    "AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2",
-    "AppLauncherApplicationSCIMConfigMapping",
-    "AppLauncherApplicationSCIMConfigMappingOperations",
     "DeviceEnrollmentPermissionsApplication",
+    "DeviceEnrollmentPermissionsApplicationFooterLink",
+    "DeviceEnrollmentPermissionsApplicationLandingPageDesign",
     "DeviceEnrollmentPermissionsApplicationPolicy",
     "DeviceEnrollmentPermissionsApplicationPolicyAccessAppPolicyLink",
     "DeviceEnrollmentPermissionsApplicationPolicyUnionMember2",
     "DeviceEnrollmentPermissionsApplicationSCIMConfig",
     "DeviceEnrollmentPermissionsApplicationSCIMConfigAuthentication",
-    "DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic",
-    "DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken",
-    "DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2",
-    "DeviceEnrollmentPermissionsApplicationSCIMConfigMapping",
-    "DeviceEnrollmentPermissionsApplicationSCIMConfigMappingOperations",
     "BrowserIsolationPermissionsApplication",
+    "BrowserIsolationPermissionsApplicationFooterLink",
+    "BrowserIsolationPermissionsApplicationLandingPageDesign",
     "BrowserIsolationPermissionsApplicationPolicy",
     "BrowserIsolationPermissionsApplicationPolicyAccessAppPolicyLink",
     "BrowserIsolationPermissionsApplicationPolicyUnionMember2",
     "BrowserIsolationPermissionsApplicationSCIMConfig",
     "BrowserIsolationPermissionsApplicationSCIMConfigAuthentication",
-    "BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic",
-    "BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken",
-    "BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2",
-    "BrowserIsolationPermissionsApplicationSCIMConfigMapping",
-    "BrowserIsolationPermissionsApplicationSCIMConfigMappingOperations",
     "BookmarkApplication",
     "BookmarkApplicationSCIMConfig",
     "BookmarkApplicationSCIMConfigAuthentication",
-    "BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic",
-    "BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken",
-    "BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2",
-    "BookmarkApplicationSCIMConfigMapping",
-    "BookmarkApplicationSCIMConfigMappingOperations",
+    "InfrastructureApplication",
+    "InfrastructureApplicationTargetCriterion",
+    "InfrastructureApplicationPolicy",
 ]
 
 
 class SelfHostedApplication(TypedDict, total=False):
     domain: Required[str]
-    """The primary hostname and path that Access will secure.
+    """The primary hostname and path secured by Access.
 
-    If the app is visible in the App Launcher dashboard, this is the domain that
-    will be displayed.
+    This domain will be displayed if the app is visible in the App Launcher.
     """
 
     type: Required[str]
@@ -177,6 +146,14 @@ class SelfHostedApplication(TypedDict, total=False):
     custom_pages: List[str]
     """The custom pages that will be displayed when applicable for this application"""
 
+    destinations: Iterable[SelfHostedApplicationDestination]
+    """List of destinations secured by Access.
+
+    This supersedes `self_hosted_domains` to allow for more flexibility in defining
+    different types of domains. If `destinations` are provided, then
+    `self_hosted_domains` will be ignored.
+    """
+
     enable_binding_cookie: bool
     """
     Enables the binding cookie, which increases security against compromised
@@ -209,7 +186,7 @@ class SelfHostedApplication(TypedDict, total=False):
 
     policies: List[SelfHostedApplicationPolicy]
     """
-    The policies that will apply to the application, in ascending order of
+    The policies that Access applies to the application, in ascending order of
     precedence. Items can reference existing policies or create new policies
     exclusive to the application.
     """
@@ -227,7 +204,12 @@ class SelfHostedApplication(TypedDict, total=False):
     """
 
     self_hosted_domains: List[SelfHostedDomains]
-    """List of domains that Access will secure."""
+    """List of public domains that Access will secure.
+
+    This field is deprecated in favor of `destinations` and will be supported until
+    **November 21, 2025.** If `destinations` are provided, then
+    `self_hosted_domains` will be ignored.
+    """
 
     service_auth_401_redirect: bool
     """Returns a 401 status code when the request is blocked by a Service Auth policy."""
@@ -249,6 +231,20 @@ class SelfHostedApplication(TypedDict, total=False):
     """
 
 
+class SelfHostedApplicationDestination(TypedDict, total=False):
+    type: Literal["public", "private"]
+
+    uri: str
+    """The URI of the destination.
+
+    Public destinations can include a domain and path with
+    [wildcards](https://developers.cloudflare.com/cloudflare-one/policies/access/app-paths/).
+    Private destinations are an early access feature and gated behind a feature
+    flag. Private destinations support private IPv4, IPv6, and Server Name
+    Indications (SNI) with optional port ranges.
+    """
+
+
 class SelfHostedApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     id: str
     """The UUID of the policy"""
@@ -261,18 +257,6 @@ class SelfHostedApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
 
 
 class SelfHostedApplicationPolicyUnionMember2(TypedDict, total=False):
-    decision: Required[Decision]
-    """The action Access will take if a user matches this policy."""
-
-    include: Required[Iterable[AccessRuleParam]]
-    """Rules evaluated with an OR logical operator.
-
-    A user needs to meet only one of the Include rules.
-    """
-
-    name: Required[str]
-    """The name of the Access policy."""
-
     id: str
     """The UUID of the policy"""
 
@@ -283,12 +267,6 @@ class SelfHostedApplicationPolicyUnionMember2(TypedDict, total=False):
     """
     Requires the user to request access from an administrator at the start of each
     session.
-    """
-
-    exclude: Iterable[AccessRuleParam]
-    """Rules evaluated with a NOT logical operator.
-
-    To match the policy, a user cannot meet any of the Exclude rules.
     """
 
     isolation_required: bool
@@ -310,12 +288,6 @@ class SelfHostedApplicationPolicyUnionMember2(TypedDict, total=False):
     purpose_justification_required: bool
     """Require users to enter a justification when they log in to the application."""
 
-    require: Iterable[AccessRuleParam]
-    """Rules evaluated with an AND logical operator.
-
-    To match the policy, a user must meet all of the Require rules.
-    """
-
     session_duration: str
     """The amount of time that tokens issued for the application will be valid.
 
@@ -324,104 +296,15 @@ class SelfHostedApplicationPolicyUnionMember2(TypedDict, total=False):
     """
 
 
-SelfHostedApplicationPolicy = Union[
+SelfHostedApplicationPolicy: TypeAlias = Union[
     SelfHostedApplicationPolicyAccessAppPolicyLink, str, SelfHostedApplicationPolicyUnionMember2
 ]
 
-
-class SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic(TypedDict, total=False):
-    password: Required[str]
-    """Password used to authenticate with the remote SCIM service."""
-
-    scheme: Required[Literal["httpbasic"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-    user: Required[str]
-    """User name used to authenticate with the remote SCIM service."""
-
-
-class SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken(
-    TypedDict, total=False
-):
-    token: Required[str]
-    """Token used to authenticate with the remote SCIM service."""
-
-    scheme: Required[Literal["oauthbearertoken"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-
-class SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2(TypedDict, total=False):
-    authorization_url: Required[str]
-    """URL used to generate the auth code used during token generation."""
-
-    client_id: Required[str]
-    """
-    Client ID used to authenticate when generating a token for authenticating with
-    the remote SCIM service.
-    """
-
-    client_secret: Required[str]
-    """
-    Secret used to authenticate when generating a token for authenticating with the
-    remove SCIM service.
-    """
-
-    scheme: Required[Literal["oauth2"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-    token_url: Required[str]
-    """
-    URL used to generate the token used to authenticate with the remote SCIM
-    service.
-    """
-
-    scopes: List[str]
-    """
-    The authorization scopes to request when generating the token used to
-    authenticate with the remove SCIM service.
-    """
-
-
-SelfHostedApplicationSCIMConfigAuthentication = Union[
-    SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic,
-    SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken,
-    SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2,
+SelfHostedApplicationSCIMConfigAuthentication: TypeAlias = Union[
+    SCIMConfigAuthenticationHTTPBasicParam,
+    SCIMConfigAuthenticationOAuthBearerTokenParam,
+    SCIMConfigAuthenticationOauth2Param,
 ]
-
-
-class SelfHostedApplicationSCIMConfigMappingOperations(TypedDict, total=False):
-    create: bool
-    """Whether or not this mapping applies to create (POST) operations."""
-
-    delete: bool
-    """Whether or not this mapping applies to DELETE operations."""
-
-    update: bool
-    """Whether or not this mapping applies to update (PATCH/PUT) operations."""
-
-
-class SelfHostedApplicationSCIMConfigMapping(TypedDict, total=False):
-    schema: Required[str]
-    """Which SCIM resource type this mapping applies to."""
-
-    enabled: bool
-    """Whether or not this mapping is enabled."""
-
-    filter: str
-    """
-    A
-    [SCIM filter expression](https://datatracker.ietf.org/doc/html/rfc7644#section-3.4.2.2)
-    that matches resources that should be provisioned to this application.
-    """
-
-    operations: SelfHostedApplicationSCIMConfigMappingOperations
-    """Whether or not this mapping applies to creates, updates, or deletes."""
-
-    transform_jsonata: str
-    """
-    A [JSONata](https://jsonata.org/) expression that transforms the resource before
-    provisioning it in the application.
-    """
 
 
 class SelfHostedApplicationSCIMConfig(TypedDict, total=False):
@@ -450,7 +333,7 @@ class SelfHostedApplicationSCIMConfig(TypedDict, total=False):
     enabled: bool
     """Whether SCIM provisioning is turned on for this application."""
 
-    mappings: Iterable[SelfHostedApplicationSCIMConfigMapping]
+    mappings: Iterable[SCIMConfigMappingParam]
     """
     A list of mappings to apply to SCIM resources before provisioning them in this
     application. These can transform or filter the resources to be provisioned.
@@ -492,7 +375,7 @@ class SaaSApplication(TypedDict, total=False):
 
     policies: List[SaaSApplicationPolicy]
     """
-    The policies that will apply to the application, in ascending order of
+    The policies that Access applies to the application, in ascending order of
     precedence. Items can reference existing policies or create new policies
     exclusive to the application.
     """
@@ -527,18 +410,6 @@ class SaaSApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
 
 
 class SaaSApplicationPolicyUnionMember2(TypedDict, total=False):
-    decision: Required[Decision]
-    """The action Access will take if a user matches this policy."""
-
-    include: Required[Iterable[AccessRuleParam]]
-    """Rules evaluated with an OR logical operator.
-
-    A user needs to meet only one of the Include rules.
-    """
-
-    name: Required[str]
-    """The name of the Access policy."""
-
     id: str
     """The UUID of the policy"""
 
@@ -549,12 +420,6 @@ class SaaSApplicationPolicyUnionMember2(TypedDict, total=False):
     """
     Requires the user to request access from an administrator at the start of each
     session.
-    """
-
-    exclude: Iterable[AccessRuleParam]
-    """Rules evaluated with a NOT logical operator.
-
-    To match the policy, a user cannot meet any of the Exclude rules.
     """
 
     isolation_required: bool
@@ -576,12 +441,6 @@ class SaaSApplicationPolicyUnionMember2(TypedDict, total=False):
     purpose_justification_required: bool
     """Require users to enter a justification when they log in to the application."""
 
-    require: Iterable[AccessRuleParam]
-    """Rules evaluated with an AND logical operator.
-
-    To match the policy, a user must meet all of the Require rules.
-    """
-
     session_duration: str
     """The amount of time that tokens issued for the application will be valid.
 
@@ -590,203 +449,17 @@ class SaaSApplicationPolicyUnionMember2(TypedDict, total=False):
     """
 
 
-SaaSApplicationPolicy = Union[SaaSApplicationPolicyAccessAppPolicyLink, str, SaaSApplicationPolicyUnionMember2]
-
-
-class SaaSApplicationSaaSAppAccessOIDCSaaSAppCustomClaimsSource(TypedDict, total=False):
-    name: str
-    """The name of the IdP claim."""
-
-    name_by_idp: Dict[str, str]
-    """A mapping from IdP ID to claim name."""
-
-
-class SaaSApplicationSaaSAppAccessOIDCSaaSAppCustomClaims(TypedDict, total=False):
-    name: str
-    """The name of the claim."""
-
-    required: bool
-    """If the claim is required when building an OIDC token."""
-
-    scope: Literal["groups", "profile", "email", "openid"]
-    """The scope of the claim."""
-
-    source: SaaSApplicationSaaSAppAccessOIDCSaaSAppCustomClaimsSource
-
-
-class SaaSApplicationSaaSAppAccessOIDCSaaSAppHybridAndImplicitOptions(TypedDict, total=False):
-    return_access_token_from_authorization_endpoint: bool
-    """If an Access Token should be returned from the OIDC Authorization endpoint"""
-
-    return_id_token_from_authorization_endpoint: bool
-    """If an ID Token should be returned from the OIDC Authorization endpoint"""
-
-
-class SaaSApplicationSaaSAppAccessOIDCSaaSAppRefreshTokenOptions(TypedDict, total=False):
-    lifetime: str
-    """How long a refresh token will be valid for after creation.
-
-    Valid units are m,h,d. Must be longer than 1m.
-    """
-
-
-class SaaSApplicationSaaSAppAccessOIDCSaaSApp(TypedDict, total=False):
-    access_token_lifetime: str
-    """The lifetime of the OIDC Access Token after creation.
-
-    Valid units are m,h. Must be greater than or equal to 1m and less than or equal
-    to 24h.
-    """
-
-    allow_pkce_without_client_secret: bool
-    """
-    If client secret should be required on the token endpoint when
-    authorization_code_with_pkce grant is used.
-    """
-
-    app_launcher_url: str
-    """The URL where this applications tile redirects users"""
-
-    auth_type: Literal["saml", "oidc"]
-    """Identifier of the authentication protocol used for the saas app.
-
-    Required for OIDC.
-    """
-
-    client_id: str
-    """The application client id"""
-
-    client_secret: str
-    """The application client secret, only returned on POST request."""
-
-    created_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-
-    custom_claims: SaaSApplicationSaaSAppAccessOIDCSaaSAppCustomClaims
-
-    grant_types: List[
-        Literal["authorization_code", "authorization_code_with_pkce", "refresh_tokens", "hybrid", "implicit"]
-    ]
-    """The OIDC flows supported by this application"""
-
-    group_filter_regex: str
-    """A regex to filter Cloudflare groups returned in ID token and userinfo endpoint"""
-
-    hybrid_and_implicit_options: SaaSApplicationSaaSAppAccessOIDCSaaSAppHybridAndImplicitOptions
-
-    public_key: str
-    """The Access public certificate that will be used to verify your identity."""
-
-    redirect_uris: List[str]
-    """
-    The permitted URL's for Cloudflare to return Authorization codes and Access/ID
-    tokens
-    """
-
-    refresh_token_options: SaaSApplicationSaaSAppAccessOIDCSaaSAppRefreshTokenOptions
-
-    scopes: List[Literal["openid", "groups", "email", "profile"]]
-    """
-    Define the user information shared with access, "offline_access" scope will be
-    automatically enabled if refresh tokens are enabled
-    """
-
-    updated_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-
-
-SaaSApplicationSaaSApp = Union[SAMLSaaSAppParam, SaaSApplicationSaaSAppAccessOIDCSaaSApp]
-
-
-class SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic(TypedDict, total=False):
-    password: Required[str]
-    """Password used to authenticate with the remote SCIM service."""
-
-    scheme: Required[Literal["httpbasic"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-    user: Required[str]
-    """User name used to authenticate with the remote SCIM service."""
-
-
-class SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken(TypedDict, total=False):
-    token: Required[str]
-    """Token used to authenticate with the remote SCIM service."""
-
-    scheme: Required[Literal["oauthbearertoken"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-
-class SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2(TypedDict, total=False):
-    authorization_url: Required[str]
-    """URL used to generate the auth code used during token generation."""
-
-    client_id: Required[str]
-    """
-    Client ID used to authenticate when generating a token for authenticating with
-    the remote SCIM service.
-    """
-
-    client_secret: Required[str]
-    """
-    Secret used to authenticate when generating a token for authenticating with the
-    remove SCIM service.
-    """
-
-    scheme: Required[Literal["oauth2"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-    token_url: Required[str]
-    """
-    URL used to generate the token used to authenticate with the remote SCIM
-    service.
-    """
-
-    scopes: List[str]
-    """
-    The authorization scopes to request when generating the token used to
-    authenticate with the remove SCIM service.
-    """
-
-
-SaaSApplicationSCIMConfigAuthentication = Union[
-    SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic,
-    SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken,
-    SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2,
+SaaSApplicationPolicy: TypeAlias = Union[
+    SaaSApplicationPolicyAccessAppPolicyLink, str, SaaSApplicationPolicyUnionMember2
 ]
 
+SaaSApplicationSaaSApp: TypeAlias = Union[SAMLSaaSAppParam, OIDCSaaSAppParam]
 
-class SaaSApplicationSCIMConfigMappingOperations(TypedDict, total=False):
-    create: bool
-    """Whether or not this mapping applies to create (POST) operations."""
-
-    delete: bool
-    """Whether or not this mapping applies to DELETE operations."""
-
-    update: bool
-    """Whether or not this mapping applies to update (PATCH/PUT) operations."""
-
-
-class SaaSApplicationSCIMConfigMapping(TypedDict, total=False):
-    schema: Required[str]
-    """Which SCIM resource type this mapping applies to."""
-
-    enabled: bool
-    """Whether or not this mapping is enabled."""
-
-    filter: str
-    """
-    A
-    [SCIM filter expression](https://datatracker.ietf.org/doc/html/rfc7644#section-3.4.2.2)
-    that matches resources that should be provisioned to this application.
-    """
-
-    operations: SaaSApplicationSCIMConfigMappingOperations
-    """Whether or not this mapping applies to creates, updates, or deletes."""
-
-    transform_jsonata: str
-    """
-    A [JSONata](https://jsonata.org/) expression that transforms the resource before
-    provisioning it in the application.
-    """
+SaaSApplicationSCIMConfigAuthentication: TypeAlias = Union[
+    SCIMConfigAuthenticationHTTPBasicParam,
+    SCIMConfigAuthenticationOAuthBearerTokenParam,
+    SCIMConfigAuthenticationOauth2Param,
+]
 
 
 class SaaSApplicationSCIMConfig(TypedDict, total=False):
@@ -815,7 +488,7 @@ class SaaSApplicationSCIMConfig(TypedDict, total=False):
     enabled: bool
     """Whether SCIM provisioning is turned on for this application."""
 
-    mappings: Iterable[SaaSApplicationSCIMConfigMapping]
+    mappings: Iterable[SCIMConfigMappingParam]
     """
     A list of mappings to apply to SCIM resources before provisioning them in this
     application. These can transform or filter the resources to be provisioned.
@@ -824,10 +497,9 @@ class SaaSApplicationSCIMConfig(TypedDict, total=False):
 
 class BrowserSSHApplication(TypedDict, total=False):
     domain: Required[str]
-    """The primary hostname and path that Access will secure.
+    """The primary hostname and path secured by Access.
 
-    If the app is visible in the App Launcher dashboard, this is the domain that
-    will be displayed.
+    This domain will be displayed if the app is visible in the App Launcher.
     """
 
     type: Required[str]
@@ -886,6 +558,14 @@ class BrowserSSHApplication(TypedDict, total=False):
 
     custom_pages: List[str]
     """The custom pages that will be displayed when applicable for this application"""
+
+    destinations: Iterable[BrowserSSHApplicationDestination]
+    """List of destinations secured by Access.
+
+    This supersedes `self_hosted_domains` to allow for more flexibility in defining
+    different types of domains. If `destinations` are provided, then
+    `self_hosted_domains` will be ignored.
+    """
 
     enable_binding_cookie: bool
     """
@@ -919,7 +599,7 @@ class BrowserSSHApplication(TypedDict, total=False):
 
     policies: List[BrowserSSHApplicationPolicy]
     """
-    The policies that will apply to the application, in ascending order of
+    The policies that Access applies to the application, in ascending order of
     precedence. Items can reference existing policies or create new policies
     exclusive to the application.
     """
@@ -937,7 +617,12 @@ class BrowserSSHApplication(TypedDict, total=False):
     """
 
     self_hosted_domains: List[SelfHostedDomains]
-    """List of domains that Access will secure."""
+    """List of public domains that Access will secure.
+
+    This field is deprecated in favor of `destinations` and will be supported until
+    **November 21, 2025.** If `destinations` are provided, then
+    `self_hosted_domains` will be ignored.
+    """
 
     service_auth_401_redirect: bool
     """Returns a 401 status code when the request is blocked by a Service Auth policy."""
@@ -959,6 +644,20 @@ class BrowserSSHApplication(TypedDict, total=False):
     """
 
 
+class BrowserSSHApplicationDestination(TypedDict, total=False):
+    type: Literal["public", "private"]
+
+    uri: str
+    """The URI of the destination.
+
+    Public destinations can include a domain and path with
+    [wildcards](https://developers.cloudflare.com/cloudflare-one/policies/access/app-paths/).
+    Private destinations are an early access feature and gated behind a feature
+    flag. Private destinations support private IPv4, IPv6, and Server Name
+    Indications (SNI) with optional port ranges.
+    """
+
+
 class BrowserSSHApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     id: str
     """The UUID of the policy"""
@@ -971,18 +670,6 @@ class BrowserSSHApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
 
 
 class BrowserSSHApplicationPolicyUnionMember2(TypedDict, total=False):
-    decision: Required[Decision]
-    """The action Access will take if a user matches this policy."""
-
-    include: Required[Iterable[AccessRuleParam]]
-    """Rules evaluated with an OR logical operator.
-
-    A user needs to meet only one of the Include rules.
-    """
-
-    name: Required[str]
-    """The name of the Access policy."""
-
     id: str
     """The UUID of the policy"""
 
@@ -993,12 +680,6 @@ class BrowserSSHApplicationPolicyUnionMember2(TypedDict, total=False):
     """
     Requires the user to request access from an administrator at the start of each
     session.
-    """
-
-    exclude: Iterable[AccessRuleParam]
-    """Rules evaluated with a NOT logical operator.
-
-    To match the policy, a user cannot meet any of the Exclude rules.
     """
 
     isolation_required: bool
@@ -1020,12 +701,6 @@ class BrowserSSHApplicationPolicyUnionMember2(TypedDict, total=False):
     purpose_justification_required: bool
     """Require users to enter a justification when they log in to the application."""
 
-    require: Iterable[AccessRuleParam]
-    """Rules evaluated with an AND logical operator.
-
-    To match the policy, a user must meet all of the Require rules.
-    """
-
     session_duration: str
     """The amount of time that tokens issued for the application will be valid.
 
@@ -1034,104 +709,15 @@ class BrowserSSHApplicationPolicyUnionMember2(TypedDict, total=False):
     """
 
 
-BrowserSSHApplicationPolicy = Union[
+BrowserSSHApplicationPolicy: TypeAlias = Union[
     BrowserSSHApplicationPolicyAccessAppPolicyLink, str, BrowserSSHApplicationPolicyUnionMember2
 ]
 
-
-class BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic(TypedDict, total=False):
-    password: Required[str]
-    """Password used to authenticate with the remote SCIM service."""
-
-    scheme: Required[Literal["httpbasic"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-    user: Required[str]
-    """User name used to authenticate with the remote SCIM service."""
-
-
-class BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken(
-    TypedDict, total=False
-):
-    token: Required[str]
-    """Token used to authenticate with the remote SCIM service."""
-
-    scheme: Required[Literal["oauthbearertoken"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-
-class BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2(TypedDict, total=False):
-    authorization_url: Required[str]
-    """URL used to generate the auth code used during token generation."""
-
-    client_id: Required[str]
-    """
-    Client ID used to authenticate when generating a token for authenticating with
-    the remote SCIM service.
-    """
-
-    client_secret: Required[str]
-    """
-    Secret used to authenticate when generating a token for authenticating with the
-    remove SCIM service.
-    """
-
-    scheme: Required[Literal["oauth2"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-    token_url: Required[str]
-    """
-    URL used to generate the token used to authenticate with the remote SCIM
-    service.
-    """
-
-    scopes: List[str]
-    """
-    The authorization scopes to request when generating the token used to
-    authenticate with the remove SCIM service.
-    """
-
-
-BrowserSSHApplicationSCIMConfigAuthentication = Union[
-    BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic,
-    BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken,
-    BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2,
+BrowserSSHApplicationSCIMConfigAuthentication: TypeAlias = Union[
+    SCIMConfigAuthenticationHTTPBasicParam,
+    SCIMConfigAuthenticationOAuthBearerTokenParam,
+    SCIMConfigAuthenticationOauth2Param,
 ]
-
-
-class BrowserSSHApplicationSCIMConfigMappingOperations(TypedDict, total=False):
-    create: bool
-    """Whether or not this mapping applies to create (POST) operations."""
-
-    delete: bool
-    """Whether or not this mapping applies to DELETE operations."""
-
-    update: bool
-    """Whether or not this mapping applies to update (PATCH/PUT) operations."""
-
-
-class BrowserSSHApplicationSCIMConfigMapping(TypedDict, total=False):
-    schema: Required[str]
-    """Which SCIM resource type this mapping applies to."""
-
-    enabled: bool
-    """Whether or not this mapping is enabled."""
-
-    filter: str
-    """
-    A
-    [SCIM filter expression](https://datatracker.ietf.org/doc/html/rfc7644#section-3.4.2.2)
-    that matches resources that should be provisioned to this application.
-    """
-
-    operations: BrowserSSHApplicationSCIMConfigMappingOperations
-    """Whether or not this mapping applies to creates, updates, or deletes."""
-
-    transform_jsonata: str
-    """
-    A [JSONata](https://jsonata.org/) expression that transforms the resource before
-    provisioning it in the application.
-    """
 
 
 class BrowserSSHApplicationSCIMConfig(TypedDict, total=False):
@@ -1160,19 +746,18 @@ class BrowserSSHApplicationSCIMConfig(TypedDict, total=False):
     enabled: bool
     """Whether SCIM provisioning is turned on for this application."""
 
-    mappings: Iterable[BrowserSSHApplicationSCIMConfigMapping]
+    mappings: Iterable[SCIMConfigMappingParam]
     """
     A list of mappings to apply to SCIM resources before provisioning them in this
     application. These can transform or filter the resources to be provisioned.
     """
 
 
-class BrowserVncApplication(TypedDict, total=False):
+class BrowserVNCApplication(TypedDict, total=False):
     domain: Required[str]
-    """The primary hostname and path that Access will secure.
+    """The primary hostname and path secured by Access.
 
-    If the app is visible in the App Launcher dashboard, this is the domain that
-    will be displayed.
+    This domain will be displayed if the app is visible in the App Launcher.
     """
 
     type: Required[str]
@@ -1232,6 +817,14 @@ class BrowserVncApplication(TypedDict, total=False):
     custom_pages: List[str]
     """The custom pages that will be displayed when applicable for this application"""
 
+    destinations: Iterable[BrowserVNCApplicationDestination]
+    """List of destinations secured by Access.
+
+    This supersedes `self_hosted_domains` to allow for more flexibility in defining
+    different types of domains. If `destinations` are provided, then
+    `self_hosted_domains` will be ignored.
+    """
+
     enable_binding_cookie: bool
     """
     Enables the binding cookie, which increases security against compromised
@@ -1262,9 +855,9 @@ class BrowserVncApplication(TypedDict, total=False):
     If disabled, the JWT will scope to the hostname by default
     """
 
-    policies: List[BrowserVncApplicationPolicy]
+    policies: List[BrowserVNCApplicationPolicy]
     """
-    The policies that will apply to the application, in ascending order of
+    The policies that Access applies to the application, in ascending order of
     precedence. Items can reference existing policies or create new policies
     exclusive to the application.
     """
@@ -1275,14 +868,19 @@ class BrowserVncApplication(TypedDict, total=False):
     attacks.
     """
 
-    scim_config: BrowserVncApplicationSCIMConfig
+    scim_config: BrowserVNCApplicationSCIMConfig
     """Configuration for provisioning to this application via SCIM.
 
     This is currently in closed beta.
     """
 
     self_hosted_domains: List[SelfHostedDomains]
-    """List of domains that Access will secure."""
+    """List of public domains that Access will secure.
+
+    This field is deprecated in favor of `destinations` and will be supported until
+    **November 21, 2025.** If `destinations` are provided, then
+    `self_hosted_domains` will be ignored.
+    """
 
     service_auth_401_redirect: bool
     """Returns a 401 status code when the request is blocked by a Service Auth policy."""
@@ -1304,7 +902,21 @@ class BrowserVncApplication(TypedDict, total=False):
     """
 
 
-class BrowserVncApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
+class BrowserVNCApplicationDestination(TypedDict, total=False):
+    type: Literal["public", "private"]
+
+    uri: str
+    """The URI of the destination.
+
+    Public destinations can include a domain and path with
+    [wildcards](https://developers.cloudflare.com/cloudflare-one/policies/access/app-paths/).
+    Private destinations are an early access feature and gated behind a feature
+    flag. Private destinations support private IPv4, IPv6, and Server Name
+    Indications (SNI) with optional port ranges.
+    """
+
+
+class BrowserVNCApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     id: str
     """The UUID of the policy"""
 
@@ -1315,19 +927,7 @@ class BrowserVncApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     """
 
 
-class BrowserVncApplicationPolicyUnionMember2(TypedDict, total=False):
-    decision: Required[Decision]
-    """The action Access will take if a user matches this policy."""
-
-    include: Required[Iterable[AccessRuleParam]]
-    """Rules evaluated with an OR logical operator.
-
-    A user needs to meet only one of the Include rules.
-    """
-
-    name: Required[str]
-    """The name of the Access policy."""
-
+class BrowserVNCApplicationPolicyUnionMember2(TypedDict, total=False):
     id: str
     """The UUID of the policy"""
 
@@ -1338,12 +938,6 @@ class BrowserVncApplicationPolicyUnionMember2(TypedDict, total=False):
     """
     Requires the user to request access from an administrator at the start of each
     session.
-    """
-
-    exclude: Iterable[AccessRuleParam]
-    """Rules evaluated with a NOT logical operator.
-
-    To match the policy, a user cannot meet any of the Exclude rules.
     """
 
     isolation_required: bool
@@ -1365,12 +959,6 @@ class BrowserVncApplicationPolicyUnionMember2(TypedDict, total=False):
     purpose_justification_required: bool
     """Require users to enter a justification when they log in to the application."""
 
-    require: Iterable[AccessRuleParam]
-    """Rules evaluated with an AND logical operator.
-
-    To match the policy, a user must meet all of the Require rules.
-    """
-
     session_duration: str
     """The amount of time that tokens issued for the application will be valid.
 
@@ -1379,107 +967,18 @@ class BrowserVncApplicationPolicyUnionMember2(TypedDict, total=False):
     """
 
 
-BrowserVncApplicationPolicy = Union[
-    BrowserVncApplicationPolicyAccessAppPolicyLink, str, BrowserVncApplicationPolicyUnionMember2
+BrowserVNCApplicationPolicy: TypeAlias = Union[
+    BrowserVNCApplicationPolicyAccessAppPolicyLink, str, BrowserVNCApplicationPolicyUnionMember2
+]
+
+BrowserVNCApplicationSCIMConfigAuthentication: TypeAlias = Union[
+    SCIMConfigAuthenticationHTTPBasicParam,
+    SCIMConfigAuthenticationOAuthBearerTokenParam,
+    SCIMConfigAuthenticationOauth2Param,
 ]
 
 
-class BrowserVncApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic(TypedDict, total=False):
-    password: Required[str]
-    """Password used to authenticate with the remote SCIM service."""
-
-    scheme: Required[Literal["httpbasic"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-    user: Required[str]
-    """User name used to authenticate with the remote SCIM service."""
-
-
-class BrowserVncApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken(
-    TypedDict, total=False
-):
-    token: Required[str]
-    """Token used to authenticate with the remote SCIM service."""
-
-    scheme: Required[Literal["oauthbearertoken"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-
-class BrowserVncApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2(TypedDict, total=False):
-    authorization_url: Required[str]
-    """URL used to generate the auth code used during token generation."""
-
-    client_id: Required[str]
-    """
-    Client ID used to authenticate when generating a token for authenticating with
-    the remote SCIM service.
-    """
-
-    client_secret: Required[str]
-    """
-    Secret used to authenticate when generating a token for authenticating with the
-    remove SCIM service.
-    """
-
-    scheme: Required[Literal["oauth2"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-    token_url: Required[str]
-    """
-    URL used to generate the token used to authenticate with the remote SCIM
-    service.
-    """
-
-    scopes: List[str]
-    """
-    The authorization scopes to request when generating the token used to
-    authenticate with the remove SCIM service.
-    """
-
-
-BrowserVncApplicationSCIMConfigAuthentication = Union[
-    BrowserVncApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic,
-    BrowserVncApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken,
-    BrowserVncApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2,
-]
-
-
-class BrowserVncApplicationSCIMConfigMappingOperations(TypedDict, total=False):
-    create: bool
-    """Whether or not this mapping applies to create (POST) operations."""
-
-    delete: bool
-    """Whether or not this mapping applies to DELETE operations."""
-
-    update: bool
-    """Whether or not this mapping applies to update (PATCH/PUT) operations."""
-
-
-class BrowserVncApplicationSCIMConfigMapping(TypedDict, total=False):
-    schema: Required[str]
-    """Which SCIM resource type this mapping applies to."""
-
-    enabled: bool
-    """Whether or not this mapping is enabled."""
-
-    filter: str
-    """
-    A
-    [SCIM filter expression](https://datatracker.ietf.org/doc/html/rfc7644#section-3.4.2.2)
-    that matches resources that should be provisioned to this application.
-    """
-
-    operations: BrowserVncApplicationSCIMConfigMappingOperations
-    """Whether or not this mapping applies to creates, updates, or deletes."""
-
-    transform_jsonata: str
-    """
-    A [JSONata](https://jsonata.org/) expression that transforms the resource before
-    provisioning it in the application.
-    """
-
-
-class BrowserVncApplicationSCIMConfig(TypedDict, total=False):
+class BrowserVNCApplicationSCIMConfig(TypedDict, total=False):
     idp_uid: Required[str]
     """
     The UID of the IdP to use as the source for SCIM resources to provision to this
@@ -1489,7 +988,7 @@ class BrowserVncApplicationSCIMConfig(TypedDict, total=False):
     remote_uri: Required[str]
     """The base URI for the application's SCIM-compatible API."""
 
-    authentication: BrowserVncApplicationSCIMConfigAuthentication
+    authentication: BrowserVNCApplicationSCIMConfigAuthentication
     """
     Attributes for configuring HTTP Basic authentication scheme for SCIM
     provisioning to an application.
@@ -1505,7 +1004,7 @@ class BrowserVncApplicationSCIMConfig(TypedDict, total=False):
     enabled: bool
     """Whether SCIM provisioning is turned on for this application."""
 
-    mappings: Iterable[BrowserVncApplicationSCIMConfigMapping]
+    mappings: Iterable[SCIMConfigMappingParam]
     """
     A list of mappings to apply to SCIM resources before provisioning them in this
     application. These can transform or filter the resources to be provisioned.
@@ -1529,6 +1028,9 @@ class AppLauncherApplication(TypedDict, total=False):
     Defaults to all IdPs configured in your account.
     """
 
+    app_launcher_logo_url: str
+    """The image URL of the logo shown in the App Launcher header."""
+
     auto_redirect_to_identity: bool
     """When set to `true`, users skip the identity provider selection step during
     login.
@@ -1536,9 +1038,21 @@ class AppLauncherApplication(TypedDict, total=False):
     You must specify only one identity provider in allowed_idps.
     """
 
+    bg_color: str
+    """The background color of the App Launcher page."""
+
+    footer_links: Iterable[AppLauncherApplicationFooterLink]
+    """The links in the App Launcher footer."""
+
+    header_bg_color: str
+    """The background color of the App Launcher header."""
+
+    landing_page_design: AppLauncherApplicationLandingPageDesign
+    """The design of the App Launcher landing page shown to users when they log in."""
+
     policies: List[AppLauncherApplicationPolicy]
     """
-    The policies that will apply to the application, in ascending order of
+    The policies that Access applies to the application, in ascending order of
     precedence. Items can reference existing policies or create new policies
     exclusive to the application.
     """
@@ -1556,6 +1070,34 @@ class AppLauncherApplication(TypedDict, total=False):
     ms, s, m, h.
     """
 
+    skip_app_launcher_login_page: bool
+    """Determines when to skip the App Launcher landing page."""
+
+
+class AppLauncherApplicationFooterLink(TypedDict, total=False):
+    name: Required[str]
+    """The hypertext in the footer link."""
+
+    url: Required[str]
+    """the hyperlink in the footer link."""
+
+
+class AppLauncherApplicationLandingPageDesign(TypedDict, total=False):
+    button_color: str
+    """The background color of the log in button on the landing page."""
+
+    button_text_color: str
+    """The color of the text in the log in button on the landing page."""
+
+    image_url: str
+    """The URL of the image shown on the landing page."""
+
+    message: str
+    """The message shown on the landing page."""
+
+    title: str
+    """The title shown on the landing page."""
+
 
 class AppLauncherApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     id: str
@@ -1569,18 +1111,6 @@ class AppLauncherApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
 
 
 class AppLauncherApplicationPolicyUnionMember2(TypedDict, total=False):
-    decision: Required[Decision]
-    """The action Access will take if a user matches this policy."""
-
-    include: Required[Iterable[AccessRuleParam]]
-    """Rules evaluated with an OR logical operator.
-
-    A user needs to meet only one of the Include rules.
-    """
-
-    name: Required[str]
-    """The name of the Access policy."""
-
     id: str
     """The UUID of the policy"""
 
@@ -1591,12 +1121,6 @@ class AppLauncherApplicationPolicyUnionMember2(TypedDict, total=False):
     """
     Requires the user to request access from an administrator at the start of each
     session.
-    """
-
-    exclude: Iterable[AccessRuleParam]
-    """Rules evaluated with a NOT logical operator.
-
-    To match the policy, a user cannot meet any of the Exclude rules.
     """
 
     isolation_required: bool
@@ -1618,12 +1142,6 @@ class AppLauncherApplicationPolicyUnionMember2(TypedDict, total=False):
     purpose_justification_required: bool
     """Require users to enter a justification when they log in to the application."""
 
-    require: Iterable[AccessRuleParam]
-    """Rules evaluated with an AND logical operator.
-
-    To match the policy, a user must meet all of the Require rules.
-    """
-
     session_duration: str
     """The amount of time that tokens issued for the application will be valid.
 
@@ -1632,104 +1150,15 @@ class AppLauncherApplicationPolicyUnionMember2(TypedDict, total=False):
     """
 
 
-AppLauncherApplicationPolicy = Union[
+AppLauncherApplicationPolicy: TypeAlias = Union[
     AppLauncherApplicationPolicyAccessAppPolicyLink, str, AppLauncherApplicationPolicyUnionMember2
 ]
 
-
-class AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic(TypedDict, total=False):
-    password: Required[str]
-    """Password used to authenticate with the remote SCIM service."""
-
-    scheme: Required[Literal["httpbasic"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-    user: Required[str]
-    """User name used to authenticate with the remote SCIM service."""
-
-
-class AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken(
-    TypedDict, total=False
-):
-    token: Required[str]
-    """Token used to authenticate with the remote SCIM service."""
-
-    scheme: Required[Literal["oauthbearertoken"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-
-class AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2(TypedDict, total=False):
-    authorization_url: Required[str]
-    """URL used to generate the auth code used during token generation."""
-
-    client_id: Required[str]
-    """
-    Client ID used to authenticate when generating a token for authenticating with
-    the remote SCIM service.
-    """
-
-    client_secret: Required[str]
-    """
-    Secret used to authenticate when generating a token for authenticating with the
-    remove SCIM service.
-    """
-
-    scheme: Required[Literal["oauth2"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-    token_url: Required[str]
-    """
-    URL used to generate the token used to authenticate with the remote SCIM
-    service.
-    """
-
-    scopes: List[str]
-    """
-    The authorization scopes to request when generating the token used to
-    authenticate with the remove SCIM service.
-    """
-
-
-AppLauncherApplicationSCIMConfigAuthentication = Union[
-    AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic,
-    AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken,
-    AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2,
+AppLauncherApplicationSCIMConfigAuthentication: TypeAlias = Union[
+    SCIMConfigAuthenticationHTTPBasicParam,
+    SCIMConfigAuthenticationOAuthBearerTokenParam,
+    SCIMConfigAuthenticationOauth2Param,
 ]
-
-
-class AppLauncherApplicationSCIMConfigMappingOperations(TypedDict, total=False):
-    create: bool
-    """Whether or not this mapping applies to create (POST) operations."""
-
-    delete: bool
-    """Whether or not this mapping applies to DELETE operations."""
-
-    update: bool
-    """Whether or not this mapping applies to update (PATCH/PUT) operations."""
-
-
-class AppLauncherApplicationSCIMConfigMapping(TypedDict, total=False):
-    schema: Required[str]
-    """Which SCIM resource type this mapping applies to."""
-
-    enabled: bool
-    """Whether or not this mapping is enabled."""
-
-    filter: str
-    """
-    A
-    [SCIM filter expression](https://datatracker.ietf.org/doc/html/rfc7644#section-3.4.2.2)
-    that matches resources that should be provisioned to this application.
-    """
-
-    operations: AppLauncherApplicationSCIMConfigMappingOperations
-    """Whether or not this mapping applies to creates, updates, or deletes."""
-
-    transform_jsonata: str
-    """
-    A [JSONata](https://jsonata.org/) expression that transforms the resource before
-    provisioning it in the application.
-    """
 
 
 class AppLauncherApplicationSCIMConfig(TypedDict, total=False):
@@ -1758,7 +1187,7 @@ class AppLauncherApplicationSCIMConfig(TypedDict, total=False):
     enabled: bool
     """Whether SCIM provisioning is turned on for this application."""
 
-    mappings: Iterable[AppLauncherApplicationSCIMConfigMapping]
+    mappings: Iterable[SCIMConfigMappingParam]
     """
     A list of mappings to apply to SCIM resources before provisioning them in this
     application. These can transform or filter the resources to be provisioned.
@@ -1782,6 +1211,9 @@ class DeviceEnrollmentPermissionsApplication(TypedDict, total=False):
     Defaults to all IdPs configured in your account.
     """
 
+    app_launcher_logo_url: str
+    """The image URL of the logo shown in the App Launcher header."""
+
     auto_redirect_to_identity: bool
     """When set to `true`, users skip the identity provider selection step during
     login.
@@ -1789,9 +1221,21 @@ class DeviceEnrollmentPermissionsApplication(TypedDict, total=False):
     You must specify only one identity provider in allowed_idps.
     """
 
+    bg_color: str
+    """The background color of the App Launcher page."""
+
+    footer_links: Iterable[DeviceEnrollmentPermissionsApplicationFooterLink]
+    """The links in the App Launcher footer."""
+
+    header_bg_color: str
+    """The background color of the App Launcher header."""
+
+    landing_page_design: DeviceEnrollmentPermissionsApplicationLandingPageDesign
+    """The design of the App Launcher landing page shown to users when they log in."""
+
     policies: List[DeviceEnrollmentPermissionsApplicationPolicy]
     """
-    The policies that will apply to the application, in ascending order of
+    The policies that Access applies to the application, in ascending order of
     precedence. Items can reference existing policies or create new policies
     exclusive to the application.
     """
@@ -1809,6 +1253,34 @@ class DeviceEnrollmentPermissionsApplication(TypedDict, total=False):
     ms, s, m, h.
     """
 
+    skip_app_launcher_login_page: bool
+    """Determines when to skip the App Launcher landing page."""
+
+
+class DeviceEnrollmentPermissionsApplicationFooterLink(TypedDict, total=False):
+    name: Required[str]
+    """The hypertext in the footer link."""
+
+    url: Required[str]
+    """the hyperlink in the footer link."""
+
+
+class DeviceEnrollmentPermissionsApplicationLandingPageDesign(TypedDict, total=False):
+    button_color: str
+    """The background color of the log in button on the landing page."""
+
+    button_text_color: str
+    """The color of the text in the log in button on the landing page."""
+
+    image_url: str
+    """The URL of the image shown on the landing page."""
+
+    message: str
+    """The message shown on the landing page."""
+
+    title: str
+    """The title shown on the landing page."""
+
 
 class DeviceEnrollmentPermissionsApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     id: str
@@ -1822,18 +1294,6 @@ class DeviceEnrollmentPermissionsApplicationPolicyAccessAppPolicyLink(TypedDict,
 
 
 class DeviceEnrollmentPermissionsApplicationPolicyUnionMember2(TypedDict, total=False):
-    decision: Required[Decision]
-    """The action Access will take if a user matches this policy."""
-
-    include: Required[Iterable[AccessRuleParam]]
-    """Rules evaluated with an OR logical operator.
-
-    A user needs to meet only one of the Include rules.
-    """
-
-    name: Required[str]
-    """The name of the Access policy."""
-
     id: str
     """The UUID of the policy"""
 
@@ -1844,12 +1304,6 @@ class DeviceEnrollmentPermissionsApplicationPolicyUnionMember2(TypedDict, total=
     """
     Requires the user to request access from an administrator at the start of each
     session.
-    """
-
-    exclude: Iterable[AccessRuleParam]
-    """Rules evaluated with a NOT logical operator.
-
-    To match the policy, a user cannot meet any of the Exclude rules.
     """
 
     isolation_required: bool
@@ -1871,12 +1325,6 @@ class DeviceEnrollmentPermissionsApplicationPolicyUnionMember2(TypedDict, total=
     purpose_justification_required: bool
     """Require users to enter a justification when they log in to the application."""
 
-    require: Iterable[AccessRuleParam]
-    """Rules evaluated with an AND logical operator.
-
-    To match the policy, a user must meet all of the Require rules.
-    """
-
     session_duration: str
     """The amount of time that tokens issued for the application will be valid.
 
@@ -1885,110 +1333,17 @@ class DeviceEnrollmentPermissionsApplicationPolicyUnionMember2(TypedDict, total=
     """
 
 
-DeviceEnrollmentPermissionsApplicationPolicy = Union[
+DeviceEnrollmentPermissionsApplicationPolicy: TypeAlias = Union[
     DeviceEnrollmentPermissionsApplicationPolicyAccessAppPolicyLink,
     str,
     DeviceEnrollmentPermissionsApplicationPolicyUnionMember2,
 ]
 
-
-class DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic(
-    TypedDict, total=False
-):
-    password: Required[str]
-    """Password used to authenticate with the remote SCIM service."""
-
-    scheme: Required[Literal["httpbasic"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-    user: Required[str]
-    """User name used to authenticate with the remote SCIM service."""
-
-
-class DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken(
-    TypedDict, total=False
-):
-    token: Required[str]
-    """Token used to authenticate with the remote SCIM service."""
-
-    scheme: Required[Literal["oauthbearertoken"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-
-class DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2(
-    TypedDict, total=False
-):
-    authorization_url: Required[str]
-    """URL used to generate the auth code used during token generation."""
-
-    client_id: Required[str]
-    """
-    Client ID used to authenticate when generating a token for authenticating with
-    the remote SCIM service.
-    """
-
-    client_secret: Required[str]
-    """
-    Secret used to authenticate when generating a token for authenticating with the
-    remove SCIM service.
-    """
-
-    scheme: Required[Literal["oauth2"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-    token_url: Required[str]
-    """
-    URL used to generate the token used to authenticate with the remote SCIM
-    service.
-    """
-
-    scopes: List[str]
-    """
-    The authorization scopes to request when generating the token used to
-    authenticate with the remove SCIM service.
-    """
-
-
-DeviceEnrollmentPermissionsApplicationSCIMConfigAuthentication = Union[
-    DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic,
-    DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken,
-    DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2,
+DeviceEnrollmentPermissionsApplicationSCIMConfigAuthentication: TypeAlias = Union[
+    SCIMConfigAuthenticationHTTPBasicParam,
+    SCIMConfigAuthenticationOAuthBearerTokenParam,
+    SCIMConfigAuthenticationOauth2Param,
 ]
-
-
-class DeviceEnrollmentPermissionsApplicationSCIMConfigMappingOperations(TypedDict, total=False):
-    create: bool
-    """Whether or not this mapping applies to create (POST) operations."""
-
-    delete: bool
-    """Whether or not this mapping applies to DELETE operations."""
-
-    update: bool
-    """Whether or not this mapping applies to update (PATCH/PUT) operations."""
-
-
-class DeviceEnrollmentPermissionsApplicationSCIMConfigMapping(TypedDict, total=False):
-    schema: Required[str]
-    """Which SCIM resource type this mapping applies to."""
-
-    enabled: bool
-    """Whether or not this mapping is enabled."""
-
-    filter: str
-    """
-    A
-    [SCIM filter expression](https://datatracker.ietf.org/doc/html/rfc7644#section-3.4.2.2)
-    that matches resources that should be provisioned to this application.
-    """
-
-    operations: DeviceEnrollmentPermissionsApplicationSCIMConfigMappingOperations
-    """Whether or not this mapping applies to creates, updates, or deletes."""
-
-    transform_jsonata: str
-    """
-    A [JSONata](https://jsonata.org/) expression that transforms the resource before
-    provisioning it in the application.
-    """
 
 
 class DeviceEnrollmentPermissionsApplicationSCIMConfig(TypedDict, total=False):
@@ -2017,7 +1372,7 @@ class DeviceEnrollmentPermissionsApplicationSCIMConfig(TypedDict, total=False):
     enabled: bool
     """Whether SCIM provisioning is turned on for this application."""
 
-    mappings: Iterable[DeviceEnrollmentPermissionsApplicationSCIMConfigMapping]
+    mappings: Iterable[SCIMConfigMappingParam]
     """
     A list of mappings to apply to SCIM resources before provisioning them in this
     application. These can transform or filter the resources to be provisioned.
@@ -2041,6 +1396,9 @@ class BrowserIsolationPermissionsApplication(TypedDict, total=False):
     Defaults to all IdPs configured in your account.
     """
 
+    app_launcher_logo_url: str
+    """The image URL of the logo shown in the App Launcher header."""
+
     auto_redirect_to_identity: bool
     """When set to `true`, users skip the identity provider selection step during
     login.
@@ -2048,9 +1406,21 @@ class BrowserIsolationPermissionsApplication(TypedDict, total=False):
     You must specify only one identity provider in allowed_idps.
     """
 
+    bg_color: str
+    """The background color of the App Launcher page."""
+
+    footer_links: Iterable[BrowserIsolationPermissionsApplicationFooterLink]
+    """The links in the App Launcher footer."""
+
+    header_bg_color: str
+    """The background color of the App Launcher header."""
+
+    landing_page_design: BrowserIsolationPermissionsApplicationLandingPageDesign
+    """The design of the App Launcher landing page shown to users when they log in."""
+
     policies: List[BrowserIsolationPermissionsApplicationPolicy]
     """
-    The policies that will apply to the application, in ascending order of
+    The policies that Access applies to the application, in ascending order of
     precedence. Items can reference existing policies or create new policies
     exclusive to the application.
     """
@@ -2068,6 +1438,34 @@ class BrowserIsolationPermissionsApplication(TypedDict, total=False):
     ms, s, m, h.
     """
 
+    skip_app_launcher_login_page: bool
+    """Determines when to skip the App Launcher landing page."""
+
+
+class BrowserIsolationPermissionsApplicationFooterLink(TypedDict, total=False):
+    name: Required[str]
+    """The hypertext in the footer link."""
+
+    url: Required[str]
+    """the hyperlink in the footer link."""
+
+
+class BrowserIsolationPermissionsApplicationLandingPageDesign(TypedDict, total=False):
+    button_color: str
+    """The background color of the log in button on the landing page."""
+
+    button_text_color: str
+    """The color of the text in the log in button on the landing page."""
+
+    image_url: str
+    """The URL of the image shown on the landing page."""
+
+    message: str
+    """The message shown on the landing page."""
+
+    title: str
+    """The title shown on the landing page."""
+
 
 class BrowserIsolationPermissionsApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     id: str
@@ -2081,18 +1479,6 @@ class BrowserIsolationPermissionsApplicationPolicyAccessAppPolicyLink(TypedDict,
 
 
 class BrowserIsolationPermissionsApplicationPolicyUnionMember2(TypedDict, total=False):
-    decision: Required[Decision]
-    """The action Access will take if a user matches this policy."""
-
-    include: Required[Iterable[AccessRuleParam]]
-    """Rules evaluated with an OR logical operator.
-
-    A user needs to meet only one of the Include rules.
-    """
-
-    name: Required[str]
-    """The name of the Access policy."""
-
     id: str
     """The UUID of the policy"""
 
@@ -2103,12 +1489,6 @@ class BrowserIsolationPermissionsApplicationPolicyUnionMember2(TypedDict, total=
     """
     Requires the user to request access from an administrator at the start of each
     session.
-    """
-
-    exclude: Iterable[AccessRuleParam]
-    """Rules evaluated with a NOT logical operator.
-
-    To match the policy, a user cannot meet any of the Exclude rules.
     """
 
     isolation_required: bool
@@ -2130,12 +1510,6 @@ class BrowserIsolationPermissionsApplicationPolicyUnionMember2(TypedDict, total=
     purpose_justification_required: bool
     """Require users to enter a justification when they log in to the application."""
 
-    require: Iterable[AccessRuleParam]
-    """Rules evaluated with an AND logical operator.
-
-    To match the policy, a user must meet all of the Require rules.
-    """
-
     session_duration: str
     """The amount of time that tokens issued for the application will be valid.
 
@@ -2144,110 +1518,17 @@ class BrowserIsolationPermissionsApplicationPolicyUnionMember2(TypedDict, total=
     """
 
 
-BrowserIsolationPermissionsApplicationPolicy = Union[
+BrowserIsolationPermissionsApplicationPolicy: TypeAlias = Union[
     BrowserIsolationPermissionsApplicationPolicyAccessAppPolicyLink,
     str,
     BrowserIsolationPermissionsApplicationPolicyUnionMember2,
 ]
 
-
-class BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic(
-    TypedDict, total=False
-):
-    password: Required[str]
-    """Password used to authenticate with the remote SCIM service."""
-
-    scheme: Required[Literal["httpbasic"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-    user: Required[str]
-    """User name used to authenticate with the remote SCIM service."""
-
-
-class BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken(
-    TypedDict, total=False
-):
-    token: Required[str]
-    """Token used to authenticate with the remote SCIM service."""
-
-    scheme: Required[Literal["oauthbearertoken"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-
-class BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2(
-    TypedDict, total=False
-):
-    authorization_url: Required[str]
-    """URL used to generate the auth code used during token generation."""
-
-    client_id: Required[str]
-    """
-    Client ID used to authenticate when generating a token for authenticating with
-    the remote SCIM service.
-    """
-
-    client_secret: Required[str]
-    """
-    Secret used to authenticate when generating a token for authenticating with the
-    remove SCIM service.
-    """
-
-    scheme: Required[Literal["oauth2"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-    token_url: Required[str]
-    """
-    URL used to generate the token used to authenticate with the remote SCIM
-    service.
-    """
-
-    scopes: List[str]
-    """
-    The authorization scopes to request when generating the token used to
-    authenticate with the remove SCIM service.
-    """
-
-
-BrowserIsolationPermissionsApplicationSCIMConfigAuthentication = Union[
-    BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic,
-    BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken,
-    BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2,
+BrowserIsolationPermissionsApplicationSCIMConfigAuthentication: TypeAlias = Union[
+    SCIMConfigAuthenticationHTTPBasicParam,
+    SCIMConfigAuthenticationOAuthBearerTokenParam,
+    SCIMConfigAuthenticationOauth2Param,
 ]
-
-
-class BrowserIsolationPermissionsApplicationSCIMConfigMappingOperations(TypedDict, total=False):
-    create: bool
-    """Whether or not this mapping applies to create (POST) operations."""
-
-    delete: bool
-    """Whether or not this mapping applies to DELETE operations."""
-
-    update: bool
-    """Whether or not this mapping applies to update (PATCH/PUT) operations."""
-
-
-class BrowserIsolationPermissionsApplicationSCIMConfigMapping(TypedDict, total=False):
-    schema: Required[str]
-    """Which SCIM resource type this mapping applies to."""
-
-    enabled: bool
-    """Whether or not this mapping is enabled."""
-
-    filter: str
-    """
-    A
-    [SCIM filter expression](https://datatracker.ietf.org/doc/html/rfc7644#section-3.4.2.2)
-    that matches resources that should be provisioned to this application.
-    """
-
-    operations: BrowserIsolationPermissionsApplicationSCIMConfigMappingOperations
-    """Whether or not this mapping applies to creates, updates, or deletes."""
-
-    transform_jsonata: str
-    """
-    A [JSONata](https://jsonata.org/) expression that transforms the resource before
-    provisioning it in the application.
-    """
 
 
 class BrowserIsolationPermissionsApplicationSCIMConfig(TypedDict, total=False):
@@ -2276,7 +1557,7 @@ class BrowserIsolationPermissionsApplicationSCIMConfig(TypedDict, total=False):
     enabled: bool
     """Whether SCIM provisioning is turned on for this application."""
 
-    mappings: Iterable[BrowserIsolationPermissionsApplicationSCIMConfigMapping]
+    mappings: Iterable[SCIMConfigMappingParam]
     """
     A list of mappings to apply to SCIM resources before provisioning them in this
     application. These can transform or filter the resources to be provisioned.
@@ -2318,97 +1599,11 @@ class BookmarkApplication(TypedDict, total=False):
     """The application type."""
 
 
-class BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic(TypedDict, total=False):
-    password: Required[str]
-    """Password used to authenticate with the remote SCIM service."""
-
-    scheme: Required[Literal["httpbasic"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-    user: Required[str]
-    """User name used to authenticate with the remote SCIM service."""
-
-
-class BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken(TypedDict, total=False):
-    token: Required[str]
-    """Token used to authenticate with the remote SCIM service."""
-
-    scheme: Required[Literal["oauthbearertoken"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-
-class BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2(TypedDict, total=False):
-    authorization_url: Required[str]
-    """URL used to generate the auth code used during token generation."""
-
-    client_id: Required[str]
-    """
-    Client ID used to authenticate when generating a token for authenticating with
-    the remote SCIM service.
-    """
-
-    client_secret: Required[str]
-    """
-    Secret used to authenticate when generating a token for authenticating with the
-    remove SCIM service.
-    """
-
-    scheme: Required[Literal["oauth2"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-    token_url: Required[str]
-    """
-    URL used to generate the token used to authenticate with the remote SCIM
-    service.
-    """
-
-    scopes: List[str]
-    """
-    The authorization scopes to request when generating the token used to
-    authenticate with the remove SCIM service.
-    """
-
-
-BookmarkApplicationSCIMConfigAuthentication = Union[
-    BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic,
-    BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken,
-    BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2,
+BookmarkApplicationSCIMConfigAuthentication: TypeAlias = Union[
+    SCIMConfigAuthenticationHTTPBasicParam,
+    SCIMConfigAuthenticationOAuthBearerTokenParam,
+    SCIMConfigAuthenticationOauth2Param,
 ]
-
-
-class BookmarkApplicationSCIMConfigMappingOperations(TypedDict, total=False):
-    create: bool
-    """Whether or not this mapping applies to create (POST) operations."""
-
-    delete: bool
-    """Whether or not this mapping applies to DELETE operations."""
-
-    update: bool
-    """Whether or not this mapping applies to update (PATCH/PUT) operations."""
-
-
-class BookmarkApplicationSCIMConfigMapping(TypedDict, total=False):
-    schema: Required[str]
-    """Which SCIM resource type this mapping applies to."""
-
-    enabled: bool
-    """Whether or not this mapping is enabled."""
-
-    filter: str
-    """
-    A
-    [SCIM filter expression](https://datatracker.ietf.org/doc/html/rfc7644#section-3.4.2.2)
-    that matches resources that should be provisioned to this application.
-    """
-
-    operations: BookmarkApplicationSCIMConfigMappingOperations
-    """Whether or not this mapping applies to creates, updates, or deletes."""
-
-    transform_jsonata: str
-    """
-    A [JSONata](https://jsonata.org/) expression that transforms the resource before
-    provisioning it in the application.
-    """
 
 
 class BookmarkApplicationSCIMConfig(TypedDict, total=False):
@@ -2437,20 +1632,83 @@ class BookmarkApplicationSCIMConfig(TypedDict, total=False):
     enabled: bool
     """Whether SCIM provisioning is turned on for this application."""
 
-    mappings: Iterable[BookmarkApplicationSCIMConfigMapping]
+    mappings: Iterable[SCIMConfigMappingParam]
     """
     A list of mappings to apply to SCIM resources before provisioning them in this
     application. These can transform or filter the resources to be provisioned.
     """
 
 
-ApplicationUpdateParams = Union[
+class InfrastructureApplication(TypedDict, total=False):
+    target_criteria: Required[Iterable[InfrastructureApplicationTargetCriterion]]
+
+    type: Required[ApplicationType]
+    """The application type."""
+
+    account_id: str
+    """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
+
+    zone_id: str
+    """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
+
+    name: str
+    """The name of the application."""
+
+    policies: Iterable[InfrastructureApplicationPolicy]
+    """The policies that Access applies to the application."""
+
+
+class InfrastructureApplicationTargetCriterion(TypedDict, total=False):
+    port: Required[int]
+    """The port that the targets use for the chosen communication protocol.
+
+    A port cannot be assigned to multiple protocols.
+    """
+
+    protocol: Required[Literal["ssh"]]
+    """The communication protocol your application secures."""
+
+    target_attributes: Required[Dict[str, List[str]]]
+    """Contains a map of target attribute keys to target attribute values."""
+
+
+class InfrastructureApplicationPolicy(TypedDict, total=False):
+    decision: Required[Decision]
+    """The action Access will take if a user matches this policy.
+
+    Infrastructure application policies can only use the Allow action.
+    """
+
+    include: Required[Iterable[AccessRuleParam]]
+    """Rules evaluated with an OR logical operator.
+
+    A user needs to meet only one of the Include rules.
+    """
+
+    name: Required[str]
+    """The name of the Access policy."""
+
+    exclude: Iterable[AccessRuleParam]
+    """Rules evaluated with a NOT logical operator.
+
+    To match the policy, a user cannot meet any of the Exclude rules.
+    """
+
+    require: Iterable[AccessRuleParam]
+    """Rules evaluated with an AND logical operator.
+
+    To match the policy, a user must meet all of the Require rules.
+    """
+
+
+ApplicationUpdateParams: TypeAlias = Union[
     SelfHostedApplication,
     SaaSApplication,
     BrowserSSHApplication,
-    BrowserVncApplication,
+    BrowserVNCApplication,
     AppLauncherApplication,
     DeviceEnrollmentPermissionsApplication,
     BrowserIsolationPermissionsApplication,
     BookmarkApplication,
+    InfrastructureApplication,
 ]

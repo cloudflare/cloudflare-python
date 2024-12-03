@@ -8,6 +8,14 @@ from .tail import (
     TailResourceWithStreamingResponse,
     AsyncTailResourceWithStreamingResponse,
 )
+from .assets import (
+    AssetsResource,
+    AsyncAssetsResource,
+    AssetsResourceWithRawResponse,
+    AsyncAssetsResourceWithRawResponse,
+    AssetsResourceWithStreamingResponse,
+    AsyncAssetsResourceWithStreamingResponse,
+)
 from .content import (
     ContentResource,
     AsyncContentResource,
@@ -48,6 +56,14 @@ from .schedules import (
     SchedulesResourceWithStreamingResponse,
     AsyncSchedulesResourceWithStreamingResponse,
 )
+from .subdomain import (
+    SubdomainResource,
+    AsyncSubdomainResource,
+    SubdomainResourceWithRawResponse,
+    AsyncSubdomainResourceWithRawResponse,
+    SubdomainResourceWithStreamingResponse,
+    AsyncSubdomainResourceWithStreamingResponse,
+)
 from .deployments import (
     DeploymentsResource,
     AsyncDeploymentsResource,
@@ -58,6 +74,18 @@ from .deployments import (
 )
 
 __all__ = [
+    "AssetsResource",
+    "AsyncAssetsResource",
+    "AssetsResourceWithRawResponse",
+    "AsyncAssetsResourceWithRawResponse",
+    "AssetsResourceWithStreamingResponse",
+    "AsyncAssetsResourceWithStreamingResponse",
+    "SubdomainResource",
+    "AsyncSubdomainResource",
+    "SubdomainResourceWithRawResponse",
+    "AsyncSubdomainResourceWithRawResponse",
+    "SubdomainResourceWithStreamingResponse",
+    "AsyncSubdomainResourceWithStreamingResponse",
     "SchedulesResource",
     "AsyncSchedulesResource",
     "SchedulesResourceWithRawResponse",

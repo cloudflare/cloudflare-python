@@ -12,7 +12,6 @@ from .cache_purge_response import CachePurgeResponse as CachePurgeResponse
 from .variant_get_response import VariantGetResponse as VariantGetResponse
 from .regional_tiered_cache import RegionalTieredCache as RegionalTieredCache
 from .variant_edit_response import VariantEditResponse as VariantEditResponse
-from .cache_variant_identifier import CacheVariantIdentifier as CacheVariantIdentifier
 from .cache_reserve_edit_params import CacheReserveEditParams as CacheReserveEditParams
 from .cache_reserve_clear_params import CacheReserveClearParams as CacheReserveClearParams
 from .cache_reserve_get_response import CacheReserveGetResponse as CacheReserveGetResponse

@@ -8,6 +8,14 @@ from .dns import (
     DNSResourceWithStreamingResponse,
     AsyncDNSResourceWithStreamingResponse,
 )
+from .dnssec import (
+    DNSSECResource,
+    AsyncDNSSECResource,
+    DNSSECResourceWithRawResponse,
+    AsyncDNSSECResourceWithRawResponse,
+    DNSSECResourceWithStreamingResponse,
+    AsyncDNSSECResourceWithStreamingResponse,
+)
 from .records import (
     RecordsResource,
     AsyncRecordsResource,
@@ -15,14 +23,6 @@ from .records import (
     AsyncRecordsResourceWithRawResponse,
     RecordsResourceWithStreamingResponse,
     AsyncRecordsResourceWithStreamingResponse,
-)
-from .firewall import (
-    FirewallResource,
-    AsyncFirewallResource,
-    FirewallResourceWithRawResponse,
-    AsyncFirewallResourceWithRawResponse,
-    FirewallResourceWithStreamingResponse,
-    AsyncFirewallResourceWithStreamingResponse,
 )
 from .settings import (
     SettingsResource,
@@ -40,8 +40,22 @@ from .analytics import (
     AnalyticsResourceWithStreamingResponse,
     AsyncAnalyticsResourceWithStreamingResponse,
 )
+from .zone_transfers import (
+    ZoneTransfersResource,
+    AsyncZoneTransfersResource,
+    ZoneTransfersResourceWithRawResponse,
+    AsyncZoneTransfersResourceWithRawResponse,
+    ZoneTransfersResourceWithStreamingResponse,
+    AsyncZoneTransfersResourceWithStreamingResponse,
+)
 
 __all__ = [
+    "DNSSECResource",
+    "AsyncDNSSECResource",
+    "DNSSECResourceWithRawResponse",
+    "AsyncDNSSECResourceWithRawResponse",
+    "DNSSECResourceWithStreamingResponse",
+    "AsyncDNSSECResourceWithStreamingResponse",
     "RecordsResource",
     "AsyncRecordsResource",
     "RecordsResourceWithRawResponse",
@@ -60,12 +74,12 @@ __all__ = [
     "AsyncAnalyticsResourceWithRawResponse",
     "AnalyticsResourceWithStreamingResponse",
     "AsyncAnalyticsResourceWithStreamingResponse",
-    "FirewallResource",
-    "AsyncFirewallResource",
-    "FirewallResourceWithRawResponse",
-    "AsyncFirewallResourceWithRawResponse",
-    "FirewallResourceWithStreamingResponse",
-    "AsyncFirewallResourceWithStreamingResponse",
+    "ZoneTransfersResource",
+    "AsyncZoneTransfersResource",
+    "ZoneTransfersResourceWithRawResponse",
+    "AsyncZoneTransfersResourceWithRawResponse",
+    "ZoneTransfersResourceWithStreamingResponse",
+    "AsyncZoneTransfersResourceWithStreamingResponse",
     "DNSResource",
     "AsyncDNSResource",
     "DNSResourceWithRawResponse",

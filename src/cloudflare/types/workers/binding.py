@@ -1,7 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Union
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 from ..._models import BaseModel
 from .d1_binding import D1Binding
@@ -12,7 +12,7 @@ from .kv_namespace_binding import KVNamespaceBinding
 from .durable_object_binding import DurableObjectBinding
 from .dispatch_namespace_binding import DispatchNamespaceBinding
 
-__all__ = ["Binding", "WorkersQueueBinding"]
+__all__ = ["Binding", "WorkersQueueBinding", "WorkersAssetsBinding"]
 
 
 class WorkersQueueBinding(BaseModel):
@@ -26,7 +26,15 @@ class WorkersQueueBinding(BaseModel):
     """The class of resource that the binding provides."""
 
 
-Binding = Union[
+class WorkersAssetsBinding(BaseModel):
+    name: str
+    """A JavaScript variable name for the binding."""
+
+    type: Literal["assets"]
+    """The class of resource that the binding provides."""
+
+
+Binding: TypeAlias = Union[
     KVNamespaceBinding,
     ServiceBinding,
     DurableObjectBinding,
@@ -35,4 +43,5 @@ Binding = Union[
     D1Binding,
     DispatchNamespaceBinding,
     MTLSCERTBinding,
+    WorkersAssetsBinding,
 ]

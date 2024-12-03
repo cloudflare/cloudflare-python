@@ -31,10 +31,21 @@ __all__ = ["MessagesResource", "AsyncMessagesResource"]
 class MessagesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> MessagesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return MessagesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> MessagesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return MessagesResourceWithStreamingResponse(self)
 
     def ack(
@@ -52,12 +63,12 @@ class MessagesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[MessageAckResponse]:
         """
-        Acknowledge + Retry messages from a Queue.
+        Acknowledge + Retry messages from a Queue
 
         Args:
-          account_id: Identifier
+          account_id: A Resource identifier.
 
-          queue_id: Identifier
+          queue_id: A Resource identifier.
 
           extra_headers: Send extra headers
 
@@ -105,14 +116,14 @@ class MessagesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[MessagePullResponse]:
         """
-        Pull a batch of messages from a Queue.
+        Pull a batch of messages from a Queue
 
         Args:
-          account_id: Identifier
+          account_id: A Resource identifier.
 
-          queue_id: Identifier
+          queue_id: A Resource identifier.
 
-          batch_size: The maximum number of messages to include in a batch
+          batch_size: The maximum number of messages to include in a batch.
 
           visibility_timeout_ms: The number of milliseconds that a message is exclusively leased. After the
               timeout, the message becomes available for another attempt.
@@ -152,10 +163,21 @@ class MessagesResource(SyncAPIResource):
 class AsyncMessagesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncMessagesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncMessagesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncMessagesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncMessagesResourceWithStreamingResponse(self)
 
     async def ack(
@@ -173,12 +195,12 @@ class AsyncMessagesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[MessageAckResponse]:
         """
-        Acknowledge + Retry messages from a Queue.
+        Acknowledge + Retry messages from a Queue
 
         Args:
-          account_id: Identifier
+          account_id: A Resource identifier.
 
-          queue_id: Identifier
+          queue_id: A Resource identifier.
 
           extra_headers: Send extra headers
 
@@ -226,14 +248,14 @@ class AsyncMessagesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[MessagePullResponse]:
         """
-        Pull a batch of messages from a Queue.
+        Pull a batch of messages from a Queue
 
         Args:
-          account_id: Identifier
+          account_id: A Resource identifier.
 
-          queue_id: Identifier
+          queue_id: A Resource identifier.
 
-          batch_size: The maximum number of messages to include in a batch
+          batch_size: The maximum number of messages to include in a batch.
 
           visibility_timeout_ms: The number of milliseconds that a message is exclusively leased. After the
               timeout, the message becomes available for another attempt.

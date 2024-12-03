@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Type, Optional, cast, overload
-from typing_extensions import Literal
+from typing import Any, Type, Iterable, Optional, cast
+from typing_extensions import Literal, overload
 
 import httpx
 
@@ -26,19 +26,24 @@ from ...types.dns import (
     record_edit_params,
     record_list_params,
     record_scan_params,
+    record_batch_params,
     record_create_params,
     record_import_params,
     record_update_params,
 )
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.dns.record import Record
-from ...types.dns.ttl_param import TTLParam
-from ...types.dns.record_tags import RecordTags
+from ...types.dns.record_param import RecordParam
 from ...types.shared.sort_direction import SortDirection
+from ...types.dns.record_get_response import RecordGetResponse
+from ...types.dns.record_edit_response import RecordEditResponse
+from ...types.dns.record_list_response import RecordListResponse
 from ...types.dns.record_scan_response import RecordScanResponse
+from ...types.dns.record_batch_response import RecordBatchResponse
+from ...types.dns.record_create_response import RecordCreateResponse
 from ...types.dns.record_delete_response import RecordDeleteResponse
 from ...types.dns.record_import_response import RecordImportResponse
+from ...types.dns.record_update_response import RecordUpdateResponse
 
 __all__ = ["RecordsResource", "AsyncRecordsResource"]
 
@@ -46,10 +51,21 @@ __all__ = ["RecordsResource", "AsyncRecordsResource"]
 class RecordsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> RecordsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return RecordsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> RecordsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return RecordsResourceWithStreamingResponse(self)
 
     @overload
@@ -57,21 +73,15 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        content: str,
-        name: str,
-        type: Literal["A"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        type: Literal["A"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -87,23 +97,7 @@ class RecordsResource(SyncAPIResource):
 
           content: A valid IPv4 address.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -120,21 +114,15 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        content: str,
-        name: str,
-        type: Literal["AAAA"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        type: Literal["AAAA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -150,23 +138,7 @@ class RecordsResource(SyncAPIResource):
 
           content: A valid IPv6 address.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -183,20 +155,15 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        data: record_create_params.CAARecordData,
-        name: str,
-        type: Literal["CAA"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_create_params.CAARecordData | NotGiven = NOT_GIVEN,
+        type: Literal["CAA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -212,20 +179,7 @@ class RecordsResource(SyncAPIResource):
 
           data: Components of a CAA record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -242,20 +196,15 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        data: record_create_params.CERTRecordData,
-        name: str,
-        type: Literal["CERT"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_create_params.CERTRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["CERT"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -271,20 +220,7 @@ class RecordsResource(SyncAPIResource):
 
           data: Components of a CERT record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -301,21 +237,16 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        content: object,
-        name: str,
-        type: Literal["CNAME"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        settings: record_create_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
+        type: Literal["CNAME"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -331,23 +262,7 @@ class RecordsResource(SyncAPIResource):
 
           content: A valid hostname. Must not match the record's name.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -364,20 +279,15 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        data: record_create_params.DNSKEYRecordData,
-        name: str,
-        type: Literal["DNSKEY"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_create_params.DNSKEYRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["DNSKEY"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -393,20 +303,7 @@ class RecordsResource(SyncAPIResource):
 
           data: Components of a DNSKEY record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -423,20 +320,15 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        data: record_create_params.DSRecordData,
-        name: str,
-        type: Literal["DS"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_create_params.DSRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["DS"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -452,20 +344,7 @@ class RecordsResource(SyncAPIResource):
 
           data: Components of a DS record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -482,20 +361,15 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        data: record_create_params.HTTPSRecordData,
-        name: str,
-        type: Literal["HTTPS"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_create_params.HTTPSRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["HTTPS"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -511,20 +385,7 @@ class RecordsResource(SyncAPIResource):
 
           data: Components of a HTTPS record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -541,20 +402,15 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        data: record_create_params.LOCRecordData,
-        name: str,
-        type: Literal["LOC"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_create_params.LOCRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["LOC"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -570,20 +426,7 @@ class RecordsResource(SyncAPIResource):
 
           data: Components of a LOC record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -600,21 +443,16 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        content: str,
-        name: str,
-        priority: float,
-        type: Literal["MX"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
+        type: Literal["MX"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -630,23 +468,10 @@ class RecordsResource(SyncAPIResource):
 
           content: A valid mail server hostname.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           priority: Required for MX, SRV and URI records; unused by other record types. Records with
               lower priorities are preferred.
 
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -663,20 +488,15 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        data: record_create_params.NAPTRRecordData,
-        name: str,
-        type: Literal["NAPTR"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_create_params.NAPTRRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["NAPTR"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -692,20 +512,7 @@ class RecordsResource(SyncAPIResource):
 
           data: Components of a NAPTR record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -722,20 +529,15 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        content: str,
-        name: str,
-        type: Literal["NS"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        type: Literal["NS"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -751,20 +553,7 @@ class RecordsResource(SyncAPIResource):
 
           content: A valid name server host name.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -781,20 +570,56 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        content: str,
-        name: str,
-        type: Literal["PTR"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        type: Literal["OPENPGPKEY"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordCreateResponse]:
+        """
+        Create a new DNS record for a zone.
+
+        Notes:
+
+        - A/AAAA records cannot exist on the same name as CNAME records.
+        - NS records cannot exist on the same name as any other record type.
+        - Domain names are always represented in Punycode, even if Unicode characters
+          were used when creating the record.
+
+        Args:
+          zone_id: Identifier
+
+          content: A single Base64-encoded OpenPGP Transferable Public Key (RFC 4880 Section 11.1)
+
+          type: Record type.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        zone_id: str,
+        content: str | NotGiven = NOT_GIVEN,
+        type: Literal["PTR"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -810,20 +635,7 @@ class RecordsResource(SyncAPIResource):
 
           content: Domain name pointing to the address.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -840,20 +652,15 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        data: record_create_params.SMIMEARecordData,
-        name: str,
-        type: Literal["SMIMEA"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_create_params.SMIMEARecordData | NotGiven = NOT_GIVEN,
+        type: Literal["SMIMEA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -869,20 +676,7 @@ class RecordsResource(SyncAPIResource):
 
           data: Components of a SMIMEA record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -899,20 +693,15 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        data: record_create_params.SRVRecordData,
-        name: str,
-        type: Literal["SRV"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_create_params.SRVRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["SRV"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -928,22 +717,7 @@ class RecordsResource(SyncAPIResource):
 
           data: Components of a SRV record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode. For SRV records, the first
-              label is normally a service and the second a protocol name, each starting with
-              an underscore.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -960,20 +734,15 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        data: record_create_params.SSHFPRecordData,
-        name: str,
-        type: Literal["SSHFP"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_create_params.SSHFPRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["SSHFP"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -989,20 +758,7 @@ class RecordsResource(SyncAPIResource):
 
           data: Components of a SSHFP record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -1019,20 +775,15 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        data: record_create_params.SVCBRecordData,
-        name: str,
-        type: Literal["SVCB"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_create_params.SVCBRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["SVCB"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -1048,20 +799,7 @@ class RecordsResource(SyncAPIResource):
 
           data: Components of a SVCB record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -1078,20 +816,15 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        data: record_create_params.TLSARecordData,
-        name: str,
-        type: Literal["TLSA"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_create_params.TLSARecordData | NotGiven = NOT_GIVEN,
+        type: Literal["TLSA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -1107,20 +840,7 @@ class RecordsResource(SyncAPIResource):
 
           data: Components of a TLSA record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -1137,20 +857,15 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        content: str,
-        name: str,
-        type: Literal["TXT"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        type: Literal["TXT"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -1164,22 +879,14 @@ class RecordsResource(SyncAPIResource):
         Args:
           zone_id: Identifier
 
-          content: Text content for the record.
+          content: Text content for the record. The content must consist of quoted "character
+              strings" (RFC 1035), each with a length of up to 255 bytes. Strings exceeding
+              this allowed maximum length are automatically split.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
+              Learn more at
+              <https://www.cloudflare.com/learning/dns/dns-records/dns-txt-record/>.
 
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -1196,21 +903,16 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        data: record_create_params.URIRecordData,
-        name: str,
-        priority: float,
-        type: Literal["URI"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_create_params.URIRecordData | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
+        type: Literal["URI"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -1226,23 +928,10 @@ class RecordsResource(SyncAPIResource):
 
           data: Components of a URI record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           priority: Required for MX, SRV and URI records; unused by other record types. Records with
               lower priorities are preferred.
 
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -1254,18 +943,12 @@ class RecordsResource(SyncAPIResource):
         """
         ...
 
-    @required_args(
-        ["zone_id", "content", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "content", "name", "priority", "type"],
-        ["zone_id", "data", "name", "priority", "type"],
-    )
+    @required_args(["zone_id"])
     def create(
         self,
         *,
         zone_id: str,
-        content: str | object | NotGiven = NOT_GIVEN,
-        name: str,
+        content: str | NotGiven = NOT_GIVEN,
         type: Literal["A"]
         | Literal["AAAA"]
         | Literal["CAA"]
@@ -1278,6 +961,7 @@ class RecordsResource(SyncAPIResource):
         | Literal["MX"]
         | Literal["NAPTR"]
         | Literal["NS"]
+        | Literal["OPENPGPKEY"]
         | Literal["PTR"]
         | Literal["SMIMEA"]
         | Literal["SRV"]
@@ -1285,12 +969,8 @@ class RecordsResource(SyncAPIResource):
         | Literal["SVCB"]
         | Literal["TLSA"]
         | Literal["TXT"]
-        | Literal["URI"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        | Literal["URI"]
+        | NotGiven = NOT_GIVEN,
         data: record_create_params.CAARecordData
         | record_create_params.CERTRecordData
         | record_create_params.DNSKEYRecordData
@@ -1303,6 +983,7 @@ class RecordsResource(SyncAPIResource):
         | record_create_params.SSHFPRecordData
         | record_create_params.URIRecordData
         | NotGiven = NOT_GIVEN,
+        settings: record_create_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1310,24 +991,19 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordCreateResponse]:
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            Optional[Record],
+            Optional[RecordCreateResponse],
             self._post(
                 f"/zones/{zone_id}/dns_records",
                 body=maybe_transform(
                     {
                         "content": content,
-                        "name": name,
                         "type": type,
-                        "id": id,
-                        "comment": comment,
-                        "proxied": proxied,
-                        "tags": tags,
-                        "ttl": ttl,
                         "data": data,
+                        "settings": settings,
                         "priority": priority,
                     },
                     record_create_params.RecordCreateParams,
@@ -1337,10 +1013,10 @@ class RecordsResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[Record]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[RecordCreateResponse]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[Record]
+                    Any, ResultWrapper[RecordCreateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -1351,22 +1027,17 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        content: str,
-        name: str,
-        type: Literal["A"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        type: Literal["A"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Overwrite an existing DNS record.
+    ) -> Optional[RecordUpdateResponse]:
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -1382,23 +1053,7 @@ class RecordsResource(SyncAPIResource):
 
           content: A valid IPv4 address.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -1416,22 +1071,17 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        content: str,
-        name: str,
-        type: Literal["AAAA"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        type: Literal["AAAA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Overwrite an existing DNS record.
+    ) -> Optional[RecordUpdateResponse]:
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -1447,23 +1097,7 @@ class RecordsResource(SyncAPIResource):
 
           content: A valid IPv6 address.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -1481,21 +1115,17 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_update_params.CAARecordData,
-        name: str,
-        type: Literal["CAA"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_update_params.CAARecordData | NotGiven = NOT_GIVEN,
+        type: Literal["CAA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Overwrite an existing DNS record.
+    ) -> Optional[RecordUpdateResponse]:
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -1511,20 +1141,7 @@ class RecordsResource(SyncAPIResource):
 
           data: Components of a CAA record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -1542,21 +1159,17 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_update_params.CERTRecordData,
-        name: str,
-        type: Literal["CERT"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_update_params.CERTRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["CERT"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Overwrite an existing DNS record.
+    ) -> Optional[RecordUpdateResponse]:
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -1572,20 +1185,7 @@ class RecordsResource(SyncAPIResource):
 
           data: Components of a CERT record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -1603,22 +1203,18 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        content: object,
-        name: str,
-        type: Literal["CNAME"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        settings: record_update_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
+        type: Literal["CNAME"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Overwrite an existing DNS record.
+    ) -> Optional[RecordUpdateResponse]:
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -1634,23 +1230,7 @@ class RecordsResource(SyncAPIResource):
 
           content: A valid hostname. Must not match the record's name.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -1668,21 +1248,17 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_update_params.DNSKEYRecordData,
-        name: str,
-        type: Literal["DNSKEY"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_update_params.DNSKEYRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["DNSKEY"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Overwrite an existing DNS record.
+    ) -> Optional[RecordUpdateResponse]:
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -1698,20 +1274,7 @@ class RecordsResource(SyncAPIResource):
 
           data: Components of a DNSKEY record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -1729,21 +1292,17 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_update_params.DSRecordData,
-        name: str,
-        type: Literal["DS"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_update_params.DSRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["DS"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Overwrite an existing DNS record.
+    ) -> Optional[RecordUpdateResponse]:
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -1759,20 +1318,7 @@ class RecordsResource(SyncAPIResource):
 
           data: Components of a DS record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -1790,21 +1336,17 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_update_params.HTTPSRecordData,
-        name: str,
-        type: Literal["HTTPS"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_update_params.HTTPSRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["HTTPS"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Overwrite an existing DNS record.
+    ) -> Optional[RecordUpdateResponse]:
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -1820,20 +1362,7 @@ class RecordsResource(SyncAPIResource):
 
           data: Components of a HTTPS record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -1851,21 +1380,17 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_update_params.LOCRecordData,
-        name: str,
-        type: Literal["LOC"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_update_params.LOCRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["LOC"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Overwrite an existing DNS record.
+    ) -> Optional[RecordUpdateResponse]:
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -1881,20 +1406,7 @@ class RecordsResource(SyncAPIResource):
 
           data: Components of a LOC record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -1912,22 +1424,18 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        content: str,
-        name: str,
-        priority: float,
-        type: Literal["MX"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
+        type: Literal["MX"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Overwrite an existing DNS record.
+    ) -> Optional[RecordUpdateResponse]:
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -1943,23 +1451,10 @@ class RecordsResource(SyncAPIResource):
 
           content: A valid mail server hostname.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           priority: Required for MX, SRV and URI records; unused by other record types. Records with
               lower priorities are preferred.
 
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -1977,21 +1472,17 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_update_params.NAPTRRecordData,
-        name: str,
-        type: Literal["NAPTR"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_update_params.NAPTRRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["NAPTR"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Overwrite an existing DNS record.
+    ) -> Optional[RecordUpdateResponse]:
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -2007,20 +1498,7 @@ class RecordsResource(SyncAPIResource):
 
           data: Components of a NAPTR record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -2038,21 +1516,17 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        content: str,
-        name: str,
-        type: Literal["NS"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        type: Literal["NS"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Overwrite an existing DNS record.
+    ) -> Optional[RecordUpdateResponse]:
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -2068,20 +1542,7 @@ class RecordsResource(SyncAPIResource):
 
           content: A valid name server host name.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -2099,21 +1560,61 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        content: str,
-        name: str,
-        type: Literal["PTR"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        type: Literal["OPENPGPKEY"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Overwrite an existing DNS record.
+    ) -> Optional[RecordUpdateResponse]:
+        """
+        Overwrite an existing DNS record.
+
+        Notes:
+
+        - A/AAAA records cannot exist on the same name as CNAME records.
+        - NS records cannot exist on the same name as any other record type.
+        - Domain names are always represented in Punycode, even if Unicode characters
+          were used when creating the record.
+
+        Args:
+          zone_id: Identifier
+
+          dns_record_id: Identifier
+
+          content: A single Base64-encoded OpenPGP Transferable Public Key (RFC 4880 Section 11.1)
+
+          type: Record type.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def update(
+        self,
+        dns_record_id: str,
+        *,
+        zone_id: str,
+        content: str | NotGiven = NOT_GIVEN,
+        type: Literal["PTR"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordUpdateResponse]:
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -2129,20 +1630,7 @@ class RecordsResource(SyncAPIResource):
 
           content: Domain name pointing to the address.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -2160,21 +1648,17 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_update_params.SMIMEARecordData,
-        name: str,
-        type: Literal["SMIMEA"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_update_params.SMIMEARecordData | NotGiven = NOT_GIVEN,
+        type: Literal["SMIMEA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Overwrite an existing DNS record.
+    ) -> Optional[RecordUpdateResponse]:
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -2190,20 +1674,7 @@ class RecordsResource(SyncAPIResource):
 
           data: Components of a SMIMEA record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -2221,21 +1692,17 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_update_params.SRVRecordData,
-        name: str,
-        type: Literal["SRV"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_update_params.SRVRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["SRV"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Overwrite an existing DNS record.
+    ) -> Optional[RecordUpdateResponse]:
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -2251,22 +1718,7 @@ class RecordsResource(SyncAPIResource):
 
           data: Components of a SRV record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode. For SRV records, the first
-              label is normally a service and the second a protocol name, each starting with
-              an underscore.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -2284,21 +1736,17 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_update_params.SSHFPRecordData,
-        name: str,
-        type: Literal["SSHFP"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_update_params.SSHFPRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["SSHFP"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Overwrite an existing DNS record.
+    ) -> Optional[RecordUpdateResponse]:
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -2314,20 +1762,7 @@ class RecordsResource(SyncAPIResource):
 
           data: Components of a SSHFP record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -2345,21 +1780,17 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_update_params.SVCBRecordData,
-        name: str,
-        type: Literal["SVCB"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_update_params.SVCBRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["SVCB"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Overwrite an existing DNS record.
+    ) -> Optional[RecordUpdateResponse]:
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -2375,20 +1806,7 @@ class RecordsResource(SyncAPIResource):
 
           data: Components of a SVCB record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -2406,21 +1824,17 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_update_params.TLSARecordData,
-        name: str,
-        type: Literal["TLSA"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_update_params.TLSARecordData | NotGiven = NOT_GIVEN,
+        type: Literal["TLSA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Overwrite an existing DNS record.
+    ) -> Optional[RecordUpdateResponse]:
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -2436,20 +1850,7 @@ class RecordsResource(SyncAPIResource):
 
           data: Components of a TLSA record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -2467,21 +1868,17 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        content: str,
-        name: str,
-        type: Literal["TXT"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        type: Literal["TXT"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Overwrite an existing DNS record.
+    ) -> Optional[RecordUpdateResponse]:
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -2495,22 +1892,14 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
-          content: Text content for the record.
+          content: Text content for the record. The content must consist of quoted "character
+              strings" (RFC 1035), each with a length of up to 255 bytes. Strings exceeding
+              this allowed maximum length are automatically split.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
+              Learn more at
+              <https://www.cloudflare.com/learning/dns/dns-records/dns-txt-record/>.
 
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -2528,22 +1917,18 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_update_params.URIRecordData,
-        name: str,
-        priority: float,
-        type: Literal["URI"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_update_params.URIRecordData | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
+        type: Literal["URI"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Overwrite an existing DNS record.
+    ) -> Optional[RecordUpdateResponse]:
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -2559,23 +1944,10 @@ class RecordsResource(SyncAPIResource):
 
           data: Components of a URI record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           priority: Required for MX, SRV and URI records; unused by other record types. Records with
               lower priorities are preferred.
 
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -2587,19 +1959,13 @@ class RecordsResource(SyncAPIResource):
         """
         ...
 
-    @required_args(
-        ["zone_id", "content", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "content", "name", "priority", "type"],
-        ["zone_id", "data", "name", "priority", "type"],
-    )
+    @required_args(["zone_id"])
     def update(
         self,
         dns_record_id: str,
         *,
         zone_id: str,
-        content: str | object | NotGiven = NOT_GIVEN,
-        name: str,
+        content: str | NotGiven = NOT_GIVEN,
         type: Literal["A"]
         | Literal["AAAA"]
         | Literal["CAA"]
@@ -2612,6 +1978,7 @@ class RecordsResource(SyncAPIResource):
         | Literal["MX"]
         | Literal["NAPTR"]
         | Literal["NS"]
+        | Literal["OPENPGPKEY"]
         | Literal["PTR"]
         | Literal["SMIMEA"]
         | Literal["SRV"]
@@ -2619,12 +1986,8 @@ class RecordsResource(SyncAPIResource):
         | Literal["SVCB"]
         | Literal["TLSA"]
         | Literal["TXT"]
-        | Literal["URI"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        | Literal["URI"]
+        | NotGiven = NOT_GIVEN,
         data: record_update_params.CAARecordData
         | record_update_params.CERTRecordData
         | record_update_params.DNSKEYRecordData
@@ -2637,6 +2000,7 @@ class RecordsResource(SyncAPIResource):
         | record_update_params.SSHFPRecordData
         | record_update_params.URIRecordData
         | NotGiven = NOT_GIVEN,
+        settings: record_update_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2644,26 +2008,21 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordUpdateResponse]:
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not dns_record_id:
             raise ValueError(f"Expected a non-empty value for `dns_record_id` but received {dns_record_id!r}")
         return cast(
-            Optional[Record],
+            Optional[RecordUpdateResponse],
             self._put(
                 f"/zones/{zone_id}/dns_records/{dns_record_id}",
                 body=maybe_transform(
                     {
                         "content": content,
-                        "name": name,
                         "type": type,
-                        "id": id,
-                        "comment": comment,
-                        "proxied": proxied,
-                        "tags": tags,
-                        "ttl": ttl,
                         "data": data,
+                        "settings": settings,
                         "priority": priority,
                     },
                     record_update_params.RecordUpdateParams,
@@ -2673,10 +2032,10 @@ class RecordsResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[Record]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[RecordUpdateResponse]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[Record]
+                    Any, ResultWrapper[RecordUpdateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -2686,10 +2045,10 @@ class RecordsResource(SyncAPIResource):
         *,
         zone_id: str,
         comment: record_list_params.Comment | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
+        content: record_list_params.Content | NotGiven = NOT_GIVEN,
         direction: SortDirection | NotGiven = NOT_GIVEN,
         match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        name: record_list_params.Name | NotGiven = NOT_GIVEN,
         order: Literal["type", "name", "content", "ttl", "proxied"] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
@@ -2710,6 +2069,7 @@ class RecordsResource(SyncAPIResource):
             "MX",
             "NAPTR",
             "NS",
+            "OPENPGPKEY",
             "PTR",
             "SMIMEA",
             "SRV",
@@ -2726,14 +2086,12 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[Record]:
+    ) -> SyncV4PagePaginationArray[RecordListResponse]:
         """
         List, search, sort, and filter a zones' DNS records.
 
         Args:
           zone_id: Identifier
-
-          content: DNS record content.
 
           direction: Direction to order DNS records in.
 
@@ -2741,8 +2099,6 @@ class RecordsResource(SyncAPIResource):
               acts like a logical AND between filters. If set to `any`, acts like a logical OR
               instead. Note that the interaction between tag filters is controlled by the
               `tag-match` parameter instead.
-
-          name: DNS record name (or @ for the zone apex) in Punycode.
 
           order: Field to order DNS records by.
 
@@ -2778,7 +2134,7 @@ class RecordsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/dns_records",
-            page=SyncV4PagePaginationArray[Record],
+            page=SyncV4PagePaginationArray[RecordListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -2803,7 +2159,7 @@ class RecordsResource(SyncAPIResource):
                     record_list_params.RecordListParams,
                 ),
             ),
-            model=cast(Any, Record),  # Union types cannot be passed in as arguments in the type system
+            model=cast(Any, RecordListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
     def delete(
@@ -2850,28 +2206,91 @@ class RecordsResource(SyncAPIResource):
             cast_to=cast(Type[Optional[RecordDeleteResponse]], ResultWrapper[RecordDeleteResponse]),
         )
 
-    @overload
-    def edit(
+    def batch(
         self,
-        dns_record_id: str,
         *,
         zone_id: str,
-        content: str,
-        name: str,
-        type: Literal["A"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        deletes: Iterable[record_batch_params.Delete] | NotGiven = NOT_GIVEN,
+        patches: Iterable[RecordParam] | NotGiven = NOT_GIVEN,
+        posts: Iterable[RecordParam] | NotGiven = NOT_GIVEN,
+        puts: Iterable[RecordParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Update an existing DNS record.
+    ) -> Optional[RecordBatchResponse]:
+        """
+        Send a Batch of DNS Record API calls to be executed together.
+
+        Notes:
+
+        - Although Cloudflare will execute the batched operations in a single database
+          transaction, Cloudflare's distributed KV store must treat each record change
+          as a single key-value pair. This means that the propagation of changes is not
+          atomic. See
+          [the documentation](https://developers.cloudflare.com/dns/manage-dns-records/how-to/batch-record-changes/ "Batch DNS records")
+          for more information.
+        - The operations you specify within the /batch request body are always executed
+          in the following order:
+
+          - Deletes
+          - Patches
+          - Puts
+          - Posts
+
+        Args:
+          zone_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return self._post(
+            f"/zones/{zone_id}/dns_records/batch",
+            body=maybe_transform(
+                {
+                    "deletes": deletes,
+                    "patches": patches,
+                    "posts": posts,
+                    "puts": puts,
+                },
+                record_batch_params.RecordBatchParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[RecordBatchResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[RecordBatchResponse]], ResultWrapper[RecordBatchResponse]),
+        )
+
+    @overload
+    def edit(
+        self,
+        dns_record_id: str,
+        *,
+        zone_id: str,
+        content: str | NotGiven = NOT_GIVEN,
+        type: Literal["A"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordEditResponse]:
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -2887,23 +2306,7 @@ class RecordsResource(SyncAPIResource):
 
           content: A valid IPv4 address.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -2921,22 +2324,17 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        content: str,
-        name: str,
-        type: Literal["AAAA"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        type: Literal["AAAA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Update an existing DNS record.
+    ) -> Optional[RecordEditResponse]:
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -2952,23 +2350,7 @@ class RecordsResource(SyncAPIResource):
 
           content: A valid IPv6 address.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -2986,21 +2368,17 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_edit_params.CAARecordData,
-        name: str,
-        type: Literal["CAA"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_edit_params.CAARecordData | NotGiven = NOT_GIVEN,
+        type: Literal["CAA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Update an existing DNS record.
+    ) -> Optional[RecordEditResponse]:
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -3016,20 +2394,7 @@ class RecordsResource(SyncAPIResource):
 
           data: Components of a CAA record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -3047,21 +2412,17 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_edit_params.CERTRecordData,
-        name: str,
-        type: Literal["CERT"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_edit_params.CERTRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["CERT"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Update an existing DNS record.
+    ) -> Optional[RecordEditResponse]:
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -3077,20 +2438,7 @@ class RecordsResource(SyncAPIResource):
 
           data: Components of a CERT record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -3108,22 +2456,18 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        content: object,
-        name: str,
-        type: Literal["CNAME"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
+        type: Literal["CNAME"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Update an existing DNS record.
+    ) -> Optional[RecordEditResponse]:
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -3139,23 +2483,7 @@ class RecordsResource(SyncAPIResource):
 
           content: A valid hostname. Must not match the record's name.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -3173,21 +2501,17 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_edit_params.DNSKEYRecordData,
-        name: str,
-        type: Literal["DNSKEY"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_edit_params.DNSKEYRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["DNSKEY"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Update an existing DNS record.
+    ) -> Optional[RecordEditResponse]:
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -3203,20 +2527,7 @@ class RecordsResource(SyncAPIResource):
 
           data: Components of a DNSKEY record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -3234,21 +2545,17 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_edit_params.DSRecordData,
-        name: str,
-        type: Literal["DS"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_edit_params.DSRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["DS"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Update an existing DNS record.
+    ) -> Optional[RecordEditResponse]:
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -3264,20 +2571,7 @@ class RecordsResource(SyncAPIResource):
 
           data: Components of a DS record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -3295,21 +2589,17 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_edit_params.HTTPSRecordData,
-        name: str,
-        type: Literal["HTTPS"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_edit_params.HTTPSRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["HTTPS"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Update an existing DNS record.
+    ) -> Optional[RecordEditResponse]:
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -3325,20 +2615,7 @@ class RecordsResource(SyncAPIResource):
 
           data: Components of a HTTPS record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -3356,21 +2633,17 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_edit_params.LOCRecordData,
-        name: str,
-        type: Literal["LOC"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_edit_params.LOCRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["LOC"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Update an existing DNS record.
+    ) -> Optional[RecordEditResponse]:
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -3386,20 +2659,7 @@ class RecordsResource(SyncAPIResource):
 
           data: Components of a LOC record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -3417,22 +2677,18 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        content: str,
-        name: str,
-        priority: float,
-        type: Literal["MX"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
+        type: Literal["MX"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Update an existing DNS record.
+    ) -> Optional[RecordEditResponse]:
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -3448,23 +2704,10 @@ class RecordsResource(SyncAPIResource):
 
           content: A valid mail server hostname.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           priority: Required for MX, SRV and URI records; unused by other record types. Records with
               lower priorities are preferred.
 
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -3482,21 +2725,17 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_edit_params.NAPTRRecordData,
-        name: str,
-        type: Literal["NAPTR"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_edit_params.NAPTRRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["NAPTR"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Update an existing DNS record.
+    ) -> Optional[RecordEditResponse]:
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -3512,20 +2751,7 @@ class RecordsResource(SyncAPIResource):
 
           data: Components of a NAPTR record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -3543,21 +2769,17 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        content: str,
-        name: str,
-        type: Literal["NS"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        type: Literal["NS"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Update an existing DNS record.
+    ) -> Optional[RecordEditResponse]:
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -3573,20 +2795,7 @@ class RecordsResource(SyncAPIResource):
 
           content: A valid name server host name.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -3604,21 +2813,61 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        content: str,
-        name: str,
-        type: Literal["PTR"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        type: Literal["OPENPGPKEY"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Update an existing DNS record.
+    ) -> Optional[RecordEditResponse]:
+        """
+        Update an existing DNS record.
+
+        Notes:
+
+        - A/AAAA records cannot exist on the same name as CNAME records.
+        - NS records cannot exist on the same name as any other record type.
+        - Domain names are always represented in Punycode, even if Unicode characters
+          were used when creating the record.
+
+        Args:
+          zone_id: Identifier
+
+          dns_record_id: Identifier
+
+          content: A single Base64-encoded OpenPGP Transferable Public Key (RFC 4880 Section 11.1)
+
+          type: Record type.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def edit(
+        self,
+        dns_record_id: str,
+        *,
+        zone_id: str,
+        content: str | NotGiven = NOT_GIVEN,
+        type: Literal["PTR"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordEditResponse]:
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -3634,20 +2883,7 @@ class RecordsResource(SyncAPIResource):
 
           content: Domain name pointing to the address.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -3665,21 +2901,17 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_edit_params.SMIMEARecordData,
-        name: str,
-        type: Literal["SMIMEA"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_edit_params.SMIMEARecordData | NotGiven = NOT_GIVEN,
+        type: Literal["SMIMEA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Update an existing DNS record.
+    ) -> Optional[RecordEditResponse]:
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -3695,20 +2927,7 @@ class RecordsResource(SyncAPIResource):
 
           data: Components of a SMIMEA record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -3726,21 +2945,17 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_edit_params.SRVRecordData,
-        name: str,
-        type: Literal["SRV"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_edit_params.SRVRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["SRV"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Update an existing DNS record.
+    ) -> Optional[RecordEditResponse]:
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -3756,22 +2971,7 @@ class RecordsResource(SyncAPIResource):
 
           data: Components of a SRV record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode. For SRV records, the first
-              label is normally a service and the second a protocol name, each starting with
-              an underscore.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -3789,21 +2989,17 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_edit_params.SSHFPRecordData,
-        name: str,
-        type: Literal["SSHFP"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_edit_params.SSHFPRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["SSHFP"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Update an existing DNS record.
+    ) -> Optional[RecordEditResponse]:
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -3819,20 +3015,7 @@ class RecordsResource(SyncAPIResource):
 
           data: Components of a SSHFP record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -3850,21 +3033,17 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_edit_params.SVCBRecordData,
-        name: str,
-        type: Literal["SVCB"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_edit_params.SVCBRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["SVCB"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Update an existing DNS record.
+    ) -> Optional[RecordEditResponse]:
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -3880,20 +3059,7 @@ class RecordsResource(SyncAPIResource):
 
           data: Components of a SVCB record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -3911,21 +3077,17 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_edit_params.TLSARecordData,
-        name: str,
-        type: Literal["TLSA"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_edit_params.TLSARecordData | NotGiven = NOT_GIVEN,
+        type: Literal["TLSA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Update an existing DNS record.
+    ) -> Optional[RecordEditResponse]:
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -3941,20 +3103,7 @@ class RecordsResource(SyncAPIResource):
 
           data: Components of a TLSA record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -3972,21 +3121,17 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        content: str,
-        name: str,
-        type: Literal["TXT"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        type: Literal["TXT"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Update an existing DNS record.
+    ) -> Optional[RecordEditResponse]:
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -4000,22 +3145,14 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
-          content: Text content for the record.
+          content: Text content for the record. The content must consist of quoted "character
+              strings" (RFC 1035), each with a length of up to 255 bytes. Strings exceeding
+              this allowed maximum length are automatically split.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
+              Learn more at
+              <https://www.cloudflare.com/learning/dns/dns-records/dns-txt-record/>.
 
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -4033,22 +3170,18 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_edit_params.URIRecordData,
-        name: str,
-        priority: float,
-        type: Literal["URI"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_edit_params.URIRecordData | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
+        type: Literal["URI"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Update an existing DNS record.
+    ) -> Optional[RecordEditResponse]:
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -4064,23 +3197,10 @@ class RecordsResource(SyncAPIResource):
 
           data: Components of a URI record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           priority: Required for MX, SRV and URI records; unused by other record types. Records with
               lower priorities are preferred.
 
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -4092,19 +3212,13 @@ class RecordsResource(SyncAPIResource):
         """
         ...
 
-    @required_args(
-        ["zone_id", "content", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "content", "name", "priority", "type"],
-        ["zone_id", "data", "name", "priority", "type"],
-    )
+    @required_args(["zone_id"])
     def edit(
         self,
         dns_record_id: str,
         *,
         zone_id: str,
-        content: str | object | NotGiven = NOT_GIVEN,
-        name: str,
+        content: str | NotGiven = NOT_GIVEN,
         type: Literal["A"]
         | Literal["AAAA"]
         | Literal["CAA"]
@@ -4117,6 +3231,7 @@ class RecordsResource(SyncAPIResource):
         | Literal["MX"]
         | Literal["NAPTR"]
         | Literal["NS"]
+        | Literal["OPENPGPKEY"]
         | Literal["PTR"]
         | Literal["SMIMEA"]
         | Literal["SRV"]
@@ -4124,12 +3239,8 @@ class RecordsResource(SyncAPIResource):
         | Literal["SVCB"]
         | Literal["TLSA"]
         | Literal["TXT"]
-        | Literal["URI"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        | Literal["URI"]
+        | NotGiven = NOT_GIVEN,
         data: record_edit_params.CAARecordData
         | record_edit_params.CERTRecordData
         | record_edit_params.DNSKEYRecordData
@@ -4142,6 +3253,7 @@ class RecordsResource(SyncAPIResource):
         | record_edit_params.SSHFPRecordData
         | record_edit_params.URIRecordData
         | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4149,26 +3261,21 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordEditResponse]:
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not dns_record_id:
             raise ValueError(f"Expected a non-empty value for `dns_record_id` but received {dns_record_id!r}")
         return cast(
-            Optional[Record],
+            Optional[RecordEditResponse],
             self._patch(
                 f"/zones/{zone_id}/dns_records/{dns_record_id}",
                 body=maybe_transform(
                     {
                         "content": content,
-                        "name": name,
                         "type": type,
-                        "id": id,
-                        "comment": comment,
-                        "proxied": proxied,
-                        "tags": tags,
-                        "ttl": ttl,
                         "data": data,
+                        "settings": settings,
                         "priority": priority,
                     },
                     record_edit_params.RecordEditParams,
@@ -4178,10 +3285,10 @@ class RecordsResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[Record]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[RecordEditResponse]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[Record]
+                    Any, ResultWrapper[RecordEditResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -4239,7 +3346,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordGetResponse]:
         """
         DNS Record Details
 
@@ -4261,7 +3368,7 @@ class RecordsResource(SyncAPIResource):
         if not dns_record_id:
             raise ValueError(f"Expected a non-empty value for `dns_record_id` but received {dns_record_id!r}")
         return cast(
-            Optional[Record],
+            Optional[RecordGetResponse],
             self._get(
                 f"/zones/{zone_id}/dns_records/{dns_record_id}",
                 options=make_request_options(
@@ -4269,10 +3376,10 @@ class RecordsResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[Record]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[RecordGetResponse]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[Record]
+                    Any, ResultWrapper[RecordGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -4392,10 +3499,21 @@ class RecordsResource(SyncAPIResource):
 class AsyncRecordsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncRecordsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncRecordsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncRecordsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncRecordsResourceWithStreamingResponse(self)
 
     @overload
@@ -4403,21 +3521,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        content: str,
-        name: str,
-        type: Literal["A"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        type: Literal["A"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -4433,23 +3545,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           content: A valid IPv4 address.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -4466,21 +3562,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        content: str,
-        name: str,
-        type: Literal["AAAA"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        type: Literal["AAAA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -4496,23 +3586,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           content: A valid IPv6 address.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -4529,20 +3603,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        data: record_create_params.CAARecordData,
-        name: str,
-        type: Literal["CAA"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_create_params.CAARecordData | NotGiven = NOT_GIVEN,
+        type: Literal["CAA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -4558,20 +3627,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           data: Components of a CAA record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -4588,20 +3644,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        data: record_create_params.CERTRecordData,
-        name: str,
-        type: Literal["CERT"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_create_params.CERTRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["CERT"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -4617,20 +3668,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           data: Components of a CERT record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -4647,21 +3685,16 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        content: object,
-        name: str,
-        type: Literal["CNAME"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        settings: record_create_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
+        type: Literal["CNAME"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -4677,23 +3710,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           content: A valid hostname. Must not match the record's name.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -4710,20 +3727,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        data: record_create_params.DNSKEYRecordData,
-        name: str,
-        type: Literal["DNSKEY"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_create_params.DNSKEYRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["DNSKEY"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -4739,20 +3751,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           data: Components of a DNSKEY record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -4769,20 +3768,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        data: record_create_params.DSRecordData,
-        name: str,
-        type: Literal["DS"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_create_params.DSRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["DS"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -4798,20 +3792,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           data: Components of a DS record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -4828,20 +3809,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        data: record_create_params.HTTPSRecordData,
-        name: str,
-        type: Literal["HTTPS"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_create_params.HTTPSRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["HTTPS"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -4857,20 +3833,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           data: Components of a HTTPS record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -4887,20 +3850,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        data: record_create_params.LOCRecordData,
-        name: str,
-        type: Literal["LOC"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_create_params.LOCRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["LOC"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -4916,20 +3874,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           data: Components of a LOC record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -4946,21 +3891,16 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        content: str,
-        name: str,
-        priority: float,
-        type: Literal["MX"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
+        type: Literal["MX"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -4976,23 +3916,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           content: A valid mail server hostname.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           priority: Required for MX, SRV and URI records; unused by other record types. Records with
               lower priorities are preferred.
 
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -5009,20 +3936,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        data: record_create_params.NAPTRRecordData,
-        name: str,
-        type: Literal["NAPTR"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_create_params.NAPTRRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["NAPTR"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -5038,20 +3960,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           data: Components of a NAPTR record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -5068,20 +3977,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        content: str,
-        name: str,
-        type: Literal["NS"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        type: Literal["NS"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -5097,20 +4001,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           content: A valid name server host name.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -5127,20 +4018,56 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        content: str,
-        name: str,
-        type: Literal["PTR"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        type: Literal["OPENPGPKEY"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordCreateResponse]:
+        """
+        Create a new DNS record for a zone.
+
+        Notes:
+
+        - A/AAAA records cannot exist on the same name as CNAME records.
+        - NS records cannot exist on the same name as any other record type.
+        - Domain names are always represented in Punycode, even if Unicode characters
+          were used when creating the record.
+
+        Args:
+          zone_id: Identifier
+
+          content: A single Base64-encoded OpenPGP Transferable Public Key (RFC 4880 Section 11.1)
+
+          type: Record type.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        zone_id: str,
+        content: str | NotGiven = NOT_GIVEN,
+        type: Literal["PTR"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -5156,20 +4083,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           content: Domain name pointing to the address.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -5186,20 +4100,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        data: record_create_params.SMIMEARecordData,
-        name: str,
-        type: Literal["SMIMEA"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_create_params.SMIMEARecordData | NotGiven = NOT_GIVEN,
+        type: Literal["SMIMEA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -5215,20 +4124,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           data: Components of a SMIMEA record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -5245,20 +4141,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        data: record_create_params.SRVRecordData,
-        name: str,
-        type: Literal["SRV"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_create_params.SRVRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["SRV"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -5274,22 +4165,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           data: Components of a SRV record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode. For SRV records, the first
-              label is normally a service and the second a protocol name, each starting with
-              an underscore.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -5306,20 +4182,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        data: record_create_params.SSHFPRecordData,
-        name: str,
-        type: Literal["SSHFP"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_create_params.SSHFPRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["SSHFP"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -5335,20 +4206,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           data: Components of a SSHFP record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -5365,20 +4223,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        data: record_create_params.SVCBRecordData,
-        name: str,
-        type: Literal["SVCB"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_create_params.SVCBRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["SVCB"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -5394,20 +4247,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           data: Components of a SVCB record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -5424,20 +4264,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        data: record_create_params.TLSARecordData,
-        name: str,
-        type: Literal["TLSA"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_create_params.TLSARecordData | NotGiven = NOT_GIVEN,
+        type: Literal["TLSA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -5453,20 +4288,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           data: Components of a TLSA record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -5483,20 +4305,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        content: str,
-        name: str,
-        type: Literal["TXT"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        type: Literal["TXT"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -5510,22 +4327,14 @@ class AsyncRecordsResource(AsyncAPIResource):
         Args:
           zone_id: Identifier
 
-          content: Text content for the record.
+          content: Text content for the record. The content must consist of quoted "character
+              strings" (RFC 1035), each with a length of up to 255 bytes. Strings exceeding
+              this allowed maximum length are automatically split.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
+              Learn more at
+              <https://www.cloudflare.com/learning/dns/dns-records/dns-txt-record/>.
 
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -5542,21 +4351,16 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        data: record_create_params.URIRecordData,
-        name: str,
-        priority: float,
-        type: Literal["URI"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_create_params.URIRecordData | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
+        type: Literal["URI"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -5572,23 +4376,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           data: Components of a URI record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           priority: Required for MX, SRV and URI records; unused by other record types. Records with
               lower priorities are preferred.
 
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -5600,18 +4391,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(
-        ["zone_id", "content", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "content", "name", "priority", "type"],
-        ["zone_id", "data", "name", "priority", "type"],
-    )
+    @required_args(["zone_id"])
     async def create(
         self,
         *,
         zone_id: str,
-        content: str | object | NotGiven = NOT_GIVEN,
-        name: str,
+        content: str | NotGiven = NOT_GIVEN,
         type: Literal["A"]
         | Literal["AAAA"]
         | Literal["CAA"]
@@ -5624,6 +4409,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         | Literal["MX"]
         | Literal["NAPTR"]
         | Literal["NS"]
+        | Literal["OPENPGPKEY"]
         | Literal["PTR"]
         | Literal["SMIMEA"]
         | Literal["SRV"]
@@ -5631,12 +4417,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         | Literal["SVCB"]
         | Literal["TLSA"]
         | Literal["TXT"]
-        | Literal["URI"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        | Literal["URI"]
+        | NotGiven = NOT_GIVEN,
         data: record_create_params.CAARecordData
         | record_create_params.CERTRecordData
         | record_create_params.DNSKEYRecordData
@@ -5649,6 +4431,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         | record_create_params.SSHFPRecordData
         | record_create_params.URIRecordData
         | NotGiven = NOT_GIVEN,
+        settings: record_create_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -5656,24 +4439,19 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordCreateResponse]:
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            Optional[Record],
+            Optional[RecordCreateResponse],
             await self._post(
                 f"/zones/{zone_id}/dns_records",
                 body=await async_maybe_transform(
                     {
                         "content": content,
-                        "name": name,
                         "type": type,
-                        "id": id,
-                        "comment": comment,
-                        "proxied": proxied,
-                        "tags": tags,
-                        "ttl": ttl,
                         "data": data,
+                        "settings": settings,
                         "priority": priority,
                     },
                     record_create_params.RecordCreateParams,
@@ -5683,10 +4461,10 @@ class AsyncRecordsResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[Record]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[RecordCreateResponse]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[Record]
+                    Any, ResultWrapper[RecordCreateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -5697,22 +4475,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        content: str,
-        name: str,
-        type: Literal["A"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        type: Literal["A"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Overwrite an existing DNS record.
+    ) -> Optional[RecordUpdateResponse]:
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -5728,23 +4501,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           content: A valid IPv4 address.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -5762,22 +4519,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        content: str,
-        name: str,
-        type: Literal["AAAA"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        type: Literal["AAAA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Overwrite an existing DNS record.
+    ) -> Optional[RecordUpdateResponse]:
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -5793,23 +4545,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           content: A valid IPv6 address.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -5827,21 +4563,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_update_params.CAARecordData,
-        name: str,
-        type: Literal["CAA"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_update_params.CAARecordData | NotGiven = NOT_GIVEN,
+        type: Literal["CAA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Overwrite an existing DNS record.
+    ) -> Optional[RecordUpdateResponse]:
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -5857,20 +4589,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           data: Components of a CAA record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -5888,21 +4607,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_update_params.CERTRecordData,
-        name: str,
-        type: Literal["CERT"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_update_params.CERTRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["CERT"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Overwrite an existing DNS record.
+    ) -> Optional[RecordUpdateResponse]:
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -5918,20 +4633,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           data: Components of a CERT record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -5949,22 +4651,18 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        content: object,
-        name: str,
-        type: Literal["CNAME"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        settings: record_update_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
+        type: Literal["CNAME"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Overwrite an existing DNS record.
+    ) -> Optional[RecordUpdateResponse]:
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -5980,23 +4678,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           content: A valid hostname. Must not match the record's name.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -6014,21 +4696,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_update_params.DNSKEYRecordData,
-        name: str,
-        type: Literal["DNSKEY"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_update_params.DNSKEYRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["DNSKEY"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Overwrite an existing DNS record.
+    ) -> Optional[RecordUpdateResponse]:
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -6044,20 +4722,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           data: Components of a DNSKEY record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -6075,21 +4740,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_update_params.DSRecordData,
-        name: str,
-        type: Literal["DS"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_update_params.DSRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["DS"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Overwrite an existing DNS record.
+    ) -> Optional[RecordUpdateResponse]:
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -6105,20 +4766,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           data: Components of a DS record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -6136,21 +4784,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_update_params.HTTPSRecordData,
-        name: str,
-        type: Literal["HTTPS"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_update_params.HTTPSRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["HTTPS"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Overwrite an existing DNS record.
+    ) -> Optional[RecordUpdateResponse]:
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -6166,20 +4810,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           data: Components of a HTTPS record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -6197,21 +4828,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_update_params.LOCRecordData,
-        name: str,
-        type: Literal["LOC"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_update_params.LOCRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["LOC"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Overwrite an existing DNS record.
+    ) -> Optional[RecordUpdateResponse]:
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -6227,20 +4854,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           data: Components of a LOC record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -6258,22 +4872,18 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        content: str,
-        name: str,
-        priority: float,
-        type: Literal["MX"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
+        type: Literal["MX"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Overwrite an existing DNS record.
+    ) -> Optional[RecordUpdateResponse]:
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -6289,23 +4899,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           content: A valid mail server hostname.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           priority: Required for MX, SRV and URI records; unused by other record types. Records with
               lower priorities are preferred.
 
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -6323,21 +4920,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_update_params.NAPTRRecordData,
-        name: str,
-        type: Literal["NAPTR"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_update_params.NAPTRRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["NAPTR"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Overwrite an existing DNS record.
+    ) -> Optional[RecordUpdateResponse]:
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -6353,20 +4946,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           data: Components of a NAPTR record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -6384,21 +4964,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        content: str,
-        name: str,
-        type: Literal["NS"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        type: Literal["NS"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Overwrite an existing DNS record.
+    ) -> Optional[RecordUpdateResponse]:
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -6414,20 +4990,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           content: A valid name server host name.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -6445,21 +5008,61 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        content: str,
-        name: str,
-        type: Literal["PTR"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        type: Literal["OPENPGPKEY"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Overwrite an existing DNS record.
+    ) -> Optional[RecordUpdateResponse]:
+        """
+        Overwrite an existing DNS record.
+
+        Notes:
+
+        - A/AAAA records cannot exist on the same name as CNAME records.
+        - NS records cannot exist on the same name as any other record type.
+        - Domain names are always represented in Punycode, even if Unicode characters
+          were used when creating the record.
+
+        Args:
+          zone_id: Identifier
+
+          dns_record_id: Identifier
+
+          content: A single Base64-encoded OpenPGP Transferable Public Key (RFC 4880 Section 11.1)
+
+          type: Record type.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def update(
+        self,
+        dns_record_id: str,
+        *,
+        zone_id: str,
+        content: str | NotGiven = NOT_GIVEN,
+        type: Literal["PTR"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordUpdateResponse]:
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -6475,20 +5078,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           content: Domain name pointing to the address.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -6506,21 +5096,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_update_params.SMIMEARecordData,
-        name: str,
-        type: Literal["SMIMEA"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_update_params.SMIMEARecordData | NotGiven = NOT_GIVEN,
+        type: Literal["SMIMEA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Overwrite an existing DNS record.
+    ) -> Optional[RecordUpdateResponse]:
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -6536,20 +5122,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           data: Components of a SMIMEA record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -6567,21 +5140,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_update_params.SRVRecordData,
-        name: str,
-        type: Literal["SRV"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_update_params.SRVRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["SRV"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Overwrite an existing DNS record.
+    ) -> Optional[RecordUpdateResponse]:
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -6597,22 +5166,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           data: Components of a SRV record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode. For SRV records, the first
-              label is normally a service and the second a protocol name, each starting with
-              an underscore.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -6630,21 +5184,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_update_params.SSHFPRecordData,
-        name: str,
-        type: Literal["SSHFP"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_update_params.SSHFPRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["SSHFP"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Overwrite an existing DNS record.
+    ) -> Optional[RecordUpdateResponse]:
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -6660,20 +5210,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           data: Components of a SSHFP record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -6691,21 +5228,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_update_params.SVCBRecordData,
-        name: str,
-        type: Literal["SVCB"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_update_params.SVCBRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["SVCB"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Overwrite an existing DNS record.
+    ) -> Optional[RecordUpdateResponse]:
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -6721,20 +5254,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           data: Components of a SVCB record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -6752,21 +5272,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_update_params.TLSARecordData,
-        name: str,
-        type: Literal["TLSA"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_update_params.TLSARecordData | NotGiven = NOT_GIVEN,
+        type: Literal["TLSA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Overwrite an existing DNS record.
+    ) -> Optional[RecordUpdateResponse]:
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -6782,20 +5298,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           data: Components of a TLSA record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -6813,21 +5316,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        content: str,
-        name: str,
-        type: Literal["TXT"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        type: Literal["TXT"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Overwrite an existing DNS record.
+    ) -> Optional[RecordUpdateResponse]:
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -6841,22 +5340,14 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
-          content: Text content for the record.
+          content: Text content for the record. The content must consist of quoted "character
+              strings" (RFC 1035), each with a length of up to 255 bytes. Strings exceeding
+              this allowed maximum length are automatically split.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
+              Learn more at
+              <https://www.cloudflare.com/learning/dns/dns-records/dns-txt-record/>.
 
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -6874,22 +5365,18 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_update_params.URIRecordData,
-        name: str,
-        priority: float,
-        type: Literal["URI"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_update_params.URIRecordData | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
+        type: Literal["URI"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Overwrite an existing DNS record.
+    ) -> Optional[RecordUpdateResponse]:
+        """
+        Overwrite an existing DNS record.
 
         Notes:
 
@@ -6905,23 +5392,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           data: Components of a URI record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           priority: Required for MX, SRV and URI records; unused by other record types. Records with
               lower priorities are preferred.
 
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -6933,19 +5407,13 @@ class AsyncRecordsResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(
-        ["zone_id", "content", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "content", "name", "priority", "type"],
-        ["zone_id", "data", "name", "priority", "type"],
-    )
+    @required_args(["zone_id"])
     async def update(
         self,
         dns_record_id: str,
         *,
         zone_id: str,
-        content: str | object | NotGiven = NOT_GIVEN,
-        name: str,
+        content: str | NotGiven = NOT_GIVEN,
         type: Literal["A"]
         | Literal["AAAA"]
         | Literal["CAA"]
@@ -6958,6 +5426,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         | Literal["MX"]
         | Literal["NAPTR"]
         | Literal["NS"]
+        | Literal["OPENPGPKEY"]
         | Literal["PTR"]
         | Literal["SMIMEA"]
         | Literal["SRV"]
@@ -6965,12 +5434,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         | Literal["SVCB"]
         | Literal["TLSA"]
         | Literal["TXT"]
-        | Literal["URI"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        | Literal["URI"]
+        | NotGiven = NOT_GIVEN,
         data: record_update_params.CAARecordData
         | record_update_params.CERTRecordData
         | record_update_params.DNSKEYRecordData
@@ -6983,6 +5448,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         | record_update_params.SSHFPRecordData
         | record_update_params.URIRecordData
         | NotGiven = NOT_GIVEN,
+        settings: record_update_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -6990,26 +5456,21 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordUpdateResponse]:
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not dns_record_id:
             raise ValueError(f"Expected a non-empty value for `dns_record_id` but received {dns_record_id!r}")
         return cast(
-            Optional[Record],
+            Optional[RecordUpdateResponse],
             await self._put(
                 f"/zones/{zone_id}/dns_records/{dns_record_id}",
                 body=await async_maybe_transform(
                     {
                         "content": content,
-                        "name": name,
                         "type": type,
-                        "id": id,
-                        "comment": comment,
-                        "proxied": proxied,
-                        "tags": tags,
-                        "ttl": ttl,
                         "data": data,
+                        "settings": settings,
                         "priority": priority,
                     },
                     record_update_params.RecordUpdateParams,
@@ -7019,10 +5480,10 @@ class AsyncRecordsResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[Record]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[RecordUpdateResponse]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[Record]
+                    Any, ResultWrapper[RecordUpdateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -7032,10 +5493,10 @@ class AsyncRecordsResource(AsyncAPIResource):
         *,
         zone_id: str,
         comment: record_list_params.Comment | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
+        content: record_list_params.Content | NotGiven = NOT_GIVEN,
         direction: SortDirection | NotGiven = NOT_GIVEN,
         match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
+        name: record_list_params.Name | NotGiven = NOT_GIVEN,
         order: Literal["type", "name", "content", "ttl", "proxied"] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
@@ -7056,6 +5517,7 @@ class AsyncRecordsResource(AsyncAPIResource):
             "MX",
             "NAPTR",
             "NS",
+            "OPENPGPKEY",
             "PTR",
             "SMIMEA",
             "SRV",
@@ -7072,14 +5534,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Record, AsyncV4PagePaginationArray[Record]]:
+    ) -> AsyncPaginator[RecordListResponse, AsyncV4PagePaginationArray[RecordListResponse]]:
         """
         List, search, sort, and filter a zones' DNS records.
 
         Args:
           zone_id: Identifier
-
-          content: DNS record content.
 
           direction: Direction to order DNS records in.
 
@@ -7087,8 +5547,6 @@ class AsyncRecordsResource(AsyncAPIResource):
               acts like a logical AND between filters. If set to `any`, acts like a logical OR
               instead. Note that the interaction between tag filters is controlled by the
               `tag-match` parameter instead.
-
-          name: DNS record name (or @ for the zone apex) in Punycode.
 
           order: Field to order DNS records by.
 
@@ -7124,7 +5582,7 @@ class AsyncRecordsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/dns_records",
-            page=AsyncV4PagePaginationArray[Record],
+            page=AsyncV4PagePaginationArray[RecordListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -7149,7 +5607,7 @@ class AsyncRecordsResource(AsyncAPIResource):
                     record_list_params.RecordListParams,
                 ),
             ),
-            model=cast(Any, Record),  # Union types cannot be passed in as arguments in the type system
+            model=cast(Any, RecordListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
     async def delete(
@@ -7196,28 +5654,91 @@ class AsyncRecordsResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[RecordDeleteResponse]], ResultWrapper[RecordDeleteResponse]),
         )
 
-    @overload
-    async def edit(
+    async def batch(
         self,
-        dns_record_id: str,
         *,
         zone_id: str,
-        content: str,
-        name: str,
-        type: Literal["A"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        deletes: Iterable[record_batch_params.Delete] | NotGiven = NOT_GIVEN,
+        patches: Iterable[RecordParam] | NotGiven = NOT_GIVEN,
+        posts: Iterable[RecordParam] | NotGiven = NOT_GIVEN,
+        puts: Iterable[RecordParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Update an existing DNS record.
+    ) -> Optional[RecordBatchResponse]:
+        """
+        Send a Batch of DNS Record API calls to be executed together.
+
+        Notes:
+
+        - Although Cloudflare will execute the batched operations in a single database
+          transaction, Cloudflare's distributed KV store must treat each record change
+          as a single key-value pair. This means that the propagation of changes is not
+          atomic. See
+          [the documentation](https://developers.cloudflare.com/dns/manage-dns-records/how-to/batch-record-changes/ "Batch DNS records")
+          for more information.
+        - The operations you specify within the /batch request body are always executed
+          in the following order:
+
+          - Deletes
+          - Patches
+          - Puts
+          - Posts
+
+        Args:
+          zone_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return await self._post(
+            f"/zones/{zone_id}/dns_records/batch",
+            body=await async_maybe_transform(
+                {
+                    "deletes": deletes,
+                    "patches": patches,
+                    "posts": posts,
+                    "puts": puts,
+                },
+                record_batch_params.RecordBatchParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[RecordBatchResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[RecordBatchResponse]], ResultWrapper[RecordBatchResponse]),
+        )
+
+    @overload
+    async def edit(
+        self,
+        dns_record_id: str,
+        *,
+        zone_id: str,
+        content: str | NotGiven = NOT_GIVEN,
+        type: Literal["A"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordEditResponse]:
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -7233,23 +5754,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           content: A valid IPv4 address.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -7267,22 +5772,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        content: str,
-        name: str,
-        type: Literal["AAAA"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        type: Literal["AAAA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Update an existing DNS record.
+    ) -> Optional[RecordEditResponse]:
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -7298,23 +5798,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           content: A valid IPv6 address.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -7332,21 +5816,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_edit_params.CAARecordData,
-        name: str,
-        type: Literal["CAA"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_edit_params.CAARecordData | NotGiven = NOT_GIVEN,
+        type: Literal["CAA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Update an existing DNS record.
+    ) -> Optional[RecordEditResponse]:
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -7362,20 +5842,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           data: Components of a CAA record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -7393,21 +5860,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_edit_params.CERTRecordData,
-        name: str,
-        type: Literal["CERT"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_edit_params.CERTRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["CERT"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Update an existing DNS record.
+    ) -> Optional[RecordEditResponse]:
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -7423,20 +5886,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           data: Components of a CERT record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -7454,22 +5904,18 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        content: object,
-        name: str,
-        type: Literal["CNAME"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
+        type: Literal["CNAME"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Update an existing DNS record.
+    ) -> Optional[RecordEditResponse]:
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -7485,23 +5931,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           content: A valid hostname. Must not match the record's name.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          proxied: Whether the record is receiving the performance and security benefits of
-              Cloudflare.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -7519,21 +5949,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_edit_params.DNSKEYRecordData,
-        name: str,
-        type: Literal["DNSKEY"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_edit_params.DNSKEYRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["DNSKEY"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Update an existing DNS record.
+    ) -> Optional[RecordEditResponse]:
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -7549,20 +5975,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           data: Components of a DNSKEY record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -7580,21 +5993,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_edit_params.DSRecordData,
-        name: str,
-        type: Literal["DS"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_edit_params.DSRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["DS"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Update an existing DNS record.
+    ) -> Optional[RecordEditResponse]:
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -7610,20 +6019,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           data: Components of a DS record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -7641,21 +6037,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_edit_params.HTTPSRecordData,
-        name: str,
-        type: Literal["HTTPS"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_edit_params.HTTPSRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["HTTPS"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Update an existing DNS record.
+    ) -> Optional[RecordEditResponse]:
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -7671,20 +6063,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           data: Components of a HTTPS record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -7702,21 +6081,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_edit_params.LOCRecordData,
-        name: str,
-        type: Literal["LOC"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_edit_params.LOCRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["LOC"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Update an existing DNS record.
+    ) -> Optional[RecordEditResponse]:
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -7732,20 +6107,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           data: Components of a LOC record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -7763,22 +6125,18 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        content: str,
-        name: str,
-        priority: float,
-        type: Literal["MX"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
+        type: Literal["MX"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Update an existing DNS record.
+    ) -> Optional[RecordEditResponse]:
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -7794,23 +6152,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           content: A valid mail server hostname.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           priority: Required for MX, SRV and URI records; unused by other record types. Records with
               lower priorities are preferred.
 
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -7828,21 +6173,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_edit_params.NAPTRRecordData,
-        name: str,
-        type: Literal["NAPTR"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_edit_params.NAPTRRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["NAPTR"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Update an existing DNS record.
+    ) -> Optional[RecordEditResponse]:
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -7858,20 +6199,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           data: Components of a NAPTR record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -7889,21 +6217,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        content: str,
-        name: str,
-        type: Literal["NS"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        type: Literal["NS"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Update an existing DNS record.
+    ) -> Optional[RecordEditResponse]:
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -7919,20 +6243,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           content: A valid name server host name.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -7950,21 +6261,61 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        content: str,
-        name: str,
-        type: Literal["PTR"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        type: Literal["OPENPGPKEY"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Update an existing DNS record.
+    ) -> Optional[RecordEditResponse]:
+        """
+        Update an existing DNS record.
+
+        Notes:
+
+        - A/AAAA records cannot exist on the same name as CNAME records.
+        - NS records cannot exist on the same name as any other record type.
+        - Domain names are always represented in Punycode, even if Unicode characters
+          were used when creating the record.
+
+        Args:
+          zone_id: Identifier
+
+          dns_record_id: Identifier
+
+          content: A single Base64-encoded OpenPGP Transferable Public Key (RFC 4880 Section 11.1)
+
+          type: Record type.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def edit(
+        self,
+        dns_record_id: str,
+        *,
+        zone_id: str,
+        content: str | NotGiven = NOT_GIVEN,
+        type: Literal["PTR"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RecordEditResponse]:
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -7980,20 +6331,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           content: Domain name pointing to the address.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -8011,21 +6349,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_edit_params.SMIMEARecordData,
-        name: str,
-        type: Literal["SMIMEA"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_edit_params.SMIMEARecordData | NotGiven = NOT_GIVEN,
+        type: Literal["SMIMEA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Update an existing DNS record.
+    ) -> Optional[RecordEditResponse]:
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -8041,20 +6375,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           data: Components of a SMIMEA record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -8072,21 +6393,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_edit_params.SRVRecordData,
-        name: str,
-        type: Literal["SRV"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_edit_params.SRVRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["SRV"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Update an existing DNS record.
+    ) -> Optional[RecordEditResponse]:
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -8102,22 +6419,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           data: Components of a SRV record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode. For SRV records, the first
-              label is normally a service and the second a protocol name, each starting with
-              an underscore.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -8135,21 +6437,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_edit_params.SSHFPRecordData,
-        name: str,
-        type: Literal["SSHFP"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_edit_params.SSHFPRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["SSHFP"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Update an existing DNS record.
+    ) -> Optional[RecordEditResponse]:
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -8165,20 +6463,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           data: Components of a SSHFP record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -8196,21 +6481,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_edit_params.SVCBRecordData,
-        name: str,
-        type: Literal["SVCB"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_edit_params.SVCBRecordData | NotGiven = NOT_GIVEN,
+        type: Literal["SVCB"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Update an existing DNS record.
+    ) -> Optional[RecordEditResponse]:
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -8226,20 +6507,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           data: Components of a SVCB record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -8257,21 +6525,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_edit_params.TLSARecordData,
-        name: str,
-        type: Literal["TLSA"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_edit_params.TLSARecordData | NotGiven = NOT_GIVEN,
+        type: Literal["TLSA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Update an existing DNS record.
+    ) -> Optional[RecordEditResponse]:
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -8287,20 +6551,7 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           data: Components of a TLSA record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -8318,21 +6569,17 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        content: str,
-        name: str,
-        type: Literal["TXT"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
+        type: Literal["TXT"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Update an existing DNS record.
+    ) -> Optional[RecordEditResponse]:
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -8346,22 +6593,14 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
-          content: Text content for the record.
+          content: Text content for the record. The content must consist of quoted "character
+              strings" (RFC 1035), each with a length of up to 255 bytes. Strings exceeding
+              this allowed maximum length are automatically split.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
+              Learn more at
+              <https://www.cloudflare.com/learning/dns/dns-records/dns-txt-record/>.
 
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -8379,22 +6618,18 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        data: record_edit_params.URIRecordData,
-        name: str,
-        priority: float,
-        type: Literal["URI"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        data: record_edit_params.URIRecordData | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
+        type: Literal["URI"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
-        """Update an existing DNS record.
+    ) -> Optional[RecordEditResponse]:
+        """
+        Update an existing DNS record.
 
         Notes:
 
@@ -8410,23 +6645,10 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           data: Components of a URI record.
 
-          name: DNS record name (or @ for the zone apex) in Punycode.
-
           priority: Required for MX, SRV and URI records; unused by other record types. Records with
               lower priorities are preferred.
 
           type: Record type.
-
-          id: Identifier
-
-          comment: Comments or notes about the DNS record. This field has no effect on DNS
-              responses.
-
-          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
-
-          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
-              Value must be between 60 and 86400, with the minimum reduced to 30 for
-              Enterprise zones.
 
           extra_headers: Send extra headers
 
@@ -8438,19 +6660,13 @@ class AsyncRecordsResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(
-        ["zone_id", "content", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "content", "name", "priority", "type"],
-        ["zone_id", "data", "name", "priority", "type"],
-    )
+    @required_args(["zone_id"])
     async def edit(
         self,
         dns_record_id: str,
         *,
         zone_id: str,
-        content: str | object | NotGiven = NOT_GIVEN,
-        name: str,
+        content: str | NotGiven = NOT_GIVEN,
         type: Literal["A"]
         | Literal["AAAA"]
         | Literal["CAA"]
@@ -8463,6 +6679,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         | Literal["MX"]
         | Literal["NAPTR"]
         | Literal["NS"]
+        | Literal["OPENPGPKEY"]
         | Literal["PTR"]
         | Literal["SMIMEA"]
         | Literal["SRV"]
@@ -8470,12 +6687,8 @@ class AsyncRecordsResource(AsyncAPIResource):
         | Literal["SVCB"]
         | Literal["TLSA"]
         | Literal["TXT"]
-        | Literal["URI"],
-        id: str | NotGiven = NOT_GIVEN,
-        comment: str | NotGiven = NOT_GIVEN,
-        proxied: bool | NotGiven = NOT_GIVEN,
-        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
-        ttl: TTLParam | NotGiven = NOT_GIVEN,
+        | Literal["URI"]
+        | NotGiven = NOT_GIVEN,
         data: record_edit_params.CAARecordData
         | record_edit_params.CERTRecordData
         | record_edit_params.DNSKEYRecordData
@@ -8488,6 +6701,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         | record_edit_params.SSHFPRecordData
         | record_edit_params.URIRecordData
         | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -8495,26 +6709,21 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordEditResponse]:
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not dns_record_id:
             raise ValueError(f"Expected a non-empty value for `dns_record_id` but received {dns_record_id!r}")
         return cast(
-            Optional[Record],
+            Optional[RecordEditResponse],
             await self._patch(
                 f"/zones/{zone_id}/dns_records/{dns_record_id}",
                 body=await async_maybe_transform(
                     {
                         "content": content,
-                        "name": name,
                         "type": type,
-                        "id": id,
-                        "comment": comment,
-                        "proxied": proxied,
-                        "tags": tags,
-                        "ttl": ttl,
                         "data": data,
+                        "settings": settings,
                         "priority": priority,
                     },
                     record_edit_params.RecordEditParams,
@@ -8524,10 +6733,10 @@ class AsyncRecordsResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[Record]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[RecordEditResponse]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[Record]
+                    Any, ResultWrapper[RecordEditResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -8585,7 +6794,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Record]:
+    ) -> Optional[RecordGetResponse]:
         """
         DNS Record Details
 
@@ -8607,7 +6816,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         if not dns_record_id:
             raise ValueError(f"Expected a non-empty value for `dns_record_id` but received {dns_record_id!r}")
         return cast(
-            Optional[Record],
+            Optional[RecordGetResponse],
             await self._get(
                 f"/zones/{zone_id}/dns_records/{dns_record_id}",
                 options=make_request_options(
@@ -8615,10 +6824,10 @@ class AsyncRecordsResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[Record]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[RecordGetResponse]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[Record]
+                    Any, ResultWrapper[RecordGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -8751,6 +6960,9 @@ class RecordsResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             records.delete,
         )
+        self.batch = to_raw_response_wrapper(
+            records.batch,
+        )
         self.edit = to_raw_response_wrapper(
             records.edit,
         )
@@ -8783,6 +6995,9 @@ class AsyncRecordsResourceWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             records.delete,
+        )
+        self.batch = async_to_raw_response_wrapper(
+            records.batch,
         )
         self.edit = async_to_raw_response_wrapper(
             records.edit,
@@ -8817,6 +7032,9 @@ class RecordsResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             records.delete,
         )
+        self.batch = to_streamed_response_wrapper(
+            records.batch,
+        )
         self.edit = to_streamed_response_wrapper(
             records.edit,
         )
@@ -8849,6 +7067,9 @@ class AsyncRecordsResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             records.delete,
+        )
+        self.batch = async_to_streamed_response_wrapper(
+            records.batch,
         )
         self.edit = async_to_streamed_response_wrapper(
             records.edit,

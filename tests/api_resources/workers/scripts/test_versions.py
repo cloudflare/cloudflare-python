@@ -37,7 +37,7 @@ class TestVersions:
         version = client.workers.scripts.versions.create(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            any_part_name=[b"raw file contents", b"raw file contents", b"raw file contents"],
+            any_part_name=[b"raw file contents"],
             metadata={
                 "annotations": {
                     "workers_message": "Fixed worker code.",
@@ -51,8 +51,8 @@ class TestVersions:
                     }
                 ],
                 "compatibility_date": "2023-07-25",
-                "compatibility_flags": ["string", "string", "string"],
-                "keep_bindings": ["string", "string", "string"],
+                "compatibility_flags": ["string"],
+                "keep_bindings": ["string"],
                 "main_module": "worker.js",
                 "usage_model": "standard",
             },
@@ -240,7 +240,7 @@ class TestAsyncVersions:
         version = await async_client.workers.scripts.versions.create(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            any_part_name=[b"raw file contents", b"raw file contents", b"raw file contents"],
+            any_part_name=[b"raw file contents"],
             metadata={
                 "annotations": {
                     "workers_message": "Fixed worker code.",
@@ -254,8 +254,8 @@ class TestAsyncVersions:
                     }
                 ],
                 "compatibility_date": "2023-07-25",
-                "compatibility_flags": ["string", "string", "string"],
-                "keep_bindings": ["string", "string", "string"],
+                "compatibility_flags": ["string"],
+                "keep_bindings": ["string"],
                 "main_module": "worker.js",
                 "usage_model": "standard",
             },

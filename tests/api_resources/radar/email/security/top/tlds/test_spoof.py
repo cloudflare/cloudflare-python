@@ -29,26 +29,18 @@ class TestSpoof:
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         spoof = client.radar.email.security.top.tlds.spoof.get(
             spoof="SPOOF",
-            arc=["PASS", "NONE", "FAIL"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            dkim=["PASS", "NONE", "FAIL"],
-            dmarc=["PASS", "NONE", "FAIL"],
+            arc=["PASS"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            dkim=["PASS"],
+            dmarc=["PASS"],
             format="JSON",
             limit=5,
-            name=["string", "string", "string"],
-            spf=["PASS", "NONE", "FAIL"],
+            name=["string"],
+            spf=["PASS"],
             tld_category="CLASSIC",
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
+            tls_version=["TLSv1_0"],
         )
         assert_matches_type(SpoofGetResponse, spoof, path=["response"])
 
@@ -91,26 +83,18 @@ class TestAsyncSpoof:
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         spoof = await async_client.radar.email.security.top.tlds.spoof.get(
             spoof="SPOOF",
-            arc=["PASS", "NONE", "FAIL"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            dkim=["PASS", "NONE", "FAIL"],
-            dmarc=["PASS", "NONE", "FAIL"],
+            arc=["PASS"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            dkim=["PASS"],
+            dmarc=["PASS"],
             format="JSON",
             limit=5,
-            name=["string", "string", "string"],
-            spf=["PASS", "NONE", "FAIL"],
+            name=["string"],
+            spf=["PASS"],
             tld_category="CLASSIC",
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
+            tls_version=["TLSv1_0"],
         )
         assert_matches_type(SpoofGetResponse, spoof, path=["response"])
 

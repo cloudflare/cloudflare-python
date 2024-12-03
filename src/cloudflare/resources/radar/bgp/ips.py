@@ -32,22 +32,34 @@ __all__ = ["IPsResource", "AsyncIPsResource"]
 class IPsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> IPsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return IPsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> IPsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return IPsResourceWithStreamingResponse(self)
 
     def timeseries(
         self,
         *,
-        asn: str | NotGiven = NOT_GIVEN,
-        date_end: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        date_range: str | NotGiven = NOT_GIVEN,
-        date_start: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         include_delay: bool | NotGiven = NOT_GIVEN,
-        location: str | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -57,24 +69,29 @@ class IPsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> IPTimeseriesResponse:
         """
-        Gets time-series data for the announced IP space count, represented as the
-        number of IPv4 /24s and IPv6 /48s, for a given ASN.
+        Get time series data for the announced IP space count, represented as the number
+        of IPv4 /24s and IPv6 /48s, for a given ASN.
 
         Args:
-          asn: Comma separated list of ASNs.
+          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
+              For example, `-174, 3356` excludes results from AS174, but includes results from
+              AS3356.
 
           date_end: End of the date range (inclusive).
 
-          date_range: Shorthand date ranges for the last X days - use when you don't need specific
-              start and end dates.
+          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
+              week. Use this parameter or set specific start and end dates (`dateStart` and
+              `dateEnd` parameters).
 
-          date_start: Start of the date range (inclusive).
+          date_start: Array of datetimes to filter the start of a series.
 
           format: Format results are returned in.
 
           include_delay: Include data delay meta information
 
-          location: Comma separated list of locations.
+          ip_version: Filter for ip version.
+
+          location: Array of locations (alpha-2 country codes).
 
           name: Array of names that will be used to name the series in responses.
 
@@ -101,6 +118,7 @@ class IPsResource(SyncAPIResource):
                         "date_start": date_start,
                         "format": format,
                         "include_delay": include_delay,
+                        "ip_version": ip_version,
                         "location": location,
                         "name": name,
                     },
@@ -115,22 +133,34 @@ class IPsResource(SyncAPIResource):
 class AsyncIPsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncIPsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncIPsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncIPsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncIPsResourceWithStreamingResponse(self)
 
     async def timeseries(
         self,
         *,
-        asn: str | NotGiven = NOT_GIVEN,
-        date_end: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        date_range: str | NotGiven = NOT_GIVEN,
-        date_start: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         include_delay: bool | NotGiven = NOT_GIVEN,
-        location: str | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -140,24 +170,29 @@ class AsyncIPsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> IPTimeseriesResponse:
         """
-        Gets time-series data for the announced IP space count, represented as the
-        number of IPv4 /24s and IPv6 /48s, for a given ASN.
+        Get time series data for the announced IP space count, represented as the number
+        of IPv4 /24s and IPv6 /48s, for a given ASN.
 
         Args:
-          asn: Comma separated list of ASNs.
+          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
+              For example, `-174, 3356` excludes results from AS174, but includes results from
+              AS3356.
 
           date_end: End of the date range (inclusive).
 
-          date_range: Shorthand date ranges for the last X days - use when you don't need specific
-              start and end dates.
+          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
+              week. Use this parameter or set specific start and end dates (`dateStart` and
+              `dateEnd` parameters).
 
-          date_start: Start of the date range (inclusive).
+          date_start: Array of datetimes to filter the start of a series.
 
           format: Format results are returned in.
 
           include_delay: Include data delay meta information
 
-          location: Comma separated list of locations.
+          ip_version: Filter for ip version.
+
+          location: Array of locations (alpha-2 country codes).
 
           name: Array of names that will be used to name the series in responses.
 
@@ -184,6 +219,7 @@ class AsyncIPsResource(AsyncAPIResource):
                         "date_start": date_start,
                         "format": format,
                         "include_delay": include_delay,
+                        "ip_version": ip_version,
                         "location": location,
                         "name": name,
                     },
