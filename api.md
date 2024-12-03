@@ -979,6 +979,20 @@ Types:
 from cloudflare.types.dns import DNSAnalyticsNominalMetric, DNSAnalyticsQuery
 ```
 
+## DNSSEC
+
+Types:
+
+```python
+from cloudflare.types.dns import DNSSEC, DNSSECDeleteResponse
+```
+
+Methods:
+
+- <code title="delete /zones/{zone_id}/dnssec">client.dns.dnssec.<a href="./src/cloudflare/resources/dns/dnssec.py">delete</a>(\*, zone_id) -> <a href="./src/cloudflare/types/dns/dnssec_delete_response.py">str</a></code>
+- <code title="patch /zones/{zone_id}/dnssec">client.dns.dnssec.<a href="./src/cloudflare/resources/dns/dnssec.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/dns/dnssec_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/dnssec.py">Optional[DNSSEC]</a></code>
+- <code title="get /zones/{zone_id}/dnssec">client.dns.dnssec.<a href="./src/cloudflare/resources/dns/dnssec.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/dns/dnssec.py">Optional[DNSSEC]</a></code>
+
 ## Records
 
 Types:
@@ -1153,20 +1167,6 @@ Methods:
 
 - <code title="patch /accounts/{account_id}/dns_firewall/{dns_firewall_id}/reverse_dns">client.dns.firewall.reverse_dns.<a href="./src/cloudflare/resources/dns/firewall/reverse_dns.py">edit</a>(dns_firewall_id, \*, account_id, \*\*<a href="src/cloudflare/types/dns/firewall/reverse_dns_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/firewall/reverse_dns_edit_response.py">Optional[ReverseDNSEditResponse]</a></code>
 - <code title="get /accounts/{account_id}/dns_firewall/{dns_firewall_id}/reverse_dns">client.dns.firewall.reverse_dns.<a href="./src/cloudflare/resources/dns/firewall/reverse_dns.py">get</a>(dns_firewall_id, \*, account_id) -> <a href="./src/cloudflare/types/dns/firewall/reverse_dns_get_response.py">Optional[ReverseDNSGetResponse]</a></code>
-
-# DNSSEC
-
-Types:
-
-```python
-from cloudflare.types.dnssec import DNSSEC, DNSSECDeleteResponse
-```
-
-Methods:
-
-- <code title="delete /zones/{zone_id}/dnssec">client.dnssec.<a href="./src/cloudflare/resources/dnssec.py">delete</a>(\*, zone_id) -> <a href="./src/cloudflare/types/dnssec/dnssec_delete_response.py">str</a></code>
-- <code title="patch /zones/{zone_id}/dnssec">client.dnssec.<a href="./src/cloudflare/resources/dnssec.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/dnssec/dnssec_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/dnssec/dnssec.py">Optional[DNSSEC]</a></code>
-- <code title="get /zones/{zone_id}/dnssec">client.dnssec.<a href="./src/cloudflare/resources/dnssec.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/dnssec/dnssec.py">Optional[DNSSEC]</a></code>
 
 # EmailSecurity
 
