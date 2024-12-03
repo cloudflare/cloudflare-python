@@ -1,6 +1,6 @@
 [project]
 name = "cloudflare"
-version = "3.1.0"
+version = "3.1.1"
 description = "The official Python library for the cloudflare API"
 dynamic = ["readme"]
 license = "Apache-2.0"
@@ -8,8 +8,8 @@ authors = [
 { name = "Cloudflare", email = "api@cloudflare.com" },
 ]
 dependencies = [
-    "httpx>=0.23.0, <1",
-    "pydantic>=1.9.0, <3",
+    "httpx>=0.23.0, <0.28",
+    "pydantic>=1.9.0, <2.10",
     "typing-extensions>=4.7, <5",
     "anyio>=3.5.0, <5",
     "distro>=1.7.0, <2",
