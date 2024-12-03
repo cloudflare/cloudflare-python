@@ -44,9 +44,18 @@ from .analytics import (
     AsyncAnalyticsResourceWithStreamingResponse,
 )
 from ..._resource import SyncAPIResource, AsyncAPIResource
+from .zone_transfers import (
+    ZoneTransfersResource,
+    AsyncZoneTransfersResource,
+    ZoneTransfersResourceWithRawResponse,
+    AsyncZoneTransfersResourceWithRawResponse,
+    ZoneTransfersResourceWithStreamingResponse,
+    AsyncZoneTransfersResourceWithStreamingResponse,
+)
 from .firewall.firewall import FirewallResource, AsyncFirewallResource
 from .settings.settings import SettingsResource, AsyncSettingsResource
 from .analytics.analytics import AnalyticsResource, AsyncAnalyticsResource
+from .zone_transfers.zone_transfers import ZoneTransfersResource, AsyncZoneTransfersResource
 
 __all__ = ["DNSResource", "AsyncDNSResource"]
 
@@ -71,6 +80,10 @@ class DNSResource(SyncAPIResource):
     @cached_property
     def firewall(self) -> FirewallResource:
         return FirewallResource(self._client)
+
+    @cached_property
+    def zone_transfers(self) -> ZoneTransfersResource:
+        return ZoneTransfersResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> DNSResourceWithRawResponse:
@@ -112,6 +125,10 @@ class AsyncDNSResource(AsyncAPIResource):
     @cached_property
     def firewall(self) -> AsyncFirewallResource:
         return AsyncFirewallResource(self._client)
+
+    @cached_property
+    def zone_transfers(self) -> AsyncZoneTransfersResource:
+        return AsyncZoneTransfersResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncDNSResourceWithRawResponse:
@@ -157,6 +174,10 @@ class DNSResourceWithRawResponse:
     def firewall(self) -> FirewallResourceWithRawResponse:
         return FirewallResourceWithRawResponse(self._dns.firewall)
 
+    @cached_property
+    def zone_transfers(self) -> ZoneTransfersResourceWithRawResponse:
+        return ZoneTransfersResourceWithRawResponse(self._dns.zone_transfers)
+
 
 class AsyncDNSResourceWithRawResponse:
     def __init__(self, dns: AsyncDNSResource) -> None:
@@ -181,6 +202,10 @@ class AsyncDNSResourceWithRawResponse:
     @cached_property
     def firewall(self) -> AsyncFirewallResourceWithRawResponse:
         return AsyncFirewallResourceWithRawResponse(self._dns.firewall)
+
+    @cached_property
+    def zone_transfers(self) -> AsyncZoneTransfersResourceWithRawResponse:
+        return AsyncZoneTransfersResourceWithRawResponse(self._dns.zone_transfers)
 
 
 class DNSResourceWithStreamingResponse:
@@ -207,6 +232,10 @@ class DNSResourceWithStreamingResponse:
     def firewall(self) -> FirewallResourceWithStreamingResponse:
         return FirewallResourceWithStreamingResponse(self._dns.firewall)
 
+    @cached_property
+    def zone_transfers(self) -> ZoneTransfersResourceWithStreamingResponse:
+        return ZoneTransfersResourceWithStreamingResponse(self._dns.zone_transfers)
+
 
 class AsyncDNSResourceWithStreamingResponse:
     def __init__(self, dns: AsyncDNSResource) -> None:
@@ -231,3 +260,7 @@ class AsyncDNSResourceWithStreamingResponse:
     @cached_property
     def firewall(self) -> AsyncFirewallResourceWithStreamingResponse:
         return AsyncFirewallResourceWithStreamingResponse(self._dns.firewall)
+
+    @cached_property
+    def zone_transfers(self) -> AsyncZoneTransfersResourceWithStreamingResponse:
+        return AsyncZoneTransfersResourceWithStreamingResponse(self._dns.zone_transfers)

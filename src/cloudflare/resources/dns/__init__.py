@@ -48,6 +48,14 @@ from .analytics import (
     AnalyticsResourceWithStreamingResponse,
     AsyncAnalyticsResourceWithStreamingResponse,
 )
+from .zone_transfers import (
+    ZoneTransfersResource,
+    AsyncZoneTransfersResource,
+    ZoneTransfersResourceWithRawResponse,
+    AsyncZoneTransfersResourceWithRawResponse,
+    ZoneTransfersResourceWithStreamingResponse,
+    AsyncZoneTransfersResourceWithStreamingResponse,
+)
 
 __all__ = [
     "DNSSECResource",
@@ -80,6 +88,12 @@ __all__ = [
     "AsyncFirewallResourceWithRawResponse",
     "FirewallResourceWithStreamingResponse",
     "AsyncFirewallResourceWithStreamingResponse",
+    "ZoneTransfersResource",
+    "AsyncZoneTransfersResource",
+    "ZoneTransfersResourceWithRawResponse",
+    "AsyncZoneTransfersResourceWithRawResponse",
+    "ZoneTransfersResourceWithStreamingResponse",
+    "AsyncZoneTransfersResourceWithStreamingResponse",
     "DNSResource",
     "AsyncDNSResource",
     "DNSResourceWithRawResponse",
