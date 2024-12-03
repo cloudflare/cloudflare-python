@@ -6,14 +6,14 @@ from typing import Union
 from datetime import datetime
 from typing_extensions import Required, Annotated, TypedDict
 
+from ...delta import Delta
 from ....._utils import PropertyInfo
-from ....dns_firewall.delta import Delta
 
 __all__ = ["BytimeGetParams"]
 
 
 class BytimeGetParams(TypedDict, total=False):
-    zone_id: Required[str]
+    account_id: Required[str]
     """Identifier"""
 
     dimensions: str

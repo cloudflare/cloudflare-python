@@ -89,6 +89,7 @@ if TYPE_CHECKING:
         page_shield,
         rate_limits,
         url_scanner,
+        dns_firewall,
         healthchecks,
         security_txt,
         email_routing,
@@ -301,6 +302,12 @@ class Cloudflare(SyncAPIClient):
         from .resources.custom_nameservers import CustomNameserversResource
 
         return CustomNameserversResource(self)
+
+    @cached_property
+    def dns_firewall(self) -> dns_firewall.DNSFirewallResource:
+        from .resources.dns_firewall import DNSFirewallResource
+
+        return DNSFirewallResource(self)
 
     @cached_property
     def dns(self) -> dns.DNSResource:
@@ -1056,6 +1063,12 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncCustomNameserversResource(self)
 
     @cached_property
+    def dns_firewall(self) -> dns_firewall.AsyncDNSFirewallResource:
+        from .resources.dns_firewall import AsyncDNSFirewallResource
+
+        return AsyncDNSFirewallResource(self)
+
+    @cached_property
     def dns(self) -> dns.AsyncDNSResource:
         from .resources.dns import AsyncDNSResource
 
@@ -1742,6 +1755,12 @@ class CloudflareWithRawResponse:
         return CustomNameserversResourceWithRawResponse(self._client.custom_nameservers)
 
     @cached_property
+    def dns_firewall(self) -> dns_firewall.DNSFirewallResourceWithRawResponse:
+        from .resources.dns_firewall import DNSFirewallResourceWithRawResponse
+
+        return DNSFirewallResourceWithRawResponse(self._client.dns_firewall)
+
+    @cached_property
     def dns(self) -> dns.DNSResourceWithRawResponse:
         from .resources.dns import DNSResourceWithRawResponse
 
@@ -2247,6 +2266,12 @@ class AsyncCloudflareWithRawResponse:
         from .resources.custom_nameservers import AsyncCustomNameserversResourceWithRawResponse
 
         return AsyncCustomNameserversResourceWithRawResponse(self._client.custom_nameservers)
+
+    @cached_property
+    def dns_firewall(self) -> dns_firewall.AsyncDNSFirewallResourceWithRawResponse:
+        from .resources.dns_firewall import AsyncDNSFirewallResourceWithRawResponse
+
+        return AsyncDNSFirewallResourceWithRawResponse(self._client.dns_firewall)
 
     @cached_property
     def dns(self) -> dns.AsyncDNSResourceWithRawResponse:
@@ -2756,6 +2781,12 @@ class CloudflareWithStreamedResponse:
         return CustomNameserversResourceWithStreamingResponse(self._client.custom_nameservers)
 
     @cached_property
+    def dns_firewall(self) -> dns_firewall.DNSFirewallResourceWithStreamingResponse:
+        from .resources.dns_firewall import DNSFirewallResourceWithStreamingResponse
+
+        return DNSFirewallResourceWithStreamingResponse(self._client.dns_firewall)
+
+    @cached_property
     def dns(self) -> dns.DNSResourceWithStreamingResponse:
         from .resources.dns import DNSResourceWithStreamingResponse
 
@@ -3263,6 +3294,12 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.custom_nameservers import AsyncCustomNameserversResourceWithStreamingResponse
 
         return AsyncCustomNameserversResourceWithStreamingResponse(self._client.custom_nameservers)
+
+    @cached_property
+    def dns_firewall(self) -> dns_firewall.AsyncDNSFirewallResourceWithStreamingResponse:
+        from .resources.dns_firewall import AsyncDNSFirewallResourceWithStreamingResponse
+
+        return AsyncDNSFirewallResourceWithStreamingResponse(self._client.dns_firewall)
 
     @cached_property
     def dns(self) -> dns.AsyncDNSResourceWithStreamingResponse:
