@@ -1168,6 +1168,123 @@ Methods:
 - <code title="patch /accounts/{account_id}/dns_firewall/{dns_firewall_id}/reverse_dns">client.dns.firewall.reverse_dns.<a href="./src/cloudflare/resources/dns/firewall/reverse_dns.py">edit</a>(dns_firewall_id, \*, account_id, \*\*<a href="src/cloudflare/types/dns/firewall/reverse_dns_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/firewall/reverse_dns_edit_response.py">Optional[ReverseDNSEditResponse]</a></code>
 - <code title="get /accounts/{account_id}/dns_firewall/{dns_firewall_id}/reverse_dns">client.dns.firewall.reverse_dns.<a href="./src/cloudflare/resources/dns/firewall/reverse_dns.py">get</a>(dns_firewall_id, \*, account_id) -> <a href="./src/cloudflare/types/dns/firewall/reverse_dns_get_response.py">Optional[ReverseDNSGetResponse]</a></code>
 
+## ZoneTransfers
+
+### ForceAXFR
+
+Types:
+
+```python
+from cloudflare.types.dns.zone_transfers import ForceAXFR
+```
+
+Methods:
+
+- <code title="post /zones/{zone_id}/secondary_dns/force_axfr">client.dns.zone_transfers.force_axfr.<a href="./src/cloudflare/resources/dns/zone_transfers/force_axfr.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/dns/zone_transfers/force_axfr_create_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/zone_transfers/force_axfr.py">str</a></code>
+
+### Incoming
+
+Types:
+
+```python
+from cloudflare.types.dns.zone_transfers import (
+    Incoming,
+    IncomingCreateResponse,
+    IncomingUpdateResponse,
+    IncomingDeleteResponse,
+    IncomingGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /zones/{zone_id}/secondary_dns/incoming">client.dns.zone_transfers.incoming.<a href="./src/cloudflare/resources/dns/zone_transfers/incoming.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/dns/zone_transfers/incoming_create_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/zone_transfers/incoming_create_response.py">Optional[IncomingCreateResponse]</a></code>
+- <code title="put /zones/{zone_id}/secondary_dns/incoming">client.dns.zone_transfers.incoming.<a href="./src/cloudflare/resources/dns/zone_transfers/incoming.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/dns/zone_transfers/incoming_update_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/zone_transfers/incoming_update_response.py">Optional[IncomingUpdateResponse]</a></code>
+- <code title="delete /zones/{zone_id}/secondary_dns/incoming">client.dns.zone_transfers.incoming.<a href="./src/cloudflare/resources/dns/zone_transfers/incoming.py">delete</a>(\*, zone_id) -> <a href="./src/cloudflare/types/dns/zone_transfers/incoming_delete_response.py">Optional[IncomingDeleteResponse]</a></code>
+- <code title="get /zones/{zone_id}/secondary_dns/incoming">client.dns.zone_transfers.incoming.<a href="./src/cloudflare/resources/dns/zone_transfers/incoming.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/dns/zone_transfers/incoming_get_response.py">Optional[IncomingGetResponse]</a></code>
+
+### Outgoing
+
+Types:
+
+```python
+from cloudflare.types.dns.zone_transfers import (
+    DisableTransfer,
+    EnableTransfer,
+    Outgoing,
+    OutgoingStatus,
+    OutgoingCreateResponse,
+    OutgoingUpdateResponse,
+    OutgoingDeleteResponse,
+    OutgoingForceNotifyResponse,
+    OutgoingGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /zones/{zone_id}/secondary_dns/outgoing">client.dns.zone_transfers.outgoing.<a href="./src/cloudflare/resources/dns/zone_transfers/outgoing/outgoing.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/dns/zone_transfers/outgoing_create_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/zone_transfers/outgoing_create_response.py">Optional[OutgoingCreateResponse]</a></code>
+- <code title="put /zones/{zone_id}/secondary_dns/outgoing">client.dns.zone_transfers.outgoing.<a href="./src/cloudflare/resources/dns/zone_transfers/outgoing/outgoing.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/dns/zone_transfers/outgoing_update_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/zone_transfers/outgoing_update_response.py">Optional[OutgoingUpdateResponse]</a></code>
+- <code title="delete /zones/{zone_id}/secondary_dns/outgoing">client.dns.zone_transfers.outgoing.<a href="./src/cloudflare/resources/dns/zone_transfers/outgoing/outgoing.py">delete</a>(\*, zone_id) -> <a href="./src/cloudflare/types/dns/zone_transfers/outgoing_delete_response.py">Optional[OutgoingDeleteResponse]</a></code>
+- <code title="post /zones/{zone_id}/secondary_dns/outgoing/disable">client.dns.zone_transfers.outgoing.<a href="./src/cloudflare/resources/dns/zone_transfers/outgoing/outgoing.py">disable</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/dns/zone_transfers/outgoing_disable_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/zone_transfers/disable_transfer.py">str</a></code>
+- <code title="post /zones/{zone_id}/secondary_dns/outgoing/enable">client.dns.zone_transfers.outgoing.<a href="./src/cloudflare/resources/dns/zone_transfers/outgoing/outgoing.py">enable</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/dns/zone_transfers/outgoing_enable_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/zone_transfers/enable_transfer.py">str</a></code>
+- <code title="post /zones/{zone_id}/secondary_dns/outgoing/force_notify">client.dns.zone_transfers.outgoing.<a href="./src/cloudflare/resources/dns/zone_transfers/outgoing/outgoing.py">force_notify</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/dns/zone_transfers/outgoing_force_notify_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/zone_transfers/outgoing_force_notify_response.py">str</a></code>
+- <code title="get /zones/{zone_id}/secondary_dns/outgoing">client.dns.zone_transfers.outgoing.<a href="./src/cloudflare/resources/dns/zone_transfers/outgoing/outgoing.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/dns/zone_transfers/outgoing_get_response.py">Optional[OutgoingGetResponse]</a></code>
+
+#### Status
+
+Methods:
+
+- <code title="get /zones/{zone_id}/secondary_dns/outgoing/status">client.dns.zone_transfers.outgoing.status.<a href="./src/cloudflare/resources/dns/zone_transfers/outgoing/status.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/dns/zone_transfers/enable_transfer.py">str</a></code>
+
+### ACLs
+
+Types:
+
+```python
+from cloudflare.types.dns.zone_transfers import ACL, ACLDeleteResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/secondary_dns/acls">client.dns.zone_transfers.acls.<a href="./src/cloudflare/resources/dns/zone_transfers/acls.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/dns/zone_transfers/acl_create_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/zone_transfers/acl.py">Optional[ACL]</a></code>
+- <code title="put /accounts/{account_id}/secondary_dns/acls/{acl_id}">client.dns.zone_transfers.acls.<a href="./src/cloudflare/resources/dns/zone_transfers/acls.py">update</a>(acl_id, \*, account_id, \*\*<a href="src/cloudflare/types/dns/zone_transfers/acl_update_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/zone_transfers/acl.py">Optional[ACL]</a></code>
+- <code title="get /accounts/{account_id}/secondary_dns/acls">client.dns.zone_transfers.acls.<a href="./src/cloudflare/resources/dns/zone_transfers/acls.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/dns/zone_transfers/acl.py">SyncSinglePage[ACL]</a></code>
+- <code title="delete /accounts/{account_id}/secondary_dns/acls/{acl_id}">client.dns.zone_transfers.acls.<a href="./src/cloudflare/resources/dns/zone_transfers/acls.py">delete</a>(acl_id, \*, account_id) -> <a href="./src/cloudflare/types/dns/zone_transfers/acl_delete_response.py">Optional[ACLDeleteResponse]</a></code>
+- <code title="get /accounts/{account_id}/secondary_dns/acls/{acl_id}">client.dns.zone_transfers.acls.<a href="./src/cloudflare/resources/dns/zone_transfers/acls.py">get</a>(acl_id, \*, account_id) -> <a href="./src/cloudflare/types/dns/zone_transfers/acl.py">Optional[ACL]</a></code>
+
+### Peers
+
+Types:
+
+```python
+from cloudflare.types.dns.zone_transfers import Peer, PeerDeleteResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/secondary_dns/peers">client.dns.zone_transfers.peers.<a href="./src/cloudflare/resources/dns/zone_transfers/peers.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/dns/zone_transfers/peer_create_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/zone_transfers/peer.py">Optional[Peer]</a></code>
+- <code title="put /accounts/{account_id}/secondary_dns/peers/{peer_id}">client.dns.zone_transfers.peers.<a href="./src/cloudflare/resources/dns/zone_transfers/peers.py">update</a>(peer_id, \*, account_id, \*\*<a href="src/cloudflare/types/dns/zone_transfers/peer_update_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/zone_transfers/peer.py">Optional[Peer]</a></code>
+- <code title="get /accounts/{account_id}/secondary_dns/peers">client.dns.zone_transfers.peers.<a href="./src/cloudflare/resources/dns/zone_transfers/peers.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/dns/zone_transfers/peer.py">SyncSinglePage[Peer]</a></code>
+- <code title="delete /accounts/{account_id}/secondary_dns/peers/{peer_id}">client.dns.zone_transfers.peers.<a href="./src/cloudflare/resources/dns/zone_transfers/peers.py">delete</a>(peer_id, \*, account_id) -> <a href="./src/cloudflare/types/dns/zone_transfers/peer_delete_response.py">Optional[PeerDeleteResponse]</a></code>
+- <code title="get /accounts/{account_id}/secondary_dns/peers/{peer_id}">client.dns.zone_transfers.peers.<a href="./src/cloudflare/resources/dns/zone_transfers/peers.py">get</a>(peer_id, \*, account_id) -> <a href="./src/cloudflare/types/dns/zone_transfers/peer.py">Optional[Peer]</a></code>
+
+### TSIGs
+
+Types:
+
+```python
+from cloudflare.types.dns.zone_transfers import TSIG, TSIGDeleteResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/secondary_dns/tsigs">client.dns.zone_transfers.tsigs.<a href="./src/cloudflare/resources/dns/zone_transfers/tsigs.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/dns/zone_transfers/tsig_create_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/zone_transfers/tsig.py">Optional[TSIG]</a></code>
+- <code title="put /accounts/{account_id}/secondary_dns/tsigs/{tsig_id}">client.dns.zone_transfers.tsigs.<a href="./src/cloudflare/resources/dns/zone_transfers/tsigs.py">update</a>(tsig_id, \*, account_id, \*\*<a href="src/cloudflare/types/dns/zone_transfers/tsig_update_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/zone_transfers/tsig.py">Optional[TSIG]</a></code>
+- <code title="get /accounts/{account_id}/secondary_dns/tsigs">client.dns.zone_transfers.tsigs.<a href="./src/cloudflare/resources/dns/zone_transfers/tsigs.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/dns/zone_transfers/tsig.py">SyncSinglePage[TSIG]</a></code>
+- <code title="delete /accounts/{account_id}/secondary_dns/tsigs/{tsig_id}">client.dns.zone_transfers.tsigs.<a href="./src/cloudflare/resources/dns/zone_transfers/tsigs.py">delete</a>(tsig_id, \*, account_id) -> <a href="./src/cloudflare/types/dns/zone_transfers/tsig_delete_response.py">Optional[TSIGDeleteResponse]</a></code>
+- <code title="get /accounts/{account_id}/secondary_dns/tsigs/{tsig_id}">client.dns.zone_transfers.tsigs.<a href="./src/cloudflare/resources/dns/zone_transfers/tsigs.py">get</a>(tsig_id, \*, account_id) -> <a href="./src/cloudflare/types/dns/zone_transfers/tsig.py">Optional[TSIG]</a></code>
+
 # EmailSecurity
 
 ## Investigate
@@ -1976,123 +2093,6 @@ Methods:
 - <code title="delete /zones/{zone_id}/rate_limits/{rate_limit_id}">client.rate_limits.<a href="./src/cloudflare/resources/rate_limits.py">delete</a>(rate_limit_id, \*, zone_id) -> <a href="./src/cloudflare/types/rate_limits/rate_limit_delete_response.py">RateLimitDeleteResponse</a></code>
 - <code title="put /zones/{zone_id}/rate_limits/{rate_limit_id}">client.rate_limits.<a href="./src/cloudflare/resources/rate_limits.py">edit</a>(rate_limit_id, \*, zone_id, \*\*<a href="src/cloudflare/types/rate_limits/rate_limit_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/rate_limits/rate_limit.py">RateLimit</a></code>
 - <code title="get /zones/{zone_id}/rate_limits/{rate_limit_id}">client.rate_limits.<a href="./src/cloudflare/resources/rate_limits.py">get</a>(rate_limit_id, \*, zone_id) -> <a href="./src/cloudflare/types/rate_limits/rate_limit.py">RateLimit</a></code>
-
-# SecondaryDNS
-
-## ForceAXFR
-
-Types:
-
-```python
-from cloudflare.types.secondary_dns import ForceAXFR
-```
-
-Methods:
-
-- <code title="post /zones/{zone_id}/secondary_dns/force_axfr">client.secondary_dns.force_axfr.<a href="./src/cloudflare/resources/secondary_dns/force_axfr.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/secondary_dns/force_axfr_create_params.py">params</a>) -> <a href="./src/cloudflare/types/secondary_dns/force_axfr.py">str</a></code>
-
-## Incoming
-
-Types:
-
-```python
-from cloudflare.types.secondary_dns import (
-    Incoming,
-    IncomingCreateResponse,
-    IncomingUpdateResponse,
-    IncomingDeleteResponse,
-    IncomingGetResponse,
-)
-```
-
-Methods:
-
-- <code title="post /zones/{zone_id}/secondary_dns/incoming">client.secondary_dns.incoming.<a href="./src/cloudflare/resources/secondary_dns/incoming.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/secondary_dns/incoming_create_params.py">params</a>) -> <a href="./src/cloudflare/types/secondary_dns/incoming_create_response.py">Optional[IncomingCreateResponse]</a></code>
-- <code title="put /zones/{zone_id}/secondary_dns/incoming">client.secondary_dns.incoming.<a href="./src/cloudflare/resources/secondary_dns/incoming.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/secondary_dns/incoming_update_params.py">params</a>) -> <a href="./src/cloudflare/types/secondary_dns/incoming_update_response.py">Optional[IncomingUpdateResponse]</a></code>
-- <code title="delete /zones/{zone_id}/secondary_dns/incoming">client.secondary_dns.incoming.<a href="./src/cloudflare/resources/secondary_dns/incoming.py">delete</a>(\*, zone_id) -> <a href="./src/cloudflare/types/secondary_dns/incoming_delete_response.py">Optional[IncomingDeleteResponse]</a></code>
-- <code title="get /zones/{zone_id}/secondary_dns/incoming">client.secondary_dns.incoming.<a href="./src/cloudflare/resources/secondary_dns/incoming.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/secondary_dns/incoming_get_response.py">Optional[IncomingGetResponse]</a></code>
-
-## Outgoing
-
-Types:
-
-```python
-from cloudflare.types.secondary_dns import (
-    DisableTransfer,
-    EnableTransfer,
-    Outgoing,
-    OutgoingStatus,
-    OutgoingCreateResponse,
-    OutgoingUpdateResponse,
-    OutgoingDeleteResponse,
-    OutgoingForceNotifyResponse,
-    OutgoingGetResponse,
-)
-```
-
-Methods:
-
-- <code title="post /zones/{zone_id}/secondary_dns/outgoing">client.secondary_dns.outgoing.<a href="./src/cloudflare/resources/secondary_dns/outgoing/outgoing.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/secondary_dns/outgoing_create_params.py">params</a>) -> <a href="./src/cloudflare/types/secondary_dns/outgoing_create_response.py">Optional[OutgoingCreateResponse]</a></code>
-- <code title="put /zones/{zone_id}/secondary_dns/outgoing">client.secondary_dns.outgoing.<a href="./src/cloudflare/resources/secondary_dns/outgoing/outgoing.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/secondary_dns/outgoing_update_params.py">params</a>) -> <a href="./src/cloudflare/types/secondary_dns/outgoing_update_response.py">Optional[OutgoingUpdateResponse]</a></code>
-- <code title="delete /zones/{zone_id}/secondary_dns/outgoing">client.secondary_dns.outgoing.<a href="./src/cloudflare/resources/secondary_dns/outgoing/outgoing.py">delete</a>(\*, zone_id) -> <a href="./src/cloudflare/types/secondary_dns/outgoing_delete_response.py">Optional[OutgoingDeleteResponse]</a></code>
-- <code title="post /zones/{zone_id}/secondary_dns/outgoing/disable">client.secondary_dns.outgoing.<a href="./src/cloudflare/resources/secondary_dns/outgoing/outgoing.py">disable</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/secondary_dns/outgoing_disable_params.py">params</a>) -> <a href="./src/cloudflare/types/secondary_dns/disable_transfer.py">str</a></code>
-- <code title="post /zones/{zone_id}/secondary_dns/outgoing/enable">client.secondary_dns.outgoing.<a href="./src/cloudflare/resources/secondary_dns/outgoing/outgoing.py">enable</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/secondary_dns/outgoing_enable_params.py">params</a>) -> <a href="./src/cloudflare/types/secondary_dns/enable_transfer.py">str</a></code>
-- <code title="post /zones/{zone_id}/secondary_dns/outgoing/force_notify">client.secondary_dns.outgoing.<a href="./src/cloudflare/resources/secondary_dns/outgoing/outgoing.py">force_notify</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/secondary_dns/outgoing_force_notify_params.py">params</a>) -> <a href="./src/cloudflare/types/secondary_dns/outgoing_force_notify_response.py">str</a></code>
-- <code title="get /zones/{zone_id}/secondary_dns/outgoing">client.secondary_dns.outgoing.<a href="./src/cloudflare/resources/secondary_dns/outgoing/outgoing.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/secondary_dns/outgoing_get_response.py">Optional[OutgoingGetResponse]</a></code>
-
-### Status
-
-Methods:
-
-- <code title="get /zones/{zone_id}/secondary_dns/outgoing/status">client.secondary_dns.outgoing.status.<a href="./src/cloudflare/resources/secondary_dns/outgoing/status.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/secondary_dns/enable_transfer.py">str</a></code>
-
-## ACLs
-
-Types:
-
-```python
-from cloudflare.types.secondary_dns import ACL, ACLDeleteResponse
-```
-
-Methods:
-
-- <code title="post /accounts/{account_id}/secondary_dns/acls">client.secondary_dns.acls.<a href="./src/cloudflare/resources/secondary_dns/acls.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/secondary_dns/acl_create_params.py">params</a>) -> <a href="./src/cloudflare/types/secondary_dns/acl.py">Optional[ACL]</a></code>
-- <code title="put /accounts/{account_id}/secondary_dns/acls/{acl_id}">client.secondary_dns.acls.<a href="./src/cloudflare/resources/secondary_dns/acls.py">update</a>(acl_id, \*, account_id, \*\*<a href="src/cloudflare/types/secondary_dns/acl_update_params.py">params</a>) -> <a href="./src/cloudflare/types/secondary_dns/acl.py">Optional[ACL]</a></code>
-- <code title="get /accounts/{account_id}/secondary_dns/acls">client.secondary_dns.acls.<a href="./src/cloudflare/resources/secondary_dns/acls.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/secondary_dns/acl.py">SyncSinglePage[ACL]</a></code>
-- <code title="delete /accounts/{account_id}/secondary_dns/acls/{acl_id}">client.secondary_dns.acls.<a href="./src/cloudflare/resources/secondary_dns/acls.py">delete</a>(acl_id, \*, account_id) -> <a href="./src/cloudflare/types/secondary_dns/acl_delete_response.py">Optional[ACLDeleteResponse]</a></code>
-- <code title="get /accounts/{account_id}/secondary_dns/acls/{acl_id}">client.secondary_dns.acls.<a href="./src/cloudflare/resources/secondary_dns/acls.py">get</a>(acl_id, \*, account_id) -> <a href="./src/cloudflare/types/secondary_dns/acl.py">Optional[ACL]</a></code>
-
-## Peers
-
-Types:
-
-```python
-from cloudflare.types.secondary_dns import Peer, PeerDeleteResponse
-```
-
-Methods:
-
-- <code title="post /accounts/{account_id}/secondary_dns/peers">client.secondary_dns.peers.<a href="./src/cloudflare/resources/secondary_dns/peers.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/secondary_dns/peer_create_params.py">params</a>) -> <a href="./src/cloudflare/types/secondary_dns/peer.py">Optional[Peer]</a></code>
-- <code title="put /accounts/{account_id}/secondary_dns/peers/{peer_id}">client.secondary_dns.peers.<a href="./src/cloudflare/resources/secondary_dns/peers.py">update</a>(peer_id, \*, account_id, \*\*<a href="src/cloudflare/types/secondary_dns/peer_update_params.py">params</a>) -> <a href="./src/cloudflare/types/secondary_dns/peer.py">Optional[Peer]</a></code>
-- <code title="get /accounts/{account_id}/secondary_dns/peers">client.secondary_dns.peers.<a href="./src/cloudflare/resources/secondary_dns/peers.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/secondary_dns/peer.py">SyncSinglePage[Peer]</a></code>
-- <code title="delete /accounts/{account_id}/secondary_dns/peers/{peer_id}">client.secondary_dns.peers.<a href="./src/cloudflare/resources/secondary_dns/peers.py">delete</a>(peer_id, \*, account_id) -> <a href="./src/cloudflare/types/secondary_dns/peer_delete_response.py">Optional[PeerDeleteResponse]</a></code>
-- <code title="get /accounts/{account_id}/secondary_dns/peers/{peer_id}">client.secondary_dns.peers.<a href="./src/cloudflare/resources/secondary_dns/peers.py">get</a>(peer_id, \*, account_id) -> <a href="./src/cloudflare/types/secondary_dns/peer.py">Optional[Peer]</a></code>
-
-## TSIGs
-
-Types:
-
-```python
-from cloudflare.types.secondary_dns import TSIG, TSIGDeleteResponse
-```
-
-Methods:
-
-- <code title="post /accounts/{account_id}/secondary_dns/tsigs">client.secondary_dns.tsigs.<a href="./src/cloudflare/resources/secondary_dns/tsigs.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/secondary_dns/tsig_create_params.py">params</a>) -> <a href="./src/cloudflare/types/secondary_dns/tsig.py">Optional[TSIG]</a></code>
-- <code title="put /accounts/{account_id}/secondary_dns/tsigs/{tsig_id}">client.secondary_dns.tsigs.<a href="./src/cloudflare/resources/secondary_dns/tsigs.py">update</a>(tsig_id, \*, account_id, \*\*<a href="src/cloudflare/types/secondary_dns/tsig_update_params.py">params</a>) -> <a href="./src/cloudflare/types/secondary_dns/tsig.py">Optional[TSIG]</a></code>
-- <code title="get /accounts/{account_id}/secondary_dns/tsigs">client.secondary_dns.tsigs.<a href="./src/cloudflare/resources/secondary_dns/tsigs.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/secondary_dns/tsig.py">SyncSinglePage[TSIG]</a></code>
-- <code title="delete /accounts/{account_id}/secondary_dns/tsigs/{tsig_id}">client.secondary_dns.tsigs.<a href="./src/cloudflare/resources/secondary_dns/tsigs.py">delete</a>(tsig_id, \*, account_id) -> <a href="./src/cloudflare/types/secondary_dns/tsig_delete_response.py">Optional[TSIGDeleteResponse]</a></code>
-- <code title="get /accounts/{account_id}/secondary_dns/tsigs/{tsig_id}">client.secondary_dns.tsigs.<a href="./src/cloudflare/resources/secondary_dns/tsigs.py">get</a>(tsig_id, \*, account_id) -> <a href="./src/cloudflare/types/secondary_dns/tsig.py">Optional[TSIG]</a></code>
 
 # WaitingRooms
 
