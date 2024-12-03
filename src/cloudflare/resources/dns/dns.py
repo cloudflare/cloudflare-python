@@ -2,6 +2,14 @@
 
 from __future__ import annotations
 
+from .dnssec import (
+    DNSSECResource,
+    AsyncDNSSECResource,
+    DNSSECResourceWithRawResponse,
+    AsyncDNSSECResourceWithRawResponse,
+    DNSSECResourceWithStreamingResponse,
+    AsyncDNSSECResourceWithStreamingResponse,
+)
 from .records import (
     RecordsResource,
     AsyncRecordsResource,
@@ -45,6 +53,10 @@ __all__ = ["DNSResource", "AsyncDNSResource"]
 
 class DNSResource(SyncAPIResource):
     @cached_property
+    def dnssec(self) -> DNSSECResource:
+        return DNSSECResource(self._client)
+
+    @cached_property
     def records(self) -> RecordsResource:
         return RecordsResource(self._client)
 
@@ -81,6 +93,10 @@ class DNSResource(SyncAPIResource):
 
 
 class AsyncDNSResource(AsyncAPIResource):
+    @cached_property
+    def dnssec(self) -> AsyncDNSSECResource:
+        return AsyncDNSSECResource(self._client)
+
     @cached_property
     def records(self) -> AsyncRecordsResource:
         return AsyncRecordsResource(self._client)
@@ -122,6 +138,10 @@ class DNSResourceWithRawResponse:
         self._dns = dns
 
     @cached_property
+    def dnssec(self) -> DNSSECResourceWithRawResponse:
+        return DNSSECResourceWithRawResponse(self._dns.dnssec)
+
+    @cached_property
     def records(self) -> RecordsResourceWithRawResponse:
         return RecordsResourceWithRawResponse(self._dns.records)
 
@@ -141,6 +161,10 @@ class DNSResourceWithRawResponse:
 class AsyncDNSResourceWithRawResponse:
     def __init__(self, dns: AsyncDNSResource) -> None:
         self._dns = dns
+
+    @cached_property
+    def dnssec(self) -> AsyncDNSSECResourceWithRawResponse:
+        return AsyncDNSSECResourceWithRawResponse(self._dns.dnssec)
 
     @cached_property
     def records(self) -> AsyncRecordsResourceWithRawResponse:
@@ -164,6 +188,10 @@ class DNSResourceWithStreamingResponse:
         self._dns = dns
 
     @cached_property
+    def dnssec(self) -> DNSSECResourceWithStreamingResponse:
+        return DNSSECResourceWithStreamingResponse(self._dns.dnssec)
+
+    @cached_property
     def records(self) -> RecordsResourceWithStreamingResponse:
         return RecordsResourceWithStreamingResponse(self._dns.records)
 
@@ -183,6 +211,10 @@ class DNSResourceWithStreamingResponse:
 class AsyncDNSResourceWithStreamingResponse:
     def __init__(self, dns: AsyncDNSResource) -> None:
         self._dns = dns
+
+    @cached_property
+    def dnssec(self) -> AsyncDNSSECResourceWithStreamingResponse:
+        return AsyncDNSSECResourceWithStreamingResponse(self._dns.dnssec)
 
     @cached_property
     def records(self) -> AsyncRecordsResourceWithStreamingResponse:

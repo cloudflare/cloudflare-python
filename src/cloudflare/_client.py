@@ -57,7 +57,6 @@ if TYPE_CHECKING:
         rules,
         speed,
         zones,
-        dnssec,
         images,
         queues,
         stream,
@@ -309,12 +308,6 @@ class Cloudflare(SyncAPIClient):
         from .resources.dns import DNSResource
 
         return DNSResource(self)
-
-    @cached_property
-    def dnssec(self) -> dnssec.DNSSECResource:
-        from .resources.dnssec import DNSSECResource
-
-        return DNSSECResource(self)
 
     @cached_property
     def email_security(self) -> email_security.EmailSecurityResource:
@@ -1076,12 +1069,6 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncDNSResource(self)
 
     @cached_property
-    def dnssec(self) -> dnssec.AsyncDNSSECResource:
-        from .resources.dnssec import AsyncDNSSECResource
-
-        return AsyncDNSSECResource(self)
-
-    @cached_property
     def email_security(self) -> email_security.AsyncEmailSecurityResource:
         from .resources.email_security import AsyncEmailSecurityResource
 
@@ -1774,12 +1761,6 @@ class CloudflareWithRawResponse:
         return DNSResourceWithRawResponse(self._client.dns)
 
     @cached_property
-    def dnssec(self) -> dnssec.DNSSECResourceWithRawResponse:
-        from .resources.dnssec import DNSSECResourceWithRawResponse
-
-        return DNSSECResourceWithRawResponse(self._client.dnssec)
-
-    @cached_property
     def email_security(self) -> email_security.EmailSecurityResourceWithRawResponse:
         from .resources.email_security import EmailSecurityResourceWithRawResponse
 
@@ -2291,12 +2272,6 @@ class AsyncCloudflareWithRawResponse:
         from .resources.dns import AsyncDNSResourceWithRawResponse
 
         return AsyncDNSResourceWithRawResponse(self._client.dns)
-
-    @cached_property
-    def dnssec(self) -> dnssec.AsyncDNSSECResourceWithRawResponse:
-        from .resources.dnssec import AsyncDNSSECResourceWithRawResponse
-
-        return AsyncDNSSECResourceWithRawResponse(self._client.dnssec)
 
     @cached_property
     def email_security(self) -> email_security.AsyncEmailSecurityResourceWithRawResponse:
@@ -2812,12 +2787,6 @@ class CloudflareWithStreamedResponse:
         return DNSResourceWithStreamingResponse(self._client.dns)
 
     @cached_property
-    def dnssec(self) -> dnssec.DNSSECResourceWithStreamingResponse:
-        from .resources.dnssec import DNSSECResourceWithStreamingResponse
-
-        return DNSSECResourceWithStreamingResponse(self._client.dnssec)
-
-    @cached_property
     def email_security(self) -> email_security.EmailSecurityResourceWithStreamingResponse:
         from .resources.email_security import EmailSecurityResourceWithStreamingResponse
 
@@ -3331,12 +3300,6 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.dns import AsyncDNSResourceWithStreamingResponse
 
         return AsyncDNSResourceWithStreamingResponse(self._client.dns)
-
-    @cached_property
-    def dnssec(self) -> dnssec.AsyncDNSSECResourceWithStreamingResponse:
-        from .resources.dnssec import AsyncDNSSECResourceWithStreamingResponse
-
-        return AsyncDNSSECResourceWithStreamingResponse(self._client.dnssec)
 
     @cached_property
     def email_security(self) -> email_security.AsyncEmailSecurityResourceWithStreamingResponse:

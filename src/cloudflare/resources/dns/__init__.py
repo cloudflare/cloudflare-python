@@ -8,6 +8,14 @@ from .dns import (
     DNSResourceWithStreamingResponse,
     AsyncDNSResourceWithStreamingResponse,
 )
+from .dnssec import (
+    DNSSECResource,
+    AsyncDNSSECResource,
+    DNSSECResourceWithRawResponse,
+    AsyncDNSSECResourceWithRawResponse,
+    DNSSECResourceWithStreamingResponse,
+    AsyncDNSSECResourceWithStreamingResponse,
+)
 from .records import (
     RecordsResource,
     AsyncRecordsResource,
@@ -42,6 +50,12 @@ from .analytics import (
 )
 
 __all__ = [
+    "DNSSECResource",
+    "AsyncDNSSECResource",
+    "DNSSECResourceWithRawResponse",
+    "AsyncDNSSECResourceWithRawResponse",
+    "DNSSECResourceWithStreamingResponse",
+    "AsyncDNSSECResourceWithStreamingResponse",
     "RecordsResource",
     "AsyncRecordsResource",
     "RecordsResourceWithRawResponse",
