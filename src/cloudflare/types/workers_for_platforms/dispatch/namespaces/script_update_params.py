@@ -55,6 +55,13 @@ class Variant0MetadataAssetsConfig(TypedDict, total=False):
     is no Worker script.
     """
 
+    serve_directly: bool
+    """
+    When true and the incoming request matches an asset, that will be served instead
+    of invoking the Worker script. When false, requests will always invoke the
+    Worker script.
+    """
+
 
 class Variant0MetadataAssets(TypedDict, total=False):
     config: Variant0MetadataAssetsConfig
