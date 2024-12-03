@@ -6,14 +6,13 @@ from typing import Union
 from datetime import datetime
 from typing_extensions import Required, Annotated, TypedDict
 
-from ....._utils import PropertyInfo
-from ....dns_firewall.delta import Delta
+from ...._utils import PropertyInfo
 
-__all__ = ["BytimeGetParams"]
+__all__ = ["ReportGetParams"]
 
 
-class BytimeGetParams(TypedDict, total=False):
-    zone_id: Required[str]
+class ReportGetParams(TypedDict, total=False):
+    account_id: Required[str]
     """Identifier"""
 
     dimensions: str
@@ -36,9 +35,6 @@ class BytimeGetParams(TypedDict, total=False):
     A comma-separated list of dimensions to sort by, where each dimension may be
     prefixed by - (descending) or + (ascending).
     """
-
-    time_delta: Delta
-    """Unit of time to group data by."""
 
     until: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """End date and time of requesting data period in ISO 8601 format."""
