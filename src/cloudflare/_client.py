@@ -93,7 +93,6 @@ if TYPE_CHECKING:
         security_txt,
         email_routing,
         magic_transit,
-        secondary_dns,
         waiting_rooms,
         bot_management,
         cloudforce_one,
@@ -374,12 +373,6 @@ class Cloudflare(SyncAPIClient):
         from .resources.rate_limits import RateLimitsResource
 
         return RateLimitsResource(self)
-
-    @cached_property
-    def secondary_dns(self) -> secondary_dns.SecondaryDNSResource:
-        from .resources.secondary_dns import SecondaryDNSResource
-
-        return SecondaryDNSResource(self)
 
     @cached_property
     def waiting_rooms(self) -> waiting_rooms.WaitingRoomsResource:
@@ -1135,12 +1128,6 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncRateLimitsResource(self)
 
     @cached_property
-    def secondary_dns(self) -> secondary_dns.AsyncSecondaryDNSResource:
-        from .resources.secondary_dns import AsyncSecondaryDNSResource
-
-        return AsyncSecondaryDNSResource(self)
-
-    @cached_property
     def waiting_rooms(self) -> waiting_rooms.AsyncWaitingRoomsResource:
         from .resources.waiting_rooms import AsyncWaitingRoomsResource
 
@@ -1827,12 +1814,6 @@ class CloudflareWithRawResponse:
         return RateLimitsResourceWithRawResponse(self._client.rate_limits)
 
     @cached_property
-    def secondary_dns(self) -> secondary_dns.SecondaryDNSResourceWithRawResponse:
-        from .resources.secondary_dns import SecondaryDNSResourceWithRawResponse
-
-        return SecondaryDNSResourceWithRawResponse(self._client.secondary_dns)
-
-    @cached_property
     def waiting_rooms(self) -> waiting_rooms.WaitingRoomsResourceWithRawResponse:
         from .resources.waiting_rooms import WaitingRoomsResourceWithRawResponse
 
@@ -2338,12 +2319,6 @@ class AsyncCloudflareWithRawResponse:
         from .resources.rate_limits import AsyncRateLimitsResourceWithRawResponse
 
         return AsyncRateLimitsResourceWithRawResponse(self._client.rate_limits)
-
-    @cached_property
-    def secondary_dns(self) -> secondary_dns.AsyncSecondaryDNSResourceWithRawResponse:
-        from .resources.secondary_dns import AsyncSecondaryDNSResourceWithRawResponse
-
-        return AsyncSecondaryDNSResourceWithRawResponse(self._client.secondary_dns)
 
     @cached_property
     def waiting_rooms(self) -> waiting_rooms.AsyncWaitingRoomsResourceWithRawResponse:
@@ -2853,12 +2828,6 @@ class CloudflareWithStreamedResponse:
         return RateLimitsResourceWithStreamingResponse(self._client.rate_limits)
 
     @cached_property
-    def secondary_dns(self) -> secondary_dns.SecondaryDNSResourceWithStreamingResponse:
-        from .resources.secondary_dns import SecondaryDNSResourceWithStreamingResponse
-
-        return SecondaryDNSResourceWithStreamingResponse(self._client.secondary_dns)
-
-    @cached_property
     def waiting_rooms(self) -> waiting_rooms.WaitingRoomsResourceWithStreamingResponse:
         from .resources.waiting_rooms import WaitingRoomsResourceWithStreamingResponse
 
@@ -3366,12 +3335,6 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.rate_limits import AsyncRateLimitsResourceWithStreamingResponse
 
         return AsyncRateLimitsResourceWithStreamingResponse(self._client.rate_limits)
-
-    @cached_property
-    def secondary_dns(self) -> secondary_dns.AsyncSecondaryDNSResourceWithStreamingResponse:
-        from .resources.secondary_dns import AsyncSecondaryDNSResourceWithStreamingResponse
-
-        return AsyncSecondaryDNSResourceWithStreamingResponse(self._client.secondary_dns)
 
     @cached_property
     def waiting_rooms(self) -> waiting_rooms.AsyncWaitingRoomsResourceWithStreamingResponse:
