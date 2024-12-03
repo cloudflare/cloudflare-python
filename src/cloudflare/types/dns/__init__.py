@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from .dnssec import DNSSEC as DNSSEC
 from .a_record import ARecord as ARecord
 from .ds_record import DSRecord as DSRecord
 from .mx_record import MXRecord as MXRecord
@@ -42,6 +43,7 @@ from .cert_record_param import CERTRecordParam as CERTRecordParam
 from .svcb_record_param import SVCBRecordParam as SVCBRecordParam
 from .tlsa_record_param import TLSARecordParam as TLSARecordParam
 from .cname_record_param import CNAMERecordParam as CNAMERecordParam
+from .dnssec_edit_params import DNSSECEditParams as DNSSECEditParams
 from .https_record_param import HTTPSRecordParam as HTTPSRecordParam
 from .naptr_record_param import NAPTRRecordParam as NAPTRRecordParam
 from .record_edit_params import RecordEditParams as RecordEditParams
@@ -67,6 +69,7 @@ from .firewall_get_response import FirewallGetResponse as FirewallGetResponse
 from .record_batch_response import RecordBatchResponse as RecordBatchResponse
 from .record_process_timing import RecordProcessTiming as RecordProcessTiming
 from .setting_edit_response import SettingEditResponse as SettingEditResponse
+from .dnssec_delete_response import DNSSECDeleteResponse as DNSSECDeleteResponse
 from .firewall_create_params import FirewallCreateParams as FirewallCreateParams
 from .firewall_edit_response import FirewallEditResponse as FirewallEditResponse
 from .firewall_list_response import FirewallListResponse as FirewallListResponse
