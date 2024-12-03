@@ -24,8 +24,8 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import make_request_options
 from .....types.dns_firewall import Delta
 from .....types.dns_firewall.delta import Delta
-from .....types.dns.analytics.reports import bytime_get_params
 from .....types.dns.analytics.reports.by_time import ByTime
+from .....types.dns_firewall.analytics.reports import bytime_get_params
 
 __all__ = ["BytimesResource", "AsyncBytimesResource"]
 
@@ -52,8 +52,9 @@ class BytimesResource(SyncAPIResource):
 
     def get(
         self,
+        dns_firewall_id: str,
         *,
-        zone_id: str,
+        account_id: str,
         dimensions: str | NotGiven = NOT_GIVEN,
         filters: str | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
@@ -77,7 +78,9 @@ class BytimesResource(SyncAPIResource):
         for detailed information about the available query parameters.
 
         Args:
-          zone_id: Identifier
+          account_id: Identifier
+
+          dns_firewall_id: Identifier
 
           dimensions: A comma-separated list of dimensions to group results by.
 
@@ -104,10 +107,12 @@ class BytimesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not dns_firewall_id:
+            raise ValueError(f"Expected a non-empty value for `dns_firewall_id` but received {dns_firewall_id!r}")
         return self._get(
-            f"/zones/{zone_id}/dns_analytics/report/bytime",
+            f"/accounts/{account_id}/dns_firewall/{dns_firewall_id}/dns_analytics/report/bytime",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -154,8 +159,9 @@ class AsyncBytimesResource(AsyncAPIResource):
 
     async def get(
         self,
+        dns_firewall_id: str,
         *,
-        zone_id: str,
+        account_id: str,
         dimensions: str | NotGiven = NOT_GIVEN,
         filters: str | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
@@ -179,7 +185,9 @@ class AsyncBytimesResource(AsyncAPIResource):
         for detailed information about the available query parameters.
 
         Args:
-          zone_id: Identifier
+          account_id: Identifier
+
+          dns_firewall_id: Identifier
 
           dimensions: A comma-separated list of dimensions to group results by.
 
@@ -206,10 +214,12 @@ class AsyncBytimesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not dns_firewall_id:
+            raise ValueError(f"Expected a non-empty value for `dns_firewall_id` but received {dns_firewall_id!r}")
         return await self._get(
-            f"/zones/{zone_id}/dns_analytics/report/bytime",
+            f"/accounts/{account_id}/dns_firewall/{dns_firewall_id}/dns_analytics/report/bytime",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

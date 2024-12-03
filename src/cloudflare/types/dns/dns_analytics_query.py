@@ -4,7 +4,7 @@ from typing import List, Optional
 from datetime import datetime
 
 from ..._models import BaseModel
-from .firewall.delta import Delta
+from ..dns_firewall.delta import Delta
 
 __all__ = ["DNSAnalyticsQuery"]
 
