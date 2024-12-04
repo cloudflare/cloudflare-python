@@ -28,7 +28,10 @@ class IPIPV4(TypedDict, total=False):
     """IP address of the target"""
 
     virtual_network_id: str
-    """Private virtual network identifier for the target"""
+    """(optional) Private virtual network identifier for the target.
+
+    If omitted, the default virtual network ID will be used.
+    """
 
 
 class IPIPV6(TypedDict, total=False):
@@ -36,7 +39,10 @@ class IPIPV6(TypedDict, total=False):
     """IP address of the target"""
 
     virtual_network_id: str
-    """Private virtual network identifier for the target"""
+    """(optional) Private virtual network identifier for the target.
+
+    If omitted, the default virtual network ID will be used.
+    """
 
 
 class IP(TypedDict, total=False):
