@@ -13,7 +13,10 @@ class IPIPV4(BaseModel):
     """IP address of the target"""
 
     virtual_network_id: Optional[str] = None
-    """Private virtual network identifier for the target"""
+    """(optional) Private virtual network identifier for the target.
+
+    If omitted, the default virtual network ID will be used.
+    """
 
 
 class IPIPV6(BaseModel):
@@ -21,7 +24,10 @@ class IPIPV6(BaseModel):
     """IP address of the target"""
 
     virtual_network_id: Optional[str] = None
-    """Private virtual network identifier for the target"""
+    """(optional) Private virtual network identifier for the target.
+
+    If omitted, the default virtual network ID will be used.
+    """
 
 
 class IP(BaseModel):
