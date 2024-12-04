@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from typing import Type, Union, Optional, cast
 from datetime import datetime
+from typing_extensions import Literal
 
 import httpx
 
@@ -22,8 +23,6 @@ from ....._response import (
 )
 from ....._wrappers import ResultWrapper
 from ....._base_client import make_request_options
-from .....types.dns_firewall import Delta
-from .....types.dns_firewall.delta import Delta
 from .....types.dns.analytics.reports.by_time import ByTime
 from .....types.dns_firewall.analytics.reports import bytime_get_params
 
@@ -61,7 +60,8 @@ class BytimesResource(SyncAPIResource):
         metrics: str | NotGiven = NOT_GIVEN,
         since: Union[str, datetime] | NotGiven = NOT_GIVEN,
         sort: str | NotGiven = NOT_GIVEN,
-        time_delta: Delta | NotGiven = NOT_GIVEN,
+        time_delta: Literal["all", "auto", "year", "quarter", "month", "week", "day", "hour", "dekaminute", "minute"]
+        | NotGiven = NOT_GIVEN,
         until: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -168,7 +168,8 @@ class AsyncBytimesResource(AsyncAPIResource):
         metrics: str | NotGiven = NOT_GIVEN,
         since: Union[str, datetime] | NotGiven = NOT_GIVEN,
         sort: str | NotGiven = NOT_GIVEN,
-        time_delta: Delta | NotGiven = NOT_GIVEN,
+        time_delta: Literal["all", "auto", "year", "quarter", "month", "week", "day", "hour", "dekaminute", "minute"]
+        | NotGiven = NOT_GIVEN,
         until: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

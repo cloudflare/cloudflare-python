@@ -998,12 +998,6 @@ Methods:
 
 ## Analytics
 
-Types:
-
-```python
-from cloudflare.types.dns_firewall import Delta
-```
-
 ### Reports
 
 Methods:
