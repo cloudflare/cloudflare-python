@@ -16,14 +16,14 @@ class CustomCreateParams(TypedDict, total=False):
     domain: Required[str]
     """Name of the custom domain to be added"""
 
-    zone_id: Required[Annotated[str, PropertyInfo(alias="zoneId")]]
-    """Zone ID of the custom domain"""
-
-    enabled: bool
+    enabled: Required[bool]
     """Whether to enable public bucket access at the custom domain.
 
     If undefined, the domain will be enabled.
     """
+
+    zone_id: Required[Annotated[str, PropertyInfo(alias="zoneId")]]
+    """Zone ID of the custom domain"""
 
     min_tls: Annotated[Literal["1.0", "1.1", "1.2", "1.3"], PropertyInfo(alias="minTLS")]
     """Minimum TLS Version the custom domain will accept for incoming connections.
