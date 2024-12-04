@@ -60,8 +60,8 @@ class CustomResource(SyncAPIResource):
         *,
         account_id: str,
         domain: str,
+        enabled: bool,
         zone_id: str,
-        enabled: bool | NotGiven = NOT_GIVEN,
         min_tls: Literal["1.0", "1.1", "1.2", "1.3"] | NotGiven = NOT_GIVEN,
         cf_r2_jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -81,10 +81,10 @@ class CustomResource(SyncAPIResource):
 
           domain: Name of the custom domain to be added
 
-          zone_id: Zone ID of the custom domain
-
           enabled: Whether to enable public bucket access at the custom domain. If undefined, the
               domain will be enabled.
+
+          zone_id: Zone ID of the custom domain
 
           min_tls: Minimum TLS Version the custom domain will accept for incoming connections. If
               not set, defaults to 1.0.
@@ -114,8 +114,8 @@ class CustomResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "domain": domain,
-                    "zone_id": zone_id,
                     "enabled": enabled,
+                    "zone_id": zone_id,
                     "min_tls": min_tls,
                 },
                 custom_create_params.CustomCreateParams,
@@ -398,8 +398,8 @@ class AsyncCustomResource(AsyncAPIResource):
         *,
         account_id: str,
         domain: str,
+        enabled: bool,
         zone_id: str,
-        enabled: bool | NotGiven = NOT_GIVEN,
         min_tls: Literal["1.0", "1.1", "1.2", "1.3"] | NotGiven = NOT_GIVEN,
         cf_r2_jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -419,10 +419,10 @@ class AsyncCustomResource(AsyncAPIResource):
 
           domain: Name of the custom domain to be added
 
-          zone_id: Zone ID of the custom domain
-
           enabled: Whether to enable public bucket access at the custom domain. If undefined, the
               domain will be enabled.
+
+          zone_id: Zone ID of the custom domain
 
           min_tls: Minimum TLS Version the custom domain will accept for incoming connections. If
               not set, defaults to 1.0.
@@ -452,8 +452,8 @@ class AsyncCustomResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "domain": domain,
-                    "zone_id": zone_id,
                     "enabled": enabled,
+                    "zone_id": zone_id,
                     "min_tls": min_tls,
                 },
                 custom_create_params.CustomCreateParams,

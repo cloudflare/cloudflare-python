@@ -63,9 +63,9 @@ class ColosResource(SyncAPIResource):
         are also returned and sorted alphabetically.
 
         Args:
-          from_: Start time for connection period in RFC3339 (ISO 8601) format.
+          from_: Start time for connection period in ISO (RFC3339 - ISO 8601) format
 
-          to: End time for connection period in RFC3339 (ISO 8601) format.
+          to: End time for connection period in ISO (RFC3339 - ISO 8601) format
 
           sort_by: Type of usage that colos should be sorted by. If unspecified, returns all
               Cloudflare colos sorted alphabetically.
@@ -141,9 +141,9 @@ class AsyncColosResource(AsyncAPIResource):
         are also returned and sorted alphabetically.
 
         Args:
-          from_: Start time for connection period in RFC3339 (ISO 8601) format.
+          from_: Start time for connection period in ISO (RFC3339 - ISO 8601) format
 
-          to: End time for connection period in RFC3339 (ISO 8601) format.
+          to: End time for connection period in ISO (RFC3339 - ISO 8601) format
 
           sort_by: Type of usage that colos should be sorted by. If unspecified, returns all
               Cloudflare colos sorted alphabetically.

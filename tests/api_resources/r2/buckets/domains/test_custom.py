@@ -29,6 +29,7 @@ class TestCustom:
             bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="prefix.example-domain.com",
+            enabled=True,
             zone_id="36ca64a6d92827b8a6b90be344bb1bfd",
         )
         assert_matches_type(CustomCreateResponse, custom, path=["response"])
@@ -39,8 +40,8 @@ class TestCustom:
             bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="prefix.example-domain.com",
-            zone_id="36ca64a6d92827b8a6b90be344bb1bfd",
             enabled=True,
+            zone_id="36ca64a6d92827b8a6b90be344bb1bfd",
             min_tls="1.0",
             cf_r2_jurisdiction="default",
         )
@@ -52,6 +53,7 @@ class TestCustom:
             bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="prefix.example-domain.com",
+            enabled=True,
             zone_id="36ca64a6d92827b8a6b90be344bb1bfd",
         )
 
@@ -66,6 +68,7 @@ class TestCustom:
             bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="prefix.example-domain.com",
+            enabled=True,
             zone_id="36ca64a6d92827b8a6b90be344bb1bfd",
         ) as response:
             assert not response.is_closed
@@ -83,6 +86,7 @@ class TestCustom:
                 bucket_name="example-bucket",
                 account_id="",
                 domain="prefix.example-domain.com",
+                enabled=True,
                 zone_id="36ca64a6d92827b8a6b90be344bb1bfd",
             )
 
@@ -91,6 +95,7 @@ class TestCustom:
                 bucket_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 domain="prefix.example-domain.com",
+                enabled=True,
                 zone_id="36ca64a6d92827b8a6b90be344bb1bfd",
             )
 
@@ -373,6 +378,7 @@ class TestAsyncCustom:
             bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="prefix.example-domain.com",
+            enabled=True,
             zone_id="36ca64a6d92827b8a6b90be344bb1bfd",
         )
         assert_matches_type(CustomCreateResponse, custom, path=["response"])
@@ -383,8 +389,8 @@ class TestAsyncCustom:
             bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="prefix.example-domain.com",
-            zone_id="36ca64a6d92827b8a6b90be344bb1bfd",
             enabled=True,
+            zone_id="36ca64a6d92827b8a6b90be344bb1bfd",
             min_tls="1.0",
             cf_r2_jurisdiction="default",
         )
@@ -396,6 +402,7 @@ class TestAsyncCustom:
             bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="prefix.example-domain.com",
+            enabled=True,
             zone_id="36ca64a6d92827b8a6b90be344bb1bfd",
         )
 
@@ -410,6 +417,7 @@ class TestAsyncCustom:
             bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="prefix.example-domain.com",
+            enabled=True,
             zone_id="36ca64a6d92827b8a6b90be344bb1bfd",
         ) as response:
             assert not response.is_closed
@@ -427,6 +435,7 @@ class TestAsyncCustom:
                 bucket_name="example-bucket",
                 account_id="",
                 domain="prefix.example-domain.com",
+                enabled=True,
                 zone_id="36ca64a6d92827b8a6b90be344bb1bfd",
             )
 
@@ -435,6 +444,7 @@ class TestAsyncCustom:
                 bucket_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 domain="prefix.example-domain.com",
+                enabled=True,
                 zone_id="36ca64a6d92827b8a6b90be344bb1bfd",
             )
 

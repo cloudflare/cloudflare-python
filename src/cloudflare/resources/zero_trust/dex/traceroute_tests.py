@@ -210,9 +210,9 @@ class TracerouteTestsResource(SyncAPIResource):
         Args:
           test_id: API Resource UUID tag.
 
-          from_: Start time for aggregate metrics in ISO format
+          from_: Start time for the query in ISO (RFC3339 - ISO 8601) format
 
-          to: End time for aggregate metrics in ISO format
+          to: End time for the query in ISO (RFC3339 - ISO 8601) format
 
           colo: Optionally filter result stats to a Cloudflare colo. Cannot be used in
               combination with deviceId param.
@@ -432,9 +432,9 @@ class AsyncTracerouteTestsResource(AsyncAPIResource):
         Args:
           test_id: API Resource UUID tag.
 
-          from_: Start time for aggregate metrics in ISO format
+          from_: Start time for the query in ISO (RFC3339 - ISO 8601) format
 
-          to: End time for aggregate metrics in ISO format
+          to: End time for the query in ISO (RFC3339 - ISO 8601) format
 
           colo: Optionally filter result stats to a Cloudflare colo. Cannot be used in
               combination with deviceId param.
