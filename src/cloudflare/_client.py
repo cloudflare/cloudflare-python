@@ -63,7 +63,6 @@ if TYPE_CHECKING:
         billing,
         filters,
         logpush,
-        storage,
         workers,
         accounts,
         alerting,
@@ -536,12 +535,6 @@ class Cloudflare(SyncAPIClient):
         from .resources.rules import RulesResource
 
         return RulesResource(self)
-
-    @cached_property
-    def storage(self) -> storage.StorageResource:
-        from .resources.storage import StorageResource
-
-        return StorageResource(self)
 
     @cached_property
     def stream(self) -> stream.StreamResource:
@@ -1297,12 +1290,6 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncRulesResource(self)
 
     @cached_property
-    def storage(self) -> storage.AsyncStorageResource:
-        from .resources.storage import AsyncStorageResource
-
-        return AsyncStorageResource(self)
-
-    @cached_property
     def stream(self) -> stream.AsyncStreamResource:
         from .resources.stream import AsyncStreamResource
 
@@ -1989,12 +1976,6 @@ class CloudflareWithRawResponse:
         return RulesResourceWithRawResponse(self._client.rules)
 
     @cached_property
-    def storage(self) -> storage.StorageResourceWithRawResponse:
-        from .resources.storage import StorageResourceWithRawResponse
-
-        return StorageResourceWithRawResponse(self._client.storage)
-
-    @cached_property
     def stream(self) -> stream.StreamResourceWithRawResponse:
         from .resources.stream import StreamResourceWithRawResponse
 
@@ -2502,12 +2483,6 @@ class AsyncCloudflareWithRawResponse:
         return AsyncRulesResourceWithRawResponse(self._client.rules)
 
     @cached_property
-    def storage(self) -> storage.AsyncStorageResourceWithRawResponse:
-        from .resources.storage import AsyncStorageResourceWithRawResponse
-
-        return AsyncStorageResourceWithRawResponse(self._client.storage)
-
-    @cached_property
     def stream(self) -> stream.AsyncStreamResourceWithRawResponse:
         from .resources.stream import AsyncStreamResourceWithRawResponse
 
@@ -3013,12 +2988,6 @@ class CloudflareWithStreamedResponse:
         from .resources.rules import RulesResourceWithStreamingResponse
 
         return RulesResourceWithStreamingResponse(self._client.rules)
-
-    @cached_property
-    def storage(self) -> storage.StorageResourceWithStreamingResponse:
-        from .resources.storage import StorageResourceWithStreamingResponse
-
-        return StorageResourceWithStreamingResponse(self._client.storage)
 
     @cached_property
     def stream(self) -> stream.StreamResourceWithStreamingResponse:
@@ -3530,12 +3499,6 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.rules import AsyncRulesResourceWithStreamingResponse
 
         return AsyncRulesResourceWithStreamingResponse(self._client.rules)
-
-    @cached_property
-    def storage(self) -> storage.AsyncStorageResourceWithStreamingResponse:
-        from .resources.storage import AsyncStorageResourceWithStreamingResponse
-
-        return AsyncStorageResourceWithStreamingResponse(self._client.storage)
 
     @cached_property
     def stream(self) -> stream.AsyncStreamResourceWithStreamingResponse:

@@ -2519,6 +2519,19 @@ Methods:
 - <code title="put /accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk">client.kv.namespaces.<a href="./src/cloudflare/resources/kv/namespaces/namespaces.py">bulk_update</a>(namespace_id, \*, account_id, \*\*<a href="src/cloudflare/types/kv/namespace_bulk_update_params.py">params</a>) -> <a href="./src/cloudflare/types/kv/namespace_bulk_update_response.py">Optional[NamespaceBulkUpdateResponse]</a></code>
 - <code title="get /accounts/{account_id}/storage/kv/namespaces/{namespace_id}">client.kv.namespaces.<a href="./src/cloudflare/resources/kv/namespaces/namespaces.py">get</a>(namespace_id, \*, account_id) -> <a href="./src/cloudflare/types/kv/namespace.py">Optional[Namespace]</a></code>
 
+### Analytics
+
+Types:
+
+```python
+from cloudflare.types.kv.namespaces import Components, Schema
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/storage/analytics">client.kv.namespaces.analytics.<a href="./src/cloudflare/resources/kv/namespaces/analytics.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/kv/namespaces/analytics_list_params.py">params</a>) -> <a href="./src/cloudflare/types/kv/namespaces/schema.py">Optional[Schema]</a></code>
+- <code title="get /accounts/{account_id}/storage/analytics/stored">client.kv.namespaces.analytics.<a href="./src/cloudflare/resources/kv/namespaces/analytics.py">stored</a>(\*, account_id, \*\*<a href="src/cloudflare/types/kv/namespaces/analytics_stored_params.py">params</a>) -> <a href="./src/cloudflare/types/kv/namespaces/components.py">Optional[Components]</a></code>
+
 ### Keys
 
 Types:
@@ -4166,21 +4179,6 @@ Methods:
 - <code title="get /accounts/{account_id}/rules/lists/{list_id}/items">client.rules.lists.items.<a href="./src/cloudflare/resources/rules/lists/items.py">list</a>(list_id, \*, account_id, \*\*<a href="src/cloudflare/types/rules/lists/item_list_params.py">params</a>) -> <a href="./src/cloudflare/types/rules/lists/item_list_response.py">SyncCursorPagination[ItemListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/rules/lists/{list_id}/items">client.rules.lists.items.<a href="./src/cloudflare/resources/rules/lists/items.py">delete</a>(list_id, \*, account_id) -> <a href="./src/cloudflare/types/rules/lists/item_delete_response.py">ItemDeleteResponse</a></code>
 - <code title="get /accounts/{account_identifier}/rules/lists/{list_id}/items/{item_id}">client.rules.lists.items.<a href="./src/cloudflare/resources/rules/lists/items.py">get</a>(item_id, \*, account_identifier, list_id) -> <a href="./src/cloudflare/types/rules/lists/item_get_response.py">ItemGetResponse</a></code>
-
-# Storage
-
-## Analytics
-
-Types:
-
-```python
-from cloudflare.types.storage import Components, Schema
-```
-
-Methods:
-
-- <code title="get /accounts/{account_id}/storage/analytics">client.storage.analytics.<a href="./src/cloudflare/resources/storage/analytics.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/storage/analytics_list_params.py">params</a>) -> <a href="./src/cloudflare/types/storage/schema.py">Optional[Schema]</a></code>
-- <code title="get /accounts/{account_id}/storage/analytics/stored">client.storage.analytics.<a href="./src/cloudflare/resources/storage/analytics.py">stored</a>(\*, account_id, \*\*<a href="src/cloudflare/types/storage/analytics_stored_params.py">params</a>) -> <a href="./src/cloudflare/types/storage/components.py">Optional[Components]</a></code>
 
 # Stream
 
