@@ -10,7 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
-from cloudflare.types.storage import Schema, Components
+from cloudflare.types.kv.namespaces import Schema, Components
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -20,14 +20,14 @@ class TestAnalytics:
 
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
-        analytics = client.storage.analytics.list(
+        analytics = client.kv.namespaces.analytics.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Schema], analytics, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
-        analytics = client.storage.analytics.list(
+        analytics = client.kv.namespaces.analytics.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             query={
                 "dimensions": ["accountId"],
@@ -43,7 +43,7 @@ class TestAnalytics:
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
-        response = client.storage.analytics.with_raw_response.list(
+        response = client.kv.namespaces.analytics.with_raw_response.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -54,7 +54,7 @@ class TestAnalytics:
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
-        with client.storage.analytics.with_streaming_response.list(
+        with client.kv.namespaces.analytics.with_streaming_response.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -68,20 +68,20 @@ class TestAnalytics:
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.storage.analytics.with_raw_response.list(
+            client.kv.namespaces.analytics.with_raw_response.list(
                 account_id="",
             )
 
     @parametrize
     def test_method_stored(self, client: Cloudflare) -> None:
-        analytics = client.storage.analytics.stored(
+        analytics = client.kv.namespaces.analytics.stored(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Components], analytics, path=["response"])
 
     @parametrize
     def test_method_stored_with_all_params(self, client: Cloudflare) -> None:
-        analytics = client.storage.analytics.stored(
+        analytics = client.kv.namespaces.analytics.stored(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             query={
                 "dimensions": ["namespaceId"],
@@ -97,7 +97,7 @@ class TestAnalytics:
 
     @parametrize
     def test_raw_response_stored(self, client: Cloudflare) -> None:
-        response = client.storage.analytics.with_raw_response.stored(
+        response = client.kv.namespaces.analytics.with_raw_response.stored(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -108,7 +108,7 @@ class TestAnalytics:
 
     @parametrize
     def test_streaming_response_stored(self, client: Cloudflare) -> None:
-        with client.storage.analytics.with_streaming_response.stored(
+        with client.kv.namespaces.analytics.with_streaming_response.stored(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -122,7 +122,7 @@ class TestAnalytics:
     @parametrize
     def test_path_params_stored(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.storage.analytics.with_raw_response.stored(
+            client.kv.namespaces.analytics.with_raw_response.stored(
                 account_id="",
             )
 
@@ -132,14 +132,14 @@ class TestAsyncAnalytics:
 
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
-        analytics = await async_client.storage.analytics.list(
+        analytics = await async_client.kv.namespaces.analytics.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Schema], analytics, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        analytics = await async_client.storage.analytics.list(
+        analytics = await async_client.kv.namespaces.analytics.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             query={
                 "dimensions": ["accountId"],
@@ -155,7 +155,7 @@ class TestAsyncAnalytics:
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.storage.analytics.with_raw_response.list(
+        response = await async_client.kv.namespaces.analytics.with_raw_response.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -166,7 +166,7 @@ class TestAsyncAnalytics:
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.storage.analytics.with_streaming_response.list(
+        async with async_client.kv.namespaces.analytics.with_streaming_response.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -180,20 +180,20 @@ class TestAsyncAnalytics:
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.storage.analytics.with_raw_response.list(
+            await async_client.kv.namespaces.analytics.with_raw_response.list(
                 account_id="",
             )
 
     @parametrize
     async def test_method_stored(self, async_client: AsyncCloudflare) -> None:
-        analytics = await async_client.storage.analytics.stored(
+        analytics = await async_client.kv.namespaces.analytics.stored(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Components], analytics, path=["response"])
 
     @parametrize
     async def test_method_stored_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        analytics = await async_client.storage.analytics.stored(
+        analytics = await async_client.kv.namespaces.analytics.stored(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             query={
                 "dimensions": ["namespaceId"],
@@ -209,7 +209,7 @@ class TestAsyncAnalytics:
 
     @parametrize
     async def test_raw_response_stored(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.storage.analytics.with_raw_response.stored(
+        response = await async_client.kv.namespaces.analytics.with_raw_response.stored(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -220,7 +220,7 @@ class TestAsyncAnalytics:
 
     @parametrize
     async def test_streaming_response_stored(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.storage.analytics.with_streaming_response.stored(
+        async with async_client.kv.namespaces.analytics.with_streaming_response.stored(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -234,6 +234,6 @@ class TestAsyncAnalytics:
     @parametrize
     async def test_path_params_stored(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.storage.analytics.with_raw_response.stored(
+            await async_client.kv.namespaces.analytics.with_raw_response.stored(
                 account_id="",
             )
