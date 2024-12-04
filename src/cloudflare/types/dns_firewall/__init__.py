@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from .delta import Delta as Delta
 from .firewall_ips import FirewallIPs as FirewallIPs
 from .upstream_ips import UpstreamIPs as UpstreamIPs
 from .attack_mitigation import AttackMitigation as AttackMitigation
