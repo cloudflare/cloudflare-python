@@ -275,6 +275,9 @@ class AccessOIDCConfig(BaseModel):
     email_claim_name: Optional[str] = None
     """The claim name for email in the id_token response."""
 
+    pkce_enabled: Optional[bool] = None
+    """Enable Proof Key for Code Exchange (PKCE)"""
+
     scopes: Optional[List[str]] = None
     """OAuth scopes"""
 

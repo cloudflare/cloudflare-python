@@ -393,6 +393,9 @@ class AccessOIDCConfig(TypedDict, total=False):
     email_claim_name: str
     """The claim name for email in the id_token response."""
 
+    pkce_enabled: bool
+    """Enable Proof Key for Code Exchange (PKCE)"""
+
     scopes: List[str]
     """OAuth scopes"""
 
