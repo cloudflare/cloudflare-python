@@ -633,6 +633,7 @@ class TestIdentityProviders:
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
                 "email_claim_name": "custom_claim_name",
+                "pkce_enabled": True,
                 "scopes": ["openid", "email", "profile"],
                 "token_url": "https://accounts.google.com/o/oauth2/token",
             },
@@ -1926,6 +1927,7 @@ class TestIdentityProviders:
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
                 "email_claim_name": "custom_claim_name",
+                "pkce_enabled": True,
                 "scopes": ["openid", "email", "profile"],
                 "token_url": "https://accounts.google.com/o/oauth2/token",
             },
@@ -2617,6 +2619,7 @@ class TestIdentityProviders:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.list(
             account_id="account_id",
+            scim_enabled="scim_enabled",
         )
         assert_matches_type(SyncSinglePage[IdentityProviderListResponse], identity_provider, path=["response"])
 
@@ -3408,6 +3411,7 @@ class TestAsyncIdentityProviders:
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
                 "email_claim_name": "custom_claim_name",
+                "pkce_enabled": True,
                 "scopes": ["openid", "email", "profile"],
                 "token_url": "https://accounts.google.com/o/oauth2/token",
             },
@@ -4701,6 +4705,7 @@ class TestAsyncIdentityProviders:
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
                 "email_claim_name": "custom_claim_name",
+                "pkce_enabled": True,
                 "scopes": ["openid", "email", "profile"],
                 "token_url": "https://accounts.google.com/o/oauth2/token",
             },
@@ -5392,6 +5397,7 @@ class TestAsyncIdentityProviders:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.list(
             account_id="account_id",
+            scim_enabled="scim_enabled",
         )
         assert_matches_type(AsyncSinglePage[IdentityProviderListResponse], identity_provider, path=["response"])
 
