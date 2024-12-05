@@ -26,6 +26,7 @@ from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.zero_trust import (
     IdentityProviderType,
+    identity_provider_list_params,
     identity_provider_create_params,
     identity_provider_update_params,
 )
@@ -1585,6 +1586,7 @@ class IdentityProvidersResource(SyncAPIResource):
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
+        scim_enabled: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1599,6 +1601,9 @@ class IdentityProvidersResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_enabled: Indicates to Access to only retrieve identity providers that have the System for
+              Cross-Domain Identity Management (SCIM) enabled.
 
           extra_headers: Send extra headers
 
@@ -1624,7 +1629,13 @@ class IdentityProvidersResource(SyncAPIResource):
             f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers",
             page=SyncSinglePage[IdentityProviderListResponse],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {"scim_enabled": scim_enabled}, identity_provider_list_params.IdentityProviderListParams
+                ),
             ),
             model=cast(
                 Any, IdentityProviderListResponse
@@ -3301,6 +3312,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
+        scim_enabled: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3315,6 +3327,9 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          scim_enabled: Indicates to Access to only retrieve identity providers that have the System for
+              Cross-Domain Identity Management (SCIM) enabled.
 
           extra_headers: Send extra headers
 
@@ -3340,7 +3355,13 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
             f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers",
             page=AsyncSinglePage[IdentityProviderListResponse],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {"scim_enabled": scim_enabled}, identity_provider_list_params.IdentityProviderListParams
+                ),
             ),
             model=cast(
                 Any, IdentityProviderListResponse
