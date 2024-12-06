@@ -9,3 +9,5 @@ from .target_list_response import TargetListResponse as TargetListResponse
 from .target_update_params import TargetUpdateParams as TargetUpdateParams
 from .target_create_response import TargetCreateResponse as TargetCreateResponse
 from .target_update_response import TargetUpdateResponse as TargetUpdateResponse
+from .target_bulk_update_params import TargetBulkUpdateParams as TargetBulkUpdateParams
+from .target_bulk_update_response import TargetBulkUpdateResponse as TargetBulkUpdateResponse

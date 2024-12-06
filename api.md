@@ -5215,6 +5215,7 @@ from cloudflare.types.zero_trust.access.infrastructure import (
     TargetCreateResponse,
     TargetUpdateResponse,
     TargetListResponse,
+    TargetBulkUpdateResponse,
     TargetGetResponse,
 )
 ```
@@ -5225,6 +5226,8 @@ Methods:
 - <code title="put /accounts/{account_id}/infrastructure/targets/{target_id}">client.zero_trust.access.infrastructure.targets.<a href="./src/cloudflare/resources/zero_trust/access/infrastructure/targets.py">update</a>(target_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/access/infrastructure/target_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/infrastructure/target_update_response.py">Optional[TargetUpdateResponse]</a></code>
 - <code title="get /accounts/{account_id}/infrastructure/targets">client.zero_trust.access.infrastructure.targets.<a href="./src/cloudflare/resources/zero_trust/access/infrastructure/targets.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/access/infrastructure/target_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/infrastructure/target_list_response.py">SyncV4PagePaginationArray[TargetListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/infrastructure/targets/{target_id}">client.zero_trust.access.infrastructure.targets.<a href="./src/cloudflare/resources/zero_trust/access/infrastructure/targets.py">delete</a>(target_id, \*, account_id) -> None</code>
+- <code title="delete /accounts/{account_id}/infrastructure/targets/batch">client.zero_trust.access.infrastructure.targets.<a href="./src/cloudflare/resources/zero_trust/access/infrastructure/targets.py">bulk_delete</a>(\*, account_id) -> None</code>
+- <code title="put /accounts/{account_id}/infrastructure/targets/batch">client.zero_trust.access.infrastructure.targets.<a href="./src/cloudflare/resources/zero_trust/access/infrastructure/targets.py">bulk_update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/access/infrastructure/target_bulk_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/infrastructure/target_bulk_update_response.py">TargetBulkUpdateResponse</a></code>
 - <code title="get /accounts/{account_id}/infrastructure/targets/{target_id}">client.zero_trust.access.infrastructure.targets.<a href="./src/cloudflare/resources/zero_trust/access/infrastructure/targets.py">get</a>(target_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/access/infrastructure/target_get_response.py">Optional[TargetGetResponse]</a></code>
 
 ### Applications
