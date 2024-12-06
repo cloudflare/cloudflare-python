@@ -31,6 +31,9 @@ class Expiration(BaseModel):
     Must be set in order to use the `reset_expiration` endpoint on this rule.
     """
 
+    expired: Optional[bool] = None
+    """Whether the policy has expired."""
+
 
 class GatewayRule(BaseModel):
     id: Optional[str] = None
@@ -51,7 +54,6 @@ class GatewayRule(BaseModel):
             "override",
             "l4_override",
             "egress",
-            "audit_ssh",
             "resolve",
             "quarantine",
         ]
