@@ -13,10 +13,11 @@ class CertificateActivateResponse(BaseModel):
     id: Optional[str] = None
     """Certificate UUID tag."""
 
-    binding_status: Optional[Literal["pending_deployment", "active", "pending_deletion", "inactive"]] = None
+    binding_status: Optional[Literal["pending_deployment", "available", "pending_deletion", "inactive"]] = None
     """The deployment status of the certificate on Cloudflare's edge.
 
-    Certificates in the 'active' state may be used for Gateway TLS interception.
+    Certificates in the 'available' (previously called 'active') state may be used
+    for Gateway TLS interception.
     """
 
     certificate: Optional[str] = None
