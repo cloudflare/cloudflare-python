@@ -42,6 +42,7 @@ class TestRules:
             expiration={
                 "expires_at": parse_datetime("2014-01-01T05:20:20Z"),
                 "duration": 10,
+                "expired": False,
             },
             filters=["http"],
             identity='any(identity.groups.name[*] in {"finance"})',
@@ -181,6 +182,7 @@ class TestRules:
             expiration={
                 "expires_at": parse_datetime("2014-01-01T05:20:20Z"),
                 "duration": 10,
+                "expired": False,
             },
             filters=["http"],
             identity='any(identity.groups.name[*] in {"finance"})',
@@ -515,6 +517,7 @@ class TestAsyncRules:
             expiration={
                 "expires_at": parse_datetime("2014-01-01T05:20:20Z"),
                 "duration": 10,
+                "expired": False,
             },
             filters=["http"],
             identity='any(identity.groups.name[*] in {"finance"})',
@@ -654,6 +657,7 @@ class TestAsyncRules:
             expiration={
                 "expires_at": parse_datetime("2014-01-01T05:20:20Z"),
                 "duration": 10,
+                "expired": False,
             },
             filters=["http"],
             identity='any(identity.groups.name[*] in {"finance"})',
