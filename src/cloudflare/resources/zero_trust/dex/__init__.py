@@ -24,6 +24,14 @@ from .tests import (
     TestsResourceWithStreamingResponse,
     AsyncTestsResourceWithStreamingResponse,
 )
+from .commands import (
+    CommandsResource,
+    AsyncCommandsResource,
+    CommandsResourceWithRawResponse,
+    AsyncCommandsResourceWithRawResponse,
+    CommandsResourceWithStreamingResponse,
+    AsyncCommandsResourceWithStreamingResponse,
+)
 from .http_tests import (
     HTTPTestsResource,
     AsyncHTTPTestsResource,
@@ -58,6 +66,12 @@ from .traceroute_test_results import (
 )
 
 __all__ = [
+    "CommandsResource",
+    "AsyncCommandsResource",
+    "CommandsResourceWithRawResponse",
+    "AsyncCommandsResourceWithRawResponse",
+    "CommandsResourceWithStreamingResponse",
+    "AsyncCommandsResourceWithStreamingResponse",
     "ColosResource",
     "AsyncColosResource",
     "ColosResourceWithRawResponse",

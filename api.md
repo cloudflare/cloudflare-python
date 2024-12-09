@@ -5591,6 +5591,37 @@ from cloudflare.types.zero_trust import (
 )
 ```
 
+### Commands
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.dex import CommandCreateResponse, CommandListResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/commands">client.zero_trust.dex.commands.<a href="./src/cloudflare/resources/zero_trust/dex/commands/commands.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dex/command_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dex/command_create_response.py">Optional[CommandCreateResponse]</a></code>
+- <code title="get /accounts/{account_id}/commands">client.zero_trust.dex.commands.<a href="./src/cloudflare/resources/zero_trust/dex/commands/commands.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dex/command_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dex/command_list_response.py">SyncV4PagePagination[Optional[CommandListResponse]]</a></code>
+
+#### Downloads
+
+Methods:
+
+- <code title="get /accounts/{account_id}/commands/{command_id}/downloads/{filename}">client.zero_trust.dex.commands.downloads.<a href="./src/cloudflare/resources/zero_trust/dex/commands/downloads.py">get</a>(filename, \*, account_id, command_id) -> BinaryAPIResponse</code>
+
+#### Quota
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.dex.commands import QuotaGetResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/commands/quota">client.zero_trust.dex.commands.quota.<a href="./src/cloudflare/resources/zero_trust/dex/commands/quota.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dex/commands/quota_get_response.py">Optional[QuotaGetResponse]</a></code>
+
 ### Colos
 
 Types:
