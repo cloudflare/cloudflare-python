@@ -103,6 +103,7 @@ if TYPE_CHECKING:
         durable_objects,
         request_tracers,
         brand_protection,
+        content_scanning,
         custom_hostnames,
         resource_sharing,
         mtls_certificates,
@@ -703,6 +704,12 @@ class Cloudflare(SyncAPIClient):
         from .resources.leaked_credential_checks import LeakedCredentialChecksResource
 
         return LeakedCredentialChecksResource(self)
+
+    @cached_property
+    def content_scanning(self) -> content_scanning.ContentScanningResource:
+        from .resources.content_scanning import ContentScanningResource
+
+        return ContentScanningResource(self)
 
     @cached_property
     def with_raw_response(self) -> CloudflareWithRawResponse:
@@ -1458,6 +1465,12 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncLeakedCredentialChecksResource(self)
 
     @cached_property
+    def content_scanning(self) -> content_scanning.AsyncContentScanningResource:
+        from .resources.content_scanning import AsyncContentScanningResource
+
+        return AsyncContentScanningResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncCloudflareWithRawResponse:
         return AsyncCloudflareWithRawResponse(self)
 
@@ -2145,6 +2158,12 @@ class CloudflareWithRawResponse:
 
         return LeakedCredentialChecksResourceWithRawResponse(self._client.leaked_credential_checks)
 
+    @cached_property
+    def content_scanning(self) -> content_scanning.ContentScanningResourceWithRawResponse:
+        from .resources.content_scanning import ContentScanningResourceWithRawResponse
+
+        return ContentScanningResourceWithRawResponse(self._client.content_scanning)
+
 
 class AsyncCloudflareWithRawResponse:
     _client: AsyncCloudflare
@@ -2652,6 +2671,12 @@ class AsyncCloudflareWithRawResponse:
 
         return AsyncLeakedCredentialChecksResourceWithRawResponse(self._client.leaked_credential_checks)
 
+    @cached_property
+    def content_scanning(self) -> content_scanning.AsyncContentScanningResourceWithRawResponse:
+        from .resources.content_scanning import AsyncContentScanningResourceWithRawResponse
+
+        return AsyncContentScanningResourceWithRawResponse(self._client.content_scanning)
+
 
 class CloudflareWithStreamedResponse:
     _client: Cloudflare
@@ -3158,6 +3183,12 @@ class CloudflareWithStreamedResponse:
         from .resources.leaked_credential_checks import LeakedCredentialChecksResourceWithStreamingResponse
 
         return LeakedCredentialChecksResourceWithStreamingResponse(self._client.leaked_credential_checks)
+
+    @cached_property
+    def content_scanning(self) -> content_scanning.ContentScanningResourceWithStreamingResponse:
+        from .resources.content_scanning import ContentScanningResourceWithStreamingResponse
+
+        return ContentScanningResourceWithStreamingResponse(self._client.content_scanning)
 
 
 class AsyncCloudflareWithStreamedResponse:
@@ -3675,6 +3706,12 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.leaked_credential_checks import AsyncLeakedCredentialChecksResourceWithStreamingResponse
 
         return AsyncLeakedCredentialChecksResourceWithStreamingResponse(self._client.leaked_credential_checks)
+
+    @cached_property
+    def content_scanning(self) -> content_scanning.AsyncContentScanningResourceWithStreamingResponse:
+        from .resources.content_scanning import AsyncContentScanningResourceWithStreamingResponse
+
+        return AsyncContentScanningResourceWithStreamingResponse(self._client.content_scanning)
 
 
 Client = Cloudflare
