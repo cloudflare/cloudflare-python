@@ -1636,9 +1636,9 @@ Types:
 
 ```python
 from cloudflare.types.firewall import (
+    DeletedFilter,
     FirewallRule,
     Product,
-    DeletedFilter,
     RuleCreateResponse,
     RuleBulkDeleteResponse,
     RuleBulkEditResponse,
