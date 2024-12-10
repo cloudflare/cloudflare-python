@@ -17,7 +17,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestActivationCheck:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_trigger(self, client: Cloudflare) -> None:
         activation_check = client.zones.activation_check.trigger(
@@ -25,7 +24,6 @@ class TestActivationCheck:
         )
         assert_matches_type(Optional[ActivationCheckTriggerResponse], activation_check, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_trigger(self, client: Cloudflare) -> None:
         response = client.zones.activation_check.with_raw_response.trigger(
@@ -37,7 +35,6 @@ class TestActivationCheck:
         activation_check = response.parse()
         assert_matches_type(Optional[ActivationCheckTriggerResponse], activation_check, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_trigger(self, client: Cloudflare) -> None:
         with client.zones.activation_check.with_streaming_response.trigger(
@@ -51,7 +48,6 @@ class TestActivationCheck:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_trigger(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -63,7 +59,6 @@ class TestActivationCheck:
 class TestAsyncActivationCheck:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_trigger(self, async_client: AsyncCloudflare) -> None:
         activation_check = await async_client.zones.activation_check.trigger(
@@ -71,7 +66,6 @@ class TestAsyncActivationCheck:
         )
         assert_matches_type(Optional[ActivationCheckTriggerResponse], activation_check, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_trigger(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.activation_check.with_raw_response.trigger(
@@ -83,7 +77,6 @@ class TestAsyncActivationCheck:
         activation_check = await response.parse()
         assert_matches_type(Optional[ActivationCheckTriggerResponse], activation_check, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_trigger(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.activation_check.with_streaming_response.trigger(
@@ -97,7 +90,6 @@ class TestAsyncActivationCheck:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_trigger(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):

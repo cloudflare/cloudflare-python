@@ -23,7 +23,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestDownloads:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     def test_method_get(self, client: Cloudflare, respx_mock: MockRouter) -> None:
@@ -40,7 +39,6 @@ class TestDownloads:
         assert cast(Any, download.is_closed) is True
         assert isinstance(download, BinaryAPIResponse)
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     def test_raw_response_get(self, client: Cloudflare, respx_mock: MockRouter) -> None:
@@ -59,7 +57,6 @@ class TestDownloads:
         assert download.json() == {"foo": "bar"}
         assert isinstance(download, BinaryAPIResponse)
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     def test_streaming_response_get(self, client: Cloudflare, respx_mock: MockRouter) -> None:
@@ -80,7 +77,6 @@ class TestDownloads:
 
         assert cast(Any, download.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     def test_path_params_get(self, client: Cloudflare) -> None:
@@ -109,7 +105,6 @@ class TestDownloads:
 class TestAsyncDownloads:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     async def test_method_get(self, async_client: AsyncCloudflare, respx_mock: MockRouter) -> None:
@@ -126,7 +121,6 @@ class TestAsyncDownloads:
         assert cast(Any, download.is_closed) is True
         assert isinstance(download, AsyncBinaryAPIResponse)
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     async def test_raw_response_get(self, async_client: AsyncCloudflare, respx_mock: MockRouter) -> None:
@@ -145,7 +139,6 @@ class TestAsyncDownloads:
         assert await download.json() == {"foo": "bar"}
         assert isinstance(download, AsyncBinaryAPIResponse)
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     async def test_streaming_response_get(self, async_client: AsyncCloudflare, respx_mock: MockRouter) -> None:
@@ -166,7 +159,6 @@ class TestAsyncDownloads:
 
         assert cast(Any, download.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:

@@ -17,7 +17,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestRiskScoring:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         risk_scoring = client.zero_trust.risk_scoring.get(
@@ -26,7 +25,6 @@ class TestRiskScoring:
         )
         assert_matches_type(Optional[RiskScoringGetResponse], risk_scoring, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zero_trust.risk_scoring.with_raw_response.get(
@@ -39,7 +37,6 @@ class TestRiskScoring:
         risk_scoring = response.parse()
         assert_matches_type(Optional[RiskScoringGetResponse], risk_scoring, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zero_trust.risk_scoring.with_streaming_response.get(
@@ -54,7 +51,6 @@ class TestRiskScoring:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -69,7 +65,6 @@ class TestRiskScoring:
                 account_id="account_id",
             )
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_reset(self, client: Cloudflare) -> None:
         risk_scoring = client.zero_trust.risk_scoring.reset(
@@ -78,7 +73,6 @@ class TestRiskScoring:
         )
         assert_matches_type(object, risk_scoring, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_reset(self, client: Cloudflare) -> None:
         response = client.zero_trust.risk_scoring.with_raw_response.reset(
@@ -91,7 +85,6 @@ class TestRiskScoring:
         risk_scoring = response.parse()
         assert_matches_type(object, risk_scoring, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_reset(self, client: Cloudflare) -> None:
         with client.zero_trust.risk_scoring.with_streaming_response.reset(
@@ -106,7 +99,6 @@ class TestRiskScoring:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_reset(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -125,7 +117,6 @@ class TestRiskScoring:
 class TestAsyncRiskScoring:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         risk_scoring = await async_client.zero_trust.risk_scoring.get(
@@ -134,7 +125,6 @@ class TestAsyncRiskScoring:
         )
         assert_matches_type(Optional[RiskScoringGetResponse], risk_scoring, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.risk_scoring.with_raw_response.get(
@@ -147,7 +137,6 @@ class TestAsyncRiskScoring:
         risk_scoring = await response.parse()
         assert_matches_type(Optional[RiskScoringGetResponse], risk_scoring, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.risk_scoring.with_streaming_response.get(
@@ -162,7 +151,6 @@ class TestAsyncRiskScoring:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -177,7 +165,6 @@ class TestAsyncRiskScoring:
                 account_id="account_id",
             )
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_reset(self, async_client: AsyncCloudflare) -> None:
         risk_scoring = await async_client.zero_trust.risk_scoring.reset(
@@ -186,7 +173,6 @@ class TestAsyncRiskScoring:
         )
         assert_matches_type(object, risk_scoring, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_reset(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.risk_scoring.with_raw_response.reset(
@@ -199,7 +185,6 @@ class TestAsyncRiskScoring:
         risk_scoring = await response.parse()
         assert_matches_type(object, risk_scoring, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_reset(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.risk_scoring.with_streaming_response.reset(
@@ -214,7 +199,6 @@ class TestAsyncRiskScoring:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_reset(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
