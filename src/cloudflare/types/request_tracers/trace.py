@@ -3,10 +3,10 @@
 from __future__ import annotations
 
 from typing import List
-from typing_extensions import TypeAlias
+from typing_extensions import TypeAliasType
 
 __all__ = ["Trace"]
 
-Trace: TypeAlias = List["TraceItem"]
+Trace = TypeAliasType('Trace', List["TraceItem"])
 
 from .trace_item import TraceItem
