@@ -25,7 +25,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestCertificates:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         certificate = client.zero_trust.gateway.certificates.create(
@@ -33,7 +32,6 @@ class TestCertificates:
         )
         assert_matches_type(Optional[CertificateCreateResponse], certificate, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         certificate = client.zero_trust.gateway.certificates.create(
@@ -42,7 +40,6 @@ class TestCertificates:
         )
         assert_matches_type(Optional[CertificateCreateResponse], certificate, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.zero_trust.gateway.certificates.with_raw_response.create(
@@ -54,7 +51,6 @@ class TestCertificates:
         certificate = response.parse()
         assert_matches_type(Optional[CertificateCreateResponse], certificate, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.zero_trust.gateway.certificates.with_streaming_response.create(
@@ -68,7 +64,6 @@ class TestCertificates:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -76,7 +71,6 @@ class TestCertificates:
                 account_id="",
             )
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         certificate = client.zero_trust.gateway.certificates.list(
@@ -84,7 +78,6 @@ class TestCertificates:
         )
         assert_matches_type(SyncSinglePage[CertificateListResponse], certificate, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.zero_trust.gateway.certificates.with_raw_response.list(
@@ -96,7 +89,6 @@ class TestCertificates:
         certificate = response.parse()
         assert_matches_type(SyncSinglePage[CertificateListResponse], certificate, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.zero_trust.gateway.certificates.with_streaming_response.list(
@@ -110,7 +102,6 @@ class TestCertificates:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -118,7 +109,6 @@ class TestCertificates:
                 account_id="",
             )
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         certificate = client.zero_trust.gateway.certificates.delete(
@@ -127,7 +117,6 @@ class TestCertificates:
         )
         assert_matches_type(Optional[CertificateDeleteResponse], certificate, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.zero_trust.gateway.certificates.with_raw_response.delete(
@@ -140,7 +129,6 @@ class TestCertificates:
         certificate = response.parse()
         assert_matches_type(Optional[CertificateDeleteResponse], certificate, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.zero_trust.gateway.certificates.with_streaming_response.delete(
@@ -155,7 +143,6 @@ class TestCertificates:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -170,7 +157,6 @@ class TestCertificates:
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_activate(self, client: Cloudflare) -> None:
         certificate = client.zero_trust.gateway.certificates.activate(
@@ -180,7 +166,6 @@ class TestCertificates:
         )
         assert_matches_type(Optional[CertificateActivateResponse], certificate, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_activate(self, client: Cloudflare) -> None:
         response = client.zero_trust.gateway.certificates.with_raw_response.activate(
@@ -194,7 +179,6 @@ class TestCertificates:
         certificate = response.parse()
         assert_matches_type(Optional[CertificateActivateResponse], certificate, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_activate(self, client: Cloudflare) -> None:
         with client.zero_trust.gateway.certificates.with_streaming_response.activate(
@@ -210,7 +194,6 @@ class TestCertificates:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_activate(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -227,7 +210,6 @@ class TestCertificates:
                 body={},
             )
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_deactivate(self, client: Cloudflare) -> None:
         certificate = client.zero_trust.gateway.certificates.deactivate(
@@ -237,7 +219,6 @@ class TestCertificates:
         )
         assert_matches_type(Optional[CertificateDeactivateResponse], certificate, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_deactivate(self, client: Cloudflare) -> None:
         response = client.zero_trust.gateway.certificates.with_raw_response.deactivate(
@@ -251,7 +232,6 @@ class TestCertificates:
         certificate = response.parse()
         assert_matches_type(Optional[CertificateDeactivateResponse], certificate, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_deactivate(self, client: Cloudflare) -> None:
         with client.zero_trust.gateway.certificates.with_streaming_response.deactivate(
@@ -267,7 +247,6 @@ class TestCertificates:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_deactivate(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -284,7 +263,6 @@ class TestCertificates:
                 body={},
             )
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         certificate = client.zero_trust.gateway.certificates.get(
@@ -293,7 +271,6 @@ class TestCertificates:
         )
         assert_matches_type(Optional[CertificateGetResponse], certificate, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zero_trust.gateway.certificates.with_raw_response.get(
@@ -306,7 +283,6 @@ class TestCertificates:
         certificate = response.parse()
         assert_matches_type(Optional[CertificateGetResponse], certificate, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zero_trust.gateway.certificates.with_streaming_response.get(
@@ -321,7 +297,6 @@ class TestCertificates:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -340,7 +315,6 @@ class TestCertificates:
 class TestAsyncCertificates:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         certificate = await async_client.zero_trust.gateway.certificates.create(
@@ -348,7 +322,6 @@ class TestAsyncCertificates:
         )
         assert_matches_type(Optional[CertificateCreateResponse], certificate, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         certificate = await async_client.zero_trust.gateway.certificates.create(
@@ -357,7 +330,6 @@ class TestAsyncCertificates:
         )
         assert_matches_type(Optional[CertificateCreateResponse], certificate, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.gateway.certificates.with_raw_response.create(
@@ -369,7 +341,6 @@ class TestAsyncCertificates:
         certificate = await response.parse()
         assert_matches_type(Optional[CertificateCreateResponse], certificate, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.gateway.certificates.with_streaming_response.create(
@@ -383,7 +354,6 @@ class TestAsyncCertificates:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -391,7 +361,6 @@ class TestAsyncCertificates:
                 account_id="",
             )
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         certificate = await async_client.zero_trust.gateway.certificates.list(
@@ -399,7 +368,6 @@ class TestAsyncCertificates:
         )
         assert_matches_type(AsyncSinglePage[CertificateListResponse], certificate, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.gateway.certificates.with_raw_response.list(
@@ -411,7 +379,6 @@ class TestAsyncCertificates:
         certificate = await response.parse()
         assert_matches_type(AsyncSinglePage[CertificateListResponse], certificate, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.gateway.certificates.with_streaming_response.list(
@@ -425,7 +392,6 @@ class TestAsyncCertificates:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -433,7 +399,6 @@ class TestAsyncCertificates:
                 account_id="",
             )
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         certificate = await async_client.zero_trust.gateway.certificates.delete(
@@ -442,7 +407,6 @@ class TestAsyncCertificates:
         )
         assert_matches_type(Optional[CertificateDeleteResponse], certificate, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.gateway.certificates.with_raw_response.delete(
@@ -455,7 +419,6 @@ class TestAsyncCertificates:
         certificate = await response.parse()
         assert_matches_type(Optional[CertificateDeleteResponse], certificate, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.gateway.certificates.with_streaming_response.delete(
@@ -470,7 +433,6 @@ class TestAsyncCertificates:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -485,7 +447,6 @@ class TestAsyncCertificates:
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_activate(self, async_client: AsyncCloudflare) -> None:
         certificate = await async_client.zero_trust.gateway.certificates.activate(
@@ -495,7 +456,6 @@ class TestAsyncCertificates:
         )
         assert_matches_type(Optional[CertificateActivateResponse], certificate, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_activate(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.gateway.certificates.with_raw_response.activate(
@@ -509,7 +469,6 @@ class TestAsyncCertificates:
         certificate = await response.parse()
         assert_matches_type(Optional[CertificateActivateResponse], certificate, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_activate(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.gateway.certificates.with_streaming_response.activate(
@@ -525,7 +484,6 @@ class TestAsyncCertificates:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_activate(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -542,7 +500,6 @@ class TestAsyncCertificates:
                 body={},
             )
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_deactivate(self, async_client: AsyncCloudflare) -> None:
         certificate = await async_client.zero_trust.gateway.certificates.deactivate(
@@ -552,7 +509,6 @@ class TestAsyncCertificates:
         )
         assert_matches_type(Optional[CertificateDeactivateResponse], certificate, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_deactivate(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.gateway.certificates.with_raw_response.deactivate(
@@ -566,7 +522,6 @@ class TestAsyncCertificates:
         certificate = await response.parse()
         assert_matches_type(Optional[CertificateDeactivateResponse], certificate, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_deactivate(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.gateway.certificates.with_streaming_response.deactivate(
@@ -582,7 +537,6 @@ class TestAsyncCertificates:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_deactivate(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -599,7 +553,6 @@ class TestAsyncCertificates:
                 body={},
             )
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         certificate = await async_client.zero_trust.gateway.certificates.get(
@@ -608,7 +561,6 @@ class TestAsyncCertificates:
         )
         assert_matches_type(Optional[CertificateGetResponse], certificate, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.gateway.certificates.with_raw_response.get(
@@ -621,7 +573,6 @@ class TestAsyncCertificates:
         certificate = await response.parse()
         assert_matches_type(Optional[CertificateGetResponse], certificate, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.gateway.certificates.with_streaming_response.get(
@@ -636,7 +587,6 @@ class TestAsyncCertificates:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

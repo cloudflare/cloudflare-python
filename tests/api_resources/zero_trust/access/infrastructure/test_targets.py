@@ -25,7 +25,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestTargets:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         target = client.zero_trust.access.infrastructure.targets.create(
@@ -35,7 +34,6 @@ class TestTargets:
         )
         assert_matches_type(Optional[TargetCreateResponse], target, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         target = client.zero_trust.access.infrastructure.targets.create(
@@ -54,7 +52,6 @@ class TestTargets:
         )
         assert_matches_type(Optional[TargetCreateResponse], target, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.infrastructure.targets.with_raw_response.create(
@@ -68,7 +65,6 @@ class TestTargets:
         target = response.parse()
         assert_matches_type(Optional[TargetCreateResponse], target, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.zero_trust.access.infrastructure.targets.with_streaming_response.create(
@@ -84,7 +80,6 @@ class TestTargets:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -94,7 +89,6 @@ class TestTargets:
                 ip={},
             )
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         target = client.zero_trust.access.infrastructure.targets.update(
@@ -105,7 +99,6 @@ class TestTargets:
         )
         assert_matches_type(Optional[TargetUpdateResponse], target, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         target = client.zero_trust.access.infrastructure.targets.update(
@@ -125,7 +118,6 @@ class TestTargets:
         )
         assert_matches_type(Optional[TargetUpdateResponse], target, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.infrastructure.targets.with_raw_response.update(
@@ -140,7 +132,6 @@ class TestTargets:
         target = response.parse()
         assert_matches_type(Optional[TargetUpdateResponse], target, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.zero_trust.access.infrastructure.targets.with_streaming_response.update(
@@ -157,7 +148,6 @@ class TestTargets:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -176,7 +166,6 @@ class TestTargets:
                 ip={},
             )
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         target = client.zero_trust.access.infrastructure.targets.list(
@@ -184,7 +173,6 @@ class TestTargets:
         )
         assert_matches_type(SyncV4PagePaginationArray[TargetListResponse], target, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         target = client.zero_trust.access.infrastructure.targets.list(
@@ -201,7 +189,6 @@ class TestTargets:
         )
         assert_matches_type(SyncV4PagePaginationArray[TargetListResponse], target, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.infrastructure.targets.with_raw_response.list(
@@ -213,7 +200,6 @@ class TestTargets:
         target = response.parse()
         assert_matches_type(SyncV4PagePaginationArray[TargetListResponse], target, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.zero_trust.access.infrastructure.targets.with_streaming_response.list(
@@ -227,7 +213,6 @@ class TestTargets:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -235,7 +220,6 @@ class TestTargets:
                 account_id="",
             )
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         target = client.zero_trust.access.infrastructure.targets.delete(
@@ -244,7 +228,6 @@ class TestTargets:
         )
         assert target is None
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.infrastructure.targets.with_raw_response.delete(
@@ -257,7 +240,6 @@ class TestTargets:
         target = response.parse()
         assert target is None
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.zero_trust.access.infrastructure.targets.with_streaming_response.delete(
@@ -272,7 +254,6 @@ class TestTargets:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -287,7 +268,6 @@ class TestTargets:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_bulk_delete(self, client: Cloudflare) -> None:
         target = client.zero_trust.access.infrastructure.targets.bulk_delete(
@@ -295,7 +275,6 @@ class TestTargets:
         )
         assert target is None
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_bulk_delete(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.infrastructure.targets.with_raw_response.bulk_delete(
@@ -307,7 +286,6 @@ class TestTargets:
         target = response.parse()
         assert target is None
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_bulk_delete(self, client: Cloudflare) -> None:
         with client.zero_trust.access.infrastructure.targets.with_streaming_response.bulk_delete(
@@ -321,7 +299,6 @@ class TestTargets:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_bulk_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -329,7 +306,6 @@ class TestTargets:
                 account_id="",
             )
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_bulk_update(self, client: Cloudflare) -> None:
         target = client.zero_trust.access.infrastructure.targets.bulk_update(
@@ -343,7 +319,6 @@ class TestTargets:
         )
         assert_matches_type(TargetBulkUpdateResponse, target, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_bulk_update(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.infrastructure.targets.with_raw_response.bulk_update(
@@ -361,7 +336,6 @@ class TestTargets:
         target = response.parse()
         assert_matches_type(TargetBulkUpdateResponse, target, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_bulk_update(self, client: Cloudflare) -> None:
         with client.zero_trust.access.infrastructure.targets.with_streaming_response.bulk_update(
@@ -381,7 +355,6 @@ class TestTargets:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_bulk_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -395,7 +368,6 @@ class TestTargets:
                 ],
             )
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         target = client.zero_trust.access.infrastructure.targets.get(
@@ -404,7 +376,6 @@ class TestTargets:
         )
         assert_matches_type(Optional[TargetGetResponse], target, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.infrastructure.targets.with_raw_response.get(
@@ -417,7 +388,6 @@ class TestTargets:
         target = response.parse()
         assert_matches_type(Optional[TargetGetResponse], target, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zero_trust.access.infrastructure.targets.with_streaming_response.get(
@@ -432,7 +402,6 @@ class TestTargets:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -451,7 +420,6 @@ class TestTargets:
 class TestAsyncTargets:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         target = await async_client.zero_trust.access.infrastructure.targets.create(
@@ -461,7 +429,6 @@ class TestAsyncTargets:
         )
         assert_matches_type(Optional[TargetCreateResponse], target, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         target = await async_client.zero_trust.access.infrastructure.targets.create(
@@ -480,7 +447,6 @@ class TestAsyncTargets:
         )
         assert_matches_type(Optional[TargetCreateResponse], target, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.infrastructure.targets.with_raw_response.create(
@@ -494,7 +460,6 @@ class TestAsyncTargets:
         target = await response.parse()
         assert_matches_type(Optional[TargetCreateResponse], target, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.infrastructure.targets.with_streaming_response.create(
@@ -510,7 +475,6 @@ class TestAsyncTargets:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -520,7 +484,6 @@ class TestAsyncTargets:
                 ip={},
             )
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         target = await async_client.zero_trust.access.infrastructure.targets.update(
@@ -531,7 +494,6 @@ class TestAsyncTargets:
         )
         assert_matches_type(Optional[TargetUpdateResponse], target, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         target = await async_client.zero_trust.access.infrastructure.targets.update(
@@ -551,7 +513,6 @@ class TestAsyncTargets:
         )
         assert_matches_type(Optional[TargetUpdateResponse], target, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.infrastructure.targets.with_raw_response.update(
@@ -566,7 +527,6 @@ class TestAsyncTargets:
         target = await response.parse()
         assert_matches_type(Optional[TargetUpdateResponse], target, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.infrastructure.targets.with_streaming_response.update(
@@ -583,7 +543,6 @@ class TestAsyncTargets:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -602,7 +561,6 @@ class TestAsyncTargets:
                 ip={},
             )
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         target = await async_client.zero_trust.access.infrastructure.targets.list(
@@ -610,7 +568,6 @@ class TestAsyncTargets:
         )
         assert_matches_type(AsyncV4PagePaginationArray[TargetListResponse], target, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         target = await async_client.zero_trust.access.infrastructure.targets.list(
@@ -627,7 +584,6 @@ class TestAsyncTargets:
         )
         assert_matches_type(AsyncV4PagePaginationArray[TargetListResponse], target, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.infrastructure.targets.with_raw_response.list(
@@ -639,7 +595,6 @@ class TestAsyncTargets:
         target = await response.parse()
         assert_matches_type(AsyncV4PagePaginationArray[TargetListResponse], target, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.infrastructure.targets.with_streaming_response.list(
@@ -653,7 +608,6 @@ class TestAsyncTargets:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -661,7 +615,6 @@ class TestAsyncTargets:
                 account_id="",
             )
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         target = await async_client.zero_trust.access.infrastructure.targets.delete(
@@ -670,7 +623,6 @@ class TestAsyncTargets:
         )
         assert target is None
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.infrastructure.targets.with_raw_response.delete(
@@ -683,7 +635,6 @@ class TestAsyncTargets:
         target = await response.parse()
         assert target is None
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.infrastructure.targets.with_streaming_response.delete(
@@ -698,7 +649,6 @@ class TestAsyncTargets:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -713,7 +663,6 @@ class TestAsyncTargets:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_bulk_delete(self, async_client: AsyncCloudflare) -> None:
         target = await async_client.zero_trust.access.infrastructure.targets.bulk_delete(
@@ -721,7 +670,6 @@ class TestAsyncTargets:
         )
         assert target is None
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_bulk_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.infrastructure.targets.with_raw_response.bulk_delete(
@@ -733,7 +681,6 @@ class TestAsyncTargets:
         target = await response.parse()
         assert target is None
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_bulk_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.infrastructure.targets.with_streaming_response.bulk_delete(
@@ -747,7 +694,6 @@ class TestAsyncTargets:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_bulk_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -755,7 +701,6 @@ class TestAsyncTargets:
                 account_id="",
             )
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_bulk_update(self, async_client: AsyncCloudflare) -> None:
         target = await async_client.zero_trust.access.infrastructure.targets.bulk_update(
@@ -769,7 +714,6 @@ class TestAsyncTargets:
         )
         assert_matches_type(TargetBulkUpdateResponse, target, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_bulk_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.infrastructure.targets.with_raw_response.bulk_update(
@@ -787,7 +731,6 @@ class TestAsyncTargets:
         target = await response.parse()
         assert_matches_type(TargetBulkUpdateResponse, target, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_bulk_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.infrastructure.targets.with_streaming_response.bulk_update(
@@ -807,7 +750,6 @@ class TestAsyncTargets:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_bulk_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -821,7 +763,6 @@ class TestAsyncTargets:
                 ],
             )
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         target = await async_client.zero_trust.access.infrastructure.targets.get(
@@ -830,7 +771,6 @@ class TestAsyncTargets:
         )
         assert_matches_type(Optional[TargetGetResponse], target, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.infrastructure.targets.with_raw_response.get(
@@ -843,7 +783,6 @@ class TestAsyncTargets:
         target = await response.parse()
         assert_matches_type(Optional[TargetGetResponse], target, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.infrastructure.targets.with_streaming_response.get(
@@ -858,7 +797,6 @@ class TestAsyncTargets:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
