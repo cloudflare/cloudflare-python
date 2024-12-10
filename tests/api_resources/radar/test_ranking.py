@@ -29,22 +29,14 @@ class TestRanking:
     @parametrize
     def test_method_timeseries_groups_with_all_params(self, client: Cloudflare) -> None:
         ranking = client.radar.ranking.timeseries_groups(
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            domains=["string", "string", "string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            domains=["string"],
             format="JSON",
             limit=5,
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            location=["string"],
+            name=["string"],
             ranking_type="POPULAR",
         )
         assert_matches_type(RankingTimeseriesGroupsResponse, ranking, path=["response"])
@@ -77,11 +69,11 @@ class TestRanking:
     @parametrize
     def test_method_top_with_all_params(self, client: Cloudflare) -> None:
         ranking = client.radar.ranking.top(
-            date=["string", "string", "string"],
+            date=["string"],
             format="JSON",
             limit=5,
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            location=["string"],
+            name=["string"],
             ranking_type="POPULAR",
         )
         assert_matches_type(RankingTopResponse, ranking, path=["response"])
@@ -118,22 +110,14 @@ class TestAsyncRanking:
     @parametrize
     async def test_method_timeseries_groups_with_all_params(self, async_client: AsyncCloudflare) -> None:
         ranking = await async_client.radar.ranking.timeseries_groups(
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            domains=["string", "string", "string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            domains=["string"],
             format="JSON",
             limit=5,
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            location=["string"],
+            name=["string"],
             ranking_type="POPULAR",
         )
         assert_matches_type(RankingTimeseriesGroupsResponse, ranking, path=["response"])
@@ -166,11 +150,11 @@ class TestAsyncRanking:
     @parametrize
     async def test_method_top_with_all_params(self, async_client: AsyncCloudflare) -> None:
         ranking = await async_client.radar.ranking.top(
-            date=["string", "string", "string"],
+            date=["string"],
             format="JSON",
             limit=5,
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            location=["string"],
+            name=["string"],
             ranking_type="POPULAR",
         )
         assert_matches_type(RankingTopResponse, ranking, path=["response"])

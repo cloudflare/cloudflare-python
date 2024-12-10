@@ -30,10 +30,21 @@ __all__ = ["BulksResource", "AsyncBulksResource"]
 class BulksResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> BulksResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return BulksResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> BulksResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return BulksResourceWithStreamingResponse(self)
 
     def get(
@@ -49,7 +60,7 @@ class BulksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[BulkGetResponse]:
         """
-        Get Multiple Domain Details
+        Same as summary
 
         Args:
           account_id: Identifier
@@ -83,10 +94,21 @@ class BulksResource(SyncAPIResource):
 class AsyncBulksResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncBulksResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncBulksResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncBulksResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncBulksResourceWithStreamingResponse(self)
 
     async def get(
@@ -102,7 +124,7 @@ class AsyncBulksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[BulkGetResponse]:
         """
-        Get Multiple Domain Details
+        Same as summary
 
         Args:
           account_id: Identifier

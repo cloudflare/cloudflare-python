@@ -5,19 +5,12 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["ZoneEditParams", "Plan"]
+__all__ = ["ZoneEditParams"]
 
 
 class ZoneEditParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
-
-    plan: Plan
-    """
-    (Deprecated) Please use the `/zones/{zone_id}/subscription` API to update a
-    zone's plan. Changing this value will create/cancel associated subscriptions. To
-    view available plans for this zone, see Zone Plans.
-    """
 
     type: Literal["full", "partial", "secondary"]
     """A full zone implies that DNS is hosted with Cloudflare.
@@ -32,8 +25,3 @@ class ZoneEditParams(TypedDict, total=False):
 
     This is only available for Business and Enterprise plans.
     """
-
-
-class Plan(TypedDict, total=False):
-    id: str
-    """Identifier"""

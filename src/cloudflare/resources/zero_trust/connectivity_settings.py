@@ -31,10 +31,21 @@ __all__ = ["ConnectivitySettingsResource", "AsyncConnectivitySettingsResource"]
 class ConnectivitySettingsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ConnectivitySettingsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return ConnectivitySettingsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> ConnectivitySettingsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return ConnectivitySettingsResourceWithStreamingResponse(self)
 
     def edit(
@@ -132,10 +143,21 @@ class ConnectivitySettingsResource(SyncAPIResource):
 class AsyncConnectivitySettingsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncConnectivitySettingsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncConnectivitySettingsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncConnectivitySettingsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncConnectivitySettingsResourceWithStreamingResponse(self)
 
     async def edit(

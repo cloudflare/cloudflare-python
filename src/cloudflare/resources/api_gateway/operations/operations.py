@@ -36,6 +36,7 @@ from ....types.api_gateway.operation_get_response import OperationGetResponse
 from ....types.api_gateway.operation_list_response import OperationListResponse
 from ....types.api_gateway.operation_create_response import OperationCreateResponse
 from ....types.api_gateway.operation_delete_response import OperationDeleteResponse
+from ....types.api_gateway.operation_bulk_delete_response import OperationBulkDeleteResponse
 
 __all__ = ["OperationsResource", "AsyncOperationsResource"]
 
@@ -47,10 +48,21 @@ class OperationsResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> OperationsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return OperationsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> OperationsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return OperationsResourceWithStreamingResponse(self)
 
     def create(
@@ -88,7 +100,7 @@ class OperationsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
             f"/zones/{zone_id}/api_gateway/operations",
-            body=maybe_transform(body, operation_create_params.OperationCreateParams),
+            body=maybe_transform(body, Iterable[operation_create_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -218,6 +230,41 @@ class OperationsResource(SyncAPIResource):
             cast_to=OperationDeleteResponse,
         )
 
+    def bulk_delete(
+        self,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> OperationBulkDeleteResponse:
+        """
+        Delete multiple operations
+
+        Args:
+          zone_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return self._delete(
+            f"/zones/{zone_id}/api_gateway/operations",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=OperationBulkDeleteResponse,
+        )
+
     def get(
         self,
         operation_id: str,
@@ -276,10 +323,21 @@ class AsyncOperationsResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncOperationsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncOperationsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncOperationsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncOperationsResourceWithStreamingResponse(self)
 
     async def create(
@@ -317,7 +375,7 @@ class AsyncOperationsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
             f"/zones/{zone_id}/api_gateway/operations",
-            body=await async_maybe_transform(body, operation_create_params.OperationCreateParams),
+            body=await async_maybe_transform(body, Iterable[operation_create_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -447,6 +505,41 @@ class AsyncOperationsResource(AsyncAPIResource):
             cast_to=OperationDeleteResponse,
         )
 
+    async def bulk_delete(
+        self,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> OperationBulkDeleteResponse:
+        """
+        Delete multiple operations
+
+        Args:
+          zone_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return await self._delete(
+            f"/zones/{zone_id}/api_gateway/operations",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=OperationBulkDeleteResponse,
+        )
+
     async def get(
         self,
         operation_id: str,
@@ -511,6 +604,9 @@ class OperationsResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             operations.delete,
         )
+        self.bulk_delete = to_raw_response_wrapper(
+            operations.bulk_delete,
+        )
         self.get = to_raw_response_wrapper(
             operations.get,
         )
@@ -532,6 +628,9 @@ class AsyncOperationsResourceWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             operations.delete,
+        )
+        self.bulk_delete = async_to_raw_response_wrapper(
+            operations.bulk_delete,
         )
         self.get = async_to_raw_response_wrapper(
             operations.get,
@@ -555,6 +654,9 @@ class OperationsResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             operations.delete,
         )
+        self.bulk_delete = to_streamed_response_wrapper(
+            operations.bulk_delete,
+        )
         self.get = to_streamed_response_wrapper(
             operations.get,
         )
@@ -576,6 +678,9 @@ class AsyncOperationsResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             operations.delete,
+        )
+        self.bulk_delete = async_to_streamed_response_wrapper(
+            operations.bulk_delete,
         )
         self.get = async_to_streamed_response_wrapper(
             operations.get,

@@ -30,10 +30,21 @@ __all__ = ["TraceroutesResource", "AsyncTraceroutesResource"]
 class TraceroutesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> TraceroutesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return TraceroutesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> TraceroutesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return TraceroutesResourceWithStreamingResponse(self)
 
     def create(
@@ -93,10 +104,21 @@ class TraceroutesResource(SyncAPIResource):
 class AsyncTraceroutesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncTraceroutesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncTraceroutesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncTraceroutesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncTraceroutesResourceWithStreamingResponse(self)
 
     async def create(

@@ -21,7 +21,6 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
-from ....types.zero_trust.devices import revoke_create_params
 from ....types.zero_trust.devices.revoke_create_response import RevokeCreateResponse
 
 __all__ = ["RevokeResource", "AsyncRevokeResource"]
@@ -30,10 +29,21 @@ __all__ = ["RevokeResource", "AsyncRevokeResource"]
 class RevokeResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> RevokeResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return RevokeResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> RevokeResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return RevokeResourceWithStreamingResponse(self)
 
     def create(
@@ -68,7 +78,7 @@ class RevokeResource(SyncAPIResource):
             RevokeCreateResponse,
             self._post(
                 f"/accounts/{account_id}/devices/revoke",
-                body=maybe_transform(body, revoke_create_params.RevokeCreateParams),
+                body=maybe_transform(body, List[str]),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -86,10 +96,21 @@ class RevokeResource(SyncAPIResource):
 class AsyncRevokeResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncRevokeResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncRevokeResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncRevokeResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncRevokeResourceWithStreamingResponse(self)
 
     async def create(
@@ -124,7 +145,7 @@ class AsyncRevokeResource(AsyncAPIResource):
             RevokeCreateResponse,
             await self._post(
                 f"/accounts/{account_id}/devices/revoke",
-                body=await async_maybe_transform(body, revoke_create_params.RevokeCreateParams),
+                body=await async_maybe_transform(body, List[str]),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

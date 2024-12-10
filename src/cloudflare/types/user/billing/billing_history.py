@@ -9,7 +9,7 @@ __all__ = ["BillingHistory", "Zone"]
 
 
 class Zone(BaseModel):
-    name: Optional[object] = None
+    name: Optional[str] = None
 
 
 class BillingHistory(BaseModel):

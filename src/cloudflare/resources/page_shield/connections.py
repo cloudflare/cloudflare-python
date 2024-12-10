@@ -29,10 +29,21 @@ __all__ = ["ConnectionsResource", "AsyncConnectionsResource"]
 class ConnectionsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ConnectionsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return ConnectionsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> ConnectionsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return ConnectionsResourceWithStreamingResponse(self)
 
     def list(
@@ -72,8 +83,7 @@ class ConnectionsResource(SyncAPIResource):
           exclude_urls: Excludes connections whose URL contains one of the URL-encoded URLs separated by
               commas.
 
-          export: Export the list of connections as a file. Cannot be used with per_page or page
-              options.
+          export: Export the list of connections as a file.
 
           hosts: Includes connections that match one or more URL-encoded hostnames separated by
               commas.
@@ -87,10 +97,9 @@ class ConnectionsResource(SyncAPIResource):
           page: The current page number of the paginated results.
 
               We additionally support a special value "all". When "all" is used, the API will
-              return all the connections with the applied filters in a single page.
-              Additionally, when using this value, the API will not return the categorisation
-              data for the URL and domain of the connections. This feature is best-effort and
-              it may only work for zones with a low number of connections
+              return all the connections with the applied filters in a single page. This
+              feature is best-effort and it may only work for zones with a low number of
+              connections
 
           page_url: Includes connections that match one or more page URLs (separated by commas)
               where they were last seen
@@ -197,10 +206,21 @@ class ConnectionsResource(SyncAPIResource):
 class AsyncConnectionsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncConnectionsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncConnectionsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncConnectionsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncConnectionsResourceWithStreamingResponse(self)
 
     def list(
@@ -240,8 +260,7 @@ class AsyncConnectionsResource(AsyncAPIResource):
           exclude_urls: Excludes connections whose URL contains one of the URL-encoded URLs separated by
               commas.
 
-          export: Export the list of connections as a file. Cannot be used with per_page or page
-              options.
+          export: Export the list of connections as a file.
 
           hosts: Includes connections that match one or more URL-encoded hostnames separated by
               commas.
@@ -255,10 +274,9 @@ class AsyncConnectionsResource(AsyncAPIResource):
           page: The current page number of the paginated results.
 
               We additionally support a special value "all". When "all" is used, the API will
-              return all the connections with the applied filters in a single page.
-              Additionally, when using this value, the API will not return the categorisation
-              data for the URL and domain of the connections. This feature is best-effort and
-              it may only work for zones with a low number of connections
+              return all the connections with the applied filters in a single page. This
+              feature is best-effort and it may only work for zones with a low number of
+              connections
 
           page_url: Includes connections that match one or more page URLs (separated by commas)
               where they were last seen

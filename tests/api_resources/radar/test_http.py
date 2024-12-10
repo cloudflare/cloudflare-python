@@ -26,23 +26,23 @@ class TestHTTP:
     @parametrize
     def test_method_timeseries_with_all_params(self, client: Cloudflare) -> None:
         http = client.radar.http.timeseries(
-            agg_interval="1h",
-            asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            agg_interval="15m",
+            asn=["string"],
+            bot_class=["LIKELY_AUTOMATED"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            device_type=["DESKTOP"],
             format="JSON",
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            http_protocol=["HTTP"],
+            http_version=["HTTPv1"],
+            ip_version=["IPv4"],
+            location=["string"],
+            name=["string"],
+            normalization="PERCENTAGE_CHANGE",
+            os=["WINDOWS"],
+            tls_version=["TLSv1_0"],
         )
         assert_matches_type(HTTPTimeseriesResponse, http, path=["response"])
 
@@ -78,23 +78,23 @@ class TestAsyncHTTP:
     @parametrize
     async def test_method_timeseries_with_all_params(self, async_client: AsyncCloudflare) -> None:
         http = await async_client.radar.http.timeseries(
-            agg_interval="1h",
-            asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            agg_interval="15m",
+            asn=["string"],
+            bot_class=["LIKELY_AUTOMATED"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            device_type=["DESKTOP"],
             format="JSON",
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            http_protocol=["HTTP"],
+            http_version=["HTTPv1"],
+            ip_version=["IPv4"],
+            location=["string"],
+            name=["string"],
+            normalization="PERCENTAGE_CHANGE",
+            os=["WINDOWS"],
+            tls_version=["TLSv1_0"],
         )
         assert_matches_type(HTTPTimeseriesResponse, http, path=["response"])
 

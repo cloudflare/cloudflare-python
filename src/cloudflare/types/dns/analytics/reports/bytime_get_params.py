@@ -4,10 +4,9 @@ from __future__ import annotations
 
 from typing import Union
 from datetime import datetime
-from typing_extensions import Required, Annotated, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ....._utils import PropertyInfo
-from ...firewall.delta import Delta
 
 __all__ = ["BytimeGetParams"]
 
@@ -37,7 +36,7 @@ class BytimeGetParams(TypedDict, total=False):
     prefixed by - (descending) or + (ascending).
     """
 
-    time_delta: Delta
+    time_delta: Literal["all", "auto", "year", "quarter", "month", "week", "day", "hour", "dekaminute", "minute"]
     """Unit of time to group data by."""
 
     until: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]

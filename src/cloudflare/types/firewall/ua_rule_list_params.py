@@ -2,12 +2,15 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import Required, TypedDict
 
 __all__ = ["UARuleListParams"]
 
 
 class UARuleListParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     description: str
     """A string to search for in the description of existing rules."""
 

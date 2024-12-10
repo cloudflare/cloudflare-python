@@ -34,10 +34,21 @@ __all__ = ["ASNsResource", "AsyncASNsResource"]
 class ASNsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ASNsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return ASNsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> ASNsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return ASNsResourceWithStreamingResponse(self)
 
     def list(
@@ -57,7 +68,7 @@ class ASNsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ASNListResponse:
         """
-        Gets a list of autonomous systems (AS).
+        Get a list of autonomous systems (ASes).
 
         Args:
           asn: Comma separated list of ASNs.
@@ -117,7 +128,7 @@ class ASNsResource(SyncAPIResource):
     ) -> ASNGetResponse:
         """Get the requested autonomous system information.
 
-        A confidence level below `5`
+        (A confidence level below `5`
         indicates a low level of confidence in the traffic data - normally this happens
         because Cloudflare has a small amount of traffic from/to this AS). Population
         estimates come from APNIC (refer to https://labs.apnic.net/?p=526).
@@ -251,10 +262,21 @@ class ASNsResource(SyncAPIResource):
 class AsyncASNsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncASNsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncASNsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncASNsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncASNsResourceWithStreamingResponse(self)
 
     async def list(
@@ -274,7 +296,7 @@ class AsyncASNsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ASNListResponse:
         """
-        Gets a list of autonomous systems (AS).
+        Get a list of autonomous systems (ASes).
 
         Args:
           asn: Comma separated list of ASNs.
@@ -334,7 +356,7 @@ class AsyncASNsResource(AsyncAPIResource):
     ) -> ASNGetResponse:
         """Get the requested autonomous system information.
 
-        A confidence level below `5`
+        (A confidence level below `5`
         indicates a low level of confidence in the traffic data - normally this happens
         because Cloudflare has a small amount of traffic from/to this AS). Population
         estimates come from APNIC (refer to https://labs.apnic.net/?p=526).

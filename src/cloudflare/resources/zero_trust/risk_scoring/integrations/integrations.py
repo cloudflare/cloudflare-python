@@ -47,10 +47,21 @@ class IntegrationsResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> IntegrationsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return IntegrationsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> IntegrationsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return IntegrationsResourceWithStreamingResponse(self)
 
     def create(
@@ -123,8 +134,6 @@ class IntegrationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[IntegrationUpdateResponse]:
         """
-        Update a risk score integration.
-
         Overwrite the reference_id, tenant_url, and active values with the ones provided
 
         Args:
@@ -291,10 +300,21 @@ class AsyncIntegrationsResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncIntegrationsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncIntegrationsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncIntegrationsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncIntegrationsResourceWithStreamingResponse(self)
 
     async def create(
@@ -367,8 +387,6 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[IntegrationUpdateResponse]:
         """
-        Update a risk score integration.
-
         Overwrite the reference_id, tenant_url, and active values with the ones provided
 
         Args:

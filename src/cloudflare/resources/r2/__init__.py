@@ -8,14 +8,6 @@ from .r2 import (
     R2ResourceWithStreamingResponse,
     AsyncR2ResourceWithStreamingResponse,
 )
-from .sippy import (
-    SippyResource,
-    AsyncSippyResource,
-    SippyResourceWithRawResponse,
-    AsyncSippyResourceWithRawResponse,
-    SippyResourceWithStreamingResponse,
-    AsyncSippyResourceWithStreamingResponse,
-)
 from .buckets import (
     BucketsResource,
     AsyncBucketsResource,
@@ -40,12 +32,6 @@ __all__ = [
     "AsyncBucketsResourceWithRawResponse",
     "BucketsResourceWithStreamingResponse",
     "AsyncBucketsResourceWithStreamingResponse",
-    "SippyResource",
-    "AsyncSippyResource",
-    "SippyResourceWithRawResponse",
-    "AsyncSippyResourceWithRawResponse",
-    "SippyResourceWithStreamingResponse",
-    "AsyncSippyResourceWithStreamingResponse",
     "TemporaryCredentialsResource",
     "AsyncTemporaryCredentialsResource",
     "TemporaryCredentialsResourceWithRawResponse",

@@ -23,7 +23,25 @@ class TestConfigs:
     def test_method_create(self, client: Cloudflare) -> None:
         config = client.magic_network_monitoring.configs.create(
             account_id="6f91088a406011ed95aed352566e8d4c",
-            body={},
+            default_sampling=1,
+            name="cloudflare user's account",
+        )
+        assert_matches_type(Configuration, config, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
+        config = client.magic_network_monitoring.configs.create(
+            account_id="6f91088a406011ed95aed352566e8d4c",
+            default_sampling=1,
+            name="cloudflare user's account",
+            router_ips=["203.0.113.1"],
+            warp_devices=[
+                {
+                    "id": "5360368d-b351-4791-abe1-93550dabd351",
+                    "name": "My warp device",
+                    "router_ip": "203.0.113.1",
+                }
+            ],
         )
         assert_matches_type(Configuration, config, path=["response"])
 
@@ -31,7 +49,8 @@ class TestConfigs:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.magic_network_monitoring.configs.with_raw_response.create(
             account_id="6f91088a406011ed95aed352566e8d4c",
-            body={},
+            default_sampling=1,
+            name="cloudflare user's account",
         )
 
         assert response.is_closed is True
@@ -43,7 +62,8 @@ class TestConfigs:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.magic_network_monitoring.configs.with_streaming_response.create(
             account_id="6f91088a406011ed95aed352566e8d4c",
-            body={},
+            default_sampling=1,
+            name="cloudflare user's account",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -58,14 +78,33 @@ class TestConfigs:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.magic_network_monitoring.configs.with_raw_response.create(
                 account_id="",
-                body={},
+                default_sampling=1,
+                name="cloudflare user's account",
             )
 
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         config = client.magic_network_monitoring.configs.update(
             account_id="6f91088a406011ed95aed352566e8d4c",
-            body={},
+            default_sampling=1,
+            name="cloudflare user's account",
+        )
+        assert_matches_type(Configuration, config, path=["response"])
+
+    @parametrize
+    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
+        config = client.magic_network_monitoring.configs.update(
+            account_id="6f91088a406011ed95aed352566e8d4c",
+            default_sampling=1,
+            name="cloudflare user's account",
+            router_ips=["203.0.113.1"],
+            warp_devices=[
+                {
+                    "id": "5360368d-b351-4791-abe1-93550dabd351",
+                    "name": "My warp device",
+                    "router_ip": "203.0.113.1",
+                }
+            ],
         )
         assert_matches_type(Configuration, config, path=["response"])
 
@@ -73,7 +112,8 @@ class TestConfigs:
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.magic_network_monitoring.configs.with_raw_response.update(
             account_id="6f91088a406011ed95aed352566e8d4c",
-            body={},
+            default_sampling=1,
+            name="cloudflare user's account",
         )
 
         assert response.is_closed is True
@@ -85,7 +125,8 @@ class TestConfigs:
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.magic_network_monitoring.configs.with_streaming_response.update(
             account_id="6f91088a406011ed95aed352566e8d4c",
-            body={},
+            default_sampling=1,
+            name="cloudflare user's account",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -100,7 +141,8 @@ class TestConfigs:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.magic_network_monitoring.configs.with_raw_response.update(
                 account_id="",
-                body={},
+                default_sampling=1,
+                name="cloudflare user's account",
             )
 
     @parametrize
@@ -145,7 +187,23 @@ class TestConfigs:
     def test_method_edit(self, client: Cloudflare) -> None:
         config = client.magic_network_monitoring.configs.edit(
             account_id="6f91088a406011ed95aed352566e8d4c",
-            body={},
+        )
+        assert_matches_type(Configuration, config, path=["response"])
+
+    @parametrize
+    def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
+        config = client.magic_network_monitoring.configs.edit(
+            account_id="6f91088a406011ed95aed352566e8d4c",
+            default_sampling=1,
+            name="cloudflare user's account",
+            router_ips=["203.0.113.1"],
+            warp_devices=[
+                {
+                    "id": "5360368d-b351-4791-abe1-93550dabd351",
+                    "name": "My warp device",
+                    "router_ip": "203.0.113.1",
+                }
+            ],
         )
         assert_matches_type(Configuration, config, path=["response"])
 
@@ -153,7 +211,6 @@ class TestConfigs:
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.magic_network_monitoring.configs.with_raw_response.edit(
             account_id="6f91088a406011ed95aed352566e8d4c",
-            body={},
         )
 
         assert response.is_closed is True
@@ -165,7 +222,6 @@ class TestConfigs:
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.magic_network_monitoring.configs.with_streaming_response.edit(
             account_id="6f91088a406011ed95aed352566e8d4c",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -180,7 +236,6 @@ class TestConfigs:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.magic_network_monitoring.configs.with_raw_response.edit(
                 account_id="",
-                body={},
             )
 
     @parametrize
@@ -229,7 +284,25 @@ class TestAsyncConfigs:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         config = await async_client.magic_network_monitoring.configs.create(
             account_id="6f91088a406011ed95aed352566e8d4c",
-            body={},
+            default_sampling=1,
+            name="cloudflare user's account",
+        )
+        assert_matches_type(Configuration, config, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        config = await async_client.magic_network_monitoring.configs.create(
+            account_id="6f91088a406011ed95aed352566e8d4c",
+            default_sampling=1,
+            name="cloudflare user's account",
+            router_ips=["203.0.113.1"],
+            warp_devices=[
+                {
+                    "id": "5360368d-b351-4791-abe1-93550dabd351",
+                    "name": "My warp device",
+                    "router_ip": "203.0.113.1",
+                }
+            ],
         )
         assert_matches_type(Configuration, config, path=["response"])
 
@@ -237,7 +310,8 @@ class TestAsyncConfigs:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_network_monitoring.configs.with_raw_response.create(
             account_id="6f91088a406011ed95aed352566e8d4c",
-            body={},
+            default_sampling=1,
+            name="cloudflare user's account",
         )
 
         assert response.is_closed is True
@@ -249,7 +323,8 @@ class TestAsyncConfigs:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_network_monitoring.configs.with_streaming_response.create(
             account_id="6f91088a406011ed95aed352566e8d4c",
-            body={},
+            default_sampling=1,
+            name="cloudflare user's account",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -264,14 +339,33 @@ class TestAsyncConfigs:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.magic_network_monitoring.configs.with_raw_response.create(
                 account_id="",
-                body={},
+                default_sampling=1,
+                name="cloudflare user's account",
             )
 
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         config = await async_client.magic_network_monitoring.configs.update(
             account_id="6f91088a406011ed95aed352566e8d4c",
-            body={},
+            default_sampling=1,
+            name="cloudflare user's account",
+        )
+        assert_matches_type(Configuration, config, path=["response"])
+
+    @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        config = await async_client.magic_network_monitoring.configs.update(
+            account_id="6f91088a406011ed95aed352566e8d4c",
+            default_sampling=1,
+            name="cloudflare user's account",
+            router_ips=["203.0.113.1"],
+            warp_devices=[
+                {
+                    "id": "5360368d-b351-4791-abe1-93550dabd351",
+                    "name": "My warp device",
+                    "router_ip": "203.0.113.1",
+                }
+            ],
         )
         assert_matches_type(Configuration, config, path=["response"])
 
@@ -279,7 +373,8 @@ class TestAsyncConfigs:
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_network_monitoring.configs.with_raw_response.update(
             account_id="6f91088a406011ed95aed352566e8d4c",
-            body={},
+            default_sampling=1,
+            name="cloudflare user's account",
         )
 
         assert response.is_closed is True
@@ -291,7 +386,8 @@ class TestAsyncConfigs:
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_network_monitoring.configs.with_streaming_response.update(
             account_id="6f91088a406011ed95aed352566e8d4c",
-            body={},
+            default_sampling=1,
+            name="cloudflare user's account",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -306,7 +402,8 @@ class TestAsyncConfigs:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.magic_network_monitoring.configs.with_raw_response.update(
                 account_id="",
-                body={},
+                default_sampling=1,
+                name="cloudflare user's account",
             )
 
     @parametrize
@@ -351,7 +448,23 @@ class TestAsyncConfigs:
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         config = await async_client.magic_network_monitoring.configs.edit(
             account_id="6f91088a406011ed95aed352566e8d4c",
-            body={},
+        )
+        assert_matches_type(Configuration, config, path=["response"])
+
+    @parametrize
+    async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        config = await async_client.magic_network_monitoring.configs.edit(
+            account_id="6f91088a406011ed95aed352566e8d4c",
+            default_sampling=1,
+            name="cloudflare user's account",
+            router_ips=["203.0.113.1"],
+            warp_devices=[
+                {
+                    "id": "5360368d-b351-4791-abe1-93550dabd351",
+                    "name": "My warp device",
+                    "router_ip": "203.0.113.1",
+                }
+            ],
         )
         assert_matches_type(Configuration, config, path=["response"])
 
@@ -359,7 +472,6 @@ class TestAsyncConfigs:
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_network_monitoring.configs.with_raw_response.edit(
             account_id="6f91088a406011ed95aed352566e8d4c",
-            body={},
         )
 
         assert response.is_closed is True
@@ -371,7 +483,6 @@ class TestAsyncConfigs:
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_network_monitoring.configs.with_streaming_response.edit(
             account_id="6f91088a406011ed95aed352566e8d4c",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -386,7 +497,6 @@ class TestAsyncConfigs:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.magic_network_monitoring.configs.with_raw_response.edit(
                 account_id="",
-                body={},
             )
 
     @parametrize

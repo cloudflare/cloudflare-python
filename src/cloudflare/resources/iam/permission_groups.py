@@ -25,10 +25,21 @@ __all__ = ["PermissionGroupsResource", "AsyncPermissionGroupsResource"]
 class PermissionGroupsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> PermissionGroupsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return PermissionGroupsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> PermissionGroupsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return PermissionGroupsResourceWithStreamingResponse(self)
 
     def list(
@@ -141,10 +152,21 @@ class PermissionGroupsResource(SyncAPIResource):
 class AsyncPermissionGroupsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncPermissionGroupsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncPermissionGroupsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncPermissionGroupsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncPermissionGroupsResourceWithStreamingResponse(self)
 
     def list(

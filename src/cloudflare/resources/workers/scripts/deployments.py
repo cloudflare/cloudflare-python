@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, Iterable, Optional, cast
+from typing_extensions import Literal
 
 import httpx
 
@@ -32,10 +33,21 @@ __all__ = ["DeploymentsResource", "AsyncDeploymentsResource"]
 class DeploymentsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> DeploymentsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return DeploymentsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> DeploymentsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return DeploymentsResourceWithStreamingResponse(self)
 
     def create(
@@ -43,8 +55,10 @@ class DeploymentsResource(SyncAPIResource):
         script_name: str,
         *,
         account_id: str,
+        strategy: Literal["percentage"],
+        versions: Iterable[deployment_create_params.Version],
+        force: bool | NotGiven = NOT_GIVEN,
         annotations: DeploymentParam | NotGiven = NOT_GIVEN,
-        strategy: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -63,6 +77,9 @@ class DeploymentsResource(SyncAPIResource):
 
           script_name: Name of the script.
 
+          force: If set to true, the deployment will be created even if normally blocked by
+              something such rolling back to an older version when a secret has changed.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -79,8 +96,9 @@ class DeploymentsResource(SyncAPIResource):
             f"/accounts/{account_id}/workers/scripts/{script_name}/deployments",
             body=maybe_transform(
                 {
-                    "annotations": annotations,
                     "strategy": strategy,
+                    "versions": versions,
+                    "annotations": annotations,
                 },
                 deployment_create_params.DeploymentCreateParams,
             ),
@@ -89,6 +107,7 @@ class DeploymentsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=maybe_transform({"force": force}, deployment_create_params.DeploymentCreateParams),
                 post_parser=ResultWrapper[Optional[DeploymentCreateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[DeploymentCreateResponse]], ResultWrapper[DeploymentCreateResponse]),
@@ -144,10 +163,21 @@ class DeploymentsResource(SyncAPIResource):
 class AsyncDeploymentsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncDeploymentsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncDeploymentsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncDeploymentsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncDeploymentsResourceWithStreamingResponse(self)
 
     async def create(
@@ -155,8 +185,10 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         script_name: str,
         *,
         account_id: str,
+        strategy: Literal["percentage"],
+        versions: Iterable[deployment_create_params.Version],
+        force: bool | NotGiven = NOT_GIVEN,
         annotations: DeploymentParam | NotGiven = NOT_GIVEN,
-        strategy: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -175,6 +207,9 @@ class AsyncDeploymentsResource(AsyncAPIResource):
 
           script_name: Name of the script.
 
+          force: If set to true, the deployment will be created even if normally blocked by
+              something such rolling back to an older version when a secret has changed.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -191,8 +226,9 @@ class AsyncDeploymentsResource(AsyncAPIResource):
             f"/accounts/{account_id}/workers/scripts/{script_name}/deployments",
             body=await async_maybe_transform(
                 {
-                    "annotations": annotations,
                     "strategy": strategy,
+                    "versions": versions,
+                    "annotations": annotations,
                 },
                 deployment_create_params.DeploymentCreateParams,
             ),
@@ -201,6 +237,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=await async_maybe_transform({"force": force}, deployment_create_params.DeploymentCreateParams),
                 post_parser=ResultWrapper[Optional[DeploymentCreateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[DeploymentCreateResponse]], ResultWrapper[DeploymentCreateResponse]),

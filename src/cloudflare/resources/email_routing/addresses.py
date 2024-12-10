@@ -32,16 +32,27 @@ __all__ = ["AddressesResource", "AsyncAddressesResource"]
 class AddressesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AddressesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AddressesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AddressesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AddressesResourceWithStreamingResponse(self)
 
     def create(
         self,
-        account_identifier: str,
         *,
+        account_id: str,
         email: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -56,7 +67,7 @@ class AddressesResource(SyncAPIResource):
         need to be verified before they can be used.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
           email: The contact email address of the user.
 
@@ -68,10 +79,10 @@ class AddressesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_identifier}/email/routing/addresses",
+            f"/accounts/{account_id}/email/routing/addresses",
             body=maybe_transform({"email": email}, address_create_params.AddressCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -85,8 +96,8 @@ class AddressesResource(SyncAPIResource):
 
     def list(
         self,
-        account_identifier: str,
         *,
+        account_id: str,
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
@@ -102,7 +113,7 @@ class AddressesResource(SyncAPIResource):
         Lists existing destination addresses.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
           direction: Sorts results in an ascending or descending order.
 
@@ -120,10 +131,10 @@ class AddressesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_identifier}/email/routing/addresses",
+            f"/accounts/{account_id}/email/routing/addresses",
             page=SyncV4PagePaginationArray[Address],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -147,7 +158,7 @@ class AddressesResource(SyncAPIResource):
         self,
         destination_address_identifier: str,
         *,
-        account_identifier: str,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -159,7 +170,7 @@ class AddressesResource(SyncAPIResource):
         Deletes a specific destination address.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
           destination_address_identifier: Destination address identifier.
 
@@ -171,14 +182,14 @@ class AddressesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not destination_address_identifier:
             raise ValueError(
                 f"Expected a non-empty value for `destination_address_identifier` but received {destination_address_identifier!r}"
             )
         return self._delete(
-            f"/accounts/{account_identifier}/email/routing/addresses/{destination_address_identifier}",
+            f"/accounts/{account_id}/email/routing/addresses/{destination_address_identifier}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -193,7 +204,7 @@ class AddressesResource(SyncAPIResource):
         self,
         destination_address_identifier: str,
         *,
-        account_identifier: str,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -205,7 +216,7 @@ class AddressesResource(SyncAPIResource):
         Gets information for a specific destination email already created.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
           destination_address_identifier: Destination address identifier.
 
@@ -217,14 +228,14 @@ class AddressesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not destination_address_identifier:
             raise ValueError(
                 f"Expected a non-empty value for `destination_address_identifier` but received {destination_address_identifier!r}"
             )
         return self._get(
-            f"/accounts/{account_identifier}/email/routing/addresses/{destination_address_identifier}",
+            f"/accounts/{account_id}/email/routing/addresses/{destination_address_identifier}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -239,16 +250,27 @@ class AddressesResource(SyncAPIResource):
 class AsyncAddressesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncAddressesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncAddressesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncAddressesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncAddressesResourceWithStreamingResponse(self)
 
     async def create(
         self,
-        account_identifier: str,
         *,
+        account_id: str,
         email: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -263,7 +285,7 @@ class AsyncAddressesResource(AsyncAPIResource):
         need to be verified before they can be used.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
           email: The contact email address of the user.
 
@@ -275,10 +297,10 @@ class AsyncAddressesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_identifier}/email/routing/addresses",
+            f"/accounts/{account_id}/email/routing/addresses",
             body=await async_maybe_transform({"email": email}, address_create_params.AddressCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -292,8 +314,8 @@ class AsyncAddressesResource(AsyncAPIResource):
 
     def list(
         self,
-        account_identifier: str,
         *,
+        account_id: str,
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
@@ -309,7 +331,7 @@ class AsyncAddressesResource(AsyncAPIResource):
         Lists existing destination addresses.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
           direction: Sorts results in an ascending or descending order.
 
@@ -327,10 +349,10 @@ class AsyncAddressesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_identifier}/email/routing/addresses",
+            f"/accounts/{account_id}/email/routing/addresses",
             page=AsyncV4PagePaginationArray[Address],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -354,7 +376,7 @@ class AsyncAddressesResource(AsyncAPIResource):
         self,
         destination_address_identifier: str,
         *,
-        account_identifier: str,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -366,7 +388,7 @@ class AsyncAddressesResource(AsyncAPIResource):
         Deletes a specific destination address.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
           destination_address_identifier: Destination address identifier.
 
@@ -378,14 +400,14 @@ class AsyncAddressesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not destination_address_identifier:
             raise ValueError(
                 f"Expected a non-empty value for `destination_address_identifier` but received {destination_address_identifier!r}"
             )
         return await self._delete(
-            f"/accounts/{account_identifier}/email/routing/addresses/{destination_address_identifier}",
+            f"/accounts/{account_id}/email/routing/addresses/{destination_address_identifier}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -400,7 +422,7 @@ class AsyncAddressesResource(AsyncAPIResource):
         self,
         destination_address_identifier: str,
         *,
-        account_identifier: str,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -412,7 +434,7 @@ class AsyncAddressesResource(AsyncAPIResource):
         Gets information for a specific destination email already created.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
           destination_address_identifier: Destination address identifier.
 
@@ -424,14 +446,14 @@ class AsyncAddressesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not destination_address_identifier:
             raise ValueError(
                 f"Expected a non-empty value for `destination_address_identifier` but received {destination_address_identifier!r}"
             )
         return await self._get(
-            f"/accounts/{account_identifier}/email/routing/addresses/{destination_address_identifier}",
+            f"/accounts/{account_id}/email/routing/addresses/{destination_address_identifier}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -34,7 +34,7 @@ class TestSchedule:
         schedule = client.speed.schedule.create(
             url="example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            region="us-central1",
+            region="asia-east1",
         )
         assert_matches_type(Optional[ScheduleCreateResponse], schedule, path=["response"])
 
@@ -91,7 +91,7 @@ class TestSchedule:
         schedule = client.speed.schedule.delete(
             url="example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            region="us-central1",
+            region="asia-east1",
         )
         assert_matches_type(Optional[ScheduleDeleteResponse], schedule, path=["response"])
 
@@ -148,7 +148,7 @@ class TestSchedule:
         schedule = client.speed.schedule.get(
             url="example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            region="us-central1",
+            region="asia-east1",
         )
         assert_matches_type(Optional[Schedule], schedule, path=["response"])
 
@@ -209,7 +209,7 @@ class TestAsyncSchedule:
         schedule = await async_client.speed.schedule.create(
             url="example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            region="us-central1",
+            region="asia-east1",
         )
         assert_matches_type(Optional[ScheduleCreateResponse], schedule, path=["response"])
 
@@ -266,7 +266,7 @@ class TestAsyncSchedule:
         schedule = await async_client.speed.schedule.delete(
             url="example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            region="us-central1",
+            region="asia-east1",
         )
         assert_matches_type(Optional[ScheduleDeleteResponse], schedule, path=["response"])
 
@@ -323,7 +323,7 @@ class TestAsyncSchedule:
         schedule = await async_client.speed.schedule.get(
             url="example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            region="us-central1",
+            region="asia-east1",
         )
         assert_matches_type(Optional[Schedule], schedule, path=["response"])
 

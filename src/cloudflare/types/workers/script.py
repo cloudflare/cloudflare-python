@@ -19,6 +19,12 @@ class Script(BaseModel):
     etag: Optional[str] = None
     """Hashed script content, can be used in a If-None-Match header when updating."""
 
+    has_assets: Optional[bool] = None
+    """Whether a Worker contains assets."""
+
+    has_modules: Optional[bool] = None
+    """Whether a Worker contains modules."""
+
     logpush: Optional[bool] = None
     """Whether Logpush is turned on for the Worker."""
 
