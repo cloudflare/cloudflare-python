@@ -72,7 +72,7 @@ class ResponsesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not response_id:
             raise ValueError(f"Expected a non-empty value for `response_id` but received {response_id!r}")
-        extra_headers = {"Accept": "text/plain or image", **(extra_headers or {})}
+        extra_headers = {"Accept": "text/plain", **(extra_headers or {})}
         return self._get(
             f"/accounts/{account_id}/urlscanner/v2/responses/{response_id}",
             options=make_request_options(
@@ -136,7 +136,7 @@ class AsyncResponsesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not response_id:
             raise ValueError(f"Expected a non-empty value for `response_id` but received {response_id!r}")
-        extra_headers = {"Accept": "text/plain or image", **(extra_headers or {})}
+        extra_headers = {"Accept": "text/plain", **(extra_headers or {})}
         return await self._get(
             f"/accounts/{account_id}/urlscanner/v2/responses/{response_id}",
             options=make_request_options(
