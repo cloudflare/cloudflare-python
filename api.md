@@ -8326,13 +8326,16 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types import LeakedCredentialCheckCreateResponse, LeakedCredentialCheckGetResponse
+from cloudflare.types.leaked_credential_checks import (
+    LeakedCredentialCheckCreateResponse,
+    LeakedCredentialCheckGetResponse,
+)
 ```
 
 Methods:
 
-- <code title="post /zones/{zone_id}/leaked-credential-checks">client.leaked_credential_checks.<a href="./src/cloudflare/resources/leaked_credential_checks/leaked_credential_checks.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/leaked_credential_check_create_params.py">params</a>) -> <a href="./src/cloudflare/types/leaked_credential_check_create_response.py">LeakedCredentialCheckCreateResponse</a></code>
-- <code title="get /zones/{zone_id}/leaked-credential-checks">client.leaked_credential_checks.<a href="./src/cloudflare/resources/leaked_credential_checks/leaked_credential_checks.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/leaked_credential_check_get_response.py">LeakedCredentialCheckGetResponse</a></code>
+- <code title="post /zones/{zone_id}/leaked-credential-checks">client.leaked_credential_checks.<a href="./src/cloudflare/resources/leaked_credential_checks/leaked_credential_checks.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/leaked_credential_checks/leaked_credential_check_create_params.py">params</a>) -> <a href="./src/cloudflare/types/leaked_credential_checks/leaked_credential_check_create_response.py">LeakedCredentialCheckCreateResponse</a></code>
+- <code title="get /zones/{zone_id}/leaked-credential-checks">client.leaked_credential_checks.<a href="./src/cloudflare/resources/leaked_credential_checks/leaked_credential_checks.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/leaked_credential_checks/leaked_credential_check_get_response.py">LeakedCredentialCheckGetResponse</a></code>
 
 ## Detections
 
@@ -8359,13 +8362,16 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types import ContentScanningDisableResponse, ContentScanningEnableResponse
+from cloudflare.types.content_scanning import (
+    ContentScanningDisableResponse,
+    ContentScanningEnableResponse,
+)
 ```
 
 Methods:
 
-- <code title="post /zones/{zone_id}/content-upload-scan/disable">client.content_scanning.<a href="./src/cloudflare/resources/content_scanning/content_scanning.py">disable</a>(\*, zone_id) -> <a href="./src/cloudflare/types/content_scanning_disable_response.py">object</a></code>
-- <code title="post /zones/{zone_id}/content-upload-scan/enable">client.content_scanning.<a href="./src/cloudflare/resources/content_scanning/content_scanning.py">enable</a>(\*, zone_id) -> <a href="./src/cloudflare/types/content_scanning_enable_response.py">object</a></code>
+- <code title="post /zones/{zone_id}/content-upload-scan/disable">client.content_scanning.<a href="./src/cloudflare/resources/content_scanning/content_scanning.py">disable</a>(\*, zone_id) -> <a href="./src/cloudflare/types/content_scanning/content_scanning_disable_response.py">object</a></code>
+- <code title="post /zones/{zone_id}/content-upload-scan/enable">client.content_scanning.<a href="./src/cloudflare/resources/content_scanning/content_scanning.py">enable</a>(\*, zone_id) -> <a href="./src/cloudflare/types/content_scanning/content_scanning_enable_response.py">object</a></code>
 
 ## Payloads
 

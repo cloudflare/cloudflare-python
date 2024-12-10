@@ -6,7 +6,6 @@ from typing import Type, cast
 
 import httpx
 
-from ...types import leaked_credential_check_create_params
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -30,8 +29,11 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ..._base_client import make_request_options
-from ...types.leaked_credential_check_get_response import LeakedCredentialCheckGetResponse
-from ...types.leaked_credential_check_create_response import LeakedCredentialCheckCreateResponse
+from ...types.leaked_credential_checks import leaked_credential_check_create_params
+from ...types.leaked_credential_checks.leaked_credential_check_get_response import LeakedCredentialCheckGetResponse
+from ...types.leaked_credential_checks.leaked_credential_check_create_response import (
+    LeakedCredentialCheckCreateResponse,
+)
 
 __all__ = ["LeakedCredentialChecksResource", "AsyncLeakedCredentialChecksResource"]
 
