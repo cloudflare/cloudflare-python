@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types import (
+from cloudflare.types.leaked_credential_checks import (
     LeakedCredentialCheckGetResponse,
     LeakedCredentialCheckCreateResponse,
 )
