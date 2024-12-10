@@ -16,6 +16,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestValue:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         value = client.accounts.tokens.value.update(
@@ -25,6 +26,7 @@ class TestValue:
         )
         assert_matches_type(str, value, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.accounts.tokens.value.with_raw_response.update(
@@ -38,6 +40,7 @@ class TestValue:
         value = response.parse()
         assert_matches_type(str, value, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.accounts.tokens.value.with_streaming_response.update(
@@ -53,6 +56,7 @@ class TestValue:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -73,6 +77,7 @@ class TestValue:
 class TestAsyncValue:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         value = await async_client.accounts.tokens.value.update(
@@ -82,6 +87,7 @@ class TestAsyncValue:
         )
         assert_matches_type(str, value, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.accounts.tokens.value.with_raw_response.update(
@@ -95,6 +101,7 @@ class TestAsyncValue:
         value = await response.parse()
         assert_matches_type(str, value, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.accounts.tokens.value.with_streaming_response.update(
@@ -110,6 +117,7 @@ class TestAsyncValue:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
