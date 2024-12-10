@@ -17,7 +17,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestColos:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         colo = client.zero_trust.dex.colos.list(
@@ -27,7 +26,6 @@ class TestColos:
         )
         assert_matches_type(SyncSinglePage[object], colo, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         colo = client.zero_trust.dex.colos.list(
@@ -38,7 +36,6 @@ class TestColos:
         )
         assert_matches_type(SyncSinglePage[object], colo, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.zero_trust.dex.colos.with_raw_response.list(
@@ -52,7 +49,6 @@ class TestColos:
         colo = response.parse()
         assert_matches_type(SyncSinglePage[object], colo, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.zero_trust.dex.colos.with_streaming_response.list(
@@ -68,7 +64,6 @@ class TestColos:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -82,7 +77,6 @@ class TestColos:
 class TestAsyncColos:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         colo = await async_client.zero_trust.dex.colos.list(
@@ -92,7 +86,6 @@ class TestAsyncColos:
         )
         assert_matches_type(AsyncSinglePage[object], colo, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         colo = await async_client.zero_trust.dex.colos.list(
@@ -103,7 +96,6 @@ class TestAsyncColos:
         )
         assert_matches_type(AsyncSinglePage[object], colo, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.dex.colos.with_raw_response.list(
@@ -117,7 +109,6 @@ class TestAsyncColos:
         colo = await response.parse()
         assert_matches_type(AsyncSinglePage[object], colo, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.dex.colos.with_streaming_response.list(
@@ -133,7 +124,6 @@ class TestAsyncColos:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
