@@ -26,7 +26,7 @@ from ..zones.origin_error_page_pass_thru_param import OriginErrorPagePassThruPar
 from ..zones.sort_query_string_for_cache_param import SortQueryStringForCacheParam
 
 __all__ = [
-    "PageruleEditParams",
+    "PageRuleCreateParams",
     "Action",
     "ActionBypassCacheOnCookie",
     "ActionCacheByDeviceType",
@@ -53,15 +53,18 @@ __all__ = [
 ]
 
 
-class PageruleEditParams(TypedDict, total=False):
+class PageRuleCreateParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    actions: Iterable[Action]
+    actions: Required[Iterable[Action]]
     """The set of actions to perform if the targets of this rule match the request.
 
     Actions can redirect to another URL or override settings, but not both.
     """
+
+    targets: Required[Iterable[TargetParam]]
+    """The rule targets to evaluate on each request."""
 
     priority: int
     """
@@ -74,9 +77,6 @@ class PageruleEditParams(TypedDict, total=False):
 
     status: Literal["active", "disabled"]
     """The status of the Page Rule."""
-
-    targets: Iterable[TargetParam]
-    """The rule targets to evaluate on each request."""
 
 
 class ActionBypassCacheOnCookie(TypedDict, total=False):

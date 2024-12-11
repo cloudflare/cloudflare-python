@@ -71,7 +71,6 @@ if TYPE_CHECKING:
         snippets,
         spectrum,
         hostnames,
-        pagerules,
         registrar,
         turnstile,
         vectorize,
@@ -80,6 +79,7 @@ if TYPE_CHECKING:
         ai_gateway,
         audit_logs,
         hyperdrive,
+        page_rules,
         zero_trust,
         api_gateway,
         botnet_feed,
@@ -370,10 +370,10 @@ class Cloudflare(SyncAPIClient):
         return OriginTLSClientAuthResource(self)
 
     @cached_property
-    def pagerules(self) -> pagerules.PagerulesResource:
-        from .resources.pagerules import PagerulesResource
+    def page_rules(self) -> page_rules.PageRulesResource:
+        from .resources.page_rules import PageRulesResource
 
-        return PagerulesResource(self)
+        return PageRulesResource(self)
 
     @cached_property
     def rate_limits(self) -> rate_limits.RateLimitsResource:
@@ -1129,10 +1129,10 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncOriginTLSClientAuthResource(self)
 
     @cached_property
-    def pagerules(self) -> pagerules.AsyncPagerulesResource:
-        from .resources.pagerules import AsyncPagerulesResource
+    def page_rules(self) -> page_rules.AsyncPageRulesResource:
+        from .resources.page_rules import AsyncPageRulesResource
 
-        return AsyncPagerulesResource(self)
+        return AsyncPageRulesResource(self)
 
     @cached_property
     def rate_limits(self) -> rate_limits.AsyncRateLimitsResource:
@@ -1821,10 +1821,10 @@ class CloudflareWithRawResponse:
         return OriginTLSClientAuthResourceWithRawResponse(self._client.origin_tls_client_auth)
 
     @cached_property
-    def pagerules(self) -> pagerules.PagerulesResourceWithRawResponse:
-        from .resources.pagerules import PagerulesResourceWithRawResponse
+    def page_rules(self) -> page_rules.PageRulesResourceWithRawResponse:
+        from .resources.page_rules import PageRulesResourceWithRawResponse
 
-        return PagerulesResourceWithRawResponse(self._client.pagerules)
+        return PageRulesResourceWithRawResponse(self._client.page_rules)
 
     @cached_property
     def rate_limits(self) -> rate_limits.RateLimitsResourceWithRawResponse:
@@ -2334,10 +2334,10 @@ class AsyncCloudflareWithRawResponse:
         return AsyncOriginTLSClientAuthResourceWithRawResponse(self._client.origin_tls_client_auth)
 
     @cached_property
-    def pagerules(self) -> pagerules.AsyncPagerulesResourceWithRawResponse:
-        from .resources.pagerules import AsyncPagerulesResourceWithRawResponse
+    def page_rules(self) -> page_rules.AsyncPageRulesResourceWithRawResponse:
+        from .resources.page_rules import AsyncPageRulesResourceWithRawResponse
 
-        return AsyncPagerulesResourceWithRawResponse(self._client.pagerules)
+        return AsyncPageRulesResourceWithRawResponse(self._client.page_rules)
 
     @cached_property
     def rate_limits(self) -> rate_limits.AsyncRateLimitsResourceWithRawResponse:
@@ -2847,10 +2847,10 @@ class CloudflareWithStreamedResponse:
         return OriginTLSClientAuthResourceWithStreamingResponse(self._client.origin_tls_client_auth)
 
     @cached_property
-    def pagerules(self) -> pagerules.PagerulesResourceWithStreamingResponse:
-        from .resources.pagerules import PagerulesResourceWithStreamingResponse
+    def page_rules(self) -> page_rules.PageRulesResourceWithStreamingResponse:
+        from .resources.page_rules import PageRulesResourceWithStreamingResponse
 
-        return PagerulesResourceWithStreamingResponse(self._client.pagerules)
+        return PageRulesResourceWithStreamingResponse(self._client.page_rules)
 
     @cached_property
     def rate_limits(self) -> rate_limits.RateLimitsResourceWithStreamingResponse:
@@ -3362,10 +3362,10 @@ class AsyncCloudflareWithStreamedResponse:
         return AsyncOriginTLSClientAuthResourceWithStreamingResponse(self._client.origin_tls_client_auth)
 
     @cached_property
-    def pagerules(self) -> pagerules.AsyncPagerulesResourceWithStreamingResponse:
-        from .resources.pagerules import AsyncPagerulesResourceWithStreamingResponse
+    def page_rules(self) -> page_rules.AsyncPageRulesResourceWithStreamingResponse:
+        from .resources.page_rules import AsyncPageRulesResourceWithStreamingResponse
 
-        return AsyncPagerulesResourceWithStreamingResponse(self._client.pagerules)
+        return AsyncPageRulesResourceWithStreamingResponse(self._client.page_rules)
 
     @cached_property
     def rate_limits(self) -> rate_limits.AsyncRateLimitsResourceWithStreamingResponse:

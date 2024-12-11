@@ -9,21 +9,21 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.pagerules import (
+from cloudflare.types.page_rules import (
     PageRule,
-    PageruleListResponse,
-    PageruleDeleteResponse,
+    PageRuleListResponse,
+    PageRuleDeleteResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
-class TestPagerules:
+class TestPageRules:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
-        pagerule = client.pagerules.create(
+        page_rule = client.page_rules.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[{}],
             targets=[
@@ -36,11 +36,11 @@ class TestPagerules:
                 }
             ],
         )
-        assert_matches_type(Optional[PageRule], pagerule, path=["response"])
+        assert_matches_type(Optional[PageRule], page_rule, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
-        pagerule = client.pagerules.create(
+        page_rule = client.page_rules.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[
                 {
@@ -60,11 +60,11 @@ class TestPagerules:
             priority=0,
             status="active",
         )
-        assert_matches_type(Optional[PageRule], pagerule, path=["response"])
+        assert_matches_type(Optional[PageRule], page_rule, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
-        response = client.pagerules.with_raw_response.create(
+        response = client.page_rules.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[{}],
             targets=[
@@ -80,12 +80,12 @@ class TestPagerules:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        pagerule = response.parse()
-        assert_matches_type(Optional[PageRule], pagerule, path=["response"])
+        page_rule = response.parse()
+        assert_matches_type(Optional[PageRule], page_rule, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
-        with client.pagerules.with_streaming_response.create(
+        with client.page_rules.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[{}],
             targets=[
@@ -101,15 +101,15 @@ class TestPagerules:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            pagerule = response.parse()
-            assert_matches_type(Optional[PageRule], pagerule, path=["response"])
+            page_rule = response.parse()
+            assert_matches_type(Optional[PageRule], page_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.pagerules.with_raw_response.create(
+            client.page_rules.with_raw_response.create(
                 zone_id="",
                 actions=[{}],
                 targets=[
@@ -125,7 +125,7 @@ class TestPagerules:
 
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
-        pagerule = client.pagerules.update(
+        page_rule = client.page_rules.update(
             pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[{}],
@@ -139,11 +139,11 @@ class TestPagerules:
                 }
             ],
         )
-        assert_matches_type(Optional[PageRule], pagerule, path=["response"])
+        assert_matches_type(Optional[PageRule], page_rule, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
-        pagerule = client.pagerules.update(
+        page_rule = client.page_rules.update(
             pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[
@@ -164,11 +164,11 @@ class TestPagerules:
             priority=0,
             status="active",
         )
-        assert_matches_type(Optional[PageRule], pagerule, path=["response"])
+        assert_matches_type(Optional[PageRule], page_rule, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
-        response = client.pagerules.with_raw_response.update(
+        response = client.page_rules.with_raw_response.update(
             pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[{}],
@@ -185,12 +185,12 @@ class TestPagerules:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        pagerule = response.parse()
-        assert_matches_type(Optional[PageRule], pagerule, path=["response"])
+        page_rule = response.parse()
+        assert_matches_type(Optional[PageRule], page_rule, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
-        with client.pagerules.with_streaming_response.update(
+        with client.page_rules.with_streaming_response.update(
             pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[{}],
@@ -207,15 +207,15 @@ class TestPagerules:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            pagerule = response.parse()
-            assert_matches_type(Optional[PageRule], pagerule, path=["response"])
+            page_rule = response.parse()
+            assert_matches_type(Optional[PageRule], page_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.pagerules.with_raw_response.update(
+            client.page_rules.with_raw_response.update(
                 pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
                 actions=[{}],
@@ -231,7 +231,7 @@ class TestPagerules:
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pagerule_id` but received ''"):
-            client.pagerules.with_raw_response.update(
+            client.page_rules.with_raw_response.update(
                 pagerule_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 actions=[{}],
@@ -248,112 +248,112 @@ class TestPagerules:
 
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
-        pagerule = client.pagerules.list(
+        page_rule = client.page_rules.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[PageruleListResponse], pagerule, path=["response"])
+        assert_matches_type(Optional[PageRuleListResponse], page_rule, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
-        pagerule = client.pagerules.list(
+        page_rule = client.page_rules.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             direction="asc",
             match="any",
             order="status",
             status="active",
         )
-        assert_matches_type(Optional[PageruleListResponse], pagerule, path=["response"])
+        assert_matches_type(Optional[PageRuleListResponse], page_rule, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
-        response = client.pagerules.with_raw_response.list(
+        response = client.page_rules.with_raw_response.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        pagerule = response.parse()
-        assert_matches_type(Optional[PageruleListResponse], pagerule, path=["response"])
+        page_rule = response.parse()
+        assert_matches_type(Optional[PageRuleListResponse], page_rule, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
-        with client.pagerules.with_streaming_response.list(
+        with client.page_rules.with_streaming_response.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            pagerule = response.parse()
-            assert_matches_type(Optional[PageruleListResponse], pagerule, path=["response"])
+            page_rule = response.parse()
+            assert_matches_type(Optional[PageRuleListResponse], page_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.pagerules.with_raw_response.list(
+            client.page_rules.with_raw_response.list(
                 zone_id="",
             )
 
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
-        pagerule = client.pagerules.delete(
+        page_rule = client.page_rules.delete(
             pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[PageruleDeleteResponse], pagerule, path=["response"])
+        assert_matches_type(Optional[PageRuleDeleteResponse], page_rule, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
-        response = client.pagerules.with_raw_response.delete(
+        response = client.page_rules.with_raw_response.delete(
             pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        pagerule = response.parse()
-        assert_matches_type(Optional[PageruleDeleteResponse], pagerule, path=["response"])
+        page_rule = response.parse()
+        assert_matches_type(Optional[PageRuleDeleteResponse], page_rule, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
-        with client.pagerules.with_streaming_response.delete(
+        with client.page_rules.with_streaming_response.delete(
             pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            pagerule = response.parse()
-            assert_matches_type(Optional[PageruleDeleteResponse], pagerule, path=["response"])
+            page_rule = response.parse()
+            assert_matches_type(Optional[PageRuleDeleteResponse], page_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.pagerules.with_raw_response.delete(
+            client.page_rules.with_raw_response.delete(
                 pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pagerule_id` but received ''"):
-            client.pagerules.with_raw_response.delete(
+            client.page_rules.with_raw_response.delete(
                 pagerule_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
-        pagerule = client.pagerules.edit(
+        page_rule = client.page_rules.edit(
             pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[PageRule], pagerule, path=["response"])
+        assert_matches_type(Optional[PageRule], page_rule, path=["response"])
 
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
-        pagerule = client.pagerules.edit(
+        page_rule = client.page_rules.edit(
             pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[
@@ -374,103 +374,103 @@ class TestPagerules:
                 }
             ],
         )
-        assert_matches_type(Optional[PageRule], pagerule, path=["response"])
+        assert_matches_type(Optional[PageRule], page_rule, path=["response"])
 
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
-        response = client.pagerules.with_raw_response.edit(
+        response = client.page_rules.with_raw_response.edit(
             pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        pagerule = response.parse()
-        assert_matches_type(Optional[PageRule], pagerule, path=["response"])
+        page_rule = response.parse()
+        assert_matches_type(Optional[PageRule], page_rule, path=["response"])
 
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
-        with client.pagerules.with_streaming_response.edit(
+        with client.page_rules.with_streaming_response.edit(
             pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            pagerule = response.parse()
-            assert_matches_type(Optional[PageRule], pagerule, path=["response"])
+            page_rule = response.parse()
+            assert_matches_type(Optional[PageRule], page_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.pagerules.with_raw_response.edit(
+            client.page_rules.with_raw_response.edit(
                 pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pagerule_id` but received ''"):
-            client.pagerules.with_raw_response.edit(
+            client.page_rules.with_raw_response.edit(
                 pagerule_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
-        pagerule = client.pagerules.get(
+        page_rule = client.page_rules.get(
             pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[PageRule], pagerule, path=["response"])
+        assert_matches_type(Optional[PageRule], page_rule, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
-        response = client.pagerules.with_raw_response.get(
+        response = client.page_rules.with_raw_response.get(
             pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        pagerule = response.parse()
-        assert_matches_type(Optional[PageRule], pagerule, path=["response"])
+        page_rule = response.parse()
+        assert_matches_type(Optional[PageRule], page_rule, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
-        with client.pagerules.with_streaming_response.get(
+        with client.page_rules.with_streaming_response.get(
             pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            pagerule = response.parse()
-            assert_matches_type(Optional[PageRule], pagerule, path=["response"])
+            page_rule = response.parse()
+            assert_matches_type(Optional[PageRule], page_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            client.pagerules.with_raw_response.get(
+            client.page_rules.with_raw_response.get(
                 pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pagerule_id` but received ''"):
-            client.pagerules.with_raw_response.get(
+            client.page_rules.with_raw_response.get(
                 pagerule_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
 
-class TestAsyncPagerules:
+class TestAsyncPageRules:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
-        pagerule = await async_client.pagerules.create(
+        page_rule = await async_client.page_rules.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[{}],
             targets=[
@@ -483,11 +483,11 @@ class TestAsyncPagerules:
                 }
             ],
         )
-        assert_matches_type(Optional[PageRule], pagerule, path=["response"])
+        assert_matches_type(Optional[PageRule], page_rule, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        pagerule = await async_client.pagerules.create(
+        page_rule = await async_client.page_rules.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[
                 {
@@ -507,11 +507,11 @@ class TestAsyncPagerules:
             priority=0,
             status="active",
         )
-        assert_matches_type(Optional[PageRule], pagerule, path=["response"])
+        assert_matches_type(Optional[PageRule], page_rule, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.pagerules.with_raw_response.create(
+        response = await async_client.page_rules.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[{}],
             targets=[
@@ -527,12 +527,12 @@ class TestAsyncPagerules:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        pagerule = await response.parse()
-        assert_matches_type(Optional[PageRule], pagerule, path=["response"])
+        page_rule = await response.parse()
+        assert_matches_type(Optional[PageRule], page_rule, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.pagerules.with_streaming_response.create(
+        async with async_client.page_rules.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[{}],
             targets=[
@@ -548,15 +548,15 @@ class TestAsyncPagerules:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            pagerule = await response.parse()
-            assert_matches_type(Optional[PageRule], pagerule, path=["response"])
+            page_rule = await response.parse()
+            assert_matches_type(Optional[PageRule], page_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.pagerules.with_raw_response.create(
+            await async_client.page_rules.with_raw_response.create(
                 zone_id="",
                 actions=[{}],
                 targets=[
@@ -572,7 +572,7 @@ class TestAsyncPagerules:
 
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
-        pagerule = await async_client.pagerules.update(
+        page_rule = await async_client.page_rules.update(
             pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[{}],
@@ -586,11 +586,11 @@ class TestAsyncPagerules:
                 }
             ],
         )
-        assert_matches_type(Optional[PageRule], pagerule, path=["response"])
+        assert_matches_type(Optional[PageRule], page_rule, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        pagerule = await async_client.pagerules.update(
+        page_rule = await async_client.page_rules.update(
             pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[
@@ -611,11 +611,11 @@ class TestAsyncPagerules:
             priority=0,
             status="active",
         )
-        assert_matches_type(Optional[PageRule], pagerule, path=["response"])
+        assert_matches_type(Optional[PageRule], page_rule, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.pagerules.with_raw_response.update(
+        response = await async_client.page_rules.with_raw_response.update(
             pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[{}],
@@ -632,12 +632,12 @@ class TestAsyncPagerules:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        pagerule = await response.parse()
-        assert_matches_type(Optional[PageRule], pagerule, path=["response"])
+        page_rule = await response.parse()
+        assert_matches_type(Optional[PageRule], page_rule, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.pagerules.with_streaming_response.update(
+        async with async_client.page_rules.with_streaming_response.update(
             pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[{}],
@@ -654,15 +654,15 @@ class TestAsyncPagerules:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            pagerule = await response.parse()
-            assert_matches_type(Optional[PageRule], pagerule, path=["response"])
+            page_rule = await response.parse()
+            assert_matches_type(Optional[PageRule], page_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.pagerules.with_raw_response.update(
+            await async_client.page_rules.with_raw_response.update(
                 pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
                 actions=[{}],
@@ -678,7 +678,7 @@ class TestAsyncPagerules:
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pagerule_id` but received ''"):
-            await async_client.pagerules.with_raw_response.update(
+            await async_client.page_rules.with_raw_response.update(
                 pagerule_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 actions=[{}],
@@ -695,112 +695,112 @@ class TestAsyncPagerules:
 
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
-        pagerule = await async_client.pagerules.list(
+        page_rule = await async_client.page_rules.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[PageruleListResponse], pagerule, path=["response"])
+        assert_matches_type(Optional[PageRuleListResponse], page_rule, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        pagerule = await async_client.pagerules.list(
+        page_rule = await async_client.page_rules.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             direction="asc",
             match="any",
             order="status",
             status="active",
         )
-        assert_matches_type(Optional[PageruleListResponse], pagerule, path=["response"])
+        assert_matches_type(Optional[PageRuleListResponse], page_rule, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.pagerules.with_raw_response.list(
+        response = await async_client.page_rules.with_raw_response.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        pagerule = await response.parse()
-        assert_matches_type(Optional[PageruleListResponse], pagerule, path=["response"])
+        page_rule = await response.parse()
+        assert_matches_type(Optional[PageRuleListResponse], page_rule, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.pagerules.with_streaming_response.list(
+        async with async_client.page_rules.with_streaming_response.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            pagerule = await response.parse()
-            assert_matches_type(Optional[PageruleListResponse], pagerule, path=["response"])
+            page_rule = await response.parse()
+            assert_matches_type(Optional[PageRuleListResponse], page_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.pagerules.with_raw_response.list(
+            await async_client.page_rules.with_raw_response.list(
                 zone_id="",
             )
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
-        pagerule = await async_client.pagerules.delete(
+        page_rule = await async_client.page_rules.delete(
             pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[PageruleDeleteResponse], pagerule, path=["response"])
+        assert_matches_type(Optional[PageRuleDeleteResponse], page_rule, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.pagerules.with_raw_response.delete(
+        response = await async_client.page_rules.with_raw_response.delete(
             pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        pagerule = await response.parse()
-        assert_matches_type(Optional[PageruleDeleteResponse], pagerule, path=["response"])
+        page_rule = await response.parse()
+        assert_matches_type(Optional[PageRuleDeleteResponse], page_rule, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.pagerules.with_streaming_response.delete(
+        async with async_client.page_rules.with_streaming_response.delete(
             pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            pagerule = await response.parse()
-            assert_matches_type(Optional[PageruleDeleteResponse], pagerule, path=["response"])
+            page_rule = await response.parse()
+            assert_matches_type(Optional[PageRuleDeleteResponse], page_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.pagerules.with_raw_response.delete(
+            await async_client.page_rules.with_raw_response.delete(
                 pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pagerule_id` but received ''"):
-            await async_client.pagerules.with_raw_response.delete(
+            await async_client.page_rules.with_raw_response.delete(
                 pagerule_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
-        pagerule = await async_client.pagerules.edit(
+        page_rule = await async_client.page_rules.edit(
             pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[PageRule], pagerule, path=["response"])
+        assert_matches_type(Optional[PageRule], page_rule, path=["response"])
 
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        pagerule = await async_client.pagerules.edit(
+        page_rule = await async_client.page_rules.edit(
             pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[
@@ -821,92 +821,92 @@ class TestAsyncPagerules:
                 }
             ],
         )
-        assert_matches_type(Optional[PageRule], pagerule, path=["response"])
+        assert_matches_type(Optional[PageRule], page_rule, path=["response"])
 
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.pagerules.with_raw_response.edit(
+        response = await async_client.page_rules.with_raw_response.edit(
             pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        pagerule = await response.parse()
-        assert_matches_type(Optional[PageRule], pagerule, path=["response"])
+        page_rule = await response.parse()
+        assert_matches_type(Optional[PageRule], page_rule, path=["response"])
 
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.pagerules.with_streaming_response.edit(
+        async with async_client.page_rules.with_streaming_response.edit(
             pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            pagerule = await response.parse()
-            assert_matches_type(Optional[PageRule], pagerule, path=["response"])
+            page_rule = await response.parse()
+            assert_matches_type(Optional[PageRule], page_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.pagerules.with_raw_response.edit(
+            await async_client.page_rules.with_raw_response.edit(
                 pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pagerule_id` but received ''"):
-            await async_client.pagerules.with_raw_response.edit(
+            await async_client.page_rules.with_raw_response.edit(
                 pagerule_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
-        pagerule = await async_client.pagerules.get(
+        page_rule = await async_client.page_rules.get(
             pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[PageRule], pagerule, path=["response"])
+        assert_matches_type(Optional[PageRule], page_rule, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.pagerules.with_raw_response.get(
+        response = await async_client.page_rules.with_raw_response.get(
             pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        pagerule = await response.parse()
-        assert_matches_type(Optional[PageRule], pagerule, path=["response"])
+        page_rule = await response.parse()
+        assert_matches_type(Optional[PageRule], page_rule, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.pagerules.with_streaming_response.get(
+        async with async_client.page_rules.with_streaming_response.get(
             pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            pagerule = await response.parse()
-            assert_matches_type(Optional[PageRule], pagerule, path=["response"])
+            page_rule = await response.parse()
+            assert_matches_type(Optional[PageRule], page_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-            await async_client.pagerules.with_raw_response.get(
+            await async_client.page_rules.with_raw_response.get(
                 pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pagerule_id` but received ''"):
-            await async_client.pagerules.with_raw_response.get(
+            await async_client.page_rules.with_raw_response.get(
                 pagerule_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
