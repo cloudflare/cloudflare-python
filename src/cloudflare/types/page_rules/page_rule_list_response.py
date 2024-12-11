@@ -5,6 +5,6 @@ from typing_extensions import TypeAlias
 
 from .page_rule import PageRule
 
-__all__ = ["PageruleListResponse"]
+__all__ = ["PageRuleListResponse"]
 
-PageruleListResponse: TypeAlias = List[PageRule]
+PageRuleListResponse: TypeAlias = List[PageRule]

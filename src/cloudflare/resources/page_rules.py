@@ -22,40 +22,45 @@ from .._response import (
 )
 from .._wrappers import ResultWrapper
 from .._base_client import make_request_options
-from ..types.pagerules import pagerule_edit_params, pagerule_list_params, pagerule_create_params, pagerule_update_params
-from ..types.pagerules.page_rule import PageRule
-from ..types.pagerules.target_param import TargetParam
-from ..types.pagerules.pagerule_list_response import PageruleListResponse
-from ..types.pagerules.pagerule_delete_response import PageruleDeleteResponse
+from ..types.page_rules import (
+    page_rule_edit_params,
+    page_rule_list_params,
+    page_rule_create_params,
+    page_rule_update_params,
+)
+from ..types.page_rules.page_rule import PageRule
+from ..types.page_rules.target_param import TargetParam
+from ..types.page_rules.page_rule_list_response import PageRuleListResponse
+from ..types.page_rules.page_rule_delete_response import PageRuleDeleteResponse
 
-__all__ = ["PagerulesResource", "AsyncPagerulesResource"]
+__all__ = ["PageRulesResource", "AsyncPageRulesResource"]
 
 
-class PagerulesResource(SyncAPIResource):
+class PageRulesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> PagerulesResourceWithRawResponse:
+    def with_raw_response(self) -> PageRulesResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return the
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return PagerulesResourceWithRawResponse(self)
+        return PageRulesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> PagerulesResourceWithStreamingResponse:
+    def with_streaming_response(self) -> PageRulesResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return PagerulesResourceWithStreamingResponse(self)
+        return PageRulesResourceWithStreamingResponse(self)
 
     def create(
         self,
         *,
         zone_id: str,
-        actions: Iterable[pagerule_create_params.Action],
+        actions: Iterable[page_rule_create_params.Action],
         targets: Iterable[TargetParam],
         priority: int | NotGiven = NOT_GIVEN,
         status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
@@ -104,7 +109,7 @@ class PagerulesResource(SyncAPIResource):
                     "priority": priority,
                     "status": status,
                 },
-                pagerule_create_params.PageruleCreateParams,
+                page_rule_create_params.PageRuleCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -121,7 +126,7 @@ class PagerulesResource(SyncAPIResource):
         pagerule_id: str,
         *,
         zone_id: str,
-        actions: Iterable[pagerule_update_params.Action],
+        actions: Iterable[page_rule_update_params.Action],
         targets: Iterable[TargetParam],
         priority: int | NotGiven = NOT_GIVEN,
         status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
@@ -176,7 +181,7 @@ class PagerulesResource(SyncAPIResource):
                     "priority": priority,
                     "status": status,
                 },
-                pagerule_update_params.PageruleUpdateParams,
+                page_rule_update_params.PageRuleUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -202,7 +207,7 @@ class PagerulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PageruleListResponse]:
+    ) -> Optional[PageRuleListResponse]:
         """
         Fetches Page Rules in a zone.
 
@@ -242,11 +247,11 @@ class PagerulesResource(SyncAPIResource):
                         "order": order,
                         "status": status,
                     },
-                    pagerule_list_params.PageruleListParams,
+                    page_rule_list_params.PageRuleListParams,
                 ),
-                post_parser=ResultWrapper[Optional[PageruleListResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[PageRuleListResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[PageruleListResponse]], ResultWrapper[PageruleListResponse]),
+            cast_to=cast(Type[Optional[PageRuleListResponse]], ResultWrapper[PageRuleListResponse]),
         )
 
     def delete(
@@ -260,7 +265,7 @@ class PagerulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PageruleDeleteResponse]:
+    ) -> Optional[PageRuleDeleteResponse]:
         """
         Deletes an existing Page Rule.
 
@@ -288,9 +293,9 @@ class PagerulesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[PageruleDeleteResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[PageRuleDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[PageruleDeleteResponse]], ResultWrapper[PageruleDeleteResponse]),
+            cast_to=cast(Type[Optional[PageRuleDeleteResponse]], ResultWrapper[PageRuleDeleteResponse]),
         )
 
     def edit(
@@ -298,7 +303,7 @@ class PagerulesResource(SyncAPIResource):
         pagerule_id: str,
         *,
         zone_id: str,
-        actions: Iterable[pagerule_edit_params.Action] | NotGiven = NOT_GIVEN,
+        actions: Iterable[page_rule_edit_params.Action] | NotGiven = NOT_GIVEN,
         priority: int | NotGiven = NOT_GIVEN,
         status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
         targets: Iterable[TargetParam] | NotGiven = NOT_GIVEN,
@@ -351,7 +356,7 @@ class PagerulesResource(SyncAPIResource):
                     "status": status,
                     "targets": targets,
                 },
-                pagerule_edit_params.PageruleEditParams,
+                page_rule_edit_params.PageRuleEditParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -408,31 +413,31 @@ class PagerulesResource(SyncAPIResource):
         )
 
 
-class AsyncPagerulesResource(AsyncAPIResource):
+class AsyncPageRulesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncPagerulesResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncPageRulesResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return the
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncPagerulesResourceWithRawResponse(self)
+        return AsyncPageRulesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncPagerulesResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncPageRulesResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return AsyncPagerulesResourceWithStreamingResponse(self)
+        return AsyncPageRulesResourceWithStreamingResponse(self)
 
     async def create(
         self,
         *,
         zone_id: str,
-        actions: Iterable[pagerule_create_params.Action],
+        actions: Iterable[page_rule_create_params.Action],
         targets: Iterable[TargetParam],
         priority: int | NotGiven = NOT_GIVEN,
         status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
@@ -481,7 +486,7 @@ class AsyncPagerulesResource(AsyncAPIResource):
                     "priority": priority,
                     "status": status,
                 },
-                pagerule_create_params.PageruleCreateParams,
+                page_rule_create_params.PageRuleCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -498,7 +503,7 @@ class AsyncPagerulesResource(AsyncAPIResource):
         pagerule_id: str,
         *,
         zone_id: str,
-        actions: Iterable[pagerule_update_params.Action],
+        actions: Iterable[page_rule_update_params.Action],
         targets: Iterable[TargetParam],
         priority: int | NotGiven = NOT_GIVEN,
         status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
@@ -553,7 +558,7 @@ class AsyncPagerulesResource(AsyncAPIResource):
                     "priority": priority,
                     "status": status,
                 },
-                pagerule_update_params.PageruleUpdateParams,
+                page_rule_update_params.PageRuleUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -579,7 +584,7 @@ class AsyncPagerulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PageruleListResponse]:
+    ) -> Optional[PageRuleListResponse]:
         """
         Fetches Page Rules in a zone.
 
@@ -619,11 +624,11 @@ class AsyncPagerulesResource(AsyncAPIResource):
                         "order": order,
                         "status": status,
                     },
-                    pagerule_list_params.PageruleListParams,
+                    page_rule_list_params.PageRuleListParams,
                 ),
-                post_parser=ResultWrapper[Optional[PageruleListResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[PageRuleListResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[PageruleListResponse]], ResultWrapper[PageruleListResponse]),
+            cast_to=cast(Type[Optional[PageRuleListResponse]], ResultWrapper[PageRuleListResponse]),
         )
 
     async def delete(
@@ -637,7 +642,7 @@ class AsyncPagerulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PageruleDeleteResponse]:
+    ) -> Optional[PageRuleDeleteResponse]:
         """
         Deletes an existing Page Rule.
 
@@ -665,9 +670,9 @@ class AsyncPagerulesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[PageruleDeleteResponse]]._unwrapper,
+                post_parser=ResultWrapper[Optional[PageRuleDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[PageruleDeleteResponse]], ResultWrapper[PageruleDeleteResponse]),
+            cast_to=cast(Type[Optional[PageRuleDeleteResponse]], ResultWrapper[PageRuleDeleteResponse]),
         )
 
     async def edit(
@@ -675,7 +680,7 @@ class AsyncPagerulesResource(AsyncAPIResource):
         pagerule_id: str,
         *,
         zone_id: str,
-        actions: Iterable[pagerule_edit_params.Action] | NotGiven = NOT_GIVEN,
+        actions: Iterable[page_rule_edit_params.Action] | NotGiven = NOT_GIVEN,
         priority: int | NotGiven = NOT_GIVEN,
         status: Literal["active", "disabled"] | NotGiven = NOT_GIVEN,
         targets: Iterable[TargetParam] | NotGiven = NOT_GIVEN,
@@ -728,7 +733,7 @@ class AsyncPagerulesResource(AsyncAPIResource):
                     "status": status,
                     "targets": targets,
                 },
-                pagerule_edit_params.PageruleEditParams,
+                page_rule_edit_params.PageRuleEditParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -785,97 +790,97 @@ class AsyncPagerulesResource(AsyncAPIResource):
         )
 
 
-class PagerulesResourceWithRawResponse:
-    def __init__(self, pagerules: PagerulesResource) -> None:
-        self._pagerules = pagerules
+class PageRulesResourceWithRawResponse:
+    def __init__(self, page_rules: PageRulesResource) -> None:
+        self._page_rules = page_rules
 
         self.create = to_raw_response_wrapper(
-            pagerules.create,
+            page_rules.create,
         )
         self.update = to_raw_response_wrapper(
-            pagerules.update,
+            page_rules.update,
         )
         self.list = to_raw_response_wrapper(
-            pagerules.list,
+            page_rules.list,
         )
         self.delete = to_raw_response_wrapper(
-            pagerules.delete,
+            page_rules.delete,
         )
         self.edit = to_raw_response_wrapper(
-            pagerules.edit,
+            page_rules.edit,
         )
         self.get = to_raw_response_wrapper(
-            pagerules.get,
+            page_rules.get,
         )
 
 
-class AsyncPagerulesResourceWithRawResponse:
-    def __init__(self, pagerules: AsyncPagerulesResource) -> None:
-        self._pagerules = pagerules
+class AsyncPageRulesResourceWithRawResponse:
+    def __init__(self, page_rules: AsyncPageRulesResource) -> None:
+        self._page_rules = page_rules
 
         self.create = async_to_raw_response_wrapper(
-            pagerules.create,
+            page_rules.create,
         )
         self.update = async_to_raw_response_wrapper(
-            pagerules.update,
+            page_rules.update,
         )
         self.list = async_to_raw_response_wrapper(
-            pagerules.list,
+            page_rules.list,
         )
         self.delete = async_to_raw_response_wrapper(
-            pagerules.delete,
+            page_rules.delete,
         )
         self.edit = async_to_raw_response_wrapper(
-            pagerules.edit,
+            page_rules.edit,
         )
         self.get = async_to_raw_response_wrapper(
-            pagerules.get,
+            page_rules.get,
         )
 
 
-class PagerulesResourceWithStreamingResponse:
-    def __init__(self, pagerules: PagerulesResource) -> None:
-        self._pagerules = pagerules
+class PageRulesResourceWithStreamingResponse:
+    def __init__(self, page_rules: PageRulesResource) -> None:
+        self._page_rules = page_rules
 
         self.create = to_streamed_response_wrapper(
-            pagerules.create,
+            page_rules.create,
         )
         self.update = to_streamed_response_wrapper(
-            pagerules.update,
+            page_rules.update,
         )
         self.list = to_streamed_response_wrapper(
-            pagerules.list,
+            page_rules.list,
         )
         self.delete = to_streamed_response_wrapper(
-            pagerules.delete,
+            page_rules.delete,
         )
         self.edit = to_streamed_response_wrapper(
-            pagerules.edit,
+            page_rules.edit,
         )
         self.get = to_streamed_response_wrapper(
-            pagerules.get,
+            page_rules.get,
         )
 
 
-class AsyncPagerulesResourceWithStreamingResponse:
-    def __init__(self, pagerules: AsyncPagerulesResource) -> None:
-        self._pagerules = pagerules
+class AsyncPageRulesResourceWithStreamingResponse:
+    def __init__(self, page_rules: AsyncPageRulesResource) -> None:
+        self._page_rules = page_rules
 
         self.create = async_to_streamed_response_wrapper(
-            pagerules.create,
+            page_rules.create,
         )
         self.update = async_to_streamed_response_wrapper(
-            pagerules.update,
+            page_rules.update,
         )
         self.list = async_to_streamed_response_wrapper(
-            pagerules.list,
+            page_rules.list,
         )
         self.delete = async_to_streamed_response_wrapper(
-            pagerules.delete,
+            page_rules.delete,
         )
         self.edit = async_to_streamed_response_wrapper(
-            pagerules.edit,
+            page_rules.edit,
         )
         self.get = async_to_streamed_response_wrapper(
-            pagerules.get,
+            page_rules.get,
         )

@@ -3,9 +3,9 @@
 
 from ..._models import BaseModel
 
-__all__ = ["PageruleDeleteResponse"]
+__all__ = ["PageRuleDeleteResponse"]
 
 
-class PageruleDeleteResponse(BaseModel):
+class PageRuleDeleteResponse(BaseModel):
     id: str
     """Identifier"""

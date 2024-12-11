@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["PageruleListParams"]
+__all__ = ["PageRuleListParams"]
 
 
-class PageruleListParams(TypedDict, total=False):
+class PageRuleListParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
