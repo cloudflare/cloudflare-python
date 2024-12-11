@@ -26,7 +26,7 @@ from ..zones.origin_error_page_pass_thru_param import OriginErrorPagePassThruPar
 from ..zones.sort_query_string_for_cache_param import SortQueryStringForCacheParam
 
 __all__ = [
-    "PageruleCreateParams",
+    "PageRuleUpdateParams",
     "Action",
     "ActionBypassCacheOnCookie",
     "ActionCacheByDeviceType",
@@ -53,7 +53,7 @@ __all__ = [
 ]
 
 
-class PageruleCreateParams(TypedDict, total=False):
+class PageRuleUpdateParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 

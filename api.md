@@ -2050,27 +2050,27 @@ Methods:
 - <code title="put /zones/{zone_id}/origin_tls_client_auth/settings">client.origin_tls_client_auth.settings.<a href="./src/cloudflare/resources/origin_tls_client_auth/settings.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/origin_tls_client_auth/setting_update_params.py">params</a>) -> <a href="./src/cloudflare/types/origin_tls_client_auth/setting_update_response.py">Optional[SettingUpdateResponse]</a></code>
 - <code title="get /zones/{zone_id}/origin_tls_client_auth/settings">client.origin_tls_client_auth.settings.<a href="./src/cloudflare/resources/origin_tls_client_auth/settings.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth/setting_get_response.py">Optional[SettingGetResponse]</a></code>
 
-# Pagerules
+# PageRules
 
 Types:
 
 ```python
-from cloudflare.types.pagerules import (
+from cloudflare.types.page_rules import (
     PageRule,
     Target,
-    PageruleListResponse,
-    PageruleDeleteResponse,
+    PageRuleListResponse,
+    PageRuleDeleteResponse,
 )
 ```
 
 Methods:
 
-- <code title="post /zones/{zone_id}/pagerules">client.pagerules.<a href="./src/cloudflare/resources/pagerules.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/pagerules/pagerule_create_params.py">params</a>) -> <a href="./src/cloudflare/types/pagerules/page_rule.py">Optional[PageRule]</a></code>
-- <code title="put /zones/{zone_id}/pagerules/{pagerule_id}">client.pagerules.<a href="./src/cloudflare/resources/pagerules.py">update</a>(pagerule_id, \*, zone_id, \*\*<a href="src/cloudflare/types/pagerules/pagerule_update_params.py">params</a>) -> <a href="./src/cloudflare/types/pagerules/page_rule.py">Optional[PageRule]</a></code>
-- <code title="get /zones/{zone_id}/pagerules">client.pagerules.<a href="./src/cloudflare/resources/pagerules.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/pagerules/pagerule_list_params.py">params</a>) -> <a href="./src/cloudflare/types/pagerules/pagerule_list_response.py">Optional[PageruleListResponse]</a></code>
-- <code title="delete /zones/{zone_id}/pagerules/{pagerule_id}">client.pagerules.<a href="./src/cloudflare/resources/pagerules.py">delete</a>(pagerule_id, \*, zone_id) -> <a href="./src/cloudflare/types/pagerules/pagerule_delete_response.py">Optional[PageruleDeleteResponse]</a></code>
-- <code title="patch /zones/{zone_id}/pagerules/{pagerule_id}">client.pagerules.<a href="./src/cloudflare/resources/pagerules.py">edit</a>(pagerule_id, \*, zone_id, \*\*<a href="src/cloudflare/types/pagerules/pagerule_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/pagerules/page_rule.py">Optional[PageRule]</a></code>
-- <code title="get /zones/{zone_id}/pagerules/{pagerule_id}">client.pagerules.<a href="./src/cloudflare/resources/pagerules.py">get</a>(pagerule_id, \*, zone_id) -> <a href="./src/cloudflare/types/pagerules/page_rule.py">Optional[PageRule]</a></code>
+- <code title="post /zones/{zone_id}/pagerules">client.page_rules.<a href="./src/cloudflare/resources/page_rules.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/page_rules/page_rule_create_params.py">params</a>) -> <a href="./src/cloudflare/types/page_rules/page_rule.py">Optional[PageRule]</a></code>
+- <code title="put /zones/{zone_id}/pagerules/{pagerule_id}">client.page_rules.<a href="./src/cloudflare/resources/page_rules.py">update</a>(pagerule_id, \*, zone_id, \*\*<a href="src/cloudflare/types/page_rules/page_rule_update_params.py">params</a>) -> <a href="./src/cloudflare/types/page_rules/page_rule.py">Optional[PageRule]</a></code>
+- <code title="get /zones/{zone_id}/pagerules">client.page_rules.<a href="./src/cloudflare/resources/page_rules.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/page_rules/page_rule_list_params.py">params</a>) -> <a href="./src/cloudflare/types/page_rules/page_rule_list_response.py">Optional[PageRuleListResponse]</a></code>
+- <code title="delete /zones/{zone_id}/pagerules/{pagerule_id}">client.page_rules.<a href="./src/cloudflare/resources/page_rules.py">delete</a>(pagerule_id, \*, zone_id) -> <a href="./src/cloudflare/types/page_rules/page_rule_delete_response.py">Optional[PageRuleDeleteResponse]</a></code>
+- <code title="patch /zones/{zone_id}/pagerules/{pagerule_id}">client.page_rules.<a href="./src/cloudflare/resources/page_rules.py">edit</a>(pagerule_id, \*, zone_id, \*\*<a href="src/cloudflare/types/page_rules/page_rule_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/page_rules/page_rule.py">Optional[PageRule]</a></code>
+- <code title="get /zones/{zone_id}/pagerules/{pagerule_id}">client.page_rules.<a href="./src/cloudflare/resources/page_rules.py">get</a>(pagerule_id, \*, zone_id) -> <a href="./src/cloudflare/types/page_rules/page_rule.py">Optional[PageRule]</a></code>
 
 # RateLimits
 
