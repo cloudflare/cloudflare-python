@@ -18,6 +18,7 @@ from .network_path import NetworkPath as NetworkPath
 from .organization import Organization as Organization
 from .everyone_rule import EveryoneRule as EveryoneRule
 from .ip_rule_param import IPRuleParam as IPRuleParam
+from .azure_ad_param import AzureADParam as AzureADParam
 from .email_list_rule import EmailListRule as EmailListRule
 from .okta_group_rule import OktaGroupRule as OktaGroupRule
 from .saml_group_rule import SAMLGroupRule as SAMLGroupRule
@@ -56,6 +57,7 @@ from .tunnel_create_response import TunnelCreateResponse as TunnelCreateResponse
 from .tunnel_delete_response import TunnelDeleteResponse as TunnelDeleteResponse
 from .gateway_create_response import GatewayCreateResponse as GatewayCreateResponse
 from .gsuite_group_rule_param import GSuiteGroupRuleParam as GSuiteGroupRuleParam
+from .identity_provider_param import IdentityProviderParam as IdentityProviderParam
 from .external_evaluation_rule import ExternalEvaluationRule as ExternalEvaluationRule
 from .github_organization_rule import GitHubOrganizationRule as GitHubOrganizationRule
 from .service_token_rule_param import ServiceTokenRuleParam as ServiceTokenRuleParam
