@@ -7,6 +7,7 @@ from .a_record import ARecord as ARecord
 from .ds_record import DSRecord as DSRecord
 from .mx_record import MXRecord as MXRecord
 from .ns_record import NSRecord as NSRecord
+from .ttl_param import TTLParam as TTLParam
 from .caa_record import CAARecord as CAARecord
 from .loc_record import LOCRecord as LOCRecord
 from .ptr_record import PTRRecord as PTRRecord
