@@ -18,14 +18,6 @@ from .tests import (
     TestsResourceWithStreamingResponse,
     AsyncTestsResourceWithStreamingResponse,
 )
-from .commands import (
-    CommandsResource,
-    AsyncCommandsResource,
-    CommandsResourceWithRawResponse,
-    AsyncCommandsResourceWithRawResponse,
-    CommandsResourceWithStreamingResponse,
-    AsyncCommandsResourceWithStreamingResponse,
-)
 from ...._compat import cached_property
 from .http_tests import (
     HTTPTestsResource,
@@ -53,7 +45,6 @@ from .traceroute_tests import (
     TracerouteTestsResourceWithStreamingResponse,
     AsyncTracerouteTestsResourceWithStreamingResponse,
 )
-from .commands.commands import CommandsResource, AsyncCommandsResource
 from .http_tests.http_tests import HTTPTestsResource, AsyncHTTPTestsResource
 from .traceroute_test_results import (
     TracerouteTestResultsResource,
@@ -73,10 +64,6 @@ __all__ = ["DEXResource", "AsyncDEXResource"]
 
 
 class DEXResource(SyncAPIResource):
-    @cached_property
-    def commands(self) -> CommandsResource:
-        return CommandsResource(self._client)
-
     @cached_property
     def colos(self) -> ColosResource:
         return ColosResource(self._client)
@@ -122,10 +109,6 @@ class DEXResource(SyncAPIResource):
 
 
 class AsyncDEXResource(AsyncAPIResource):
-    @cached_property
-    def commands(self) -> AsyncCommandsResource:
-        return AsyncCommandsResource(self._client)
-
     @cached_property
     def colos(self) -> AsyncColosResource:
         return AsyncColosResource(self._client)
@@ -175,10 +158,6 @@ class DEXResourceWithRawResponse:
         self._dex = dex
 
     @cached_property
-    def commands(self) -> CommandsResourceWithRawResponse:
-        return CommandsResourceWithRawResponse(self._dex.commands)
-
-    @cached_property
     def colos(self) -> ColosResourceWithRawResponse:
         return ColosResourceWithRawResponse(self._dex.colos)
 
@@ -206,10 +185,6 @@ class DEXResourceWithRawResponse:
 class AsyncDEXResourceWithRawResponse:
     def __init__(self, dex: AsyncDEXResource) -> None:
         self._dex = dex
-
-    @cached_property
-    def commands(self) -> AsyncCommandsResourceWithRawResponse:
-        return AsyncCommandsResourceWithRawResponse(self._dex.commands)
 
     @cached_property
     def colos(self) -> AsyncColosResourceWithRawResponse:
@@ -241,10 +216,6 @@ class DEXResourceWithStreamingResponse:
         self._dex = dex
 
     @cached_property
-    def commands(self) -> CommandsResourceWithStreamingResponse:
-        return CommandsResourceWithStreamingResponse(self._dex.commands)
-
-    @cached_property
     def colos(self) -> ColosResourceWithStreamingResponse:
         return ColosResourceWithStreamingResponse(self._dex.colos)
 
@@ -272,10 +243,6 @@ class DEXResourceWithStreamingResponse:
 class AsyncDEXResourceWithStreamingResponse:
     def __init__(self, dex: AsyncDEXResource) -> None:
         self._dex = dex
-
-    @cached_property
-    def commands(self) -> AsyncCommandsResourceWithStreamingResponse:
-        return AsyncCommandsResourceWithStreamingResponse(self._dex.commands)
 
     @cached_property
     def colos(self) -> AsyncColosResourceWithStreamingResponse:

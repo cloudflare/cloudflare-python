@@ -34,7 +34,10 @@ class TestTokens:
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {},
+                    "resources": {
+                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
+                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
+                    },
                 }
             ],
         )
@@ -64,8 +67,8 @@ class TestTokens:
                         },
                     ],
                     "resources": {
-                        "resource": "resource",
-                        "scope": "scope",
+                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
+                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
                     },
                 }
             ],
@@ -90,7 +93,10 @@ class TestTokens:
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {},
+                    "resources": {
+                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
+                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
+                    },
                 }
             ],
         )
@@ -110,7 +116,10 @@ class TestTokens:
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {},
+                    "resources": {
+                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
+                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
+                    },
                 }
             ],
         ) as response:
@@ -133,7 +142,10 @@ class TestTokens:
                     {
                         "effect": "allow",
                         "permission_groups": [{}, {}],
-                        "resources": {},
+                        "resources": {
+                            "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
+                            "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
+                        },
                     }
                 ],
             )
@@ -149,7 +161,10 @@ class TestTokens:
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {},
+                    "resources": {
+                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
+                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
+                    },
                 }
             ],
             status="active",
@@ -181,8 +196,8 @@ class TestTokens:
                         },
                     ],
                     "resources": {
-                        "resource": "resource",
-                        "scope": "scope",
+                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
+                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
                     },
                 }
             ],
@@ -209,7 +224,10 @@ class TestTokens:
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {},
+                    "resources": {
+                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
+                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
+                    },
                 }
             ],
             status="active",
@@ -231,7 +249,10 @@ class TestTokens:
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {},
+                    "resources": {
+                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
+                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
+                    },
                 }
             ],
             status="active",
@@ -256,7 +277,10 @@ class TestTokens:
                     {
                         "effect": "allow",
                         "permission_groups": [{}, {}],
-                        "resources": {},
+                        "resources": {
+                            "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
+                            "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
+                        },
                     }
                 ],
                 status="active",
@@ -271,7 +295,10 @@ class TestTokens:
                     {
                         "effect": "allow",
                         "permission_groups": [{}, {}],
-                        "resources": {},
+                        "resources": {
+                            "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
+                            "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
+                        },
                     }
                 ],
                 status="active",
@@ -490,7 +517,10 @@ class TestAsyncTokens:
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {},
+                    "resources": {
+                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
+                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
+                    },
                 }
             ],
         )
@@ -520,8 +550,8 @@ class TestAsyncTokens:
                         },
                     ],
                     "resources": {
-                        "resource": "resource",
-                        "scope": "scope",
+                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
+                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
                     },
                 }
             ],
@@ -546,7 +576,10 @@ class TestAsyncTokens:
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {},
+                    "resources": {
+                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
+                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
+                    },
                 }
             ],
         )
@@ -566,7 +599,10 @@ class TestAsyncTokens:
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {},
+                    "resources": {
+                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
+                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
+                    },
                 }
             ],
         ) as response:
@@ -589,7 +625,10 @@ class TestAsyncTokens:
                     {
                         "effect": "allow",
                         "permission_groups": [{}, {}],
-                        "resources": {},
+                        "resources": {
+                            "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
+                            "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
+                        },
                     }
                 ],
             )
@@ -605,7 +644,10 @@ class TestAsyncTokens:
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {},
+                    "resources": {
+                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
+                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
+                    },
                 }
             ],
             status="active",
@@ -637,8 +679,8 @@ class TestAsyncTokens:
                         },
                     ],
                     "resources": {
-                        "resource": "resource",
-                        "scope": "scope",
+                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
+                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
                     },
                 }
             ],
@@ -665,7 +707,10 @@ class TestAsyncTokens:
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {},
+                    "resources": {
+                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
+                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
+                    },
                 }
             ],
             status="active",
@@ -687,7 +732,10 @@ class TestAsyncTokens:
                 {
                     "effect": "allow",
                     "permission_groups": [{}, {}],
-                    "resources": {},
+                    "resources": {
+                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
+                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
+                    },
                 }
             ],
             status="active",
@@ -712,7 +760,10 @@ class TestAsyncTokens:
                     {
                         "effect": "allow",
                         "permission_groups": [{}, {}],
-                        "resources": {},
+                        "resources": {
+                            "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
+                            "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
+                        },
                     }
                 ],
                 status="active",
@@ -727,7 +778,10 @@ class TestAsyncTokens:
                     {
                         "effect": "allow",
                         "permission_groups": [{}, {}],
-                        "resources": {},
+                        "resources": {
+                            "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
+                            "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
+                        },
                     }
                 ],
                 status="active",

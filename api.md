@@ -416,7 +416,7 @@ from cloudflare.types.zones import ZoneHold
 Methods:
 
 - <code title="post /zones/{zone_id}/hold">client.zones.holds.<a href="./src/cloudflare/resources/zones/holds.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/hold_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/zone_hold.py">ZoneHold</a></code>
-- <code title="delete /zones/{zone_id}/hold">client.zones.holds.<a href="./src/cloudflare/resources/zones/holds.py">delete</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/hold_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/zone_hold.py">Optional[ZoneHold]</a></code>
+- <code title="delete /zones/{zone_id}/hold">client.zones.holds.<a href="./src/cloudflare/resources/zones/holds.py">delete</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/hold_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/zone_hold.py">ZoneHold</a></code>
 - <code title="get /zones/{zone_id}/hold">client.zones.holds.<a href="./src/cloudflare/resources/zones/holds.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/zone_hold.py">ZoneHold</a></code>
 
 ## Subscriptions
@@ -4841,18 +4841,6 @@ Methods:
 - <code title="delete /accounts/{account_id}/devices/networks/{network_id}">client.zero_trust.devices.networks.<a href="./src/cloudflare/resources/zero_trust/devices/networks.py">delete</a>(network_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/network_delete_response.py">Optional[NetworkDeleteResponse]</a></code>
 - <code title="get /accounts/{account_id}/devices/networks/{network_id}">client.zero_trust.devices.networks.<a href="./src/cloudflare/resources/zero_trust/devices/networks.py">get</a>(network_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/device_network.py">Optional[DeviceNetwork]</a></code>
 
-### FleetStatus
-
-Types:
-
-```python
-from cloudflare.types.zero_trust.devices import FleetStatusGetResponse
-```
-
-Methods:
-
-- <code title="get /accounts/{account_id}/devices/{device_id}/fleet-status/live">client.zero_trust.devices.fleet_status.<a href="./src/cloudflare/resources/zero_trust/devices/fleet_status.py">get</a>(device_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/fleet_status_get_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/fleet_status_get_response.py">FleetStatusGetResponse</a></code>
-
 ### Policies
 
 Types:
@@ -5590,37 +5578,6 @@ from cloudflare.types.zero_trust import (
     Percentiles,
 )
 ```
-
-### Commands
-
-Types:
-
-```python
-from cloudflare.types.zero_trust.dex import CommandCreateResponse, CommandListResponse
-```
-
-Methods:
-
-- <code title="post /accounts/{account_id}/commands">client.zero_trust.dex.commands.<a href="./src/cloudflare/resources/zero_trust/dex/commands/commands.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dex/command_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dex/command_create_response.py">Optional[CommandCreateResponse]</a></code>
-- <code title="get /accounts/{account_id}/commands">client.zero_trust.dex.commands.<a href="./src/cloudflare/resources/zero_trust/dex/commands/commands.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dex/command_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dex/command_list_response.py">SyncV4PagePagination[Optional[CommandListResponse]]</a></code>
-
-#### Downloads
-
-Methods:
-
-- <code title="get /accounts/{account_id}/commands/{command_id}/downloads/{filename}">client.zero_trust.dex.commands.downloads.<a href="./src/cloudflare/resources/zero_trust/dex/commands/downloads.py">get</a>(filename, \*, account_id, command_id) -> BinaryAPIResponse</code>
-
-#### Quota
-
-Types:
-
-```python
-from cloudflare.types.zero_trust.dex.commands import QuotaGetResponse
-```
-
-Methods:
-
-- <code title="get /accounts/{account_id}/commands/quota">client.zero_trust.dex.commands.quota.<a href="./src/cloudflare/resources/zero_trust/dex/commands/quota.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dex/commands/quota_get_response.py">Optional[QuotaGetResponse]</a></code>
 
 ### Colos
 

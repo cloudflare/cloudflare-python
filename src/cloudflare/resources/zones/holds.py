@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, cast
 
 import httpx
 
@@ -105,7 +105,7 @@ class HoldsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneHold]:
+    ) -> ZoneHold:
         """
         Stop enforcement of a zone hold on the zone, permanently or temporarily,
         allowing the creation and activation of zones with this zone's hostname.
@@ -135,9 +135,9 @@ class HoldsResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"hold_after": hold_after}, hold_delete_params.HoldDeleteParams),
-                post_parser=ResultWrapper[Optional[ZoneHold]]._unwrapper,
+                post_parser=ResultWrapper[ZoneHold]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneHold]], ResultWrapper[ZoneHold]),
+            cast_to=cast(Type[ZoneHold], ResultWrapper[ZoneHold]),
         )
 
     def get(
@@ -261,7 +261,7 @@ class AsyncHoldsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneHold]:
+    ) -> ZoneHold:
         """
         Stop enforcement of a zone hold on the zone, permanently or temporarily,
         allowing the creation and activation of zones with this zone's hostname.
@@ -291,9 +291,9 @@ class AsyncHoldsResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform({"hold_after": hold_after}, hold_delete_params.HoldDeleteParams),
-                post_parser=ResultWrapper[Optional[ZoneHold]]._unwrapper,
+                post_parser=ResultWrapper[ZoneHold]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneHold]], ResultWrapper[ZoneHold]),
+            cast_to=cast(Type[ZoneHold], ResultWrapper[ZoneHold]),
         )
 
     async def get(
