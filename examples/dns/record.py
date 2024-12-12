@@ -10,11 +10,11 @@ if zone_id is None:
 client = Cloudflare()
 
 record = client.dns.records.create(
-    zone_id=zone_id, 
-    type='CNAME', 
-    name="www.mydns.com", 
-    content="cname.example.com",
-    proxied=False
+    zone_id=zone_id,
+    type='A',
+    name="www.mydns.com",
+    content="198.51.100.1",
+    proxied=True
 )
 
 # print(record)
