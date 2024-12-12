@@ -16,6 +16,7 @@ from cloudflare._utils import (
     is_union_type,
     extract_type_arg,
     is_annotated_type,
+    is_type_alias_type,
 )
 from cloudflare._compat import PYDANTIC_V2, field_outer_type, get_model_fields
 from cloudflare._models import BaseModel
@@ -51,6 +52,9 @@ def assert_matches_type(
     path: list[str],
     allow_none: bool = False,
 ) -> None:
+    if is_type_alias_type(type_):
+        type_ = type_.__value__
+
     # unwrap `Annotated[T, ...]` -> `T`
     if is_annotated_type(type_):
         type_ = extract_type_arg(type_, 0)
