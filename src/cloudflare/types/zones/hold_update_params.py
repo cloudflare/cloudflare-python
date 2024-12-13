@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["HoldEditParams"]
+__all__ = ["HoldUpdateParams"]
 
 
-class HoldEditParams(TypedDict, total=False):
+class HoldUpdateParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 

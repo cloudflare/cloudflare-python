@@ -49,7 +49,6 @@ from .tls_client_auth import TLSClientAuth as TLSClientAuth
 from .websocket_param import WebsocketParam as WebsocketParam
 from .always_use_https import AlwaysUseHTTPS as AlwaysUseHTTPS
 from .development_mode import DevelopmentMode as DevelopmentMode
-from .hold_edit_params import HoldEditParams as HoldEditParams
 from .orange_to_orange import OrangeToOrange as OrangeToOrange
 from .prefetch_preload import PrefetchPreload as PrefetchPreload
 from .security_headers import SecurityHeaders as SecurityHeaders
@@ -63,6 +62,7 @@ from .h2_prioritization import H2Prioritization as H2Prioritization
 from .pseudo_ipv4_param import PseudoIPV4Param as PseudoIPV4Param
 from .hold_create_params import HoldCreateParams as HoldCreateParams
 from .hold_delete_params import HoldDeleteParams as HoldDeleteParams
+from .hold_update_params import HoldUpdateParams as HoldUpdateParams
 from .hotlink_protection import HotlinkProtection as HotlinkProtection
 from .proxy_read_timeout import ProxyReadTimeout as ProxyReadTimeout
 from .response_buffering import ResponseBuffering as ResponseBuffering
