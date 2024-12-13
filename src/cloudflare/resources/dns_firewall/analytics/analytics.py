@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from .reports import (
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from .reports.reports import (
     ReportsResource,
     AsyncReportsResource,
     ReportsResourceWithRawResponse,
@@ -10,9 +12,6 @@ from .reports import (
     ReportsResourceWithStreamingResponse,
     AsyncReportsResourceWithStreamingResponse,
 )
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from .reports.reports import ReportsResource, AsyncReportsResource
 
 __all__ = ["AnalyticsResource", "AsyncAnalyticsResource"]
 

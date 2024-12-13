@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from .indexes import (
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from .indexes.indexes import (
     IndexesResource,
     AsyncIndexesResource,
     IndexesResourceWithRawResponse,
@@ -10,9 +12,6 @@ from .indexes import (
     IndexesResourceWithStreamingResponse,
     AsyncIndexesResourceWithStreamingResponse,
 )
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from .indexes.indexes import IndexesResource, AsyncIndexesResource
 
 __all__ = ["VectorizeResource", "AsyncVectorizeResource"]
 

@@ -14,14 +14,6 @@ from .upload import (
     UploadResourceWithStreamingResponse,
     AsyncUploadResourceWithStreamingResponse,
 )
-from .versions import (
-    VersionsResource,
-    AsyncVersionsResource,
-    VersionsResourceWithRawResponse,
-    AsyncVersionsResourceWithRawResponse,
-    VersionsResourceWithStreamingResponse,
-    AsyncVersionsResourceWithStreamingResponse,
-)
 from ....._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from ....._utils import (
     maybe_transform,
@@ -38,7 +30,14 @@ from ....._response import (
 from ....._wrappers import ResultWrapper
 from .....pagination import SyncSinglePage, AsyncSinglePage
 from ....._base_client import AsyncPaginator, make_request_options
-from .versions.versions import VersionsResource, AsyncVersionsResource
+from .versions.versions import (
+    VersionsResource,
+    AsyncVersionsResource,
+    VersionsResourceWithRawResponse,
+    AsyncVersionsResourceWithRawResponse,
+    VersionsResourceWithStreamingResponse,
+    AsyncVersionsResourceWithStreamingResponse,
+)
 from .....types.zero_trust.dlp import dataset_create_params, dataset_update_params
 from .....types.zero_trust.dlp.dataset import Dataset
 from .....types.zero_trust.dlp.dataset_creation import DatasetCreation

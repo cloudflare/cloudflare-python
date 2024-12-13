@@ -20,14 +20,6 @@ from ...._utils import (
     async_maybe_transform,
 )
 from ...._compat import cached_property
-from .deployments import (
-    DeploymentsResource,
-    AsyncDeploymentsResource,
-    DeploymentsResourceWithRawResponse,
-    AsyncDeploymentsResourceWithRawResponse,
-    DeploymentsResourceWithStreamingResponse,
-    AsyncDeploymentsResourceWithStreamingResponse,
-)
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
@@ -40,7 +32,14 @@ from ....pagination import SyncSinglePage, AsyncSinglePage
 from ....types.pages import project_edit_params, project_create_params
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.pages.project import Project
-from .deployments.deployments import DeploymentsResource, AsyncDeploymentsResource
+from .deployments.deployments import (
+    DeploymentsResource,
+    AsyncDeploymentsResource,
+    DeploymentsResourceWithRawResponse,
+    AsyncDeploymentsResourceWithRawResponse,
+    DeploymentsResourceWithStreamingResponse,
+    AsyncDeploymentsResourceWithStreamingResponse,
+)
 from ....types.pages.deployment import Deployment
 
 __all__ = ["ProjectsResource", "AsyncProjectsResource"]

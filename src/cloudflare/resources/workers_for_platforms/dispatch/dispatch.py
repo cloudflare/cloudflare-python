@@ -3,7 +3,8 @@
 from __future__ import annotations
 
 from ...._compat import cached_property
-from .namespaces import (
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from .namespaces.namespaces import (
     NamespacesResource,
     AsyncNamespacesResource,
     NamespacesResourceWithRawResponse,
@@ -11,8 +12,6 @@ from .namespaces import (
     NamespacesResourceWithStreamingResponse,
     AsyncNamespacesResourceWithStreamingResponse,
 )
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from .namespaces.namespaces import NamespacesResource, AsyncNamespacesResource
 
 __all__ = ["DispatchResource", "AsyncDispatchResource"]
 

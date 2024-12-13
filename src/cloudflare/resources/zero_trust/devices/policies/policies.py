@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from .custom import (
+from ....._compat import cached_property
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from .custom.custom import (
     CustomResource,
     AsyncCustomResource,
     CustomResourceWithRawResponse,
@@ -10,7 +12,7 @@ from .custom import (
     CustomResourceWithStreamingResponse,
     AsyncCustomResourceWithStreamingResponse,
 )
-from .default import (
+from .default.default import (
     DefaultResource,
     AsyncDefaultResource,
     DefaultResourceWithRawResponse,
@@ -18,10 +20,6 @@ from .default import (
     DefaultResourceWithStreamingResponse,
     AsyncDefaultResourceWithStreamingResponse,
 )
-from ....._compat import cached_property
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from .custom.custom import CustomResource, AsyncCustomResource
-from .default.default import DefaultResource, AsyncDefaultResource
 
 __all__ = ["PoliciesResource", "AsyncPoliciesResource"]
 

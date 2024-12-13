@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from .buckets import (
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from .buckets.buckets import (
     BucketsResource,
     AsyncBucketsResource,
     BucketsResourceWithRawResponse,
@@ -10,9 +12,6 @@ from .buckets import (
     BucketsResourceWithStreamingResponse,
     AsyncBucketsResourceWithStreamingResponse,
 )
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from .buckets.buckets import BucketsResource, AsyncBucketsResource
 from .temporary_credentials import (
     TemporaryCredentialsResource,
     AsyncTemporaryCredentialsResource,

@@ -10,40 +10,8 @@ from .schemas import (
     SchemasResourceWithStreamingResponse,
     AsyncSchemasResourceWithStreamingResponse,
 )
-from .settings import (
-    SettingsResource,
-    AsyncSettingsResource,
-    SettingsResourceWithRawResponse,
-    AsyncSettingsResourceWithRawResponse,
-    SettingsResourceWithStreamingResponse,
-    AsyncSettingsResourceWithStreamingResponse,
-)
 from ..._compat import cached_property
-from .discovery import (
-    DiscoveryResource,
-    AsyncDiscoveryResource,
-    DiscoveryResourceWithRawResponse,
-    AsyncDiscoveryResourceWithRawResponse,
-    DiscoveryResourceWithStreamingResponse,
-    AsyncDiscoveryResourceWithStreamingResponse,
-)
-from .operations import (
-    OperationsResource,
-    AsyncOperationsResource,
-    OperationsResourceWithRawResponse,
-    AsyncOperationsResourceWithRawResponse,
-    OperationsResourceWithStreamingResponse,
-    AsyncOperationsResourceWithStreamingResponse,
-)
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from .user_schemas import (
-    UserSchemasResource,
-    AsyncUserSchemasResource,
-    UserSchemasResourceWithRawResponse,
-    AsyncUserSchemasResourceWithRawResponse,
-    UserSchemasResourceWithStreamingResponse,
-    AsyncUserSchemasResourceWithStreamingResponse,
-)
 from .configurations import (
     ConfigurationsResource,
     AsyncConfigurationsResource,
@@ -52,9 +20,39 @@ from .configurations import (
     ConfigurationsResourceWithStreamingResponse,
     AsyncConfigurationsResourceWithStreamingResponse,
 )
-from .settings.settings import SettingsResource, AsyncSettingsResource
-from .discovery.discovery import DiscoveryResource, AsyncDiscoveryResource
-from .expression_template import (
+from .settings.settings import (
+    SettingsResource,
+    AsyncSettingsResource,
+    SettingsResourceWithRawResponse,
+    AsyncSettingsResourceWithRawResponse,
+    SettingsResourceWithStreamingResponse,
+    AsyncSettingsResourceWithStreamingResponse,
+)
+from .discovery.discovery import (
+    DiscoveryResource,
+    AsyncDiscoveryResource,
+    DiscoveryResourceWithRawResponse,
+    AsyncDiscoveryResourceWithRawResponse,
+    DiscoveryResourceWithStreamingResponse,
+    AsyncDiscoveryResourceWithStreamingResponse,
+)
+from .operations.operations import (
+    OperationsResource,
+    AsyncOperationsResource,
+    OperationsResourceWithRawResponse,
+    AsyncOperationsResourceWithRawResponse,
+    OperationsResourceWithStreamingResponse,
+    AsyncOperationsResourceWithStreamingResponse,
+)
+from .user_schemas.user_schemas import (
+    UserSchemasResource,
+    AsyncUserSchemasResource,
+    UserSchemasResourceWithRawResponse,
+    AsyncUserSchemasResourceWithRawResponse,
+    UserSchemasResourceWithStreamingResponse,
+    AsyncUserSchemasResourceWithStreamingResponse,
+)
+from .expression_template.expression_template import (
     ExpressionTemplateResource,
     AsyncExpressionTemplateResource,
     ExpressionTemplateResourceWithRawResponse,
@@ -62,9 +60,6 @@ from .expression_template import (
     ExpressionTemplateResourceWithStreamingResponse,
     AsyncExpressionTemplateResourceWithStreamingResponse,
 )
-from .operations.operations import OperationsResource, AsyncOperationsResource
-from .user_schemas.user_schemas import UserSchemasResource, AsyncUserSchemasResource
-from .expression_template.expression_template import ExpressionTemplateResource, AsyncExpressionTemplateResource
 
 __all__ = ["APIGatewayResource", "AsyncAPIGatewayResource"]
 

@@ -10,7 +10,8 @@ from .iqi import (
     IQIResourceWithStreamingResponse,
     AsyncIQIResourceWithStreamingResponse,
 )
-from .speed import (
+from ...._compat import cached_property
+from .speed.speed import (
     SpeedResource,
     AsyncSpeedResource,
     SpeedResourceWithRawResponse,
@@ -18,8 +19,6 @@ from .speed import (
     SpeedResourceWithStreamingResponse,
     AsyncSpeedResourceWithStreamingResponse,
 )
-from ...._compat import cached_property
-from .speed.speed import SpeedResource, AsyncSpeedResource
 from ...._resource import SyncAPIResource, AsyncAPIResource
 
 __all__ = ["QualityResource", "AsyncQualityResource"]

@@ -2,14 +2,6 @@
 
 from __future__ import annotations
 
-from .assets import (
-    AssetsResource,
-    AsyncAssetsResource,
-    AssetsResourceWithRawResponse,
-    AsyncAssetsResourceWithRawResponse,
-    AssetsResourceWithStreamingResponse,
-    AsyncAssetsResourceWithStreamingResponse,
-)
 from .domains import (
     DomainsResource,
     AsyncDomainsResource,
@@ -17,14 +9,6 @@ from .domains import (
     AsyncDomainsResourceWithRawResponse,
     DomainsResourceWithStreamingResponse,
     AsyncDomainsResourceWithStreamingResponse,
-)
-from .scripts import (
-    ScriptsResource,
-    AsyncScriptsResource,
-    ScriptsResourceWithRawResponse,
-    AsyncScriptsResourceWithRawResponse,
-    ScriptsResourceWithStreamingResponse,
-    AsyncScriptsResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
 from .subdomains import (
@@ -36,8 +20,22 @@ from .subdomains import (
     AsyncSubdomainsResourceWithStreamingResponse,
 )
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from .assets.assets import AssetsResource, AsyncAssetsResource
-from .scripts.scripts import ScriptsResource, AsyncScriptsResource
+from .assets.assets import (
+    AssetsResource,
+    AsyncAssetsResource,
+    AssetsResourceWithRawResponse,
+    AsyncAssetsResourceWithRawResponse,
+    AssetsResourceWithStreamingResponse,
+    AsyncAssetsResourceWithStreamingResponse,
+)
+from .scripts.scripts import (
+    ScriptsResource,
+    AsyncScriptsResource,
+    ScriptsResourceWithRawResponse,
+    AsyncScriptsResourceWithRawResponse,
+    ScriptsResourceWithStreamingResponse,
+    AsyncScriptsResourceWithStreamingResponse,
+)
 from .account_settings import (
     AccountSettingsResource,
     AsyncAccountSettingsResource,

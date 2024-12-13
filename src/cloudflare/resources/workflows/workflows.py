@@ -20,14 +20,6 @@ from .versions import (
     AsyncVersionsResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
-from .instances import (
-    InstancesResource,
-    AsyncInstancesResource,
-    InstancesResourceWithRawResponse,
-    AsyncInstancesResourceWithRawResponse,
-    InstancesResourceWithStreamingResponse,
-    AsyncInstancesResourceWithStreamingResponse,
-)
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
@@ -39,7 +31,14 @@ from ..._wrappers import ResultWrapper
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.workflows import workflow_list_params, workflow_update_params
-from .instances.instances import InstancesResource, AsyncInstancesResource
+from .instances.instances import (
+    InstancesResource,
+    AsyncInstancesResource,
+    InstancesResourceWithRawResponse,
+    AsyncInstancesResourceWithRawResponse,
+    InstancesResourceWithStreamingResponse,
+    AsyncInstancesResourceWithStreamingResponse,
+)
 from ...types.workflows.workflow_get_response import WorkflowGetResponse
 from ...types.workflows.workflow_list_response import WorkflowListResponse
 from ...types.workflows.workflow_update_response import WorkflowUpdateResponse

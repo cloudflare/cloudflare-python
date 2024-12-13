@@ -10,7 +10,9 @@ from .asn import (
     ASNResourceWithStreamingResponse,
     AsyncASNResourceWithStreamingResponse,
 )
-from .configs import (
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from .configs.configs import (
     ConfigsResource,
     AsyncConfigsResource,
     ConfigsResourceWithRawResponse,
@@ -18,9 +20,6 @@ from .configs import (
     ConfigsResourceWithStreamingResponse,
     AsyncConfigsResourceWithStreamingResponse,
 )
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from .configs.configs import ConfigsResource, AsyncConfigsResource
 
 __all__ = ["BotnetFeedResource", "AsyncBotnetFeedResource"]
 

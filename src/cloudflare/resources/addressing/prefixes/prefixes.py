@@ -6,7 +6,7 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from .bgp import (
+from .bgp.bgp import (
     BGPResource,
     AsyncBGPResource,
     BGPResourceWithRawResponse,
@@ -14,7 +14,6 @@ from .bgp import (
     BGPResourceWithStreamingResponse,
     AsyncBGPResourceWithStreamingResponse,
 )
-from .bgp.bgp import BGPResource, AsyncBGPResource
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
     maybe_transform,

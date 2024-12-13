@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from .layer3 import (
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from .layer3.layer3 import (
     Layer3Resource,
     AsyncLayer3Resource,
     Layer3ResourceWithRawResponse,
@@ -10,7 +12,7 @@ from .layer3 import (
     Layer3ResourceWithStreamingResponse,
     AsyncLayer3ResourceWithStreamingResponse,
 )
-from .layer7 import (
+from .layer7.layer7 import (
     Layer7Resource,
     AsyncLayer7Resource,
     Layer7ResourceWithRawResponse,
@@ -18,10 +20,6 @@ from .layer7 import (
     Layer7ResourceWithStreamingResponse,
     AsyncLayer7ResourceWithStreamingResponse,
 )
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from .layer3.layer3 import Layer3Resource, AsyncLayer3Resource
-from .layer7.layer7 import Layer7Resource, AsyncLayer7Resource
 
 __all__ = ["AttacksResource", "AsyncAttacksResource"]
 

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from .cmb import (
+from .cmb.cmb import (
     CmbResource,
     AsyncCmbResource,
     CmbResourceWithRawResponse,
@@ -10,7 +10,6 @@ from .cmb import (
     CmbResourceWithStreamingResponse,
     AsyncCmbResourceWithStreamingResponse,
 )
-from .cmb.cmb import CmbResource, AsyncCmbResource
 from .retention import (
     RetentionResource,
     AsyncRetentionResource,

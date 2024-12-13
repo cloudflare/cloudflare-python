@@ -10,22 +10,6 @@ from .apps import (
     AppsResourceWithStreamingResponse,
     AsyncAppsResourceWithStreamingResponse,
 )
-from .pcaps import (
-    PCAPsResource,
-    AsyncPCAPsResource,
-    PCAPsResourceWithRawResponse,
-    AsyncPCAPsResourceWithRawResponse,
-    PCAPsResourceWithStreamingResponse,
-    AsyncPCAPsResourceWithStreamingResponse,
-)
-from .sites import (
-    SitesResource,
-    AsyncSitesResource,
-    SitesResourceWithRawResponse,
-    AsyncSitesResourceWithRawResponse,
-    SitesResourceWithStreamingResponse,
-    AsyncSitesResourceWithStreamingResponse,
-)
 from .routes import (
     RoutesResource,
     AsyncRoutesResource,
@@ -52,8 +36,22 @@ from .gre_tunnels import (
     GRETunnelsResourceWithStreamingResponse,
     AsyncGRETunnelsResourceWithStreamingResponse,
 )
-from .pcaps.pcaps import PCAPsResource, AsyncPCAPsResource
-from .sites.sites import SitesResource, AsyncSitesResource
+from .pcaps.pcaps import (
+    PCAPsResource,
+    AsyncPCAPsResource,
+    PCAPsResourceWithRawResponse,
+    AsyncPCAPsResourceWithRawResponse,
+    PCAPsResourceWithStreamingResponse,
+    AsyncPCAPsResourceWithStreamingResponse,
+)
+from .sites.sites import (
+    SitesResource,
+    AsyncSitesResource,
+    SitesResourceWithRawResponse,
+    AsyncSitesResourceWithRawResponse,
+    SitesResourceWithStreamingResponse,
+    AsyncSitesResourceWithStreamingResponse,
+)
 from .ipsec_tunnels import (
     IPSECTunnelsResource,
     AsyncIPSECTunnelsResource,

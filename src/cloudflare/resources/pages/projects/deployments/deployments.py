@@ -7,14 +7,6 @@ from typing_extensions import Literal
 
 import httpx
 
-from .history import (
-    HistoryResource,
-    AsyncHistoryResource,
-    HistoryResourceWithRawResponse,
-    AsyncHistoryResourceWithRawResponse,
-    HistoryResourceWithStreamingResponse,
-    AsyncHistoryResourceWithStreamingResponse,
-)
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ....._utils import (
     maybe_transform,
@@ -30,7 +22,14 @@ from ....._response import (
 )
 from ....._wrappers import ResultWrapper
 from .....pagination import SyncSinglePage, AsyncSinglePage
-from .history.history import HistoryResource, AsyncHistoryResource
+from .history.history import (
+    HistoryResource,
+    AsyncHistoryResource,
+    HistoryResourceWithRawResponse,
+    AsyncHistoryResourceWithRawResponse,
+    HistoryResourceWithStreamingResponse,
+    AsyncHistoryResourceWithStreamingResponse,
+)
 from ....._base_client import AsyncPaginator, make_request_options
 from .....types.pages.projects import (
     deployment_list_params,

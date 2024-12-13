@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from .routes import (
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from .routes.routes import (
     RoutesResource,
     AsyncRoutesResource,
     RoutesResourceWithRawResponse,
@@ -10,9 +12,6 @@ from .routes import (
     RoutesResourceWithStreamingResponse,
     AsyncRoutesResourceWithStreamingResponse,
 )
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from .routes.routes import RoutesResource, AsyncRoutesResource
 from .virtual_networks import (
     VirtualNetworksResource,
     AsyncVirtualNetworksResource,

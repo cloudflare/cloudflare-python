@@ -15,14 +15,6 @@ from .tail import (
     TailResourceWithStreamingResponse,
     AsyncTailResourceWithStreamingResponse,
 )
-from .assets import (
-    AssetsResource,
-    AsyncAssetsResource,
-    AssetsResourceWithRawResponse,
-    AsyncAssetsResourceWithRawResponse,
-    AssetsResourceWithStreamingResponse,
-    AsyncAssetsResourceWithStreamingResponse,
-)
 from .content import (
     ContentResource,
     AsyncContentResource,
@@ -95,7 +87,14 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
-from .assets.assets import AssetsResource, AsyncAssetsResource
+from .assets.assets import (
+    AssetsResource,
+    AsyncAssetsResource,
+    AssetsResourceWithRawResponse,
+    AsyncAssetsResourceWithRawResponse,
+    AssetsResourceWithStreamingResponse,
+    AsyncAssetsResourceWithStreamingResponse,
+)
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.workers import script_delete_params, script_update_params
 from ....types.workers.script import Script

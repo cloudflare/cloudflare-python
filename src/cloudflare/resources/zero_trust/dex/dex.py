@@ -10,7 +10,8 @@ from .colos import (
     ColosResourceWithStreamingResponse,
     AsyncColosResourceWithStreamingResponse,
 )
-from .tests import (
+from ...._compat import cached_property
+from .tests.tests import (
     TestsResource,
     AsyncTestsResource,
     TestsResourceWithRawResponse,
@@ -18,33 +19,7 @@ from .tests import (
     TestsResourceWithStreamingResponse,
     AsyncTestsResourceWithStreamingResponse,
 )
-from .commands import (
-    CommandsResource,
-    AsyncCommandsResource,
-    CommandsResourceWithRawResponse,
-    AsyncCommandsResourceWithRawResponse,
-    CommandsResourceWithStreamingResponse,
-    AsyncCommandsResourceWithStreamingResponse,
-)
-from ...._compat import cached_property
-from .http_tests import (
-    HTTPTestsResource,
-    AsyncHTTPTestsResource,
-    HTTPTestsResourceWithRawResponse,
-    AsyncHTTPTestsResourceWithRawResponse,
-    HTTPTestsResourceWithStreamingResponse,
-    AsyncHTTPTestsResourceWithStreamingResponse,
-)
-from .tests.tests import TestsResource, AsyncTestsResource
 from ...._resource import SyncAPIResource, AsyncAPIResource
-from .fleet_status import (
-    FleetStatusResource,
-    AsyncFleetStatusResource,
-    FleetStatusResourceWithRawResponse,
-    AsyncFleetStatusResourceWithRawResponse,
-    FleetStatusResourceWithStreamingResponse,
-    AsyncFleetStatusResourceWithStreamingResponse,
-)
 from .traceroute_tests import (
     TracerouteTestsResource,
     AsyncTracerouteTestsResource,
@@ -53,20 +28,37 @@ from .traceroute_tests import (
     TracerouteTestsResourceWithStreamingResponse,
     AsyncTracerouteTestsResourceWithStreamingResponse,
 )
-from .commands.commands import CommandsResource, AsyncCommandsResource
-from .http_tests.http_tests import HTTPTestsResource, AsyncHTTPTestsResource
-from .traceroute_test_results import (
+from .commands.commands import (
+    CommandsResource,
+    AsyncCommandsResource,
+    CommandsResourceWithRawResponse,
+    AsyncCommandsResourceWithRawResponse,
+    CommandsResourceWithStreamingResponse,
+    AsyncCommandsResourceWithStreamingResponse,
+)
+from .http_tests.http_tests import (
+    HTTPTestsResource,
+    AsyncHTTPTestsResource,
+    HTTPTestsResourceWithRawResponse,
+    AsyncHTTPTestsResourceWithRawResponse,
+    HTTPTestsResourceWithStreamingResponse,
+    AsyncHTTPTestsResourceWithStreamingResponse,
+)
+from .fleet_status.fleet_status import (
+    FleetStatusResource,
+    AsyncFleetStatusResource,
+    FleetStatusResourceWithRawResponse,
+    AsyncFleetStatusResourceWithRawResponse,
+    FleetStatusResourceWithStreamingResponse,
+    AsyncFleetStatusResourceWithStreamingResponse,
+)
+from .traceroute_test_results.traceroute_test_results import (
     TracerouteTestResultsResource,
     AsyncTracerouteTestResultsResource,
     TracerouteTestResultsResourceWithRawResponse,
     AsyncTracerouteTestResultsResourceWithRawResponse,
     TracerouteTestResultsResourceWithStreamingResponse,
     AsyncTracerouteTestResultsResourceWithStreamingResponse,
-)
-from .fleet_status.fleet_status import FleetStatusResource, AsyncFleetStatusResource
-from .traceroute_test_results.traceroute_test_results import (
-    TracerouteTestResultsResource,
-    AsyncTracerouteTestResultsResource,
 )
 
 __all__ = ["DEXResource", "AsyncDEXResource"]

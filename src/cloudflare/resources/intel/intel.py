@@ -2,14 +2,6 @@
 
 from __future__ import annotations
 
-from .asn import (
-    ASNResource,
-    AsyncASNResource,
-    ASNResourceWithRawResponse,
-    AsyncASNResourceWithRawResponse,
-    ASNResourceWithStreamingResponse,
-    AsyncASNResourceWithStreamingResponse,
-)
 from .dns import (
     DNSResource,
     AsyncDNSResource,
@@ -34,14 +26,13 @@ from .whois import (
     WhoisResourceWithStreamingResponse,
     AsyncWhoisResourceWithStreamingResponse,
 )
-from .asn.asn import ASNResource, AsyncASNResource
-from .domains import (
-    DomainsResource,
-    AsyncDomainsResource,
-    DomainsResourceWithRawResponse,
-    AsyncDomainsResourceWithRawResponse,
-    DomainsResourceWithStreamingResponse,
-    AsyncDomainsResourceWithStreamingResponse,
+from .asn.asn import (
+    ASNResource,
+    AsyncASNResource,
+    ASNResourceWithRawResponse,
+    AsyncASNResourceWithRawResponse,
+    ASNResourceWithStreamingResponse,
+    AsyncASNResourceWithStreamingResponse,
 )
 from .ip_lists import (
     IPListsResource,
@@ -69,14 +60,13 @@ from .domain_history import (
     DomainHistoryResourceWithStreamingResponse,
     AsyncDomainHistoryResourceWithStreamingResponse,
 )
-from .domains.domains import DomainsResource, AsyncDomainsResource
-from .indicator_feeds import (
-    IndicatorFeedsResource,
-    AsyncIndicatorFeedsResource,
-    IndicatorFeedsResourceWithRawResponse,
-    AsyncIndicatorFeedsResourceWithRawResponse,
-    IndicatorFeedsResourceWithStreamingResponse,
-    AsyncIndicatorFeedsResourceWithStreamingResponse,
+from .domains.domains import (
+    DomainsResource,
+    AsyncDomainsResource,
+    DomainsResourceWithRawResponse,
+    AsyncDomainsResourceWithRawResponse,
+    DomainsResourceWithStreamingResponse,
+    AsyncDomainsResourceWithStreamingResponse,
 )
 from .miscategorizations import (
     MiscategorizationsResource,
@@ -86,7 +76,15 @@ from .miscategorizations import (
     MiscategorizationsResourceWithStreamingResponse,
     AsyncMiscategorizationsResourceWithStreamingResponse,
 )
-from .attack_surface_report import (
+from .indicator_feeds.indicator_feeds import (
+    IndicatorFeedsResource,
+    AsyncIndicatorFeedsResource,
+    IndicatorFeedsResourceWithRawResponse,
+    AsyncIndicatorFeedsResourceWithRawResponse,
+    IndicatorFeedsResourceWithStreamingResponse,
+    AsyncIndicatorFeedsResourceWithStreamingResponse,
+)
+from .attack_surface_report.attack_surface_report import (
     AttackSurfaceReportResource,
     AsyncAttackSurfaceReportResource,
     AttackSurfaceReportResourceWithRawResponse,
@@ -94,8 +92,6 @@ from .attack_surface_report import (
     AttackSurfaceReportResourceWithStreamingResponse,
     AsyncAttackSurfaceReportResourceWithStreamingResponse,
 )
-from .indicator_feeds.indicator_feeds import IndicatorFeedsResource, AsyncIndicatorFeedsResource
-from .attack_surface_report.attack_surface_report import AttackSurfaceReportResource, AsyncAttackSurfaceReportResource
 
 __all__ = ["IntelResource", "AsyncIntelResource"]
 

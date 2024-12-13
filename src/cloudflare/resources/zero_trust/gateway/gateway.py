@@ -6,14 +6,6 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from .lists import (
-    ListsResource,
-    AsyncListsResource,
-    ListsResourceWithRawResponse,
-    AsyncListsResourceWithRawResponse,
-    ListsResourceWithStreamingResponse,
-    AsyncListsResourceWithStreamingResponse,
-)
 from .rules import (
     RulesResource,
     AsyncRulesResource,
@@ -56,7 +48,14 @@ from .categories import (
     CategoriesResourceWithStreamingResponse,
     AsyncCategoriesResourceWithStreamingResponse,
 )
-from .lists.lists import ListsResource, AsyncListsResource
+from .lists.lists import (
+    ListsResource,
+    AsyncListsResource,
+    ListsResourceWithRawResponse,
+    AsyncListsResourceWithRawResponse,
+    ListsResourceWithStreamingResponse,
+    AsyncListsResourceWithStreamingResponse,
+)
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
@@ -72,14 +71,6 @@ from .certificates import (
     AsyncCertificatesResourceWithRawResponse,
     CertificatesResourceWithStreamingResponse,
     AsyncCertificatesResourceWithStreamingResponse,
-)
-from .configurations import (
-    ConfigurationsResource,
-    AsyncConfigurationsResource,
-    ConfigurationsResourceWithRawResponse,
-    AsyncConfigurationsResourceWithRawResponse,
-    ConfigurationsResourceWithStreamingResponse,
-    AsyncConfigurationsResourceWithStreamingResponse,
 )
 from ...._base_client import make_request_options
 from .proxy_endpoints import (
@@ -98,7 +89,14 @@ from .audit_ssh_settings import (
     AuditSSHSettingsResourceWithStreamingResponse,
     AsyncAuditSSHSettingsResourceWithStreamingResponse,
 )
-from .configurations.configurations import ConfigurationsResource, AsyncConfigurationsResource
+from .configurations.configurations import (
+    ConfigurationsResource,
+    AsyncConfigurationsResource,
+    ConfigurationsResourceWithRawResponse,
+    AsyncConfigurationsResourceWithRawResponse,
+    ConfigurationsResourceWithStreamingResponse,
+    AsyncConfigurationsResourceWithStreamingResponse,
+)
 from ....types.zero_trust.gateway_list_response import GatewayListResponse
 from ....types.zero_trust.gateway_create_response import GatewayCreateResponse
 

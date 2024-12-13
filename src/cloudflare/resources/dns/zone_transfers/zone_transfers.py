@@ -34,14 +34,6 @@ from .incoming import (
     IncomingResourceWithStreamingResponse,
     AsyncIncomingResourceWithStreamingResponse,
 )
-from .outgoing import (
-    OutgoingResource,
-    AsyncOutgoingResource,
-    OutgoingResourceWithRawResponse,
-    AsyncOutgoingResourceWithRawResponse,
-    OutgoingResourceWithStreamingResponse,
-    AsyncOutgoingResourceWithStreamingResponse,
-)
 from ...._compat import cached_property
 from .force_axfr import (
     ForceAXFRResource,
@@ -52,7 +44,14 @@ from .force_axfr import (
     AsyncForceAXFRResourceWithStreamingResponse,
 )
 from ...._resource import SyncAPIResource, AsyncAPIResource
-from .outgoing.outgoing import OutgoingResource, AsyncOutgoingResource
+from .outgoing.outgoing import (
+    OutgoingResource,
+    AsyncOutgoingResource,
+    OutgoingResourceWithRawResponse,
+    AsyncOutgoingResourceWithRawResponse,
+    OutgoingResourceWithStreamingResponse,
+    AsyncOutgoingResourceWithStreamingResponse,
+)
 
 __all__ = ["ZoneTransfersResource", "AsyncZoneTransfersResource"]
 
