@@ -35,6 +35,7 @@ class LogDeleteParams(TypedDict, total=False):
 class Filter(TypedDict, total=False):
     key: Required[
         Literal[
+            "id",
             "created_at",
             "request_content_type",
             "response_content_type",
@@ -49,6 +50,10 @@ class Filter(TypedDict, total=False):
             "tokens_out",
             "duration",
             "feedback",
+            "event_id",
+            "request_type",
+            "metadata.key",
+            "metadata.value",
         ]
     ]
 
