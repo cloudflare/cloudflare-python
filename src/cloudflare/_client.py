@@ -123,6 +123,113 @@ if TYPE_CHECKING:
         magic_network_monitoring,
         origin_post_quantum_encryption,
     )
+    from .resources.ips import IPsResource, AsyncIPsResource
+    from .resources.ai.ai import AIResource, AsyncAIResource
+    from .resources.d1.d1 import D1Resource, AsyncD1Resource
+    from .resources.kv.kv import KVResource, AsyncKVResource
+    from .resources.r2.r2 import R2Resource, AsyncR2Resource
+    from .resources.acm.acm import ACMResource, AsyncACMResource
+    from .resources.dns.dns import DNSResource, AsyncDNSResource
+    from .resources.filters import FiltersResource, AsyncFiltersResource
+    from .resources.iam.iam import IAMResource, AsyncIAMResource
+    from .resources.rum.rum import RUMResource, AsyncRUMResource
+    from .resources.ssl.ssl import SSLResource, AsyncSSLResource
+    from .resources.argo.argo import ArgoResource, AsyncArgoResource
+    from .resources.logs.logs import LogsResource, AsyncLogsResource
+    from .resources.user.user import UserResource, AsyncUserResource
+    from .resources.web3.web3 import Web3Resource, AsyncWeb3Resource
+    from .resources.audit_logs import AuditLogsResource, AsyncAuditLogsResource
+    from .resources.page_rules import PageRulesResource, AsyncPageRulesResource
+    from .resources.cache.cache import CacheResource, AsyncCacheResource
+    from .resources.calls.calls import CallsResource, AsyncCallsResource
+    from .resources.intel.intel import IntelResource, AsyncIntelResource
+    from .resources.memberships import MembershipsResource, AsyncMembershipsResource
+    from .resources.pages.pages import PagesResource, AsyncPagesResource
+    from .resources.radar.radar import RadarResource, AsyncRadarResource
+    from .resources.rate_limits import RateLimitsResource, AsyncRateLimitsResource
+    from .resources.rules.rules import RulesResource, AsyncRulesResource
+    from .resources.speed.speed import SpeedResource, AsyncSpeedResource
+    from .resources.zones.zones import ZonesResource, AsyncZonesResource
+    from .resources.security_txt import SecurityTXTResource, AsyncSecurityTXTResource
+    from .resources.abuse_reports import AbuseReportsResource, AsyncAbuseReportsResource
+    from .resources.images.images import ImagesResource, AsyncImagesResource
+    from .resources.queues.queues import QueuesResource, AsyncQueuesResource
+    from .resources.stream.stream import StreamResource, AsyncStreamResource
+    from .resources.bot_management import BotManagementResource, AsyncBotManagementResource
+    from .resources.dcv_delegation import DCVDelegationResource, AsyncDCVDelegationResource
+    from .resources.billing.billing import BillingResource, AsyncBillingResource
+    from .resources.logpush.logpush import LogpushResource, AsyncLogpushResource
+    from .resources.workers.workers import WorkersResource, AsyncWorkersResource
+    from .resources.brand_protection import BrandProtectionResource, AsyncBrandProtectionResource
+    from .resources.accounts.accounts import AccountsResource, AsyncAccountsResource
+    from .resources.alerting.alerting import AlertingResource, AsyncAlertingResource
+    from .resources.firewall.firewall import FirewallResource, AsyncFirewallResource
+    from .resources.rulesets.rulesets import RulesetsResource, AsyncRulesetsResource
+    from .resources.snippets.snippets import SnippetsResource, AsyncSnippetsResource
+    from .resources.spectrum.spectrum import SpectrumResource, AsyncSpectrumResource
+    from .resources.url_normalization import URLNormalizationResource, AsyncURLNormalizationResource
+    from .resources.custom_nameservers import CustomNameserversResource, AsyncCustomNameserversResource
+    from .resources.managed_transforms import ManagedTransformsResource, AsyncManagedTransformsResource
+    from .resources.client_certificates import ClientCertificatesResource, AsyncClientCertificatesResource
+    from .resources.hostnames.hostnames import HostnamesResource, AsyncHostnamesResource
+    from .resources.registrar.registrar import RegistrarResource, AsyncRegistrarResource
+    from .resources.turnstile.turnstile import TurnstileResource, AsyncTurnstileResource
+    from .resources.vectorize.vectorize import VectorizeResource, AsyncVectorizeResource
+    from .resources.workflows.workflows import WorkflowsResource, AsyncWorkflowsResource
+    from .resources.keyless_certificates import KeylessCertificatesResource, AsyncKeylessCertificatesResource
+    from .resources.addressing.addressing import AddressingResource, AsyncAddressingResource
+    from .resources.ai_gateway.ai_gateway import AIGatewayResource, AsyncAIGatewayResource
+    from .resources.hyperdrive.hyperdrive import HyperdriveResource, AsyncHyperdriveResource
+    from .resources.zero_trust.zero_trust import ZeroTrustResource, AsyncZeroTrustResource
+    from .resources.origin_ca_certificates import OriginCACertificatesResource, AsyncOriginCACertificatesResource
+    from .resources.api_gateway.api_gateway import APIGatewayResource, AsyncAPIGatewayResource
+    from .resources.botnet_feed.botnet_feed import BotnetFeedResource, AsyncBotnetFeedResource
+    from .resources.diagnostics.diagnostics import DiagnosticsResource, AsyncDiagnosticsResource
+    from .resources.page_shield.page_shield import PageShieldResource, AsyncPageShieldResource
+    from .resources.url_scanner.url_scanner import URLScannerResource, AsyncURLScannerResource
+    from .resources.dns_firewall.dns_firewall import DNSFirewallResource, AsyncDNSFirewallResource
+    from .resources.healthchecks.healthchecks import HealthchecksResource, AsyncHealthchecksResource
+    from .resources.email_routing.email_routing import EmailRoutingResource, AsyncEmailRoutingResource
+    from .resources.magic_transit.magic_transit import MagicTransitResource, AsyncMagicTransitResource
+    from .resources.waiting_rooms.waiting_rooms import WaitingRoomsResource, AsyncWaitingRoomsResource
+    from .resources.cloudforce_one.cloudforce_one import CloudforceOneResource, AsyncCloudforceOneResource
+    from .resources.email_security.email_security import EmailSecurityResource, AsyncEmailSecurityResource
+    from .resources.load_balancers.load_balancers import LoadBalancersResource, AsyncLoadBalancersResource
+    from .resources.origin_post_quantum_encryption import (
+        OriginPostQuantumEncryptionResource,
+        AsyncOriginPostQuantumEncryptionResource,
+    )
+    from .resources.cloud_connector.cloud_connector import CloudConnectorResource, AsyncCloudConnectorResource
+    from .resources.durable_objects.durable_objects import DurableObjectsResource, AsyncDurableObjectsResource
+    from .resources.request_tracers.request_tracers import RequestTracersResource, AsyncRequestTracersResource
+    from .resources.content_scanning.content_scanning import ContentScanningResource, AsyncContentScanningResource
+    from .resources.custom_hostnames.custom_hostnames import CustomHostnamesResource, AsyncCustomHostnamesResource
+    from .resources.resource_sharing.resource_sharing import ResourceSharingResource, AsyncResourceSharingResource
+    from .resources.mtls_certificates.mtls_certificates import MTLSCertificatesResource, AsyncMTLSCertificatesResource
+    from .resources.custom_certificates.custom_certificates import (
+        CustomCertificatesResource,
+        AsyncCustomCertificatesResource,
+    )
+    from .resources.workers_for_platforms.workers_for_platforms import (
+        WorkersForPlatformsResource,
+        AsyncWorkersForPlatformsResource,
+    )
+    from .resources.origin_tls_client_auth.origin_tls_client_auth import (
+        OriginTLSClientAuthResource,
+        AsyncOriginTLSClientAuthResource,
+    )
+    from .resources.certificate_authorities.certificate_authorities import (
+        CertificateAuthoritiesResource,
+        AsyncCertificateAuthoritiesResource,
+    )
+    from .resources.leaked_credential_checks.leaked_credential_checks import (
+        LeakedCredentialChecksResource,
+        AsyncLeakedCredentialChecksResource,
+    )
+    from .resources.magic_network_monitoring.magic_network_monitoring import (
+        MagicNetworkMonitoringResource,
+        AsyncMagicNetworkMonitoringResource,
+    )
 
 __all__ = [
     "Timeout",
@@ -210,517 +317,517 @@ class Cloudflare(SyncAPIClient):
         )
 
     @cached_property
-    def accounts(self) -> accounts.AccountsResource:
+    def accounts(self) -> AccountsResource:
         from .resources.accounts import AccountsResource
 
         return AccountsResource(self)
 
     @cached_property
-    def origin_ca_certificates(self) -> origin_ca_certificates.OriginCACertificatesResource:
+    def origin_ca_certificates(self) -> OriginCACertificatesResource:
         from .resources.origin_ca_certificates import OriginCACertificatesResource
 
         return OriginCACertificatesResource(self)
 
     @cached_property
-    def ips(self) -> ips.IPsResource:
+    def ips(self) -> IPsResource:
         from .resources.ips import IPsResource
 
         return IPsResource(self)
 
     @cached_property
-    def memberships(self) -> memberships.MembershipsResource:
+    def memberships(self) -> MembershipsResource:
         from .resources.memberships import MembershipsResource
 
         return MembershipsResource(self)
 
     @cached_property
-    def user(self) -> user.UserResource:
+    def user(self) -> UserResource:
         from .resources.user import UserResource
 
         return UserResource(self)
 
     @cached_property
-    def zones(self) -> zones.ZonesResource:
+    def zones(self) -> ZonesResource:
         from .resources.zones import ZonesResource
 
         return ZonesResource(self)
 
     @cached_property
-    def load_balancers(self) -> load_balancers.LoadBalancersResource:
+    def load_balancers(self) -> LoadBalancersResource:
         from .resources.load_balancers import LoadBalancersResource
 
         return LoadBalancersResource(self)
 
     @cached_property
-    def cache(self) -> cache.CacheResource:
+    def cache(self) -> CacheResource:
         from .resources.cache import CacheResource
 
         return CacheResource(self)
 
     @cached_property
-    def ssl(self) -> ssl.SSLResource:
+    def ssl(self) -> SSLResource:
         from .resources.ssl import SSLResource
 
         return SSLResource(self)
 
     @cached_property
-    def acm(self) -> acm.ACMResource:
+    def acm(self) -> ACMResource:
         from .resources.acm import ACMResource
 
         return ACMResource(self)
 
     @cached_property
-    def argo(self) -> argo.ArgoResource:
+    def argo(self) -> ArgoResource:
         from .resources.argo import ArgoResource
 
         return ArgoResource(self)
 
     @cached_property
-    def certificate_authorities(self) -> certificate_authorities.CertificateAuthoritiesResource:
+    def certificate_authorities(self) -> CertificateAuthoritiesResource:
         from .resources.certificate_authorities import CertificateAuthoritiesResource
 
         return CertificateAuthoritiesResource(self)
 
     @cached_property
-    def client_certificates(self) -> client_certificates.ClientCertificatesResource:
+    def client_certificates(self) -> ClientCertificatesResource:
         from .resources.client_certificates import ClientCertificatesResource
 
         return ClientCertificatesResource(self)
 
     @cached_property
-    def custom_certificates(self) -> custom_certificates.CustomCertificatesResource:
+    def custom_certificates(self) -> CustomCertificatesResource:
         from .resources.custom_certificates import CustomCertificatesResource
 
         return CustomCertificatesResource(self)
 
     @cached_property
-    def custom_hostnames(self) -> custom_hostnames.CustomHostnamesResource:
+    def custom_hostnames(self) -> CustomHostnamesResource:
         from .resources.custom_hostnames import CustomHostnamesResource
 
         return CustomHostnamesResource(self)
 
     @cached_property
-    def custom_nameservers(self) -> custom_nameservers.CustomNameserversResource:
+    def custom_nameservers(self) -> CustomNameserversResource:
         from .resources.custom_nameservers import CustomNameserversResource
 
         return CustomNameserversResource(self)
 
     @cached_property
-    def dns_firewall(self) -> dns_firewall.DNSFirewallResource:
+    def dns_firewall(self) -> DNSFirewallResource:
         from .resources.dns_firewall import DNSFirewallResource
 
         return DNSFirewallResource(self)
 
     @cached_property
-    def dns(self) -> dns.DNSResource:
+    def dns(self) -> DNSResource:
         from .resources.dns import DNSResource
 
         return DNSResource(self)
 
     @cached_property
-    def email_security(self) -> email_security.EmailSecurityResource:
+    def email_security(self) -> EmailSecurityResource:
         from .resources.email_security import EmailSecurityResource
 
         return EmailSecurityResource(self)
 
     @cached_property
-    def email_routing(self) -> email_routing.EmailRoutingResource:
+    def email_routing(self) -> EmailRoutingResource:
         from .resources.email_routing import EmailRoutingResource
 
         return EmailRoutingResource(self)
 
     @cached_property
-    def filters(self) -> filters.FiltersResource:
+    def filters(self) -> FiltersResource:
         from .resources.filters import FiltersResource
 
         return FiltersResource(self)
 
     @cached_property
-    def firewall(self) -> firewall.FirewallResource:
+    def firewall(self) -> FirewallResource:
         from .resources.firewall import FirewallResource
 
         return FirewallResource(self)
 
     @cached_property
-    def healthchecks(self) -> healthchecks.HealthchecksResource:
+    def healthchecks(self) -> HealthchecksResource:
         from .resources.healthchecks import HealthchecksResource
 
         return HealthchecksResource(self)
 
     @cached_property
-    def keyless_certificates(self) -> keyless_certificates.KeylessCertificatesResource:
+    def keyless_certificates(self) -> KeylessCertificatesResource:
         from .resources.keyless_certificates import KeylessCertificatesResource
 
         return KeylessCertificatesResource(self)
 
     @cached_property
-    def logpush(self) -> logpush.LogpushResource:
+    def logpush(self) -> LogpushResource:
         from .resources.logpush import LogpushResource
 
         return LogpushResource(self)
 
     @cached_property
-    def logs(self) -> logs.LogsResource:
+    def logs(self) -> LogsResource:
         from .resources.logs import LogsResource
 
         return LogsResource(self)
 
     @cached_property
-    def origin_tls_client_auth(self) -> origin_tls_client_auth.OriginTLSClientAuthResource:
+    def origin_tls_client_auth(self) -> OriginTLSClientAuthResource:
         from .resources.origin_tls_client_auth import OriginTLSClientAuthResource
 
         return OriginTLSClientAuthResource(self)
 
     @cached_property
-    def page_rules(self) -> page_rules.PageRulesResource:
+    def page_rules(self) -> PageRulesResource:
         from .resources.page_rules import PageRulesResource
 
         return PageRulesResource(self)
 
     @cached_property
-    def rate_limits(self) -> rate_limits.RateLimitsResource:
+    def rate_limits(self) -> RateLimitsResource:
         from .resources.rate_limits import RateLimitsResource
 
         return RateLimitsResource(self)
 
     @cached_property
-    def waiting_rooms(self) -> waiting_rooms.WaitingRoomsResource:
+    def waiting_rooms(self) -> WaitingRoomsResource:
         from .resources.waiting_rooms import WaitingRoomsResource
 
         return WaitingRoomsResource(self)
 
     @cached_property
-    def web3(self) -> web3.Web3Resource:
+    def web3(self) -> Web3Resource:
         from .resources.web3 import Web3Resource
 
         return Web3Resource(self)
 
     @cached_property
-    def workers(self) -> workers.WorkersResource:
+    def workers(self) -> WorkersResource:
         from .resources.workers import WorkersResource
 
         return WorkersResource(self)
 
     @cached_property
-    def kv(self) -> kv.KVResource:
+    def kv(self) -> KVResource:
         from .resources.kv import KVResource
 
         return KVResource(self)
 
     @cached_property
-    def durable_objects(self) -> durable_objects.DurableObjectsResource:
+    def durable_objects(self) -> DurableObjectsResource:
         from .resources.durable_objects import DurableObjectsResource
 
         return DurableObjectsResource(self)
 
     @cached_property
-    def queues(self) -> queues.QueuesResource:
+    def queues(self) -> QueuesResource:
         from .resources.queues import QueuesResource
 
         return QueuesResource(self)
 
     @cached_property
-    def api_gateway(self) -> api_gateway.APIGatewayResource:
+    def api_gateway(self) -> APIGatewayResource:
         from .resources.api_gateway import APIGatewayResource
 
         return APIGatewayResource(self)
 
     @cached_property
-    def managed_transforms(self) -> managed_transforms.ManagedTransformsResource:
+    def managed_transforms(self) -> ManagedTransformsResource:
         from .resources.managed_transforms import ManagedTransformsResource
 
         return ManagedTransformsResource(self)
 
     @cached_property
-    def page_shield(self) -> page_shield.PageShieldResource:
+    def page_shield(self) -> PageShieldResource:
         from .resources.page_shield import PageShieldResource
 
         return PageShieldResource(self)
 
     @cached_property
-    def rulesets(self) -> rulesets.RulesetsResource:
+    def rulesets(self) -> RulesetsResource:
         from .resources.rulesets import RulesetsResource
 
         return RulesetsResource(self)
 
     @cached_property
-    def url_normalization(self) -> url_normalization.URLNormalizationResource:
+    def url_normalization(self) -> URLNormalizationResource:
         from .resources.url_normalization import URLNormalizationResource
 
         return URLNormalizationResource(self)
 
     @cached_property
-    def spectrum(self) -> spectrum.SpectrumResource:
+    def spectrum(self) -> SpectrumResource:
         from .resources.spectrum import SpectrumResource
 
         return SpectrumResource(self)
 
     @cached_property
-    def addressing(self) -> addressing.AddressingResource:
+    def addressing(self) -> AddressingResource:
         from .resources.addressing import AddressingResource
 
         return AddressingResource(self)
 
     @cached_property
-    def audit_logs(self) -> audit_logs.AuditLogsResource:
+    def audit_logs(self) -> AuditLogsResource:
         from .resources.audit_logs import AuditLogsResource
 
         return AuditLogsResource(self)
 
     @cached_property
-    def billing(self) -> billing.BillingResource:
+    def billing(self) -> BillingResource:
         from .resources.billing import BillingResource
 
         return BillingResource(self)
 
     @cached_property
-    def brand_protection(self) -> brand_protection.BrandProtectionResource:
+    def brand_protection(self) -> BrandProtectionResource:
         from .resources.brand_protection import BrandProtectionResource
 
         return BrandProtectionResource(self)
 
     @cached_property
-    def diagnostics(self) -> diagnostics.DiagnosticsResource:
+    def diagnostics(self) -> DiagnosticsResource:
         from .resources.diagnostics import DiagnosticsResource
 
         return DiagnosticsResource(self)
 
     @cached_property
-    def images(self) -> images.ImagesResource:
+    def images(self) -> ImagesResource:
         from .resources.images import ImagesResource
 
         return ImagesResource(self)
 
     @cached_property
-    def intel(self) -> intel.IntelResource:
+    def intel(self) -> IntelResource:
         from .resources.intel import IntelResource
 
         return IntelResource(self)
 
     @cached_property
-    def magic_transit(self) -> magic_transit.MagicTransitResource:
+    def magic_transit(self) -> MagicTransitResource:
         from .resources.magic_transit import MagicTransitResource
 
         return MagicTransitResource(self)
 
     @cached_property
-    def magic_network_monitoring(self) -> magic_network_monitoring.MagicNetworkMonitoringResource:
+    def magic_network_monitoring(self) -> MagicNetworkMonitoringResource:
         from .resources.magic_network_monitoring import MagicNetworkMonitoringResource
 
         return MagicNetworkMonitoringResource(self)
 
     @cached_property
-    def mtls_certificates(self) -> mtls_certificates.MTLSCertificatesResource:
+    def mtls_certificates(self) -> MTLSCertificatesResource:
         from .resources.mtls_certificates import MTLSCertificatesResource
 
         return MTLSCertificatesResource(self)
 
     @cached_property
-    def pages(self) -> pages.PagesResource:
+    def pages(self) -> PagesResource:
         from .resources.pages import PagesResource
 
         return PagesResource(self)
 
     @cached_property
-    def registrar(self) -> registrar.RegistrarResource:
+    def registrar(self) -> RegistrarResource:
         from .resources.registrar import RegistrarResource
 
         return RegistrarResource(self)
 
     @cached_property
-    def request_tracers(self) -> request_tracers.RequestTracersResource:
+    def request_tracers(self) -> RequestTracersResource:
         from .resources.request_tracers import RequestTracersResource
 
         return RequestTracersResource(self)
 
     @cached_property
-    def rules(self) -> rules.RulesResource:
+    def rules(self) -> RulesResource:
         from .resources.rules import RulesResource
 
         return RulesResource(self)
 
     @cached_property
-    def stream(self) -> stream.StreamResource:
+    def stream(self) -> StreamResource:
         from .resources.stream import StreamResource
 
         return StreamResource(self)
 
     @cached_property
-    def alerting(self) -> alerting.AlertingResource:
+    def alerting(self) -> AlertingResource:
         from .resources.alerting import AlertingResource
 
         return AlertingResource(self)
 
     @cached_property
-    def d1(self) -> d1.D1Resource:
+    def d1(self) -> D1Resource:
         from .resources.d1 import D1Resource
 
         return D1Resource(self)
 
     @cached_property
-    def r2(self) -> r2.R2Resource:
+    def r2(self) -> R2Resource:
         from .resources.r2 import R2Resource
 
         return R2Resource(self)
 
     @cached_property
-    def workers_for_platforms(self) -> workers_for_platforms.WorkersForPlatformsResource:
+    def workers_for_platforms(self) -> WorkersForPlatformsResource:
         from .resources.workers_for_platforms import WorkersForPlatformsResource
 
         return WorkersForPlatformsResource(self)
 
     @cached_property
-    def zero_trust(self) -> zero_trust.ZeroTrustResource:
+    def zero_trust(self) -> ZeroTrustResource:
         from .resources.zero_trust import ZeroTrustResource
 
         return ZeroTrustResource(self)
 
     @cached_property
-    def turnstile(self) -> turnstile.TurnstileResource:
+    def turnstile(self) -> TurnstileResource:
         from .resources.turnstile import TurnstileResource
 
         return TurnstileResource(self)
 
     @cached_property
-    def hyperdrive(self) -> hyperdrive.HyperdriveResource:
+    def hyperdrive(self) -> HyperdriveResource:
         from .resources.hyperdrive import HyperdriveResource
 
         return HyperdriveResource(self)
 
     @cached_property
-    def rum(self) -> rum.RUMResource:
+    def rum(self) -> RUMResource:
         from .resources.rum import RUMResource
 
         return RUMResource(self)
 
     @cached_property
-    def vectorize(self) -> vectorize.VectorizeResource:
+    def vectorize(self) -> VectorizeResource:
         from .resources.vectorize import VectorizeResource
 
         return VectorizeResource(self)
 
     @cached_property
-    def url_scanner(self) -> url_scanner.URLScannerResource:
+    def url_scanner(self) -> URLScannerResource:
         from .resources.url_scanner import URLScannerResource
 
         return URLScannerResource(self)
 
     @cached_property
-    def radar(self) -> radar.RadarResource:
+    def radar(self) -> RadarResource:
         from .resources.radar import RadarResource
 
         return RadarResource(self)
 
     @cached_property
-    def bot_management(self) -> bot_management.BotManagementResource:
+    def bot_management(self) -> BotManagementResource:
         from .resources.bot_management import BotManagementResource
 
         return BotManagementResource(self)
 
     @cached_property
-    def origin_post_quantum_encryption(self) -> origin_post_quantum_encryption.OriginPostQuantumEncryptionResource:
+    def origin_post_quantum_encryption(self) -> OriginPostQuantumEncryptionResource:
         from .resources.origin_post_quantum_encryption import OriginPostQuantumEncryptionResource
 
         return OriginPostQuantumEncryptionResource(self)
 
     @cached_property
-    def speed(self) -> speed.SpeedResource:
+    def speed(self) -> SpeedResource:
         from .resources.speed import SpeedResource
 
         return SpeedResource(self)
 
     @cached_property
-    def dcv_delegation(self) -> dcv_delegation.DCVDelegationResource:
+    def dcv_delegation(self) -> DCVDelegationResource:
         from .resources.dcv_delegation import DCVDelegationResource
 
         return DCVDelegationResource(self)
 
     @cached_property
-    def hostnames(self) -> hostnames.HostnamesResource:
+    def hostnames(self) -> HostnamesResource:
         from .resources.hostnames import HostnamesResource
 
         return HostnamesResource(self)
 
     @cached_property
-    def snippets(self) -> snippets.SnippetsResource:
+    def snippets(self) -> SnippetsResource:
         from .resources.snippets import SnippetsResource
 
         return SnippetsResource(self)
 
     @cached_property
-    def calls(self) -> calls.CallsResource:
+    def calls(self) -> CallsResource:
         from .resources.calls import CallsResource
 
         return CallsResource(self)
 
     @cached_property
-    def cloudforce_one(self) -> cloudforce_one.CloudforceOneResource:
+    def cloudforce_one(self) -> CloudforceOneResource:
         from .resources.cloudforce_one import CloudforceOneResource
 
         return CloudforceOneResource(self)
 
     @cached_property
-    def ai_gateway(self) -> ai_gateway.AIGatewayResource:
+    def ai_gateway(self) -> AIGatewayResource:
         from .resources.ai_gateway import AIGatewayResource
 
         return AIGatewayResource(self)
 
     @cached_property
-    def iam(self) -> iam.IAMResource:
+    def iam(self) -> IAMResource:
         from .resources.iam import IAMResource
 
         return IAMResource(self)
 
     @cached_property
-    def cloud_connector(self) -> cloud_connector.CloudConnectorResource:
+    def cloud_connector(self) -> CloudConnectorResource:
         from .resources.cloud_connector import CloudConnectorResource
 
         return CloudConnectorResource(self)
 
     @cached_property
-    def botnet_feed(self) -> botnet_feed.BotnetFeedResource:
+    def botnet_feed(self) -> BotnetFeedResource:
         from .resources.botnet_feed import BotnetFeedResource
 
         return BotnetFeedResource(self)
 
     @cached_property
-    def security_txt(self) -> security_txt.SecurityTXTResource:
+    def security_txt(self) -> SecurityTXTResource:
         from .resources.security_txt import SecurityTXTResource
 
         return SecurityTXTResource(self)
 
     @cached_property
-    def workflows(self) -> workflows.WorkflowsResource:
+    def workflows(self) -> WorkflowsResource:
         from .resources.workflows import WorkflowsResource
 
         return WorkflowsResource(self)
 
     @cached_property
-    def resource_sharing(self) -> resource_sharing.ResourceSharingResource:
+    def resource_sharing(self) -> ResourceSharingResource:
         from .resources.resource_sharing import ResourceSharingResource
 
         return ResourceSharingResource(self)
 
     @cached_property
-    def leaked_credential_checks(self) -> leaked_credential_checks.LeakedCredentialChecksResource:
+    def leaked_credential_checks(self) -> LeakedCredentialChecksResource:
         from .resources.leaked_credential_checks import LeakedCredentialChecksResource
 
         return LeakedCredentialChecksResource(self)
 
     @cached_property
-    def content_scanning(self) -> content_scanning.ContentScanningResource:
+    def content_scanning(self) -> ContentScanningResource:
         from .resources.content_scanning import ContentScanningResource
 
         return ContentScanningResource(self)
 
     @cached_property
-    def abuse_reports(self) -> abuse_reports.AbuseReportsResource:
+    def abuse_reports(self) -> AbuseReportsResource:
         from .resources.abuse_reports import AbuseReportsResource
 
         return AbuseReportsResource(self)
 
     @cached_property
-    def ai(self) -> ai.AIResource:
+    def ai(self) -> AIResource:
         from .resources.ai import AIResource
 
         return AIResource(self)
@@ -981,517 +1088,517 @@ class AsyncCloudflare(AsyncAPIClient):
         )
 
     @cached_property
-    def accounts(self) -> accounts.AsyncAccountsResource:
+    def accounts(self) -> AsyncAccountsResource:
         from .resources.accounts import AsyncAccountsResource
 
         return AsyncAccountsResource(self)
 
     @cached_property
-    def origin_ca_certificates(self) -> origin_ca_certificates.AsyncOriginCACertificatesResource:
+    def origin_ca_certificates(self) -> AsyncOriginCACertificatesResource:
         from .resources.origin_ca_certificates import AsyncOriginCACertificatesResource
 
         return AsyncOriginCACertificatesResource(self)
 
     @cached_property
-    def ips(self) -> ips.AsyncIPsResource:
+    def ips(self) -> AsyncIPsResource:
         from .resources.ips import AsyncIPsResource
 
         return AsyncIPsResource(self)
 
     @cached_property
-    def memberships(self) -> memberships.AsyncMembershipsResource:
+    def memberships(self) -> AsyncMembershipsResource:
         from .resources.memberships import AsyncMembershipsResource
 
         return AsyncMembershipsResource(self)
 
     @cached_property
-    def user(self) -> user.AsyncUserResource:
+    def user(self) -> AsyncUserResource:
         from .resources.user import AsyncUserResource
 
         return AsyncUserResource(self)
 
     @cached_property
-    def zones(self) -> zones.AsyncZonesResource:
+    def zones(self) -> AsyncZonesResource:
         from .resources.zones import AsyncZonesResource
 
         return AsyncZonesResource(self)
 
     @cached_property
-    def load_balancers(self) -> load_balancers.AsyncLoadBalancersResource:
+    def load_balancers(self) -> AsyncLoadBalancersResource:
         from .resources.load_balancers import AsyncLoadBalancersResource
 
         return AsyncLoadBalancersResource(self)
 
     @cached_property
-    def cache(self) -> cache.AsyncCacheResource:
+    def cache(self) -> AsyncCacheResource:
         from .resources.cache import AsyncCacheResource
 
         return AsyncCacheResource(self)
 
     @cached_property
-    def ssl(self) -> ssl.AsyncSSLResource:
+    def ssl(self) -> AsyncSSLResource:
         from .resources.ssl import AsyncSSLResource
 
         return AsyncSSLResource(self)
 
     @cached_property
-    def acm(self) -> acm.AsyncACMResource:
+    def acm(self) -> AsyncACMResource:
         from .resources.acm import AsyncACMResource
 
         return AsyncACMResource(self)
 
     @cached_property
-    def argo(self) -> argo.AsyncArgoResource:
+    def argo(self) -> AsyncArgoResource:
         from .resources.argo import AsyncArgoResource
 
         return AsyncArgoResource(self)
 
     @cached_property
-    def certificate_authorities(self) -> certificate_authorities.AsyncCertificateAuthoritiesResource:
+    def certificate_authorities(self) -> AsyncCertificateAuthoritiesResource:
         from .resources.certificate_authorities import AsyncCertificateAuthoritiesResource
 
         return AsyncCertificateAuthoritiesResource(self)
 
     @cached_property
-    def client_certificates(self) -> client_certificates.AsyncClientCertificatesResource:
+    def client_certificates(self) -> AsyncClientCertificatesResource:
         from .resources.client_certificates import AsyncClientCertificatesResource
 
         return AsyncClientCertificatesResource(self)
 
     @cached_property
-    def custom_certificates(self) -> custom_certificates.AsyncCustomCertificatesResource:
+    def custom_certificates(self) -> AsyncCustomCertificatesResource:
         from .resources.custom_certificates import AsyncCustomCertificatesResource
 
         return AsyncCustomCertificatesResource(self)
 
     @cached_property
-    def custom_hostnames(self) -> custom_hostnames.AsyncCustomHostnamesResource:
+    def custom_hostnames(self) -> AsyncCustomHostnamesResource:
         from .resources.custom_hostnames import AsyncCustomHostnamesResource
 
         return AsyncCustomHostnamesResource(self)
 
     @cached_property
-    def custom_nameservers(self) -> custom_nameservers.AsyncCustomNameserversResource:
+    def custom_nameservers(self) -> AsyncCustomNameserversResource:
         from .resources.custom_nameservers import AsyncCustomNameserversResource
 
         return AsyncCustomNameserversResource(self)
 
     @cached_property
-    def dns_firewall(self) -> dns_firewall.AsyncDNSFirewallResource:
+    def dns_firewall(self) -> AsyncDNSFirewallResource:
         from .resources.dns_firewall import AsyncDNSFirewallResource
 
         return AsyncDNSFirewallResource(self)
 
     @cached_property
-    def dns(self) -> dns.AsyncDNSResource:
+    def dns(self) -> AsyncDNSResource:
         from .resources.dns import AsyncDNSResource
 
         return AsyncDNSResource(self)
 
     @cached_property
-    def email_security(self) -> email_security.AsyncEmailSecurityResource:
+    def email_security(self) -> AsyncEmailSecurityResource:
         from .resources.email_security import AsyncEmailSecurityResource
 
         return AsyncEmailSecurityResource(self)
 
     @cached_property
-    def email_routing(self) -> email_routing.AsyncEmailRoutingResource:
+    def email_routing(self) -> AsyncEmailRoutingResource:
         from .resources.email_routing import AsyncEmailRoutingResource
 
         return AsyncEmailRoutingResource(self)
 
     @cached_property
-    def filters(self) -> filters.AsyncFiltersResource:
+    def filters(self) -> AsyncFiltersResource:
         from .resources.filters import AsyncFiltersResource
 
         return AsyncFiltersResource(self)
 
     @cached_property
-    def firewall(self) -> firewall.AsyncFirewallResource:
+    def firewall(self) -> AsyncFirewallResource:
         from .resources.firewall import AsyncFirewallResource
 
         return AsyncFirewallResource(self)
 
     @cached_property
-    def healthchecks(self) -> healthchecks.AsyncHealthchecksResource:
+    def healthchecks(self) -> AsyncHealthchecksResource:
         from .resources.healthchecks import AsyncHealthchecksResource
 
         return AsyncHealthchecksResource(self)
 
     @cached_property
-    def keyless_certificates(self) -> keyless_certificates.AsyncKeylessCertificatesResource:
+    def keyless_certificates(self) -> AsyncKeylessCertificatesResource:
         from .resources.keyless_certificates import AsyncKeylessCertificatesResource
 
         return AsyncKeylessCertificatesResource(self)
 
     @cached_property
-    def logpush(self) -> logpush.AsyncLogpushResource:
+    def logpush(self) -> AsyncLogpushResource:
         from .resources.logpush import AsyncLogpushResource
 
         return AsyncLogpushResource(self)
 
     @cached_property
-    def logs(self) -> logs.AsyncLogsResource:
+    def logs(self) -> AsyncLogsResource:
         from .resources.logs import AsyncLogsResource
 
         return AsyncLogsResource(self)
 
     @cached_property
-    def origin_tls_client_auth(self) -> origin_tls_client_auth.AsyncOriginTLSClientAuthResource:
+    def origin_tls_client_auth(self) -> AsyncOriginTLSClientAuthResource:
         from .resources.origin_tls_client_auth import AsyncOriginTLSClientAuthResource
 
         return AsyncOriginTLSClientAuthResource(self)
 
     @cached_property
-    def page_rules(self) -> page_rules.AsyncPageRulesResource:
+    def page_rules(self) -> AsyncPageRulesResource:
         from .resources.page_rules import AsyncPageRulesResource
 
         return AsyncPageRulesResource(self)
 
     @cached_property
-    def rate_limits(self) -> rate_limits.AsyncRateLimitsResource:
+    def rate_limits(self) -> AsyncRateLimitsResource:
         from .resources.rate_limits import AsyncRateLimitsResource
 
         return AsyncRateLimitsResource(self)
 
     @cached_property
-    def waiting_rooms(self) -> waiting_rooms.AsyncWaitingRoomsResource:
+    def waiting_rooms(self) -> AsyncWaitingRoomsResource:
         from .resources.waiting_rooms import AsyncWaitingRoomsResource
 
         return AsyncWaitingRoomsResource(self)
 
     @cached_property
-    def web3(self) -> web3.AsyncWeb3Resource:
+    def web3(self) -> AsyncWeb3Resource:
         from .resources.web3 import AsyncWeb3Resource
 
         return AsyncWeb3Resource(self)
 
     @cached_property
-    def workers(self) -> workers.AsyncWorkersResource:
+    def workers(self) -> AsyncWorkersResource:
         from .resources.workers import AsyncWorkersResource
 
         return AsyncWorkersResource(self)
 
     @cached_property
-    def kv(self) -> kv.AsyncKVResource:
+    def kv(self) -> AsyncKVResource:
         from .resources.kv import AsyncKVResource
 
         return AsyncKVResource(self)
 
     @cached_property
-    def durable_objects(self) -> durable_objects.AsyncDurableObjectsResource:
+    def durable_objects(self) -> AsyncDurableObjectsResource:
         from .resources.durable_objects import AsyncDurableObjectsResource
 
         return AsyncDurableObjectsResource(self)
 
     @cached_property
-    def queues(self) -> queues.AsyncQueuesResource:
+    def queues(self) -> AsyncQueuesResource:
         from .resources.queues import AsyncQueuesResource
 
         return AsyncQueuesResource(self)
 
     @cached_property
-    def api_gateway(self) -> api_gateway.AsyncAPIGatewayResource:
+    def api_gateway(self) -> AsyncAPIGatewayResource:
         from .resources.api_gateway import AsyncAPIGatewayResource
 
         return AsyncAPIGatewayResource(self)
 
     @cached_property
-    def managed_transforms(self) -> managed_transforms.AsyncManagedTransformsResource:
+    def managed_transforms(self) -> AsyncManagedTransformsResource:
         from .resources.managed_transforms import AsyncManagedTransformsResource
 
         return AsyncManagedTransformsResource(self)
 
     @cached_property
-    def page_shield(self) -> page_shield.AsyncPageShieldResource:
+    def page_shield(self) -> AsyncPageShieldResource:
         from .resources.page_shield import AsyncPageShieldResource
 
         return AsyncPageShieldResource(self)
 
     @cached_property
-    def rulesets(self) -> rulesets.AsyncRulesetsResource:
+    def rulesets(self) -> AsyncRulesetsResource:
         from .resources.rulesets import AsyncRulesetsResource
 
         return AsyncRulesetsResource(self)
 
     @cached_property
-    def url_normalization(self) -> url_normalization.AsyncURLNormalizationResource:
+    def url_normalization(self) -> AsyncURLNormalizationResource:
         from .resources.url_normalization import AsyncURLNormalizationResource
 
         return AsyncURLNormalizationResource(self)
 
     @cached_property
-    def spectrum(self) -> spectrum.AsyncSpectrumResource:
+    def spectrum(self) -> AsyncSpectrumResource:
         from .resources.spectrum import AsyncSpectrumResource
 
         return AsyncSpectrumResource(self)
 
     @cached_property
-    def addressing(self) -> addressing.AsyncAddressingResource:
+    def addressing(self) -> AsyncAddressingResource:
         from .resources.addressing import AsyncAddressingResource
 
         return AsyncAddressingResource(self)
 
     @cached_property
-    def audit_logs(self) -> audit_logs.AsyncAuditLogsResource:
+    def audit_logs(self) -> AsyncAuditLogsResource:
         from .resources.audit_logs import AsyncAuditLogsResource
 
         return AsyncAuditLogsResource(self)
 
     @cached_property
-    def billing(self) -> billing.AsyncBillingResource:
+    def billing(self) -> AsyncBillingResource:
         from .resources.billing import AsyncBillingResource
 
         return AsyncBillingResource(self)
 
     @cached_property
-    def brand_protection(self) -> brand_protection.AsyncBrandProtectionResource:
+    def brand_protection(self) -> AsyncBrandProtectionResource:
         from .resources.brand_protection import AsyncBrandProtectionResource
 
         return AsyncBrandProtectionResource(self)
 
     @cached_property
-    def diagnostics(self) -> diagnostics.AsyncDiagnosticsResource:
+    def diagnostics(self) -> AsyncDiagnosticsResource:
         from .resources.diagnostics import AsyncDiagnosticsResource
 
         return AsyncDiagnosticsResource(self)
 
     @cached_property
-    def images(self) -> images.AsyncImagesResource:
+    def images(self) -> AsyncImagesResource:
         from .resources.images import AsyncImagesResource
 
         return AsyncImagesResource(self)
 
     @cached_property
-    def intel(self) -> intel.AsyncIntelResource:
+    def intel(self) -> AsyncIntelResource:
         from .resources.intel import AsyncIntelResource
 
         return AsyncIntelResource(self)
 
     @cached_property
-    def magic_transit(self) -> magic_transit.AsyncMagicTransitResource:
+    def magic_transit(self) -> AsyncMagicTransitResource:
         from .resources.magic_transit import AsyncMagicTransitResource
 
         return AsyncMagicTransitResource(self)
 
     @cached_property
-    def magic_network_monitoring(self) -> magic_network_monitoring.AsyncMagicNetworkMonitoringResource:
+    def magic_network_monitoring(self) -> AsyncMagicNetworkMonitoringResource:
         from .resources.magic_network_monitoring import AsyncMagicNetworkMonitoringResource
 
         return AsyncMagicNetworkMonitoringResource(self)
 
     @cached_property
-    def mtls_certificates(self) -> mtls_certificates.AsyncMTLSCertificatesResource:
+    def mtls_certificates(self) -> AsyncMTLSCertificatesResource:
         from .resources.mtls_certificates import AsyncMTLSCertificatesResource
 
         return AsyncMTLSCertificatesResource(self)
 
     @cached_property
-    def pages(self) -> pages.AsyncPagesResource:
+    def pages(self) -> AsyncPagesResource:
         from .resources.pages import AsyncPagesResource
 
         return AsyncPagesResource(self)
 
     @cached_property
-    def registrar(self) -> registrar.AsyncRegistrarResource:
+    def registrar(self) -> AsyncRegistrarResource:
         from .resources.registrar import AsyncRegistrarResource
 
         return AsyncRegistrarResource(self)
 
     @cached_property
-    def request_tracers(self) -> request_tracers.AsyncRequestTracersResource:
+    def request_tracers(self) -> AsyncRequestTracersResource:
         from .resources.request_tracers import AsyncRequestTracersResource
 
         return AsyncRequestTracersResource(self)
 
     @cached_property
-    def rules(self) -> rules.AsyncRulesResource:
+    def rules(self) -> AsyncRulesResource:
         from .resources.rules import AsyncRulesResource
 
         return AsyncRulesResource(self)
 
     @cached_property
-    def stream(self) -> stream.AsyncStreamResource:
+    def stream(self) -> AsyncStreamResource:
         from .resources.stream import AsyncStreamResource
 
         return AsyncStreamResource(self)
 
     @cached_property
-    def alerting(self) -> alerting.AsyncAlertingResource:
+    def alerting(self) -> AsyncAlertingResource:
         from .resources.alerting import AsyncAlertingResource
 
         return AsyncAlertingResource(self)
 
     @cached_property
-    def d1(self) -> d1.AsyncD1Resource:
+    def d1(self) -> AsyncD1Resource:
         from .resources.d1 import AsyncD1Resource
 
         return AsyncD1Resource(self)
 
     @cached_property
-    def r2(self) -> r2.AsyncR2Resource:
+    def r2(self) -> AsyncR2Resource:
         from .resources.r2 import AsyncR2Resource
 
         return AsyncR2Resource(self)
 
     @cached_property
-    def workers_for_platforms(self) -> workers_for_platforms.AsyncWorkersForPlatformsResource:
+    def workers_for_platforms(self) -> AsyncWorkersForPlatformsResource:
         from .resources.workers_for_platforms import AsyncWorkersForPlatformsResource
 
         return AsyncWorkersForPlatformsResource(self)
 
     @cached_property
-    def zero_trust(self) -> zero_trust.AsyncZeroTrustResource:
+    def zero_trust(self) -> AsyncZeroTrustResource:
         from .resources.zero_trust import AsyncZeroTrustResource
 
         return AsyncZeroTrustResource(self)
 
     @cached_property
-    def turnstile(self) -> turnstile.AsyncTurnstileResource:
+    def turnstile(self) -> AsyncTurnstileResource:
         from .resources.turnstile import AsyncTurnstileResource
 
         return AsyncTurnstileResource(self)
 
     @cached_property
-    def hyperdrive(self) -> hyperdrive.AsyncHyperdriveResource:
+    def hyperdrive(self) -> AsyncHyperdriveResource:
         from .resources.hyperdrive import AsyncHyperdriveResource
 
         return AsyncHyperdriveResource(self)
 
     @cached_property
-    def rum(self) -> rum.AsyncRUMResource:
+    def rum(self) -> AsyncRUMResource:
         from .resources.rum import AsyncRUMResource
 
         return AsyncRUMResource(self)
 
     @cached_property
-    def vectorize(self) -> vectorize.AsyncVectorizeResource:
+    def vectorize(self) -> AsyncVectorizeResource:
         from .resources.vectorize import AsyncVectorizeResource
 
         return AsyncVectorizeResource(self)
 
     @cached_property
-    def url_scanner(self) -> url_scanner.AsyncURLScannerResource:
+    def url_scanner(self) -> AsyncURLScannerResource:
         from .resources.url_scanner import AsyncURLScannerResource
 
         return AsyncURLScannerResource(self)
 
     @cached_property
-    def radar(self) -> radar.AsyncRadarResource:
+    def radar(self) -> AsyncRadarResource:
         from .resources.radar import AsyncRadarResource
 
         return AsyncRadarResource(self)
 
     @cached_property
-    def bot_management(self) -> bot_management.AsyncBotManagementResource:
+    def bot_management(self) -> AsyncBotManagementResource:
         from .resources.bot_management import AsyncBotManagementResource
 
         return AsyncBotManagementResource(self)
 
     @cached_property
-    def origin_post_quantum_encryption(self) -> origin_post_quantum_encryption.AsyncOriginPostQuantumEncryptionResource:
+    def origin_post_quantum_encryption(self) -> AsyncOriginPostQuantumEncryptionResource:
         from .resources.origin_post_quantum_encryption import AsyncOriginPostQuantumEncryptionResource
 
         return AsyncOriginPostQuantumEncryptionResource(self)
 
     @cached_property
-    def speed(self) -> speed.AsyncSpeedResource:
+    def speed(self) -> AsyncSpeedResource:
         from .resources.speed import AsyncSpeedResource
 
         return AsyncSpeedResource(self)
 
     @cached_property
-    def dcv_delegation(self) -> dcv_delegation.AsyncDCVDelegationResource:
+    def dcv_delegation(self) -> AsyncDCVDelegationResource:
         from .resources.dcv_delegation import AsyncDCVDelegationResource
 
         return AsyncDCVDelegationResource(self)
 
     @cached_property
-    def hostnames(self) -> hostnames.AsyncHostnamesResource:
+    def hostnames(self) -> AsyncHostnamesResource:
         from .resources.hostnames import AsyncHostnamesResource
 
         return AsyncHostnamesResource(self)
 
     @cached_property
-    def snippets(self) -> snippets.AsyncSnippetsResource:
+    def snippets(self) -> AsyncSnippetsResource:
         from .resources.snippets import AsyncSnippetsResource
 
         return AsyncSnippetsResource(self)
 
     @cached_property
-    def calls(self) -> calls.AsyncCallsResource:
+    def calls(self) -> AsyncCallsResource:
         from .resources.calls import AsyncCallsResource
 
         return AsyncCallsResource(self)
 
     @cached_property
-    def cloudforce_one(self) -> cloudforce_one.AsyncCloudforceOneResource:
+    def cloudforce_one(self) -> AsyncCloudforceOneResource:
         from .resources.cloudforce_one import AsyncCloudforceOneResource
 
         return AsyncCloudforceOneResource(self)
 
     @cached_property
-    def ai_gateway(self) -> ai_gateway.AsyncAIGatewayResource:
+    def ai_gateway(self) -> AsyncAIGatewayResource:
         from .resources.ai_gateway import AsyncAIGatewayResource
 
         return AsyncAIGatewayResource(self)
 
     @cached_property
-    def iam(self) -> iam.AsyncIAMResource:
+    def iam(self) -> AsyncIAMResource:
         from .resources.iam import AsyncIAMResource
 
         return AsyncIAMResource(self)
 
     @cached_property
-    def cloud_connector(self) -> cloud_connector.AsyncCloudConnectorResource:
+    def cloud_connector(self) -> AsyncCloudConnectorResource:
         from .resources.cloud_connector import AsyncCloudConnectorResource
 
         return AsyncCloudConnectorResource(self)
 
     @cached_property
-    def botnet_feed(self) -> botnet_feed.AsyncBotnetFeedResource:
+    def botnet_feed(self) -> AsyncBotnetFeedResource:
         from .resources.botnet_feed import AsyncBotnetFeedResource
 
         return AsyncBotnetFeedResource(self)
 
     @cached_property
-    def security_txt(self) -> security_txt.AsyncSecurityTXTResource:
+    def security_txt(self) -> AsyncSecurityTXTResource:
         from .resources.security_txt import AsyncSecurityTXTResource
 
         return AsyncSecurityTXTResource(self)
 
     @cached_property
-    def workflows(self) -> workflows.AsyncWorkflowsResource:
+    def workflows(self) -> AsyncWorkflowsResource:
         from .resources.workflows import AsyncWorkflowsResource
 
         return AsyncWorkflowsResource(self)
 
     @cached_property
-    def resource_sharing(self) -> resource_sharing.AsyncResourceSharingResource:
+    def resource_sharing(self) -> AsyncResourceSharingResource:
         from .resources.resource_sharing import AsyncResourceSharingResource
 
         return AsyncResourceSharingResource(self)
 
     @cached_property
-    def leaked_credential_checks(self) -> leaked_credential_checks.AsyncLeakedCredentialChecksResource:
+    def leaked_credential_checks(self) -> AsyncLeakedCredentialChecksResource:
         from .resources.leaked_credential_checks import AsyncLeakedCredentialChecksResource
 
         return AsyncLeakedCredentialChecksResource(self)
 
     @cached_property
-    def content_scanning(self) -> content_scanning.AsyncContentScanningResource:
+    def content_scanning(self) -> AsyncContentScanningResource:
         from .resources.content_scanning import AsyncContentScanningResource
 
         return AsyncContentScanningResource(self)
 
     @cached_property
-    def abuse_reports(self) -> abuse_reports.AsyncAbuseReportsResource:
+    def abuse_reports(self) -> AsyncAbuseReportsResource:
         from .resources.abuse_reports import AsyncAbuseReportsResource
 
         return AsyncAbuseReportsResource(self)
 
     @cached_property
-    def ai(self) -> ai.AsyncAIResource:
+    def ai(self) -> AsyncAIResource:
         from .resources.ai import AsyncAIResource
 
         return AsyncAIResource(self)
