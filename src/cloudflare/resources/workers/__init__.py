@@ -1,5 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from .ai import (
+    AIResource,
+    AsyncAIResource,
+    AIResourceWithRawResponse,
+    AsyncAIResourceWithRawResponse,
+    AIResourceWithStreamingResponse,
+    AsyncAIResourceWithStreamingResponse,
+)
 from .assets import (
     AssetsResource,
     AsyncAssetsResource,
@@ -50,6 +58,12 @@ from .account_settings import (
 )
 
 __all__ = [
+    "AIResource",
+    "AsyncAIResource",
+    "AIResourceWithRawResponse",
+    "AsyncAIResourceWithRawResponse",
+    "AIResourceWithStreamingResponse",
+    "AsyncAIResourceWithStreamingResponse",
     "AssetsResource",
     "AsyncAssetsResource",
     "AssetsResourceWithRawResponse",
