@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from .ttl import TTL as TTL
 from .dnssec import DNSSEC as DNSSEC
 from .a_record import ARecord as ARecord
 from .ds_record import DSRecord as DSRecord
