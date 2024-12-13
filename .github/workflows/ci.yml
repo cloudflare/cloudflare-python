@@ -82,4 +82,4 @@ jobs:
           CLOUDFLARE_API_KEY: ${{ secrets.CLOUDFLARE_API_KEY }}
         run: |
             rye run python ./examples/ai/demo.py
-            rye run python ./examples/dns/demo.py
+            rye run python ./examples/dns/record.py
