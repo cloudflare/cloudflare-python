@@ -17,4 +17,8 @@ record = client.dns.records.create(
     proxied=True
 )
 
-# print(record)
+# clean up after we're done
+client.dns.records.delete(
+    zone_id=zone_id,
+    dns_record_id=record.id
+)
