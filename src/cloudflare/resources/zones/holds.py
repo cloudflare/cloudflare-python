@@ -20,7 +20,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.zones import hold_create_params, hold_delete_params, hold_update_params
+from ...types.zones import hold_edit_params, hold_create_params, hold_delete_params
 from ..._base_client import make_request_options
 from ...types.zones.zone_hold import ZoneHold
 
@@ -94,7 +94,53 @@ class HoldsResource(SyncAPIResource):
             cast_to=cast(Type[ZoneHold], ResultWrapper[ZoneHold]),
         )
 
-    def update(
+    def delete(
+        self,
+        *,
+        zone_id: str,
+        hold_after: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ZoneHold:
+        """
+        Stop enforcement of a zone hold on the zone, permanently or temporarily,
+        allowing the creation and activation of zones with this zone's hostname.
+
+        Args:
+          zone_id: Identifier
+
+          hold_after: If `hold_after` is provided, the hold will be temporarily disabled, then
+              automatically re-enabled by the system at the time specified in this
+              RFC3339-formatted timestamp. Otherwise, the hold will be disabled indefinitely.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return self._delete(
+            f"/zones/{zone_id}/hold",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"hold_after": hold_after}, hold_delete_params.HoldDeleteParams),
+                post_parser=ResultWrapper[ZoneHold]._unwrapper,
+            ),
+            cast_to=cast(Type[ZoneHold], ResultWrapper[ZoneHold]),
+        )
+
+    def edit(
         self,
         *,
         zone_id: str,
@@ -142,59 +188,13 @@ class HoldsResource(SyncAPIResource):
                     "hold_after": hold_after,
                     "include_subdomains": include_subdomains,
                 },
-                hold_update_params.HoldUpdateParams,
+                hold_edit_params.HoldEditParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ZoneHold]._unwrapper,
-            ),
-            cast_to=cast(Type[ZoneHold], ResultWrapper[ZoneHold]),
-        )
-
-    def delete(
-        self,
-        *,
-        zone_id: str,
-        hold_after: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZoneHold:
-        """
-        Stop enforcement of a zone hold on the zone, permanently or temporarily,
-        allowing the creation and activation of zones with this zone's hostname.
-
-        Args:
-          zone_id: Identifier
-
-          hold_after: If `hold_after` is provided, the hold will be temporarily disabled, then
-              automatically re-enabled by the system at the time specified in this
-              RFC3339-formatted timestamp. Otherwise, the hold will be disabled indefinitely.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._delete(
-            f"/zones/{zone_id}/hold",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"hold_after": hold_after}, hold_delete_params.HoldDeleteParams),
                 post_parser=ResultWrapper[ZoneHold]._unwrapper,
             ),
             cast_to=cast(Type[ZoneHold], ResultWrapper[ZoneHold]),
@@ -310,7 +310,53 @@ class AsyncHoldsResource(AsyncAPIResource):
             cast_to=cast(Type[ZoneHold], ResultWrapper[ZoneHold]),
         )
 
-    async def update(
+    async def delete(
+        self,
+        *,
+        zone_id: str,
+        hold_after: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ZoneHold:
+        """
+        Stop enforcement of a zone hold on the zone, permanently or temporarily,
+        allowing the creation and activation of zones with this zone's hostname.
+
+        Args:
+          zone_id: Identifier
+
+          hold_after: If `hold_after` is provided, the hold will be temporarily disabled, then
+              automatically re-enabled by the system at the time specified in this
+              RFC3339-formatted timestamp. Otherwise, the hold will be disabled indefinitely.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return await self._delete(
+            f"/zones/{zone_id}/hold",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform({"hold_after": hold_after}, hold_delete_params.HoldDeleteParams),
+                post_parser=ResultWrapper[ZoneHold]._unwrapper,
+            ),
+            cast_to=cast(Type[ZoneHold], ResultWrapper[ZoneHold]),
+        )
+
+    async def edit(
         self,
         *,
         zone_id: str,
@@ -358,59 +404,13 @@ class AsyncHoldsResource(AsyncAPIResource):
                     "hold_after": hold_after,
                     "include_subdomains": include_subdomains,
                 },
-                hold_update_params.HoldUpdateParams,
+                hold_edit_params.HoldEditParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ZoneHold]._unwrapper,
-            ),
-            cast_to=cast(Type[ZoneHold], ResultWrapper[ZoneHold]),
-        )
-
-    async def delete(
-        self,
-        *,
-        zone_id: str,
-        hold_after: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZoneHold:
-        """
-        Stop enforcement of a zone hold on the zone, permanently or temporarily,
-        allowing the creation and activation of zones with this zone's hostname.
-
-        Args:
-          zone_id: Identifier
-
-          hold_after: If `hold_after` is provided, the hold will be temporarily disabled, then
-              automatically re-enabled by the system at the time specified in this
-              RFC3339-formatted timestamp. Otherwise, the hold will be disabled indefinitely.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._delete(
-            f"/zones/{zone_id}/hold",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform({"hold_after": hold_after}, hold_delete_params.HoldDeleteParams),
                 post_parser=ResultWrapper[ZoneHold]._unwrapper,
             ),
             cast_to=cast(Type[ZoneHold], ResultWrapper[ZoneHold]),
@@ -464,11 +464,11 @@ class HoldsResourceWithRawResponse:
         self.create = to_raw_response_wrapper(
             holds.create,
         )
-        self.update = to_raw_response_wrapper(
-            holds.update,
-        )
         self.delete = to_raw_response_wrapper(
             holds.delete,
+        )
+        self.edit = to_raw_response_wrapper(
+            holds.edit,
         )
         self.get = to_raw_response_wrapper(
             holds.get,
@@ -482,11 +482,11 @@ class AsyncHoldsResourceWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             holds.create,
         )
-        self.update = async_to_raw_response_wrapper(
-            holds.update,
-        )
         self.delete = async_to_raw_response_wrapper(
             holds.delete,
+        )
+        self.edit = async_to_raw_response_wrapper(
+            holds.edit,
         )
         self.get = async_to_raw_response_wrapper(
             holds.get,
@@ -500,11 +500,11 @@ class HoldsResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             holds.create,
         )
-        self.update = to_streamed_response_wrapper(
-            holds.update,
-        )
         self.delete = to_streamed_response_wrapper(
             holds.delete,
+        )
+        self.edit = to_streamed_response_wrapper(
+            holds.edit,
         )
         self.get = to_streamed_response_wrapper(
             holds.get,
@@ -518,11 +518,11 @@ class AsyncHoldsResourceWithStreamingResponse:
         self.create = async_to_streamed_response_wrapper(
             holds.create,
         )
-        self.update = async_to_streamed_response_wrapper(
-            holds.update,
-        )
         self.delete = async_to_streamed_response_wrapper(
             holds.delete,
+        )
+        self.edit = async_to_streamed_response_wrapper(
+            holds.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             holds.get,

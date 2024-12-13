@@ -1,9 +1,9 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Union, Optional
-from typing_extensions import Literal, TypeAlias
+from typing_extensions import Literal, Annotated, TypeAlias
 
-from .ttl import TTL
+from ..._utils import PropertyInfo
 from .a_record import ARecord
 from ..._models import BaseModel
 from .ds_record import DSRecord
@@ -17,7 +17,6 @@ from .txt_record import TXTRecord
 from .uri_record import URIRecord
 from .aaaa_record import AAAARecord
 from .cert_record import CERTRecord
-from .record_tags import RecordTags
 from .svcb_record import SVCBRecord
 from .tlsa_record import TLSARecord
 from .cname_record import CNAMERecord
@@ -30,245 +29,157 @@ from .smimea_record import SMIMEARecord
 __all__ = [
     "RecordBatchResponse",
     "Delete",
-    "DeleteDNSRecordsOpenpgpkeyRecord",
+    "DeleteOpenpgpkey",
     "Patch",
-    "PatchDNSRecordsOpenpgpkeyRecord",
+    "PatchOpenpgpkey",
     "Post",
-    "PostDNSRecordsOpenpgpkeyRecord",
+    "PostOpenpgpkey",
     "Put",
-    "PutDNSRecordsOpenpgpkeyRecord",
+    "PutOpenpgpkey",
 ]
 
 
-class DeleteDNSRecordsOpenpgpkeyRecord(BaseModel):
-    comment: Optional[str] = None
-    """Comments or notes about the DNS record.
-
-    This field has no effect on DNS responses.
-    """
-
+class DeleteOpenpgpkey(BaseModel):
     content: Optional[str] = None
     """A single Base64-encoded OpenPGP Transferable Public Key (RFC 4880 Section 11.1)"""
-
-    name: Optional[str] = None
-    """DNS record name (or @ for the zone apex) in Punycode."""
-
-    proxied: Optional[bool] = None
-    """
-    Whether the record is receiving the performance and security benefits of
-    Cloudflare.
-    """
-
-    tags: Optional[List[RecordTags]] = None
-    """Custom tags for the DNS record. This field has no effect on DNS responses."""
-
-    ttl: Optional[TTL] = None
-    """Time To Live (TTL) of the DNS record in seconds.
-
-    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
-    minimum reduced to 30 for Enterprise zones.
-    """
 
     type: Optional[Literal["OPENPGPKEY"]] = None
     """Record type."""
 
 
-Delete: TypeAlias = Union[
-    ARecord,
-    AAAARecord,
-    CAARecord,
-    CERTRecord,
-    CNAMERecord,
-    DNSKEYRecord,
-    DSRecord,
-    HTTPSRecord,
-    LOCRecord,
-    MXRecord,
-    NAPTRRecord,
-    NSRecord,
-    DeleteDNSRecordsOpenpgpkeyRecord,
-    PTRRecord,
-    SMIMEARecord,
-    SRVRecord,
-    SSHFPRecord,
-    SVCBRecord,
-    TLSARecord,
-    TXTRecord,
-    URIRecord,
+Delete: TypeAlias = Annotated[
+    Union[
+        ARecord,
+        AAAARecord,
+        CAARecord,
+        CERTRecord,
+        CNAMERecord,
+        DNSKEYRecord,
+        DSRecord,
+        HTTPSRecord,
+        LOCRecord,
+        MXRecord,
+        NAPTRRecord,
+        NSRecord,
+        DeleteOpenpgpkey,
+        PTRRecord,
+        SMIMEARecord,
+        SRVRecord,
+        SSHFPRecord,
+        SVCBRecord,
+        TLSARecord,
+        TXTRecord,
+        URIRecord,
+    ],
+    PropertyInfo(discriminator="type"),
 ]
 
 
-class PatchDNSRecordsOpenpgpkeyRecord(BaseModel):
-    comment: Optional[str] = None
-    """Comments or notes about the DNS record.
-
-    This field has no effect on DNS responses.
-    """
-
+class PatchOpenpgpkey(BaseModel):
     content: Optional[str] = None
     """A single Base64-encoded OpenPGP Transferable Public Key (RFC 4880 Section 11.1)"""
-
-    name: Optional[str] = None
-    """DNS record name (or @ for the zone apex) in Punycode."""
-
-    proxied: Optional[bool] = None
-    """
-    Whether the record is receiving the performance and security benefits of
-    Cloudflare.
-    """
-
-    tags: Optional[List[RecordTags]] = None
-    """Custom tags for the DNS record. This field has no effect on DNS responses."""
-
-    ttl: Optional[TTL] = None
-    """Time To Live (TTL) of the DNS record in seconds.
-
-    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
-    minimum reduced to 30 for Enterprise zones.
-    """
 
     type: Optional[Literal["OPENPGPKEY"]] = None
     """Record type."""
 
 
-Patch: TypeAlias = Union[
-    ARecord,
-    AAAARecord,
-    CAARecord,
-    CERTRecord,
-    CNAMERecord,
-    DNSKEYRecord,
-    DSRecord,
-    HTTPSRecord,
-    LOCRecord,
-    MXRecord,
-    NAPTRRecord,
-    NSRecord,
-    PatchDNSRecordsOpenpgpkeyRecord,
-    PTRRecord,
-    SMIMEARecord,
-    SRVRecord,
-    SSHFPRecord,
-    SVCBRecord,
-    TLSARecord,
-    TXTRecord,
-    URIRecord,
+Patch: TypeAlias = Annotated[
+    Union[
+        ARecord,
+        AAAARecord,
+        CAARecord,
+        CERTRecord,
+        CNAMERecord,
+        DNSKEYRecord,
+        DSRecord,
+        HTTPSRecord,
+        LOCRecord,
+        MXRecord,
+        NAPTRRecord,
+        NSRecord,
+        PatchOpenpgpkey,
+        PTRRecord,
+        SMIMEARecord,
+        SRVRecord,
+        SSHFPRecord,
+        SVCBRecord,
+        TLSARecord,
+        TXTRecord,
+        URIRecord,
+    ],
+    PropertyInfo(discriminator="type"),
 ]
 
 
-class PostDNSRecordsOpenpgpkeyRecord(BaseModel):
-    comment: Optional[str] = None
-    """Comments or notes about the DNS record.
-
-    This field has no effect on DNS responses.
-    """
-
+class PostOpenpgpkey(BaseModel):
     content: Optional[str] = None
     """A single Base64-encoded OpenPGP Transferable Public Key (RFC 4880 Section 11.1)"""
-
-    name: Optional[str] = None
-    """DNS record name (or @ for the zone apex) in Punycode."""
-
-    proxied: Optional[bool] = None
-    """
-    Whether the record is receiving the performance and security benefits of
-    Cloudflare.
-    """
-
-    tags: Optional[List[RecordTags]] = None
-    """Custom tags for the DNS record. This field has no effect on DNS responses."""
-
-    ttl: Optional[TTL] = None
-    """Time To Live (TTL) of the DNS record in seconds.
-
-    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
-    minimum reduced to 30 for Enterprise zones.
-    """
 
     type: Optional[Literal["OPENPGPKEY"]] = None
     """Record type."""
 
 
-Post: TypeAlias = Union[
-    ARecord,
-    AAAARecord,
-    CAARecord,
-    CERTRecord,
-    CNAMERecord,
-    DNSKEYRecord,
-    DSRecord,
-    HTTPSRecord,
-    LOCRecord,
-    MXRecord,
-    NAPTRRecord,
-    NSRecord,
-    PostDNSRecordsOpenpgpkeyRecord,
-    PTRRecord,
-    SMIMEARecord,
-    SRVRecord,
-    SSHFPRecord,
-    SVCBRecord,
-    TLSARecord,
-    TXTRecord,
-    URIRecord,
+Post: TypeAlias = Annotated[
+    Union[
+        ARecord,
+        AAAARecord,
+        CAARecord,
+        CERTRecord,
+        CNAMERecord,
+        DNSKEYRecord,
+        DSRecord,
+        HTTPSRecord,
+        LOCRecord,
+        MXRecord,
+        NAPTRRecord,
+        NSRecord,
+        PostOpenpgpkey,
+        PTRRecord,
+        SMIMEARecord,
+        SRVRecord,
+        SSHFPRecord,
+        SVCBRecord,
+        TLSARecord,
+        TXTRecord,
+        URIRecord,
+    ],
+    PropertyInfo(discriminator="type"),
 ]
 
 
-class PutDNSRecordsOpenpgpkeyRecord(BaseModel):
-    comment: Optional[str] = None
-    """Comments or notes about the DNS record.
-
-    This field has no effect on DNS responses.
-    """
-
+class PutOpenpgpkey(BaseModel):
     content: Optional[str] = None
     """A single Base64-encoded OpenPGP Transferable Public Key (RFC 4880 Section 11.1)"""
-
-    name: Optional[str] = None
-    """DNS record name (or @ for the zone apex) in Punycode."""
-
-    proxied: Optional[bool] = None
-    """
-    Whether the record is receiving the performance and security benefits of
-    Cloudflare.
-    """
-
-    tags: Optional[List[RecordTags]] = None
-    """Custom tags for the DNS record. This field has no effect on DNS responses."""
-
-    ttl: Optional[TTL] = None
-    """Time To Live (TTL) of the DNS record in seconds.
-
-    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
-    minimum reduced to 30 for Enterprise zones.
-    """
 
     type: Optional[Literal["OPENPGPKEY"]] = None
     """Record type."""
 
 
-Put: TypeAlias = Union[
-    ARecord,
-    AAAARecord,
-    CAARecord,
-    CERTRecord,
-    CNAMERecord,
-    DNSKEYRecord,
-    DSRecord,
-    HTTPSRecord,
-    LOCRecord,
-    MXRecord,
-    NAPTRRecord,
-    NSRecord,
-    PutDNSRecordsOpenpgpkeyRecord,
-    PTRRecord,
-    SMIMEARecord,
-    SRVRecord,
-    SSHFPRecord,
-    SVCBRecord,
-    TLSARecord,
-    TXTRecord,
-    URIRecord,
+Put: TypeAlias = Annotated[
+    Union[
+        ARecord,
+        AAAARecord,
+        CAARecord,
+        CERTRecord,
+        CNAMERecord,
+        DNSKEYRecord,
+        DSRecord,
+        HTTPSRecord,
+        LOCRecord,
+        MXRecord,
+        NAPTRRecord,
+        NSRecord,
+        PutOpenpgpkey,
+        PTRRecord,
+        SMIMEARecord,
+        SRVRecord,
+        SSHFPRecord,
+        SVCBRecord,
+        TLSARecord,
+        TXTRecord,
+        URIRecord,
+    ],
+    PropertyInfo(discriminator="type"),
 ]
 
 
