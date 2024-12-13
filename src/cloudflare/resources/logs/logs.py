@@ -10,7 +10,9 @@ from .rayid import (
     RayIDResourceWithStreamingResponse,
     AsyncRayIDResourceWithStreamingResponse,
 )
-from .control import (
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from .control.control import (
     ControlResource,
     AsyncControlResource,
     ControlResourceWithRawResponse,
@@ -18,7 +20,7 @@ from .control import (
     ControlResourceWithStreamingResponse,
     AsyncControlResourceWithStreamingResponse,
 )
-from .received import (
+from .received.received import (
     ReceivedResource,
     AsyncReceivedResource,
     ReceivedResourceWithRawResponse,
@@ -26,10 +28,6 @@ from .received import (
     ReceivedResourceWithStreamingResponse,
     AsyncReceivedResourceWithStreamingResponse,
 )
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from .control.control import ControlResource, AsyncControlResource
-from .received.received import ReceivedResource, AsyncReceivedResource
 
 __all__ = ["LogsResource", "AsyncLogsResource"]
 

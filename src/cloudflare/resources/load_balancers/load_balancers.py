@@ -6,14 +6,6 @@ from typing import Dict, List, Type, Iterable, cast
 
 import httpx
 
-from .pools import (
-    PoolsResource,
-    AsyncPoolsResource,
-    PoolsResourceWithRawResponse,
-    AsyncPoolsResourceWithRawResponse,
-    PoolsResourceWithStreamingResponse,
-    AsyncPoolsResourceWithStreamingResponse,
-)
 from .regions import (
     RegionsResource,
     AsyncRegionsResource,
@@ -26,14 +18,6 @@ from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
     async_maybe_transform,
-)
-from .monitors import (
-    MonitorsResource,
-    AsyncMonitorsResource,
-    MonitorsResourceWithRawResponse,
-    AsyncMonitorsResourceWithRawResponse,
-    MonitorsResourceWithStreamingResponse,
-    AsyncMonitorsResourceWithStreamingResponse,
 )
 from .previews import (
     PreviewsResource,
@@ -60,10 +44,24 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from .pools.pools import PoolsResource, AsyncPoolsResource
+from .pools.pools import (
+    PoolsResource,
+    AsyncPoolsResource,
+    PoolsResourceWithRawResponse,
+    AsyncPoolsResourceWithRawResponse,
+    PoolsResourceWithStreamingResponse,
+    AsyncPoolsResourceWithStreamingResponse,
+)
 from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import AsyncPaginator, make_request_options
-from .monitors.monitors import MonitorsResource, AsyncMonitorsResource
+from .monitors.monitors import (
+    MonitorsResource,
+    AsyncMonitorsResource,
+    MonitorsResourceWithRawResponse,
+    AsyncMonitorsResourceWithRawResponse,
+    MonitorsResourceWithStreamingResponse,
+    AsyncMonitorsResourceWithStreamingResponse,
+)
 from ...types.load_balancers import (
     SteeringPolicy,
     SessionAffinity,

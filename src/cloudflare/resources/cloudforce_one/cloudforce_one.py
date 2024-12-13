@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from .requests import (
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from .requests.requests import (
     RequestsResource,
     AsyncRequestsResource,
     RequestsResourceWithRawResponse,
@@ -10,9 +12,6 @@ from .requests import (
     RequestsResourceWithStreamingResponse,
     AsyncRequestsResourceWithStreamingResponse,
 )
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from .requests.requests import RequestsResource, AsyncRequestsResource
 
 __all__ = ["CloudforceOneResource", "AsyncCloudforceOneResource"]
 

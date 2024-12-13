@@ -18,14 +18,6 @@ from .entries import (
     EntriesResourceWithStreamingResponse,
     AsyncEntriesResourceWithStreamingResponse,
 )
-from .datasets import (
-    DatasetsResource,
-    AsyncDatasetsResource,
-    DatasetsResourceWithRawResponse,
-    AsyncDatasetsResourceWithRawResponse,
-    DatasetsResourceWithStreamingResponse,
-    AsyncDatasetsResourceWithStreamingResponse,
-)
 from .patterns import (
     PatternsResource,
     AsyncPatternsResource,
@@ -33,14 +25,6 @@ from .patterns import (
     AsyncPatternsResourceWithRawResponse,
     PatternsResourceWithStreamingResponse,
     AsyncPatternsResourceWithStreamingResponse,
-)
-from .profiles import (
-    ProfilesResource,
-    AsyncProfilesResource,
-    ProfilesResourceWithRawResponse,
-    AsyncProfilesResourceWithRawResponse,
-    ProfilesResourceWithStreamingResponse,
-    AsyncProfilesResourceWithStreamingResponse,
 )
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -52,8 +36,22 @@ from .payload_logs import (
     PayloadLogsResourceWithStreamingResponse,
     AsyncPayloadLogsResourceWithStreamingResponse,
 )
-from .datasets.datasets import DatasetsResource, AsyncDatasetsResource
-from .profiles.profiles import ProfilesResource, AsyncProfilesResource
+from .datasets.datasets import (
+    DatasetsResource,
+    AsyncDatasetsResource,
+    DatasetsResourceWithRawResponse,
+    AsyncDatasetsResourceWithRawResponse,
+    DatasetsResourceWithStreamingResponse,
+    AsyncDatasetsResourceWithStreamingResponse,
+)
+from .profiles.profiles import (
+    ProfilesResource,
+    AsyncProfilesResource,
+    ProfilesResourceWithRawResponse,
+    AsyncProfilesResourceWithRawResponse,
+    ProfilesResourceWithStreamingResponse,
+    AsyncProfilesResourceWithStreamingResponse,
+)
 
 __all__ = ["DLPResource", "AsyncDLPResource"]
 

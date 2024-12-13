@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from .bots import (
+from .bots.bots import (
     BotsResource,
     AsyncBotsResource,
     BotsResourceWithRawResponse,
@@ -10,7 +10,6 @@ from .bots import (
     BotsResourceWithStreamingResponse,
     AsyncBotsResourceWithStreamingResponse,
 )
-from .bots.bots import BotsResource, AsyncBotsResource
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from .timeseries_groups import (

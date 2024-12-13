@@ -11,7 +11,8 @@ from .apps import (
     AsyncAppsResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
-from .analytics import (
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from .analytics.analytics import (
     AnalyticsResource,
     AsyncAnalyticsResource,
     AnalyticsResourceWithRawResponse,
@@ -19,8 +20,6 @@ from .analytics import (
     AnalyticsResourceWithStreamingResponse,
     AsyncAnalyticsResourceWithStreamingResponse,
 )
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from .analytics.analytics import AnalyticsResource, AsyncAnalyticsResource
 
 __all__ = ["SpectrumResource", "AsyncSpectrumResource"]
 

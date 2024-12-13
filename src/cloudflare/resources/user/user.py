@@ -6,22 +6,6 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from .tokens import (
-    TokensResource,
-    AsyncTokensResource,
-    TokensResourceWithRawResponse,
-    AsyncTokensResourceWithRawResponse,
-    TokensResourceWithStreamingResponse,
-    AsyncTokensResourceWithStreamingResponse,
-)
-from .billing import (
-    BillingResource,
-    AsyncBillingResource,
-    BillingResourceWithRawResponse,
-    AsyncBillingResourceWithRawResponse,
-    BillingResourceWithStreamingResponse,
-    AsyncBillingResourceWithStreamingResponse,
-)
 from .invites import (
     InvitesResource,
     AsyncInvitesResource,
@@ -69,9 +53,23 @@ from .subscriptions import (
     SubscriptionsResourceWithStreamingResponse,
     AsyncSubscriptionsResourceWithStreamingResponse,
 )
-from .tokens.tokens import TokensResource, AsyncTokensResource
+from .tokens.tokens import (
+    TokensResource,
+    AsyncTokensResource,
+    TokensResourceWithRawResponse,
+    AsyncTokensResourceWithRawResponse,
+    TokensResourceWithStreamingResponse,
+    AsyncTokensResourceWithStreamingResponse,
+)
 from ..._base_client import make_request_options
-from .billing.billing import BillingResource, AsyncBillingResource
+from .billing.billing import (
+    BillingResource,
+    AsyncBillingResource,
+    BillingResourceWithRawResponse,
+    AsyncBillingResourceWithRawResponse,
+    BillingResourceWithStreamingResponse,
+    AsyncBillingResourceWithStreamingResponse,
+)
 
 __all__ = ["UserResource", "AsyncUserResource"]
 

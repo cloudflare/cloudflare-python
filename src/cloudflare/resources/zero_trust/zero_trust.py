@@ -2,22 +2,6 @@
 
 from __future__ import annotations
 
-from .dex import (
-    DEXResource,
-    AsyncDEXResource,
-    DEXResourceWithRawResponse,
-    AsyncDEXResourceWithRawResponse,
-    DEXResourceWithStreamingResponse,
-    AsyncDEXResourceWithStreamingResponse,
-)
-from .dlp import (
-    DLPResource,
-    AsyncDLPResource,
-    DLPResourceWithRawResponse,
-    AsyncDLPResourceWithRawResponse,
-    DLPResourceWithStreamingResponse,
-    AsyncDLPResourceWithStreamingResponse,
-)
 from .seats import (
     SeatsResource,
     AsyncSeatsResource,
@@ -26,7 +10,25 @@ from .seats import (
     SeatsResourceWithStreamingResponse,
     AsyncSeatsResourceWithStreamingResponse,
 )
-from .access import (
+from .dex.dex import (
+    DEXResource,
+    AsyncDEXResource,
+    DEXResourceWithRawResponse,
+    AsyncDEXResourceWithRawResponse,
+    DEXResourceWithStreamingResponse,
+    AsyncDEXResourceWithStreamingResponse,
+)
+from .dlp.dlp import (
+    DLPResource,
+    AsyncDLPResource,
+    DLPResourceWithRawResponse,
+    AsyncDLPResourceWithRawResponse,
+    DLPResourceWithStreamingResponse,
+    AsyncDLPResourceWithStreamingResponse,
+)
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from .access.access import (
     AccessResource,
     AsyncAccessResource,
     AccessResourceWithRawResponse,
@@ -34,7 +36,7 @@ from .access import (
     AccessResourceWithStreamingResponse,
     AsyncAccessResourceWithStreamingResponse,
 )
-from .devices import (
+from .devices.devices import (
     DevicesResource,
     AsyncDevicesResource,
     DevicesResourceWithRawResponse,
@@ -42,9 +44,7 @@ from .devices import (
     DevicesResourceWithStreamingResponse,
     AsyncDevicesResourceWithStreamingResponse,
 )
-from .dex.dex import DEXResource, AsyncDEXResource
-from .dlp.dlp import DLPResource, AsyncDLPResource
-from .gateway import (
+from .gateway.gateway import (
     GatewayResource,
     AsyncGatewayResource,
     GatewayResourceWithRawResponse,
@@ -52,7 +52,7 @@ from .gateway import (
     GatewayResourceWithStreamingResponse,
     AsyncGatewayResourceWithStreamingResponse,
 )
-from .tunnels import (
+from .tunnels.tunnels import (
     TunnelsResource,
     AsyncTunnelsResource,
     TunnelsResourceWithRawResponse,
@@ -60,7 +60,7 @@ from .tunnels import (
     TunnelsResourceWithStreamingResponse,
     AsyncTunnelsResourceWithStreamingResponse,
 )
-from .networks import (
+from .networks.networks import (
     NetworksResource,
     AsyncNetworksResource,
     NetworksResourceWithRawResponse,
@@ -68,29 +68,6 @@ from .networks import (
     NetworksResourceWithStreamingResponse,
     AsyncNetworksResourceWithStreamingResponse,
 )
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from .risk_scoring import (
-    RiskScoringResource,
-    AsyncRiskScoringResource,
-    RiskScoringResourceWithRawResponse,
-    AsyncRiskScoringResourceWithRawResponse,
-    RiskScoringResourceWithStreamingResponse,
-    AsyncRiskScoringResourceWithStreamingResponse,
-)
-from .access.access import AccessResource, AsyncAccessResource
-from .organizations import (
-    OrganizationsResource,
-    AsyncOrganizationsResource,
-    OrganizationsResourceWithRawResponse,
-    AsyncOrganizationsResourceWithRawResponse,
-    OrganizationsResourceWithStreamingResponse,
-    AsyncOrganizationsResourceWithStreamingResponse,
-)
-from .devices.devices import DevicesResource, AsyncDevicesResource
-from .gateway.gateway import GatewayResource, AsyncGatewayResource
-from .tunnels.tunnels import TunnelsResource, AsyncTunnelsResource
-from .networks.networks import NetworksResource, AsyncNetworksResource
 from .identity_providers import (
     IdentityProvidersResource,
     AsyncIdentityProvidersResource,
@@ -107,8 +84,22 @@ from .connectivity_settings import (
     ConnectivitySettingsResourceWithStreamingResponse,
     AsyncConnectivitySettingsResourceWithStreamingResponse,
 )
-from .risk_scoring.risk_scoring import RiskScoringResource, AsyncRiskScoringResource
-from .organizations.organizations import OrganizationsResource, AsyncOrganizationsResource
+from .risk_scoring.risk_scoring import (
+    RiskScoringResource,
+    AsyncRiskScoringResource,
+    RiskScoringResourceWithRawResponse,
+    AsyncRiskScoringResourceWithRawResponse,
+    RiskScoringResourceWithStreamingResponse,
+    AsyncRiskScoringResourceWithStreamingResponse,
+)
+from .organizations.organizations import (
+    OrganizationsResource,
+    AsyncOrganizationsResource,
+    OrganizationsResourceWithRawResponse,
+    AsyncOrganizationsResourceWithRawResponse,
+    OrganizationsResourceWithStreamingResponse,
+    AsyncOrganizationsResourceWithStreamingResponse,
+)
 
 __all__ = ["ZeroTrustResource", "AsyncZeroTrustResource"]
 

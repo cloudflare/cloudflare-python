@@ -2,14 +2,6 @@
 
 from __future__ import annotations
 
-from .prefixes import (
-    PrefixesResource,
-    AsyncPrefixesResource,
-    PrefixesResourceWithRawResponse,
-    AsyncPrefixesResourceWithRawResponse,
-    PrefixesResourceWithStreamingResponse,
-    AsyncPrefixesResourceWithStreamingResponse,
-)
 from .services import (
     ServicesResource,
     AsyncServicesResource,
@@ -20,7 +12,15 @@ from .services import (
 )
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from .address_maps import (
+from .prefixes.prefixes import (
+    PrefixesResource,
+    AsyncPrefixesResource,
+    PrefixesResourceWithRawResponse,
+    AsyncPrefixesResourceWithRawResponse,
+    PrefixesResourceWithStreamingResponse,
+    AsyncPrefixesResourceWithStreamingResponse,
+)
+from .address_maps.address_maps import (
     AddressMapsResource,
     AsyncAddressMapsResource,
     AddressMapsResourceWithRawResponse,
@@ -28,7 +28,7 @@ from .address_maps import (
     AddressMapsResourceWithStreamingResponse,
     AsyncAddressMapsResourceWithStreamingResponse,
 )
-from .loa_documents import (
+from .loa_documents.loa_documents import (
     LOADocumentsResource,
     AsyncLOADocumentsResource,
     LOADocumentsResourceWithRawResponse,
@@ -36,8 +36,7 @@ from .loa_documents import (
     LOADocumentsResourceWithStreamingResponse,
     AsyncLOADocumentsResourceWithStreamingResponse,
 )
-from .prefixes.prefixes import PrefixesResource, AsyncPrefixesResource
-from .regional_hostnames import (
+from .regional_hostnames.regional_hostnames import (
     RegionalHostnamesResource,
     AsyncRegionalHostnamesResource,
     RegionalHostnamesResourceWithRawResponse,
@@ -45,9 +44,6 @@ from .regional_hostnames import (
     RegionalHostnamesResourceWithStreamingResponse,
     AsyncRegionalHostnamesResourceWithStreamingResponse,
 )
-from .address_maps.address_maps import AddressMapsResource, AsyncAddressMapsResource
-from .loa_documents.loa_documents import LOADocumentsResource, AsyncLOADocumentsResource
-from .regional_hostnames.regional_hostnames import RegionalHostnamesResource, AsyncRegionalHostnamesResource
 
 __all__ = ["AddressingResource", "AsyncAddressingResource"]
 

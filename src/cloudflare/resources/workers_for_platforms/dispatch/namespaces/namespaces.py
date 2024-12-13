@@ -6,14 +6,6 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from .scripts import (
-    ScriptsResource,
-    AsyncScriptsResource,
-    ScriptsResourceWithRawResponse,
-    AsyncScriptsResourceWithRawResponse,
-    ScriptsResourceWithStreamingResponse,
-    AsyncScriptsResourceWithStreamingResponse,
-)
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ....._utils import (
     maybe_transform,
@@ -29,7 +21,14 @@ from ....._response import (
 )
 from ....._wrappers import ResultWrapper
 from .....pagination import SyncSinglePage, AsyncSinglePage
-from .scripts.scripts import ScriptsResource, AsyncScriptsResource
+from .scripts.scripts import (
+    ScriptsResource,
+    AsyncScriptsResource,
+    ScriptsResourceWithRawResponse,
+    AsyncScriptsResourceWithRawResponse,
+    ScriptsResourceWithStreamingResponse,
+    AsyncScriptsResourceWithStreamingResponse,
+)
 from ....._base_client import AsyncPaginator, make_request_options
 from .....types.workers_for_platforms.dispatch import namespace_create_params
 from .....types.workers_for_platforms.dispatch.namespace_get_response import NamespaceGetResponse

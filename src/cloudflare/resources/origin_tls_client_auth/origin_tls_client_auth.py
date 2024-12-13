@@ -20,14 +20,6 @@ from .settings import (
     AsyncSettingsResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
-from .hostnames import (
-    HostnamesResource,
-    AsyncHostnamesResource,
-    HostnamesResourceWithRawResponse,
-    AsyncHostnamesResourceWithRawResponse,
-    HostnamesResourceWithStreamingResponse,
-    AsyncHostnamesResourceWithStreamingResponse,
-)
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
@@ -38,7 +30,14 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import AsyncPaginator, make_request_options
-from .hostnames.hostnames import HostnamesResource, AsyncHostnamesResource
+from .hostnames.hostnames import (
+    HostnamesResource,
+    AsyncHostnamesResource,
+    HostnamesResourceWithRawResponse,
+    AsyncHostnamesResourceWithRawResponse,
+    HostnamesResourceWithStreamingResponse,
+    AsyncHostnamesResourceWithStreamingResponse,
+)
 from ...types.origin_tls_client_auth import origin_tls_client_auth_create_params
 from ...types.origin_tls_client_auth.zone_authenticated_origin_pull import ZoneAuthenticatedOriginPull
 

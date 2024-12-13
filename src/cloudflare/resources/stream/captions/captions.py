@@ -6,14 +6,6 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from .language import (
-    LanguageResource,
-    AsyncLanguageResource,
-    LanguageResourceWithRawResponse,
-    AsyncLanguageResourceWithRawResponse,
-    LanguageResourceWithStreamingResponse,
-    AsyncLanguageResourceWithStreamingResponse,
-)
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -25,7 +17,14 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
-from .language.language import LanguageResource, AsyncLanguageResource
+from .language.language import (
+    LanguageResource,
+    AsyncLanguageResource,
+    LanguageResourceWithRawResponse,
+    AsyncLanguageResourceWithRawResponse,
+    LanguageResourceWithStreamingResponse,
+    AsyncLanguageResourceWithStreamingResponse,
+)
 from ....types.stream.caption_get_response import CaptionGetResponse
 
 __all__ = ["CaptionsResource", "AsyncCaptionsResource"]

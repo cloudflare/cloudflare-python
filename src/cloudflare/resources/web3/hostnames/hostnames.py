@@ -24,7 +24,9 @@ from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
 from ....types.web3 import hostname_edit_params, hostname_create_params
 from ...._base_client import AsyncPaginator, make_request_options
-from .ipfs_universal_paths import (
+from ....types.web3.hostname import Hostname
+from ....types.web3.hostname_delete_response import HostnameDeleteResponse
+from .ipfs_universal_paths.ipfs_universal_paths import (
     IPFSUniversalPathsResource,
     AsyncIPFSUniversalPathsResource,
     IPFSUniversalPathsResourceWithRawResponse,
@@ -32,9 +34,6 @@ from .ipfs_universal_paths import (
     IPFSUniversalPathsResourceWithStreamingResponse,
     AsyncIPFSUniversalPathsResourceWithStreamingResponse,
 )
-from ....types.web3.hostname import Hostname
-from ....types.web3.hostname_delete_response import HostnameDeleteResponse
-from .ipfs_universal_paths.ipfs_universal_paths import IPFSUniversalPathsResource, AsyncIPFSUniversalPathsResource
 
 __all__ = ["HostnamesResource", "AsyncHostnamesResource"]
 

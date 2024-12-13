@@ -3,7 +3,8 @@
 from __future__ import annotations
 
 from ..._compat import cached_property
-from .hostnames import (
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from .hostnames.hostnames import (
     HostnamesResource,
     AsyncHostnamesResource,
     HostnamesResourceWithRawResponse,
@@ -11,8 +12,6 @@ from .hostnames import (
     HostnamesResourceWithStreamingResponse,
     AsyncHostnamesResourceWithStreamingResponse,
 )
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from .hostnames.hostnames import HostnamesResource, AsyncHostnamesResource
 
 __all__ = ["Web3Resource", "AsyncWeb3Resource"]
 

@@ -2,14 +2,6 @@
 
 from __future__ import annotations
 
-from .pages import (
-    PagesResource,
-    AsyncPagesResource,
-    PagesResourceWithRawResponse,
-    AsyncPagesResourceWithRawResponse,
-    PagesResourceWithStreamingResponse,
-    AsyncPagesResourceWithStreamingResponse,
-)
 from .schedule import (
     ScheduleResource,
     AsyncScheduleResource,
@@ -20,7 +12,14 @@ from .schedule import (
 )
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from .pages.pages import PagesResource, AsyncPagesResource
+from .pages.pages import (
+    PagesResource,
+    AsyncPagesResource,
+    PagesResourceWithRawResponse,
+    AsyncPagesResourceWithRawResponse,
+    PagesResourceWithStreamingResponse,
+    AsyncPagesResourceWithStreamingResponse,
+)
 from .availabilities import (
     AvailabilitiesResource,
     AsyncAvailabilitiesResource,

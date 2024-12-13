@@ -2,24 +2,8 @@
 
 from __future__ import annotations
 
-from .settings import (
-    SettingsResource,
-    AsyncSettingsResource,
-    SettingsResourceWithRawResponse,
-    AsyncSettingsResourceWithRawResponse,
-    SettingsResourceWithStreamingResponse,
-    AsyncSettingsResourceWithStreamingResponse,
-)
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from .investigate import (
-    InvestigateResource,
-    AsyncInvestigateResource,
-    InvestigateResourceWithRawResponse,
-    AsyncInvestigateResourceWithRawResponse,
-    InvestigateResourceWithStreamingResponse,
-    AsyncInvestigateResourceWithStreamingResponse,
-)
 from .submissions import (
     SubmissionsResource,
     AsyncSubmissionsResource,
@@ -28,8 +12,22 @@ from .submissions import (
     SubmissionsResourceWithStreamingResponse,
     AsyncSubmissionsResourceWithStreamingResponse,
 )
-from .settings.settings import SettingsResource, AsyncSettingsResource
-from .investigate.investigate import InvestigateResource, AsyncInvestigateResource
+from .settings.settings import (
+    SettingsResource,
+    AsyncSettingsResource,
+    SettingsResourceWithRawResponse,
+    AsyncSettingsResourceWithRawResponse,
+    SettingsResourceWithStreamingResponse,
+    AsyncSettingsResourceWithStreamingResponse,
+)
+from .investigate.investigate import (
+    InvestigateResource,
+    AsyncInvestigateResource,
+    InvestigateResourceWithRawResponse,
+    AsyncInvestigateResourceWithRawResponse,
+    InvestigateResourceWithStreamingResponse,
+    AsyncInvestigateResourceWithStreamingResponse,
+)
 
 __all__ = ["EmailSecurityResource", "AsyncEmailSecurityResource"]
 

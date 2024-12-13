@@ -14,14 +14,6 @@ from .revoke import (
     RevokeResourceWithStreamingResponse,
     AsyncRevokeResourceWithStreamingResponse,
 )
-from .posture import (
-    PostureResource,
-    AsyncPostureResource,
-    PostureResourceWithRawResponse,
-    AsyncPostureResourceWithRawResponse,
-    PostureResourceWithStreamingResponse,
-    AsyncPostureResourceWithStreamingResponse,
-)
 from .networks import (
     NetworksResource,
     AsyncNetworksResource,
@@ -29,14 +21,6 @@ from .networks import (
     AsyncNetworksResourceWithRawResponse,
     NetworksResourceWithStreamingResponse,
     AsyncNetworksResourceWithStreamingResponse,
-)
-from .policies import (
-    PoliciesResource,
-    AsyncPoliciesResource,
-    PoliciesResourceWithRawResponse,
-    AsyncPoliciesResourceWithRawResponse,
-    PoliciesResourceWithStreamingResponse,
-    AsyncPoliciesResourceWithStreamingResponse,
 )
 from .settings import (
     SettingsResource,
@@ -90,8 +74,22 @@ from .override_codes import (
     AsyncOverrideCodesResourceWithStreamingResponse,
 )
 from ...._base_client import AsyncPaginator, make_request_options
-from .posture.posture import PostureResource, AsyncPostureResource
-from .policies.policies import PoliciesResource, AsyncPoliciesResource
+from .posture.posture import (
+    PostureResource,
+    AsyncPostureResource,
+    PostureResourceWithRawResponse,
+    AsyncPostureResourceWithRawResponse,
+    PostureResourceWithStreamingResponse,
+    AsyncPostureResourceWithStreamingResponse,
+)
+from .policies.policies import (
+    PoliciesResource,
+    AsyncPoliciesResource,
+    PoliciesResourceWithRawResponse,
+    AsyncPoliciesResourceWithRawResponse,
+    PoliciesResourceWithStreamingResponse,
+    AsyncPoliciesResourceWithStreamingResponse,
+)
 from ....types.zero_trust.device import Device
 from ....types.zero_trust.device_get_response import DeviceGetResponse
 

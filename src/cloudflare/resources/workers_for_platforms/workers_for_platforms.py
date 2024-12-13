@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from .dispatch import (
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from .dispatch.dispatch import (
     DispatchResource,
     AsyncDispatchResource,
     DispatchResourceWithRawResponse,
@@ -10,9 +12,6 @@ from .dispatch import (
     DispatchResourceWithStreamingResponse,
     AsyncDispatchResourceWithStreamingResponse,
 )
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from .dispatch.dispatch import DispatchResource, AsyncDispatchResource
 
 __all__ = ["WorkersForPlatformsResource", "AsyncWorkersForPlatformsResource"]
 

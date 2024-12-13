@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from .v1 import (
+from .v1.v1 import (
     V1Resource,
     AsyncV1Resource,
     V1ResourceWithRawResponse,
@@ -10,7 +10,7 @@ from .v1 import (
     V1ResourceWithStreamingResponse,
     AsyncV1ResourceWithStreamingResponse,
 )
-from .v2 import (
+from .v2.v2 import (
     V2Resource,
     AsyncV2Resource,
     V2ResourceWithRawResponse,
@@ -18,8 +18,6 @@ from .v2 import (
     V2ResourceWithStreamingResponse,
     AsyncV2ResourceWithStreamingResponse,
 )
-from .v1.v1 import V1Resource, AsyncV1Resource
-from .v2.v2 import V2Resource, AsyncV2Resource
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 

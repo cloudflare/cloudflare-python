@@ -8,14 +8,6 @@ from typing_extensions import Literal
 
 import httpx
 
-from .top import (
-    TopResource,
-    AsyncTopResource,
-    TopResourceWithRawResponse,
-    AsyncTopResourceWithRawResponse,
-    TopResourceWithStreamingResponse,
-    AsyncTopResourceWithStreamingResponse,
-)
 from .summary import (
     SummaryResource,
     AsyncSummaryResource,
@@ -24,7 +16,14 @@ from .summary import (
     SummaryResourceWithStreamingResponse,
     AsyncSummaryResourceWithStreamingResponse,
 )
-from .top.top import TopResource, AsyncTopResource
+from .top.top import (
+    TopResource,
+    AsyncTopResource,
+    TopResourceWithRawResponse,
+    AsyncTopResourceWithRawResponse,
+    TopResourceWithStreamingResponse,
+    AsyncTopResourceWithStreamingResponse,
+)
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ....._utils import (
     maybe_transform,

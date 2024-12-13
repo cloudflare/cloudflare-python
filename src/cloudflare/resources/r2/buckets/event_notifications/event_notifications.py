@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
-from .configuration import (
+from .configuration.configuration import (
     ConfigurationResource,
     AsyncConfigurationResource,
     ConfigurationResourceWithRawResponse,
@@ -12,7 +12,6 @@ from .configuration import (
     ConfigurationResourceWithStreamingResponse,
     AsyncConfigurationResourceWithStreamingResponse,
 )
-from .configuration.configuration import ConfigurationResource, AsyncConfigurationResource
 
 __all__ = ["EventNotificationsResource", "AsyncEventNotificationsResource"]
 

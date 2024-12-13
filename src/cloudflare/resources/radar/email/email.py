@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from .routing import (
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from .routing.routing import (
     RoutingResource,
     AsyncRoutingResource,
     RoutingResourceWithRawResponse,
@@ -10,7 +12,7 @@ from .routing import (
     RoutingResourceWithStreamingResponse,
     AsyncRoutingResourceWithStreamingResponse,
 )
-from .security import (
+from .security.security import (
     SecurityResource,
     AsyncSecurityResource,
     SecurityResourceWithRawResponse,
@@ -18,10 +20,6 @@ from .security import (
     SecurityResourceWithStreamingResponse,
     AsyncSecurityResourceWithStreamingResponse,
 )
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from .routing.routing import RoutingResource, AsyncRoutingResource
-from .security.security import SecurityResource, AsyncSecurityResource
 
 __all__ = ["EmailResource", "AsyncEmailResource"]
 
