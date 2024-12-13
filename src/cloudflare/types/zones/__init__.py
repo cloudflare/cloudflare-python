@@ -49,6 +49,7 @@ from .tls_client_auth import TLSClientAuth as TLSClientAuth
 from .websocket_param import WebsocketParam as WebsocketParam
 from .always_use_https import AlwaysUseHTTPS as AlwaysUseHTTPS
 from .development_mode import DevelopmentMode as DevelopmentMode
+from .hold_edit_params import HoldEditParams as HoldEditParams
 from .orange_to_orange import OrangeToOrange as OrangeToOrange
 from .prefetch_preload import PrefetchPreload as PrefetchPreload
 from .security_headers import SecurityHeaders as SecurityHeaders
