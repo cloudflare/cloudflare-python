@@ -41,7 +41,12 @@ class TestRecords:
     def test_method_create_with_all_params_overload_1(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content="198.51.100.4",
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="A",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -93,7 +98,12 @@ class TestRecords:
     def test_method_create_with_all_params_overload_2(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content="2400:cb00:2049::1",
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="AAAA",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -145,11 +155,16 @@ class TestRecords:
     def test_method_create_with_all_params_overload_3(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "flags": 1,
                 "tag": "issue",
                 "value": "value",
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="CAA",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -201,12 +216,17 @@ class TestRecords:
     def test_method_create_with_all_params_overload_4(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "algorithm": 8,
                 "certificate": "certificate",
                 "key_tag": 1,
                 "type": 9,
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="CERT",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -258,8 +278,13 @@ class TestRecords:
     def test_method_create_with_all_params_overload_5(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content="content",
+            name="example.com",
+            proxied=True,
             settings={"flatten_cname": True},
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="CNAME",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -311,12 +336,17 @@ class TestRecords:
     def test_method_create_with_all_params_overload_6(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "algorithm": 5,
                 "flags": 1,
                 "protocol": 3,
                 "public_key": "public_key",
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="DNSKEY",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -368,12 +398,17 @@ class TestRecords:
     def test_method_create_with_all_params_overload_7(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "algorithm": 3,
                 "digest": "digest",
                 "digest_type": 1,
                 "key_tag": 1,
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="DS",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -425,11 +460,16 @@ class TestRecords:
     def test_method_create_with_all_params_overload_8(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "priority": 1,
                 "target": ".",
                 "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="HTTPS",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -481,6 +521,7 @@ class TestRecords:
     def test_method_create_with_all_params_overload_9(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "altitude": 0,
                 "lat_degrees": 37,
@@ -495,6 +536,10 @@ class TestRecords:
                 "precision_vert": 0,
                 "size": 100,
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="LOC",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -546,8 +591,13 @@ class TestRecords:
     def test_method_create_with_all_params_overload_10(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content="mx.example.com",
+            name="example.com",
             priority=10,
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="MX",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -599,6 +649,7 @@ class TestRecords:
     def test_method_create_with_all_params_overload_11(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "flags": "flags",
                 "order": 100,
@@ -607,6 +658,10 @@ class TestRecords:
                 "replacement": "replacement",
                 "service": "service",
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="NAPTR",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -658,7 +713,12 @@ class TestRecords:
     def test_method_create_with_all_params_overload_12(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content="ns1.example.com",
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="NS",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -710,7 +770,12 @@ class TestRecords:
     def test_method_create_with_all_params_overload_13(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content="content",
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="OPENPGPKEY",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -762,7 +827,12 @@ class TestRecords:
     def test_method_create_with_all_params_overload_14(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content="example.com",
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="PTR",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -814,12 +884,17 @@ class TestRecords:
     def test_method_create_with_all_params_overload_15(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "certificate": "certificate",
                 "matching_type": 0,
                 "selector": 0,
                 "usage": 3,
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="SMIMEA",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -871,12 +946,17 @@ class TestRecords:
     def test_method_create_with_all_params_overload_16(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "port": 8806,
                 "priority": 10,
                 "target": "example.com",
                 "weight": 5,
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="SRV",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -928,11 +1008,16 @@ class TestRecords:
     def test_method_create_with_all_params_overload_17(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "algorithm": 2,
                 "fingerprint": "fingerprint",
                 "type": 1,
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="SSHFP",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -984,11 +1069,16 @@ class TestRecords:
     def test_method_create_with_all_params_overload_18(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "priority": 1,
                 "target": ".",
                 "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="SVCB",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -1040,12 +1130,17 @@ class TestRecords:
     def test_method_create_with_all_params_overload_19(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "certificate": "certificate",
                 "matching_type": 1,
                 "selector": 0,
                 "usage": 0,
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="TLSA",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -1097,7 +1192,12 @@ class TestRecords:
     def test_method_create_with_all_params_overload_20(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content='"v=spf1 include:example.com -all"',
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="TXT",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -1149,11 +1249,16 @@ class TestRecords:
     def test_method_create_with_all_params_overload_21(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "target": "http://example.com/example.html",
                 "weight": 20,
             },
+            name="example.com",
             priority=10,
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="URI",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -1207,7 +1312,12 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content="198.51.100.4",
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="A",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -1270,7 +1380,12 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content="2400:cb00:2049::1",
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="AAAA",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -1333,11 +1448,16 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "flags": 1,
                 "tag": "issue",
                 "value": "value",
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="CAA",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -1400,12 +1520,17 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "algorithm": 8,
                 "certificate": "certificate",
                 "key_tag": 1,
                 "type": 9,
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="CERT",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -1468,8 +1593,13 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content="content",
+            name="example.com",
+            proxied=True,
             settings={"flatten_cname": True},
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="CNAME",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -1532,12 +1662,17 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "algorithm": 5,
                 "flags": 1,
                 "protocol": 3,
                 "public_key": "public_key",
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="DNSKEY",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -1600,12 +1735,17 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "algorithm": 3,
                 "digest": "digest",
                 "digest_type": 1,
                 "key_tag": 1,
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="DS",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -1668,11 +1808,16 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "priority": 1,
                 "target": ".",
                 "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="HTTPS",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -1735,6 +1880,7 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "altitude": 0,
                 "lat_degrees": 37,
@@ -1749,6 +1895,10 @@ class TestRecords:
                 "precision_vert": 0,
                 "size": 100,
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="LOC",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -1811,8 +1961,13 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content="mx.example.com",
+            name="example.com",
             priority=10,
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="MX",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -1875,6 +2030,7 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "flags": "flags",
                 "order": 100,
@@ -1883,6 +2039,10 @@ class TestRecords:
                 "replacement": "replacement",
                 "service": "service",
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="NAPTR",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -1945,7 +2105,12 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content="ns1.example.com",
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="NS",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -2008,7 +2173,12 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content="content",
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="OPENPGPKEY",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -2071,7 +2241,12 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content="example.com",
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="PTR",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -2134,12 +2309,17 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "certificate": "certificate",
                 "matching_type": 0,
                 "selector": 0,
                 "usage": 3,
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="SMIMEA",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -2202,12 +2382,17 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "port": 8806,
                 "priority": 10,
                 "target": "example.com",
                 "weight": 5,
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="SRV",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -2270,11 +2455,16 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "algorithm": 2,
                 "fingerprint": "fingerprint",
                 "type": 1,
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="SSHFP",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -2337,11 +2527,16 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "priority": 1,
                 "target": ".",
                 "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="SVCB",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -2404,12 +2599,17 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "certificate": "certificate",
                 "matching_type": 1,
                 "selector": 0,
                 "usage": 0,
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="TLSA",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -2472,7 +2672,12 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content='"v=spf1 include:example.com -all"',
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="TXT",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -2535,11 +2740,16 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "target": "http://example.com/example.html",
                 "weight": 20,
             },
+            name="example.com",
             priority=10,
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="URI",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -2733,19 +2943,34 @@ class TestRecords:
             deletes=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
             patches=[
                 {
+                    "comment": "Domain verification record",
                     "content": "198.51.100.4",
+                    "name": "example.com",
+                    "proxied": True,
+                    "tags": ["owner:dns-team"],
+                    "ttl": 3600,
                     "type": "A",
                 }
             ],
             posts=[
                 {
+                    "comment": "Domain verification record",
                     "content": "198.51.100.4",
+                    "name": "example.com",
+                    "proxied": True,
+                    "tags": ["owner:dns-team"],
+                    "ttl": 3600,
                     "type": "A",
                 }
             ],
             puts=[
                 {
+                    "comment": "Domain verification record",
                     "content": "198.51.100.4",
+                    "name": "example.com",
+                    "proxied": True,
+                    "tags": ["owner:dns-team"],
+                    "ttl": 3600,
                     "type": "A",
                 }
             ],
@@ -2801,7 +3026,12 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content="198.51.100.4",
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="A",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
@@ -2864,7 +3094,12 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content="2400:cb00:2049::1",
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="AAAA",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
@@ -2927,11 +3162,16 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "flags": 1,
                 "tag": "issue",
                 "value": "value",
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="CAA",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
@@ -2994,12 +3234,17 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "algorithm": 8,
                 "certificate": "certificate",
                 "key_tag": 1,
                 "type": 9,
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="CERT",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
@@ -3062,8 +3307,13 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content="content",
+            name="example.com",
+            proxied=True,
             settings={"flatten_cname": True},
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="CNAME",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
@@ -3126,12 +3376,17 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "algorithm": 5,
                 "flags": 1,
                 "protocol": 3,
                 "public_key": "public_key",
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="DNSKEY",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
@@ -3194,12 +3449,17 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "algorithm": 3,
                 "digest": "digest",
                 "digest_type": 1,
                 "key_tag": 1,
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="DS",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
@@ -3262,11 +3522,16 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "priority": 1,
                 "target": ".",
                 "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="HTTPS",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
@@ -3329,6 +3594,7 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "altitude": 0,
                 "lat_degrees": 37,
@@ -3343,6 +3609,10 @@ class TestRecords:
                 "precision_vert": 0,
                 "size": 100,
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="LOC",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
@@ -3405,8 +3675,13 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content="mx.example.com",
+            name="example.com",
             priority=10,
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="MX",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
@@ -3469,6 +3744,7 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "flags": "flags",
                 "order": 100,
@@ -3477,6 +3753,10 @@ class TestRecords:
                 "replacement": "replacement",
                 "service": "service",
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="NAPTR",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
@@ -3539,7 +3819,12 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content="ns1.example.com",
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="NS",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
@@ -3602,7 +3887,12 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content="content",
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="OPENPGPKEY",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
@@ -3665,7 +3955,12 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content="example.com",
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="PTR",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
@@ -3728,12 +4023,17 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "certificate": "certificate",
                 "matching_type": 0,
                 "selector": 0,
                 "usage": 3,
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="SMIMEA",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
@@ -3796,12 +4096,17 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "port": 8806,
                 "priority": 10,
                 "target": "example.com",
                 "weight": 5,
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="SRV",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
@@ -3864,11 +4169,16 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "algorithm": 2,
                 "fingerprint": "fingerprint",
                 "type": 1,
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="SSHFP",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
@@ -3931,11 +4241,16 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "priority": 1,
                 "target": ".",
                 "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="SVCB",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
@@ -3998,12 +4313,17 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "certificate": "certificate",
                 "matching_type": 1,
                 "selector": 0,
                 "usage": 0,
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="TLSA",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
@@ -4066,7 +4386,12 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content='"v=spf1 include:example.com -all"',
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="TXT",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
@@ -4129,11 +4454,16 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "target": "http://example.com/example.html",
                 "weight": 20,
             },
+            name="example.com",
             priority=10,
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="URI",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
@@ -4382,7 +4712,12 @@ class TestAsyncRecords:
     async def test_method_create_with_all_params_overload_1(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content="198.51.100.4",
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="A",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -4434,7 +4769,12 @@ class TestAsyncRecords:
     async def test_method_create_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content="2400:cb00:2049::1",
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="AAAA",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -4486,11 +4826,16 @@ class TestAsyncRecords:
     async def test_method_create_with_all_params_overload_3(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "flags": 1,
                 "tag": "issue",
                 "value": "value",
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="CAA",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -4542,12 +4887,17 @@ class TestAsyncRecords:
     async def test_method_create_with_all_params_overload_4(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "algorithm": 8,
                 "certificate": "certificate",
                 "key_tag": 1,
                 "type": 9,
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="CERT",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -4599,8 +4949,13 @@ class TestAsyncRecords:
     async def test_method_create_with_all_params_overload_5(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content="content",
+            name="example.com",
+            proxied=True,
             settings={"flatten_cname": True},
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="CNAME",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -4652,12 +5007,17 @@ class TestAsyncRecords:
     async def test_method_create_with_all_params_overload_6(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "algorithm": 5,
                 "flags": 1,
                 "protocol": 3,
                 "public_key": "public_key",
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="DNSKEY",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -4709,12 +5069,17 @@ class TestAsyncRecords:
     async def test_method_create_with_all_params_overload_7(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "algorithm": 3,
                 "digest": "digest",
                 "digest_type": 1,
                 "key_tag": 1,
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="DS",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -4766,11 +5131,16 @@ class TestAsyncRecords:
     async def test_method_create_with_all_params_overload_8(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "priority": 1,
                 "target": ".",
                 "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="HTTPS",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -4822,6 +5192,7 @@ class TestAsyncRecords:
     async def test_method_create_with_all_params_overload_9(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "altitude": 0,
                 "lat_degrees": 37,
@@ -4836,6 +5207,10 @@ class TestAsyncRecords:
                 "precision_vert": 0,
                 "size": 100,
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="LOC",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -4887,8 +5262,13 @@ class TestAsyncRecords:
     async def test_method_create_with_all_params_overload_10(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content="mx.example.com",
+            name="example.com",
             priority=10,
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="MX",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -4940,6 +5320,7 @@ class TestAsyncRecords:
     async def test_method_create_with_all_params_overload_11(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "flags": "flags",
                 "order": 100,
@@ -4948,6 +5329,10 @@ class TestAsyncRecords:
                 "replacement": "replacement",
                 "service": "service",
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="NAPTR",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -4999,7 +5384,12 @@ class TestAsyncRecords:
     async def test_method_create_with_all_params_overload_12(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content="ns1.example.com",
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="NS",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -5051,7 +5441,12 @@ class TestAsyncRecords:
     async def test_method_create_with_all_params_overload_13(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content="content",
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="OPENPGPKEY",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -5103,7 +5498,12 @@ class TestAsyncRecords:
     async def test_method_create_with_all_params_overload_14(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content="example.com",
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="PTR",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -5155,12 +5555,17 @@ class TestAsyncRecords:
     async def test_method_create_with_all_params_overload_15(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "certificate": "certificate",
                 "matching_type": 0,
                 "selector": 0,
                 "usage": 3,
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="SMIMEA",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -5212,12 +5617,17 @@ class TestAsyncRecords:
     async def test_method_create_with_all_params_overload_16(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "port": 8806,
                 "priority": 10,
                 "target": "example.com",
                 "weight": 5,
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="SRV",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -5269,11 +5679,16 @@ class TestAsyncRecords:
     async def test_method_create_with_all_params_overload_17(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "algorithm": 2,
                 "fingerprint": "fingerprint",
                 "type": 1,
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="SSHFP",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -5325,11 +5740,16 @@ class TestAsyncRecords:
     async def test_method_create_with_all_params_overload_18(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "priority": 1,
                 "target": ".",
                 "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="SVCB",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -5381,12 +5801,17 @@ class TestAsyncRecords:
     async def test_method_create_with_all_params_overload_19(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "certificate": "certificate",
                 "matching_type": 1,
                 "selector": 0,
                 "usage": 0,
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="TLSA",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -5438,7 +5863,12 @@ class TestAsyncRecords:
     async def test_method_create_with_all_params_overload_20(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content='"v=spf1 include:example.com -all"',
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="TXT",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -5490,11 +5920,16 @@ class TestAsyncRecords:
     async def test_method_create_with_all_params_overload_21(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "target": "http://example.com/example.html",
                 "weight": 20,
             },
+            name="example.com",
             priority=10,
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="URI",
         )
         assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
@@ -5548,7 +5983,12 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content="198.51.100.4",
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="A",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -5611,7 +6051,12 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content="2400:cb00:2049::1",
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="AAAA",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -5674,11 +6119,16 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "flags": 1,
                 "tag": "issue",
                 "value": "value",
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="CAA",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -5741,12 +6191,17 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "algorithm": 8,
                 "certificate": "certificate",
                 "key_tag": 1,
                 "type": 9,
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="CERT",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -5809,8 +6264,13 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content="content",
+            name="example.com",
+            proxied=True,
             settings={"flatten_cname": True},
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="CNAME",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -5873,12 +6333,17 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "algorithm": 5,
                 "flags": 1,
                 "protocol": 3,
                 "public_key": "public_key",
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="DNSKEY",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -5941,12 +6406,17 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "algorithm": 3,
                 "digest": "digest",
                 "digest_type": 1,
                 "key_tag": 1,
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="DS",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -6009,11 +6479,16 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "priority": 1,
                 "target": ".",
                 "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="HTTPS",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -6076,6 +6551,7 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "altitude": 0,
                 "lat_degrees": 37,
@@ -6090,6 +6566,10 @@ class TestAsyncRecords:
                 "precision_vert": 0,
                 "size": 100,
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="LOC",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -6152,8 +6632,13 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content="mx.example.com",
+            name="example.com",
             priority=10,
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="MX",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -6216,6 +6701,7 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "flags": "flags",
                 "order": 100,
@@ -6224,6 +6710,10 @@ class TestAsyncRecords:
                 "replacement": "replacement",
                 "service": "service",
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="NAPTR",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -6286,7 +6776,12 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content="ns1.example.com",
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="NS",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -6349,7 +6844,12 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content="content",
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="OPENPGPKEY",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -6412,7 +6912,12 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content="example.com",
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="PTR",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -6475,12 +6980,17 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "certificate": "certificate",
                 "matching_type": 0,
                 "selector": 0,
                 "usage": 3,
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="SMIMEA",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -6543,12 +7053,17 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "port": 8806,
                 "priority": 10,
                 "target": "example.com",
                 "weight": 5,
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="SRV",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -6611,11 +7126,16 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "algorithm": 2,
                 "fingerprint": "fingerprint",
                 "type": 1,
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="SSHFP",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -6678,11 +7198,16 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "priority": 1,
                 "target": ".",
                 "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="SVCB",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -6745,12 +7270,17 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "certificate": "certificate",
                 "matching_type": 1,
                 "selector": 0,
                 "usage": 0,
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="TLSA",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -6813,7 +7343,12 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content='"v=spf1 include:example.com -all"',
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="TXT",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -6876,11 +7411,16 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "target": "http://example.com/example.html",
                 "weight": 20,
             },
+            name="example.com",
             priority=10,
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="URI",
         )
         assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
@@ -7074,19 +7614,34 @@ class TestAsyncRecords:
             deletes=[{"id": "023e105f4ecef8ad9ca31a8372d0c353"}],
             patches=[
                 {
+                    "comment": "Domain verification record",
                     "content": "198.51.100.4",
+                    "name": "example.com",
+                    "proxied": True,
+                    "tags": ["owner:dns-team"],
+                    "ttl": 3600,
                     "type": "A",
                 }
             ],
             posts=[
                 {
+                    "comment": "Domain verification record",
                     "content": "198.51.100.4",
+                    "name": "example.com",
+                    "proxied": True,
+                    "tags": ["owner:dns-team"],
+                    "ttl": 3600,
                     "type": "A",
                 }
             ],
             puts=[
                 {
+                    "comment": "Domain verification record",
                     "content": "198.51.100.4",
+                    "name": "example.com",
+                    "proxied": True,
+                    "tags": ["owner:dns-team"],
+                    "ttl": 3600,
                     "type": "A",
                 }
             ],
@@ -7142,7 +7697,12 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content="198.51.100.4",
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="A",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
@@ -7205,7 +7765,12 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content="2400:cb00:2049::1",
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="AAAA",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
@@ -7268,11 +7833,16 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "flags": 1,
                 "tag": "issue",
                 "value": "value",
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="CAA",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
@@ -7335,12 +7905,17 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "algorithm": 8,
                 "certificate": "certificate",
                 "key_tag": 1,
                 "type": 9,
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="CERT",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
@@ -7403,8 +7978,13 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content="content",
+            name="example.com",
+            proxied=True,
             settings={"flatten_cname": True},
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="CNAME",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
@@ -7467,12 +8047,17 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "algorithm": 5,
                 "flags": 1,
                 "protocol": 3,
                 "public_key": "public_key",
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="DNSKEY",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
@@ -7535,12 +8120,17 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "algorithm": 3,
                 "digest": "digest",
                 "digest_type": 1,
                 "key_tag": 1,
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="DS",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
@@ -7603,11 +8193,16 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "priority": 1,
                 "target": ".",
                 "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="HTTPS",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
@@ -7670,6 +8265,7 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "altitude": 0,
                 "lat_degrees": 37,
@@ -7684,6 +8280,10 @@ class TestAsyncRecords:
                 "precision_vert": 0,
                 "size": 100,
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="LOC",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
@@ -7746,8 +8346,13 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content="mx.example.com",
+            name="example.com",
             priority=10,
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="MX",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
@@ -7810,6 +8415,7 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "flags": "flags",
                 "order": 100,
@@ -7818,6 +8424,10 @@ class TestAsyncRecords:
                 "replacement": "replacement",
                 "service": "service",
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="NAPTR",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
@@ -7880,7 +8490,12 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content="ns1.example.com",
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="NS",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
@@ -7943,7 +8558,12 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content="content",
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="OPENPGPKEY",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
@@ -8006,7 +8626,12 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content="example.com",
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="PTR",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
@@ -8069,12 +8694,17 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "certificate": "certificate",
                 "matching_type": 0,
                 "selector": 0,
                 "usage": 3,
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="SMIMEA",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
@@ -8137,12 +8767,17 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "port": 8806,
                 "priority": 10,
                 "target": "example.com",
                 "weight": 5,
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="SRV",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
@@ -8205,11 +8840,16 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "algorithm": 2,
                 "fingerprint": "fingerprint",
                 "type": 1,
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="SSHFP",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
@@ -8272,11 +8912,16 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "priority": 1,
                 "target": ".",
                 "value": 'alpn="h3,h2" ipv4hint="127.0.0.1" ipv6hint="::1"',
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="SVCB",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
@@ -8339,12 +8984,17 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "certificate": "certificate",
                 "matching_type": 1,
                 "selector": 0,
                 "usage": 0,
             },
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="TLSA",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
@@ -8407,7 +9057,12 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             content='"v=spf1 include:example.com -all"',
+            name="example.com",
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="TXT",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
@@ -8470,11 +9125,16 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            comment="Domain verification record",
             data={
                 "target": "http://example.com/example.html",
                 "weight": 20,
             },
+            name="example.com",
             priority=10,
+            proxied=True,
+            tags=["owner:dns-team"],
+            ttl=3600,
             type="URI",
         )
         assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
