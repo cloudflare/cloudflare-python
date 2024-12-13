@@ -2,15 +2,6 @@
 
 from __future__ import annotations
 
-from .ai import (
-    AIResource,
-    AsyncAIResource,
-    AIResourceWithRawResponse,
-    AsyncAIResourceWithRawResponse,
-    AIResourceWithStreamingResponse,
-    AsyncAIResourceWithStreamingResponse,
-)
-from .ai.ai import AIResource, AsyncAIResource
 from .assets import (
     AssetsResource,
     AsyncAssetsResource,
@@ -61,10 +52,6 @@ __all__ = ["WorkersResource", "AsyncWorkersResource"]
 
 class WorkersResource(SyncAPIResource):
     @cached_property
-    def ai(self) -> AIResource:
-        return AIResource(self._client)
-
-    @cached_property
     def assets(self) -> AssetsResource:
         return AssetsResource(self._client)
 
@@ -105,10 +92,6 @@ class WorkersResource(SyncAPIResource):
 
 
 class AsyncWorkersResource(AsyncAPIResource):
-    @cached_property
-    def ai(self) -> AsyncAIResource:
-        return AsyncAIResource(self._client)
-
     @cached_property
     def assets(self) -> AsyncAssetsResource:
         return AsyncAssetsResource(self._client)
@@ -154,10 +137,6 @@ class WorkersResourceWithRawResponse:
         self._workers = workers
 
     @cached_property
-    def ai(self) -> AIResourceWithRawResponse:
-        return AIResourceWithRawResponse(self._workers.ai)
-
-    @cached_property
     def assets(self) -> AssetsResourceWithRawResponse:
         return AssetsResourceWithRawResponse(self._workers.assets)
 
@@ -181,10 +160,6 @@ class WorkersResourceWithRawResponse:
 class AsyncWorkersResourceWithRawResponse:
     def __init__(self, workers: AsyncWorkersResource) -> None:
         self._workers = workers
-
-    @cached_property
-    def ai(self) -> AsyncAIResourceWithRawResponse:
-        return AsyncAIResourceWithRawResponse(self._workers.ai)
 
     @cached_property
     def assets(self) -> AsyncAssetsResourceWithRawResponse:
@@ -212,10 +187,6 @@ class WorkersResourceWithStreamingResponse:
         self._workers = workers
 
     @cached_property
-    def ai(self) -> AIResourceWithStreamingResponse:
-        return AIResourceWithStreamingResponse(self._workers.ai)
-
-    @cached_property
     def assets(self) -> AssetsResourceWithStreamingResponse:
         return AssetsResourceWithStreamingResponse(self._workers.assets)
 
@@ -239,10 +210,6 @@ class WorkersResourceWithStreamingResponse:
 class AsyncWorkersResourceWithStreamingResponse:
     def __init__(self, workers: AsyncWorkersResource) -> None:
         self._workers = workers
-
-    @cached_property
-    def ai(self) -> AsyncAIResourceWithStreamingResponse:
-        return AsyncAIResourceWithStreamingResponse(self._workers.ai)
 
     @cached_property
     def assets(self) -> AsyncAssetsResourceWithStreamingResponse:

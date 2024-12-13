@@ -2284,32 +2284,6 @@ from cloudflare.types.workers import (
 )
 ```
 
-## AI
-
-Types:
-
-```python
-from cloudflare.types.workers import AIRunResponse
-```
-
-Methods:
-
-- <code title="post /accounts/{account_id}/ai/run/{model_name}">client.workers.ai.<a href="./src/cloudflare/resources/workers/ai/ai.py">run</a>(model_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/ai_run_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/ai_run_response.py">Optional[AIRunResponse]</a></code>
-
-### Models
-
-#### Schema
-
-Types:
-
-```python
-from cloudflare.types.workers.ai.models import SchemaGetResponse
-```
-
-Methods:
-
-- <code title="get /accounts/{account_id}/ai/models/schema">client.workers.ai.models.schema.<a href="./src/cloudflare/resources/workers/ai/models/schema.py">get</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/ai/models/schema_get_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/ai/models/schema_get_response.py">object</a></code>
-
 ## Assets
 
 ### Upload
@@ -8415,3 +8389,29 @@ from cloudflare.types.abuse_reports import AbuseReportCreateResponse
 Methods:
 
 - <code title="post /accounts/{account_id}/v1/abuse-reports/{report_type}">client.abuse_reports.<a href="./src/cloudflare/resources/abuse_reports.py">create</a>(report_type, \*, account_id, \*\*<a href="src/cloudflare/types/abuse_reports/abuse_report_create_params.py">params</a>) -> <a href="./src/cloudflare/types/abuse_reports/abuse_report_create_response.py">str</a></code>
+
+# AI
+
+Types:
+
+```python
+from cloudflare.types.ai import AIRunResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/ai/run/{model_name}">client.ai.<a href="./src/cloudflare/resources/ai/ai.py">run</a>(model_name, \*, account_id, \*\*<a href="src/cloudflare/types/ai/ai_run_params.py">params</a>) -> <a href="./src/cloudflare/types/ai/ai_run_response.py">Optional[AIRunResponse]</a></code>
+
+## Models
+
+### Schema
+
+Types:
+
+```python
+from cloudflare.types.ai.models import SchemaGetResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/ai/models/schema">client.ai.models.schema.<a href="./src/cloudflare/resources/ai/models/schema.py">get</a>(\*, account_id, \*\*<a href="src/cloudflare/types/ai/models/schema_get_params.py">params</a>) -> <a href="./src/cloudflare/types/ai/models/schema_get_response.py">object</a></code>
