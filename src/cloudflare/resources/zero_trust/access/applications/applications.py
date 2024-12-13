@@ -29,14 +29,6 @@ from ....._utils import (
     async_maybe_transform,
 )
 from ....._compat import cached_property
-from .policy_tests import (
-    PolicyTestsResource,
-    AsyncPolicyTestsResource,
-    PolicyTestsResourceWithRawResponse,
-    AsyncPolicyTestsResourceWithRawResponse,
-    PolicyTestsResourceWithStreamingResponse,
-    AsyncPolicyTestsResourceWithStreamingResponse,
-)
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
     to_raw_response_wrapper,
@@ -55,7 +47,14 @@ from .user_policy_checks import (
     UserPolicyChecksResourceWithStreamingResponse,
     AsyncUserPolicyChecksResourceWithStreamingResponse,
 )
-from .policy_tests.policy_tests import PolicyTestsResource, AsyncPolicyTestsResource
+from .policy_tests.policy_tests import (
+    PolicyTestsResource,
+    AsyncPolicyTestsResource,
+    PolicyTestsResourceWithRawResponse,
+    AsyncPolicyTestsResourceWithRawResponse,
+    PolicyTestsResourceWithStreamingResponse,
+    AsyncPolicyTestsResourceWithStreamingResponse,
+)
 from .....types.zero_trust.access import (
     AppID,
     ApplicationType,

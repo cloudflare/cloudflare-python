@@ -12,14 +12,6 @@ from ..._utils import (
     async_maybe_transform,
 )
 from ..._compat import cached_property
-from .analytics import (
-    AnalyticsResource,
-    AsyncAnalyticsResource,
-    AnalyticsResourceWithRawResponse,
-    AsyncAnalyticsResourceWithRawResponse,
-    AnalyticsResourceWithStreamingResponse,
-    AsyncAnalyticsResourceWithStreamingResponse,
-)
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
@@ -38,7 +30,14 @@ from .reverse_dns import (
 )
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
-from .analytics.analytics import AnalyticsResource, AsyncAnalyticsResource
+from .analytics.analytics import (
+    AnalyticsResource,
+    AsyncAnalyticsResource,
+    AnalyticsResourceWithRawResponse,
+    AsyncAnalyticsResourceWithRawResponse,
+    AnalyticsResourceWithStreamingResponse,
+    AsyncAnalyticsResourceWithStreamingResponse,
+)
 from ...types.dns_firewall import (
     dns_firewall_edit_params,
     dns_firewall_list_params,

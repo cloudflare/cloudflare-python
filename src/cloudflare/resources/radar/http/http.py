@@ -16,14 +16,6 @@ from .top import (
     TopResourceWithStreamingResponse,
     AsyncTopResourceWithStreamingResponse,
 )
-from .ases import (
-    AsesResource,
-    AsyncAsesResource,
-    AsesResourceWithRawResponse,
-    AsyncAsesResourceWithRawResponse,
-    AsesResourceWithStreamingResponse,
-    AsyncAsesResourceWithStreamingResponse,
-)
 from .summary import (
     SummaryResource,
     AsyncSummaryResource,
@@ -37,14 +29,13 @@ from ...._utils import (
     maybe_transform,
     async_maybe_transform,
 )
-from .ases.ases import AsesResource, AsyncAsesResource
-from .locations import (
-    LocationsResource,
-    AsyncLocationsResource,
-    LocationsResourceWithRawResponse,
-    AsyncLocationsResourceWithRawResponse,
-    LocationsResourceWithStreamingResponse,
-    AsyncLocationsResourceWithStreamingResponse,
+from .ases.ases import (
+    AsesResource,
+    AsyncAsesResource,
+    AsesResourceWithRawResponse,
+    AsyncAsesResourceWithRawResponse,
+    AsesResourceWithStreamingResponse,
+    AsyncAsesResourceWithStreamingResponse,
 )
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -65,7 +56,14 @@ from .timeseries_groups import (
     TimeseriesGroupsResourceWithStreamingResponse,
     AsyncTimeseriesGroupsResourceWithStreamingResponse,
 )
-from .locations.locations import LocationsResource, AsyncLocationsResource
+from .locations.locations import (
+    LocationsResource,
+    AsyncLocationsResource,
+    LocationsResourceWithRawResponse,
+    AsyncLocationsResourceWithRawResponse,
+    LocationsResourceWithStreamingResponse,
+    AsyncLocationsResourceWithStreamingResponse,
+)
 from ....types.radar.http_timeseries_response import HTTPTimeseriesResponse
 
 __all__ = ["HTTPResource", "AsyncHTTPResource"]

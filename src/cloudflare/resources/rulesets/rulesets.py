@@ -14,14 +14,6 @@ from .rules import (
     RulesResourceWithStreamingResponse,
     AsyncRulesResourceWithStreamingResponse,
 )
-from .phases import (
-    PhasesResource,
-    AsyncPhasesResource,
-    PhasesResourceWithRawResponse,
-    AsyncPhasesResourceWithRawResponse,
-    PhasesResourceWithStreamingResponse,
-    AsyncPhasesResourceWithStreamingResponse,
-)
 from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -45,7 +37,14 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
-from .phases.phases import PhasesResource, AsyncPhasesResource
+from .phases.phases import (
+    PhasesResource,
+    AsyncPhasesResource,
+    PhasesResourceWithRawResponse,
+    AsyncPhasesResourceWithRawResponse,
+    PhasesResourceWithStreamingResponse,
+    AsyncPhasesResourceWithStreamingResponse,
+)
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.rulesets import Kind, Phase, ruleset_create_params, ruleset_update_params
 from ...types.rulesets.kind import Kind

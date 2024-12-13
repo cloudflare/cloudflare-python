@@ -20,14 +20,6 @@ from .policies import (
 )
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from .destinations import (
-    DestinationsResource,
-    AsyncDestinationsResource,
-    DestinationsResourceWithRawResponse,
-    AsyncDestinationsResourceWithRawResponse,
-    DestinationsResourceWithStreamingResponse,
-    AsyncDestinationsResourceWithStreamingResponse,
-)
 from .available_alerts import (
     AvailableAlertsResource,
     AsyncAvailableAlertsResource,
@@ -36,7 +28,14 @@ from .available_alerts import (
     AvailableAlertsResourceWithStreamingResponse,
     AsyncAvailableAlertsResourceWithStreamingResponse,
 )
-from .destinations.destinations import DestinationsResource, AsyncDestinationsResource
+from .destinations.destinations import (
+    DestinationsResource,
+    AsyncDestinationsResource,
+    DestinationsResourceWithRawResponse,
+    AsyncDestinationsResourceWithRawResponse,
+    DestinationsResourceWithStreamingResponse,
+    AsyncDestinationsResourceWithStreamingResponse,
+)
 
 __all__ = ["AlertingResource", "AsyncAlertingResource"]
 

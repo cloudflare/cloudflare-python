@@ -2,14 +2,6 @@
 
 from __future__ import annotations
 
-from .waf import (
-    WAFResource,
-    AsyncWAFResource,
-    WAFResourceWithRawResponse,
-    AsyncWAFResourceWithRawResponse,
-    WAFResourceWithStreamingResponse,
-    AsyncWAFResourceWithStreamingResponse,
-)
 from .rules import (
     RulesResource,
     AsyncRulesResource,
@@ -18,7 +10,14 @@ from .rules import (
     RulesResourceWithStreamingResponse,
     AsyncRulesResourceWithStreamingResponse,
 )
-from .waf.waf import WAFResource, AsyncWAFResource
+from .waf.waf import (
+    WAFResource,
+    AsyncWAFResource,
+    WAFResourceWithRawResponse,
+    AsyncWAFResourceWithRawResponse,
+    WAFResourceWithStreamingResponse,
+    AsyncWAFResourceWithStreamingResponse,
+)
 from .ua_rules import (
     UARulesResource,
     AsyncUARulesResource,

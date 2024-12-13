@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from .events import (
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from .events.events import (
     EventsResource,
     AsyncEventsResource,
     EventsResourceWithRawResponse,
@@ -10,8 +12,7 @@ from .events import (
     EventsResourceWithStreamingResponse,
     AsyncEventsResourceWithStreamingResponse,
 )
-from ...._compat import cached_property
-from .aggregates import (
+from .aggregates.aggregates import (
     AggregatesResource,
     AsyncAggregatesResource,
     AggregatesResourceWithRawResponse,
@@ -19,9 +20,6 @@ from .aggregates import (
     AggregatesResourceWithStreamingResponse,
     AsyncAggregatesResourceWithStreamingResponse,
 )
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from .events.events import EventsResource, AsyncEventsResource
-from .aggregates.aggregates import AggregatesResource, AsyncAggregatesResource
 
 __all__ = ["AnalyticsResource", "AsyncAnalyticsResource"]
 

@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from .rules import (
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from .rules.rules import (
     RulesResource,
     AsyncRulesResource,
     RulesResourceWithRawResponse,
@@ -10,7 +12,7 @@ from .rules import (
     RulesResourceWithStreamingResponse,
     AsyncRulesResourceWithStreamingResponse,
 )
-from .configs import (
+from .configs.configs import (
     ConfigsResource,
     AsyncConfigsResource,
     ConfigsResourceWithRawResponse,
@@ -18,10 +20,6 @@ from .configs import (
     ConfigsResourceWithStreamingResponse,
     AsyncConfigsResourceWithStreamingResponse,
 )
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from .rules.rules import RulesResource, AsyncRulesResource
-from .configs.configs import ConfigsResource, AsyncConfigsResource
 
 __all__ = ["MagicNetworkMonitoringResource", "AsyncMagicNetworkMonitoringResource"]
 

@@ -18,7 +18,9 @@ from .records import (
     RecordsResourceWithStreamingResponse,
     AsyncRecordsResourceWithStreamingResponse,
 )
-from .settings import (
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from .settings.settings import (
     SettingsResource,
     AsyncSettingsResource,
     SettingsResourceWithRawResponse,
@@ -26,8 +28,7 @@ from .settings import (
     SettingsResourceWithStreamingResponse,
     AsyncSettingsResourceWithStreamingResponse,
 )
-from ..._compat import cached_property
-from .analytics import (
+from .analytics.analytics import (
     AnalyticsResource,
     AsyncAnalyticsResource,
     AnalyticsResourceWithRawResponse,
@@ -35,8 +36,7 @@ from .analytics import (
     AnalyticsResourceWithStreamingResponse,
     AsyncAnalyticsResourceWithStreamingResponse,
 )
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from .zone_transfers import (
+from .zone_transfers.zone_transfers import (
     ZoneTransfersResource,
     AsyncZoneTransfersResource,
     ZoneTransfersResourceWithRawResponse,
@@ -44,9 +44,6 @@ from .zone_transfers import (
     ZoneTransfersResourceWithStreamingResponse,
     AsyncZoneTransfersResourceWithStreamingResponse,
 )
-from .settings.settings import SettingsResource, AsyncSettingsResource
-from .analytics.analytics import AnalyticsResource, AsyncAnalyticsResource
-from .zone_transfers.zone_transfers import ZoneTransfersResource, AsyncZoneTransfersResource
 
 __all__ = ["DNSResource", "AsyncDNSResource"]
 

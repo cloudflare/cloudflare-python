@@ -18,14 +18,6 @@ from .jobs import (
     JobsResourceWithStreamingResponse,
     AsyncJobsResourceWithStreamingResponse,
 )
-from .datasets import (
-    DatasetsResource,
-    AsyncDatasetsResource,
-    DatasetsResourceWithRawResponse,
-    AsyncDatasetsResourceWithRawResponse,
-    DatasetsResourceWithStreamingResponse,
-    AsyncDatasetsResourceWithStreamingResponse,
-)
 from .validate import (
     ValidateResource,
     AsyncValidateResource,
@@ -44,7 +36,14 @@ from .ownership import (
     AsyncOwnershipResourceWithStreamingResponse,
 )
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from .datasets.datasets import DatasetsResource, AsyncDatasetsResource
+from .datasets.datasets import (
+    DatasetsResource,
+    AsyncDatasetsResource,
+    DatasetsResourceWithRawResponse,
+    AsyncDatasetsResourceWithRawResponse,
+    DatasetsResourceWithStreamingResponse,
+    AsyncDatasetsResourceWithStreamingResponse,
+)
 
 __all__ = ["LogpushResource", "AsyncLogpushResource"]
 

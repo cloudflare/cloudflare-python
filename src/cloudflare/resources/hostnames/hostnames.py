@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from .settings import (
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from .settings.settings import (
     SettingsResource,
     AsyncSettingsResource,
     SettingsResourceWithRawResponse,
@@ -10,9 +12,6 @@ from .settings import (
     SettingsResourceWithStreamingResponse,
     AsyncSettingsResourceWithStreamingResponse,
 )
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from .settings.settings import SettingsResource, AsyncSettingsResource
 
 __all__ = ["HostnamesResource", "AsyncHostnamesResource"]
 

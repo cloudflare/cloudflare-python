@@ -2,14 +2,6 @@
 
 from __future__ import annotations
 
-from .top import (
-    TopResource,
-    AsyncTopResource,
-    TopResourceWithRawResponse,
-    AsyncTopResourceWithRawResponse,
-    TopResourceWithStreamingResponse,
-    AsyncTopResourceWithStreamingResponse,
-)
 from .summary import (
     SummaryResource,
     AsyncSummaryResource,
@@ -18,7 +10,14 @@ from .summary import (
     SummaryResourceWithStreamingResponse,
     AsyncSummaryResourceWithStreamingResponse,
 )
-from .top.top import TopResource, AsyncTopResource
+from .top.top import (
+    TopResource,
+    AsyncTopResource,
+    TopResourceWithRawResponse,
+    AsyncTopResourceWithRawResponse,
+    TopResourceWithStreamingResponse,
+    AsyncTopResourceWithStreamingResponse,
+)
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from .timeseries_groups import (

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from .tlds import (
+from .tlds.tlds import (
     TldsResource,
     AsyncTldsResource,
     TldsResourceWithRawResponse,
@@ -10,7 +10,6 @@ from .tlds import (
     TldsResourceWithStreamingResponse,
     AsyncTldsResourceWithStreamingResponse,
 )
-from .tlds.tlds import TldsResource, AsyncTldsResource
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
 

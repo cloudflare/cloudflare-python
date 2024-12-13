@@ -2,14 +2,6 @@
 
 from __future__ import annotations
 
-from .packages import (
-    PackagesResource,
-    AsyncPackagesResource,
-    PackagesResourceWithRawResponse,
-    AsyncPackagesResourceWithRawResponse,
-    PackagesResourceWithStreamingResponse,
-    AsyncPackagesResourceWithStreamingResponse,
-)
 from .overrides import (
     OverridesResource,
     AsyncOverridesResource,
@@ -20,7 +12,14 @@ from .overrides import (
 )
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
-from .packages.packages import PackagesResource, AsyncPackagesResource
+from .packages.packages import (
+    PackagesResource,
+    AsyncPackagesResource,
+    PackagesResourceWithRawResponse,
+    AsyncPackagesResourceWithRawResponse,
+    PackagesResourceWithStreamingResponse,
+    AsyncPackagesResourceWithStreamingResponse,
+)
 
 __all__ = ["WAFResource", "AsyncWAFResource"]
 

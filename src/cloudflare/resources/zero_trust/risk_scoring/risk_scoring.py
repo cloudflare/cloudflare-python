@@ -32,7 +32,8 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from .integrations import (
+from ...._base_client import make_request_options
+from .integrations.integrations import (
     IntegrationsResource,
     AsyncIntegrationsResource,
     IntegrationsResourceWithRawResponse,
@@ -40,8 +41,6 @@ from .integrations import (
     IntegrationsResourceWithStreamingResponse,
     AsyncIntegrationsResourceWithStreamingResponse,
 )
-from ...._base_client import make_request_options
-from .integrations.integrations import IntegrationsResource, AsyncIntegrationsResource
 from ....types.zero_trust.risk_scoring_get_response import RiskScoringGetResponse
 
 __all__ = ["RiskScoringResource", "AsyncRiskScoringResource"]

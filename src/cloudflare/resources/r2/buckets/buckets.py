@@ -23,14 +23,6 @@ from .sippy import (
     SippyResourceWithStreamingResponse,
     AsyncSippyResourceWithStreamingResponse,
 )
-from .domains import (
-    DomainsResource,
-    AsyncDomainsResource,
-    DomainsResourceWithRawResponse,
-    AsyncDomainsResourceWithRawResponse,
-    DomainsResourceWithStreamingResponse,
-    AsyncDomainsResourceWithStreamingResponse,
-)
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
     is_given,
@@ -57,9 +49,17 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
-from .domains.domains import DomainsResource, AsyncDomainsResource
+from .domains.domains import (
+    DomainsResource,
+    AsyncDomainsResource,
+    DomainsResourceWithRawResponse,
+    AsyncDomainsResourceWithRawResponse,
+    DomainsResourceWithStreamingResponse,
+    AsyncDomainsResourceWithStreamingResponse,
+)
 from ....types.r2.bucket import Bucket
-from .event_notifications import (
+from ....types.r2.bucket_list_response import BucketListResponse
+from .event_notifications.event_notifications import (
     EventNotificationsResource,
     AsyncEventNotificationsResource,
     EventNotificationsResourceWithRawResponse,
@@ -67,8 +67,6 @@ from .event_notifications import (
     EventNotificationsResourceWithStreamingResponse,
     AsyncEventNotificationsResourceWithStreamingResponse,
 )
-from ....types.r2.bucket_list_response import BucketListResponse
-from .event_notifications.event_notifications import EventNotificationsResource, AsyncEventNotificationsResource
 
 __all__ = ["BucketsResource", "AsyncBucketsResource"]
 

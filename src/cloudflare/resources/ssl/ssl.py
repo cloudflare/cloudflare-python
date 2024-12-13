@@ -11,14 +11,6 @@ from .analyze import (
     AsyncAnalyzeResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
-from .universal import (
-    UniversalResource,
-    AsyncUniversalResource,
-    UniversalResourceWithRawResponse,
-    AsyncUniversalResourceWithRawResponse,
-    UniversalResourceWithStreamingResponse,
-    AsyncUniversalResourceWithStreamingResponse,
-)
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from .verification import (
     VerificationResource,
@@ -36,7 +28,15 @@ from .recommendations import (
     RecommendationsResourceWithStreamingResponse,
     AsyncRecommendationsResourceWithStreamingResponse,
 )
-from .certificate_packs import (
+from .universal.universal import (
+    UniversalResource,
+    AsyncUniversalResource,
+    UniversalResourceWithRawResponse,
+    AsyncUniversalResourceWithRawResponse,
+    UniversalResourceWithStreamingResponse,
+    AsyncUniversalResourceWithStreamingResponse,
+)
+from .certificate_packs.certificate_packs import (
     CertificatePacksResource,
     AsyncCertificatePacksResource,
     CertificatePacksResourceWithRawResponse,
@@ -44,8 +44,6 @@ from .certificate_packs import (
     CertificatePacksResourceWithStreamingResponse,
     AsyncCertificatePacksResourceWithStreamingResponse,
 )
-from .universal.universal import UniversalResource, AsyncUniversalResource
-from .certificate_packs.certificate_packs import CertificatePacksResource, AsyncCertificatePacksResource
 
 __all__ = ["SSLResource", "AsyncSSLResource"]
 

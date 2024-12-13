@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from .lists import (
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from .lists.lists import (
     ListsResource,
     AsyncListsResource,
     ListsResourceWithRawResponse,
@@ -10,9 +12,6 @@ from .lists import (
     ListsResourceWithStreamingResponse,
     AsyncListsResourceWithStreamingResponse,
 )
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from .lists.lists import ListsResource, AsyncListsResource
 
 __all__ = ["RulesResource", "AsyncRulesResource"]
 

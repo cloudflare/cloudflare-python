@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
-from .content_lists import (
+from .content_lists.content_lists import (
     ContentListsResource,
     AsyncContentListsResource,
     ContentListsResourceWithRawResponse,
@@ -12,7 +12,6 @@ from .content_lists import (
     ContentListsResourceWithStreamingResponse,
     AsyncContentListsResourceWithStreamingResponse,
 )
-from .content_lists.content_lists import ContentListsResource, AsyncContentListsResource
 
 __all__ = ["IPFSUniversalPathsResource", "AsyncIPFSUniversalPathsResource"]
 

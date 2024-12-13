@@ -62,14 +62,6 @@ from ..._utils import (
     strip_not_given,
     async_maybe_transform,
 )
-from .captions import (
-    CaptionsResource,
-    AsyncCaptionsResource,
-    CaptionsResourceWithRawResponse,
-    AsyncCaptionsResourceWithRawResponse,
-    CaptionsResourceWithStreamingResponse,
-    AsyncCaptionsResourceWithStreamingResponse,
-)
 from .webhooks import (
     WebhooksResource,
     AsyncWebhooksResource,
@@ -103,14 +95,6 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from .live_inputs import (
-    LiveInputsResource,
-    AsyncLiveInputsResource,
-    LiveInputsResourceWithRawResponse,
-    AsyncLiveInputsResourceWithRawResponse,
-    LiveInputsResourceWithStreamingResponse,
-    AsyncLiveInputsResourceWithStreamingResponse,
-)
 from ...pagination import SyncSinglePage, AsyncSinglePage
 from .audio_tracks import (
     AudioTracksResource,
@@ -130,9 +114,23 @@ from .direct_upload import (
 )
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.stream import stream_edit_params, stream_list_params, stream_create_params
-from .captions.captions import CaptionsResource, AsyncCaptionsResource
+from .captions.captions import (
+    CaptionsResource,
+    AsyncCaptionsResource,
+    CaptionsResourceWithRawResponse,
+    AsyncCaptionsResourceWithRawResponse,
+    CaptionsResourceWithStreamingResponse,
+    AsyncCaptionsResourceWithStreamingResponse,
+)
 from ...types.stream.video import Video
-from .live_inputs.live_inputs import LiveInputsResource, AsyncLiveInputsResource
+from .live_inputs.live_inputs import (
+    LiveInputsResource,
+    AsyncLiveInputsResource,
+    LiveInputsResourceWithRawResponse,
+    AsyncLiveInputsResourceWithRawResponse,
+    LiveInputsResourceWithStreamingResponse,
+    AsyncLiveInputsResourceWithStreamingResponse,
+)
 from ...types.stream.allowed_origins import AllowedOrigins
 
 __all__ = ["StreamResource", "AsyncStreamResource"]
