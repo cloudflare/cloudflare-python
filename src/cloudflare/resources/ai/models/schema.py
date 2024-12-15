@@ -6,22 +6,22 @@ from typing import Type, cast
 
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import (
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
     maybe_transform,
     async_maybe_transform,
 )
-from ....._compat import cached_property
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from ....._response import (
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....._wrappers import ResultWrapper
-from ....._base_client import make_request_options
-from .....types.workers.ai.models import schema_get_params
+from ...._wrappers import ResultWrapper
+from ...._base_client import make_request_options
+from ....types.ai.models import schema_get_params
 
 __all__ = ["SchemaResource", "AsyncSchemaResource"]
 
