@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Iterable, Optional, cast
+from typing import Any, List, Type, Iterable, Optional, cast
 from typing_extensions import Literal, overload
 
 import httpx
@@ -33,6 +33,8 @@ from ...types.dns import (
 )
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
+from ...types.dns.ttl_param import TTLParam
+from ...types.dns.record_tags import RecordTags
 from ...types.dns.record_param import RecordParam
 from ...types.shared.sort_direction import SortDirection
 from ...types.dns.record_get_response import RecordGetResponse
@@ -73,7 +75,12 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["A"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -95,7 +102,21 @@ class RecordsResource(SyncAPIResource):
         Args:
           zone_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: A valid IPv4 address.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -114,7 +135,12 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["AAAA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -136,7 +162,21 @@ class RecordsResource(SyncAPIResource):
         Args:
           zone_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: A valid IPv6 address.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -155,7 +195,12 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_create_params.CAARecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["CAA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -177,7 +222,21 @@ class RecordsResource(SyncAPIResource):
         Args:
           zone_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a CAA record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -196,7 +255,12 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_create_params.CERTRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["CERT"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -218,7 +282,21 @@ class RecordsResource(SyncAPIResource):
         Args:
           zone_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a CERT record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -237,8 +315,13 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["CNAME"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -260,7 +343,21 @@ class RecordsResource(SyncAPIResource):
         Args:
           zone_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: A valid hostname. Must not match the record's name.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -279,7 +376,12 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_create_params.DNSKEYRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["DNSKEY"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -301,7 +403,21 @@ class RecordsResource(SyncAPIResource):
         Args:
           zone_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a DNSKEY record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -320,7 +436,12 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_create_params.DSRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["DS"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -342,7 +463,21 @@ class RecordsResource(SyncAPIResource):
         Args:
           zone_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a DS record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -361,7 +496,12 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_create_params.HTTPSRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["HTTPS"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -383,7 +523,21 @@ class RecordsResource(SyncAPIResource):
         Args:
           zone_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a HTTPS record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -402,7 +556,12 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_create_params.LOCRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["LOC"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -424,7 +583,21 @@ class RecordsResource(SyncAPIResource):
         Args:
           zone_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a LOC record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -443,8 +616,13 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["MX"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -466,10 +644,24 @@ class RecordsResource(SyncAPIResource):
         Args:
           zone_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: A valid mail server hostname.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
 
           priority: Required for MX, SRV and URI records; unused by other record types. Records with
               lower priorities are preferred.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -488,7 +680,12 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_create_params.NAPTRRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["NAPTR"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -510,7 +707,21 @@ class RecordsResource(SyncAPIResource):
         Args:
           zone_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a NAPTR record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -529,7 +740,12 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["NS"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -551,7 +767,21 @@ class RecordsResource(SyncAPIResource):
         Args:
           zone_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: A valid name server host name.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -570,7 +800,12 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["OPENPGPKEY"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -592,7 +827,21 @@ class RecordsResource(SyncAPIResource):
         Args:
           zone_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: A single Base64-encoded OpenPGP Transferable Public Key (RFC 4880 Section 11.1)
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -611,7 +860,12 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["PTR"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -633,7 +887,21 @@ class RecordsResource(SyncAPIResource):
         Args:
           zone_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: Domain name pointing to the address.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -652,7 +920,12 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_create_params.SMIMEARecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SMIMEA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -674,7 +947,21 @@ class RecordsResource(SyncAPIResource):
         Args:
           zone_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a SMIMEA record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -693,7 +980,12 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_create_params.SRVRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SRV"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -715,7 +1007,21 @@ class RecordsResource(SyncAPIResource):
         Args:
           zone_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a SRV record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -734,7 +1040,12 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_create_params.SSHFPRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SSHFP"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -756,7 +1067,21 @@ class RecordsResource(SyncAPIResource):
         Args:
           zone_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a SSHFP record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -775,7 +1100,12 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_create_params.SVCBRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SVCB"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -797,7 +1127,21 @@ class RecordsResource(SyncAPIResource):
         Args:
           zone_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a SVCB record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -816,7 +1160,12 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_create_params.TLSARecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["TLSA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -838,7 +1187,21 @@ class RecordsResource(SyncAPIResource):
         Args:
           zone_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a TLSA record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -857,7 +1220,12 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["TXT"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -879,12 +1247,26 @@ class RecordsResource(SyncAPIResource):
         Args:
           zone_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: Text content for the record. The content must consist of quoted "character
               strings" (RFC 1035), each with a length of up to 255 bytes. Strings exceeding
               this allowed maximum length are automatically split.
 
               Learn more at
               <https://www.cloudflare.com/learning/dns/dns-records/dns-txt-record/>.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -903,8 +1285,13 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_create_params.URIRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["URI"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -926,10 +1313,24 @@ class RecordsResource(SyncAPIResource):
         Args:
           zone_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a URI record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
 
           priority: Required for MX, SRV and URI records; unused by other record types. Records with
               lower priorities are preferred.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -948,7 +1349,12 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["A"]
         | Literal["AAAA"]
         | Literal["CAA"]
@@ -1000,7 +1406,12 @@ class RecordsResource(SyncAPIResource):
                 f"/zones/{zone_id}/dns_records",
                 body=maybe_transform(
                     {
+                        "comment": comment,
                         "content": content,
+                        "name": name,
+                        "proxied": proxied,
+                        "tags": tags,
+                        "ttl": ttl,
                         "type": type,
                         "data": data,
                         "settings": settings,
@@ -1027,7 +1438,12 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["A"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1051,7 +1467,21 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: A valid IPv4 address.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -1071,7 +1501,12 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["AAAA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1095,7 +1530,21 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: A valid IPv6 address.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -1115,7 +1564,12 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_update_params.CAARecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["CAA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1139,7 +1593,21 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a CAA record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -1159,7 +1627,12 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_update_params.CERTRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["CERT"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1183,7 +1656,21 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a CERT record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -1203,8 +1690,13 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["CNAME"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1228,7 +1720,21 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: A valid hostname. Must not match the record's name.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -1248,7 +1754,12 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_update_params.DNSKEYRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["DNSKEY"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1272,7 +1783,21 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a DNSKEY record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -1292,7 +1817,12 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_update_params.DSRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["DS"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1316,7 +1846,21 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a DS record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -1336,7 +1880,12 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_update_params.HTTPSRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["HTTPS"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1360,7 +1909,21 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a HTTPS record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -1380,7 +1943,12 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_update_params.LOCRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["LOC"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1404,7 +1972,21 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a LOC record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -1424,8 +2006,13 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["MX"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1449,10 +2036,24 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: A valid mail server hostname.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
 
           priority: Required for MX, SRV and URI records; unused by other record types. Records with
               lower priorities are preferred.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -1472,7 +2073,12 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_update_params.NAPTRRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["NAPTR"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1496,7 +2102,21 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a NAPTR record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -1516,7 +2136,12 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["NS"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1540,7 +2165,21 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: A valid name server host name.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -1560,7 +2199,12 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["OPENPGPKEY"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1584,7 +2228,21 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: A single Base64-encoded OpenPGP Transferable Public Key (RFC 4880 Section 11.1)
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -1604,7 +2262,12 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["PTR"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1628,7 +2291,21 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: Domain name pointing to the address.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -1648,7 +2325,12 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_update_params.SMIMEARecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SMIMEA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1672,7 +2354,21 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a SMIMEA record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -1692,7 +2388,12 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_update_params.SRVRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SRV"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1716,7 +2417,21 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a SRV record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -1736,7 +2451,12 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_update_params.SSHFPRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SSHFP"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1760,7 +2480,21 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a SSHFP record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -1780,7 +2514,12 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_update_params.SVCBRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SVCB"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1804,7 +2543,21 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a SVCB record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -1824,7 +2577,12 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_update_params.TLSARecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["TLSA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1848,7 +2606,21 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a TLSA record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -1868,7 +2640,12 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["TXT"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1892,12 +2669,26 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: Text content for the record. The content must consist of quoted "character
               strings" (RFC 1035), each with a length of up to 255 bytes. Strings exceeding
               this allowed maximum length are automatically split.
 
               Learn more at
               <https://www.cloudflare.com/learning/dns/dns-records/dns-txt-record/>.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -1917,8 +2708,13 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_update_params.URIRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["URI"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1942,10 +2738,24 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a URI record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
 
           priority: Required for MX, SRV and URI records; unused by other record types. Records with
               lower priorities are preferred.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -1965,7 +2775,12 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["A"]
         | Literal["AAAA"]
         | Literal["CAA"]
@@ -2019,7 +2834,12 @@ class RecordsResource(SyncAPIResource):
                 f"/zones/{zone_id}/dns_records/{dns_record_id}",
                 body=maybe_transform(
                     {
+                        "comment": comment,
                         "content": content,
+                        "name": name,
+                        "proxied": proxied,
+                        "tags": tags,
+                        "ttl": ttl,
                         "type": type,
                         "data": data,
                         "settings": settings,
@@ -2280,7 +3100,12 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["A"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2304,7 +3129,21 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: A valid IPv4 address.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -2324,7 +3163,12 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["AAAA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2348,7 +3192,21 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: A valid IPv6 address.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -2368,7 +3226,12 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_edit_params.CAARecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["CAA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2392,7 +3255,21 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a CAA record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -2412,7 +3289,12 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_edit_params.CERTRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["CERT"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2436,7 +3318,21 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a CERT record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -2456,8 +3352,13 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["CNAME"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2481,7 +3382,21 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: A valid hostname. Must not match the record's name.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -2501,7 +3416,12 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_edit_params.DNSKEYRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["DNSKEY"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2525,7 +3445,21 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a DNSKEY record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -2545,7 +3479,12 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_edit_params.DSRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["DS"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2569,7 +3508,21 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a DS record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -2589,7 +3542,12 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_edit_params.HTTPSRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["HTTPS"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2613,7 +3571,21 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a HTTPS record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -2633,7 +3605,12 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_edit_params.LOCRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["LOC"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2657,7 +3634,21 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a LOC record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -2677,8 +3668,13 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["MX"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2702,10 +3698,24 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: A valid mail server hostname.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
 
           priority: Required for MX, SRV and URI records; unused by other record types. Records with
               lower priorities are preferred.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -2725,7 +3735,12 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_edit_params.NAPTRRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["NAPTR"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2749,7 +3764,21 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a NAPTR record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -2769,7 +3798,12 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["NS"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2793,7 +3827,21 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: A valid name server host name.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -2813,7 +3861,12 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["OPENPGPKEY"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2837,7 +3890,21 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: A single Base64-encoded OpenPGP Transferable Public Key (RFC 4880 Section 11.1)
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -2857,7 +3924,12 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["PTR"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2881,7 +3953,21 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: Domain name pointing to the address.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -2901,7 +3987,12 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_edit_params.SMIMEARecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SMIMEA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2925,7 +4016,21 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a SMIMEA record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -2945,7 +4050,12 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_edit_params.SRVRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SRV"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2969,7 +4079,21 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a SRV record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -2989,7 +4113,12 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_edit_params.SSHFPRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SSHFP"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3013,7 +4142,21 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a SSHFP record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -3033,7 +4176,12 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_edit_params.SVCBRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SVCB"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3057,7 +4205,21 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a SVCB record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -3077,7 +4239,12 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_edit_params.TLSARecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["TLSA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3101,7 +4268,21 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a TLSA record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -3121,7 +4302,12 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["TXT"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3145,12 +4331,26 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: Text content for the record. The content must consist of quoted "character
               strings" (RFC 1035), each with a length of up to 255 bytes. Strings exceeding
               this allowed maximum length are automatically split.
 
               Learn more at
               <https://www.cloudflare.com/learning/dns/dns-records/dns-txt-record/>.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -3170,8 +4370,13 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_edit_params.URIRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["URI"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3195,10 +4400,24 @@ class RecordsResource(SyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a URI record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
 
           priority: Required for MX, SRV and URI records; unused by other record types. Records with
               lower priorities are preferred.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -3218,7 +4437,12 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["A"]
         | Literal["AAAA"]
         | Literal["CAA"]
@@ -3272,7 +4496,12 @@ class RecordsResource(SyncAPIResource):
                 f"/zones/{zone_id}/dns_records/{dns_record_id}",
                 body=maybe_transform(
                     {
+                        "comment": comment,
                         "content": content,
+                        "name": name,
+                        "proxied": proxied,
+                        "tags": tags,
+                        "ttl": ttl,
                         "type": type,
                         "data": data,
                         "settings": settings,
@@ -3521,7 +4750,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["A"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3543,7 +4777,21 @@ class AsyncRecordsResource(AsyncAPIResource):
         Args:
           zone_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: A valid IPv4 address.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -3562,7 +4810,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["AAAA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3584,7 +4837,21 @@ class AsyncRecordsResource(AsyncAPIResource):
         Args:
           zone_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: A valid IPv6 address.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -3603,7 +4870,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_create_params.CAARecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["CAA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3625,7 +4897,21 @@ class AsyncRecordsResource(AsyncAPIResource):
         Args:
           zone_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a CAA record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -3644,7 +4930,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_create_params.CERTRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["CERT"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3666,7 +4957,21 @@ class AsyncRecordsResource(AsyncAPIResource):
         Args:
           zone_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a CERT record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -3685,8 +4990,13 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["CNAME"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3708,7 +5018,21 @@ class AsyncRecordsResource(AsyncAPIResource):
         Args:
           zone_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: A valid hostname. Must not match the record's name.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -3727,7 +5051,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_create_params.DNSKEYRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["DNSKEY"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3749,7 +5078,21 @@ class AsyncRecordsResource(AsyncAPIResource):
         Args:
           zone_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a DNSKEY record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -3768,7 +5111,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_create_params.DSRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["DS"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3790,7 +5138,21 @@ class AsyncRecordsResource(AsyncAPIResource):
         Args:
           zone_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a DS record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -3809,7 +5171,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_create_params.HTTPSRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["HTTPS"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3831,7 +5198,21 @@ class AsyncRecordsResource(AsyncAPIResource):
         Args:
           zone_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a HTTPS record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -3850,7 +5231,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_create_params.LOCRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["LOC"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3872,7 +5258,21 @@ class AsyncRecordsResource(AsyncAPIResource):
         Args:
           zone_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a LOC record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -3891,8 +5291,13 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["MX"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3914,10 +5319,24 @@ class AsyncRecordsResource(AsyncAPIResource):
         Args:
           zone_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: A valid mail server hostname.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
 
           priority: Required for MX, SRV and URI records; unused by other record types. Records with
               lower priorities are preferred.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -3936,7 +5355,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_create_params.NAPTRRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["NAPTR"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3958,7 +5382,21 @@ class AsyncRecordsResource(AsyncAPIResource):
         Args:
           zone_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a NAPTR record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -3977,7 +5415,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["NS"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3999,7 +5442,21 @@ class AsyncRecordsResource(AsyncAPIResource):
         Args:
           zone_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: A valid name server host name.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -4018,7 +5475,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["OPENPGPKEY"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4040,7 +5502,21 @@ class AsyncRecordsResource(AsyncAPIResource):
         Args:
           zone_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: A single Base64-encoded OpenPGP Transferable Public Key (RFC 4880 Section 11.1)
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -4059,7 +5535,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["PTR"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4081,7 +5562,21 @@ class AsyncRecordsResource(AsyncAPIResource):
         Args:
           zone_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: Domain name pointing to the address.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -4100,7 +5595,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_create_params.SMIMEARecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SMIMEA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4122,7 +5622,21 @@ class AsyncRecordsResource(AsyncAPIResource):
         Args:
           zone_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a SMIMEA record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -4141,7 +5655,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_create_params.SRVRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SRV"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4163,7 +5682,21 @@ class AsyncRecordsResource(AsyncAPIResource):
         Args:
           zone_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a SRV record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -4182,7 +5715,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_create_params.SSHFPRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SSHFP"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4204,7 +5742,21 @@ class AsyncRecordsResource(AsyncAPIResource):
         Args:
           zone_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a SSHFP record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -4223,7 +5775,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_create_params.SVCBRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SVCB"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4245,7 +5802,21 @@ class AsyncRecordsResource(AsyncAPIResource):
         Args:
           zone_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a SVCB record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -4264,7 +5835,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_create_params.TLSARecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["TLSA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4286,7 +5862,21 @@ class AsyncRecordsResource(AsyncAPIResource):
         Args:
           zone_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a TLSA record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -4305,7 +5895,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["TXT"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4327,12 +5922,26 @@ class AsyncRecordsResource(AsyncAPIResource):
         Args:
           zone_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: Text content for the record. The content must consist of quoted "character
               strings" (RFC 1035), each with a length of up to 255 bytes. Strings exceeding
               this allowed maximum length are automatically split.
 
               Learn more at
               <https://www.cloudflare.com/learning/dns/dns-records/dns-txt-record/>.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -4351,8 +5960,13 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_create_params.URIRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["URI"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4374,10 +5988,24 @@ class AsyncRecordsResource(AsyncAPIResource):
         Args:
           zone_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a URI record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
 
           priority: Required for MX, SRV and URI records; unused by other record types. Records with
               lower priorities are preferred.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -4396,7 +6024,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["A"]
         | Literal["AAAA"]
         | Literal["CAA"]
@@ -4448,7 +6081,12 @@ class AsyncRecordsResource(AsyncAPIResource):
                 f"/zones/{zone_id}/dns_records",
                 body=await async_maybe_transform(
                     {
+                        "comment": comment,
                         "content": content,
+                        "name": name,
+                        "proxied": proxied,
+                        "tags": tags,
+                        "ttl": ttl,
                         "type": type,
                         "data": data,
                         "settings": settings,
@@ -4475,7 +6113,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["A"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4499,7 +6142,21 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: A valid IPv4 address.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -4519,7 +6176,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["AAAA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4543,7 +6205,21 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: A valid IPv6 address.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -4563,7 +6239,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_update_params.CAARecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["CAA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4587,7 +6268,21 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a CAA record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -4607,7 +6302,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_update_params.CERTRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["CERT"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4631,7 +6331,21 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a CERT record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -4651,8 +6365,13 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["CNAME"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4676,7 +6395,21 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: A valid hostname. Must not match the record's name.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -4696,7 +6429,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_update_params.DNSKEYRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["DNSKEY"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4720,7 +6458,21 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a DNSKEY record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -4740,7 +6492,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_update_params.DSRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["DS"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4764,7 +6521,21 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a DS record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -4784,7 +6555,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_update_params.HTTPSRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["HTTPS"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4808,7 +6584,21 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a HTTPS record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -4828,7 +6618,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_update_params.LOCRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["LOC"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4852,7 +6647,21 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a LOC record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -4872,8 +6681,13 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["MX"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4897,10 +6711,24 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: A valid mail server hostname.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
 
           priority: Required for MX, SRV and URI records; unused by other record types. Records with
               lower priorities are preferred.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -4920,7 +6748,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_update_params.NAPTRRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["NAPTR"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4944,7 +6777,21 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a NAPTR record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -4964,7 +6811,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["NS"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4988,7 +6840,21 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: A valid name server host name.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -5008,7 +6874,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["OPENPGPKEY"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -5032,7 +6903,21 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: A single Base64-encoded OpenPGP Transferable Public Key (RFC 4880 Section 11.1)
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -5052,7 +6937,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["PTR"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -5076,7 +6966,21 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: Domain name pointing to the address.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -5096,7 +7000,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_update_params.SMIMEARecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SMIMEA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -5120,7 +7029,21 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a SMIMEA record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -5140,7 +7063,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_update_params.SRVRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SRV"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -5164,7 +7092,21 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a SRV record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -5184,7 +7126,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_update_params.SSHFPRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SSHFP"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -5208,7 +7155,21 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a SSHFP record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -5228,7 +7189,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_update_params.SVCBRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SVCB"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -5252,7 +7218,21 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a SVCB record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -5272,7 +7252,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_update_params.TLSARecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["TLSA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -5296,7 +7281,21 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a TLSA record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -5316,7 +7315,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["TXT"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -5340,12 +7344,26 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: Text content for the record. The content must consist of quoted "character
               strings" (RFC 1035), each with a length of up to 255 bytes. Strings exceeding
               this allowed maximum length are automatically split.
 
               Learn more at
               <https://www.cloudflare.com/learning/dns/dns-records/dns-txt-record/>.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -5365,8 +7383,13 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_update_params.URIRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["URI"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -5390,10 +7413,24 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a URI record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
 
           priority: Required for MX, SRV and URI records; unused by other record types. Records with
               lower priorities are preferred.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -5413,7 +7450,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["A"]
         | Literal["AAAA"]
         | Literal["CAA"]
@@ -5467,7 +7509,12 @@ class AsyncRecordsResource(AsyncAPIResource):
                 f"/zones/{zone_id}/dns_records/{dns_record_id}",
                 body=await async_maybe_transform(
                     {
+                        "comment": comment,
                         "content": content,
+                        "name": name,
+                        "proxied": proxied,
+                        "tags": tags,
+                        "ttl": ttl,
                         "type": type,
                         "data": data,
                         "settings": settings,
@@ -5728,7 +7775,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["A"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -5752,7 +7804,21 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: A valid IPv4 address.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -5772,7 +7838,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["AAAA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -5796,7 +7867,21 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: A valid IPv6 address.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -5816,7 +7901,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_edit_params.CAARecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["CAA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -5840,7 +7930,21 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a CAA record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -5860,7 +7964,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_edit_params.CERTRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["CERT"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -5884,7 +7993,21 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a CERT record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -5904,8 +8027,13 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["CNAME"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -5929,7 +8057,21 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: A valid hostname. Must not match the record's name.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -5949,7 +8091,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_edit_params.DNSKEYRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["DNSKEY"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -5973,7 +8120,21 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a DNSKEY record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -5993,7 +8154,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_edit_params.DSRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["DS"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -6017,7 +8183,21 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a DS record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -6037,7 +8217,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_edit_params.HTTPSRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["HTTPS"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -6061,7 +8246,21 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a HTTPS record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -6081,7 +8280,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_edit_params.LOCRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["LOC"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -6105,7 +8309,21 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a LOC record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -6125,8 +8343,13 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["MX"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -6150,10 +8373,24 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: A valid mail server hostname.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
 
           priority: Required for MX, SRV and URI records; unused by other record types. Records with
               lower priorities are preferred.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -6173,7 +8410,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_edit_params.NAPTRRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["NAPTR"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -6197,7 +8439,21 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a NAPTR record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -6217,7 +8473,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["NS"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -6241,7 +8502,21 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: A valid name server host name.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -6261,7 +8536,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["OPENPGPKEY"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -6285,7 +8565,21 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: A single Base64-encoded OpenPGP Transferable Public Key (RFC 4880 Section 11.1)
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -6305,7 +8599,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["PTR"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -6329,7 +8628,21 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: Domain name pointing to the address.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -6349,7 +8662,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_edit_params.SMIMEARecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SMIMEA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -6373,7 +8691,21 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a SMIMEA record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -6393,7 +8725,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_edit_params.SRVRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SRV"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -6417,7 +8754,21 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a SRV record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -6437,7 +8788,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_edit_params.SSHFPRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SSHFP"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -6461,7 +8817,21 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a SSHFP record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -6481,7 +8851,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_edit_params.SVCBRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SVCB"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -6505,7 +8880,21 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a SVCB record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -6525,7 +8914,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_edit_params.TLSARecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["TLSA"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -6549,7 +8943,21 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a TLSA record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -6569,7 +8977,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["TXT"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -6593,12 +9006,26 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           content: Text content for the record. The content must consist of quoted "character
               strings" (RFC 1035), each with a length of up to 255 bytes. Strings exceeding
               this allowed maximum length are automatically split.
 
               Learn more at
               <https://www.cloudflare.com/learning/dns/dns-records/dns-txt-record/>.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -6618,8 +9045,13 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         data: record_edit_params.URIRecordData | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["URI"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -6643,10 +9075,24 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           dns_record_id: Identifier
 
+          comment: Comments or notes about the DNS record. This field has no effect on DNS
+              responses.
+
           data: Components of a URI record.
+
+          name: DNS record name (or @ for the zone apex) in Punycode.
 
           priority: Required for MX, SRV and URI records; unused by other record types. Records with
               lower priorities are preferred.
+
+          proxied: Whether the record is receiving the performance and security benefits of
+              Cloudflare.
+
+          tags: Custom tags for the DNS record. This field has no effect on DNS responses.
+
+          ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
+              Value must be between 60 and 86400, with the minimum reduced to 30 for
+              Enterprise zones.
 
           type: Record type.
 
@@ -6666,7 +9112,12 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        tags: List[RecordTags] | NotGiven = NOT_GIVEN,
+        ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["A"]
         | Literal["AAAA"]
         | Literal["CAA"]
@@ -6720,7 +9171,12 @@ class AsyncRecordsResource(AsyncAPIResource):
                 f"/zones/{zone_id}/dns_records/{dns_record_id}",
                 body=await async_maybe_transform(
                     {
+                        "comment": comment,
                         "content": content,
+                        "name": name,
+                        "proxied": proxied,
+                        "tags": tags,
+                        "ttl": ttl,
                         "type": type,
                         "data": data,
                         "settings": settings,
