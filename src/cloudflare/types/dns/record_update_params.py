@@ -2,8 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Union
+from typing import List, Union
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
+
+from .ttl_param import TTLParam
+from .record_tags import RecordTags
 
 __all__ = [
     "RecordUpdateParams",
@@ -49,8 +52,33 @@ class ARecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
+    comment: str
+    """Comments or notes about the DNS record.
+
+    This field has no effect on DNS responses.
+    """
+
     content: str
     """A valid IPv4 address."""
+
+    name: str
+    """DNS record name (or @ for the zone apex) in Punycode."""
+
+    proxied: bool
+    """
+    Whether the record is receiving the performance and security benefits of
+    Cloudflare.
+    """
+
+    tags: List[RecordTags]
+    """Custom tags for the DNS record. This field has no effect on DNS responses."""
+
+    ttl: TTLParam
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
 
     type: Literal["A"]
     """Record type."""
@@ -60,8 +88,33 @@ class AAAARecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
+    comment: str
+    """Comments or notes about the DNS record.
+
+    This field has no effect on DNS responses.
+    """
+
     content: str
     """A valid IPv6 address."""
+
+    name: str
+    """DNS record name (or @ for the zone apex) in Punycode."""
+
+    proxied: bool
+    """
+    Whether the record is receiving the performance and security benefits of
+    Cloudflare.
+    """
+
+    tags: List[RecordTags]
+    """Custom tags for the DNS record. This field has no effect on DNS responses."""
+
+    ttl: TTLParam
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
 
     type: Literal["AAAA"]
     """Record type."""
@@ -71,8 +124,33 @@ class CAARecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
+    comment: str
+    """Comments or notes about the DNS record.
+
+    This field has no effect on DNS responses.
+    """
+
     data: CAARecordData
     """Components of a CAA record."""
+
+    name: str
+    """DNS record name (or @ for the zone apex) in Punycode."""
+
+    proxied: bool
+    """
+    Whether the record is receiving the performance and security benefits of
+    Cloudflare.
+    """
+
+    tags: List[RecordTags]
+    """Custom tags for the DNS record. This field has no effect on DNS responses."""
+
+    ttl: TTLParam
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
 
     type: Literal["CAA"]
     """Record type."""
@@ -93,8 +171,33 @@ class CERTRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
+    comment: str
+    """Comments or notes about the DNS record.
+
+    This field has no effect on DNS responses.
+    """
+
     data: CERTRecordData
     """Components of a CERT record."""
+
+    name: str
+    """DNS record name (or @ for the zone apex) in Punycode."""
+
+    proxied: bool
+    """
+    Whether the record is receiving the performance and security benefits of
+    Cloudflare.
+    """
+
+    tags: List[RecordTags]
+    """Custom tags for the DNS record. This field has no effect on DNS responses."""
+
+    ttl: TTLParam
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
 
     type: Literal["CERT"]
     """Record type."""
@@ -118,10 +221,35 @@ class CNAMERecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
+    comment: str
+    """Comments or notes about the DNS record.
+
+    This field has no effect on DNS responses.
+    """
+
     content: str
     """A valid hostname. Must not match the record's name."""
 
+    name: str
+    """DNS record name (or @ for the zone apex) in Punycode."""
+
+    proxied: bool
+    """
+    Whether the record is receiving the performance and security benefits of
+    Cloudflare.
+    """
+
     settings: CNAMERecordSettings
+
+    tags: List[RecordTags]
+    """Custom tags for the DNS record. This field has no effect on DNS responses."""
+
+    ttl: TTLParam
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
 
     type: Literal["CNAME"]
     """Record type."""
@@ -141,8 +269,33 @@ class DNSKEYRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
+    comment: str
+    """Comments or notes about the DNS record.
+
+    This field has no effect on DNS responses.
+    """
+
     data: DNSKEYRecordData
     """Components of a DNSKEY record."""
+
+    name: str
+    """DNS record name (or @ for the zone apex) in Punycode."""
+
+    proxied: bool
+    """
+    Whether the record is receiving the performance and security benefits of
+    Cloudflare.
+    """
+
+    tags: List[RecordTags]
+    """Custom tags for the DNS record. This field has no effect on DNS responses."""
+
+    ttl: TTLParam
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
 
     type: Literal["DNSKEY"]
     """Record type."""
@@ -166,8 +319,33 @@ class DSRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
+    comment: str
+    """Comments or notes about the DNS record.
+
+    This field has no effect on DNS responses.
+    """
+
     data: DSRecordData
     """Components of a DS record."""
+
+    name: str
+    """DNS record name (or @ for the zone apex) in Punycode."""
+
+    proxied: bool
+    """
+    Whether the record is receiving the performance and security benefits of
+    Cloudflare.
+    """
+
+    tags: List[RecordTags]
+    """Custom tags for the DNS record. This field has no effect on DNS responses."""
+
+    ttl: TTLParam
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
 
     type: Literal["DS"]
     """Record type."""
@@ -191,8 +369,33 @@ class HTTPSRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
+    comment: str
+    """Comments or notes about the DNS record.
+
+    This field has no effect on DNS responses.
+    """
+
     data: HTTPSRecordData
     """Components of a HTTPS record."""
+
+    name: str
+    """DNS record name (or @ for the zone apex) in Punycode."""
+
+    proxied: bool
+    """
+    Whether the record is receiving the performance and security benefits of
+    Cloudflare.
+    """
+
+    tags: List[RecordTags]
+    """Custom tags for the DNS record. This field has no effect on DNS responses."""
+
+    ttl: TTLParam
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
 
     type: Literal["HTTPS"]
     """Record type."""
@@ -213,8 +416,33 @@ class LOCRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
+    comment: str
+    """Comments or notes about the DNS record.
+
+    This field has no effect on DNS responses.
+    """
+
     data: LOCRecordData
     """Components of a LOC record."""
+
+    name: str
+    """DNS record name (or @ for the zone apex) in Punycode."""
+
+    proxied: bool
+    """
+    Whether the record is receiving the performance and security benefits of
+    Cloudflare.
+    """
+
+    tags: List[RecordTags]
+    """Custom tags for the DNS record. This field has no effect on DNS responses."""
+
+    ttl: TTLParam
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
 
     type: Literal["LOC"]
     """Record type."""
@@ -262,13 +490,38 @@ class MXRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
+    comment: str
+    """Comments or notes about the DNS record.
+
+    This field has no effect on DNS responses.
+    """
+
     content: str
     """A valid mail server hostname."""
+
+    name: str
+    """DNS record name (or @ for the zone apex) in Punycode."""
 
     priority: float
     """Required for MX, SRV and URI records; unused by other record types.
 
     Records with lower priorities are preferred.
+    """
+
+    proxied: bool
+    """
+    Whether the record is receiving the performance and security benefits of
+    Cloudflare.
+    """
+
+    tags: List[RecordTags]
+    """Custom tags for the DNS record. This field has no effect on DNS responses."""
+
+    ttl: TTLParam
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
     """
 
     type: Literal["MX"]
@@ -279,8 +532,33 @@ class NAPTRRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
+    comment: str
+    """Comments or notes about the DNS record.
+
+    This field has no effect on DNS responses.
+    """
+
     data: NAPTRRecordData
     """Components of a NAPTR record."""
+
+    name: str
+    """DNS record name (or @ for the zone apex) in Punycode."""
+
+    proxied: bool
+    """
+    Whether the record is receiving the performance and security benefits of
+    Cloudflare.
+    """
+
+    tags: List[RecordTags]
+    """Custom tags for the DNS record. This field has no effect on DNS responses."""
+
+    ttl: TTLParam
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
 
     type: Literal["NAPTR"]
     """Record type."""
@@ -310,8 +588,33 @@ class NSRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
+    comment: str
+    """Comments or notes about the DNS record.
+
+    This field has no effect on DNS responses.
+    """
+
     content: str
     """A valid name server host name."""
+
+    name: str
+    """DNS record name (or @ for the zone apex) in Punycode."""
+
+    proxied: bool
+    """
+    Whether the record is receiving the performance and security benefits of
+    Cloudflare.
+    """
+
+    tags: List[RecordTags]
+    """Custom tags for the DNS record. This field has no effect on DNS responses."""
+
+    ttl: TTLParam
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
 
     type: Literal["NS"]
     """Record type."""
@@ -321,8 +624,33 @@ class DNSRecordsOpenpgpkeyRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
+    comment: str
+    """Comments or notes about the DNS record.
+
+    This field has no effect on DNS responses.
+    """
+
     content: str
     """A single Base64-encoded OpenPGP Transferable Public Key (RFC 4880 Section 11.1)"""
+
+    name: str
+    """DNS record name (or @ for the zone apex) in Punycode."""
+
+    proxied: bool
+    """
+    Whether the record is receiving the performance and security benefits of
+    Cloudflare.
+    """
+
+    tags: List[RecordTags]
+    """Custom tags for the DNS record. This field has no effect on DNS responses."""
+
+    ttl: TTLParam
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
 
     type: Literal["OPENPGPKEY"]
     """Record type."""
@@ -332,8 +660,33 @@ class PTRRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
+    comment: str
+    """Comments or notes about the DNS record.
+
+    This field has no effect on DNS responses.
+    """
+
     content: str
     """Domain name pointing to the address."""
+
+    name: str
+    """DNS record name (or @ for the zone apex) in Punycode."""
+
+    proxied: bool
+    """
+    Whether the record is receiving the performance and security benefits of
+    Cloudflare.
+    """
+
+    tags: List[RecordTags]
+    """Custom tags for the DNS record. This field has no effect on DNS responses."""
+
+    ttl: TTLParam
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
 
     type: Literal["PTR"]
     """Record type."""
@@ -343,8 +696,33 @@ class SMIMEARecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
+    comment: str
+    """Comments or notes about the DNS record.
+
+    This field has no effect on DNS responses.
+    """
+
     data: SMIMEARecordData
     """Components of a SMIMEA record."""
+
+    name: str
+    """DNS record name (or @ for the zone apex) in Punycode."""
+
+    proxied: bool
+    """
+    Whether the record is receiving the performance and security benefits of
+    Cloudflare.
+    """
+
+    tags: List[RecordTags]
+    """Custom tags for the DNS record. This field has no effect on DNS responses."""
+
+    ttl: TTLParam
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
 
     type: Literal["SMIMEA"]
     """Record type."""
@@ -368,8 +746,33 @@ class SRVRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
+    comment: str
+    """Comments or notes about the DNS record.
+
+    This field has no effect on DNS responses.
+    """
+
     data: SRVRecordData
     """Components of a SRV record."""
+
+    name: str
+    """DNS record name (or @ for the zone apex) in Punycode."""
+
+    proxied: bool
+    """
+    Whether the record is receiving the performance and security benefits of
+    Cloudflare.
+    """
+
+    tags: List[RecordTags]
+    """Custom tags for the DNS record. This field has no effect on DNS responses."""
+
+    ttl: TTLParam
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
 
     type: Literal["SRV"]
     """Record type."""
@@ -396,8 +799,33 @@ class SSHFPRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
+    comment: str
+    """Comments or notes about the DNS record.
+
+    This field has no effect on DNS responses.
+    """
+
     data: SSHFPRecordData
     """Components of a SSHFP record."""
+
+    name: str
+    """DNS record name (or @ for the zone apex) in Punycode."""
+
+    proxied: bool
+    """
+    Whether the record is receiving the performance and security benefits of
+    Cloudflare.
+    """
+
+    tags: List[RecordTags]
+    """Custom tags for the DNS record. This field has no effect on DNS responses."""
+
+    ttl: TTLParam
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
 
     type: Literal["SSHFP"]
     """Record type."""
@@ -418,8 +846,33 @@ class SVCBRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
+    comment: str
+    """Comments or notes about the DNS record.
+
+    This field has no effect on DNS responses.
+    """
+
     data: SVCBRecordData
     """Components of a SVCB record."""
+
+    name: str
+    """DNS record name (or @ for the zone apex) in Punycode."""
+
+    proxied: bool
+    """
+    Whether the record is receiving the performance and security benefits of
+    Cloudflare.
+    """
+
+    tags: List[RecordTags]
+    """Custom tags for the DNS record. This field has no effect on DNS responses."""
+
+    ttl: TTLParam
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
 
     type: Literal["SVCB"]
     """Record type."""
@@ -440,8 +893,33 @@ class TLSARecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
+    comment: str
+    """Comments or notes about the DNS record.
+
+    This field has no effect on DNS responses.
+    """
+
     data: TLSARecordData
     """Components of a TLSA record."""
+
+    name: str
+    """DNS record name (or @ for the zone apex) in Punycode."""
+
+    proxied: bool
+    """
+    Whether the record is receiving the performance and security benefits of
+    Cloudflare.
+    """
+
+    tags: List[RecordTags]
+    """Custom tags for the DNS record. This field has no effect on DNS responses."""
+
+    ttl: TTLParam
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
 
     type: Literal["TLSA"]
     """Record type."""
@@ -465,6 +943,12 @@ class TXTRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
+    comment: str
+    """Comments or notes about the DNS record.
+
+    This field has no effect on DNS responses.
+    """
+
     content: str
     """Text content for the record.
 
@@ -476,6 +960,25 @@ class TXTRecord(TypedDict, total=False):
     <https://www.cloudflare.com/learning/dns/dns-records/dns-txt-record/>.
     """
 
+    name: str
+    """DNS record name (or @ for the zone apex) in Punycode."""
+
+    proxied: bool
+    """
+    Whether the record is receiving the performance and security benefits of
+    Cloudflare.
+    """
+
+    tags: List[RecordTags]
+    """Custom tags for the DNS record. This field has no effect on DNS responses."""
+
+    ttl: TTLParam
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
+    """
+
     type: Literal["TXT"]
     """Record type."""
 
@@ -484,13 +987,38 @@ class URIRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
+    comment: str
+    """Comments or notes about the DNS record.
+
+    This field has no effect on DNS responses.
+    """
+
     data: URIRecordData
     """Components of a URI record."""
+
+    name: str
+    """DNS record name (or @ for the zone apex) in Punycode."""
 
     priority: float
     """Required for MX, SRV and URI records; unused by other record types.
 
     Records with lower priorities are preferred.
+    """
+
+    proxied: bool
+    """
+    Whether the record is receiving the performance and security benefits of
+    Cloudflare.
+    """
+
+    tags: List[RecordTags]
+    """Custom tags for the DNS record. This field has no effect on DNS responses."""
+
+    ttl: TTLParam
+    """Time To Live (TTL) of the DNS record in seconds.
+
+    Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
+    minimum reduced to 30 for Enterprise zones.
     """
 
     type: Literal["URI"]
