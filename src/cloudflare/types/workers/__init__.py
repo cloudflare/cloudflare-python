@@ -7,11 +7,9 @@ from .script import Script as Script
 from .binding import Binding as Binding
 from .d1_binding import D1Binding as D1Binding
 from .r2_binding import R2Binding as R2Binding
-from .ai_run_params import AIRunParams as AIRunParams
 from .binding_param import BindingParam as BindingParam
 from .migration_step import MigrationStep as MigrationStep
 from .script_setting import ScriptSetting as ScriptSetting
-from .ai_run_response import AIRunResponse as AIRunResponse
 from .service_binding import ServiceBinding as ServiceBinding
 from .d1_binding_param import D1BindingParam as D1BindingParam
 from .r2_binding_param import R2BindingParam as R2BindingParam

@@ -7,21 +7,22 @@ from typing_extensions import overload
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
     required_args,
     maybe_transform,
     async_maybe_transform,
 )
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
+from ..._compat import cached_property
+from ...types.ai import ai_run_params
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._wrappers import ResultWrapper
+from ..._wrappers import ResultWrapper
 from .models.models import (
     ModelsResource,
     AsyncModelsResource,
@@ -30,9 +31,8 @@ from .models.models import (
     ModelsResourceWithStreamingResponse,
     AsyncModelsResourceWithStreamingResponse,
 )
-from ...._base_client import make_request_options
-from ....types.workers import ai_run_params
-from ....types.workers.ai_run_response import AIRunResponse
+from ..._base_client import make_request_options
+from ...types.ai.ai_run_response import AIRunResponse
 
 __all__ = ["AIResource", "AsyncAIResource"]
 
