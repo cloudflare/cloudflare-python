@@ -8,6 +8,14 @@ from .assets import (
     AssetsResourceWithStreamingResponse,
     AsyncAssetsResourceWithStreamingResponse,
 )
+from .routes import (
+    RoutesResource,
+    AsyncRoutesResource,
+    RoutesResourceWithRawResponse,
+    AsyncRoutesResourceWithRawResponse,
+    RoutesResourceWithStreamingResponse,
+    AsyncRoutesResourceWithStreamingResponse,
+)
 from .domains import (
     DomainsResource,
     AsyncDomainsResource,
@@ -50,6 +58,12 @@ from .account_settings import (
 )
 
 __all__ = [
+    "RoutesResource",
+    "AsyncRoutesResource",
+    "RoutesResourceWithRawResponse",
+    "AsyncRoutesResourceWithRawResponse",
+    "RoutesResourceWithStreamingResponse",
+    "AsyncRoutesResourceWithStreamingResponse",
     "AssetsResource",
     "AsyncAssetsResource",
     "AssetsResourceWithRawResponse",

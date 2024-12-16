@@ -2,6 +2,14 @@
 
 from __future__ import annotations
 
+from .routes import (
+    RoutesResource,
+    AsyncRoutesResource,
+    RoutesResourceWithRawResponse,
+    AsyncRoutesResourceWithRawResponse,
+    RoutesResourceWithStreamingResponse,
+    AsyncRoutesResourceWithStreamingResponse,
+)
 from .domains import (
     DomainsResource,
     AsyncDomainsResource,
@@ -50,6 +58,10 @@ __all__ = ["WorkersResource", "AsyncWorkersResource"]
 
 class WorkersResource(SyncAPIResource):
     @cached_property
+    def routes(self) -> RoutesResource:
+        return RoutesResource(self._client)
+
+    @cached_property
     def assets(self) -> AssetsResource:
         return AssetsResource(self._client)
 
@@ -90,6 +102,10 @@ class WorkersResource(SyncAPIResource):
 
 
 class AsyncWorkersResource(AsyncAPIResource):
+    @cached_property
+    def routes(self) -> AsyncRoutesResource:
+        return AsyncRoutesResource(self._client)
+
     @cached_property
     def assets(self) -> AsyncAssetsResource:
         return AsyncAssetsResource(self._client)
@@ -135,6 +151,10 @@ class WorkersResourceWithRawResponse:
         self._workers = workers
 
     @cached_property
+    def routes(self) -> RoutesResourceWithRawResponse:
+        return RoutesResourceWithRawResponse(self._workers.routes)
+
+    @cached_property
     def assets(self) -> AssetsResourceWithRawResponse:
         return AssetsResourceWithRawResponse(self._workers.assets)
 
@@ -158,6 +178,10 @@ class WorkersResourceWithRawResponse:
 class AsyncWorkersResourceWithRawResponse:
     def __init__(self, workers: AsyncWorkersResource) -> None:
         self._workers = workers
+
+    @cached_property
+    def routes(self) -> AsyncRoutesResourceWithRawResponse:
+        return AsyncRoutesResourceWithRawResponse(self._workers.routes)
 
     @cached_property
     def assets(self) -> AsyncAssetsResourceWithRawResponse:
@@ -185,6 +209,10 @@ class WorkersResourceWithStreamingResponse:
         self._workers = workers
 
     @cached_property
+    def routes(self) -> RoutesResourceWithStreamingResponse:
+        return RoutesResourceWithStreamingResponse(self._workers.routes)
+
+    @cached_property
     def assets(self) -> AssetsResourceWithStreamingResponse:
         return AssetsResourceWithStreamingResponse(self._workers.assets)
 
@@ -208,6 +236,10 @@ class WorkersResourceWithStreamingResponse:
 class AsyncWorkersResourceWithStreamingResponse:
     def __init__(self, workers: AsyncWorkersResource) -> None:
         self._workers = workers
+
+    @cached_property
+    def routes(self) -> AsyncRoutesResourceWithStreamingResponse:
+        return AsyncRoutesResourceWithStreamingResponse(self._workers.routes)
 
     @cached_property
     def assets(self) -> AsyncAssetsResourceWithStreamingResponse:
