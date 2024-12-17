@@ -123,20 +123,6 @@ Methods:
 
 - <code title="put /accounts/{account_id}/tokens/{token_id}/value">client.accounts.tokens.value.<a href="./src/cloudflare/resources/accounts/tokens/value.py">update</a>(token_id, \*, account_id, \*\*<a href="src/cloudflare/types/accounts/tokens/value_update_params.py">params</a>) -> <a href="./src/cloudflare/types/shared/token_value.py">str</a></code>
 
-## Logs
-
-### Audit
-
-Types:
-
-```python
-from cloudflare.types.accounts.logs import AuditListResponse
-```
-
-Methods:
-
-- <code title="get /accounts/{account_id}/logs/audit">client.accounts.logs.audit.<a href="./src/cloudflare/resources/accounts/logs/audit.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/accounts/logs/audit_list_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/logs/audit_list_response.py">SyncCursorLimitPagination[AuditListResponse]</a></code>
-
 # OriginCACertificates
 
 Types:
@@ -3270,7 +3256,6 @@ from cloudflare.types.addressing.prefixes.bgp import BGPPrefix
 
 Methods:
 
-- <code title="post /accounts/{account_id}/addressing/prefixes/{prefix_id}/bgp/prefixes">client.addressing.prefixes.bgp.prefixes.<a href="./src/cloudflare/resources/addressing/prefixes/bgp/prefixes.py">create</a>(prefix_id, \*, account_id, \*\*<a href="src/cloudflare/types/addressing/prefixes/bgp/prefix_create_params.py">params</a>) -> <a href="./src/cloudflare/types/addressing/prefixes/bgp/bgp_prefix.py">Optional[BGPPrefix]</a></code>
 - <code title="get /accounts/{account_id}/addressing/prefixes/{prefix_id}/bgp/prefixes">client.addressing.prefixes.bgp.prefixes.<a href="./src/cloudflare/resources/addressing/prefixes/bgp/prefixes.py">list</a>(prefix_id, \*, account_id) -> <a href="./src/cloudflare/types/addressing/prefixes/bgp/bgp_prefix.py">SyncSinglePage[BGPPrefix]</a></code>
 - <code title="patch /accounts/{account_id}/addressing/prefixes/{prefix_id}/bgp/prefixes/{bgp_prefix_id}">client.addressing.prefixes.bgp.prefixes.<a href="./src/cloudflare/resources/addressing/prefixes/bgp/prefixes.py">edit</a>(bgp_prefix_id, \*, account_id, prefix_id, \*\*<a href="src/cloudflare/types/addressing/prefixes/bgp/prefix_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/addressing/prefixes/bgp/bgp_prefix.py">Optional[BGPPrefix]</a></code>
 - <code title="get /accounts/{account_id}/addressing/prefixes/{prefix_id}/bgp/prefixes/{bgp_prefix_id}">client.addressing.prefixes.bgp.prefixes.<a href="./src/cloudflare/resources/addressing/prefixes/bgp/prefixes.py">get</a>(bgp_prefix_id, \*, account_id, prefix_id) -> <a href="./src/cloudflare/types/addressing/prefixes/bgp/bgp_prefix.py">Optional[BGPPrefix]</a></code>
@@ -5216,24 +5201,6 @@ from cloudflare.types.zero_trust import (
 )
 ```
 
-### GatewayCA
-
-Types:
-
-```python
-from cloudflare.types.zero_trust.access import (
-    GatewayCACreateResponse,
-    GatewayCAListResponse,
-    GatewayCADeleteResponse,
-)
-```
-
-Methods:
-
-- <code title="post /accounts/{account_id}/access/gateway_ca">client.zero_trust.access.gateway_ca.<a href="./src/cloudflare/resources/zero_trust/access/gateway_ca.py">create</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/access/gateway_ca_create_response.py">Optional[GatewayCACreateResponse]</a></code>
-- <code title="get /accounts/{account_id}/access/gateway_ca">client.zero_trust.access.gateway_ca.<a href="./src/cloudflare/resources/zero_trust/access/gateway_ca.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/access/gateway_ca_list_response.py">SyncSinglePage[GatewayCAListResponse]</a></code>
-- <code title="delete /accounts/{account_id}/access/gateway_ca/{certificate_id}">client.zero_trust.access.gateway_ca.<a href="./src/cloudflare/resources/zero_trust/access/gateway_ca.py">delete</a>(certificate_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/access/gateway_ca_delete_response.py">Optional[GatewayCADeleteResponse]</a></code>
-
 ### Infrastructure
 
 #### Targets
@@ -5970,48 +5937,6 @@ Methods:
 
 - <code title="put /accounts/{account_id}/dlp/payload_log">client.zero_trust.dlp.payload_logs.<a href="./src/cloudflare/resources/zero_trust/dlp/payload_logs.py">update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dlp/payload_log_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dlp/payload_log_update_response.py">Optional[PayloadLogUpdateResponse]</a></code>
 - <code title="get /accounts/{account_id}/dlp/payload_log">client.zero_trust.dlp.payload_logs.<a href="./src/cloudflare/resources/zero_trust/dlp/payload_logs.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dlp/payload_log_get_response.py">Optional[PayloadLogGetResponse]</a></code>
-
-### Email
-
-#### AccountMapping
-
-Types:
-
-```python
-from cloudflare.types.zero_trust.dlp.email import (
-    AccountMappingCreateResponse,
-    AccountMappingGetResponse,
-)
-```
-
-Methods:
-
-- <code title="post /accounts/{account_id}/dlp/email/account_mapping">client.zero_trust.dlp.email.account_mapping.<a href="./src/cloudflare/resources/zero_trust/dlp/email/account_mapping.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dlp/email/account_mapping_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dlp/email/account_mapping_create_response.py">Optional[AccountMappingCreateResponse]</a></code>
-- <code title="get /accounts/{account_id}/dlp/email/account_mapping">client.zero_trust.dlp.email.account_mapping.<a href="./src/cloudflare/resources/zero_trust/dlp/email/account_mapping.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dlp/email/account_mapping_get_response.py">Optional[AccountMappingGetResponse]</a></code>
-
-#### Rules
-
-Types:
-
-```python
-from cloudflare.types.zero_trust.dlp.email import (
-    RuleCreateResponse,
-    RuleUpdateResponse,
-    RuleListResponse,
-    RuleDeleteResponse,
-    RuleBulkEditResponse,
-    RuleGetResponse,
-)
-```
-
-Methods:
-
-- <code title="post /accounts/{account_id}/dlp/email/rules">client.zero_trust.dlp.email.rules.<a href="./src/cloudflare/resources/zero_trust/dlp/email/rules.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dlp/email/rule_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dlp/email/rule_create_response.py">Optional[RuleCreateResponse]</a></code>
-- <code title="put /accounts/{account_id}/dlp/email/rules/{rule_id}">client.zero_trust.dlp.email.rules.<a href="./src/cloudflare/resources/zero_trust/dlp/email/rules.py">update</a>(rule_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dlp/email/rule_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dlp/email/rule_update_response.py">Optional[RuleUpdateResponse]</a></code>
-- <code title="get /accounts/{account_id}/dlp/email/rules">client.zero_trust.dlp.email.rules.<a href="./src/cloudflare/resources/zero_trust/dlp/email/rules.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dlp/email/rule_list_response.py">SyncSinglePage[RuleListResponse]</a></code>
-- <code title="delete /accounts/{account_id}/dlp/email/rules/{rule_id}">client.zero_trust.dlp.email.rules.<a href="./src/cloudflare/resources/zero_trust/dlp/email/rules.py">delete</a>(rule_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dlp/email/rule_delete_response.py">Optional[RuleDeleteResponse]</a></code>
-- <code title="patch /accounts/{account_id}/dlp/email/rules">client.zero_trust.dlp.email.rules.<a href="./src/cloudflare/resources/zero_trust/dlp/email/rules.py">bulk_edit</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dlp/email/rule_bulk_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dlp/email/rule_bulk_edit_response.py">Optional[RuleBulkEditResponse]</a></code>
-- <code title="get /accounts/{account_id}/dlp/email/rules/{rule_id}">client.zero_trust.dlp.email.rules.<a href="./src/cloudflare/resources/zero_trust/dlp/email/rules.py">get</a>(rule_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dlp/email/rule_get_response.py">Optional[RuleGetResponse]</a></code>
 
 ### Profiles
 
