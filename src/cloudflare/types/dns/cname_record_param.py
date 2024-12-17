@@ -20,6 +20,22 @@ class Settings(TypedDict, total=False):
     flattened.
     """
 
+    ipv4_only: bool
+    """
+    When enabled, only A records will be generated, and AAAA records will not be
+    created. This setting is intended for exceptional cases. Note that this option
+    only applies to proxied records and it has no effect on whether Cloudflare
+    communicates with the origin using IPv4 or IPv6.
+    """
+
+    ipv6_only: bool
+    """
+    When enabled, only AAAA records will be generated, and A records will not be
+    created. This setting is intended for exceptional cases. Note that this option
+    only applies to proxied records and it has no effect on whether Cloudflare
+    communicates with the origin using IPv4 or IPv6.
+    """
+
 
 class CNAMERecordParam(TypedDict, total=False):
     comment: str
@@ -41,6 +57,7 @@ class CNAMERecordParam(TypedDict, total=False):
     """
 
     settings: Settings
+    """Settings for the DNS record."""
 
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""

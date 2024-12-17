@@ -79,6 +79,7 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.ARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["A"] | NotGiven = NOT_GIVEN,
@@ -112,6 +113,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -139,6 +142,7 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.AAAARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["AAAA"] | NotGiven = NOT_GIVEN,
@@ -172,6 +176,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -199,6 +205,7 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.CAARecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.CAARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["CAA"] | NotGiven = NOT_GIVEN,
@@ -232,6 +239,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -259,6 +268,7 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.CERTRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.CERTRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["CERT"] | NotGiven = NOT_GIVEN,
@@ -291,6 +301,8 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
+
+          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -353,6 +365,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -380,6 +394,7 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.DNSKEYRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.DNSKEYRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["DNSKEY"] | NotGiven = NOT_GIVEN,
@@ -413,6 +428,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -440,6 +457,7 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.DSRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.DSRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["DS"] | NotGiven = NOT_GIVEN,
@@ -473,6 +491,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -500,6 +520,7 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.HTTPSRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.HTTPSRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["HTTPS"] | NotGiven = NOT_GIVEN,
@@ -533,6 +554,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -560,6 +583,7 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.LOCRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.LOCRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["LOC"] | NotGiven = NOT_GIVEN,
@@ -593,6 +617,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -621,6 +647,7 @@ class RecordsResource(SyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.MXRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["MX"] | NotGiven = NOT_GIVEN,
@@ -657,6 +684,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -684,6 +713,7 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.NAPTRRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.NAPTRRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["NAPTR"] | NotGiven = NOT_GIVEN,
@@ -717,6 +747,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -744,6 +776,7 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.NSRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["NS"] | NotGiven = NOT_GIVEN,
@@ -777,6 +810,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -804,6 +839,7 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.DNSRecordsOpenpgpkeyRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["OPENPGPKEY"] | NotGiven = NOT_GIVEN,
@@ -837,6 +873,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -864,6 +902,7 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.PTRRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["PTR"] | NotGiven = NOT_GIVEN,
@@ -897,6 +936,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -924,6 +965,7 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.SMIMEARecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.SMIMEARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SMIMEA"] | NotGiven = NOT_GIVEN,
@@ -957,6 +999,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -984,6 +1028,7 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.SRVRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.SRVRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SRV"] | NotGiven = NOT_GIVEN,
@@ -1017,6 +1062,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -1044,6 +1091,7 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.SSHFPRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.SSHFPRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SSHFP"] | NotGiven = NOT_GIVEN,
@@ -1077,6 +1125,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -1104,6 +1154,7 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.SVCBRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.SVCBRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SVCB"] | NotGiven = NOT_GIVEN,
@@ -1137,6 +1188,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -1164,6 +1217,7 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.TLSARecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.TLSARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["TLSA"] | NotGiven = NOT_GIVEN,
@@ -1197,6 +1251,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -1224,6 +1280,7 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.TXTRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["TXT"] | NotGiven = NOT_GIVEN,
@@ -1262,6 +1319,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -1290,6 +1349,7 @@ class RecordsResource(SyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.URIRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["URI"] | NotGiven = NOT_GIVEN,
@@ -1326,6 +1386,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -1353,6 +1415,9 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.ARecordSettings
+        | record_create_params.CNAMERecordSettings
+        | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["A"]
@@ -1389,7 +1454,6 @@ class RecordsResource(SyncAPIResource):
         | record_create_params.SSHFPRecordData
         | record_create_params.URIRecordData
         | NotGiven = NOT_GIVEN,
-        settings: record_create_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1410,11 +1474,11 @@ class RecordsResource(SyncAPIResource):
                         "content": content,
                         "name": name,
                         "proxied": proxied,
+                        "settings": settings,
                         "tags": tags,
                         "ttl": ttl,
                         "type": type,
                         "data": data,
-                        "settings": settings,
                         "priority": priority,
                     },
                     record_create_params.RecordCreateParams,
@@ -1442,6 +1506,7 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.ARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["A"] | NotGiven = NOT_GIVEN,
@@ -1477,6 +1542,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -1505,6 +1572,7 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.AAAARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["AAAA"] | NotGiven = NOT_GIVEN,
@@ -1540,6 +1608,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -1568,6 +1638,7 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.CAARecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.CAARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["CAA"] | NotGiven = NOT_GIVEN,
@@ -1603,6 +1674,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -1631,6 +1704,7 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.CERTRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.CERTRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["CERT"] | NotGiven = NOT_GIVEN,
@@ -1665,6 +1739,8 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
+
+          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -1730,6 +1806,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -1758,6 +1836,7 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.DNSKEYRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.DNSKEYRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["DNSKEY"] | NotGiven = NOT_GIVEN,
@@ -1793,6 +1872,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -1821,6 +1902,7 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.DSRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.DSRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["DS"] | NotGiven = NOT_GIVEN,
@@ -1856,6 +1938,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -1884,6 +1968,7 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.HTTPSRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.HTTPSRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["HTTPS"] | NotGiven = NOT_GIVEN,
@@ -1919,6 +2004,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -1947,6 +2034,7 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.LOCRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.LOCRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["LOC"] | NotGiven = NOT_GIVEN,
@@ -1982,6 +2070,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -2011,6 +2101,7 @@ class RecordsResource(SyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.MXRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["MX"] | NotGiven = NOT_GIVEN,
@@ -2049,6 +2140,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -2077,6 +2170,7 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.NAPTRRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.NAPTRRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["NAPTR"] | NotGiven = NOT_GIVEN,
@@ -2112,6 +2206,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -2140,6 +2236,7 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.NSRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["NS"] | NotGiven = NOT_GIVEN,
@@ -2175,6 +2272,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -2203,6 +2302,7 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.DNSRecordsOpenpgpkeyRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["OPENPGPKEY"] | NotGiven = NOT_GIVEN,
@@ -2238,6 +2338,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -2266,6 +2368,7 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.PTRRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["PTR"] | NotGiven = NOT_GIVEN,
@@ -2301,6 +2404,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -2329,6 +2434,7 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.SMIMEARecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.SMIMEARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SMIMEA"] | NotGiven = NOT_GIVEN,
@@ -2364,6 +2470,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -2392,6 +2500,7 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.SRVRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.SRVRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SRV"] | NotGiven = NOT_GIVEN,
@@ -2427,6 +2536,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -2455,6 +2566,7 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.SSHFPRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.SSHFPRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SSHFP"] | NotGiven = NOT_GIVEN,
@@ -2490,6 +2602,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -2518,6 +2632,7 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.SVCBRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.SVCBRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SVCB"] | NotGiven = NOT_GIVEN,
@@ -2553,6 +2668,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -2581,6 +2698,7 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.TLSARecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.TLSARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["TLSA"] | NotGiven = NOT_GIVEN,
@@ -2616,6 +2734,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -2644,6 +2764,7 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.TXTRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["TXT"] | NotGiven = NOT_GIVEN,
@@ -2684,6 +2805,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -2713,6 +2836,7 @@ class RecordsResource(SyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.URIRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["URI"] | NotGiven = NOT_GIVEN,
@@ -2751,6 +2875,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -2779,6 +2905,9 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.ARecordSettings
+        | record_update_params.CNAMERecordSettings
+        | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["A"]
@@ -2815,7 +2944,6 @@ class RecordsResource(SyncAPIResource):
         | record_update_params.SSHFPRecordData
         | record_update_params.URIRecordData
         | NotGiven = NOT_GIVEN,
-        settings: record_update_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2838,11 +2966,11 @@ class RecordsResource(SyncAPIResource):
                         "content": content,
                         "name": name,
                         "proxied": proxied,
+                        "settings": settings,
                         "tags": tags,
                         "ttl": ttl,
                         "type": type,
                         "data": data,
-                        "settings": settings,
                         "priority": priority,
                     },
                     record_update_params.RecordUpdateParams,
@@ -3104,6 +3232,7 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.ARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["A"] | NotGiven = NOT_GIVEN,
@@ -3139,6 +3268,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -3167,6 +3298,7 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.AAAARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["AAAA"] | NotGiven = NOT_GIVEN,
@@ -3202,6 +3334,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -3230,6 +3364,7 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.CAARecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.CAARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["CAA"] | NotGiven = NOT_GIVEN,
@@ -3265,6 +3400,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -3293,6 +3430,7 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.CERTRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.CERTRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["CERT"] | NotGiven = NOT_GIVEN,
@@ -3327,6 +3465,8 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
+
+          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -3392,6 +3532,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -3420,6 +3562,7 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.DNSKEYRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.DNSKEYRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["DNSKEY"] | NotGiven = NOT_GIVEN,
@@ -3455,6 +3598,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -3483,6 +3628,7 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.DSRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.DSRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["DS"] | NotGiven = NOT_GIVEN,
@@ -3518,6 +3664,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -3546,6 +3694,7 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.HTTPSRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.HTTPSRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["HTTPS"] | NotGiven = NOT_GIVEN,
@@ -3581,6 +3730,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -3609,6 +3760,7 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.LOCRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.LOCRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["LOC"] | NotGiven = NOT_GIVEN,
@@ -3644,6 +3796,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -3673,6 +3827,7 @@ class RecordsResource(SyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.MXRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["MX"] | NotGiven = NOT_GIVEN,
@@ -3711,6 +3866,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -3739,6 +3896,7 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.NAPTRRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.NAPTRRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["NAPTR"] | NotGiven = NOT_GIVEN,
@@ -3774,6 +3932,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -3802,6 +3962,7 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.NSRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["NS"] | NotGiven = NOT_GIVEN,
@@ -3837,6 +3998,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -3865,6 +4028,7 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.DNSRecordsOpenpgpkeyRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["OPENPGPKEY"] | NotGiven = NOT_GIVEN,
@@ -3900,6 +4064,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -3928,6 +4094,7 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.PTRRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["PTR"] | NotGiven = NOT_GIVEN,
@@ -3963,6 +4130,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -3991,6 +4160,7 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.SMIMEARecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.SMIMEARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SMIMEA"] | NotGiven = NOT_GIVEN,
@@ -4026,6 +4196,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -4054,6 +4226,7 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.SRVRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.SRVRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SRV"] | NotGiven = NOT_GIVEN,
@@ -4089,6 +4262,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -4117,6 +4292,7 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.SSHFPRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.SSHFPRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SSHFP"] | NotGiven = NOT_GIVEN,
@@ -4152,6 +4328,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -4180,6 +4358,7 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.SVCBRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.SVCBRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SVCB"] | NotGiven = NOT_GIVEN,
@@ -4215,6 +4394,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -4243,6 +4424,7 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.TLSARecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.TLSARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["TLSA"] | NotGiven = NOT_GIVEN,
@@ -4278,6 +4460,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -4306,6 +4490,7 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.TXTRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["TXT"] | NotGiven = NOT_GIVEN,
@@ -4346,6 +4531,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -4375,6 +4562,7 @@ class RecordsResource(SyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.URIRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["URI"] | NotGiven = NOT_GIVEN,
@@ -4413,6 +4601,8 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -4441,6 +4631,7 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.ARecordSettings | record_edit_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["A"]
@@ -4477,7 +4668,6 @@ class RecordsResource(SyncAPIResource):
         | record_edit_params.SSHFPRecordData
         | record_edit_params.URIRecordData
         | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4500,11 +4690,11 @@ class RecordsResource(SyncAPIResource):
                         "content": content,
                         "name": name,
                         "proxied": proxied,
+                        "settings": settings,
                         "tags": tags,
                         "ttl": ttl,
                         "type": type,
                         "data": data,
-                        "settings": settings,
                         "priority": priority,
                     },
                     record_edit_params.RecordEditParams,
@@ -4754,6 +4944,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.ARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["A"] | NotGiven = NOT_GIVEN,
@@ -4787,6 +4978,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -4814,6 +5007,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.AAAARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["AAAA"] | NotGiven = NOT_GIVEN,
@@ -4847,6 +5041,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -4874,6 +5070,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.CAARecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.CAARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["CAA"] | NotGiven = NOT_GIVEN,
@@ -4907,6 +5104,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -4934,6 +5133,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.CERTRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.CERTRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["CERT"] | NotGiven = NOT_GIVEN,
@@ -4966,6 +5166,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
+
+          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -5028,6 +5230,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -5055,6 +5259,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.DNSKEYRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.DNSKEYRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["DNSKEY"] | NotGiven = NOT_GIVEN,
@@ -5088,6 +5293,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -5115,6 +5322,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.DSRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.DSRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["DS"] | NotGiven = NOT_GIVEN,
@@ -5148,6 +5356,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -5175,6 +5385,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.HTTPSRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.HTTPSRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["HTTPS"] | NotGiven = NOT_GIVEN,
@@ -5208,6 +5419,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -5235,6 +5448,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.LOCRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.LOCRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["LOC"] | NotGiven = NOT_GIVEN,
@@ -5268,6 +5482,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -5296,6 +5512,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.MXRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["MX"] | NotGiven = NOT_GIVEN,
@@ -5332,6 +5549,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -5359,6 +5578,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.NAPTRRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.NAPTRRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["NAPTR"] | NotGiven = NOT_GIVEN,
@@ -5392,6 +5612,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -5419,6 +5641,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.NSRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["NS"] | NotGiven = NOT_GIVEN,
@@ -5452,6 +5675,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -5479,6 +5704,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.DNSRecordsOpenpgpkeyRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["OPENPGPKEY"] | NotGiven = NOT_GIVEN,
@@ -5512,6 +5738,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -5539,6 +5767,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.PTRRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["PTR"] | NotGiven = NOT_GIVEN,
@@ -5572,6 +5801,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -5599,6 +5830,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.SMIMEARecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.SMIMEARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SMIMEA"] | NotGiven = NOT_GIVEN,
@@ -5632,6 +5864,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -5659,6 +5893,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.SRVRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.SRVRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SRV"] | NotGiven = NOT_GIVEN,
@@ -5692,6 +5927,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -5719,6 +5956,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.SSHFPRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.SSHFPRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SSHFP"] | NotGiven = NOT_GIVEN,
@@ -5752,6 +5990,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -5779,6 +6019,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.SVCBRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.SVCBRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SVCB"] | NotGiven = NOT_GIVEN,
@@ -5812,6 +6053,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -5839,6 +6082,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.TLSARecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.TLSARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["TLSA"] | NotGiven = NOT_GIVEN,
@@ -5872,6 +6116,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -5899,6 +6145,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.TXTRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["TXT"] | NotGiven = NOT_GIVEN,
@@ -5937,6 +6184,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -5965,6 +6214,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.URIRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["URI"] | NotGiven = NOT_GIVEN,
@@ -6001,6 +6251,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -6028,6 +6280,9 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_create_params.ARecordSettings
+        | record_create_params.CNAMERecordSettings
+        | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["A"]
@@ -6064,7 +6319,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         | record_create_params.SSHFPRecordData
         | record_create_params.URIRecordData
         | NotGiven = NOT_GIVEN,
-        settings: record_create_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -6085,11 +6339,11 @@ class AsyncRecordsResource(AsyncAPIResource):
                         "content": content,
                         "name": name,
                         "proxied": proxied,
+                        "settings": settings,
                         "tags": tags,
                         "ttl": ttl,
                         "type": type,
                         "data": data,
-                        "settings": settings,
                         "priority": priority,
                     },
                     record_create_params.RecordCreateParams,
@@ -6117,6 +6371,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.ARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["A"] | NotGiven = NOT_GIVEN,
@@ -6152,6 +6407,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -6180,6 +6437,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.AAAARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["AAAA"] | NotGiven = NOT_GIVEN,
@@ -6215,6 +6473,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -6243,6 +6503,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.CAARecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.CAARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["CAA"] | NotGiven = NOT_GIVEN,
@@ -6278,6 +6539,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -6306,6 +6569,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.CERTRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.CERTRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["CERT"] | NotGiven = NOT_GIVEN,
@@ -6340,6 +6604,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
+
+          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -6405,6 +6671,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -6433,6 +6701,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.DNSKEYRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.DNSKEYRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["DNSKEY"] | NotGiven = NOT_GIVEN,
@@ -6468,6 +6737,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -6496,6 +6767,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.DSRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.DSRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["DS"] | NotGiven = NOT_GIVEN,
@@ -6531,6 +6803,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -6559,6 +6833,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.HTTPSRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.HTTPSRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["HTTPS"] | NotGiven = NOT_GIVEN,
@@ -6594,6 +6869,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -6622,6 +6899,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.LOCRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.LOCRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["LOC"] | NotGiven = NOT_GIVEN,
@@ -6657,6 +6935,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -6686,6 +6966,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.MXRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["MX"] | NotGiven = NOT_GIVEN,
@@ -6724,6 +7005,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -6752,6 +7035,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.NAPTRRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.NAPTRRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["NAPTR"] | NotGiven = NOT_GIVEN,
@@ -6787,6 +7071,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -6815,6 +7101,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.NSRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["NS"] | NotGiven = NOT_GIVEN,
@@ -6850,6 +7137,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -6878,6 +7167,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.DNSRecordsOpenpgpkeyRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["OPENPGPKEY"] | NotGiven = NOT_GIVEN,
@@ -6913,6 +7203,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -6941,6 +7233,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.PTRRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["PTR"] | NotGiven = NOT_GIVEN,
@@ -6976,6 +7269,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -7004,6 +7299,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.SMIMEARecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.SMIMEARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SMIMEA"] | NotGiven = NOT_GIVEN,
@@ -7039,6 +7335,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -7067,6 +7365,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.SRVRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.SRVRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SRV"] | NotGiven = NOT_GIVEN,
@@ -7102,6 +7401,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -7130,6 +7431,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.SSHFPRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.SSHFPRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SSHFP"] | NotGiven = NOT_GIVEN,
@@ -7165,6 +7467,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -7193,6 +7497,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.SVCBRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.SVCBRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SVCB"] | NotGiven = NOT_GIVEN,
@@ -7228,6 +7533,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -7256,6 +7563,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.TLSARecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.TLSARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["TLSA"] | NotGiven = NOT_GIVEN,
@@ -7291,6 +7599,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -7319,6 +7629,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.TXTRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["TXT"] | NotGiven = NOT_GIVEN,
@@ -7359,6 +7670,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -7388,6 +7701,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.URIRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["URI"] | NotGiven = NOT_GIVEN,
@@ -7426,6 +7740,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -7454,6 +7770,9 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_update_params.ARecordSettings
+        | record_update_params.CNAMERecordSettings
+        | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["A"]
@@ -7490,7 +7809,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         | record_update_params.SSHFPRecordData
         | record_update_params.URIRecordData
         | NotGiven = NOT_GIVEN,
-        settings: record_update_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -7513,11 +7831,11 @@ class AsyncRecordsResource(AsyncAPIResource):
                         "content": content,
                         "name": name,
                         "proxied": proxied,
+                        "settings": settings,
                         "tags": tags,
                         "ttl": ttl,
                         "type": type,
                         "data": data,
-                        "settings": settings,
                         "priority": priority,
                     },
                     record_update_params.RecordUpdateParams,
@@ -7779,6 +8097,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.ARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["A"] | NotGiven = NOT_GIVEN,
@@ -7814,6 +8133,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -7842,6 +8163,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.AAAARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["AAAA"] | NotGiven = NOT_GIVEN,
@@ -7877,6 +8199,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -7905,6 +8229,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.CAARecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.CAARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["CAA"] | NotGiven = NOT_GIVEN,
@@ -7940,6 +8265,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -7968,6 +8295,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.CERTRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.CERTRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["CERT"] | NotGiven = NOT_GIVEN,
@@ -8002,6 +8330,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
+
+          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -8067,6 +8397,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -8095,6 +8427,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.DNSKEYRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.DNSKEYRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["DNSKEY"] | NotGiven = NOT_GIVEN,
@@ -8130,6 +8463,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -8158,6 +8493,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.DSRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.DSRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["DS"] | NotGiven = NOT_GIVEN,
@@ -8193,6 +8529,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -8221,6 +8559,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.HTTPSRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.HTTPSRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["HTTPS"] | NotGiven = NOT_GIVEN,
@@ -8256,6 +8595,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -8284,6 +8625,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.LOCRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.LOCRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["LOC"] | NotGiven = NOT_GIVEN,
@@ -8319,6 +8661,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -8348,6 +8692,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.MXRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["MX"] | NotGiven = NOT_GIVEN,
@@ -8386,6 +8731,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -8414,6 +8761,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.NAPTRRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.NAPTRRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["NAPTR"] | NotGiven = NOT_GIVEN,
@@ -8449,6 +8797,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -8477,6 +8827,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.NSRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["NS"] | NotGiven = NOT_GIVEN,
@@ -8512,6 +8863,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -8540,6 +8893,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.DNSRecordsOpenpgpkeyRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["OPENPGPKEY"] | NotGiven = NOT_GIVEN,
@@ -8575,6 +8929,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -8603,6 +8959,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.PTRRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["PTR"] | NotGiven = NOT_GIVEN,
@@ -8638,6 +8995,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -8666,6 +9025,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.SMIMEARecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.SMIMEARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SMIMEA"] | NotGiven = NOT_GIVEN,
@@ -8701,6 +9061,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -8729,6 +9091,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.SRVRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.SRVRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SRV"] | NotGiven = NOT_GIVEN,
@@ -8764,6 +9127,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -8792,6 +9157,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.SSHFPRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.SSHFPRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SSHFP"] | NotGiven = NOT_GIVEN,
@@ -8827,6 +9193,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -8855,6 +9223,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.SVCBRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.SVCBRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SVCB"] | NotGiven = NOT_GIVEN,
@@ -8890,6 +9259,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -8918,6 +9289,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.TLSARecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.TLSARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["TLSA"] | NotGiven = NOT_GIVEN,
@@ -8953,6 +9325,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -8981,6 +9355,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.TXTRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["TXT"] | NotGiven = NOT_GIVEN,
@@ -9021,6 +9396,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -9050,6 +9427,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.URIRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["URI"] | NotGiven = NOT_GIVEN,
@@ -9088,6 +9466,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
+          settings: Settings for the DNS record.
+
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -9116,6 +9496,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.ARecordSettings | record_edit_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["A"]
@@ -9152,7 +9533,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         | record_edit_params.SSHFPRecordData
         | record_edit_params.URIRecordData
         | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -9175,11 +9555,11 @@ class AsyncRecordsResource(AsyncAPIResource):
                         "content": content,
                         "name": name,
                         "proxied": proxied,
+                        "settings": settings,
                         "tags": tags,
                         "ttl": ttl,
                         "type": type,
                         "data": data,
-                        "settings": settings,
                         "priority": priority,
                     },
                     record_edit_params.RecordEditParams,
