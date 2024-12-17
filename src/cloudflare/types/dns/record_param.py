@@ -28,7 +28,25 @@ from .sshfp_record_param import SSHFPRecordParam
 from .dnskey_record_param import DNSKEYRecordParam
 from .smimea_record_param import SMIMEARecordParam
 
-__all__ = ["RecordParam", "DNSRecordsOpenpgpkeyRecord"]
+__all__ = ["RecordParam", "DNSRecordsOpenpgpkeyRecord", "DNSRecordsOpenpgpkeyRecordSettings"]
+
+
+class DNSRecordsOpenpgpkeyRecordSettings(TypedDict, total=False):
+    ipv4_only: bool
+    """
+    When enabled, only A records will be generated, and AAAA records will not be
+    created. This setting is intended for exceptional cases. Note that this option
+    only applies to proxied records and it has no effect on whether Cloudflare
+    communicates with the origin using IPv4 or IPv6.
+    """
+
+    ipv6_only: bool
+    """
+    When enabled, only AAAA records will be generated, and A records will not be
+    created. This setting is intended for exceptional cases. Note that this option
+    only applies to proxied records and it has no effect on whether Cloudflare
+    communicates with the origin using IPv4 or IPv6.
+    """
 
 
 class DNSRecordsOpenpgpkeyRecord(TypedDict, total=False):
@@ -49,6 +67,9 @@ class DNSRecordsOpenpgpkeyRecord(TypedDict, total=False):
     Whether the record is receiving the performance and security benefits of
     Cloudflare.
     """
+
+    settings: DNSRecordsOpenpgpkeyRecordSettings
+    """Settings for the DNS record."""
 
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
