@@ -22,7 +22,7 @@ from ....._response import (
 from ....._wrappers import ResultWrapper
 from .....pagination import SyncSinglePage, AsyncSinglePage
 from ....._base_client import AsyncPaginator, make_request_options
-from .....types.addressing.prefixes.bgp import prefix_edit_params, prefix_create_params
+from .....types.addressing.prefixes.bgp import prefix_edit_params
 from .....types.addressing.prefixes.bgp.bgp_prefix import BGPPrefix
 
 __all__ = ["PrefixesResource", "AsyncPrefixesResource"]
@@ -47,56 +47,6 @@ class PrefixesResource(SyncAPIResource):
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
         return PrefixesResourceWithStreamingResponse(self)
-
-    def create(
-        self,
-        prefix_id: str,
-        *,
-        account_id: str,
-        cidr: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[BGPPrefix]:
-        """
-        Create a BGP prefix, controlling the BGP advertisement status of a specific
-        subnet. When created, BGP prefixes are initially withdrawn, and can be
-        advertised with the Update BGP Prefix API.
-
-        Args:
-          account_id: Identifier
-
-          prefix_id: Identifier
-
-          cidr: IP Prefix in Classless Inter-Domain Routing format.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not prefix_id:
-            raise ValueError(f"Expected a non-empty value for `prefix_id` but received {prefix_id!r}")
-        return self._post(
-            f"/accounts/{account_id}/addressing/prefixes/{prefix_id}/bgp/prefixes",
-            body=maybe_transform({"cidr": cidr}, prefix_create_params.PrefixCreateParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[BGPPrefix]]._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[BGPPrefix]], ResultWrapper[BGPPrefix]),
-        )
 
     def list(
         self,
@@ -265,56 +215,6 @@ class AsyncPrefixesResource(AsyncAPIResource):
         """
         return AsyncPrefixesResourceWithStreamingResponse(self)
 
-    async def create(
-        self,
-        prefix_id: str,
-        *,
-        account_id: str,
-        cidr: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[BGPPrefix]:
-        """
-        Create a BGP prefix, controlling the BGP advertisement status of a specific
-        subnet. When created, BGP prefixes are initially withdrawn, and can be
-        advertised with the Update BGP Prefix API.
-
-        Args:
-          account_id: Identifier
-
-          prefix_id: Identifier
-
-          cidr: IP Prefix in Classless Inter-Domain Routing format.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not prefix_id:
-            raise ValueError(f"Expected a non-empty value for `prefix_id` but received {prefix_id!r}")
-        return await self._post(
-            f"/accounts/{account_id}/addressing/prefixes/{prefix_id}/bgp/prefixes",
-            body=await async_maybe_transform({"cidr": cidr}, prefix_create_params.PrefixCreateParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[BGPPrefix]]._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[BGPPrefix]], ResultWrapper[BGPPrefix]),
-        )
-
     def list(
         self,
         prefix_id: str,
@@ -466,9 +366,6 @@ class PrefixesResourceWithRawResponse:
     def __init__(self, prefixes: PrefixesResource) -> None:
         self._prefixes = prefixes
 
-        self.create = to_raw_response_wrapper(
-            prefixes.create,
-        )
         self.list = to_raw_response_wrapper(
             prefixes.list,
         )
@@ -484,9 +381,6 @@ class AsyncPrefixesResourceWithRawResponse:
     def __init__(self, prefixes: AsyncPrefixesResource) -> None:
         self._prefixes = prefixes
 
-        self.create = async_to_raw_response_wrapper(
-            prefixes.create,
-        )
         self.list = async_to_raw_response_wrapper(
             prefixes.list,
         )
@@ -502,9 +396,6 @@ class PrefixesResourceWithStreamingResponse:
     def __init__(self, prefixes: PrefixesResource) -> None:
         self._prefixes = prefixes
 
-        self.create = to_streamed_response_wrapper(
-            prefixes.create,
-        )
         self.list = to_streamed_response_wrapper(
             prefixes.list,
         )
@@ -520,9 +411,6 @@ class AsyncPrefixesResourceWithStreamingResponse:
     def __init__(self, prefixes: AsyncPrefixesResource) -> None:
         self._prefixes = prefixes
 
-        self.create = async_to_streamed_response_wrapper(
-            prefixes.create,
-        )
         self.list = async_to_streamed_response_wrapper(
             prefixes.list,
         )
