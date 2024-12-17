@@ -53,6 +53,7 @@ from .saas_app_name_id_format import SaaSAppNameIDFormat as SaaSAppNameIDFormat
 from .application_get_response import ApplicationGetResponse as ApplicationGetResponse
 from .bookmark_delete_response import BookmarkDeleteResponse as BookmarkDeleteResponse
 from .custom_page_without_html import CustomPageWithoutHTML as CustomPageWithoutHTML
+from .gateway_ca_list_response import GatewayCAListResponse as GatewayCAListResponse
 from .application_create_params import ApplicationCreateParams as ApplicationCreateParams
 from .application_list_response import ApplicationListResponse as ApplicationListResponse
 from .application_update_params import ApplicationUpdateParams as ApplicationUpdateParams
@@ -62,6 +63,8 @@ from .custom_page_create_params import CustomPageCreateParams as CustomPageCreat
 from .custom_page_update_params import CustomPageUpdateParams as CustomPageUpdateParams
 from .scim_config_mapping_param import SCIMConfigMappingParam as SCIMConfigMappingParam
 from .service_token_list_params import ServiceTokenListParams as ServiceTokenListParams
+from .gateway_ca_create_response import GatewayCACreateResponse as GatewayCACreateResponse
+from .gateway_ca_delete_response import GatewayCADeleteResponse as GatewayCADeleteResponse
 from .application_create_response import ApplicationCreateResponse as ApplicationCreateResponse
 from .application_delete_response import ApplicationDeleteResponse as ApplicationDeleteResponse
 from .application_update_response import ApplicationUpdateResponse as ApplicationUpdateResponse
