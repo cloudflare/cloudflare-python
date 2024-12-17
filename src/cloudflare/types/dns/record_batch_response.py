@@ -31,13 +31,35 @@ __all__ = [
     "RecordBatchResponse",
     "Delete",
     "DeleteDNSRecordsOpenpgpkeyRecord",
+    "DeleteDNSRecordsOpenpgpkeyRecordSettings",
     "Patch",
     "PatchDNSRecordsOpenpgpkeyRecord",
+    "PatchDNSRecordsOpenpgpkeyRecordSettings",
     "Post",
     "PostDNSRecordsOpenpgpkeyRecord",
+    "PostDNSRecordsOpenpgpkeyRecordSettings",
     "Put",
     "PutDNSRecordsOpenpgpkeyRecord",
+    "PutDNSRecordsOpenpgpkeyRecordSettings",
 ]
+
+
+class DeleteDNSRecordsOpenpgpkeyRecordSettings(BaseModel):
+    ipv4_only: Optional[bool] = None
+    """
+    When enabled, only A records will be generated, and AAAA records will not be
+    created. This setting is intended for exceptional cases. Note that this option
+    only applies to proxied records and it has no effect on whether Cloudflare
+    communicates with the origin using IPv4 or IPv6.
+    """
+
+    ipv6_only: Optional[bool] = None
+    """
+    When enabled, only AAAA records will be generated, and A records will not be
+    created. This setting is intended for exceptional cases. Note that this option
+    only applies to proxied records and it has no effect on whether Cloudflare
+    communicates with the origin using IPv4 or IPv6.
+    """
 
 
 class DeleteDNSRecordsOpenpgpkeyRecord(BaseModel):
@@ -58,6 +80,9 @@ class DeleteDNSRecordsOpenpgpkeyRecord(BaseModel):
     Whether the record is receiving the performance and security benefits of
     Cloudflare.
     """
+
+    settings: Optional[DeleteDNSRecordsOpenpgpkeyRecordSettings] = None
+    """Settings for the DNS record."""
 
     tags: Optional[List[RecordTags]] = None
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
@@ -98,6 +123,24 @@ Delete: TypeAlias = Union[
 ]
 
 
+class PatchDNSRecordsOpenpgpkeyRecordSettings(BaseModel):
+    ipv4_only: Optional[bool] = None
+    """
+    When enabled, only A records will be generated, and AAAA records will not be
+    created. This setting is intended for exceptional cases. Note that this option
+    only applies to proxied records and it has no effect on whether Cloudflare
+    communicates with the origin using IPv4 or IPv6.
+    """
+
+    ipv6_only: Optional[bool] = None
+    """
+    When enabled, only AAAA records will be generated, and A records will not be
+    created. This setting is intended for exceptional cases. Note that this option
+    only applies to proxied records and it has no effect on whether Cloudflare
+    communicates with the origin using IPv4 or IPv6.
+    """
+
+
 class PatchDNSRecordsOpenpgpkeyRecord(BaseModel):
     comment: Optional[str] = None
     """Comments or notes about the DNS record.
@@ -116,6 +159,9 @@ class PatchDNSRecordsOpenpgpkeyRecord(BaseModel):
     Whether the record is receiving the performance and security benefits of
     Cloudflare.
     """
+
+    settings: Optional[PatchDNSRecordsOpenpgpkeyRecordSettings] = None
+    """Settings for the DNS record."""
 
     tags: Optional[List[RecordTags]] = None
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
@@ -156,6 +202,24 @@ Patch: TypeAlias = Union[
 ]
 
 
+class PostDNSRecordsOpenpgpkeyRecordSettings(BaseModel):
+    ipv4_only: Optional[bool] = None
+    """
+    When enabled, only A records will be generated, and AAAA records will not be
+    created. This setting is intended for exceptional cases. Note that this option
+    only applies to proxied records and it has no effect on whether Cloudflare
+    communicates with the origin using IPv4 or IPv6.
+    """
+
+    ipv6_only: Optional[bool] = None
+    """
+    When enabled, only AAAA records will be generated, and A records will not be
+    created. This setting is intended for exceptional cases. Note that this option
+    only applies to proxied records and it has no effect on whether Cloudflare
+    communicates with the origin using IPv4 or IPv6.
+    """
+
+
 class PostDNSRecordsOpenpgpkeyRecord(BaseModel):
     comment: Optional[str] = None
     """Comments or notes about the DNS record.
@@ -174,6 +238,9 @@ class PostDNSRecordsOpenpgpkeyRecord(BaseModel):
     Whether the record is receiving the performance and security benefits of
     Cloudflare.
     """
+
+    settings: Optional[PostDNSRecordsOpenpgpkeyRecordSettings] = None
+    """Settings for the DNS record."""
 
     tags: Optional[List[RecordTags]] = None
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
@@ -214,6 +281,24 @@ Post: TypeAlias = Union[
 ]
 
 
+class PutDNSRecordsOpenpgpkeyRecordSettings(BaseModel):
+    ipv4_only: Optional[bool] = None
+    """
+    When enabled, only A records will be generated, and AAAA records will not be
+    created. This setting is intended for exceptional cases. Note that this option
+    only applies to proxied records and it has no effect on whether Cloudflare
+    communicates with the origin using IPv4 or IPv6.
+    """
+
+    ipv6_only: Optional[bool] = None
+    """
+    When enabled, only AAAA records will be generated, and A records will not be
+    created. This setting is intended for exceptional cases. Note that this option
+    only applies to proxied records and it has no effect on whether Cloudflare
+    communicates with the origin using IPv4 or IPv6.
+    """
+
+
 class PutDNSRecordsOpenpgpkeyRecord(BaseModel):
     comment: Optional[str] = None
     """Comments or notes about the DNS record.
@@ -232,6 +317,9 @@ class PutDNSRecordsOpenpgpkeyRecord(BaseModel):
     Whether the record is receiving the performance and security benefits of
     Cloudflare.
     """
+
+    settings: Optional[PutDNSRecordsOpenpgpkeyRecordSettings] = None
+    """Settings for the DNS record."""
 
     tags: Optional[List[RecordTags]] = None
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
