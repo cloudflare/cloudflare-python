@@ -63,7 +63,6 @@ from .record_scan_response import RecordScanResponse as RecordScanResponse
 from .record_update_params import RecordUpdateParams as RecordUpdateParams
 from .setting_get_response import SettingGetResponse as SettingGetResponse
 from .record_batch_response import RecordBatchResponse as RecordBatchResponse
-from .record_process_timing import RecordProcessTiming as RecordProcessTiming
 from .setting_edit_response import SettingEditResponse as SettingEditResponse
 from .dnssec_delete_response import DNSSECDeleteResponse as DNSSECDeleteResponse
 from .record_create_response import RecordCreateResponse as RecordCreateResponse
