@@ -54,6 +54,14 @@ from ......_utils import (
     async_maybe_transform,
 )
 from ......_compat import cached_property
+from .asset_upload import (
+    AssetUploadResource,
+    AsyncAssetUploadResource,
+    AssetUploadResourceWithRawResponse,
+    AsyncAssetUploadResourceWithRawResponse,
+    AssetUploadResourceWithStreamingResponse,
+    AsyncAssetUploadResourceWithStreamingResponse,
+)
 from ......_resource import SyncAPIResource, AsyncAPIResource
 from ......_response import (
     to_raw_response_wrapper,
@@ -71,6 +79,10 @@ __all__ = ["ScriptsResource", "AsyncScriptsResource"]
 
 
 class ScriptsResource(SyncAPIResource):
+    @cached_property
+    def asset_upload(self) -> AssetUploadResource:
+        return AssetUploadResource(self._client)
+
     @cached_property
     def content(self) -> ContentResource:
         return ContentResource(self._client)
@@ -340,6 +352,10 @@ class ScriptsResource(SyncAPIResource):
 
 
 class AsyncScriptsResource(AsyncAPIResource):
+    @cached_property
+    def asset_upload(self) -> AsyncAssetUploadResource:
+        return AsyncAssetUploadResource(self._client)
+
     @cached_property
     def content(self) -> AsyncContentResource:
         return AsyncContentResource(self._client)
@@ -623,6 +639,10 @@ class ScriptsResourceWithRawResponse:
         )
 
     @cached_property
+    def asset_upload(self) -> AssetUploadResourceWithRawResponse:
+        return AssetUploadResourceWithRawResponse(self._scripts.asset_upload)
+
+    @cached_property
     def content(self) -> ContentResourceWithRawResponse:
         return ContentResourceWithRawResponse(self._scripts.content)
 
@@ -656,6 +676,10 @@ class AsyncScriptsResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             scripts.get,
         )
+
+    @cached_property
+    def asset_upload(self) -> AsyncAssetUploadResourceWithRawResponse:
+        return AsyncAssetUploadResourceWithRawResponse(self._scripts.asset_upload)
 
     @cached_property
     def content(self) -> AsyncContentResourceWithRawResponse:
@@ -693,6 +717,10 @@ class ScriptsResourceWithStreamingResponse:
         )
 
     @cached_property
+    def asset_upload(self) -> AssetUploadResourceWithStreamingResponse:
+        return AssetUploadResourceWithStreamingResponse(self._scripts.asset_upload)
+
+    @cached_property
     def content(self) -> ContentResourceWithStreamingResponse:
         return ContentResourceWithStreamingResponse(self._scripts.content)
 
@@ -726,6 +754,10 @@ class AsyncScriptsResourceWithStreamingResponse:
         self.get = async_to_streamed_response_wrapper(
             scripts.get,
         )
+
+    @cached_property
+    def asset_upload(self) -> AsyncAssetUploadResourceWithStreamingResponse:
+        return AsyncAssetUploadResourceWithStreamingResponse(self._scripts.asset_upload)
 
     @cached_property
     def content(self) -> AsyncContentResourceWithStreamingResponse:
