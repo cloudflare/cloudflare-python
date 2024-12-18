@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from .message import Message as Message
 from .settings import Settings as Settings
-from .api_shield import APIShield as APIShield
 from .configuration import Configuration as Configuration
 from .public_schema import PublicSchema as PublicSchema
 from .schema_upload import SchemaUpload as SchemaUpload
