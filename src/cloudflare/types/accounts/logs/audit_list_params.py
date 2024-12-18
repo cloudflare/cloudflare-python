@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Union
-from datetime import date, datetime
+from datetime import date
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ...._utils import PropertyInfo
@@ -15,16 +15,16 @@ class AuditListParams(TypedDict, total=False):
     account_id: Required[str]
     """The unique id that identifies the account."""
 
-    before: Required[Annotated[Union[Union[str, date], Union[str, datetime]], PropertyInfo(format="iso8601")]]
+    before: Required[Annotated[Union[str, date], PropertyInfo(format="iso8601")]]
     """
-    Filters actions based on a given timestamp, returning only logs that occurred
-    before the specified date.
+    Filters actions based on a given timestamp in the format yyyy-mm-dd, returning
+    only logs that occurred on and before the specified date.
     """
 
-    since: Required[Annotated[Union[Union[str, date], Union[str, datetime]], PropertyInfo(format="iso8601")]]
+    since: Required[Annotated[Union[str, date], PropertyInfo(format="iso8601")]]
     """
-    Filters actions based on a given timestamp, returning only logs that occurred
-    after the specified date.
+    Filters actions based on a given timestamp in the format yyyy-mm-dd, returning
+    only logs that occurred on and after the specified date.
     """
 
     account_name: str
