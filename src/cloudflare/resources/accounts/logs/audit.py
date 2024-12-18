@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Union
-from datetime import date, datetime
+from datetime import date
 from typing_extensions import Literal
 
 import httpx
@@ -50,8 +50,8 @@ class AuditResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        before: Union[Union[str, date], Union[str, datetime]],
-        since: Union[Union[str, date], Union[str, datetime]],
+        before: Union[str, date],
+        since: Union[str, date],
         account_name: str | NotGiven = NOT_GIVEN,
         action_result: Literal["success", "failure"] | NotGiven = NOT_GIVEN,
         action_type: Literal["create", "delete", "view", "update"] | NotGiven = NOT_GIVEN,
@@ -94,11 +94,11 @@ class AuditResource(SyncAPIResource):
         Args:
           account_id: The unique id that identifies the account.
 
-          before: Filters actions based on a given timestamp, returning only logs that occurred
-              before the specified date.
+          before: Filters actions based on a given timestamp in the format yyyy-mm-dd, returning
+              only logs that occurred on and before the specified date.
 
-          since: Filters actions based on a given timestamp, returning only logs that occurred
-              after the specified date.
+          since: Filters actions based on a given timestamp in the format yyyy-mm-dd, returning
+              only logs that occurred on and after the specified date.
 
           account_name: Filters by the account name.
 
@@ -232,8 +232,8 @@ class AsyncAuditResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        before: Union[Union[str, date], Union[str, datetime]],
-        since: Union[Union[str, date], Union[str, datetime]],
+        before: Union[str, date],
+        since: Union[str, date],
         account_name: str | NotGiven = NOT_GIVEN,
         action_result: Literal["success", "failure"] | NotGiven = NOT_GIVEN,
         action_type: Literal["create", "delete", "view", "update"] | NotGiven = NOT_GIVEN,
@@ -276,11 +276,11 @@ class AsyncAuditResource(AsyncAPIResource):
         Args:
           account_id: The unique id that identifies the account.
 
-          before: Filters actions based on a given timestamp, returning only logs that occurred
-              before the specified date.
+          before: Filters actions based on a given timestamp in the format yyyy-mm-dd, returning
+              only logs that occurred on and before the specified date.
 
-          since: Filters actions based on a given timestamp, returning only logs that occurred
-              after the specified date.
+          since: Filters actions based on a given timestamp in the format yyyy-mm-dd, returning
+              only logs that occurred on and after the specified date.
 
           account_name: Filters by the account name.
 

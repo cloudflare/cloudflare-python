@@ -23,8 +23,8 @@ class TestAudit:
     def test_method_list(self, client: Cloudflare) -> None:
         audit = client.accounts.logs.audit.list(
             account_id="a67e14daa5f8dceeb91fe5449ba496ef",
-            before=parse_date("2014-10-30"),
-            since=parse_date("2014-10-30"),
+            before=parse_date("2024-10-31"),
+            since=parse_date("2024-10-30"),
         )
         assert_matches_type(SyncCursorLimitPagination[AuditListResponse], audit, path=["response"])
 
@@ -32,8 +32,8 @@ class TestAudit:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         audit = client.accounts.logs.audit.list(
             account_id="a67e14daa5f8dceeb91fe5449ba496ef",
-            before=parse_date("2014-10-30"),
-            since=parse_date("2014-10-30"),
+            before=parse_date("2024-10-31"),
+            since=parse_date("2024-10-30"),
             account_name="account_name",
             action_result="success",
             action_type="create",
@@ -65,8 +65,8 @@ class TestAudit:
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.accounts.logs.audit.with_raw_response.list(
             account_id="a67e14daa5f8dceeb91fe5449ba496ef",
-            before=parse_date("2014-10-30"),
-            since=parse_date("2014-10-30"),
+            before=parse_date("2024-10-31"),
+            since=parse_date("2024-10-30"),
         )
 
         assert response.is_closed is True
@@ -78,8 +78,8 @@ class TestAudit:
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.accounts.logs.audit.with_streaming_response.list(
             account_id="a67e14daa5f8dceeb91fe5449ba496ef",
-            before=parse_date("2014-10-30"),
-            since=parse_date("2014-10-30"),
+            before=parse_date("2024-10-31"),
+            since=parse_date("2024-10-30"),
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -94,8 +94,8 @@ class TestAudit:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.accounts.logs.audit.with_raw_response.list(
                 account_id="",
-                before=parse_date("2014-10-30"),
-                since=parse_date("2014-10-30"),
+                before=parse_date("2024-10-31"),
+                since=parse_date("2024-10-30"),
             )
 
 
@@ -106,8 +106,8 @@ class TestAsyncAudit:
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         audit = await async_client.accounts.logs.audit.list(
             account_id="a67e14daa5f8dceeb91fe5449ba496ef",
-            before=parse_date("2014-10-30"),
-            since=parse_date("2014-10-30"),
+            before=parse_date("2024-10-31"),
+            since=parse_date("2024-10-30"),
         )
         assert_matches_type(AsyncCursorLimitPagination[AuditListResponse], audit, path=["response"])
 
@@ -115,8 +115,8 @@ class TestAsyncAudit:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         audit = await async_client.accounts.logs.audit.list(
             account_id="a67e14daa5f8dceeb91fe5449ba496ef",
-            before=parse_date("2014-10-30"),
-            since=parse_date("2014-10-30"),
+            before=parse_date("2024-10-31"),
+            since=parse_date("2024-10-30"),
             account_name="account_name",
             action_result="success",
             action_type="create",
@@ -148,8 +148,8 @@ class TestAsyncAudit:
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.accounts.logs.audit.with_raw_response.list(
             account_id="a67e14daa5f8dceeb91fe5449ba496ef",
-            before=parse_date("2014-10-30"),
-            since=parse_date("2014-10-30"),
+            before=parse_date("2024-10-31"),
+            since=parse_date("2024-10-30"),
         )
 
         assert response.is_closed is True
@@ -161,8 +161,8 @@ class TestAsyncAudit:
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.accounts.logs.audit.with_streaming_response.list(
             account_id="a67e14daa5f8dceeb91fe5449ba496ef",
-            before=parse_date("2014-10-30"),
-            since=parse_date("2014-10-30"),
+            before=parse_date("2024-10-31"),
+            since=parse_date("2024-10-30"),
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -177,6 +177,6 @@ class TestAsyncAudit:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.accounts.logs.audit.with_raw_response.list(
                 account_id="",
-                before=parse_date("2014-10-30"),
-                since=parse_date("2014-10-30"),
+                before=parse_date("2024-10-31"),
+                since=parse_date("2024-10-30"),
             )
