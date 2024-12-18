@@ -14,7 +14,6 @@ from .service_binding import ServiceBinding as ServiceBinding
 from .d1_binding_param import D1BindingParam as D1BindingParam
 from .r2_binding_param import R2BindingParam as R2BindingParam
 from .mtls_cert_binding import MTLSCERTBinding as MTLSCERTBinding
-from .stepped_migration import SteppedMigration as SteppedMigration
 from .domain_list_params import DomainListParams as DomainListParams
 from .route_get_response import RouteGetResponse as RouteGetResponse
 from .route_create_params import RouteCreateParams as RouteCreateParams
@@ -36,7 +35,6 @@ from .script_update_response import ScriptUpdateResponse as ScriptUpdateResponse
 from .subdomain_get_response import SubdomainGetResponse as SubdomainGetResponse
 from .mtls_cert_binding_param import MTLSCERTBindingParam as MTLSCERTBindingParam
 from .placement_configuration import PlacementConfiguration as PlacementConfiguration
-from .stepped_migration_param import SteppedMigrationParam as SteppedMigrationParam
 from .subdomain_update_params import SubdomainUpdateParams as SubdomainUpdateParams
 from .subdomain_update_response import SubdomainUpdateResponse as SubdomainUpdateResponse
 from .dispatch_namespace_binding import DispatchNamespaceBinding as DispatchNamespaceBinding
