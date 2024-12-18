@@ -3,15 +3,22 @@
 from __future__ import annotations
 
 from typing import List, Union, Iterable, Optional
-from typing_extensions import Required, TypeAlias, TypedDict
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .....workers.binding_param import BindingParam
-from .....workers.stepped_migration_param import SteppedMigrationParam
+from .....workers.migration_step_param import MigrationStepParam
 from .....workers.single_step_migration_param import SingleStepMigrationParam
 from .....workers.placement_configuration_param import PlacementConfigurationParam
 from .....workers.scripts.consumer_script_param import ConsumerScriptParam
 
-__all__ = ["SettingEditParams", "Settings", "SettingsLimits", "SettingsMigrations", "SettingsObservability"]
+__all__ = [
+    "SettingEditParams",
+    "Settings",
+    "SettingsLimits",
+    "SettingsMigrations",
+    "SettingsMigrationsWorkersMultipleStepMigrations",
+    "SettingsObservability",
+]
 
 
 class SettingEditParams(TypedDict, total=False):
@@ -29,7 +36,21 @@ class SettingsLimits(TypedDict, total=False):
     """The amount of CPU time this Worker can use in milliseconds."""
 
 
-SettingsMigrations: TypeAlias = Union[SingleStepMigrationParam, SteppedMigrationParam]
+class SettingsMigrationsWorkersMultipleStepMigrations(TypedDict, total=False):
+    new_tag: str
+    """Tag to set as the latest migration tag."""
+
+    old_tag: str
+    """Tag used to verify against the latest migration tag for this Worker.
+
+    If they don't match, the upload is rejected.
+    """
+
+    steps: Iterable[MigrationStepParam]
+    """Migrations to apply in order."""
+
+
+SettingsMigrations: TypeAlias = Union[SingleStepMigrationParam, SettingsMigrationsWorkersMultipleStepMigrations]
 
 
 class SettingsObservability(TypedDict, total=False):
@@ -48,10 +69,18 @@ class Settings(TypedDict, total=False):
     """List of bindings attached to this Worker"""
 
     compatibility_date: str
-    """Opt your Worker into changes after this date"""
+    """Date indicating targeted support in the Workers runtime.
+
+    Backwards incompatible fixes to the runtime following this date will not affect
+    this Worker.
+    """
 
     compatibility_flags: List[str]
-    """Opt your Worker into specific changes"""
+    """Flags that enable or disable certain features in the Workers runtime.
+
+    Used to enable upcoming features or opt in or out of specific changes not
+    included in a `compatibility_date`.
+    """
 
     limits: SettingsLimits
     """Limits to apply for this Worker."""
@@ -73,5 +102,5 @@ class Settings(TypedDict, total=False):
     tail_consumers: Iterable[ConsumerScriptParam]
     """List of Workers that will consume logs from the attached Worker."""
 
-    usage_model: str
-    """Specifies the usage model for the Worker (e.g. 'bundled' or 'unbound')."""
+    usage_model: Literal["bundled", "unbound"]
+    """Usage model for the Worker invocations."""

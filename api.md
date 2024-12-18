@@ -2293,7 +2293,6 @@ from cloudflare.types.workers import (
     R2Binding,
     ServiceBinding,
     SingleStepMigration,
-    SteppedMigration,
     WorkerMetadata,
 )
 ```

@@ -3,11 +3,9 @@
 from __future__ import annotations
 
 from typing import Dict, List, Union, Iterable, Optional
-from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
-from ....._types import FileTypes
-from ....._utils import PropertyInfo
-from ....workers.stepped_migration_param import SteppedMigrationParam
+from ....workers.migration_step_param import MigrationStepParam
 from ....workers.single_step_migration_param import SingleStepMigrationParam
 from ....workers.placement_configuration_param import PlacementConfigurationParam
 from ....workers.scripts.consumer_script_param import ConsumerScriptParam
@@ -20,6 +18,7 @@ __all__ = [
     "Variant0MetadataAssetsConfig",
     "Variant0MetadataBinding",
     "Variant0MetadataMigrations",
+    "Variant0MetadataMigrationsWorkersMultipleStepMigrations",
     "Variant0MetadataObservability",
     "Variant1",
 ]
@@ -32,16 +31,7 @@ class Variant0(TypedDict, total=False):
     dispatch_namespace: Required[str]
     """Name of the Workers for Platforms dispatch namespace."""
 
-    any_part_name: Annotated[List[FileTypes], PropertyInfo(alias="<any part name>")]
-    """A module comprising a Worker script, often a javascript file.
-
-    Multiple modules may be provided as separate named parts, but at least one
-    module must be present and referenced in the metadata as `main_module` or
-    `body_part` by part name. Source maps may also be included using the
-    `application/source-map` content type.
-    """
-
-    metadata: Variant0Metadata
+    metadata: Required[Variant0Metadata]
     """JSON encoded metadata about the uploaded parts and Worker configuration."""
 
 
@@ -85,7 +75,24 @@ class Variant0MetadataBindingTyped(TypedDict, total=False):
 
 Variant0MetadataBinding: TypeAlias = Union[Variant0MetadataBindingTyped, Dict[str, object]]
 
-Variant0MetadataMigrations: TypeAlias = Union[SingleStepMigrationParam, SteppedMigrationParam]
+
+class Variant0MetadataMigrationsWorkersMultipleStepMigrations(TypedDict, total=False):
+    new_tag: str
+    """Tag to set as the latest migration tag."""
+
+    old_tag: str
+    """Tag used to verify against the latest migration tag for this Worker.
+
+    If they don't match, the upload is rejected.
+    """
+
+    steps: Iterable[MigrationStepParam]
+    """Migrations to apply in order."""
+
+
+Variant0MetadataMigrations: TypeAlias = Union[
+    SingleStepMigrationParam, Variant0MetadataMigrationsWorkersMultipleStepMigrations
+]
 
 
 class Variant0MetadataObservability(TypedDict, total=False):
@@ -160,7 +167,7 @@ class Variant0Metadata(TypedDict, total=False):
     """List of Workers that will consume logs from the attached Worker."""
 
     usage_model: Literal["bundled", "unbound"]
-    """Usage model to apply to invocations."""
+    """Usage model for the Worker invocations."""
 
     version_tags: Dict[str, str]
     """Key-value pairs to use as tags for this version of this Worker."""

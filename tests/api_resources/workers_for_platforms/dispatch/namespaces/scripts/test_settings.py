@@ -39,8 +39,8 @@ class TestSettings:
             dispatch_namespace="my-dispatch-namespace",
             settings={
                 "bindings": [{"type": "kv_namespace"}],
-                "compatibility_date": "2022-04-05",
-                "compatibility_flags": ["formdata_parser_supports_files"],
+                "compatibility_date": "2021-01-01",
+                "compatibility_flags": ["nodejs_compat"],
                 "limits": {"cpu_ms": 50},
                 "logpush": False,
                 "migrations": {
@@ -76,7 +76,7 @@ class TestSettings:
                         "namespace": "my-namespace",
                     }
                 ],
-                "usage_model": "unbound",
+                "usage_model": "bundled",
             },
         )
         assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
@@ -218,8 +218,8 @@ class TestAsyncSettings:
             dispatch_namespace="my-dispatch-namespace",
             settings={
                 "bindings": [{"type": "kv_namespace"}],
-                "compatibility_date": "2022-04-05",
-                "compatibility_flags": ["formdata_parser_supports_files"],
+                "compatibility_date": "2021-01-01",
+                "compatibility_flags": ["nodejs_compat"],
                 "limits": {"cpu_ms": 50},
                 "logpush": False,
                 "migrations": {
@@ -255,7 +255,7 @@ class TestAsyncSettings:
                         "namespace": "my-namespace",
                     }
                 ],
-                "usage_model": "unbound",
+                "usage_model": "bundled",
             },
         )
         assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
