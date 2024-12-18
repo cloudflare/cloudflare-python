@@ -3,7 +3,8 @@
 from __future__ import annotations
 
 from typing import List, Union
+from typing_extensions import TypeAlias
 
 __all__ = ["SettingValueParam"]
 
-SettingValueParam = Union[float, str, List[str]]
+SettingValueParam: TypeAlias = Union[float, str, List[str]]

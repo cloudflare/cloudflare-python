@@ -35,7 +35,7 @@ class TestPercentiles:
             from_="2023-09-20T17:00:00Z",
             to="2023-09-20T17:00:00Z",
             colo="colo",
-            device_id=["string", "string", "string"],
+            device_id=["string"],
         )
         assert_matches_type(Optional[HTTPDetailsPercentiles], percentile, path=["response"])
 
@@ -109,7 +109,7 @@ class TestAsyncPercentiles:
             from_="2023-09-20T17:00:00Z",
             to="2023-09-20T17:00:00Z",
             colo="colo",
-            device_id=["string", "string", "string"],
+            device_id=["string"],
         )
         assert_matches_type(Optional[HTTPDetailsPercentiles], percentile, path=["response"])
 

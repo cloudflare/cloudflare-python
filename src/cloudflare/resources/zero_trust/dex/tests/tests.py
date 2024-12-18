@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List
+from typing import List, Optional
 
 import httpx
 
@@ -27,7 +27,7 @@ from .unique_devices import (
 )
 from ....._base_client import AsyncPaginator, make_request_options
 from .....types.zero_trust.dex import test_list_params
-from .....types.zero_trust.dex.test_list_response import TestListResponse
+from .....types.zero_trust.dex.tests.tests import Tests
 
 __all__ = ["TestsResource", "AsyncTestsResource"]
 
@@ -41,10 +41,21 @@ class TestsResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> TestsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return TestsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> TestsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return TestsResourceWithStreamingResponse(self)
 
     def list(
@@ -62,9 +73,9 @@ class TestsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePagination[TestListResponse]:
+    ) -> SyncV4PagePagination[Optional[Tests]]:
         """
-        List DEX tests
+        List DEX tests with overview metrics
 
         Args:
           colo: Optionally filter result stats to a Cloudflare colo. Cannot be used in
@@ -90,8 +101,8 @@ class TestsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/dex/tests",
-            page=SyncV4PagePagination[TestListResponse],
+            f"/accounts/{account_id}/dex/tests/overview",
+            page=SyncV4PagePagination[Optional[Tests]],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -108,7 +119,7 @@ class TestsResource(SyncAPIResource):
                     test_list_params.TestListParams,
                 ),
             ),
-            model=TestListResponse,
+            model=Tests,
         )
 
 
@@ -119,10 +130,21 @@ class AsyncTestsResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncTestsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncTestsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncTestsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncTestsResourceWithStreamingResponse(self)
 
     def list(
@@ -140,9 +162,9 @@ class AsyncTestsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[TestListResponse, AsyncV4PagePagination[TestListResponse]]:
+    ) -> AsyncPaginator[Optional[Tests], AsyncV4PagePagination[Optional[Tests]]]:
         """
-        List DEX tests
+        List DEX tests with overview metrics
 
         Args:
           colo: Optionally filter result stats to a Cloudflare colo. Cannot be used in
@@ -168,8 +190,8 @@ class AsyncTestsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/dex/tests",
-            page=AsyncV4PagePagination[TestListResponse],
+            f"/accounts/{account_id}/dex/tests/overview",
+            page=AsyncV4PagePagination[Optional[Tests]],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -186,7 +208,7 @@ class AsyncTestsResource(AsyncAPIResource):
                     test_list_params.TestListParams,
                 ),
             ),
-            model=TestListResponse,
+            model=Tests,
         )
 
 

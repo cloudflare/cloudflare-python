@@ -1,7 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Union
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 from ..._models import BaseModel
 
@@ -9,7 +9,7 @@ __all__ = [
     "Configuration",
     "AuthIDCharacteristic",
     "AuthIDCharacteristicAPIShieldAuthIDCharacteristic",
-    "AuthIDCharacteristicAPIShieldAuthIDCharacteristicJwtClaim",
+    "AuthIDCharacteristicAPIShieldAuthIDCharacteristicJWTClaim",
 ]
 
 
@@ -21,7 +21,7 @@ class AuthIDCharacteristicAPIShieldAuthIDCharacteristic(BaseModel):
     """The type of characteristic."""
 
 
-class AuthIDCharacteristicAPIShieldAuthIDCharacteristicJwtClaim(BaseModel):
+class AuthIDCharacteristicAPIShieldAuthIDCharacteristicJWTClaim(BaseModel):
     name: str
     """
     Claim location expressed as `$(token_config_id):$(json_path)`, where
@@ -37,8 +37,8 @@ class AuthIDCharacteristicAPIShieldAuthIDCharacteristicJwtClaim(BaseModel):
     """The type of characteristic."""
 
 
-AuthIDCharacteristic = Union[
-    AuthIDCharacteristicAPIShieldAuthIDCharacteristic, AuthIDCharacteristicAPIShieldAuthIDCharacteristicJwtClaim
+AuthIDCharacteristic: TypeAlias = Union[
+    AuthIDCharacteristicAPIShieldAuthIDCharacteristic, AuthIDCharacteristicAPIShieldAuthIDCharacteristicJWTClaim
 ]
 
 

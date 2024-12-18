@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Iterable, Optional, cast
+from typing import Iterable, Optional
 from typing_extensions import Literal
 
 import httpx
@@ -20,7 +20,6 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._wrappers import ResultWrapper
 from ...types.intel import miscategorization_create_params
 from ..._base_client import make_request_options
 from ...types.intel.miscategorization_create_response import MiscategorizationCreateResponse
@@ -31,22 +30,33 @@ __all__ = ["MiscategorizationsResource", "AsyncMiscategorizationsResource"]
 class MiscategorizationsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> MiscategorizationsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return MiscategorizationsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> MiscategorizationsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return MiscategorizationsResourceWithStreamingResponse(self)
 
     def create(
         self,
         *,
         account_id: str,
-        content_adds: Iterable[float] | NotGiven = NOT_GIVEN,
-        content_removes: Iterable[float] | NotGiven = NOT_GIVEN,
+        content_adds: Iterable[int] | NotGiven = NOT_GIVEN,
+        content_removes: Iterable[int] | NotGiven = NOT_GIVEN,
         indicator_type: Literal["domain", "ipv4", "ipv6", "url"] | NotGiven = NOT_GIVEN,
-        ip: object | NotGiven = NOT_GIVEN,
-        security_adds: Iterable[float] | NotGiven = NOT_GIVEN,
-        security_removes: Iterable[float] | NotGiven = NOT_GIVEN,
+        ip: Optional[str] | NotGiven = NOT_GIVEN,
+        security_adds: Iterable[int] | NotGiven = NOT_GIVEN,
+        security_removes: Iterable[int] | NotGiven = NOT_GIVEN,
         url: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -54,9 +64,9 @@ class MiscategorizationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MiscategorizationCreateResponse]:
+    ) -> MiscategorizationCreateResponse:
         """
-        Create Miscategorization
+        Allows you to submit requests to change a domain’s category.
 
         Args:
           account_id: Identifier
@@ -85,55 +95,57 @@ class MiscategorizationsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return cast(
-            Optional[MiscategorizationCreateResponse],
-            self._post(
-                f"/accounts/{account_id}/intel/miscategorization",
-                body=maybe_transform(
-                    {
-                        "content_adds": content_adds,
-                        "content_removes": content_removes,
-                        "indicator_type": indicator_type,
-                        "ip": ip,
-                        "security_adds": security_adds,
-                        "security_removes": security_removes,
-                        "url": url,
-                    },
-                    miscategorization_create_params.MiscategorizationCreateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[MiscategorizationCreateResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[MiscategorizationCreateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._post(
+            f"/accounts/{account_id}/intel/miscategorization",
+            body=maybe_transform(
+                {
+                    "content_adds": content_adds,
+                    "content_removes": content_removes,
+                    "indicator_type": indicator_type,
+                    "ip": ip,
+                    "security_adds": security_adds,
+                    "security_removes": security_removes,
+                    "url": url,
+                },
+                miscategorization_create_params.MiscategorizationCreateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=MiscategorizationCreateResponse,
         )
 
 
 class AsyncMiscategorizationsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncMiscategorizationsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncMiscategorizationsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncMiscategorizationsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncMiscategorizationsResourceWithStreamingResponse(self)
 
     async def create(
         self,
         *,
         account_id: str,
-        content_adds: Iterable[float] | NotGiven = NOT_GIVEN,
-        content_removes: Iterable[float] | NotGiven = NOT_GIVEN,
+        content_adds: Iterable[int] | NotGiven = NOT_GIVEN,
+        content_removes: Iterable[int] | NotGiven = NOT_GIVEN,
         indicator_type: Literal["domain", "ipv4", "ipv6", "url"] | NotGiven = NOT_GIVEN,
-        ip: object | NotGiven = NOT_GIVEN,
-        security_adds: Iterable[float] | NotGiven = NOT_GIVEN,
-        security_removes: Iterable[float] | NotGiven = NOT_GIVEN,
+        ip: Optional[str] | NotGiven = NOT_GIVEN,
+        security_adds: Iterable[int] | NotGiven = NOT_GIVEN,
+        security_removes: Iterable[int] | NotGiven = NOT_GIVEN,
         url: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -141,9 +153,9 @@ class AsyncMiscategorizationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MiscategorizationCreateResponse]:
+    ) -> MiscategorizationCreateResponse:
         """
-        Create Miscategorization
+        Allows you to submit requests to change a domain’s category.
 
         Args:
           account_id: Identifier
@@ -172,33 +184,24 @@ class AsyncMiscategorizationsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return cast(
-            Optional[MiscategorizationCreateResponse],
-            await self._post(
-                f"/accounts/{account_id}/intel/miscategorization",
-                body=await async_maybe_transform(
-                    {
-                        "content_adds": content_adds,
-                        "content_removes": content_removes,
-                        "indicator_type": indicator_type,
-                        "ip": ip,
-                        "security_adds": security_adds,
-                        "security_removes": security_removes,
-                        "url": url,
-                    },
-                    miscategorization_create_params.MiscategorizationCreateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[MiscategorizationCreateResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[MiscategorizationCreateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._post(
+            f"/accounts/{account_id}/intel/miscategorization",
+            body=await async_maybe_transform(
+                {
+                    "content_adds": content_adds,
+                    "content_removes": content_removes,
+                    "indicator_type": indicator_type,
+                    "ip": ip,
+                    "security_adds": security_adds,
+                    "security_removes": security_removes,
+                    "url": url,
+                },
+                miscategorization_create_params.MiscategorizationCreateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=MiscategorizationCreateResponse,
         )
 
 

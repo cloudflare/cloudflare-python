@@ -10,6 +10,7 @@ import inspect
 import tracemalloc
 from typing import Any, Union, cast
 from unittest import mock
+from typing_extensions import Literal
 
 import httpx
 import pytest
@@ -371,7 +372,13 @@ class TestCloudflare:
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("X-Auth-Key") == api_key
 
-        client2 = Cloudflare(base_url=base_url, api_key=None, api_email=None, _strict_response_validation=True)
+        with update_env(
+            **{
+                "CLOUDFLARE_EMAIL": Omit(),
+                "CLOUDFLARE_API_KEY": Omit(),
+            }
+        ):
+            client2 = Cloudflare(base_url=base_url, api_key=None, api_email=None, _strict_response_validation=True)
 
         with pytest.raises(
             TypeError,
@@ -402,11 +409,11 @@ class TestCloudflare:
             FinalRequestOptions(
                 method="get",
                 url="/foo",
-                params={"foo": "baz", "query_param": "overriden"},
+                params={"foo": "baz", "query_param": "overridden"},
             )
         )
         url = httpx.URL(request.url)
-        assert dict(url.params) == {"foo": "baz", "query_param": "overriden"}
+        assert dict(url.params) == {"foo": "baz", "query_param": "overridden"}
 
     def test_request_extra_json(self) -> None:
         request = self.client._build_request(
@@ -774,6 +781,7 @@ class TestCloudflare:
             [3, "", 0.5],
             [2, "", 0.5 * 2.0],
             [1, "", 0.5 * 4.0],
+            [-1100, "", 8],  # test large number potentially overflowing
         ],
     )
     @mock.patch("time.time", mock.MagicMock(return_value=1696004797))
@@ -818,6 +826,87 @@ class TestCloudflare:
             )
 
         assert _get_open_connections(self.client) == 0
+
+    @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
+    @mock.patch("cloudflare._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @pytest.mark.respx(base_url=base_url)
+    @pytest.mark.parametrize("failure_mode", ["status", "exception"])
+    def test_retries_taken(
+        self,
+        client: Cloudflare,
+        failures_before_success: int,
+        failure_mode: Literal["status", "exception"],
+        respx_mock: MockRouter,
+    ) -> None:
+        client = client.with_options(max_retries=4)
+
+        nb_retries = 0
+
+        def retry_handler(_request: httpx.Request) -> httpx.Response:
+            nonlocal nb_retries
+            if nb_retries < failures_before_success:
+                nb_retries += 1
+                if failure_mode == "exception":
+                    raise RuntimeError("oops")
+                return httpx.Response(500)
+            return httpx.Response(200)
+
+        respx_mock.post("/zones").mock(side_effect=retry_handler)
+
+        response = client.zones.with_raw_response.create(account={}, name="example.com")
+
+        assert response.retries_taken == failures_before_success
+        assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
+
+    @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
+    @mock.patch("cloudflare._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @pytest.mark.respx(base_url=base_url)
+    def test_omit_retry_count_header(
+        self, client: Cloudflare, failures_before_success: int, respx_mock: MockRouter
+    ) -> None:
+        client = client.with_options(max_retries=4)
+
+        nb_retries = 0
+
+        def retry_handler(_request: httpx.Request) -> httpx.Response:
+            nonlocal nb_retries
+            if nb_retries < failures_before_success:
+                nb_retries += 1
+                return httpx.Response(500)
+            return httpx.Response(200)
+
+        respx_mock.post("/zones").mock(side_effect=retry_handler)
+
+        response = client.zones.with_raw_response.create(
+            account={}, name="example.com", extra_headers={"x-stainless-retry-count": Omit()}
+        )
+
+        assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
+
+    @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
+    @mock.patch("cloudflare._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @pytest.mark.respx(base_url=base_url)
+    def test_overwrite_retry_count_header(
+        self, client: Cloudflare, failures_before_success: int, respx_mock: MockRouter
+    ) -> None:
+        client = client.with_options(max_retries=4)
+
+        nb_retries = 0
+
+        def retry_handler(_request: httpx.Request) -> httpx.Response:
+            nonlocal nb_retries
+            if nb_retries < failures_before_success:
+                nb_retries += 1
+                return httpx.Response(500)
+            return httpx.Response(200)
+
+        respx_mock.post("/zones").mock(side_effect=retry_handler)
+
+        response = client.zones.with_raw_response.create(
+            account={}, name="example.com", extra_headers={"x-stainless-retry-count": "42"}
+        )
+
+        assert response.http_request.headers.get("x-stainless-retry-count") == "42"
 
 
 class TestAsyncCloudflare:
@@ -1142,7 +1231,13 @@ class TestAsyncCloudflare:
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("X-Auth-Key") == api_key
 
-        client2 = AsyncCloudflare(base_url=base_url, api_key=None, api_email=None, _strict_response_validation=True)
+        with update_env(
+            **{
+                "CLOUDFLARE_EMAIL": Omit(),
+                "CLOUDFLARE_API_KEY": Omit(),
+            }
+        ):
+            client2 = AsyncCloudflare(base_url=base_url, api_key=None, api_email=None, _strict_response_validation=True)
 
         with pytest.raises(
             TypeError,
@@ -1173,11 +1268,11 @@ class TestAsyncCloudflare:
             FinalRequestOptions(
                 method="get",
                 url="/foo",
-                params={"foo": "baz", "query_param": "overriden"},
+                params={"foo": "baz", "query_param": "overridden"},
             )
         )
         url = httpx.URL(request.url)
-        assert dict(url.params) == {"foo": "baz", "query_param": "overriden"}
+        assert dict(url.params) == {"foo": "baz", "query_param": "overridden"}
 
     def test_request_extra_json(self) -> None:
         request = self.client._build_request(
@@ -1554,6 +1649,7 @@ class TestAsyncCloudflare:
             [3, "", 0.5],
             [2, "", 0.5 * 2.0],
             [1, "", 0.5 * 4.0],
+            [-1100, "", 8],  # test large number potentially overflowing
         ],
     )
     @mock.patch("time.time", mock.MagicMock(return_value=1696004797))
@@ -1601,3 +1697,87 @@ class TestAsyncCloudflare:
             )
 
         assert _get_open_connections(self.client) == 0
+
+    @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
+    @mock.patch("cloudflare._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @pytest.mark.respx(base_url=base_url)
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize("failure_mode", ["status", "exception"])
+    async def test_retries_taken(
+        self,
+        async_client: AsyncCloudflare,
+        failures_before_success: int,
+        failure_mode: Literal["status", "exception"],
+        respx_mock: MockRouter,
+    ) -> None:
+        client = async_client.with_options(max_retries=4)
+
+        nb_retries = 0
+
+        def retry_handler(_request: httpx.Request) -> httpx.Response:
+            nonlocal nb_retries
+            if nb_retries < failures_before_success:
+                nb_retries += 1
+                if failure_mode == "exception":
+                    raise RuntimeError("oops")
+                return httpx.Response(500)
+            return httpx.Response(200)
+
+        respx_mock.post("/zones").mock(side_effect=retry_handler)
+
+        response = await client.zones.with_raw_response.create(account={}, name="example.com")
+
+        assert response.retries_taken == failures_before_success
+        assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
+
+    @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
+    @mock.patch("cloudflare._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @pytest.mark.respx(base_url=base_url)
+    @pytest.mark.asyncio
+    async def test_omit_retry_count_header(
+        self, async_client: AsyncCloudflare, failures_before_success: int, respx_mock: MockRouter
+    ) -> None:
+        client = async_client.with_options(max_retries=4)
+
+        nb_retries = 0
+
+        def retry_handler(_request: httpx.Request) -> httpx.Response:
+            nonlocal nb_retries
+            if nb_retries < failures_before_success:
+                nb_retries += 1
+                return httpx.Response(500)
+            return httpx.Response(200)
+
+        respx_mock.post("/zones").mock(side_effect=retry_handler)
+
+        response = await client.zones.with_raw_response.create(
+            account={}, name="example.com", extra_headers={"x-stainless-retry-count": Omit()}
+        )
+
+        assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
+
+    @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
+    @mock.patch("cloudflare._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @pytest.mark.respx(base_url=base_url)
+    @pytest.mark.asyncio
+    async def test_overwrite_retry_count_header(
+        self, async_client: AsyncCloudflare, failures_before_success: int, respx_mock: MockRouter
+    ) -> None:
+        client = async_client.with_options(max_retries=4)
+
+        nb_retries = 0
+
+        def retry_handler(_request: httpx.Request) -> httpx.Response:
+            nonlocal nb_retries
+            if nb_retries < failures_before_success:
+                nb_retries += 1
+                return httpx.Response(500)
+            return httpx.Response(200)
+
+        respx_mock.post("/zones").mock(side_effect=retry_handler)
+
+        response = await client.zones.with_raw_response.create(
+            account={}, name="example.com", extra_headers={"x-stainless-retry-count": "42"}
+        )
+
+        assert response.http_request.headers.get("x-stainless-retry-count") == "42"

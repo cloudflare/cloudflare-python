@@ -57,7 +57,7 @@ class PoolEditParams(TypedDict, total=False):
     be marked unhealthy and will failover to the next available pool.
     """
 
-    monitor: object
+    monitor: str
     """
     The ID of the Monitor to use for checking the health of origins within this
     pool.

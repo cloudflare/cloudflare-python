@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Dict, List
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
@@ -12,12 +13,6 @@ __all__ = ["MonitorUpdateParams"]
 class MonitorUpdateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
-
-    expected_codes: Required[str]
-    """The expected HTTP response code or code range of the health check.
-
-    This parameter is only valid for HTTP and HTTPS monitors.
-    """
 
     allow_insecure: bool
     """Do not validate the certificate when monitor use HTTPS.
@@ -47,13 +42,19 @@ class MonitorUpdateParams(TypedDict, total=False):
     parameter is only valid for HTTP and HTTPS monitors.
     """
 
+    expected_codes: str
+    """The expected HTTP response code or code range of the health check.
+
+    This parameter is only valid for HTTP and HTTPS monitors.
+    """
+
     follow_redirects: bool
     """Follow redirects if returned by the origin.
 
     This parameter is only valid for HTTP and HTTPS monitors.
     """
 
-    header: object
+    header: Dict[str, List[str]]
     """The HTTP request headers to send in the health check.
 
     It is recommended you set a Host header by default. The User-Agent header cannot

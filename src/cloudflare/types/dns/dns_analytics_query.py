@@ -2,9 +2,9 @@
 
 from typing import List, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from ..._models import BaseModel
-from .firewall.delta import Delta
 
 __all__ = ["DNSAnalyticsQuery"]
 
@@ -22,7 +22,7 @@ class DNSAnalyticsQuery(BaseModel):
     since: datetime
     """Start date and time of requesting data period in ISO 8601 format."""
 
-    time_delta: Delta
+    time_delta: Literal["all", "auto", "year", "quarter", "month", "week", "day", "hour", "dekaminute", "minute"]
     """Unit of time to group data by."""
 
     until: datetime

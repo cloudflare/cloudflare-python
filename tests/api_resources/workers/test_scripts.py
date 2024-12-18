@@ -18,7 +18,7 @@ from cloudflare._response import (
     AsyncStreamedBinaryAPIResponse,
 )
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.workers import Script
+from cloudflare.types.workers import Script, ScriptUpdateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -32,8 +32,9 @@ class TestScripts:
         script = client.workers.scripts.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            metadata={},
         )
-        assert_matches_type(Optional[Script], script, path=["response"])
+        assert_matches_type(Optional[ScriptUpdateResponse], script, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -41,83 +42,67 @@ class TestScripts:
         script = client.workers.scripts.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            rollback_to="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            any_part_name=[b"raw file contents", b"raw file contents", b"raw file contents"],
             metadata={
+                "assets": {
+                    "config": {
+                        "html_handling": "auto-trailing-slash",
+                        "not_found_handling": "none",
+                        "serve_directly": True,
+                    },
+                    "jwt": "jwt",
+                },
                 "bindings": [
                     {
                         "name": "MY_ENV_VAR",
-                        "text": "my_data",
                         "type": "plain_text",
                     }
                 ],
                 "body_part": "worker.js",
-                "compatibility_date": "2023-07-25",
-                "compatibility_flags": ["string", "string", "string"],
-                "keep_bindings": ["string", "string", "string"],
+                "compatibility_date": "2021-01-01",
+                "compatibility_flags": ["nodejs_compat"],
+                "keep_assets": False,
+                "keep_bindings": ["string"],
                 "logpush": False,
                 "main_module": "worker.js",
                 "migrations": {
+                    "deleted_classes": ["string"],
+                    "new_classes": ["string"],
+                    "new_sqlite_classes": ["string"],
                     "new_tag": "v2",
                     "old_tag": "v1",
-                    "deleted_classes": ["string", "string", "string"],
-                    "new_classes": ["string", "string", "string"],
                     "renamed_classes": [
                         {
                             "from": "from",
                             "to": "to",
-                        },
-                        {
-                            "from": "from",
-                            "to": "to",
-                        },
-                        {
-                            "from": "from",
-                            "to": "to",
-                        },
+                        }
                     ],
                     "transferred_classes": [
                         {
                             "from": "from",
                             "from_script": "from_script",
                             "to": "to",
-                        },
-                        {
-                            "from": "from",
-                            "from_script": "from_script",
-                            "to": "to",
-                        },
-                        {
-                            "from": "from",
-                            "from_script": "from_script",
-                            "to": "to",
-                        },
+                        }
                     ],
                 },
+                "observability": {
+                    "enabled": True,
+                    "head_sampling_rate": 0.1,
+                },
                 "placement": {"mode": "smart"},
-                "tags": ["string", "string", "string"],
+                "tags": ["string"],
                 "tail_consumers": [
                     {
+                        "service": "my-log-consumer",
                         "environment": "production",
                         "namespace": "my-namespace",
-                        "service": "my-log-consumer",
-                    },
-                    {
-                        "environment": "production",
-                        "namespace": "my-namespace",
-                        "service": "my-log-consumer",
-                    },
-                    {
-                        "environment": "production",
-                        "namespace": "my-namespace",
-                        "service": "my-log-consumer",
-                    },
+                    }
                 ],
                 "usage_model": "bundled",
-                "version_tags": {},
+                "version_tags": {"foo": "string"},
             },
+            rollback_to="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
         )
-        assert_matches_type(Optional[Script], script, path=["response"])
+        assert_matches_type(Optional[ScriptUpdateResponse], script, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -125,12 +110,13 @@ class TestScripts:
         response = client.workers.scripts.with_raw_response.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            metadata={},
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         script = response.parse()
-        assert_matches_type(Optional[Script], script, path=["response"])
+        assert_matches_type(Optional[ScriptUpdateResponse], script, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -138,12 +124,13 @@ class TestScripts:
         with client.workers.scripts.with_streaming_response.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            metadata={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             script = response.parse()
-            assert_matches_type(Optional[Script], script, path=["response"])
+            assert_matches_type(Optional[ScriptUpdateResponse], script, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -154,12 +141,14 @@ class TestScripts:
             client.workers.scripts.with_raw_response.update(
                 script_name="this-is_my_script-01",
                 account_id="",
+                metadata={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             client.workers.scripts.with_raw_response.update(
                 script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                metadata={},
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -169,7 +158,7 @@ class TestScripts:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[Script], script, path=["response"])
+        assert_matches_type(Optional[ScriptUpdateResponse], script, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -178,9 +167,9 @@ class TestScripts:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             rollback_to="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            message="message",
+            message="Message about the rollback.",
         )
-        assert_matches_type(Optional[Script], script, path=["response"])
+        assert_matches_type(Optional[ScriptUpdateResponse], script, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -193,7 +182,7 @@ class TestScripts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         script = response.parse()
-        assert_matches_type(Optional[Script], script, path=["response"])
+        assert_matches_type(Optional[ScriptUpdateResponse], script, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -206,7 +195,7 @@ class TestScripts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             script = response.parse()
-            assert_matches_type(Optional[Script], script, path=["response"])
+            assert_matches_type(Optional[ScriptUpdateResponse], script, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -396,8 +385,9 @@ class TestAsyncScripts:
         script = await async_client.workers.scripts.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            metadata={},
         )
-        assert_matches_type(Optional[Script], script, path=["response"])
+        assert_matches_type(Optional[ScriptUpdateResponse], script, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -405,83 +395,67 @@ class TestAsyncScripts:
         script = await async_client.workers.scripts.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            rollback_to="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            any_part_name=[b"raw file contents", b"raw file contents", b"raw file contents"],
             metadata={
+                "assets": {
+                    "config": {
+                        "html_handling": "auto-trailing-slash",
+                        "not_found_handling": "none",
+                        "serve_directly": True,
+                    },
+                    "jwt": "jwt",
+                },
                 "bindings": [
                     {
                         "name": "MY_ENV_VAR",
-                        "text": "my_data",
                         "type": "plain_text",
                     }
                 ],
                 "body_part": "worker.js",
-                "compatibility_date": "2023-07-25",
-                "compatibility_flags": ["string", "string", "string"],
-                "keep_bindings": ["string", "string", "string"],
+                "compatibility_date": "2021-01-01",
+                "compatibility_flags": ["nodejs_compat"],
+                "keep_assets": False,
+                "keep_bindings": ["string"],
                 "logpush": False,
                 "main_module": "worker.js",
                 "migrations": {
+                    "deleted_classes": ["string"],
+                    "new_classes": ["string"],
+                    "new_sqlite_classes": ["string"],
                     "new_tag": "v2",
                     "old_tag": "v1",
-                    "deleted_classes": ["string", "string", "string"],
-                    "new_classes": ["string", "string", "string"],
                     "renamed_classes": [
                         {
                             "from": "from",
                             "to": "to",
-                        },
-                        {
-                            "from": "from",
-                            "to": "to",
-                        },
-                        {
-                            "from": "from",
-                            "to": "to",
-                        },
+                        }
                     ],
                     "transferred_classes": [
                         {
                             "from": "from",
                             "from_script": "from_script",
                             "to": "to",
-                        },
-                        {
-                            "from": "from",
-                            "from_script": "from_script",
-                            "to": "to",
-                        },
-                        {
-                            "from": "from",
-                            "from_script": "from_script",
-                            "to": "to",
-                        },
+                        }
                     ],
                 },
+                "observability": {
+                    "enabled": True,
+                    "head_sampling_rate": 0.1,
+                },
                 "placement": {"mode": "smart"},
-                "tags": ["string", "string", "string"],
+                "tags": ["string"],
                 "tail_consumers": [
                     {
+                        "service": "my-log-consumer",
                         "environment": "production",
                         "namespace": "my-namespace",
-                        "service": "my-log-consumer",
-                    },
-                    {
-                        "environment": "production",
-                        "namespace": "my-namespace",
-                        "service": "my-log-consumer",
-                    },
-                    {
-                        "environment": "production",
-                        "namespace": "my-namespace",
-                        "service": "my-log-consumer",
-                    },
+                    }
                 ],
                 "usage_model": "bundled",
-                "version_tags": {},
+                "version_tags": {"foo": "string"},
             },
+            rollback_to="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
         )
-        assert_matches_type(Optional[Script], script, path=["response"])
+        assert_matches_type(Optional[ScriptUpdateResponse], script, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -489,12 +463,13 @@ class TestAsyncScripts:
         response = await async_client.workers.scripts.with_raw_response.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            metadata={},
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         script = await response.parse()
-        assert_matches_type(Optional[Script], script, path=["response"])
+        assert_matches_type(Optional[ScriptUpdateResponse], script, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -502,12 +477,13 @@ class TestAsyncScripts:
         async with async_client.workers.scripts.with_streaming_response.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            metadata={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             script = await response.parse()
-            assert_matches_type(Optional[Script], script, path=["response"])
+            assert_matches_type(Optional[ScriptUpdateResponse], script, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -518,12 +494,14 @@ class TestAsyncScripts:
             await async_client.workers.scripts.with_raw_response.update(
                 script_name="this-is_my_script-01",
                 account_id="",
+                metadata={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             await async_client.workers.scripts.with_raw_response.update(
                 script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                metadata={},
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -533,7 +511,7 @@ class TestAsyncScripts:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[Script], script, path=["response"])
+        assert_matches_type(Optional[ScriptUpdateResponse], script, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -542,9 +520,9 @@ class TestAsyncScripts:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             rollback_to="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            message="message",
+            message="Message about the rollback.",
         )
-        assert_matches_type(Optional[Script], script, path=["response"])
+        assert_matches_type(Optional[ScriptUpdateResponse], script, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -557,7 +535,7 @@ class TestAsyncScripts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         script = await response.parse()
-        assert_matches_type(Optional[Script], script, path=["response"])
+        assert_matches_type(Optional[ScriptUpdateResponse], script, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -570,7 +548,7 @@ class TestAsyncScripts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             script = await response.parse()
-            assert_matches_type(Optional[Script], script, path=["response"])
+            assert_matches_type(Optional[ScriptUpdateResponse], script, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

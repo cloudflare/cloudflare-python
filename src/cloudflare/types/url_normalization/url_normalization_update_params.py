@@ -2,17 +2,17 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["URLNormalizationUpdateParams"]
 
 
 class URLNormalizationUpdateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """The unique ID of the zone."""
 
-    scope: str
+    scope: Required[Literal["incoming", "both"]]
     """The scope of the URL normalization."""
 
-    type: str
+    type: Required[Literal["cloudflare", "rfc3986"]]
     """The type of URL normalization performed by Cloudflare."""

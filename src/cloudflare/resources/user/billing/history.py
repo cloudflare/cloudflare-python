@@ -29,19 +29,29 @@ __all__ = ["HistoryResource", "AsyncHistoryResource"]
 class HistoryResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> HistoryResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return HistoryResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> HistoryResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return HistoryResourceWithStreamingResponse(self)
 
     def list(
         self,
         *,
         action: str | NotGiven = NOT_GIVEN,
-        occured_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         occurred_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        order: Literal["type", "occured_at", "action"] | NotGiven = NOT_GIVEN,
+        order: Literal["type", "occurred_at", "action"] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
@@ -57,8 +67,6 @@ class HistoryResource(SyncAPIResource):
 
         Args:
           action: The billing item action.
-
-          occured_at: When the billing item was created.
 
           occurred_at: When the billing item was created.
 
@@ -89,7 +97,6 @@ class HistoryResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "action": action,
-                        "occured_at": occured_at,
                         "occurred_at": occurred_at,
                         "order": order,
                         "page": page,
@@ -106,19 +113,29 @@ class HistoryResource(SyncAPIResource):
 class AsyncHistoryResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncHistoryResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncHistoryResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncHistoryResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncHistoryResourceWithStreamingResponse(self)
 
     def list(
         self,
         *,
         action: str | NotGiven = NOT_GIVEN,
-        occured_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         occurred_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        order: Literal["type", "occured_at", "action"] | NotGiven = NOT_GIVEN,
+        order: Literal["type", "occurred_at", "action"] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
@@ -134,8 +151,6 @@ class AsyncHistoryResource(AsyncAPIResource):
 
         Args:
           action: The billing item action.
-
-          occured_at: When the billing item was created.
 
           occurred_at: When the billing item was created.
 
@@ -166,7 +181,6 @@ class AsyncHistoryResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "action": action,
-                        "occured_at": occured_at,
                         "occurred_at": occurred_at,
                         "order": order,
                         "page": page,

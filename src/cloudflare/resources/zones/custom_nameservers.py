@@ -31,10 +31,21 @@ __all__ = ["CustomNameserversResource", "AsyncCustomNameserversResource"]
 class CustomNameserversResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> CustomNameserversResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return CustomNameserversResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> CustomNameserversResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return CustomNameserversResourceWithStreamingResponse(self)
 
     def update(
@@ -56,6 +67,9 @@ class CustomNameserversResource(SyncAPIResource):
         If you would like new zones in the account to use account custom nameservers by
         default, use PUT /accounts/:identifier to set the account setting
         use_account_custom_ns_by_default to true.
+
+        Deprecated in favor of
+        [Update DNS Settings](https://developers.cloudflare.com/api/operations/dns-settings-for-a-zone-update-dns-settings).
 
         Args:
           zone_id: Identifier
@@ -103,9 +117,12 @@ class CustomNameserversResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CustomNameserverGetResponse]:
+    ) -> CustomNameserverGetResponse:
         """
         Get metadata for account-level custom nameservers on a zone.
+
+        Deprecated in favor of
+        [Show DNS Settings](https://developers.cloudflare.com/api/operations/dns-settings-for-a-zone-list-dns-settings).
 
         Args:
           zone_id: Identifier
@@ -123,23 +140,30 @@ class CustomNameserversResource(SyncAPIResource):
         return self._get(
             f"/zones/{zone_id}/custom_ns",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[CustomNameserverGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[CustomNameserverGetResponse]], ResultWrapper[CustomNameserverGetResponse]),
+            cast_to=CustomNameserverGetResponse,
         )
 
 
 class AsyncCustomNameserversResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncCustomNameserversResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncCustomNameserversResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncCustomNameserversResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncCustomNameserversResourceWithStreamingResponse(self)
 
     async def update(
@@ -161,6 +185,9 @@ class AsyncCustomNameserversResource(AsyncAPIResource):
         If you would like new zones in the account to use account custom nameservers by
         default, use PUT /accounts/:identifier to set the account setting
         use_account_custom_ns_by_default to true.
+
+        Deprecated in favor of
+        [Update DNS Settings](https://developers.cloudflare.com/api/operations/dns-settings-for-a-zone-update-dns-settings).
 
         Args:
           zone_id: Identifier
@@ -208,9 +235,12 @@ class AsyncCustomNameserversResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CustomNameserverGetResponse]:
+    ) -> CustomNameserverGetResponse:
         """
         Get metadata for account-level custom nameservers on a zone.
+
+        Deprecated in favor of
+        [Show DNS Settings](https://developers.cloudflare.com/api/operations/dns-settings-for-a-zone-list-dns-settings).
 
         Args:
           zone_id: Identifier
@@ -228,13 +258,9 @@ class AsyncCustomNameserversResource(AsyncAPIResource):
         return await self._get(
             f"/zones/{zone_id}/custom_ns",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[CustomNameserverGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[CustomNameserverGetResponse]], ResultWrapper[CustomNameserverGetResponse]),
+            cast_to=CustomNameserverGetResponse,
         )
 
 

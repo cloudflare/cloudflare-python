@@ -38,7 +38,7 @@ class TestCertificates:
             certificate="-----BEGIN CERTIFICATE-----\nMIIGAjCCA+qgAwIBAgIJAI7kymlF7CWT...N4RI7KKB7nikiuUf8vhULKy5IX10\nDrUtmu/B\n-----END CERTIFICATE-----",
             name="Allow devs",
             account_id="account_id",
-            associated_hostnames=["admin.example.com", "admin.example.com", "admin.example.com"],
+            associated_hostnames=["admin.example.com"],
         )
         assert_matches_type(Optional[Certificate], certificate, path=["response"])
 
@@ -94,7 +94,7 @@ class TestCertificates:
     def test_method_update(self, client: Cloudflare) -> None:
         certificate = client.zero_trust.access.certificates.update(
             certificate_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            associated_hostnames=["admin.example.com", "admin.example.com", "admin.example.com"],
+            associated_hostnames=["admin.example.com"],
             account_id="account_id",
         )
         assert_matches_type(Optional[Certificate], certificate, path=["response"])
@@ -104,7 +104,7 @@ class TestCertificates:
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         certificate = client.zero_trust.access.certificates.update(
             certificate_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            associated_hostnames=["admin.example.com", "admin.example.com", "admin.example.com"],
+            associated_hostnames=["admin.example.com"],
             account_id="account_id",
             name="Allow devs",
         )
@@ -115,7 +115,7 @@ class TestCertificates:
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.certificates.with_raw_response.update(
             certificate_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            associated_hostnames=["admin.example.com", "admin.example.com", "admin.example.com"],
+            associated_hostnames=["admin.example.com"],
             account_id="account_id",
         )
 
@@ -129,7 +129,7 @@ class TestCertificates:
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.zero_trust.access.certificates.with_streaming_response.update(
             certificate_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            associated_hostnames=["admin.example.com", "admin.example.com", "admin.example.com"],
+            associated_hostnames=["admin.example.com"],
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -146,21 +146,21 @@ class TestCertificates:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `certificate_id` but received ''"):
             client.zero_trust.access.certificates.with_raw_response.update(
                 certificate_id="",
-                associated_hostnames=["admin.example.com", "admin.example.com", "admin.example.com"],
+                associated_hostnames=["admin.example.com"],
                 account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.certificates.with_raw_response.update(
                 certificate_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                associated_hostnames=["admin.example.com", "admin.example.com", "admin.example.com"],
+                associated_hostnames=["admin.example.com"],
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.access.certificates.with_raw_response.update(
                 certificate_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                associated_hostnames=["admin.example.com", "admin.example.com", "admin.example.com"],
+                associated_hostnames=["admin.example.com"],
                 account_id="account_id",
             )
 
@@ -374,7 +374,7 @@ class TestAsyncCertificates:
             certificate="-----BEGIN CERTIFICATE-----\nMIIGAjCCA+qgAwIBAgIJAI7kymlF7CWT...N4RI7KKB7nikiuUf8vhULKy5IX10\nDrUtmu/B\n-----END CERTIFICATE-----",
             name="Allow devs",
             account_id="account_id",
-            associated_hostnames=["admin.example.com", "admin.example.com", "admin.example.com"],
+            associated_hostnames=["admin.example.com"],
         )
         assert_matches_type(Optional[Certificate], certificate, path=["response"])
 
@@ -430,7 +430,7 @@ class TestAsyncCertificates:
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         certificate = await async_client.zero_trust.access.certificates.update(
             certificate_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            associated_hostnames=["admin.example.com", "admin.example.com", "admin.example.com"],
+            associated_hostnames=["admin.example.com"],
             account_id="account_id",
         )
         assert_matches_type(Optional[Certificate], certificate, path=["response"])
@@ -440,7 +440,7 @@ class TestAsyncCertificates:
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         certificate = await async_client.zero_trust.access.certificates.update(
             certificate_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            associated_hostnames=["admin.example.com", "admin.example.com", "admin.example.com"],
+            associated_hostnames=["admin.example.com"],
             account_id="account_id",
             name="Allow devs",
         )
@@ -451,7 +451,7 @@ class TestAsyncCertificates:
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.certificates.with_raw_response.update(
             certificate_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            associated_hostnames=["admin.example.com", "admin.example.com", "admin.example.com"],
+            associated_hostnames=["admin.example.com"],
             account_id="account_id",
         )
 
@@ -465,7 +465,7 @@ class TestAsyncCertificates:
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.certificates.with_streaming_response.update(
             certificate_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            associated_hostnames=["admin.example.com", "admin.example.com", "admin.example.com"],
+            associated_hostnames=["admin.example.com"],
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -482,21 +482,21 @@ class TestAsyncCertificates:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `certificate_id` but received ''"):
             await async_client.zero_trust.access.certificates.with_raw_response.update(
                 certificate_id="",
-                associated_hostnames=["admin.example.com", "admin.example.com", "admin.example.com"],
+                associated_hostnames=["admin.example.com"],
                 account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.certificates.with_raw_response.update(
                 certificate_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                associated_hostnames=["admin.example.com", "admin.example.com", "admin.example.com"],
+                associated_hostnames=["admin.example.com"],
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.access.certificates.with_raw_response.update(
                 certificate_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                associated_hostnames=["admin.example.com", "admin.example.com", "admin.example.com"],
+                associated_hostnames=["admin.example.com"],
                 account_id="account_id",
             )
 

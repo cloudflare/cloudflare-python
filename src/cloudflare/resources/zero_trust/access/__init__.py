@@ -64,6 +64,14 @@ from .bookmarks import (
     BookmarksResourceWithStreamingResponse,
     AsyncBookmarksResourceWithStreamingResponse,
 )
+from .gateway_ca import (
+    GatewayCAResource,
+    AsyncGatewayCAResource,
+    GatewayCAResourceWithRawResponse,
+    AsyncGatewayCAResourceWithRawResponse,
+    GatewayCAResourceWithStreamingResponse,
+    AsyncGatewayCAResourceWithStreamingResponse,
+)
 from .applications import (
     ApplicationsResource,
     AsyncApplicationsResource,
@@ -88,6 +96,14 @@ from .custom_pages import (
     CustomPagesResourceWithStreamingResponse,
     AsyncCustomPagesResourceWithStreamingResponse,
 )
+from .infrastructure import (
+    InfrastructureResource,
+    AsyncInfrastructureResource,
+    InfrastructureResourceWithRawResponse,
+    AsyncInfrastructureResourceWithRawResponse,
+    InfrastructureResourceWithStreamingResponse,
+    AsyncInfrastructureResourceWithStreamingResponse,
+)
 from .service_tokens import (
     ServiceTokensResource,
     AsyncServiceTokensResource,
@@ -98,6 +114,18 @@ from .service_tokens import (
 )
 
 __all__ = [
+    "GatewayCAResource",
+    "AsyncGatewayCAResource",
+    "GatewayCAResourceWithRawResponse",
+    "AsyncGatewayCAResourceWithRawResponse",
+    "GatewayCAResourceWithStreamingResponse",
+    "AsyncGatewayCAResourceWithStreamingResponse",
+    "InfrastructureResource",
+    "AsyncInfrastructureResource",
+    "InfrastructureResourceWithRawResponse",
+    "AsyncInfrastructureResourceWithRawResponse",
+    "InfrastructureResourceWithStreamingResponse",
+    "AsyncInfrastructureResourceWithStreamingResponse",
     "ApplicationsResource",
     "AsyncApplicationsResource",
     "ApplicationsResourceWithRawResponse",

@@ -5,17 +5,17 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["OperationCreateParams", "Body"]
+__all__ = ["OperationCreateParams", "Operation"]
 
 
 class OperationCreateParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    body: Required[Iterable[Body]]
+    operations: Required[Iterable[Operation]]
 
 
-class Body(TypedDict, total=False):
+class Operation(TypedDict, total=False):
     endpoint: Required[str]
     """
     The endpoint which can contain path parameter templates in curly braces, each

@@ -27,17 +27,7 @@ class TestSeats:
                     "access_seat": False,
                     "gateway_seat": False,
                     "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                },
-                {
-                    "access_seat": False,
-                    "gateway_seat": False,
-                    "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                },
-                {
-                    "access_seat": False,
-                    "gateway_seat": False,
-                    "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                },
+                }
             ],
         )
         assert_matches_type(Optional[SeatEditResponse], seat, path=["response"])
@@ -52,17 +42,7 @@ class TestSeats:
                     "access_seat": False,
                     "gateway_seat": False,
                     "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                },
-                {
-                    "access_seat": False,
-                    "gateway_seat": False,
-                    "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                },
-                {
-                    "access_seat": False,
-                    "gateway_seat": False,
-                    "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                },
+                }
             ],
         )
 
@@ -81,17 +61,7 @@ class TestSeats:
                     "access_seat": False,
                     "gateway_seat": False,
                     "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                },
-                {
-                    "access_seat": False,
-                    "gateway_seat": False,
-                    "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                },
-                {
-                    "access_seat": False,
-                    "gateway_seat": False,
-                    "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                },
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -113,17 +83,7 @@ class TestSeats:
                         "access_seat": False,
                         "gateway_seat": False,
                         "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    },
-                    {
-                        "access_seat": False,
-                        "gateway_seat": False,
-                        "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    },
-                    {
-                        "access_seat": False,
-                        "gateway_seat": False,
-                        "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    },
+                    }
                 ],
             )
 
@@ -141,17 +101,7 @@ class TestAsyncSeats:
                     "access_seat": False,
                     "gateway_seat": False,
                     "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                },
-                {
-                    "access_seat": False,
-                    "gateway_seat": False,
-                    "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                },
-                {
-                    "access_seat": False,
-                    "gateway_seat": False,
-                    "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                },
+                }
             ],
         )
         assert_matches_type(Optional[SeatEditResponse], seat, path=["response"])
@@ -166,17 +116,7 @@ class TestAsyncSeats:
                     "access_seat": False,
                     "gateway_seat": False,
                     "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                },
-                {
-                    "access_seat": False,
-                    "gateway_seat": False,
-                    "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                },
-                {
-                    "access_seat": False,
-                    "gateway_seat": False,
-                    "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                },
+                }
             ],
         )
 
@@ -195,17 +135,7 @@ class TestAsyncSeats:
                     "access_seat": False,
                     "gateway_seat": False,
                     "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                },
-                {
-                    "access_seat": False,
-                    "gateway_seat": False,
-                    "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                },
-                {
-                    "access_seat": False,
-                    "gateway_seat": False,
-                    "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                },
+                }
             ],
         ) as response:
             assert not response.is_closed
@@ -227,16 +157,6 @@ class TestAsyncSeats:
                         "access_seat": False,
                         "gateway_seat": False,
                         "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    },
-                    {
-                        "access_seat": False,
-                        "gateway_seat": False,
-                        "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    },
-                    {
-                        "access_seat": False,
-                        "gateway_seat": False,
-                        "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    },
+                    }
                 ],
             )

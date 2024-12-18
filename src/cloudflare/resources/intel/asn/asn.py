@@ -37,10 +37,21 @@ class ASNResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> ASNResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return ASNResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> ASNResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return ASNResourceWithStreamingResponse(self)
 
     def get(
@@ -56,7 +67,8 @@ class ASNResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[ASN]:
         """
-        Get ASN Overview
+        Gets an overview of the Autonomous System Number (ASN) and a list of subnets for
+        it.
 
         Args:
           account_id: Identifier
@@ -91,10 +103,21 @@ class AsyncASNResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncASNResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncASNResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncASNResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncASNResourceWithStreamingResponse(self)
 
     async def get(
@@ -110,7 +133,8 @@ class AsyncASNResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[ASN]:
         """
-        Get ASN Overview
+        Gets an overview of the Autonomous System Number (ASN) and a list of subnets for
+        it.
 
         Args:
           account_id: Identifier

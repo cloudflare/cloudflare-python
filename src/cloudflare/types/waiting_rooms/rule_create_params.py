@@ -4,13 +4,17 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["RuleCreateParams"]
+__all__ = ["RuleCreateParams", "Rules"]
 
 
 class RuleCreateParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
+    rules: Required[Rules]
+
+
+class Rules(TypedDict, total=False):
     action: Required[Literal["bypass_waiting_room"]]
     """The action to take when the expression matches."""
 

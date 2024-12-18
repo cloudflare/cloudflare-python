@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
-from .content_lists import (
+from .content_lists.content_lists import (
     ContentListsResource,
     AsyncContentListsResource,
     ContentListsResourceWithRawResponse,
@@ -12,7 +12,6 @@ from .content_lists import (
     ContentListsResourceWithStreamingResponse,
     AsyncContentListsResourceWithStreamingResponse,
 )
-from .content_lists.content_lists import ContentListsResource, AsyncContentListsResource
 
 __all__ = ["IPFSUniversalPathsResource", "AsyncIPFSUniversalPathsResource"]
 
@@ -24,10 +23,21 @@ class IPFSUniversalPathsResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> IPFSUniversalPathsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return IPFSUniversalPathsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> IPFSUniversalPathsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return IPFSUniversalPathsResourceWithStreamingResponse(self)
 
 
@@ -38,10 +48,21 @@ class AsyncIPFSUniversalPathsResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncIPFSUniversalPathsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncIPFSUniversalPathsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncIPFSUniversalPathsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncIPFSUniversalPathsResourceWithStreamingResponse(self)
 
 

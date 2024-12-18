@@ -28,10 +28,21 @@ __all__ = ["PagerdutyResource", "AsyncPagerdutyResource"]
 class PagerdutyResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> PagerdutyResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return PagerdutyResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> PagerdutyResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return PagerdutyResourceWithStreamingResponse(self)
 
     def create(
@@ -195,10 +206,21 @@ class PagerdutyResource(SyncAPIResource):
 class AsyncPagerdutyResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncPagerdutyResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncPagerdutyResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncPagerdutyResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncPagerdutyResourceWithStreamingResponse(self)
 
     async def create(

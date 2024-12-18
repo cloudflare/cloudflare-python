@@ -2,18 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Iterable, cast
+from typing import Dict, List, Type, Iterable, cast
 
 import httpx
 
-from .pools import (
-    PoolsResource,
-    AsyncPoolsResource,
-    PoolsResourceWithRawResponse,
-    AsyncPoolsResourceWithRawResponse,
-    PoolsResourceWithStreamingResponse,
-    AsyncPoolsResourceWithStreamingResponse,
-)
 from .regions import (
     RegionsResource,
     AsyncRegionsResource,
@@ -26,14 +18,6 @@ from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
     async_maybe_transform,
-)
-from .monitors import (
-    MonitorsResource,
-    AsyncMonitorsResource,
-    MonitorsResourceWithRawResponse,
-    AsyncMonitorsResourceWithRawResponse,
-    MonitorsResourceWithStreamingResponse,
-    AsyncMonitorsResourceWithStreamingResponse,
 )
 from .previews import (
     PreviewsResource,
@@ -60,10 +44,24 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from .pools.pools import PoolsResource, AsyncPoolsResource
+from .pools.pools import (
+    PoolsResource,
+    AsyncPoolsResource,
+    PoolsResourceWithRawResponse,
+    AsyncPoolsResourceWithRawResponse,
+    PoolsResourceWithStreamingResponse,
+    AsyncPoolsResourceWithStreamingResponse,
+)
 from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import AsyncPaginator, make_request_options
-from .monitors.monitors import MonitorsResource, AsyncMonitorsResource
+from .monitors.monitors import (
+    MonitorsResource,
+    AsyncMonitorsResource,
+    MonitorsResourceWithRawResponse,
+    AsyncMonitorsResourceWithRawResponse,
+    MonitorsResourceWithStreamingResponse,
+    AsyncMonitorsResourceWithStreamingResponse,
+)
 from ...types.load_balancers import (
     SteeringPolicy,
     SessionAffinity,
@@ -108,10 +106,21 @@ class LoadBalancersResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> LoadBalancersResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return LoadBalancersResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> LoadBalancersResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return LoadBalancersResourceWithStreamingResponse(self)
 
     def create(
@@ -119,16 +128,17 @@ class LoadBalancersResource(SyncAPIResource):
         *,
         zone_id: str,
         default_pools: List[DefaultPools],
-        fallback_pool: object,
+        fallback_pool: str,
         name: str,
         adaptive_routing: AdaptiveRoutingParam | NotGiven = NOT_GIVEN,
-        country_pools: object | NotGiven = NOT_GIVEN,
+        country_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         location_strategy: LocationStrategyParam | NotGiven = NOT_GIVEN,
-        pop_pools: object | NotGiven = NOT_GIVEN,
+        networks: List[str] | NotGiven = NOT_GIVEN,
+        pop_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         random_steering: RandomSteeringParam | NotGiven = NOT_GIVEN,
-        region_pools: object | NotGiven = NOT_GIVEN,
+        region_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
         rules: Iterable[RulesParam] | NotGiven = NOT_GIVEN,
         session_affinity: SessionAffinity | NotGiven = NOT_GIVEN,
         session_affinity_attributes: SessionAffinityAttributesParam | NotGiven = NOT_GIVEN,
@@ -172,6 +182,8 @@ class LoadBalancersResource(SyncAPIResource):
           location_strategy: Controls location-based steering for non-proxied requests. See `steering_policy`
               to learn how steering is affected.
 
+          networks: List of networks where Load Balancer or Pool is enabled.
+
           pop_pools: (Enterprise only): A mapping of Cloudflare PoP identifiers to a list of pool IDs
               (ordered by their failover priority) for the PoP (datacenter). Any PoPs not
               explicitly defined will fall back to using the corresponding country_pool, then
@@ -196,7 +208,7 @@ class LoadBalancersResource(SyncAPIResource):
               execute.
 
           session_affinity: Specifies the type of session affinity the load balancer should use unless
-              specified as `"none"` or "" (default). The supported types are:
+              specified as `"none"`. The supported types are:
 
               - `"cookie"`: On the first request to a proxied load balancer, a cookie is
                 generated, encoding information of which origin the request will be forwarded
@@ -279,6 +291,7 @@ class LoadBalancersResource(SyncAPIResource):
                     "country_pools": country_pools,
                     "description": description,
                     "location_strategy": location_strategy,
+                    "networks": networks,
                     "pop_pools": pop_pools,
                     "proxied": proxied,
                     "random_steering": random_steering,
@@ -308,17 +321,18 @@ class LoadBalancersResource(SyncAPIResource):
         *,
         zone_id: str,
         default_pools: List[DefaultPools],
-        fallback_pool: object,
+        fallback_pool: str,
         name: str,
         adaptive_routing: AdaptiveRoutingParam | NotGiven = NOT_GIVEN,
-        country_pools: object | NotGiven = NOT_GIVEN,
+        country_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         location_strategy: LocationStrategyParam | NotGiven = NOT_GIVEN,
-        pop_pools: object | NotGiven = NOT_GIVEN,
+        networks: List[str] | NotGiven = NOT_GIVEN,
+        pop_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         random_steering: RandomSteeringParam | NotGiven = NOT_GIVEN,
-        region_pools: object | NotGiven = NOT_GIVEN,
+        region_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
         rules: Iterable[RulesParam] | NotGiven = NOT_GIVEN,
         session_affinity: SessionAffinity | NotGiven = NOT_GIVEN,
         session_affinity_attributes: SessionAffinityAttributesParam | NotGiven = NOT_GIVEN,
@@ -364,6 +378,8 @@ class LoadBalancersResource(SyncAPIResource):
           location_strategy: Controls location-based steering for non-proxied requests. See `steering_policy`
               to learn how steering is affected.
 
+          networks: List of networks where Load Balancer or Pool is enabled.
+
           pop_pools: (Enterprise only): A mapping of Cloudflare PoP identifiers to a list of pool IDs
               (ordered by their failover priority) for the PoP (datacenter). Any PoPs not
               explicitly defined will fall back to using the corresponding country_pool, then
@@ -388,7 +404,7 @@ class LoadBalancersResource(SyncAPIResource):
               execute.
 
           session_affinity: Specifies the type of session affinity the load balancer should use unless
-              specified as `"none"` or "" (default). The supported types are:
+              specified as `"none"`. The supported types are:
 
               - `"cookie"`: On the first request to a proxied load balancer, a cookie is
                 generated, encoding information of which origin the request will be forwarded
@@ -474,6 +490,7 @@ class LoadBalancersResource(SyncAPIResource):
                     "description": description,
                     "enabled": enabled,
                     "location_strategy": location_strategy,
+                    "networks": networks,
                     "pop_pools": pop_pools,
                     "proxied": proxied,
                     "random_steering": random_steering,
@@ -577,17 +594,17 @@ class LoadBalancersResource(SyncAPIResource):
         *,
         zone_id: str,
         adaptive_routing: AdaptiveRoutingParam | NotGiven = NOT_GIVEN,
-        country_pools: object | NotGiven = NOT_GIVEN,
+        country_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
         default_pools: List[DefaultPools] | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        fallback_pool: object | NotGiven = NOT_GIVEN,
+        fallback_pool: str | NotGiven = NOT_GIVEN,
         location_strategy: LocationStrategyParam | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        pop_pools: object | NotGiven = NOT_GIVEN,
+        pop_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         random_steering: RandomSteeringParam | NotGiven = NOT_GIVEN,
-        region_pools: object | NotGiven = NOT_GIVEN,
+        region_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
         rules: Iterable[RulesParam] | NotGiven = NOT_GIVEN,
         session_affinity: SessionAffinity | NotGiven = NOT_GIVEN,
         session_affinity_attributes: SessionAffinityAttributesParam | NotGiven = NOT_GIVEN,
@@ -657,7 +674,7 @@ class LoadBalancersResource(SyncAPIResource):
               execute.
 
           session_affinity: Specifies the type of session affinity the load balancer should use unless
-              specified as `"none"` or "" (default). The supported types are:
+              specified as `"none"`. The supported types are:
 
               - `"cookie"`: On the first request to a proxied load balancer, a cookie is
                 generated, encoding information of which origin the request will be forwarded
@@ -830,10 +847,21 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncLoadBalancersResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncLoadBalancersResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncLoadBalancersResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncLoadBalancersResourceWithStreamingResponse(self)
 
     async def create(
@@ -841,16 +869,17 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         *,
         zone_id: str,
         default_pools: List[DefaultPools],
-        fallback_pool: object,
+        fallback_pool: str,
         name: str,
         adaptive_routing: AdaptiveRoutingParam | NotGiven = NOT_GIVEN,
-        country_pools: object | NotGiven = NOT_GIVEN,
+        country_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         location_strategy: LocationStrategyParam | NotGiven = NOT_GIVEN,
-        pop_pools: object | NotGiven = NOT_GIVEN,
+        networks: List[str] | NotGiven = NOT_GIVEN,
+        pop_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         random_steering: RandomSteeringParam | NotGiven = NOT_GIVEN,
-        region_pools: object | NotGiven = NOT_GIVEN,
+        region_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
         rules: Iterable[RulesParam] | NotGiven = NOT_GIVEN,
         session_affinity: SessionAffinity | NotGiven = NOT_GIVEN,
         session_affinity_attributes: SessionAffinityAttributesParam | NotGiven = NOT_GIVEN,
@@ -894,6 +923,8 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
           location_strategy: Controls location-based steering for non-proxied requests. See `steering_policy`
               to learn how steering is affected.
 
+          networks: List of networks where Load Balancer or Pool is enabled.
+
           pop_pools: (Enterprise only): A mapping of Cloudflare PoP identifiers to a list of pool IDs
               (ordered by their failover priority) for the PoP (datacenter). Any PoPs not
               explicitly defined will fall back to using the corresponding country_pool, then
@@ -918,7 +949,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
               execute.
 
           session_affinity: Specifies the type of session affinity the load balancer should use unless
-              specified as `"none"` or "" (default). The supported types are:
+              specified as `"none"`. The supported types are:
 
               - `"cookie"`: On the first request to a proxied load balancer, a cookie is
                 generated, encoding information of which origin the request will be forwarded
@@ -1001,6 +1032,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
                     "country_pools": country_pools,
                     "description": description,
                     "location_strategy": location_strategy,
+                    "networks": networks,
                     "pop_pools": pop_pools,
                     "proxied": proxied,
                     "random_steering": random_steering,
@@ -1030,17 +1062,18 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         *,
         zone_id: str,
         default_pools: List[DefaultPools],
-        fallback_pool: object,
+        fallback_pool: str,
         name: str,
         adaptive_routing: AdaptiveRoutingParam | NotGiven = NOT_GIVEN,
-        country_pools: object | NotGiven = NOT_GIVEN,
+        country_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         location_strategy: LocationStrategyParam | NotGiven = NOT_GIVEN,
-        pop_pools: object | NotGiven = NOT_GIVEN,
+        networks: List[str] | NotGiven = NOT_GIVEN,
+        pop_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         random_steering: RandomSteeringParam | NotGiven = NOT_GIVEN,
-        region_pools: object | NotGiven = NOT_GIVEN,
+        region_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
         rules: Iterable[RulesParam] | NotGiven = NOT_GIVEN,
         session_affinity: SessionAffinity | NotGiven = NOT_GIVEN,
         session_affinity_attributes: SessionAffinityAttributesParam | NotGiven = NOT_GIVEN,
@@ -1086,6 +1119,8 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
           location_strategy: Controls location-based steering for non-proxied requests. See `steering_policy`
               to learn how steering is affected.
 
+          networks: List of networks where Load Balancer or Pool is enabled.
+
           pop_pools: (Enterprise only): A mapping of Cloudflare PoP identifiers to a list of pool IDs
               (ordered by their failover priority) for the PoP (datacenter). Any PoPs not
               explicitly defined will fall back to using the corresponding country_pool, then
@@ -1110,7 +1145,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
               execute.
 
           session_affinity: Specifies the type of session affinity the load balancer should use unless
-              specified as `"none"` or "" (default). The supported types are:
+              specified as `"none"`. The supported types are:
 
               - `"cookie"`: On the first request to a proxied load balancer, a cookie is
                 generated, encoding information of which origin the request will be forwarded
@@ -1196,6 +1231,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
                     "description": description,
                     "enabled": enabled,
                     "location_strategy": location_strategy,
+                    "networks": networks,
                     "pop_pools": pop_pools,
                     "proxied": proxied,
                     "random_steering": random_steering,
@@ -1299,17 +1335,17 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         *,
         zone_id: str,
         adaptive_routing: AdaptiveRoutingParam | NotGiven = NOT_GIVEN,
-        country_pools: object | NotGiven = NOT_GIVEN,
+        country_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
         default_pools: List[DefaultPools] | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        fallback_pool: object | NotGiven = NOT_GIVEN,
+        fallback_pool: str | NotGiven = NOT_GIVEN,
         location_strategy: LocationStrategyParam | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        pop_pools: object | NotGiven = NOT_GIVEN,
+        pop_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         random_steering: RandomSteeringParam | NotGiven = NOT_GIVEN,
-        region_pools: object | NotGiven = NOT_GIVEN,
+        region_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
         rules: Iterable[RulesParam] | NotGiven = NOT_GIVEN,
         session_affinity: SessionAffinity | NotGiven = NOT_GIVEN,
         session_affinity_attributes: SessionAffinityAttributesParam | NotGiven = NOT_GIVEN,
@@ -1379,7 +1415,7 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
               execute.
 
           session_affinity: Specifies the type of session affinity the load balancer should use unless
-              specified as `"none"` or "" (default). The supported types are:
+              specified as `"none"`. The supported types are:
 
               - `"cookie"`: On the first request to a proxied load balancer, a cookie is
                 generated, encoding information of which origin the request will be forwarded

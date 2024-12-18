@@ -9,7 +9,8 @@ __all__ = ["AuthenticationMethodRule", "AuthMethod"]
 class AuthMethod(BaseModel):
     auth_method: str
     """
-    The type of authentication method https://datatracker.ietf.org/doc/html/rfc8176.
+    The type of authentication method
+    https://datatracker.ietf.org/doc/html/rfc8176#section-2.
     """
 
 

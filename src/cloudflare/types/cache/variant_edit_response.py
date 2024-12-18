@@ -2,9 +2,9 @@
 
 from typing import List, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from ..._models import BaseModel
-from .cache_variant_identifier import CacheVariantIdentifier
 
 __all__ = ["VariantEditResponse", "Value"]
 
@@ -78,7 +78,7 @@ class Value(BaseModel):
 
 
 class VariantEditResponse(BaseModel):
-    id: CacheVariantIdentifier
+    id: Literal["variants"]
     """ID of the zone setting."""
 
     modified_on: Optional[datetime] = None

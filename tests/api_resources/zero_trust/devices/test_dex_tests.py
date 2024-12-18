@@ -47,20 +47,10 @@ class TestDEXTests:
             description="Checks the dash endpoint every 30 minutes",
             target_policies=[
                 {
-                    "default": True,
                     "id": "id",
-                    "name": "name",
-                },
-                {
                     "default": True,
-                    "id": "id",
                     "name": "name",
-                },
-                {
-                    "default": True,
-                    "id": "id",
-                    "name": "name",
-                },
+                }
             ],
             targeted=True,
         )
@@ -137,20 +127,10 @@ class TestDEXTests:
             description="Checks the dash endpoint every 30 minutes",
             target_policies=[
                 {
-                    "default": True,
                     "id": "id",
-                    "name": "name",
-                },
-                {
                     "default": True,
-                    "id": "id",
                     "name": "name",
-                },
-                {
-                    "default": True,
-                    "id": "id",
-                    "name": "name",
-                },
+                }
             ],
             targeted=True,
         )
@@ -256,7 +236,7 @@ class TestDEXTests:
             dex_test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[DEXTestDeleteResponse], dex_test, path=["response"])
+        assert_matches_type(DEXTestDeleteResponse, dex_test, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -268,7 +248,7 @@ class TestDEXTests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dex_test = response.parse()
-        assert_matches_type(Optional[DEXTestDeleteResponse], dex_test, path=["response"])
+        assert_matches_type(DEXTestDeleteResponse, dex_test, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -280,7 +260,7 @@ class TestDEXTests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dex_test = response.parse()
-            assert_matches_type(Optional[DEXTestDeleteResponse], dex_test, path=["response"])
+            assert_matches_type(DEXTestDeleteResponse, dex_test, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -301,7 +281,7 @@ class TestDEXTests:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         dex_test = client.zero_trust.devices.dex_tests.get(
-            dex_test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            dex_test_id="372e67954025e0ba6aaa6d586b9e0b59",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
@@ -309,7 +289,7 @@ class TestDEXTests:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zero_trust.devices.dex_tests.with_raw_response.get(
-            dex_test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            dex_test_id="372e67954025e0ba6aaa6d586b9e0b59",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -321,7 +301,7 @@ class TestDEXTests:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zero_trust.devices.dex_tests.with_streaming_response.get(
-            dex_test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            dex_test_id="372e67954025e0ba6aaa6d586b9e0b59",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -336,7 +316,7 @@ class TestDEXTests:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.devices.dex_tests.with_raw_response.get(
-                dex_test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                dex_test_id="372e67954025e0ba6aaa6d586b9e0b59",
                 account_id="",
             )
 
@@ -376,20 +356,10 @@ class TestAsyncDEXTests:
             description="Checks the dash endpoint every 30 minutes",
             target_policies=[
                 {
-                    "default": True,
                     "id": "id",
-                    "name": "name",
-                },
-                {
                     "default": True,
-                    "id": "id",
                     "name": "name",
-                },
-                {
-                    "default": True,
-                    "id": "id",
-                    "name": "name",
-                },
+                }
             ],
             targeted=True,
         )
@@ -466,20 +436,10 @@ class TestAsyncDEXTests:
             description="Checks the dash endpoint every 30 minutes",
             target_policies=[
                 {
-                    "default": True,
                     "id": "id",
-                    "name": "name",
-                },
-                {
                     "default": True,
-                    "id": "id",
                     "name": "name",
-                },
-                {
-                    "default": True,
-                    "id": "id",
-                    "name": "name",
-                },
+                }
             ],
             targeted=True,
         )
@@ -585,7 +545,7 @@ class TestAsyncDEXTests:
             dex_test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[DEXTestDeleteResponse], dex_test, path=["response"])
+        assert_matches_type(DEXTestDeleteResponse, dex_test, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -597,7 +557,7 @@ class TestAsyncDEXTests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dex_test = await response.parse()
-        assert_matches_type(Optional[DEXTestDeleteResponse], dex_test, path=["response"])
+        assert_matches_type(DEXTestDeleteResponse, dex_test, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -609,7 +569,7 @@ class TestAsyncDEXTests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dex_test = await response.parse()
-            assert_matches_type(Optional[DEXTestDeleteResponse], dex_test, path=["response"])
+            assert_matches_type(DEXTestDeleteResponse, dex_test, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -630,7 +590,7 @@ class TestAsyncDEXTests:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         dex_test = await async_client.zero_trust.devices.dex_tests.get(
-            dex_test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            dex_test_id="372e67954025e0ba6aaa6d586b9e0b59",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
@@ -638,7 +598,7 @@ class TestAsyncDEXTests:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.devices.dex_tests.with_raw_response.get(
-            dex_test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            dex_test_id="372e67954025e0ba6aaa6d586b9e0b59",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -650,7 +610,7 @@ class TestAsyncDEXTests:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.devices.dex_tests.with_streaming_response.get(
-            dex_test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            dex_test_id="372e67954025e0ba6aaa6d586b9e0b59",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -665,7 +625,7 @@ class TestAsyncDEXTests:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.devices.dex_tests.with_raw_response.get(
-                dex_test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                dex_test_id="372e67954025e0ba6aaa6d586b9e0b59",
                 account_id="",
             )
 

@@ -6,12 +6,11 @@ from typing_extensions import Literal
 
 from ...._models import BaseModel
 from .issue_type import IssueType
-from ...shared.response_info import ResponseInfo
 
-__all__ = ["IssueListResponse", "Result", "ResultIssue"]
+__all__ = ["IssueListResponse", "Issue"]
 
 
-class ResultIssue(BaseModel):
+class Issue(BaseModel):
     id: Optional[str] = None
 
     dismissed: Optional[bool] = None
@@ -35,25 +34,14 @@ class ResultIssue(BaseModel):
     timestamp: Optional[datetime] = None
 
 
-class Result(BaseModel):
+class IssueListResponse(BaseModel):
     count: Optional[int] = None
     """Total number of results"""
 
-    issues: Optional[List[ResultIssue]] = None
+    issues: Optional[List[Issue]] = None
 
     page: Optional[int] = None
     """Current page within paginated list of results"""
 
     per_page: Optional[int] = None
     """Number of results per page of results"""
-
-
-class IssueListResponse(BaseModel):
-    errors: List[ResponseInfo]
-
-    messages: List[ResponseInfo]
-
-    success: Literal[True]
-    """Whether the API call was successful"""
-
-    result: Optional[Result] = None

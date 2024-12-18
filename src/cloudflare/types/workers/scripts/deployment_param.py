@@ -11,4 +11,4 @@ __all__ = ["DeploymentParam"]
 
 class DeploymentParam(TypedDict, total=False):
     workers_message: Annotated[str, PropertyInfo(alias="workers/message")]
-    """Human-readable message about the deployment."""
+    """Human-readable message about the deployment. Truncated to 100 bytes."""

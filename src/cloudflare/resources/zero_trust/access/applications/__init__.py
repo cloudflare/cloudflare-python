@@ -24,6 +24,14 @@ from .applications import (
     ApplicationsResourceWithStreamingResponse,
     AsyncApplicationsResourceWithStreamingResponse,
 )
+from .policy_tests import (
+    PolicyTestsResource,
+    AsyncPolicyTestsResource,
+    PolicyTestsResourceWithRawResponse,
+    AsyncPolicyTestsResourceWithRawResponse,
+    PolicyTestsResourceWithStreamingResponse,
+    AsyncPolicyTestsResourceWithStreamingResponse,
+)
 from .user_policy_checks import (
     UserPolicyChecksResource,
     AsyncUserPolicyChecksResource,
@@ -52,6 +60,12 @@ __all__ = [
     "AsyncPoliciesResourceWithRawResponse",
     "PoliciesResourceWithStreamingResponse",
     "AsyncPoliciesResourceWithStreamingResponse",
+    "PolicyTestsResource",
+    "AsyncPolicyTestsResource",
+    "PolicyTestsResourceWithRawResponse",
+    "AsyncPolicyTestsResourceWithRawResponse",
+    "PolicyTestsResourceWithStreamingResponse",
+    "AsyncPolicyTestsResourceWithStreamingResponse",
     "ApplicationsResource",
     "AsyncApplicationsResource",
     "ApplicationsResourceWithRawResponse",

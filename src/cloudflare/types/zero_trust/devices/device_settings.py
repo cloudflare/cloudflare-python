@@ -8,6 +8,12 @@ __all__ = ["DeviceSettings"]
 
 
 class DeviceSettings(BaseModel):
+    disable_for_time: Optional[float] = None
+    """
+    Sets the time limit, in seconds, that a user can use an override code to bypass
+    WARP.
+    """
+
     gateway_proxy_enabled: Optional[bool] = None
     """Enable gateway proxy filtering on TCP."""
 

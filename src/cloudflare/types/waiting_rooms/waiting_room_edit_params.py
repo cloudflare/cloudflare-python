@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import List, Iterable
 from typing_extensions import Literal, Required, TypedDict
 
 from .additional_routes_param import AdditionalRoutesParam
@@ -111,6 +111,27 @@ class WaitingRoomEditParams(TypedDict, total=False):
         "ar-EG",
         "ru-RU",
         "fa-IR",
+        "bg-BG",
+        "hr-HR",
+        "cs-CZ",
+        "da-DK",
+        "fi-FI",
+        "lt-LT",
+        "ms-MY",
+        "nb-NO",
+        "ro-RO",
+        "el-GR",
+        "he-IL",
+        "hi-IN",
+        "hu-HU",
+        "sr-BA",
+        "sk-SK",
+        "sl-SI",
+        "sv-SE",
+        "tl-PH",
+        "th-TH",
+        "uk-UA",
+        "vi-VN",
     ]
     """The language of the default page template.
 
@@ -129,6 +150,9 @@ class WaitingRoomEditParams(TypedDict, total=False):
     go through the waiting room again. If `false`, a user's session cookie will be
     automatically renewed on every request.
     """
+
+    enabled_origin_commands: List[Literal["revoke"]]
+    """A list of enabled origin commands."""
 
     json_response_enabled: bool
     """Only available for the Waiting Room Advanced subscription.

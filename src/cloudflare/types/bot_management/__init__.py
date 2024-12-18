@@ -7,9 +7,17 @@ from .bot_management_get_response import BotManagementGetResponse as BotManageme
 from .bot_fight_mode_configuration import BotFightModeConfiguration as BotFightModeConfiguration
 from .bot_management_update_params import BotManagementUpdateParams as BotManagementUpdateParams
 from .bot_management_update_response import BotManagementUpdateResponse as BotManagementUpdateResponse
+from .subscription_configuration_param import SubscriptionConfigurationParam as SubscriptionConfigurationParam
+from .bot_fight_mode_configuration_param import BotFightModeConfigurationParam as BotFightModeConfigurationParam
 from .super_bot_fight_mode_likely_configuration import (
     SuperBotFightModeLikelyConfiguration as SuperBotFightModeLikelyConfiguration,
 )
 from .super_bot_fight_mode_definitely_configuration import (
     SuperBotFightModeDefinitelyConfiguration as SuperBotFightModeDefinitelyConfiguration,
+)
+from .super_bot_fight_mode_likely_configuration_param import (
+    SuperBotFightModeLikelyConfigurationParam as SuperBotFightModeLikelyConfigurationParam,
+)
+from .super_bot_fight_mode_definitely_configuration_param import (
+    SuperBotFightModeDefinitelyConfigurationParam as SuperBotFightModeDefinitelyConfigurationParam,
 )

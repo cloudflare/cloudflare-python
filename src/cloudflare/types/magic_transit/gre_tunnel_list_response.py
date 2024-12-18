@@ -1,12 +1,70 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import List, Union, Optional
 from datetime import datetime
+from typing_extensions import Literal, TypeAlias
 
 from ..._models import BaseModel
-from .health_check import HealthCheck
+from .health_check_rate import HealthCheckRate
+from .health_check_type import HealthCheckType
 
-__all__ = ["GRETunnelListResponse", "GRETunnel"]
+__all__ = [
+    "GRETunnelListResponse",
+    "GRETunnel",
+    "GRETunnelHealthCheck",
+    "GRETunnelHealthCheckTarget",
+    "GRETunnelHealthCheckTargetMagicHealthCheckTarget",
+]
+
+
+class GRETunnelHealthCheckTargetMagicHealthCheckTarget(BaseModel):
+    effective: Optional[str] = None
+    """The effective health check target.
+
+    If 'saved' is empty, then this field will be populated with the calculated
+    default value on GET requests. Ignored in POST, PUT, and PATCH requests.
+    """
+
+    saved: Optional[str] = None
+    """The saved health check target.
+
+    Setting the value to the empty string indicates that the calculated default
+    value will be used.
+    """
+
+
+GRETunnelHealthCheckTarget: TypeAlias = Union[GRETunnelHealthCheckTargetMagicHealthCheckTarget, str]
+
+
+class GRETunnelHealthCheck(BaseModel):
+    direction: Optional[Literal["unidirectional", "bidirectional"]] = None
+    """The direction of the flow of the healthcheck.
+
+    Either unidirectional, where the probe comes to you via the tunnel and the
+    result comes back to Cloudflare via the open Internet, or bidirectional where
+    both the probe and result come and go via the tunnel.
+    """
+
+    enabled: Optional[bool] = None
+    """Determines whether to run healthchecks for a tunnel."""
+
+    rate: Optional[HealthCheckRate] = None
+    """How frequent the health check is run. The default value is `mid`."""
+
+    target: Optional[GRETunnelHealthCheckTarget] = None
+    """The destination address in a request type health check.
+
+    After the healthcheck is decapsulated at the customer end of the tunnel, the
+    ICMP echo will be forwarded to this address. This field defaults to
+    `customer_gre_endpoint address`. This field is ignored for bidirectional
+    healthchecks as the interface_address (not assigned to the Cloudflare side of
+    the tunnel) is used as the target. Must be in object form if the
+    x-magic-new-hc-target header is set to true and string form if
+    x-magic-new-hc-target is absent or set to false.
+    """
+
+    type: Optional[HealthCheckType] = None
+    """The type of healthcheck to run, reply or request. The default value is `reply`."""
 
 
 class GRETunnel(BaseModel):
@@ -39,7 +97,7 @@ class GRETunnel(BaseModel):
     description: Optional[str] = None
     """An optional description of the GRE tunnel."""
 
-    health_check: Optional[HealthCheck] = None
+    health_check: Optional[GRETunnelHealthCheck] = None
 
     modified_on: Optional[datetime] = None
     """The date and time the tunnel was last modified."""

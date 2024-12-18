@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 
 from ..._models import BaseModel
 from .default_pools import DefaultPools
@@ -39,7 +39,7 @@ class Overrides(BaseModel):
     is retried once against this alternate origin.
     """
 
-    country_pools: Optional[object] = None
+    country_pools: Optional[Dict[str, List[str]]] = None
     """
     A mapping of country codes to a list of pool IDs (ordered by their failover
     priority) for the given country. Any country not explicitly defined will fall
@@ -54,7 +54,7 @@ class Overrides(BaseModel):
     for a given region.
     """
 
-    fallback_pool: Optional[object] = None
+    fallback_pool: Optional[str] = None
     """The pool ID to use when all other pools are detected as unhealthy."""
 
     location_strategy: Optional[LocationStrategy] = None
@@ -63,7 +63,7 @@ class Overrides(BaseModel):
     See `steering_policy` to learn how steering is affected.
     """
 
-    pop_pools: Optional[object] = None
+    pop_pools: Optional[Dict[str, List[str]]] = None
     """
     (Enterprise only): A mapping of Cloudflare PoP identifiers to a list of pool IDs
     (ordered by their failover priority) for the PoP (datacenter). Any PoPs not
@@ -82,7 +82,7 @@ class Overrides(BaseModel):
       open connections.
     """
 
-    region_pools: Optional[object] = None
+    region_pools: Optional[Dict[str, List[str]]] = None
     """
     A mapping of region codes to a list of pool IDs (ordered by their failover
     priority) for the given region. Any regions not explicitly defined will fall
@@ -92,7 +92,7 @@ class Overrides(BaseModel):
     session_affinity: Optional[SessionAffinity] = None
     """
     Specifies the type of session affinity the load balancer should use unless
-    specified as `"none"` or "" (default). The supported types are:
+    specified as `"none"`. The supported types are:
 
     - `"cookie"`: On the first request to a proxied load balancer, a cookie is
       generated, encoding information of which origin the request will be forwarded

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
@@ -26,7 +26,7 @@ class TestLists:
             kind="ip",
             name="list1",
         )
-        assert_matches_type(Optional[ListsList], list_, path=["response"])
+        assert_matches_type(ListsList, list_, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -37,7 +37,7 @@ class TestLists:
             name="list1",
             description="This is a note",
         )
-        assert_matches_type(Optional[ListsList], list_, path=["response"])
+        assert_matches_type(ListsList, list_, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -51,7 +51,7 @@ class TestLists:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         list_ = response.parse()
-        assert_matches_type(Optional[ListsList], list_, path=["response"])
+        assert_matches_type(ListsList, list_, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -65,7 +65,7 @@ class TestLists:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             list_ = response.parse()
-            assert_matches_type(Optional[ListsList], list_, path=["response"])
+            assert_matches_type(ListsList, list_, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -86,7 +86,7 @@ class TestLists:
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ListsList], list_, path=["response"])
+        assert_matches_type(ListsList, list_, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -96,7 +96,7 @@ class TestLists:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             description="This is a note",
         )
-        assert_matches_type(Optional[ListsList], list_, path=["response"])
+        assert_matches_type(ListsList, list_, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -109,7 +109,7 @@ class TestLists:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         list_ = response.parse()
-        assert_matches_type(Optional[ListsList], list_, path=["response"])
+        assert_matches_type(ListsList, list_, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -122,7 +122,7 @@ class TestLists:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             list_ = response.parse()
-            assert_matches_type(Optional[ListsList], list_, path=["response"])
+            assert_matches_type(ListsList, list_, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -185,7 +185,7 @@ class TestLists:
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ListDeleteResponse], list_, path=["response"])
+        assert_matches_type(ListDeleteResponse, list_, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -197,7 +197,7 @@ class TestLists:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         list_ = response.parse()
-        assert_matches_type(Optional[ListDeleteResponse], list_, path=["response"])
+        assert_matches_type(ListDeleteResponse, list_, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -209,7 +209,7 @@ class TestLists:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             list_ = response.parse()
-            assert_matches_type(Optional[ListDeleteResponse], list_, path=["response"])
+            assert_matches_type(ListDeleteResponse, list_, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -234,7 +234,7 @@ class TestLists:
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ListsList], list_, path=["response"])
+        assert_matches_type(ListsList, list_, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -247,7 +247,7 @@ class TestLists:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         list_ = response.parse()
-        assert_matches_type(Optional[ListsList], list_, path=["response"])
+        assert_matches_type(ListsList, list_, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -260,7 +260,7 @@ class TestLists:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             list_ = response.parse()
-            assert_matches_type(Optional[ListsList], list_, path=["response"])
+            assert_matches_type(ListsList, list_, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -291,7 +291,7 @@ class TestAsyncLists:
             kind="ip",
             name="list1",
         )
-        assert_matches_type(Optional[ListsList], list_, path=["response"])
+        assert_matches_type(ListsList, list_, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -302,7 +302,7 @@ class TestAsyncLists:
             name="list1",
             description="This is a note",
         )
-        assert_matches_type(Optional[ListsList], list_, path=["response"])
+        assert_matches_type(ListsList, list_, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -316,7 +316,7 @@ class TestAsyncLists:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         list_ = await response.parse()
-        assert_matches_type(Optional[ListsList], list_, path=["response"])
+        assert_matches_type(ListsList, list_, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -330,7 +330,7 @@ class TestAsyncLists:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             list_ = await response.parse()
-            assert_matches_type(Optional[ListsList], list_, path=["response"])
+            assert_matches_type(ListsList, list_, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -351,7 +351,7 @@ class TestAsyncLists:
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ListsList], list_, path=["response"])
+        assert_matches_type(ListsList, list_, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -361,7 +361,7 @@ class TestAsyncLists:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             description="This is a note",
         )
-        assert_matches_type(Optional[ListsList], list_, path=["response"])
+        assert_matches_type(ListsList, list_, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -374,7 +374,7 @@ class TestAsyncLists:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         list_ = await response.parse()
-        assert_matches_type(Optional[ListsList], list_, path=["response"])
+        assert_matches_type(ListsList, list_, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -387,7 +387,7 @@ class TestAsyncLists:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             list_ = await response.parse()
-            assert_matches_type(Optional[ListsList], list_, path=["response"])
+            assert_matches_type(ListsList, list_, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -450,7 +450,7 @@ class TestAsyncLists:
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ListDeleteResponse], list_, path=["response"])
+        assert_matches_type(ListDeleteResponse, list_, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -462,7 +462,7 @@ class TestAsyncLists:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         list_ = await response.parse()
-        assert_matches_type(Optional[ListDeleteResponse], list_, path=["response"])
+        assert_matches_type(ListDeleteResponse, list_, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -474,7 +474,7 @@ class TestAsyncLists:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             list_ = await response.parse()
-            assert_matches_type(Optional[ListDeleteResponse], list_, path=["response"])
+            assert_matches_type(ListDeleteResponse, list_, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -499,7 +499,7 @@ class TestAsyncLists:
             list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ListsList], list_, path=["response"])
+        assert_matches_type(ListsList, list_, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -512,7 +512,7 @@ class TestAsyncLists:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         list_ = await response.parse()
-        assert_matches_type(Optional[ListsList], list_, path=["response"])
+        assert_matches_type(ListsList, list_, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -525,7 +525,7 @@ class TestAsyncLists:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             list_ = await response.parse()
-            assert_matches_type(Optional[ListsList], list_, path=["response"])
+            assert_matches_type(ListsList, list_, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

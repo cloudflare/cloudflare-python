@@ -2,6 +2,7 @@
 
 from typing import List, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from ..._models import BaseModel
 from .scripts.consumer_script import ConsumerScript
@@ -19,6 +20,12 @@ class Script(BaseModel):
     etag: Optional[str] = None
     """Hashed script content, can be used in a If-None-Match header when updating."""
 
+    has_assets: Optional[bool] = None
+    """Whether a Worker contains assets."""
+
+    has_modules: Optional[bool] = None
+    """Whether a Worker contains modules."""
+
     logpush: Optional[bool] = None
     """Whether Logpush is turned on for the Worker."""
 
@@ -31,5 +38,5 @@ class Script(BaseModel):
     tail_consumers: Optional[List[ConsumerScript]] = None
     """List of Workers that will consume logs from the attached Worker."""
 
-    usage_model: Optional[str] = None
-    """Specifies the usage model for the Worker (e.g. 'bundled' or 'unbound')."""
+    usage_model: Optional[Literal["bundled", "unbound"]] = None
+    """Usage model for the Worker invocations."""

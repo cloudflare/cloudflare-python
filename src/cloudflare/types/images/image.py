@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
+from typing import List, Optional
 from datetime import datetime
 
 from pydantic import Field as FieldInfo
@@ -34,5 +34,5 @@ class Image(BaseModel):
     uploaded: Optional[datetime] = None
     """When the media item was uploaded."""
 
-    variants: Optional[List[Union[str, str, str]]] = None
+    variants: Optional[List[str]] = None
     """Object specifying available variants for an image."""

@@ -11,9 +11,9 @@ class SearchGetParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
-    page: object
+    page: float
 
-    per_page: object
+    per_page: float
 
     search_params: SearchParams
 

@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Union, Iterable
-from typing_extensions import Required, TypedDict
+from typing import Union, Iterable, Optional
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .pattern_param import PatternParam
 from ..context_awareness_param import ContextAwarenessParam
@@ -11,18 +11,23 @@ from ..context_awareness_param import ContextAwarenessParam
 __all__ = [
     "CustomUpdateParams",
     "Entry",
+    "EntryDLPNewCustomEntryWithID",
+    "EntryDLPNewCustomEntry",
     "SharedEntry",
-    "SharedEntryDLPSharedEntryUpdatePredefined",
-    "SharedEntryDLPSharedEntryUpdateIntegration",
+    "SharedEntryUnionMember0",
+    "SharedEntryUnionMember1",
+    "SharedEntryUnionMember2",
 ]
 
 
 class CustomUpdateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
 
-    allowed_match_count: float
-    """Related DLP policies will trigger when the match count exceeds the number set."""
+    name: Required[str]
+
+    allowed_match_count: Optional[int]
+
+    confidence_threshold: Optional[str]
 
     context_awareness: ContextAwarenessParam
     """
@@ -30,52 +35,64 @@ class CustomUpdateParams(TypedDict, total=False):
     keywords.
     """
 
-    description: str
-    """The description of the profile."""
+    description: Optional[str]
+    """The description of the profile"""
 
-    entries: Iterable[Entry]
-    """The custom entries for this profile.
-
-    Array elements with IDs are modifying the existing entry with that ID. Elements
-    without ID will create new entries. Any entry not in the list will be deleted.
+    entries: Optional[Iterable[Entry]]
     """
-
-    name: str
-    """The name of the profile."""
+    Custom entries from this profile. If this field is omitted, entries owned by
+    this profile will not be changed.
+    """
 
     ocr_enabled: bool
-    """If true, scan images via OCR to determine if any text present matches filters."""
 
     shared_entries: Iterable[SharedEntry]
-    """Entries from other profiles (e.g.
-
-    pre-defined Cloudflare profiles, or your Microsoft Information Protection
-    profiles).
-    """
+    """Other entries, e.g. predefined or integration."""
 
 
-class Entry(TypedDict, total=False):
-    enabled: bool
-    """Whether the entry is enabled or not."""
+class EntryDLPNewCustomEntryWithID(TypedDict, total=False):
+    enabled: Required[bool]
 
-    name: str
-    """The name of the entry."""
+    entry_id: Required[str]
 
-    pattern: PatternParam
-    """A pattern that matches an entry"""
+    name: Required[str]
 
-    profile_id: object
-    """ID of the parent profile"""
+    pattern: Required[PatternParam]
 
 
-class SharedEntryDLPSharedEntryUpdatePredefined(TypedDict, total=False):
-    enabled: bool
-    """Whether the entry is enabled or not."""
+class EntryDLPNewCustomEntry(TypedDict, total=False):
+    enabled: Required[bool]
+
+    name: Required[str]
+
+    pattern: Required[PatternParam]
 
 
-class SharedEntryDLPSharedEntryUpdateIntegration(TypedDict, total=False):
-    enabled: bool
-    """Whether the entry is enabled or not."""
+Entry: TypeAlias = Union[EntryDLPNewCustomEntryWithID, EntryDLPNewCustomEntry]
 
 
-SharedEntry = Union[SharedEntryDLPSharedEntryUpdatePredefined, SharedEntryDLPSharedEntryUpdateIntegration]
+class SharedEntryUnionMember0(TypedDict, total=False):
+    enabled: Required[bool]
+
+    entry_id: Required[str]
+
+    entry_type: Required[Literal["predefined"]]
+
+
+class SharedEntryUnionMember1(TypedDict, total=False):
+    enabled: Required[bool]
+
+    entry_id: Required[str]
+
+    entry_type: Required[Literal["integration"]]
+
+
+class SharedEntryUnionMember2(TypedDict, total=False):
+    enabled: Required[bool]
+
+    entry_id: Required[str]
+
+    entry_type: Required[Literal["exact_data"]]
+
+
+SharedEntry: TypeAlias = Union[SharedEntryUnionMember0, SharedEntryUnionMember1, SharedEntryUnionMember2]

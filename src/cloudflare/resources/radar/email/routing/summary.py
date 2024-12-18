@@ -44,10 +44,21 @@ __all__ = ["SummaryResource", "AsyncSummaryResource"]
 class SummaryResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> SummaryResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return SummaryResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> SummaryResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return SummaryResourceWithStreamingResponse(self)
 
     def arc(
@@ -71,7 +82,7 @@ class SummaryResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SummaryARCResponse:
         """
-        Percentage distribution of emails classified per ARC validation.
+        Percentage distribution of emails classified by ARC validation.
 
         Args:
           date_end: End of the date range (inclusive).
@@ -152,7 +163,7 @@ class SummaryResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SummaryDKIMResponse:
         """
-        Percentage distribution of emails classified per DKIM validation.
+        Percentage distribution of emails classified by DKIM validation.
 
         Args:
           arc: Filter for arc (Authenticated Received Chain).
@@ -233,7 +244,7 @@ class SummaryResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SummaryDMARCResponse:
         """
-        Percentage distribution of emails classified per DMARC validation.
+        Percentage distribution of emails classified by DMARC validation.
 
         Args:
           arc: Filter for arc (Authenticated Received Chain).
@@ -314,7 +325,7 @@ class SummaryResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SummaryEncryptedResponse:
         """
-        Percentage distribution of emails by Encrypted
+        Percentage distribution of emails by encryption status.
 
         Args:
           arc: Filter for arc (Authenticated Received Chain).
@@ -395,7 +406,7 @@ class SummaryResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SummaryIPVersionResponse:
         """
-        Percentage distribution of emails by Ip Version.
+        Percentage distribution of emails by IP version.
 
         Args:
           arc: Filter for arc (Authenticated Received Chain).
@@ -476,7 +487,7 @@ class SummaryResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SummarySPFResponse:
         """
-        Percentage distribution of emails classified per SPF validation.
+        Percentage distribution of emails classified by SPF validation.
 
         Args:
           arc: Filter for arc (Authenticated Received Chain).
@@ -540,10 +551,21 @@ class SummaryResource(SyncAPIResource):
 class AsyncSummaryResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncSummaryResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncSummaryResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncSummaryResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncSummaryResourceWithStreamingResponse(self)
 
     async def arc(
@@ -567,7 +589,7 @@ class AsyncSummaryResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SummaryARCResponse:
         """
-        Percentage distribution of emails classified per ARC validation.
+        Percentage distribution of emails classified by ARC validation.
 
         Args:
           date_end: End of the date range (inclusive).
@@ -648,7 +670,7 @@ class AsyncSummaryResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SummaryDKIMResponse:
         """
-        Percentage distribution of emails classified per DKIM validation.
+        Percentage distribution of emails classified by DKIM validation.
 
         Args:
           arc: Filter for arc (Authenticated Received Chain).
@@ -729,7 +751,7 @@ class AsyncSummaryResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SummaryDMARCResponse:
         """
-        Percentage distribution of emails classified per DMARC validation.
+        Percentage distribution of emails classified by DMARC validation.
 
         Args:
           arc: Filter for arc (Authenticated Received Chain).
@@ -810,7 +832,7 @@ class AsyncSummaryResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SummaryEncryptedResponse:
         """
-        Percentage distribution of emails by Encrypted
+        Percentage distribution of emails by encryption status.
 
         Args:
           arc: Filter for arc (Authenticated Received Chain).
@@ -891,7 +913,7 @@ class AsyncSummaryResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SummaryIPVersionResponse:
         """
-        Percentage distribution of emails by Ip Version.
+        Percentage distribution of emails by IP version.
 
         Args:
           arc: Filter for arc (Authenticated Received Chain).
@@ -972,7 +994,7 @@ class AsyncSummaryResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SummarySPFResponse:
         """
-        Percentage distribution of emails classified per SPF validation.
+        Percentage distribution of emails classified by SPF validation.
 
         Args:
           arc: Filter for arc (Authenticated Received Chain).

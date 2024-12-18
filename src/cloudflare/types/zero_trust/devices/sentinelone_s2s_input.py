@@ -24,5 +24,18 @@ class SentineloneS2sInput(BaseModel):
     network_status: Optional[Literal["connected", "disconnected", "disconnecting", "connecting"]] = None
     """Network status of device."""
 
+    operational_state: Optional[
+        Literal[
+            "na",
+            "partially_disabled",
+            "auto_fully_disabled",
+            "fully_disabled",
+            "auto_partially_disabled",
+            "disabled_error",
+            "db_corruption",
+        ]
+    ] = None
+    """Agent operational state."""
+
     operator: Optional[Literal["<", "<=", ">", ">=", "=="]] = None
     """operator"""
