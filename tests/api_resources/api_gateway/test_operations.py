@@ -28,7 +28,7 @@ class TestOperations:
     def test_method_create(self, client: Cloudflare) -> None:
         operation = client.api_gateway.operations.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[
+            operations=[
                 {
                     "endpoint": "/api/v1/users/{var1}",
                     "host": "www.example.com",
@@ -42,7 +42,7 @@ class TestOperations:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.api_gateway.operations.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[
+            operations=[
                 {
                     "endpoint": "/api/v1/users/{var1}",
                     "host": "www.example.com",
@@ -60,7 +60,7 @@ class TestOperations:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.api_gateway.operations.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[
+            operations=[
                 {
                     "endpoint": "/api/v1/users/{var1}",
                     "host": "www.example.com",
@@ -81,7 +81,7 @@ class TestOperations:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.api_gateway.operations.with_raw_response.create(
                 zone_id="",
-                body=[
+                operations=[
                     {
                         "endpoint": "/api/v1/users/{var1}",
                         "host": "www.example.com",
@@ -294,7 +294,7 @@ class TestAsyncOperations:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         operation = await async_client.api_gateway.operations.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[
+            operations=[
                 {
                     "endpoint": "/api/v1/users/{var1}",
                     "host": "www.example.com",
@@ -308,7 +308,7 @@ class TestAsyncOperations:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.api_gateway.operations.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[
+            operations=[
                 {
                     "endpoint": "/api/v1/users/{var1}",
                     "host": "www.example.com",
@@ -326,7 +326,7 @@ class TestAsyncOperations:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.api_gateway.operations.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[
+            operations=[
                 {
                     "endpoint": "/api/v1/users/{var1}",
                     "host": "www.example.com",
@@ -347,7 +347,7 @@ class TestAsyncOperations:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.api_gateway.operations.with_raw_response.create(
                 zone_id="",
-                body=[
+                operations=[
                     {
                         "endpoint": "/api/v1/users/{var1}",
                         "host": "www.example.com",
