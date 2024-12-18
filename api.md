@@ -2820,7 +2820,6 @@ Types:
 
 ```python
 from cloudflare.types.managed_transforms import (
-    RequestModel,
     ManagedTransformListResponse,
     ManagedTransformEditResponse,
 )
