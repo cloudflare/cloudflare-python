@@ -27,6 +27,7 @@ class TestScripts:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
+            metadata={},
         )
         assert_matches_type(Optional[ScriptUpdateResponse], script, path=["response"])
 
@@ -37,7 +38,6 @@ class TestScripts:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
-            any_part_name=[b"raw file contents"],
             metadata={
                 "assets": {
                     "config": {
@@ -54,8 +54,8 @@ class TestScripts:
                     }
                 ],
                 "body_part": "worker.js",
-                "compatibility_date": "2023-07-25",
-                "compatibility_flags": ["string"],
+                "compatibility_date": "2021-01-01",
+                "compatibility_flags": ["nodejs_compat"],
                 "keep_assets": False,
                 "keep_bindings": ["string"],
                 "logpush": False,
@@ -106,6 +106,7 @@ class TestScripts:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
+            metadata={},
         )
 
         assert response.is_closed is True
@@ -120,6 +121,7 @@ class TestScripts:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
+            metadata={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -137,6 +139,7 @@ class TestScripts:
                 script_name="this-is_my_script-01",
                 account_id="",
                 dispatch_namespace="my-dispatch-namespace",
+                metadata={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dispatch_namespace` but received ''"):
@@ -144,6 +147,7 @@ class TestScripts:
                 script_name="this-is_my_script-01",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="",
+                metadata={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
@@ -151,6 +155,7 @@ class TestScripts:
                 script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="my-dispatch-namespace",
+                metadata={},
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -170,7 +175,7 @@ class TestScripts:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
-            message="message",
+            message="Message about the rollback.",
         )
         assert_matches_type(Optional[ScriptUpdateResponse], script, path=["response"])
 
@@ -369,6 +374,7 @@ class TestAsyncScripts:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
+            metadata={},
         )
         assert_matches_type(Optional[ScriptUpdateResponse], script, path=["response"])
 
@@ -379,7 +385,6 @@ class TestAsyncScripts:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
-            any_part_name=[b"raw file contents"],
             metadata={
                 "assets": {
                     "config": {
@@ -396,8 +401,8 @@ class TestAsyncScripts:
                     }
                 ],
                 "body_part": "worker.js",
-                "compatibility_date": "2023-07-25",
-                "compatibility_flags": ["string"],
+                "compatibility_date": "2021-01-01",
+                "compatibility_flags": ["nodejs_compat"],
                 "keep_assets": False,
                 "keep_bindings": ["string"],
                 "logpush": False,
@@ -448,6 +453,7 @@ class TestAsyncScripts:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
+            metadata={},
         )
 
         assert response.is_closed is True
@@ -462,6 +468,7 @@ class TestAsyncScripts:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
+            metadata={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -479,6 +486,7 @@ class TestAsyncScripts:
                 script_name="this-is_my_script-01",
                 account_id="",
                 dispatch_namespace="my-dispatch-namespace",
+                metadata={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dispatch_namespace` but received ''"):
@@ -486,6 +494,7 @@ class TestAsyncScripts:
                 script_name="this-is_my_script-01",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="",
+                metadata={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
@@ -493,6 +502,7 @@ class TestAsyncScripts:
                 script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="my-dispatch-namespace",
+                metadata={},
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -512,7 +522,7 @@ class TestAsyncScripts:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
-            message="message",
+            message="Message about the rollback.",
         )
         assert_matches_type(Optional[ScriptUpdateResponse], script, path=["response"])
 

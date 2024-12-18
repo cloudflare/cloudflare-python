@@ -2,6 +2,7 @@
 
 from typing import List, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from ..._models import BaseModel
 from .scripts.consumer_script import ConsumerScript
@@ -39,5 +40,5 @@ class ScriptUpdateResponse(BaseModel):
     tail_consumers: Optional[List[ConsumerScript]] = None
     """List of Workers that will consume logs from the attached Worker."""
 
-    usage_model: Optional[str] = None
-    """Specifies the usage model for the Worker (e.g. 'bundled' or 'unbound')."""
+    usage_model: Optional[Literal["bundled", "unbound"]] = None
+    """Usage model for the Worker invocations."""

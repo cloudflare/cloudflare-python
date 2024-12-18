@@ -5,7 +5,6 @@ from __future__ import annotations
 from typing import List, Iterable
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
-from ...._types import FileTypes
 from ...._utils import PropertyInfo
 
 __all__ = ["VersionCreateParams", "Metadata", "MetadataAnnotations"]
@@ -15,14 +14,7 @@ class VersionCreateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
-    any_part_name: Annotated[List[FileTypes], PropertyInfo(alias="<any part name>")]
-    """A module comprising a Worker script, often a javascript file.
-
-    Multiple modules may be provided as separate named parts, but at least one
-    module must be present and referenced in the metadata as `main_module`.
-    """
-
-    metadata: Metadata
+    metadata: Required[Metadata]
     """JSON encoded metadata about the uploaded parts and Worker configuration."""
 
 

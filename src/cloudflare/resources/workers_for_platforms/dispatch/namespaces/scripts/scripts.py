@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Optional, cast
+from typing import Type, Optional, cast
 from typing_extensions import overload
 
 import httpx
@@ -47,7 +47,7 @@ from .settings import (
     SettingsResourceWithStreamingResponse,
     AsyncSettingsResourceWithStreamingResponse,
 )
-from ......_types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, FileTypes
+from ......_types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from ......_utils import (
     required_args,
     maybe_transform,
@@ -117,8 +117,7 @@ class ScriptsResource(SyncAPIResource):
         *,
         account_id: str,
         dispatch_namespace: str,
-        any_part_name: List[FileTypes] | NotGiven = NOT_GIVEN,
-        metadata: script_update_params.Variant0Metadata | NotGiven = NOT_GIVEN,
+        metadata: script_update_params.Variant0Metadata,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -138,12 +137,6 @@ class ScriptsResource(SyncAPIResource):
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
           script_name: Name of the script, used in URLs and route configuration.
-
-          any_part_name: A module comprising a Worker script, often a javascript file. Multiple modules
-              may be provided as separate named parts, but at least one module must be present
-              and referenced in the metadata as `main_module` or `body_part` by part name.
-              Source maps may also be included using the `application/source-map` content
-              type.
 
           metadata: JSON encoded metadata about the uploaded parts and Worker configuration.
 
@@ -198,14 +191,13 @@ class ScriptsResource(SyncAPIResource):
         """
         ...
 
-    @required_args(["account_id", "dispatch_namespace"])
+    @required_args(["account_id", "dispatch_namespace", "metadata"], ["account_id", "dispatch_namespace"])
     def update(
         self,
         script_name: str,
         *,
         account_id: str,
         dispatch_namespace: str,
-        any_part_name: List[FileTypes] | NotGiven = NOT_GIVEN,
         metadata: script_update_params.Variant0Metadata | NotGiven = NOT_GIVEN,
         message: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -225,7 +217,6 @@ class ScriptsResource(SyncAPIResource):
             f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}",
             body=maybe_transform(
                 {
-                    "any_part_name": any_part_name,
                     "metadata": metadata,
                     "message": message,
                 },
@@ -395,8 +386,7 @@ class AsyncScriptsResource(AsyncAPIResource):
         *,
         account_id: str,
         dispatch_namespace: str,
-        any_part_name: List[FileTypes] | NotGiven = NOT_GIVEN,
-        metadata: script_update_params.Variant0Metadata | NotGiven = NOT_GIVEN,
+        metadata: script_update_params.Variant0Metadata,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -416,12 +406,6 @@ class AsyncScriptsResource(AsyncAPIResource):
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
           script_name: Name of the script, used in URLs and route configuration.
-
-          any_part_name: A module comprising a Worker script, often a javascript file. Multiple modules
-              may be provided as separate named parts, but at least one module must be present
-              and referenced in the metadata as `main_module` or `body_part` by part name.
-              Source maps may also be included using the `application/source-map` content
-              type.
 
           metadata: JSON encoded metadata about the uploaded parts and Worker configuration.
 
@@ -476,14 +460,13 @@ class AsyncScriptsResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(["account_id", "dispatch_namespace"])
+    @required_args(["account_id", "dispatch_namespace", "metadata"], ["account_id", "dispatch_namespace"])
     async def update(
         self,
         script_name: str,
         *,
         account_id: str,
         dispatch_namespace: str,
-        any_part_name: List[FileTypes] | NotGiven = NOT_GIVEN,
         metadata: script_update_params.Variant0Metadata | NotGiven = NOT_GIVEN,
         message: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -503,7 +486,6 @@ class AsyncScriptsResource(AsyncAPIResource):
             f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}",
             body=await async_maybe_transform(
                 {
-                    "any_part_name": any_part_name,
                     "metadata": metadata,
                     "message": message,
                 },
