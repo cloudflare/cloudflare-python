@@ -23,14 +23,7 @@ class TestURLNormalization:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         url_normalization = client.url_normalization.update(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(URLNormalizationUpdateResponse, url_normalization, path=["response"])
-
-    @parametrize
-    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
-        url_normalization = client.url_normalization.update(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="9f1839b6152d298aca64c4e906b6d074",
             scope="incoming",
             type="cloudflare",
         )
@@ -39,7 +32,9 @@ class TestURLNormalization:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.url_normalization.with_raw_response.update(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="9f1839b6152d298aca64c4e906b6d074",
+            scope="incoming",
+            type="cloudflare",
         )
 
         assert response.is_closed is True
@@ -50,7 +45,9 @@ class TestURLNormalization:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.url_normalization.with_streaming_response.update(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="9f1839b6152d298aca64c4e906b6d074",
+            scope="incoming",
+            type="cloudflare",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -65,19 +62,21 @@ class TestURLNormalization:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.url_normalization.with_raw_response.update(
                 zone_id="",
+                scope="incoming",
+                type="cloudflare",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         url_normalization = client.url_normalization.get(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="9f1839b6152d298aca64c4e906b6d074",
         )
         assert_matches_type(URLNormalizationGetResponse, url_normalization, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.url_normalization.with_raw_response.get(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="9f1839b6152d298aca64c4e906b6d074",
         )
 
         assert response.is_closed is True
@@ -88,7 +87,7 @@ class TestURLNormalization:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.url_normalization.with_streaming_response.get(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="9f1839b6152d298aca64c4e906b6d074",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -112,14 +111,7 @@ class TestAsyncURLNormalization:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         url_normalization = await async_client.url_normalization.update(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(URLNormalizationUpdateResponse, url_normalization, path=["response"])
-
-    @parametrize
-    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        url_normalization = await async_client.url_normalization.update(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="9f1839b6152d298aca64c4e906b6d074",
             scope="incoming",
             type="cloudflare",
         )
@@ -128,7 +120,9 @@ class TestAsyncURLNormalization:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.url_normalization.with_raw_response.update(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="9f1839b6152d298aca64c4e906b6d074",
+            scope="incoming",
+            type="cloudflare",
         )
 
         assert response.is_closed is True
@@ -139,7 +133,9 @@ class TestAsyncURLNormalization:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.url_normalization.with_streaming_response.update(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="9f1839b6152d298aca64c4e906b6d074",
+            scope="incoming",
+            type="cloudflare",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -154,19 +150,21 @@ class TestAsyncURLNormalization:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.url_normalization.with_raw_response.update(
                 zone_id="",
+                scope="incoming",
+                type="cloudflare",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         url_normalization = await async_client.url_normalization.get(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="9f1839b6152d298aca64c4e906b6d074",
         )
         assert_matches_type(URLNormalizationGetResponse, url_normalization, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.url_normalization.with_raw_response.get(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="9f1839b6152d298aca64c4e906b6d074",
         )
 
         assert response.is_closed is True
@@ -177,7 +175,7 @@ class TestAsyncURLNormalization:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.url_normalization.with_streaming_response.get(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="9f1839b6152d298aca64c4e906b6d074",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

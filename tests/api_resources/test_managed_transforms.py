@@ -23,14 +23,14 @@ class TestManagedTransforms:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         managed_transform = client.managed_transforms.list(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="9f1839b6152d298aca64c4e906b6d074",
         )
         assert_matches_type(ManagedTransformListResponse, managed_transform, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.managed_transforms.with_raw_response.list(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="9f1839b6152d298aca64c4e906b6d074",
         )
 
         assert response.is_closed is True
@@ -41,7 +41,7 @@ class TestManagedTransforms:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.managed_transforms.with_streaming_response.list(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="9f1839b6152d298aca64c4e906b6d074",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -61,18 +61,38 @@ class TestManagedTransforms:
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         managed_transform = client.managed_transforms.edit(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            managed_request_headers=[{}],
-            managed_response_headers=[{}],
+            zone_id="9f1839b6152d298aca64c4e906b6d074",
+            managed_request_headers=[
+                {
+                    "id": "add_bot_protection_headers",
+                    "enabled": True,
+                }
+            ],
+            managed_response_headers=[
+                {
+                    "id": "add_security_headers",
+                    "enabled": True,
+                }
+            ],
         )
         assert_matches_type(ManagedTransformEditResponse, managed_transform, path=["response"])
 
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.managed_transforms.with_raw_response.edit(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            managed_request_headers=[{}],
-            managed_response_headers=[{}],
+            zone_id="9f1839b6152d298aca64c4e906b6d074",
+            managed_request_headers=[
+                {
+                    "id": "add_bot_protection_headers",
+                    "enabled": True,
+                }
+            ],
+            managed_response_headers=[
+                {
+                    "id": "add_security_headers",
+                    "enabled": True,
+                }
+            ],
         )
 
         assert response.is_closed is True
@@ -83,9 +103,19 @@ class TestManagedTransforms:
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.managed_transforms.with_streaming_response.edit(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            managed_request_headers=[{}],
-            managed_response_headers=[{}],
+            zone_id="9f1839b6152d298aca64c4e906b6d074",
+            managed_request_headers=[
+                {
+                    "id": "add_bot_protection_headers",
+                    "enabled": True,
+                }
+            ],
+            managed_response_headers=[
+                {
+                    "id": "add_security_headers",
+                    "enabled": True,
+                }
+            ],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -100,8 +130,18 @@ class TestManagedTransforms:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.managed_transforms.with_raw_response.edit(
                 zone_id="",
-                managed_request_headers=[{}],
-                managed_response_headers=[{}],
+                managed_request_headers=[
+                    {
+                        "id": "add_bot_protection_headers",
+                        "enabled": True,
+                    }
+                ],
+                managed_response_headers=[
+                    {
+                        "id": "add_security_headers",
+                        "enabled": True,
+                    }
+                ],
             )
 
 
@@ -111,14 +151,14 @@ class TestAsyncManagedTransforms:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         managed_transform = await async_client.managed_transforms.list(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="9f1839b6152d298aca64c4e906b6d074",
         )
         assert_matches_type(ManagedTransformListResponse, managed_transform, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.managed_transforms.with_raw_response.list(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="9f1839b6152d298aca64c4e906b6d074",
         )
 
         assert response.is_closed is True
@@ -129,7 +169,7 @@ class TestAsyncManagedTransforms:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.managed_transforms.with_streaming_response.list(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="9f1839b6152d298aca64c4e906b6d074",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -149,18 +189,38 @@ class TestAsyncManagedTransforms:
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         managed_transform = await async_client.managed_transforms.edit(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            managed_request_headers=[{}],
-            managed_response_headers=[{}],
+            zone_id="9f1839b6152d298aca64c4e906b6d074",
+            managed_request_headers=[
+                {
+                    "id": "add_bot_protection_headers",
+                    "enabled": True,
+                }
+            ],
+            managed_response_headers=[
+                {
+                    "id": "add_security_headers",
+                    "enabled": True,
+                }
+            ],
         )
         assert_matches_type(ManagedTransformEditResponse, managed_transform, path=["response"])
 
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.managed_transforms.with_raw_response.edit(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            managed_request_headers=[{}],
-            managed_response_headers=[{}],
+            zone_id="9f1839b6152d298aca64c4e906b6d074",
+            managed_request_headers=[
+                {
+                    "id": "add_bot_protection_headers",
+                    "enabled": True,
+                }
+            ],
+            managed_response_headers=[
+                {
+                    "id": "add_security_headers",
+                    "enabled": True,
+                }
+            ],
         )
 
         assert response.is_closed is True
@@ -171,9 +231,19 @@ class TestAsyncManagedTransforms:
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.managed_transforms.with_streaming_response.edit(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            managed_request_headers=[{}],
-            managed_response_headers=[{}],
+            zone_id="9f1839b6152d298aca64c4e906b6d074",
+            managed_request_headers=[
+                {
+                    "id": "add_bot_protection_headers",
+                    "enabled": True,
+                }
+            ],
+            managed_response_headers=[
+                {
+                    "id": "add_security_headers",
+                    "enabled": True,
+                }
+            ],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -188,6 +258,16 @@ class TestAsyncManagedTransforms:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.managed_transforms.with_raw_response.edit(
                 zone_id="",
-                managed_request_headers=[{}],
-                managed_response_headers=[{}],
+                managed_request_headers=[
+                    {
+                        "id": "add_bot_protection_headers",
+                        "enabled": True,
+                    }
+                ],
+                managed_response_headers=[
+                    {
+                        "id": "add_security_headers",
+                        "enabled": True,
+                    }
+                ],
             )

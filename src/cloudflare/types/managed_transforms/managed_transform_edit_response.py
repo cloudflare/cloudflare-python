@@ -4,32 +4,60 @@ from typing import List, Optional
 
 from ..._models import BaseModel
 
-__all__ = ["ManagedTransformEditResponse", "ManagedRequestHeader", "ManagedResponseHeader"]
+__all__ = [
+    "ManagedTransformEditResponse",
+    "ManagedRequestHeader",
+    "ManagedRequestHeaderConflictsWith",
+    "ManagedResponseHeader",
+    "ManagedResponseHeaderConflictsWith",
+]
+
+
+class ManagedRequestHeaderConflictsWith:
+    pass
 
 
 class ManagedRequestHeader(BaseModel):
-    id: Optional[str] = None
-    """Human-readable identifier of the Managed Transform."""
+    id: str
+    """The human-readable identifier of the Managed Transform."""
 
-    available: Optional[bool] = None
-    """When true, the Managed Transform is available in the current Cloudflare plan."""
+    enabled: bool
+    """Whether the Managed Transform is enabled."""
 
-    enabled: Optional[bool] = None
-    """When true, the Managed Transform is enabled."""
+    has_conflict: bool
+    """
+    Whether the Managed Transform conflicts with the currently-enabled Managed
+    Transforms.
+    """
+
+    conflicts_with: Optional[List[ManagedRequestHeaderConflictsWith]] = None
+    """The Managed Transforms that this Managed Transform conflicts with."""
+
+
+class ManagedResponseHeaderConflictsWith:
+    pass
 
 
 class ManagedResponseHeader(BaseModel):
-    id: Optional[str] = None
-    """Human-readable identifier of the Managed Transform."""
+    id: str
+    """The human-readable identifier of the Managed Transform."""
 
-    available: Optional[bool] = None
-    """When true, the Managed Transform is available in the current Cloudflare plan."""
+    enabled: bool
+    """Whether the Managed Transform is enabled."""
 
-    enabled: Optional[bool] = None
-    """When true, the Managed Transform is enabled."""
+    has_conflict: bool
+    """
+    Whether the Managed Transform conflicts with the currently-enabled Managed
+    Transforms.
+    """
+
+    conflicts_with: Optional[List[ManagedResponseHeaderConflictsWith]] = None
+    """The Managed Transforms that this Managed Transform conflicts with."""
 
 
 class ManagedTransformEditResponse(BaseModel):
-    managed_request_headers: Optional[List[ManagedRequestHeader]] = None
+    managed_request_headers: List[ManagedRequestHeader]
+    """The list of Managed Request Transforms."""
 
-    managed_response_headers: Optional[List[ManagedResponseHeader]] = None
+    managed_response_headers: List[ManagedResponseHeader]
+    """The list of Managed Response Transforms."""
