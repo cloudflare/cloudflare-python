@@ -126,6 +126,7 @@ class TestJobs:
             max_upload_bytes=5000000,
             max_upload_interval_seconds=30,
             max_upload_records=1000,
+            name="example.com",
             output_options={
                 "batch_prefix": "batch_prefix",
                 "batch_suffix": "batch_suffix",
@@ -476,6 +477,7 @@ class TestAsyncJobs:
             max_upload_bytes=5000000,
             max_upload_interval_seconds=30,
             max_upload_records=1000,
+            name="example.com",
             output_options={
                 "batch_prefix": "batch_prefix",
                 "batch_suffix": "batch_suffix",
