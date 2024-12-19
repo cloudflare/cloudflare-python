@@ -117,3 +117,6 @@ class GatewayRule(BaseModel):
     """The wirefilter expression used for traffic matching."""
 
     updated_at: Optional[datetime] = None
+
+    version: Optional[int] = None
+    """version number of the rule"""
