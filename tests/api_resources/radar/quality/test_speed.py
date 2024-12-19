@@ -29,18 +29,14 @@ class TestSpeed:
     @parametrize
     def test_method_histogram_with_all_params(self, client: Cloudflare) -> None:
         speed = client.radar.quality.speed.histogram(
-            asn=["string", "string", "string"],
+            asn=["string"],
             bucket_size=0,
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            location=["string", "string", "string"],
+            location=["string"],
             metric_group="BANDWIDTH",
-            name=["string", "string", "string"],
+            name=["string"],
         )
         assert_matches_type(SpeedHistogramResponse, speed, path=["response"])
 
@@ -72,16 +68,12 @@ class TestSpeed:
     @parametrize
     def test_method_summary_with_all_params(self, client: Cloudflare) -> None:
         speed = client.radar.quality.speed.summary(
-            asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            asn=["string"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            location=["string"],
+            name=["string"],
         )
         assert_matches_type(SpeedSummaryResponse, speed, path=["response"])
 
@@ -117,18 +109,14 @@ class TestAsyncSpeed:
     @parametrize
     async def test_method_histogram_with_all_params(self, async_client: AsyncCloudflare) -> None:
         speed = await async_client.radar.quality.speed.histogram(
-            asn=["string", "string", "string"],
+            asn=["string"],
             bucket_size=0,
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            location=["string", "string", "string"],
+            location=["string"],
             metric_group="BANDWIDTH",
-            name=["string", "string", "string"],
+            name=["string"],
         )
         assert_matches_type(SpeedHistogramResponse, speed, path=["response"])
 
@@ -160,16 +148,12 @@ class TestAsyncSpeed:
     @parametrize
     async def test_method_summary_with_all_params(self, async_client: AsyncCloudflare) -> None:
         speed = await async_client.radar.quality.speed.summary(
-            asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            asn=["string"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            location=["string"],
+            name=["string"],
         )
         assert_matches_type(SpeedSummaryResponse, speed, path=["response"])
 

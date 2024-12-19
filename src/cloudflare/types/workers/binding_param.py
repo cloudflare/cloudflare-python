@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Union
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .d1_binding_param import D1BindingParam
 from .r2_binding_param import R2BindingParam
@@ -13,7 +13,7 @@ from .kv_namespace_binding_param import KVNamespaceBindingParam
 from .durable_object_binding_param import DurableObjectBindingParam
 from .dispatch_namespace_binding_param import DispatchNamespaceBindingParam
 
-__all__ = ["BindingParam", "WorkersQueueBinding"]
+__all__ = ["BindingParam", "WorkersQueueBinding", "WorkersAssetsBinding"]
 
 
 class WorkersQueueBinding(TypedDict, total=False):
@@ -24,7 +24,12 @@ class WorkersQueueBinding(TypedDict, total=False):
     """The class of resource that the binding provides."""
 
 
-BindingParam = Union[
+class WorkersAssetsBinding(TypedDict, total=False):
+    type: Required[Literal["assets"]]
+    """The class of resource that the binding provides."""
+
+
+BindingParam: TypeAlias = Union[
     KVNamespaceBindingParam,
     ServiceBindingParam,
     DurableObjectBindingParam,
@@ -33,4 +38,5 @@ BindingParam = Union[
     D1BindingParam,
     DispatchNamespaceBindingParam,
     MTLSCERTBindingParam,
+    WorkersAssetsBinding,
 ]

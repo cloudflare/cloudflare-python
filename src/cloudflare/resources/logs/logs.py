@@ -10,7 +10,9 @@ from .rayid import (
     RayIDResourceWithStreamingResponse,
     AsyncRayIDResourceWithStreamingResponse,
 )
-from .control import (
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from .control.control import (
     ControlResource,
     AsyncControlResource,
     ControlResourceWithRawResponse,
@@ -18,7 +20,7 @@ from .control import (
     ControlResourceWithStreamingResponse,
     AsyncControlResourceWithStreamingResponse,
 )
-from .received import (
+from .received.received import (
     ReceivedResource,
     AsyncReceivedResource,
     ReceivedResourceWithRawResponse,
@@ -26,10 +28,6 @@ from .received import (
     ReceivedResourceWithStreamingResponse,
     AsyncReceivedResourceWithStreamingResponse,
 )
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from .control.control import ControlResource, AsyncControlResource
-from .received.received import ReceivedResource, AsyncReceivedResource
 
 __all__ = ["LogsResource", "AsyncLogsResource"]
 
@@ -49,10 +47,21 @@ class LogsResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> LogsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return LogsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> LogsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return LogsResourceWithStreamingResponse(self)
 
 
@@ -71,10 +80,21 @@ class AsyncLogsResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncLogsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncLogsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncLogsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncLogsResourceWithStreamingResponse(self)
 
 

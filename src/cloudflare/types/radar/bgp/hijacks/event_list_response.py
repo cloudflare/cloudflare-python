@@ -4,10 +4,10 @@ from typing import List
 
 from ....._models import BaseModel
 
-__all__ = ["EventListResponse", "Result", "ResultASNInfo", "ResultEvent", "ResultEventTag", "ResultInfo"]
+__all__ = ["EventListResponse", "ASNInfo", "Event", "EventTag"]
 
 
-class ResultASNInfo(BaseModel):
+class ASNInfo(BaseModel):
     asn: int
 
     country_code: str
@@ -15,13 +15,13 @@ class ResultASNInfo(BaseModel):
     org_name: str
 
 
-class ResultEventTag(BaseModel):
+class EventTag(BaseModel):
     name: str
 
     score: int
 
 
-class ResultEvent(BaseModel):
+class Event(BaseModel):
     id: int
 
     confidence_score: int
@@ -52,34 +52,16 @@ class ResultEvent(BaseModel):
 
     prefixes: List[str]
 
-    tags: List[ResultEventTag]
+    tags: List[EventTag]
 
     victim_asns: List[int]
 
     victim_countries: List[str]
 
 
-class Result(BaseModel):
-    asn_info: List[ResultASNInfo]
+class EventListResponse(BaseModel):
+    asn_info: List[ASNInfo]
 
-    events: List[ResultEvent]
+    events: List[Event]
 
     total_monitors: int
-
-
-class ResultInfo(BaseModel):
-    count: int
-
-    page: int
-
-    per_page: int
-
-    total_count: int
-
-
-class EventListResponse(BaseModel):
-    result: Result
-
-    result_info: ResultInfo
-
-    success: bool

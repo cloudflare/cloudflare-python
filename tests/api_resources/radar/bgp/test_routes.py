@@ -33,8 +33,8 @@ class TestRoutes:
             format="JSON",
             limit=5,
             location="US",
-            sort_by="ipv4",
-            sort_order="desc",
+            sort_by="cone",
+            sort_order="asc",
         )
         assert_matches_type(RouteAsesResponse, route, path=["response"])
 
@@ -105,7 +105,7 @@ class TestRoutes:
             longest_prefix_match=True,
             origin=0,
             prefix="1.1.1.0/24",
-            rpki_status="INVALID",
+            rpki_status="VALID",
         )
         assert_matches_type(RoutePfx2asResponse, route, path=["response"])
 
@@ -178,8 +178,8 @@ class TestAsyncRoutes:
             format="JSON",
             limit=5,
             location="US",
-            sort_by="ipv4",
-            sort_order="desc",
+            sort_by="cone",
+            sort_order="asc",
         )
         assert_matches_type(RouteAsesResponse, route, path=["response"])
 
@@ -250,7 +250,7 @@ class TestAsyncRoutes:
             longest_prefix_match=True,
             origin=0,
             prefix="1.1.1.0/24",
-            rpki_status="INVALID",
+            rpki_status="VALID",
         )
         assert_matches_type(RoutePfx2asResponse, route, path=["response"])
 

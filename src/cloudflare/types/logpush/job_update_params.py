@@ -79,6 +79,13 @@ class JobUpdateParams(TypedDict, total=False):
     available for jobs with `edge` as its kind.
     """
 
+    name: Optional[str]
+    """Optional human readable job name.
+
+    Not unique. Cloudflare suggests that you set this to a meaningful string, like
+    the domain name, to make it easier to identify your job.
+    """
+
     output_options: Optional[OutputOptionsParam]
     """The structured replacement for `logpull_options`.
 

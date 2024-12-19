@@ -10,40 +10,8 @@ from .schemas import (
     SchemasResourceWithStreamingResponse,
     AsyncSchemasResourceWithStreamingResponse,
 )
-from .settings import (
-    SettingsResource,
-    AsyncSettingsResource,
-    SettingsResourceWithRawResponse,
-    AsyncSettingsResourceWithRawResponse,
-    SettingsResourceWithStreamingResponse,
-    AsyncSettingsResourceWithStreamingResponse,
-)
 from ..._compat import cached_property
-from .discovery import (
-    DiscoveryResource,
-    AsyncDiscoveryResource,
-    DiscoveryResourceWithRawResponse,
-    AsyncDiscoveryResourceWithRawResponse,
-    DiscoveryResourceWithStreamingResponse,
-    AsyncDiscoveryResourceWithStreamingResponse,
-)
-from .operations import (
-    OperationsResource,
-    AsyncOperationsResource,
-    OperationsResourceWithRawResponse,
-    AsyncOperationsResourceWithRawResponse,
-    OperationsResourceWithStreamingResponse,
-    AsyncOperationsResourceWithStreamingResponse,
-)
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from .user_schemas import (
-    UserSchemasResource,
-    AsyncUserSchemasResource,
-    UserSchemasResourceWithRawResponse,
-    AsyncUserSchemasResourceWithRawResponse,
-    UserSchemasResourceWithStreamingResponse,
-    AsyncUserSchemasResourceWithStreamingResponse,
-)
 from .configurations import (
     ConfigurationsResource,
     AsyncConfigurationsResource,
@@ -52,10 +20,46 @@ from .configurations import (
     ConfigurationsResourceWithStreamingResponse,
     AsyncConfigurationsResourceWithStreamingResponse,
 )
-from .settings.settings import SettingsResource, AsyncSettingsResource
-from .discovery.discovery import DiscoveryResource, AsyncDiscoveryResource
-from .operations.operations import OperationsResource, AsyncOperationsResource
-from .user_schemas.user_schemas import UserSchemasResource, AsyncUserSchemasResource
+from .settings.settings import (
+    SettingsResource,
+    AsyncSettingsResource,
+    SettingsResourceWithRawResponse,
+    AsyncSettingsResourceWithRawResponse,
+    SettingsResourceWithStreamingResponse,
+    AsyncSettingsResourceWithStreamingResponse,
+)
+from .discovery.discovery import (
+    DiscoveryResource,
+    AsyncDiscoveryResource,
+    DiscoveryResourceWithRawResponse,
+    AsyncDiscoveryResourceWithRawResponse,
+    DiscoveryResourceWithStreamingResponse,
+    AsyncDiscoveryResourceWithStreamingResponse,
+)
+from .operations.operations import (
+    OperationsResource,
+    AsyncOperationsResource,
+    OperationsResourceWithRawResponse,
+    AsyncOperationsResourceWithRawResponse,
+    OperationsResourceWithStreamingResponse,
+    AsyncOperationsResourceWithStreamingResponse,
+)
+from .user_schemas.user_schemas import (
+    UserSchemasResource,
+    AsyncUserSchemasResource,
+    UserSchemasResourceWithRawResponse,
+    AsyncUserSchemasResourceWithRawResponse,
+    UserSchemasResourceWithStreamingResponse,
+    AsyncUserSchemasResourceWithStreamingResponse,
+)
+from .expression_template.expression_template import (
+    ExpressionTemplateResource,
+    AsyncExpressionTemplateResource,
+    ExpressionTemplateResourceWithRawResponse,
+    AsyncExpressionTemplateResourceWithRawResponse,
+    ExpressionTemplateResourceWithStreamingResponse,
+    AsyncExpressionTemplateResourceWithStreamingResponse,
+)
 
 __all__ = ["APIGatewayResource", "AsyncAPIGatewayResource"]
 
@@ -86,11 +90,26 @@ class APIGatewayResource(SyncAPIResource):
         return UserSchemasResource(self._client)
 
     @cached_property
+    def expression_template(self) -> ExpressionTemplateResource:
+        return ExpressionTemplateResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> APIGatewayResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return APIGatewayResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> APIGatewayResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return APIGatewayResourceWithStreamingResponse(self)
 
 
@@ -120,11 +139,26 @@ class AsyncAPIGatewayResource(AsyncAPIResource):
         return AsyncUserSchemasResource(self._client)
 
     @cached_property
+    def expression_template(self) -> AsyncExpressionTemplateResource:
+        return AsyncExpressionTemplateResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AsyncAPIGatewayResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncAPIGatewayResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncAPIGatewayResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncAPIGatewayResourceWithStreamingResponse(self)
 
 
@@ -156,6 +190,10 @@ class APIGatewayResourceWithRawResponse:
     def user_schemas(self) -> UserSchemasResourceWithRawResponse:
         return UserSchemasResourceWithRawResponse(self._api_gateway.user_schemas)
 
+    @cached_property
+    def expression_template(self) -> ExpressionTemplateResourceWithRawResponse:
+        return ExpressionTemplateResourceWithRawResponse(self._api_gateway.expression_template)
+
 
 class AsyncAPIGatewayResourceWithRawResponse:
     def __init__(self, api_gateway: AsyncAPIGatewayResource) -> None:
@@ -184,6 +222,10 @@ class AsyncAPIGatewayResourceWithRawResponse:
     @cached_property
     def user_schemas(self) -> AsyncUserSchemasResourceWithRawResponse:
         return AsyncUserSchemasResourceWithRawResponse(self._api_gateway.user_schemas)
+
+    @cached_property
+    def expression_template(self) -> AsyncExpressionTemplateResourceWithRawResponse:
+        return AsyncExpressionTemplateResourceWithRawResponse(self._api_gateway.expression_template)
 
 
 class APIGatewayResourceWithStreamingResponse:
@@ -214,6 +256,10 @@ class APIGatewayResourceWithStreamingResponse:
     def user_schemas(self) -> UserSchemasResourceWithStreamingResponse:
         return UserSchemasResourceWithStreamingResponse(self._api_gateway.user_schemas)
 
+    @cached_property
+    def expression_template(self) -> ExpressionTemplateResourceWithStreamingResponse:
+        return ExpressionTemplateResourceWithStreamingResponse(self._api_gateway.expression_template)
+
 
 class AsyncAPIGatewayResourceWithStreamingResponse:
     def __init__(self, api_gateway: AsyncAPIGatewayResource) -> None:
@@ -242,3 +288,7 @@ class AsyncAPIGatewayResourceWithStreamingResponse:
     @cached_property
     def user_schemas(self) -> AsyncUserSchemasResourceWithStreamingResponse:
         return AsyncUserSchemasResourceWithStreamingResponse(self._api_gateway.user_schemas)
+
+    @cached_property
+    def expression_template(self) -> AsyncExpressionTemplateResourceWithStreamingResponse:
+        return AsyncExpressionTemplateResourceWithStreamingResponse(self._api_gateway.expression_template)

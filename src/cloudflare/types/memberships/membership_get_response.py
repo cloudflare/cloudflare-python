@@ -12,9 +12,11 @@ __all__ = [
     "Permissions",
     "Policy",
     "PolicyPermissionGroup",
+    "PolicyPermissionGroupMeta",
     "PolicyResourceGroup",
     "PolicyResourceGroupScope",
     "PolicyResourceGroupScopeObject",
+    "PolicyResourceGroupMeta",
 ]
 
 
@@ -44,11 +46,17 @@ class Permissions(BaseModel):
     zones: Optional[PermissionGrant] = None
 
 
+class PolicyPermissionGroupMeta(BaseModel):
+    key: Optional[str] = None
+
+    value: Optional[str] = None
+
+
 class PolicyPermissionGroup(BaseModel):
     id: str
     """Identifier of the group."""
 
-    meta: Optional[object] = None
+    meta: Optional[PolicyPermissionGroupMeta] = None
     """Attributes associated to the permission group."""
 
     name: Optional[str] = None
@@ -74,6 +82,12 @@ class PolicyResourceGroupScope(BaseModel):
     """A list of scope objects for additional context."""
 
 
+class PolicyResourceGroupMeta(BaseModel):
+    key: Optional[str] = None
+
+    value: Optional[str] = None
+
+
 class PolicyResourceGroup(BaseModel):
     id: str
     """Identifier of the group."""
@@ -81,7 +95,7 @@ class PolicyResourceGroup(BaseModel):
     scope: List[PolicyResourceGroupScope]
     """The scope associated to the resource group"""
 
-    meta: Optional[object] = None
+    meta: Optional[PolicyResourceGroupMeta] = None
     """Attributes associated to the resource group."""
 
     name: Optional[str] = None
@@ -122,7 +136,7 @@ class MembershipGetResponse(BaseModel):
     """Access policy for the membership"""
 
     roles: Optional[List[str]] = None
-    """List of role names for the user at the account."""
+    """List of role names the membership has for this account."""
 
     status: Optional[Literal["accepted", "pending", "rejected"]] = None
     """Status of this membership."""

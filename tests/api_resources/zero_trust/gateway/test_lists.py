@@ -9,12 +9,10 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare._utils import parse_datetime
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.zero_trust.gateway import (
     GatewayList,
     ListCreateResponse,
-    ListDeleteResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -41,20 +39,9 @@ class TestLists:
             description="The serial numbers for administrators",
             items=[
                 {
-                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
                     "description": "Austin office IP",
                     "value": "8GE8721REF",
-                },
-                {
-                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
-                    "description": "Austin office IP",
-                    "value": "8GE8721REF",
-                },
-                {
-                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
-                    "description": "Austin office IP",
-                    "value": "8GE8721REF",
-                },
+                }
             ],
         )
         assert_matches_type(Optional[ListCreateResponse], list_, path=["response"])
@@ -112,6 +99,12 @@ class TestLists:
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
             description="The serial numbers for administrators",
+            items=[
+                {
+                    "description": "Austin office IP",
+                    "value": "8GE8721REF",
+                }
+            ],
         )
         assert_matches_type(Optional[GatewayList], list_, path=["response"])
 
@@ -211,7 +204,7 @@ class TestLists:
             list_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[ListDeleteResponse], list_, path=["response"])
+        assert_matches_type(object, list_, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -223,7 +216,7 @@ class TestLists:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         list_ = response.parse()
-        assert_matches_type(Optional[ListDeleteResponse], list_, path=["response"])
+        assert_matches_type(object, list_, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -235,7 +228,7 @@ class TestLists:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             list_ = response.parse()
-            assert_matches_type(Optional[ListDeleteResponse], list_, path=["response"])
+            assert_matches_type(object, list_, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -268,22 +261,11 @@ class TestLists:
             account_id="699d98642c564d2e855e9661899b7252",
             append=[
                 {
-                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
                     "description": "Austin office IP",
                     "value": "8GE8721REF",
-                },
-                {
-                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
-                    "description": "Austin office IP",
-                    "value": "8GE8721REF",
-                },
-                {
-                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
-                    "description": "Austin office IP",
-                    "value": "8GE8721REF",
-                },
+                }
             ],
-            remove=["8GE8721REF", "8GE8721REF", "8GE8721REF"],
+            remove=["8GE8721REF"],
         )
         assert_matches_type(Optional[GatewayList], list_, path=["response"])
 
@@ -397,20 +379,9 @@ class TestAsyncLists:
             description="The serial numbers for administrators",
             items=[
                 {
-                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
                     "description": "Austin office IP",
                     "value": "8GE8721REF",
-                },
-                {
-                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
-                    "description": "Austin office IP",
-                    "value": "8GE8721REF",
-                },
-                {
-                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
-                    "description": "Austin office IP",
-                    "value": "8GE8721REF",
-                },
+                }
             ],
         )
         assert_matches_type(Optional[ListCreateResponse], list_, path=["response"])
@@ -468,6 +439,12 @@ class TestAsyncLists:
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
             description="The serial numbers for administrators",
+            items=[
+                {
+                    "description": "Austin office IP",
+                    "value": "8GE8721REF",
+                }
+            ],
         )
         assert_matches_type(Optional[GatewayList], list_, path=["response"])
 
@@ -567,7 +544,7 @@ class TestAsyncLists:
             list_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[ListDeleteResponse], list_, path=["response"])
+        assert_matches_type(object, list_, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -579,7 +556,7 @@ class TestAsyncLists:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         list_ = await response.parse()
-        assert_matches_type(Optional[ListDeleteResponse], list_, path=["response"])
+        assert_matches_type(object, list_, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -591,7 +568,7 @@ class TestAsyncLists:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             list_ = await response.parse()
-            assert_matches_type(Optional[ListDeleteResponse], list_, path=["response"])
+            assert_matches_type(object, list_, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -624,22 +601,11 @@ class TestAsyncLists:
             account_id="699d98642c564d2e855e9661899b7252",
             append=[
                 {
-                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
                     "description": "Austin office IP",
                     "value": "8GE8721REF",
-                },
-                {
-                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
-                    "description": "Austin office IP",
-                    "value": "8GE8721REF",
-                },
-                {
-                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
-                    "description": "Austin office IP",
-                    "value": "8GE8721REF",
-                },
+                }
             ],
-            remove=["8GE8721REF", "8GE8721REF", "8GE8721REF"],
+            remove=["8GE8721REF"],
         )
         assert_matches_type(Optional[GatewayList], list_, path=["response"])
 

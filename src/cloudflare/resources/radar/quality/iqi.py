@@ -33,10 +33,21 @@ __all__ = ["IQIResource", "AsyncIQIResource"]
 class IQIResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> IQIResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return IQIResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> IQIResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return IQIResourceWithStreamingResponse(self)
 
     def summary(
@@ -221,10 +232,21 @@ class IQIResource(SyncAPIResource):
 class AsyncIQIResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncIQIResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncIQIResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncIQIResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncIQIResourceWithStreamingResponse(self)
 
     async def summary(

@@ -33,10 +33,21 @@ __all__ = ["DEXTestsResource", "AsyncDEXTestsResource"]
 class DEXTestsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> DEXTestsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return DEXTestsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> DEXTestsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return DEXTestsResourceWithStreamingResponse(self)
 
     def create(
@@ -227,7 +238,7 @@ class DEXTestsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DEXTestDeleteResponse]:
+    ) -> DEXTestDeleteResponse:
         """Delete a Device DEX test.
 
         Returns the remaining device dex tests for the
@@ -255,9 +266,9 @@ class DEXTestsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[DEXTestDeleteResponse]]._unwrapper,
+                post_parser=ResultWrapper[DEXTestDeleteResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DEXTestDeleteResponse]], ResultWrapper[DEXTestDeleteResponse]),
+            cast_to=cast(Type[DEXTestDeleteResponse], ResultWrapper[DEXTestDeleteResponse]),
         )
 
     def get(
@@ -276,7 +287,7 @@ class DEXTestsResource(SyncAPIResource):
         Fetch a single DEX test.
 
         Args:
-          dex_test_id: API UUID.
+          dex_test_id: The unique identifier for the test.
 
           extra_headers: Send extra headers
 
@@ -306,10 +317,21 @@ class DEXTestsResource(SyncAPIResource):
 class AsyncDEXTestsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncDEXTestsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncDEXTestsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncDEXTestsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncDEXTestsResourceWithStreamingResponse(self)
 
     async def create(
@@ -500,7 +522,7 @@ class AsyncDEXTestsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DEXTestDeleteResponse]:
+    ) -> DEXTestDeleteResponse:
         """Delete a Device DEX test.
 
         Returns the remaining device dex tests for the
@@ -528,9 +550,9 @@ class AsyncDEXTestsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[DEXTestDeleteResponse]]._unwrapper,
+                post_parser=ResultWrapper[DEXTestDeleteResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[DEXTestDeleteResponse]], ResultWrapper[DEXTestDeleteResponse]),
+            cast_to=cast(Type[DEXTestDeleteResponse], ResultWrapper[DEXTestDeleteResponse]),
         )
 
     async def get(
@@ -549,7 +571,7 @@ class AsyncDEXTestsResource(AsyncAPIResource):
         Fetch a single DEX test.
 
         Args:
-          dex_test_id: API UUID.
+          dex_test_id: The unique identifier for the test.
 
           extra_headers: Send extra headers
 

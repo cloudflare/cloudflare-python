@@ -13,10 +13,10 @@ class FleetStatusOverTimeParams(TypedDict, total=False):
     account_id: Required[str]
 
     from_: Required[Annotated[str, PropertyInfo(alias="from")]]
-    """Timestamp in ISO format"""
+    """Time range beginning in ISO format"""
 
     to: Required[str]
-    """Timestamp in ISO format"""
+    """Time range end in ISO format"""
 
     colo: str
     """Cloudflare colo"""

@@ -22,7 +22,6 @@ from ......_response import (
 from ......_wrappers import ResultWrapper
 from ......pagination import SyncSinglePage, AsyncSinglePage
 from ......_base_client import AsyncPaginator, make_request_options
-from ......types.workers_for_platforms.dispatch.namespaces.scripts import tag_update_params
 from ......types.workers_for_platforms.dispatch.namespaces.scripts.tag_list_response import TagListResponse
 from ......types.workers_for_platforms.dispatch.namespaces.scripts.tag_update_response import TagUpdateResponse
 
@@ -32,10 +31,21 @@ __all__ = ["TagsResource", "AsyncTagsResource"]
 class TagsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> TagsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return TagsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> TagsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return TagsResourceWithStreamingResponse(self)
 
     def update(
@@ -80,7 +90,7 @@ class TagsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return self._put(
             f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/tags",
-            body=maybe_transform(body, tag_update_params.TagUpdateParams),
+            body=maybe_transform(body, List[str]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -195,10 +205,21 @@ class TagsResource(SyncAPIResource):
 class AsyncTagsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncTagsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncTagsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncTagsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncTagsResourceWithStreamingResponse(self)
 
     async def update(
@@ -243,7 +264,7 @@ class AsyncTagsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return await self._put(
             f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/tags",
-            body=await async_maybe_transform(body, tag_update_params.TagUpdateParams),
+            body=await async_maybe_transform(body, List[str]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

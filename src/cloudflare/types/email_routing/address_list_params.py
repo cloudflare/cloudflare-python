@@ -2,12 +2,15 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["AddressListParams"]
 
 
 class AddressListParams(TypedDict, total=False):
+    account_id: Required[str]
+    """Identifier"""
+
     direction: Literal["asc", "desc"]
     """Sorts results in an ascending or descending order."""
 

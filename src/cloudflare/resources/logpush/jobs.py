@@ -25,6 +25,7 @@ from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.logpush import job_create_params, job_update_params
 from ...types.logpush.logpush_job import LogpushJob
+from ...types.logpush.job_delete_response import JobDeleteResponse
 from ...types.logpush.output_options_param import OutputOptionsParam
 
 __all__ = ["JobsResource", "AsyncJobsResource"]
@@ -33,10 +34,21 @@ __all__ = ["JobsResource", "AsyncJobsResource"]
 class JobsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> JobsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return JobsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> JobsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return JobsResourceWithStreamingResponse(self)
 
     def create(
@@ -184,6 +196,7 @@ class JobsResource(SyncAPIResource):
         max_upload_bytes: Optional[int] | NotGiven = NOT_GIVEN,
         max_upload_interval_seconds: Optional[int] | NotGiven = NOT_GIVEN,
         max_upload_records: Optional[int] | NotGiven = NOT_GIVEN,
+        name: Optional[str] | NotGiven = NOT_GIVEN,
         output_options: Optional[OutputOptionsParam] | NotGiven = NOT_GIVEN,
         ownership_challenge: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -241,6 +254,10 @@ class JobsResource(SyncAPIResource):
               lines than this. This parameter is not available for jobs with `edge` as its
               kind.
 
+          name: Optional human readable job name. Not unique. Cloudflare suggests that you set
+              this to a meaningful string, like the domain name, to make it easier to identify
+              your job.
+
           output_options: The structured replacement for `logpull_options`. When including this field, the
               `logpull_option` field will be ignored.
 
@@ -278,6 +295,7 @@ class JobsResource(SyncAPIResource):
                     "max_upload_bytes": max_upload_bytes,
                     "max_upload_interval_seconds": max_upload_interval_seconds,
                     "max_upload_records": max_upload_records,
+                    "name": name,
                     "output_options": output_options,
                     "ownership_challenge": ownership_challenge,
                 },
@@ -354,7 +372,7 @@ class JobsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[JobDeleteResponse]:
         """
         Deletes a Logpush job.
 
@@ -392,9 +410,9 @@ class JobsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[JobDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[JobDeleteResponse]], ResultWrapper[JobDeleteResponse]),
         )
 
     def get(
@@ -456,10 +474,21 @@ class JobsResource(SyncAPIResource):
 class AsyncJobsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncJobsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncJobsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncJobsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncJobsResourceWithStreamingResponse(self)
 
     async def create(
@@ -607,6 +636,7 @@ class AsyncJobsResource(AsyncAPIResource):
         max_upload_bytes: Optional[int] | NotGiven = NOT_GIVEN,
         max_upload_interval_seconds: Optional[int] | NotGiven = NOT_GIVEN,
         max_upload_records: Optional[int] | NotGiven = NOT_GIVEN,
+        name: Optional[str] | NotGiven = NOT_GIVEN,
         output_options: Optional[OutputOptionsParam] | NotGiven = NOT_GIVEN,
         ownership_challenge: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -664,6 +694,10 @@ class AsyncJobsResource(AsyncAPIResource):
               lines than this. This parameter is not available for jobs with `edge` as its
               kind.
 
+          name: Optional human readable job name. Not unique. Cloudflare suggests that you set
+              this to a meaningful string, like the domain name, to make it easier to identify
+              your job.
+
           output_options: The structured replacement for `logpull_options`. When including this field, the
               `logpull_option` field will be ignored.
 
@@ -701,6 +735,7 @@ class AsyncJobsResource(AsyncAPIResource):
                     "max_upload_bytes": max_upload_bytes,
                     "max_upload_interval_seconds": max_upload_interval_seconds,
                     "max_upload_records": max_upload_records,
+                    "name": name,
                     "output_options": output_options,
                     "ownership_challenge": ownership_challenge,
                 },
@@ -777,7 +812,7 @@ class AsyncJobsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[JobDeleteResponse]:
         """
         Deletes a Logpush job.
 
@@ -815,9 +850,9 @@ class AsyncJobsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[JobDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[JobDeleteResponse]], ResultWrapper[JobDeleteResponse]),
         )
 
     async def get(

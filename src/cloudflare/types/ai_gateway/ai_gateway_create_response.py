@@ -6,10 +6,10 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["AIGatewayCreateResponse", "Task"]
+__all__ = ["AIGatewayCreateResponse"]
 
 
-class Task(BaseModel):
+class AIGatewayCreateResponse(BaseModel):
     id: str
     """gateway id"""
 
@@ -29,6 +29,6 @@ class Task(BaseModel):
 
     rate_limiting_technique: Literal["fixed", "sliding"]
 
+    logpush: Optional[bool] = None
 
-class AIGatewayCreateResponse(BaseModel):
-    task: Task
+    logpush_public_key: Optional[str] = None

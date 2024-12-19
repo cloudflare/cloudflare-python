@@ -3,9 +3,9 @@
 from typing import List, Optional
 
 from ...._models import BaseModel
-from .policies.fallback_domain import FallbackDomain
-from .policies.split_tunnel_exclude import SplitTunnelExclude
-from .policies.split_tunnel_include import SplitTunnelInclude
+from .fallback_domain import FallbackDomain
+from .split_tunnel_exclude import SplitTunnelExclude
+from .split_tunnel_include import SplitTunnelInclude
 
 __all__ = ["SettingsPolicy", "ServiceModeV2", "TargetTest"]
 
@@ -113,3 +113,6 @@ class SettingsPolicy(BaseModel):
     """
 
     target_tests: Optional[List[TargetTest]] = None
+
+    tunnel_protocol: Optional[str] = None
+    """Determines which tunnel protocol to use."""

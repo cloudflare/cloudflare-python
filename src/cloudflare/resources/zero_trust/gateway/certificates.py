@@ -22,11 +22,17 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.zero_trust.gateway import certificate_create_params
+from ....types.zero_trust.gateway import (
+    certificate_create_params,
+    certificate_activate_params,
+    certificate_deactivate_params,
+)
 from ....types.zero_trust.gateway.certificate_get_response import CertificateGetResponse
 from ....types.zero_trust.gateway.certificate_list_response import CertificateListResponse
 from ....types.zero_trust.gateway.certificate_create_response import CertificateCreateResponse
 from ....types.zero_trust.gateway.certificate_delete_response import CertificateDeleteResponse
+from ....types.zero_trust.gateway.certificate_activate_response import CertificateActivateResponse
+from ....types.zero_trust.gateway.certificate_deactivate_response import CertificateDeactivateResponse
 
 __all__ = ["CertificatesResource", "AsyncCertificatesResource"]
 
@@ -34,10 +40,21 @@ __all__ = ["CertificatesResource", "AsyncCertificatesResource"]
 class CertificatesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> CertificatesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return CertificatesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> CertificatesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return CertificatesResourceWithStreamingResponse(self)
 
     def create(
@@ -130,8 +147,10 @@ class CertificatesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[CertificateDeleteResponse]:
-        """
-        Deletes a gateway-managed Zero Trust certificate.
+        """Deletes a gateway-managed Zero Trust certificate.
+
+        A certificate must be
+        deactivated from the edge (inactive) before it is deleted.
 
         Args:
           certificate_id: Certificate UUID tag.
@@ -158,6 +177,94 @@ class CertificatesResource(SyncAPIResource):
                 post_parser=ResultWrapper[Optional[CertificateDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[CertificateDeleteResponse]], ResultWrapper[CertificateDeleteResponse]),
+        )
+
+    def activate(
+        self,
+        certificate_id: str,
+        *,
+        account_id: str,
+        body: object,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CertificateActivateResponse]:
+        """
+        Binds a single Zero Trust certificate to the edge.
+
+        Args:
+          certificate_id: Certificate UUID tag.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not certificate_id:
+            raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
+        return self._post(
+            f"/accounts/{account_id}/gateway/certificates/{certificate_id}/activate",
+            body=maybe_transform(body, certificate_activate_params.CertificateActivateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CertificateActivateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[CertificateActivateResponse]], ResultWrapper[CertificateActivateResponse]),
+        )
+
+    def deactivate(
+        self,
+        certificate_id: str,
+        *,
+        account_id: str,
+        body: object,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CertificateDeactivateResponse]:
+        """
+        Unbinds a single Zero Trust certificate from the edge
+
+        Args:
+          certificate_id: Certificate UUID tag.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not certificate_id:
+            raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
+        return self._post(
+            f"/accounts/{account_id}/gateway/certificates/{certificate_id}/deactivate",
+            body=maybe_transform(body, certificate_deactivate_params.CertificateDeactivateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CertificateDeactivateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[CertificateDeactivateResponse]], ResultWrapper[CertificateDeactivateResponse]),
         )
 
     def get(
@@ -206,10 +313,21 @@ class CertificatesResource(SyncAPIResource):
 class AsyncCertificatesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncCertificatesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncCertificatesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncCertificatesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncCertificatesResourceWithStreamingResponse(self)
 
     async def create(
@@ -302,8 +420,10 @@ class AsyncCertificatesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[CertificateDeleteResponse]:
-        """
-        Deletes a gateway-managed Zero Trust certificate.
+        """Deletes a gateway-managed Zero Trust certificate.
+
+        A certificate must be
+        deactivated from the edge (inactive) before it is deleted.
 
         Args:
           certificate_id: Certificate UUID tag.
@@ -330,6 +450,94 @@ class AsyncCertificatesResource(AsyncAPIResource):
                 post_parser=ResultWrapper[Optional[CertificateDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[CertificateDeleteResponse]], ResultWrapper[CertificateDeleteResponse]),
+        )
+
+    async def activate(
+        self,
+        certificate_id: str,
+        *,
+        account_id: str,
+        body: object,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CertificateActivateResponse]:
+        """
+        Binds a single Zero Trust certificate to the edge.
+
+        Args:
+          certificate_id: Certificate UUID tag.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not certificate_id:
+            raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
+        return await self._post(
+            f"/accounts/{account_id}/gateway/certificates/{certificate_id}/activate",
+            body=await async_maybe_transform(body, certificate_activate_params.CertificateActivateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CertificateActivateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[CertificateActivateResponse]], ResultWrapper[CertificateActivateResponse]),
+        )
+
+    async def deactivate(
+        self,
+        certificate_id: str,
+        *,
+        account_id: str,
+        body: object,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CertificateDeactivateResponse]:
+        """
+        Unbinds a single Zero Trust certificate from the edge
+
+        Args:
+          certificate_id: Certificate UUID tag.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not certificate_id:
+            raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
+        return await self._post(
+            f"/accounts/{account_id}/gateway/certificates/{certificate_id}/deactivate",
+            body=await async_maybe_transform(body, certificate_deactivate_params.CertificateDeactivateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CertificateDeactivateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[CertificateDeactivateResponse]], ResultWrapper[CertificateDeactivateResponse]),
         )
 
     async def get(
@@ -388,6 +596,12 @@ class CertificatesResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             certificates.delete,
         )
+        self.activate = to_raw_response_wrapper(
+            certificates.activate,
+        )
+        self.deactivate = to_raw_response_wrapper(
+            certificates.deactivate,
+        )
         self.get = to_raw_response_wrapper(
             certificates.get,
         )
@@ -405,6 +619,12 @@ class AsyncCertificatesResourceWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             certificates.delete,
+        )
+        self.activate = async_to_raw_response_wrapper(
+            certificates.activate,
+        )
+        self.deactivate = async_to_raw_response_wrapper(
+            certificates.deactivate,
         )
         self.get = async_to_raw_response_wrapper(
             certificates.get,
@@ -424,6 +644,12 @@ class CertificatesResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             certificates.delete,
         )
+        self.activate = to_streamed_response_wrapper(
+            certificates.activate,
+        )
+        self.deactivate = to_streamed_response_wrapper(
+            certificates.deactivate,
+        )
         self.get = to_streamed_response_wrapper(
             certificates.get,
         )
@@ -441,6 +667,12 @@ class AsyncCertificatesResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             certificates.delete,
+        )
+        self.activate = async_to_streamed_response_wrapper(
+            certificates.activate,
+        )
+        self.deactivate = async_to_streamed_response_wrapper(
+            certificates.deactivate,
         )
         self.get = async_to_streamed_response_wrapper(
             certificates.get,

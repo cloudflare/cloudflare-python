@@ -8,8 +8,8 @@ __all__ = ["Schedule"]
 
 
 class Schedule(BaseModel):
-    created_on: Optional[object] = None
+    created_on: Optional[str] = None
 
-    cron: Optional[object] = None
+    cron: Optional[str] = None
 
-    modified_on: Optional[object] = None
+    modified_on: Optional[str] = None

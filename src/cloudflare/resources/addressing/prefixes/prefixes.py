@@ -6,7 +6,7 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from .bgp import (
+from .bgp.bgp import (
     BGPResource,
     AsyncBGPResource,
     BGPResourceWithRawResponse,
@@ -14,7 +14,6 @@ from .bgp import (
     BGPResourceWithStreamingResponse,
     AsyncBGPResourceWithStreamingResponse,
 )
-from .bgp.bgp import BGPResource, AsyncBGPResource
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
     maybe_transform,
@@ -57,10 +56,21 @@ class PrefixesResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> PrefixesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return PrefixesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> PrefixesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return PrefixesResourceWithStreamingResponse(self)
 
     def create(
@@ -166,7 +176,7 @@ class PrefixesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PrefixDeleteResponse]:
+    ) -> PrefixDeleteResponse:
         """
         Delete an unapproved prefix owned by the account.
 
@@ -190,13 +200,9 @@ class PrefixesResource(SyncAPIResource):
         return self._delete(
             f"/accounts/{account_id}/addressing/prefixes/{prefix_id}",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[PrefixDeleteResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[PrefixDeleteResponse]], ResultWrapper[PrefixDeleteResponse]),
+            cast_to=PrefixDeleteResponse,
         )
 
     def edit(
@@ -303,10 +309,21 @@ class AsyncPrefixesResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncPrefixesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncPrefixesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncPrefixesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncPrefixesResourceWithStreamingResponse(self)
 
     async def create(
@@ -412,7 +429,7 @@ class AsyncPrefixesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PrefixDeleteResponse]:
+    ) -> PrefixDeleteResponse:
         """
         Delete an unapproved prefix owned by the account.
 
@@ -436,13 +453,9 @@ class AsyncPrefixesResource(AsyncAPIResource):
         return await self._delete(
             f"/accounts/{account_id}/addressing/prefixes/{prefix_id}",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[PrefixDeleteResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[PrefixDeleteResponse]], ResultWrapper[PrefixDeleteResponse]),
+            cast_to=PrefixDeleteResponse,
         )
 
     async def edit(

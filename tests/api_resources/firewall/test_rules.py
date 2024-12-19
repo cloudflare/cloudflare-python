@@ -14,6 +14,9 @@ from cloudflare.types.firewall import (
     FirewallRule,
     RuleEditResponse,
     RuleCreateResponse,
+    RuleBulkEditResponse,
+    RuleBulkDeleteResponse,
+    RuleBulkUpdateResponse,
 )
 
 # pyright: reportDeprecated=false
@@ -29,8 +32,33 @@ class TestRules:
     def test_method_create(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             rule = client.firewall.rules.create(
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                action={},
+                filter={},
+            )
+
+        assert_matches_type(Optional[RuleCreateResponse], rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            rule = client.firewall.rules.create(
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                action={
+                    "mode": "simulate",
+                    "response": {
+                        "body": "<error>This request has been rate-limited.</error>",
+                        "content_type": "text/xml",
+                    },
+                    "timeout": 86400,
+                },
+                filter={
+                    "description": "Restrict access from these browsers on this address range.",
+                    "expression": '(http.request.uri.path ~ ".*wp-login.php" or http.request.uri.path ~ ".*xmlrpc.php") and ip.addr ne 172.16.22.155',
+                    "paused": False,
+                    "ref": "FIL-100",
+                },
             )
 
         assert_matches_type(Optional[RuleCreateResponse], rule, path=["response"])
@@ -40,8 +68,9 @@ class TestRules:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = client.firewall.rules.with_raw_response.create(
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                action={},
+                filter={},
             )
 
         assert response.is_closed is True
@@ -54,8 +83,9 @@ class TestRules:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             with client.firewall.rules.with_streaming_response.create(
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                action={},
+                filter={},
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -69,10 +99,11 @@ class TestRules:
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
                 client.firewall.rules.with_raw_response.create(
-                    zone_identifier="",
-                    body={},
+                    zone_id="",
+                    action={},
+                    filter={},
                 )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -80,9 +111,35 @@ class TestRules:
     def test_method_update(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             rule = client.firewall.rules.update(
-                id="372e67954025e0ba6aaa6d586b9e0b60",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
+                rule_id="372e67954025e0ba6aaa6d586b9e0b60",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                action={},
+                filter={},
+            )
+
+        assert_matches_type(FirewallRule, rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            rule = client.firewall.rules.update(
+                rule_id="372e67954025e0ba6aaa6d586b9e0b60",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                action={
+                    "mode": "simulate",
+                    "response": {
+                        "body": "<error>This request has been rate-limited.</error>",
+                        "content_type": "text/xml",
+                    },
+                    "timeout": 86400,
+                },
+                filter={
+                    "description": "Restrict access from these browsers on this address range.",
+                    "expression": '(http.request.uri.path ~ ".*wp-login.php" or http.request.uri.path ~ ".*xmlrpc.php") and ip.addr ne 172.16.22.155',
+                    "paused": False,
+                    "ref": "FIL-100",
+                },
             )
 
         assert_matches_type(FirewallRule, rule, path=["response"])
@@ -92,9 +149,10 @@ class TestRules:
     def test_raw_response_update(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = client.firewall.rules.with_raw_response.update(
-                id="372e67954025e0ba6aaa6d586b9e0b60",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
+                rule_id="372e67954025e0ba6aaa6d586b9e0b60",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                action={},
+                filter={},
             )
 
         assert response.is_closed is True
@@ -107,9 +165,10 @@ class TestRules:
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             with client.firewall.rules.with_streaming_response.update(
-                id="372e67954025e0ba6aaa6d586b9e0b60",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
+                rule_id="372e67954025e0ba6aaa6d586b9e0b60",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                action={},
+                filter={},
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -123,25 +182,27 @@ class TestRules:
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
                 client.firewall.rules.with_raw_response.update(
-                    id="372e67954025e0ba6aaa6d586b9e0b60",
-                    zone_identifier="",
-                    body={},
+                    rule_id="372e67954025e0ba6aaa6d586b9e0b60",
+                    zone_id="",
+                    action={},
+                    filter={},
                 )
 
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
                 client.firewall.rules.with_raw_response.update(
-                    id="",
-                    zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                    body={},
+                    rule_id="",
+                    zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                    action={},
+                    filter={},
                 )
 
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             rule = client.firewall.rules.list(
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         assert_matches_type(SyncV4PagePaginationArray[FirewallRule], rule, path=["response"])
@@ -150,7 +211,7 @@ class TestRules:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             rule = client.firewall.rules.list(
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="372e67954025e0ba6aaa6d586b9e0b60",
                 action="block",
                 description="mir",
@@ -165,7 +226,7 @@ class TestRules:
     def test_raw_response_list(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = client.firewall.rules.with_raw_response.list(
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         assert response.is_closed is True
@@ -177,7 +238,7 @@ class TestRules:
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             with client.firewall.rules.with_streaming_response.list(
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -190,17 +251,17 @@ class TestRules:
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
                 client.firewall.rules.with_raw_response.list(
-                    zone_identifier="",
+                    zone_id="",
                 )
 
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             rule = client.firewall.rules.delete(
-                id="372e67954025e0ba6aaa6d586b9e0b60",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                rule_id="372e67954025e0ba6aaa6d586b9e0b60",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         assert_matches_type(FirewallRule, rule, path=["response"])
@@ -209,8 +270,8 @@ class TestRules:
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = client.firewall.rules.with_raw_response.delete(
-                id="372e67954025e0ba6aaa6d586b9e0b60",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                rule_id="372e67954025e0ba6aaa6d586b9e0b60",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         assert response.is_closed is True
@@ -222,8 +283,8 @@ class TestRules:
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             with client.firewall.rules.with_streaming_response.delete(
-                id="372e67954025e0ba6aaa6d586b9e0b60",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                rule_id="372e67954025e0ba6aaa6d586b9e0b60",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -236,16 +297,165 @@ class TestRules:
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
                 client.firewall.rules.with_raw_response.delete(
-                    id="372e67954025e0ba6aaa6d586b9e0b60",
-                    zone_identifier="",
+                    rule_id="372e67954025e0ba6aaa6d586b9e0b60",
+                    zone_id="",
                 )
 
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
                 client.firewall.rules.with_raw_response.delete(
-                    id="",
-                    zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                    rule_id="",
+                    zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_bulk_delete(self, client: Cloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            rule = client.firewall.rules.bulk_delete(
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+        assert_matches_type(Optional[RuleBulkDeleteResponse], rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_raw_response_bulk_delete(self, client: Cloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            response = client.firewall.rules.with_raw_response.bulk_delete(
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        rule = response.parse()
+        assert_matches_type(Optional[RuleBulkDeleteResponse], rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_streaming_response_bulk_delete(self, client: Cloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            with client.firewall.rules.with_streaming_response.bulk_delete(
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+                rule = response.parse()
+                assert_matches_type(Optional[RuleBulkDeleteResponse], rule, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_path_params_bulk_delete(self, client: Cloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+                client.firewall.rules.with_raw_response.bulk_delete(
+                    zone_id="",
+                )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_bulk_edit(self, client: Cloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            rule = client.firewall.rules.bulk_edit(
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
+            )
+
+        assert_matches_type(Optional[RuleBulkEditResponse], rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_raw_response_bulk_edit(self, client: Cloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            response = client.firewall.rules.with_raw_response.bulk_edit(
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
+            )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        rule = response.parse()
+        assert_matches_type(Optional[RuleBulkEditResponse], rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_streaming_response_bulk_edit(self, client: Cloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            with client.firewall.rules.with_streaming_response.bulk_edit(
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+                rule = response.parse()
+                assert_matches_type(Optional[RuleBulkEditResponse], rule, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_path_params_bulk_edit(self, client: Cloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+                client.firewall.rules.with_raw_response.bulk_edit(
+                    zone_id="",
+                    body={},
+                )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_bulk_update(self, client: Cloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            rule = client.firewall.rules.bulk_update(
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
+            )
+
+        assert_matches_type(Optional[RuleBulkUpdateResponse], rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_raw_response_bulk_update(self, client: Cloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            response = client.firewall.rules.with_raw_response.bulk_update(
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
+            )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        rule = response.parse()
+        assert_matches_type(Optional[RuleBulkUpdateResponse], rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_streaming_response_bulk_update(self, client: Cloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            with client.firewall.rules.with_streaming_response.bulk_update(
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+                rule = response.parse()
+                assert_matches_type(Optional[RuleBulkUpdateResponse], rule, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_path_params_bulk_update(self, client: Cloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+                client.firewall.rules.with_raw_response.bulk_update(
+                    zone_id="",
+                    body={},
                 )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -253,9 +463,8 @@ class TestRules:
     def test_method_edit(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             rule = client.firewall.rules.edit(
-                id="372e67954025e0ba6aaa6d586b9e0b60",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
+                rule_id="372e67954025e0ba6aaa6d586b9e0b60",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         assert_matches_type(Optional[RuleEditResponse], rule, path=["response"])
@@ -265,9 +474,8 @@ class TestRules:
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = client.firewall.rules.with_raw_response.edit(
-                id="372e67954025e0ba6aaa6d586b9e0b60",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
+                rule_id="372e67954025e0ba6aaa6d586b9e0b60",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         assert response.is_closed is True
@@ -280,9 +488,8 @@ class TestRules:
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             with client.firewall.rules.with_streaming_response.edit(
-                id="372e67954025e0ba6aaa6d586b9e0b60",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
+                rule_id="372e67954025e0ba6aaa6d586b9e0b60",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -296,26 +503,24 @@ class TestRules:
     @parametrize
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
                 client.firewall.rules.with_raw_response.edit(
-                    id="372e67954025e0ba6aaa6d586b9e0b60",
-                    zone_identifier="",
-                    body={},
+                    rule_id="372e67954025e0ba6aaa6d586b9e0b60",
+                    zone_id="",
                 )
 
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
                 client.firewall.rules.with_raw_response.edit(
-                    id="",
-                    zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                    body={},
+                    rule_id="",
+                    zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             rule = client.firewall.rules.get(
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                path_id="372e67954025e0ba6aaa6d586b9e0b60",
+                rule_id="372e67954025e0ba6aaa6d586b9e0b60",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         assert_matches_type(FirewallRule, rule, path=["response"])
@@ -324,9 +529,9 @@ class TestRules:
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             rule = client.firewall.rules.get(
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                path_id="372e67954025e0ba6aaa6d586b9e0b60",
-                query_id="372e67954025e0ba6aaa6d586b9e0b60",
+                rule_id="372e67954025e0ba6aaa6d586b9e0b60",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                id="372e67954025e0ba6aaa6d586b9e0b60",
             )
 
         assert_matches_type(FirewallRule, rule, path=["response"])
@@ -335,8 +540,8 @@ class TestRules:
     def test_raw_response_get(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = client.firewall.rules.with_raw_response.get(
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                path_id="372e67954025e0ba6aaa6d586b9e0b60",
+                rule_id="372e67954025e0ba6aaa6d586b9e0b60",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         assert response.is_closed is True
@@ -348,8 +553,8 @@ class TestRules:
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             with client.firewall.rules.with_streaming_response.get(
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                path_id="372e67954025e0ba6aaa6d586b9e0b60",
+                rule_id="372e67954025e0ba6aaa6d586b9e0b60",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -362,17 +567,16 @@ class TestRules:
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_id` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
                 client.firewall.rules.with_raw_response.get(
-                    zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                    path_id="",
-                    query_id="",
+                    rule_id="372e67954025e0ba6aaa6d586b9e0b60",
+                    zone_id="",
                 )
 
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
                 client.firewall.rules.with_raw_response.get(
-                    zone_identifier="",
-                    path_id="372e67954025e0ba6aaa6d586b9e0b60",
+                    rule_id="",
+                    zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 )
 
 
@@ -384,8 +588,33 @@ class TestAsyncRules:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             rule = await async_client.firewall.rules.create(
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                action={},
+                filter={},
+            )
+
+        assert_matches_type(Optional[RuleCreateResponse], rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            rule = await async_client.firewall.rules.create(
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                action={
+                    "mode": "simulate",
+                    "response": {
+                        "body": "<error>This request has been rate-limited.</error>",
+                        "content_type": "text/xml",
+                    },
+                    "timeout": 86400,
+                },
+                filter={
+                    "description": "Restrict access from these browsers on this address range.",
+                    "expression": '(http.request.uri.path ~ ".*wp-login.php" or http.request.uri.path ~ ".*xmlrpc.php") and ip.addr ne 172.16.22.155',
+                    "paused": False,
+                    "ref": "FIL-100",
+                },
             )
 
         assert_matches_type(Optional[RuleCreateResponse], rule, path=["response"])
@@ -395,8 +624,9 @@ class TestAsyncRules:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = await async_client.firewall.rules.with_raw_response.create(
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                action={},
+                filter={},
             )
 
         assert response.is_closed is True
@@ -409,8 +639,9 @@ class TestAsyncRules:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             async with async_client.firewall.rules.with_streaming_response.create(
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                action={},
+                filter={},
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -424,10 +655,11 @@ class TestAsyncRules:
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
                 await async_client.firewall.rules.with_raw_response.create(
-                    zone_identifier="",
-                    body={},
+                    zone_id="",
+                    action={},
+                    filter={},
                 )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -435,9 +667,35 @@ class TestAsyncRules:
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             rule = await async_client.firewall.rules.update(
-                id="372e67954025e0ba6aaa6d586b9e0b60",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
+                rule_id="372e67954025e0ba6aaa6d586b9e0b60",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                action={},
+                filter={},
+            )
+
+        assert_matches_type(FirewallRule, rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            rule = await async_client.firewall.rules.update(
+                rule_id="372e67954025e0ba6aaa6d586b9e0b60",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                action={
+                    "mode": "simulate",
+                    "response": {
+                        "body": "<error>This request has been rate-limited.</error>",
+                        "content_type": "text/xml",
+                    },
+                    "timeout": 86400,
+                },
+                filter={
+                    "description": "Restrict access from these browsers on this address range.",
+                    "expression": '(http.request.uri.path ~ ".*wp-login.php" or http.request.uri.path ~ ".*xmlrpc.php") and ip.addr ne 172.16.22.155',
+                    "paused": False,
+                    "ref": "FIL-100",
+                },
             )
 
         assert_matches_type(FirewallRule, rule, path=["response"])
@@ -447,9 +705,10 @@ class TestAsyncRules:
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = await async_client.firewall.rules.with_raw_response.update(
-                id="372e67954025e0ba6aaa6d586b9e0b60",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
+                rule_id="372e67954025e0ba6aaa6d586b9e0b60",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                action={},
+                filter={},
             )
 
         assert response.is_closed is True
@@ -462,9 +721,10 @@ class TestAsyncRules:
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             async with async_client.firewall.rules.with_streaming_response.update(
-                id="372e67954025e0ba6aaa6d586b9e0b60",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
+                rule_id="372e67954025e0ba6aaa6d586b9e0b60",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                action={},
+                filter={},
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -478,25 +738,27 @@ class TestAsyncRules:
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
                 await async_client.firewall.rules.with_raw_response.update(
-                    id="372e67954025e0ba6aaa6d586b9e0b60",
-                    zone_identifier="",
-                    body={},
+                    rule_id="372e67954025e0ba6aaa6d586b9e0b60",
+                    zone_id="",
+                    action={},
+                    filter={},
                 )
 
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
                 await async_client.firewall.rules.with_raw_response.update(
-                    id="",
-                    zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                    body={},
+                    rule_id="",
+                    zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                    action={},
+                    filter={},
                 )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             rule = await async_client.firewall.rules.list(
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         assert_matches_type(AsyncV4PagePaginationArray[FirewallRule], rule, path=["response"])
@@ -505,7 +767,7 @@ class TestAsyncRules:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             rule = await async_client.firewall.rules.list(
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="372e67954025e0ba6aaa6d586b9e0b60",
                 action="block",
                 description="mir",
@@ -520,7 +782,7 @@ class TestAsyncRules:
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = await async_client.firewall.rules.with_raw_response.list(
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         assert response.is_closed is True
@@ -532,7 +794,7 @@ class TestAsyncRules:
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             async with async_client.firewall.rules.with_streaming_response.list(
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -545,17 +807,17 @@ class TestAsyncRules:
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
                 await async_client.firewall.rules.with_raw_response.list(
-                    zone_identifier="",
+                    zone_id="",
                 )
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             rule = await async_client.firewall.rules.delete(
-                id="372e67954025e0ba6aaa6d586b9e0b60",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                rule_id="372e67954025e0ba6aaa6d586b9e0b60",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         assert_matches_type(FirewallRule, rule, path=["response"])
@@ -564,8 +826,8 @@ class TestAsyncRules:
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = await async_client.firewall.rules.with_raw_response.delete(
-                id="372e67954025e0ba6aaa6d586b9e0b60",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                rule_id="372e67954025e0ba6aaa6d586b9e0b60",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         assert response.is_closed is True
@@ -577,8 +839,8 @@ class TestAsyncRules:
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             async with async_client.firewall.rules.with_streaming_response.delete(
-                id="372e67954025e0ba6aaa6d586b9e0b60",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                rule_id="372e67954025e0ba6aaa6d586b9e0b60",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -591,16 +853,165 @@ class TestAsyncRules:
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
                 await async_client.firewall.rules.with_raw_response.delete(
-                    id="372e67954025e0ba6aaa6d586b9e0b60",
-                    zone_identifier="",
+                    rule_id="372e67954025e0ba6aaa6d586b9e0b60",
+                    zone_id="",
                 )
 
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
                 await async_client.firewall.rules.with_raw_response.delete(
-                    id="",
-                    zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                    rule_id="",
+                    zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_bulk_delete(self, async_client: AsyncCloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            rule = await async_client.firewall.rules.bulk_delete(
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+        assert_matches_type(Optional[RuleBulkDeleteResponse], rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_raw_response_bulk_delete(self, async_client: AsyncCloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.firewall.rules.with_raw_response.bulk_delete(
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        rule = await response.parse()
+        assert_matches_type(Optional[RuleBulkDeleteResponse], rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_streaming_response_bulk_delete(self, async_client: AsyncCloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            async with async_client.firewall.rules.with_streaming_response.bulk_delete(
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+                rule = await response.parse()
+                assert_matches_type(Optional[RuleBulkDeleteResponse], rule, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_path_params_bulk_delete(self, async_client: AsyncCloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+                await async_client.firewall.rules.with_raw_response.bulk_delete(
+                    zone_id="",
+                )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_bulk_edit(self, async_client: AsyncCloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            rule = await async_client.firewall.rules.bulk_edit(
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
+            )
+
+        assert_matches_type(Optional[RuleBulkEditResponse], rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_raw_response_bulk_edit(self, async_client: AsyncCloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.firewall.rules.with_raw_response.bulk_edit(
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
+            )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        rule = await response.parse()
+        assert_matches_type(Optional[RuleBulkEditResponse], rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_streaming_response_bulk_edit(self, async_client: AsyncCloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            async with async_client.firewall.rules.with_streaming_response.bulk_edit(
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+                rule = await response.parse()
+                assert_matches_type(Optional[RuleBulkEditResponse], rule, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_path_params_bulk_edit(self, async_client: AsyncCloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+                await async_client.firewall.rules.with_raw_response.bulk_edit(
+                    zone_id="",
+                    body={},
+                )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_bulk_update(self, async_client: AsyncCloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            rule = await async_client.firewall.rules.bulk_update(
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
+            )
+
+        assert_matches_type(Optional[RuleBulkUpdateResponse], rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_raw_response_bulk_update(self, async_client: AsyncCloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            response = await async_client.firewall.rules.with_raw_response.bulk_update(
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
+            )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        rule = await response.parse()
+        assert_matches_type(Optional[RuleBulkUpdateResponse], rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_streaming_response_bulk_update(self, async_client: AsyncCloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            async with async_client.firewall.rules.with_streaming_response.bulk_update(
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                body={},
+            ) as response:
+                assert not response.is_closed
+                assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+                rule = await response.parse()
+                assert_matches_type(Optional[RuleBulkUpdateResponse], rule, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_path_params_bulk_update(self, async_client: AsyncCloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+                await async_client.firewall.rules.with_raw_response.bulk_update(
+                    zone_id="",
+                    body={},
                 )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -608,9 +1019,8 @@ class TestAsyncRules:
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             rule = await async_client.firewall.rules.edit(
-                id="372e67954025e0ba6aaa6d586b9e0b60",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
+                rule_id="372e67954025e0ba6aaa6d586b9e0b60",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         assert_matches_type(Optional[RuleEditResponse], rule, path=["response"])
@@ -620,9 +1030,8 @@ class TestAsyncRules:
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = await async_client.firewall.rules.with_raw_response.edit(
-                id="372e67954025e0ba6aaa6d586b9e0b60",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
+                rule_id="372e67954025e0ba6aaa6d586b9e0b60",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         assert response.is_closed is True
@@ -635,9 +1044,8 @@ class TestAsyncRules:
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             async with async_client.firewall.rules.with_streaming_response.edit(
-                id="372e67954025e0ba6aaa6d586b9e0b60",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
+                rule_id="372e67954025e0ba6aaa6d586b9e0b60",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -651,26 +1059,24 @@ class TestAsyncRules:
     @parametrize
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
                 await async_client.firewall.rules.with_raw_response.edit(
-                    id="372e67954025e0ba6aaa6d586b9e0b60",
-                    zone_identifier="",
-                    body={},
+                    rule_id="372e67954025e0ba6aaa6d586b9e0b60",
+                    zone_id="",
                 )
 
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
                 await async_client.firewall.rules.with_raw_response.edit(
-                    id="",
-                    zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                    body={},
+                    rule_id="",
+                    zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             rule = await async_client.firewall.rules.get(
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                path_id="372e67954025e0ba6aaa6d586b9e0b60",
+                rule_id="372e67954025e0ba6aaa6d586b9e0b60",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         assert_matches_type(FirewallRule, rule, path=["response"])
@@ -679,9 +1085,9 @@ class TestAsyncRules:
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             rule = await async_client.firewall.rules.get(
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                path_id="372e67954025e0ba6aaa6d586b9e0b60",
-                query_id="372e67954025e0ba6aaa6d586b9e0b60",
+                rule_id="372e67954025e0ba6aaa6d586b9e0b60",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                id="372e67954025e0ba6aaa6d586b9e0b60",
             )
 
         assert_matches_type(FirewallRule, rule, path=["response"])
@@ -690,8 +1096,8 @@ class TestAsyncRules:
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = await async_client.firewall.rules.with_raw_response.get(
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                path_id="372e67954025e0ba6aaa6d586b9e0b60",
+                rule_id="372e67954025e0ba6aaa6d586b9e0b60",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         assert response.is_closed is True
@@ -703,8 +1109,8 @@ class TestAsyncRules:
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             async with async_client.firewall.rules.with_streaming_response.get(
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                path_id="372e67954025e0ba6aaa6d586b9e0b60",
+                rule_id="372e67954025e0ba6aaa6d586b9e0b60",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -717,15 +1123,14 @@ class TestAsyncRules:
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_id` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
                 await async_client.firewall.rules.with_raw_response.get(
-                    zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                    path_id="",
-                    query_id="",
+                    rule_id="372e67954025e0ba6aaa6d586b9e0b60",
+                    zone_id="",
                 )
 
-            with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
+            with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
                 await async_client.firewall.rules.with_raw_response.get(
-                    zone_identifier="",
-                    path_id="372e67954025e0ba6aaa6d586b9e0b60",
+                    rule_id="",
+                    zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 )

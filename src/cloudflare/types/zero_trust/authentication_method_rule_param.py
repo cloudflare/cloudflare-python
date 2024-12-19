@@ -10,7 +10,8 @@ __all__ = ["AuthenticationMethodRuleParam", "AuthMethod"]
 class AuthMethod(TypedDict, total=False):
     auth_method: Required[str]
     """
-    The type of authentication method https://datatracker.ietf.org/doc/html/rfc8176.
+    The type of authentication method
+    https://datatracker.ietf.org/doc/html/rfc8176#section-2.
     """
 
 

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Dict, List, Type, cast
 from typing_extensions import Literal
 
 import httpx
@@ -31,10 +31,21 @@ __all__ = ["PreviewsResource", "AsyncPreviewsResource"]
 class PreviewsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> PreviewsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return PreviewsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> PreviewsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return PreviewsResourceWithStreamingResponse(self)
 
     def create(
@@ -42,14 +53,14 @@ class PreviewsResource(SyncAPIResource):
         monitor_id: str,
         *,
         account_id: str,
-        expected_codes: str,
         allow_insecure: bool | NotGiven = NOT_GIVEN,
         consecutive_down: int | NotGiven = NOT_GIVEN,
         consecutive_up: int | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         expected_body: str | NotGiven = NOT_GIVEN,
+        expected_codes: str | NotGiven = NOT_GIVEN,
         follow_redirects: bool | NotGiven = NOT_GIVEN,
-        header: object | NotGiven = NOT_GIVEN,
+        header: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
         interval: int | NotGiven = NOT_GIVEN,
         method: str | NotGiven = NOT_GIVEN,
         path: str | NotGiven = NOT_GIVEN,
@@ -73,9 +84,6 @@ class PreviewsResource(SyncAPIResource):
         Args:
           account_id: Identifier
 
-          expected_codes: The expected HTTP response code or code range of the health check. This
-              parameter is only valid for HTTP and HTTPS monitors.
-
           allow_insecure: Do not validate the certificate when monitor use HTTPS. This parameter is
               currently only valid for HTTP and HTTPS monitors.
 
@@ -90,6 +98,9 @@ class PreviewsResource(SyncAPIResource):
           expected_body: A case-insensitive sub-string to look for in the response body. If this string
               is not found, the origin will be marked as unhealthy. This parameter is only
               valid for HTTP and HTTPS monitors.
+
+          expected_codes: The expected HTTP response code or code range of the health check. This
+              parameter is only valid for HTTP and HTTPS monitors.
 
           follow_redirects: Follow redirects if returned by the origin. This parameter is only valid for
               HTTP and HTTPS monitors.
@@ -138,12 +149,12 @@ class PreviewsResource(SyncAPIResource):
             f"/accounts/{account_id}/load_balancers/monitors/{monitor_id}/preview",
             body=maybe_transform(
                 {
-                    "expected_codes": expected_codes,
                     "allow_insecure": allow_insecure,
                     "consecutive_down": consecutive_down,
                     "consecutive_up": consecutive_up,
                     "description": description,
                     "expected_body": expected_body,
+                    "expected_codes": expected_codes,
                     "follow_redirects": follow_redirects,
                     "header": header,
                     "interval": interval,
@@ -152,7 +163,7 @@ class PreviewsResource(SyncAPIResource):
                     "port": port,
                     "probe_zone": probe_zone,
                     "retries": retries,
-                    "timeout": load_balancer_monitor_timeout,
+                    "load_balancer_monitor_timeout": load_balancer_monitor_timeout,
                     "type": type,
                 },
                 preview_create_params.PreviewCreateParams,
@@ -171,10 +182,21 @@ class PreviewsResource(SyncAPIResource):
 class AsyncPreviewsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncPreviewsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncPreviewsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncPreviewsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncPreviewsResourceWithStreamingResponse(self)
 
     async def create(
@@ -182,14 +204,14 @@ class AsyncPreviewsResource(AsyncAPIResource):
         monitor_id: str,
         *,
         account_id: str,
-        expected_codes: str,
         allow_insecure: bool | NotGiven = NOT_GIVEN,
         consecutive_down: int | NotGiven = NOT_GIVEN,
         consecutive_up: int | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         expected_body: str | NotGiven = NOT_GIVEN,
+        expected_codes: str | NotGiven = NOT_GIVEN,
         follow_redirects: bool | NotGiven = NOT_GIVEN,
-        header: object | NotGiven = NOT_GIVEN,
+        header: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
         interval: int | NotGiven = NOT_GIVEN,
         method: str | NotGiven = NOT_GIVEN,
         path: str | NotGiven = NOT_GIVEN,
@@ -213,9 +235,6 @@ class AsyncPreviewsResource(AsyncAPIResource):
         Args:
           account_id: Identifier
 
-          expected_codes: The expected HTTP response code or code range of the health check. This
-              parameter is only valid for HTTP and HTTPS monitors.
-
           allow_insecure: Do not validate the certificate when monitor use HTTPS. This parameter is
               currently only valid for HTTP and HTTPS monitors.
 
@@ -230,6 +249,9 @@ class AsyncPreviewsResource(AsyncAPIResource):
           expected_body: A case-insensitive sub-string to look for in the response body. If this string
               is not found, the origin will be marked as unhealthy. This parameter is only
               valid for HTTP and HTTPS monitors.
+
+          expected_codes: The expected HTTP response code or code range of the health check. This
+              parameter is only valid for HTTP and HTTPS monitors.
 
           follow_redirects: Follow redirects if returned by the origin. This parameter is only valid for
               HTTP and HTTPS monitors.
@@ -278,12 +300,12 @@ class AsyncPreviewsResource(AsyncAPIResource):
             f"/accounts/{account_id}/load_balancers/monitors/{monitor_id}/preview",
             body=await async_maybe_transform(
                 {
-                    "expected_codes": expected_codes,
                     "allow_insecure": allow_insecure,
                     "consecutive_down": consecutive_down,
                     "consecutive_up": consecutive_up,
                     "description": description,
                     "expected_body": expected_body,
+                    "expected_codes": expected_codes,
                     "follow_redirects": follow_redirects,
                     "header": header,
                     "interval": interval,
@@ -292,7 +314,7 @@ class AsyncPreviewsResource(AsyncAPIResource):
                     "port": port,
                     "probe_zone": probe_zone,
                     "retries": retries,
-                    "timeout": load_balancer_monitor_timeout,
+                    "load_balancer_monitor_timeout": load_balancer_monitor_timeout,
                     "type": type,
                 },
                 preview_create_params.PreviewCreateParams,

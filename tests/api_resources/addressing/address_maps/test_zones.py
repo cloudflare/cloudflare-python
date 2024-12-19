@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
@@ -25,7 +25,7 @@ class TestZones:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(Optional[ZoneUpdateResponse], zone, path=["response"])
+        assert_matches_type(ZoneUpdateResponse, zone, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
@@ -39,7 +39,7 @@ class TestZones:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         zone = response.parse()
-        assert_matches_type(Optional[ZoneUpdateResponse], zone, path=["response"])
+        assert_matches_type(ZoneUpdateResponse, zone, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
@@ -53,7 +53,7 @@ class TestZones:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             zone = response.parse()
-            assert_matches_type(Optional[ZoneUpdateResponse], zone, path=["response"])
+            assert_matches_type(ZoneUpdateResponse, zone, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -90,7 +90,7 @@ class TestZones:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ZoneDeleteResponse], zone, path=["response"])
+        assert_matches_type(ZoneDeleteResponse, zone, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -103,7 +103,7 @@ class TestZones:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         zone = response.parse()
-        assert_matches_type(Optional[ZoneDeleteResponse], zone, path=["response"])
+        assert_matches_type(ZoneDeleteResponse, zone, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -116,7 +116,7 @@ class TestZones:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             zone = response.parse()
-            assert_matches_type(Optional[ZoneDeleteResponse], zone, path=["response"])
+            assert_matches_type(ZoneDeleteResponse, zone, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -155,7 +155,7 @@ class TestAsyncZones:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(Optional[ZoneUpdateResponse], zone, path=["response"])
+        assert_matches_type(ZoneUpdateResponse, zone, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -169,7 +169,7 @@ class TestAsyncZones:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         zone = await response.parse()
-        assert_matches_type(Optional[ZoneUpdateResponse], zone, path=["response"])
+        assert_matches_type(ZoneUpdateResponse, zone, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -183,7 +183,7 @@ class TestAsyncZones:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             zone = await response.parse()
-            assert_matches_type(Optional[ZoneUpdateResponse], zone, path=["response"])
+            assert_matches_type(ZoneUpdateResponse, zone, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -220,7 +220,7 @@ class TestAsyncZones:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ZoneDeleteResponse], zone, path=["response"])
+        assert_matches_type(ZoneDeleteResponse, zone, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -233,7 +233,7 @@ class TestAsyncZones:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         zone = await response.parse()
-        assert_matches_type(Optional[ZoneDeleteResponse], zone, path=["response"])
+        assert_matches_type(ZoneDeleteResponse, zone, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -246,7 +246,7 @@ class TestAsyncZones:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             zone = await response.parse()
-            assert_matches_type(Optional[ZoneDeleteResponse], zone, path=["response"])
+            assert_matches_type(ZoneDeleteResponse, zone, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

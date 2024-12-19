@@ -1,182 +1,94 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
-from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
-from .url_scanner_domain import URLScannerDomain
-from ..radar.http.browser import Browser
 
 __all__ = [
     "ScanGetResponse",
-    "Scan",
-    "ScanCertificate",
-    "ScanGeo",
-    "ScanMeta",
-    "ScanMetaProcessors",
-    "ScanMetaProcessorsCategories",
-    "ScanMetaProcessorsCategoriesRisk",
-    "ScanMetaProcessorsRank",
-    "ScanMetaProcessorsTech",
-    "ScanMetaProcessorsTechCategory",
-    "ScanMetaProcessorsTechEvidence",
-    "ScanMetaProcessorsTechEvidencePattern",
-    "ScanPage",
-    "ScanPageConsole",
-    "ScanPageCookie",
-    "ScanPageJS",
-    "ScanPageJSVariable",
-    "ScanPageSecurityViolation",
-    "ScanPerformance",
-    "ScanTask",
-    "ScanTaskError",
-    "ScanTaskScannedFrom",
-    "ScanVerdicts",
-    "ScanVerdictsOverall",
-    "ScanVerdictsOverallCategory",
-    "ScanASNs",
-    "ScanASNsASN",
-    "ScanDomains",
-    "ScanDomainsExampleCom",
-    "ScanDomainsExampleComCategories",
-    "ScanDomainsExampleComCategoriesInherited",
-    "ScanDomainsExampleComDNS",
-    "ScanDomainsExampleComRank",
-    "ScanIPs",
-    "ScanIPsIP",
-    "ScanLinks",
-    "ScanLinksLink",
+    "Data",
+    "DataConsole",
+    "DataConsoleMessage",
+    "DataCookie",
+    "DataGlobal",
+    "DataLink",
+    "DataPerformance",
+    "DataRequest",
+    "DataRequestRequest",
+    "DataRequestRequestInitiator",
+    "DataRequestRequestRequest",
+    "DataRequestRequestRedirectResponse",
+    "DataRequestRequestRedirectResponseSecurityHeader",
+    "DataRequestResponse",
+    "DataRequestResponseASN",
+    "DataRequestResponseGeoip",
+    "DataRequestResponseResponse",
+    "DataRequestResponseResponseSecurityDetails",
+    "DataRequestResponseResponseSecurityHeader",
+    "Lists",
+    "ListsCertificate",
+    "Meta",
+    "MetaProcessors",
+    "MetaProcessorsASN",
+    "MetaProcessorsASNData",
+    "MetaProcessorsDNS",
+    "MetaProcessorsDNSData",
+    "MetaProcessorsDomainCategories",
+    "MetaProcessorsDomainCategoriesData",
+    "MetaProcessorsGeoip",
+    "MetaProcessorsGeoipData",
+    "MetaProcessorsGeoipDataGeoip",
+    "MetaProcessorsPhishing",
+    "MetaProcessorsRadarRank",
+    "MetaProcessorsRadarRankData",
+    "MetaProcessorsWappa",
+    "MetaProcessorsWappaData",
+    "MetaProcessorsWappaDataCategory",
+    "MetaProcessorsWappaDataConfidence",
+    "MetaProcessorsURLCategories",
+    "MetaProcessorsURLCategoriesData",
+    "MetaProcessorsURLCategoriesDataContent",
+    "MetaProcessorsURLCategoriesDataInherited",
+    "MetaProcessorsURLCategoriesDataInheritedContent",
+    "MetaProcessorsURLCategoriesDataInheritedRisk",
+    "MetaProcessorsURLCategoriesDataRisk",
+    "Page",
+    "PageScreenshot",
+    "Scanner",
+    "Stats",
+    "StatsDomainStat",
+    "StatsIPStat",
+    "StatsIPStatASN",
+    "StatsIPStatGeoip",
+    "StatsProtocolStat",
+    "StatsResourceStat",
+    "StatsServerStat",
+    "StatsTLSStat",
+    "StatsTLSStatProtocols",
+    "Task",
+    "TaskOptions",
+    "Verdicts",
+    "VerdictsOverall",
 ]
 
 
-class ScanCertificate(BaseModel):
-    issuer: str
+class DataConsoleMessage(BaseModel):
+    level: str
 
-    subject_name: str = FieldInfo(alias="subjectName")
-
-    valid_from: float = FieldInfo(alias="validFrom")
-
-    valid_to: float = FieldInfo(alias="validTo")
-
-
-class ScanGeo(BaseModel):
-    continents: List[str]
-    """GeoIP continent location"""
-
-    locations: List[str]
-    """GeoIP country location"""
-
-
-class ScanMetaProcessorsCategoriesRisk(BaseModel):
-    id: int
-
-    name: str
-
-    super_category_id: int
-
-
-class ScanMetaProcessorsCategories(BaseModel):
-    content: List[URLScannerDomain]
-
-    risks: List[ScanMetaProcessorsCategoriesRisk]
-
-
-class ScanMetaProcessorsRank(BaseModel):
-    bucket: str
-
-    name: str
-
-    rank: Optional[int] = None
-    """Rank in the Global Radar Rank, if set.
-
-    See more at https://blog.cloudflare.com/radar-domain-rankings/
-    """
-
-
-class ScanMetaProcessorsTechCategory(BaseModel):
-    id: int
-
-    groups: List[int]
-
-    name: str
-
-    priority: int
-
-    slug: str
-
-
-class ScanMetaProcessorsTechEvidencePattern(BaseModel):
-    confidence: int
-
-    excludes: List[str]
-
-    implies: List[str]
-
-    match: str
-
-    name: str
-    """Header or Cookie name when set"""
-
-    regex: str
-
-    type: str
-
-    value: str
-
-    version: str
-
-
-class ScanMetaProcessorsTechEvidence(BaseModel):
-    implied_by: List[str] = FieldInfo(alias="impliedBy")
-
-    patterns: List[ScanMetaProcessorsTechEvidencePattern]
-
-
-class ScanMetaProcessorsTech(BaseModel):
-    categories: List[ScanMetaProcessorsTechCategory]
-
-    confidence: int
-
-    evidence: ScanMetaProcessorsTechEvidence
-
-    icon: str
-
-    name: str
-
-    slug: str
-
-    website: str
-
-    description: Optional[str] = None
-
-
-class ScanMetaProcessors(BaseModel):
-    categories: ScanMetaProcessorsCategories
-
-    phishing: List[str]
-
-    rank: ScanMetaProcessorsRank
-
-    tech: List[ScanMetaProcessorsTech]
-
-
-class ScanMeta(BaseModel):
-    processors: ScanMetaProcessors
-
-
-class ScanPageConsole(BaseModel):
-    category: str
+    source: str
 
     text: str
 
-    type: str
-
-    url: Optional[str] = None
+    url: str
 
 
-class ScanPageCookie(BaseModel):
+class DataConsole(BaseModel):
+    message: DataConsoleMessage
+
+
+class DataCookie(BaseModel):
     domain: str
 
     expires: float
@@ -186,6 +98,8 @@ class ScanPageCookie(BaseModel):
     name: str
 
     path: str
+
+    priority: str
 
     same_party: bool = FieldInfo(alias="sameParty")
 
@@ -201,222 +115,292 @@ class ScanPageCookie(BaseModel):
 
     value: str
 
-    priority: Optional[str] = None
 
-
-class ScanPageJSVariable(BaseModel):
-    name: str
+class DataGlobal(BaseModel):
+    prop: str
 
     type: str
 
 
-class ScanPageJS(BaseModel):
-    variables: List[ScanPageJSVariable]
-
-
-class ScanPageSecurityViolation(BaseModel):
-    category: str
+class DataLink(BaseModel):
+    href: str
 
     text: str
 
-    url: str
 
-
-class ScanPage(BaseModel):
-    asn: str
-
-    asn_location_alpha2: str = FieldInfo(alias="asnLocationAlpha2")
-
-    asnname: str
-
-    console: List[ScanPageConsole]
-
-    cookies: List[ScanPageCookie]
-
-    country: str
-
-    country_location_alpha2: str = FieldInfo(alias="countryLocationAlpha2")
-
-    domain: str
-
-    headers: List[Browser]
-
-    ip: str
-
-    js: ScanPageJS
-
-    security_violations: List[ScanPageSecurityViolation] = FieldInfo(alias="securityViolations")
-
-    status: float
-
-    subdivision1_name: str = FieldInfo(alias="subdivision1Name")
-
-    subdivision2name: str
-
-    url: str
-
-
-class ScanPerformance(BaseModel):
-    connect_end: float = FieldInfo(alias="connectEnd")
-
-    connect_start: float = FieldInfo(alias="connectStart")
-
-    decoded_body_size: float = FieldInfo(alias="decodedBodySize")
-
-    domain_lookup_end: float = FieldInfo(alias="domainLookupEnd")
-
-    domain_lookup_start: float = FieldInfo(alias="domainLookupStart")
-
-    dom_complete: float = FieldInfo(alias="domComplete")
-
-    dom_content_loaded_event_end: float = FieldInfo(alias="domContentLoadedEventEnd")
-
-    dom_content_loaded_event_start: float = FieldInfo(alias="domContentLoadedEventStart")
-
-    dom_interactive: float = FieldInfo(alias="domInteractive")
-
+class DataPerformance(BaseModel):
     duration: float
-
-    encoded_body_size: float = FieldInfo(alias="encodedBodySize")
 
     entry_type: str = FieldInfo(alias="entryType")
 
-    fetch_start: float = FieldInfo(alias="fetchStart")
-
-    initiator_type: str = FieldInfo(alias="initiatorType")
-
-    load_event_end: float = FieldInfo(alias="loadEventEnd")
-
-    load_event_start: float = FieldInfo(alias="loadEventStart")
-
     name: str
-
-    next_hop_protocol: str = FieldInfo(alias="nextHopProtocol")
-
-    redirect_count: float = FieldInfo(alias="redirectCount")
-
-    redirect_end: float = FieldInfo(alias="redirectEnd")
-
-    redirect_start: float = FieldInfo(alias="redirectStart")
-
-    request_start: float = FieldInfo(alias="requestStart")
-
-    response_end: float = FieldInfo(alias="responseEnd")
-
-    response_start: float = FieldInfo(alias="responseStart")
-
-    secure_connection_start: float = FieldInfo(alias="secureConnectionStart")
 
     start_time: float = FieldInfo(alias="startTime")
 
-    transfer_size: float = FieldInfo(alias="transferSize")
+
+class DataRequestRequestInitiator(BaseModel):
+    host: str
 
     type: str
 
-    unload_event_end: float = FieldInfo(alias="unloadEventEnd")
-
-    unload_event_start: float = FieldInfo(alias="unloadEventStart")
-
-    worker_start: float = FieldInfo(alias="workerStart")
+    url: str
 
 
-class ScanTaskError(BaseModel):
-    message: str
+class DataRequestRequestRequest(BaseModel):
+    initial_priority: str = FieldInfo(alias="initialPriority")
 
+    is_same_site: bool = FieldInfo(alias="isSameSite")
 
-class ScanTaskScannedFrom(BaseModel):
-    colo: str
-    """IATA code of Cloudflare datacenter"""
+    method: str
 
+    mixed_content_type: str = FieldInfo(alias="mixedContentType")
 
-class ScanTask(BaseModel):
-    client_location: str = FieldInfo(alias="clientLocation")
-    """Submitter location"""
-
-    client_type: Literal["Site", "Automatic", "Api"] = FieldInfo(alias="clientType")
-
-    effective_url: str = FieldInfo(alias="effectiveUrl")
-    """URL of the primary request, after all HTTP redirects"""
-
-    errors: List[ScanTaskError]
-
-    scanned_from: ScanTaskScannedFrom = FieldInfo(alias="scannedFrom")
-
-    status: Literal["Queued", "InProgress", "InPostProcessing", "Finished"]
-
-    success: bool
-
-    time: str
-
-    time_end: str = FieldInfo(alias="timeEnd")
+    referrer_policy: str = FieldInfo(alias="referrerPolicy")
 
     url: str
-    """Submitted URL"""
 
-    uuid: str
-    """Scan ID"""
-
-    visibility: Literal["Public", "Unlisted"]
+    headers: Optional[object] = None
 
 
-class ScanVerdictsOverallCategory(BaseModel):
-    id: float
-
+class DataRequestRequestRedirectResponseSecurityHeader(BaseModel):
     name: str
 
-    super_category_id: float
+    value: str
 
 
-class ScanVerdictsOverall(BaseModel):
-    categories: List[ScanVerdictsOverallCategory]
+class DataRequestRequestRedirectResponse(BaseModel):
+    charset: str
 
-    malicious: bool
-    """
-    At least one of our subsystems marked the site as potentially malicious at the
-    time of the scan.
-    """
+    mime_type: str = FieldInfo(alias="mimeType")
 
-    phishing: List[str]
+    protocol: str
+
+    remote_ip_address: str = FieldInfo(alias="remoteIPAddress")
+
+    remote_port: float = FieldInfo(alias="remotePort")
+
+    security_headers: List[DataRequestRequestRedirectResponseSecurityHeader] = FieldInfo(alias="securityHeaders")
+
+    security_state: str = FieldInfo(alias="securityState")
+
+    status: float
+
+    status_text: str = FieldInfo(alias="statusText")
+
+    url: str
+
+    headers: Optional[object] = None
 
 
-class ScanVerdicts(BaseModel):
-    overall: ScanVerdictsOverall
+class DataRequestRequest(BaseModel):
+    document_url: str = FieldInfo(alias="documentURL")
+
+    has_user_gesture: bool = FieldInfo(alias="hasUserGesture")
+
+    initiator: DataRequestRequestInitiator
+
+    redirect_has_extra_info: bool = FieldInfo(alias="redirectHasExtraInfo")
+
+    request: DataRequestRequestRequest
+
+    request_id: str = FieldInfo(alias="requestId")
+
+    type: str
+
+    wall_time: float = FieldInfo(alias="wallTime")
+
+    frame_id: Optional[str] = FieldInfo(alias="frameId", default=None)
+
+    loader_id: Optional[str] = FieldInfo(alias="loaderId", default=None)
+
+    primary_request: Optional[bool] = FieldInfo(alias="primaryRequest", default=None)
+
+    redirect_response: Optional[DataRequestRequestRedirectResponse] = FieldInfo(alias="redirectResponse", default=None)
 
 
-class ScanASNsASN(BaseModel):
+class DataRequestResponseASN(BaseModel):
     asn: str
+
+    country: str
 
     description: str
 
-    location_alpha2: str
+    ip: str
 
     name: str
 
-    org_name: str
+    org: str
 
 
-class ScanASNs(BaseModel):
-    asn: Optional[ScanASNsASN] = None
-    """ASN's contacted"""
+class DataRequestResponseGeoip(BaseModel):
+    city: str
+
+    country: str
+
+    country_name: str
+
+    geoname_id: str = FieldInfo(alias="geonameId")
+
+    ll: List[object]
+
+    region: str
 
 
-class ScanDomainsExampleComCategoriesInherited(BaseModel):
-    content: Optional[List[URLScannerDomain]] = None
+class DataRequestResponseResponseSecurityDetails(BaseModel):
+    certificate_id: float = FieldInfo(alias="certificateId")
 
-    from_: Optional[str] = FieldInfo(alias="from", default=None)
+    certificate_transparency_compliance: str = FieldInfo(alias="certificateTransparencyCompliance")
 
-    risks: Optional[List[URLScannerDomain]] = None
+    cipher: str
+
+    encrypted_client_hello: bool = FieldInfo(alias="encryptedClientHello")
+
+    issuer: str
+
+    key_exchange: str = FieldInfo(alias="keyExchange")
+
+    key_exchange_group: str = FieldInfo(alias="keyExchangeGroup")
+
+    protocol: str
+
+    san_list: List[str] = FieldInfo(alias="sanList")
+
+    server_signature_algorithm: float = FieldInfo(alias="serverSignatureAlgorithm")
+
+    subject_name: str = FieldInfo(alias="subjectName")
+
+    valid_from: float = FieldInfo(alias="validFrom")
+
+    valid_to: float = FieldInfo(alias="validTo")
 
 
-class ScanDomainsExampleComCategories(BaseModel):
-    inherited: ScanDomainsExampleComCategoriesInherited
+class DataRequestResponseResponseSecurityHeader(BaseModel):
+    name: str
 
-    content: Optional[List[URLScannerDomain]] = None
-
-    risks: Optional[List[URLScannerDomain]] = None
+    value: str
 
 
-class ScanDomainsExampleComDNS(BaseModel):
+class DataRequestResponseResponse(BaseModel):
+    charset: str
+
+    mime_type: str = FieldInfo(alias="mimeType")
+
+    protocol: str
+
+    remote_ip_address: str = FieldInfo(alias="remoteIPAddress")
+
+    remote_port: float = FieldInfo(alias="remotePort")
+
+    security_details: DataRequestResponseResponseSecurityDetails = FieldInfo(alias="securityDetails")
+
+    security_headers: List[DataRequestResponseResponseSecurityHeader] = FieldInfo(alias="securityHeaders")
+
+    security_state: str = FieldInfo(alias="securityState")
+
+    status: float
+
+    status_text: str = FieldInfo(alias="statusText")
+
+    url: str
+
+    headers: Optional[object] = None
+
+
+class DataRequestResponse(BaseModel):
+    asn: DataRequestResponseASN
+
+    data_length: float = FieldInfo(alias="dataLength")
+
+    encoded_data_length: float = FieldInfo(alias="encodedDataLength")
+
+    geoip: DataRequestResponseGeoip
+
+    has_extra_info: bool = FieldInfo(alias="hasExtraInfo")
+
+    request_id: str = FieldInfo(alias="requestId")
+
+    response: DataRequestResponseResponse
+
+    size: float
+
+    type: str
+
+    content_available: Optional[bool] = FieldInfo(alias="contentAvailable", default=None)
+
+    hash: Optional[str] = None
+
+
+class DataRequest(BaseModel):
+    request: DataRequestRequest
+
+    response: DataRequestResponse
+
+    requests: Optional[List[DataRequestRequest]] = None
+
+
+class Data(BaseModel):
+    console: List[DataConsole]
+
+    cookies: List[DataCookie]
+
+    globals: List[DataGlobal]
+
+    links: List[DataLink]
+
+    performance: List[DataPerformance]
+
+    requests: List[DataRequest]
+
+
+class ListsCertificate(BaseModel):
+    issuer: str
+
+    subject_name: str = FieldInfo(alias="subjectName")
+
+    valid_from: float = FieldInfo(alias="validFrom")
+
+    valid_to: float = FieldInfo(alias="validTo")
+
+
+class Lists(BaseModel):
+    asns: List[str]
+
+    certificates: List[ListsCertificate]
+
+    continents: List[str]
+
+    countries: List[str]
+
+    domains: List[str]
+
+    hashes: List[str]
+
+    ips: List[str]
+
+    link_domains: List[str] = FieldInfo(alias="linkDomains")
+
+    servers: List[str]
+
+    urls: List[str]
+
+
+class MetaProcessorsASNData(BaseModel):
+    asn: str
+
+    country: str
+
+    description: str
+
+    ip: str
+
+    name: str
+
+
+class MetaProcessorsASN(BaseModel):
+    data: List[MetaProcessorsASNData]
+
+
+class MetaProcessorsDNSData(BaseModel):
     address: str
 
     dnssec_valid: bool
@@ -426,105 +410,450 @@ class ScanDomainsExampleComDNS(BaseModel):
     type: str
 
 
-class ScanDomainsExampleComRank(BaseModel):
+class MetaProcessorsDNS(BaseModel):
+    data: List[MetaProcessorsDNSData]
+
+
+class MetaProcessorsDomainCategoriesData(BaseModel):
+    inherited: object
+
+    is_primary: bool = FieldInfo(alias="isPrimary")
+
+    name: str
+
+
+class MetaProcessorsDomainCategories(BaseModel):
+    data: List[MetaProcessorsDomainCategoriesData]
+
+
+class MetaProcessorsGeoipDataGeoip(BaseModel):
+    city: str
+
+    country: str
+
+    country_name: str
+
+    ll: List[float]
+
+    region: str
+
+
+class MetaProcessorsGeoipData(BaseModel):
+    geoip: MetaProcessorsGeoipDataGeoip
+
+    ip: str
+
+
+class MetaProcessorsGeoip(BaseModel):
+    data: List[MetaProcessorsGeoipData]
+
+
+class MetaProcessorsPhishing(BaseModel):
+    data: List[str]
+
+
+class MetaProcessorsRadarRankData(BaseModel):
     bucket: str
 
+    hostname: str
+
+    rank: Optional[float] = None
+
+
+class MetaProcessorsRadarRank(BaseModel):
+    data: List[MetaProcessorsRadarRankData]
+
+
+class MetaProcessorsWappaDataCategory(BaseModel):
     name: str
 
-    rank: Optional[int] = None
-    """Rank in the Global Radar Rank, if set.
-
-    See more at https://blog.cloudflare.com/radar-domain-rankings/
-    """
+    priority: float
 
 
-class ScanDomainsExampleCom(BaseModel):
-    categories: ScanDomainsExampleComCategories
-
-    dns: List[ScanDomainsExampleComDNS]
+class MetaProcessorsWappaDataConfidence(BaseModel):
+    confidence: float
 
     name: str
 
-    rank: ScanDomainsExampleComRank
+    pattern: str
+
+    pattern_type: str = FieldInfo(alias="patternType")
+
+
+class MetaProcessorsWappaData(BaseModel):
+    app: str
+
+    categories: List[MetaProcessorsWappaDataCategory]
+
+    confidence: List[MetaProcessorsWappaDataConfidence]
+
+    confidence_total: float = FieldInfo(alias="confidenceTotal")
+
+    icon: str
+
+    website: str
+
+
+class MetaProcessorsWappa(BaseModel):
+    data: List[MetaProcessorsWappaData]
+
+
+class MetaProcessorsURLCategoriesDataContent(BaseModel):
+    id: float
+
+    name: str
+
+    super_category_id: float
+
+
+class MetaProcessorsURLCategoriesDataInheritedContent(BaseModel):
+    id: float
+
+    name: str
+
+    super_category_id: float
+
+
+class MetaProcessorsURLCategoriesDataInheritedRisk(BaseModel):
+    id: float
+
+    name: str
+
+    super_category_id: float
+
+
+class MetaProcessorsURLCategoriesDataInherited(BaseModel):
+    content: List[MetaProcessorsURLCategoriesDataInheritedContent]
+
+    from_: str = FieldInfo(alias="from")
+
+    risks: List[MetaProcessorsURLCategoriesDataInheritedRisk]
+
+
+class MetaProcessorsURLCategoriesDataRisk(BaseModel):
+    id: float
+
+    name: str
+
+    super_category_id: float
+
+
+class MetaProcessorsURLCategoriesData(BaseModel):
+    content: List[MetaProcessorsURLCategoriesDataContent]
+
+    inherited: MetaProcessorsURLCategoriesDataInherited
+
+    name: str
+
+    risks: List[MetaProcessorsURLCategoriesDataRisk]
+
+
+class MetaProcessorsURLCategories(BaseModel):
+    data: List[MetaProcessorsURLCategoriesData]
+
+
+class MetaProcessors(BaseModel):
+    asn: MetaProcessorsASN
+
+    dns: MetaProcessorsDNS
+
+    domain_categories: MetaProcessorsDomainCategories = FieldInfo(alias="domainCategories")
+
+    geoip: MetaProcessorsGeoip
+
+    phishing: MetaProcessorsPhishing
+
+    radar_rank: MetaProcessorsRadarRank = FieldInfo(alias="radarRank")
+
+    wappa: MetaProcessorsWappa
+
+    url_categories: Optional[MetaProcessorsURLCategories] = FieldInfo(alias="urlCategories", default=None)
+
+
+class Meta(BaseModel):
+    processors: MetaProcessors
+
+
+class PageScreenshot(BaseModel):
+    dhash: str
+
+    mm3_hash: float = FieldInfo(alias="mm3Hash")
+
+    name: str
+
+    phash: str
+
+
+class Page(BaseModel):
+    apex_domain: str = FieldInfo(alias="apexDomain")
+
+    asn: str
+
+    asnname: str
+
+    city: str
+
+    country: str
+
+    domain: str
+
+    ip: str
+
+    mime_type: str = FieldInfo(alias="mimeType")
+
+    server: str
+
+    status: str
+
+    title: str
+
+    tls_age_days: float = FieldInfo(alias="tlsAgeDays")
+
+    tls_issuer: str = FieldInfo(alias="tlsIssuer")
+
+    tls_valid_days: float = FieldInfo(alias="tlsValidDays")
+
+    tls_valid_from: str = FieldInfo(alias="tlsValidFrom")
+
+    url: str
+
+    screenshot: Optional[PageScreenshot] = None
+
+
+class Scanner(BaseModel):
+    colo: str
+
+    country: str
+
+
+class StatsDomainStat(BaseModel):
+    count: float
+
+    countries: List[str]
+
+    domain: str
+
+    encoded_size: float = FieldInfo(alias="encodedSize")
+
+    index: float
+
+    initiators: List[str]
+
+    ips: List[str]
+
+    redirects: float
+
+    size: float
+
+
+class StatsIPStatASN(BaseModel):
+    asn: str
+
+    country: str
+
+    description: str
+
+    ip: str
+
+    name: str
+
+    org: str
+
+
+class StatsIPStatGeoip(BaseModel):
+    city: str
+
+    country: str
+
+    country_name: str
+
+    ll: List[float]
+
+    region: str
+
+
+class StatsIPStat(BaseModel):
+    asn: StatsIPStatASN
+
+    countries: List[str]
+
+    domains: List[str]
+
+    encoded_size: float = FieldInfo(alias="encodedSize")
+
+    geoip: StatsIPStatGeoip
+
+    index: float
+
+    ip: str
+
+    ipv6: bool
+
+    redirects: float
+
+    requests: float
+
+    size: float
+
+    count: Optional[float] = None
+
+
+class StatsProtocolStat(BaseModel):
+    count: float
+
+    countries: List[str]
+
+    encoded_size: float = FieldInfo(alias="encodedSize")
+
+    ips: List[str]
+
+    protocol: str
+
+    size: float
+
+
+class StatsResourceStat(BaseModel):
+    compression: float
+
+    count: float
+
+    countries: List[str]
+
+    encoded_size: float = FieldInfo(alias="encodedSize")
+
+    ips: List[str]
+
+    percentage: float
+
+    size: float
 
     type: str
 
 
-class ScanDomains(BaseModel):
-    example_com: Optional[ScanDomainsExampleCom] = FieldInfo(alias="example.com", default=None)
+class StatsServerStat(BaseModel):
+    count: float
+
+    countries: List[str]
+
+    encoded_size: float = FieldInfo(alias="encodedSize")
+
+    ips: List[str]
+
+    server: str
+
+    size: float
 
 
-class ScanIPsIP(BaseModel):
-    asn: str
-
-    asn_description: str = FieldInfo(alias="asnDescription")
-
-    asn_location_alpha2: str = FieldInfo(alias="asnLocationAlpha2")
-
-    asn_name: str = FieldInfo(alias="asnName")
-
-    asn_org_name: str = FieldInfo(alias="asnOrgName")
-
-    continent: str
-
-    geoname_id: str = FieldInfo(alias="geonameId")
-
-    ip: str
-
-    ip_version: str = FieldInfo(alias="ipVersion")
-
-    latitude: str
-
-    location_alpha2: str = FieldInfo(alias="locationAlpha2")
-
-    location_name: str = FieldInfo(alias="locationName")
-
-    longitude: str
-
-    subdivision1_name: str = FieldInfo(alias="subdivision1Name")
-
-    subdivision2_name: str = FieldInfo(alias="subdivision2Name")
+class StatsTLSStatProtocols(BaseModel):
+    tls_1_3_aes_128_gcm: float = FieldInfo(alias="TLS 1.3 / AES_128_GCM")
 
 
-class ScanIPs(BaseModel):
-    ip: Optional[ScanIPsIP] = None
+class StatsTLSStat(BaseModel):
+    count: float
+
+    countries: List[str]
+
+    encoded_size: float = FieldInfo(alias="encodedSize")
+
+    ips: List[str]
+
+    protocols: StatsTLSStatProtocols
+
+    security_state: str = FieldInfo(alias="securityState")
+
+    size: float
 
 
-class ScanLinksLink(BaseModel):
-    href: str
-    """Outgoing link detected in the DOM"""
+class Stats(BaseModel):
+    domain_stats: List[StatsDomainStat] = FieldInfo(alias="domainStats")
 
-    text: str
+    ip_stats: List[StatsIPStat] = FieldInfo(alias="ipStats")
+
+    i_pv6_percentage: float = FieldInfo(alias="IPv6Percentage")
+
+    malicious: float
+
+    protocol_stats: List[StatsProtocolStat] = FieldInfo(alias="protocolStats")
+
+    resource_stats: List[StatsResourceStat] = FieldInfo(alias="resourceStats")
+
+    secure_percentage: float = FieldInfo(alias="securePercentage")
+
+    secure_requests: float = FieldInfo(alias="secureRequests")
+
+    server_stats: List[StatsServerStat] = FieldInfo(alias="serverStats")
+
+    tls_stats: List[StatsTLSStat] = FieldInfo(alias="tlsStats")
+
+    total_links: float = FieldInfo(alias="totalLinks")
+
+    uniq_asns: float = FieldInfo(alias="uniqASNs")
+
+    uniq_countries: float = FieldInfo(alias="uniqCountries")
 
 
-class ScanLinks(BaseModel):
-    link: Optional[ScanLinksLink] = None
+class TaskOptions(BaseModel):
+    custom_headers: Optional[object] = FieldInfo(alias="customHeaders", default=None)
+    """Custom headers set."""
+
+    screenshots_resolutions: Optional[List[str]] = FieldInfo(alias="screenshotsResolutions", default=None)
 
 
-class Scan(BaseModel):
-    certificates: List[ScanCertificate]
+class Task(BaseModel):
+    apex_domain: str = FieldInfo(alias="apexDomain")
 
-    geo: ScanGeo
+    domain: str
 
-    meta: ScanMeta
+    dom_url: str = FieldInfo(alias="domURL")
 
-    page: ScanPage
+    method: str
 
-    performance: List[ScanPerformance]
+    options: TaskOptions
 
-    task: ScanTask
+    report_url: str = FieldInfo(alias="reportURL")
 
-    verdicts: ScanVerdicts
+    screenshot_url: str = FieldInfo(alias="screenshotURL")
 
-    asns: Optional[ScanASNs] = None
-    """Dictionary of Autonomous System Numbers where ASN's are the keys"""
+    source: str
 
-    domains: Optional[ScanDomains] = None
+    success: bool
 
-    ips: Optional[ScanIPs] = None
+    time: str
 
-    links: Optional[ScanLinks] = None
+    url: str
+
+    uuid: str
+
+    visibility: str
+
+
+class VerdictsOverall(BaseModel):
+    categories: List[str]
+
+    has_verdicts: bool = FieldInfo(alias="hasVerdicts")
+
+    malicious: bool
+
+    tags: List[str]
+
+
+class Verdicts(BaseModel):
+    overall: VerdictsOverall
 
 
 class ScanGetResponse(BaseModel):
-    scan: Scan
+    data: Data
+
+    lists: Lists
+
+    meta: Meta
+
+    page: Page
+
+    scanner: Scanner
+
+    stats: Stats
+
+    task: Task
+
+    verdicts: Verdicts

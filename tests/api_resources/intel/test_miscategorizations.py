@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
@@ -22,7 +22,7 @@ class TestMiscategorizations:
         miscategorization = client.intel.miscategorizations.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[MiscategorizationCreateResponse], miscategorization, path=["response"])
+        assert_matches_type(MiscategorizationCreateResponse, miscategorization, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
@@ -31,12 +31,12 @@ class TestMiscategorizations:
             content_adds=[82],
             content_removes=[155],
             indicator_type="domain",
-            ip={},
+            ip="ip",
             security_adds=[117, 131],
             security_removes=[83],
             url="url",
         )
-        assert_matches_type(Optional[MiscategorizationCreateResponse], miscategorization, path=["response"])
+        assert_matches_type(MiscategorizationCreateResponse, miscategorization, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
@@ -47,7 +47,7 @@ class TestMiscategorizations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         miscategorization = response.parse()
-        assert_matches_type(Optional[MiscategorizationCreateResponse], miscategorization, path=["response"])
+        assert_matches_type(MiscategorizationCreateResponse, miscategorization, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
@@ -58,7 +58,7 @@ class TestMiscategorizations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             miscategorization = response.parse()
-            assert_matches_type(Optional[MiscategorizationCreateResponse], miscategorization, path=["response"])
+            assert_matches_type(MiscategorizationCreateResponse, miscategorization, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -78,7 +78,7 @@ class TestAsyncMiscategorizations:
         miscategorization = await async_client.intel.miscategorizations.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[MiscategorizationCreateResponse], miscategorization, path=["response"])
+        assert_matches_type(MiscategorizationCreateResponse, miscategorization, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -87,12 +87,12 @@ class TestAsyncMiscategorizations:
             content_adds=[82],
             content_removes=[155],
             indicator_type="domain",
-            ip={},
+            ip="ip",
             security_adds=[117, 131],
             security_removes=[83],
             url="url",
         )
-        assert_matches_type(Optional[MiscategorizationCreateResponse], miscategorization, path=["response"])
+        assert_matches_type(MiscategorizationCreateResponse, miscategorization, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -103,7 +103,7 @@ class TestAsyncMiscategorizations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         miscategorization = await response.parse()
-        assert_matches_type(Optional[MiscategorizationCreateResponse], miscategorization, path=["response"])
+        assert_matches_type(MiscategorizationCreateResponse, miscategorization, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -114,7 +114,7 @@ class TestAsyncMiscategorizations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             miscategorization = await response.parse()
-            assert_matches_type(Optional[MiscategorizationCreateResponse], miscategorization, path=["response"])
+            assert_matches_type(MiscategorizationCreateResponse, miscategorization, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import Required, Annotated, TypedDict
+
+from ..._utils import PropertyInfo
 
 __all__ = ["GRETunnelCreateParams"]
 
@@ -12,3 +14,5 @@ class GRETunnelCreateParams(TypedDict, total=False):
     """Identifier"""
 
     body: Required[object]
+
+    x_magic_new_hc_target: Annotated[bool, PropertyInfo(alias="x-magic-new-hc-target")]

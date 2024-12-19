@@ -1,13 +1,5 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .bulk import (
-    BulkResource,
-    AsyncBulkResource,
-    BulkResourceWithRawResponse,
-    AsyncBulkResourceWithRawResponse,
-    BulkResourceWithStreamingResponse,
-    AsyncBulkResourceWithStreamingResponse,
-)
 from .keys import (
     KeysResource,
     AsyncKeysResource,
@@ -32,6 +24,14 @@ from .metadata import (
     MetadataResourceWithStreamingResponse,
     AsyncMetadataResourceWithStreamingResponse,
 )
+from .analytics import (
+    AnalyticsResource,
+    AsyncAnalyticsResource,
+    AnalyticsResourceWithRawResponse,
+    AsyncAnalyticsResourceWithRawResponse,
+    AnalyticsResourceWithStreamingResponse,
+    AsyncAnalyticsResourceWithStreamingResponse,
+)
 from .namespaces import (
     NamespacesResource,
     AsyncNamespacesResource,
@@ -42,12 +42,12 @@ from .namespaces import (
 )
 
 __all__ = [
-    "BulkResource",
-    "AsyncBulkResource",
-    "BulkResourceWithRawResponse",
-    "AsyncBulkResourceWithRawResponse",
-    "BulkResourceWithStreamingResponse",
-    "AsyncBulkResourceWithStreamingResponse",
+    "AnalyticsResource",
+    "AsyncAnalyticsResource",
+    "AnalyticsResourceWithRawResponse",
+    "AsyncAnalyticsResourceWithRawResponse",
+    "AnalyticsResourceWithStreamingResponse",
+    "AsyncAnalyticsResourceWithStreamingResponse",
     "KeysResource",
     "AsyncKeysResource",
     "KeysResourceWithRawResponse",

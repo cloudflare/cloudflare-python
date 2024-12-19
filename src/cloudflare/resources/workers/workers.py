@@ -2,15 +2,14 @@
 
 from __future__ import annotations
 
-from .ai import (
-    AIResource,
-    AsyncAIResource,
-    AIResourceWithRawResponse,
-    AsyncAIResourceWithRawResponse,
-    AIResourceWithStreamingResponse,
-    AsyncAIResourceWithStreamingResponse,
+from .routes import (
+    RoutesResource,
+    AsyncRoutesResource,
+    RoutesResourceWithRawResponse,
+    AsyncRoutesResourceWithRawResponse,
+    RoutesResourceWithStreamingResponse,
+    AsyncRoutesResourceWithStreamingResponse,
 )
-from .ai.ai import AIResource, AsyncAIResource
 from .domains import (
     DomainsResource,
     AsyncDomainsResource,
@@ -18,14 +17,6 @@ from .domains import (
     AsyncDomainsResourceWithRawResponse,
     DomainsResourceWithStreamingResponse,
     AsyncDomainsResourceWithStreamingResponse,
-)
-from .scripts import (
-    ScriptsResource,
-    AsyncScriptsResource,
-    ScriptsResourceWithRawResponse,
-    AsyncScriptsResourceWithRawResponse,
-    ScriptsResourceWithStreamingResponse,
-    AsyncScriptsResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
 from .subdomains import (
@@ -37,7 +28,22 @@ from .subdomains import (
     AsyncSubdomainsResourceWithStreamingResponse,
 )
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from .scripts.scripts import ScriptsResource, AsyncScriptsResource
+from .assets.assets import (
+    AssetsResource,
+    AsyncAssetsResource,
+    AssetsResourceWithRawResponse,
+    AsyncAssetsResourceWithRawResponse,
+    AssetsResourceWithStreamingResponse,
+    AsyncAssetsResourceWithStreamingResponse,
+)
+from .scripts.scripts import (
+    ScriptsResource,
+    AsyncScriptsResource,
+    ScriptsResourceWithRawResponse,
+    AsyncScriptsResourceWithRawResponse,
+    ScriptsResourceWithStreamingResponse,
+    AsyncScriptsResourceWithStreamingResponse,
+)
 from .account_settings import (
     AccountSettingsResource,
     AsyncAccountSettingsResource,
@@ -52,8 +58,12 @@ __all__ = ["WorkersResource", "AsyncWorkersResource"]
 
 class WorkersResource(SyncAPIResource):
     @cached_property
-    def ai(self) -> AIResource:
-        return AIResource(self._client)
+    def routes(self) -> RoutesResource:
+        return RoutesResource(self._client)
+
+    @cached_property
+    def assets(self) -> AssetsResource:
+        return AssetsResource(self._client)
 
     @cached_property
     def scripts(self) -> ScriptsResource:
@@ -73,17 +83,32 @@ class WorkersResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> WorkersResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return WorkersResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> WorkersResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return WorkersResourceWithStreamingResponse(self)
 
 
 class AsyncWorkersResource(AsyncAPIResource):
     @cached_property
-    def ai(self) -> AsyncAIResource:
-        return AsyncAIResource(self._client)
+    def routes(self) -> AsyncRoutesResource:
+        return AsyncRoutesResource(self._client)
+
+    @cached_property
+    def assets(self) -> AsyncAssetsResource:
+        return AsyncAssetsResource(self._client)
 
     @cached_property
     def scripts(self) -> AsyncScriptsResource:
@@ -103,10 +128,21 @@ class AsyncWorkersResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncWorkersResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncWorkersResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncWorkersResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncWorkersResourceWithStreamingResponse(self)
 
 
@@ -115,8 +151,12 @@ class WorkersResourceWithRawResponse:
         self._workers = workers
 
     @cached_property
-    def ai(self) -> AIResourceWithRawResponse:
-        return AIResourceWithRawResponse(self._workers.ai)
+    def routes(self) -> RoutesResourceWithRawResponse:
+        return RoutesResourceWithRawResponse(self._workers.routes)
+
+    @cached_property
+    def assets(self) -> AssetsResourceWithRawResponse:
+        return AssetsResourceWithRawResponse(self._workers.assets)
 
     @cached_property
     def scripts(self) -> ScriptsResourceWithRawResponse:
@@ -140,8 +180,12 @@ class AsyncWorkersResourceWithRawResponse:
         self._workers = workers
 
     @cached_property
-    def ai(self) -> AsyncAIResourceWithRawResponse:
-        return AsyncAIResourceWithRawResponse(self._workers.ai)
+    def routes(self) -> AsyncRoutesResourceWithRawResponse:
+        return AsyncRoutesResourceWithRawResponse(self._workers.routes)
+
+    @cached_property
+    def assets(self) -> AsyncAssetsResourceWithRawResponse:
+        return AsyncAssetsResourceWithRawResponse(self._workers.assets)
 
     @cached_property
     def scripts(self) -> AsyncScriptsResourceWithRawResponse:
@@ -165,8 +209,12 @@ class WorkersResourceWithStreamingResponse:
         self._workers = workers
 
     @cached_property
-    def ai(self) -> AIResourceWithStreamingResponse:
-        return AIResourceWithStreamingResponse(self._workers.ai)
+    def routes(self) -> RoutesResourceWithStreamingResponse:
+        return RoutesResourceWithStreamingResponse(self._workers.routes)
+
+    @cached_property
+    def assets(self) -> AssetsResourceWithStreamingResponse:
+        return AssetsResourceWithStreamingResponse(self._workers.assets)
 
     @cached_property
     def scripts(self) -> ScriptsResourceWithStreamingResponse:
@@ -190,8 +238,12 @@ class AsyncWorkersResourceWithStreamingResponse:
         self._workers = workers
 
     @cached_property
-    def ai(self) -> AsyncAIResourceWithStreamingResponse:
-        return AsyncAIResourceWithStreamingResponse(self._workers.ai)
+    def routes(self) -> AsyncRoutesResourceWithStreamingResponse:
+        return AsyncRoutesResourceWithStreamingResponse(self._workers.routes)
+
+    @cached_property
+    def assets(self) -> AsyncAssetsResourceWithStreamingResponse:
+        return AsyncAssetsResourceWithStreamingResponse(self._workers.assets)
 
     @cached_property
     def scripts(self) -> AsyncScriptsResourceWithStreamingResponse:

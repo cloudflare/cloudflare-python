@@ -26,10 +26,21 @@ __all__ = ["RolesResource", "AsyncRolesResource"]
 class RolesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> RolesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return RolesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> RolesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return RolesResourceWithStreamingResponse(self)
 
     def list(
@@ -70,7 +81,7 @@ class RolesResource(SyncAPIResource):
 
     def get(
         self,
-        role_id: object,
+        role_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -79,12 +90,14 @@ class RolesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[Role]:
         """
         Get information about a specific role for an account.
 
         Args:
           account_id: Account identifier tag.
+
+          role_id: Role identifier tag.
 
           extra_headers: Send extra headers
 
@@ -96,6 +109,8 @@ class RolesResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not role_id:
+            raise ValueError(f"Expected a non-empty value for `role_id` but received {role_id!r}")
         return self._get(
             f"/accounts/{account_id}/roles/{role_id}",
             options=make_request_options(
@@ -103,19 +118,30 @@ class RolesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Role]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[Role]], ResultWrapper[Role]),
         )
 
 
 class AsyncRolesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncRolesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncRolesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncRolesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncRolesResourceWithStreamingResponse(self)
 
     def list(
@@ -156,7 +182,7 @@ class AsyncRolesResource(AsyncAPIResource):
 
     async def get(
         self,
-        role_id: object,
+        role_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -165,12 +191,14 @@ class AsyncRolesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[Role]:
         """
         Get information about a specific role for an account.
 
         Args:
           account_id: Account identifier tag.
+
+          role_id: Role identifier tag.
 
           extra_headers: Send extra headers
 
@@ -182,6 +210,8 @@ class AsyncRolesResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not role_id:
+            raise ValueError(f"Expected a non-empty value for `role_id` but received {role_id!r}")
         return await self._get(
             f"/accounts/{account_id}/roles/{role_id}",
             options=make_request_options(
@@ -189,9 +219,9 @@ class AsyncRolesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Role]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[Role]], ResultWrapper[Role]),
         )
 
 

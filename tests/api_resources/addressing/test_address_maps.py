@@ -9,7 +9,6 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare._utils import parse_datetime
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.addressing import (
     AddressMap,
@@ -37,23 +36,12 @@ class TestAddressMaps:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             description="My Ecommerce zones",
             enabled=True,
-            ips=["192.0.2.1", "192.0.2.1", "192.0.2.1"],
+            ips=["192.0.2.1"],
             memberships=[
                 {
-                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
                     "identifier": "023e105f4ecef8ad9ca31a8372d0c353",
                     "kind": "zone",
-                },
-                {
-                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
-                    "identifier": "023e105f4ecef8ad9ca31a8372d0c353",
-                    "kind": "zone",
-                },
-                {
-                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
-                    "identifier": "023e105f4ecef8ad9ca31a8372d0c353",
-                    "kind": "zone",
-                },
+                }
             ],
         )
         assert_matches_type(Optional[AddressMapCreateResponse], address_map, path=["response"])
@@ -133,7 +121,7 @@ class TestAddressMaps:
             address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[AddressMapDeleteResponse], address_map, path=["response"])
+        assert_matches_type(AddressMapDeleteResponse, address_map, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -145,7 +133,7 @@ class TestAddressMaps:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         address_map = response.parse()
-        assert_matches_type(Optional[AddressMapDeleteResponse], address_map, path=["response"])
+        assert_matches_type(AddressMapDeleteResponse, address_map, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -157,7 +145,7 @@ class TestAddressMaps:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             address_map = response.parse()
-            assert_matches_type(Optional[AddressMapDeleteResponse], address_map, path=["response"])
+            assert_matches_type(AddressMapDeleteResponse, address_map, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -299,23 +287,12 @@ class TestAsyncAddressMaps:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             description="My Ecommerce zones",
             enabled=True,
-            ips=["192.0.2.1", "192.0.2.1", "192.0.2.1"],
+            ips=["192.0.2.1"],
             memberships=[
                 {
-                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
                     "identifier": "023e105f4ecef8ad9ca31a8372d0c353",
                     "kind": "zone",
-                },
-                {
-                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
-                    "identifier": "023e105f4ecef8ad9ca31a8372d0c353",
-                    "kind": "zone",
-                },
-                {
-                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
-                    "identifier": "023e105f4ecef8ad9ca31a8372d0c353",
-                    "kind": "zone",
-                },
+                }
             ],
         )
         assert_matches_type(Optional[AddressMapCreateResponse], address_map, path=["response"])
@@ -395,7 +372,7 @@ class TestAsyncAddressMaps:
             address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[AddressMapDeleteResponse], address_map, path=["response"])
+        assert_matches_type(AddressMapDeleteResponse, address_map, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -407,7 +384,7 @@ class TestAsyncAddressMaps:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         address_map = await response.parse()
-        assert_matches_type(Optional[AddressMapDeleteResponse], address_map, path=["response"])
+        assert_matches_type(AddressMapDeleteResponse, address_map, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -419,7 +396,7 @@ class TestAsyncAddressMaps:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             address_map = await response.parse()
-            assert_matches_type(Optional[AddressMapDeleteResponse], address_map, path=["response"])
+            assert_matches_type(AddressMapDeleteResponse, address_map, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -53,7 +53,7 @@ class Membership(BaseModel):
     """All access permissions for the user at the account."""
 
     roles: Optional[List[str]] = None
-    """List of role names for the user at the account."""
+    """List of role names the membership has for this account."""
 
     status: Optional[Literal["accepted", "pending", "rejected"]] = None
     """Status of this membership."""

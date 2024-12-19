@@ -30,27 +30,19 @@ class TestTop:
     @parametrize
     def test_method_attacks_with_all_params(self, client: Cloudflare) -> None:
         top = client.radar.attacks.layer3.top.attacks(
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            ip_version=["IPv4", "IPv6"],
+            ip_version=["IPv4"],
             limit=5,
             limit_direction="ORIGIN",
             limit_per_location=10,
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            location=["string"],
+            name=["string"],
             normalization="PERCENTAGE",
-            protocol=["UDP", "TCP", "ICMP"],
+            protocol=["UDP"],
         )
         assert_matches_type(TopAttacksResponse, top, path=["response"])
 
@@ -82,24 +74,16 @@ class TestTop:
     @parametrize
     def test_method_industry_with_all_params(self, client: Cloudflare) -> None:
         top = client.radar.attacks.layer3.top.industry(
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            ip_version=["IPv4", "IPv6"],
+            ip_version=["IPv4"],
             limit=5,
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
-            protocol=["UDP", "TCP", "ICMP"],
+            location=["string"],
+            name=["string"],
+            protocol=["UDP"],
         )
         assert_matches_type(TopIndustryResponse, top, path=["response"])
 
@@ -131,24 +115,16 @@ class TestTop:
     @parametrize
     def test_method_vertical_with_all_params(self, client: Cloudflare) -> None:
         top = client.radar.attacks.layer3.top.vertical(
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            ip_version=["IPv4", "IPv6"],
+            ip_version=["IPv4"],
             limit=5,
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
-            protocol=["UDP", "TCP", "ICMP"],
+            location=["string"],
+            name=["string"],
+            protocol=["UDP"],
         )
         assert_matches_type(TopVerticalResponse, top, path=["response"])
 
@@ -184,27 +160,19 @@ class TestAsyncTop:
     @parametrize
     async def test_method_attacks_with_all_params(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.attacks.layer3.top.attacks(
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            ip_version=["IPv4", "IPv6"],
+            ip_version=["IPv4"],
             limit=5,
             limit_direction="ORIGIN",
             limit_per_location=10,
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            location=["string"],
+            name=["string"],
             normalization="PERCENTAGE",
-            protocol=["UDP", "TCP", "ICMP"],
+            protocol=["UDP"],
         )
         assert_matches_type(TopAttacksResponse, top, path=["response"])
 
@@ -236,24 +204,16 @@ class TestAsyncTop:
     @parametrize
     async def test_method_industry_with_all_params(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.attacks.layer3.top.industry(
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            ip_version=["IPv4", "IPv6"],
+            ip_version=["IPv4"],
             limit=5,
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
-            protocol=["UDP", "TCP", "ICMP"],
+            location=["string"],
+            name=["string"],
+            protocol=["UDP"],
         )
         assert_matches_type(TopIndustryResponse, top, path=["response"])
 
@@ -285,24 +245,16 @@ class TestAsyncTop:
     @parametrize
     async def test_method_vertical_with_all_params(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.attacks.layer3.top.vertical(
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            ip_version=["IPv4", "IPv6"],
+            ip_version=["IPv4"],
             limit=5,
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
-            protocol=["UDP", "TCP", "ICMP"],
+            location=["string"],
+            name=["string"],
+            protocol=["UDP"],
         )
         assert_matches_type(TopVerticalResponse, top, path=["response"])
 

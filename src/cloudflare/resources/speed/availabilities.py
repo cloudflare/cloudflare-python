@@ -25,10 +25,21 @@ __all__ = ["AvailabilitiesResource", "AsyncAvailabilitiesResource"]
 class AvailabilitiesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AvailabilitiesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AvailabilitiesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AvailabilitiesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AvailabilitiesResourceWithStreamingResponse(self)
 
     def list(
@@ -74,10 +85,21 @@ class AvailabilitiesResource(SyncAPIResource):
 class AsyncAvailabilitiesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncAvailabilitiesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncAvailabilitiesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncAvailabilitiesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncAvailabilitiesResourceWithStreamingResponse(self)
 
     async def list(

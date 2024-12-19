@@ -22,12 +22,12 @@ class Event(BaseModel):
 
 
 class RiskScoringGetResponse(BaseModel):
-    email: Optional[str] = None
+    email: str
 
-    events: Optional[List[Event]] = None
+    events: List[Event]
+
+    name: str
 
     last_reset_time: Optional[datetime] = None
-
-    name: Optional[str] = None
 
     risk_level: Optional[Literal["low", "medium", "high"]] = None

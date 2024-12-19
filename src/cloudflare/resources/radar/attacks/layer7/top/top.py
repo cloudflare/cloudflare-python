@@ -58,10 +58,21 @@ class TopResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> TopResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return TopResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> TopResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return TopResourceWithStreamingResponse(self)
 
     def attacks(
@@ -149,10 +160,10 @@ class TopResource(SyncAPIResource):
         """Get the top attacks from origin to target location.
 
         Values are a percentage out
-        of the total layer 7 attacks (with billing country). The attack magnitude can be
+        of the total Layer 7 attacks (with billing country). The attack magnitude can be
         defined by the number of mitigated requests or by the number of zones affected.
-        You can optionally limit the number of attacks per origin/target location
-        (useful if all the top attacks are from or to the same location).
+        You can optionally limit the number of attacks by origin/target location (useful
+        if all the top attacks are from or to the same location).
 
         Args:
           asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
@@ -323,7 +334,7 @@ class TopResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TopIndustryResponse:
         """
-        Get the Industry of attacks.
+        Get the industries targeted by attacks.
 
         Args:
           asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
@@ -477,7 +488,7 @@ class TopResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TopVerticalResponse:
         """
-        Get the Verticals of attacks.
+        Get the verticals targeted by attacks.
 
         Args:
           asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
@@ -564,10 +575,21 @@ class AsyncTopResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncTopResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncTopResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncTopResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncTopResourceWithStreamingResponse(self)
 
     async def attacks(
@@ -655,10 +677,10 @@ class AsyncTopResource(AsyncAPIResource):
         """Get the top attacks from origin to target location.
 
         Values are a percentage out
-        of the total layer 7 attacks (with billing country). The attack magnitude can be
+        of the total Layer 7 attacks (with billing country). The attack magnitude can be
         defined by the number of mitigated requests or by the number of zones affected.
-        You can optionally limit the number of attacks per origin/target location
-        (useful if all the top attacks are from or to the same location).
+        You can optionally limit the number of attacks by origin/target location (useful
+        if all the top attacks are from or to the same location).
 
         Args:
           asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
@@ -829,7 +851,7 @@ class AsyncTopResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TopIndustryResponse:
         """
-        Get the Industry of attacks.
+        Get the industries targeted by attacks.
 
         Args:
           asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
@@ -983,7 +1005,7 @@ class AsyncTopResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TopVerticalResponse:
         """
-        Get the Verticals of attacks.
+        Get the verticals targeted by attacks.
 
         Args:
           asn: Array of comma separated list of ASNs, start with `-` to exclude from results.

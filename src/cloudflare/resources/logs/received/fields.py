@@ -22,16 +22,27 @@ __all__ = ["FieldsResource", "AsyncFieldsResource"]
 class FieldsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> FieldsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return FieldsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> FieldsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return FieldsResourceWithStreamingResponse(self)
 
     def get(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -45,7 +56,7 @@ class FieldsResource(SyncAPIResource):
         where keys are field names, and values are descriptions.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -55,10 +66,10 @@ class FieldsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get(
-            f"/zones/{zone_identifier}/logs/received/fields",
+            f"/zones/{zone_id}/logs/received/fields",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -69,16 +80,27 @@ class FieldsResource(SyncAPIResource):
 class AsyncFieldsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncFieldsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncFieldsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncFieldsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncFieldsResourceWithStreamingResponse(self)
 
     async def get(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -92,7 +114,7 @@ class AsyncFieldsResource(AsyncAPIResource):
         where keys are field names, and values are descriptions.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -102,10 +124,10 @@ class AsyncFieldsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._get(
-            f"/zones/{zone_identifier}/logs/received/fields",
+            f"/zones/{zone_id}/logs/received/fields",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

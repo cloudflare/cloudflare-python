@@ -12,7 +12,7 @@ class AzureAD(BaseModel):
     id: str
     """The ID of an Azure group."""
 
-    connection_id: str
+    identity_provider_id: str
     """The ID of your Azure identity provider."""
 
 

@@ -3,7 +3,8 @@
 from __future__ import annotations
 
 from ..._compat import cached_property
-from .namespaces import (
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from .namespaces.namespaces import (
     NamespacesResource,
     AsyncNamespacesResource,
     NamespacesResourceWithRawResponse,
@@ -11,8 +12,6 @@ from .namespaces import (
     NamespacesResourceWithStreamingResponse,
     AsyncNamespacesResourceWithStreamingResponse,
 )
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from .namespaces.namespaces import NamespacesResource, AsyncNamespacesResource
 
 __all__ = ["DurableObjectsResource", "AsyncDurableObjectsResource"]
 
@@ -24,10 +23,21 @@ class DurableObjectsResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> DurableObjectsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return DurableObjectsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> DurableObjectsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return DurableObjectsResourceWithStreamingResponse(self)
 
 
@@ -38,10 +48,21 @@ class AsyncDurableObjectsResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncDurableObjectsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncDurableObjectsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncDurableObjectsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncDurableObjectsResourceWithStreamingResponse(self)
 
 

@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from cloudflare.types.waiting_rooms import (
     WaitingRoom,
     WaitingRoomDeleteResponse,
@@ -44,15 +44,7 @@ class TestWaitingRooms:
                 {
                     "host": "shop2.example.com",
                     "path": "/shop2/checkout",
-                },
-                {
-                    "host": "shop2.example.com",
-                    "path": "/shop2/checkout",
-                },
-                {
-                    "host": "shop2.example.com",
-                    "path": "/shop2/checkout",
-                },
+                }
             ],
             cookie_attributes={
                 "samesite": "auto",
@@ -60,14 +52,15 @@ class TestWaitingRooms:
             },
             cookie_suffix="abcd",
             custom_page_html="{{#waitTimeKnown}} {{waitTime}} mins {{/waitTimeKnown}} {{^waitTimeKnown}} Queue all enabled {{/waitTimeKnown}}",
-            default_template_language="es-ES",
+            default_template_language="en-US",
             description="Production - DO NOT MODIFY",
             disable_session_renewal=False,
+            enabled_origin_commands=["revoke"],
             json_response_enabled=False,
             path="/shop/checkout",
             queue_all=True,
             queueing_method="fifo",
-            queueing_status_code=202,
+            queueing_status_code=200,
             session_duration=1,
             suspended=True,
         )
@@ -141,15 +134,7 @@ class TestWaitingRooms:
                 {
                     "host": "shop2.example.com",
                     "path": "/shop2/checkout",
-                },
-                {
-                    "host": "shop2.example.com",
-                    "path": "/shop2/checkout",
-                },
-                {
-                    "host": "shop2.example.com",
-                    "path": "/shop2/checkout",
-                },
+                }
             ],
             cookie_attributes={
                 "samesite": "auto",
@@ -157,14 +142,15 @@ class TestWaitingRooms:
             },
             cookie_suffix="abcd",
             custom_page_html="{{#waitTimeKnown}} {{waitTime}} mins {{/waitTimeKnown}} {{^waitTimeKnown}} Queue all enabled {{/waitTimeKnown}}",
-            default_template_language="es-ES",
+            default_template_language="en-US",
             description="Production - DO NOT MODIFY",
             disable_session_renewal=False,
+            enabled_origin_commands=["revoke"],
             json_response_enabled=False,
             path="/shop/checkout",
             queue_all=True,
             queueing_method="fifo",
-            queueing_status_code=202,
+            queueing_status_code=200,
             session_duration=1,
             suspended=True,
         )
@@ -231,16 +217,16 @@ class TestWaitingRooms:
         waiting_room = client.waiting_rooms.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncSinglePage[WaitingRoom], waiting_room, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[WaitingRoom], waiting_room, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         waiting_room = client.waiting_rooms.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            page={},
-            per_page={},
+            page=1,
+            per_page=5,
         )
-        assert_matches_type(SyncSinglePage[WaitingRoom], waiting_room, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[WaitingRoom], waiting_room, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -251,7 +237,7 @@ class TestWaitingRooms:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         waiting_room = response.parse()
-        assert_matches_type(SyncSinglePage[WaitingRoom], waiting_room, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[WaitingRoom], waiting_room, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -262,7 +248,7 @@ class TestWaitingRooms:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             waiting_room = response.parse()
-            assert_matches_type(SyncSinglePage[WaitingRoom], waiting_room, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[WaitingRoom], waiting_room, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -346,15 +332,7 @@ class TestWaitingRooms:
                 {
                     "host": "shop2.example.com",
                     "path": "/shop2/checkout",
-                },
-                {
-                    "host": "shop2.example.com",
-                    "path": "/shop2/checkout",
-                },
-                {
-                    "host": "shop2.example.com",
-                    "path": "/shop2/checkout",
-                },
+                }
             ],
             cookie_attributes={
                 "samesite": "auto",
@@ -362,14 +340,15 @@ class TestWaitingRooms:
             },
             cookie_suffix="abcd",
             custom_page_html="{{#waitTimeKnown}} {{waitTime}} mins {{/waitTimeKnown}} {{^waitTimeKnown}} Queue all enabled {{/waitTimeKnown}}",
-            default_template_language="es-ES",
+            default_template_language="en-US",
             description="Production - DO NOT MODIFY",
             disable_session_renewal=False,
+            enabled_origin_commands=["revoke"],
             json_response_enabled=False,
             path="/shop/checkout",
             queue_all=True,
             queueing_method="fifo",
-            queueing_status_code=202,
+            queueing_status_code=200,
             session_duration=1,
             suspended=True,
         )
@@ -506,15 +485,7 @@ class TestAsyncWaitingRooms:
                 {
                     "host": "shop2.example.com",
                     "path": "/shop2/checkout",
-                },
-                {
-                    "host": "shop2.example.com",
-                    "path": "/shop2/checkout",
-                },
-                {
-                    "host": "shop2.example.com",
-                    "path": "/shop2/checkout",
-                },
+                }
             ],
             cookie_attributes={
                 "samesite": "auto",
@@ -522,14 +493,15 @@ class TestAsyncWaitingRooms:
             },
             cookie_suffix="abcd",
             custom_page_html="{{#waitTimeKnown}} {{waitTime}} mins {{/waitTimeKnown}} {{^waitTimeKnown}} Queue all enabled {{/waitTimeKnown}}",
-            default_template_language="es-ES",
+            default_template_language="en-US",
             description="Production - DO NOT MODIFY",
             disable_session_renewal=False,
+            enabled_origin_commands=["revoke"],
             json_response_enabled=False,
             path="/shop/checkout",
             queue_all=True,
             queueing_method="fifo",
-            queueing_status_code=202,
+            queueing_status_code=200,
             session_duration=1,
             suspended=True,
         )
@@ -603,15 +575,7 @@ class TestAsyncWaitingRooms:
                 {
                     "host": "shop2.example.com",
                     "path": "/shop2/checkout",
-                },
-                {
-                    "host": "shop2.example.com",
-                    "path": "/shop2/checkout",
-                },
-                {
-                    "host": "shop2.example.com",
-                    "path": "/shop2/checkout",
-                },
+                }
             ],
             cookie_attributes={
                 "samesite": "auto",
@@ -619,14 +583,15 @@ class TestAsyncWaitingRooms:
             },
             cookie_suffix="abcd",
             custom_page_html="{{#waitTimeKnown}} {{waitTime}} mins {{/waitTimeKnown}} {{^waitTimeKnown}} Queue all enabled {{/waitTimeKnown}}",
-            default_template_language="es-ES",
+            default_template_language="en-US",
             description="Production - DO NOT MODIFY",
             disable_session_renewal=False,
+            enabled_origin_commands=["revoke"],
             json_response_enabled=False,
             path="/shop/checkout",
             queue_all=True,
             queueing_method="fifo",
-            queueing_status_code=202,
+            queueing_status_code=200,
             session_duration=1,
             suspended=True,
         )
@@ -693,16 +658,16 @@ class TestAsyncWaitingRooms:
         waiting_room = await async_client.waiting_rooms.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncSinglePage[WaitingRoom], waiting_room, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[WaitingRoom], waiting_room, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         waiting_room = await async_client.waiting_rooms.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            page={},
-            per_page={},
+            page=1,
+            per_page=5,
         )
-        assert_matches_type(AsyncSinglePage[WaitingRoom], waiting_room, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[WaitingRoom], waiting_room, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -713,7 +678,7 @@ class TestAsyncWaitingRooms:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         waiting_room = await response.parse()
-        assert_matches_type(AsyncSinglePage[WaitingRoom], waiting_room, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[WaitingRoom], waiting_room, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -724,7 +689,7 @@ class TestAsyncWaitingRooms:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             waiting_room = await response.parse()
-            assert_matches_type(AsyncSinglePage[WaitingRoom], waiting_room, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[WaitingRoom], waiting_room, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -808,15 +773,7 @@ class TestAsyncWaitingRooms:
                 {
                     "host": "shop2.example.com",
                     "path": "/shop2/checkout",
-                },
-                {
-                    "host": "shop2.example.com",
-                    "path": "/shop2/checkout",
-                },
-                {
-                    "host": "shop2.example.com",
-                    "path": "/shop2/checkout",
-                },
+                }
             ],
             cookie_attributes={
                 "samesite": "auto",
@@ -824,14 +781,15 @@ class TestAsyncWaitingRooms:
             },
             cookie_suffix="abcd",
             custom_page_html="{{#waitTimeKnown}} {{waitTime}} mins {{/waitTimeKnown}} {{^waitTimeKnown}} Queue all enabled {{/waitTimeKnown}}",
-            default_template_language="es-ES",
+            default_template_language="en-US",
             description="Production - DO NOT MODIFY",
             disable_session_renewal=False,
+            enabled_origin_commands=["revoke"],
             json_response_enabled=False,
             path="/shop/checkout",
             queue_all=True,
             queueing_method="fifo",
-            queueing_status_code=202,
+            queueing_status_code=200,
             session_duration=1,
             suspended=True,
         )
