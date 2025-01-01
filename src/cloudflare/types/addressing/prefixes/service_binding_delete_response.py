@@ -3,13 +3,13 @@
 from typing import List
 from typing_extensions import Literal
 
-from ....._models import BaseModel
-from ....shared.response_info import ResponseInfo
+from ...._models import BaseModel
+from ...shared.response_info import ResponseInfo
 
-__all__ = ["BindingDeleteResponse"]
+__all__ = ["ServiceBindingDeleteResponse"]
 
 
-class BindingDeleteResponse(BaseModel):
+class ServiceBindingDeleteResponse(BaseModel):
     errors: List[ResponseInfo]
 
     messages: List[ResponseInfo]

@@ -38,6 +38,14 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import AsyncPaginator, make_request_options
+from .service_bindings import (
+    ServiceBindingsResource,
+    AsyncServiceBindingsResource,
+    ServiceBindingsResourceWithRawResponse,
+    AsyncServiceBindingsResourceWithRawResponse,
+    ServiceBindingsResourceWithStreamingResponse,
+    AsyncServiceBindingsResourceWithStreamingResponse,
+)
 from ....types.addressing import prefix_edit_params, prefix_create_params
 from ....types.addressing.prefix import Prefix
 from ....types.addressing.prefix_delete_response import PrefixDeleteResponse
@@ -46,6 +54,10 @@ __all__ = ["PrefixesResource", "AsyncPrefixesResource"]
 
 
 class PrefixesResource(SyncAPIResource):
+    @cached_property
+    def service_bindings(self) -> ServiceBindingsResource:
+        return ServiceBindingsResource(self._client)
+
     @cached_property
     def bgp(self) -> BGPResource:
         return BGPResource(self._client)
@@ -299,6 +311,10 @@ class PrefixesResource(SyncAPIResource):
 
 
 class AsyncPrefixesResource(AsyncAPIResource):
+    @cached_property
+    def service_bindings(self) -> AsyncServiceBindingsResource:
+        return AsyncServiceBindingsResource(self._client)
+
     @cached_property
     def bgp(self) -> AsyncBGPResource:
         return AsyncBGPResource(self._client)
@@ -572,6 +588,10 @@ class PrefixesResourceWithRawResponse:
         )
 
     @cached_property
+    def service_bindings(self) -> ServiceBindingsResourceWithRawResponse:
+        return ServiceBindingsResourceWithRawResponse(self._prefixes.service_bindings)
+
+    @cached_property
     def bgp(self) -> BGPResourceWithRawResponse:
         return BGPResourceWithRawResponse(self._prefixes.bgp)
 
@@ -599,6 +619,10 @@ class AsyncPrefixesResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             prefixes.get,
         )
+
+    @cached_property
+    def service_bindings(self) -> AsyncServiceBindingsResourceWithRawResponse:
+        return AsyncServiceBindingsResourceWithRawResponse(self._prefixes.service_bindings)
 
     @cached_property
     def bgp(self) -> AsyncBGPResourceWithRawResponse:
@@ -630,6 +654,10 @@ class PrefixesResourceWithStreamingResponse:
         )
 
     @cached_property
+    def service_bindings(self) -> ServiceBindingsResourceWithStreamingResponse:
+        return ServiceBindingsResourceWithStreamingResponse(self._prefixes.service_bindings)
+
+    @cached_property
     def bgp(self) -> BGPResourceWithStreamingResponse:
         return BGPResourceWithStreamingResponse(self._prefixes.bgp)
 
@@ -657,6 +685,10 @@ class AsyncPrefixesResourceWithStreamingResponse:
         self.get = async_to_streamed_response_wrapper(
             prefixes.get,
         )
+
+    @cached_property
+    def service_bindings(self) -> AsyncServiceBindingsResourceWithStreamingResponse:
+        return AsyncServiceBindingsResourceWithStreamingResponse(self._prefixes.service_bindings)
 
     @cached_property
     def bgp(self) -> AsyncBGPResourceWithStreamingResponse:
