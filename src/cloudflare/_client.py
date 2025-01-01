@@ -88,6 +88,7 @@ if TYPE_CHECKING:
         memberships,
         page_shield,
         rate_limits,
+        url_scanner,
         dns_firewall,
         healthchecks,
         security_txt,
@@ -185,6 +186,7 @@ if TYPE_CHECKING:
     from .resources.botnet_feed.botnet_feed import BotnetFeedResource, AsyncBotnetFeedResource
     from .resources.diagnostics.diagnostics import DiagnosticsResource, AsyncDiagnosticsResource
     from .resources.page_shield.page_shield import PageShieldResource, AsyncPageShieldResource
+    from .resources.url_scanner.url_scanner import URLScannerResource, AsyncURLScannerResource
     from .resources.dns_firewall.dns_firewall import DNSFirewallResource, AsyncDNSFirewallResource
     from .resources.healthchecks.healthchecks import HealthchecksResource, AsyncHealthchecksResource
     from .resources.email_routing.email_routing import EmailRoutingResource, AsyncEmailRoutingResource
@@ -703,6 +705,12 @@ class Cloudflare(SyncAPIClient):
         from .resources.vectorize import VectorizeResource
 
         return VectorizeResource(self)
+
+    @cached_property
+    def url_scanner(self) -> URLScannerResource:
+        from .resources.url_scanner import URLScannerResource
+
+        return URLScannerResource(self)
 
     @cached_property
     def radar(self) -> RadarResource:
@@ -1470,6 +1478,12 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncVectorizeResource(self)
 
     @cached_property
+    def url_scanner(self) -> AsyncURLScannerResource:
+        from .resources.url_scanner import AsyncURLScannerResource
+
+        return AsyncURLScannerResource(self)
+
+    @cached_property
     def radar(self) -> AsyncRadarResource:
         from .resources.radar import AsyncRadarResource
 
@@ -2168,6 +2182,12 @@ class CloudflareWithRawResponse:
         return VectorizeResourceWithRawResponse(self._client.vectorize)
 
     @cached_property
+    def url_scanner(self) -> url_scanner.URLScannerResourceWithRawResponse:
+        from .resources.url_scanner import URLScannerResourceWithRawResponse
+
+        return URLScannerResourceWithRawResponse(self._client.url_scanner)
+
+    @cached_property
     def radar(self) -> radar.RadarResourceWithRawResponse:
         from .resources.radar import RadarResourceWithRawResponse
 
@@ -2687,6 +2707,12 @@ class AsyncCloudflareWithRawResponse:
         return AsyncVectorizeResourceWithRawResponse(self._client.vectorize)
 
     @cached_property
+    def url_scanner(self) -> url_scanner.AsyncURLScannerResourceWithRawResponse:
+        from .resources.url_scanner import AsyncURLScannerResourceWithRawResponse
+
+        return AsyncURLScannerResourceWithRawResponse(self._client.url_scanner)
+
+    @cached_property
     def radar(self) -> radar.AsyncRadarResourceWithRawResponse:
         from .resources.radar import AsyncRadarResourceWithRawResponse
 
@@ -3204,6 +3230,12 @@ class CloudflareWithStreamedResponse:
         from .resources.vectorize import VectorizeResourceWithStreamingResponse
 
         return VectorizeResourceWithStreamingResponse(self._client.vectorize)
+
+    @cached_property
+    def url_scanner(self) -> url_scanner.URLScannerResourceWithStreamingResponse:
+        from .resources.url_scanner import URLScannerResourceWithStreamingResponse
+
+        return URLScannerResourceWithStreamingResponse(self._client.url_scanner)
 
     @cached_property
     def radar(self) -> radar.RadarResourceWithStreamingResponse:
@@ -3727,6 +3759,12 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.vectorize import AsyncVectorizeResourceWithStreamingResponse
 
         return AsyncVectorizeResourceWithStreamingResponse(self._client.vectorize)
+
+    @cached_property
+    def url_scanner(self) -> url_scanner.AsyncURLScannerResourceWithStreamingResponse:
+        from .resources.url_scanner import AsyncURLScannerResourceWithStreamingResponse
+
+        return AsyncURLScannerResourceWithStreamingResponse(self._client.url_scanner)
 
     @cached_property
     def radar(self) -> radar.AsyncRadarResourceWithStreamingResponse:
