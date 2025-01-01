@@ -2,14 +2,6 @@
 
 from __future__ import annotations
 
-from .bindings import (
-    BindingsResource,
-    AsyncBindingsResource,
-    BindingsResourceWithRawResponse,
-    AsyncBindingsResourceWithRawResponse,
-    BindingsResourceWithStreamingResponse,
-    AsyncBindingsResourceWithStreamingResponse,
-)
 from .prefixes import (
     PrefixesResource,
     AsyncPrefixesResource,
@@ -33,10 +25,6 @@ __all__ = ["BGPResource", "AsyncBGPResource"]
 
 
 class BGPResource(SyncAPIResource):
-    @cached_property
-    def bindings(self) -> BindingsResource:
-        return BindingsResource(self._client)
-
     @cached_property
     def prefixes(self) -> PrefixesResource:
         return PrefixesResource(self._client)
@@ -66,10 +54,6 @@ class BGPResource(SyncAPIResource):
 
 
 class AsyncBGPResource(AsyncAPIResource):
-    @cached_property
-    def bindings(self) -> AsyncBindingsResource:
-        return AsyncBindingsResource(self._client)
-
     @cached_property
     def prefixes(self) -> AsyncPrefixesResource:
         return AsyncPrefixesResource(self._client)
@@ -103,10 +87,6 @@ class BGPResourceWithRawResponse:
         self._bgp = bgp
 
     @cached_property
-    def bindings(self) -> BindingsResourceWithRawResponse:
-        return BindingsResourceWithRawResponse(self._bgp.bindings)
-
-    @cached_property
     def prefixes(self) -> PrefixesResourceWithRawResponse:
         return PrefixesResourceWithRawResponse(self._bgp.prefixes)
 
@@ -118,10 +98,6 @@ class BGPResourceWithRawResponse:
 class AsyncBGPResourceWithRawResponse:
     def __init__(self, bgp: AsyncBGPResource) -> None:
         self._bgp = bgp
-
-    @cached_property
-    def bindings(self) -> AsyncBindingsResourceWithRawResponse:
-        return AsyncBindingsResourceWithRawResponse(self._bgp.bindings)
 
     @cached_property
     def prefixes(self) -> AsyncPrefixesResourceWithRawResponse:
@@ -137,10 +113,6 @@ class BGPResourceWithStreamingResponse:
         self._bgp = bgp
 
     @cached_property
-    def bindings(self) -> BindingsResourceWithStreamingResponse:
-        return BindingsResourceWithStreamingResponse(self._bgp.bindings)
-
-    @cached_property
     def prefixes(self) -> PrefixesResourceWithStreamingResponse:
         return PrefixesResourceWithStreamingResponse(self._bgp.prefixes)
 
@@ -152,10 +124,6 @@ class BGPResourceWithStreamingResponse:
 class AsyncBGPResourceWithStreamingResponse:
     def __init__(self, bgp: AsyncBGPResource) -> None:
         self._bgp = bgp
-
-    @cached_property
-    def bindings(self) -> AsyncBindingsResourceWithStreamingResponse:
-        return AsyncBindingsResourceWithStreamingResponse(self._bgp.bindings)
 
     @cached_property
     def prefixes(self) -> AsyncPrefixesResourceWithStreamingResponse:

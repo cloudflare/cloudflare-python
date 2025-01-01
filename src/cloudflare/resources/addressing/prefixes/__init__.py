@@ -24,8 +24,22 @@ from .delegations import (
     DelegationsResourceWithStreamingResponse,
     AsyncDelegationsResourceWithStreamingResponse,
 )
+from .service_bindings import (
+    ServiceBindingsResource,
+    AsyncServiceBindingsResource,
+    ServiceBindingsResourceWithRawResponse,
+    AsyncServiceBindingsResourceWithRawResponse,
+    ServiceBindingsResourceWithStreamingResponse,
+    AsyncServiceBindingsResourceWithStreamingResponse,
+)
 
 __all__ = [
+    "ServiceBindingsResource",
+    "AsyncServiceBindingsResource",
+    "ServiceBindingsResourceWithRawResponse",
+    "AsyncServiceBindingsResourceWithRawResponse",
+    "ServiceBindingsResourceWithStreamingResponse",
+    "AsyncServiceBindingsResourceWithStreamingResponse",
     "BGPResource",
     "AsyncBGPResource",
     "BGPResourceWithRawResponse",
