@@ -6,48 +6,48 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import (
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
     maybe_transform,
     async_maybe_transform,
 )
-from ....._compat import cached_property
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from ....._response import (
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....._wrappers import ResultWrapper
-from .....pagination import SyncSinglePage, AsyncSinglePage
-from ....._base_client import AsyncPaginator, make_request_options
-from .....types.addressing.prefixes.bgp import binding_create_params
-from .....types.addressing.prefixes.bgp.service_binding import ServiceBinding
-from .....types.addressing.prefixes.bgp.binding_delete_response import BindingDeleteResponse
+from ...._wrappers import ResultWrapper
+from ....pagination import SyncSinglePage, AsyncSinglePage
+from ...._base_client import AsyncPaginator, make_request_options
+from ....types.addressing.prefixes import service_binding_create_params
+from ....types.addressing.prefixes.service_binding import ServiceBinding
+from ....types.addressing.prefixes.service_binding_delete_response import ServiceBindingDeleteResponse
 
-__all__ = ["BindingsResource", "AsyncBindingsResource"]
+__all__ = ["ServiceBindingsResource", "AsyncServiceBindingsResource"]
 
 
-class BindingsResource(SyncAPIResource):
+class ServiceBindingsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> BindingsResourceWithRawResponse:
+    def with_raw_response(self) -> ServiceBindingsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return the
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return BindingsResourceWithRawResponse(self)
+        return ServiceBindingsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> BindingsResourceWithStreamingResponse:
+    def with_streaming_response(self) -> ServiceBindingsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return BindingsResourceWithStreamingResponse(self)
+        return ServiceBindingsResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -97,7 +97,7 @@ class BindingsResource(SyncAPIResource):
                     "cidr": cidr,
                     "service_id": service_id,
                 },
-                binding_create_params.BindingCreateParams,
+                service_binding_create_params.ServiceBindingCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -168,7 +168,7 @@ class BindingsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BindingDeleteResponse:
+    ) -> ServiceBindingDeleteResponse:
         """
         Delete a Service Binding
 
@@ -198,7 +198,7 @@ class BindingsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BindingDeleteResponse,
+            cast_to=ServiceBindingDeleteResponse,
         )
 
     def get(
@@ -251,25 +251,25 @@ class BindingsResource(SyncAPIResource):
         )
 
 
-class AsyncBindingsResource(AsyncAPIResource):
+class AsyncServiceBindingsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncBindingsResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncServiceBindingsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return the
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncBindingsResourceWithRawResponse(self)
+        return AsyncServiceBindingsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncBindingsResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncServiceBindingsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return AsyncBindingsResourceWithStreamingResponse(self)
+        return AsyncServiceBindingsResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -319,7 +319,7 @@ class AsyncBindingsResource(AsyncAPIResource):
                     "cidr": cidr,
                     "service_id": service_id,
                 },
-                binding_create_params.BindingCreateParams,
+                service_binding_create_params.ServiceBindingCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -390,7 +390,7 @@ class AsyncBindingsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BindingDeleteResponse:
+    ) -> ServiceBindingDeleteResponse:
         """
         Delete a Service Binding
 
@@ -420,7 +420,7 @@ class AsyncBindingsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BindingDeleteResponse,
+            cast_to=ServiceBindingDeleteResponse,
         )
 
     async def get(
@@ -473,73 +473,73 @@ class AsyncBindingsResource(AsyncAPIResource):
         )
 
 
-class BindingsResourceWithRawResponse:
-    def __init__(self, bindings: BindingsResource) -> None:
-        self._bindings = bindings
+class ServiceBindingsResourceWithRawResponse:
+    def __init__(self, service_bindings: ServiceBindingsResource) -> None:
+        self._service_bindings = service_bindings
 
         self.create = to_raw_response_wrapper(
-            bindings.create,
+            service_bindings.create,
         )
         self.list = to_raw_response_wrapper(
-            bindings.list,
+            service_bindings.list,
         )
         self.delete = to_raw_response_wrapper(
-            bindings.delete,
+            service_bindings.delete,
         )
         self.get = to_raw_response_wrapper(
-            bindings.get,
+            service_bindings.get,
         )
 
 
-class AsyncBindingsResourceWithRawResponse:
-    def __init__(self, bindings: AsyncBindingsResource) -> None:
-        self._bindings = bindings
+class AsyncServiceBindingsResourceWithRawResponse:
+    def __init__(self, service_bindings: AsyncServiceBindingsResource) -> None:
+        self._service_bindings = service_bindings
 
         self.create = async_to_raw_response_wrapper(
-            bindings.create,
+            service_bindings.create,
         )
         self.list = async_to_raw_response_wrapper(
-            bindings.list,
+            service_bindings.list,
         )
         self.delete = async_to_raw_response_wrapper(
-            bindings.delete,
+            service_bindings.delete,
         )
         self.get = async_to_raw_response_wrapper(
-            bindings.get,
+            service_bindings.get,
         )
 
 
-class BindingsResourceWithStreamingResponse:
-    def __init__(self, bindings: BindingsResource) -> None:
-        self._bindings = bindings
+class ServiceBindingsResourceWithStreamingResponse:
+    def __init__(self, service_bindings: ServiceBindingsResource) -> None:
+        self._service_bindings = service_bindings
 
         self.create = to_streamed_response_wrapper(
-            bindings.create,
+            service_bindings.create,
         )
         self.list = to_streamed_response_wrapper(
-            bindings.list,
+            service_bindings.list,
         )
         self.delete = to_streamed_response_wrapper(
-            bindings.delete,
+            service_bindings.delete,
         )
         self.get = to_streamed_response_wrapper(
-            bindings.get,
+            service_bindings.get,
         )
 
 
-class AsyncBindingsResourceWithStreamingResponse:
-    def __init__(self, bindings: AsyncBindingsResource) -> None:
-        self._bindings = bindings
+class AsyncServiceBindingsResourceWithStreamingResponse:
+    def __init__(self, service_bindings: AsyncServiceBindingsResource) -> None:
+        self._service_bindings = service_bindings
 
         self.create = async_to_streamed_response_wrapper(
-            bindings.create,
+            service_bindings.create,
         )
         self.list = async_to_streamed_response_wrapper(
-            bindings.list,
+            service_bindings.list,
         )
         self.delete = async_to_streamed_response_wrapper(
-            bindings.delete,
+            service_bindings.delete,
         )
         self.get = async_to_streamed_response_wrapper(
-            bindings.get,
+            service_bindings.get,
         )

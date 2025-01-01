@@ -8,14 +8,6 @@ from .bgp import (
     BGPResourceWithStreamingResponse,
     AsyncBGPResourceWithStreamingResponse,
 )
-from .bindings import (
-    BindingsResource,
-    AsyncBindingsResource,
-    BindingsResourceWithRawResponse,
-    AsyncBindingsResourceWithRawResponse,
-    BindingsResourceWithStreamingResponse,
-    AsyncBindingsResourceWithStreamingResponse,
-)
 from .prefixes import (
     PrefixesResource,
     AsyncPrefixesResource,
@@ -34,12 +26,6 @@ from .statuses import (
 )
 
 __all__ = [
-    "BindingsResource",
-    "AsyncBindingsResource",
-    "BindingsResourceWithRawResponse",
-    "AsyncBindingsResourceWithRawResponse",
-    "BindingsResourceWithStreamingResponse",
-    "AsyncBindingsResourceWithStreamingResponse",
     "PrefixesResource",
     "AsyncPrefixesResource",
     "PrefixesResourceWithRawResponse",

@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["BindingCreateParams"]
+__all__ = ["ServiceBindingCreateParams"]
 
 
-class BindingCreateParams(TypedDict, total=False):
+class ServiceBindingCreateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
