@@ -3218,13 +3218,8 @@ from cloudflare.types.addressing import LOADocumentCreateResponse
 
 Methods:
 
-- <code title="post /accounts/{account_id}/addressing/loa_documents">client.addressing.loa_documents.<a href="./src/cloudflare/resources/addressing/loa_documents/loa_documents.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/addressing/loa_document_create_params.py">params</a>) -> <a href="./src/cloudflare/types/addressing/loa_document_create_response.py">Optional[LOADocumentCreateResponse]</a></code>
-
-### Downloads
-
-Methods:
-
-- <code title="get /accounts/{account_id}/addressing/loa_documents/{loa_document_id}/download">client.addressing.loa_documents.downloads.<a href="./src/cloudflare/resources/addressing/loa_documents/downloads.py">get</a>(loa_document_id, \*, account_id) -> BinaryAPIResponse</code>
+- <code title="post /accounts/{account_id}/addressing/loa_documents">client.addressing.loa_documents.<a href="./src/cloudflare/resources/addressing/loa_documents.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/addressing/loa_document_create_params.py">params</a>) -> <a href="./src/cloudflare/types/addressing/loa_document_create_response.py">Optional[LOADocumentCreateResponse]</a></code>
+- <code title="get /accounts/{account_id}/addressing/loa_documents/{loa_document_id}/download">client.addressing.loa_documents.<a href="./src/cloudflare/resources/addressing/loa_documents.py">get</a>(loa_document_id, \*, account_id) -> BinaryAPIResponse</code>
 
 ## Prefixes
 
