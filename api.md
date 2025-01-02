@@ -8507,7 +8507,78 @@ Methods:
 
 - <code title="post /accounts/{account_id}/ai/run/{model_name}">client.ai.<a href="./src/cloudflare/resources/ai/ai.py">run</a>(model_name, \*, account_id, \*\*<a href="src/cloudflare/types/ai/ai_run_params.py">params</a>) -> <a href="./src/cloudflare/types/ai/ai_run_response.py">Optional[AIRunResponse]</a></code>
 
+## Finetunes
+
+Types:
+
+```python
+from cloudflare.types.ai import FinetuneCreateResponse, FinetuneListResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/ai/finetunes">client.ai.finetunes.<a href="./src/cloudflare/resources/ai/finetunes/finetunes.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/ai/finetune_create_params.py">params</a>) -> <a href="./src/cloudflare/types/ai/finetune_create_response.py">FinetuneCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/ai/finetunes">client.ai.finetunes.<a href="./src/cloudflare/resources/ai/finetunes/finetunes.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/ai/finetune_list_response.py">FinetuneListResponse</a></code>
+
+### Assets
+
+Types:
+
+```python
+from cloudflare.types.ai.finetunes import AssetCreateResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/ai/finetunes/{finetune_id}/finetune-assets">client.ai.finetunes.assets.<a href="./src/cloudflare/resources/ai/finetunes/assets.py">create</a>(finetune_id, \*, account_id, \*\*<a href="src/cloudflare/types/ai/finetunes/asset_create_params.py">params</a>) -> <a href="./src/cloudflare/types/ai/finetunes/asset_create_response.py">AssetCreateResponse</a></code>
+
+### Public
+
+Types:
+
+```python
+from cloudflare.types.ai.finetunes import PublicListResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/ai/finetunes/public">client.ai.finetunes.public.<a href="./src/cloudflare/resources/ai/finetunes/public.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/ai/finetunes/public_list_params.py">params</a>) -> <a href="./src/cloudflare/types/ai/finetunes/public_list_response.py">SyncSinglePage[PublicListResponse]</a></code>
+
+## Authors
+
+Types:
+
+```python
+from cloudflare.types.ai import AuthorListResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/ai/authors/search">client.ai.authors.<a href="./src/cloudflare/resources/ai/authors.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/ai/author_list_response.py">SyncSinglePage[object]</a></code>
+
+## Tasks
+
+Types:
+
+```python
+from cloudflare.types.ai import TaskListResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/ai/tasks/search">client.ai.tasks.<a href="./src/cloudflare/resources/ai/tasks.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/ai/task_list_response.py">SyncSinglePage[object]</a></code>
+
 ## Models
+
+Types:
+
+```python
+from cloudflare.types.ai import ModelListResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/ai/models/search">client.ai.models.<a href="./src/cloudflare/resources/ai/models/models.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/ai/model_list_params.py">params</a>) -> <a href="./src/cloudflare/types/ai/model_list_response.py">SyncV4PagePaginationArray[object]</a></code>
 
 ### Schema
 

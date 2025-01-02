@@ -7,6 +7,22 @@ from typing_extensions import overload
 
 import httpx
 
+from .tasks import (
+    TasksResource,
+    AsyncTasksResource,
+    TasksResourceWithRawResponse,
+    AsyncTasksResourceWithRawResponse,
+    TasksResourceWithStreamingResponse,
+    AsyncTasksResourceWithStreamingResponse,
+)
+from .authors import (
+    AuthorsResource,
+    AsyncAuthorsResource,
+    AuthorsResourceWithRawResponse,
+    AsyncAuthorsResourceWithRawResponse,
+    AuthorsResourceWithStreamingResponse,
+    AsyncAuthorsResourceWithStreamingResponse,
+)
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     required_args,
@@ -32,12 +48,32 @@ from .models.models import (
     AsyncModelsResourceWithStreamingResponse,
 )
 from ..._base_client import make_request_options
+from .finetunes.finetunes import (
+    FinetunesResource,
+    AsyncFinetunesResource,
+    FinetunesResourceWithRawResponse,
+    AsyncFinetunesResourceWithRawResponse,
+    FinetunesResourceWithStreamingResponse,
+    AsyncFinetunesResourceWithStreamingResponse,
+)
 from ...types.ai.ai_run_response import AIRunResponse
 
 __all__ = ["AIResource", "AsyncAIResource"]
 
 
 class AIResource(SyncAPIResource):
+    @cached_property
+    def finetunes(self) -> FinetunesResource:
+        return FinetunesResource(self._client)
+
+    @cached_property
+    def authors(self) -> AuthorsResource:
+        return AuthorsResource(self._client)
+
+    @cached_property
+    def tasks(self) -> TasksResource:
+        return TasksResource(self._client)
+
     @cached_property
     def models(self) -> ModelsResource:
         return ModelsResource(self._client)
@@ -778,6 +814,18 @@ class AIResource(SyncAPIResource):
 
 
 class AsyncAIResource(AsyncAPIResource):
+    @cached_property
+    def finetunes(self) -> AsyncFinetunesResource:
+        return AsyncFinetunesResource(self._client)
+
+    @cached_property
+    def authors(self) -> AsyncAuthorsResource:
+        return AsyncAuthorsResource(self._client)
+
+    @cached_property
+    def tasks(self) -> AsyncTasksResource:
+        return AsyncTasksResource(self._client)
+
     @cached_property
     def models(self) -> AsyncModelsResource:
         return AsyncModelsResource(self._client)
@@ -1526,6 +1574,18 @@ class AIResourceWithRawResponse:
         )
 
     @cached_property
+    def finetunes(self) -> FinetunesResourceWithRawResponse:
+        return FinetunesResourceWithRawResponse(self._ai.finetunes)
+
+    @cached_property
+    def authors(self) -> AuthorsResourceWithRawResponse:
+        return AuthorsResourceWithRawResponse(self._ai.authors)
+
+    @cached_property
+    def tasks(self) -> TasksResourceWithRawResponse:
+        return TasksResourceWithRawResponse(self._ai.tasks)
+
+    @cached_property
     def models(self) -> ModelsResourceWithRawResponse:
         return ModelsResourceWithRawResponse(self._ai.models)
 
@@ -1537,6 +1597,18 @@ class AsyncAIResourceWithRawResponse:
         self.run = async_to_raw_response_wrapper(
             ai.run,
         )
+
+    @cached_property
+    def finetunes(self) -> AsyncFinetunesResourceWithRawResponse:
+        return AsyncFinetunesResourceWithRawResponse(self._ai.finetunes)
+
+    @cached_property
+    def authors(self) -> AsyncAuthorsResourceWithRawResponse:
+        return AsyncAuthorsResourceWithRawResponse(self._ai.authors)
+
+    @cached_property
+    def tasks(self) -> AsyncTasksResourceWithRawResponse:
+        return AsyncTasksResourceWithRawResponse(self._ai.tasks)
 
     @cached_property
     def models(self) -> AsyncModelsResourceWithRawResponse:
@@ -1552,6 +1624,18 @@ class AIResourceWithStreamingResponse:
         )
 
     @cached_property
+    def finetunes(self) -> FinetunesResourceWithStreamingResponse:
+        return FinetunesResourceWithStreamingResponse(self._ai.finetunes)
+
+    @cached_property
+    def authors(self) -> AuthorsResourceWithStreamingResponse:
+        return AuthorsResourceWithStreamingResponse(self._ai.authors)
+
+    @cached_property
+    def tasks(self) -> TasksResourceWithStreamingResponse:
+        return TasksResourceWithStreamingResponse(self._ai.tasks)
+
+    @cached_property
     def models(self) -> ModelsResourceWithStreamingResponse:
         return ModelsResourceWithStreamingResponse(self._ai.models)
 
@@ -1563,6 +1647,18 @@ class AsyncAIResourceWithStreamingResponse:
         self.run = async_to_streamed_response_wrapper(
             ai.run,
         )
+
+    @cached_property
+    def finetunes(self) -> AsyncFinetunesResourceWithStreamingResponse:
+        return AsyncFinetunesResourceWithStreamingResponse(self._ai.finetunes)
+
+    @cached_property
+    def authors(self) -> AsyncAuthorsResourceWithStreamingResponse:
+        return AsyncAuthorsResourceWithStreamingResponse(self._ai.authors)
+
+    @cached_property
+    def tasks(self) -> AsyncTasksResourceWithStreamingResponse:
+        return AsyncTasksResourceWithStreamingResponse(self._ai.tasks)
 
     @cached_property
     def models(self) -> AsyncModelsResourceWithStreamingResponse:
