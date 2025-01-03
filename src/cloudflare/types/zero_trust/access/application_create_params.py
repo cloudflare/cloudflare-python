@@ -13,8 +13,8 @@ from .cors_headers_param import CORSHeadersParam
 from .oidc_saas_app_param import OIDCSaaSAppParam
 from .saml_saas_app_param import SAMLSaaSAppParam
 from .self_hosted_domains import SelfHostedDomains
+from .approval_group_param import ApprovalGroupParam
 from .scim_config_mapping_param import SCIMConfigMappingParam
-from ...zones.origin_max_http_version_param import OriginMaxHTTPVersionParam
 from .scim_config_authentication_oauth2_param import SCIMConfigAuthenticationOauth2Param
 from .scim_config_authentication_http_basic_param import SCIMConfigAuthenticationHTTPBasicParam
 from .scim_config_authentication_oauth_bearer_token_param import SCIMConfigAuthenticationOAuthBearerTokenParam
@@ -25,6 +25,7 @@ __all__ = [
     "SelfHostedApplicationDestination",
     "SelfHostedApplicationPolicy",
     "SelfHostedApplicationPolicyAccessAppPolicyLink",
+    "SelfHostedApplicationPolicyUnionMember2",
     "SelfHostedApplicationSCIMConfig",
     "SelfHostedApplicationSCIMConfigAuthentication",
     "SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
@@ -33,6 +34,7 @@ __all__ = [
     "SaaSApplication",
     "SaaSApplicationPolicy",
     "SaaSApplicationPolicyAccessAppPolicyLink",
+    "SaaSApplicationPolicyUnionMember2",
     "SaaSApplicationSaaSApp",
     "SaaSApplicationSCIMConfig",
     "SaaSApplicationSCIMConfigAuthentication",
@@ -43,6 +45,7 @@ __all__ = [
     "BrowserSSHApplicationDestination",
     "BrowserSSHApplicationPolicy",
     "BrowserSSHApplicationPolicyAccessAppPolicyLink",
+    "BrowserSSHApplicationPolicyUnionMember2",
     "BrowserSSHApplicationSCIMConfig",
     "BrowserSSHApplicationSCIMConfigAuthentication",
     "BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
@@ -52,6 +55,7 @@ __all__ = [
     "BrowserVNCApplicationDestination",
     "BrowserVNCApplicationPolicy",
     "BrowserVNCApplicationPolicyAccessAppPolicyLink",
+    "BrowserVNCApplicationPolicyUnionMember2",
     "BrowserVNCApplicationSCIMConfig",
     "BrowserVNCApplicationSCIMConfigAuthentication",
     "BrowserVNCApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
@@ -62,6 +66,7 @@ __all__ = [
     "AppLauncherApplicationLandingPageDesign",
     "AppLauncherApplicationPolicy",
     "AppLauncherApplicationPolicyAccessAppPolicyLink",
+    "AppLauncherApplicationPolicyUnionMember2",
     "AppLauncherApplicationSCIMConfig",
     "AppLauncherApplicationSCIMConfigAuthentication",
     "AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
@@ -72,6 +77,7 @@ __all__ = [
     "DeviceEnrollmentPermissionsApplicationLandingPageDesign",
     "DeviceEnrollmentPermissionsApplicationPolicy",
     "DeviceEnrollmentPermissionsApplicationPolicyAccessAppPolicyLink",
+    "DeviceEnrollmentPermissionsApplicationPolicyUnionMember2",
     "DeviceEnrollmentPermissionsApplicationSCIMConfig",
     "DeviceEnrollmentPermissionsApplicationSCIMConfigAuthentication",
     "DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
@@ -82,6 +88,7 @@ __all__ = [
     "BrowserIsolationPermissionsApplicationLandingPageDesign",
     "BrowserIsolationPermissionsApplicationPolicy",
     "BrowserIsolationPermissionsApplicationPolicyAccessAppPolicyLink",
+    "BrowserIsolationPermissionsApplicationPolicyUnionMember2",
     "BrowserIsolationPermissionsApplicationSCIMConfig",
     "BrowserIsolationPermissionsApplicationSCIMConfigAuthentication",
     "BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
@@ -201,7 +208,7 @@ class SelfHostedApplication(TypedDict, total=False):
     If disabled, the JWT will scope to the hostname by default
     """
 
-    policies: Iterable[SelfHostedApplicationPolicy]
+    policies: List[SelfHostedApplicationPolicy]
     """
     The policies that Access applies to the application, in ascending order of
     precedence. Items can reference existing policies or create new policies
@@ -273,8 +280,48 @@ class SelfHostedApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     """
 
 
+class SelfHostedApplicationPolicyUnionMember2(TypedDict, total=False):
+    id: str
+    """The UUID of the policy"""
+
+    approval_groups: Iterable[ApprovalGroupParam]
+    """Administrators who can approve a temporary authentication request."""
+
+    approval_required: bool
+    """
+    Requires the user to request access from an administrator at the start of each
+    session.
+    """
+
+    isolation_required: bool
+    """
+    Require this application to be served in an isolated browser for users matching
+    this policy. 'Client Web Isolation' must be on for the account in order to use
+    this feature.
+    """
+
+    precedence: int
+    """The order of execution for this policy.
+
+    Must be unique for each policy within an app.
+    """
+
+    purpose_justification_prompt: str
+    """A custom message that will appear on the purpose justification screen."""
+
+    purpose_justification_required: bool
+    """Require users to enter a justification when they log in to the application."""
+
+    session_duration: str
+    """The amount of time that tokens issued for the application will be valid.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
+    ms, s, m, h.
+    """
+
+
 SelfHostedApplicationPolicy: TypeAlias = Union[
-    SelfHostedApplicationPolicyAccessAppPolicyLink, OriginMaxHTTPVersionParam, OriginMaxHTTPVersionParam
+    SelfHostedApplicationPolicyAccessAppPolicyLink, str, SelfHostedApplicationPolicyUnionMember2
 ]
 
 
@@ -398,7 +445,7 @@ class SaaSApplication(TypedDict, total=False):
     name: str
     """The name of the application."""
 
-    policies: Iterable[SaaSApplicationPolicy]
+    policies: List[SaaSApplicationPolicy]
     """
     The policies that Access applies to the application, in ascending order of
     precedence. Items can reference existing policies or create new policies
@@ -434,8 +481,48 @@ class SaaSApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     """
 
 
+class SaaSApplicationPolicyUnionMember2(TypedDict, total=False):
+    id: str
+    """The UUID of the policy"""
+
+    approval_groups: Iterable[ApprovalGroupParam]
+    """Administrators who can approve a temporary authentication request."""
+
+    approval_required: bool
+    """
+    Requires the user to request access from an administrator at the start of each
+    session.
+    """
+
+    isolation_required: bool
+    """
+    Require this application to be served in an isolated browser for users matching
+    this policy. 'Client Web Isolation' must be on for the account in order to use
+    this feature.
+    """
+
+    precedence: int
+    """The order of execution for this policy.
+
+    Must be unique for each policy within an app.
+    """
+
+    purpose_justification_prompt: str
+    """A custom message that will appear on the purpose justification screen."""
+
+    purpose_justification_required: bool
+    """Require users to enter a justification when they log in to the application."""
+
+    session_duration: str
+    """The amount of time that tokens issued for the application will be valid.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
+    ms, s, m, h.
+    """
+
+
 SaaSApplicationPolicy: TypeAlias = Union[
-    SaaSApplicationPolicyAccessAppPolicyLink, OriginMaxHTTPVersionParam, OriginMaxHTTPVersionParam
+    SaaSApplicationPolicyAccessAppPolicyLink, str, SaaSApplicationPolicyUnionMember2
 ]
 
 SaaSApplicationSaaSApp: TypeAlias = Union[SAMLSaaSAppParam, OIDCSaaSAppParam]
@@ -628,7 +715,7 @@ class BrowserSSHApplication(TypedDict, total=False):
     If disabled, the JWT will scope to the hostname by default
     """
 
-    policies: Iterable[BrowserSSHApplicationPolicy]
+    policies: List[BrowserSSHApplicationPolicy]
     """
     The policies that Access applies to the application, in ascending order of
     precedence. Items can reference existing policies or create new policies
@@ -700,8 +787,48 @@ class BrowserSSHApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     """
 
 
+class BrowserSSHApplicationPolicyUnionMember2(TypedDict, total=False):
+    id: str
+    """The UUID of the policy"""
+
+    approval_groups: Iterable[ApprovalGroupParam]
+    """Administrators who can approve a temporary authentication request."""
+
+    approval_required: bool
+    """
+    Requires the user to request access from an administrator at the start of each
+    session.
+    """
+
+    isolation_required: bool
+    """
+    Require this application to be served in an isolated browser for users matching
+    this policy. 'Client Web Isolation' must be on for the account in order to use
+    this feature.
+    """
+
+    precedence: int
+    """The order of execution for this policy.
+
+    Must be unique for each policy within an app.
+    """
+
+    purpose_justification_prompt: str
+    """A custom message that will appear on the purpose justification screen."""
+
+    purpose_justification_required: bool
+    """Require users to enter a justification when they log in to the application."""
+
+    session_duration: str
+    """The amount of time that tokens issued for the application will be valid.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
+    ms, s, m, h.
+    """
+
+
 BrowserSSHApplicationPolicy: TypeAlias = Union[
-    BrowserSSHApplicationPolicyAccessAppPolicyLink, OriginMaxHTTPVersionParam, OriginMaxHTTPVersionParam
+    BrowserSSHApplicationPolicyAccessAppPolicyLink, str, BrowserSSHApplicationPolicyUnionMember2
 ]
 
 
@@ -894,7 +1021,7 @@ class BrowserVNCApplication(TypedDict, total=False):
     If disabled, the JWT will scope to the hostname by default
     """
 
-    policies: Iterable[BrowserVNCApplicationPolicy]
+    policies: List[BrowserVNCApplicationPolicy]
     """
     The policies that Access applies to the application, in ascending order of
     precedence. Items can reference existing policies or create new policies
@@ -966,8 +1093,48 @@ class BrowserVNCApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     """
 
 
+class BrowserVNCApplicationPolicyUnionMember2(TypedDict, total=False):
+    id: str
+    """The UUID of the policy"""
+
+    approval_groups: Iterable[ApprovalGroupParam]
+    """Administrators who can approve a temporary authentication request."""
+
+    approval_required: bool
+    """
+    Requires the user to request access from an administrator at the start of each
+    session.
+    """
+
+    isolation_required: bool
+    """
+    Require this application to be served in an isolated browser for users matching
+    this policy. 'Client Web Isolation' must be on for the account in order to use
+    this feature.
+    """
+
+    precedence: int
+    """The order of execution for this policy.
+
+    Must be unique for each policy within an app.
+    """
+
+    purpose_justification_prompt: str
+    """A custom message that will appear on the purpose justification screen."""
+
+    purpose_justification_required: bool
+    """Require users to enter a justification when they log in to the application."""
+
+    session_duration: str
+    """The amount of time that tokens issued for the application will be valid.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
+    ms, s, m, h.
+    """
+
+
 BrowserVNCApplicationPolicy: TypeAlias = Union[
-    BrowserVNCApplicationPolicyAccessAppPolicyLink, OriginMaxHTTPVersionParam, OriginMaxHTTPVersionParam
+    BrowserVNCApplicationPolicyAccessAppPolicyLink, str, BrowserVNCApplicationPolicyUnionMember2
 ]
 
 
@@ -1097,7 +1264,7 @@ class AppLauncherApplication(TypedDict, total=False):
     landing_page_design: AppLauncherApplicationLandingPageDesign
     """The design of the App Launcher landing page shown to users when they log in."""
 
-    policies: Iterable[AppLauncherApplicationPolicy]
+    policies: List[AppLauncherApplicationPolicy]
     """
     The policies that Access applies to the application, in ascending order of
     precedence. Items can reference existing policies or create new policies
@@ -1157,8 +1324,48 @@ class AppLauncherApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     """
 
 
+class AppLauncherApplicationPolicyUnionMember2(TypedDict, total=False):
+    id: str
+    """The UUID of the policy"""
+
+    approval_groups: Iterable[ApprovalGroupParam]
+    """Administrators who can approve a temporary authentication request."""
+
+    approval_required: bool
+    """
+    Requires the user to request access from an administrator at the start of each
+    session.
+    """
+
+    isolation_required: bool
+    """
+    Require this application to be served in an isolated browser for users matching
+    this policy. 'Client Web Isolation' must be on for the account in order to use
+    this feature.
+    """
+
+    precedence: int
+    """The order of execution for this policy.
+
+    Must be unique for each policy within an app.
+    """
+
+    purpose_justification_prompt: str
+    """A custom message that will appear on the purpose justification screen."""
+
+    purpose_justification_required: bool
+    """Require users to enter a justification when they log in to the application."""
+
+    session_duration: str
+    """The amount of time that tokens issued for the application will be valid.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
+    ms, s, m, h.
+    """
+
+
 AppLauncherApplicationPolicy: TypeAlias = Union[
-    AppLauncherApplicationPolicyAccessAppPolicyLink, OriginMaxHTTPVersionParam, OriginMaxHTTPVersionParam
+    AppLauncherApplicationPolicyAccessAppPolicyLink, str, AppLauncherApplicationPolicyUnionMember2
 ]
 
 
@@ -1288,7 +1495,7 @@ class DeviceEnrollmentPermissionsApplication(TypedDict, total=False):
     landing_page_design: DeviceEnrollmentPermissionsApplicationLandingPageDesign
     """The design of the App Launcher landing page shown to users when they log in."""
 
-    policies: Iterable[DeviceEnrollmentPermissionsApplicationPolicy]
+    policies: List[DeviceEnrollmentPermissionsApplicationPolicy]
     """
     The policies that Access applies to the application, in ascending order of
     precedence. Items can reference existing policies or create new policies
@@ -1348,10 +1555,50 @@ class DeviceEnrollmentPermissionsApplicationPolicyAccessAppPolicyLink(TypedDict,
     """
 
 
+class DeviceEnrollmentPermissionsApplicationPolicyUnionMember2(TypedDict, total=False):
+    id: str
+    """The UUID of the policy"""
+
+    approval_groups: Iterable[ApprovalGroupParam]
+    """Administrators who can approve a temporary authentication request."""
+
+    approval_required: bool
+    """
+    Requires the user to request access from an administrator at the start of each
+    session.
+    """
+
+    isolation_required: bool
+    """
+    Require this application to be served in an isolated browser for users matching
+    this policy. 'Client Web Isolation' must be on for the account in order to use
+    this feature.
+    """
+
+    precedence: int
+    """The order of execution for this policy.
+
+    Must be unique for each policy within an app.
+    """
+
+    purpose_justification_prompt: str
+    """A custom message that will appear on the purpose justification screen."""
+
+    purpose_justification_required: bool
+    """Require users to enter a justification when they log in to the application."""
+
+    session_duration: str
+    """The amount of time that tokens issued for the application will be valid.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
+    ms, s, m, h.
+    """
+
+
 DeviceEnrollmentPermissionsApplicationPolicy: TypeAlias = Union[
     DeviceEnrollmentPermissionsApplicationPolicyAccessAppPolicyLink,
-    OriginMaxHTTPVersionParam,
-    OriginMaxHTTPVersionParam,
+    str,
+    DeviceEnrollmentPermissionsApplicationPolicyUnionMember2,
 ]
 
 
@@ -1481,7 +1728,7 @@ class BrowserIsolationPermissionsApplication(TypedDict, total=False):
     landing_page_design: BrowserIsolationPermissionsApplicationLandingPageDesign
     """The design of the App Launcher landing page shown to users when they log in."""
 
-    policies: Iterable[BrowserIsolationPermissionsApplicationPolicy]
+    policies: List[BrowserIsolationPermissionsApplicationPolicy]
     """
     The policies that Access applies to the application, in ascending order of
     precedence. Items can reference existing policies or create new policies
@@ -1541,10 +1788,50 @@ class BrowserIsolationPermissionsApplicationPolicyAccessAppPolicyLink(TypedDict,
     """
 
 
+class BrowserIsolationPermissionsApplicationPolicyUnionMember2(TypedDict, total=False):
+    id: str
+    """The UUID of the policy"""
+
+    approval_groups: Iterable[ApprovalGroupParam]
+    """Administrators who can approve a temporary authentication request."""
+
+    approval_required: bool
+    """
+    Requires the user to request access from an administrator at the start of each
+    session.
+    """
+
+    isolation_required: bool
+    """
+    Require this application to be served in an isolated browser for users matching
+    this policy. 'Client Web Isolation' must be on for the account in order to use
+    this feature.
+    """
+
+    precedence: int
+    """The order of execution for this policy.
+
+    Must be unique for each policy within an app.
+    """
+
+    purpose_justification_prompt: str
+    """A custom message that will appear on the purpose justification screen."""
+
+    purpose_justification_required: bool
+    """Require users to enter a justification when they log in to the application."""
+
+    session_duration: str
+    """The amount of time that tokens issued for the application will be valid.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
+    ms, s, m, h.
+    """
+
+
 BrowserIsolationPermissionsApplicationPolicy: TypeAlias = Union[
     BrowserIsolationPermissionsApplicationPolicyAccessAppPolicyLink,
-    OriginMaxHTTPVersionParam,
-    OriginMaxHTTPVersionParam,
+    str,
+    BrowserIsolationPermissionsApplicationPolicyUnionMember2,
 ]
 
 

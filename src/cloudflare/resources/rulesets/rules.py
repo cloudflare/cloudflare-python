@@ -28,7 +28,6 @@ from ...types.rulesets.logging_param import LoggingParam
 from ...types.rulesets.rule_edit_response import RuleEditResponse
 from ...types.rulesets.rule_create_response import RuleCreateResponse
 from ...types.rulesets.rule_delete_response import RuleDeleteResponse
-from ...types.zones.origin_max_http_version_param import OriginMaxHTTPVersionParam
 
 __all__ = ["RulesResource", "AsyncRulesResource"]
 
@@ -725,7 +724,7 @@ class RulesResource(SyncAPIResource):
         action: Literal["score"] | NotGiven = NOT_GIVEN,
         action_parameters: rule_create_params.ScoreRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        enabled: OriginMaxHTTPVersionParam | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.ScoreRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
@@ -758,6 +757,8 @@ class RulesResource(SyncAPIResource):
 
           description: An informative description of the rule.
 
+          enabled: Whether the rule should be executed.
+
           exposed_credential_check: Configure checks for exposed credentials.
 
           expression: The expression defining which traffic will match the rule.
@@ -789,7 +790,7 @@ class RulesResource(SyncAPIResource):
         action: Literal["serve_error"] | NotGiven = NOT_GIVEN,
         action_parameters: rule_create_params.ServeErrorRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        enabled: OriginMaxHTTPVersionParam | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.ServeErrorRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
@@ -822,6 +823,8 @@ class RulesResource(SyncAPIResource):
 
           description: An informative description of the rule.
 
+          enabled: Whether the rule should be executed.
+
           exposed_credential_check: Configure checks for exposed credentials.
 
           expression: The expression defining which traffic will match the rule.
@@ -853,7 +856,7 @@ class RulesResource(SyncAPIResource):
         action: Literal["set_config"] | NotGiven = NOT_GIVEN,
         action_parameters: rule_create_params.SetConfigRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        enabled: OriginMaxHTTPVersionParam | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.SetConfigRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
@@ -886,6 +889,8 @@ class RulesResource(SyncAPIResource):
 
           description: An informative description of the rule.
 
+          enabled: Whether the rule should be executed.
+
           exposed_credential_check: Configure checks for exposed credentials.
 
           expression: The expression defining which traffic will match the rule.
@@ -917,7 +922,7 @@ class RulesResource(SyncAPIResource):
         action: Literal["skip"] | NotGiven = NOT_GIVEN,
         action_parameters: rule_create_params.SkipRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        enabled: OriginMaxHTTPVersionParam | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.SkipRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
@@ -950,6 +955,8 @@ class RulesResource(SyncAPIResource):
 
           description: An informative description of the rule.
 
+          enabled: Whether the rule should be executed.
+
           exposed_credential_check: Configure checks for exposed credentials.
 
           expression: The expression defining which traffic will match the rule.
@@ -981,7 +988,7 @@ class RulesResource(SyncAPIResource):
         action: Literal["set_cache_settings"] | NotGiven = NOT_GIVEN,
         action_parameters: rule_create_params.SetCacheSettingsRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        enabled: OriginMaxHTTPVersionParam | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.SetCacheSettingsRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
@@ -1013,6 +1020,8 @@ class RulesResource(SyncAPIResource):
           action_parameters: The parameters configuring the rule's action.
 
           description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
 
           exposed_credential_check: Configure checks for exposed credentials.
 
@@ -1274,7 +1283,7 @@ class RulesResource(SyncAPIResource):
         | rule_create_params.LogCustomFieldRuleActionParameters
         | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | OriginMaxHTTPVersionParam | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.BlockRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
@@ -2072,7 +2081,7 @@ class RulesResource(SyncAPIResource):
         action: Literal["score"] | NotGiven = NOT_GIVEN,
         action_parameters: rule_edit_params.ScoreRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        enabled: OriginMaxHTTPVersionParam | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.ScoreRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
@@ -2104,6 +2113,8 @@ class RulesResource(SyncAPIResource):
           action_parameters: The parameters configuring the rule's action.
 
           description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
 
           exposed_credential_check: Configure checks for exposed credentials.
 
@@ -2137,7 +2148,7 @@ class RulesResource(SyncAPIResource):
         action: Literal["serve_error"] | NotGiven = NOT_GIVEN,
         action_parameters: rule_edit_params.ServeErrorRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        enabled: OriginMaxHTTPVersionParam | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.ServeErrorRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
@@ -2169,6 +2180,8 @@ class RulesResource(SyncAPIResource):
           action_parameters: The parameters configuring the rule's action.
 
           description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
 
           exposed_credential_check: Configure checks for exposed credentials.
 
@@ -2202,7 +2215,7 @@ class RulesResource(SyncAPIResource):
         action: Literal["set_config"] | NotGiven = NOT_GIVEN,
         action_parameters: rule_edit_params.SetConfigRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        enabled: OriginMaxHTTPVersionParam | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.SetConfigRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
@@ -2234,6 +2247,8 @@ class RulesResource(SyncAPIResource):
           action_parameters: The parameters configuring the rule's action.
 
           description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
 
           exposed_credential_check: Configure checks for exposed credentials.
 
@@ -2267,7 +2282,7 @@ class RulesResource(SyncAPIResource):
         action: Literal["skip"] | NotGiven = NOT_GIVEN,
         action_parameters: rule_edit_params.SkipRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        enabled: OriginMaxHTTPVersionParam | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.SkipRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
@@ -2299,6 +2314,8 @@ class RulesResource(SyncAPIResource):
           action_parameters: The parameters configuring the rule's action.
 
           description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
 
           exposed_credential_check: Configure checks for exposed credentials.
 
@@ -2332,7 +2349,7 @@ class RulesResource(SyncAPIResource):
         action: Literal["set_cache_settings"] | NotGiven = NOT_GIVEN,
         action_parameters: rule_edit_params.SetCacheSettingsRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        enabled: OriginMaxHTTPVersionParam | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.SetCacheSettingsRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
@@ -2364,6 +2381,8 @@ class RulesResource(SyncAPIResource):
           action_parameters: The parameters configuring the rule's action.
 
           description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
 
           exposed_credential_check: Configure checks for exposed credentials.
 
@@ -2630,7 +2649,7 @@ class RulesResource(SyncAPIResource):
         | rule_edit_params.LogCustomFieldRuleActionParameters
         | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | OriginMaxHTTPVersionParam | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.BlockRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
@@ -3379,7 +3398,7 @@ class AsyncRulesResource(AsyncAPIResource):
         action: Literal["score"] | NotGiven = NOT_GIVEN,
         action_parameters: rule_create_params.ScoreRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        enabled: OriginMaxHTTPVersionParam | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.ScoreRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
@@ -3412,6 +3431,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           description: An informative description of the rule.
 
+          enabled: Whether the rule should be executed.
+
           exposed_credential_check: Configure checks for exposed credentials.
 
           expression: The expression defining which traffic will match the rule.
@@ -3443,7 +3464,7 @@ class AsyncRulesResource(AsyncAPIResource):
         action: Literal["serve_error"] | NotGiven = NOT_GIVEN,
         action_parameters: rule_create_params.ServeErrorRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        enabled: OriginMaxHTTPVersionParam | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.ServeErrorRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
@@ -3476,6 +3497,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           description: An informative description of the rule.
 
+          enabled: Whether the rule should be executed.
+
           exposed_credential_check: Configure checks for exposed credentials.
 
           expression: The expression defining which traffic will match the rule.
@@ -3507,7 +3530,7 @@ class AsyncRulesResource(AsyncAPIResource):
         action: Literal["set_config"] | NotGiven = NOT_GIVEN,
         action_parameters: rule_create_params.SetConfigRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        enabled: OriginMaxHTTPVersionParam | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.SetConfigRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
@@ -3540,6 +3563,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           description: An informative description of the rule.
 
+          enabled: Whether the rule should be executed.
+
           exposed_credential_check: Configure checks for exposed credentials.
 
           expression: The expression defining which traffic will match the rule.
@@ -3571,7 +3596,7 @@ class AsyncRulesResource(AsyncAPIResource):
         action: Literal["skip"] | NotGiven = NOT_GIVEN,
         action_parameters: rule_create_params.SkipRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        enabled: OriginMaxHTTPVersionParam | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.SkipRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
@@ -3604,6 +3629,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           description: An informative description of the rule.
 
+          enabled: Whether the rule should be executed.
+
           exposed_credential_check: Configure checks for exposed credentials.
 
           expression: The expression defining which traffic will match the rule.
@@ -3635,7 +3662,7 @@ class AsyncRulesResource(AsyncAPIResource):
         action: Literal["set_cache_settings"] | NotGiven = NOT_GIVEN,
         action_parameters: rule_create_params.SetCacheSettingsRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        enabled: OriginMaxHTTPVersionParam | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.SetCacheSettingsRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
@@ -3667,6 +3694,8 @@ class AsyncRulesResource(AsyncAPIResource):
           action_parameters: The parameters configuring the rule's action.
 
           description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
 
           exposed_credential_check: Configure checks for exposed credentials.
 
@@ -3928,7 +3957,7 @@ class AsyncRulesResource(AsyncAPIResource):
         | rule_create_params.LogCustomFieldRuleActionParameters
         | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | OriginMaxHTTPVersionParam | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.BlockRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
@@ -4726,7 +4755,7 @@ class AsyncRulesResource(AsyncAPIResource):
         action: Literal["score"] | NotGiven = NOT_GIVEN,
         action_parameters: rule_edit_params.ScoreRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        enabled: OriginMaxHTTPVersionParam | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.ScoreRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
@@ -4758,6 +4787,8 @@ class AsyncRulesResource(AsyncAPIResource):
           action_parameters: The parameters configuring the rule's action.
 
           description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
 
           exposed_credential_check: Configure checks for exposed credentials.
 
@@ -4791,7 +4822,7 @@ class AsyncRulesResource(AsyncAPIResource):
         action: Literal["serve_error"] | NotGiven = NOT_GIVEN,
         action_parameters: rule_edit_params.ServeErrorRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        enabled: OriginMaxHTTPVersionParam | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.ServeErrorRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
@@ -4823,6 +4854,8 @@ class AsyncRulesResource(AsyncAPIResource):
           action_parameters: The parameters configuring the rule's action.
 
           description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
 
           exposed_credential_check: Configure checks for exposed credentials.
 
@@ -4856,7 +4889,7 @@ class AsyncRulesResource(AsyncAPIResource):
         action: Literal["set_config"] | NotGiven = NOT_GIVEN,
         action_parameters: rule_edit_params.SetConfigRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        enabled: OriginMaxHTTPVersionParam | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.SetConfigRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
@@ -4888,6 +4921,8 @@ class AsyncRulesResource(AsyncAPIResource):
           action_parameters: The parameters configuring the rule's action.
 
           description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
 
           exposed_credential_check: Configure checks for exposed credentials.
 
@@ -4921,7 +4956,7 @@ class AsyncRulesResource(AsyncAPIResource):
         action: Literal["skip"] | NotGiven = NOT_GIVEN,
         action_parameters: rule_edit_params.SkipRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        enabled: OriginMaxHTTPVersionParam | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.SkipRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
@@ -4953,6 +4988,8 @@ class AsyncRulesResource(AsyncAPIResource):
           action_parameters: The parameters configuring the rule's action.
 
           description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
 
           exposed_credential_check: Configure checks for exposed credentials.
 
@@ -4986,7 +5023,7 @@ class AsyncRulesResource(AsyncAPIResource):
         action: Literal["set_cache_settings"] | NotGiven = NOT_GIVEN,
         action_parameters: rule_edit_params.SetCacheSettingsRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        enabled: OriginMaxHTTPVersionParam | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.SetCacheSettingsRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
@@ -5018,6 +5055,8 @@ class AsyncRulesResource(AsyncAPIResource):
           action_parameters: The parameters configuring the rule's action.
 
           description: An informative description of the rule.
+
+          enabled: Whether the rule should be executed.
 
           exposed_credential_check: Configure checks for exposed credentials.
 
@@ -5284,7 +5323,7 @@ class AsyncRulesResource(AsyncAPIResource):
         | rule_edit_params.LogCustomFieldRuleActionParameters
         | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | OriginMaxHTTPVersionParam | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.BlockRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,

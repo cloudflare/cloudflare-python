@@ -136,7 +136,7 @@ class ApplicationsResource(SyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: Iterable[application_create_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -255,7 +255,7 @@ class ApplicationsResource(SyncAPIResource):
         custom_pages: List[str] | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        policies: Iterable[application_create_params.SaaSApplicationPolicy] | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.SaaSApplicationPolicy] | NotGiven = NOT_GIVEN,
         saas_app: application_create_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.SaaSApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
@@ -335,7 +335,7 @@ class ApplicationsResource(SyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: Iterable[application_create_params.BrowserSSHApplicationPolicy] | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.BrowserSSHApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.BrowserSSHApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -466,7 +466,7 @@ class ApplicationsResource(SyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: Iterable[application_create_params.BrowserVNCApplicationPolicy] | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.BrowserVNCApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.BrowserVNCApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -587,7 +587,7 @@ class ApplicationsResource(SyncAPIResource):
         footer_links: Iterable[application_create_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
         header_bg_color: str | NotGiven = NOT_GIVEN,
         landing_page_design: application_create_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
-        policies: Iterable[application_create_params.AppLauncherApplicationPolicy] | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.AppLauncherApplicationPolicy] | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.AppLauncherApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
@@ -663,8 +663,7 @@ class ApplicationsResource(SyncAPIResource):
         header_bg_color: str | NotGiven = NOT_GIVEN,
         landing_page_design: application_create_params.DeviceEnrollmentPermissionsApplicationLandingPageDesign
         | NotGiven = NOT_GIVEN,
-        policies: Iterable[application_create_params.DeviceEnrollmentPermissionsApplicationPolicy]
-        | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.DeviceEnrollmentPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.DeviceEnrollmentPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
@@ -740,8 +739,7 @@ class ApplicationsResource(SyncAPIResource):
         header_bg_color: str | NotGiven = NOT_GIVEN,
         landing_page_design: application_create_params.BrowserIsolationPermissionsApplicationLandingPageDesign
         | NotGiven = NOT_GIVEN,
-        policies: Iterable[application_create_params.BrowserIsolationPermissionsApplicationPolicy]
-        | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.BrowserIsolationPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.BrowserIsolationPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
@@ -919,7 +917,7 @@ class ApplicationsResource(SyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: Iterable[application_create_params.SelfHostedApplicationPolicy]
+        policies: List[application_create_params.SelfHostedApplicationPolicy]
         | Iterable[application_create_params.InfrastructureApplicationPolicy]
         | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
@@ -1038,7 +1036,7 @@ class ApplicationsResource(SyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: Iterable[application_update_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -1160,7 +1158,7 @@ class ApplicationsResource(SyncAPIResource):
         custom_pages: List[str] | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        policies: Iterable[application_update_params.SaaSApplicationPolicy] | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.SaaSApplicationPolicy] | NotGiven = NOT_GIVEN,
         saas_app: application_update_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.SaaSApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
@@ -1243,7 +1241,7 @@ class ApplicationsResource(SyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: Iterable[application_update_params.BrowserSSHApplicationPolicy] | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.BrowserSSHApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.BrowserSSHApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -1377,7 +1375,7 @@ class ApplicationsResource(SyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: Iterable[application_update_params.BrowserVNCApplicationPolicy] | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.BrowserVNCApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.BrowserVNCApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -1501,7 +1499,7 @@ class ApplicationsResource(SyncAPIResource):
         footer_links: Iterable[application_update_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
         header_bg_color: str | NotGiven = NOT_GIVEN,
         landing_page_design: application_update_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
-        policies: Iterable[application_update_params.AppLauncherApplicationPolicy] | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.AppLauncherApplicationPolicy] | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.AppLauncherApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
@@ -1580,8 +1578,7 @@ class ApplicationsResource(SyncAPIResource):
         header_bg_color: str | NotGiven = NOT_GIVEN,
         landing_page_design: application_update_params.DeviceEnrollmentPermissionsApplicationLandingPageDesign
         | NotGiven = NOT_GIVEN,
-        policies: Iterable[application_update_params.DeviceEnrollmentPermissionsApplicationPolicy]
-        | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.DeviceEnrollmentPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.DeviceEnrollmentPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
@@ -1660,8 +1657,7 @@ class ApplicationsResource(SyncAPIResource):
         header_bg_color: str | NotGiven = NOT_GIVEN,
         landing_page_design: application_update_params.BrowserIsolationPermissionsApplicationLandingPageDesign
         | NotGiven = NOT_GIVEN,
-        policies: Iterable[application_update_params.BrowserIsolationPermissionsApplicationPolicy]
-        | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.BrowserIsolationPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.BrowserIsolationPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
@@ -1848,7 +1844,7 @@ class ApplicationsResource(SyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: Iterable[application_update_params.SelfHostedApplicationPolicy]
+        policies: List[application_update_params.SelfHostedApplicationPolicy]
         | Iterable[application_update_params.InfrastructureApplicationPolicy]
         | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
@@ -2254,7 +2250,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: Iterable[application_create_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -2373,7 +2369,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         custom_pages: List[str] | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        policies: Iterable[application_create_params.SaaSApplicationPolicy] | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.SaaSApplicationPolicy] | NotGiven = NOT_GIVEN,
         saas_app: application_create_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.SaaSApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
@@ -2453,7 +2449,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: Iterable[application_create_params.BrowserSSHApplicationPolicy] | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.BrowserSSHApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.BrowserSSHApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -2584,7 +2580,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: Iterable[application_create_params.BrowserVNCApplicationPolicy] | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.BrowserVNCApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.BrowserVNCApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -2705,7 +2701,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         footer_links: Iterable[application_create_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
         header_bg_color: str | NotGiven = NOT_GIVEN,
         landing_page_design: application_create_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
-        policies: Iterable[application_create_params.AppLauncherApplicationPolicy] | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.AppLauncherApplicationPolicy] | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.AppLauncherApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
@@ -2781,8 +2777,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         header_bg_color: str | NotGiven = NOT_GIVEN,
         landing_page_design: application_create_params.DeviceEnrollmentPermissionsApplicationLandingPageDesign
         | NotGiven = NOT_GIVEN,
-        policies: Iterable[application_create_params.DeviceEnrollmentPermissionsApplicationPolicy]
-        | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.DeviceEnrollmentPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.DeviceEnrollmentPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
@@ -2858,8 +2853,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         header_bg_color: str | NotGiven = NOT_GIVEN,
         landing_page_design: application_create_params.BrowserIsolationPermissionsApplicationLandingPageDesign
         | NotGiven = NOT_GIVEN,
-        policies: Iterable[application_create_params.BrowserIsolationPermissionsApplicationPolicy]
-        | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.BrowserIsolationPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.BrowserIsolationPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
@@ -3037,7 +3031,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: Iterable[application_create_params.SelfHostedApplicationPolicy]
+        policies: List[application_create_params.SelfHostedApplicationPolicy]
         | Iterable[application_create_params.InfrastructureApplicationPolicy]
         | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
@@ -3156,7 +3150,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: Iterable[application_update_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -3278,7 +3272,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         custom_pages: List[str] | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        policies: Iterable[application_update_params.SaaSApplicationPolicy] | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.SaaSApplicationPolicy] | NotGiven = NOT_GIVEN,
         saas_app: application_update_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.SaaSApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
@@ -3361,7 +3355,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: Iterable[application_update_params.BrowserSSHApplicationPolicy] | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.BrowserSSHApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.BrowserSSHApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -3495,7 +3489,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: Iterable[application_update_params.BrowserVNCApplicationPolicy] | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.BrowserVNCApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.BrowserVNCApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -3619,7 +3613,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         footer_links: Iterable[application_update_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
         header_bg_color: str | NotGiven = NOT_GIVEN,
         landing_page_design: application_update_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
-        policies: Iterable[application_update_params.AppLauncherApplicationPolicy] | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.AppLauncherApplicationPolicy] | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.AppLauncherApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
@@ -3698,8 +3692,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         header_bg_color: str | NotGiven = NOT_GIVEN,
         landing_page_design: application_update_params.DeviceEnrollmentPermissionsApplicationLandingPageDesign
         | NotGiven = NOT_GIVEN,
-        policies: Iterable[application_update_params.DeviceEnrollmentPermissionsApplicationPolicy]
-        | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.DeviceEnrollmentPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.DeviceEnrollmentPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
@@ -3778,8 +3771,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         header_bg_color: str | NotGiven = NOT_GIVEN,
         landing_page_design: application_update_params.BrowserIsolationPermissionsApplicationLandingPageDesign
         | NotGiven = NOT_GIVEN,
-        policies: Iterable[application_update_params.BrowserIsolationPermissionsApplicationPolicy]
-        | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.BrowserIsolationPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.BrowserIsolationPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
@@ -3966,7 +3958,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: Iterable[application_update_params.SelfHostedApplicationPolicy]
+        policies: List[application_update_params.SelfHostedApplicationPolicy]
         | Iterable[application_update_params.InfrastructureApplicationPolicy]
         | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,

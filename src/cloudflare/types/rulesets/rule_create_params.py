@@ -8,7 +8,6 @@ from typing_extensions import Literal, Required, TypeAlias, TypedDict
 from .phase import Phase
 from .logging_param import LoggingParam
 from .rewrite_uri_part_param import RewriteURIPartParam
-from ..zones.origin_max_http_version_param import OriginMaxHTTPVersionParam
 
 __all__ = [
     "RuleCreateParams",
@@ -1248,7 +1247,8 @@ class ScoreRule(TypedDict, total=False):
     description: str
     """An informative description of the rule."""
 
-    enabled: OriginMaxHTTPVersionParam
+    enabled: bool
+    """Whether the rule should be executed."""
 
     exposed_credential_check: ScoreRuleExposedCredentialCheck
     """Configure checks for exposed credentials."""
@@ -1345,7 +1345,8 @@ class ServeErrorRule(TypedDict, total=False):
     description: str
     """An informative description of the rule."""
 
-    enabled: OriginMaxHTTPVersionParam
+    enabled: bool
+    """Whether the rule should be executed."""
 
     exposed_credential_check: ServeErrorRuleExposedCredentialCheck
     """Configure checks for exposed credentials."""
@@ -1445,7 +1446,8 @@ class SetConfigRule(TypedDict, total=False):
     description: str
     """An informative description of the rule."""
 
-    enabled: OriginMaxHTTPVersionParam
+    enabled: bool
+    """Whether the rule should be executed."""
 
     exposed_credential_check: SetConfigRuleExposedCredentialCheck
     """Configure checks for exposed credentials."""
@@ -1598,7 +1600,8 @@ class SkipRule(TypedDict, total=False):
     description: str
     """An informative description of the rule."""
 
-    enabled: OriginMaxHTTPVersionParam
+    enabled: bool
+    """Whether the rule should be executed."""
 
     exposed_credential_check: SkipRuleExposedCredentialCheck
     """Configure checks for exposed credentials."""
@@ -1716,7 +1719,8 @@ class SetCacheSettingsRule(TypedDict, total=False):
     description: str
     """An informative description of the rule."""
 
-    enabled: OriginMaxHTTPVersionParam
+    enabled: bool
+    """Whether the rule should be executed."""
 
     exposed_credential_check: SetCacheSettingsRuleExposedCredentialCheck
     """Configure checks for exposed credentials."""

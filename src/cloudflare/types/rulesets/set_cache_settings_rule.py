@@ -371,7 +371,8 @@ class SetCacheSettingsRule(BaseModel):
     description: Optional[str] = None
     """An informative description of the rule."""
 
-    enabled: Optional[object] = None
+    enabled: Optional[bool] = None
+    """Whether the rule should be executed."""
 
     exposed_credential_check: Optional[ExposedCredentialCheck] = None
     """Configure checks for exposed credentials."""
