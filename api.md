@@ -1751,12 +1751,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.firewall.waf import PackageListResponse, PackageGetResponse
+from cloudflare.types.firewall.waf import PackageGetResponse
 ```
 
 Methods:
 
-- <code title="get /zones/{zone_id}/firewall/waf/packages">client.firewall.waf.packages.<a href="./src/cloudflare/resources/firewall/waf/packages/packages.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/firewall/waf/package_list_params.py">params</a>) -> <a href="./src/cloudflare/types/firewall/waf/package_list_response.py">SyncV4PagePaginationArray[object]</a></code>
+- <code title="get /zones/{zone_id}/firewall/waf/packages">client.firewall.waf.packages.<a href="./src/cloudflare/resources/firewall/waf/packages/packages.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/firewall/waf/package_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/origin_max_http_version.py">SyncV4PagePaginationArray[object]</a></code>
 - <code title="get /zones/{zone_id}/firewall/waf/packages/{package_id}">client.firewall.waf.packages.<a href="./src/cloudflare/resources/firewall/waf/packages/packages.py">get</a>(package_id, \*, zone_id) -> <a href="./src/cloudflare/types/firewall/waf/package_get_response.py">PackageGetResponse</a></code>
 
 #### Groups
@@ -8183,12 +8183,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.iam import PermissionGroupListResponse, PermissionGroupGetResponse
+from cloudflare.types.iam import PermissionGroupGetResponse
 ```
 
 Methods:
 
-- <code title="get /accounts/{account_id}/iam/permission_groups">client.iam.permission_groups.<a href="./src/cloudflare/resources/iam/permission_groups.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/iam/permission_group_list_params.py">params</a>) -> <a href="./src/cloudflare/types/iam/permission_group_list_response.py">SyncV4PagePaginationArray[object]</a></code>
+- <code title="get /accounts/{account_id}/iam/permission_groups">client.iam.permission_groups.<a href="./src/cloudflare/resources/iam/permission_groups.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/iam/permission_group_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/origin_max_http_version.py">SyncV4PagePaginationArray[object]</a></code>
 - <code title="get /accounts/{account_id}/iam/permission_groups/{permission_group_id}">client.iam.permission_groups.<a href="./src/cloudflare/resources/iam/permission_groups.py">get</a>(permission_group_id, \*, account_id) -> <a href="./src/cloudflare/types/iam/permission_group_get_response.py">PermissionGroupGetResponse</a></code>
 
 ## ResourceGroups
@@ -8199,7 +8199,6 @@ Types:
 from cloudflare.types.iam import (
     ResourceGroupCreateResponse,
     ResourceGroupUpdateResponse,
-    ResourceGroupListResponse,
     ResourceGroupDeleteResponse,
     ResourceGroupGetResponse,
 )
@@ -8209,7 +8208,7 @@ Methods:
 
 - <code title="post /accounts/{account_id}/iam/resource_groups">client.iam.resource_groups.<a href="./src/cloudflare/resources/iam/resource_groups.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/iam/resource_group_create_params.py">params</a>) -> <a href="./src/cloudflare/types/iam/resource_group_create_response.py">ResourceGroupCreateResponse</a></code>
 - <code title="put /accounts/{account_id}/iam/resource_groups/{resource_group_id}">client.iam.resource_groups.<a href="./src/cloudflare/resources/iam/resource_groups.py">update</a>(resource_group_id, \*, account_id, \*\*<a href="src/cloudflare/types/iam/resource_group_update_params.py">params</a>) -> <a href="./src/cloudflare/types/iam/resource_group_update_response.py">ResourceGroupUpdateResponse</a></code>
-- <code title="get /accounts/{account_id}/iam/resource_groups">client.iam.resource_groups.<a href="./src/cloudflare/resources/iam/resource_groups.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/iam/resource_group_list_params.py">params</a>) -> <a href="./src/cloudflare/types/iam/resource_group_list_response.py">SyncV4PagePaginationArray[object]</a></code>
+- <code title="get /accounts/{account_id}/iam/resource_groups">client.iam.resource_groups.<a href="./src/cloudflare/resources/iam/resource_groups.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/iam/resource_group_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/origin_max_http_version.py">SyncV4PagePaginationArray[object]</a></code>
 - <code title="delete /accounts/{account_id}/iam/resource_groups/{resource_group_id}">client.iam.resource_groups.<a href="./src/cloudflare/resources/iam/resource_groups.py">delete</a>(resource_group_id, \*, account_id) -> <a href="./src/cloudflare/types/iam/resource_group_delete_response.py">Optional[ResourceGroupDeleteResponse]</a></code>
 - <code title="get /accounts/{account_id}/iam/resource_groups/{resource_group_id}">client.iam.resource_groups.<a href="./src/cloudflare/resources/iam/resource_groups.py">get</a>(resource_group_id, \*, account_id) -> <a href="./src/cloudflare/types/iam/resource_group_get_response.py">ResourceGroupGetResponse</a></code>
 
@@ -8426,7 +8425,6 @@ from cloudflare.types.leaked_credential_checks import (
     DetectionCreateResponse,
     DetectionUpdateResponse,
     DetectionListResponse,
-    DetectionDeleteResponse,
 )
 ```
 
@@ -8435,23 +8433,14 @@ Methods:
 - <code title="post /zones/{zone_id}/leaked-credential-checks/detections">client.leaked_credential_checks.detections.<a href="./src/cloudflare/resources/leaked_credential_checks/detections.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/leaked_credential_checks/detection_create_params.py">params</a>) -> <a href="./src/cloudflare/types/leaked_credential_checks/detection_create_response.py">DetectionCreateResponse</a></code>
 - <code title="put /zones/{zone_id}/leaked-credential-checks/detections/{detection_id}">client.leaked_credential_checks.detections.<a href="./src/cloudflare/resources/leaked_credential_checks/detections.py">update</a>(detection_id, \*, zone_id, \*\*<a href="src/cloudflare/types/leaked_credential_checks/detection_update_params.py">params</a>) -> <a href="./src/cloudflare/types/leaked_credential_checks/detection_update_response.py">DetectionUpdateResponse</a></code>
 - <code title="get /zones/{zone_id}/leaked-credential-checks/detections">client.leaked_credential_checks.detections.<a href="./src/cloudflare/resources/leaked_credential_checks/detections.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/leaked_credential_checks/detection_list_response.py">SyncSinglePage[DetectionListResponse]</a></code>
-- <code title="delete /zones/{zone_id}/leaked-credential-checks/detections/{detection_id}">client.leaked_credential_checks.detections.<a href="./src/cloudflare/resources/leaked_credential_checks/detections.py">delete</a>(detection_id, \*, zone_id) -> <a href="./src/cloudflare/types/leaked_credential_checks/detection_delete_response.py">object</a></code>
+- <code title="delete /zones/{zone_id}/leaked-credential-checks/detections/{detection_id}">client.leaked_credential_checks.detections.<a href="./src/cloudflare/resources/leaked_credential_checks/detections.py">delete</a>(detection_id, \*, zone_id) -> <a href="./src/cloudflare/types/zones/origin_max_http_version.py">object</a></code>
 
 # ContentScanning
 
-Types:
-
-```python
-from cloudflare.types.content_scanning import (
-    ContentScanningDisableResponse,
-    ContentScanningEnableResponse,
-)
-```
-
 Methods:
 
-- <code title="post /zones/{zone_id}/content-upload-scan/disable">client.content_scanning.<a href="./src/cloudflare/resources/content_scanning/content_scanning.py">disable</a>(\*, zone_id) -> <a href="./src/cloudflare/types/content_scanning/content_scanning_disable_response.py">object</a></code>
-- <code title="post /zones/{zone_id}/content-upload-scan/enable">client.content_scanning.<a href="./src/cloudflare/resources/content_scanning/content_scanning.py">enable</a>(\*, zone_id) -> <a href="./src/cloudflare/types/content_scanning/content_scanning_enable_response.py">object</a></code>
+- <code title="post /zones/{zone_id}/content-upload-scan/disable">client.content_scanning.<a href="./src/cloudflare/resources/content_scanning/content_scanning.py">disable</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/origin_max_http_version.py">object</a></code>
+- <code title="post /zones/{zone_id}/content-upload-scan/enable">client.content_scanning.<a href="./src/cloudflare/resources/content_scanning/content_scanning.py">enable</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/origin_max_http_version.py">object</a></code>
 
 ## Payloads
 

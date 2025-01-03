@@ -7,6 +7,7 @@ from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from ....workers.migration_step_param import MigrationStepParam
 from ....workers.single_step_migration_param import SingleStepMigrationParam
+from ....zones.origin_max_http_version_param import OriginMaxHTTPVersionParam
 from ....workers.placement_configuration_param import PlacementConfigurationParam
 from ....workers.scripts.consumer_script_param import ConsumerScriptParam
 
@@ -73,7 +74,7 @@ class Variant0MetadataBindingTyped(TypedDict, total=False):
     """
 
 
-Variant0MetadataBinding: TypeAlias = Union[Variant0MetadataBindingTyped, Dict[str, object]]
+Variant0MetadataBinding: TypeAlias = Union[Variant0MetadataBindingTyped, Dict[str, OriginMaxHTTPVersionParam]]
 
 
 class Variant0MetadataMigrationsWorkersMultipleStepMigrations(TypedDict, total=False):

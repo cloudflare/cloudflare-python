@@ -989,7 +989,7 @@ class TestRules:
             action="score",
             action_parameters={"increment": 3},
             description="Increment score when the IP address is not 1.1.1.1",
-            enabled=True,
+            enabled={},
             exposed_credential_check={
                 "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
@@ -1082,7 +1082,7 @@ class TestRules:
                 "status_code": 500,
             },
             description="Serve a JSON response to api users on error",
-            enabled=True,
+            enabled={},
             exposed_credential_check={
                 "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
@@ -1193,7 +1193,7 @@ class TestRules:
                 "sxg": True,
             },
             description="Disable Zaraz when IP address is not 1.1.1.1",
-            enabled=True,
+            enabled={},
             exposed_credential_check={
                 "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
@@ -1288,7 +1288,7 @@ class TestRules:
                 "rulesets": ["4814384a9e5d4991b9815dcfc25d2f1f"],
             },
             description="Skip the current ruleset when the IP address is not 1.1.1.1",
-            enabled=True,
+            enabled={},
             exposed_credential_check={
                 "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
@@ -1440,7 +1440,7 @@ class TestRules:
                 "serve_stale": {"disable_stale_while_updating": True},
             },
             description="Set cache settings when the hostname  address is not example.com",
-            enabled=True,
+            enabled={},
             exposed_credential_check={
                 "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
@@ -2972,7 +2972,7 @@ class TestRules:
             action="score",
             action_parameters={"increment": 3},
             description="Increment score when the IP address is not 1.1.1.1",
-            enabled=True,
+            enabled={},
             exposed_credential_check={
                 "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
@@ -3079,7 +3079,7 @@ class TestRules:
                 "status_code": 500,
             },
             description="Serve a JSON response to api users on error",
-            enabled=True,
+            enabled={},
             exposed_credential_check={
                 "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
@@ -3204,7 +3204,7 @@ class TestRules:
                 "sxg": True,
             },
             description="Disable Zaraz when IP address is not 1.1.1.1",
-            enabled=True,
+            enabled={},
             exposed_credential_check={
                 "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
@@ -3313,7 +3313,7 @@ class TestRules:
                 "rulesets": ["4814384a9e5d4991b9815dcfc25d2f1f"],
             },
             description="Skip the current ruleset when the IP address is not 1.1.1.1",
-            enabled=True,
+            enabled={},
             exposed_credential_check={
                 "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
@@ -3479,7 +3479,7 @@ class TestRules:
                 "serve_stale": {"disable_stale_while_updating": True},
             },
             description="Set cache settings when the hostname  address is not example.com",
-            enabled=True,
+            enabled={},
             exposed_credential_check={
                 "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
@@ -4846,7 +4846,7 @@ class TestAsyncRules:
             action="score",
             action_parameters={"increment": 3},
             description="Increment score when the IP address is not 1.1.1.1",
-            enabled=True,
+            enabled={},
             exposed_credential_check={
                 "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
@@ -4939,7 +4939,7 @@ class TestAsyncRules:
                 "status_code": 500,
             },
             description="Serve a JSON response to api users on error",
-            enabled=True,
+            enabled={},
             exposed_credential_check={
                 "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
@@ -5050,7 +5050,7 @@ class TestAsyncRules:
                 "sxg": True,
             },
             description="Disable Zaraz when IP address is not 1.1.1.1",
-            enabled=True,
+            enabled={},
             exposed_credential_check={
                 "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
@@ -5145,7 +5145,7 @@ class TestAsyncRules:
                 "rulesets": ["4814384a9e5d4991b9815dcfc25d2f1f"],
             },
             description="Skip the current ruleset when the IP address is not 1.1.1.1",
-            enabled=True,
+            enabled={},
             exposed_credential_check={
                 "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
@@ -5297,7 +5297,7 @@ class TestAsyncRules:
                 "serve_stale": {"disable_stale_while_updating": True},
             },
             description="Set cache settings when the hostname  address is not example.com",
-            enabled=True,
+            enabled={},
             exposed_credential_check={
                 "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
@@ -6829,7 +6829,7 @@ class TestAsyncRules:
             action="score",
             action_parameters={"increment": 3},
             description="Increment score when the IP address is not 1.1.1.1",
-            enabled=True,
+            enabled={},
             exposed_credential_check={
                 "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
@@ -6936,7 +6936,7 @@ class TestAsyncRules:
                 "status_code": 500,
             },
             description="Serve a JSON response to api users on error",
-            enabled=True,
+            enabled={},
             exposed_credential_check={
                 "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
@@ -7061,7 +7061,7 @@ class TestAsyncRules:
                 "sxg": True,
             },
             description="Disable Zaraz when IP address is not 1.1.1.1",
-            enabled=True,
+            enabled={},
             exposed_credential_check={
                 "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
@@ -7170,7 +7170,7 @@ class TestAsyncRules:
                 "rulesets": ["4814384a9e5d4991b9815dcfc25d2f1f"],
             },
             description="Skip the current ruleset when the IP address is not 1.1.1.1",
-            enabled=True,
+            enabled={},
             exposed_credential_check={
                 "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
@@ -7336,7 +7336,7 @@ class TestAsyncRules:
                 "serve_stale": {"disable_stale_while_updating": True},
             },
             description="Set cache settings when the hostname  address is not example.com",
-            enabled=True,
+            enabled={},
             exposed_credential_check={
                 "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
