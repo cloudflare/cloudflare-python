@@ -6,7 +6,6 @@ from typing import Dict, List, Iterable
 from typing_extensions import Literal, Required, TypedDict
 
 from .logging_param import LoggingParam
-from ..zones.origin_max_http_version_param import OriginMaxHTTPVersionParam
 
 __all__ = [
     "SetCacheSettingsRuleParam",
@@ -369,7 +368,8 @@ class SetCacheSettingsRuleParam(TypedDict, total=False):
     description: str
     """An informative description of the rule."""
 
-    enabled: OriginMaxHTTPVersionParam
+    enabled: bool
+    """Whether the rule should be executed."""
 
     exposed_credential_check: ExposedCredentialCheck
     """Configure checks for exposed credentials."""

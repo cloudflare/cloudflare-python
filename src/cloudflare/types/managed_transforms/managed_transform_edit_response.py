@@ -4,7 +4,17 @@ from typing import List, Optional
 
 from ..._models import BaseModel
 
-__all__ = ["ManagedTransformEditResponse", "ManagedRequestHeader", "ManagedResponseHeader"]
+__all__ = [
+    "ManagedTransformEditResponse",
+    "ManagedRequestHeader",
+    "ManagedRequestHeaderConflictsWith",
+    "ManagedResponseHeader",
+    "ManagedResponseHeaderConflictsWith",
+]
+
+
+class ManagedRequestHeaderConflictsWith:
+    pass
 
 
 class ManagedRequestHeader(BaseModel):
@@ -20,8 +30,12 @@ class ManagedRequestHeader(BaseModel):
     Transforms.
     """
 
-    conflicts_with: Optional[List[object]] = None
+    conflicts_with: Optional[List[ManagedRequestHeaderConflictsWith]] = None
     """The Managed Transforms that this Managed Transform conflicts with."""
+
+
+class ManagedResponseHeaderConflictsWith:
+    pass
 
 
 class ManagedResponseHeader(BaseModel):
@@ -37,7 +51,7 @@ class ManagedResponseHeader(BaseModel):
     Transforms.
     """
 
-    conflicts_with: Optional[List[object]] = None
+    conflicts_with: Optional[List[ManagedResponseHeaderConflictsWith]] = None
     """The Managed Transforms that this Managed Transform conflicts with."""
 
 
