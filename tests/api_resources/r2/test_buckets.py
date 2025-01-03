@@ -94,7 +94,7 @@ class TestBuckets:
             order="name",
             per_page=1,
             start_after="my-bucket",
-            cf_r2_jurisdiction="default",
+            jurisdiction="default",
         )
         assert_matches_type(BucketListResponse, bucket, path=["response"])
 
@@ -337,7 +337,7 @@ class TestAsyncBuckets:
             order="name",
             per_page=1,
             start_after="my-bucket",
-            cf_r2_jurisdiction="default",
+            jurisdiction="default",
         )
         assert_matches_type(BucketListResponse, bucket, path=["response"])
 
