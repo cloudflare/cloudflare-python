@@ -9,7 +9,6 @@ from .migration_step_param import MigrationStepParam
 from .single_step_migration_param import SingleStepMigrationParam
 from .placement_configuration_param import PlacementConfigurationParam
 from .scripts.consumer_script_param import ConsumerScriptParam
-from ..zones.origin_max_http_version_param import OriginMaxHTTPVersionParam
 
 __all__ = [
     "ScriptUpdateParams",
@@ -79,7 +78,7 @@ class Variant0MetadataBindingTyped(TypedDict, total=False):
     """
 
 
-Variant0MetadataBinding: TypeAlias = Union[Variant0MetadataBindingTyped, Dict[str, OriginMaxHTTPVersionParam]]
+Variant0MetadataBinding: TypeAlias = Union[Variant0MetadataBindingTyped, Dict[str, object]]
 
 
 class Variant0MetadataMigrationsWorkersMultipleStepMigrations(TypedDict, total=False):
