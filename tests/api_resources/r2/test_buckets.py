@@ -34,7 +34,7 @@ class TestBuckets:
             name="example-bucket",
             location_hint="apac",
             storage_class="Standard",
-            cf_r2_jurisdiction="default",
+            jurisdiction="default",
         )
         assert_matches_type(Bucket, bucket, path=["response"])
 
@@ -277,7 +277,7 @@ class TestAsyncBuckets:
             name="example-bucket",
             location_hint="apac",
             storage_class="Standard",
-            cf_r2_jurisdiction="default",
+            jurisdiction="default",
         )
         assert_matches_type(Bucket, bucket, path=["response"])
 
