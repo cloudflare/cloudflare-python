@@ -184,7 +184,7 @@ class BucketsResource(SyncAPIResource):
         order: Literal["name"] | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         start_after: str | NotGiven = NOT_GIVEN,
-        cf_r2_jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
+        jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -212,7 +212,7 @@ class BucketsResource(SyncAPIResource):
 
           start_after: Bucket name to start searching after. Buckets are ordered lexicographically.
 
-          cf_r2_jurisdiction: Lists buckets in the provided jurisdiction
+          jurisdiction: Lists buckets in the provided jurisdiction
 
           extra_headers: Send extra headers
 
@@ -225,9 +225,7 @@ class BucketsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {
-            **strip_not_given(
-                {"cf-r2-jurisdiction": str(cf_r2_jurisdiction) if is_given(cf_r2_jurisdiction) else NOT_GIVEN}
-            ),
+            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else NOT_GIVEN}),
             **(extra_headers or {}),
         }
         return self._get(
@@ -473,7 +471,7 @@ class AsyncBucketsResource(AsyncAPIResource):
         order: Literal["name"] | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         start_after: str | NotGiven = NOT_GIVEN,
-        cf_r2_jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
+        jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -501,7 +499,7 @@ class AsyncBucketsResource(AsyncAPIResource):
 
           start_after: Bucket name to start searching after. Buckets are ordered lexicographically.
 
-          cf_r2_jurisdiction: Lists buckets in the provided jurisdiction
+          jurisdiction: Lists buckets in the provided jurisdiction
 
           extra_headers: Send extra headers
 
@@ -514,9 +512,7 @@ class AsyncBucketsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {
-            **strip_not_given(
-                {"cf-r2-jurisdiction": str(cf_r2_jurisdiction) if is_given(cf_r2_jurisdiction) else NOT_GIVEN}
-            ),
+            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else NOT_GIVEN}),
             **(extra_headers or {}),
         }
         return await self._get(
