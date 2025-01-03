@@ -116,8 +116,7 @@ class SkipRule(BaseModel):
     description: Optional[str] = None
     """An informative description of the rule."""
 
-    enabled: Optional[bool] = None
-    """Whether the rule should be executed."""
+    enabled: Optional[object] = None
 
     exposed_credential_check: Optional[ExposedCredentialCheck] = None
     """Configure checks for exposed credentials."""

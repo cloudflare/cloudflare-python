@@ -5,6 +5,8 @@ from __future__ import annotations
 from typing import Iterable, Optional
 from typing_extensions import Literal, Required, TypedDict
 
+from ....zones.origin_max_http_version_param import OriginMaxHTTPVersionParam
+
 __all__ = ["RuleCreateParams", "Action", "Condition"]
 
 
@@ -34,4 +36,4 @@ class Condition(TypedDict, total=False):
 
     selector: Required[Literal["Recipients", "Sender", "DLPProfiles"]]
 
-    value: Required[object]
+    value: Required[OriginMaxHTTPVersionParam]
