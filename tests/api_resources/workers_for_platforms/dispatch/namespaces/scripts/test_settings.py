@@ -38,7 +38,12 @@ class TestSettings:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
             settings={
-                "bindings": [{"type": "kv_namespace"}],
+                "bindings": [
+                    {
+                        "name": "MY_ENV_VAR",
+                        "type": "plain_text",
+                    }
+                ],
                 "compatibility_date": "2021-01-01",
                 "compatibility_flags": ["nodejs_compat"],
                 "limits": {"cpu_ms": 50},
@@ -76,7 +81,7 @@ class TestSettings:
                         "namespace": "my-namespace",
                     }
                 ],
-                "usage_model": "bundled",
+                "usage_model": "standard",
             },
         )
         assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
@@ -217,7 +222,12 @@ class TestAsyncSettings:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
             settings={
-                "bindings": [{"type": "kv_namespace"}],
+                "bindings": [
+                    {
+                        "name": "MY_ENV_VAR",
+                        "type": "plain_text",
+                    }
+                ],
                 "compatibility_date": "2021-01-01",
                 "compatibility_flags": ["nodejs_compat"],
                 "limits": {"cpu_ms": 50},
@@ -255,7 +265,7 @@ class TestAsyncSettings:
                         "namespace": "my-namespace",
                     }
                 ],
-                "usage_model": "bundled",
+                "usage_model": "standard",
             },
         )
         assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])

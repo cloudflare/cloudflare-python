@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from typing import Type, Optional, cast
-from typing_extensions import overload
 
 import httpx
 
@@ -49,7 +48,6 @@ from .settings import (
 )
 from ......_types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from ......_utils import (
-    required_args,
     maybe_transform,
     async_maybe_transform,
 )
@@ -122,14 +120,13 @@ class ScriptsResource(SyncAPIResource):
         """
         return ScriptsResourceWithStreamingResponse(self)
 
-    @overload
     def update(
         self,
         script_name: str,
         *,
         account_id: str,
         dispatch_namespace: str,
-        metadata: script_update_params.Variant0Metadata,
+        metadata: script_update_params.Metadata,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -160,65 +157,6 @@ class ScriptsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        ...
-
-    @overload
-    def update(
-        self,
-        script_name: str,
-        *,
-        account_id: str,
-        dispatch_namespace: str,
-        message: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ScriptUpdateResponse]:
-        """Upload a worker module to a Workers for Platforms namespace.
-
-        You can find more
-        about the multipart metadata on our docs:
-        https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/.
-
-        Args:
-          account_id: Identifier
-
-          dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
-
-          script_name: Name of the script, used in URLs and route configuration.
-
-          message: Rollback message to be associated with this deployment. Only parsed when query
-              param `"rollback_to"` is present.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @required_args(["account_id", "dispatch_namespace", "metadata"], ["account_id", "dispatch_namespace"])
-    def update(
-        self,
-        script_name: str,
-        *,
-        account_id: str,
-        dispatch_namespace: str,
-        metadata: script_update_params.Variant0Metadata | NotGiven = NOT_GIVEN,
-        message: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ScriptUpdateResponse]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dispatch_namespace:
@@ -227,13 +165,7 @@ class ScriptsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return self._put(
             f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}",
-            body=maybe_transform(
-                {
-                    "metadata": metadata,
-                    "message": message,
-                },
-                script_update_params.ScriptUpdateParams,
-            ),
+            body=maybe_transform({"metadata": metadata}, script_update_params.ScriptUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -395,14 +327,13 @@ class AsyncScriptsResource(AsyncAPIResource):
         """
         return AsyncScriptsResourceWithStreamingResponse(self)
 
-    @overload
     async def update(
         self,
         script_name: str,
         *,
         account_id: str,
         dispatch_namespace: str,
-        metadata: script_update_params.Variant0Metadata,
+        metadata: script_update_params.Metadata,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -433,65 +364,6 @@ class AsyncScriptsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        ...
-
-    @overload
-    async def update(
-        self,
-        script_name: str,
-        *,
-        account_id: str,
-        dispatch_namespace: str,
-        message: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ScriptUpdateResponse]:
-        """Upload a worker module to a Workers for Platforms namespace.
-
-        You can find more
-        about the multipart metadata on our docs:
-        https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/.
-
-        Args:
-          account_id: Identifier
-
-          dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
-
-          script_name: Name of the script, used in URLs and route configuration.
-
-          message: Rollback message to be associated with this deployment. Only parsed when query
-              param `"rollback_to"` is present.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @required_args(["account_id", "dispatch_namespace", "metadata"], ["account_id", "dispatch_namespace"])
-    async def update(
-        self,
-        script_name: str,
-        *,
-        account_id: str,
-        dispatch_namespace: str,
-        metadata: script_update_params.Variant0Metadata | NotGiven = NOT_GIVEN,
-        message: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ScriptUpdateResponse]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dispatch_namespace:
@@ -500,13 +372,7 @@ class AsyncScriptsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return await self._put(
             f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}",
-            body=await async_maybe_transform(
-                {
-                    "metadata": metadata,
-                    "message": message,
-                },
-                script_update_params.ScriptUpdateParams,
-            ),
+            body=await async_maybe_transform({"metadata": metadata}, script_update_params.ScriptUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

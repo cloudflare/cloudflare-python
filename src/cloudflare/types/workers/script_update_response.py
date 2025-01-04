@@ -7,7 +7,30 @@ from typing_extensions import Literal
 from ..._models import BaseModel
 from .scripts.consumer_script import ConsumerScript
 
-__all__ = ["ScriptUpdateResponse"]
+__all__ = ["ScriptUpdateResponse", "Placement"]
+
+
+class Placement(BaseModel):
+    mode: Optional[Literal["smart"]] = None
+    """
+    Enables
+    [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
+    """
+
+    status: Optional[
+        Literal[
+            "SUCCESS",
+            "NO_VALID_HOSTS",
+            "NO_VALID_BINDINGS",
+            "UNSUPPORTED_APPLICATION",
+            "INSUFFICIENT_INVOCATIONS",
+            "INSUFFICIENT_SUBREQUESTS",
+        ]
+    ] = None
+    """
+    Status of
+    [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
+    """
 
 
 class ScriptUpdateResponse(BaseModel):
@@ -32,13 +55,37 @@ class ScriptUpdateResponse(BaseModel):
     modified_on: Optional[datetime] = None
     """When the script was last modified."""
 
-    placement_mode: Optional[str] = None
-    """Specifies the placement mode for the Worker (e.g. 'smart')."""
+    placement: Optional[Placement] = None
+    """
+    Configuration for
+    [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
+    """
+
+    placement_mode: Optional[Literal["smart"]] = None
+    """
+    Enables
+    [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
+    """
+
+    placement_status: Optional[
+        Literal[
+            "SUCCESS",
+            "NO_VALID_HOSTS",
+            "NO_VALID_BINDINGS",
+            "UNSUPPORTED_APPLICATION",
+            "INSUFFICIENT_INVOCATIONS",
+            "INSUFFICIENT_SUBREQUESTS",
+        ]
+    ] = None
+    """
+    Status of
+    [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
+    """
 
     startup_time_ms: Optional[int] = None
 
     tail_consumers: Optional[List[ConsumerScript]] = None
     """List of Workers that will consume logs from the attached Worker."""
 
-    usage_model: Optional[Literal["bundled", "unbound"]] = None
+    usage_model: Optional[Literal["standard"]] = None
     """Usage model for the Worker invocations."""
