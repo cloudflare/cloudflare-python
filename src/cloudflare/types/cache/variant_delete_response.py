@@ -6,12 +6,15 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["CacheVariant"]
+__all__ = ["VariantDeleteResponse"]
 
 
-class CacheVariant(BaseModel):
+class VariantDeleteResponse(BaseModel):
     id: Literal["variants"]
     """ID of the zone setting."""
 
+    editable: bool
+    """Whether the setting is editable"""
+
     modified_on: Optional[datetime] = None
-    """last time this setting was modified."""
+    """Last time this setting was modified."""
