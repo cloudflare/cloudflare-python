@@ -164,6 +164,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
         ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        limit_per_group: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         mitigation_product: List[
             Literal[
@@ -210,6 +211,9 @@ class TimeseriesGroupsResource(SyncAPIResource):
 
           ip_version: Filter for ip version.
 
+          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
+              the time range.
+
           location: Array of comma separated list of locations (alpha-2 country codes). Start with
               `-` to exclude from results. For example, `-US,PT` excludes results from the US,
               but includes results from PT.
@@ -247,6 +251,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
                         "format": format,
                         "http_version": http_version,
                         "ip_version": ip_version,
+                        "limit_per_group": limit_per_group,
                         "location": location,
                         "mitigation_product": mitigation_product,
                         "name": name,
@@ -802,6 +807,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         | NotGiven = NOT_GIVEN,
         http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
         ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        limit_per_group: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         mitigation_product: List[
             Literal[
@@ -850,6 +856,9 @@ class TimeseriesGroupsResource(SyncAPIResource):
 
           ip_version: Filter for ip version.
 
+          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
+              the time range.
+
           location: Array of comma separated list of locations (alpha-2 country codes). Start with
               `-` to exclude from results. For example, `-US,PT` excludes results from the US,
               but includes results from PT.
@@ -888,6 +897,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
                         "http_method": http_method,
                         "http_version": http_version,
                         "ip_version": ip_version,
+                        "limit_per_group": limit_per_group,
                         "location": location,
                         "mitigation_product": mitigation_product,
                         "name": name,
@@ -963,6 +973,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         | NotGiven = NOT_GIVEN,
         http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
         ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        limit_per_group: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         normalization: Literal["PERCENTAGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
@@ -1005,6 +1016,9 @@ class TimeseriesGroupsResource(SyncAPIResource):
 
           ip_version: Filter for ip version.
 
+          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
+              the time range.
+
           location: Array of comma separated list of locations (alpha-2 country codes). Start with
               `-` to exclude from results. For example, `-US,PT` excludes results from the US,
               but includes results from PT.
@@ -1041,6 +1055,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
                         "http_method": http_method,
                         "http_version": http_version,
                         "ip_version": ip_version,
+                        "limit_per_group": limit_per_group,
                         "location": location,
                         "name": name,
                         "normalization": normalization,
@@ -1338,6 +1353,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
         ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        limit_per_group: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         mitigation_product: List[
             Literal[
@@ -1384,6 +1400,9 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
 
           ip_version: Filter for ip version.
 
+          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
+              the time range.
+
           location: Array of comma separated list of locations (alpha-2 country codes). Start with
               `-` to exclude from results. For example, `-US,PT` excludes results from the US,
               but includes results from PT.
@@ -1421,6 +1440,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                         "format": format,
                         "http_version": http_version,
                         "ip_version": ip_version,
+                        "limit_per_group": limit_per_group,
                         "location": location,
                         "mitigation_product": mitigation_product,
                         "name": name,
@@ -1976,6 +1996,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         | NotGiven = NOT_GIVEN,
         http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
         ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        limit_per_group: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         mitigation_product: List[
             Literal[
@@ -2024,6 +2045,9 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
 
           ip_version: Filter for ip version.
 
+          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
+              the time range.
+
           location: Array of comma separated list of locations (alpha-2 country codes). Start with
               `-` to exclude from results. For example, `-US,PT` excludes results from the US,
               but includes results from PT.
@@ -2062,6 +2086,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                         "http_method": http_method,
                         "http_version": http_version,
                         "ip_version": ip_version,
+                        "limit_per_group": limit_per_group,
                         "location": location,
                         "mitigation_product": mitigation_product,
                         "name": name,
@@ -2137,6 +2162,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         | NotGiven = NOT_GIVEN,
         http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
         ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        limit_per_group: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         normalization: Literal["PERCENTAGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
@@ -2179,6 +2205,9 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
 
           ip_version: Filter for ip version.
 
+          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
+              the time range.
+
           location: Array of comma separated list of locations (alpha-2 country codes). Start with
               `-` to exclude from results. For example, `-US,PT` excludes results from the US,
               but includes results from PT.
@@ -2215,6 +2244,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                         "http_method": http_method,
                         "http_version": http_version,
                         "ip_version": ip_version,
+                        "limit_per_group": limit_per_group,
                         "location": location,
                         "name": name,
                         "normalization": normalization,
