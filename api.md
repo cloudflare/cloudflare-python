@@ -348,6 +348,7 @@ Types:
 ```python
 from cloudflare.types.zones import (
     AdvancedDDoS,
+    Aegis,
     AlwaysOnline,
     AlwaysUseHTTPS,
     AutomaticHTTPSRewrites,
