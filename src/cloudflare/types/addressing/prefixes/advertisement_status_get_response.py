@@ -3,12 +3,12 @@
 from typing import Optional
 from datetime import datetime
 
-from ....._models import BaseModel
+from ...._models import BaseModel
 
-__all__ = ["StatusEditResponse"]
+__all__ = ["AdvertisementStatusGetResponse"]
 
 
-class StatusEditResponse(BaseModel):
+class AdvertisementStatusGetResponse(BaseModel):
     advertised: Optional[bool] = None
     """Enablement of prefix advertisement to the Internet."""
 

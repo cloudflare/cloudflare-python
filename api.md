@@ -3245,35 +3245,36 @@ Methods:
 - <code title="delete /accounts/{account_id}/addressing/prefixes/{prefix_id}/bindings/{binding_id}">client.addressing.prefixes.service_bindings.<a href="./src/cloudflare/resources/addressing/prefixes/service_bindings.py">delete</a>(binding_id, \*, account_id, prefix_id) -> <a href="./src/cloudflare/types/addressing/prefixes/service_binding_delete_response.py">ServiceBindingDeleteResponse</a></code>
 - <code title="get /accounts/{account_id}/addressing/prefixes/{prefix_id}/bindings/{binding_id}">client.addressing.prefixes.service_bindings.<a href="./src/cloudflare/resources/addressing/prefixes/service_bindings.py">get</a>(binding_id, \*, account_id, prefix_id) -> <a href="./src/cloudflare/types/addressing/prefixes/service_binding.py">Optional[ServiceBinding]</a></code>
 
-### BGP
-
-#### Prefixes
+### BGPPrefixes
 
 Types:
 
 ```python
-from cloudflare.types.addressing.prefixes.bgp import BGPPrefix
+from cloudflare.types.addressing.prefixes import BGPPrefix
 ```
 
 Methods:
 
-- <code title="post /accounts/{account_id}/addressing/prefixes/{prefix_id}/bgp/prefixes">client.addressing.prefixes.bgp.prefixes.<a href="./src/cloudflare/resources/addressing/prefixes/bgp/prefixes.py">create</a>(prefix_id, \*, account_id, \*\*<a href="src/cloudflare/types/addressing/prefixes/bgp/prefix_create_params.py">params</a>) -> <a href="./src/cloudflare/types/addressing/prefixes/bgp/bgp_prefix.py">Optional[BGPPrefix]</a></code>
-- <code title="get /accounts/{account_id}/addressing/prefixes/{prefix_id}/bgp/prefixes">client.addressing.prefixes.bgp.prefixes.<a href="./src/cloudflare/resources/addressing/prefixes/bgp/prefixes.py">list</a>(prefix_id, \*, account_id) -> <a href="./src/cloudflare/types/addressing/prefixes/bgp/bgp_prefix.py">SyncSinglePage[BGPPrefix]</a></code>
-- <code title="patch /accounts/{account_id}/addressing/prefixes/{prefix_id}/bgp/prefixes/{bgp_prefix_id}">client.addressing.prefixes.bgp.prefixes.<a href="./src/cloudflare/resources/addressing/prefixes/bgp/prefixes.py">edit</a>(bgp_prefix_id, \*, account_id, prefix_id, \*\*<a href="src/cloudflare/types/addressing/prefixes/bgp/prefix_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/addressing/prefixes/bgp/bgp_prefix.py">Optional[BGPPrefix]</a></code>
-- <code title="get /accounts/{account_id}/addressing/prefixes/{prefix_id}/bgp/prefixes/{bgp_prefix_id}">client.addressing.prefixes.bgp.prefixes.<a href="./src/cloudflare/resources/addressing/prefixes/bgp/prefixes.py">get</a>(bgp_prefix_id, \*, account_id, prefix_id) -> <a href="./src/cloudflare/types/addressing/prefixes/bgp/bgp_prefix.py">Optional[BGPPrefix]</a></code>
+- <code title="post /accounts/{account_id}/addressing/prefixes/{prefix_id}/bgp/prefixes">client.addressing.prefixes.bgp_prefixes.<a href="./src/cloudflare/resources/addressing/prefixes/bgp_prefixes.py">create</a>(prefix_id, \*, account_id, \*\*<a href="src/cloudflare/types/addressing/prefixes/bgp_prefix_create_params.py">params</a>) -> <a href="./src/cloudflare/types/addressing/prefixes/bgp_prefix.py">Optional[BGPPrefix]</a></code>
+- <code title="get /accounts/{account_id}/addressing/prefixes/{prefix_id}/bgp/prefixes">client.addressing.prefixes.bgp_prefixes.<a href="./src/cloudflare/resources/addressing/prefixes/bgp_prefixes.py">list</a>(prefix_id, \*, account_id) -> <a href="./src/cloudflare/types/addressing/prefixes/bgp_prefix.py">SyncSinglePage[BGPPrefix]</a></code>
+- <code title="patch /accounts/{account_id}/addressing/prefixes/{prefix_id}/bgp/prefixes/{bgp_prefix_id}">client.addressing.prefixes.bgp_prefixes.<a href="./src/cloudflare/resources/addressing/prefixes/bgp_prefixes.py">edit</a>(bgp_prefix_id, \*, account_id, prefix_id, \*\*<a href="src/cloudflare/types/addressing/prefixes/bgp_prefix_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/addressing/prefixes/bgp_prefix.py">Optional[BGPPrefix]</a></code>
+- <code title="get /accounts/{account_id}/addressing/prefixes/{prefix_id}/bgp/prefixes/{bgp_prefix_id}">client.addressing.prefixes.bgp_prefixes.<a href="./src/cloudflare/resources/addressing/prefixes/bgp_prefixes.py">get</a>(bgp_prefix_id, \*, account_id, prefix_id) -> <a href="./src/cloudflare/types/addressing/prefixes/bgp_prefix.py">Optional[BGPPrefix]</a></code>
 
-#### Statuses
+### AdvertisementStatus
 
 Types:
 
 ```python
-from cloudflare.types.addressing.prefixes.bgp import StatusEditResponse, StatusGetResponse
+from cloudflare.types.addressing.prefixes import (
+    AdvertisementStatusEditResponse,
+    AdvertisementStatusGetResponse,
+)
 ```
 
 Methods:
 
-- <code title="patch /accounts/{account_id}/addressing/prefixes/{prefix_id}/bgp/status">client.addressing.prefixes.bgp.statuses.<a href="./src/cloudflare/resources/addressing/prefixes/bgp/statuses.py">edit</a>(prefix_id, \*, account_id, \*\*<a href="src/cloudflare/types/addressing/prefixes/bgp/status_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/addressing/prefixes/bgp/status_edit_response.py">Optional[StatusEditResponse]</a></code>
-- <code title="get /accounts/{account_id}/addressing/prefixes/{prefix_id}/bgp/status">client.addressing.prefixes.bgp.statuses.<a href="./src/cloudflare/resources/addressing/prefixes/bgp/statuses.py">get</a>(prefix_id, \*, account_id) -> <a href="./src/cloudflare/types/addressing/prefixes/bgp/status_get_response.py">Optional[StatusGetResponse]</a></code>
+- <code title="patch /accounts/{account_id}/addressing/prefixes/{prefix_id}/bgp/status">client.addressing.prefixes.advertisement_status.<a href="./src/cloudflare/resources/addressing/prefixes/advertisement_status.py">edit</a>(prefix_id, \*, account_id, \*\*<a href="src/cloudflare/types/addressing/prefixes/advertisement_status_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/addressing/prefixes/advertisement_status_edit_response.py">Optional[AdvertisementStatusEditResponse]</a></code>
+- <code title="get /accounts/{account_id}/addressing/prefixes/{prefix_id}/bgp/status">client.addressing.prefixes.advertisement_status.<a href="./src/cloudflare/resources/addressing/prefixes/advertisement_status.py">get</a>(prefix_id, \*, account_id) -> <a href="./src/cloudflare/types/addressing/prefixes/advertisement_status_get_response.py">Optional[AdvertisementStatusGetResponse]</a></code>
 
 ### Delegations
 

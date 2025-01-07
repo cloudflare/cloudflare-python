@@ -6,47 +6,47 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import (
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
     maybe_transform,
     async_maybe_transform,
 )
-from ....._compat import cached_property
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from ....._response import (
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....._wrappers import ResultWrapper
-from .....pagination import SyncSinglePage, AsyncSinglePage
-from ....._base_client import AsyncPaginator, make_request_options
-from .....types.addressing.prefixes.bgp import prefix_edit_params, prefix_create_params
-from .....types.addressing.prefixes.bgp.bgp_prefix import BGPPrefix
+from ...._wrappers import ResultWrapper
+from ....pagination import SyncSinglePage, AsyncSinglePage
+from ...._base_client import AsyncPaginator, make_request_options
+from ....types.addressing.prefixes import bgp_prefix_edit_params, bgp_prefix_create_params
+from ....types.addressing.prefixes.bgp_prefix import BGPPrefix
 
-__all__ = ["PrefixesResource", "AsyncPrefixesResource"]
+__all__ = ["BGPPrefixesResource", "AsyncBGPPrefixesResource"]
 
 
-class PrefixesResource(SyncAPIResource):
+class BGPPrefixesResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> PrefixesResourceWithRawResponse:
+    def with_raw_response(self) -> BGPPrefixesResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return the
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return PrefixesResourceWithRawResponse(self)
+        return BGPPrefixesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> PrefixesResourceWithStreamingResponse:
+    def with_streaming_response(self) -> BGPPrefixesResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return PrefixesResourceWithStreamingResponse(self)
+        return BGPPrefixesResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -87,7 +87,7 @@ class PrefixesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `prefix_id` but received {prefix_id!r}")
         return self._post(
             f"/accounts/{account_id}/addressing/prefixes/{prefix_id}/bgp/prefixes",
-            body=maybe_transform({"cidr": cidr}, prefix_create_params.PrefixCreateParams),
+            body=maybe_transform({"cidr": cidr}, bgp_prefix_create_params.BGPPrefixCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -149,7 +149,7 @@ class PrefixesResource(SyncAPIResource):
         *,
         account_id: str,
         prefix_id: str,
-        on_demand: prefix_edit_params.OnDemand | NotGiven = NOT_GIVEN,
+        on_demand: bgp_prefix_edit_params.OnDemand | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -184,7 +184,7 @@ class PrefixesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `bgp_prefix_id` but received {bgp_prefix_id!r}")
         return self._patch(
             f"/accounts/{account_id}/addressing/prefixes/{prefix_id}/bgp/prefixes/{bgp_prefix_id}",
-            body=maybe_transform({"on_demand": on_demand}, prefix_edit_params.PrefixEditParams),
+            body=maybe_transform({"on_demand": on_demand}, bgp_prefix_edit_params.BGPPrefixEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -245,25 +245,25 @@ class PrefixesResource(SyncAPIResource):
         )
 
 
-class AsyncPrefixesResource(AsyncAPIResource):
+class AsyncBGPPrefixesResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncPrefixesResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncBGPPrefixesResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return the
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncPrefixesResourceWithRawResponse(self)
+        return AsyncBGPPrefixesResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncPrefixesResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncBGPPrefixesResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return AsyncPrefixesResourceWithStreamingResponse(self)
+        return AsyncBGPPrefixesResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -304,7 +304,7 @@ class AsyncPrefixesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `prefix_id` but received {prefix_id!r}")
         return await self._post(
             f"/accounts/{account_id}/addressing/prefixes/{prefix_id}/bgp/prefixes",
-            body=await async_maybe_transform({"cidr": cidr}, prefix_create_params.PrefixCreateParams),
+            body=await async_maybe_transform({"cidr": cidr}, bgp_prefix_create_params.BGPPrefixCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -366,7 +366,7 @@ class AsyncPrefixesResource(AsyncAPIResource):
         *,
         account_id: str,
         prefix_id: str,
-        on_demand: prefix_edit_params.OnDemand | NotGiven = NOT_GIVEN,
+        on_demand: bgp_prefix_edit_params.OnDemand | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -401,7 +401,7 @@ class AsyncPrefixesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `bgp_prefix_id` but received {bgp_prefix_id!r}")
         return await self._patch(
             f"/accounts/{account_id}/addressing/prefixes/{prefix_id}/bgp/prefixes/{bgp_prefix_id}",
-            body=await async_maybe_transform({"on_demand": on_demand}, prefix_edit_params.PrefixEditParams),
+            body=await async_maybe_transform({"on_demand": on_demand}, bgp_prefix_edit_params.BGPPrefixEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -462,73 +462,73 @@ class AsyncPrefixesResource(AsyncAPIResource):
         )
 
 
-class PrefixesResourceWithRawResponse:
-    def __init__(self, prefixes: PrefixesResource) -> None:
-        self._prefixes = prefixes
+class BGPPrefixesResourceWithRawResponse:
+    def __init__(self, bgp_prefixes: BGPPrefixesResource) -> None:
+        self._bgp_prefixes = bgp_prefixes
 
         self.create = to_raw_response_wrapper(
-            prefixes.create,
+            bgp_prefixes.create,
         )
         self.list = to_raw_response_wrapper(
-            prefixes.list,
+            bgp_prefixes.list,
         )
         self.edit = to_raw_response_wrapper(
-            prefixes.edit,
+            bgp_prefixes.edit,
         )
         self.get = to_raw_response_wrapper(
-            prefixes.get,
+            bgp_prefixes.get,
         )
 
 
-class AsyncPrefixesResourceWithRawResponse:
-    def __init__(self, prefixes: AsyncPrefixesResource) -> None:
-        self._prefixes = prefixes
+class AsyncBGPPrefixesResourceWithRawResponse:
+    def __init__(self, bgp_prefixes: AsyncBGPPrefixesResource) -> None:
+        self._bgp_prefixes = bgp_prefixes
 
         self.create = async_to_raw_response_wrapper(
-            prefixes.create,
+            bgp_prefixes.create,
         )
         self.list = async_to_raw_response_wrapper(
-            prefixes.list,
+            bgp_prefixes.list,
         )
         self.edit = async_to_raw_response_wrapper(
-            prefixes.edit,
+            bgp_prefixes.edit,
         )
         self.get = async_to_raw_response_wrapper(
-            prefixes.get,
+            bgp_prefixes.get,
         )
 
 
-class PrefixesResourceWithStreamingResponse:
-    def __init__(self, prefixes: PrefixesResource) -> None:
-        self._prefixes = prefixes
+class BGPPrefixesResourceWithStreamingResponse:
+    def __init__(self, bgp_prefixes: BGPPrefixesResource) -> None:
+        self._bgp_prefixes = bgp_prefixes
 
         self.create = to_streamed_response_wrapper(
-            prefixes.create,
+            bgp_prefixes.create,
         )
         self.list = to_streamed_response_wrapper(
-            prefixes.list,
+            bgp_prefixes.list,
         )
         self.edit = to_streamed_response_wrapper(
-            prefixes.edit,
+            bgp_prefixes.edit,
         )
         self.get = to_streamed_response_wrapper(
-            prefixes.get,
+            bgp_prefixes.get,
         )
 
 
-class AsyncPrefixesResourceWithStreamingResponse:
-    def __init__(self, prefixes: AsyncPrefixesResource) -> None:
-        self._prefixes = prefixes
+class AsyncBGPPrefixesResourceWithStreamingResponse:
+    def __init__(self, bgp_prefixes: AsyncBGPPrefixesResource) -> None:
+        self._bgp_prefixes = bgp_prefixes
 
         self.create = async_to_streamed_response_wrapper(
-            prefixes.create,
+            bgp_prefixes.create,
         )
         self.list = async_to_streamed_response_wrapper(
-            prefixes.list,
+            bgp_prefixes.list,
         )
         self.edit = async_to_streamed_response_wrapper(
-            prefixes.edit,
+            bgp_prefixes.edit,
         )
         self.get = async_to_streamed_response_wrapper(
-            prefixes.get,
+            bgp_prefixes.get,
         )
