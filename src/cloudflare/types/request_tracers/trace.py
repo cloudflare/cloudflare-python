@@ -10,7 +10,7 @@ __all__ = ["Trace"]
 
 
 if TYPE_CHECKING or PYDANTIC_V2:
-    Trace = TypeAliasType("Trace", "List[TraceItem]")
+    Trace = TypeAliasType("Trace", List["TraceItem"])
 else:
     Trace: TypeAlias = List["TraceItem"]
 
