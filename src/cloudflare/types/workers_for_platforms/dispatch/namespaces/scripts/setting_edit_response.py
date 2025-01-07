@@ -24,7 +24,7 @@ __all__ = [
     "BindingWorkersBindingKindDispatchNamespaceOutboundWorker",
     "BindingWorkersBindingKindDo",
     "BindingWorkersBindingKindHyperdrive",
-    "BindingWorkersBindingKindJSON",
+    "BindingWorkersBindingKindJson",
     "BindingWorkersBindingKindKVNamespace",
     "BindingWorkersBindingKindMTLSCERT",
     "BindingWorkersBindingKindPlainText",
@@ -170,7 +170,7 @@ class BindingWorkersBindingKindHyperdrive(BaseModel):
     """The kind of resource that the binding provides."""
 
 
-class BindingWorkersBindingKindJSON(BaseModel):
+class BindingWorkersBindingKindJson(BaseModel):
     json_: str = FieldInfo(alias="json")
     """JSON data to use."""
 
@@ -301,7 +301,7 @@ Binding: TypeAlias = Union[
     BindingWorkersBindingKindDispatchNamespace,
     BindingWorkersBindingKindDo,
     BindingWorkersBindingKindHyperdrive,
-    BindingWorkersBindingKindJSON,
+    BindingWorkersBindingKindJson,
     BindingWorkersBindingKindKVNamespace,
     BindingWorkersBindingKindMTLSCERT,
     BindingWorkersBindingKindPlainText,
