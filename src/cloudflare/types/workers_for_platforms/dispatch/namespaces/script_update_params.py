@@ -26,7 +26,7 @@ __all__ = [
     "MetadataBindingWorkersBindingKindDispatchNamespaceOutboundWorker",
     "MetadataBindingWorkersBindingKindDo",
     "MetadataBindingWorkersBindingKindHyperdrive",
-    "MetadataBindingWorkersBindingKindJson",
+    "MetadataBindingWorkersBindingKindJSON",
     "MetadataBindingWorkersBindingKindKVNamespace",
     "MetadataBindingWorkersBindingKindMTLSCERT",
     "MetadataBindingWorkersBindingKindPlainText",
@@ -205,7 +205,7 @@ class MetadataBindingWorkersBindingKindHyperdrive(TypedDict, total=False):
     """The kind of resource that the binding provides."""
 
 
-class MetadataBindingWorkersBindingKindJson(TypedDict, total=False):
+class MetadataBindingWorkersBindingKindJSON(TypedDict, total=False):
     json: Required[str]
     """JSON data to use."""
 
@@ -336,7 +336,7 @@ MetadataBinding: TypeAlias = Union[
     MetadataBindingWorkersBindingKindDispatchNamespace,
     MetadataBindingWorkersBindingKindDo,
     MetadataBindingWorkersBindingKindHyperdrive,
-    MetadataBindingWorkersBindingKindJson,
+    MetadataBindingWorkersBindingKindJSON,
     MetadataBindingWorkersBindingKindKVNamespace,
     MetadataBindingWorkersBindingKindMTLSCERT,
     MetadataBindingWorkersBindingKindPlainText,
