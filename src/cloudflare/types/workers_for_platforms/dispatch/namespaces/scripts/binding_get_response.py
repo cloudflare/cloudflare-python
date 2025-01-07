@@ -21,7 +21,7 @@ __all__ = [
     "BindingGetResponseItemWorkersBindingKindDispatchNamespaceOutboundWorker",
     "BindingGetResponseItemWorkersBindingKindDo",
     "BindingGetResponseItemWorkersBindingKindHyperdrive",
-    "BindingGetResponseItemWorkersBindingKindJson",
+    "BindingGetResponseItemWorkersBindingKindJSON",
     "BindingGetResponseItemWorkersBindingKindKVNamespace",
     "BindingGetResponseItemWorkersBindingKindMTLSCERT",
     "BindingGetResponseItemWorkersBindingKindPlainText",
@@ -162,7 +162,7 @@ class BindingGetResponseItemWorkersBindingKindHyperdrive(BaseModel):
     """The kind of resource that the binding provides."""
 
 
-class BindingGetResponseItemWorkersBindingKindJson(BaseModel):
+class BindingGetResponseItemWorkersBindingKindJSON(BaseModel):
     json_: str = FieldInfo(alias="json")
     """JSON data to use."""
 
@@ -293,7 +293,7 @@ BindingGetResponseItem: TypeAlias = Union[
     BindingGetResponseItemWorkersBindingKindDispatchNamespace,
     BindingGetResponseItemWorkersBindingKindDo,
     BindingGetResponseItemWorkersBindingKindHyperdrive,
-    BindingGetResponseItemWorkersBindingKindJson,
+    BindingGetResponseItemWorkersBindingKindJSON,
     BindingGetResponseItemWorkersBindingKindKVNamespace,
     BindingGetResponseItemWorkersBindingKindMTLSCERT,
     BindingGetResponseItemWorkersBindingKindPlainText,

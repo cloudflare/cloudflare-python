@@ -24,7 +24,7 @@ __all__ = [
     "SettingsBindingWorkersBindingKindDispatchNamespaceOutboundWorker",
     "SettingsBindingWorkersBindingKindDo",
     "SettingsBindingWorkersBindingKindHyperdrive",
-    "SettingsBindingWorkersBindingKindJson",
+    "SettingsBindingWorkersBindingKindJSON",
     "SettingsBindingWorkersBindingKindKVNamespace",
     "SettingsBindingWorkersBindingKindMTLSCERT",
     "SettingsBindingWorkersBindingKindPlainText",
@@ -177,7 +177,7 @@ class SettingsBindingWorkersBindingKindHyperdrive(TypedDict, total=False):
     """The kind of resource that the binding provides."""
 
 
-class SettingsBindingWorkersBindingKindJson(TypedDict, total=False):
+class SettingsBindingWorkersBindingKindJSON(TypedDict, total=False):
     json: Required[str]
     """JSON data to use."""
 
@@ -308,7 +308,7 @@ SettingsBinding: TypeAlias = Union[
     SettingsBindingWorkersBindingKindDispatchNamespace,
     SettingsBindingWorkersBindingKindDo,
     SettingsBindingWorkersBindingKindHyperdrive,
-    SettingsBindingWorkersBindingKindJson,
+    SettingsBindingWorkersBindingKindJSON,
     SettingsBindingWorkersBindingKindKVNamespace,
     SettingsBindingWorkersBindingKindMTLSCERT,
     SettingsBindingWorkersBindingKindPlainText,
