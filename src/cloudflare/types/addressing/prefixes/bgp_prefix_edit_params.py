@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["PrefixEditParams", "OnDemand"]
+__all__ = ["BGPPrefixEditParams", "OnDemand"]
 
 
-class PrefixEditParams(TypedDict, total=False):
+class BGPPrefixEditParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 

@@ -6,14 +6,6 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from .bgp.bgp import (
-    BGPResource,
-    AsyncBGPResource,
-    BGPResourceWithRawResponse,
-    AsyncBGPResourceWithRawResponse,
-    BGPResourceWithStreamingResponse,
-    AsyncBGPResourceWithStreamingResponse,
-)
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
     maybe_transform,
@@ -36,6 +28,14 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
+from .bgp_prefixes import (
+    BGPPrefixesResource,
+    AsyncBGPPrefixesResource,
+    BGPPrefixesResourceWithRawResponse,
+    AsyncBGPPrefixesResourceWithRawResponse,
+    BGPPrefixesResourceWithStreamingResponse,
+    AsyncBGPPrefixesResourceWithStreamingResponse,
+)
 from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import AsyncPaginator, make_request_options
 from .service_bindings import (
@@ -47,6 +47,14 @@ from .service_bindings import (
     AsyncServiceBindingsResourceWithStreamingResponse,
 )
 from ....types.addressing import prefix_edit_params, prefix_create_params
+from .advertisement_status import (
+    AdvertisementStatusResource,
+    AsyncAdvertisementStatusResource,
+    AdvertisementStatusResourceWithRawResponse,
+    AsyncAdvertisementStatusResourceWithRawResponse,
+    AdvertisementStatusResourceWithStreamingResponse,
+    AsyncAdvertisementStatusResourceWithStreamingResponse,
+)
 from ....types.addressing.prefix import Prefix
 from ....types.addressing.prefix_delete_response import PrefixDeleteResponse
 
@@ -59,8 +67,12 @@ class PrefixesResource(SyncAPIResource):
         return ServiceBindingsResource(self._client)
 
     @cached_property
-    def bgp(self) -> BGPResource:
-        return BGPResource(self._client)
+    def bgp_prefixes(self) -> BGPPrefixesResource:
+        return BGPPrefixesResource(self._client)
+
+    @cached_property
+    def advertisement_status(self) -> AdvertisementStatusResource:
+        return AdvertisementStatusResource(self._client)
 
     @cached_property
     def delegations(self) -> DelegationsResource:
@@ -316,8 +328,12 @@ class AsyncPrefixesResource(AsyncAPIResource):
         return AsyncServiceBindingsResource(self._client)
 
     @cached_property
-    def bgp(self) -> AsyncBGPResource:
-        return AsyncBGPResource(self._client)
+    def bgp_prefixes(self) -> AsyncBGPPrefixesResource:
+        return AsyncBGPPrefixesResource(self._client)
+
+    @cached_property
+    def advertisement_status(self) -> AsyncAdvertisementStatusResource:
+        return AsyncAdvertisementStatusResource(self._client)
 
     @cached_property
     def delegations(self) -> AsyncDelegationsResource:
@@ -592,8 +608,12 @@ class PrefixesResourceWithRawResponse:
         return ServiceBindingsResourceWithRawResponse(self._prefixes.service_bindings)
 
     @cached_property
-    def bgp(self) -> BGPResourceWithRawResponse:
-        return BGPResourceWithRawResponse(self._prefixes.bgp)
+    def bgp_prefixes(self) -> BGPPrefixesResourceWithRawResponse:
+        return BGPPrefixesResourceWithRawResponse(self._prefixes.bgp_prefixes)
+
+    @cached_property
+    def advertisement_status(self) -> AdvertisementStatusResourceWithRawResponse:
+        return AdvertisementStatusResourceWithRawResponse(self._prefixes.advertisement_status)
 
     @cached_property
     def delegations(self) -> DelegationsResourceWithRawResponse:
@@ -625,8 +645,12 @@ class AsyncPrefixesResourceWithRawResponse:
         return AsyncServiceBindingsResourceWithRawResponse(self._prefixes.service_bindings)
 
     @cached_property
-    def bgp(self) -> AsyncBGPResourceWithRawResponse:
-        return AsyncBGPResourceWithRawResponse(self._prefixes.bgp)
+    def bgp_prefixes(self) -> AsyncBGPPrefixesResourceWithRawResponse:
+        return AsyncBGPPrefixesResourceWithRawResponse(self._prefixes.bgp_prefixes)
+
+    @cached_property
+    def advertisement_status(self) -> AsyncAdvertisementStatusResourceWithRawResponse:
+        return AsyncAdvertisementStatusResourceWithRawResponse(self._prefixes.advertisement_status)
 
     @cached_property
     def delegations(self) -> AsyncDelegationsResourceWithRawResponse:
@@ -658,8 +682,12 @@ class PrefixesResourceWithStreamingResponse:
         return ServiceBindingsResourceWithStreamingResponse(self._prefixes.service_bindings)
 
     @cached_property
-    def bgp(self) -> BGPResourceWithStreamingResponse:
-        return BGPResourceWithStreamingResponse(self._prefixes.bgp)
+    def bgp_prefixes(self) -> BGPPrefixesResourceWithStreamingResponse:
+        return BGPPrefixesResourceWithStreamingResponse(self._prefixes.bgp_prefixes)
+
+    @cached_property
+    def advertisement_status(self) -> AdvertisementStatusResourceWithStreamingResponse:
+        return AdvertisementStatusResourceWithStreamingResponse(self._prefixes.advertisement_status)
 
     @cached_property
     def delegations(self) -> DelegationsResourceWithStreamingResponse:
@@ -691,8 +719,12 @@ class AsyncPrefixesResourceWithStreamingResponse:
         return AsyncServiceBindingsResourceWithStreamingResponse(self._prefixes.service_bindings)
 
     @cached_property
-    def bgp(self) -> AsyncBGPResourceWithStreamingResponse:
-        return AsyncBGPResourceWithStreamingResponse(self._prefixes.bgp)
+    def bgp_prefixes(self) -> AsyncBGPPrefixesResourceWithStreamingResponse:
+        return AsyncBGPPrefixesResourceWithStreamingResponse(self._prefixes.bgp_prefixes)
+
+    @cached_property
+    def advertisement_status(self) -> AsyncAdvertisementStatusResourceWithStreamingResponse:
+        return AsyncAdvertisementStatusResourceWithStreamingResponse(self._prefixes.advertisement_status)
 
     @cached_property
     def delegations(self) -> AsyncDelegationsResourceWithStreamingResponse:

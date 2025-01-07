@@ -10,141 +10,141 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.addressing.prefixes.bgp import BGPPrefix
+from cloudflare.types.addressing.prefixes import BGPPrefix
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
-class TestPrefixes:
+class TestBGPPrefixes:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
-        prefix = client.addressing.prefixes.bgp.prefixes.create(
+        bgp_prefix = client.addressing.prefixes.bgp_prefixes.create(
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[BGPPrefix], prefix, path=["response"])
+        assert_matches_type(Optional[BGPPrefix], bgp_prefix, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
-        prefix = client.addressing.prefixes.bgp.prefixes.create(
+        bgp_prefix = client.addressing.prefixes.bgp_prefixes.create(
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             cidr="192.0.2.0/24",
         )
-        assert_matches_type(Optional[BGPPrefix], prefix, path=["response"])
+        assert_matches_type(Optional[BGPPrefix], bgp_prefix, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
-        response = client.addressing.prefixes.bgp.prefixes.with_raw_response.create(
+        response = client.addressing.prefixes.bgp_prefixes.with_raw_response.create(
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        prefix = response.parse()
-        assert_matches_type(Optional[BGPPrefix], prefix, path=["response"])
+        bgp_prefix = response.parse()
+        assert_matches_type(Optional[BGPPrefix], bgp_prefix, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
-        with client.addressing.prefixes.bgp.prefixes.with_streaming_response.create(
+        with client.addressing.prefixes.bgp_prefixes.with_streaming_response.create(
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            prefix = response.parse()
-            assert_matches_type(Optional[BGPPrefix], prefix, path=["response"])
+            bgp_prefix = response.parse()
+            assert_matches_type(Optional[BGPPrefix], bgp_prefix, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.addressing.prefixes.bgp.prefixes.with_raw_response.create(
+            client.addressing.prefixes.bgp_prefixes.with_raw_response.create(
                 prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `prefix_id` but received ''"):
-            client.addressing.prefixes.bgp.prefixes.with_raw_response.create(
+            client.addressing.prefixes.bgp_prefixes.with_raw_response.create(
                 prefix_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
-        prefix = client.addressing.prefixes.bgp.prefixes.list(
+        bgp_prefix = client.addressing.prefixes.bgp_prefixes.list(
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncSinglePage[BGPPrefix], prefix, path=["response"])
+        assert_matches_type(SyncSinglePage[BGPPrefix], bgp_prefix, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
-        response = client.addressing.prefixes.bgp.prefixes.with_raw_response.list(
+        response = client.addressing.prefixes.bgp_prefixes.with_raw_response.list(
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        prefix = response.parse()
-        assert_matches_type(SyncSinglePage[BGPPrefix], prefix, path=["response"])
+        bgp_prefix = response.parse()
+        assert_matches_type(SyncSinglePage[BGPPrefix], bgp_prefix, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
-        with client.addressing.prefixes.bgp.prefixes.with_streaming_response.list(
+        with client.addressing.prefixes.bgp_prefixes.with_streaming_response.list(
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            prefix = response.parse()
-            assert_matches_type(SyncSinglePage[BGPPrefix], prefix, path=["response"])
+            bgp_prefix = response.parse()
+            assert_matches_type(SyncSinglePage[BGPPrefix], bgp_prefix, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.addressing.prefixes.bgp.prefixes.with_raw_response.list(
+            client.addressing.prefixes.bgp_prefixes.with_raw_response.list(
                 prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `prefix_id` but received ''"):
-            client.addressing.prefixes.bgp.prefixes.with_raw_response.list(
+            client.addressing.prefixes.bgp_prefixes.with_raw_response.list(
                 prefix_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
-        prefix = client.addressing.prefixes.bgp.prefixes.edit(
+        bgp_prefix = client.addressing.prefixes.bgp_prefixes.edit(
             bgp_prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[BGPPrefix], prefix, path=["response"])
+        assert_matches_type(Optional[BGPPrefix], bgp_prefix, path=["response"])
 
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
-        prefix = client.addressing.prefixes.bgp.prefixes.edit(
+        bgp_prefix = client.addressing.prefixes.bgp_prefixes.edit(
             bgp_prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             on_demand={"advertised": True},
         )
-        assert_matches_type(Optional[BGPPrefix], prefix, path=["response"])
+        assert_matches_type(Optional[BGPPrefix], bgp_prefix, path=["response"])
 
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
-        response = client.addressing.prefixes.bgp.prefixes.with_raw_response.edit(
+        response = client.addressing.prefixes.bgp_prefixes.with_raw_response.edit(
             bgp_prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -152,12 +152,12 @@ class TestPrefixes:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        prefix = response.parse()
-        assert_matches_type(Optional[BGPPrefix], prefix, path=["response"])
+        bgp_prefix = response.parse()
+        assert_matches_type(Optional[BGPPrefix], bgp_prefix, path=["response"])
 
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
-        with client.addressing.prefixes.bgp.prefixes.with_streaming_response.edit(
+        with client.addressing.prefixes.bgp_prefixes.with_streaming_response.edit(
             bgp_prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -165,29 +165,29 @@ class TestPrefixes:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            prefix = response.parse()
-            assert_matches_type(Optional[BGPPrefix], prefix, path=["response"])
+            bgp_prefix = response.parse()
+            assert_matches_type(Optional[BGPPrefix], bgp_prefix, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.addressing.prefixes.bgp.prefixes.with_raw_response.edit(
+            client.addressing.prefixes.bgp_prefixes.with_raw_response.edit(
                 bgp_prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `prefix_id` but received ''"):
-            client.addressing.prefixes.bgp.prefixes.with_raw_response.edit(
+            client.addressing.prefixes.bgp_prefixes.with_raw_response.edit(
                 bgp_prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 prefix_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bgp_prefix_id` but received ''"):
-            client.addressing.prefixes.bgp.prefixes.with_raw_response.edit(
+            client.addressing.prefixes.bgp_prefixes.with_raw_response.edit(
                 bgp_prefix_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -195,16 +195,16 @@ class TestPrefixes:
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
-        prefix = client.addressing.prefixes.bgp.prefixes.get(
+        bgp_prefix = client.addressing.prefixes.bgp_prefixes.get(
             bgp_prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[BGPPrefix], prefix, path=["response"])
+        assert_matches_type(Optional[BGPPrefix], bgp_prefix, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
-        response = client.addressing.prefixes.bgp.prefixes.with_raw_response.get(
+        response = client.addressing.prefixes.bgp_prefixes.with_raw_response.get(
             bgp_prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -212,12 +212,12 @@ class TestPrefixes:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        prefix = response.parse()
-        assert_matches_type(Optional[BGPPrefix], prefix, path=["response"])
+        bgp_prefix = response.parse()
+        assert_matches_type(Optional[BGPPrefix], bgp_prefix, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
-        with client.addressing.prefixes.bgp.prefixes.with_streaming_response.get(
+        with client.addressing.prefixes.bgp_prefixes.with_streaming_response.get(
             bgp_prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -225,165 +225,165 @@ class TestPrefixes:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            prefix = response.parse()
-            assert_matches_type(Optional[BGPPrefix], prefix, path=["response"])
+            bgp_prefix = response.parse()
+            assert_matches_type(Optional[BGPPrefix], bgp_prefix, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.addressing.prefixes.bgp.prefixes.with_raw_response.get(
+            client.addressing.prefixes.bgp_prefixes.with_raw_response.get(
                 bgp_prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `prefix_id` but received ''"):
-            client.addressing.prefixes.bgp.prefixes.with_raw_response.get(
+            client.addressing.prefixes.bgp_prefixes.with_raw_response.get(
                 bgp_prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 prefix_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bgp_prefix_id` but received ''"):
-            client.addressing.prefixes.bgp.prefixes.with_raw_response.get(
+            client.addressing.prefixes.bgp_prefixes.with_raw_response.get(
                 bgp_prefix_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
 
-class TestAsyncPrefixes:
+class TestAsyncBGPPrefixes:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
-        prefix = await async_client.addressing.prefixes.bgp.prefixes.create(
+        bgp_prefix = await async_client.addressing.prefixes.bgp_prefixes.create(
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[BGPPrefix], prefix, path=["response"])
+        assert_matches_type(Optional[BGPPrefix], bgp_prefix, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        prefix = await async_client.addressing.prefixes.bgp.prefixes.create(
+        bgp_prefix = await async_client.addressing.prefixes.bgp_prefixes.create(
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             cidr="192.0.2.0/24",
         )
-        assert_matches_type(Optional[BGPPrefix], prefix, path=["response"])
+        assert_matches_type(Optional[BGPPrefix], bgp_prefix, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.addressing.prefixes.bgp.prefixes.with_raw_response.create(
+        response = await async_client.addressing.prefixes.bgp_prefixes.with_raw_response.create(
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        prefix = await response.parse()
-        assert_matches_type(Optional[BGPPrefix], prefix, path=["response"])
+        bgp_prefix = await response.parse()
+        assert_matches_type(Optional[BGPPrefix], bgp_prefix, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.addressing.prefixes.bgp.prefixes.with_streaming_response.create(
+        async with async_client.addressing.prefixes.bgp_prefixes.with_streaming_response.create(
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            prefix = await response.parse()
-            assert_matches_type(Optional[BGPPrefix], prefix, path=["response"])
+            bgp_prefix = await response.parse()
+            assert_matches_type(Optional[BGPPrefix], bgp_prefix, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.addressing.prefixes.bgp.prefixes.with_raw_response.create(
+            await async_client.addressing.prefixes.bgp_prefixes.with_raw_response.create(
                 prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `prefix_id` but received ''"):
-            await async_client.addressing.prefixes.bgp.prefixes.with_raw_response.create(
+            await async_client.addressing.prefixes.bgp_prefixes.with_raw_response.create(
                 prefix_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
-        prefix = await async_client.addressing.prefixes.bgp.prefixes.list(
+        bgp_prefix = await async_client.addressing.prefixes.bgp_prefixes.list(
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncSinglePage[BGPPrefix], prefix, path=["response"])
+        assert_matches_type(AsyncSinglePage[BGPPrefix], bgp_prefix, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.addressing.prefixes.bgp.prefixes.with_raw_response.list(
+        response = await async_client.addressing.prefixes.bgp_prefixes.with_raw_response.list(
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        prefix = await response.parse()
-        assert_matches_type(AsyncSinglePage[BGPPrefix], prefix, path=["response"])
+        bgp_prefix = await response.parse()
+        assert_matches_type(AsyncSinglePage[BGPPrefix], bgp_prefix, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.addressing.prefixes.bgp.prefixes.with_streaming_response.list(
+        async with async_client.addressing.prefixes.bgp_prefixes.with_streaming_response.list(
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            prefix = await response.parse()
-            assert_matches_type(AsyncSinglePage[BGPPrefix], prefix, path=["response"])
+            bgp_prefix = await response.parse()
+            assert_matches_type(AsyncSinglePage[BGPPrefix], bgp_prefix, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.addressing.prefixes.bgp.prefixes.with_raw_response.list(
+            await async_client.addressing.prefixes.bgp_prefixes.with_raw_response.list(
                 prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `prefix_id` but received ''"):
-            await async_client.addressing.prefixes.bgp.prefixes.with_raw_response.list(
+            await async_client.addressing.prefixes.bgp_prefixes.with_raw_response.list(
                 prefix_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
-        prefix = await async_client.addressing.prefixes.bgp.prefixes.edit(
+        bgp_prefix = await async_client.addressing.prefixes.bgp_prefixes.edit(
             bgp_prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[BGPPrefix], prefix, path=["response"])
+        assert_matches_type(Optional[BGPPrefix], bgp_prefix, path=["response"])
 
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        prefix = await async_client.addressing.prefixes.bgp.prefixes.edit(
+        bgp_prefix = await async_client.addressing.prefixes.bgp_prefixes.edit(
             bgp_prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             on_demand={"advertised": True},
         )
-        assert_matches_type(Optional[BGPPrefix], prefix, path=["response"])
+        assert_matches_type(Optional[BGPPrefix], bgp_prefix, path=["response"])
 
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.addressing.prefixes.bgp.prefixes.with_raw_response.edit(
+        response = await async_client.addressing.prefixes.bgp_prefixes.with_raw_response.edit(
             bgp_prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -391,12 +391,12 @@ class TestAsyncPrefixes:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        prefix = await response.parse()
-        assert_matches_type(Optional[BGPPrefix], prefix, path=["response"])
+        bgp_prefix = await response.parse()
+        assert_matches_type(Optional[BGPPrefix], bgp_prefix, path=["response"])
 
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.addressing.prefixes.bgp.prefixes.with_streaming_response.edit(
+        async with async_client.addressing.prefixes.bgp_prefixes.with_streaming_response.edit(
             bgp_prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -404,29 +404,29 @@ class TestAsyncPrefixes:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            prefix = await response.parse()
-            assert_matches_type(Optional[BGPPrefix], prefix, path=["response"])
+            bgp_prefix = await response.parse()
+            assert_matches_type(Optional[BGPPrefix], bgp_prefix, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.addressing.prefixes.bgp.prefixes.with_raw_response.edit(
+            await async_client.addressing.prefixes.bgp_prefixes.with_raw_response.edit(
                 bgp_prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `prefix_id` but received ''"):
-            await async_client.addressing.prefixes.bgp.prefixes.with_raw_response.edit(
+            await async_client.addressing.prefixes.bgp_prefixes.with_raw_response.edit(
                 bgp_prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 prefix_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bgp_prefix_id` but received ''"):
-            await async_client.addressing.prefixes.bgp.prefixes.with_raw_response.edit(
+            await async_client.addressing.prefixes.bgp_prefixes.with_raw_response.edit(
                 bgp_prefix_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -434,16 +434,16 @@ class TestAsyncPrefixes:
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
-        prefix = await async_client.addressing.prefixes.bgp.prefixes.get(
+        bgp_prefix = await async_client.addressing.prefixes.bgp_prefixes.get(
             bgp_prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[BGPPrefix], prefix, path=["response"])
+        assert_matches_type(Optional[BGPPrefix], bgp_prefix, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.addressing.prefixes.bgp.prefixes.with_raw_response.get(
+        response = await async_client.addressing.prefixes.bgp_prefixes.with_raw_response.get(
             bgp_prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -451,12 +451,12 @@ class TestAsyncPrefixes:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        prefix = await response.parse()
-        assert_matches_type(Optional[BGPPrefix], prefix, path=["response"])
+        bgp_prefix = await response.parse()
+        assert_matches_type(Optional[BGPPrefix], bgp_prefix, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.addressing.prefixes.bgp.prefixes.with_streaming_response.get(
+        async with async_client.addressing.prefixes.bgp_prefixes.with_streaming_response.get(
             bgp_prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -464,29 +464,29 @@ class TestAsyncPrefixes:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            prefix = await response.parse()
-            assert_matches_type(Optional[BGPPrefix], prefix, path=["response"])
+            bgp_prefix = await response.parse()
+            assert_matches_type(Optional[BGPPrefix], bgp_prefix, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.addressing.prefixes.bgp.prefixes.with_raw_response.get(
+            await async_client.addressing.prefixes.bgp_prefixes.with_raw_response.get(
                 bgp_prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `prefix_id` but received ''"):
-            await async_client.addressing.prefixes.bgp.prefixes.with_raw_response.get(
+            await async_client.addressing.prefixes.bgp_prefixes.with_raw_response.get(
                 bgp_prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 prefix_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bgp_prefix_id` but received ''"):
-            await async_client.addressing.prefixes.bgp.prefixes.with_raw_response.get(
+            await async_client.addressing.prefixes.bgp_prefixes.with_raw_response.get(
                 bgp_prefix_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
