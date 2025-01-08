@@ -34,6 +34,7 @@ class TestConsumers:
         consumer = client.queues.consumers.create(
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            dead_letter_queue="example-queue",
             script_name="my-consumer-worker",
             settings={
                 "batch_size": 50,
@@ -99,6 +100,7 @@ class TestConsumers:
         consumer = client.queues.consumers.create(
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            dead_letter_queue="example-queue",
             settings={
                 "batch_size": 50,
                 "max_retries": 3,
@@ -164,6 +166,7 @@ class TestConsumers:
             consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
+            dead_letter_queue="example-queue",
             script_name="my-consumer-worker",
             settings={
                 "batch_size": 50,
@@ -242,6 +245,7 @@ class TestConsumers:
             consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
+            dead_letter_queue="example-queue",
             settings={
                 "batch_size": 50,
                 "max_retries": 3,
@@ -428,6 +432,7 @@ class TestAsyncConsumers:
         consumer = await async_client.queues.consumers.create(
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            dead_letter_queue="example-queue",
             script_name="my-consumer-worker",
             settings={
                 "batch_size": 50,
@@ -493,6 +498,7 @@ class TestAsyncConsumers:
         consumer = await async_client.queues.consumers.create(
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            dead_letter_queue="example-queue",
             settings={
                 "batch_size": 50,
                 "max_retries": 3,
@@ -558,6 +564,7 @@ class TestAsyncConsumers:
             consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
+            dead_letter_queue="example-queue",
             script_name="my-consumer-worker",
             settings={
                 "batch_size": 50,
@@ -636,6 +643,7 @@ class TestAsyncConsumers:
             consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
+            dead_letter_queue="example-queue",
             settings={
                 "batch_size": 50,
                 "max_retries": 3,

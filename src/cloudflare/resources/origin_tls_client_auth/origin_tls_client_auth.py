@@ -39,7 +39,10 @@ from .hostnames.hostnames import (
     AsyncHostnamesResourceWithStreamingResponse,
 )
 from ...types.origin_tls_client_auth import origin_tls_client_auth_create_params
-from ...types.origin_tls_client_auth.zone_authenticated_origin_pull import ZoneAuthenticatedOriginPull
+from ...types.origin_tls_client_auth.origin_tls_client_auth_get_response import OriginTLSClientAuthGetResponse
+from ...types.origin_tls_client_auth.origin_tls_client_auth_list_response import OriginTLSClientAuthListResponse
+from ...types.origin_tls_client_auth.origin_tls_client_auth_create_response import OriginTLSClientAuthCreateResponse
+from ...types.origin_tls_client_auth.origin_tls_client_auth_delete_response import OriginTLSClientAuthDeleteResponse
 
 __all__ = ["OriginTLSClientAuthResource", "AsyncOriginTLSClientAuthResource"]
 
@@ -84,7 +87,7 @@ class OriginTLSClientAuthResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneAuthenticatedOriginPull]:
+    ) -> Optional[OriginTLSClientAuthCreateResponse]:
         """
         Upload your own certificate you want Cloudflare to use for edge-to-origin
         communication to override the shared certificate. Please note that it is
@@ -123,9 +126,11 @@ class OriginTLSClientAuthResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ZoneAuthenticatedOriginPull]]._unwrapper,
+                post_parser=ResultWrapper[Optional[OriginTLSClientAuthCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneAuthenticatedOriginPull]], ResultWrapper[ZoneAuthenticatedOriginPull]),
+            cast_to=cast(
+                Type[Optional[OriginTLSClientAuthCreateResponse]], ResultWrapper[OriginTLSClientAuthCreateResponse]
+            ),
         )
 
     def list(
@@ -138,7 +143,7 @@ class OriginTLSClientAuthResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[ZoneAuthenticatedOriginPull]:
+    ) -> SyncSinglePage[OriginTLSClientAuthListResponse]:
         """
         List Certificates
 
@@ -157,11 +162,11 @@ class OriginTLSClientAuthResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/origin_tls_client_auth",
-            page=SyncSinglePage[ZoneAuthenticatedOriginPull],
+            page=SyncSinglePage[OriginTLSClientAuthListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=ZoneAuthenticatedOriginPull,
+            model=OriginTLSClientAuthListResponse,
         )
 
     def delete(
@@ -175,7 +180,7 @@ class OriginTLSClientAuthResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneAuthenticatedOriginPull]:
+    ) -> Optional[OriginTLSClientAuthDeleteResponse]:
         """
         Delete Certificate
 
@@ -203,9 +208,11 @@ class OriginTLSClientAuthResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ZoneAuthenticatedOriginPull]]._unwrapper,
+                post_parser=ResultWrapper[Optional[OriginTLSClientAuthDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneAuthenticatedOriginPull]], ResultWrapper[ZoneAuthenticatedOriginPull]),
+            cast_to=cast(
+                Type[Optional[OriginTLSClientAuthDeleteResponse]], ResultWrapper[OriginTLSClientAuthDeleteResponse]
+            ),
         )
 
     def get(
@@ -219,7 +226,7 @@ class OriginTLSClientAuthResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneAuthenticatedOriginPull]:
+    ) -> Optional[OriginTLSClientAuthGetResponse]:
         """
         Get Certificate Details
 
@@ -247,9 +254,9 @@ class OriginTLSClientAuthResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ZoneAuthenticatedOriginPull]]._unwrapper,
+                post_parser=ResultWrapper[Optional[OriginTLSClientAuthGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneAuthenticatedOriginPull]], ResultWrapper[ZoneAuthenticatedOriginPull]),
+            cast_to=cast(Type[Optional[OriginTLSClientAuthGetResponse]], ResultWrapper[OriginTLSClientAuthGetResponse]),
         )
 
 
@@ -293,7 +300,7 @@ class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneAuthenticatedOriginPull]:
+    ) -> Optional[OriginTLSClientAuthCreateResponse]:
         """
         Upload your own certificate you want Cloudflare to use for edge-to-origin
         communication to override the shared certificate. Please note that it is
@@ -332,9 +339,11 @@ class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ZoneAuthenticatedOriginPull]]._unwrapper,
+                post_parser=ResultWrapper[Optional[OriginTLSClientAuthCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneAuthenticatedOriginPull]], ResultWrapper[ZoneAuthenticatedOriginPull]),
+            cast_to=cast(
+                Type[Optional[OriginTLSClientAuthCreateResponse]], ResultWrapper[OriginTLSClientAuthCreateResponse]
+            ),
         )
 
     def list(
@@ -347,7 +356,7 @@ class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[ZoneAuthenticatedOriginPull, AsyncSinglePage[ZoneAuthenticatedOriginPull]]:
+    ) -> AsyncPaginator[OriginTLSClientAuthListResponse, AsyncSinglePage[OriginTLSClientAuthListResponse]]:
         """
         List Certificates
 
@@ -366,11 +375,11 @@ class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/origin_tls_client_auth",
-            page=AsyncSinglePage[ZoneAuthenticatedOriginPull],
+            page=AsyncSinglePage[OriginTLSClientAuthListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=ZoneAuthenticatedOriginPull,
+            model=OriginTLSClientAuthListResponse,
         )
 
     async def delete(
@@ -384,7 +393,7 @@ class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneAuthenticatedOriginPull]:
+    ) -> Optional[OriginTLSClientAuthDeleteResponse]:
         """
         Delete Certificate
 
@@ -412,9 +421,11 @@ class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ZoneAuthenticatedOriginPull]]._unwrapper,
+                post_parser=ResultWrapper[Optional[OriginTLSClientAuthDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneAuthenticatedOriginPull]], ResultWrapper[ZoneAuthenticatedOriginPull]),
+            cast_to=cast(
+                Type[Optional[OriginTLSClientAuthDeleteResponse]], ResultWrapper[OriginTLSClientAuthDeleteResponse]
+            ),
         )
 
     async def get(
@@ -428,7 +439,7 @@ class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneAuthenticatedOriginPull]:
+    ) -> Optional[OriginTLSClientAuthGetResponse]:
         """
         Get Certificate Details
 
@@ -456,9 +467,9 @@ class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ZoneAuthenticatedOriginPull]]._unwrapper,
+                post_parser=ResultWrapper[Optional[OriginTLSClientAuthGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneAuthenticatedOriginPull]], ResultWrapper[ZoneAuthenticatedOriginPull]),
+            cast_to=cast(Type[Optional[OriginTLSClientAuthGetResponse]], ResultWrapper[OriginTLSClientAuthGetResponse]),
         )
 
 

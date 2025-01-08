@@ -1,36 +1,339 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Union, Optional
+from datetime import datetime
 from typing_extensions import Literal, TypeAlias
 
+from . import (
+    a_record,
+    ds_record,
+    mx_record,
+    ns_record,
+    caa_record,
+    loc_record,
+    ptr_record,
+    srv_record,
+    txt_record,
+    uri_record,
+    aaaa_record,
+    cert_record,
+    svcb_record,
+    tlsa_record,
+    cname_record,
+    https_record,
+    naptr_record,
+    sshfp_record,
+    dnskey_record,
+    smimea_record,
+)
 from .ttl import TTL
-from .a_record import ARecord
 from ..._models import BaseModel
-from .ds_record import DSRecord
-from .mx_record import MXRecord
-from .ns_record import NSRecord
-from .caa_record import CAARecord
-from .loc_record import LOCRecord
-from .ptr_record import PTRRecord
-from .srv_record import SRVRecord
-from .txt_record import TXTRecord
-from .uri_record import URIRecord
-from .aaaa_record import AAAARecord
-from .cert_record import CERTRecord
 from .record_tags import RecordTags
-from .svcb_record import SVCBRecord
-from .tlsa_record import TLSARecord
-from .cname_record import CNAMERecord
-from .https_record import HTTPSRecord
-from .naptr_record import NAPTRRecord
-from .sshfp_record import SSHFPRecord
-from .dnskey_record import DNSKEYRecord
-from .smimea_record import SMIMEARecord
 
-__all__ = ["RecordResponse", "DNSRecordsOpenpgpkeyRecord", "DNSRecordsOpenpgpkeyRecordSettings"]
+__all__ = [
+    "RecordResponse",
+    "ARecord",
+    "AAAARecord",
+    "CAARecord",
+    "CERTRecord",
+    "CNAMERecord",
+    "DNSKEYRecord",
+    "DSRecord",
+    "HTTPSRecord",
+    "LOCRecord",
+    "MXRecord",
+    "NAPTRRecord",
+    "NSRecord",
+    "OpenpgpkeyRecord",
+    "OpenpgpkeyRecordSettings",
+    "PTRRecord",
+    "SMIMEARecord",
+    "SRVRecord",
+    "SSHFPRecord",
+    "SVCBRecord",
+    "TLSARecord",
+    "TXTRecord",
+    "URIRecord",
+]
 
 
-class DNSRecordsOpenpgpkeyRecordSettings(BaseModel):
+class ARecord(a_record.ARecord):
+    id: str
+    """Identifier"""
+
+    created_on: datetime
+    """When the record was created."""
+
+    meta: object
+    """Extra Cloudflare-specific information about the record."""
+
+    modified_on: datetime
+    """When the record was last modified."""
+
+    proxiable: bool
+    """Whether the record can be proxied by Cloudflare or not."""
+
+    comment_modified_on: Optional[datetime] = None
+    """When the record comment was last modified. Omitted if there is no comment."""
+
+    tags_modified_on: Optional[datetime] = None
+    """When the record tags were last modified. Omitted if there are no tags."""
+
+
+class AAAARecord(aaaa_record.AAAARecord):
+    id: str
+    """Identifier"""
+
+    created_on: datetime
+    """When the record was created."""
+
+    meta: object
+    """Extra Cloudflare-specific information about the record."""
+
+    modified_on: datetime
+    """When the record was last modified."""
+
+    proxiable: bool
+    """Whether the record can be proxied by Cloudflare or not."""
+
+    comment_modified_on: Optional[datetime] = None
+    """When the record comment was last modified. Omitted if there is no comment."""
+
+    tags_modified_on: Optional[datetime] = None
+    """When the record tags were last modified. Omitted if there are no tags."""
+
+
+class CAARecord(caa_record.CAARecord):
+    id: str
+    """Identifier"""
+
+    created_on: datetime
+    """When the record was created."""
+
+    meta: object
+    """Extra Cloudflare-specific information about the record."""
+
+    modified_on: datetime
+    """When the record was last modified."""
+
+    proxiable: bool
+    """Whether the record can be proxied by Cloudflare or not."""
+
+    comment_modified_on: Optional[datetime] = None
+    """When the record comment was last modified. Omitted if there is no comment."""
+
+    tags_modified_on: Optional[datetime] = None
+    """When the record tags were last modified. Omitted if there are no tags."""
+
+
+class CERTRecord(cert_record.CERTRecord):
+    id: str
+    """Identifier"""
+
+    created_on: datetime
+    """When the record was created."""
+
+    meta: object
+    """Extra Cloudflare-specific information about the record."""
+
+    modified_on: datetime
+    """When the record was last modified."""
+
+    proxiable: bool
+    """Whether the record can be proxied by Cloudflare or not."""
+
+    comment_modified_on: Optional[datetime] = None
+    """When the record comment was last modified. Omitted if there is no comment."""
+
+    tags_modified_on: Optional[datetime] = None
+    """When the record tags were last modified. Omitted if there are no tags."""
+
+
+class CNAMERecord(cname_record.CNAMERecord):
+    id: str
+    """Identifier"""
+
+    created_on: datetime
+    """When the record was created."""
+
+    meta: object
+    """Extra Cloudflare-specific information about the record."""
+
+    modified_on: datetime
+    """When the record was last modified."""
+
+    proxiable: bool
+    """Whether the record can be proxied by Cloudflare or not."""
+
+    comment_modified_on: Optional[datetime] = None
+    """When the record comment was last modified. Omitted if there is no comment."""
+
+    tags_modified_on: Optional[datetime] = None
+    """When the record tags were last modified. Omitted if there are no tags."""
+
+
+class DNSKEYRecord(dnskey_record.DNSKEYRecord):
+    id: str
+    """Identifier"""
+
+    created_on: datetime
+    """When the record was created."""
+
+    meta: object
+    """Extra Cloudflare-specific information about the record."""
+
+    modified_on: datetime
+    """When the record was last modified."""
+
+    proxiable: bool
+    """Whether the record can be proxied by Cloudflare or not."""
+
+    comment_modified_on: Optional[datetime] = None
+    """When the record comment was last modified. Omitted if there is no comment."""
+
+    tags_modified_on: Optional[datetime] = None
+    """When the record tags were last modified. Omitted if there are no tags."""
+
+
+class DSRecord(ds_record.DSRecord):
+    id: str
+    """Identifier"""
+
+    created_on: datetime
+    """When the record was created."""
+
+    meta: object
+    """Extra Cloudflare-specific information about the record."""
+
+    modified_on: datetime
+    """When the record was last modified."""
+
+    proxiable: bool
+    """Whether the record can be proxied by Cloudflare or not."""
+
+    comment_modified_on: Optional[datetime] = None
+    """When the record comment was last modified. Omitted if there is no comment."""
+
+    tags_modified_on: Optional[datetime] = None
+    """When the record tags were last modified. Omitted if there are no tags."""
+
+
+class HTTPSRecord(https_record.HTTPSRecord):
+    id: str
+    """Identifier"""
+
+    created_on: datetime
+    """When the record was created."""
+
+    meta: object
+    """Extra Cloudflare-specific information about the record."""
+
+    modified_on: datetime
+    """When the record was last modified."""
+
+    proxiable: bool
+    """Whether the record can be proxied by Cloudflare or not."""
+
+    comment_modified_on: Optional[datetime] = None
+    """When the record comment was last modified. Omitted if there is no comment."""
+
+    tags_modified_on: Optional[datetime] = None
+    """When the record tags were last modified. Omitted if there are no tags."""
+
+
+class LOCRecord(loc_record.LOCRecord):
+    id: str
+    """Identifier"""
+
+    created_on: datetime
+    """When the record was created."""
+
+    meta: object
+    """Extra Cloudflare-specific information about the record."""
+
+    modified_on: datetime
+    """When the record was last modified."""
+
+    proxiable: bool
+    """Whether the record can be proxied by Cloudflare or not."""
+
+    comment_modified_on: Optional[datetime] = None
+    """When the record comment was last modified. Omitted if there is no comment."""
+
+    tags_modified_on: Optional[datetime] = None
+    """When the record tags were last modified. Omitted if there are no tags."""
+
+
+class MXRecord(mx_record.MXRecord):
+    id: str
+    """Identifier"""
+
+    created_on: datetime
+    """When the record was created."""
+
+    meta: object
+    """Extra Cloudflare-specific information about the record."""
+
+    modified_on: datetime
+    """When the record was last modified."""
+
+    proxiable: bool
+    """Whether the record can be proxied by Cloudflare or not."""
+
+    comment_modified_on: Optional[datetime] = None
+    """When the record comment was last modified. Omitted if there is no comment."""
+
+    tags_modified_on: Optional[datetime] = None
+    """When the record tags were last modified. Omitted if there are no tags."""
+
+
+class NAPTRRecord(naptr_record.NAPTRRecord):
+    id: str
+    """Identifier"""
+
+    created_on: datetime
+    """When the record was created."""
+
+    meta: object
+    """Extra Cloudflare-specific information about the record."""
+
+    modified_on: datetime
+    """When the record was last modified."""
+
+    proxiable: bool
+    """Whether the record can be proxied by Cloudflare or not."""
+
+    comment_modified_on: Optional[datetime] = None
+    """When the record comment was last modified. Omitted if there is no comment."""
+
+    tags_modified_on: Optional[datetime] = None
+    """When the record tags were last modified. Omitted if there are no tags."""
+
+
+class NSRecord(ns_record.NSRecord):
+    id: str
+    """Identifier"""
+
+    created_on: datetime
+    """When the record was created."""
+
+    meta: object
+    """Extra Cloudflare-specific information about the record."""
+
+    modified_on: datetime
+    """When the record was last modified."""
+
+    proxiable: bool
+    """Whether the record can be proxied by Cloudflare or not."""
+
+    comment_modified_on: Optional[datetime] = None
+    """When the record comment was last modified. Omitted if there is no comment."""
+
+    tags_modified_on: Optional[datetime] = None
+    """When the record tags were last modified. Omitted if there are no tags."""
+
+
+class OpenpgpkeyRecordSettings(BaseModel):
     ipv4_only: Optional[bool] = None
     """
     When enabled, only A records will be generated, and AAAA records will not be
@@ -48,40 +351,245 @@ class DNSRecordsOpenpgpkeyRecordSettings(BaseModel):
     """
 
 
-class DNSRecordsOpenpgpkeyRecord(BaseModel):
-    comment: Optional[str] = None
+class OpenpgpkeyRecord(BaseModel):
+    id: str
+    """Identifier"""
+
+    comment: str
     """Comments or notes about the DNS record.
 
     This field has no effect on DNS responses.
     """
 
-    content: Optional[str] = None
+    content: str
     """A single Base64-encoded OpenPGP Transferable Public Key (RFC 4880 Section 11.1)"""
 
-    name: Optional[str] = None
+    created_on: datetime
+    """When the record was created."""
+
+    meta: object
+    """Extra Cloudflare-specific information about the record."""
+
+    modified_on: datetime
+    """When the record was last modified."""
+
+    name: str
     """DNS record name (or @ for the zone apex) in Punycode."""
 
-    proxied: Optional[bool] = None
+    proxiable: bool
+    """Whether the record can be proxied by Cloudflare or not."""
+
+    proxied: bool
     """
     Whether the record is receiving the performance and security benefits of
     Cloudflare.
     """
 
-    settings: Optional[DNSRecordsOpenpgpkeyRecordSettings] = None
+    settings: OpenpgpkeyRecordSettings
     """Settings for the DNS record."""
 
-    tags: Optional[List[RecordTags]] = None
+    tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
-    ttl: Optional[TTL] = None
+    ttl: TTL
     """Time To Live (TTL) of the DNS record in seconds.
 
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
     minimum reduced to 30 for Enterprise zones.
     """
 
-    type: Optional[Literal["OPENPGPKEY"]] = None
+    type: Literal["OPENPGPKEY"]
     """Record type."""
+
+    comment_modified_on: Optional[datetime] = None
+    """When the record comment was last modified. Omitted if there is no comment."""
+
+    tags_modified_on: Optional[datetime] = None
+    """When the record tags were last modified. Omitted if there are no tags."""
+
+
+class PTRRecord(ptr_record.PTRRecord):
+    id: str
+    """Identifier"""
+
+    created_on: datetime
+    """When the record was created."""
+
+    meta: object
+    """Extra Cloudflare-specific information about the record."""
+
+    modified_on: datetime
+    """When the record was last modified."""
+
+    proxiable: bool
+    """Whether the record can be proxied by Cloudflare or not."""
+
+    comment_modified_on: Optional[datetime] = None
+    """When the record comment was last modified. Omitted if there is no comment."""
+
+    tags_modified_on: Optional[datetime] = None
+    """When the record tags were last modified. Omitted if there are no tags."""
+
+
+class SMIMEARecord(smimea_record.SMIMEARecord):
+    id: str
+    """Identifier"""
+
+    created_on: datetime
+    """When the record was created."""
+
+    meta: object
+    """Extra Cloudflare-specific information about the record."""
+
+    modified_on: datetime
+    """When the record was last modified."""
+
+    proxiable: bool
+    """Whether the record can be proxied by Cloudflare or not."""
+
+    comment_modified_on: Optional[datetime] = None
+    """When the record comment was last modified. Omitted if there is no comment."""
+
+    tags_modified_on: Optional[datetime] = None
+    """When the record tags were last modified. Omitted if there are no tags."""
+
+
+class SRVRecord(srv_record.SRVRecord):
+    id: str
+    """Identifier"""
+
+    created_on: datetime
+    """When the record was created."""
+
+    meta: object
+    """Extra Cloudflare-specific information about the record."""
+
+    modified_on: datetime
+    """When the record was last modified."""
+
+    proxiable: bool
+    """Whether the record can be proxied by Cloudflare or not."""
+
+    comment_modified_on: Optional[datetime] = None
+    """When the record comment was last modified. Omitted if there is no comment."""
+
+    tags_modified_on: Optional[datetime] = None
+    """When the record tags were last modified. Omitted if there are no tags."""
+
+
+class SSHFPRecord(sshfp_record.SSHFPRecord):
+    id: str
+    """Identifier"""
+
+    created_on: datetime
+    """When the record was created."""
+
+    meta: object
+    """Extra Cloudflare-specific information about the record."""
+
+    modified_on: datetime
+    """When the record was last modified."""
+
+    proxiable: bool
+    """Whether the record can be proxied by Cloudflare or not."""
+
+    comment_modified_on: Optional[datetime] = None
+    """When the record comment was last modified. Omitted if there is no comment."""
+
+    tags_modified_on: Optional[datetime] = None
+    """When the record tags were last modified. Omitted if there are no tags."""
+
+
+class SVCBRecord(svcb_record.SVCBRecord):
+    id: str
+    """Identifier"""
+
+    created_on: datetime
+    """When the record was created."""
+
+    meta: object
+    """Extra Cloudflare-specific information about the record."""
+
+    modified_on: datetime
+    """When the record was last modified."""
+
+    proxiable: bool
+    """Whether the record can be proxied by Cloudflare or not."""
+
+    comment_modified_on: Optional[datetime] = None
+    """When the record comment was last modified. Omitted if there is no comment."""
+
+    tags_modified_on: Optional[datetime] = None
+    """When the record tags were last modified. Omitted if there are no tags."""
+
+
+class TLSARecord(tlsa_record.TLSARecord):
+    id: str
+    """Identifier"""
+
+    created_on: datetime
+    """When the record was created."""
+
+    meta: object
+    """Extra Cloudflare-specific information about the record."""
+
+    modified_on: datetime
+    """When the record was last modified."""
+
+    proxiable: bool
+    """Whether the record can be proxied by Cloudflare or not."""
+
+    comment_modified_on: Optional[datetime] = None
+    """When the record comment was last modified. Omitted if there is no comment."""
+
+    tags_modified_on: Optional[datetime] = None
+    """When the record tags were last modified. Omitted if there are no tags."""
+
+
+class TXTRecord(txt_record.TXTRecord):
+    id: str
+    """Identifier"""
+
+    created_on: datetime
+    """When the record was created."""
+
+    meta: object
+    """Extra Cloudflare-specific information about the record."""
+
+    modified_on: datetime
+    """When the record was last modified."""
+
+    proxiable: bool
+    """Whether the record can be proxied by Cloudflare or not."""
+
+    comment_modified_on: Optional[datetime] = None
+    """When the record comment was last modified. Omitted if there is no comment."""
+
+    tags_modified_on: Optional[datetime] = None
+    """When the record tags were last modified. Omitted if there are no tags."""
+
+
+class URIRecord(uri_record.URIRecord):
+    id: str
+    """Identifier"""
+
+    created_on: datetime
+    """When the record was created."""
+
+    meta: object
+    """Extra Cloudflare-specific information about the record."""
+
+    modified_on: datetime
+    """When the record was last modified."""
+
+    proxiable: bool
+    """Whether the record can be proxied by Cloudflare or not."""
+
+    comment_modified_on: Optional[datetime] = None
+    """When the record comment was last modified. Omitted if there is no comment."""
+
+    tags_modified_on: Optional[datetime] = None
+    """When the record tags were last modified. Omitted if there are no tags."""
 
 
 RecordResponse: TypeAlias = Union[
@@ -97,7 +605,7 @@ RecordResponse: TypeAlias = Union[
     MXRecord,
     NAPTRRecord,
     NSRecord,
-    DNSRecordsOpenpgpkeyRecord,
+    OpenpgpkeyRecord,
     PTRRecord,
     SMIMEARecord,
     SRVRecord,
