@@ -27,7 +27,7 @@ from .sshfp_record import SSHFPRecord
 from .dnskey_record import DNSKEYRecord
 from .smimea_record import SMIMEARecord
 
-__all__ = ["RecordGetResponse", "DNSRecordsOpenpgpkeyRecord", "DNSRecordsOpenpgpkeyRecordSettings"]
+__all__ = ["RecordResponse", "DNSRecordsOpenpgpkeyRecord", "DNSRecordsOpenpgpkeyRecordSettings"]
 
 
 class DNSRecordsOpenpgpkeyRecordSettings(BaseModel):
@@ -84,7 +84,7 @@ class DNSRecordsOpenpgpkeyRecord(BaseModel):
     """Record type."""
 
 
-RecordGetResponse: TypeAlias = Union[
+RecordResponse: TypeAlias = Union[
     ARecord,
     AAAARecord,
     CAARecord,
