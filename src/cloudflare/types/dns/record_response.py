@@ -44,8 +44,8 @@ __all__ = [
     "MXRecord",
     "NAPTRRecord",
     "NSRecord",
-    "OpenpgpkeyRecord",
-    "OpenpgpkeyRecordSettings",
+    "Openpgpkey",
+    "OpenpgpkeySettings",
     "PTRRecord",
     "SMIMEARecord",
     "SRVRecord",
@@ -333,7 +333,7 @@ class NSRecord(ns_record.NSRecord):
     """When the record tags were last modified. Omitted if there are no tags."""
 
 
-class OpenpgpkeyRecordSettings(BaseModel):
+class OpenpgpkeySettings(BaseModel):
     ipv4_only: Optional[bool] = None
     """
     When enabled, only A records will be generated, and AAAA records will not be
@@ -351,7 +351,7 @@ class OpenpgpkeyRecordSettings(BaseModel):
     """
 
 
-class OpenpgpkeyRecord(BaseModel):
+class Openpgpkey(BaseModel):
     id: str
     """Identifier"""
 
@@ -385,7 +385,7 @@ class OpenpgpkeyRecord(BaseModel):
     Cloudflare.
     """
 
-    settings: OpenpgpkeyRecordSettings
+    settings: OpenpgpkeySettings
     """Settings for the DNS record."""
 
     tags: List[RecordTags]
@@ -605,7 +605,7 @@ RecordResponse: TypeAlias = Union[
     MXRecord,
     NAPTRRecord,
     NSRecord,
-    OpenpgpkeyRecord,
+    Openpgpkey,
     PTRRecord,
     SMIMEARecord,
     SRVRecord,
