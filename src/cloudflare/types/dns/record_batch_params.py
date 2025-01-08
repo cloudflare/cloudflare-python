@@ -6,6 +6,8 @@ from typing import Iterable
 from typing_extensions import Required, TypedDict
 
 from .record_param import RecordParam
+from .batch_put_param import BatchPutParam
+from .batch_patch_param import BatchPatchParam
 
 __all__ = ["RecordBatchParams", "Delete"]
 
@@ -16,11 +18,11 @@ class RecordBatchParams(TypedDict, total=False):
 
     deletes: Iterable[Delete]
 
-    patches: Iterable[RecordParam]
+    patches: Iterable[BatchPatchParam]
 
     posts: Iterable[RecordParam]
 
-    puts: Iterable[RecordParam]
+    puts: Iterable[BatchPutParam]
 
 
 class Delete(TypedDict, total=False):

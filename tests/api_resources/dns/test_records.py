@@ -10,15 +10,11 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.dns import (
-    RecordGetResponse,
-    RecordEditResponse,
-    RecordListResponse,
+    RecordResponse,
     RecordScanResponse,
     RecordBatchResponse,
-    RecordCreateResponse,
     RecordDeleteResponse,
     RecordImportResponse,
-    RecordUpdateResponse,
 )
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 
@@ -34,7 +30,7 @@ class TestRecords:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -53,7 +49,7 @@ class TestRecords:
             ttl=3600,
             type="A",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -65,7 +61,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -77,7 +73,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -95,7 +91,7 @@ class TestRecords:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -114,7 +110,7 @@ class TestRecords:
             ttl=3600,
             type="AAAA",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -126,7 +122,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -138,7 +134,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -156,7 +152,7 @@ class TestRecords:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -179,7 +175,7 @@ class TestRecords:
             ttl=3600,
             type="CAA",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -191,7 +187,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -203,7 +199,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -221,7 +217,7 @@ class TestRecords:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -245,7 +241,7 @@ class TestRecords:
             ttl=3600,
             type="CERT",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -257,7 +253,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -269,7 +265,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -287,7 +283,7 @@ class TestRecords:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -307,7 +303,7 @@ class TestRecords:
             ttl=3600,
             type="CNAME",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -319,7 +315,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -331,7 +327,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -349,7 +345,7 @@ class TestRecords:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -373,7 +369,7 @@ class TestRecords:
             ttl=3600,
             type="DNSKEY",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -385,7 +381,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -397,7 +393,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -415,7 +411,7 @@ class TestRecords:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -439,7 +435,7 @@ class TestRecords:
             ttl=3600,
             type="DS",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -451,7 +447,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -463,7 +459,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -481,7 +477,7 @@ class TestRecords:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -504,7 +500,7 @@ class TestRecords:
             ttl=3600,
             type="HTTPS",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -516,7 +512,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -528,7 +524,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -546,7 +542,7 @@ class TestRecords:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -578,7 +574,7 @@ class TestRecords:
             ttl=3600,
             type="LOC",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -590,7 +586,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -602,7 +598,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -620,7 +616,7 @@ class TestRecords:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -640,7 +636,7 @@ class TestRecords:
             ttl=3600,
             type="MX",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -652,7 +648,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -664,7 +660,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -682,7 +678,7 @@ class TestRecords:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -708,7 +704,7 @@ class TestRecords:
             ttl=3600,
             type="NAPTR",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -720,7 +716,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -732,7 +728,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -750,7 +746,7 @@ class TestRecords:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -769,7 +765,7 @@ class TestRecords:
             ttl=3600,
             type="NS",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -781,7 +777,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -793,7 +789,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -811,7 +807,7 @@ class TestRecords:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -830,7 +826,7 @@ class TestRecords:
             ttl=3600,
             type="OPENPGPKEY",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -842,7 +838,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -854,7 +850,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -872,7 +868,7 @@ class TestRecords:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -891,7 +887,7 @@ class TestRecords:
             ttl=3600,
             type="PTR",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -903,7 +899,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -915,7 +911,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -933,7 +929,7 @@ class TestRecords:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -957,7 +953,7 @@ class TestRecords:
             ttl=3600,
             type="SMIMEA",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -969,7 +965,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -981,7 +977,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -999,7 +995,7 @@ class TestRecords:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1023,7 +1019,7 @@ class TestRecords:
             ttl=3600,
             type="SRV",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1035,7 +1031,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1047,7 +1043,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1065,7 +1061,7 @@ class TestRecords:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1088,7 +1084,7 @@ class TestRecords:
             ttl=3600,
             type="SSHFP",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1100,7 +1096,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1112,7 +1108,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1130,7 +1126,7 @@ class TestRecords:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1153,7 +1149,7 @@ class TestRecords:
             ttl=3600,
             type="SVCB",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1165,7 +1161,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1177,7 +1173,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1195,7 +1191,7 @@ class TestRecords:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1219,7 +1215,7 @@ class TestRecords:
             ttl=3600,
             type="TLSA",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1231,7 +1227,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1243,7 +1239,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1261,7 +1257,7 @@ class TestRecords:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1280,7 +1276,7 @@ class TestRecords:
             ttl=3600,
             type="TXT",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1292,7 +1288,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1304,7 +1300,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1322,7 +1318,7 @@ class TestRecords:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1345,7 +1341,7 @@ class TestRecords:
             ttl=3600,
             type="URI",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1357,7 +1353,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1369,7 +1365,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1388,7 +1384,7 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1408,7 +1404,7 @@ class TestRecords:
             ttl=3600,
             type="A",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1421,7 +1417,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1434,7 +1430,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1460,7 +1456,7 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1480,7 +1476,7 @@ class TestRecords:
             ttl=3600,
             type="AAAA",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1493,7 +1489,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1506,7 +1502,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1532,7 +1528,7 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1556,7 +1552,7 @@ class TestRecords:
             ttl=3600,
             type="CAA",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1569,7 +1565,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1582,7 +1578,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1608,7 +1604,7 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1633,7 +1629,7 @@ class TestRecords:
             ttl=3600,
             type="CERT",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1646,7 +1642,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1659,7 +1655,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1685,7 +1681,7 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1706,7 +1702,7 @@ class TestRecords:
             ttl=3600,
             type="CNAME",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1719,7 +1715,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1732,7 +1728,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1758,7 +1754,7 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1783,7 +1779,7 @@ class TestRecords:
             ttl=3600,
             type="DNSKEY",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1796,7 +1792,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1809,7 +1805,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1835,7 +1831,7 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1860,7 +1856,7 @@ class TestRecords:
             ttl=3600,
             type="DS",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1873,7 +1869,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1886,7 +1882,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1912,7 +1908,7 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1936,7 +1932,7 @@ class TestRecords:
             ttl=3600,
             type="HTTPS",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1949,7 +1945,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1962,7 +1958,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1988,7 +1984,7 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2021,7 +2017,7 @@ class TestRecords:
             ttl=3600,
             type="LOC",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2034,7 +2030,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2047,7 +2043,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2073,7 +2069,7 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2094,7 +2090,7 @@ class TestRecords:
             ttl=3600,
             type="MX",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2107,7 +2103,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2120,7 +2116,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2146,7 +2142,7 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2173,7 +2169,7 @@ class TestRecords:
             ttl=3600,
             type="NAPTR",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2186,7 +2182,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2199,7 +2195,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2225,7 +2221,7 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2245,7 +2241,7 @@ class TestRecords:
             ttl=3600,
             type="NS",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2258,7 +2254,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2271,7 +2267,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2297,7 +2293,7 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2317,7 +2313,7 @@ class TestRecords:
             ttl=3600,
             type="OPENPGPKEY",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2330,7 +2326,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2343,7 +2339,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2369,7 +2365,7 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2389,7 +2385,7 @@ class TestRecords:
             ttl=3600,
             type="PTR",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2402,7 +2398,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2415,7 +2411,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2441,7 +2437,7 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2466,7 +2462,7 @@ class TestRecords:
             ttl=3600,
             type="SMIMEA",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2479,7 +2475,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2492,7 +2488,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2518,7 +2514,7 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2543,7 +2539,7 @@ class TestRecords:
             ttl=3600,
             type="SRV",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2556,7 +2552,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2569,7 +2565,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2595,7 +2591,7 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2619,7 +2615,7 @@ class TestRecords:
             ttl=3600,
             type="SSHFP",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2632,7 +2628,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2645,7 +2641,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2671,7 +2667,7 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2695,7 +2691,7 @@ class TestRecords:
             ttl=3600,
             type="SVCB",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2708,7 +2704,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2721,7 +2717,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2747,7 +2743,7 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2772,7 +2768,7 @@ class TestRecords:
             ttl=3600,
             type="TLSA",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2785,7 +2781,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2798,7 +2794,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2824,7 +2820,7 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2844,7 +2840,7 @@ class TestRecords:
             ttl=3600,
             type="TXT",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2857,7 +2853,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2870,7 +2866,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2896,7 +2892,7 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2920,7 +2916,7 @@ class TestRecords:
             ttl=3600,
             type="URI",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2933,7 +2929,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2946,7 +2942,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2970,7 +2966,7 @@ class TestRecords:
         record = client.dns.records.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncV4PagePaginationArray[RecordListResponse], record, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[RecordResponse], record, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
@@ -3014,7 +3010,7 @@ class TestRecords:
             tag_match="any",
             type="A",
         )
-        assert_matches_type(SyncV4PagePaginationArray[RecordListResponse], record, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[RecordResponse], record, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -3025,7 +3021,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(SyncV4PagePaginationArray[RecordListResponse], record, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[RecordResponse], record, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -3036,7 +3032,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(SyncV4PagePaginationArray[RecordListResponse], record, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3198,7 +3194,7 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3218,7 +3214,7 @@ class TestRecords:
             ttl=3600,
             type="A",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3231,7 +3227,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3244,7 +3240,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3270,7 +3266,7 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3290,7 +3286,7 @@ class TestRecords:
             ttl=3600,
             type="AAAA",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3303,7 +3299,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3316,7 +3312,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3342,7 +3338,7 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3366,7 +3362,7 @@ class TestRecords:
             ttl=3600,
             type="CAA",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3379,7 +3375,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3392,7 +3388,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3418,7 +3414,7 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3443,7 +3439,7 @@ class TestRecords:
             ttl=3600,
             type="CERT",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3456,7 +3452,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3469,7 +3465,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3495,7 +3491,7 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3516,7 +3512,7 @@ class TestRecords:
             ttl=3600,
             type="CNAME",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3529,7 +3525,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3542,7 +3538,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3568,7 +3564,7 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3593,7 +3589,7 @@ class TestRecords:
             ttl=3600,
             type="DNSKEY",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3606,7 +3602,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3619,7 +3615,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3645,7 +3641,7 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3670,7 +3666,7 @@ class TestRecords:
             ttl=3600,
             type="DS",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3683,7 +3679,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3696,7 +3692,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3722,7 +3718,7 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3746,7 +3742,7 @@ class TestRecords:
             ttl=3600,
             type="HTTPS",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3759,7 +3755,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3772,7 +3768,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3798,7 +3794,7 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3831,7 +3827,7 @@ class TestRecords:
             ttl=3600,
             type="LOC",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3844,7 +3840,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3857,7 +3853,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3883,7 +3879,7 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3904,7 +3900,7 @@ class TestRecords:
             ttl=3600,
             type="MX",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3917,7 +3913,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3930,7 +3926,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3956,7 +3952,7 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3983,7 +3979,7 @@ class TestRecords:
             ttl=3600,
             type="NAPTR",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3996,7 +3992,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4009,7 +4005,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4035,7 +4031,7 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4055,7 +4051,7 @@ class TestRecords:
             ttl=3600,
             type="NS",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4068,7 +4064,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4081,7 +4077,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4107,7 +4103,7 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4127,7 +4123,7 @@ class TestRecords:
             ttl=3600,
             type="OPENPGPKEY",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4140,7 +4136,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4153,7 +4149,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4179,7 +4175,7 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4199,7 +4195,7 @@ class TestRecords:
             ttl=3600,
             type="PTR",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4212,7 +4208,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4225,7 +4221,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4251,7 +4247,7 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4276,7 +4272,7 @@ class TestRecords:
             ttl=3600,
             type="SMIMEA",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4289,7 +4285,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4302,7 +4298,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4328,7 +4324,7 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4353,7 +4349,7 @@ class TestRecords:
             ttl=3600,
             type="SRV",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4366,7 +4362,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4379,7 +4375,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4405,7 +4401,7 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4429,7 +4425,7 @@ class TestRecords:
             ttl=3600,
             type="SSHFP",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4442,7 +4438,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4455,7 +4451,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4481,7 +4477,7 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4505,7 +4501,7 @@ class TestRecords:
             ttl=3600,
             type="SVCB",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4518,7 +4514,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4531,7 +4527,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4557,7 +4553,7 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4582,7 +4578,7 @@ class TestRecords:
             ttl=3600,
             type="TLSA",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4595,7 +4591,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4608,7 +4604,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4634,7 +4630,7 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4654,7 +4650,7 @@ class TestRecords:
             ttl=3600,
             type="TXT",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4667,7 +4663,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4680,7 +4676,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4706,7 +4702,7 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4730,7 +4726,7 @@ class TestRecords:
             ttl=3600,
             type="URI",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4743,7 +4739,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4756,7 +4752,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4819,7 +4815,7 @@ class TestRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordGetResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -4831,7 +4827,7 @@ class TestRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = response.parse()
-        assert_matches_type(Optional[RecordGetResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -4843,7 +4839,7 @@ class TestRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = response.parse()
-            assert_matches_type(Optional[RecordGetResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4969,7 +4965,7 @@ class TestAsyncRecords:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4988,7 +4984,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="A",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5000,7 +4996,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5012,7 +5008,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5030,7 +5026,7 @@ class TestAsyncRecords:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5049,7 +5045,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="AAAA",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5061,7 +5057,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5073,7 +5069,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5091,7 +5087,7 @@ class TestAsyncRecords:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5114,7 +5110,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="CAA",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5126,7 +5122,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5138,7 +5134,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5156,7 +5152,7 @@ class TestAsyncRecords:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5180,7 +5176,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="CERT",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5192,7 +5188,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5204,7 +5200,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5222,7 +5218,7 @@ class TestAsyncRecords:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5242,7 +5238,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="CNAME",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5254,7 +5250,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5266,7 +5262,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5284,7 +5280,7 @@ class TestAsyncRecords:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5308,7 +5304,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="DNSKEY",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5320,7 +5316,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5332,7 +5328,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5350,7 +5346,7 @@ class TestAsyncRecords:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5374,7 +5370,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="DS",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5386,7 +5382,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5398,7 +5394,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5416,7 +5412,7 @@ class TestAsyncRecords:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5439,7 +5435,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="HTTPS",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5451,7 +5447,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5463,7 +5459,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5481,7 +5477,7 @@ class TestAsyncRecords:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5513,7 +5509,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="LOC",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5525,7 +5521,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5537,7 +5533,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5555,7 +5551,7 @@ class TestAsyncRecords:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5575,7 +5571,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="MX",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5587,7 +5583,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5599,7 +5595,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5617,7 +5613,7 @@ class TestAsyncRecords:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5643,7 +5639,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="NAPTR",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5655,7 +5651,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5667,7 +5663,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5685,7 +5681,7 @@ class TestAsyncRecords:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5704,7 +5700,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="NS",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5716,7 +5712,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5728,7 +5724,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5746,7 +5742,7 @@ class TestAsyncRecords:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5765,7 +5761,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="OPENPGPKEY",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5777,7 +5773,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5789,7 +5785,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5807,7 +5803,7 @@ class TestAsyncRecords:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5826,7 +5822,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="PTR",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5838,7 +5834,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5850,7 +5846,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5868,7 +5864,7 @@ class TestAsyncRecords:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5892,7 +5888,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="SMIMEA",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5904,7 +5900,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5916,7 +5912,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5934,7 +5930,7 @@ class TestAsyncRecords:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5958,7 +5954,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="SRV",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5970,7 +5966,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5982,7 +5978,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -6000,7 +5996,7 @@ class TestAsyncRecords:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6023,7 +6019,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="SSHFP",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6035,7 +6031,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6047,7 +6043,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -6065,7 +6061,7 @@ class TestAsyncRecords:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6088,7 +6084,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="SVCB",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6100,7 +6096,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6112,7 +6108,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -6130,7 +6126,7 @@ class TestAsyncRecords:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6154,7 +6150,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="TLSA",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6166,7 +6162,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6178,7 +6174,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -6196,7 +6192,7 @@ class TestAsyncRecords:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6215,7 +6211,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="TXT",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6227,7 +6223,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6239,7 +6235,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -6257,7 +6253,7 @@ class TestAsyncRecords:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6280,7 +6276,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="URI",
         )
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6292,7 +6288,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6304,7 +6300,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordCreateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -6323,7 +6319,7 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6343,7 +6339,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="A",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6356,7 +6352,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6369,7 +6365,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -6395,7 +6391,7 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6415,7 +6411,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="AAAA",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6428,7 +6424,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6441,7 +6437,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -6467,7 +6463,7 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6491,7 +6487,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="CAA",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6504,7 +6500,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6517,7 +6513,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -6543,7 +6539,7 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6568,7 +6564,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="CERT",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6581,7 +6577,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6594,7 +6590,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -6620,7 +6616,7 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6641,7 +6637,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="CNAME",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6654,7 +6650,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6667,7 +6663,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -6693,7 +6689,7 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6718,7 +6714,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="DNSKEY",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6731,7 +6727,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6744,7 +6740,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -6770,7 +6766,7 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6795,7 +6791,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="DS",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6808,7 +6804,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6821,7 +6817,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -6847,7 +6843,7 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6871,7 +6867,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="HTTPS",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6884,7 +6880,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6897,7 +6893,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -6923,7 +6919,7 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6956,7 +6952,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="LOC",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6969,7 +6965,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -6982,7 +6978,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -7008,7 +7004,7 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7029,7 +7025,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="MX",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7042,7 +7038,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7055,7 +7051,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -7081,7 +7077,7 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7108,7 +7104,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="NAPTR",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7121,7 +7117,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7134,7 +7130,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -7160,7 +7156,7 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7180,7 +7176,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="NS",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7193,7 +7189,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7206,7 +7202,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -7232,7 +7228,7 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7252,7 +7248,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="OPENPGPKEY",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7265,7 +7261,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7278,7 +7274,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -7304,7 +7300,7 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7324,7 +7320,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="PTR",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7337,7 +7333,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7350,7 +7346,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -7376,7 +7372,7 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7401,7 +7397,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="SMIMEA",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7414,7 +7410,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7427,7 +7423,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -7453,7 +7449,7 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7478,7 +7474,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="SRV",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7491,7 +7487,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7504,7 +7500,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -7530,7 +7526,7 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7554,7 +7550,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="SSHFP",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7567,7 +7563,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7580,7 +7576,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -7606,7 +7602,7 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7630,7 +7626,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="SVCB",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7643,7 +7639,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7656,7 +7652,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -7682,7 +7678,7 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7707,7 +7703,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="TLSA",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7720,7 +7716,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7733,7 +7729,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -7759,7 +7755,7 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7779,7 +7775,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="TXT",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7792,7 +7788,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7805,7 +7801,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -7831,7 +7827,7 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7855,7 +7851,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="URI",
         )
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7868,7 +7864,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -7881,7 +7877,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordUpdateResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -7905,7 +7901,7 @@ class TestAsyncRecords:
         record = await async_client.dns.records.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[RecordListResponse], record, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[RecordResponse], record, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -7949,7 +7945,7 @@ class TestAsyncRecords:
             tag_match="any",
             type="A",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[RecordListResponse], record, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[RecordResponse], record, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -7960,7 +7956,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(AsyncV4PagePaginationArray[RecordListResponse], record, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[RecordResponse], record, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -7971,7 +7967,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(AsyncV4PagePaginationArray[RecordListResponse], record, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -8133,7 +8129,7 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8153,7 +8149,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="A",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8166,7 +8162,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8179,7 +8175,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -8205,7 +8201,7 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8225,7 +8221,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="AAAA",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8238,7 +8234,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8251,7 +8247,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -8277,7 +8273,7 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8301,7 +8297,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="CAA",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8314,7 +8310,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8327,7 +8323,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -8353,7 +8349,7 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8378,7 +8374,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="CERT",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8391,7 +8387,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8404,7 +8400,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -8430,7 +8426,7 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8451,7 +8447,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="CNAME",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8464,7 +8460,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8477,7 +8473,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -8503,7 +8499,7 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8528,7 +8524,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="DNSKEY",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8541,7 +8537,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8554,7 +8550,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -8580,7 +8576,7 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8605,7 +8601,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="DS",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8618,7 +8614,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8631,7 +8627,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -8657,7 +8653,7 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8681,7 +8677,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="HTTPS",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8694,7 +8690,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8707,7 +8703,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -8733,7 +8729,7 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8766,7 +8762,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="LOC",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8779,7 +8775,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8792,7 +8788,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -8818,7 +8814,7 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8839,7 +8835,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="MX",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8852,7 +8848,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8865,7 +8861,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -8891,7 +8887,7 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8918,7 +8914,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="NAPTR",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8931,7 +8927,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8944,7 +8940,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -8970,7 +8966,7 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -8990,7 +8986,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="NS",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9003,7 +8999,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9016,7 +9012,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -9042,7 +9038,7 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9062,7 +9058,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="OPENPGPKEY",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9075,7 +9071,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9088,7 +9084,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -9114,7 +9110,7 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9134,7 +9130,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="PTR",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9147,7 +9143,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9160,7 +9156,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -9186,7 +9182,7 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9211,7 +9207,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="SMIMEA",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9224,7 +9220,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9237,7 +9233,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -9263,7 +9259,7 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9288,7 +9284,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="SRV",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9301,7 +9297,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9314,7 +9310,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -9340,7 +9336,7 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9364,7 +9360,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="SSHFP",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9377,7 +9373,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9390,7 +9386,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -9416,7 +9412,7 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9440,7 +9436,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="SVCB",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9453,7 +9449,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9466,7 +9462,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -9492,7 +9488,7 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9517,7 +9513,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="TLSA",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9530,7 +9526,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9543,7 +9539,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -9569,7 +9565,7 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9589,7 +9585,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="TXT",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9602,7 +9598,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9615,7 +9611,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -9641,7 +9637,7 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9665,7 +9661,7 @@ class TestAsyncRecords:
             ttl=3600,
             type="URI",
         )
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9678,7 +9674,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -9691,7 +9687,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordEditResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -9754,7 +9750,7 @@ class TestAsyncRecords:
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RecordGetResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -9766,7 +9762,7 @@ class TestAsyncRecords:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         record = await response.parse()
-        assert_matches_type(Optional[RecordGetResponse], record, path=["response"])
+        assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -9778,7 +9774,7 @@ class TestAsyncRecords:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             record = await response.parse()
-            assert_matches_type(Optional[RecordGetResponse], record, path=["response"])
+            assert_matches_type(Optional[RecordResponse], record, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
