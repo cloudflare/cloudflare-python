@@ -57,6 +57,7 @@ class ConsumersResource(SyncAPIResource):
         queue_id: str,
         *,
         account_id: str,
+        dead_letter_queue: str | NotGiven = NOT_GIVEN,
         script_name: str | NotGiven = NOT_GIVEN,
         settings: consumer_create_params.MqWorkerConsumerSettings | NotGiven = NOT_GIVEN,
         type: Literal["worker"] | NotGiven = NOT_GIVEN,
@@ -93,6 +94,7 @@ class ConsumersResource(SyncAPIResource):
         queue_id: str,
         *,
         account_id: str,
+        dead_letter_queue: str | NotGiven = NOT_GIVEN,
         settings: consumer_create_params.MqHTTPConsumerSettings | NotGiven = NOT_GIVEN,
         type: Literal["http_pull"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -126,6 +128,7 @@ class ConsumersResource(SyncAPIResource):
         queue_id: str,
         *,
         account_id: str,
+        dead_letter_queue: str | NotGiven = NOT_GIVEN,
         script_name: str | NotGiven = NOT_GIVEN,
         settings: consumer_create_params.MqWorkerConsumerSettings
         | consumer_create_params.MqHTTPConsumerSettings
@@ -148,6 +151,7 @@ class ConsumersResource(SyncAPIResource):
                 f"/accounts/{account_id}/queues/{queue_id}/consumers",
                 body=maybe_transform(
                     {
+                        "dead_letter_queue": dead_letter_queue,
                         "script_name": script_name,
                         "settings": settings,
                         "type": type,
@@ -174,6 +178,7 @@ class ConsumersResource(SyncAPIResource):
         *,
         account_id: str,
         queue_id: str,
+        dead_letter_queue: str | NotGiven = NOT_GIVEN,
         script_name: str | NotGiven = NOT_GIVEN,
         settings: consumer_update_params.MqWorkerConsumerSettings | NotGiven = NOT_GIVEN,
         type: Literal["worker"] | NotGiven = NOT_GIVEN,
@@ -213,6 +218,7 @@ class ConsumersResource(SyncAPIResource):
         *,
         account_id: str,
         queue_id: str,
+        dead_letter_queue: str | NotGiven = NOT_GIVEN,
         settings: consumer_update_params.MqHTTPConsumerSettings | NotGiven = NOT_GIVEN,
         type: Literal["http_pull"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -249,6 +255,7 @@ class ConsumersResource(SyncAPIResource):
         *,
         account_id: str,
         queue_id: str,
+        dead_letter_queue: str | NotGiven = NOT_GIVEN,
         script_name: str | NotGiven = NOT_GIVEN,
         settings: consumer_update_params.MqWorkerConsumerSettings
         | consumer_update_params.MqHTTPConsumerSettings
@@ -273,6 +280,7 @@ class ConsumersResource(SyncAPIResource):
                 f"/accounts/{account_id}/queues/{queue_id}/consumers/{consumer_id}",
                 body=maybe_transform(
                     {
+                        "dead_letter_queue": dead_letter_queue,
                         "script_name": script_name,
                         "settings": settings,
                         "type": type,
@@ -408,6 +416,7 @@ class AsyncConsumersResource(AsyncAPIResource):
         queue_id: str,
         *,
         account_id: str,
+        dead_letter_queue: str | NotGiven = NOT_GIVEN,
         script_name: str | NotGiven = NOT_GIVEN,
         settings: consumer_create_params.MqWorkerConsumerSettings | NotGiven = NOT_GIVEN,
         type: Literal["worker"] | NotGiven = NOT_GIVEN,
@@ -444,6 +453,7 @@ class AsyncConsumersResource(AsyncAPIResource):
         queue_id: str,
         *,
         account_id: str,
+        dead_letter_queue: str | NotGiven = NOT_GIVEN,
         settings: consumer_create_params.MqHTTPConsumerSettings | NotGiven = NOT_GIVEN,
         type: Literal["http_pull"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -477,6 +487,7 @@ class AsyncConsumersResource(AsyncAPIResource):
         queue_id: str,
         *,
         account_id: str,
+        dead_letter_queue: str | NotGiven = NOT_GIVEN,
         script_name: str | NotGiven = NOT_GIVEN,
         settings: consumer_create_params.MqWorkerConsumerSettings
         | consumer_create_params.MqHTTPConsumerSettings
@@ -499,6 +510,7 @@ class AsyncConsumersResource(AsyncAPIResource):
                 f"/accounts/{account_id}/queues/{queue_id}/consumers",
                 body=await async_maybe_transform(
                     {
+                        "dead_letter_queue": dead_letter_queue,
                         "script_name": script_name,
                         "settings": settings,
                         "type": type,
@@ -525,6 +537,7 @@ class AsyncConsumersResource(AsyncAPIResource):
         *,
         account_id: str,
         queue_id: str,
+        dead_letter_queue: str | NotGiven = NOT_GIVEN,
         script_name: str | NotGiven = NOT_GIVEN,
         settings: consumer_update_params.MqWorkerConsumerSettings | NotGiven = NOT_GIVEN,
         type: Literal["worker"] | NotGiven = NOT_GIVEN,
@@ -564,6 +577,7 @@ class AsyncConsumersResource(AsyncAPIResource):
         *,
         account_id: str,
         queue_id: str,
+        dead_letter_queue: str | NotGiven = NOT_GIVEN,
         settings: consumer_update_params.MqHTTPConsumerSettings | NotGiven = NOT_GIVEN,
         type: Literal["http_pull"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -600,6 +614,7 @@ class AsyncConsumersResource(AsyncAPIResource):
         *,
         account_id: str,
         queue_id: str,
+        dead_letter_queue: str | NotGiven = NOT_GIVEN,
         script_name: str | NotGiven = NOT_GIVEN,
         settings: consumer_update_params.MqWorkerConsumerSettings
         | consumer_update_params.MqHTTPConsumerSettings
@@ -624,6 +639,7 @@ class AsyncConsumersResource(AsyncAPIResource):
                 f"/accounts/{account_id}/queues/{queue_id}/consumers/{consumer_id}",
                 body=await async_maybe_transform(
                     {
+                        "dead_letter_queue": dead_letter_queue,
                         "script_name": script_name,
                         "settings": settings,
                         "type": type,

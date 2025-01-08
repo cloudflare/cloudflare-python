@@ -23,12 +23,14 @@ __all__ = [
     "ApplicationCreateResponse",
     "SelfHostedApplication",
     "SelfHostedApplicationDestination",
+    "SelfHostedApplicationPolicy",
     "SelfHostedApplicationSCIMConfig",
     "SelfHostedApplicationSCIMConfigAuthentication",
     "SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
     "SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication",
     "SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
     "SaaSApplication",
+    "SaaSApplicationPolicy",
     "SaaSApplicationSaaSApp",
     "SaaSApplicationSCIMConfig",
     "SaaSApplicationSCIMConfigAuthentication",
@@ -37,6 +39,7 @@ __all__ = [
     "SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
     "BrowserSSHApplication",
     "BrowserSSHApplicationDestination",
+    "BrowserSSHApplicationPolicy",
     "BrowserSSHApplicationSCIMConfig",
     "BrowserSSHApplicationSCIMConfigAuthentication",
     "BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
@@ -44,6 +47,7 @@ __all__ = [
     "BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
     "BrowserVNCApplication",
     "BrowserVNCApplicationDestination",
+    "BrowserVNCApplicationPolicy",
     "BrowserVNCApplicationSCIMConfig",
     "BrowserVNCApplicationSCIMConfigAuthentication",
     "BrowserVNCApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
@@ -52,6 +56,7 @@ __all__ = [
     "AppLauncherApplication",
     "AppLauncherApplicationFooterLink",
     "AppLauncherApplicationLandingPageDesign",
+    "AppLauncherApplicationPolicy",
     "AppLauncherApplicationSCIMConfig",
     "AppLauncherApplicationSCIMConfigAuthentication",
     "AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
@@ -60,6 +65,7 @@ __all__ = [
     "DeviceEnrollmentPermissionsApplication",
     "DeviceEnrollmentPermissionsApplicationFooterLink",
     "DeviceEnrollmentPermissionsApplicationLandingPageDesign",
+    "DeviceEnrollmentPermissionsApplicationPolicy",
     "DeviceEnrollmentPermissionsApplicationSCIMConfig",
     "DeviceEnrollmentPermissionsApplicationSCIMConfigAuthentication",
     "DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
@@ -68,6 +74,7 @@ __all__ = [
     "BrowserIsolationPermissionsApplication",
     "BrowserIsolationPermissionsApplicationFooterLink",
     "BrowserIsolationPermissionsApplicationLandingPageDesign",
+    "BrowserIsolationPermissionsApplicationPolicy",
     "BrowserIsolationPermissionsApplicationSCIMConfig",
     "BrowserIsolationPermissionsApplicationSCIMConfigAuthentication",
     "BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
@@ -82,6 +89,8 @@ __all__ = [
     "InfrastructureApplication",
     "InfrastructureApplicationTargetCriterion",
     "InfrastructureApplicationPolicy",
+    "InfrastructureApplicationPolicyConnectionRules",
+    "InfrastructureApplicationPolicyConnectionRulesSSH",
     "InfrastructureApplicationSCIMConfig",
     "InfrastructureApplicationSCIMConfigAuthentication",
     "InfrastructureApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
@@ -101,6 +110,14 @@ class SelfHostedApplicationDestination(BaseModel):
     Private destinations are an early access feature and gated behind a feature
     flag. Private destinations support private IPv4, IPv6, and Server Name
     Indications (SNI) with optional port ranges.
+    """
+
+
+class SelfHostedApplicationPolicy(ApplicationPolicy):
+    precedence: Optional[int] = None
+    """The order of execution for this policy.
+
+    Must be unique for each policy within an app.
     """
 
 
@@ -293,7 +310,7 @@ class SelfHostedApplication(BaseModel):
     If disabled, the JWT will scope to the hostname by default
     """
 
-    policies: Optional[List[ApplicationPolicy]] = None
+    policies: Optional[List[SelfHostedApplicationPolicy]] = None
 
     same_site_cookie_attribute: Optional[str] = None
     """
@@ -335,6 +352,14 @@ class SelfHostedApplication(BaseModel):
     """
 
     updated_at: Optional[datetime] = None
+
+
+class SaaSApplicationPolicy(ApplicationPolicy):
+    precedence: Optional[int] = None
+    """The order of execution for this policy.
+
+    Must be unique for each policy within an app.
+    """
 
 
 SaaSApplicationSaaSApp: TypeAlias = Union[SAMLSaaSApp, OIDCSaaSApp]
@@ -460,7 +485,7 @@ class SaaSApplication(BaseModel):
     name: Optional[str] = None
     """The name of the application."""
 
-    policies: Optional[List[ApplicationPolicy]] = None
+    policies: Optional[List[SaaSApplicationPolicy]] = None
 
     saas_app: Optional[SaaSApplicationSaaSApp] = None
 
@@ -493,6 +518,14 @@ class BrowserSSHApplicationDestination(BaseModel):
     Private destinations are an early access feature and gated behind a feature
     flag. Private destinations support private IPv4, IPv6, and Server Name
     Indications (SNI) with optional port ranges.
+    """
+
+
+class BrowserSSHApplicationPolicy(ApplicationPolicy):
+    precedence: Optional[int] = None
+    """The order of execution for this policy.
+
+    Must be unique for each policy within an app.
     """
 
 
@@ -685,7 +718,7 @@ class BrowserSSHApplication(BaseModel):
     If disabled, the JWT will scope to the hostname by default
     """
 
-    policies: Optional[List[ApplicationPolicy]] = None
+    policies: Optional[List[BrowserSSHApplicationPolicy]] = None
 
     same_site_cookie_attribute: Optional[str] = None
     """
@@ -740,6 +773,14 @@ class BrowserVNCApplicationDestination(BaseModel):
     Private destinations are an early access feature and gated behind a feature
     flag. Private destinations support private IPv4, IPv6, and Server Name
     Indications (SNI) with optional port ranges.
+    """
+
+
+class BrowserVNCApplicationPolicy(ApplicationPolicy):
+    precedence: Optional[int] = None
+    """The order of execution for this policy.
+
+    Must be unique for each policy within an app.
     """
 
 
@@ -932,7 +973,7 @@ class BrowserVNCApplication(BaseModel):
     If disabled, the JWT will scope to the hostname by default
     """
 
-    policies: Optional[List[ApplicationPolicy]] = None
+    policies: Optional[List[BrowserVNCApplicationPolicy]] = None
 
     same_site_cookie_attribute: Optional[str] = None
     """
@@ -999,6 +1040,14 @@ class AppLauncherApplicationLandingPageDesign(BaseModel):
 
     title: Optional[str] = None
     """The title shown on the landing page."""
+
+
+class AppLauncherApplicationPolicy(ApplicationPolicy):
+    precedence: Optional[int] = None
+    """The order of execution for this policy.
+
+    Must be unique for each policy within an app.
+    """
 
 
 class AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(BaseModel):
@@ -1136,7 +1185,7 @@ class AppLauncherApplication(BaseModel):
     name: Optional[str] = None
     """The name of the application."""
 
-    policies: Optional[List[ApplicationPolicy]] = None
+    policies: Optional[List[AppLauncherApplicationPolicy]] = None
 
     scim_config: Optional[AppLauncherApplicationSCIMConfig] = None
     """Configuration for provisioning to this application via SCIM.
@@ -1180,6 +1229,14 @@ class DeviceEnrollmentPermissionsApplicationLandingPageDesign(BaseModel):
 
     title: Optional[str] = None
     """The title shown on the landing page."""
+
+
+class DeviceEnrollmentPermissionsApplicationPolicy(ApplicationPolicy):
+    precedence: Optional[int] = None
+    """The order of execution for this policy.
+
+    Must be unique for each policy within an app.
+    """
 
 
 class DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
@@ -1319,7 +1376,7 @@ class DeviceEnrollmentPermissionsApplication(BaseModel):
     name: Optional[str] = None
     """The name of the application."""
 
-    policies: Optional[List[ApplicationPolicy]] = None
+    policies: Optional[List[DeviceEnrollmentPermissionsApplicationPolicy]] = None
 
     scim_config: Optional[DeviceEnrollmentPermissionsApplicationSCIMConfig] = None
     """Configuration for provisioning to this application via SCIM.
@@ -1363,6 +1420,14 @@ class BrowserIsolationPermissionsApplicationLandingPageDesign(BaseModel):
 
     title: Optional[str] = None
     """The title shown on the landing page."""
+
+
+class BrowserIsolationPermissionsApplicationPolicy(ApplicationPolicy):
+    precedence: Optional[int] = None
+    """The order of execution for this policy.
+
+    Must be unique for each policy within an app.
+    """
 
 
 class BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
@@ -1502,7 +1567,7 @@ class BrowserIsolationPermissionsApplication(BaseModel):
     name: Optional[str] = None
     """The name of the application."""
 
-    policies: Optional[List[ApplicationPolicy]] = None
+    policies: Optional[List[BrowserIsolationPermissionsApplicationPolicy]] = None
 
     scim_config: Optional[BrowserIsolationPermissionsApplicationSCIMConfig] = None
     """Configuration for provisioning to this application via SCIM.
@@ -1661,9 +1726,31 @@ class InfrastructureApplicationTargetCriterion(BaseModel):
     """Contains a map of target attribute keys to target attribute values."""
 
 
+class InfrastructureApplicationPolicyConnectionRulesSSH(BaseModel):
+    usernames: List[str]
+    """Contains the Unix usernames that may be used when connecting over SSH."""
+
+    allow_email_alias: Optional[bool] = None
+    """Enables using Identity Provider email alias as SSH username."""
+
+
+class InfrastructureApplicationPolicyConnectionRules(BaseModel):
+    ssh: Optional[InfrastructureApplicationPolicyConnectionRulesSSH] = None
+    """
+    The SSH-specific rules that define how users may connect to the targets secured
+    by your application.
+    """
+
+
 class InfrastructureApplicationPolicy(BaseModel):
     id: Optional[str] = None
     """The UUID of the policy"""
+
+    connection_rules: Optional[InfrastructureApplicationPolicyConnectionRules] = None
+    """
+    The rules that define how users may connect to the targets secured by your
+    application.
+    """
 
     created_at: Optional[datetime] = None
 

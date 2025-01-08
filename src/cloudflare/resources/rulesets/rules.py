@@ -67,6 +67,7 @@ class RulesResource(SyncAPIResource):
         exposed_credential_check: rule_create_params.BlockRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_create_params.BlockRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.BlockRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -104,6 +105,8 @@ class RulesResource(SyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -130,10 +133,11 @@ class RulesResource(SyncAPIResource):
         action_parameters: object | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.RulesetsChallengeRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
+        exposed_credential_check: rule_create_params.ChallengeRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.RulesetsChallengeRuleRatelimit | NotGiven = NOT_GIVEN,
+        position: rule_create_params.ChallengeRulePosition | NotGiven = NOT_GIVEN,
+        ratelimit: rule_create_params.ChallengeRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -169,6 +173,8 @@ class RulesResource(SyncAPIResource):
           expression: The expression defining which traffic will match the rule.
 
           logging: An object configuring the rule's logging behavior.
+
+          position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
 
@@ -193,13 +199,14 @@ class RulesResource(SyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["compress_response"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.CompressResponseRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_create_params.CompressionRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.CompressResponseRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
+        exposed_credential_check: rule_create_params.CompressionRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.CompressResponseRuleRatelimit | NotGiven = NOT_GIVEN,
+        position: rule_create_params.CompressionRulePosition | NotGiven = NOT_GIVEN,
+        ratelimit: rule_create_params.CompressionRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -235,6 +242,8 @@ class RulesResource(SyncAPIResource):
           expression: The expression defining which traffic will match the rule.
 
           logging: An object configuring the rule's logging behavior.
+
+          position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
 
@@ -265,6 +274,7 @@ class RulesResource(SyncAPIResource):
         exposed_credential_check: rule_create_params.ExecuteRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_create_params.ExecuteRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.ExecuteRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -302,6 +312,8 @@ class RulesResource(SyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -328,11 +340,12 @@ class RulesResource(SyncAPIResource):
         action_parameters: object | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.RulesetsJSChallengeRuleExposedCredentialCheck
+        exposed_credential_check: rule_create_params.JavascriptChallengeRuleExposedCredentialCheck
         | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.RulesetsJSChallengeRuleRatelimit | NotGiven = NOT_GIVEN,
+        position: rule_create_params.JavascriptChallengeRulePosition | NotGiven = NOT_GIVEN,
+        ratelimit: rule_create_params.JavascriptChallengeRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -369,6 +382,8 @@ class RulesResource(SyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -398,6 +413,7 @@ class RulesResource(SyncAPIResource):
         exposed_credential_check: rule_create_params.LogRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_create_params.LogRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.LogRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -435,6 +451,8 @@ class RulesResource(SyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -464,6 +482,7 @@ class RulesResource(SyncAPIResource):
         exposed_credential_check: rule_create_params.ManagedChallengeRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_create_params.ManagedChallengeRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.ManagedChallengeRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -501,6 +520,8 @@ class RulesResource(SyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -530,6 +551,7 @@ class RulesResource(SyncAPIResource):
         exposed_credential_check: rule_create_params.RedirectRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_create_params.RedirectRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.RedirectRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -567,6 +589,8 @@ class RulesResource(SyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -596,6 +620,7 @@ class RulesResource(SyncAPIResource):
         exposed_credential_check: rule_create_params.RewriteRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_create_params.RewriteRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.RewriteRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -633,6 +658,8 @@ class RulesResource(SyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -656,13 +683,14 @@ class RulesResource(SyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["route"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.RouteRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_create_params.OriginRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.RouteRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
+        exposed_credential_check: rule_create_params.OriginRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.RouteRuleRatelimit | NotGiven = NOT_GIVEN,
+        position: rule_create_params.OriginRulePosition | NotGiven = NOT_GIVEN,
+        ratelimit: rule_create_params.OriginRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -699,6 +727,8 @@ class RulesResource(SyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -728,6 +758,7 @@ class RulesResource(SyncAPIResource):
         exposed_credential_check: rule_create_params.ScoreRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_create_params.ScoreRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.ScoreRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -765,6 +796,8 @@ class RulesResource(SyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -794,6 +827,7 @@ class RulesResource(SyncAPIResource):
         exposed_credential_check: rule_create_params.ServeErrorRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_create_params.ServeErrorRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.ServeErrorRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -831,6 +865,8 @@ class RulesResource(SyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -860,6 +896,7 @@ class RulesResource(SyncAPIResource):
         exposed_credential_check: rule_create_params.SetConfigRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_create_params.SetConfigRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.SetConfigRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -897,6 +934,8 @@ class RulesResource(SyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -926,6 +965,7 @@ class RulesResource(SyncAPIResource):
         exposed_credential_check: rule_create_params.SkipRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_create_params.SkipRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.SkipRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -963,6 +1003,8 @@ class RulesResource(SyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -992,6 +1034,7 @@ class RulesResource(SyncAPIResource):
         exposed_credential_check: rule_create_params.SetCacheSettingsRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_create_params.SetCacheSettingsRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.SetCacheSettingsRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1029,6 +1072,8 @@ class RulesResource(SyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -1058,6 +1103,7 @@ class RulesResource(SyncAPIResource):
         exposed_credential_check: rule_create_params.LogCustomFieldRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_create_params.LogCustomFieldRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.LogCustomFieldRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1095,6 +1141,8 @@ class RulesResource(SyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -1124,6 +1172,7 @@ class RulesResource(SyncAPIResource):
         exposed_credential_check: rule_create_params.DDoSDynamicRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_create_params.DDoSDynamicRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.DDoSDynamicRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1161,6 +1210,8 @@ class RulesResource(SyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -1191,6 +1242,7 @@ class RulesResource(SyncAPIResource):
         | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_create_params.ForceConnectionCloseRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.ForceConnectionCloseRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1227,6 +1279,8 @@ class RulesResource(SyncAPIResource):
           expression: The expression defining which traffic will match the rule.
 
           logging: An object configuring the rule's logging behavior.
+
+          position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
 
@@ -1270,11 +1324,11 @@ class RulesResource(SyncAPIResource):
         | NotGiven = NOT_GIVEN,
         action_parameters: rule_create_params.BlockRuleActionParameters
         | object
-        | rule_create_params.CompressResponseRuleActionParameters
+        | rule_create_params.CompressionRuleActionParameters
         | rule_create_params.ExecuteRuleActionParameters
         | rule_create_params.RedirectRuleActionParameters
         | rule_create_params.RewriteRuleActionParameters
-        | rule_create_params.RouteRuleActionParameters
+        | rule_create_params.OriginRuleActionParameters
         | rule_create_params.ScoreRuleActionParameters
         | rule_create_params.ServeErrorRuleActionParameters
         | rule_create_params.SetConfigRuleActionParameters
@@ -1287,6 +1341,7 @@ class RulesResource(SyncAPIResource):
         exposed_credential_check: rule_create_params.BlockRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_create_params.BlockRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.BlockRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1322,6 +1377,7 @@ class RulesResource(SyncAPIResource):
                     "exposed_credential_check": exposed_credential_check,
                     "expression": expression,
                     "logging": logging,
+                    "position": position,
                     "ratelimit": ratelimit,
                     "ref": ref,
                 },
@@ -1415,6 +1471,7 @@ class RulesResource(SyncAPIResource):
         exposed_credential_check: rule_edit_params.BlockRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_edit_params.BlockRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.BlockRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1452,6 +1509,8 @@ class RulesResource(SyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -1479,10 +1538,11 @@ class RulesResource(SyncAPIResource):
         action_parameters: object | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.RulesetsChallengeRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
+        exposed_credential_check: rule_edit_params.ChallengeRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.RulesetsChallengeRuleRatelimit | NotGiven = NOT_GIVEN,
+        position: rule_edit_params.ChallengeRulePosition | NotGiven = NOT_GIVEN,
+        ratelimit: rule_edit_params.ChallengeRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1518,6 +1578,8 @@ class RulesResource(SyncAPIResource):
           expression: The expression defining which traffic will match the rule.
 
           logging: An object configuring the rule's logging behavior.
+
+          position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
 
@@ -1543,13 +1605,14 @@ class RulesResource(SyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["compress_response"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.CompressResponseRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_edit_params.CompressionRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.CompressResponseRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
+        exposed_credential_check: rule_edit_params.CompressionRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.CompressResponseRuleRatelimit | NotGiven = NOT_GIVEN,
+        position: rule_edit_params.CompressionRulePosition | NotGiven = NOT_GIVEN,
+        ratelimit: rule_edit_params.CompressionRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1585,6 +1648,8 @@ class RulesResource(SyncAPIResource):
           expression: The expression defining which traffic will match the rule.
 
           logging: An object configuring the rule's logging behavior.
+
+          position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
 
@@ -1616,6 +1681,7 @@ class RulesResource(SyncAPIResource):
         exposed_credential_check: rule_edit_params.ExecuteRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_edit_params.ExecuteRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.ExecuteRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1653,6 +1719,8 @@ class RulesResource(SyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -1680,10 +1748,11 @@ class RulesResource(SyncAPIResource):
         action_parameters: object | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.RulesetsJSChallengeRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
+        exposed_credential_check: rule_edit_params.JavascriptChallengeRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.RulesetsJSChallengeRuleRatelimit | NotGiven = NOT_GIVEN,
+        position: rule_edit_params.JavascriptChallengeRulePosition | NotGiven = NOT_GIVEN,
+        ratelimit: rule_edit_params.JavascriptChallengeRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1720,6 +1789,8 @@ class RulesResource(SyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -1750,6 +1821,7 @@ class RulesResource(SyncAPIResource):
         exposed_credential_check: rule_edit_params.LogRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_edit_params.LogRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.LogRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1787,6 +1859,8 @@ class RulesResource(SyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -1817,6 +1891,7 @@ class RulesResource(SyncAPIResource):
         exposed_credential_check: rule_edit_params.ManagedChallengeRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_edit_params.ManagedChallengeRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.ManagedChallengeRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1854,6 +1929,8 @@ class RulesResource(SyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -1884,6 +1961,7 @@ class RulesResource(SyncAPIResource):
         exposed_credential_check: rule_edit_params.RedirectRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_edit_params.RedirectRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.RedirectRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1921,6 +1999,8 @@ class RulesResource(SyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -1951,6 +2031,7 @@ class RulesResource(SyncAPIResource):
         exposed_credential_check: rule_edit_params.RewriteRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_edit_params.RewriteRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.RewriteRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1988,6 +2069,8 @@ class RulesResource(SyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -2012,13 +2095,14 @@ class RulesResource(SyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["route"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.RouteRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_edit_params.OriginRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.RouteRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
+        exposed_credential_check: rule_edit_params.OriginRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.RouteRuleRatelimit | NotGiven = NOT_GIVEN,
+        position: rule_edit_params.OriginRulePosition | NotGiven = NOT_GIVEN,
+        ratelimit: rule_edit_params.OriginRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2055,6 +2139,8 @@ class RulesResource(SyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -2085,6 +2171,7 @@ class RulesResource(SyncAPIResource):
         exposed_credential_check: rule_edit_params.ScoreRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_edit_params.ScoreRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.ScoreRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -2122,6 +2209,8 @@ class RulesResource(SyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -2152,6 +2241,7 @@ class RulesResource(SyncAPIResource):
         exposed_credential_check: rule_edit_params.ServeErrorRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_edit_params.ServeErrorRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.ServeErrorRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -2189,6 +2279,8 @@ class RulesResource(SyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -2219,6 +2311,7 @@ class RulesResource(SyncAPIResource):
         exposed_credential_check: rule_edit_params.SetConfigRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_edit_params.SetConfigRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.SetConfigRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -2256,6 +2349,8 @@ class RulesResource(SyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -2286,6 +2381,7 @@ class RulesResource(SyncAPIResource):
         exposed_credential_check: rule_edit_params.SkipRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_edit_params.SkipRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.SkipRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -2323,6 +2419,8 @@ class RulesResource(SyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -2353,6 +2451,7 @@ class RulesResource(SyncAPIResource):
         exposed_credential_check: rule_edit_params.SetCacheSettingsRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_edit_params.SetCacheSettingsRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.SetCacheSettingsRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -2390,6 +2489,8 @@ class RulesResource(SyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -2420,6 +2521,7 @@ class RulesResource(SyncAPIResource):
         exposed_credential_check: rule_edit_params.LogCustomFieldRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_edit_params.LogCustomFieldRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.LogCustomFieldRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -2457,6 +2559,8 @@ class RulesResource(SyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -2487,6 +2591,7 @@ class RulesResource(SyncAPIResource):
         exposed_credential_check: rule_edit_params.DDoSDynamicRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_edit_params.DDoSDynamicRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.DDoSDynamicRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -2524,6 +2629,8 @@ class RulesResource(SyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -2555,6 +2662,7 @@ class RulesResource(SyncAPIResource):
         | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_edit_params.ForceConnectionCloseRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.ForceConnectionCloseRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -2591,6 +2699,8 @@ class RulesResource(SyncAPIResource):
           expression: The expression defining which traffic will match the rule.
 
           logging: An object configuring the rule's logging behavior.
+
+          position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
 
@@ -2636,11 +2746,11 @@ class RulesResource(SyncAPIResource):
         | NotGiven = NOT_GIVEN,
         action_parameters: rule_edit_params.BlockRuleActionParameters
         | object
-        | rule_edit_params.CompressResponseRuleActionParameters
+        | rule_edit_params.CompressionRuleActionParameters
         | rule_edit_params.ExecuteRuleActionParameters
         | rule_edit_params.RedirectRuleActionParameters
         | rule_edit_params.RewriteRuleActionParameters
-        | rule_edit_params.RouteRuleActionParameters
+        | rule_edit_params.OriginRuleActionParameters
         | rule_edit_params.ScoreRuleActionParameters
         | rule_edit_params.ServeErrorRuleActionParameters
         | rule_edit_params.SetConfigRuleActionParameters
@@ -2653,6 +2763,7 @@ class RulesResource(SyncAPIResource):
         exposed_credential_check: rule_edit_params.BlockRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_edit_params.BlockRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.BlockRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -2690,6 +2801,7 @@ class RulesResource(SyncAPIResource):
                     "exposed_credential_check": exposed_credential_check,
                     "expression": expression,
                     "logging": logging,
+                    "position": position,
                     "ratelimit": ratelimit,
                     "ref": ref,
                 },
@@ -2741,6 +2853,7 @@ class AsyncRulesResource(AsyncAPIResource):
         exposed_credential_check: rule_create_params.BlockRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_create_params.BlockRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.BlockRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -2778,6 +2891,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -2804,10 +2919,11 @@ class AsyncRulesResource(AsyncAPIResource):
         action_parameters: object | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.RulesetsChallengeRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
+        exposed_credential_check: rule_create_params.ChallengeRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.RulesetsChallengeRuleRatelimit | NotGiven = NOT_GIVEN,
+        position: rule_create_params.ChallengeRulePosition | NotGiven = NOT_GIVEN,
+        ratelimit: rule_create_params.ChallengeRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2843,6 +2959,8 @@ class AsyncRulesResource(AsyncAPIResource):
           expression: The expression defining which traffic will match the rule.
 
           logging: An object configuring the rule's logging behavior.
+
+          position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
 
@@ -2867,13 +2985,14 @@ class AsyncRulesResource(AsyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["compress_response"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.CompressResponseRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_create_params.CompressionRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.CompressResponseRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
+        exposed_credential_check: rule_create_params.CompressionRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.CompressResponseRuleRatelimit | NotGiven = NOT_GIVEN,
+        position: rule_create_params.CompressionRulePosition | NotGiven = NOT_GIVEN,
+        ratelimit: rule_create_params.CompressionRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2909,6 +3028,8 @@ class AsyncRulesResource(AsyncAPIResource):
           expression: The expression defining which traffic will match the rule.
 
           logging: An object configuring the rule's logging behavior.
+
+          position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
 
@@ -2939,6 +3060,7 @@ class AsyncRulesResource(AsyncAPIResource):
         exposed_credential_check: rule_create_params.ExecuteRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_create_params.ExecuteRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.ExecuteRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -2976,6 +3098,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -3002,11 +3126,12 @@ class AsyncRulesResource(AsyncAPIResource):
         action_parameters: object | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.RulesetsJSChallengeRuleExposedCredentialCheck
+        exposed_credential_check: rule_create_params.JavascriptChallengeRuleExposedCredentialCheck
         | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.RulesetsJSChallengeRuleRatelimit | NotGiven = NOT_GIVEN,
+        position: rule_create_params.JavascriptChallengeRulePosition | NotGiven = NOT_GIVEN,
+        ratelimit: rule_create_params.JavascriptChallengeRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3043,6 +3168,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -3072,6 +3199,7 @@ class AsyncRulesResource(AsyncAPIResource):
         exposed_credential_check: rule_create_params.LogRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_create_params.LogRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.LogRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -3109,6 +3237,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -3138,6 +3268,7 @@ class AsyncRulesResource(AsyncAPIResource):
         exposed_credential_check: rule_create_params.ManagedChallengeRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_create_params.ManagedChallengeRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.ManagedChallengeRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -3175,6 +3306,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -3204,6 +3337,7 @@ class AsyncRulesResource(AsyncAPIResource):
         exposed_credential_check: rule_create_params.RedirectRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_create_params.RedirectRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.RedirectRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -3241,6 +3375,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -3270,6 +3406,7 @@ class AsyncRulesResource(AsyncAPIResource):
         exposed_credential_check: rule_create_params.RewriteRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_create_params.RewriteRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.RewriteRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -3307,6 +3444,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -3330,13 +3469,14 @@ class AsyncRulesResource(AsyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["route"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.RouteRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_create_params.OriginRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_create_params.RouteRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
+        exposed_credential_check: rule_create_params.OriginRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
-        ratelimit: rule_create_params.RouteRuleRatelimit | NotGiven = NOT_GIVEN,
+        position: rule_create_params.OriginRulePosition | NotGiven = NOT_GIVEN,
+        ratelimit: rule_create_params.OriginRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3373,6 +3513,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -3402,6 +3544,7 @@ class AsyncRulesResource(AsyncAPIResource):
         exposed_credential_check: rule_create_params.ScoreRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_create_params.ScoreRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.ScoreRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -3439,6 +3582,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -3468,6 +3613,7 @@ class AsyncRulesResource(AsyncAPIResource):
         exposed_credential_check: rule_create_params.ServeErrorRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_create_params.ServeErrorRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.ServeErrorRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -3505,6 +3651,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -3534,6 +3682,7 @@ class AsyncRulesResource(AsyncAPIResource):
         exposed_credential_check: rule_create_params.SetConfigRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_create_params.SetConfigRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.SetConfigRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -3571,6 +3720,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -3600,6 +3751,7 @@ class AsyncRulesResource(AsyncAPIResource):
         exposed_credential_check: rule_create_params.SkipRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_create_params.SkipRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.SkipRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -3637,6 +3789,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -3666,6 +3820,7 @@ class AsyncRulesResource(AsyncAPIResource):
         exposed_credential_check: rule_create_params.SetCacheSettingsRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_create_params.SetCacheSettingsRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.SetCacheSettingsRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -3703,6 +3858,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -3732,6 +3889,7 @@ class AsyncRulesResource(AsyncAPIResource):
         exposed_credential_check: rule_create_params.LogCustomFieldRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_create_params.LogCustomFieldRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.LogCustomFieldRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -3769,6 +3927,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -3798,6 +3958,7 @@ class AsyncRulesResource(AsyncAPIResource):
         exposed_credential_check: rule_create_params.DDoSDynamicRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_create_params.DDoSDynamicRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.DDoSDynamicRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -3835,6 +3996,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -3865,6 +4028,7 @@ class AsyncRulesResource(AsyncAPIResource):
         | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_create_params.ForceConnectionCloseRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.ForceConnectionCloseRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -3901,6 +4065,8 @@ class AsyncRulesResource(AsyncAPIResource):
           expression: The expression defining which traffic will match the rule.
 
           logging: An object configuring the rule's logging behavior.
+
+          position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
 
@@ -3944,11 +4110,11 @@ class AsyncRulesResource(AsyncAPIResource):
         | NotGiven = NOT_GIVEN,
         action_parameters: rule_create_params.BlockRuleActionParameters
         | object
-        | rule_create_params.CompressResponseRuleActionParameters
+        | rule_create_params.CompressionRuleActionParameters
         | rule_create_params.ExecuteRuleActionParameters
         | rule_create_params.RedirectRuleActionParameters
         | rule_create_params.RewriteRuleActionParameters
-        | rule_create_params.RouteRuleActionParameters
+        | rule_create_params.OriginRuleActionParameters
         | rule_create_params.ScoreRuleActionParameters
         | rule_create_params.ServeErrorRuleActionParameters
         | rule_create_params.SetConfigRuleActionParameters
@@ -3961,6 +4127,7 @@ class AsyncRulesResource(AsyncAPIResource):
         exposed_credential_check: rule_create_params.BlockRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_create_params.BlockRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.BlockRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -3996,6 +4163,7 @@ class AsyncRulesResource(AsyncAPIResource):
                     "exposed_credential_check": exposed_credential_check,
                     "expression": expression,
                     "logging": logging,
+                    "position": position,
                     "ratelimit": ratelimit,
                     "ref": ref,
                 },
@@ -4089,6 +4257,7 @@ class AsyncRulesResource(AsyncAPIResource):
         exposed_credential_check: rule_edit_params.BlockRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_edit_params.BlockRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.BlockRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -4126,6 +4295,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -4153,10 +4324,11 @@ class AsyncRulesResource(AsyncAPIResource):
         action_parameters: object | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.RulesetsChallengeRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
+        exposed_credential_check: rule_edit_params.ChallengeRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.RulesetsChallengeRuleRatelimit | NotGiven = NOT_GIVEN,
+        position: rule_edit_params.ChallengeRulePosition | NotGiven = NOT_GIVEN,
+        ratelimit: rule_edit_params.ChallengeRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4192,6 +4364,8 @@ class AsyncRulesResource(AsyncAPIResource):
           expression: The expression defining which traffic will match the rule.
 
           logging: An object configuring the rule's logging behavior.
+
+          position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
 
@@ -4217,13 +4391,14 @@ class AsyncRulesResource(AsyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["compress_response"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.CompressResponseRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_edit_params.CompressionRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.CompressResponseRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
+        exposed_credential_check: rule_edit_params.CompressionRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.CompressResponseRuleRatelimit | NotGiven = NOT_GIVEN,
+        position: rule_edit_params.CompressionRulePosition | NotGiven = NOT_GIVEN,
+        ratelimit: rule_edit_params.CompressionRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4259,6 +4434,8 @@ class AsyncRulesResource(AsyncAPIResource):
           expression: The expression defining which traffic will match the rule.
 
           logging: An object configuring the rule's logging behavior.
+
+          position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
 
@@ -4290,6 +4467,7 @@ class AsyncRulesResource(AsyncAPIResource):
         exposed_credential_check: rule_edit_params.ExecuteRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_edit_params.ExecuteRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.ExecuteRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -4327,6 +4505,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -4354,10 +4534,11 @@ class AsyncRulesResource(AsyncAPIResource):
         action_parameters: object | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.RulesetsJSChallengeRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
+        exposed_credential_check: rule_edit_params.JavascriptChallengeRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.RulesetsJSChallengeRuleRatelimit | NotGiven = NOT_GIVEN,
+        position: rule_edit_params.JavascriptChallengeRulePosition | NotGiven = NOT_GIVEN,
+        ratelimit: rule_edit_params.JavascriptChallengeRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4394,6 +4575,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -4424,6 +4607,7 @@ class AsyncRulesResource(AsyncAPIResource):
         exposed_credential_check: rule_edit_params.LogRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_edit_params.LogRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.LogRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -4461,6 +4645,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -4491,6 +4677,7 @@ class AsyncRulesResource(AsyncAPIResource):
         exposed_credential_check: rule_edit_params.ManagedChallengeRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_edit_params.ManagedChallengeRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.ManagedChallengeRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -4528,6 +4715,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -4558,6 +4747,7 @@ class AsyncRulesResource(AsyncAPIResource):
         exposed_credential_check: rule_edit_params.RedirectRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_edit_params.RedirectRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.RedirectRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -4595,6 +4785,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -4625,6 +4817,7 @@ class AsyncRulesResource(AsyncAPIResource):
         exposed_credential_check: rule_edit_params.RewriteRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_edit_params.RewriteRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.RewriteRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -4662,6 +4855,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -4686,13 +4881,14 @@ class AsyncRulesResource(AsyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["route"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.RouteRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_edit_params.OriginRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        exposed_credential_check: rule_edit_params.RouteRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
+        exposed_credential_check: rule_edit_params.OriginRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
-        ratelimit: rule_edit_params.RouteRuleRatelimit | NotGiven = NOT_GIVEN,
+        position: rule_edit_params.OriginRulePosition | NotGiven = NOT_GIVEN,
+        ratelimit: rule_edit_params.OriginRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4729,6 +4925,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -4759,6 +4957,7 @@ class AsyncRulesResource(AsyncAPIResource):
         exposed_credential_check: rule_edit_params.ScoreRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_edit_params.ScoreRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.ScoreRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -4796,6 +4995,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -4826,6 +5027,7 @@ class AsyncRulesResource(AsyncAPIResource):
         exposed_credential_check: rule_edit_params.ServeErrorRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_edit_params.ServeErrorRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.ServeErrorRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -4863,6 +5065,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -4893,6 +5097,7 @@ class AsyncRulesResource(AsyncAPIResource):
         exposed_credential_check: rule_edit_params.SetConfigRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_edit_params.SetConfigRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.SetConfigRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -4930,6 +5135,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -4960,6 +5167,7 @@ class AsyncRulesResource(AsyncAPIResource):
         exposed_credential_check: rule_edit_params.SkipRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_edit_params.SkipRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.SkipRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -4997,6 +5205,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -5027,6 +5237,7 @@ class AsyncRulesResource(AsyncAPIResource):
         exposed_credential_check: rule_edit_params.SetCacheSettingsRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_edit_params.SetCacheSettingsRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.SetCacheSettingsRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -5064,6 +5275,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -5094,6 +5307,7 @@ class AsyncRulesResource(AsyncAPIResource):
         exposed_credential_check: rule_edit_params.LogCustomFieldRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_edit_params.LogCustomFieldRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.LogCustomFieldRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -5131,6 +5345,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -5161,6 +5377,7 @@ class AsyncRulesResource(AsyncAPIResource):
         exposed_credential_check: rule_edit_params.DDoSDynamicRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_edit_params.DDoSDynamicRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.DDoSDynamicRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -5198,6 +5415,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
           logging: An object configuring the rule's logging behavior.
 
+          position: An object configuring where the rule will be placed.
+
           ratelimit: An object configuring the rule's ratelimit behavior.
 
           ref: The reference of the rule (the rule ID by default).
@@ -5229,6 +5448,7 @@ class AsyncRulesResource(AsyncAPIResource):
         | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_edit_params.ForceConnectionCloseRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.ForceConnectionCloseRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -5265,6 +5485,8 @@ class AsyncRulesResource(AsyncAPIResource):
           expression: The expression defining which traffic will match the rule.
 
           logging: An object configuring the rule's logging behavior.
+
+          position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
 
@@ -5310,11 +5532,11 @@ class AsyncRulesResource(AsyncAPIResource):
         | NotGiven = NOT_GIVEN,
         action_parameters: rule_edit_params.BlockRuleActionParameters
         | object
-        | rule_edit_params.CompressResponseRuleActionParameters
+        | rule_edit_params.CompressionRuleActionParameters
         | rule_edit_params.ExecuteRuleActionParameters
         | rule_edit_params.RedirectRuleActionParameters
         | rule_edit_params.RewriteRuleActionParameters
-        | rule_edit_params.RouteRuleActionParameters
+        | rule_edit_params.OriginRuleActionParameters
         | rule_edit_params.ScoreRuleActionParameters
         | rule_edit_params.ServeErrorRuleActionParameters
         | rule_edit_params.SetConfigRuleActionParameters
@@ -5327,6 +5549,7 @@ class AsyncRulesResource(AsyncAPIResource):
         exposed_credential_check: rule_edit_params.BlockRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
         logging: LoggingParam | NotGiven = NOT_GIVEN,
+        position: rule_edit_params.BlockRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.BlockRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -5364,6 +5587,7 @@ class AsyncRulesResource(AsyncAPIResource):
                     "exposed_credential_check": exposed_credential_check,
                     "expression": expression,
                     "logging": logging,
+                    "position": position,
                     "ratelimit": ratelimit,
                     "ref": ref,
                 },

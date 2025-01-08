@@ -113,6 +113,7 @@ class EntriesResource(SyncAPIResource):
         name: str,
         pattern: PatternParam,
         type: Literal["custom"],
+        enabled: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -141,6 +142,7 @@ class EntriesResource(SyncAPIResource):
         *,
         account_id: str,
         type: Literal["predefined"],
+        enabled: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -169,6 +171,7 @@ class EntriesResource(SyncAPIResource):
         *,
         account_id: str,
         type: Literal["integration"],
+        enabled: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -199,6 +202,7 @@ class EntriesResource(SyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         pattern: PatternParam | NotGiven = NOT_GIVEN,
         type: Literal["custom"] | Literal["predefined"] | Literal["integration"],
+        enabled: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -219,6 +223,7 @@ class EntriesResource(SyncAPIResource):
                         "name": name,
                         "pattern": pattern,
                         "type": type,
+                        "enabled": enabled,
                     },
                     entry_update_params.EntryUpdateParams,
                 ),
@@ -434,6 +439,7 @@ class AsyncEntriesResource(AsyncAPIResource):
         name: str,
         pattern: PatternParam,
         type: Literal["custom"],
+        enabled: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -462,6 +468,7 @@ class AsyncEntriesResource(AsyncAPIResource):
         *,
         account_id: str,
         type: Literal["predefined"],
+        enabled: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -490,6 +497,7 @@ class AsyncEntriesResource(AsyncAPIResource):
         *,
         account_id: str,
         type: Literal["integration"],
+        enabled: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -520,6 +528,7 @@ class AsyncEntriesResource(AsyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         pattern: PatternParam | NotGiven = NOT_GIVEN,
         type: Literal["custom"] | Literal["predefined"] | Literal["integration"],
+        enabled: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -540,6 +549,7 @@ class AsyncEntriesResource(AsyncAPIResource):
                         "name": name,
                         "pattern": pattern,
                         "type": type,
+                        "enabled": enabled,
                     },
                     entry_update_params.EntryUpdateParams,
                 ),

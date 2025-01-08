@@ -1052,6 +1052,12 @@ class TestApplications:
                     "decision": "allow",
                     "include": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
                     "name": "Allow devs",
+                    "connection_rules": {
+                        "ssh": {
+                            "usernames": ["root", "ubuntu"],
+                            "allow_email_alias": True,
+                        }
+                    },
                     "exclude": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
                     "require": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
                 }
@@ -2265,6 +2271,12 @@ class TestApplications:
                     "decision": "allow",
                     "include": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
                     "name": "Allow devs",
+                    "connection_rules": {
+                        "ssh": {
+                            "usernames": ["root", "ubuntu"],
+                            "allow_email_alias": True,
+                        }
+                    },
                     "exclude": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
                     "require": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
                 }
@@ -3653,6 +3665,12 @@ class TestAsyncApplications:
                     "decision": "allow",
                     "include": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
                     "name": "Allow devs",
+                    "connection_rules": {
+                        "ssh": {
+                            "usernames": ["root", "ubuntu"],
+                            "allow_email_alias": True,
+                        }
+                    },
                     "exclude": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
                     "require": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
                 }
@@ -4866,6 +4884,12 @@ class TestAsyncApplications:
                     "decision": "allow",
                     "include": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
                     "name": "Allow devs",
+                    "connection_rules": {
+                        "ssh": {
+                            "usernames": ["root", "ubuntu"],
+                            "allow_email_alias": True,
+                        }
+                    },
                     "exclude": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
                     "require": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
                 }

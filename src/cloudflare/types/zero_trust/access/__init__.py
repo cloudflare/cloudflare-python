@@ -14,6 +14,7 @@ from .cors_headers import CORSHeaders as CORSHeaders
 from .oidc_saas_app import OIDCSaaSApp as OIDCSaaSApp
 from .saml_saas_app import SAMLSaaSApp as SAMLSaaSApp
 from .service_token import ServiceToken as ServiceToken
+from .approval_group import ApprovalGroup as ApprovalGroup
 from .allowed_headers import AllowedHeaders as AllowedHeaders
 from .allowed_methods import AllowedMethods as AllowedMethods
 from .allowed_origins import AllowedOrigins as AllowedOrigins

@@ -19,17 +19,23 @@ class Variant0(TypedDict, total=False):
 
     type: Required[Literal["custom"]]
 
+    enabled: bool
+
 
 class Variant1(TypedDict, total=False):
     account_id: Required[str]
 
     type: Required[Literal["predefined"]]
 
+    enabled: bool
+
 
 class Variant2(TypedDict, total=False):
     account_id: Required[str]
 
     type: Required[Literal["integration"]]
+
+    enabled: bool
 
 
 EntryUpdateParams: TypeAlias = Union[Variant0, Variant1, Variant2]

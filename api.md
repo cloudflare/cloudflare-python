@@ -2012,15 +2012,21 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.origin_tls_client_auth import ZoneAuthenticatedOriginPull
+from cloudflare.types.origin_tls_client_auth import (
+    ZoneAuthenticatedOriginPull,
+    OriginTLSClientAuthCreateResponse,
+    OriginTLSClientAuthListResponse,
+    OriginTLSClientAuthDeleteResponse,
+    OriginTLSClientAuthGetResponse,
+)
 ```
 
 Methods:
 
-- <code title="post /zones/{zone_id}/origin_tls_client_auth">client.origin_tls_client_auth.<a href="./src/cloudflare/resources/origin_tls_client_auth/origin_tls_client_auth.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/origin_tls_client_auth/origin_tls_client_auth_create_params.py">params</a>) -> <a href="./src/cloudflare/types/origin_tls_client_auth/zone_authenticated_origin_pull.py">Optional[ZoneAuthenticatedOriginPull]</a></code>
-- <code title="get /zones/{zone_id}/origin_tls_client_auth">client.origin_tls_client_auth.<a href="./src/cloudflare/resources/origin_tls_client_auth/origin_tls_client_auth.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth/zone_authenticated_origin_pull.py">SyncSinglePage[ZoneAuthenticatedOriginPull]</a></code>
-- <code title="delete /zones/{zone_id}/origin_tls_client_auth/{certificate_id}">client.origin_tls_client_auth.<a href="./src/cloudflare/resources/origin_tls_client_auth/origin_tls_client_auth.py">delete</a>(certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth/zone_authenticated_origin_pull.py">Optional[ZoneAuthenticatedOriginPull]</a></code>
-- <code title="get /zones/{zone_id}/origin_tls_client_auth/{certificate_id}">client.origin_tls_client_auth.<a href="./src/cloudflare/resources/origin_tls_client_auth/origin_tls_client_auth.py">get</a>(certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth/zone_authenticated_origin_pull.py">Optional[ZoneAuthenticatedOriginPull]</a></code>
+- <code title="post /zones/{zone_id}/origin_tls_client_auth">client.origin_tls_client_auth.<a href="./src/cloudflare/resources/origin_tls_client_auth/origin_tls_client_auth.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/origin_tls_client_auth/origin_tls_client_auth_create_params.py">params</a>) -> <a href="./src/cloudflare/types/origin_tls_client_auth/origin_tls_client_auth_create_response.py">Optional[OriginTLSClientAuthCreateResponse]</a></code>
+- <code title="get /zones/{zone_id}/origin_tls_client_auth">client.origin_tls_client_auth.<a href="./src/cloudflare/resources/origin_tls_client_auth/origin_tls_client_auth.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth/origin_tls_client_auth_list_response.py">SyncSinglePage[OriginTLSClientAuthListResponse]</a></code>
+- <code title="delete /zones/{zone_id}/origin_tls_client_auth/{certificate_id}">client.origin_tls_client_auth.<a href="./src/cloudflare/resources/origin_tls_client_auth/origin_tls_client_auth.py">delete</a>(certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth/origin_tls_client_auth_delete_response.py">Optional[OriginTLSClientAuthDeleteResponse]</a></code>
+- <code title="get /zones/{zone_id}/origin_tls_client_auth/{certificate_id}">client.origin_tls_client_auth.<a href="./src/cloudflare/resources/origin_tls_client_auth/origin_tls_client_auth.py">get</a>(certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth/origin_tls_client_auth_get_response.py">Optional[OriginTLSClientAuthGetResponse]</a></code>
 
 ## Hostnames
 
@@ -2043,6 +2049,7 @@ Types:
 from cloudflare.types.origin_tls_client_auth.hostnames import (
     Certificate,
     CertificateCreateResponse,
+    CertificateListResponse,
     CertificateDeleteResponse,
     CertificateGetResponse,
 )
@@ -2051,7 +2058,7 @@ from cloudflare.types.origin_tls_client_auth.hostnames import (
 Methods:
 
 - <code title="post /zones/{zone_id}/origin_tls_client_auth/hostnames/certificates">client.origin_tls_client_auth.hostnames.certificates.<a href="./src/cloudflare/resources/origin_tls_client_auth/hostnames/certificates.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/origin_tls_client_auth/hostnames/certificate_create_params.py">params</a>) -> <a href="./src/cloudflare/types/origin_tls_client_auth/hostnames/certificate_create_response.py">Optional[CertificateCreateResponse]</a></code>
-- <code title="get /zones/{zone_id}/origin_tls_client_auth/hostnames/certificates">client.origin_tls_client_auth.hostnames.certificates.<a href="./src/cloudflare/resources/origin_tls_client_auth/hostnames/certificates.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth/authenticated_origin_pull.py">SyncSinglePage[AuthenticatedOriginPull]</a></code>
+- <code title="get /zones/{zone_id}/origin_tls_client_auth/hostnames/certificates">client.origin_tls_client_auth.hostnames.certificates.<a href="./src/cloudflare/resources/origin_tls_client_auth/hostnames/certificates.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth/hostnames/certificate_list_response.py">SyncSinglePage[CertificateListResponse]</a></code>
 - <code title="delete /zones/{zone_id}/origin_tls_client_auth/hostnames/certificates/{certificate_id}">client.origin_tls_client_auth.hostnames.certificates.<a href="./src/cloudflare/resources/origin_tls_client_auth/hostnames/certificates.py">delete</a>(certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth/hostnames/certificate_delete_response.py">Optional[CertificateDeleteResponse]</a></code>
 - <code title="get /zones/{zone_id}/origin_tls_client_auth/hostnames/certificates/{certificate_id}">client.origin_tls_client_auth.hostnames.certificates.<a href="./src/cloudflare/resources/origin_tls_client_auth/hostnames/certificates.py">get</a>(certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth/hostnames/certificate_get_response.py">Optional[CertificateGetResponse]</a></code>
 
@@ -5338,16 +5345,22 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.access.applications import PolicyDeleteResponse
+from cloudflare.types.zero_trust.access.applications import (
+    PolicyCreateResponse,
+    PolicyUpdateResponse,
+    PolicyListResponse,
+    PolicyDeleteResponse,
+    PolicyGetResponse,
+)
 ```
 
 Methods:
 
-- <code title="post /{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies">client.zero_trust.access.applications.policies.<a href="./src/cloudflare/resources/zero_trust/access/applications/policies.py">create</a>(app_id, \*, account_id, zone_id, \*\*<a href="src/cloudflare/types/zero_trust/access/applications/policy_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/application_policy.py">Optional[ApplicationPolicy]</a></code>
-- <code title="put /{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}">client.zero_trust.access.applications.policies.<a href="./src/cloudflare/resources/zero_trust/access/applications/policies.py">update</a>(policy_id, \*, app_id, account_id, zone_id, \*\*<a href="src/cloudflare/types/zero_trust/access/applications/policy_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/application_policy.py">Optional[ApplicationPolicy]</a></code>
-- <code title="get /{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies">client.zero_trust.access.applications.policies.<a href="./src/cloudflare/resources/zero_trust/access/applications/policies.py">list</a>(app_id, \*, account_id, zone_id) -> <a href="./src/cloudflare/types/zero_trust/access/application_policy.py">SyncSinglePage[ApplicationPolicy]</a></code>
+- <code title="post /{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies">client.zero_trust.access.applications.policies.<a href="./src/cloudflare/resources/zero_trust/access/applications/policies.py">create</a>(app_id, \*, account_id, zone_id, \*\*<a href="src/cloudflare/types/zero_trust/access/applications/policy_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/applications/policy_create_response.py">Optional[PolicyCreateResponse]</a></code>
+- <code title="put /{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}">client.zero_trust.access.applications.policies.<a href="./src/cloudflare/resources/zero_trust/access/applications/policies.py">update</a>(policy_id, \*, app_id, account_id, zone_id, \*\*<a href="src/cloudflare/types/zero_trust/access/applications/policy_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/applications/policy_update_response.py">Optional[PolicyUpdateResponse]</a></code>
+- <code title="get /{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies">client.zero_trust.access.applications.policies.<a href="./src/cloudflare/resources/zero_trust/access/applications/policies.py">list</a>(app_id, \*, account_id, zone_id) -> <a href="./src/cloudflare/types/zero_trust/access/applications/policy_list_response.py">SyncSinglePage[PolicyListResponse]</a></code>
 - <code title="delete /{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}">client.zero_trust.access.applications.policies.<a href="./src/cloudflare/resources/zero_trust/access/applications/policies.py">delete</a>(policy_id, \*, app_id, account_id, zone_id) -> <a href="./src/cloudflare/types/zero_trust/access/applications/policy_delete_response.py">Optional[PolicyDeleteResponse]</a></code>
-- <code title="get /{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}">client.zero_trust.access.applications.policies.<a href="./src/cloudflare/resources/zero_trust/access/applications/policies.py">get</a>(policy_id, \*, app_id, account_id, zone_id) -> <a href="./src/cloudflare/types/zero_trust/access/application_policy.py">Optional[ApplicationPolicy]</a></code>
+- <code title="get /{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}">client.zero_trust.access.applications.policies.<a href="./src/cloudflare/resources/zero_trust/access/applications/policies.py">get</a>(policy_id, \*, app_id, account_id, zone_id) -> <a href="./src/cloudflare/types/zero_trust/access/applications/policy_get_response.py">Optional[PolicyGetResponse]</a></code>
 
 #### PolicyTests
 
