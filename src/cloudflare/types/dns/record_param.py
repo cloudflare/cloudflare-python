@@ -28,10 +28,10 @@ from .sshfp_record_param import SSHFPRecordParam
 from .dnskey_record_param import DNSKEYRecordParam
 from .smimea_record_param import SMIMEARecordParam
 
-__all__ = ["RecordParam", "DNSRecordsOpenpgpkeyRecord", "DNSRecordsOpenpgpkeyRecordSettings"]
+__all__ = ["RecordParam", "Openpgpkey", "OpenpgpkeySettings"]
 
 
-class DNSRecordsOpenpgpkeyRecordSettings(TypedDict, total=False):
+class OpenpgpkeySettings(TypedDict, total=False):
     ipv4_only: bool
     """
     When enabled, only A records will be generated, and AAAA records will not be
@@ -49,7 +49,7 @@ class DNSRecordsOpenpgpkeyRecordSettings(TypedDict, total=False):
     """
 
 
-class DNSRecordsOpenpgpkeyRecord(TypedDict, total=False):
+class Openpgpkey(TypedDict, total=False):
     comment: str
     """Comments or notes about the DNS record.
 
@@ -68,7 +68,7 @@ class DNSRecordsOpenpgpkeyRecord(TypedDict, total=False):
     Cloudflare.
     """
 
-    settings: DNSRecordsOpenpgpkeyRecordSettings
+    settings: OpenpgpkeySettings
     """Settings for the DNS record."""
 
     tags: List[RecordTags]
@@ -98,7 +98,7 @@ RecordParam: TypeAlias = Union[
     MXRecordParam,
     NAPTRRecordParam,
     NSRecordParam,
-    DNSRecordsOpenpgpkeyRecord,
+    Openpgpkey,
     PTRRecordParam,
     SMIMEARecordParam,
     SRVRecordParam,
