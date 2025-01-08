@@ -23,8 +23,8 @@ from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.origin_tls_client_auth.hostnames import certificate_create_params
-from ....types.origin_tls_client_auth.authenticated_origin_pull import AuthenticatedOriginPull
 from ....types.origin_tls_client_auth.hostnames.certificate_get_response import CertificateGetResponse
+from ....types.origin_tls_client_auth.hostnames.certificate_list_response import CertificateListResponse
 from ....types.origin_tls_client_auth.hostnames.certificate_create_response import CertificateCreateResponse
 from ....types.origin_tls_client_auth.hostnames.certificate_delete_response import CertificateDeleteResponse
 
@@ -115,7 +115,7 @@ class CertificatesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[AuthenticatedOriginPull]:
+    ) -> SyncSinglePage[CertificateListResponse]:
         """
         List Certificates
 
@@ -134,11 +134,11 @@ class CertificatesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/origin_tls_client_auth/hostnames/certificates",
-            page=SyncSinglePage[AuthenticatedOriginPull],
+            page=SyncSinglePage[CertificateListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=AuthenticatedOriginPull,
+            model=CertificateListResponse,
         )
 
     def delete(
@@ -314,7 +314,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[AuthenticatedOriginPull, AsyncSinglePage[AuthenticatedOriginPull]]:
+    ) -> AsyncPaginator[CertificateListResponse, AsyncSinglePage[CertificateListResponse]]:
         """
         List Certificates
 
@@ -333,11 +333,11 @@ class AsyncCertificatesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/origin_tls_client_auth/hostnames/certificates",
-            page=AsyncSinglePage[AuthenticatedOriginPull],
+            page=AsyncSinglePage[CertificateListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=AuthenticatedOriginPull,
+            model=CertificateListResponse,
         )
 
     async def delete(

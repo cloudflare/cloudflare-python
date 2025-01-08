@@ -10,9 +10,12 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.zero_trust.access import ApplicationPolicy
 from cloudflare.types.zero_trust.access.applications import (
+    PolicyGetResponse,
+    PolicyListResponse,
+    PolicyCreateResponse,
     PolicyDeleteResponse,
+    PolicyUpdateResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -28,7 +31,7 @@ class TestPolicies:
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
+        assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -55,7 +58,7 @@ class TestPolicies:
             purpose_justification_required=True,
             session_duration="24h",
         )
-        assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
+        assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -68,7 +71,7 @@ class TestPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = response.parse()
-        assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
+        assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -81,7 +84,7 @@ class TestPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = response.parse()
-            assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
+            assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -114,7 +117,7 @@ class TestPolicies:
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
+        assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -142,7 +145,7 @@ class TestPolicies:
             purpose_justification_required=True,
             session_duration="24h",
         )
-        assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
+        assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -156,7 +159,7 @@ class TestPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = response.parse()
-        assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
+        assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -170,7 +173,7 @@ class TestPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = response.parse()
-            assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
+            assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -212,7 +215,7 @@ class TestPolicies:
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
         )
-        assert_matches_type(SyncSinglePage[ApplicationPolicy], policy, path=["response"])
+        assert_matches_type(SyncSinglePage[PolicyListResponse], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -221,7 +224,7 @@ class TestPolicies:
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
         )
-        assert_matches_type(SyncSinglePage[ApplicationPolicy], policy, path=["response"])
+        assert_matches_type(SyncSinglePage[PolicyListResponse], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -234,7 +237,7 @@ class TestPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = response.parse()
-        assert_matches_type(SyncSinglePage[ApplicationPolicy], policy, path=["response"])
+        assert_matches_type(SyncSinglePage[PolicyListResponse], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -247,7 +250,7 @@ class TestPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = response.parse()
-            assert_matches_type(SyncSinglePage[ApplicationPolicy], policy, path=["response"])
+            assert_matches_type(SyncSinglePage[PolicyListResponse], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -361,7 +364,7 @@ class TestPolicies:
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
+        assert_matches_type(Optional[PolicyGetResponse], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -371,7 +374,7 @@ class TestPolicies:
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
+        assert_matches_type(Optional[PolicyGetResponse], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -385,7 +388,7 @@ class TestPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = response.parse()
-        assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
+        assert_matches_type(Optional[PolicyGetResponse], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -399,7 +402,7 @@ class TestPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = response.parse()
-            assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
+            assert_matches_type(Optional[PolicyGetResponse], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -445,7 +448,7 @@ class TestAsyncPolicies:
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
+        assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -472,7 +475,7 @@ class TestAsyncPolicies:
             purpose_justification_required=True,
             session_duration="24h",
         )
-        assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
+        assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -485,7 +488,7 @@ class TestAsyncPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = await response.parse()
-        assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
+        assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -498,7 +501,7 @@ class TestAsyncPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = await response.parse()
-            assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
+            assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -531,7 +534,7 @@ class TestAsyncPolicies:
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
+        assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -559,7 +562,7 @@ class TestAsyncPolicies:
             purpose_justification_required=True,
             session_duration="24h",
         )
-        assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
+        assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -573,7 +576,7 @@ class TestAsyncPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = await response.parse()
-        assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
+        assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -587,7 +590,7 @@ class TestAsyncPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = await response.parse()
-            assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
+            assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -629,7 +632,7 @@ class TestAsyncPolicies:
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
         )
-        assert_matches_type(AsyncSinglePage[ApplicationPolicy], policy, path=["response"])
+        assert_matches_type(AsyncSinglePage[PolicyListResponse], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -638,7 +641,7 @@ class TestAsyncPolicies:
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
         )
-        assert_matches_type(AsyncSinglePage[ApplicationPolicy], policy, path=["response"])
+        assert_matches_type(AsyncSinglePage[PolicyListResponse], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -651,7 +654,7 @@ class TestAsyncPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = await response.parse()
-        assert_matches_type(AsyncSinglePage[ApplicationPolicy], policy, path=["response"])
+        assert_matches_type(AsyncSinglePage[PolicyListResponse], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -664,7 +667,7 @@ class TestAsyncPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = await response.parse()
-            assert_matches_type(AsyncSinglePage[ApplicationPolicy], policy, path=["response"])
+            assert_matches_type(AsyncSinglePage[PolicyListResponse], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -778,7 +781,7 @@ class TestAsyncPolicies:
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
+        assert_matches_type(Optional[PolicyGetResponse], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -788,7 +791,7 @@ class TestAsyncPolicies:
             app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
+        assert_matches_type(Optional[PolicyGetResponse], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -802,7 +805,7 @@ class TestAsyncPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = await response.parse()
-        assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
+        assert_matches_type(Optional[PolicyGetResponse], policy, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -816,7 +819,7 @@ class TestAsyncPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = await response.parse()
-            assert_matches_type(Optional[ApplicationPolicy], policy, path=["response"])
+            assert_matches_type(Optional[PolicyGetResponse], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

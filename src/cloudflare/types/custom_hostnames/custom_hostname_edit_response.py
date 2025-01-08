@@ -115,7 +115,6 @@ class SSL(BaseModel):
     """The serial number on a custom uploaded certificate."""
 
     settings: Optional[SSLSettings] = None
-    """SSL specific settings."""
 
     signature: Optional[str] = None
     """The signature on a custom uploaded certificate."""
@@ -198,7 +197,6 @@ class CustomHostnameEditResponse(BaseModel):
     """The custom hostname that will point to your hostname via CNAME."""
 
     ssl: SSL
-    """SSL properties for the custom hostname."""
 
     created_at: Optional[datetime] = None
     """This is the time the hostname was created."""

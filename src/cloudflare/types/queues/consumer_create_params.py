@@ -18,6 +18,8 @@ class MqWorkerConsumer(TypedDict, total=False):
     account_id: Required[str]
     """A Resource identifier."""
 
+    dead_letter_queue: str
+
     script_name: str
     """Name of a Worker"""
 
@@ -55,6 +57,8 @@ class MqWorkerConsumerSettings(TypedDict, total=False):
 class MqHTTPConsumer(TypedDict, total=False):
     account_id: Required[str]
     """A Resource identifier."""
+
+    dead_letter_queue: str
 
     settings: MqHTTPConsumerSettings
 

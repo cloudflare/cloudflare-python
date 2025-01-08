@@ -103,6 +103,8 @@ __all__ = [
     "InfrastructureApplication",
     "InfrastructureApplicationTargetCriterion",
     "InfrastructureApplicationPolicy",
+    "InfrastructureApplicationPolicyConnectionRules",
+    "InfrastructureApplicationPolicyConnectionRulesSSH",
 ]
 
 
@@ -2077,6 +2079,22 @@ class InfrastructureApplicationTargetCriterion(TypedDict, total=False):
     """Contains a map of target attribute keys to target attribute values."""
 
 
+class InfrastructureApplicationPolicyConnectionRulesSSH(TypedDict, total=False):
+    usernames: Required[List[str]]
+    """Contains the Unix usernames that may be used when connecting over SSH."""
+
+    allow_email_alias: bool
+    """Enables using Identity Provider email alias as SSH username."""
+
+
+class InfrastructureApplicationPolicyConnectionRules(TypedDict, total=False):
+    ssh: InfrastructureApplicationPolicyConnectionRulesSSH
+    """
+    The SSH-specific rules that define how users may connect to the targets secured
+    by your application.
+    """
+
+
 class InfrastructureApplicationPolicy(TypedDict, total=False):
     decision: Required[Decision]
     """The action Access will take if a user matches this policy.
@@ -2092,6 +2110,12 @@ class InfrastructureApplicationPolicy(TypedDict, total=False):
 
     name: Required[str]
     """The name of the Access policy."""
+
+    connection_rules: InfrastructureApplicationPolicyConnectionRules
+    """
+    The rules that define how users may connect to the targets secured by your
+    application.
+    """
 
     exclude: Iterable[AccessRuleParam]
     """Rules evaluated with a NOT logical operator.

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import List, Union
-from typing_extensions import Literal, TypeAlias, TypedDict
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .ttl_param import TTLParam
 from .record_tags import RecordTags
@@ -28,10 +28,94 @@ from .sshfp_record_param import SSHFPRecordParam
 from .dnskey_record_param import DNSKEYRecordParam
 from .smimea_record_param import SMIMEARecordParam
 
-__all__ = ["BatchPatchParam", "DNSRecordsOpenpgpkeyRecord", "DNSRecordsOpenpgpkeyRecordSettings"]
+__all__ = [
+    "BatchPatchParam",
+    "ARecord",
+    "AAAARecord",
+    "CAARecord",
+    "CERTRecord",
+    "CNAMERecord",
+    "DNSKEYRecord",
+    "DSRecord",
+    "HTTPSRecord",
+    "LOCRecord",
+    "MXRecord",
+    "NAPTRRecord",
+    "NSRecord",
+    "OpenpgpkeyRecord",
+    "OpenpgpkeyRecordSettings",
+    "PTRRecord",
+    "SMIMEARecord",
+    "SRVRecord",
+    "SSHFPRecord",
+    "SVCBRecord",
+    "TLSARecord",
+    "TXTRecord",
+    "URIRecord",
+]
 
 
-class DNSRecordsOpenpgpkeyRecordSettings(TypedDict, total=False):
+class ARecord(ARecordParam):
+    id: Required[str]
+    """Identifier"""
+
+
+class AAAARecord(AAAARecordParam):
+    id: Required[str]
+    """Identifier"""
+
+
+class CAARecord(CAARecordParam):
+    id: Required[str]
+    """Identifier"""
+
+
+class CERTRecord(CERTRecordParam):
+    id: Required[str]
+    """Identifier"""
+
+
+class CNAMERecord(CNAMERecordParam):
+    id: Required[str]
+    """Identifier"""
+
+
+class DNSKEYRecord(DNSKEYRecordParam):
+    id: Required[str]
+    """Identifier"""
+
+
+class DSRecord(DSRecordParam):
+    id: Required[str]
+    """Identifier"""
+
+
+class HTTPSRecord(HTTPSRecordParam):
+    id: Required[str]
+    """Identifier"""
+
+
+class LOCRecord(LOCRecordParam):
+    id: Required[str]
+    """Identifier"""
+
+
+class MXRecord(MXRecordParam):
+    id: Required[str]
+    """Identifier"""
+
+
+class NAPTRRecord(NAPTRRecordParam):
+    id: Required[str]
+    """Identifier"""
+
+
+class NSRecord(NSRecordParam):
+    id: Required[str]
+    """Identifier"""
+
+
+class OpenpgpkeyRecordSettings(TypedDict, total=False):
     ipv4_only: bool
     """
     When enabled, only A records will be generated, and AAAA records will not be
@@ -49,7 +133,10 @@ class DNSRecordsOpenpgpkeyRecordSettings(TypedDict, total=False):
     """
 
 
-class DNSRecordsOpenpgpkeyRecord(TypedDict, total=False):
+class OpenpgpkeyRecord(TypedDict, total=False):
+    id: Required[str]
+    """Identifier"""
+
     comment: str
     """Comments or notes about the DNS record.
 
@@ -68,7 +155,7 @@ class DNSRecordsOpenpgpkeyRecord(TypedDict, total=False):
     Cloudflare.
     """
 
-    settings: DNSRecordsOpenpgpkeyRecordSettings
+    settings: OpenpgpkeyRecordSettings
     """Settings for the DNS record."""
 
     tags: List[RecordTags]
@@ -85,26 +172,66 @@ class DNSRecordsOpenpgpkeyRecord(TypedDict, total=False):
     """Record type."""
 
 
+class PTRRecord(PTRRecordParam):
+    id: Required[str]
+    """Identifier"""
+
+
+class SMIMEARecord(SMIMEARecordParam):
+    id: Required[str]
+    """Identifier"""
+
+
+class SRVRecord(SRVRecordParam):
+    id: Required[str]
+    """Identifier"""
+
+
+class SSHFPRecord(SSHFPRecordParam):
+    id: Required[str]
+    """Identifier"""
+
+
+class SVCBRecord(SVCBRecordParam):
+    id: Required[str]
+    """Identifier"""
+
+
+class TLSARecord(TLSARecordParam):
+    id: Required[str]
+    """Identifier"""
+
+
+class TXTRecord(TXTRecordParam):
+    id: Required[str]
+    """Identifier"""
+
+
+class URIRecord(URIRecordParam):
+    id: Required[str]
+    """Identifier"""
+
+
 BatchPatchParam: TypeAlias = Union[
-    ARecordParam,
-    AAAARecordParam,
-    CAARecordParam,
-    CERTRecordParam,
-    CNAMERecordParam,
-    DNSKEYRecordParam,
-    DSRecordParam,
-    HTTPSRecordParam,
-    LOCRecordParam,
-    MXRecordParam,
-    NAPTRRecordParam,
-    NSRecordParam,
-    DNSRecordsOpenpgpkeyRecord,
-    PTRRecordParam,
-    SMIMEARecordParam,
-    SRVRecordParam,
-    SSHFPRecordParam,
-    SVCBRecordParam,
-    TLSARecordParam,
-    TXTRecordParam,
-    URIRecordParam,
+    ARecord,
+    AAAARecord,
+    CAARecord,
+    CERTRecord,
+    CNAMERecord,
+    DNSKEYRecord,
+    DSRecord,
+    HTTPSRecord,
+    LOCRecord,
+    MXRecord,
+    NAPTRRecord,
+    NSRecord,
+    OpenpgpkeyRecord,
+    PTRRecord,
+    SMIMEARecord,
+    SRVRecord,
+    SSHFPRecord,
+    SVCBRecord,
+    TLSARecord,
+    TXTRecord,
+    URIRecord,
 ]

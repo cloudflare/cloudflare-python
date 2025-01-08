@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import List, Union
-from typing_extensions import Literal, TypeAlias, TypedDict
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .ttl_param import TTLParam
 from .record_tags import RecordTags
@@ -28,10 +28,94 @@ from .sshfp_record_param import SSHFPRecordParam
 from .dnskey_record_param import DNSKEYRecordParam
 from .smimea_record_param import SMIMEARecordParam
 
-__all__ = ["BatchPutParam", "DNSRecordsOpenpgpkeyRecord", "DNSRecordsOpenpgpkeyRecordSettings"]
+__all__ = [
+    "BatchPutParam",
+    "ARecord",
+    "AAAARecord",
+    "CAARecord",
+    "CERTRecord",
+    "CNAMERecord",
+    "DNSKEYRecord",
+    "DSRecord",
+    "HTTPSRecord",
+    "LOCRecord",
+    "MXRecord",
+    "NAPTRRecord",
+    "NSRecord",
+    "OpenpgpkeyRecord",
+    "OpenpgpkeyRecordSettings",
+    "PTRRecord",
+    "SMIMEARecord",
+    "SRVRecord",
+    "SSHFPRecord",
+    "SVCBRecord",
+    "TLSARecord",
+    "TXTRecord",
+    "URIRecord",
+]
 
 
-class DNSRecordsOpenpgpkeyRecordSettings(TypedDict, total=False):
+class ARecord(ARecordParam):
+    id: str
+    """Identifier"""
+
+
+class AAAARecord(AAAARecordParam):
+    id: str
+    """Identifier"""
+
+
+class CAARecord(CAARecordParam):
+    id: str
+    """Identifier"""
+
+
+class CERTRecord(CERTRecordParam):
+    id: str
+    """Identifier"""
+
+
+class CNAMERecord(CNAMERecordParam):
+    id: str
+    """Identifier"""
+
+
+class DNSKEYRecord(DNSKEYRecordParam):
+    id: str
+    """Identifier"""
+
+
+class DSRecord(DSRecordParam):
+    id: str
+    """Identifier"""
+
+
+class HTTPSRecord(HTTPSRecordParam):
+    id: str
+    """Identifier"""
+
+
+class LOCRecord(LOCRecordParam):
+    id: str
+    """Identifier"""
+
+
+class MXRecord(MXRecordParam):
+    id: str
+    """Identifier"""
+
+
+class NAPTRRecord(NAPTRRecordParam):
+    id: str
+    """Identifier"""
+
+
+class NSRecord(NSRecordParam):
+    id: str
+    """Identifier"""
+
+
+class OpenpgpkeyRecordSettings(TypedDict, total=False):
     ipv4_only: bool
     """
     When enabled, only A records will be generated, and AAAA records will not be
@@ -49,18 +133,24 @@ class DNSRecordsOpenpgpkeyRecordSettings(TypedDict, total=False):
     """
 
 
-class DNSRecordsOpenpgpkeyRecord(TypedDict, total=False):
+class OpenpgpkeyRecord(TypedDict, total=False):
+    content: Required[str]
+    """A single Base64-encoded OpenPGP Transferable Public Key (RFC 4880 Section 11.1)"""
+
+    name: Required[str]
+    """DNS record name (or @ for the zone apex) in Punycode."""
+
+    type: Required[Literal["OPENPGPKEY"]]
+    """Record type."""
+
+    id: str
+    """Identifier"""
+
     comment: str
     """Comments or notes about the DNS record.
 
     This field has no effect on DNS responses.
     """
-
-    content: str
-    """A single Base64-encoded OpenPGP Transferable Public Key (RFC 4880 Section 11.1)"""
-
-    name: str
-    """DNS record name (or @ for the zone apex) in Punycode."""
 
     proxied: bool
     """
@@ -68,7 +158,7 @@ class DNSRecordsOpenpgpkeyRecord(TypedDict, total=False):
     Cloudflare.
     """
 
-    settings: DNSRecordsOpenpgpkeyRecordSettings
+    settings: OpenpgpkeyRecordSettings
     """Settings for the DNS record."""
 
     tags: List[RecordTags]
@@ -81,30 +171,67 @@ class DNSRecordsOpenpgpkeyRecord(TypedDict, total=False):
     minimum reduced to 30 for Enterprise zones.
     """
 
-    type: Literal["OPENPGPKEY"]
-    """Record type."""
+
+class PTRRecord(PTRRecordParam):
+    id: str
+    """Identifier"""
+
+
+class SMIMEARecord(SMIMEARecordParam):
+    id: str
+    """Identifier"""
+
+
+class SRVRecord(SRVRecordParam):
+    id: str
+    """Identifier"""
+
+
+class SSHFPRecord(SSHFPRecordParam):
+    id: str
+    """Identifier"""
+
+
+class SVCBRecord(SVCBRecordParam):
+    id: str
+    """Identifier"""
+
+
+class TLSARecord(TLSARecordParam):
+    id: str
+    """Identifier"""
+
+
+class TXTRecord(TXTRecordParam):
+    id: str
+    """Identifier"""
+
+
+class URIRecord(URIRecordParam):
+    id: str
+    """Identifier"""
 
 
 BatchPutParam: TypeAlias = Union[
-    ARecordParam,
-    AAAARecordParam,
-    CAARecordParam,
-    CERTRecordParam,
-    CNAMERecordParam,
-    DNSKEYRecordParam,
-    DSRecordParam,
-    HTTPSRecordParam,
-    LOCRecordParam,
-    MXRecordParam,
-    NAPTRRecordParam,
-    NSRecordParam,
-    DNSRecordsOpenpgpkeyRecord,
-    PTRRecordParam,
-    SMIMEARecordParam,
-    SRVRecordParam,
-    SSHFPRecordParam,
-    SVCBRecordParam,
-    TLSARecordParam,
-    TXTRecordParam,
-    URIRecordParam,
+    ARecord,
+    AAAARecord,
+    CAARecord,
+    CERTRecord,
+    CNAMERecord,
+    DNSKEYRecord,
+    DSRecord,
+    HTTPSRecord,
+    LOCRecord,
+    MXRecord,
+    NAPTRRecord,
+    NSRecord,
+    OpenpgpkeyRecord,
+    PTRRecord,
+    SMIMEARecord,
+    SRVRecord,
+    SSHFPRecord,
+    SVCBRecord,
+    TLSARecord,
+    TXTRecord,
+    URIRecord,
 ]

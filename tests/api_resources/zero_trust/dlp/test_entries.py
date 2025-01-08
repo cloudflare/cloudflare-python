@@ -115,6 +115,7 @@ class TestEntries:
                 "validation": "luhn",
             },
             type="custom",
+            enabled=True,
         )
         assert_matches_type(Optional[EntryUpdateResponse], entry, path=["response"])
 
@@ -185,6 +186,17 @@ class TestEntries:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
+    def test_method_update_with_all_params_overload_2(self, client: Cloudflare) -> None:
+        entry = client.zero_trust.dlp.entries.update(
+            entry_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="account_id",
+            type="predefined",
+            enabled=True,
+        )
+        assert_matches_type(Optional[EntryUpdateResponse], entry, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
     def test_raw_response_update_overload_2(self, client: Cloudflare) -> None:
         response = client.zero_trust.dlp.entries.with_raw_response.update(
             entry_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -237,6 +249,17 @@ class TestEntries:
             entry_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="account_id",
             type="integration",
+        )
+        assert_matches_type(Optional[EntryUpdateResponse], entry, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_update_with_all_params_overload_3(self, client: Cloudflare) -> None:
+        entry = client.zero_trust.dlp.entries.update(
+            entry_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="account_id",
+            type="integration",
+            enabled=True,
         )
         assert_matches_type(Optional[EntryUpdateResponse], entry, path=["response"])
 
@@ -517,6 +540,7 @@ class TestAsyncEntries:
                 "validation": "luhn",
             },
             type="custom",
+            enabled=True,
         )
         assert_matches_type(Optional[EntryUpdateResponse], entry, path=["response"])
 
@@ -587,6 +611,17 @@ class TestAsyncEntries:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
+    async def test_method_update_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
+        entry = await async_client.zero_trust.dlp.entries.update(
+            entry_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="account_id",
+            type="predefined",
+            enabled=True,
+        )
+        assert_matches_type(Optional[EntryUpdateResponse], entry, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
     async def test_raw_response_update_overload_2(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.dlp.entries.with_raw_response.update(
             entry_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -639,6 +674,17 @@ class TestAsyncEntries:
             entry_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="account_id",
             type="integration",
+        )
+        assert_matches_type(Optional[EntryUpdateResponse], entry, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_update_with_all_params_overload_3(self, async_client: AsyncCloudflare) -> None:
+        entry = await async_client.zero_trust.dlp.entries.update(
+            entry_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="account_id",
+            type="integration",
+            enabled=True,
         )
         assert_matches_type(Optional[EntryUpdateResponse], entry, path=["response"])
 
