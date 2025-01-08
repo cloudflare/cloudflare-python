@@ -42,8 +42,8 @@ __all__ = [
     "MXRecord",
     "NAPTRRecord",
     "NSRecord",
-    "OpenpgpkeyRecord",
-    "OpenpgpkeyRecordSettings",
+    "Openpgpkey",
+    "OpenpgpkeySettings",
     "PTRRecord",
     "SMIMEARecord",
     "SRVRecord",
@@ -115,7 +115,7 @@ class NSRecord(NSRecordParam):
     """Identifier"""
 
 
-class OpenpgpkeyRecordSettings(TypedDict, total=False):
+class OpenpgpkeySettings(TypedDict, total=False):
     ipv4_only: bool
     """
     When enabled, only A records will be generated, and AAAA records will not be
@@ -133,7 +133,7 @@ class OpenpgpkeyRecordSettings(TypedDict, total=False):
     """
 
 
-class OpenpgpkeyRecord(TypedDict, total=False):
+class Openpgpkey(TypedDict, total=False):
     content: Required[str]
     """A single Base64-encoded OpenPGP Transferable Public Key (RFC 4880 Section 11.1)"""
 
@@ -158,7 +158,7 @@ class OpenpgpkeyRecord(TypedDict, total=False):
     Cloudflare.
     """
 
-    settings: OpenpgpkeyRecordSettings
+    settings: OpenpgpkeySettings
     """Settings for the DNS record."""
 
     tags: List[RecordTags]
@@ -225,7 +225,7 @@ BatchPutParam: TypeAlias = Union[
     MXRecord,
     NAPTRRecord,
     NSRecord,
-    OpenpgpkeyRecord,
+    Openpgpkey,
     PTRRecord,
     SMIMEARecord,
     SRVRecord,
