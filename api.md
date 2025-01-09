@@ -2692,6 +2692,7 @@ from cloudflare.types.api_gateway import (
     OperationCreateResponse,
     OperationListResponse,
     OperationDeleteResponse,
+    OperationBulkCreateResponse,
     OperationBulkDeleteResponse,
     OperationGetResponse,
 )
@@ -2702,6 +2703,7 @@ Methods:
 - <code title="post /zones/{zone_id}/api_gateway/operations/item">client.api_gateway.operations.<a href="./src/cloudflare/resources/api_gateway/operations/operations.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/api_gateway/operation_create_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateway/operation_create_response.py">OperationCreateResponse</a></code>
 - <code title="get /zones/{zone_id}/api_gateway/operations">client.api_gateway.operations.<a href="./src/cloudflare/resources/api_gateway/operations/operations.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/api_gateway/operation_list_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateway/operation_list_response.py">SyncV4PagePaginationArray[OperationListResponse]</a></code>
 - <code title="delete /zones/{zone_id}/api_gateway/operations/{operation_id}">client.api_gateway.operations.<a href="./src/cloudflare/resources/api_gateway/operations/operations.py">delete</a>(operation_id, \*, zone_id) -> <a href="./src/cloudflare/types/api_gateway/operation_delete_response.py">OperationDeleteResponse</a></code>
+- <code title="post /zones/{zone_id}/api_gateway/operations">client.api_gateway.operations.<a href="./src/cloudflare/resources/api_gateway/operations/operations.py">bulk_create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/api_gateway/operation_bulk_create_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateway/operation_bulk_create_response.py">OperationBulkCreateResponse</a></code>
 - <code title="delete /zones/{zone_id}/api_gateway/operations">client.api_gateway.operations.<a href="./src/cloudflare/resources/api_gateway/operations/operations.py">bulk_delete</a>(\*, zone_id) -> <a href="./src/cloudflare/types/api_gateway/operation_bulk_delete_response.py">OperationBulkDeleteResponse</a></code>
 - <code title="get /zones/{zone_id}/api_gateway/operations/{operation_id}">client.api_gateway.operations.<a href="./src/cloudflare/resources/api_gateway/operations/operations.py">get</a>(operation_id, \*, zone_id, \*\*<a href="src/cloudflare/types/api_gateway/operation_get_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateway/operation_get_response.py">OperationGetResponse</a></code>
 
@@ -5647,6 +5649,30 @@ Methods:
 - <code title="post /accounts/{account_id}/dex/commands">client.zero_trust.dex.commands.<a href="./src/cloudflare/resources/zero_trust/dex/commands/commands.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dex/command_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dex/command_create_response.py">Optional[CommandCreateResponse]</a></code>
 - <code title="get /accounts/{account_id}/dex/commands">client.zero_trust.dex.commands.<a href="./src/cloudflare/resources/zero_trust/dex/commands/commands.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dex/command_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dex/command_list_response.py">SyncV4PagePagination[Optional[CommandListResponse]]</a></code>
 
+#### Users
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.dex.commands import UserListResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/dex/commands/users">client.zero_trust.dex.commands.users.<a href="./src/cloudflare/resources/zero_trust/dex/commands/users.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dex/commands/user_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dex/commands/user_list_response.py">Optional[UserListResponse]</a></code>
+
+#### Devices
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.dex.commands import DeviceListResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/dex/commands/devices">client.zero_trust.dex.commands.devices.<a href="./src/cloudflare/resources/zero_trust/dex/commands/devices.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dex/commands/device_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dex/commands/device_list_response.py">SyncV4PagePagination[Optional[DeviceListResponse]]</a></code>
+
 #### Downloads
 
 Methods:
@@ -7804,11 +7830,15 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.origin_post_quantum_encryption import OriginPostQuantumEncryptionGetResponse
+from cloudflare.types.origin_post_quantum_encryption import (
+    OriginPostQuantumEncryptionUpdateResponse,
+    OriginPostQuantumEncryptionGetResponse,
+)
 ```
 
 Methods:
 
+- <code title="put /zones/{zone_id}/cache/origin_post_quantum_encryption">client.origin_post_quantum_encryption.<a href="./src/cloudflare/resources/origin_post_quantum_encryption.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/origin_post_quantum_encryption/origin_post_quantum_encryption_update_params.py">params</a>) -> <a href="./src/cloudflare/types/origin_post_quantum_encryption/origin_post_quantum_encryption_update_response.py">Optional[OriginPostQuantumEncryptionUpdateResponse]</a></code>
 - <code title="get /zones/{zone_id}/cache/origin_post_quantum_encryption">client.origin_post_quantum_encryption.<a href="./src/cloudflare/resources/origin_post_quantum_encryption.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/origin_post_quantum_encryption/origin_post_quantum_encryption_get_response.py">Optional[OriginPostQuantumEncryptionGetResponse]</a></code>
 
 # Speed
@@ -8483,6 +8513,18 @@ from cloudflare.types.content_scanning import SettingGetResponse
 Methods:
 
 - <code title="get /zones/{zone_id}/content-upload-scan/settings">client.content_scanning.settings.<a href="./src/cloudflare/resources/content_scanning/settings.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/content_scanning/setting_get_response.py">SettingGetResponse</a></code>
+
+# AbuseReports
+
+Types:
+
+```python
+from cloudflare.types.abuse_reports import AbuseReportCreateResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/abuse-reports/{report_type}">client.abuse_reports.<a href="./src/cloudflare/resources/abuse_reports.py">create</a>(report_type, \*, account_id, \*\*<a href="src/cloudflare/types/abuse_reports/abuse_report_create_params.py">params</a>) -> <a href="./src/cloudflare/types/abuse_reports/abuse_report_create_response.py">str</a></code>
 
 # AI
 
