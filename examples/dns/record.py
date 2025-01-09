@@ -11,14 +11,15 @@ client = Cloudflare()
 
 record = client.dns.records.create(
     zone_id=zone_id,
-    type='A',
+    type="A",
     name="www.mydns.com",
     content="198.51.100.1",
-    proxied=True
+    proxied=True,
 )
+assert record is not None
 
 # clean up after we're done
 client.dns.records.delete(
     zone_id=zone_id,
-    dns_record_id=record['id']
+    dns_record_id=record.id,
 )
