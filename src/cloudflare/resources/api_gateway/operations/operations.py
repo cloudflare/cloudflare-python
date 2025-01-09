@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Iterable, cast
+from typing import List, Type, cast
 from typing_extensions import Literal
 
 import httpx
@@ -69,7 +69,9 @@ class OperationsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        operations: Iterable[operation_create_params.Operation],
+        endpoint: str,
+        host: str,
+        method: Literal["GET", "POST", "HEAD", "OPTIONS", "PUT", "DELETE", "CONNECT", "PATCH", "TRACE"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -77,16 +79,25 @@ class OperationsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> OperationCreateResponse:
-        """Add one or more operations to a zone.
+        """Add one operation to a zone.
 
-        Endpoints can contain path variables.
-        Host, method, endpoint will be normalized to a canoncial form when creating an
-        operation and must be unique on the zone. Inserting an operation that matches an
-        existing one will return the record of the already existing operation and update
-        its last_updated date.
+        Endpoints can contain path variables. Host, method,
+        endpoint will be normalized to a canoncial form when creating an operation and
+        must be unique on the zone. Inserting an operation that matches an existing one
+        will return the record of the already existing operation and update its
+        last_updated date.
 
         Args:
           zone_id: Identifier
+
+          endpoint: The endpoint which can contain path parameter templates in curly braces, each
+              will be replaced from left to right with {varN}, starting with {var1}, during
+              insertion. This will further be Cloudflare-normalized upon insertion. See:
+              https://developers.cloudflare.com/rules/normalization/how-it-works/.
+
+          host: RFC3986-compliant host.
+
+          method: The HTTP method used to access the endpoint.
 
           extra_headers: Send extra headers
 
@@ -99,8 +110,15 @@ class OperationsResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
-            f"/zones/{zone_id}/api_gateway/operations",
-            body=maybe_transform(operations, Iterable[operation_create_params.Operation]),
+            f"/zones/{zone_id}/api_gateway/operations/item",
+            body=maybe_transform(
+                {
+                    "endpoint": endpoint,
+                    "host": host,
+                    "method": method,
+                },
+                operation_create_params.OperationCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -344,7 +362,9 @@ class AsyncOperationsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        operations: Iterable[operation_create_params.Operation],
+        endpoint: str,
+        host: str,
+        method: Literal["GET", "POST", "HEAD", "OPTIONS", "PUT", "DELETE", "CONNECT", "PATCH", "TRACE"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -352,16 +372,25 @@ class AsyncOperationsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> OperationCreateResponse:
-        """Add one or more operations to a zone.
+        """Add one operation to a zone.
 
-        Endpoints can contain path variables.
-        Host, method, endpoint will be normalized to a canoncial form when creating an
-        operation and must be unique on the zone. Inserting an operation that matches an
-        existing one will return the record of the already existing operation and update
-        its last_updated date.
+        Endpoints can contain path variables. Host, method,
+        endpoint will be normalized to a canoncial form when creating an operation and
+        must be unique on the zone. Inserting an operation that matches an existing one
+        will return the record of the already existing operation and update its
+        last_updated date.
 
         Args:
           zone_id: Identifier
+
+          endpoint: The endpoint which can contain path parameter templates in curly braces, each
+              will be replaced from left to right with {varN}, starting with {var1}, during
+              insertion. This will further be Cloudflare-normalized upon insertion. See:
+              https://developers.cloudflare.com/rules/normalization/how-it-works/.
+
+          host: RFC3986-compliant host.
+
+          method: The HTTP method used to access the endpoint.
 
           extra_headers: Send extra headers
 
@@ -374,8 +403,15 @@ class AsyncOperationsResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
-            f"/zones/{zone_id}/api_gateway/operations",
-            body=await async_maybe_transform(operations, Iterable[operation_create_params.Operation]),
+            f"/zones/{zone_id}/api_gateway/operations/item",
+            body=await async_maybe_transform(
+                {
+                    "endpoint": endpoint,
+                    "host": host,
+                    "method": method,
+                },
+                operation_create_params.OperationCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
