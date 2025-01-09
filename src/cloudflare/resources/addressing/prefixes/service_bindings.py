@@ -70,14 +70,13 @@ class ServiceBindingsResource(SyncAPIResource):
         allows creating service bindings for the Cloudflare CDN or Cloudflare Spectrum.
 
         Args:
-          account_id: Identifier of a Cloudflare account.
+          account_id: Identifier
 
-          prefix_id: Identifier of an IP Prefix.
+          prefix_id: Identifier
 
           cidr: IP Prefix in Classless Inter-Domain Routing format.
 
-          service_id: Identifier of a Service on the Cloudflare network. Available services and their
-              IDs may be found in the **List Services** endpoint.
+          service_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -132,9 +131,9 @@ class ServiceBindingsResource(SyncAPIResource):
         IPs in the prefix to Cloudflare Magic Transit.
 
         Args:
-          account_id: Identifier of a Cloudflare account.
+          account_id: Identifier
 
-          prefix_id: Identifier of an IP Prefix.
+          prefix_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -174,11 +173,11 @@ class ServiceBindingsResource(SyncAPIResource):
         Delete a Service Binding
 
         Args:
-          account_id: Identifier of a Cloudflare account.
+          account_id: Identifier
 
-          prefix_id: Identifier of an IP Prefix.
+          prefix_id: Identifier
 
-          binding_id: Identifier of a Service Binding.
+          binding_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -219,11 +218,11 @@ class ServiceBindingsResource(SyncAPIResource):
         Fetch a single Service Binding
 
         Args:
-          account_id: Identifier of a Cloudflare account.
+          account_id: Identifier
 
-          prefix_id: Identifier of an IP Prefix.
+          prefix_id: Identifier
 
-          binding_id: Identifier of a Service Binding.
+          binding_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -293,14 +292,13 @@ class AsyncServiceBindingsResource(AsyncAPIResource):
         allows creating service bindings for the Cloudflare CDN or Cloudflare Spectrum.
 
         Args:
-          account_id: Identifier of a Cloudflare account.
+          account_id: Identifier
 
-          prefix_id: Identifier of an IP Prefix.
+          prefix_id: Identifier
 
           cidr: IP Prefix in Classless Inter-Domain Routing format.
 
-          service_id: Identifier of a Service on the Cloudflare network. Available services and their
-              IDs may be found in the **List Services** endpoint.
+          service_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -355,9 +353,9 @@ class AsyncServiceBindingsResource(AsyncAPIResource):
         IPs in the prefix to Cloudflare Magic Transit.
 
         Args:
-          account_id: Identifier of a Cloudflare account.
+          account_id: Identifier
 
-          prefix_id: Identifier of an IP Prefix.
+          prefix_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -397,11 +395,11 @@ class AsyncServiceBindingsResource(AsyncAPIResource):
         Delete a Service Binding
 
         Args:
-          account_id: Identifier of a Cloudflare account.
+          account_id: Identifier
 
-          prefix_id: Identifier of an IP Prefix.
+          prefix_id: Identifier
 
-          binding_id: Identifier of a Service Binding.
+          binding_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -442,11 +440,11 @@ class AsyncServiceBindingsResource(AsyncAPIResource):
         Fetch a single Service Binding
 
         Args:
-          account_id: Identifier of a Cloudflare account.
+          account_id: Identifier
 
-          prefix_id: Identifier of an IP Prefix.
+          prefix_id: Identifier
 
-          binding_id: Identifier of a Service Binding.
+          binding_id: Identifier
 
           extra_headers: Send extra headers
 

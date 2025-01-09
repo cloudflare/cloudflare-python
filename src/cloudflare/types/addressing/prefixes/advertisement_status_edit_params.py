@@ -9,11 +9,7 @@ __all__ = ["AdvertisementStatusEditParams"]
 
 class AdvertisementStatusEditParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier of a Cloudflare account."""
+    """Identifier"""
 
     advertised: Required[bool]
-    """Advertisement status of the prefix.
-
-    If `true`, the BGP route for the prefix is advertised to the Internet. If
-    `false`, the BGP route is withdrawn.
-    """
+    """Enablement of prefix advertisement to the Internet."""

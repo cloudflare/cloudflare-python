@@ -50,7 +50,7 @@ class OnDemand(BaseModel):
 
 class BGPPrefix(BaseModel):
     id: Optional[str] = None
-    """Identifier of BGP Prefix."""
+    """Identifier"""
 
     asn: Optional[int] = None
     """Autonomous System Number (ASN) the prefix will be advertised under."""

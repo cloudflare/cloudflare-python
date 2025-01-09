@@ -67,9 +67,9 @@ class DelegationsResource(SyncAPIResource):
         Create a new account delegation for a given IP prefix.
 
         Args:
-          account_id: Identifier of a Cloudflare account.
+          account_id: Identifier
 
-          prefix_id: Identifier of an IP Prefix.
+          prefix_id: Identifier
 
           cidr: IP Prefix in Classless Inter-Domain Routing format.
 
@@ -122,9 +122,9 @@ class DelegationsResource(SyncAPIResource):
         List all delegations for a given account IP prefix.
 
         Args:
-          account_id: Identifier of a Cloudflare account.
+          account_id: Identifier
 
-          prefix_id: Identifier of an IP Prefix.
+          prefix_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -164,11 +164,11 @@ class DelegationsResource(SyncAPIResource):
         Delete an account delegation for a given IP prefix.
 
         Args:
-          account_id: Identifier of a Cloudflare account.
+          account_id: Identifier
 
-          prefix_id: Identifier of an IP Prefix.
+          prefix_id: Identifier
 
-          delegation_id: Identifier of a Delegation.
+          delegation_id: Delegation identifier tag.
 
           extra_headers: Send extra headers
 
@@ -235,9 +235,9 @@ class AsyncDelegationsResource(AsyncAPIResource):
         Create a new account delegation for a given IP prefix.
 
         Args:
-          account_id: Identifier of a Cloudflare account.
+          account_id: Identifier
 
-          prefix_id: Identifier of an IP Prefix.
+          prefix_id: Identifier
 
           cidr: IP Prefix in Classless Inter-Domain Routing format.
 
@@ -290,9 +290,9 @@ class AsyncDelegationsResource(AsyncAPIResource):
         List all delegations for a given account IP prefix.
 
         Args:
-          account_id: Identifier of a Cloudflare account.
+          account_id: Identifier
 
-          prefix_id: Identifier of an IP Prefix.
+          prefix_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -332,11 +332,11 @@ class AsyncDelegationsResource(AsyncAPIResource):
         Delete an account delegation for a given IP prefix.
 
         Args:
-          account_id: Identifier of a Cloudflare account.
+          account_id: Identifier
 
-          prefix_id: Identifier of an IP Prefix.
+          prefix_id: Identifier
 
-          delegation_id: Identifier of a Delegation.
+          delegation_id: Delegation identifier tag.
 
           extra_headers: Send extra headers
 
