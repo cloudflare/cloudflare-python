@@ -62,14 +62,18 @@ class AdvertisementStatusResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[AdvertisementStatusEditResponse]:
         """
-        Advertise or withdraw BGP route for a prefix.
+        Advertise or withdraw the BGP route for a prefix.
+
+        **Deprecated:** Prefer the BGP Prefixes endpoints, which additionally allow for
+        advertising and withdrawing subnets of an IP prefix.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          prefix_id: Identifier
+          prefix_id: Identifier of an IP Prefix.
 
-          advertised: Enablement of prefix advertisement to the Internet.
+          advertised: Advertisement status of the prefix. If `true`, the BGP route for the prefix is
+              advertised to the Internet. If `false`, the BGP route is withdrawn.
 
           extra_headers: Send extra headers
 
@@ -113,12 +117,15 @@ class AdvertisementStatusResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[AdvertisementStatusGetResponse]:
         """
-        List the current advertisement state for a prefix.
+        View the current advertisement state for a prefix.
+
+        **Deprecated:** Prefer the BGP Prefixes endpoints, which additionally allow for
+        advertising and withdrawing subnets of an IP prefix.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          prefix_id: Identifier
+          prefix_id: Identifier of an IP Prefix.
 
           extra_headers: Send extra headers
 
@@ -179,14 +186,18 @@ class AsyncAdvertisementStatusResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[AdvertisementStatusEditResponse]:
         """
-        Advertise or withdraw BGP route for a prefix.
+        Advertise or withdraw the BGP route for a prefix.
+
+        **Deprecated:** Prefer the BGP Prefixes endpoints, which additionally allow for
+        advertising and withdrawing subnets of an IP prefix.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          prefix_id: Identifier
+          prefix_id: Identifier of an IP Prefix.
 
-          advertised: Enablement of prefix advertisement to the Internet.
+          advertised: Advertisement status of the prefix. If `true`, the BGP route for the prefix is
+              advertised to the Internet. If `false`, the BGP route is withdrawn.
 
           extra_headers: Send extra headers
 
@@ -230,12 +241,15 @@ class AsyncAdvertisementStatusResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[AdvertisementStatusGetResponse]:
         """
-        List the current advertisement state for a prefix.
+        View the current advertisement state for a prefix.
+
+        **Deprecated:** Prefer the BGP Prefixes endpoints, which additionally allow for
+        advertising and withdrawing subnets of an IP prefix.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          prefix_id: Identifier
+          prefix_id: Identifier of an IP Prefix.
 
           extra_headers: Send extra headers
 

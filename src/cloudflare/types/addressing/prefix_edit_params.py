@@ -9,7 +9,7 @@ __all__ = ["PrefixEditParams"]
 
 class PrefixEditParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier of a Cloudflare account."""
 
     description: Required[str]
     """Description of the prefix."""

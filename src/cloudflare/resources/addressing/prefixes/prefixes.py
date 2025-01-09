@@ -115,7 +115,7 @@ class PrefixesResource(SyncAPIResource):
         Add a new prefix under the account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
           asn: Autonomous System Number (ASN) the prefix will be advertised under.
 
@@ -168,7 +168,7 @@ class PrefixesResource(SyncAPIResource):
         List all prefixes owned by the account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
           extra_headers: Send extra headers
 
@@ -205,9 +205,9 @@ class PrefixesResource(SyncAPIResource):
         Delete an unapproved prefix owned by the account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          prefix_id: Identifier
+          prefix_id: Identifier of an IP Prefix.
 
           extra_headers: Send extra headers
 
@@ -246,9 +246,9 @@ class PrefixesResource(SyncAPIResource):
         Modify the description for a prefix owned by the account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          prefix_id: Identifier
+          prefix_id: Identifier of an IP Prefix.
 
           description: Description of the prefix.
 
@@ -293,9 +293,9 @@ class PrefixesResource(SyncAPIResource):
         List a particular prefix owned by the account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          prefix_id: Identifier
+          prefix_id: Identifier of an IP Prefix.
 
           extra_headers: Send extra headers
 
@@ -376,7 +376,7 @@ class AsyncPrefixesResource(AsyncAPIResource):
         Add a new prefix under the account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
           asn: Autonomous System Number (ASN) the prefix will be advertised under.
 
@@ -429,7 +429,7 @@ class AsyncPrefixesResource(AsyncAPIResource):
         List all prefixes owned by the account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
           extra_headers: Send extra headers
 
@@ -466,9 +466,9 @@ class AsyncPrefixesResource(AsyncAPIResource):
         Delete an unapproved prefix owned by the account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          prefix_id: Identifier
+          prefix_id: Identifier of an IP Prefix.
 
           extra_headers: Send extra headers
 
@@ -507,9 +507,9 @@ class AsyncPrefixesResource(AsyncAPIResource):
         Modify the description for a prefix owned by the account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          prefix_id: Identifier
+          prefix_id: Identifier of an IP Prefix.
 
           description: Description of the prefix.
 
@@ -554,9 +554,9 @@ class AsyncPrefixesResource(AsyncAPIResource):
         List a particular prefix owned by the account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          prefix_id: Identifier
+          prefix_id: Identifier of an IP Prefix.
 
           extra_headers: Send extra headers
 

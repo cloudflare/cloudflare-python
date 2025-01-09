@@ -17,16 +17,7 @@ class Placement(BaseModel):
     [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
     """
 
-    status: Optional[
-        Literal[
-            "SUCCESS",
-            "NO_VALID_HOSTS",
-            "NO_VALID_BINDINGS",
-            "UNSUPPORTED_APPLICATION",
-            "INSUFFICIENT_INVOCATIONS",
-            "INSUFFICIENT_SUBREQUESTS",
-        ]
-    ] = None
+    status: Optional[Literal["SUCCESS", "UNSUPPORTED_APPLICATION", "INSUFFICIENT_INVOCATIONS"]] = None
     """
     Status of
     [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
@@ -67,16 +58,7 @@ class ScriptUpdateResponse(BaseModel):
     [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
     """
 
-    placement_status: Optional[
-        Literal[
-            "SUCCESS",
-            "NO_VALID_HOSTS",
-            "NO_VALID_BINDINGS",
-            "UNSUPPORTED_APPLICATION",
-            "INSUFFICIENT_INVOCATIONS",
-            "INSUFFICIENT_SUBREQUESTS",
-        ]
-    ] = None
+    placement_status: Optional[Literal["SUCCESS", "UNSUPPORTED_APPLICATION", "INSUFFICIENT_INVOCATIONS"]] = None
     """
     Status of
     [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).

@@ -10,7 +10,11 @@ __all__ = ["AdvertisementStatusEditResponse"]
 
 class AdvertisementStatusEditResponse(BaseModel):
     advertised: Optional[bool] = None
-    """Enablement of prefix advertisement to the Internet."""
+    """Advertisement status of the prefix.
+
+    If `true`, the BGP route for the prefix is advertised to the Internet. If
+    `false`, the BGP route is withdrawn.
+    """
 
     advertised_modified_at: Optional[datetime] = None
     """Last time the advertisement status was changed.
