@@ -67,9 +67,9 @@ class BGPPrefixesResource(SyncAPIResource):
         advertised with the Update BGP Prefix API.
 
         Args:
-          account_id: Identifier of a Cloudflare account.
+          account_id: Identifier
 
-          prefix_id: Identifier of an IP Prefix.
+          prefix_id: Identifier
 
           cidr: IP Prefix in Classless Inter-Domain Routing format.
 
@@ -118,9 +118,9 @@ class BGPPrefixesResource(SyncAPIResource):
         Prefixes.
 
         Args:
-          account_id: Identifier of a Cloudflare account.
+          account_id: Identifier
 
-          prefix_id: Identifier of an IP Prefix.
+          prefix_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -162,11 +162,11 @@ class BGPPrefixesResource(SyncAPIResource):
         status (advertised or withdrawn).
 
         Args:
-          account_id: Identifier of a Cloudflare account.
+          account_id: Identifier
 
-          prefix_id: Identifier of an IP Prefix.
+          prefix_id: Identifier
 
-          bgp_prefix_id: Identifier of BGP Prefix.
+          bgp_prefix_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -212,11 +212,11 @@ class BGPPrefixesResource(SyncAPIResource):
         Retrieve a single BGP Prefix according to its identifier
 
         Args:
-          account_id: Identifier of a Cloudflare account.
+          account_id: Identifier
 
-          prefix_id: Identifier of an IP Prefix.
+          prefix_id: Identifier
 
-          bgp_prefix_id: Identifier of BGP Prefix.
+          bgp_prefix_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -284,9 +284,9 @@ class AsyncBGPPrefixesResource(AsyncAPIResource):
         advertised with the Update BGP Prefix API.
 
         Args:
-          account_id: Identifier of a Cloudflare account.
+          account_id: Identifier
 
-          prefix_id: Identifier of an IP Prefix.
+          prefix_id: Identifier
 
           cidr: IP Prefix in Classless Inter-Domain Routing format.
 
@@ -335,9 +335,9 @@ class AsyncBGPPrefixesResource(AsyncAPIResource):
         Prefixes.
 
         Args:
-          account_id: Identifier of a Cloudflare account.
+          account_id: Identifier
 
-          prefix_id: Identifier of an IP Prefix.
+          prefix_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -379,11 +379,11 @@ class AsyncBGPPrefixesResource(AsyncAPIResource):
         status (advertised or withdrawn).
 
         Args:
-          account_id: Identifier of a Cloudflare account.
+          account_id: Identifier
 
-          prefix_id: Identifier of an IP Prefix.
+          prefix_id: Identifier
 
-          bgp_prefix_id: Identifier of BGP Prefix.
+          bgp_prefix_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -429,11 +429,11 @@ class AsyncBGPPrefixesResource(AsyncAPIResource):
         Retrieve a single BGP Prefix according to its identifier
 
         Args:
-          account_id: Identifier of a Cloudflare account.
+          account_id: Identifier
 
-          prefix_id: Identifier of an IP Prefix.
+          prefix_id: Identifier
 
-          bgp_prefix_id: Identifier of BGP Prefix.
+          bgp_prefix_id: Identifier
 
           extra_headers: Send extra headers
 

@@ -71,7 +71,7 @@ class LOADocumentsResource(SyncAPIResource):
         Submit LOA document (pdf format) under the account.
 
         Args:
-          account_id: Identifier of a Cloudflare account.
+          account_id: Identifier
 
           loa_document: LOA document to upload.
 
@@ -118,7 +118,7 @@ class LOADocumentsResource(SyncAPIResource):
         Download specified LOA document under the account.
 
         Args:
-          account_id: Identifier of a Cloudflare account.
+          account_id: Identifier
 
           loa_document_id: Identifier for the uploaded LOA document.
 
@@ -180,7 +180,7 @@ class AsyncLOADocumentsResource(AsyncAPIResource):
         Submit LOA document (pdf format) under the account.
 
         Args:
-          account_id: Identifier of a Cloudflare account.
+          account_id: Identifier
 
           loa_document: LOA document to upload.
 
@@ -229,7 +229,7 @@ class AsyncLOADocumentsResource(AsyncAPIResource):
         Download specified LOA document under the account.
 
         Args:
-          account_id: Identifier of a Cloudflare account.
+          account_id: Identifier
 
           loa_document_id: Identifier for the uploaded LOA document.
 
