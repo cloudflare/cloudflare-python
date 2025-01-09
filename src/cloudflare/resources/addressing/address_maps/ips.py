@@ -63,9 +63,9 @@ class IPsResource(SyncAPIResource):
         Add an IP from a prefix owned by the account to a particular address map.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          address_map_id: Identifier
+          address_map_id: Identifier of an Address Map.
 
           ip_address: An IPv4 or IPv6 address.
 
@@ -109,9 +109,9 @@ class IPsResource(SyncAPIResource):
         Remove an IP from a particular address map.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          address_map_id: Identifier
+          address_map_id: Identifier of an Address Map.
 
           ip_address: An IPv4 or IPv6 address.
 
@@ -176,9 +176,9 @@ class AsyncIPsResource(AsyncAPIResource):
         Add an IP from a prefix owned by the account to a particular address map.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          address_map_id: Identifier
+          address_map_id: Identifier of an Address Map.
 
           ip_address: An IPv4 or IPv6 address.
 
@@ -222,9 +222,9 @@ class AsyncIPsResource(AsyncAPIResource):
         Remove an IP from a particular address map.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          address_map_id: Identifier
+          address_map_id: Identifier of an Address Map.
 
           ip_address: An IPv4 or IPv6 address.
 
