@@ -29,7 +29,7 @@ class TestLOADocuments:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         loa_document = client.addressing.loa_documents.create(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="258def64c72dae45f3e4c8516e2111f2",
             loa_document="@document.pdf",
         )
         assert_matches_type(Optional[LOADocumentCreateResponse], loa_document, path=["response"])
@@ -38,7 +38,7 @@ class TestLOADocuments:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.addressing.loa_documents.with_raw_response.create(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="258def64c72dae45f3e4c8516e2111f2",
             loa_document="@document.pdf",
         )
 
@@ -51,7 +51,7 @@ class TestLOADocuments:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.addressing.loa_documents.with_streaming_response.create(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="258def64c72dae45f3e4c8516e2111f2",
             loa_document="@document.pdf",
         ) as response:
             assert not response.is_closed
@@ -78,11 +78,11 @@ class TestLOADocuments:
     @pytest.mark.respx(base_url=base_url)
     def test_method_get(self, client: Cloudflare, respx_mock: MockRouter) -> None:
         respx_mock.get(
-            "/accounts/023e105f4ecef8ad9ca31a8372d0c353/addressing/loa_documents/d933b1530bc56c9953cf8ce166da8004/download"
+            "/accounts/258def64c72dae45f3e4c8516e2111f2/addressing/loa_documents/d933b1530bc56c9953cf8ce166da8004/download"
         ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         loa_document = client.addressing.loa_documents.get(
             loa_document_id="d933b1530bc56c9953cf8ce166da8004",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="258def64c72dae45f3e4c8516e2111f2",
         )
         assert loa_document.is_closed
         assert loa_document.json() == {"foo": "bar"}
@@ -96,12 +96,12 @@ class TestLOADocuments:
     @pytest.mark.respx(base_url=base_url)
     def test_raw_response_get(self, client: Cloudflare, respx_mock: MockRouter) -> None:
         respx_mock.get(
-            "/accounts/023e105f4ecef8ad9ca31a8372d0c353/addressing/loa_documents/d933b1530bc56c9953cf8ce166da8004/download"
+            "/accounts/258def64c72dae45f3e4c8516e2111f2/addressing/loa_documents/d933b1530bc56c9953cf8ce166da8004/download"
         ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
 
         loa_document = client.addressing.loa_documents.with_raw_response.get(
             loa_document_id="d933b1530bc56c9953cf8ce166da8004",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="258def64c72dae45f3e4c8516e2111f2",
         )
 
         assert loa_document.is_closed is True
@@ -116,11 +116,11 @@ class TestLOADocuments:
     @pytest.mark.respx(base_url=base_url)
     def test_streaming_response_get(self, client: Cloudflare, respx_mock: MockRouter) -> None:
         respx_mock.get(
-            "/accounts/023e105f4ecef8ad9ca31a8372d0c353/addressing/loa_documents/d933b1530bc56c9953cf8ce166da8004/download"
+            "/accounts/258def64c72dae45f3e4c8516e2111f2/addressing/loa_documents/d933b1530bc56c9953cf8ce166da8004/download"
         ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         with client.addressing.loa_documents.with_streaming_response.get(
             loa_document_id="d933b1530bc56c9953cf8ce166da8004",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="258def64c72dae45f3e4c8516e2111f2",
         ) as loa_document:
             assert not loa_document.is_closed
             assert loa_document.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -146,7 +146,7 @@ class TestLOADocuments:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `loa_document_id` but received ''"):
             client.addressing.loa_documents.with_raw_response.get(
                 loa_document_id="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="258def64c72dae45f3e4c8516e2111f2",
             )
 
 
@@ -157,7 +157,7 @@ class TestAsyncLOADocuments:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         loa_document = await async_client.addressing.loa_documents.create(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="258def64c72dae45f3e4c8516e2111f2",
             loa_document="@document.pdf",
         )
         assert_matches_type(Optional[LOADocumentCreateResponse], loa_document, path=["response"])
@@ -166,7 +166,7 @@ class TestAsyncLOADocuments:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.addressing.loa_documents.with_raw_response.create(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="258def64c72dae45f3e4c8516e2111f2",
             loa_document="@document.pdf",
         )
 
@@ -179,7 +179,7 @@ class TestAsyncLOADocuments:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.addressing.loa_documents.with_streaming_response.create(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="258def64c72dae45f3e4c8516e2111f2",
             loa_document="@document.pdf",
         ) as response:
             assert not response.is_closed
@@ -206,11 +206,11 @@ class TestAsyncLOADocuments:
     @pytest.mark.respx(base_url=base_url)
     async def test_method_get(self, async_client: AsyncCloudflare, respx_mock: MockRouter) -> None:
         respx_mock.get(
-            "/accounts/023e105f4ecef8ad9ca31a8372d0c353/addressing/loa_documents/d933b1530bc56c9953cf8ce166da8004/download"
+            "/accounts/258def64c72dae45f3e4c8516e2111f2/addressing/loa_documents/d933b1530bc56c9953cf8ce166da8004/download"
         ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         loa_document = await async_client.addressing.loa_documents.get(
             loa_document_id="d933b1530bc56c9953cf8ce166da8004",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="258def64c72dae45f3e4c8516e2111f2",
         )
         assert loa_document.is_closed
         assert await loa_document.json() == {"foo": "bar"}
@@ -224,12 +224,12 @@ class TestAsyncLOADocuments:
     @pytest.mark.respx(base_url=base_url)
     async def test_raw_response_get(self, async_client: AsyncCloudflare, respx_mock: MockRouter) -> None:
         respx_mock.get(
-            "/accounts/023e105f4ecef8ad9ca31a8372d0c353/addressing/loa_documents/d933b1530bc56c9953cf8ce166da8004/download"
+            "/accounts/258def64c72dae45f3e4c8516e2111f2/addressing/loa_documents/d933b1530bc56c9953cf8ce166da8004/download"
         ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
 
         loa_document = await async_client.addressing.loa_documents.with_raw_response.get(
             loa_document_id="d933b1530bc56c9953cf8ce166da8004",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="258def64c72dae45f3e4c8516e2111f2",
         )
 
         assert loa_document.is_closed is True
@@ -244,11 +244,11 @@ class TestAsyncLOADocuments:
     @pytest.mark.respx(base_url=base_url)
     async def test_streaming_response_get(self, async_client: AsyncCloudflare, respx_mock: MockRouter) -> None:
         respx_mock.get(
-            "/accounts/023e105f4ecef8ad9ca31a8372d0c353/addressing/loa_documents/d933b1530bc56c9953cf8ce166da8004/download"
+            "/accounts/258def64c72dae45f3e4c8516e2111f2/addressing/loa_documents/d933b1530bc56c9953cf8ce166da8004/download"
         ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         async with async_client.addressing.loa_documents.with_streaming_response.get(
             loa_document_id="d933b1530bc56c9953cf8ce166da8004",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="258def64c72dae45f3e4c8516e2111f2",
         ) as loa_document:
             assert not loa_document.is_closed
             assert loa_document.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -274,5 +274,5 @@ class TestAsyncLOADocuments:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `loa_document_id` but received ''"):
             await async_client.addressing.loa_documents.with_raw_response.get(
                 loa_document_id="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="258def64c72dae45f3e4c8516e2111f2",
             )

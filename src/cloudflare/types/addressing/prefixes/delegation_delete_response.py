@@ -9,4 +9,4 @@ __all__ = ["DelegationDeleteResponse"]
 
 class DelegationDeleteResponse(BaseModel):
     id: Optional[str] = None
-    """Delegation identifier tag."""
+    """Identifier of a Delegation."""

@@ -9,10 +9,13 @@ __all__ = ["ServiceBindingCreateParams"]
 
 class ServiceBindingCreateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier of a Cloudflare account."""
 
     cidr: str
     """IP Prefix in Classless Inter-Domain Routing format."""
 
     service_id: str
-    """Identifier"""
+    """Identifier of a Service on the Cloudflare network.
+
+    Available services and their IDs may be found in the **List Services** endpoint.
+    """
