@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, cast
+from typing import List, Type, Iterable, cast
 from typing_extensions import Literal
 
 import httpx
@@ -31,11 +31,17 @@ from .schema_validation import (
     SchemaValidationResourceWithStreamingResponse,
     AsyncSchemaValidationResourceWithStreamingResponse,
 )
-from ....types.api_gateway import operation_get_params, operation_list_params, operation_create_params
+from ....types.api_gateway import (
+    operation_get_params,
+    operation_list_params,
+    operation_create_params,
+    operation_bulk_create_params,
+)
 from ....types.api_gateway.operation_get_response import OperationGetResponse
 from ....types.api_gateway.operation_list_response import OperationListResponse
 from ....types.api_gateway.operation_create_response import OperationCreateResponse
 from ....types.api_gateway.operation_delete_response import OperationDeleteResponse
+from ....types.api_gateway.operation_bulk_create_response import OperationBulkCreateResponse
 from ....types.api_gateway.operation_bulk_delete_response import OperationBulkDeleteResponse
 
 __all__ = ["OperationsResource", "AsyncOperationsResource"]
@@ -246,6 +252,52 @@ class OperationsResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=OperationDeleteResponse,
+        )
+
+    def bulk_create(
+        self,
+        *,
+        zone_id: str,
+        body: Iterable[operation_bulk_create_params.Body],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> OperationBulkCreateResponse:
+        """Add one or more operations to a zone.
+
+        Endpoints can contain path variables.
+        Host, method, endpoint will be normalized to a canoncial form when creating an
+        operation and must be unique on the zone. Inserting an operation that matches an
+        existing one will return the record of the already existing operation and update
+        its last_updated date.
+
+        Args:
+          zone_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return self._post(
+            f"/zones/{zone_id}/api_gateway/operations",
+            body=maybe_transform(body, Iterable[operation_bulk_create_params.Body]),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[OperationBulkCreateResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[OperationBulkCreateResponse], ResultWrapper[OperationBulkCreateResponse]),
         )
 
     def bulk_delete(
@@ -541,6 +593,52 @@ class AsyncOperationsResource(AsyncAPIResource):
             cast_to=OperationDeleteResponse,
         )
 
+    async def bulk_create(
+        self,
+        *,
+        zone_id: str,
+        body: Iterable[operation_bulk_create_params.Body],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> OperationBulkCreateResponse:
+        """Add one or more operations to a zone.
+
+        Endpoints can contain path variables.
+        Host, method, endpoint will be normalized to a canoncial form when creating an
+        operation and must be unique on the zone. Inserting an operation that matches an
+        existing one will return the record of the already existing operation and update
+        its last_updated date.
+
+        Args:
+          zone_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return await self._post(
+            f"/zones/{zone_id}/api_gateway/operations",
+            body=await async_maybe_transform(body, Iterable[operation_bulk_create_params.Body]),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[OperationBulkCreateResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[OperationBulkCreateResponse], ResultWrapper[OperationBulkCreateResponse]),
+        )
+
     async def bulk_delete(
         self,
         *,
@@ -640,6 +738,9 @@ class OperationsResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             operations.delete,
         )
+        self.bulk_create = to_raw_response_wrapper(
+            operations.bulk_create,
+        )
         self.bulk_delete = to_raw_response_wrapper(
             operations.bulk_delete,
         )
@@ -664,6 +765,9 @@ class AsyncOperationsResourceWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             operations.delete,
+        )
+        self.bulk_create = async_to_raw_response_wrapper(
+            operations.bulk_create,
         )
         self.bulk_delete = async_to_raw_response_wrapper(
             operations.bulk_delete,
@@ -690,6 +794,9 @@ class OperationsResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             operations.delete,
         )
+        self.bulk_create = to_streamed_response_wrapper(
+            operations.bulk_create,
+        )
         self.bulk_delete = to_streamed_response_wrapper(
             operations.bulk_delete,
         )
@@ -714,6 +821,9 @@ class AsyncOperationsResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             operations.delete,
+        )
+        self.bulk_create = async_to_streamed_response_wrapper(
+            operations.bulk_create,
         )
         self.bulk_delete = async_to_streamed_response_wrapper(
             operations.bulk_delete,
