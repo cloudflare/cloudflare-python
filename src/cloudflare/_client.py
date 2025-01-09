@@ -92,6 +92,7 @@ if TYPE_CHECKING:
         dns_firewall,
         healthchecks,
         security_txt,
+        abuse_reports,
         email_routing,
         magic_transit,
         waiting_rooms,
@@ -150,6 +151,7 @@ if TYPE_CHECKING:
     from .resources.speed.speed import SpeedResource, AsyncSpeedResource
     from .resources.zones.zones import ZonesResource, AsyncZonesResource
     from .resources.security_txt import SecurityTXTResource, AsyncSecurityTXTResource
+    from .resources.abuse_reports import AbuseReportsResource, AsyncAbuseReportsResource
     from .resources.images.images import ImagesResource, AsyncImagesResource
     from .resources.queues.queues import QueuesResource, AsyncQueuesResource
     from .resources.stream.stream import StreamResource, AsyncStreamResource
@@ -817,6 +819,12 @@ class Cloudflare(SyncAPIClient):
         from .resources.content_scanning import ContentScanningResource
 
         return ContentScanningResource(self)
+
+    @cached_property
+    def abuse_reports(self) -> AbuseReportsResource:
+        from .resources.abuse_reports import AbuseReportsResource
+
+        return AbuseReportsResource(self)
 
     @cached_property
     def ai(self) -> AIResource:
@@ -1584,6 +1592,12 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncContentScanningResource(self)
 
     @cached_property
+    def abuse_reports(self) -> AsyncAbuseReportsResource:
+        from .resources.abuse_reports import AsyncAbuseReportsResource
+
+        return AsyncAbuseReportsResource(self)
+
+    @cached_property
     def ai(self) -> AsyncAIResource:
         from .resources.ai import AsyncAIResource
 
@@ -2284,6 +2298,12 @@ class CloudflareWithRawResponse:
         return ContentScanningResourceWithRawResponse(self._client.content_scanning)
 
     @cached_property
+    def abuse_reports(self) -> abuse_reports.AbuseReportsResourceWithRawResponse:
+        from .resources.abuse_reports import AbuseReportsResourceWithRawResponse
+
+        return AbuseReportsResourceWithRawResponse(self._client.abuse_reports)
+
+    @cached_property
     def ai(self) -> ai.AIResourceWithRawResponse:
         from .resources.ai import AIResourceWithRawResponse
 
@@ -2803,6 +2823,12 @@ class AsyncCloudflareWithRawResponse:
         return AsyncContentScanningResourceWithRawResponse(self._client.content_scanning)
 
     @cached_property
+    def abuse_reports(self) -> abuse_reports.AsyncAbuseReportsResourceWithRawResponse:
+        from .resources.abuse_reports import AsyncAbuseReportsResourceWithRawResponse
+
+        return AsyncAbuseReportsResourceWithRawResponse(self._client.abuse_reports)
+
+    @cached_property
     def ai(self) -> ai.AsyncAIResourceWithRawResponse:
         from .resources.ai import AsyncAIResourceWithRawResponse
 
@@ -3320,6 +3346,12 @@ class CloudflareWithStreamedResponse:
         from .resources.content_scanning import ContentScanningResourceWithStreamingResponse
 
         return ContentScanningResourceWithStreamingResponse(self._client.content_scanning)
+
+    @cached_property
+    def abuse_reports(self) -> abuse_reports.AbuseReportsResourceWithStreamingResponse:
+        from .resources.abuse_reports import AbuseReportsResourceWithStreamingResponse
+
+        return AbuseReportsResourceWithStreamingResponse(self._client.abuse_reports)
 
     @cached_property
     def ai(self) -> ai.AIResourceWithStreamingResponse:
@@ -3849,6 +3881,12 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.content_scanning import AsyncContentScanningResourceWithStreamingResponse
 
         return AsyncContentScanningResourceWithStreamingResponse(self._client.content_scanning)
+
+    @cached_property
+    def abuse_reports(self) -> abuse_reports.AsyncAbuseReportsResourceWithStreamingResponse:
+        from .resources.abuse_reports import AsyncAbuseReportsResourceWithStreamingResponse
+
+        return AsyncAbuseReportsResourceWithStreamingResponse(self._client.abuse_reports)
 
     @cached_property
     def ai(self) -> ai.AsyncAIResourceWithStreamingResponse:

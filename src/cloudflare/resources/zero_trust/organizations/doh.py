@@ -52,7 +52,7 @@ class DOHResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        doh_jwt_duration: str | NotGiven = NOT_GIVEN,
+        jwt_duration: str | NotGiven = NOT_GIVEN,
         service_token_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -67,7 +67,7 @@ class DOHResource(SyncAPIResource):
         Args:
           account_id: Identifier
 
-          doh_jwt_duration: The duration the DoH JWT is valid for. Must be in the format `300ms` or `2h45m`.
+          jwt_duration: The duration the DoH JWT is valid for. Must be in the format `300ms` or `2h45m`.
               Valid time units are: ns, us (or µs), ms, s, m, h. Note that the maximum
               duration for this setting is the same as the key rotation period on the account.
               Default expiration is 24h
@@ -88,7 +88,7 @@ class DOHResource(SyncAPIResource):
             f"/accounts/{account_id}/access/organizations/doh",
             body=maybe_transform(
                 {
-                    "doh_jwt_duration": doh_jwt_duration,
+                    "jwt_duration": jwt_duration,
                     "service_token_id": service_token_id,
                 },
                 doh_update_params.DOHUpdateParams,
@@ -167,7 +167,7 @@ class AsyncDOHResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        doh_jwt_duration: str | NotGiven = NOT_GIVEN,
+        jwt_duration: str | NotGiven = NOT_GIVEN,
         service_token_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -182,7 +182,7 @@ class AsyncDOHResource(AsyncAPIResource):
         Args:
           account_id: Identifier
 
-          doh_jwt_duration: The duration the DoH JWT is valid for. Must be in the format `300ms` or `2h45m`.
+          jwt_duration: The duration the DoH JWT is valid for. Must be in the format `300ms` or `2h45m`.
               Valid time units are: ns, us (or µs), ms, s, m, h. Note that the maximum
               duration for this setting is the same as the key rotation period on the account.
               Default expiration is 24h
@@ -203,7 +203,7 @@ class AsyncDOHResource(AsyncAPIResource):
             f"/accounts/{account_id}/access/organizations/doh",
             body=await async_maybe_transform(
                 {
-                    "doh_jwt_duration": doh_jwt_duration,
+                    "jwt_duration": jwt_duration,
                     "service_token_id": service_token_id,
                 },
                 doh_update_params.DOHUpdateParams,

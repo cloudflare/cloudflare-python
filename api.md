@@ -7804,11 +7804,15 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.origin_post_quantum_encryption import OriginPostQuantumEncryptionGetResponse
+from cloudflare.types.origin_post_quantum_encryption import (
+    OriginPostQuantumEncryptionEditResponse,
+    OriginPostQuantumEncryptionGetResponse,
+)
 ```
 
 Methods:
 
+- <code title="patch /zones/{zone_id}/cache/origin_post_quantum_encryption">client.origin_post_quantum_encryption.<a href="./src/cloudflare/resources/origin_post_quantum_encryption.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/origin_post_quantum_encryption/origin_post_quantum_encryption_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/origin_post_quantum_encryption/origin_post_quantum_encryption_edit_response.py">Optional[OriginPostQuantumEncryptionEditResponse]</a></code>
 - <code title="get /zones/{zone_id}/cache/origin_post_quantum_encryption">client.origin_post_quantum_encryption.<a href="./src/cloudflare/resources/origin_post_quantum_encryption.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/origin_post_quantum_encryption/origin_post_quantum_encryption_get_response.py">Optional[OriginPostQuantumEncryptionGetResponse]</a></code>
 
 # Speed
@@ -8483,6 +8487,18 @@ from cloudflare.types.content_scanning import SettingGetResponse
 Methods:
 
 - <code title="get /zones/{zone_id}/content-upload-scan/settings">client.content_scanning.settings.<a href="./src/cloudflare/resources/content_scanning/settings.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/content_scanning/setting_get_response.py">SettingGetResponse</a></code>
+
+# AbuseReports
+
+Types:
+
+```python
+from cloudflare.types.abuse_reports import AbuseReportCreateResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/v1/abuse-reports/{report_type}">client.abuse_reports.<a href="./src/cloudflare/resources/abuse_reports.py">create</a>(report_type, \*, account_id, \*\*<a href="src/cloudflare/types/abuse_reports/abuse_report_create_params.py">params</a>) -> <a href="./src/cloudflare/types/abuse_reports/abuse_report_create_response.py">str</a></code>
 
 # AI
 
