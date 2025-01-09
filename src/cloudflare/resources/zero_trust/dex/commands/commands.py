@@ -16,6 +16,22 @@ from .quota import (
     QuotaResourceWithStreamingResponse,
     AsyncQuotaResourceWithStreamingResponse,
 )
+from .users import (
+    UsersResource,
+    AsyncUsersResource,
+    UsersResourceWithRawResponse,
+    AsyncUsersResourceWithRawResponse,
+    UsersResourceWithStreamingResponse,
+    AsyncUsersResourceWithStreamingResponse,
+)
+from .devices import (
+    DevicesResource,
+    AsyncDevicesResource,
+    DevicesResourceWithRawResponse,
+    AsyncDevicesResourceWithRawResponse,
+    DevicesResourceWithStreamingResponse,
+    AsyncDevicesResourceWithStreamingResponse,
+)
 from .downloads import (
     DownloadsResource,
     AsyncDownloadsResource,
@@ -48,6 +64,14 @@ __all__ = ["CommandsResource", "AsyncCommandsResource"]
 
 
 class CommandsResource(SyncAPIResource):
+    @cached_property
+    def users(self) -> UsersResource:
+        return UsersResource(self._client)
+
+    @cached_property
+    def devices(self) -> DevicesResource:
+        return DevicesResource(self._client)
+
     @cached_property
     def downloads(self) -> DownloadsResource:
         return DownloadsResource(self._client)
@@ -193,6 +217,14 @@ class CommandsResource(SyncAPIResource):
 
 
 class AsyncCommandsResource(AsyncAPIResource):
+    @cached_property
+    def users(self) -> AsyncUsersResource:
+        return AsyncUsersResource(self._client)
+
+    @cached_property
+    def devices(self) -> AsyncDevicesResource:
+        return AsyncDevicesResource(self._client)
+
     @cached_property
     def downloads(self) -> AsyncDownloadsResource:
         return AsyncDownloadsResource(self._client)
@@ -349,6 +381,14 @@ class CommandsResourceWithRawResponse:
         )
 
     @cached_property
+    def users(self) -> UsersResourceWithRawResponse:
+        return UsersResourceWithRawResponse(self._commands.users)
+
+    @cached_property
+    def devices(self) -> DevicesResourceWithRawResponse:
+        return DevicesResourceWithRawResponse(self._commands.devices)
+
+    @cached_property
     def downloads(self) -> DownloadsResourceWithRawResponse:
         return DownloadsResourceWithRawResponse(self._commands.downloads)
 
@@ -367,6 +407,14 @@ class AsyncCommandsResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             commands.list,
         )
+
+    @cached_property
+    def users(self) -> AsyncUsersResourceWithRawResponse:
+        return AsyncUsersResourceWithRawResponse(self._commands.users)
+
+    @cached_property
+    def devices(self) -> AsyncDevicesResourceWithRawResponse:
+        return AsyncDevicesResourceWithRawResponse(self._commands.devices)
 
     @cached_property
     def downloads(self) -> AsyncDownloadsResourceWithRawResponse:
@@ -389,6 +437,14 @@ class CommandsResourceWithStreamingResponse:
         )
 
     @cached_property
+    def users(self) -> UsersResourceWithStreamingResponse:
+        return UsersResourceWithStreamingResponse(self._commands.users)
+
+    @cached_property
+    def devices(self) -> DevicesResourceWithStreamingResponse:
+        return DevicesResourceWithStreamingResponse(self._commands.devices)
+
+    @cached_property
     def downloads(self) -> DownloadsResourceWithStreamingResponse:
         return DownloadsResourceWithStreamingResponse(self._commands.downloads)
 
@@ -407,6 +463,14 @@ class AsyncCommandsResourceWithStreamingResponse:
         self.list = async_to_streamed_response_wrapper(
             commands.list,
         )
+
+    @cached_property
+    def users(self) -> AsyncUsersResourceWithStreamingResponse:
+        return AsyncUsersResourceWithStreamingResponse(self._commands.users)
+
+    @cached_property
+    def devices(self) -> AsyncDevicesResourceWithStreamingResponse:
+        return AsyncDevicesResourceWithStreamingResponse(self._commands.devices)
 
     @cached_property
     def downloads(self) -> AsyncDownloadsResourceWithStreamingResponse:
