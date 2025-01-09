@@ -10,7 +10,7 @@ __all__ = ["PrefixCreateParams"]
 
 class PrefixCreateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier of a Cloudflare account."""
 
     asn: Required[Optional[int]]
     """Autonomous System Number (ASN) the prefix will be advertised under."""
