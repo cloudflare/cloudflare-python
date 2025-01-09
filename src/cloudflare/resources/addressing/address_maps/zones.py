@@ -63,11 +63,11 @@ class ZonesResource(SyncAPIResource):
         Add a zone as a member of a particular address map.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier of a zone.
 
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          address_map_id: Identifier
+          address_map_id: Identifier of an Address Map.
 
           extra_headers: Send extra headers
 
@@ -109,11 +109,11 @@ class ZonesResource(SyncAPIResource):
         Remove a zone as a member of a particular address map.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier of a zone.
 
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          address_map_id: Identifier
+          address_map_id: Identifier of an Address Map.
 
           extra_headers: Send extra headers
 
@@ -176,11 +176,11 @@ class AsyncZonesResource(AsyncAPIResource):
         Add a zone as a member of a particular address map.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier of a zone.
 
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          address_map_id: Identifier
+          address_map_id: Identifier of an Address Map.
 
           extra_headers: Send extra headers
 
@@ -222,11 +222,11 @@ class AsyncZonesResource(AsyncAPIResource):
         Remove a zone as a member of a particular address map.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier of a zone.
 
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          address_map_id: Identifier
+          address_map_id: Identifier of an Address Map.
 
           extra_headers: Send extra headers
 

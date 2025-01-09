@@ -365,7 +365,7 @@ class CNAMERecordSettings(TypedDict, total=False):
     """
     If enabled, causes the CNAME record to be resolved externally and the resulting
     address records (e.g., A and AAAA) to be returned instead of the CNAME record
-    itself. This setting has no effect on proxied records, which are always
+    itself. This setting is unavailable for proxied records, since they are always
     flattened.
     """
 
