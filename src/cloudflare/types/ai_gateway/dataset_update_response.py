@@ -34,6 +34,10 @@ class Filter(BaseModel):
 class DatasetUpdateResponse(BaseModel):
     id: str
 
+    account_id: str
+
+    account_tag: str
+
     created_at: datetime
 
     enable: bool

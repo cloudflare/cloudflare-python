@@ -18,7 +18,7 @@ class Provisioning(BaseModel):
 
 class ServiceBinding(BaseModel):
     id: Optional[str] = None
-    """Identifier"""
+    """Identifier of a Service Binding."""
 
     cidr: Optional[str] = None
     """IP Prefix in Classless Inter-Domain Routing format."""
@@ -27,7 +27,10 @@ class ServiceBinding(BaseModel):
     """Status of a Service Binding's deployment to the Cloudflare network"""
 
     service_id: Optional[str] = None
-    """Identifier"""
+    """Identifier of a Service on the Cloudflare network.
+
+    Available services and their IDs may be found in the **List Services** endpoint.
+    """
 
     service_name: Optional[str] = None
     """Name of a service running on the Cloudflare network"""
