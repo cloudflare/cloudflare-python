@@ -19,7 +19,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestAudit:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @pytest.mark.skip(reason="TODO:investigate broken test")
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         audit = client.accounts.logs.audit.list(
@@ -29,7 +29,7 @@ class TestAudit:
         )
         assert_matches_type(SyncCursorLimitPagination[AuditListResponse], audit, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @pytest.mark.skip(reason="TODO:investigate broken test")
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         audit = client.accounts.logs.audit.list(
@@ -63,7 +63,7 @@ class TestAudit:
         )
         assert_matches_type(SyncCursorLimitPagination[AuditListResponse], audit, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @pytest.mark.skip(reason="TODO:investigate broken test")
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.accounts.logs.audit.with_raw_response.list(
@@ -77,7 +77,7 @@ class TestAudit:
         audit = response.parse()
         assert_matches_type(SyncCursorLimitPagination[AuditListResponse], audit, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @pytest.mark.skip(reason="TODO:investigate broken test")
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.accounts.logs.audit.with_streaming_response.list(
@@ -93,7 +93,7 @@ class TestAudit:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @pytest.mark.skip(reason="TODO:investigate broken test")
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -107,7 +107,7 @@ class TestAudit:
 class TestAsyncAudit:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @pytest.mark.skip(reason="TODO:investigate broken test")
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         audit = await async_client.accounts.logs.audit.list(
@@ -117,7 +117,7 @@ class TestAsyncAudit:
         )
         assert_matches_type(AsyncCursorLimitPagination[AuditListResponse], audit, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @pytest.mark.skip(reason="TODO:investigate broken test")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         audit = await async_client.accounts.logs.audit.list(
@@ -151,7 +151,7 @@ class TestAsyncAudit:
         )
         assert_matches_type(AsyncCursorLimitPagination[AuditListResponse], audit, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @pytest.mark.skip(reason="TODO:investigate broken test")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.accounts.logs.audit.with_raw_response.list(
@@ -165,7 +165,7 @@ class TestAsyncAudit:
         audit = await response.parse()
         assert_matches_type(AsyncCursorLimitPagination[AuditListResponse], audit, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @pytest.mark.skip(reason="TODO:investigate broken test")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.accounts.logs.audit.with_streaming_response.list(
@@ -181,7 +181,7 @@ class TestAsyncAudit:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @pytest.mark.skip(reason="TODO:investigate broken test")
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
