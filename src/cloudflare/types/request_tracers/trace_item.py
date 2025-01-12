@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from typing import Optional
 
-from .trace import Trace
 from ..._compat import PYDANTIC_V2
 from ..._models import BaseModel
 
@@ -36,11 +35,13 @@ class TraceItem(BaseModel):
     step_name: Optional[str] = None
     """Tracing step identifying name"""
 
-    trace: Optional[Trace] = None
+    trace: Optional["Trace"] = None
 
     type: Optional[str] = None
     """Tracing step type"""
 
+
+from .trace import Trace
 
 if PYDANTIC_V2:
     TraceItem.model_rebuild()
