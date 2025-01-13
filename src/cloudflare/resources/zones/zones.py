@@ -15,6 +15,14 @@ from .holds import (
     HoldsResourceWithStreamingResponse,
     AsyncHoldsResourceWithStreamingResponse,
 )
+from .plans import (
+    PlansResource,
+    AsyncPlansResource,
+    PlansResourceWithRawResponse,
+    AsyncPlansResourceWithRawResponse,
+    PlansResourceWithStreamingResponse,
+    AsyncPlansResourceWithStreamingResponse,
+)
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -29,6 +37,14 @@ from .settings import (
     AsyncSettingsResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
+from .rate_plans import (
+    RatePlansResource,
+    AsyncRatePlansResource,
+    RatePlansResourceWithRawResponse,
+    AsyncRatePlansResourceWithRawResponse,
+    RatePlansResourceWithStreamingResponse,
+    AsyncRatePlansResourceWithStreamingResponse,
+)
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
@@ -93,11 +109,30 @@ class ZonesResource(SyncAPIResource):
         return SubscriptionsResource(self._client)
 
     @cached_property
+    def plans(self) -> PlansResource:
+        return PlansResource(self._client)
+
+    @cached_property
+    def rate_plans(self) -> RatePlansResource:
+        return RatePlansResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> ZonesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return ZonesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> ZonesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return ZonesResourceWithStreamingResponse(self)
 
     def create(
@@ -168,8 +203,10 @@ class ZonesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncV4PagePaginationArray[Zone]:
-        """
-        Lists, searches, sorts, and filters your zones.
+        """Lists, searches, sorts, and filters your zones.
+
+        Listing zones across more than
+        500 accounts is currently not allowed.
 
         Args:
           direction: Direction to order zones.
@@ -272,7 +309,6 @@ class ZonesResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        plan: zone_edit_params.Plan | NotGiven = NOT_GIVEN,
         type: Literal["full", "partial", "secondary"] | NotGiven = NOT_GIVEN,
         vanity_name_servers: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -288,10 +324,6 @@ class ZonesResource(SyncAPIResource):
 
         Args:
           zone_id: Identifier
-
-          plan: (Deprecated) Please use the `/zones/{zone_id}/subscription` API to update a
-              zone's plan. Changing this value will create/cancel associated subscriptions. To
-              view available plans for this zone, see Zone Plans.
 
           type: A full zone implies that DNS is hosted with Cloudflare. A partial zone is
               typically a partner-hosted zone or a CNAME setup. This parameter is only
@@ -315,7 +347,6 @@ class ZonesResource(SyncAPIResource):
             f"/zones/{zone_id}",
             body=maybe_transform(
                 {
-                    "plan": plan,
                     "type": type,
                     "vanity_name_servers": vanity_name_servers,
                 },
@@ -393,11 +424,30 @@ class AsyncZonesResource(AsyncAPIResource):
         return AsyncSubscriptionsResource(self._client)
 
     @cached_property
+    def plans(self) -> AsyncPlansResource:
+        return AsyncPlansResource(self._client)
+
+    @cached_property
+    def rate_plans(self) -> AsyncRatePlansResource:
+        return AsyncRatePlansResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AsyncZonesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncZonesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncZonesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncZonesResourceWithStreamingResponse(self)
 
     async def create(
@@ -468,8 +518,10 @@ class AsyncZonesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[Zone, AsyncV4PagePaginationArray[Zone]]:
-        """
-        Lists, searches, sorts, and filters your zones.
+        """Lists, searches, sorts, and filters your zones.
+
+        Listing zones across more than
+        500 accounts is currently not allowed.
 
         Args:
           direction: Direction to order zones.
@@ -572,7 +624,6 @@ class AsyncZonesResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        plan: zone_edit_params.Plan | NotGiven = NOT_GIVEN,
         type: Literal["full", "partial", "secondary"] | NotGiven = NOT_GIVEN,
         vanity_name_servers: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -588,10 +639,6 @@ class AsyncZonesResource(AsyncAPIResource):
 
         Args:
           zone_id: Identifier
-
-          plan: (Deprecated) Please use the `/zones/{zone_id}/subscription` API to update a
-              zone's plan. Changing this value will create/cancel associated subscriptions. To
-              view available plans for this zone, see Zone Plans.
 
           type: A full zone implies that DNS is hosted with Cloudflare. A partial zone is
               typically a partner-hosted zone or a CNAME setup. This parameter is only
@@ -615,7 +662,6 @@ class AsyncZonesResource(AsyncAPIResource):
             f"/zones/{zone_id}",
             body=await async_maybe_transform(
                 {
-                    "plan": plan,
                     "type": type,
                     "vanity_name_servers": vanity_name_servers,
                 },
@@ -711,6 +757,14 @@ class ZonesResourceWithRawResponse:
     def subscriptions(self) -> SubscriptionsResourceWithRawResponse:
         return SubscriptionsResourceWithRawResponse(self._zones.subscriptions)
 
+    @cached_property
+    def plans(self) -> PlansResourceWithRawResponse:
+        return PlansResourceWithRawResponse(self._zones.plans)
+
+    @cached_property
+    def rate_plans(self) -> RatePlansResourceWithRawResponse:
+        return RatePlansResourceWithRawResponse(self._zones.rate_plans)
+
 
 class AsyncZonesResourceWithRawResponse:
     def __init__(self, zones: AsyncZonesResource) -> None:
@@ -751,6 +805,14 @@ class AsyncZonesResourceWithRawResponse:
     @cached_property
     def subscriptions(self) -> AsyncSubscriptionsResourceWithRawResponse:
         return AsyncSubscriptionsResourceWithRawResponse(self._zones.subscriptions)
+
+    @cached_property
+    def plans(self) -> AsyncPlansResourceWithRawResponse:
+        return AsyncPlansResourceWithRawResponse(self._zones.plans)
+
+    @cached_property
+    def rate_plans(self) -> AsyncRatePlansResourceWithRawResponse:
+        return AsyncRatePlansResourceWithRawResponse(self._zones.rate_plans)
 
 
 class ZonesResourceWithStreamingResponse:
@@ -793,6 +855,14 @@ class ZonesResourceWithStreamingResponse:
     def subscriptions(self) -> SubscriptionsResourceWithStreamingResponse:
         return SubscriptionsResourceWithStreamingResponse(self._zones.subscriptions)
 
+    @cached_property
+    def plans(self) -> PlansResourceWithStreamingResponse:
+        return PlansResourceWithStreamingResponse(self._zones.plans)
+
+    @cached_property
+    def rate_plans(self) -> RatePlansResourceWithStreamingResponse:
+        return RatePlansResourceWithStreamingResponse(self._zones.rate_plans)
+
 
 class AsyncZonesResourceWithStreamingResponse:
     def __init__(self, zones: AsyncZonesResource) -> None:
@@ -833,3 +903,11 @@ class AsyncZonesResourceWithStreamingResponse:
     @cached_property
     def subscriptions(self) -> AsyncSubscriptionsResourceWithStreamingResponse:
         return AsyncSubscriptionsResourceWithStreamingResponse(self._zones.subscriptions)
+
+    @cached_property
+    def plans(self) -> AsyncPlansResourceWithStreamingResponse:
+        return AsyncPlansResourceWithStreamingResponse(self._zones.plans)
+
+    @cached_property
+    def rate_plans(self) -> AsyncRatePlansResourceWithStreamingResponse:
+        return AsyncRatePlansResourceWithStreamingResponse(self._zones.rate_plans)

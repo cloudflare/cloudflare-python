@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Union, Optional
+from typing_extensions import TypeAlias
 
 from .product import Product
 from ..._models import BaseModel
@@ -10,7 +11,7 @@ from ..filters.firewall_filter import FirewallFilter
 
 __all__ = ["FirewallRule", "Filter"]
 
-Filter = Union[FirewallFilter, DeletedFilter]
+Filter: TypeAlias = Union[FirewallFilter, DeletedFilter]
 
 
 class FirewallRule(BaseModel):

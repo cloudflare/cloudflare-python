@@ -32,10 +32,21 @@ __all__ = ["AsesResource", "AsyncAsesResource"]
 class AsesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsesResourceWithStreamingResponse(self)
 
     def origin(
@@ -115,11 +126,11 @@ class AsesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AseOriginResponse:
-        """Get the top origin Autonomous Systems of and by layer 7 attacks.
+        """Get the top origin Autonomous Systems of and by Layer 7 attacks.
 
         Values are a
-        percentage out of the total layer 7 attacks. The origin Autonomous Systems is
-        determined by the client IP.
+        percentage out of the total Layer 7 attacks. The origin Autonomous Systems is
+        determined by the client IP address.
 
         Args:
           continent: Array of comma separated list of continents (alpha-2 continent codes). Start
@@ -193,10 +204,21 @@ class AsesResource(SyncAPIResource):
 class AsyncAsesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncAsesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncAsesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncAsesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncAsesResourceWithStreamingResponse(self)
 
     async def origin(
@@ -276,11 +298,11 @@ class AsyncAsesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AseOriginResponse:
-        """Get the top origin Autonomous Systems of and by layer 7 attacks.
+        """Get the top origin Autonomous Systems of and by Layer 7 attacks.
 
         Values are a
-        percentage out of the total layer 7 attacks. The origin Autonomous Systems is
-        determined by the client IP.
+        percentage out of the total Layer 7 attacks. The origin Autonomous Systems is
+        determined by the client IP address.
 
         Args:
           continent: Array of comma separated list of continents (alpha-2 continent codes). Start

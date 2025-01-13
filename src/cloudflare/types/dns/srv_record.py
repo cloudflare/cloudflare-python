@@ -1,26 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
-from datetime import datetime
 from typing_extensions import Literal
 
 from .ttl import TTL
 from ..._models import BaseModel
 from .record_tags import RecordTags
-from .record_metadata import RecordMetadata
 
-__all__ = ["SRVRecord", "Data"]
+__all__ = ["SRVRecord", "Data", "Settings"]
 
 
 class Data(BaseModel):
-    name: Optional[str] = None
-    """A valid hostname.
-
-    Deprecated in favor of the regular 'name' outside the data map. This data map
-    field represents the remainder of the full 'name' after the service and
-    protocol.
-    """
-
     port: Optional[float] = None
     """The port of the service."""
 
@@ -30,20 +20,6 @@ class Data(BaseModel):
     Records with lower priorities are preferred.
     """
 
-    proto: Optional[str] = None
-    """A valid protocol, prefixed with an underscore.
-
-    Deprecated in favor of the regular 'name' outside the data map. This data map
-    field normally represents the second label of that 'name'.
-    """
-
-    service: Optional[str] = None
-    """A service type, prefixed with an underscore.
-
-    Deprecated in favor of the regular 'name' outside the data map. This data map
-    field normally represents the first label of that 'name'.
-    """
-
     target: Optional[str] = None
     """A valid hostname."""
 
@@ -51,23 +27,25 @@ class Data(BaseModel):
     """The record weight."""
 
 
-class SRVRecord(BaseModel):
-    data: Data
-    """Components of a SRV record."""
-
-    name: str
-    """DNS record name (or @ for the zone apex) in Punycode.
-
-    For SRV records, the first label is normally a service and the second a protocol
-    name, each starting with an underscore.
+class Settings(BaseModel):
+    ipv4_only: Optional[bool] = None
+    """
+    When enabled, only A records will be generated, and AAAA records will not be
+    created. This setting is intended for exceptional cases. Note that this option
+    only applies to proxied records and it has no effect on whether Cloudflare
+    communicates with the origin using IPv4 or IPv6.
     """
 
-    type: Literal["SRV"]
-    """Record type."""
+    ipv6_only: Optional[bool] = None
+    """
+    When enabled, only AAAA records will be generated, and A records will not be
+    created. This setting is intended for exceptional cases. Note that this option
+    only applies to proxied records and it has no effect on whether Cloudflare
+    communicates with the origin using IPv4 or IPv6.
+    """
 
-    id: Optional[str] = None
-    """Identifier"""
 
+class SRVRecord(BaseModel):
     comment: Optional[str] = None
     """Comments or notes about the DNS record.
 
@@ -80,17 +58,20 @@ class SRVRecord(BaseModel):
     See 'data' for setting the individual component values.
     """
 
-    created_on: Optional[datetime] = None
-    """When the record was created."""
+    data: Optional[Data] = None
+    """Components of a SRV record."""
 
-    meta: Optional[RecordMetadata] = None
-    """Extra Cloudflare-specific information about the record."""
+    name: Optional[str] = None
+    """DNS record name (or @ for the zone apex) in Punycode."""
 
-    modified_on: Optional[datetime] = None
-    """When the record was last modified."""
+    proxied: Optional[bool] = None
+    """
+    Whether the record is receiving the performance and security benefits of
+    Cloudflare.
+    """
 
-    proxiable: Optional[bool] = None
-    """Whether the record can be proxied by Cloudflare or not."""
+    settings: Optional[Settings] = None
+    """Settings for the DNS record."""
 
     tags: Optional[List[RecordTags]] = None
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
@@ -101,3 +82,6 @@ class SRVRecord(BaseModel):
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
     minimum reduced to 30 for Enterprise zones.
     """
+
+    type: Optional[Literal["SRV"]] = None
+    """Record type."""

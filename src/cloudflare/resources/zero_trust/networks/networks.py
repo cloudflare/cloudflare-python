@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from .routes import (
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from .routes.routes import (
     RoutesResource,
     AsyncRoutesResource,
     RoutesResourceWithRawResponse,
@@ -10,9 +12,6 @@ from .routes import (
     RoutesResourceWithStreamingResponse,
     AsyncRoutesResourceWithStreamingResponse,
 )
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from .routes.routes import RoutesResource, AsyncRoutesResource
 from .virtual_networks import (
     VirtualNetworksResource,
     AsyncVirtualNetworksResource,
@@ -36,10 +35,21 @@ class NetworksResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> NetworksResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return NetworksResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> NetworksResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return NetworksResourceWithStreamingResponse(self)
 
 
@@ -54,10 +64,21 @@ class AsyncNetworksResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncNetworksResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncNetworksResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncNetworksResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncNetworksResourceWithStreamingResponse(self)
 
 

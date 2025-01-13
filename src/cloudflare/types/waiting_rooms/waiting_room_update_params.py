@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import List, Iterable
 from typing_extensions import Literal, Required, TypedDict
 
 from .additional_routes_param import AdditionalRoutesParam
@@ -111,6 +111,27 @@ class WaitingRoomUpdateParams(TypedDict, total=False):
         "ar-EG",
         "ru-RU",
         "fa-IR",
+        "bg-BG",
+        "hr-HR",
+        "cs-CZ",
+        "da-DK",
+        "fi-FI",
+        "lt-LT",
+        "ms-MY",
+        "nb-NO",
+        "ro-RO",
+        "el-GR",
+        "he-IL",
+        "hi-IN",
+        "hu-HU",
+        "sr-BA",
+        "sk-SK",
+        "sl-SI",
+        "sv-SE",
+        "tl-PH",
+        "th-TH",
+        "uk-UA",
+        "vi-VN",
     ]
     """The language of the default page template.
 
@@ -129,6 +150,9 @@ class WaitingRoomUpdateParams(TypedDict, total=False):
     go through the waiting room again. If `false`, a user's session cookie will be
     automatically renewed on every request.
     """
+
+    enabled_origin_commands: List[Literal["revoke"]]
+    """A list of enabled origin commands."""
 
     json_response_enabled: bool
     """Only available for the Waiting Room Advanced subscription.
@@ -340,4 +364,23 @@ class WaitingRoomUpdateParams(TypedDict, total=False):
     """Suspends or allows traffic going to the waiting room.
 
     If set to `true`, the traffic will not go to the waiting room.
+    """
+
+    turnstile_action: Literal["log", "infinite_queue"]
+    """Which action to take when a bot is detected using Turnstile.
+
+    `log` will have no impact on queueing behavior, simply keeping track of how many
+    bots are detected in Waiting Room Analytics. `infinite_queue` will send bots to
+    a false queueing state, where they will never reach your origin.
+    `infinite_queue` requires Advanced Waiting Room.
+    """
+
+    turnstile_mode: Literal["off", "invisible", "visible_non_interactive", "visible_managed"]
+    """Which Turnstile widget type to use for detecting bot traffic.
+
+    See
+    [the Turnstile documentation](https://developers.cloudflare.com/turnstile/concepts/widget/#widget-types)
+    for the definitions of these widget types. Set to `off` to disable the Turnstile
+    integration entirely. Setting this to anything other than `off` or `invisible`
+    requires Advanced Waiting Room.
     """

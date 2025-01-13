@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from .policy import Policy as Policy
 from .script import Script as Script
 from .setting import Setting as Setting
 from .connection import Connection as Connection

@@ -32,10 +32,21 @@ __all__ = ["InvitesResource", "AsyncInvitesResource"]
 class InvitesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> InvitesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return InvitesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> InvitesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return InvitesResourceWithStreamingResponse(self)
 
     def list(
@@ -69,7 +80,7 @@ class InvitesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[Invite]:
         """
         Responds to an invitation.
 
@@ -96,9 +107,9 @@ class InvitesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Invite]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[Invite]], ResultWrapper[Invite]),
         )
 
     def get(
@@ -111,7 +122,7 @@ class InvitesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[Invite]:
         """
         Gets the details of an invitation.
 
@@ -135,19 +146,30 @@ class InvitesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Invite]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[Invite]], ResultWrapper[Invite]),
         )
 
 
 class AsyncInvitesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncInvitesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncInvitesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncInvitesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncInvitesResourceWithStreamingResponse(self)
 
     def list(
@@ -181,7 +203,7 @@ class AsyncInvitesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[Invite]:
         """
         Responds to an invitation.
 
@@ -208,9 +230,9 @@ class AsyncInvitesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Invite]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[Invite]], ResultWrapper[Invite]),
         )
 
     async def get(
@@ -223,7 +245,7 @@ class AsyncInvitesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[Invite]:
         """
         Gets the details of an invitation.
 
@@ -247,9 +269,9 @@ class AsyncInvitesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Invite]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[Invite]], ResultWrapper[Invite]),
         )
 
 

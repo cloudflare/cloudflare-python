@@ -24,6 +24,7 @@ from ......_wrappers import ResultWrapper
 from ......pagination import SyncSinglePage, AsyncSinglePage
 from ......_base_client import AsyncPaginator, make_request_options
 from ......types.workers_for_platforms.dispatch.namespaces.scripts import secret_update_params
+from ......types.workers_for_platforms.dispatch.namespaces.scripts.secret_get_response import SecretGetResponse
 from ......types.workers_for_platforms.dispatch.namespaces.scripts.secret_list_response import SecretListResponse
 from ......types.workers_for_platforms.dispatch.namespaces.scripts.secret_update_response import SecretUpdateResponse
 
@@ -33,10 +34,21 @@ __all__ = ["SecretsResource", "AsyncSecretsResource"]
 class SecretsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> SecretsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return SecretsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> SecretsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return SecretsResourceWithStreamingResponse(self)
 
     def update(
@@ -65,7 +77,8 @@ class SecretsResource(SyncAPIResource):
 
           script_name: Name of the script, used in URLs and route configuration.
 
-          name: The name of this secret, this is what will be to access it inside the Worker.
+          name: The name of this secret, this is what will be used to access it inside the
+              Worker.
 
           text: The value of the secret.
 
@@ -119,7 +132,7 @@ class SecretsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncSinglePage[SecretListResponse]:
         """
-        Fetch secrets from a script uploaded to a Workers for Platforms namespace.
+        List secrets from a script uploaded to a Workers for Platforms namespace.
 
         Args:
           account_id: Identifier
@@ -151,14 +164,79 @@ class SecretsResource(SyncAPIResource):
             model=SecretListResponse,
         )
 
+    def get(
+        self,
+        secret_name: str,
+        *,
+        account_id: str,
+        dispatch_namespace: str,
+        script_name: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[SecretGetResponse]:
+        """
+        Get secret from a script uploaded to a Workers for Platforms namespace.
+
+        Args:
+          account_id: Identifier
+
+          dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
+
+          script_name: Name of the script, used in URLs and route configuration.
+
+          secret_name: A JavaScript variable name for the secret binding.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not dispatch_namespace:
+            raise ValueError(f"Expected a non-empty value for `dispatch_namespace` but received {dispatch_namespace!r}")
+        if not script_name:
+            raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
+        if not secret_name:
+            raise ValueError(f"Expected a non-empty value for `secret_name` but received {secret_name!r}")
+        return self._get(
+            f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets/{secret_name}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[SecretGetResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[SecretGetResponse]], ResultWrapper[SecretGetResponse]),
+        )
+
 
 class AsyncSecretsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncSecretsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncSecretsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncSecretsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncSecretsResourceWithStreamingResponse(self)
 
     async def update(
@@ -187,7 +265,8 @@ class AsyncSecretsResource(AsyncAPIResource):
 
           script_name: Name of the script, used in URLs and route configuration.
 
-          name: The name of this secret, this is what will be to access it inside the Worker.
+          name: The name of this secret, this is what will be used to access it inside the
+              Worker.
 
           text: The value of the secret.
 
@@ -241,7 +320,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[SecretListResponse, AsyncSinglePage[SecretListResponse]]:
         """
-        Fetch secrets from a script uploaded to a Workers for Platforms namespace.
+        List secrets from a script uploaded to a Workers for Platforms namespace.
 
         Args:
           account_id: Identifier
@@ -273,6 +352,60 @@ class AsyncSecretsResource(AsyncAPIResource):
             model=SecretListResponse,
         )
 
+    async def get(
+        self,
+        secret_name: str,
+        *,
+        account_id: str,
+        dispatch_namespace: str,
+        script_name: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[SecretGetResponse]:
+        """
+        Get secret from a script uploaded to a Workers for Platforms namespace.
+
+        Args:
+          account_id: Identifier
+
+          dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
+
+          script_name: Name of the script, used in URLs and route configuration.
+
+          secret_name: A JavaScript variable name for the secret binding.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not dispatch_namespace:
+            raise ValueError(f"Expected a non-empty value for `dispatch_namespace` but received {dispatch_namespace!r}")
+        if not script_name:
+            raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
+        if not secret_name:
+            raise ValueError(f"Expected a non-empty value for `secret_name` but received {secret_name!r}")
+        return await self._get(
+            f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/secrets/{secret_name}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[SecretGetResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[SecretGetResponse]], ResultWrapper[SecretGetResponse]),
+        )
+
 
 class SecretsResourceWithRawResponse:
     def __init__(self, secrets: SecretsResource) -> None:
@@ -283,6 +416,9 @@ class SecretsResourceWithRawResponse:
         )
         self.list = to_raw_response_wrapper(
             secrets.list,
+        )
+        self.get = to_raw_response_wrapper(
+            secrets.get,
         )
 
 
@@ -296,6 +432,9 @@ class AsyncSecretsResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             secrets.list,
         )
+        self.get = async_to_raw_response_wrapper(
+            secrets.get,
+        )
 
 
 class SecretsResourceWithStreamingResponse:
@@ -308,6 +447,9 @@ class SecretsResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             secrets.list,
         )
+        self.get = to_streamed_response_wrapper(
+            secrets.get,
+        )
 
 
 class AsyncSecretsResourceWithStreamingResponse:
@@ -319,4 +461,7 @@ class AsyncSecretsResourceWithStreamingResponse:
         )
         self.list = async_to_streamed_response_wrapper(
             secrets.list,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            secrets.get,
         )

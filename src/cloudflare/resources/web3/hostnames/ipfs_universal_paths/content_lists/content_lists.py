@@ -43,17 +43,28 @@ class ContentListsResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> ContentListsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return ContentListsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> ContentListsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return ContentListsResourceWithStreamingResponse(self)
 
     def update(
         self,
         identifier: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         action: Literal["block"],
         entries: Iterable[content_list_update_params.Entry],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -67,7 +78,7 @@ class ContentListsResource(SyncAPIResource):
         Update IPFS Universal Path Gateway Content List
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           identifier: Identifier
 
@@ -83,12 +94,12 @@ class ContentListsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return self._put(
-            f"/zones/{zone_identifier}/web3/hostnames/{identifier}/ipfs_universal_path/content_list",
+            f"/zones/{zone_id}/web3/hostnames/{identifier}/ipfs_universal_path/content_list",
             body=maybe_transform(
                 {
                     "action": action,
@@ -110,7 +121,7 @@ class ContentListsResource(SyncAPIResource):
         self,
         identifier: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -122,7 +133,7 @@ class ContentListsResource(SyncAPIResource):
         IPFS Universal Path Gateway Content List Details
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           identifier: Identifier
 
@@ -134,12 +145,12 @@ class ContentListsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return self._get(
-            f"/zones/{zone_identifier}/web3/hostnames/{identifier}/ipfs_universal_path/content_list",
+            f"/zones/{zone_id}/web3/hostnames/{identifier}/ipfs_universal_path/content_list",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -158,17 +169,28 @@ class AsyncContentListsResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncContentListsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncContentListsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncContentListsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncContentListsResourceWithStreamingResponse(self)
 
     async def update(
         self,
         identifier: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         action: Literal["block"],
         entries: Iterable[content_list_update_params.Entry],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -182,7 +204,7 @@ class AsyncContentListsResource(AsyncAPIResource):
         Update IPFS Universal Path Gateway Content List
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           identifier: Identifier
 
@@ -198,12 +220,12 @@ class AsyncContentListsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return await self._put(
-            f"/zones/{zone_identifier}/web3/hostnames/{identifier}/ipfs_universal_path/content_list",
+            f"/zones/{zone_id}/web3/hostnames/{identifier}/ipfs_universal_path/content_list",
             body=await async_maybe_transform(
                 {
                     "action": action,
@@ -225,7 +247,7 @@ class AsyncContentListsResource(AsyncAPIResource):
         self,
         identifier: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -237,7 +259,7 @@ class AsyncContentListsResource(AsyncAPIResource):
         IPFS Universal Path Gateway Content List Details
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           identifier: Identifier
 
@@ -249,12 +271,12 @@ class AsyncContentListsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return await self._get(
-            f"/zones/{zone_identifier}/web3/hostnames/{identifier}/ipfs_universal_path/content_list",
+            f"/zones/{zone_id}/web3/hostnames/{identifier}/ipfs_universal_path/content_list",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -11,12 +11,13 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.vectorize import (
-    IndexQuery,
     CreateIndex,
-    IndexInsert,
-    IndexUpsert,
+    IndexInfoResponse,
+    IndexQueryResponse,
     IndexDeleteResponse,
-    IndexDeleteVectorsByID,
+    IndexInsertResponse,
+    IndexUpsertResponse,
+    IndexDeleteByIDsResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -97,59 +98,6 @@ class TestIndexes:
             )
 
     @parametrize
-    def test_method_update(self, client: Cloudflare) -> None:
-        index = client.vectorize.indexes.update(
-            index_name="example-index",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            description="This is my example index.",
-        )
-        assert_matches_type(Optional[CreateIndex], index, path=["response"])
-
-    @parametrize
-    def test_raw_response_update(self, client: Cloudflare) -> None:
-        response = client.vectorize.indexes.with_raw_response.update(
-            index_name="example-index",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            description="This is my example index.",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        index = response.parse()
-        assert_matches_type(Optional[CreateIndex], index, path=["response"])
-
-    @parametrize
-    def test_streaming_response_update(self, client: Cloudflare) -> None:
-        with client.vectorize.indexes.with_streaming_response.update(
-            index_name="example-index",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            description="This is my example index.",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            index = response.parse()
-            assert_matches_type(Optional[CreateIndex], index, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    def test_path_params_update(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.vectorize.indexes.with_raw_response.update(
-                index_name="example-index",
-                account_id="",
-                description="This is my example index.",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `index_name` but received ''"):
-            client.vectorize.indexes.with_raw_response.update(
-                index_name="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                description="This is my example index.",
-            )
-
-    @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         index = client.vectorize.indexes.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -193,7 +141,7 @@ class TestIndexes:
             index_name="example-index",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(IndexDeleteResponse, index, path=["response"])
+        assert_matches_type(Optional[IndexDeleteResponse], index, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -205,7 +153,7 @@ class TestIndexes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         index = response.parse()
-        assert_matches_type(IndexDeleteResponse, index, path=["response"])
+        assert_matches_type(Optional[IndexDeleteResponse], index, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -217,7 +165,7 @@ class TestIndexes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             index = response.parse()
-            assert_matches_type(IndexDeleteResponse, index, path=["response"])
+            assert_matches_type(Optional[IndexDeleteResponse], index, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -241,7 +189,7 @@ class TestIndexes:
             index_name="example-index",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[IndexDeleteVectorsByID], index, path=["response"])
+        assert_matches_type(Optional[IndexDeleteByIDsResponse], index, path=["response"])
 
     @parametrize
     def test_method_delete_by_ids_with_all_params(self, client: Cloudflare) -> None:
@@ -250,7 +198,7 @@ class TestIndexes:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             ids=["5121db81354a40c6aedc3fe1ace51c59", "f90eb49c2107486abdfd78c67e853430"],
         )
-        assert_matches_type(Optional[IndexDeleteVectorsByID], index, path=["response"])
+        assert_matches_type(Optional[IndexDeleteByIDsResponse], index, path=["response"])
 
     @parametrize
     def test_raw_response_delete_by_ids(self, client: Cloudflare) -> None:
@@ -262,7 +210,7 @@ class TestIndexes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         index = response.parse()
-        assert_matches_type(Optional[IndexDeleteVectorsByID], index, path=["response"])
+        assert_matches_type(Optional[IndexDeleteByIDsResponse], index, path=["response"])
 
     @parametrize
     def test_streaming_response_delete_by_ids(self, client: Cloudflare) -> None:
@@ -274,7 +222,7 @@ class TestIndexes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             index = response.parse()
-            assert_matches_type(Optional[IndexDeleteVectorsByID], index, path=["response"])
+            assert_matches_type(Optional[IndexDeleteByIDsResponse], index, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -397,6 +345,54 @@ class TestIndexes:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+    @parametrize
+    def test_method_info(self, client: Cloudflare) -> None:
+        index = client.vectorize.indexes.info(
+            index_name="example-index",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(Optional[IndexInfoResponse], index, path=["response"])
+
+    @parametrize
+    def test_raw_response_info(self, client: Cloudflare) -> None:
+        response = client.vectorize.indexes.with_raw_response.info(
+            index_name="example-index",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        index = response.parse()
+        assert_matches_type(Optional[IndexInfoResponse], index, path=["response"])
+
+    @parametrize
+    def test_streaming_response_info(self, client: Cloudflare) -> None:
+        with client.vectorize.indexes.with_streaming_response.info(
+            index_name="example-index",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            index = response.parse()
+            assert_matches_type(Optional[IndexInfoResponse], index, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_info(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.vectorize.indexes.with_raw_response.info(
+                index_name="example-index",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `index_name` but received ''"):
+            client.vectorize.indexes.with_raw_response.info(
+                index_name="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_insert(self, client: Cloudflare) -> None:
@@ -405,7 +401,18 @@ class TestIndexes:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body=b"raw file contents",
         )
-        assert_matches_type(Optional[IndexInsert], index, path=["response"])
+        assert_matches_type(Optional[IndexInsertResponse], index, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_insert_with_all_params(self, client: Cloudflare) -> None:
+        index = client.vectorize.indexes.insert(
+            index_name="example-index",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body=b"raw file contents",
+            unparsable_behavior="error",
+        )
+        assert_matches_type(Optional[IndexInsertResponse], index, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -419,7 +426,7 @@ class TestIndexes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         index = response.parse()
-        assert_matches_type(Optional[IndexInsert], index, path=["response"])
+        assert_matches_type(Optional[IndexInsertResponse], index, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -433,7 +440,7 @@ class TestIndexes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             index = response.parse()
-            assert_matches_type(Optional[IndexInsert], index, path=["response"])
+            assert_matches_type(Optional[IndexInsertResponse], index, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -461,7 +468,7 @@ class TestIndexes:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             vector=[0.5, 0.5, 0.5],
         )
-        assert_matches_type(Optional[IndexQuery], index, path=["response"])
+        assert_matches_type(Optional[IndexQueryResponse], index, path=["response"])
 
     @parametrize
     def test_method_query_with_all_params(self, client: Cloudflare) -> None:
@@ -473,11 +480,11 @@ class TestIndexes:
                 "has_viewed": {"$ne": True},
                 "streaming_platform": "netflix",
             },
-            return_metadata=True,
+            return_metadata="none",
             return_values=True,
             top_k=5,
         )
-        assert_matches_type(Optional[IndexQuery], index, path=["response"])
+        assert_matches_type(Optional[IndexQueryResponse], index, path=["response"])
 
     @parametrize
     def test_raw_response_query(self, client: Cloudflare) -> None:
@@ -490,7 +497,7 @@ class TestIndexes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         index = response.parse()
-        assert_matches_type(Optional[IndexQuery], index, path=["response"])
+        assert_matches_type(Optional[IndexQueryResponse], index, path=["response"])
 
     @parametrize
     def test_streaming_response_query(self, client: Cloudflare) -> None:
@@ -503,7 +510,7 @@ class TestIndexes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             index = response.parse()
-            assert_matches_type(Optional[IndexQuery], index, path=["response"])
+            assert_matches_type(Optional[IndexQueryResponse], index, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -531,7 +538,18 @@ class TestIndexes:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body=b"raw file contents",
         )
-        assert_matches_type(Optional[IndexUpsert], index, path=["response"])
+        assert_matches_type(Optional[IndexUpsertResponse], index, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_upsert_with_all_params(self, client: Cloudflare) -> None:
+        index = client.vectorize.indexes.upsert(
+            index_name="example-index",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body=b"raw file contents",
+            unparsable_behavior="error",
+        )
+        assert_matches_type(Optional[IndexUpsertResponse], index, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -545,7 +563,7 @@ class TestIndexes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         index = response.parse()
-        assert_matches_type(Optional[IndexUpsert], index, path=["response"])
+        assert_matches_type(Optional[IndexUpsertResponse], index, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -559,7 +577,7 @@ class TestIndexes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             index = response.parse()
-            assert_matches_type(Optional[IndexUpsert], index, path=["response"])
+            assert_matches_type(Optional[IndexUpsertResponse], index, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -656,59 +674,6 @@ class TestAsyncIndexes:
             )
 
     @parametrize
-    async def test_method_update(self, async_client: AsyncCloudflare) -> None:
-        index = await async_client.vectorize.indexes.update(
-            index_name="example-index",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            description="This is my example index.",
-        )
-        assert_matches_type(Optional[CreateIndex], index, path=["response"])
-
-    @parametrize
-    async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.vectorize.indexes.with_raw_response.update(
-            index_name="example-index",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            description="This is my example index.",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        index = await response.parse()
-        assert_matches_type(Optional[CreateIndex], index, path=["response"])
-
-    @parametrize
-    async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.vectorize.indexes.with_streaming_response.update(
-            index_name="example-index",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            description="This is my example index.",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            index = await response.parse()
-            assert_matches_type(Optional[CreateIndex], index, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.vectorize.indexes.with_raw_response.update(
-                index_name="example-index",
-                account_id="",
-                description="This is my example index.",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `index_name` but received ''"):
-            await async_client.vectorize.indexes.with_raw_response.update(
-                index_name="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                description="This is my example index.",
-            )
-
-    @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         index = await async_client.vectorize.indexes.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -752,7 +717,7 @@ class TestAsyncIndexes:
             index_name="example-index",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(IndexDeleteResponse, index, path=["response"])
+        assert_matches_type(Optional[IndexDeleteResponse], index, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -764,7 +729,7 @@ class TestAsyncIndexes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         index = await response.parse()
-        assert_matches_type(IndexDeleteResponse, index, path=["response"])
+        assert_matches_type(Optional[IndexDeleteResponse], index, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -776,7 +741,7 @@ class TestAsyncIndexes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             index = await response.parse()
-            assert_matches_type(IndexDeleteResponse, index, path=["response"])
+            assert_matches_type(Optional[IndexDeleteResponse], index, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -800,7 +765,7 @@ class TestAsyncIndexes:
             index_name="example-index",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[IndexDeleteVectorsByID], index, path=["response"])
+        assert_matches_type(Optional[IndexDeleteByIDsResponse], index, path=["response"])
 
     @parametrize
     async def test_method_delete_by_ids_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -809,7 +774,7 @@ class TestAsyncIndexes:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             ids=["5121db81354a40c6aedc3fe1ace51c59", "f90eb49c2107486abdfd78c67e853430"],
         )
-        assert_matches_type(Optional[IndexDeleteVectorsByID], index, path=["response"])
+        assert_matches_type(Optional[IndexDeleteByIDsResponse], index, path=["response"])
 
     @parametrize
     async def test_raw_response_delete_by_ids(self, async_client: AsyncCloudflare) -> None:
@@ -821,7 +786,7 @@ class TestAsyncIndexes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         index = await response.parse()
-        assert_matches_type(Optional[IndexDeleteVectorsByID], index, path=["response"])
+        assert_matches_type(Optional[IndexDeleteByIDsResponse], index, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete_by_ids(self, async_client: AsyncCloudflare) -> None:
@@ -833,7 +798,7 @@ class TestAsyncIndexes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             index = await response.parse()
-            assert_matches_type(Optional[IndexDeleteVectorsByID], index, path=["response"])
+            assert_matches_type(Optional[IndexDeleteByIDsResponse], index, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -956,6 +921,54 @@ class TestAsyncIndexes:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
+    @parametrize
+    async def test_method_info(self, async_client: AsyncCloudflare) -> None:
+        index = await async_client.vectorize.indexes.info(
+            index_name="example-index",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(Optional[IndexInfoResponse], index, path=["response"])
+
+    @parametrize
+    async def test_raw_response_info(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.vectorize.indexes.with_raw_response.info(
+            index_name="example-index",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        index = await response.parse()
+        assert_matches_type(Optional[IndexInfoResponse], index, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_info(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.vectorize.indexes.with_streaming_response.info(
+            index_name="example-index",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            index = await response.parse()
+            assert_matches_type(Optional[IndexInfoResponse], index, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_info(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.vectorize.indexes.with_raw_response.info(
+                index_name="example-index",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `index_name` but received ''"):
+            await async_client.vectorize.indexes.with_raw_response.info(
+                index_name="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_insert(self, async_client: AsyncCloudflare) -> None:
@@ -964,7 +977,18 @@ class TestAsyncIndexes:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body=b"raw file contents",
         )
-        assert_matches_type(Optional[IndexInsert], index, path=["response"])
+        assert_matches_type(Optional[IndexInsertResponse], index, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_insert_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        index = await async_client.vectorize.indexes.insert(
+            index_name="example-index",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body=b"raw file contents",
+            unparsable_behavior="error",
+        )
+        assert_matches_type(Optional[IndexInsertResponse], index, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -978,7 +1002,7 @@ class TestAsyncIndexes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         index = await response.parse()
-        assert_matches_type(Optional[IndexInsert], index, path=["response"])
+        assert_matches_type(Optional[IndexInsertResponse], index, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -992,7 +1016,7 @@ class TestAsyncIndexes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             index = await response.parse()
-            assert_matches_type(Optional[IndexInsert], index, path=["response"])
+            assert_matches_type(Optional[IndexInsertResponse], index, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1020,7 +1044,7 @@ class TestAsyncIndexes:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             vector=[0.5, 0.5, 0.5],
         )
-        assert_matches_type(Optional[IndexQuery], index, path=["response"])
+        assert_matches_type(Optional[IndexQueryResponse], index, path=["response"])
 
     @parametrize
     async def test_method_query_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -1032,11 +1056,11 @@ class TestAsyncIndexes:
                 "has_viewed": {"$ne": True},
                 "streaming_platform": "netflix",
             },
-            return_metadata=True,
+            return_metadata="none",
             return_values=True,
             top_k=5,
         )
-        assert_matches_type(Optional[IndexQuery], index, path=["response"])
+        assert_matches_type(Optional[IndexQueryResponse], index, path=["response"])
 
     @parametrize
     async def test_raw_response_query(self, async_client: AsyncCloudflare) -> None:
@@ -1049,7 +1073,7 @@ class TestAsyncIndexes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         index = await response.parse()
-        assert_matches_type(Optional[IndexQuery], index, path=["response"])
+        assert_matches_type(Optional[IndexQueryResponse], index, path=["response"])
 
     @parametrize
     async def test_streaming_response_query(self, async_client: AsyncCloudflare) -> None:
@@ -1062,7 +1086,7 @@ class TestAsyncIndexes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             index = await response.parse()
-            assert_matches_type(Optional[IndexQuery], index, path=["response"])
+            assert_matches_type(Optional[IndexQueryResponse], index, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1090,7 +1114,18 @@ class TestAsyncIndexes:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body=b"raw file contents",
         )
-        assert_matches_type(Optional[IndexUpsert], index, path=["response"])
+        assert_matches_type(Optional[IndexUpsertResponse], index, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_upsert_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        index = await async_client.vectorize.indexes.upsert(
+            index_name="example-index",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body=b"raw file contents",
+            unparsable_behavior="error",
+        )
+        assert_matches_type(Optional[IndexUpsertResponse], index, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1104,7 +1139,7 @@ class TestAsyncIndexes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         index = await response.parse()
-        assert_matches_type(Optional[IndexUpsert], index, path=["response"])
+        assert_matches_type(Optional[IndexUpsertResponse], index, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1118,7 +1153,7 @@ class TestAsyncIndexes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             index = await response.parse()
-            assert_matches_type(Optional[IndexUpsert], index, path=["response"])
+            assert_matches_type(Optional[IndexUpsertResponse], index, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -11,6 +11,7 @@ from .authenticated_origin_pull import AuthenticatedOriginPull as AuthenticatedO
 from .zone_authenticated_origin_pull import ZoneAuthenticatedOriginPull as ZoneAuthenticatedOriginPull
 from .origin_tls_client_auth_get_response import OriginTLSClientAuthGetResponse as OriginTLSClientAuthGetResponse
 from .origin_tls_client_auth_create_params import OriginTLSClientAuthCreateParams as OriginTLSClientAuthCreateParams
+from .origin_tls_client_auth_list_response import OriginTLSClientAuthListResponse as OriginTLSClientAuthListResponse
 from .origin_tls_client_auth_create_response import (
     OriginTLSClientAuthCreateResponse as OriginTLSClientAuthCreateResponse,
 )

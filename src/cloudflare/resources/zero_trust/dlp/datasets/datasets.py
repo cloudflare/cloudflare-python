@@ -30,6 +30,14 @@ from ....._response import (
 from ....._wrappers import ResultWrapper
 from .....pagination import SyncSinglePage, AsyncSinglePage
 from ....._base_client import AsyncPaginator, make_request_options
+from .versions.versions import (
+    VersionsResource,
+    AsyncVersionsResource,
+    VersionsResourceWithRawResponse,
+    AsyncVersionsResourceWithRawResponse,
+    VersionsResourceWithStreamingResponse,
+    AsyncVersionsResourceWithStreamingResponse,
+)
 from .....types.zero_trust.dlp import dataset_create_params, dataset_update_params
 from .....types.zero_trust.dlp.dataset import Dataset
 from .....types.zero_trust.dlp.dataset_creation import DatasetCreation
@@ -43,11 +51,26 @@ class DatasetsResource(SyncAPIResource):
         return UploadResource(self._client)
 
     @cached_property
+    def versions(self) -> VersionsResource:
+        return VersionsResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> DatasetsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return DatasetsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> DatasetsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return DatasetsResourceWithStreamingResponse(self)
 
     def create(
@@ -56,6 +79,7 @@ class DatasetsResource(SyncAPIResource):
         account_id: str,
         name: str,
         description: Optional[str] | NotGiven = NOT_GIVEN,
+        encoding_version: int | NotGiven = NOT_GIVEN,
         secret: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -65,9 +89,18 @@ class DatasetsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[DatasetCreation]:
         """
-        Create a new dataset.
+        Create a new dataset
 
         Args:
+          description: The description of the dataset
+
+          encoding_version: Dataset encoding version
+
+              Non-secret custom word lists with no header are always version 1. Secret EDM
+              lists with no header are version 1. Multicolumn CSV with headers are version 2.
+              Omitting this field provides the default value 0, which is interpreted the same
+              as 1.
+
           secret: Generate a secret dataset.
 
               If true, the response will include a secret to use with the EDM encoder. If
@@ -89,6 +122,7 @@ class DatasetsResource(SyncAPIResource):
                 {
                     "name": name,
                     "description": description,
+                    "encoding_version": encoding_version,
                     "secret": secret,
                 },
                 dataset_create_params.DatasetCreateParams,
@@ -118,9 +152,13 @@ class DatasetsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[Dataset]:
         """
-        Update details about a dataset.
+        Update details about a dataset
 
         Args:
+          description: The description of the dataset
+
+          name: The name of the dataset, must be unique
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -164,7 +202,7 @@ class DatasetsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncSinglePage[Dataset]:
         """
-        Fetch all datasets with information about available versions.
+        Fetch all datasets
 
         Args:
           extra_headers: Send extra headers
@@ -199,8 +237,6 @@ class DatasetsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
         """
-        Delete a dataset.
-
         This deletes all versions of the dataset.
 
         Args:
@@ -238,7 +274,7 @@ class DatasetsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[Dataset]:
         """
-        Fetch a specific dataset with information about available versions.
+        Fetch a specific dataset
 
         Args:
           extra_headers: Send extra headers
@@ -272,11 +308,26 @@ class AsyncDatasetsResource(AsyncAPIResource):
         return AsyncUploadResource(self._client)
 
     @cached_property
+    def versions(self) -> AsyncVersionsResource:
+        return AsyncVersionsResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AsyncDatasetsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncDatasetsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncDatasetsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncDatasetsResourceWithStreamingResponse(self)
 
     async def create(
@@ -285,6 +336,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         account_id: str,
         name: str,
         description: Optional[str] | NotGiven = NOT_GIVEN,
+        encoding_version: int | NotGiven = NOT_GIVEN,
         secret: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -294,9 +346,18 @@ class AsyncDatasetsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[DatasetCreation]:
         """
-        Create a new dataset.
+        Create a new dataset
 
         Args:
+          description: The description of the dataset
+
+          encoding_version: Dataset encoding version
+
+              Non-secret custom word lists with no header are always version 1. Secret EDM
+              lists with no header are version 1. Multicolumn CSV with headers are version 2.
+              Omitting this field provides the default value 0, which is interpreted the same
+              as 1.
+
           secret: Generate a secret dataset.
 
               If true, the response will include a secret to use with the EDM encoder. If
@@ -318,6 +379,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
                 {
                     "name": name,
                     "description": description,
+                    "encoding_version": encoding_version,
                     "secret": secret,
                 },
                 dataset_create_params.DatasetCreateParams,
@@ -347,9 +409,13 @@ class AsyncDatasetsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[Dataset]:
         """
-        Update details about a dataset.
+        Update details about a dataset
 
         Args:
+          description: The description of the dataset
+
+          name: The name of the dataset, must be unique
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -393,7 +459,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[Dataset, AsyncSinglePage[Dataset]]:
         """
-        Fetch all datasets with information about available versions.
+        Fetch all datasets
 
         Args:
           extra_headers: Send extra headers
@@ -428,8 +494,6 @@ class AsyncDatasetsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
         """
-        Delete a dataset.
-
         This deletes all versions of the dataset.
 
         Args:
@@ -467,7 +531,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[Dataset]:
         """
-        Fetch a specific dataset with information about available versions.
+        Fetch a specific dataset
 
         Args:
           extra_headers: Send extra headers
@@ -519,6 +583,10 @@ class DatasetsResourceWithRawResponse:
     def upload(self) -> UploadResourceWithRawResponse:
         return UploadResourceWithRawResponse(self._datasets.upload)
 
+    @cached_property
+    def versions(self) -> VersionsResourceWithRawResponse:
+        return VersionsResourceWithRawResponse(self._datasets.versions)
+
 
 class AsyncDatasetsResourceWithRawResponse:
     def __init__(self, datasets: AsyncDatasetsResource) -> None:
@@ -543,6 +611,10 @@ class AsyncDatasetsResourceWithRawResponse:
     @cached_property
     def upload(self) -> AsyncUploadResourceWithRawResponse:
         return AsyncUploadResourceWithRawResponse(self._datasets.upload)
+
+    @cached_property
+    def versions(self) -> AsyncVersionsResourceWithRawResponse:
+        return AsyncVersionsResourceWithRawResponse(self._datasets.versions)
 
 
 class DatasetsResourceWithStreamingResponse:
@@ -569,6 +641,10 @@ class DatasetsResourceWithStreamingResponse:
     def upload(self) -> UploadResourceWithStreamingResponse:
         return UploadResourceWithStreamingResponse(self._datasets.upload)
 
+    @cached_property
+    def versions(self) -> VersionsResourceWithStreamingResponse:
+        return VersionsResourceWithStreamingResponse(self._datasets.versions)
+
 
 class AsyncDatasetsResourceWithStreamingResponse:
     def __init__(self, datasets: AsyncDatasetsResource) -> None:
@@ -593,3 +669,7 @@ class AsyncDatasetsResourceWithStreamingResponse:
     @cached_property
     def upload(self) -> AsyncUploadResourceWithStreamingResponse:
         return AsyncUploadResourceWithStreamingResponse(self._datasets.upload)
+
+    @cached_property
+    def versions(self) -> AsyncVersionsResourceWithStreamingResponse:
+        return AsyncVersionsResourceWithStreamingResponse(self._datasets.versions)

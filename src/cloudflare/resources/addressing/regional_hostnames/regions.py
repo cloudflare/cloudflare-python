@@ -23,10 +23,21 @@ __all__ = ["RegionsResource", "AsyncRegionsResource"]
 class RegionsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> RegionsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return RegionsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> RegionsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return RegionsResourceWithStreamingResponse(self)
 
     def list(
@@ -69,10 +80,21 @@ class RegionsResource(SyncAPIResource):
 class AsyncRegionsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncRegionsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncRegionsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncRegionsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncRegionsResourceWithStreamingResponse(self)
 
     def list(

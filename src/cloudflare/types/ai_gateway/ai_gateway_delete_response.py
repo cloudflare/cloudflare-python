@@ -13,6 +13,10 @@ class AIGatewayDeleteResponse(BaseModel):
     id: str
     """gateway id"""
 
+    account_id: str
+
+    account_tag: str
+
     cache_invalidate_on_update: bool
 
     cache_ttl: Optional[int] = None
@@ -21,6 +25,8 @@ class AIGatewayDeleteResponse(BaseModel):
 
     created_at: datetime
 
+    internal_id: str
+
     modified_at: datetime
 
     rate_limiting_interval: Optional[int] = None
@@ -28,3 +34,7 @@ class AIGatewayDeleteResponse(BaseModel):
     rate_limiting_limit: Optional[int] = None
 
     rate_limiting_technique: Literal["fixed", "sliding"]
+
+    logpush: Optional[bool] = None
+
+    logpush_public_key: Optional[str] = None

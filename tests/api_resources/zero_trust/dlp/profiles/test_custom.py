@@ -9,11 +9,8 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zero_trust.dlp.profiles import (
-    CustomProfile,
-    CustomCreateResponse,
-    CustomDeleteResponse,
-)
+from cloudflare.types.zero_trust.dlp import Profile
+from cloudflare.types.zero_trust.dlp.profiles import CustomCreateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -22,18 +19,40 @@ class TestCustom:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    def test_method_create(self, client: Cloudflare) -> None:
+    def test_method_create_overload_1(self, client: Cloudflare) -> None:
         custom = client.zero_trust.dlp.profiles.custom.create(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            profiles=[{}, {}, {}],
+            account_id="account_id",
+            profiles=[
+                {
+                    "entries": [
+                        {
+                            "enabled": True,
+                            "name": "name",
+                            "pattern": {"regex": "regex"},
+                        }
+                    ],
+                    "name": "name",
+                }
+            ],
         )
         assert_matches_type(Optional[CustomCreateResponse], custom, path=["response"])
 
     @parametrize
-    def test_raw_response_create(self, client: Cloudflare) -> None:
+    def test_raw_response_create_overload_1(self, client: Cloudflare) -> None:
         response = client.zero_trust.dlp.profiles.custom.with_raw_response.create(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            profiles=[{}, {}, {}],
+            account_id="account_id",
+            profiles=[
+                {
+                    "entries": [
+                        {
+                            "enabled": True,
+                            "name": "name",
+                            "pattern": {"regex": "regex"},
+                        }
+                    ],
+                    "name": "name",
+                }
+            ],
         )
 
         assert response.is_closed is True
@@ -42,10 +61,21 @@ class TestCustom:
         assert_matches_type(Optional[CustomCreateResponse], custom, path=["response"])
 
     @parametrize
-    def test_streaming_response_create(self, client: Cloudflare) -> None:
+    def test_streaming_response_create_overload_1(self, client: Cloudflare) -> None:
         with client.zero_trust.dlp.profiles.custom.with_streaming_response.create(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            profiles=[{}, {}, {}],
+            account_id="account_id",
+            profiles=[
+                {
+                    "entries": [
+                        {
+                            "enabled": True,
+                            "name": "name",
+                            "pattern": {"regex": "regex"},
+                        }
+                    ],
+                    "name": "name",
+                }
+            ],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -56,90 +86,196 @@ class TestCustom:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_path_params_create(self, client: Cloudflare) -> None:
+    def test_path_params_create_overload_1(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.dlp.profiles.custom.with_raw_response.create(
                 account_id="",
-                profiles=[{}, {}, {}],
+                profiles=[
+                    {
+                        "entries": [
+                            {
+                                "enabled": True,
+                                "name": "name",
+                                "pattern": {"regex": "regex"},
+                            }
+                        ],
+                        "name": "name",
+                    }
+                ],
             )
 
     @parametrize
-    def test_method_update(self, client: Cloudflare) -> None:
-        custom = client.zero_trust.dlp.profiles.custom.update(
-            profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+    def test_method_create_overload_2(self, client: Cloudflare) -> None:
+        custom = client.zero_trust.dlp.profiles.custom.create(
+            account_id="account_id",
+            entries=[
+                {
+                    "enabled": True,
+                    "name": "name",
+                    "pattern": {"regex": "regex"},
+                }
+            ],
+            name="name",
         )
-        assert_matches_type(CustomProfile, custom, path=["response"])
+        assert_matches_type(Optional[CustomCreateResponse], custom, path=["response"])
 
     @parametrize
-    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
-        custom = client.zero_trust.dlp.profiles.custom.update(
-            profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+    def test_method_create_with_all_params_overload_2(self, client: Cloudflare) -> None:
+        custom = client.zero_trust.dlp.profiles.custom.create(
+            account_id="account_id",
+            entries=[
+                {
+                    "enabled": True,
+                    "name": "name",
+                    "pattern": {
+                        "regex": "regex",
+                        "validation": "luhn",
+                    },
+                }
+            ],
+            name="name",
             allowed_match_count=5,
+            confidence_threshold="confidence_threshold",
             context_awareness={
                 "enabled": True,
                 "skip": {"files": True},
             },
-            description="A standard CVV card number",
+            description="description",
+            ocr_enabled=True,
+            shared_entries=[
+                {
+                    "enabled": True,
+                    "entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "entry_type": "custom",
+                }
+            ],
+        )
+        assert_matches_type(Optional[CustomCreateResponse], custom, path=["response"])
+
+    @parametrize
+    def test_raw_response_create_overload_2(self, client: Cloudflare) -> None:
+        response = client.zero_trust.dlp.profiles.custom.with_raw_response.create(
+            account_id="account_id",
             entries=[
                 {
                     "enabled": True,
-                    "name": "Credit card (Visa)",
-                    "pattern": {
-                        "regex": "^4[0-9]{6,14}$",
-                        "validation": "luhn",
-                    },
-                    "profile_id": {},
-                },
-                {
-                    "enabled": True,
-                    "name": "Credit card (Visa)",
-                    "pattern": {
-                        "regex": "^4[0-9]{6,14}$",
-                        "validation": "luhn",
-                    },
-                    "profile_id": {},
-                },
-                {
-                    "enabled": True,
-                    "name": "Credit card (Visa)",
-                    "pattern": {
-                        "regex": "^4[0-9]{6,14}$",
-                        "validation": "luhn",
-                    },
-                    "profile_id": {},
-                },
+                    "name": "name",
+                    "pattern": {"regex": "regex"},
+                }
             ],
-            name="Generic CVV Card Number",
-            ocr_enabled=True,
-            shared_entries=[{"enabled": True}, {"enabled": True}, {"enabled": True}],
-        )
-        assert_matches_type(CustomProfile, custom, path=["response"])
-
-    @parametrize
-    def test_raw_response_update(self, client: Cloudflare) -> None:
-        response = client.zero_trust.dlp.profiles.custom.with_raw_response.update(
-            profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="name",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom = response.parse()
-        assert_matches_type(CustomProfile, custom, path=["response"])
+        assert_matches_type(Optional[CustomCreateResponse], custom, path=["response"])
 
     @parametrize
-    def test_streaming_response_update(self, client: Cloudflare) -> None:
-        with client.zero_trust.dlp.profiles.custom.with_streaming_response.update(
-            profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+    def test_streaming_response_create_overload_2(self, client: Cloudflare) -> None:
+        with client.zero_trust.dlp.profiles.custom.with_streaming_response.create(
+            account_id="account_id",
+            entries=[
+                {
+                    "enabled": True,
+                    "name": "name",
+                    "pattern": {"regex": "regex"},
+                }
+            ],
+            name="name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom = response.parse()
-            assert_matches_type(CustomProfile, custom, path=["response"])
+            assert_matches_type(Optional[CustomCreateResponse], custom, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_create_overload_2(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.zero_trust.dlp.profiles.custom.with_raw_response.create(
+                account_id="",
+                entries=[
+                    {
+                        "enabled": True,
+                        "name": "name",
+                        "pattern": {"regex": "regex"},
+                    }
+                ],
+                name="name",
+            )
+
+    @parametrize
+    def test_method_update(self, client: Cloudflare) -> None:
+        custom = client.zero_trust.dlp.profiles.custom.update(
+            profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="account_id",
+            name="name",
+        )
+        assert_matches_type(Optional[Profile], custom, path=["response"])
+
+    @parametrize
+    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
+        custom = client.zero_trust.dlp.profiles.custom.update(
+            profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="account_id",
+            name="name",
+            allowed_match_count=0,
+            confidence_threshold="confidence_threshold",
+            context_awareness={
+                "enabled": True,
+                "skip": {"files": True},
+            },
+            description="description",
+            entries=[
+                {
+                    "enabled": True,
+                    "entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "name": "name",
+                    "pattern": {
+                        "regex": "regex",
+                        "validation": "luhn",
+                    },
+                }
+            ],
+            ocr_enabled=True,
+            shared_entries=[
+                {
+                    "enabled": True,
+                    "entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "entry_type": "predefined",
+                }
+            ],
+        )
+        assert_matches_type(Optional[Profile], custom, path=["response"])
+
+    @parametrize
+    def test_raw_response_update(self, client: Cloudflare) -> None:
+        response = client.zero_trust.dlp.profiles.custom.with_raw_response.update(
+            profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="account_id",
+            name="name",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        custom = response.parse()
+        assert_matches_type(Optional[Profile], custom, path=["response"])
+
+    @parametrize
+    def test_streaming_response_update(self, client: Cloudflare) -> None:
+        with client.zero_trust.dlp.profiles.custom.with_streaming_response.update(
+            profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="account_id",
+            name="name",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            custom = response.parse()
+            assert_matches_type(Optional[Profile], custom, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -147,47 +283,49 @@ class TestCustom:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.dlp.profiles.custom.with_raw_response.update(
-                profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
+                profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 account_id="",
+                name="name",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `profile_id` but received ''"):
             client.zero_trust.dlp.profiles.custom.with_raw_response.update(
                 profile_id="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="account_id",
+                name="name",
             )
 
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         custom = client.zero_trust.dlp.profiles.custom.delete(
-            profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="account_id",
         )
-        assert_matches_type(CustomDeleteResponse, custom, path=["response"])
+        assert_matches_type(object, custom, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.zero_trust.dlp.profiles.custom.with_raw_response.delete(
-            profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom = response.parse()
-        assert_matches_type(CustomDeleteResponse, custom, path=["response"])
+        assert_matches_type(object, custom, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.zero_trust.dlp.profiles.custom.with_streaming_response.delete(
-            profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom = response.parse()
-            assert_matches_type(CustomDeleteResponse, custom, path=["response"])
+            assert_matches_type(object, custom, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -195,47 +333,47 @@ class TestCustom:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.dlp.profiles.custom.with_raw_response.delete(
-                profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
+                profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `profile_id` but received ''"):
             client.zero_trust.dlp.profiles.custom.with_raw_response.delete(
                 profile_id="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="account_id",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         custom = client.zero_trust.dlp.profiles.custom.get(
-            profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="account_id",
         )
-        assert_matches_type(CustomProfile, custom, path=["response"])
+        assert_matches_type(Optional[Profile], custom, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zero_trust.dlp.profiles.custom.with_raw_response.get(
-            profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom = response.parse()
-        assert_matches_type(CustomProfile, custom, path=["response"])
+        assert_matches_type(Optional[Profile], custom, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zero_trust.dlp.profiles.custom.with_streaming_response.get(
-            profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom = response.parse()
-            assert_matches_type(CustomProfile, custom, path=["response"])
+            assert_matches_type(Optional[Profile], custom, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -243,14 +381,14 @@ class TestCustom:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.dlp.profiles.custom.with_raw_response.get(
-                profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
+                profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `profile_id` but received ''"):
             client.zero_trust.dlp.profiles.custom.with_raw_response.get(
                 profile_id="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="account_id",
             )
 
 
@@ -258,18 +396,40 @@ class TestAsyncCustom:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    async def test_method_create(self, async_client: AsyncCloudflare) -> None:
+    async def test_method_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         custom = await async_client.zero_trust.dlp.profiles.custom.create(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            profiles=[{}, {}, {}],
+            account_id="account_id",
+            profiles=[
+                {
+                    "entries": [
+                        {
+                            "enabled": True,
+                            "name": "name",
+                            "pattern": {"regex": "regex"},
+                        }
+                    ],
+                    "name": "name",
+                }
+            ],
         )
         assert_matches_type(Optional[CustomCreateResponse], custom, path=["response"])
 
     @parametrize
-    async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
+    async def test_raw_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.dlp.profiles.custom.with_raw_response.create(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            profiles=[{}, {}, {}],
+            account_id="account_id",
+            profiles=[
+                {
+                    "entries": [
+                        {
+                            "enabled": True,
+                            "name": "name",
+                            "pattern": {"regex": "regex"},
+                        }
+                    ],
+                    "name": "name",
+                }
+            ],
         )
 
         assert response.is_closed is True
@@ -278,10 +438,21 @@ class TestAsyncCustom:
         assert_matches_type(Optional[CustomCreateResponse], custom, path=["response"])
 
     @parametrize
-    async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
+    async def test_streaming_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.dlp.profiles.custom.with_streaming_response.create(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            profiles=[{}, {}, {}],
+            account_id="account_id",
+            profiles=[
+                {
+                    "entries": [
+                        {
+                            "enabled": True,
+                            "name": "name",
+                            "pattern": {"regex": "regex"},
+                        }
+                    ],
+                    "name": "name",
+                }
+            ],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -292,90 +463,196 @@ class TestAsyncCustom:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
+    async def test_path_params_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.dlp.profiles.custom.with_raw_response.create(
                 account_id="",
-                profiles=[{}, {}, {}],
+                profiles=[
+                    {
+                        "entries": [
+                            {
+                                "enabled": True,
+                                "name": "name",
+                                "pattern": {"regex": "regex"},
+                            }
+                        ],
+                        "name": "name",
+                    }
+                ],
             )
 
     @parametrize
-    async def test_method_update(self, async_client: AsyncCloudflare) -> None:
-        custom = await async_client.zero_trust.dlp.profiles.custom.update(
-            profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+    async def test_method_create_overload_2(self, async_client: AsyncCloudflare) -> None:
+        custom = await async_client.zero_trust.dlp.profiles.custom.create(
+            account_id="account_id",
+            entries=[
+                {
+                    "enabled": True,
+                    "name": "name",
+                    "pattern": {"regex": "regex"},
+                }
+            ],
+            name="name",
         )
-        assert_matches_type(CustomProfile, custom, path=["response"])
+        assert_matches_type(Optional[CustomCreateResponse], custom, path=["response"])
 
     @parametrize
-    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        custom = await async_client.zero_trust.dlp.profiles.custom.update(
-            profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+    async def test_method_create_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
+        custom = await async_client.zero_trust.dlp.profiles.custom.create(
+            account_id="account_id",
+            entries=[
+                {
+                    "enabled": True,
+                    "name": "name",
+                    "pattern": {
+                        "regex": "regex",
+                        "validation": "luhn",
+                    },
+                }
+            ],
+            name="name",
             allowed_match_count=5,
+            confidence_threshold="confidence_threshold",
             context_awareness={
                 "enabled": True,
                 "skip": {"files": True},
             },
-            description="A standard CVV card number",
+            description="description",
+            ocr_enabled=True,
+            shared_entries=[
+                {
+                    "enabled": True,
+                    "entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "entry_type": "custom",
+                }
+            ],
+        )
+        assert_matches_type(Optional[CustomCreateResponse], custom, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.zero_trust.dlp.profiles.custom.with_raw_response.create(
+            account_id="account_id",
             entries=[
                 {
                     "enabled": True,
-                    "name": "Credit card (Visa)",
-                    "pattern": {
-                        "regex": "^4[0-9]{6,14}$",
-                        "validation": "luhn",
-                    },
-                    "profile_id": {},
-                },
-                {
-                    "enabled": True,
-                    "name": "Credit card (Visa)",
-                    "pattern": {
-                        "regex": "^4[0-9]{6,14}$",
-                        "validation": "luhn",
-                    },
-                    "profile_id": {},
-                },
-                {
-                    "enabled": True,
-                    "name": "Credit card (Visa)",
-                    "pattern": {
-                        "regex": "^4[0-9]{6,14}$",
-                        "validation": "luhn",
-                    },
-                    "profile_id": {},
-                },
+                    "name": "name",
+                    "pattern": {"regex": "regex"},
+                }
             ],
-            name="Generic CVV Card Number",
-            ocr_enabled=True,
-            shared_entries=[{"enabled": True}, {"enabled": True}, {"enabled": True}],
-        )
-        assert_matches_type(CustomProfile, custom, path=["response"])
-
-    @parametrize
-    async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.zero_trust.dlp.profiles.custom.with_raw_response.update(
-            profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="name",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom = await response.parse()
-        assert_matches_type(CustomProfile, custom, path=["response"])
+        assert_matches_type(Optional[CustomCreateResponse], custom, path=["response"])
 
     @parametrize
-    async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.zero_trust.dlp.profiles.custom.with_streaming_response.update(
-            profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+    async def test_streaming_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.zero_trust.dlp.profiles.custom.with_streaming_response.create(
+            account_id="account_id",
+            entries=[
+                {
+                    "enabled": True,
+                    "name": "name",
+                    "pattern": {"regex": "regex"},
+                }
+            ],
+            name="name",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom = await response.parse()
-            assert_matches_type(CustomProfile, custom, path=["response"])
+            assert_matches_type(Optional[CustomCreateResponse], custom, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_create_overload_2(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.zero_trust.dlp.profiles.custom.with_raw_response.create(
+                account_id="",
+                entries=[
+                    {
+                        "enabled": True,
+                        "name": "name",
+                        "pattern": {"regex": "regex"},
+                    }
+                ],
+                name="name",
+            )
+
+    @parametrize
+    async def test_method_update(self, async_client: AsyncCloudflare) -> None:
+        custom = await async_client.zero_trust.dlp.profiles.custom.update(
+            profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="account_id",
+            name="name",
+        )
+        assert_matches_type(Optional[Profile], custom, path=["response"])
+
+    @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        custom = await async_client.zero_trust.dlp.profiles.custom.update(
+            profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="account_id",
+            name="name",
+            allowed_match_count=0,
+            confidence_threshold="confidence_threshold",
+            context_awareness={
+                "enabled": True,
+                "skip": {"files": True},
+            },
+            description="description",
+            entries=[
+                {
+                    "enabled": True,
+                    "entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "name": "name",
+                    "pattern": {
+                        "regex": "regex",
+                        "validation": "luhn",
+                    },
+                }
+            ],
+            ocr_enabled=True,
+            shared_entries=[
+                {
+                    "enabled": True,
+                    "entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                    "entry_type": "predefined",
+                }
+            ],
+        )
+        assert_matches_type(Optional[Profile], custom, path=["response"])
+
+    @parametrize
+    async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.zero_trust.dlp.profiles.custom.with_raw_response.update(
+            profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="account_id",
+            name="name",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        custom = await response.parse()
+        assert_matches_type(Optional[Profile], custom, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.zero_trust.dlp.profiles.custom.with_streaming_response.update(
+            profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="account_id",
+            name="name",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            custom = await response.parse()
+            assert_matches_type(Optional[Profile], custom, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -383,47 +660,49 @@ class TestAsyncCustom:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.dlp.profiles.custom.with_raw_response.update(
-                profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
+                profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 account_id="",
+                name="name",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `profile_id` but received ''"):
             await async_client.zero_trust.dlp.profiles.custom.with_raw_response.update(
                 profile_id="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="account_id",
+                name="name",
             )
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         custom = await async_client.zero_trust.dlp.profiles.custom.delete(
-            profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="account_id",
         )
-        assert_matches_type(CustomDeleteResponse, custom, path=["response"])
+        assert_matches_type(object, custom, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.dlp.profiles.custom.with_raw_response.delete(
-            profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom = await response.parse()
-        assert_matches_type(CustomDeleteResponse, custom, path=["response"])
+        assert_matches_type(object, custom, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.dlp.profiles.custom.with_streaming_response.delete(
-            profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom = await response.parse()
-            assert_matches_type(CustomDeleteResponse, custom, path=["response"])
+            assert_matches_type(object, custom, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -431,47 +710,47 @@ class TestAsyncCustom:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.dlp.profiles.custom.with_raw_response.delete(
-                profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
+                profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `profile_id` but received ''"):
             await async_client.zero_trust.dlp.profiles.custom.with_raw_response.delete(
                 profile_id="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="account_id",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         custom = await async_client.zero_trust.dlp.profiles.custom.get(
-            profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="account_id",
         )
-        assert_matches_type(CustomProfile, custom, path=["response"])
+        assert_matches_type(Optional[Profile], custom, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.dlp.profiles.custom.with_raw_response.get(
-            profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom = await response.parse()
-        assert_matches_type(CustomProfile, custom, path=["response"])
+        assert_matches_type(Optional[Profile], custom, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.dlp.profiles.custom.with_streaming_response.get(
-            profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom = await response.parse()
-            assert_matches_type(CustomProfile, custom, path=["response"])
+            assert_matches_type(Optional[Profile], custom, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -479,12 +758,12 @@ class TestAsyncCustom:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.dlp.profiles.custom.with_raw_response.get(
-                profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
+                profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `profile_id` but received ''"):
             await async_client.zero_trust.dlp.profiles.custom.with_raw_response.get(
                 profile_id="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="account_id",
             )

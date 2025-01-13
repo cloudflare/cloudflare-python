@@ -5,17 +5,17 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["RuleUpdateParams", "Body"]
+__all__ = ["RuleUpdateParams", "Rule"]
 
 
 class RuleUpdateParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    body: Required[Iterable[Body]]
+    rules: Required[Iterable[Rule]]
 
 
-class Body(TypedDict, total=False):
+class Rule(TypedDict, total=False):
     action: Required[Literal["bypass_waiting_room"]]
     """The action to take when the expression matches."""
 

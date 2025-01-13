@@ -8,4 +8,12 @@ __all__ = ["FilterCreateParams"]
 
 
 class FilterCreateParams(TypedDict, total=False):
-    body: Required[object]
+    zone_id: Required[str]
+    """Identifier"""
+
+    expression: Required[str]
+    """The filter expression.
+
+    For more information, refer to
+    [Expressions](https://developers.cloudflare.com/ruleset-engine/rules-language/expressions/).
+    """

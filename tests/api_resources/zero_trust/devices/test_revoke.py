@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -21,45 +21,33 @@ class TestRevoke:
     def test_method_create(self, client: Cloudflare) -> None:
         revoke = client.zero_trust.devices.revoke.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            body=[
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            ],
+            body=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
         )
-        assert_matches_type(RevokeCreateResponse, revoke, path=["response"])
+        assert_matches_type(Optional[RevokeCreateResponse], revoke, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.zero_trust.devices.revoke.with_raw_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            body=[
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            ],
+            body=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         revoke = response.parse()
-        assert_matches_type(RevokeCreateResponse, revoke, path=["response"])
+        assert_matches_type(Optional[RevokeCreateResponse], revoke, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.zero_trust.devices.revoke.with_streaming_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            body=[
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            ],
+            body=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             revoke = response.parse()
-            assert_matches_type(RevokeCreateResponse, revoke, path=["response"])
+            assert_matches_type(Optional[RevokeCreateResponse], revoke, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -68,11 +56,7 @@ class TestRevoke:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.devices.revoke.with_raw_response.create(
                 account_id="",
-                body=[
-                    "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                ],
+                body=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             )
 
 
@@ -83,45 +67,33 @@ class TestAsyncRevoke:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         revoke = await async_client.zero_trust.devices.revoke.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            body=[
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            ],
+            body=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
         )
-        assert_matches_type(RevokeCreateResponse, revoke, path=["response"])
+        assert_matches_type(Optional[RevokeCreateResponse], revoke, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.devices.revoke.with_raw_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            body=[
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            ],
+            body=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         revoke = await response.parse()
-        assert_matches_type(RevokeCreateResponse, revoke, path=["response"])
+        assert_matches_type(Optional[RevokeCreateResponse], revoke, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.devices.revoke.with_streaming_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            body=[
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            ],
+            body=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             revoke = await response.parse()
-            assert_matches_type(RevokeCreateResponse, revoke, path=["response"])
+            assert_matches_type(Optional[RevokeCreateResponse], revoke, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -130,9 +102,5 @@ class TestAsyncRevoke:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.devices.revoke.with_raw_response.create(
                 account_id="",
-                body=[
-                    "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                ],
+                body=["f174e90a-fafe-4643-bbbc-4a0ed4fc8415"],
             )

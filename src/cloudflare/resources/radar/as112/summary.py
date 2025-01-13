@@ -44,10 +44,21 @@ __all__ = ["SummaryResource", "AsyncSummaryResource"]
 class SummaryResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> SummaryResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return SummaryResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> SummaryResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return SummaryResourceWithStreamingResponse(self)
 
     def dnssec(
@@ -148,7 +159,7 @@ class SummaryResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SummaryEdnsResponse:
         """
-        Percentage distribution of DNS queries, to AS112, by EDNS support.
+        Percentage distribution of DNS queries to AS112 by EDNS support.
 
         Args:
           asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
@@ -375,6 +386,7 @@ class SummaryResource(SyncAPIResource):
         date_range: List[str] | NotGiven = NOT_GIVEN,
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        limit_per_group: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -385,7 +397,7 @@ class SummaryResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SummaryQueryTypeResponse:
         """
-        Percentage distribution of DNS queries to AS112 by Query Type.
+        Percentage distribution of DNS queries to AS112 by query type.
 
         Args:
           asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
@@ -405,6 +417,9 @@ class SummaryResource(SyncAPIResource):
           date_start: Array of datetimes to filter the start of a series.
 
           format: Format results are returned in.
+
+          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
+              the time range.
 
           location: Array of comma separated list of locations (alpha-2 country codes). Start with
               `-` to exclude from results. For example, `-US,PT` excludes results from the US,
@@ -435,6 +450,7 @@ class SummaryResource(SyncAPIResource):
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
+                        "limit_per_group": limit_per_group,
                         "location": location,
                         "name": name,
                     },
@@ -454,6 +470,7 @@ class SummaryResource(SyncAPIResource):
         date_range: List[str] | NotGiven = NOT_GIVEN,
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        limit_per_group: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -464,7 +481,7 @@ class SummaryResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SummaryResponseCodesResponse:
         """
-        Percentage distribution of AS112 dns requests classified per Response Codes.
+        Percentage distribution of AS112 DNS requests classified by response code.
 
         Args:
           asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
@@ -484,6 +501,9 @@ class SummaryResource(SyncAPIResource):
           date_start: Array of datetimes to filter the start of a series.
 
           format: Format results are returned in.
+
+          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
+              the time range.
 
           location: Array of comma separated list of locations (alpha-2 country codes). Start with
               `-` to exclude from results. For example, `-US,PT` excludes results from the US,
@@ -514,6 +534,7 @@ class SummaryResource(SyncAPIResource):
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
+                        "limit_per_group": limit_per_group,
                         "location": location,
                         "name": name,
                     },
@@ -528,10 +549,21 @@ class SummaryResource(SyncAPIResource):
 class AsyncSummaryResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncSummaryResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncSummaryResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncSummaryResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncSummaryResourceWithStreamingResponse(self)
 
     async def dnssec(
@@ -632,7 +664,7 @@ class AsyncSummaryResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SummaryEdnsResponse:
         """
-        Percentage distribution of DNS queries, to AS112, by EDNS support.
+        Percentage distribution of DNS queries to AS112 by EDNS support.
 
         Args:
           asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
@@ -859,6 +891,7 @@ class AsyncSummaryResource(AsyncAPIResource):
         date_range: List[str] | NotGiven = NOT_GIVEN,
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        limit_per_group: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -869,7 +902,7 @@ class AsyncSummaryResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SummaryQueryTypeResponse:
         """
-        Percentage distribution of DNS queries to AS112 by Query Type.
+        Percentage distribution of DNS queries to AS112 by query type.
 
         Args:
           asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
@@ -889,6 +922,9 @@ class AsyncSummaryResource(AsyncAPIResource):
           date_start: Array of datetimes to filter the start of a series.
 
           format: Format results are returned in.
+
+          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
+              the time range.
 
           location: Array of comma separated list of locations (alpha-2 country codes). Start with
               `-` to exclude from results. For example, `-US,PT` excludes results from the US,
@@ -919,6 +955,7 @@ class AsyncSummaryResource(AsyncAPIResource):
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
+                        "limit_per_group": limit_per_group,
                         "location": location,
                         "name": name,
                     },
@@ -938,6 +975,7 @@ class AsyncSummaryResource(AsyncAPIResource):
         date_range: List[str] | NotGiven = NOT_GIVEN,
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        limit_per_group: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -948,7 +986,7 @@ class AsyncSummaryResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SummaryResponseCodesResponse:
         """
-        Percentage distribution of AS112 dns requests classified per Response Codes.
+        Percentage distribution of AS112 DNS requests classified by response code.
 
         Args:
           asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
@@ -968,6 +1006,9 @@ class AsyncSummaryResource(AsyncAPIResource):
           date_start: Array of datetimes to filter the start of a series.
 
           format: Format results are returned in.
+
+          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
+              the time range.
 
           location: Array of comma separated list of locations (alpha-2 country codes). Start with
               `-` to exclude from results. For example, `-US,PT` excludes results from the US,
@@ -998,6 +1039,7 @@ class AsyncSummaryResource(AsyncAPIResource):
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
+                        "limit_per_group": limit_per_group,
                         "location": location,
                         "name": name,
                     },

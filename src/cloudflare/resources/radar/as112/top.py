@@ -35,10 +35,21 @@ __all__ = ["TopResource", "AsyncTopResource"]
 class TopResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> TopResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return TopResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> TopResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return TopResourceWithStreamingResponse(self)
 
     def dnssec(
@@ -62,7 +73,7 @@ class TopResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TopDNSSECResponse:
         """
-        Get the top locations by DNS queries DNSSEC support to AS112.
+        Get the top locations of DNS queries to AS112 with DNSSEC.
 
         Args:
           dnssec: DNSSEC.
@@ -150,7 +161,7 @@ class TopResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TopEdnsResponse:
         """
-        Get the top locations, by DNS queries EDNS support to AS112.
+        Get the top locations of DNS queries to AS112 with EDNS support.
 
         Args:
           edns: EDNS.
@@ -238,7 +249,7 @@ class TopResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TopIPVersionResponse:
         """
-        Get the top locations by DNS queries IP version to AS112.
+        Get the top locations of DNS queries to AS112 by IP version.
 
         Args:
           ip_version: IP Version.
@@ -394,10 +405,21 @@ class TopResource(SyncAPIResource):
 class AsyncTopResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncTopResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncTopResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncTopResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncTopResourceWithStreamingResponse(self)
 
     async def dnssec(
@@ -421,7 +443,7 @@ class AsyncTopResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TopDNSSECResponse:
         """
-        Get the top locations by DNS queries DNSSEC support to AS112.
+        Get the top locations of DNS queries to AS112 with DNSSEC.
 
         Args:
           dnssec: DNSSEC.
@@ -509,7 +531,7 @@ class AsyncTopResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TopEdnsResponse:
         """
-        Get the top locations, by DNS queries EDNS support to AS112.
+        Get the top locations of DNS queries to AS112 with EDNS support.
 
         Args:
           edns: EDNS.
@@ -597,7 +619,7 @@ class AsyncTopResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TopIPVersionResponse:
         """
-        Get the top locations by DNS queries IP version to AS112.
+        Get the top locations of DNS queries to AS112 by IP version.
 
         Args:
           ip_version: IP Version.

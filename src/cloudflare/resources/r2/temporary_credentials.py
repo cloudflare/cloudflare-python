@@ -31,10 +31,21 @@ __all__ = ["TemporaryCredentialsResource", "AsyncTemporaryCredentialsResource"]
 class TemporaryCredentialsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> TemporaryCredentialsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return TemporaryCredentialsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> TemporaryCredentialsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return TemporaryCredentialsResourceWithStreamingResponse(self)
 
     def create(
@@ -110,10 +121,21 @@ class TemporaryCredentialsResource(SyncAPIResource):
 class AsyncTemporaryCredentialsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncTemporaryCredentialsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncTemporaryCredentialsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncTemporaryCredentialsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncTemporaryCredentialsResourceWithStreamingResponse(self)
 
     async def create(

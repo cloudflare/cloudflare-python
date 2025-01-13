@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Optional
+from typing import Dict
 from typing_extensions import Literal
 
 from ...._models import BaseModel
@@ -9,14 +9,14 @@ __all__ = ["BehaviourGetResponse", "Behaviors"]
 
 
 class Behaviors(BaseModel):
-    description: Optional[str] = None
+    description: str
 
-    enabled: Optional[bool] = None
+    enabled: bool
 
-    name: Optional[str] = None
+    name: str
 
-    risk_level: Optional[Literal["low", "medium", "high"]] = None
+    risk_level: Literal["low", "medium", "high"]
 
 
 class BehaviourGetResponse(BaseModel):
-    behaviors: Optional[Dict[str, Behaviors]] = None
+    behaviors: Dict[str, Behaviors]

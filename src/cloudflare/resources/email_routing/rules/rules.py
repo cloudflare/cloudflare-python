@@ -46,16 +46,27 @@ class RulesResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> RulesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return RulesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> RulesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return RulesResourceWithStreamingResponse(self)
 
     def create(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         actions: Iterable[ActionParam],
         matchers: Iterable[MatcherParam],
         enabled: Literal[True, False] | NotGiven = NOT_GIVEN,
@@ -74,7 +85,7 @@ class RulesResource(SyncAPIResource):
         email (like forwarding it to a specific destination address).
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           actions: List actions patterns.
 
@@ -94,10 +105,10 @@ class RulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
-            f"/zones/{zone_identifier}/email/routing/rules",
+            f"/zones/{zone_id}/email/routing/rules",
             body=maybe_transform(
                 {
                     "actions": actions,
@@ -122,7 +133,7 @@ class RulesResource(SyncAPIResource):
         self,
         rule_identifier: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         actions: Iterable[ActionParam],
         matchers: Iterable[MatcherParam],
         enabled: Literal[True, False] | NotGiven = NOT_GIVEN,
@@ -139,7 +150,7 @@ class RulesResource(SyncAPIResource):
         Update actions and matches, or enable/disable specific routing rules.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           rule_identifier: Routing rule identifier.
 
@@ -161,12 +172,12 @@ class RulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not rule_identifier:
             raise ValueError(f"Expected a non-empty value for `rule_identifier` but received {rule_identifier!r}")
         return self._put(
-            f"/zones/{zone_identifier}/email/routing/rules/{rule_identifier}",
+            f"/zones/{zone_id}/email/routing/rules/{rule_identifier}",
             body=maybe_transform(
                 {
                     "actions": actions,
@@ -189,8 +200,8 @@ class RulesResource(SyncAPIResource):
 
     def list(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         enabled: Literal[True, False] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
@@ -205,7 +216,7 @@ class RulesResource(SyncAPIResource):
         Lists existing routing rules.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           enabled: Filter by enabled routing rules.
 
@@ -221,10 +232,10 @@ class RulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_identifier}/email/routing/rules",
+            f"/zones/{zone_id}/email/routing/rules",
             page=SyncV4PagePaginationArray[EmailRoutingRule],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -247,7 +258,7 @@ class RulesResource(SyncAPIResource):
         self,
         rule_identifier: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -259,7 +270,7 @@ class RulesResource(SyncAPIResource):
         Delete a specific routing rule.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           rule_identifier: Routing rule identifier.
 
@@ -271,12 +282,12 @@ class RulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not rule_identifier:
             raise ValueError(f"Expected a non-empty value for `rule_identifier` but received {rule_identifier!r}")
         return self._delete(
-            f"/zones/{zone_identifier}/email/routing/rules/{rule_identifier}",
+            f"/zones/{zone_id}/email/routing/rules/{rule_identifier}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -291,7 +302,7 @@ class RulesResource(SyncAPIResource):
         self,
         rule_identifier: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -303,7 +314,7 @@ class RulesResource(SyncAPIResource):
         Get information for a specific routing rule already created.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           rule_identifier: Routing rule identifier.
 
@@ -315,12 +326,12 @@ class RulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not rule_identifier:
             raise ValueError(f"Expected a non-empty value for `rule_identifier` but received {rule_identifier!r}")
         return self._get(
-            f"/zones/{zone_identifier}/email/routing/rules/{rule_identifier}",
+            f"/zones/{zone_id}/email/routing/rules/{rule_identifier}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -339,16 +350,27 @@ class AsyncRulesResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncRulesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncRulesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncRulesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncRulesResourceWithStreamingResponse(self)
 
     async def create(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         actions: Iterable[ActionParam],
         matchers: Iterable[MatcherParam],
         enabled: Literal[True, False] | NotGiven = NOT_GIVEN,
@@ -367,7 +389,7 @@ class AsyncRulesResource(AsyncAPIResource):
         email (like forwarding it to a specific destination address).
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           actions: List actions patterns.
 
@@ -387,10 +409,10 @@ class AsyncRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
-            f"/zones/{zone_identifier}/email/routing/rules",
+            f"/zones/{zone_id}/email/routing/rules",
             body=await async_maybe_transform(
                 {
                     "actions": actions,
@@ -415,7 +437,7 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         rule_identifier: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         actions: Iterable[ActionParam],
         matchers: Iterable[MatcherParam],
         enabled: Literal[True, False] | NotGiven = NOT_GIVEN,
@@ -432,7 +454,7 @@ class AsyncRulesResource(AsyncAPIResource):
         Update actions and matches, or enable/disable specific routing rules.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           rule_identifier: Routing rule identifier.
 
@@ -454,12 +476,12 @@ class AsyncRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not rule_identifier:
             raise ValueError(f"Expected a non-empty value for `rule_identifier` but received {rule_identifier!r}")
         return await self._put(
-            f"/zones/{zone_identifier}/email/routing/rules/{rule_identifier}",
+            f"/zones/{zone_id}/email/routing/rules/{rule_identifier}",
             body=await async_maybe_transform(
                 {
                     "actions": actions,
@@ -482,8 +504,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
     def list(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         enabled: Literal[True, False] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
@@ -498,7 +520,7 @@ class AsyncRulesResource(AsyncAPIResource):
         Lists existing routing rules.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           enabled: Filter by enabled routing rules.
 
@@ -514,10 +536,10 @@ class AsyncRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_identifier}/email/routing/rules",
+            f"/zones/{zone_id}/email/routing/rules",
             page=AsyncV4PagePaginationArray[EmailRoutingRule],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -540,7 +562,7 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         rule_identifier: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -552,7 +574,7 @@ class AsyncRulesResource(AsyncAPIResource):
         Delete a specific routing rule.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           rule_identifier: Routing rule identifier.
 
@@ -564,12 +586,12 @@ class AsyncRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not rule_identifier:
             raise ValueError(f"Expected a non-empty value for `rule_identifier` but received {rule_identifier!r}")
         return await self._delete(
-            f"/zones/{zone_identifier}/email/routing/rules/{rule_identifier}",
+            f"/zones/{zone_id}/email/routing/rules/{rule_identifier}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -584,7 +606,7 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         rule_identifier: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -596,7 +618,7 @@ class AsyncRulesResource(AsyncAPIResource):
         Get information for a specific routing rule already created.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           rule_identifier: Routing rule identifier.
 
@@ -608,12 +630,12 @@ class AsyncRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not rule_identifier:
             raise ValueError(f"Expected a non-empty value for `rule_identifier` but received {rule_identifier!r}")
         return await self._get(
-            f"/zones/{zone_identifier}/email/routing/rules/{rule_identifier}",
+            f"/zones/{zone_id}/email/routing/rules/{rule_identifier}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

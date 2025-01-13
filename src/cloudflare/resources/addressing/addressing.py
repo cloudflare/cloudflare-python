@@ -2,14 +2,6 @@
 
 from __future__ import annotations
 
-from .prefixes import (
-    PrefixesResource,
-    AsyncPrefixesResource,
-    PrefixesResourceWithRawResponse,
-    AsyncPrefixesResourceWithRawResponse,
-    PrefixesResourceWithStreamingResponse,
-    AsyncPrefixesResourceWithStreamingResponse,
-)
 from .services import (
     ServicesResource,
     AsyncServicesResource,
@@ -20,14 +12,6 @@ from .services import (
 )
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from .address_maps import (
-    AddressMapsResource,
-    AsyncAddressMapsResource,
-    AddressMapsResourceWithRawResponse,
-    AsyncAddressMapsResourceWithRawResponse,
-    AddressMapsResourceWithStreamingResponse,
-    AsyncAddressMapsResourceWithStreamingResponse,
-)
 from .loa_documents import (
     LOADocumentsResource,
     AsyncLOADocumentsResource,
@@ -36,8 +20,23 @@ from .loa_documents import (
     LOADocumentsResourceWithStreamingResponse,
     AsyncLOADocumentsResourceWithStreamingResponse,
 )
-from .prefixes.prefixes import PrefixesResource, AsyncPrefixesResource
-from .regional_hostnames import (
+from .prefixes.prefixes import (
+    PrefixesResource,
+    AsyncPrefixesResource,
+    PrefixesResourceWithRawResponse,
+    AsyncPrefixesResourceWithRawResponse,
+    PrefixesResourceWithStreamingResponse,
+    AsyncPrefixesResourceWithStreamingResponse,
+)
+from .address_maps.address_maps import (
+    AddressMapsResource,
+    AsyncAddressMapsResource,
+    AddressMapsResourceWithRawResponse,
+    AsyncAddressMapsResourceWithRawResponse,
+    AddressMapsResourceWithStreamingResponse,
+    AsyncAddressMapsResourceWithStreamingResponse,
+)
+from .regional_hostnames.regional_hostnames import (
     RegionalHostnamesResource,
     AsyncRegionalHostnamesResource,
     RegionalHostnamesResourceWithRawResponse,
@@ -45,9 +44,6 @@ from .regional_hostnames import (
     RegionalHostnamesResourceWithStreamingResponse,
     AsyncRegionalHostnamesResourceWithStreamingResponse,
 )
-from .address_maps.address_maps import AddressMapsResource, AsyncAddressMapsResource
-from .loa_documents.loa_documents import LOADocumentsResource, AsyncLOADocumentsResource
-from .regional_hostnames.regional_hostnames import RegionalHostnamesResource, AsyncRegionalHostnamesResource
 
 __all__ = ["AddressingResource", "AsyncAddressingResource"]
 
@@ -75,10 +71,21 @@ class AddressingResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AddressingResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AddressingResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AddressingResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AddressingResourceWithStreamingResponse(self)
 
 
@@ -105,10 +112,21 @@ class AsyncAddressingResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncAddressingResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncAddressingResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncAddressingResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncAddressingResourceWithStreamingResponse(self)
 
 

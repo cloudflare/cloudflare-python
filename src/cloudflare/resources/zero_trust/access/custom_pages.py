@@ -2,8 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Union, Optional, cast
-from datetime import datetime
+from typing import Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -35,10 +34,21 @@ __all__ = ["CustomPagesResource", "AsyncCustomPagesResource"]
 class CustomPagesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> CustomPagesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return CustomPagesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> CustomPagesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return CustomPagesResourceWithStreamingResponse(self)
 
     def create(
@@ -49,9 +59,6 @@ class CustomPagesResource(SyncAPIResource):
         name: str,
         type: Literal["identity_denied", "forbidden"],
         app_count: int | NotGiven = NOT_GIVEN,
-        created_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        uid: str | NotGiven = NOT_GIVEN,
-        updated_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -73,8 +80,6 @@ class CustomPagesResource(SyncAPIResource):
 
           app_count: Number of apps the custom page is assigned to.
 
-          uid: UUID
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -93,9 +98,6 @@ class CustomPagesResource(SyncAPIResource):
                     "name": name,
                     "type": type,
                     "app_count": app_count,
-                    "created_at": created_at,
-                    "uid": uid,
-                    "updated_at": updated_at,
                 },
                 custom_page_create_params.CustomPageCreateParams,
             ),
@@ -118,9 +120,6 @@ class CustomPagesResource(SyncAPIResource):
         name: str,
         type: Literal["identity_denied", "forbidden"],
         app_count: int | NotGiven = NOT_GIVEN,
-        created_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        uid: str | NotGiven = NOT_GIVEN,
-        updated_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -144,8 +143,6 @@ class CustomPagesResource(SyncAPIResource):
 
           app_count: Number of apps the custom page is assigned to.
 
-          uid: UUID
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -166,9 +163,6 @@ class CustomPagesResource(SyncAPIResource):
                     "name": name,
                     "type": type,
                     "app_count": app_count,
-                    "created_at": created_at,
-                    "uid": uid,
-                    "updated_at": updated_at,
                 },
                 custom_page_update_params.CustomPageUpdateParams,
             ),
@@ -310,10 +304,21 @@ class CustomPagesResource(SyncAPIResource):
 class AsyncCustomPagesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncCustomPagesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncCustomPagesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncCustomPagesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncCustomPagesResourceWithStreamingResponse(self)
 
     async def create(
@@ -324,9 +329,6 @@ class AsyncCustomPagesResource(AsyncAPIResource):
         name: str,
         type: Literal["identity_denied", "forbidden"],
         app_count: int | NotGiven = NOT_GIVEN,
-        created_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        uid: str | NotGiven = NOT_GIVEN,
-        updated_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -348,8 +350,6 @@ class AsyncCustomPagesResource(AsyncAPIResource):
 
           app_count: Number of apps the custom page is assigned to.
 
-          uid: UUID
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -368,9 +368,6 @@ class AsyncCustomPagesResource(AsyncAPIResource):
                     "name": name,
                     "type": type,
                     "app_count": app_count,
-                    "created_at": created_at,
-                    "uid": uid,
-                    "updated_at": updated_at,
                 },
                 custom_page_create_params.CustomPageCreateParams,
             ),
@@ -393,9 +390,6 @@ class AsyncCustomPagesResource(AsyncAPIResource):
         name: str,
         type: Literal["identity_denied", "forbidden"],
         app_count: int | NotGiven = NOT_GIVEN,
-        created_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        uid: str | NotGiven = NOT_GIVEN,
-        updated_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -419,8 +413,6 @@ class AsyncCustomPagesResource(AsyncAPIResource):
 
           app_count: Number of apps the custom page is assigned to.
 
-          uid: UUID
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -441,9 +433,6 @@ class AsyncCustomPagesResource(AsyncAPIResource):
                     "name": name,
                     "type": type,
                     "app_count": app_count,
-                    "created_at": created_at,
-                    "uid": uid,
-                    "updated_at": updated_at,
                 },
                 custom_page_update_params.CustomPageUpdateParams,
             ),

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, cast
+from typing import Dict, List, Type, cast
 from typing_extensions import Literal
 
 import httpx
@@ -23,9 +23,10 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.api_gateway.discovery import operation_edit_params, operation_list_params
+from ....types.api_gateway.discovery import operation_edit_params, operation_list_params, operation_bulk_edit_params
 from ....types.api_gateway.discovery_operation import DiscoveryOperation
 from ....types.api_gateway.discovery.operation_edit_response import OperationEditResponse
+from ....types.api_gateway.discovery.operation_bulk_edit_response import OperationBulkEditResponse
 
 __all__ = ["OperationsResource", "AsyncOperationsResource"]
 
@@ -33,10 +34,21 @@ __all__ = ["OperationsResource", "AsyncOperationsResource"]
 class OperationsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> OperationsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return OperationsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> OperationsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return OperationsResourceWithStreamingResponse(self)
 
     def list(
@@ -137,6 +149,47 @@ class OperationsResource(SyncAPIResource):
             model=DiscoveryOperation,
         )
 
+    def bulk_edit(
+        self,
+        *,
+        zone_id: str,
+        body: Dict[str, operation_bulk_edit_params.Body],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> OperationBulkEditResponse:
+        """
+        Update the `state` on one or more discovered operations
+
+        Args:
+          zone_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return self._patch(
+            f"/zones/{zone_id}/api_gateway/discovery/operations",
+            body=maybe_transform(body, operation_bulk_edit_params.OperationBulkEditParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[OperationBulkEditResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[OperationBulkEditResponse], ResultWrapper[OperationBulkEditResponse]),
+        )
+
     def edit(
         self,
         operation_id: str,
@@ -192,10 +245,21 @@ class OperationsResource(SyncAPIResource):
 class AsyncOperationsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncOperationsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncOperationsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncOperationsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncOperationsResourceWithStreamingResponse(self)
 
     def list(
@@ -296,6 +360,47 @@ class AsyncOperationsResource(AsyncAPIResource):
             model=DiscoveryOperation,
         )
 
+    async def bulk_edit(
+        self,
+        *,
+        zone_id: str,
+        body: Dict[str, operation_bulk_edit_params.Body],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> OperationBulkEditResponse:
+        """
+        Update the `state` on one or more discovered operations
+
+        Args:
+          zone_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return await self._patch(
+            f"/zones/{zone_id}/api_gateway/discovery/operations",
+            body=await async_maybe_transform(body, operation_bulk_edit_params.OperationBulkEditParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[OperationBulkEditResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[OperationBulkEditResponse], ResultWrapper[OperationBulkEditResponse]),
+        )
+
     async def edit(
         self,
         operation_id: str,
@@ -355,6 +460,9 @@ class OperationsResourceWithRawResponse:
         self.list = to_raw_response_wrapper(
             operations.list,
         )
+        self.bulk_edit = to_raw_response_wrapper(
+            operations.bulk_edit,
+        )
         self.edit = to_raw_response_wrapper(
             operations.edit,
         )
@@ -366,6 +474,9 @@ class AsyncOperationsResourceWithRawResponse:
 
         self.list = async_to_raw_response_wrapper(
             operations.list,
+        )
+        self.bulk_edit = async_to_raw_response_wrapper(
+            operations.bulk_edit,
         )
         self.edit = async_to_raw_response_wrapper(
             operations.edit,
@@ -379,6 +490,9 @@ class OperationsResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             operations.list,
         )
+        self.bulk_edit = to_streamed_response_wrapper(
+            operations.bulk_edit,
+        )
         self.edit = to_streamed_response_wrapper(
             operations.edit,
         )
@@ -390,6 +504,9 @@ class AsyncOperationsResourceWithStreamingResponse:
 
         self.list = async_to_streamed_response_wrapper(
             operations.list,
+        )
+        self.bulk_edit = async_to_streamed_response_wrapper(
+            operations.bulk_edit,
         )
         self.edit = async_to_streamed_response_wrapper(
             operations.edit,

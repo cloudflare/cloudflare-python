@@ -3,13 +3,13 @@
 from __future__ import annotations
 
 from typing import Union, Iterable
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 __all__ = [
     "ConfigurationUpdateParams",
     "AuthIDCharacteristic",
     "AuthIDCharacteristicAPIShieldAuthIDCharacteristic",
-    "AuthIDCharacteristicAPIShieldAuthIDCharacteristicJwtClaim",
+    "AuthIDCharacteristicAPIShieldAuthIDCharacteristicJWTClaim",
 ]
 
 
@@ -28,7 +28,7 @@ class AuthIDCharacteristicAPIShieldAuthIDCharacteristic(TypedDict, total=False):
     """The type of characteristic."""
 
 
-class AuthIDCharacteristicAPIShieldAuthIDCharacteristicJwtClaim(TypedDict, total=False):
+class AuthIDCharacteristicAPIShieldAuthIDCharacteristicJWTClaim(TypedDict, total=False):
     name: Required[str]
     """
     Claim location expressed as `$(token_config_id):$(json_path)`, where
@@ -44,6 +44,6 @@ class AuthIDCharacteristicAPIShieldAuthIDCharacteristicJwtClaim(TypedDict, total
     """The type of characteristic."""
 
 
-AuthIDCharacteristic = Union[
-    AuthIDCharacteristicAPIShieldAuthIDCharacteristic, AuthIDCharacteristicAPIShieldAuthIDCharacteristicJwtClaim
+AuthIDCharacteristic: TypeAlias = Union[
+    AuthIDCharacteristicAPIShieldAuthIDCharacteristic, AuthIDCharacteristicAPIShieldAuthIDCharacteristicJWTClaim
 ]

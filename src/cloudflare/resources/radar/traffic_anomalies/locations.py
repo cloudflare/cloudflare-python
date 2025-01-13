@@ -32,10 +32,21 @@ __all__ = ["LocationsResource", "AsyncLocationsResource"]
 class LocationsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> LocationsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return LocationsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> LocationsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return LocationsResourceWithStreamingResponse(self)
 
     def get(
@@ -54,8 +65,9 @@ class LocationsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LocationGetResponse:
-        """
-        Internet traffic anomalies are signals that might point to an outage, These
+        """Internet traffic anomalies are signals that might point to an outage.
+
+        These
         alerts are automatically detected by Radar and then manually verified by our
         team. This endpoint returns the sum of alerts grouped by location.
 
@@ -106,10 +118,21 @@ class LocationsResource(SyncAPIResource):
 class AsyncLocationsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncLocationsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncLocationsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncLocationsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncLocationsResourceWithStreamingResponse(self)
 
     async def get(
@@ -128,8 +151,9 @@ class AsyncLocationsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LocationGetResponse:
-        """
-        Internet traffic anomalies are signals that might point to an outage, These
+        """Internet traffic anomalies are signals that might point to an outage.
+
+        These
         alerts are automatically detected by Radar and then manually verified by our
         team. This endpoint returns the sum of alerts grouped by location.
 

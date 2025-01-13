@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Optional
+
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
@@ -17,7 +19,7 @@ from ..._response import (
 from ...pagination import SyncV4PagePagination, AsyncV4PagePagination
 from ...types.intel import dns_list_params
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.intel.dns_list_response import DNSListResponse
+from ...types.intel.dns import DNS
 
 __all__ = ["DNSResource", "AsyncDNSResource"]
 
@@ -25,10 +27,21 @@ __all__ = ["DNSResource", "AsyncDNSResource"]
 class DNSResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> DNSResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return DNSResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> DNSResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return DNSResourceWithStreamingResponse(self)
 
     def list(
@@ -45,9 +58,9 @@ class DNSResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePagination[DNSListResponse]:
+    ) -> SyncV4PagePagination[Optional[DNS]]:
         """
-        Get Passive DNS by IP
+        Gets a list of all the domains that have resolved to a specific IP address.
 
         Args:
           account_id: Identifier
@@ -68,7 +81,7 @@ class DNSResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/intel/dns",
-            page=SyncV4PagePagination[DNSListResponse],
+            page=SyncV4PagePagination[Optional[DNS]],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -84,17 +97,28 @@ class DNSResource(SyncAPIResource):
                     dns_list_params.DNSListParams,
                 ),
             ),
-            model=DNSListResponse,
+            model=DNS,
         )
 
 
 class AsyncDNSResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncDNSResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncDNSResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncDNSResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncDNSResourceWithStreamingResponse(self)
 
     def list(
@@ -111,9 +135,9 @@ class AsyncDNSResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[DNSListResponse, AsyncV4PagePagination[DNSListResponse]]:
+    ) -> AsyncPaginator[Optional[DNS], AsyncV4PagePagination[Optional[DNS]]]:
         """
-        Get Passive DNS by IP
+        Gets a list of all the domains that have resolved to a specific IP address.
 
         Args:
           account_id: Identifier
@@ -134,7 +158,7 @@ class AsyncDNSResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/intel/dns",
-            page=AsyncV4PagePagination[DNSListResponse],
+            page=AsyncV4PagePagination[Optional[DNS]],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -150,7 +174,7 @@ class AsyncDNSResource(AsyncAPIResource):
                     dns_list_params.DNSListParams,
                 ),
             ),
-            model=DNSListResponse,
+            model=DNS,
         )
 
 

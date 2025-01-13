@@ -36,6 +36,7 @@ class TestLiveInputs:
             meta={"name": "test stream 1"},
             recording={
                 "allowed_origins": ["example.com"],
+                "hide_live_viewer_count": False,
                 "mode": "off",
                 "require_signed_urls": False,
                 "timeout_seconds": 0,
@@ -92,6 +93,7 @@ class TestLiveInputs:
             meta={"name": "test stream 1"},
             recording={
                 "allowed_origins": ["example.com"],
+                "hide_live_viewer_count": False,
                 "mode": "off",
                 "require_signed_urls": False,
                 "timeout_seconds": 0,
@@ -301,6 +303,7 @@ class TestAsyncLiveInputs:
             meta={"name": "test stream 1"},
             recording={
                 "allowed_origins": ["example.com"],
+                "hide_live_viewer_count": False,
                 "mode": "off",
                 "require_signed_urls": False,
                 "timeout_seconds": 0,
@@ -357,6 +360,7 @@ class TestAsyncLiveInputs:
             meta={"name": "test stream 1"},
             recording={
                 "allowed_origins": ["example.com"],
+                "hide_live_viewer_count": False,
                 "mode": "off",
                 "require_signed_urls": False,
                 "timeout_seconds": 0,

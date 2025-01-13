@@ -35,26 +35,18 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_bitrate_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.attacks.layer3.timeseries_groups.bitrate(
-            agg_interval="1h",
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            agg_interval="15m",
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             direction="ORIGIN",
             format="JSON",
-            ip_version=["IPv4", "IPv6"],
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            ip_version=["IPv4"],
+            location=["string"],
+            name=["string"],
             normalization="PERCENTAGE",
-            protocol=["UDP", "TCP", "ICMP"],
+            protocol=["UDP"],
         )
         assert_matches_type(TimeseriesGroupBitrateResponse, timeseries_group, path=["response"])
 
@@ -86,26 +78,18 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_duration_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.attacks.layer3.timeseries_groups.duration(
-            agg_interval="1h",
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            agg_interval="15m",
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             direction="ORIGIN",
             format="JSON",
-            ip_version=["IPv4", "IPv6"],
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            ip_version=["IPv4"],
+            location=["string"],
+            name=["string"],
             normalization="PERCENTAGE",
-            protocol=["UDP", "TCP", "ICMP"],
+            protocol=["UDP"],
         )
         assert_matches_type(TimeseriesGroupDurationResponse, timeseries_group, path=["response"])
 
@@ -137,23 +121,15 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.attacks.layer3.timeseries_groups.get(
-            agg_interval="1h",
-            asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            agg_interval="15m",
+            asn=["string"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            location=["string"],
+            name=["string"],
         )
         assert_matches_type(TimeseriesGroupGetResponse, timeseries_group, path=["response"])
 
@@ -185,27 +161,19 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_industry_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.attacks.layer3.timeseries_groups.industry(
-            agg_interval="1h",
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            agg_interval="15m",
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             direction="ORIGIN",
             format="JSON",
-            ip_version=["IPv4", "IPv6"],
-            limit_per_group=4,
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            ip_version=["IPv4"],
+            limit_per_group=10,
+            location=["string"],
+            name=["string"],
             normalization="PERCENTAGE",
-            protocol=["UDP", "TCP", "ICMP"],
+            protocol=["UDP"],
         )
         assert_matches_type(TimeseriesGroupIndustryResponse, timeseries_group, path=["response"])
 
@@ -237,25 +205,17 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_ip_version_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.attacks.layer3.timeseries_groups.ip_version(
-            agg_interval="1h",
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            agg_interval="15m",
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             direction="ORIGIN",
             format="JSON",
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            location=["string"],
+            name=["string"],
             normalization="PERCENTAGE",
-            protocol=["UDP", "TCP", "ICMP"],
+            protocol=["UDP"],
         )
         assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=["response"])
 
@@ -287,24 +247,16 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_protocol_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.attacks.layer3.timeseries_groups.protocol(
-            agg_interval="1h",
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            agg_interval="15m",
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             direction="ORIGIN",
             format="JSON",
-            ip_version=["IPv4", "IPv6"],
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            ip_version=["IPv4"],
+            location=["string"],
+            name=["string"],
             normalization="PERCENTAGE",
         )
         assert_matches_type(TimeseriesGroupProtocolResponse, timeseries_group, path=["response"])
@@ -337,27 +289,19 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_vector_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.attacks.layer3.timeseries_groups.vector(
-            agg_interval="1h",
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            agg_interval="15m",
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             direction="ORIGIN",
             format="JSON",
-            ip_version=["IPv4", "IPv6"],
-            limit_per_group=4,
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            ip_version=["IPv4"],
+            limit_per_group=10,
+            location=["string"],
+            name=["string"],
             normalization="PERCENTAGE",
-            protocol=["UDP", "TCP", "ICMP"],
+            protocol=["UDP"],
         )
         assert_matches_type(TimeseriesGroupVectorResponse, timeseries_group, path=["response"])
 
@@ -389,27 +333,19 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_vertical_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.attacks.layer3.timeseries_groups.vertical(
-            agg_interval="1h",
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            agg_interval="15m",
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             direction="ORIGIN",
             format="JSON",
-            ip_version=["IPv4", "IPv6"],
-            limit_per_group=4,
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            ip_version=["IPv4"],
+            limit_per_group=10,
+            location=["string"],
+            name=["string"],
             normalization="PERCENTAGE",
-            protocol=["UDP", "TCP", "ICMP"],
+            protocol=["UDP"],
         )
         assert_matches_type(TimeseriesGroupVerticalResponse, timeseries_group, path=["response"])
 
@@ -445,26 +381,18 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_bitrate_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.attacks.layer3.timeseries_groups.bitrate(
-            agg_interval="1h",
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            agg_interval="15m",
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             direction="ORIGIN",
             format="JSON",
-            ip_version=["IPv4", "IPv6"],
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            ip_version=["IPv4"],
+            location=["string"],
+            name=["string"],
             normalization="PERCENTAGE",
-            protocol=["UDP", "TCP", "ICMP"],
+            protocol=["UDP"],
         )
         assert_matches_type(TimeseriesGroupBitrateResponse, timeseries_group, path=["response"])
 
@@ -496,26 +424,18 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_duration_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.attacks.layer3.timeseries_groups.duration(
-            agg_interval="1h",
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            agg_interval="15m",
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             direction="ORIGIN",
             format="JSON",
-            ip_version=["IPv4", "IPv6"],
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            ip_version=["IPv4"],
+            location=["string"],
+            name=["string"],
             normalization="PERCENTAGE",
-            protocol=["UDP", "TCP", "ICMP"],
+            protocol=["UDP"],
         )
         assert_matches_type(TimeseriesGroupDurationResponse, timeseries_group, path=["response"])
 
@@ -547,23 +467,15 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.attacks.layer3.timeseries_groups.get(
-            agg_interval="1h",
-            asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            agg_interval="15m",
+            asn=["string"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            location=["string"],
+            name=["string"],
         )
         assert_matches_type(TimeseriesGroupGetResponse, timeseries_group, path=["response"])
 
@@ -595,27 +507,19 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_industry_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.attacks.layer3.timeseries_groups.industry(
-            agg_interval="1h",
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            agg_interval="15m",
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             direction="ORIGIN",
             format="JSON",
-            ip_version=["IPv4", "IPv6"],
-            limit_per_group=4,
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            ip_version=["IPv4"],
+            limit_per_group=10,
+            location=["string"],
+            name=["string"],
             normalization="PERCENTAGE",
-            protocol=["UDP", "TCP", "ICMP"],
+            protocol=["UDP"],
         )
         assert_matches_type(TimeseriesGroupIndustryResponse, timeseries_group, path=["response"])
 
@@ -647,25 +551,17 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_ip_version_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.attacks.layer3.timeseries_groups.ip_version(
-            agg_interval="1h",
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            agg_interval="15m",
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             direction="ORIGIN",
             format="JSON",
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            location=["string"],
+            name=["string"],
             normalization="PERCENTAGE",
-            protocol=["UDP", "TCP", "ICMP"],
+            protocol=["UDP"],
         )
         assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=["response"])
 
@@ -697,24 +593,16 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_protocol_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.attacks.layer3.timeseries_groups.protocol(
-            agg_interval="1h",
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            agg_interval="15m",
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             direction="ORIGIN",
             format="JSON",
-            ip_version=["IPv4", "IPv6"],
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            ip_version=["IPv4"],
+            location=["string"],
+            name=["string"],
             normalization="PERCENTAGE",
         )
         assert_matches_type(TimeseriesGroupProtocolResponse, timeseries_group, path=["response"])
@@ -747,27 +635,19 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_vector_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.attacks.layer3.timeseries_groups.vector(
-            agg_interval="1h",
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            agg_interval="15m",
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             direction="ORIGIN",
             format="JSON",
-            ip_version=["IPv4", "IPv6"],
-            limit_per_group=4,
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            ip_version=["IPv4"],
+            limit_per_group=10,
+            location=["string"],
+            name=["string"],
             normalization="PERCENTAGE",
-            protocol=["UDP", "TCP", "ICMP"],
+            protocol=["UDP"],
         )
         assert_matches_type(TimeseriesGroupVectorResponse, timeseries_group, path=["response"])
 
@@ -799,27 +679,19 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_vertical_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.attacks.layer3.timeseries_groups.vertical(
-            agg_interval="1h",
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            agg_interval="15m",
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             direction="ORIGIN",
             format="JSON",
-            ip_version=["IPv4", "IPv6"],
-            limit_per_group=4,
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            ip_version=["IPv4"],
+            limit_per_group=10,
+            location=["string"],
+            name=["string"],
             normalization="PERCENTAGE",
-            protocol=["UDP", "TCP", "ICMP"],
+            protocol=["UDP"],
         )
         assert_matches_type(TimeseriesGroupVerticalResponse, timeseries_group, path=["response"])
 

@@ -38,72 +38,50 @@ class TestSettings:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
             settings={
-                "bindings": [{"type": "kv_namespace"}, {"type": "kv_namespace"}, {"type": "kv_namespace"}],
-                "compatibility_date": "2022-04-05",
-                "compatibility_flags": [
-                    "formdata_parser_supports_files",
-                    "formdata_parser_supports_files",
-                    "formdata_parser_supports_files",
+                "bindings": [
+                    {
+                        "name": "MY_ENV_VAR",
+                        "type": "plain_text",
+                    }
                 ],
+                "compatibility_date": "2021-01-01",
+                "compatibility_flags": ["nodejs_compat"],
                 "limits": {"cpu_ms": 50},
                 "logpush": False,
                 "migrations": {
+                    "deleted_classes": ["string"],
+                    "new_classes": ["string"],
+                    "new_sqlite_classes": ["string"],
                     "new_tag": "v2",
                     "old_tag": "v1",
-                    "deleted_classes": ["string", "string", "string"],
-                    "new_classes": ["string", "string", "string"],
                     "renamed_classes": [
                         {
                             "from": "from",
                             "to": "to",
-                        },
-                        {
-                            "from": "from",
-                            "to": "to",
-                        },
-                        {
-                            "from": "from",
-                            "to": "to",
-                        },
+                        }
                     ],
                     "transferred_classes": [
                         {
                             "from": "from",
                             "from_script": "from_script",
                             "to": "to",
-                        },
-                        {
-                            "from": "from",
-                            "from_script": "from_script",
-                            "to": "to",
-                        },
-                        {
-                            "from": "from",
-                            "from_script": "from_script",
-                            "to": "to",
-                        },
+                        }
                     ],
                 },
+                "observability": {
+                    "enabled": True,
+                    "head_sampling_rate": 0.1,
+                },
                 "placement": {"mode": "smart"},
-                "tags": ["my-tag", "my-tag", "my-tag"],
+                "tags": ["my-tag"],
                 "tail_consumers": [
                     {
+                        "service": "my-log-consumer",
                         "environment": "production",
                         "namespace": "my-namespace",
-                        "service": "my-log-consumer",
-                    },
-                    {
-                        "environment": "production",
-                        "namespace": "my-namespace",
-                        "service": "my-log-consumer",
-                    },
-                    {
-                        "environment": "production",
-                        "namespace": "my-namespace",
-                        "service": "my-log-consumer",
-                    },
+                    }
                 ],
-                "usage_model": "unbound",
+                "usage_model": "standard",
             },
         )
         assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
@@ -244,72 +222,50 @@ class TestAsyncSettings:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
             settings={
-                "bindings": [{"type": "kv_namespace"}, {"type": "kv_namespace"}, {"type": "kv_namespace"}],
-                "compatibility_date": "2022-04-05",
-                "compatibility_flags": [
-                    "formdata_parser_supports_files",
-                    "formdata_parser_supports_files",
-                    "formdata_parser_supports_files",
+                "bindings": [
+                    {
+                        "name": "MY_ENV_VAR",
+                        "type": "plain_text",
+                    }
                 ],
+                "compatibility_date": "2021-01-01",
+                "compatibility_flags": ["nodejs_compat"],
                 "limits": {"cpu_ms": 50},
                 "logpush": False,
                 "migrations": {
+                    "deleted_classes": ["string"],
+                    "new_classes": ["string"],
+                    "new_sqlite_classes": ["string"],
                     "new_tag": "v2",
                     "old_tag": "v1",
-                    "deleted_classes": ["string", "string", "string"],
-                    "new_classes": ["string", "string", "string"],
                     "renamed_classes": [
                         {
                             "from": "from",
                             "to": "to",
-                        },
-                        {
-                            "from": "from",
-                            "to": "to",
-                        },
-                        {
-                            "from": "from",
-                            "to": "to",
-                        },
+                        }
                     ],
                     "transferred_classes": [
                         {
                             "from": "from",
                             "from_script": "from_script",
                             "to": "to",
-                        },
-                        {
-                            "from": "from",
-                            "from_script": "from_script",
-                            "to": "to",
-                        },
-                        {
-                            "from": "from",
-                            "from_script": "from_script",
-                            "to": "to",
-                        },
+                        }
                     ],
                 },
+                "observability": {
+                    "enabled": True,
+                    "head_sampling_rate": 0.1,
+                },
                 "placement": {"mode": "smart"},
-                "tags": ["my-tag", "my-tag", "my-tag"],
+                "tags": ["my-tag"],
                 "tail_consumers": [
                     {
+                        "service": "my-log-consumer",
                         "environment": "production",
                         "namespace": "my-namespace",
-                        "service": "my-log-consumer",
-                    },
-                    {
-                        "environment": "production",
-                        "namespace": "my-namespace",
-                        "service": "my-log-consumer",
-                    },
-                    {
-                        "environment": "production",
-                        "namespace": "my-namespace",
-                        "service": "my-log-consumer",
-                    },
+                    }
                 ],
-                "usage_model": "unbound",
+                "usage_model": "standard",
             },
         )
         assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])

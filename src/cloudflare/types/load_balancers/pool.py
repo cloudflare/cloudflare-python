@@ -22,7 +22,7 @@ class Pool(BaseModel):
     Null means every Cloudflare data center.
     """
 
-    created_on: Optional[datetime] = None
+    created_on: Optional[str] = None
 
     description: Optional[str] = None
     """A human-readable description of the pool."""
@@ -63,9 +63,9 @@ class Pool(BaseModel):
     be marked unhealthy and will failover to the next available pool.
     """
 
-    modified_on: Optional[datetime] = None
+    modified_on: Optional[str] = None
 
-    monitor: Optional[object] = None
+    monitor: Optional[str] = None
     """
     The ID of the Monitor to use for checking the health of origins within this
     pool.
@@ -76,6 +76,9 @@ class Pool(BaseModel):
 
     Only alphanumeric characters, hyphens, and underscores are allowed.
     """
+
+    networks: Optional[List[str]] = None
+    """List of networks where Load Balancer or Pool is enabled."""
 
     notification_email: Optional[str] = None
     """This field is now deprecated.

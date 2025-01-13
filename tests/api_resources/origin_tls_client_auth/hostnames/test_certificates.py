@@ -10,9 +10,9 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.origin_tls_client_auth import AuthenticatedOriginPull
 from cloudflare.types.origin_tls_client_auth.hostnames import (
     CertificateGetResponse,
+    CertificateListResponse,
     CertificateCreateResponse,
     CertificateDeleteResponse,
 )
@@ -74,7 +74,7 @@ class TestCertificates:
         certificate = client.origin_tls_client_auth.hostnames.certificates.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncSinglePage[AuthenticatedOriginPull], certificate, path=["response"])
+        assert_matches_type(SyncSinglePage[CertificateListResponse], certificate, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -85,7 +85,7 @@ class TestCertificates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         certificate = response.parse()
-        assert_matches_type(SyncSinglePage[AuthenticatedOriginPull], certificate, path=["response"])
+        assert_matches_type(SyncSinglePage[CertificateListResponse], certificate, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -96,7 +96,7 @@ class TestCertificates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             certificate = response.parse()
-            assert_matches_type(SyncSinglePage[AuthenticatedOriginPull], certificate, path=["response"])
+            assert_matches_type(SyncSinglePage[CertificateListResponse], certificate, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -258,7 +258,7 @@ class TestAsyncCertificates:
         certificate = await async_client.origin_tls_client_auth.hostnames.certificates.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncSinglePage[AuthenticatedOriginPull], certificate, path=["response"])
+        assert_matches_type(AsyncSinglePage[CertificateListResponse], certificate, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -269,7 +269,7 @@ class TestAsyncCertificates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         certificate = await response.parse()
-        assert_matches_type(AsyncSinglePage[AuthenticatedOriginPull], certificate, path=["response"])
+        assert_matches_type(AsyncSinglePage[CertificateListResponse], certificate, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -280,7 +280,7 @@ class TestAsyncCertificates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             certificate = await response.parse()
-            assert_matches_type(AsyncSinglePage[AuthenticatedOriginPull], certificate, path=["response"])
+            assert_matches_type(AsyncSinglePage[CertificateListResponse], certificate, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

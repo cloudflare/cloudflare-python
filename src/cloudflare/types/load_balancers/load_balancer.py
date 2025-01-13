@@ -1,7 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-from datetime import datetime
+from typing import Dict, List, Optional
 
 from .rules import Rules
 from ..._models import BaseModel
@@ -29,7 +28,7 @@ class LoadBalancer(BaseModel):
     is retried once against this alternate origin.
     """
 
-    country_pools: Optional[object] = None
+    country_pools: Optional[Dict[str, List[str]]] = None
     """
     A mapping of country codes to a list of pool IDs (ordered by their failover
     priority) for the given country. Any country not explicitly defined will fall
@@ -37,7 +36,7 @@ class LoadBalancer(BaseModel):
     default_pools.
     """
 
-    created_on: Optional[datetime] = None
+    created_on: Optional[str] = None
 
     default_pools: Optional[List[DefaultPools]] = None
     """A list of pool IDs ordered by their failover priority.
@@ -52,7 +51,7 @@ class LoadBalancer(BaseModel):
     enabled: Optional[bool] = None
     """Whether to enable (the default) this load balancer."""
 
-    fallback_pool: Optional[object] = None
+    fallback_pool: Optional[str] = None
     """The pool ID to use when all other pools are detected as unhealthy."""
 
     location_strategy: Optional[LocationStrategy] = None
@@ -61,7 +60,7 @@ class LoadBalancer(BaseModel):
     See `steering_policy` to learn how steering is affected.
     """
 
-    modified_on: Optional[datetime] = None
+    modified_on: Optional[str] = None
 
     name: Optional[str] = None
     """The DNS hostname to associate with your Load Balancer.
@@ -70,7 +69,10 @@ class LoadBalancer(BaseModel):
     Balancer will take precedence and the DNS record will not be used.
     """
 
-    pop_pools: Optional[object] = None
+    networks: Optional[List[str]] = None
+    """List of networks where Load Balancer or Pool is enabled."""
+
+    pop_pools: Optional[Dict[str, List[str]]] = None
     """
     (Enterprise only): A mapping of Cloudflare PoP identifiers to a list of pool IDs
     (ordered by their failover priority) for the PoP (datacenter). Any PoPs not
@@ -92,7 +94,7 @@ class LoadBalancer(BaseModel):
       open connections.
     """
 
-    region_pools: Optional[object] = None
+    region_pools: Optional[Dict[str, List[str]]] = None
     """
     A mapping of region codes to a list of pool IDs (ordered by their failover
     priority) for the given region. Any regions not explicitly defined will fall
@@ -108,7 +110,7 @@ class LoadBalancer(BaseModel):
     session_affinity: Optional[SessionAffinity] = None
     """
     Specifies the type of session affinity the load balancer should use unless
-    specified as `"none"` or "" (default). The supported types are:
+    specified as `"none"`. The supported types are:
 
     - `"cookie"`: On the first request to a proxied load balancer, a cookie is
       generated, encoding information of which origin the request will be forwarded

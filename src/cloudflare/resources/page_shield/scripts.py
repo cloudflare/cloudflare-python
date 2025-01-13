@@ -30,10 +30,21 @@ __all__ = ["ScriptsResource", "AsyncScriptsResource"]
 class ScriptsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ScriptsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return ScriptsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> ScriptsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return ScriptsResourceWithStreamingResponse(self)
 
     def list(
@@ -79,8 +90,7 @@ class ScriptsResource(SyncAPIResource):
           exclude_urls: Excludes scripts whose URL contains one of the URL-encoded URLs separated by
               commas.
 
-          export: Export the list of scripts as a file. Cannot be used with per_page or page
-              options.
+          export: Export the list of scripts as a file.
 
           hosts: Includes scripts that match one or more URL-encoded hostnames separated by
               commas.
@@ -94,10 +104,8 @@ class ScriptsResource(SyncAPIResource):
           page: The current page number of the paginated results.
 
               We additionally support a special value "all". When "all" is used, the API will
-              return all the scripts with the applied filters in a single page. Additionally,
-              when using this value, the API will not return the script versions or
-              categorisation data for the URL and domain of the scripts. This feature is
-              best-effort and it may only work for zones with a low number of scripts
+              return all the scripts with the applied filters in a single page. This feature
+              is best-effort and it may only work for zones with a low number of scripts
 
           page_url: Includes scripts that match one or more page URLs (separated by commas) where
               they were last seen
@@ -205,10 +213,21 @@ class ScriptsResource(SyncAPIResource):
 class AsyncScriptsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncScriptsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncScriptsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncScriptsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncScriptsResourceWithStreamingResponse(self)
 
     def list(
@@ -254,8 +273,7 @@ class AsyncScriptsResource(AsyncAPIResource):
           exclude_urls: Excludes scripts whose URL contains one of the URL-encoded URLs separated by
               commas.
 
-          export: Export the list of scripts as a file. Cannot be used with per_page or page
-              options.
+          export: Export the list of scripts as a file.
 
           hosts: Includes scripts that match one or more URL-encoded hostnames separated by
               commas.
@@ -269,10 +287,8 @@ class AsyncScriptsResource(AsyncAPIResource):
           page: The current page number of the paginated results.
 
               We additionally support a special value "all". When "all" is used, the API will
-              return all the scripts with the applied filters in a single page. Additionally,
-              when using this value, the API will not return the script versions or
-              categorisation data for the URL and domain of the scripts. This feature is
-              best-effort and it may only work for zones with a low number of scripts
+              return all the scripts with the applied filters in a single page. This feature
+              is best-effort and it may only work for zones with a low number of scripts
 
           page_url: Includes scripts that match one or more page URLs (separated by commas) where
               they were last seen

@@ -1,7 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
-from datetime import datetime
 
 from ..._models import BaseModel
 from ..ssl.request_validity import RequestValidity
@@ -14,7 +13,7 @@ class OriginCACertificate(BaseModel):
     csr: str
     """The Certificate Signing Request (CSR). Must be newline-encoded."""
 
-    hostnames: List[object]
+    hostnames: List[str]
     """
     Array of hostnames or wildcard names (e.g., \\**.example.com) bound to the
     certificate.
@@ -35,5 +34,5 @@ class OriginCACertificate(BaseModel):
     certificate: Optional[str] = None
     """The Origin CA certificate. Will be newline-encoded."""
 
-    expires_on: Optional[datetime] = None
+    expires_on: Optional[str] = None
     """When the certificate will expire."""

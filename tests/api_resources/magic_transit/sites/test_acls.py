@@ -39,19 +39,19 @@ class TestACLs:
             lan_1={
                 "lan_id": "lan_id",
                 "lan_name": "lan_name",
-                "ports": [1, 1, 1],
-                "subnets": ["192.0.2.1", "192.0.2.1", "192.0.2.1"],
+                "ports": [1],
+                "subnets": ["192.0.2.1"],
             },
             lan_2={
                 "lan_id": "lan_id",
                 "lan_name": "lan_name",
-                "ports": [1, 1, 1],
-                "subnets": ["192.0.2.1", "192.0.2.1", "192.0.2.1"],
+                "ports": [1],
+                "subnets": ["192.0.2.1"],
             },
             name="PIN Pad - Cash Register",
             description="Allows local traffic between PIN pads and cash register.",
             forward_locally=True,
-            protocols=["tcp", "udp", "icmp"],
+            protocols=["tcp"],
         )
         assert_matches_type(ACL, acl, path=["response"])
 
@@ -127,17 +127,17 @@ class TestACLs:
             lan_1={
                 "lan_id": "lan_id",
                 "lan_name": "lan_name",
-                "ports": [1, 1, 1],
-                "subnets": ["192.0.2.1", "192.0.2.1", "192.0.2.1"],
+                "ports": [1],
+                "subnets": ["192.0.2.1"],
             },
             lan_2={
                 "lan_id": "lan_id",
                 "lan_name": "lan_name",
-                "ports": [1, 1, 1],
-                "subnets": ["192.0.2.1", "192.0.2.1", "192.0.2.1"],
+                "ports": [1],
+                "subnets": ["192.0.2.1"],
             },
             name="PIN Pad - Cash Register",
-            protocols=["tcp", "udp", "icmp"],
+            protocols=["tcp"],
         )
         assert_matches_type(ACL, acl, path=["response"])
 
@@ -320,17 +320,17 @@ class TestACLs:
             lan_1={
                 "lan_id": "lan_id",
                 "lan_name": "lan_name",
-                "ports": [1, 1, 1],
-                "subnets": ["192.0.2.1", "192.0.2.1", "192.0.2.1"],
+                "ports": [1],
+                "subnets": ["192.0.2.1"],
             },
             lan_2={
                 "lan_id": "lan_id",
                 "lan_name": "lan_name",
-                "ports": [1, 1, 1],
-                "subnets": ["192.0.2.1", "192.0.2.1", "192.0.2.1"],
+                "ports": [1],
+                "subnets": ["192.0.2.1"],
             },
             name="PIN Pad - Cash Register",
-            protocols=["tcp", "udp", "icmp"],
+            protocols=["tcp"],
         )
         assert_matches_type(ACL, acl, path=["response"])
 
@@ -468,19 +468,19 @@ class TestAsyncACLs:
             lan_1={
                 "lan_id": "lan_id",
                 "lan_name": "lan_name",
-                "ports": [1, 1, 1],
-                "subnets": ["192.0.2.1", "192.0.2.1", "192.0.2.1"],
+                "ports": [1],
+                "subnets": ["192.0.2.1"],
             },
             lan_2={
                 "lan_id": "lan_id",
                 "lan_name": "lan_name",
-                "ports": [1, 1, 1],
-                "subnets": ["192.0.2.1", "192.0.2.1", "192.0.2.1"],
+                "ports": [1],
+                "subnets": ["192.0.2.1"],
             },
             name="PIN Pad - Cash Register",
             description="Allows local traffic between PIN pads and cash register.",
             forward_locally=True,
-            protocols=["tcp", "udp", "icmp"],
+            protocols=["tcp"],
         )
         assert_matches_type(ACL, acl, path=["response"])
 
@@ -556,17 +556,17 @@ class TestAsyncACLs:
             lan_1={
                 "lan_id": "lan_id",
                 "lan_name": "lan_name",
-                "ports": [1, 1, 1],
-                "subnets": ["192.0.2.1", "192.0.2.1", "192.0.2.1"],
+                "ports": [1],
+                "subnets": ["192.0.2.1"],
             },
             lan_2={
                 "lan_id": "lan_id",
                 "lan_name": "lan_name",
-                "ports": [1, 1, 1],
-                "subnets": ["192.0.2.1", "192.0.2.1", "192.0.2.1"],
+                "ports": [1],
+                "subnets": ["192.0.2.1"],
             },
             name="PIN Pad - Cash Register",
-            protocols=["tcp", "udp", "icmp"],
+            protocols=["tcp"],
         )
         assert_matches_type(ACL, acl, path=["response"])
 
@@ -749,17 +749,17 @@ class TestAsyncACLs:
             lan_1={
                 "lan_id": "lan_id",
                 "lan_name": "lan_name",
-                "ports": [1, 1, 1],
-                "subnets": ["192.0.2.1", "192.0.2.1", "192.0.2.1"],
+                "ports": [1],
+                "subnets": ["192.0.2.1"],
             },
             lan_2={
                 "lan_id": "lan_id",
                 "lan_name": "lan_name",
-                "ports": [1, 1, 1],
-                "subnets": ["192.0.2.1", "192.0.2.1", "192.0.2.1"],
+                "ports": [1],
+                "subnets": ["192.0.2.1"],
             },
             name="PIN Pad - Cash Register",
-            protocols=["tcp", "udp", "icmp"],
+            protocols=["tcp"],
         )
         assert_matches_type(ACL, acl, path=["response"])
 

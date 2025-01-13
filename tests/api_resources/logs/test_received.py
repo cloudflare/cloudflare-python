@@ -20,7 +20,7 @@ class TestReceived:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         received = client.logs.received.get(
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             end="2018-05-20T10:01:00Z",
         )
         assert_matches_type(ReceivedGetResponse, received, path=["response"])
@@ -28,20 +28,20 @@ class TestReceived:
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         received = client.logs.received.get(
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             end="2018-05-20T10:01:00Z",
             count=1,
             fields="ClientIP,RayID,EdgeStartTimestamp",
             sample=0.1,
             start="2018-05-20T10:00:00Z",
-            timestamps="unixnano",
+            timestamps="unix",
         )
         assert_matches_type(ReceivedGetResponse, received, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.logs.received.with_raw_response.get(
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             end="2018-05-20T10:01:00Z",
         )
 
@@ -53,7 +53,7 @@ class TestReceived:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.logs.received.with_streaming_response.get(
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             end="2018-05-20T10:01:00Z",
         ) as response:
             assert not response.is_closed
@@ -66,9 +66,9 @@ class TestReceived:
 
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.logs.received.with_raw_response.get(
-                zone_identifier="",
+                zone_id="",
                 end="2018-05-20T10:01:00Z",
             )
 
@@ -79,7 +79,7 @@ class TestAsyncReceived:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         received = await async_client.logs.received.get(
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             end="2018-05-20T10:01:00Z",
         )
         assert_matches_type(ReceivedGetResponse, received, path=["response"])
@@ -87,20 +87,20 @@ class TestAsyncReceived:
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         received = await async_client.logs.received.get(
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             end="2018-05-20T10:01:00Z",
             count=1,
             fields="ClientIP,RayID,EdgeStartTimestamp",
             sample=0.1,
             start="2018-05-20T10:00:00Z",
-            timestamps="unixnano",
+            timestamps="unix",
         )
         assert_matches_type(ReceivedGetResponse, received, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.logs.received.with_raw_response.get(
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             end="2018-05-20T10:01:00Z",
         )
 
@@ -112,7 +112,7 @@ class TestAsyncReceived:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.logs.received.with_streaming_response.get(
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             end="2018-05-20T10:01:00Z",
         ) as response:
             assert not response.is_closed
@@ -125,8 +125,8 @@ class TestAsyncReceived:
 
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.logs.received.with_raw_response.get(
-                zone_identifier="",
+                zone_id="",
                 end="2018-05-20T10:01:00Z",
             )

@@ -2,11 +2,14 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing import Union
+from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
-from .health_check_param import HealthCheckParam
+from ..._utils import PropertyInfo
+from .health_check_rate import HealthCheckRate
+from .health_check_type import HealthCheckType
 
-__all__ = ["GRETunnelUpdateParams"]
+__all__ = ["GRETunnelUpdateParams", "HealthCheck", "HealthCheckTarget", "HealthCheckTargetMagicHealthCheckTarget"]
 
 
 class GRETunnelUpdateParams(TypedDict, total=False):
@@ -36,7 +39,7 @@ class GRETunnelUpdateParams(TypedDict, total=False):
     description: str
     """An optional description of the GRE tunnel."""
 
-    health_check: HealthCheckParam
+    health_check: HealthCheck
 
     mtu: int
     """Maximum Transmission Unit (MTU) in bytes for the GRE tunnel.
@@ -46,3 +49,48 @@ class GRETunnelUpdateParams(TypedDict, total=False):
 
     ttl: int
     """Time To Live (TTL) in number of hops of the GRE tunnel."""
+
+    x_magic_new_hc_target: Annotated[bool, PropertyInfo(alias="x-magic-new-hc-target")]
+
+
+class HealthCheckTargetMagicHealthCheckTarget(TypedDict, total=False):
+    saved: str
+    """The saved health check target.
+
+    Setting the value to the empty string indicates that the calculated default
+    value will be used.
+    """
+
+
+HealthCheckTarget: TypeAlias = Union[HealthCheckTargetMagicHealthCheckTarget, str]
+
+
+class HealthCheck(TypedDict, total=False):
+    direction: Literal["unidirectional", "bidirectional"]
+    """The direction of the flow of the healthcheck.
+
+    Either unidirectional, where the probe comes to you via the tunnel and the
+    result comes back to Cloudflare via the open Internet, or bidirectional where
+    both the probe and result come and go via the tunnel.
+    """
+
+    enabled: bool
+    """Determines whether to run healthchecks for a tunnel."""
+
+    rate: HealthCheckRate
+    """How frequent the health check is run. The default value is `mid`."""
+
+    target: HealthCheckTarget
+    """The destination address in a request type health check.
+
+    After the healthcheck is decapsulated at the customer end of the tunnel, the
+    ICMP echo will be forwarded to this address. This field defaults to
+    `customer_gre_endpoint address`. This field is ignored for bidirectional
+    healthchecks as the interface_address (not assigned to the Cloudflare side of
+    the tunnel) is used as the target. Must be in object form if the
+    x-magic-new-hc-target header is set to true and string form if
+    x-magic-new-hc-target is absent or set to false.
+    """
+
+    type: HealthCheckType
+    """The type of healthcheck to run, reply or request. The default value is `reply`."""

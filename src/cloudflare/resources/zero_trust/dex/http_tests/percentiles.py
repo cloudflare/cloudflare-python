@@ -30,10 +30,21 @@ __all__ = ["PercentilesResource", "AsyncPercentilesResource"]
 class PercentilesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> PercentilesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return PercentilesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> PercentilesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return PercentilesResourceWithStreamingResponse(self)
 
     def get(
@@ -59,9 +70,9 @@ class PercentilesResource(SyncAPIResource):
         Args:
           test_id: API Resource UUID tag.
 
-          from_: Start time for aggregate metrics in ISO format
+          from_: Start time for the query in ISO (RFC3339 - ISO 8601) format
 
-          to: End time for aggregate metrics in ISO format
+          to: End time for the query in ISO (RFC3339 - ISO 8601) format
 
           colo: Optionally filter result stats to a Cloudflare colo. Cannot be used in
               combination with deviceId param.
@@ -106,10 +117,21 @@ class PercentilesResource(SyncAPIResource):
 class AsyncPercentilesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncPercentilesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncPercentilesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncPercentilesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncPercentilesResourceWithStreamingResponse(self)
 
     async def get(
@@ -135,9 +157,9 @@ class AsyncPercentilesResource(AsyncAPIResource):
         Args:
           test_id: API Resource UUID tag.
 
-          from_: Start time for aggregate metrics in ISO format
+          from_: Start time for the query in ISO (RFC3339 - ISO 8601) format
 
-          to: End time for aggregate metrics in ISO format
+          to: End time for the query in ISO (RFC3339 - ISO 8601) format
 
           colo: Optionally filter result stats to a Cloudflare colo. Cannot be used in
               combination with deviceId param.

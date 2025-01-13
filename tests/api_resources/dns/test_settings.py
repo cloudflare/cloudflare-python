@@ -31,6 +31,7 @@ class TestSettings:
         setting = client.dns.settings.edit(
             account_id="account_id",
             zone_defaults={
+                "flatten_all_cnames": False,
                 "foundation_dns": False,
                 "multi_provider": False,
                 "nameservers": {"type": "cloudflare.standard"},
@@ -45,7 +46,7 @@ class TestSettings:
                     "rname": "admin.example.com",
                     "ttl": 3600,
                 },
-                "zone_mode": "dns_only",
+                "zone_mode": "standard",
             },
         )
         assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
@@ -162,6 +163,7 @@ class TestAsyncSettings:
         setting = await async_client.dns.settings.edit(
             account_id="account_id",
             zone_defaults={
+                "flatten_all_cnames": False,
                 "foundation_dns": False,
                 "multi_provider": False,
                 "nameservers": {"type": "cloudflare.standard"},
@@ -176,7 +178,7 @@ class TestAsyncSettings:
                     "rname": "admin.example.com",
                     "ttl": 3600,
                 },
-                "zone_mode": "dns_only",
+                "zone_mode": "standard",
             },
         )
         assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])

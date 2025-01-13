@@ -8,7 +8,7 @@ __all__ = ["RayIDGetParams"]
 
 
 class RayIDGetParams(TypedDict, total=False):
-    zone_identifier: Required[str]
+    zone_id: Required[str]
     """Identifier"""
 
     fields: str

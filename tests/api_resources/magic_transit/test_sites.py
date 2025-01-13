@@ -309,6 +309,15 @@ class TestSites:
         assert_matches_type(Site, site, path=["response"])
 
     @parametrize
+    def test_method_get_with_all_params(self, client: Cloudflare) -> None:
+        site = client.magic_transit.sites.get(
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            x_magic_new_hc_target=True,
+        )
+        assert_matches_type(Site, site, path=["response"])
+
+    @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.magic_transit.sites.with_raw_response.get(
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -637,6 +646,15 @@ class TestAsyncSites:
         site = await async_client.magic_transit.sites.get(
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(Site, site, path=["response"])
+
+    @parametrize
+    async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        site = await async_client.magic_transit.sites.get(
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            x_magic_new_hc_target=True,
         )
         assert_matches_type(Site, site, path=["response"])
 

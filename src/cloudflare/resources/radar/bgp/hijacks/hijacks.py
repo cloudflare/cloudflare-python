@@ -23,10 +23,21 @@ class HijacksResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> HijacksResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return HijacksResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> HijacksResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return HijacksResourceWithStreamingResponse(self)
 
 
@@ -37,10 +48,21 @@ class AsyncHijacksResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncHijacksResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncHijacksResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncHijacksResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncHijacksResourceWithStreamingResponse(self)
 
 

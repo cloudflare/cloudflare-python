@@ -2,16 +2,14 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Mapping, Optional, cast
+from typing import Type, Optional, cast
 
 import httpx
 
-from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
+from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ......_utils import (
-    extract_files,
     maybe_transform,
     strip_not_given,
-    deepcopy_minimal,
     async_maybe_transform,
 )
 from ......_compat import cached_property
@@ -42,10 +40,21 @@ __all__ = ["ContentResource", "AsyncContentResource"]
 class ContentResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ContentResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return ContentResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> ContentResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return ContentResourceWithStreamingResponse(self)
 
     def update(
@@ -54,8 +63,7 @@ class ContentResource(SyncAPIResource):
         *,
         account_id: str,
         dispatch_namespace: str,
-        any_part_name: List[FileTypes] | NotGiven = NOT_GIVEN,
-        metadata: WorkerMetadataParam | NotGiven = NOT_GIVEN,
+        metadata: WorkerMetadataParam,
         cf_worker_body_part: str | NotGiven = NOT_GIVEN,
         cf_worker_main_module_part: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -74,13 +82,6 @@ class ContentResource(SyncAPIResource):
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
           script_name: Name of the script, used in URLs and route configuration.
-
-          any_part_name: A module comprising a Worker script, often a javascript file. Multiple modules
-              may be provided as separate named parts, but at least one module must be
-              present. This should be referenced either in the metadata as `main_module`
-              (esm)/`body_part` (service worker) or as a header `CF-WORKER-MAIN-MODULE-PART`
-              (esm) /`CF-WORKER-BODY-PART` (service worker) by part name. Source maps may also
-              be included using the `application/source-map` content type.
 
           metadata: JSON encoded metadata about the uploaded parts and Worker configuration.
 
@@ -107,21 +108,13 @@ class ContentResource(SyncAPIResource):
             ),
             **(extra_headers or {}),
         }
-        body = deepcopy_minimal(
-            {
-                "any_part_name": any_part_name,
-                "metadata": metadata,
-            }
-        )
-        files = extract_files(cast(Mapping[str, object], body), paths=[["<any part name>", "<array>"]])
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._put(
             f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/content",
-            body=maybe_transform(body, content_update_params.ContentUpdateParams),
-            files=files,
+            body=maybe_transform({"metadata": metadata}, content_update_params.ContentUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -183,10 +176,21 @@ class ContentResource(SyncAPIResource):
 class AsyncContentResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncContentResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncContentResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncContentResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncContentResourceWithStreamingResponse(self)
 
     async def update(
@@ -195,8 +199,7 @@ class AsyncContentResource(AsyncAPIResource):
         *,
         account_id: str,
         dispatch_namespace: str,
-        any_part_name: List[FileTypes] | NotGiven = NOT_GIVEN,
-        metadata: WorkerMetadataParam | NotGiven = NOT_GIVEN,
+        metadata: WorkerMetadataParam,
         cf_worker_body_part: str | NotGiven = NOT_GIVEN,
         cf_worker_main_module_part: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -215,13 +218,6 @@ class AsyncContentResource(AsyncAPIResource):
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
           script_name: Name of the script, used in URLs and route configuration.
-
-          any_part_name: A module comprising a Worker script, often a javascript file. Multiple modules
-              may be provided as separate named parts, but at least one module must be
-              present. This should be referenced either in the metadata as `main_module`
-              (esm)/`body_part` (service worker) or as a header `CF-WORKER-MAIN-MODULE-PART`
-              (esm) /`CF-WORKER-BODY-PART` (service worker) by part name. Source maps may also
-              be included using the `application/source-map` content type.
 
           metadata: JSON encoded metadata about the uploaded parts and Worker configuration.
 
@@ -248,21 +244,13 @@ class AsyncContentResource(AsyncAPIResource):
             ),
             **(extra_headers or {}),
         }
-        body = deepcopy_minimal(
-            {
-                "any_part_name": any_part_name,
-                "metadata": metadata,
-            }
-        )
-        files = extract_files(cast(Mapping[str, object], body), paths=[["<any part name>", "<array>"]])
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._put(
             f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/content",
-            body=await async_maybe_transform(body, content_update_params.ContentUpdateParams),
-            files=files,
+            body=await async_maybe_transform({"metadata": metadata}, content_update_params.ContentUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
@@ -19,7 +17,6 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
 from ....types.addressing.address_maps import account_update_params
 from ....types.addressing.address_maps.account_delete_response import AccountDeleteResponse
@@ -31,10 +28,21 @@ __all__ = ["AccountsResource", "AsyncAccountsResource"]
 class AccountsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AccountsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AccountsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AccountsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AccountsResourceWithStreamingResponse(self)
 
     def update(
@@ -49,14 +57,14 @@ class AccountsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AccountUpdateResponse]:
+    ) -> AccountUpdateResponse:
         """
         Add an account as a member of a particular address map.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          address_map_id: Identifier
+          address_map_id: Identifier of an Address Map.
 
           extra_headers: Send extra headers
 
@@ -74,13 +82,9 @@ class AccountsResource(SyncAPIResource):
             f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/{account_id}",
             body=maybe_transform(body, account_update_params.AccountUpdateParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[AccountUpdateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[AccountUpdateResponse]], ResultWrapper[AccountUpdateResponse]),
+            cast_to=AccountUpdateResponse,
         )
 
     def delete(
@@ -94,14 +98,14 @@ class AccountsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AccountDeleteResponse]:
+    ) -> AccountDeleteResponse:
         """
         Remove an account as a member of a particular address map.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          address_map_id: Identifier
+          address_map_id: Identifier of an Address Map.
 
           extra_headers: Send extra headers
 
@@ -118,23 +122,30 @@ class AccountsResource(SyncAPIResource):
         return self._delete(
             f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/{account_id}",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[AccountDeleteResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[AccountDeleteResponse]], ResultWrapper[AccountDeleteResponse]),
+            cast_to=AccountDeleteResponse,
         )
 
 
 class AsyncAccountsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncAccountsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncAccountsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncAccountsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncAccountsResourceWithStreamingResponse(self)
 
     async def update(
@@ -149,14 +160,14 @@ class AsyncAccountsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AccountUpdateResponse]:
+    ) -> AccountUpdateResponse:
         """
         Add an account as a member of a particular address map.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          address_map_id: Identifier
+          address_map_id: Identifier of an Address Map.
 
           extra_headers: Send extra headers
 
@@ -174,13 +185,9 @@ class AsyncAccountsResource(AsyncAPIResource):
             f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/{account_id}",
             body=await async_maybe_transform(body, account_update_params.AccountUpdateParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[AccountUpdateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[AccountUpdateResponse]], ResultWrapper[AccountUpdateResponse]),
+            cast_to=AccountUpdateResponse,
         )
 
     async def delete(
@@ -194,14 +201,14 @@ class AsyncAccountsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AccountDeleteResponse]:
+    ) -> AccountDeleteResponse:
         """
         Remove an account as a member of a particular address map.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          address_map_id: Identifier
+          address_map_id: Identifier of an Address Map.
 
           extra_headers: Send extra headers
 
@@ -218,13 +225,9 @@ class AsyncAccountsResource(AsyncAPIResource):
         return await self._delete(
             f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/{account_id}",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[AccountDeleteResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[AccountDeleteResponse]], ResultWrapper[AccountDeleteResponse]),
+            cast_to=AccountDeleteResponse,
         )
 
 

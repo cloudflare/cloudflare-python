@@ -39,10 +39,21 @@ __all__ = ["ValuesResource", "AsyncValuesResource"]
 class ValuesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ValuesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return ValuesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> ValuesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return ValuesResourceWithStreamingResponse(self)
 
     def update(
@@ -53,6 +64,8 @@ class ValuesResource(SyncAPIResource):
         namespace_id: str,
         metadata: str,
         value: str,
+        expiration: float | NotGiven = NOT_GIVEN,
+        expiration_ttl: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -64,10 +77,12 @@ class ValuesResource(SyncAPIResource):
 
         Use URL-encoding to use special characters
         (for example, `:`, `!`, `%`) in the key name. Body should be the value to be
-        stored along with JSON metadata to be associated with the key/value pair.
-        Existing values, expirations, and metadata will be overwritten. If neither
-        `expiration` nor `expiration_ttl` is specified, the key-value pair will never
-        expire. If both are set, `expiration_ttl` is used and `expiration` is ignored.
+        stored. If JSON metadata to be associated with the key/value pair is needed, use
+        `multipart/form-data` content type for your PUT request (see dropdown below in
+        `REQUEST BODY SCHEMA`). Existing values, expirations, and metadata will be
+        overwritten. If neither `expiration` nor `expiration_ttl` is specified, the
+        key-value pair will never expire. If both are set, `expiration_ttl` is used and
+        `expiration` is ignored.
 
         Args:
           account_id: Identifier
@@ -80,6 +95,12 @@ class ValuesResource(SyncAPIResource):
           metadata: Arbitrary JSON to be associated with a key/value pair.
 
           value: A byte sequence to be stored, up to 25 MiB in length.
+
+          expiration: The time, measured in number of seconds since the UNIX epoch, at which the key
+              should expire.
+
+          expiration_ttl: The number of seconds for which the key should be visible before it expires. At
+              least 60.
 
           extra_headers: Send extra headers
 
@@ -95,10 +116,6 @@ class ValuesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         if not key_name:
             raise ValueError(f"Expected a non-empty value for `key_name` but received {key_name!r}")
-        # It should be noted that the actual Content-Type header that will be
-        # sent to the server will contain a `boundary` parameter, e.g.
-        # multipart/form-data; boundary=---abc--
-        extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._put(
             f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
             body=maybe_transform(
@@ -113,6 +130,13 @@ class ValuesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "expiration": expiration,
+                        "expiration_ttl": expiration_ttl,
+                    },
+                    value_update_params.ValueUpdateParams,
+                ),
                 post_parser=ResultWrapper[Optional[ValueUpdateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ValueUpdateResponse]], ResultWrapper[ValueUpdateResponse]),
@@ -226,10 +250,21 @@ class ValuesResource(SyncAPIResource):
 class AsyncValuesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncValuesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncValuesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncValuesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncValuesResourceWithStreamingResponse(self)
 
     async def update(
@@ -240,6 +275,8 @@ class AsyncValuesResource(AsyncAPIResource):
         namespace_id: str,
         metadata: str,
         value: str,
+        expiration: float | NotGiven = NOT_GIVEN,
+        expiration_ttl: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -251,10 +288,12 @@ class AsyncValuesResource(AsyncAPIResource):
 
         Use URL-encoding to use special characters
         (for example, `:`, `!`, `%`) in the key name. Body should be the value to be
-        stored along with JSON metadata to be associated with the key/value pair.
-        Existing values, expirations, and metadata will be overwritten. If neither
-        `expiration` nor `expiration_ttl` is specified, the key-value pair will never
-        expire. If both are set, `expiration_ttl` is used and `expiration` is ignored.
+        stored. If JSON metadata to be associated with the key/value pair is needed, use
+        `multipart/form-data` content type for your PUT request (see dropdown below in
+        `REQUEST BODY SCHEMA`). Existing values, expirations, and metadata will be
+        overwritten. If neither `expiration` nor `expiration_ttl` is specified, the
+        key-value pair will never expire. If both are set, `expiration_ttl` is used and
+        `expiration` is ignored.
 
         Args:
           account_id: Identifier
@@ -267,6 +306,12 @@ class AsyncValuesResource(AsyncAPIResource):
           metadata: Arbitrary JSON to be associated with a key/value pair.
 
           value: A byte sequence to be stored, up to 25 MiB in length.
+
+          expiration: The time, measured in number of seconds since the UNIX epoch, at which the key
+              should expire.
+
+          expiration_ttl: The number of seconds for which the key should be visible before it expires. At
+              least 60.
 
           extra_headers: Send extra headers
 
@@ -282,10 +327,6 @@ class AsyncValuesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         if not key_name:
             raise ValueError(f"Expected a non-empty value for `key_name` but received {key_name!r}")
-        # It should be noted that the actual Content-Type header that will be
-        # sent to the server will contain a `boundary` parameter, e.g.
-        # multipart/form-data; boundary=---abc--
-        extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._put(
             f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
             body=await async_maybe_transform(
@@ -300,6 +341,13 @@ class AsyncValuesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "expiration": expiration,
+                        "expiration_ttl": expiration_ttl,
+                    },
+                    value_update_params.ValueUpdateParams,
+                ),
                 post_parser=ResultWrapper[Optional[ValueUpdateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ValueUpdateResponse]], ResultWrapper[ValueUpdateResponse]),

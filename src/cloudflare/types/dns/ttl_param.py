@@ -3,8 +3,8 @@
 from __future__ import annotations
 
 from typing import Union
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 __all__ = ["TTLParam"]
 
-TTLParam = Union[float, Literal[1]]
+TTLParam: TypeAlias = Union[float, Literal[1]]

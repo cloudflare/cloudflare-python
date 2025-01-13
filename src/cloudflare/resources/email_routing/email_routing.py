@@ -14,14 +14,6 @@ from .dns import (
     DNSResourceWithStreamingResponse,
     AsyncDNSResourceWithStreamingResponse,
 )
-from .rules import (
-    RulesResource,
-    AsyncRulesResource,
-    RulesResourceWithRawResponse,
-    AsyncRulesResourceWithRawResponse,
-    RulesResourceWithStreamingResponse,
-    AsyncRulesResourceWithStreamingResponse,
-)
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -44,7 +36,14 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from .rules.rules import RulesResource, AsyncRulesResource
+from .rules.rules import (
+    RulesResource,
+    AsyncRulesResource,
+    RulesResourceWithRawResponse,
+    AsyncRulesResourceWithRawResponse,
+    RulesResourceWithStreamingResponse,
+    AsyncRulesResourceWithStreamingResponse,
+)
 from ..._base_client import make_request_options
 from ...types.email_routing import email_routing_enable_params, email_routing_disable_params
 from ...types.email_routing.settings import Settings
@@ -67,16 +66,27 @@ class EmailRoutingResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> EmailRoutingResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return EmailRoutingResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> EmailRoutingResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return EmailRoutingResourceWithStreamingResponse(self)
 
     def disable(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -91,7 +101,7 @@ class EmailRoutingResource(SyncAPIResource):
         required for Email Routing to work.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -101,10 +111,10 @@ class EmailRoutingResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
-            f"/zones/{zone_identifier}/email/routing/disable",
+            f"/zones/{zone_id}/email/routing/disable",
             body=maybe_transform(body, email_routing_disable_params.EmailRoutingDisableParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -118,8 +128,8 @@ class EmailRoutingResource(SyncAPIResource):
 
     def enable(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -133,7 +143,7 @@ class EmailRoutingResource(SyncAPIResource):
         Add and lock the necessary MX and SPF records.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -143,10 +153,10 @@ class EmailRoutingResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
-            f"/zones/{zone_identifier}/email/routing/enable",
+            f"/zones/{zone_id}/email/routing/enable",
             body=maybe_transform(body, email_routing_enable_params.EmailRoutingEnableParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -160,8 +170,8 @@ class EmailRoutingResource(SyncAPIResource):
 
     def get(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -173,7 +183,7 @@ class EmailRoutingResource(SyncAPIResource):
         Get information about the settings for your Email Routing zone.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -183,10 +193,10 @@ class EmailRoutingResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get(
-            f"/zones/{zone_identifier}/email/routing",
+            f"/zones/{zone_id}/email/routing",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -213,16 +223,27 @@ class AsyncEmailRoutingResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncEmailRoutingResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncEmailRoutingResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncEmailRoutingResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncEmailRoutingResourceWithStreamingResponse(self)
 
     async def disable(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -237,7 +258,7 @@ class AsyncEmailRoutingResource(AsyncAPIResource):
         required for Email Routing to work.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -247,10 +268,10 @@ class AsyncEmailRoutingResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
-            f"/zones/{zone_identifier}/email/routing/disable",
+            f"/zones/{zone_id}/email/routing/disable",
             body=await async_maybe_transform(body, email_routing_disable_params.EmailRoutingDisableParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -264,8 +285,8 @@ class AsyncEmailRoutingResource(AsyncAPIResource):
 
     async def enable(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -279,7 +300,7 @@ class AsyncEmailRoutingResource(AsyncAPIResource):
         Add and lock the necessary MX and SPF records.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -289,10 +310,10 @@ class AsyncEmailRoutingResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
-            f"/zones/{zone_identifier}/email/routing/enable",
+            f"/zones/{zone_id}/email/routing/enable",
             body=await async_maybe_transform(body, email_routing_enable_params.EmailRoutingEnableParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -306,8 +327,8 @@ class AsyncEmailRoutingResource(AsyncAPIResource):
 
     async def get(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -319,7 +340,7 @@ class AsyncEmailRoutingResource(AsyncAPIResource):
         Get information about the settings for your Email Routing zone.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -329,10 +350,10 @@ class AsyncEmailRoutingResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._get(
-            f"/zones/{zone_identifier}/email/routing",
+            f"/zones/{zone_id}/email/routing",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

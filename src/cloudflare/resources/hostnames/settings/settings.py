@@ -23,10 +23,21 @@ class SettingsResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> SettingsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return SettingsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> SettingsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return SettingsResourceWithStreamingResponse(self)
 
 
@@ -37,10 +48,21 @@ class AsyncSettingsResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncSettingsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncSettingsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncSettingsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncSettingsResourceWithStreamingResponse(self)
 
 

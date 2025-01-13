@@ -8,9 +8,12 @@ from .traceroute import Traceroute as Traceroute
 from .http_details import HTTPDetails as HTTPDetails
 from .colo_list_params import ColoListParams as ColoListParams
 from .test_list_params import TestListParams as TestListParams
-from .test_list_response import TestListResponse as TestListResponse
+from .command_list_params import CommandListParams as CommandListParams
 from .http_test_get_params import HTTPTestGetParams as HTTPTestGetParams
 from .aggregate_time_period import AggregateTimePeriod as AggregateTimePeriod
+from .command_create_params import CommandCreateParams as CommandCreateParams
+from .command_list_response import CommandListResponse as CommandListResponse
+from .command_create_response import CommandCreateResponse as CommandCreateResponse
 from .fleet_status_live_params import FleetStatusLiveParams as FleetStatusLiveParams
 from .fleet_status_live_response import FleetStatusLiveResponse as FleetStatusLiveResponse
 from .traceroute_test_get_params import TracerouteTestGetParams as TracerouteTestGetParams

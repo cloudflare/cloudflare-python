@@ -31,7 +31,7 @@ class TestHostnameAssociations:
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         hostname_association = client.certificate_authorities.hostname_associations.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            hostnames=["api.example.com", "api.example.com", "api.example.com"],
+            hostnames=["api.example.com"],
             mtls_certificate_id="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
         )
         assert_matches_type(Optional[HostnameAssociationUpdateResponse], hostname_association, path=["response"])
@@ -128,7 +128,7 @@ class TestAsyncHostnameAssociations:
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         hostname_association = await async_client.certificate_authorities.hostname_associations.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            hostnames=["api.example.com", "api.example.com", "api.example.com"],
+            hostnames=["api.example.com"],
             mtls_certificate_id="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
         )
         assert_matches_type(Optional[HostnameAssociationUpdateResponse], hostname_association, path=["response"])

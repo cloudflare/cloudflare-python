@@ -2,19 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
 
-from .history import (
-    HistoryResource,
-    AsyncHistoryResource,
-    HistoryResourceWithRawResponse,
-    AsyncHistoryResourceWithRawResponse,
-    HistoryResourceWithStreamingResponse,
-    AsyncHistoryResourceWithStreamingResponse,
-)
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ....._utils import (
     maybe_transform,
@@ -30,7 +22,14 @@ from ....._response import (
 )
 from ....._wrappers import ResultWrapper
 from .....pagination import SyncSinglePage, AsyncSinglePage
-from .history.history import HistoryResource, AsyncHistoryResource
+from .history.history import (
+    HistoryResource,
+    AsyncHistoryResource,
+    HistoryResourceWithRawResponse,
+    AsyncHistoryResourceWithRawResponse,
+    HistoryResourceWithStreamingResponse,
+    AsyncHistoryResourceWithStreamingResponse,
+)
 from ....._base_client import AsyncPaginator, make_request_options
 from .....types.pages.projects import (
     deployment_list_params,
@@ -50,10 +49,21 @@ class DeploymentsResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> DeploymentsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return DeploymentsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> DeploymentsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return DeploymentsResourceWithStreamingResponse(self)
 
     def create(
@@ -199,9 +209,13 @@ class DeploymentsResource(SyncAPIResource):
         return self._delete(
             f"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
-            cast_to=object,
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def get(
@@ -365,10 +379,21 @@ class AsyncDeploymentsResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncDeploymentsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncDeploymentsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncDeploymentsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncDeploymentsResourceWithStreamingResponse(self)
 
     async def create(
@@ -514,9 +539,13 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         return await self._delete(
             f"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
-            cast_to=object,
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     async def get(

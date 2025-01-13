@@ -31,32 +31,39 @@ __all__ = ["PayloadLogsResource", "AsyncPayloadLogsResource"]
 class PayloadLogsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> PayloadLogsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return PayloadLogsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> PayloadLogsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return PayloadLogsResourceWithStreamingResponse(self)
 
     def update(
         self,
         *,
         account_id: str,
-        public_key: Optional[str],
+        public_key: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PayloadLogUpdateResponse:
+    ) -> Optional[PayloadLogUpdateResponse]:
         """
-        Updates the DLP payload log settings for this account.
+        Set payload log settings
 
         Args:
-          account_id: Identifier
-
-          public_key: The public key to use when encrypting extracted payloads, as a base64 string
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -75,9 +82,9 @@ class PayloadLogsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[PayloadLogUpdateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[PayloadLogUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[PayloadLogUpdateResponse], ResultWrapper[PayloadLogUpdateResponse]),
+            cast_to=cast(Type[Optional[PayloadLogUpdateResponse]], ResultWrapper[PayloadLogUpdateResponse]),
         )
 
     def get(
@@ -90,13 +97,11 @@ class PayloadLogsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PayloadLogGetResponse:
+    ) -> Optional[PayloadLogGetResponse]:
         """
-        Gets the current DLP payload log settings for this account.
+        Get payload log settings
 
         Args:
-          account_id: Identifier
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -114,41 +119,48 @@ class PayloadLogsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[PayloadLogGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[PayloadLogGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[PayloadLogGetResponse], ResultWrapper[PayloadLogGetResponse]),
+            cast_to=cast(Type[Optional[PayloadLogGetResponse]], ResultWrapper[PayloadLogGetResponse]),
         )
 
 
 class AsyncPayloadLogsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncPayloadLogsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncPayloadLogsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncPayloadLogsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncPayloadLogsResourceWithStreamingResponse(self)
 
     async def update(
         self,
         *,
         account_id: str,
-        public_key: Optional[str],
+        public_key: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PayloadLogUpdateResponse:
+    ) -> Optional[PayloadLogUpdateResponse]:
         """
-        Updates the DLP payload log settings for this account.
+        Set payload log settings
 
         Args:
-          account_id: Identifier
-
-          public_key: The public key to use when encrypting extracted payloads, as a base64 string
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -169,9 +181,9 @@ class AsyncPayloadLogsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[PayloadLogUpdateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[PayloadLogUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[PayloadLogUpdateResponse], ResultWrapper[PayloadLogUpdateResponse]),
+            cast_to=cast(Type[Optional[PayloadLogUpdateResponse]], ResultWrapper[PayloadLogUpdateResponse]),
         )
 
     async def get(
@@ -184,13 +196,11 @@ class AsyncPayloadLogsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PayloadLogGetResponse:
+    ) -> Optional[PayloadLogGetResponse]:
         """
-        Gets the current DLP payload log settings for this account.
+        Get payload log settings
 
         Args:
-          account_id: Identifier
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -208,9 +218,9 @@ class AsyncPayloadLogsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[PayloadLogGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[PayloadLogGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[PayloadLogGetResponse], ResultWrapper[PayloadLogGetResponse]),
+            cast_to=cast(Type[Optional[PayloadLogGetResponse]], ResultWrapper[PayloadLogGetResponse]),
         )
 
 

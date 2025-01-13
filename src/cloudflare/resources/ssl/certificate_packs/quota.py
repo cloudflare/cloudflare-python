@@ -25,10 +25,21 @@ __all__ = ["QuotaResource", "AsyncQuotaResource"]
 class QuotaResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> QuotaResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return QuotaResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> QuotaResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return QuotaResourceWithStreamingResponse(self)
 
     def get(
@@ -74,10 +85,21 @@ class QuotaResource(SyncAPIResource):
 class AsyncQuotaResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncQuotaResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncQuotaResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncQuotaResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncQuotaResourceWithStreamingResponse(self)
 
     async def get(

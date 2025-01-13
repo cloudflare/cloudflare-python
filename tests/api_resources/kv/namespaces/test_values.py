@@ -39,6 +39,20 @@ class TestValues:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
+    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
+        value = client.kv.namespaces.values.update(
+            key_name="My-Key",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            namespace_id="0f2ac74b498b48028cb68387c421e279",
+            metadata='{"someMetadataKey": "someMetadataValue"}',
+            value="Some Value",
+            expiration=1578435000,
+            expiration_ttl=300,
+        )
+        assert_matches_type(Optional[ValueUpdateResponse], value, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.kv.namespaces.values.with_raw_response.update(
             key_name="My-Key",
@@ -256,6 +270,20 @@ class TestAsyncValues:
             namespace_id="0f2ac74b498b48028cb68387c421e279",
             metadata='{"someMetadataKey": "someMetadataValue"}',
             value="Some Value",
+        )
+        assert_matches_type(Optional[ValueUpdateResponse], value, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        value = await async_client.kv.namespaces.values.update(
+            key_name="My-Key",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            namespace_id="0f2ac74b498b48028cb68387c421e279",
+            metadata='{"someMetadataKey": "someMetadataValue"}',
+            value="Some Value",
+            expiration=1578435000,
+            expiration_ttl=300,
         )
         assert_matches_type(Optional[ValueUpdateResponse], value, path=["response"])
 

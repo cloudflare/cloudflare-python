@@ -8,8 +8,8 @@ __all__ = ["TailCreateResponse"]
 
 
 class TailCreateResponse(BaseModel):
-    id: Optional[object] = None
+    id: Optional[str] = None
 
-    expires_at: Optional[object] = None
+    expires_at: Optional[str] = None
 
-    url: Optional[object] = None
+    url: Optional[str] = None

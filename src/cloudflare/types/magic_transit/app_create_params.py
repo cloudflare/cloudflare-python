@@ -2,24 +2,24 @@
 
 from __future__ import annotations
 
-from typing import Union
+from typing import List
 from typing_extensions import Required, TypedDict
 
-__all__ = ["AppCreateParams", "Hostnames", "Subnets"]
+__all__ = ["AppCreateParams"]
 
 
-class Hostnames(TypedDict, total=False):
+class AppCreateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
-    body: Required[object]
+    name: Required[str]
+    """Display name for the app."""
 
+    type: Required[str]
+    """Category of the app."""
 
-class Subnets(TypedDict, total=False):
-    account_id: Required[str]
-    """Identifier"""
+    hostnames: List[str]
+    """FQDNs to associate with traffic decisions."""
 
-    body: Required[object]
-
-
-AppCreateParams = Union[Hostnames, Subnets]
+    ip_subnets: List[str]
+    """CIDRs to associate with traffic decisions."""

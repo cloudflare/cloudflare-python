@@ -31,10 +31,21 @@ __all__ = ["UploadResource", "AsyncUploadResource"]
 class UploadResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> UploadResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return UploadResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> UploadResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return UploadResourceWithStreamingResponse(self)
 
     def create(
@@ -50,7 +61,7 @@ class UploadResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[NewVersion]:
         """
-        Prepare to upload a new version of a dataset.
+        Prepare to upload a new version of a dataset
 
         Args:
           extra_headers: Send extra headers
@@ -91,8 +102,12 @@ class UploadResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[Dataset]:
-        """
-        Upload a new version of a dataset.
+        """This is used for single-column EDMv1 and Custom Word Lists.
+
+        The EDM format can
+        only be created in the Cloudflare dashboard. For other clients, this operation
+        can only be used for non-secret Custom Word Lists. The body must be a UTF-8
+        encoded, newline (NL or CRNL) separated list of words to be matched.
 
         Args:
           extra_headers: Send extra headers
@@ -124,10 +139,21 @@ class UploadResource(SyncAPIResource):
 class AsyncUploadResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncUploadResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncUploadResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncUploadResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncUploadResourceWithStreamingResponse(self)
 
     async def create(
@@ -143,7 +169,7 @@ class AsyncUploadResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[NewVersion]:
         """
-        Prepare to upload a new version of a dataset.
+        Prepare to upload a new version of a dataset
 
         Args:
           extra_headers: Send extra headers
@@ -184,8 +210,12 @@ class AsyncUploadResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[Dataset]:
-        """
-        Upload a new version of a dataset.
+        """This is used for single-column EDMv1 and Custom Word Lists.
+
+        The EDM format can
+        only be created in the Cloudflare dashboard. For other clients, this operation
+        can only be used for non-secret Custom Word Lists. The body must be a UTF-8
+        encoded, newline (NL or CRNL) separated list of words to be matched.
 
         Args:
           extra_headers: Send extra headers

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -32,10 +32,21 @@ __all__ = ["TieredCachingResource", "AsyncTieredCachingResource"]
 class TieredCachingResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> TieredCachingResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return TieredCachingResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> TieredCachingResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return TieredCachingResourceWithStreamingResponse(self)
 
     def edit(
@@ -49,9 +60,19 @@ class TieredCachingResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TieredCachingEditResponse:
+    ) -> Optional[TieredCachingEditResponse]:
         """
-        Updates enablement of Tiered Caching
+        Tiered Cache works by dividing Cloudflare's data centers into a hierarchy of
+        lower-tiers and upper-tiers. If content is not cached in lower-tier data centers
+        (generally the ones closest to a visitor), the lower-tier must ask an upper-tier
+        to see if it has the content. If the upper-tier does not have the content, only
+        the upper-tier can ask the origin for content. This practice improves bandwidth
+        efficiency by limiting the number of data centers that can ask the origin for
+        content, which reduces origin load and makes websites more cost-effective to
+        operate. Additionally, Tiered Cache concentrates connections to origin servers
+        so they come from a small number of data centers rather than the full set of
+        network locations. This results in fewer open connections using server
+        resources.
 
         Args:
           zone_id: Identifier
@@ -76,9 +97,9 @@ class TieredCachingResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[TieredCachingEditResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[TieredCachingEditResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[TieredCachingEditResponse], ResultWrapper[TieredCachingEditResponse]),
+            cast_to=cast(Type[Optional[TieredCachingEditResponse]], ResultWrapper[TieredCachingEditResponse]),
         )
 
     def get(
@@ -91,9 +112,19 @@ class TieredCachingResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TieredCachingGetResponse:
+    ) -> Optional[TieredCachingGetResponse]:
         """
-        Get Tiered Caching setting
+        Tiered Cache works by dividing Cloudflare's data centers into a hierarchy of
+        lower-tiers and upper-tiers. If content is not cached in lower-tier data centers
+        (generally the ones closest to a visitor), the lower-tier must ask an upper-tier
+        to see if it has the content. If the upper-tier does not have the content, only
+        the upper-tier can ask the origin for content. This practice improves bandwidth
+        efficiency by limiting the number of data centers that can ask the origin for
+        content, which reduces origin load and makes websites more cost-effective to
+        operate. Additionally, Tiered Cache concentrates connections to origin servers
+        so they come from a small number of data centers rather than the full set of
+        network locations. This results in fewer open connections using server
+        resources.
 
         Args:
           zone_id: Identifier
@@ -115,19 +146,30 @@ class TieredCachingResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[TieredCachingGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[TieredCachingGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[TieredCachingGetResponse], ResultWrapper[TieredCachingGetResponse]),
+            cast_to=cast(Type[Optional[TieredCachingGetResponse]], ResultWrapper[TieredCachingGetResponse]),
         )
 
 
 class AsyncTieredCachingResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncTieredCachingResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncTieredCachingResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncTieredCachingResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncTieredCachingResourceWithStreamingResponse(self)
 
     async def edit(
@@ -141,9 +183,19 @@ class AsyncTieredCachingResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TieredCachingEditResponse:
+    ) -> Optional[TieredCachingEditResponse]:
         """
-        Updates enablement of Tiered Caching
+        Tiered Cache works by dividing Cloudflare's data centers into a hierarchy of
+        lower-tiers and upper-tiers. If content is not cached in lower-tier data centers
+        (generally the ones closest to a visitor), the lower-tier must ask an upper-tier
+        to see if it has the content. If the upper-tier does not have the content, only
+        the upper-tier can ask the origin for content. This practice improves bandwidth
+        efficiency by limiting the number of data centers that can ask the origin for
+        content, which reduces origin load and makes websites more cost-effective to
+        operate. Additionally, Tiered Cache concentrates connections to origin servers
+        so they come from a small number of data centers rather than the full set of
+        network locations. This results in fewer open connections using server
+        resources.
 
         Args:
           zone_id: Identifier
@@ -168,9 +220,9 @@ class AsyncTieredCachingResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[TieredCachingEditResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[TieredCachingEditResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[TieredCachingEditResponse], ResultWrapper[TieredCachingEditResponse]),
+            cast_to=cast(Type[Optional[TieredCachingEditResponse]], ResultWrapper[TieredCachingEditResponse]),
         )
 
     async def get(
@@ -183,9 +235,19 @@ class AsyncTieredCachingResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TieredCachingGetResponse:
+    ) -> Optional[TieredCachingGetResponse]:
         """
-        Get Tiered Caching setting
+        Tiered Cache works by dividing Cloudflare's data centers into a hierarchy of
+        lower-tiers and upper-tiers. If content is not cached in lower-tier data centers
+        (generally the ones closest to a visitor), the lower-tier must ask an upper-tier
+        to see if it has the content. If the upper-tier does not have the content, only
+        the upper-tier can ask the origin for content. This practice improves bandwidth
+        efficiency by limiting the number of data centers that can ask the origin for
+        content, which reduces origin load and makes websites more cost-effective to
+        operate. Additionally, Tiered Cache concentrates connections to origin servers
+        so they come from a small number of data centers rather than the full set of
+        network locations. This results in fewer open connections using server
+        resources.
 
         Args:
           zone_id: Identifier
@@ -207,9 +269,9 @@ class AsyncTieredCachingResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[TieredCachingGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[TieredCachingGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[TieredCachingGetResponse], ResultWrapper[TieredCachingGetResponse]),
+            cast_to=cast(Type[Optional[TieredCachingGetResponse]], ResultWrapper[TieredCachingGetResponse]),
         )
 
 

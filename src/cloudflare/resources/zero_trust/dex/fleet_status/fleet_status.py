@@ -42,10 +42,21 @@ class FleetStatusResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> FleetStatusResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return FleetStatusResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> FleetStatusResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return FleetStatusResourceWithStreamingResponse(self)
 
     def live(
@@ -108,9 +119,9 @@ class FleetStatusResource(SyncAPIResource):
         List details for devices using WARP, up to 7 days
 
         Args:
-          from_: Timestamp in ISO format
+          from_: Time range beginning in ISO format
 
-          to: Timestamp in ISO format
+          to: Time range end in ISO format
 
           colo: Cloudflare colo
 
@@ -155,10 +166,21 @@ class AsyncFleetStatusResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncFleetStatusResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncFleetStatusResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncFleetStatusResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncFleetStatusResourceWithStreamingResponse(self)
 
     async def live(
@@ -223,9 +245,9 @@ class AsyncFleetStatusResource(AsyncAPIResource):
         List details for devices using WARP, up to 7 days
 
         Args:
-          from_: Timestamp in ISO format
+          from_: Time range beginning in ISO format
 
-          to: Timestamp in ISO format
+          to: Time range end in ISO format
 
           colo: Cloudflare colo
 

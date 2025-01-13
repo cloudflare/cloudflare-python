@@ -5,7 +5,6 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
-from ..shared.role import Role
 
 __all__ = ["Invite"]
 
@@ -32,11 +31,13 @@ class Invite(BaseModel):
     invited_on: Optional[datetime] = None
     """When the invite was sent."""
 
+    organization_is_enforcing_twofactor: Optional[bool] = None
+
     organization_name: Optional[str] = None
     """Organization name."""
 
-    roles: Optional[List[Role]] = None
-    """Roles to be assigned to this user."""
+    roles: Optional[List[str]] = None
+    """List of role names the membership has for this account."""
 
     status: Optional[Literal["pending", "accepted", "rejected", "expired"]] = None
     """Current status of the invitation."""

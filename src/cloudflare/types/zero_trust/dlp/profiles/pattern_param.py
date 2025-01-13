@@ -9,11 +9,5 @@ __all__ = ["PatternParam"]
 
 class PatternParam(TypedDict, total=False):
     regex: Required[str]
-    """The regex pattern."""
 
     validation: Literal["luhn"]
-    """Validation algorithm for the pattern.
-
-    This algorithm will get run on potential matches, and if it returns false, the
-    entry will not be matched.
-    """

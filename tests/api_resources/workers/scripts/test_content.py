@@ -31,6 +31,7 @@ class TestContent:
         content = client.workers.scripts.content.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            metadata={},
         )
         assert_matches_type(Optional[Script], content, path=["response"])
 
@@ -40,7 +41,6 @@ class TestContent:
         content = client.workers.scripts.content.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            any_part_name=[b"raw file contents", b"raw file contents", b"raw file contents"],
             metadata={
                 "body_part": "worker.js",
                 "main_module": "worker.js",
@@ -56,6 +56,7 @@ class TestContent:
         response = client.workers.scripts.content.with_raw_response.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            metadata={},
         )
 
         assert response.is_closed is True
@@ -69,6 +70,7 @@ class TestContent:
         with client.workers.scripts.content.with_streaming_response.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            metadata={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -85,12 +87,14 @@ class TestContent:
             client.workers.scripts.content.with_raw_response.update(
                 script_name="this-is_my_script-01",
                 account_id="",
+                metadata={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             client.workers.scripts.content.with_raw_response.update(
                 script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                metadata={},
             )
 
     @parametrize
@@ -169,6 +173,7 @@ class TestAsyncContent:
         content = await async_client.workers.scripts.content.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            metadata={},
         )
         assert_matches_type(Optional[Script], content, path=["response"])
 
@@ -178,7 +183,6 @@ class TestAsyncContent:
         content = await async_client.workers.scripts.content.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            any_part_name=[b"raw file contents", b"raw file contents", b"raw file contents"],
             metadata={
                 "body_part": "worker.js",
                 "main_module": "worker.js",
@@ -194,6 +198,7 @@ class TestAsyncContent:
         response = await async_client.workers.scripts.content.with_raw_response.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            metadata={},
         )
 
         assert response.is_closed is True
@@ -207,6 +212,7 @@ class TestAsyncContent:
         async with async_client.workers.scripts.content.with_streaming_response.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            metadata={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -223,12 +229,14 @@ class TestAsyncContent:
             await async_client.workers.scripts.content.with_raw_response.update(
                 script_name="this-is_my_script-01",
                 account_id="",
+                metadata={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             await async_client.workers.scripts.content.with_raw_response.update(
                 script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                metadata={},
             )
 
     @parametrize

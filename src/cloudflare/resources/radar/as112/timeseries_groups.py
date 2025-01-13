@@ -44,10 +44,21 @@ __all__ = ["TimeseriesGroupsResource", "AsyncTimeseriesGroupsResource"]
 class TimeseriesGroupsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> TimeseriesGroupsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return TimeseriesGroupsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> TimeseriesGroupsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return TimeseriesGroupsResourceWithStreamingResponse(self)
 
     def dnssec(
@@ -70,7 +81,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupDNSSECResponse:
         """
-        Percentage distribution of DNS AS112 queries by DNSSEC support over time.
+        Percentage distribution of AS112 DNS queries by DNSSEC support over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -240,7 +251,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupIPVersionResponse:
         """
-        Percentage distribution of AS112 DNS queries by IP Version over time.
+        Percentage distribution of AS112 DNS queries by IP version over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -325,7 +336,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupProtocolResponse:
         """
-        Percentage distribution of AS112 dns requests classified per Protocol over time.
+        Percentage distribution of AS112 DNS requests classified by protocol over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -400,6 +411,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         date_range: List[str] | NotGiven = NOT_GIVEN,
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        limit_per_group: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -410,7 +422,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupQueryTypeResponse:
         """
-        Percentage distribution of AS112 DNS queries by Query Type over time.
+        Percentage distribution of AS112 DNS queries by query type over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -434,6 +446,9 @@ class TimeseriesGroupsResource(SyncAPIResource):
           date_start: Array of datetimes to filter the start of a series.
 
           format: Format results are returned in.
+
+          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
+              the time range.
 
           location: Array of comma separated list of locations (alpha-2 country codes). Start with
               `-` to exclude from results. For example, `-US,PT` excludes results from the US,
@@ -465,6 +480,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
+                        "limit_per_group": limit_per_group,
                         "location": location,
                         "name": name,
                     },
@@ -485,6 +501,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         date_range: List[str] | NotGiven = NOT_GIVEN,
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        limit_per_group: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -495,7 +512,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupResponseCodesResponse:
         """
-        Percentage distribution of AS112 dns requests classified per Response Codes over
+        Percentage distribution of AS112 DNS requests classified by response code over
         time.
 
         Args:
@@ -520,6 +537,9 @@ class TimeseriesGroupsResource(SyncAPIResource):
           date_start: Array of datetimes to filter the start of a series.
 
           format: Format results are returned in.
+
+          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
+              the time range.
 
           location: Array of comma separated list of locations (alpha-2 country codes). Start with
               `-` to exclude from results. For example, `-US,PT` excludes results from the US,
@@ -551,6 +571,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
+                        "limit_per_group": limit_per_group,
                         "location": location,
                         "name": name,
                     },
@@ -567,10 +588,21 @@ class TimeseriesGroupsResource(SyncAPIResource):
 class AsyncTimeseriesGroupsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncTimeseriesGroupsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncTimeseriesGroupsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncTimeseriesGroupsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncTimeseriesGroupsResourceWithStreamingResponse(self)
 
     async def dnssec(
@@ -593,7 +625,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupDNSSECResponse:
         """
-        Percentage distribution of DNS AS112 queries by DNSSEC support over time.
+        Percentage distribution of AS112 DNS queries by DNSSEC support over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -763,7 +795,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupIPVersionResponse:
         """
-        Percentage distribution of AS112 DNS queries by IP Version over time.
+        Percentage distribution of AS112 DNS queries by IP version over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -848,7 +880,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupProtocolResponse:
         """
-        Percentage distribution of AS112 dns requests classified per Protocol over time.
+        Percentage distribution of AS112 DNS requests classified by protocol over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -923,6 +955,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         date_range: List[str] | NotGiven = NOT_GIVEN,
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        limit_per_group: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -933,7 +966,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupQueryTypeResponse:
         """
-        Percentage distribution of AS112 DNS queries by Query Type over time.
+        Percentage distribution of AS112 DNS queries by query type over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -957,6 +990,9 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
           date_start: Array of datetimes to filter the start of a series.
 
           format: Format results are returned in.
+
+          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
+              the time range.
 
           location: Array of comma separated list of locations (alpha-2 country codes). Start with
               `-` to exclude from results. For example, `-US,PT` excludes results from the US,
@@ -988,6 +1024,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
+                        "limit_per_group": limit_per_group,
                         "location": location,
                         "name": name,
                     },
@@ -1008,6 +1045,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         date_range: List[str] | NotGiven = NOT_GIVEN,
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        limit_per_group: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1018,7 +1056,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupResponseCodesResponse:
         """
-        Percentage distribution of AS112 dns requests classified per Response Codes over
+        Percentage distribution of AS112 DNS requests classified by response code over
         time.
 
         Args:
@@ -1043,6 +1081,9 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
           date_start: Array of datetimes to filter the start of a series.
 
           format: Format results are returned in.
+
+          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
+              the time range.
 
           location: Array of comma separated list of locations (alpha-2 country codes). Start with
               `-` to exclude from results. For example, `-US,PT` excludes results from the US,
@@ -1074,6 +1115,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
+                        "limit_per_group": limit_per_group,
                         "location": location,
                         "name": name,
                     },

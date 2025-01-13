@@ -26,11 +26,11 @@ from ....types.zero_trust.access import Decision, policy_create_params, policy_u
 from ....types.zero_trust.access.decision import Decision
 from ....types.zero_trust.access_rule_param import AccessRuleParam
 from ....types.zero_trust.access.policy_get_response import PolicyGetResponse
+from ....types.zero_trust.access.approval_group_param import ApprovalGroupParam
 from ....types.zero_trust.access.policy_list_response import PolicyListResponse
 from ....types.zero_trust.access.policy_create_response import PolicyCreateResponse
 from ....types.zero_trust.access.policy_delete_response import PolicyDeleteResponse
 from ....types.zero_trust.access.policy_update_response import PolicyUpdateResponse
-from ....types.zero_trust.access.applications.approval_group_param import ApprovalGroupParam
 
 __all__ = ["PoliciesResource", "AsyncPoliciesResource"]
 
@@ -38,10 +38,21 @@ __all__ = ["PoliciesResource", "AsyncPoliciesResource"]
 class PoliciesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> PoliciesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return PoliciesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> PoliciesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return PoliciesResourceWithStreamingResponse(self)
 
     def create(
@@ -72,7 +83,8 @@ class PoliciesResource(SyncAPIResource):
         Args:
           account_id: Identifier
 
-          decision: The action Access will take if a user matches this policy.
+          decision: The action Access will take if a user matches this policy. Infrastructure
+              application policies can only use the Allow action.
 
           include: Rules evaluated with an OR logical operator. A user needs to meet only one of
               the Include rules.
@@ -171,7 +183,8 @@ class PoliciesResource(SyncAPIResource):
 
           policy_id: The UUID of the policy
 
-          decision: The action Access will take if a user matches this policy.
+          decision: The action Access will take if a user matches this policy. Infrastructure
+              application policies can only use the Allow action.
 
           include: Rules evaluated with an OR logical operator. A user needs to meet only one of
               the Include rules.
@@ -369,10 +382,21 @@ class PoliciesResource(SyncAPIResource):
 class AsyncPoliciesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncPoliciesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncPoliciesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncPoliciesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncPoliciesResourceWithStreamingResponse(self)
 
     async def create(
@@ -403,7 +427,8 @@ class AsyncPoliciesResource(AsyncAPIResource):
         Args:
           account_id: Identifier
 
-          decision: The action Access will take if a user matches this policy.
+          decision: The action Access will take if a user matches this policy. Infrastructure
+              application policies can only use the Allow action.
 
           include: Rules evaluated with an OR logical operator. A user needs to meet only one of
               the Include rules.
@@ -502,7 +527,8 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
           policy_id: The UUID of the policy
 
-          decision: The action Access will take if a user matches this policy.
+          decision: The action Access will take if a user matches this policy. Infrastructure
+              application policies can only use the Allow action.
 
           include: Rules evaluated with an OR logical operator. A user needs to meet only one of
               the Include rules.

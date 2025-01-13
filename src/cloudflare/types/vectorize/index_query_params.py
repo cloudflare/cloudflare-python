@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Iterable
-from typing_extensions import Required, Annotated, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
@@ -20,8 +20,11 @@ class IndexQueryParams(TypedDict, total=False):
     filter: object
     """A metadata filter expression used to limit nearest neighbor results."""
 
-    return_metadata: Annotated[bool, PropertyInfo(alias="returnMetadata")]
-    """Whether to return the metadata associated with the closest vectors."""
+    return_metadata: Annotated[Literal["none", "indexed", "all"], PropertyInfo(alias="returnMetadata")]
+    """
+    Whether to return no metadata, indexed metadata or all metadata associated with
+    the closest vectors.
+    """
 
     return_values: Annotated[bool, PropertyInfo(alias="returnValues")]
     """Whether to return the values associated with the closest vectors."""

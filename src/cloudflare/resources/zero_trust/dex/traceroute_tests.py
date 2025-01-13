@@ -37,10 +37,21 @@ __all__ = ["TracerouteTestsResource", "AsyncTracerouteTestsResource"]
 class TracerouteTestsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> TracerouteTestsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return TracerouteTestsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> TracerouteTestsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return TracerouteTestsResourceWithStreamingResponse(self)
 
     def get(
@@ -199,9 +210,9 @@ class TracerouteTestsResource(SyncAPIResource):
         Args:
           test_id: API Resource UUID tag.
 
-          from_: Start time for aggregate metrics in ISO format
+          from_: Start time for the query in ISO (RFC3339 - ISO 8601) format
 
-          to: End time for aggregate metrics in ISO format
+          to: End time for the query in ISO (RFC3339 - ISO 8601) format
 
           colo: Optionally filter result stats to a Cloudflare colo. Cannot be used in
               combination with deviceId param.
@@ -248,10 +259,21 @@ class TracerouteTestsResource(SyncAPIResource):
 class AsyncTracerouteTestsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncTracerouteTestsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncTracerouteTestsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncTracerouteTestsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncTracerouteTestsResourceWithStreamingResponse(self)
 
     async def get(
@@ -410,9 +432,9 @@ class AsyncTracerouteTestsResource(AsyncAPIResource):
         Args:
           test_id: API Resource UUID tag.
 
-          from_: Start time for aggregate metrics in ISO format
+          from_: Start time for the query in ISO (RFC3339 - ISO 8601) format
 
-          to: End time for aggregate metrics in ISO format
+          to: End time for the query in ISO (RFC3339 - ISO 8601) format
 
           colo: Optionally filter result stats to a Cloudflare colo. Cannot be used in
               combination with deviceId param.

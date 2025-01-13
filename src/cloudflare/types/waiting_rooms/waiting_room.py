@@ -82,6 +82,27 @@ class WaitingRoom(BaseModel):
             "ar-EG",
             "ru-RU",
             "fa-IR",
+            "bg-BG",
+            "hr-HR",
+            "cs-CZ",
+            "da-DK",
+            "fi-FI",
+            "lt-LT",
+            "ms-MY",
+            "nb-NO",
+            "ro-RO",
+            "el-GR",
+            "he-IL",
+            "hi-IN",
+            "hu-HU",
+            "sr-BA",
+            "sk-SK",
+            "sl-SI",
+            "sv-SE",
+            "tl-PH",
+            "th-TH",
+            "uk-UA",
+            "vi-VN",
         ]
     ] = None
     """The language of the default page template.
@@ -101,6 +122,9 @@ class WaitingRoom(BaseModel):
     go through the waiting room again. If `false`, a user's session cookie will be
     automatically renewed on every request.
     """
+
+    enabled_origin_commands: Optional[List[Literal["revoke"]]] = None
+    """A list of enabled origin commands."""
 
     host: Optional[str] = None
     """The host name to which the waiting room will be applied (no wildcards).
@@ -351,4 +375,23 @@ class WaitingRoom(BaseModel):
     the route. It is possible to have a situation where there are more or less
     active users sessions on the route based on the traffic patterns at that time
     around the world.
+    """
+
+    turnstile_action: Optional[Literal["log", "infinite_queue"]] = None
+    """Which action to take when a bot is detected using Turnstile.
+
+    `log` will have no impact on queueing behavior, simply keeping track of how many
+    bots are detected in Waiting Room Analytics. `infinite_queue` will send bots to
+    a false queueing state, where they will never reach your origin.
+    `infinite_queue` requires Advanced Waiting Room.
+    """
+
+    turnstile_mode: Optional[Literal["off", "invisible", "visible_non_interactive", "visible_managed"]] = None
+    """Which Turnstile widget type to use for detecting bot traffic.
+
+    See
+    [the Turnstile documentation](https://developers.cloudflare.com/turnstile/concepts/widget/#widget-types)
+    for the definitions of these widget types. Set to `off` to disable the Turnstile
+    integration entirely. Setting this to anything other than `off` or `invisible`
+    requires Advanced Waiting Room.
     """

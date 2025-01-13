@@ -70,10 +70,21 @@ class AddressMapsResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AddressMapsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AddressMapsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AddressMapsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AddressMapsResourceWithStreamingResponse(self)
 
     def create(
@@ -95,7 +106,7 @@ class AddressMapsResource(SyncAPIResource):
         Create a new address map under the account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
           description: An optional description field which may be used to describe the types of IPs or
               zones on the map.
@@ -152,7 +163,7 @@ class AddressMapsResource(SyncAPIResource):
         List all address maps owned by the account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
           extra_headers: Send extra headers
 
@@ -184,16 +195,16 @@ class AddressMapsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AddressMapDeleteResponse]:
+    ) -> AddressMapDeleteResponse:
         """Delete a particular address map owned by the account.
 
         An Address Map must be
         disabled before it can be deleted.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          address_map_id: Identifier
+          address_map_id: Identifier of an Address Map.
 
           extra_headers: Send extra headers
 
@@ -210,13 +221,9 @@ class AddressMapsResource(SyncAPIResource):
         return self._delete(
             f"/accounts/{account_id}/addressing/address_maps/{address_map_id}",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[AddressMapDeleteResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[AddressMapDeleteResponse]], ResultWrapper[AddressMapDeleteResponse]),
+            cast_to=AddressMapDeleteResponse,
         )
 
     def edit(
@@ -238,9 +245,9 @@ class AddressMapsResource(SyncAPIResource):
         Modify properties of an address map owned by the account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          address_map_id: Identifier
+          address_map_id: Identifier of an Address Map.
 
           default_sni: If you have legacy TLS clients which do not send the TLS server name indicator,
               then you can specify one default SNI on the map. If Cloudflare receives a TLS
@@ -302,9 +309,9 @@ class AddressMapsResource(SyncAPIResource):
         Show a particular address map owned by the account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          address_map_id: Identifier
+          address_map_id: Identifier of an Address Map.
 
           extra_headers: Send extra headers
 
@@ -346,10 +353,21 @@ class AsyncAddressMapsResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncAddressMapsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncAddressMapsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncAddressMapsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncAddressMapsResourceWithStreamingResponse(self)
 
     async def create(
@@ -371,7 +389,7 @@ class AsyncAddressMapsResource(AsyncAPIResource):
         Create a new address map under the account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
           description: An optional description field which may be used to describe the types of IPs or
               zones on the map.
@@ -428,7 +446,7 @@ class AsyncAddressMapsResource(AsyncAPIResource):
         List all address maps owned by the account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
           extra_headers: Send extra headers
 
@@ -460,16 +478,16 @@ class AsyncAddressMapsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AddressMapDeleteResponse]:
+    ) -> AddressMapDeleteResponse:
         """Delete a particular address map owned by the account.
 
         An Address Map must be
         disabled before it can be deleted.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          address_map_id: Identifier
+          address_map_id: Identifier of an Address Map.
 
           extra_headers: Send extra headers
 
@@ -486,13 +504,9 @@ class AsyncAddressMapsResource(AsyncAPIResource):
         return await self._delete(
             f"/accounts/{account_id}/addressing/address_maps/{address_map_id}",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[AddressMapDeleteResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[AddressMapDeleteResponse]], ResultWrapper[AddressMapDeleteResponse]),
+            cast_to=AddressMapDeleteResponse,
         )
 
     async def edit(
@@ -514,9 +528,9 @@ class AsyncAddressMapsResource(AsyncAPIResource):
         Modify properties of an address map owned by the account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          address_map_id: Identifier
+          address_map_id: Identifier of an Address Map.
 
           default_sni: If you have legacy TLS clients which do not send the TLS server name indicator,
               then you can specify one default SNI on the map. If Cloudflare receives a TLS
@@ -578,9 +592,9 @@ class AsyncAddressMapsResource(AsyncAPIResource):
         Show a particular address map owned by the account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          address_map_id: Identifier
+          address_map_id: Identifier of an Address Map.
 
           extra_headers: Send extra headers
 

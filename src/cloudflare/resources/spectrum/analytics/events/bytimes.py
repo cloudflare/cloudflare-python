@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Union, Iterable, Optional, cast
+from typing import List, Type, Union, Optional, cast
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -33,16 +33,28 @@ __all__ = ["BytimesResource", "AsyncBytimesResource"]
 class BytimesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> BytimesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return BytimesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> BytimesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return BytimesResourceWithStreamingResponse(self)
 
     def get(
         self,
-        zone: str,
         *,
+        zone_id: str,
+        time_delta: Literal["year", "quarter", "month", "week", "day", "hour", "dekaminute", "minute"],
         dimensions: List[Dimension] | NotGiven = NOT_GIVEN,
         filters: str | NotGiven = NOT_GIVEN,
         metrics: List[
@@ -52,9 +64,7 @@ class BytimesResource(SyncAPIResource):
         ]
         | NotGiven = NOT_GIVEN,
         since: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        sort: Iterable[object] | NotGiven = NOT_GIVEN,
-        time_delta: Literal["year", "quarter", "month", "week", "day", "hour", "dekaminute", "minute"]
-        | NotGiven = NOT_GIVEN,
+        sort: List[str] | NotGiven = NOT_GIVEN,
         until: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -67,7 +77,9 @@ class BytimesResource(SyncAPIResource):
         Retrieves a list of aggregate metrics grouped by time interval.
 
         Args:
-          zone: Identifier
+          zone_id: Identifier
+
+          time_delta: Used to select time series resolution.
 
           dimensions:
               Can be used to break down the data by given attributes. Options are:
@@ -90,10 +102,10 @@ class BytimesResource(SyncAPIResource):
               | -------- | ------------------------ | ----------- |
               | ==       | Equals                   | %3D%3D      |
               | !=       | Does not equals          | !%3D        |
-              | >        | Greater Than             | %3E         |
-              | <        | Less Than                | %3C         |
-              | >=       | Greater than or equal to | %3E%3D      |
-              | <=       | Less than or equal to    | %3C%3D .    |
+              | \\>>       | Greater Than             | %3E         |
+              | \\<<       | Less Than                | %3C         |
+              | \\>>=      | Greater than or equal to | %3E%3D      |
+              | \\<<=      | Less than or equal to    | %3C%3D      |
 
           metrics:
               One or more metrics to compute. Options are:
@@ -114,8 +126,6 @@ class BytimesResource(SyncAPIResource):
           sort: The sort order for the result set; sort fields must be included in `metrics` or
               `dimensions`.
 
-          time_delta: Used to select time series resolution.
-
           until: End of time interval to query, defaults to current time. Timestamp must be in
               RFC3339 format and uses UTC unless otherwise specified.
 
@@ -127,51 +137,58 @@ class BytimesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone:
-            raise ValueError(f"Expected a non-empty value for `zone` but received {zone!r}")
-        return cast(
-            Optional[BytimeGetResponse],
-            self._get(
-                f"/zones/{zone}/spectrum/analytics/events/bytime",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    query=maybe_transform(
-                        {
-                            "dimensions": dimensions,
-                            "filters": filters,
-                            "metrics": metrics,
-                            "since": since,
-                            "sort": sort,
-                            "time_delta": time_delta,
-                            "until": until,
-                        },
-                        bytime_get_params.BytimeGetParams,
-                    ),
-                    post_parser=ResultWrapper[Optional[BytimeGetResponse]]._unwrapper,
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return self._get(
+            f"/zones/{zone_id}/spectrum/analytics/events/bytime",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "time_delta": time_delta,
+                        "dimensions": dimensions,
+                        "filters": filters,
+                        "metrics": metrics,
+                        "since": since,
+                        "sort": sort,
+                        "until": until,
+                    },
+                    bytime_get_params.BytimeGetParams,
                 ),
-                cast_to=cast(
-                    Any, ResultWrapper[BytimeGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+                post_parser=ResultWrapper[Optional[BytimeGetResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[BytimeGetResponse]], ResultWrapper[BytimeGetResponse]),
         )
 
 
 class AsyncBytimesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncBytimesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncBytimesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncBytimesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncBytimesResourceWithStreamingResponse(self)
 
     async def get(
         self,
-        zone: str,
         *,
+        zone_id: str,
+        time_delta: Literal["year", "quarter", "month", "week", "day", "hour", "dekaminute", "minute"],
         dimensions: List[Dimension] | NotGiven = NOT_GIVEN,
         filters: str | NotGiven = NOT_GIVEN,
         metrics: List[
@@ -181,9 +198,7 @@ class AsyncBytimesResource(AsyncAPIResource):
         ]
         | NotGiven = NOT_GIVEN,
         since: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        sort: Iterable[object] | NotGiven = NOT_GIVEN,
-        time_delta: Literal["year", "quarter", "month", "week", "day", "hour", "dekaminute", "minute"]
-        | NotGiven = NOT_GIVEN,
+        sort: List[str] | NotGiven = NOT_GIVEN,
         until: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -196,7 +211,9 @@ class AsyncBytimesResource(AsyncAPIResource):
         Retrieves a list of aggregate metrics grouped by time interval.
 
         Args:
-          zone: Identifier
+          zone_id: Identifier
+
+          time_delta: Used to select time series resolution.
 
           dimensions:
               Can be used to break down the data by given attributes. Options are:
@@ -219,10 +236,10 @@ class AsyncBytimesResource(AsyncAPIResource):
               | -------- | ------------------------ | ----------- |
               | ==       | Equals                   | %3D%3D      |
               | !=       | Does not equals          | !%3D        |
-              | >        | Greater Than             | %3E         |
-              | <        | Less Than                | %3C         |
-              | >=       | Greater than or equal to | %3E%3D      |
-              | <=       | Less than or equal to    | %3C%3D .    |
+              | \\>>       | Greater Than             | %3E         |
+              | \\<<       | Less Than                | %3C         |
+              | \\>>=      | Greater than or equal to | %3E%3D      |
+              | \\<<=      | Less than or equal to    | %3C%3D      |
 
           metrics:
               One or more metrics to compute. Options are:
@@ -243,8 +260,6 @@ class AsyncBytimesResource(AsyncAPIResource):
           sort: The sort order for the result set; sort fields must be included in `metrics` or
               `dimensions`.
 
-          time_delta: Used to select time series resolution.
-
           until: End of time interval to query, defaults to current time. Timestamp must be in
               RFC3339 format and uses UTC unless otherwise specified.
 
@@ -256,35 +271,30 @@ class AsyncBytimesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone:
-            raise ValueError(f"Expected a non-empty value for `zone` but received {zone!r}")
-        return cast(
-            Optional[BytimeGetResponse],
-            await self._get(
-                f"/zones/{zone}/spectrum/analytics/events/bytime",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    query=await async_maybe_transform(
-                        {
-                            "dimensions": dimensions,
-                            "filters": filters,
-                            "metrics": metrics,
-                            "since": since,
-                            "sort": sort,
-                            "time_delta": time_delta,
-                            "until": until,
-                        },
-                        bytime_get_params.BytimeGetParams,
-                    ),
-                    post_parser=ResultWrapper[Optional[BytimeGetResponse]]._unwrapper,
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return await self._get(
+            f"/zones/{zone_id}/spectrum/analytics/events/bytime",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "time_delta": time_delta,
+                        "dimensions": dimensions,
+                        "filters": filters,
+                        "metrics": metrics,
+                        "since": since,
+                        "sort": sort,
+                        "until": until,
+                    },
+                    bytime_get_params.BytimeGetParams,
                 ),
-                cast_to=cast(
-                    Any, ResultWrapper[BytimeGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+                post_parser=ResultWrapper[Optional[BytimeGetResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[BytimeGetResponse]], ResultWrapper[BytimeGetResponse]),
         )
 
 

@@ -49,7 +49,7 @@ class TestOrganizations:
             },
             session_duration="24h",
             ui_read_only_toggle_reason="Temporarily turn off the UI read only lock to make a change via the UI",
-            user_seat_expiration_inactive_time="720h",
+            user_seat_expiration_inactive_time="730h",
             warp_auth_session_duration="24h",
         )
         assert_matches_type(Optional[Organization], organization, path=["response"])
@@ -132,7 +132,7 @@ class TestOrganizations:
             name="Widget Corps Internal Applications",
             session_duration="24h",
             ui_read_only_toggle_reason="Temporarily turn off the UI read only lock to make a change via the UI",
-            user_seat_expiration_inactive_time="720h",
+            user_seat_expiration_inactive_time="730h",
             warp_auth_session_duration="24h",
         )
         assert_matches_type(Optional[Organization], organization, path=["response"])
@@ -246,6 +246,10 @@ class TestOrganizations:
         organization = client.zero_trust.organizations.revoke_users(
             email="test@example.com",
             account_id="account_id",
+            query_devices=True,
+            body_devices=True,
+            user_uid="699d98642c564d2e855e9661899b7252",
+            warp_session_reauth=True,
         )
         assert_matches_type(Optional[OrganizationRevokeUsersResponse], organization, path=["response"])
 
@@ -325,7 +329,7 @@ class TestAsyncOrganizations:
             },
             session_duration="24h",
             ui_read_only_toggle_reason="Temporarily turn off the UI read only lock to make a change via the UI",
-            user_seat_expiration_inactive_time="720h",
+            user_seat_expiration_inactive_time="730h",
             warp_auth_session_duration="24h",
         )
         assert_matches_type(Optional[Organization], organization, path=["response"])
@@ -408,7 +412,7 @@ class TestAsyncOrganizations:
             name="Widget Corps Internal Applications",
             session_duration="24h",
             ui_read_only_toggle_reason="Temporarily turn off the UI read only lock to make a change via the UI",
-            user_seat_expiration_inactive_time="720h",
+            user_seat_expiration_inactive_time="730h",
             warp_auth_session_duration="24h",
         )
         assert_matches_type(Optional[Organization], organization, path=["response"])
@@ -522,6 +526,10 @@ class TestAsyncOrganizations:
         organization = await async_client.zero_trust.organizations.revoke_users(
             email="test@example.com",
             account_id="account_id",
+            query_devices=True,
+            body_devices=True,
+            user_uid="699d98642c564d2e855e9661899b7252",
+            warp_session_reauth=True,
         )
         assert_matches_type(Optional[OrganizationRevokeUsersResponse], organization, path=["response"])
 

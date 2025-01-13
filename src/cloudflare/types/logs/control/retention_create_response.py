@@ -9,3 +9,4 @@ __all__ = ["RetentionCreateResponse"]
 
 class RetentionCreateResponse(BaseModel):
     flag: Optional[bool] = None
+    """The log retention flag for Logpull API."""

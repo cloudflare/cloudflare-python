@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from .rules import (
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from .rules.rules import (
     RulesResource,
     AsyncRulesResource,
     RulesResourceWithRawResponse,
@@ -10,7 +12,7 @@ from .rules import (
     RulesResourceWithStreamingResponse,
     AsyncRulesResourceWithStreamingResponse,
 )
-from .configs import (
+from .configs.configs import (
     ConfigsResource,
     AsyncConfigsResource,
     ConfigsResourceWithRawResponse,
@@ -18,10 +20,6 @@ from .configs import (
     ConfigsResourceWithStreamingResponse,
     AsyncConfigsResourceWithStreamingResponse,
 )
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from .rules.rules import RulesResource, AsyncRulesResource
-from .configs.configs import ConfigsResource, AsyncConfigsResource
 
 __all__ = ["MagicNetworkMonitoringResource", "AsyncMagicNetworkMonitoringResource"]
 
@@ -37,10 +35,21 @@ class MagicNetworkMonitoringResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> MagicNetworkMonitoringResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return MagicNetworkMonitoringResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> MagicNetworkMonitoringResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return MagicNetworkMonitoringResourceWithStreamingResponse(self)
 
 
@@ -55,10 +64,21 @@ class AsyncMagicNetworkMonitoringResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncMagicNetworkMonitoringResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncMagicNetworkMonitoringResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncMagicNetworkMonitoringResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncMagicNetworkMonitoringResourceWithStreamingResponse(self)
 
 

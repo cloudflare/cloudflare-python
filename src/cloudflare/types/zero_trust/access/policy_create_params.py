@@ -7,7 +7,7 @@ from typing_extensions import Required, TypedDict
 
 from .decision import Decision
 from ..access_rule_param import AccessRuleParam
-from .applications.approval_group_param import ApprovalGroupParam
+from .approval_group_param import ApprovalGroupParam
 
 __all__ = ["PolicyCreateParams"]
 
@@ -17,7 +17,10 @@ class PolicyCreateParams(TypedDict, total=False):
     """Identifier"""
 
     decision: Required[Decision]
-    """The action Access will take if a user matches this policy."""
+    """The action Access will take if a user matches this policy.
+
+    Infrastructure application policies can only use the Allow action.
+    """
 
     include: Required[Iterable[AccessRuleParam]]
     """Rules evaluated with an OR logical operator.

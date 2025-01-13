@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -59,34 +59,34 @@ class TestRoles:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         role = client.accounts.roles.get(
-            role_id={},
+            role_id="3536bcfad5faccb999b47003c79917fb",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         )
-        assert_matches_type(object, role, path=["response"])
+        assert_matches_type(Optional[Role], role, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.accounts.roles.with_raw_response.get(
-            role_id={},
+            role_id="3536bcfad5faccb999b47003c79917fb",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         role = response.parse()
-        assert_matches_type(object, role, path=["response"])
+        assert_matches_type(Optional[Role], role, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.accounts.roles.with_streaming_response.get(
-            role_id={},
+            role_id="3536bcfad5faccb999b47003c79917fb",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             role = response.parse()
-            assert_matches_type(object, role, path=["response"])
+            assert_matches_type(Optional[Role], role, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -94,8 +94,14 @@ class TestRoles:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.accounts.roles.with_raw_response.get(
-                role_id={},
+                role_id="3536bcfad5faccb999b47003c79917fb",
                 account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `role_id` but received ''"):
+            client.accounts.roles.with_raw_response.get(
+                role_id="",
+                account_id="eb78d65290b24279ba6f44721b3ea3c4",
             )
 
 
@@ -143,34 +149,34 @@ class TestAsyncRoles:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         role = await async_client.accounts.roles.get(
-            role_id={},
+            role_id="3536bcfad5faccb999b47003c79917fb",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         )
-        assert_matches_type(object, role, path=["response"])
+        assert_matches_type(Optional[Role], role, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.accounts.roles.with_raw_response.get(
-            role_id={},
+            role_id="3536bcfad5faccb999b47003c79917fb",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         role = await response.parse()
-        assert_matches_type(object, role, path=["response"])
+        assert_matches_type(Optional[Role], role, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.accounts.roles.with_streaming_response.get(
-            role_id={},
+            role_id="3536bcfad5faccb999b47003c79917fb",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             role = await response.parse()
-            assert_matches_type(object, role, path=["response"])
+            assert_matches_type(Optional[Role], role, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -178,6 +184,12 @@ class TestAsyncRoles:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.accounts.roles.with_raw_response.get(
-                role_id={},
+                role_id="3536bcfad5faccb999b47003c79917fb",
                 account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `role_id` but received ''"):
+            await async_client.accounts.roles.with_raw_response.get(
+                role_id="",
+                account_id="eb78d65290b24279ba6f44721b3ea3c4",
             )

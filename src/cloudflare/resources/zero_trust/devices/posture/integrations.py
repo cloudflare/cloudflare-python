@@ -33,10 +33,21 @@ __all__ = ["IntegrationsResource", "AsyncIntegrationsResource"]
 class IntegrationsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> IntegrationsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return IntegrationsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> IntegrationsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return IntegrationsResourceWithStreamingResponse(self)
 
     def create(
@@ -46,7 +57,9 @@ class IntegrationsResource(SyncAPIResource):
         config: integration_create_params.Config,
         interval: str,
         name: str,
-        type: Literal["workspace_one", "crowdstrike_s2s", "uptycs", "intune", "kolide", "tanium", "sentinelone_s2s"],
+        type: Literal[
+            "workspace_one", "crowdstrike_s2s", "uptycs", "intune", "kolide", "tanium", "sentinelone_s2s", "custom_s2s"
+        ],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -143,7 +156,7 @@ class IntegrationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IntegrationDeleteResponse:
+    ) -> Optional[IntegrationDeleteResponse]:
         """
         Delete a configured device posture integration.
 
@@ -163,7 +176,7 @@ class IntegrationsResource(SyncAPIResource):
         if not integration_id:
             raise ValueError(f"Expected a non-empty value for `integration_id` but received {integration_id!r}")
         return cast(
-            IntegrationDeleteResponse,
+            Optional[IntegrationDeleteResponse],
             self._delete(
                 f"/accounts/{account_id}/devices/posture/integration/{integration_id}",
                 options=make_request_options(
@@ -171,7 +184,7 @@ class IntegrationsResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[IntegrationDeleteResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[IntegrationDeleteResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[IntegrationDeleteResponse]
@@ -187,7 +200,9 @@ class IntegrationsResource(SyncAPIResource):
         config: integration_edit_params.Config | NotGiven = NOT_GIVEN,
         interval: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        type: Literal["workspace_one", "crowdstrike_s2s", "uptycs", "intune", "kolide", "tanium", "sentinelone_s2s"]
+        type: Literal[
+            "workspace_one", "crowdstrike_s2s", "uptycs", "intune", "kolide", "tanium", "sentinelone_s2s", "custom_s2s"
+        ]
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -290,10 +305,21 @@ class IntegrationsResource(SyncAPIResource):
 class AsyncIntegrationsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncIntegrationsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncIntegrationsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncIntegrationsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncIntegrationsResourceWithStreamingResponse(self)
 
     async def create(
@@ -303,7 +329,9 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         config: integration_create_params.Config,
         interval: str,
         name: str,
-        type: Literal["workspace_one", "crowdstrike_s2s", "uptycs", "intune", "kolide", "tanium", "sentinelone_s2s"],
+        type: Literal[
+            "workspace_one", "crowdstrike_s2s", "uptycs", "intune", "kolide", "tanium", "sentinelone_s2s", "custom_s2s"
+        ],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -400,7 +428,7 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IntegrationDeleteResponse:
+    ) -> Optional[IntegrationDeleteResponse]:
         """
         Delete a configured device posture integration.
 
@@ -420,7 +448,7 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         if not integration_id:
             raise ValueError(f"Expected a non-empty value for `integration_id` but received {integration_id!r}")
         return cast(
-            IntegrationDeleteResponse,
+            Optional[IntegrationDeleteResponse],
             await self._delete(
                 f"/accounts/{account_id}/devices/posture/integration/{integration_id}",
                 options=make_request_options(
@@ -428,7 +456,7 @@ class AsyncIntegrationsResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[IntegrationDeleteResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[IntegrationDeleteResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[IntegrationDeleteResponse]
@@ -444,7 +472,9 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         config: integration_edit_params.Config | NotGiven = NOT_GIVEN,
         interval: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        type: Literal["workspace_one", "crowdstrike_s2s", "uptycs", "intune", "kolide", "tanium", "sentinelone_s2s"]
+        type: Literal[
+            "workspace_one", "crowdstrike_s2s", "uptycs", "intune", "kolide", "tanium", "sentinelone_s2s", "custom_s2s"
+        ]
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

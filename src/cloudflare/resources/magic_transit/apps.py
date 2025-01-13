@@ -2,13 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Optional, cast, overload
+from typing import Any, List, Type, Optional, cast
 
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
-    required_args,
     maybe_transform,
     async_maybe_transform,
 )
@@ -35,18 +34,31 @@ __all__ = ["AppsResource", "AsyncAppsResource"]
 class AppsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AppsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AppsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AppsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AppsResourceWithStreamingResponse(self)
 
-    @overload
     def create(
         self,
         *,
         account_id: str,
-        body: object,
+        name: str,
+        type: str,
+        hostnames: List[str] | NotGiven = NOT_GIVEN,
+        ip_subnets: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -60,34 +72,13 @@ class AppsResource(SyncAPIResource):
         Args:
           account_id: Identifier
 
-          extra_headers: Send extra headers
+          name: Display name for the app.
 
-          extra_query: Add additional query parameters to the request
+          type: Category of the app.
 
-          extra_body: Add additional JSON properties to the request
+          hostnames: FQDNs to associate with traffic decisions.
 
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    def create(
-        self,
-        *,
-        account_id: str,
-        body: object,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AppCreateResponse]:
-        """
-        Creates a new App for an account
-
-        Args:
-          account_id: Identifier
+          ip_subnets: CIDRs to associate with traffic decisions.
 
           extra_headers: Send extra headers
 
@@ -97,26 +88,19 @@ class AppsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        ...
-
-    @required_args(["account_id", "body"])
-    def create(
-        self,
-        *,
-        account_id: str,
-        body: object,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AppCreateResponse]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/magic/apps",
-            body=maybe_transform(body, app_create_params.AppCreateParams),
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "type": type,
+                    "hostnames": hostnames,
+                    "ip_subnets": ip_subnets,
+                },
+                app_create_params.AppCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -127,13 +111,15 @@ class AppsResource(SyncAPIResource):
             cast_to=cast(Type[Optional[AppCreateResponse]], ResultWrapper[AppCreateResponse]),
         )
 
-    @overload
     def update(
         self,
         account_app_id: str,
         *,
         account_id: str,
-        body: object,
+        hostnames: List[str] | NotGiven = NOT_GIVEN,
+        ip_subnets: List[str] | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        type: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -149,37 +135,13 @@ class AppsResource(SyncAPIResource):
 
           account_app_id: Identifier
 
-          extra_headers: Send extra headers
+          hostnames: FQDNs to associate with traffic decisions.
 
-          extra_query: Add additional query parameters to the request
+          ip_subnets: CIDRs to associate with traffic decisions.
 
-          extra_body: Add additional JSON properties to the request
+          name: Display name for the app.
 
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    def update(
-        self,
-        account_app_id: str,
-        *,
-        account_id: str,
-        body: object,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AppUpdateResponse]:
-        """
-        Updates an Account App
-
-        Args:
-          account_id: Identifier
-
-          account_app_id: Identifier
+          type: Category of the app.
 
           extra_headers: Send extra headers
 
@@ -189,93 +151,21 @@ class AppsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        ...
-
-    @overload
-    def update(
-        self,
-        account_app_id: str,
-        *,
-        account_id: str,
-        body: object,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AppUpdateResponse]:
-        """
-        Updates an Account App
-
-        Args:
-          account_id: Identifier
-
-          account_app_id: Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    def update(
-        self,
-        account_app_id: str,
-        *,
-        account_id: str,
-        body: object,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AppUpdateResponse]:
-        """
-        Updates an Account App
-
-        Args:
-          account_id: Identifier
-
-          account_app_id: Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @required_args(["account_id", "body"])
-    def update(
-        self,
-        account_app_id: str,
-        *,
-        account_id: str,
-        body: object,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AppUpdateResponse]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not account_app_id:
             raise ValueError(f"Expected a non-empty value for `account_app_id` but received {account_app_id!r}")
         return self._put(
             f"/accounts/{account_id}/magic/apps/{account_app_id}",
-            body=maybe_transform(body, app_update_params.AppUpdateParams),
+            body=maybe_transform(
+                {
+                    "hostnames": hostnames,
+                    "ip_subnets": ip_subnets,
+                    "name": name,
+                    "type": type,
+                },
+                app_update_params.AppUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -370,18 +260,31 @@ class AppsResource(SyncAPIResource):
 class AsyncAppsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncAppsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncAppsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncAppsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncAppsResourceWithStreamingResponse(self)
 
-    @overload
     async def create(
         self,
         *,
         account_id: str,
-        body: object,
+        name: str,
+        type: str,
+        hostnames: List[str] | NotGiven = NOT_GIVEN,
+        ip_subnets: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -395,34 +298,13 @@ class AsyncAppsResource(AsyncAPIResource):
         Args:
           account_id: Identifier
 
-          extra_headers: Send extra headers
+          name: Display name for the app.
 
-          extra_query: Add additional query parameters to the request
+          type: Category of the app.
 
-          extra_body: Add additional JSON properties to the request
+          hostnames: FQDNs to associate with traffic decisions.
 
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    async def create(
-        self,
-        *,
-        account_id: str,
-        body: object,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AppCreateResponse]:
-        """
-        Creates a new App for an account
-
-        Args:
-          account_id: Identifier
+          ip_subnets: CIDRs to associate with traffic decisions.
 
           extra_headers: Send extra headers
 
@@ -432,26 +314,19 @@ class AsyncAppsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        ...
-
-    @required_args(["account_id", "body"])
-    async def create(
-        self,
-        *,
-        account_id: str,
-        body: object,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AppCreateResponse]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/magic/apps",
-            body=await async_maybe_transform(body, app_create_params.AppCreateParams),
+            body=await async_maybe_transform(
+                {
+                    "name": name,
+                    "type": type,
+                    "hostnames": hostnames,
+                    "ip_subnets": ip_subnets,
+                },
+                app_create_params.AppCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -462,13 +337,15 @@ class AsyncAppsResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[AppCreateResponse]], ResultWrapper[AppCreateResponse]),
         )
 
-    @overload
     async def update(
         self,
         account_app_id: str,
         *,
         account_id: str,
-        body: object,
+        hostnames: List[str] | NotGiven = NOT_GIVEN,
+        ip_subnets: List[str] | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        type: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -484,37 +361,13 @@ class AsyncAppsResource(AsyncAPIResource):
 
           account_app_id: Identifier
 
-          extra_headers: Send extra headers
+          hostnames: FQDNs to associate with traffic decisions.
 
-          extra_query: Add additional query parameters to the request
+          ip_subnets: CIDRs to associate with traffic decisions.
 
-          extra_body: Add additional JSON properties to the request
+          name: Display name for the app.
 
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    async def update(
-        self,
-        account_app_id: str,
-        *,
-        account_id: str,
-        body: object,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AppUpdateResponse]:
-        """
-        Updates an Account App
-
-        Args:
-          account_id: Identifier
-
-          account_app_id: Identifier
+          type: Category of the app.
 
           extra_headers: Send extra headers
 
@@ -524,93 +377,21 @@ class AsyncAppsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        ...
-
-    @overload
-    async def update(
-        self,
-        account_app_id: str,
-        *,
-        account_id: str,
-        body: object,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AppUpdateResponse]:
-        """
-        Updates an Account App
-
-        Args:
-          account_id: Identifier
-
-          account_app_id: Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    async def update(
-        self,
-        account_app_id: str,
-        *,
-        account_id: str,
-        body: object,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AppUpdateResponse]:
-        """
-        Updates an Account App
-
-        Args:
-          account_id: Identifier
-
-          account_app_id: Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @required_args(["account_id", "body"])
-    async def update(
-        self,
-        account_app_id: str,
-        *,
-        account_id: str,
-        body: object,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AppUpdateResponse]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not account_app_id:
             raise ValueError(f"Expected a non-empty value for `account_app_id` but received {account_app_id!r}")
         return await self._put(
             f"/accounts/{account_id}/magic/apps/{account_app_id}",
-            body=await async_maybe_transform(body, app_update_params.AppUpdateParams),
+            body=await async_maybe_transform(
+                {
+                    "hostnames": hostnames,
+                    "ip_subnets": ip_subnets,
+                    "name": name,
+                    "type": type,
+                },
+                app_update_params.AppUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

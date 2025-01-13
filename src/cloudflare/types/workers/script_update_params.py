@@ -2,50 +2,397 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing import Dict, List, Union, Iterable, Optional
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
-from .stepped_migration_param import SteppedMigrationParam
+from .migration_step_param import MigrationStepParam
 from .single_step_migration_param import SingleStepMigrationParam
-from .placement_configuration_param import PlacementConfigurationParam
 from .scripts.consumer_script_param import ConsumerScriptParam
 
-__all__ = ["ScriptUpdateParams", "Variant0", "Variant0Metadata", "Variant0MetadataMigrations", "Variant1"]
+__all__ = [
+    "ScriptUpdateParams",
+    "Metadata",
+    "MetadataAssets",
+    "MetadataAssetsConfig",
+    "MetadataBinding",
+    "MetadataBindingWorkersBindingKindAny",
+    "MetadataBindingWorkersBindingKindAI",
+    "MetadataBindingWorkersBindingKindAnalyticsEngine",
+    "MetadataBindingWorkersBindingKindAssets",
+    "MetadataBindingWorkersBindingKindBrowserRendering",
+    "MetadataBindingWorkersBindingKindD1",
+    "MetadataBindingWorkersBindingKindDispatchNamespace",
+    "MetadataBindingWorkersBindingKindDispatchNamespaceOutbound",
+    "MetadataBindingWorkersBindingKindDispatchNamespaceOutboundWorker",
+    "MetadataBindingWorkersBindingKindDo",
+    "MetadataBindingWorkersBindingKindHyperdrive",
+    "MetadataBindingWorkersBindingKindJson",
+    "MetadataBindingWorkersBindingKindKVNamespace",
+    "MetadataBindingWorkersBindingKindMTLSCERT",
+    "MetadataBindingWorkersBindingKindPlainText",
+    "MetadataBindingWorkersBindingKindQueue",
+    "MetadataBindingWorkersBindingKindR2",
+    "MetadataBindingWorkersBindingKindSecret",
+    "MetadataBindingWorkersBindingKindService",
+    "MetadataBindingWorkersBindingKindTailConsumer",
+    "MetadataBindingWorkersBindingKindVectorize",
+    "MetadataBindingWorkersBindingKindVersionMetadata",
+    "MetadataMigrations",
+    "MetadataMigrationsWorkersMultipleStepMigrations",
+    "MetadataObservability",
+    "MetadataPlacement",
+]
 
 
-class Variant0(TypedDict, total=False):
+class ScriptUpdateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
-    rollback_to: str
-    """Rollback to provided deployment based on deployment ID.
-
-    Request body will only parse a "message" part. You can learn more about
-    deployments
-    [here](https://developers.cloudflare.com/workers/platform/deployments/).
-    """
-
-    any_part_name: Annotated[List[FileTypes], PropertyInfo(alias="<any part name>")]
-    """A module comprising a Worker script, often a javascript file.
-
-    Multiple modules may be provided as separate named parts, but at least one
-    module must be present and referenced in the metadata as `main_module` or
-    `body_part` by part name. Source maps may also be included using the
-    `application/source-map` content type.
-    """
-
-    metadata: Variant0Metadata
+    metadata: Required[Metadata]
     """JSON encoded metadata about the uploaded parts and Worker configuration."""
 
 
-Variant0MetadataMigrations = Union[SingleStepMigrationParam, SteppedMigrationParam]
+class MetadataAssetsConfig(TypedDict, total=False):
+    html_handling: Literal["auto-trailing-slash", "force-trailing-slash", "drop-trailing-slash", "none"]
+    """Determines the redirects and rewrites of requests for HTML content."""
+
+    not_found_handling: Literal["none", "404-page", "single-page-application"]
+    """
+    Determines the response when a request does not match a static asset, and there
+    is no Worker script.
+    """
+
+    serve_directly: bool
+    """
+    When true and the incoming request matches an asset, that will be served instead
+    of invoking the Worker script. When false, requests will always invoke the
+    Worker script.
+    """
 
 
-class Variant0Metadata(TypedDict, total=False):
-    bindings: Iterable[object]
-    """List of bindings available to the worker."""
+class MetadataAssets(TypedDict, total=False):
+    config: MetadataAssetsConfig
+    """Configuration for assets within a Worker."""
+
+    jwt: str
+    """Token provided upon successful upload of all files from a registered manifest."""
+
+
+class MetadataBindingWorkersBindingKindAnyTyped(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    type: Required[str]
+    """The kind of resource that the binding provides."""
+
+
+MetadataBindingWorkersBindingKindAny: TypeAlias = Union[MetadataBindingWorkersBindingKindAnyTyped, Dict[str, object]]
+
+
+class MetadataBindingWorkersBindingKindAI(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    type: Required[Literal["ai"]]
+    """The kind of resource that the binding provides."""
+
+
+class MetadataBindingWorkersBindingKindAnalyticsEngine(TypedDict, total=False):
+    dataset: Required[str]
+    """The dataset name to bind to."""
+
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    type: Required[Literal["analytics_engine"]]
+    """The kind of resource that the binding provides."""
+
+
+class MetadataBindingWorkersBindingKindAssets(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    type: Required[Literal["assets"]]
+    """The kind of resource that the binding provides."""
+
+
+class MetadataBindingWorkersBindingKindBrowserRendering(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    type: Required[Literal["browser_rendering"]]
+    """The kind of resource that the binding provides."""
+
+
+class MetadataBindingWorkersBindingKindD1(TypedDict, total=False):
+    id: Required[str]
+    """Identifier of the D1 database to bind to."""
+
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    type: Required[Literal["d1"]]
+    """The kind of resource that the binding provides."""
+
+
+class MetadataBindingWorkersBindingKindDispatchNamespaceOutboundWorker(TypedDict, total=False):
+    environment: str
+    """Environment of the outbound worker."""
+
+    service: str
+    """Name of the outbound worker."""
+
+
+class MetadataBindingWorkersBindingKindDispatchNamespaceOutbound(TypedDict, total=False):
+    params: List[str]
+    """
+    Pass information from the Dispatch Worker to the Outbound Worker through the
+    parameters.
+    """
+
+    worker: MetadataBindingWorkersBindingKindDispatchNamespaceOutboundWorker
+    """Outbound worker."""
+
+
+class MetadataBindingWorkersBindingKindDispatchNamespace(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    namespace: Required[str]
+    """Namespace to bind to."""
+
+    type: Required[Literal["dispatch_namespace"]]
+    """The kind of resource that the binding provides."""
+
+    outbound: MetadataBindingWorkersBindingKindDispatchNamespaceOutbound
+    """Outbound worker."""
+
+
+class MetadataBindingWorkersBindingKindDo(TypedDict, total=False):
+    class_name: Required[str]
+    """The exported class name of the Durable Object."""
+
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    type: Required[Literal["durable_object_namespace"]]
+    """The kind of resource that the binding provides."""
+
+    environment: str
+    """The environment of the script_name to bind to."""
+
+    namespace_id: str
+    """Namespace identifier tag."""
+
+    script_name: str
+    """
+    The script where the Durable Object is defined, if it is external to this
+    Worker.
+    """
+
+
+class MetadataBindingWorkersBindingKindHyperdrive(TypedDict, total=False):
+    id: Required[str]
+    """Identifier of the Hyperdrive connection to bind to."""
+
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    type: Required[Literal["hyperdrive"]]
+    """The kind of resource that the binding provides."""
+
+
+class MetadataBindingWorkersBindingKindJson(TypedDict, total=False):
+    json: Required[str]
+    """JSON data to use."""
+
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    type: Required[Literal["json"]]
+    """The kind of resource that the binding provides."""
+
+
+class MetadataBindingWorkersBindingKindKVNamespace(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    namespace_id: Required[str]
+    """Namespace identifier tag."""
+
+    type: Required[Literal["kv_namespace"]]
+    """The kind of resource that the binding provides."""
+
+
+class MetadataBindingWorkersBindingKindMTLSCERT(TypedDict, total=False):
+    certificate_id: Required[str]
+    """Identifier of the certificate to bind to."""
+
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    type: Required[Literal["mtls_certificate"]]
+    """The kind of resource that the binding provides."""
+
+
+class MetadataBindingWorkersBindingKindPlainText(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    text: Required[str]
+    """The text value to use."""
+
+    type: Required[Literal["plain_text"]]
+    """The kind of resource that the binding provides."""
+
+
+class MetadataBindingWorkersBindingKindQueue(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    queue_name: Required[str]
+    """Name of the Queue to bind to."""
+
+    type: Required[Literal["queue"]]
+    """The kind of resource that the binding provides."""
+
+
+class MetadataBindingWorkersBindingKindR2(TypedDict, total=False):
+    bucket_name: Required[str]
+    """R2 bucket to bind to."""
+
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    type: Required[Literal["r2_bucket"]]
+    """The kind of resource that the binding provides."""
+
+
+class MetadataBindingWorkersBindingKindSecret(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    text: Required[str]
+    """The secret value to use."""
+
+    type: Required[Literal["secret_text"]]
+    """The kind of resource that the binding provides."""
+
+
+class MetadataBindingWorkersBindingKindService(TypedDict, total=False):
+    environment: Required[str]
+    """Optional environment if the Worker utilizes one."""
+
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    service: Required[str]
+    """Name of Worker to bind to."""
+
+    type: Required[Literal["service"]]
+    """The kind of resource that the binding provides."""
+
+
+class MetadataBindingWorkersBindingKindTailConsumer(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    service: Required[str]
+    """Name of Tail Worker to bind to."""
+
+    type: Required[Literal["tail_consumer"]]
+    """The kind of resource that the binding provides."""
+
+
+class MetadataBindingWorkersBindingKindVectorize(TypedDict, total=False):
+    index_name: Required[str]
+    """Name of the Vectorize index to bind to."""
+
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    type: Required[Literal["vectorize"]]
+    """The kind of resource that the binding provides."""
+
+
+class MetadataBindingWorkersBindingKindVersionMetadata(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    type: Required[Literal["version_metadata"]]
+    """The kind of resource that the binding provides."""
+
+
+MetadataBinding: TypeAlias = Union[
+    MetadataBindingWorkersBindingKindAny,
+    MetadataBindingWorkersBindingKindAI,
+    MetadataBindingWorkersBindingKindAnalyticsEngine,
+    MetadataBindingWorkersBindingKindAssets,
+    MetadataBindingWorkersBindingKindBrowserRendering,
+    MetadataBindingWorkersBindingKindD1,
+    MetadataBindingWorkersBindingKindDispatchNamespace,
+    MetadataBindingWorkersBindingKindDo,
+    MetadataBindingWorkersBindingKindHyperdrive,
+    MetadataBindingWorkersBindingKindJson,
+    MetadataBindingWorkersBindingKindKVNamespace,
+    MetadataBindingWorkersBindingKindMTLSCERT,
+    MetadataBindingWorkersBindingKindPlainText,
+    MetadataBindingWorkersBindingKindQueue,
+    MetadataBindingWorkersBindingKindR2,
+    MetadataBindingWorkersBindingKindSecret,
+    MetadataBindingWorkersBindingKindService,
+    MetadataBindingWorkersBindingKindTailConsumer,
+    MetadataBindingWorkersBindingKindVectorize,
+    MetadataBindingWorkersBindingKindVersionMetadata,
+]
+
+
+class MetadataMigrationsWorkersMultipleStepMigrations(TypedDict, total=False):
+    new_tag: str
+    """Tag to set as the latest migration tag."""
+
+    old_tag: str
+    """Tag used to verify against the latest migration tag for this Worker.
+
+    If they don't match, the upload is rejected.
+    """
+
+    steps: Iterable[MigrationStepParam]
+    """Migrations to apply in order."""
+
+
+MetadataMigrations: TypeAlias = Union[SingleStepMigrationParam, MetadataMigrationsWorkersMultipleStepMigrations]
+
+
+class MetadataObservability(TypedDict, total=False):
+    enabled: Required[bool]
+    """Whether observability is enabled for the Worker."""
+
+    head_sampling_rate: Optional[float]
+    """The sampling rate for incoming requests.
+
+    From 0 to 1 (1 = 100%, 0.1 = 10%). Default is 1.
+    """
+
+
+class MetadataPlacement(TypedDict, total=False):
+    mode: Literal["smart"]
+    """
+    Enables
+    [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
+    """
+
+
+class Metadata(TypedDict, total=False):
+    assets: MetadataAssets
+    """Configuration for assets within a Worker"""
+
+    bindings: Iterable[MetadataBinding]
+    """List of bindings attached to a Worker.
+
+    You can find more about bindings on our docs:
+    https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/#bindings.
+    """
 
     body_part: str
     """Name of the part in the multipart request that contains the script (e.g.
@@ -68,6 +415,12 @@ class Variant0Metadata(TypedDict, total=False):
     included in a `compatibility_date`.
     """
 
+    keep_assets: bool
+    """
+    Retain assets which exist for a previously uploaded Worker version; used in lieu
+    of providing a completion token.
+    """
+
     keep_bindings: List[str]
     """List of binding types to keep from previous_upload."""
 
@@ -80,41 +433,23 @@ class Variant0Metadata(TypedDict, total=False):
     the file exporting a `fetch` handler). Indicates a `module syntax` Worker.
     """
 
-    migrations: Variant0MetadataMigrations
+    migrations: MetadataMigrations
     """Migrations to apply for Durable Objects associated with this Worker."""
 
-    placement: PlacementConfigurationParam
+    observability: MetadataObservability
+    """Observability settings for the Worker."""
+
+    placement: MetadataPlacement
+    """
+    Configuration for
+    [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
+    """
 
     tags: List[str]
-    """List of strings to use as tags for this Worker"""
+    """List of strings to use as tags for this Worker."""
 
     tail_consumers: Iterable[ConsumerScriptParam]
     """List of Workers that will consume logs from the attached Worker."""
 
-    usage_model: Literal["bundled", "unbound"]
-    """Usage model to apply to invocations."""
-
-    version_tags: object
-    """Key-value pairs to use as tags for this version of this Worker"""
-
-
-class Variant1(TypedDict, total=False):
-    account_id: Required[str]
-    """Identifier"""
-
-    rollback_to: str
-    """Rollback to provided deployment based on deployment ID.
-
-    Request body will only parse a "message" part. You can learn more about
-    deployments
-    [here](https://developers.cloudflare.com/workers/platform/deployments/).
-    """
-
-    message: str
-    """Rollback message to be associated with this deployment.
-
-    Only parsed when query param `"rollback_to"` is present.
-    """
-
-
-ScriptUpdateParams = Union[Variant0, Variant1]
+    usage_model: Literal["standard"]
+    """Usage model for the Worker invocations."""

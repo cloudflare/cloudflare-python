@@ -10,7 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.logpush import LogpushJob
+from cloudflare.types.logpush import LogpushJob, JobDeleteResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -43,9 +43,9 @@ class TestJobs:
             max_upload_records=1000,
             name="example.com",
             output_options={
-                "cve_2021_4428": True,
                 "batch_prefix": "batch_prefix",
                 "batch_suffix": "batch_suffix",
+                "cve_2021_4428": True,
                 "field_delimiter": "field_delimiter",
                 "field_names": ["ClientIP", "EdgeStartTimestamp", "RayID"],
                 "output_type": "ndjson",
@@ -126,10 +126,11 @@ class TestJobs:
             max_upload_bytes=5000000,
             max_upload_interval_seconds=30,
             max_upload_records=1000,
+            name="example.com",
             output_options={
-                "cve_2021_4428": True,
                 "batch_prefix": "batch_prefix",
                 "batch_suffix": "batch_suffix",
+                "cve_2021_4428": True,
                 "field_delimiter": "field_delimiter",
                 "field_names": ["ClientIP", "EdgeStartTimestamp", "RayID"],
                 "output_type": "ndjson",
@@ -249,7 +250,7 @@ class TestJobs:
             job_id=1,
             account_id="account_id",
         )
-        assert_matches_type(object, job, path=["response"])
+        assert_matches_type(Optional[JobDeleteResponse], job, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -258,7 +259,7 @@ class TestJobs:
             job_id=1,
             account_id="account_id",
         )
-        assert_matches_type(object, job, path=["response"])
+        assert_matches_type(Optional[JobDeleteResponse], job, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -271,7 +272,7 @@ class TestJobs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         job = response.parse()
-        assert_matches_type(object, job, path=["response"])
+        assert_matches_type(Optional[JobDeleteResponse], job, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -284,7 +285,7 @@ class TestJobs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             job = response.parse()
-            assert_matches_type(object, job, path=["response"])
+            assert_matches_type(Optional[JobDeleteResponse], job, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -393,9 +394,9 @@ class TestAsyncJobs:
             max_upload_records=1000,
             name="example.com",
             output_options={
-                "cve_2021_4428": True,
                 "batch_prefix": "batch_prefix",
                 "batch_suffix": "batch_suffix",
+                "cve_2021_4428": True,
                 "field_delimiter": "field_delimiter",
                 "field_names": ["ClientIP", "EdgeStartTimestamp", "RayID"],
                 "output_type": "ndjson",
@@ -476,10 +477,11 @@ class TestAsyncJobs:
             max_upload_bytes=5000000,
             max_upload_interval_seconds=30,
             max_upload_records=1000,
+            name="example.com",
             output_options={
-                "cve_2021_4428": True,
                 "batch_prefix": "batch_prefix",
                 "batch_suffix": "batch_suffix",
+                "cve_2021_4428": True,
                 "field_delimiter": "field_delimiter",
                 "field_names": ["ClientIP", "EdgeStartTimestamp", "RayID"],
                 "output_type": "ndjson",
@@ -599,7 +601,7 @@ class TestAsyncJobs:
             job_id=1,
             account_id="account_id",
         )
-        assert_matches_type(object, job, path=["response"])
+        assert_matches_type(Optional[JobDeleteResponse], job, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -608,7 +610,7 @@ class TestAsyncJobs:
             job_id=1,
             account_id="account_id",
         )
-        assert_matches_type(object, job, path=["response"])
+        assert_matches_type(Optional[JobDeleteResponse], job, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -621,7 +623,7 @@ class TestAsyncJobs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         job = await response.parse()
-        assert_matches_type(object, job, path=["response"])
+        assert_matches_type(Optional[JobDeleteResponse], job, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -634,7 +636,7 @@ class TestAsyncJobs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             job = await response.parse()
-            assert_matches_type(object, job, path=["response"])
+            assert_matches_type(Optional[JobDeleteResponse], job, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

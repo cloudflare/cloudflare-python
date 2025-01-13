@@ -7,7 +7,7 @@ from typing_extensions import Literal
 from .decision import Decision
 from ...._models import BaseModel
 from ..access_rule import AccessRule
-from .applications.approval_group import ApprovalGroup
+from .approval_group import ApprovalGroup
 
 __all__ = ["PolicyListResponse"]
 
@@ -31,7 +31,10 @@ class PolicyListResponse(BaseModel):
     created_at: Optional[datetime] = None
 
     decision: Optional[Decision] = None
-    """The action Access will take if a user matches this policy."""
+    """The action Access will take if a user matches this policy.
+
+    Infrastructure application policies can only use the Allow action.
+    """
 
     exclude: Optional[List[AccessRule]] = None
     """Rules evaluated with a NOT logical operator.

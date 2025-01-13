@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
+from typing import List, Union
 from datetime import datetime
-from typing_extensions import Literal, Annotated, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ....._utils import PropertyInfo
 from ..dimension import Dimension
@@ -13,6 +13,9 @@ __all__ = ["SummaryGetParams"]
 
 
 class SummaryGetParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     dimensions: List[Dimension]
     """Can be used to break down the data by given attributes. Options are:
 
@@ -38,10 +41,10 @@ class SummaryGetParams(TypedDict, total=False):
     | -------- | ------------------------ | ----------- |
     | ==       | Equals                   | %3D%3D      |
     | !=       | Does not equals          | !%3D        |
-    | >        | Greater Than             | %3E         |
-    | <        | Less Than                | %3C         |
-    | >=       | Greater than or equal to | %3E%3D      |
-    | <=       | Less than or equal to    | %3C%3D .    |
+    | \\>>       | Greater Than             | %3E         |
+    | \\<<       | Less Than                | %3C         |
+    | \\>>=      | Greater than or equal to | %3E%3D      |
+    | \\<<=      | Less than or equal to    | %3C%3D      |
     """
 
     metrics: List[
@@ -66,7 +69,7 @@ class SummaryGetParams(TypedDict, total=False):
     Timestamp must be in RFC3339 format and uses UTC unless otherwise specified.
     """
 
-    sort: Iterable[object]
+    sort: List[str]
     """
     The sort order for the result set; sort fields must be included in `metrics` or
     `dimensions`.

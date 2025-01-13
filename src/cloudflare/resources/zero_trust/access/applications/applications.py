@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Type, Optional, cast, overload
+from typing import Any, List, Type, Iterable, Optional, cast
+from typing_extensions import overload
 
 import httpx
 
@@ -46,13 +47,23 @@ from .user_policy_checks import (
     UserPolicyChecksResourceWithStreamingResponse,
     AsyncUserPolicyChecksResourceWithStreamingResponse,
 )
+from .policy_tests.policy_tests import (
+    PolicyTestsResource,
+    AsyncPolicyTestsResource,
+    PolicyTestsResourceWithRawResponse,
+    AsyncPolicyTestsResourceWithRawResponse,
+    PolicyTestsResourceWithStreamingResponse,
+    AsyncPolicyTestsResourceWithStreamingResponse,
+)
 from .....types.zero_trust.access import (
+    AppID,
     ApplicationType,
+    application_list_params,
     application_create_params,
     application_update_params,
 )
+from .....types.zero_trust.access.app_id import AppID
 from .....types.zero_trust.access.allowed_idps import AllowedIdPs
-from .....types.zero_trust.access.app_id_param import AppIDParam
 from .....types.zero_trust.access.application_type import ApplicationType
 from .....types.zero_trust.access.cors_headers_param import CORSHeadersParam
 from .....types.zero_trust.access.self_hosted_domains import SelfHostedDomains
@@ -79,11 +90,26 @@ class ApplicationsResource(SyncAPIResource):
         return PoliciesResource(self._client)
 
     @cached_property
+    def policy_tests(self) -> PolicyTestsResource:
+        return PolicyTestsResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> ApplicationsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return ApplicationsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> ApplicationsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return ApplicationsResourceWithStreamingResponse(self)
 
     @overload
@@ -103,6 +129,7 @@ class ApplicationsResource(SyncAPIResource):
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
         custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        destinations: Iterable[application_create_params.SelfHostedApplicationDestination] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -128,8 +155,8 @@ class ApplicationsResource(SyncAPIResource):
         Adds a new application to Access.
 
         Args:
-          domain: The primary hostname and path that Access will secure. If the app is visible in
-              the App Launcher dashboard, this is the domain that will be displayed.
+          domain: The primary hostname and path secured by Access. This domain will be displayed
+              if the app is visible in the App Launcher.
 
           type: The application type.
 
@@ -161,6 +188,10 @@ class ApplicationsResource(SyncAPIResource):
 
           custom_pages: The custom pages that will be displayed when applicable for this application
 
+          destinations: List of destinations secured by Access. This supersedes `self_hosted_domains` to
+              allow for more flexibility in defining different types of domains. If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
+
           enable_binding_cookie: Enables the binding cookie, which increases security against compromised
               authorization tokens and CSRF attacks.
 
@@ -177,7 +208,7 @@ class ApplicationsResource(SyncAPIResource):
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
 
-          policies: The policies that will apply to the application, in ascending order of
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -187,7 +218,9 @@ class ApplicationsResource(SyncAPIResource):
           scim_config: Configuration for provisioning to this application via SCIM. This is currently
               in closed beta.
 
-          self_hosted_domains: List of domains that Access will secure.
+          self_hosted_domains: List of public domains that Access will secure. This field is deprecated in
+              favor of `destinations` and will be supported until **November 21, 2025.** If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
 
           service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
 
@@ -256,7 +289,7 @@ class ApplicationsResource(SyncAPIResource):
 
           name: The name of the application.
 
-          policies: The policies that will apply to the application, in ascending order of
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -295,6 +328,7 @@ class ApplicationsResource(SyncAPIResource):
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
         custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        destinations: Iterable[application_create_params.BrowserSSHApplicationDestination] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -320,8 +354,8 @@ class ApplicationsResource(SyncAPIResource):
         Adds a new application to Access.
 
         Args:
-          domain: The primary hostname and path that Access will secure. If the app is visible in
-              the App Launcher dashboard, this is the domain that will be displayed.
+          domain: The primary hostname and path secured by Access. This domain will be displayed
+              if the app is visible in the App Launcher.
 
           type: The application type.
 
@@ -353,6 +387,10 @@ class ApplicationsResource(SyncAPIResource):
 
           custom_pages: The custom pages that will be displayed when applicable for this application
 
+          destinations: List of destinations secured by Access. This supersedes `self_hosted_domains` to
+              allow for more flexibility in defining different types of domains. If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
+
           enable_binding_cookie: Enables the binding cookie, which increases security against compromised
               authorization tokens and CSRF attacks.
 
@@ -369,7 +407,7 @@ class ApplicationsResource(SyncAPIResource):
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
 
-          policies: The policies that will apply to the application, in ascending order of
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -379,7 +417,9 @@ class ApplicationsResource(SyncAPIResource):
           scim_config: Configuration for provisioning to this application via SCIM. This is currently
               in closed beta.
 
-          self_hosted_domains: List of domains that Access will secure.
+          self_hosted_domains: List of public domains that Access will secure. This field is deprecated in
+              favor of `destinations` and will be supported until **November 21, 2025.** If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
 
           service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
 
@@ -419,15 +459,16 @@ class ApplicationsResource(SyncAPIResource):
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
         custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        destinations: Iterable[application_create_params.BrowserVNCApplicationDestination] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: List[application_create_params.BrowserVncApplicationPolicy] | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.BrowserVNCApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.BrowserVncApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.BrowserVNCApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
@@ -444,8 +485,8 @@ class ApplicationsResource(SyncAPIResource):
         Adds a new application to Access.
 
         Args:
-          domain: The primary hostname and path that Access will secure. If the app is visible in
-              the App Launcher dashboard, this is the domain that will be displayed.
+          domain: The primary hostname and path secured by Access. This domain will be displayed
+              if the app is visible in the App Launcher.
 
           type: The application type.
 
@@ -477,6 +518,10 @@ class ApplicationsResource(SyncAPIResource):
 
           custom_pages: The custom pages that will be displayed when applicable for this application
 
+          destinations: List of destinations secured by Access. This supersedes `self_hosted_domains` to
+              allow for more flexibility in defining different types of domains. If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
+
           enable_binding_cookie: Enables the binding cookie, which increases security against compromised
               authorization tokens and CSRF attacks.
 
@@ -493,7 +538,7 @@ class ApplicationsResource(SyncAPIResource):
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
 
-          policies: The policies that will apply to the application, in ascending order of
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -503,7 +548,9 @@ class ApplicationsResource(SyncAPIResource):
           scim_config: Configuration for provisioning to this application via SCIM. This is currently
               in closed beta.
 
-          self_hosted_domains: List of domains that Access will secure.
+          self_hosted_domains: List of public domains that Access will secure. This field is deprecated in
+              favor of `destinations` and will be supported until **November 21, 2025.** If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
 
           service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
 
@@ -534,10 +581,16 @@ class ApplicationsResource(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_create_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_create_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.AppLauncherApplicationPolicy] | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.AppLauncherApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -558,10 +611,20 @@ class ApplicationsResource(SyncAPIResource):
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
 
+          app_launcher_logo_url: The image URL of the logo shown in the App Launcher header.
+
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
 
-          policies: The policies that will apply to the application, in ascending order of
+          bg_color: The background color of the App Launcher page.
+
+          footer_links: The links in the App Launcher footer.
+
+          header_bg_color: The background color of the App Launcher header.
+
+          landing_page_design: The design of the App Launcher landing page shown to users when they log in.
+
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -571,6 +634,8 @@ class ApplicationsResource(SyncAPIResource):
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
               s, m, h.
+
+          skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
           extra_headers: Send extra headers
 
@@ -590,10 +655,18 @@ class ApplicationsResource(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_create_params.DeviceEnrollmentPermissionsApplicationFooterLink]
+        | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_create_params.DeviceEnrollmentPermissionsApplicationLandingPageDesign
+        | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.DeviceEnrollmentPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.DeviceEnrollmentPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -614,10 +687,20 @@ class ApplicationsResource(SyncAPIResource):
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
 
+          app_launcher_logo_url: The image URL of the logo shown in the App Launcher header.
+
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
 
-          policies: The policies that will apply to the application, in ascending order of
+          bg_color: The background color of the App Launcher page.
+
+          footer_links: The links in the App Launcher footer.
+
+          header_bg_color: The background color of the App Launcher header.
+
+          landing_page_design: The design of the App Launcher landing page shown to users when they log in.
+
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -627,6 +710,8 @@ class ApplicationsResource(SyncAPIResource):
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
               s, m, h.
+
+          skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
           extra_headers: Send extra headers
 
@@ -646,10 +731,18 @@ class ApplicationsResource(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_create_params.BrowserIsolationPermissionsApplicationFooterLink]
+        | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_create_params.BrowserIsolationPermissionsApplicationLandingPageDesign
+        | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.BrowserIsolationPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.BrowserIsolationPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -670,10 +763,20 @@ class ApplicationsResource(SyncAPIResource):
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
 
+          app_launcher_logo_url: The image URL of the logo shown in the App Launcher header.
+
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
 
-          policies: The policies that will apply to the application, in ascending order of
+          bg_color: The background color of the App Launcher page.
+
+          footer_links: The links in the App Launcher footer.
+
+          header_bg_color: The background color of the App Launcher header.
+
+          landing_page_design: The design of the App Launcher landing page shown to users when they log in.
+
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -683,6 +786,8 @@ class ApplicationsResource(SyncAPIResource):
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
               s, m, h.
+
+          skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
           extra_headers: Send extra headers
 
@@ -748,6 +853,47 @@ class ApplicationsResource(SyncAPIResource):
         """
         ...
 
+    @overload
+    def create(
+        self,
+        *,
+        target_criteria: Iterable[application_create_params.InfrastructureApplicationTargetCriterion],
+        type: ApplicationType,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        policies: Iterable[application_create_params.InfrastructureApplicationPolicy] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationCreateResponse]:
+        """
+        Adds a new application to Access.
+
+        Args:
+          type: The application type.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          name: The name of the application.
+
+          policies: The policies that Access applies to the application.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
     def create(
         self,
         *,
@@ -764,13 +910,16 @@ class ApplicationsResource(SyncAPIResource):
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
         custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        destinations: Iterable[application_create_params.SelfHostedApplicationDestination] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: List[application_create_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.SelfHostedApplicationPolicy]
+        | Iterable[application_create_params.InfrastructureApplicationPolicy]
+        | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -779,6 +928,14 @@ class ApplicationsResource(SyncAPIResource):
         skip_interstitial: bool | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
         saas_app: application_create_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_create_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_create_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
+        target_criteria: Iterable[application_create_params.InfrastructureApplicationTargetCriterion]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -815,6 +972,7 @@ class ApplicationsResource(SyncAPIResource):
                         "custom_deny_url": custom_deny_url,
                         "custom_non_identity_deny_url": custom_non_identity_deny_url,
                         "custom_pages": custom_pages,
+                        "destinations": destinations,
                         "enable_binding_cookie": enable_binding_cookie,
                         "http_only_cookie_attribute": http_only_cookie_attribute,
                         "logo_url": logo_url,
@@ -830,6 +988,13 @@ class ApplicationsResource(SyncAPIResource):
                         "skip_interstitial": skip_interstitial,
                         "tags": tags,
                         "saas_app": saas_app,
+                        "app_launcher_logo_url": app_launcher_logo_url,
+                        "bg_color": bg_color,
+                        "footer_links": footer_links,
+                        "header_bg_color": header_bg_color,
+                        "landing_page_design": landing_page_design,
+                        "skip_app_launcher_login_page": skip_app_launcher_login_page,
+                        "target_criteria": target_criteria,
                     },
                     application_create_params.ApplicationCreateParams,
                 ),
@@ -849,7 +1014,7 @@ class ApplicationsResource(SyncAPIResource):
     @overload
     def update(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         domain: str,
         type: str,
@@ -864,6 +1029,7 @@ class ApplicationsResource(SyncAPIResource):
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
         custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        destinations: Iterable[application_update_params.SelfHostedApplicationDestination] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -891,8 +1057,8 @@ class ApplicationsResource(SyncAPIResource):
         Args:
           app_id: Identifier
 
-          domain: The primary hostname and path that Access will secure. If the app is visible in
-              the App Launcher dashboard, this is the domain that will be displayed.
+          domain: The primary hostname and path secured by Access. This domain will be displayed
+              if the app is visible in the App Launcher.
 
           type: The application type.
 
@@ -924,6 +1090,10 @@ class ApplicationsResource(SyncAPIResource):
 
           custom_pages: The custom pages that will be displayed when applicable for this application
 
+          destinations: List of destinations secured by Access. This supersedes `self_hosted_domains` to
+              allow for more flexibility in defining different types of domains. If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
+
           enable_binding_cookie: Enables the binding cookie, which increases security against compromised
               authorization tokens and CSRF attacks.
 
@@ -940,7 +1110,7 @@ class ApplicationsResource(SyncAPIResource):
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
 
-          policies: The policies that will apply to the application, in ascending order of
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -950,7 +1120,9 @@ class ApplicationsResource(SyncAPIResource):
           scim_config: Configuration for provisioning to this application via SCIM. This is currently
               in closed beta.
 
-          self_hosted_domains: List of domains that Access will secure.
+          self_hosted_domains: List of public domains that Access will secure. This field is deprecated in
+              favor of `destinations` and will be supported until **November 21, 2025.** If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
 
           service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
 
@@ -976,7 +1148,7 @@ class ApplicationsResource(SyncAPIResource):
     @overload
     def update(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -1022,7 +1194,7 @@ class ApplicationsResource(SyncAPIResource):
 
           name: The name of the application.
 
-          policies: The policies that will apply to the application, in ascending order of
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -1047,7 +1219,7 @@ class ApplicationsResource(SyncAPIResource):
     @overload
     def update(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         domain: str,
         type: str,
@@ -1062,6 +1234,7 @@ class ApplicationsResource(SyncAPIResource):
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
         custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        destinations: Iterable[application_update_params.BrowserSSHApplicationDestination] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -1089,8 +1262,8 @@ class ApplicationsResource(SyncAPIResource):
         Args:
           app_id: Identifier
 
-          domain: The primary hostname and path that Access will secure. If the app is visible in
-              the App Launcher dashboard, this is the domain that will be displayed.
+          domain: The primary hostname and path secured by Access. This domain will be displayed
+              if the app is visible in the App Launcher.
 
           type: The application type.
 
@@ -1122,6 +1295,10 @@ class ApplicationsResource(SyncAPIResource):
 
           custom_pages: The custom pages that will be displayed when applicable for this application
 
+          destinations: List of destinations secured by Access. This supersedes `self_hosted_domains` to
+              allow for more flexibility in defining different types of domains. If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
+
           enable_binding_cookie: Enables the binding cookie, which increases security against compromised
               authorization tokens and CSRF attacks.
 
@@ -1138,7 +1315,7 @@ class ApplicationsResource(SyncAPIResource):
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
 
-          policies: The policies that will apply to the application, in ascending order of
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -1148,7 +1325,9 @@ class ApplicationsResource(SyncAPIResource):
           scim_config: Configuration for provisioning to this application via SCIM. This is currently
               in closed beta.
 
-          self_hosted_domains: List of domains that Access will secure.
+          self_hosted_domains: List of public domains that Access will secure. This field is deprecated in
+              favor of `destinations` and will be supported until **November 21, 2025.** If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
 
           service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
 
@@ -1174,7 +1353,7 @@ class ApplicationsResource(SyncAPIResource):
     @overload
     def update(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         domain: str,
         type: str,
@@ -1189,15 +1368,16 @@ class ApplicationsResource(SyncAPIResource):
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
         custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        destinations: Iterable[application_update_params.BrowserVNCApplicationDestination] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: List[application_update_params.BrowserVncApplicationPolicy] | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.BrowserVNCApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.BrowserVncApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.BrowserVNCApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
@@ -1216,8 +1396,8 @@ class ApplicationsResource(SyncAPIResource):
         Args:
           app_id: Identifier
 
-          domain: The primary hostname and path that Access will secure. If the app is visible in
-              the App Launcher dashboard, this is the domain that will be displayed.
+          domain: The primary hostname and path secured by Access. This domain will be displayed
+              if the app is visible in the App Launcher.
 
           type: The application type.
 
@@ -1249,6 +1429,10 @@ class ApplicationsResource(SyncAPIResource):
 
           custom_pages: The custom pages that will be displayed when applicable for this application
 
+          destinations: List of destinations secured by Access. This supersedes `self_hosted_domains` to
+              allow for more flexibility in defining different types of domains. If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
+
           enable_binding_cookie: Enables the binding cookie, which increases security against compromised
               authorization tokens and CSRF attacks.
 
@@ -1265,7 +1449,7 @@ class ApplicationsResource(SyncAPIResource):
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
 
-          policies: The policies that will apply to the application, in ascending order of
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -1275,7 +1459,9 @@ class ApplicationsResource(SyncAPIResource):
           scim_config: Configuration for provisioning to this application via SCIM. This is currently
               in closed beta.
 
-          self_hosted_domains: List of domains that Access will secure.
+          self_hosted_domains: List of public domains that Access will secure. This field is deprecated in
+              favor of `destinations` and will be supported until **November 21, 2025.** If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
 
           service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
 
@@ -1301,16 +1487,22 @@ class ApplicationsResource(SyncAPIResource):
     @overload
     def update(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         type: ApplicationType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_update_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_update_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.AppLauncherApplicationPolicy] | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.AppLauncherApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1333,10 +1525,20 @@ class ApplicationsResource(SyncAPIResource):
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
 
+          app_launcher_logo_url: The image URL of the logo shown in the App Launcher header.
+
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
 
-          policies: The policies that will apply to the application, in ascending order of
+          bg_color: The background color of the App Launcher page.
+
+          footer_links: The links in the App Launcher footer.
+
+          header_bg_color: The background color of the App Launcher header.
+
+          landing_page_design: The design of the App Launcher landing page shown to users when they log in.
+
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -1346,6 +1548,8 @@ class ApplicationsResource(SyncAPIResource):
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
               s, m, h.
+
+          skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
           extra_headers: Send extra headers
 
@@ -1360,16 +1564,24 @@ class ApplicationsResource(SyncAPIResource):
     @overload
     def update(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         type: ApplicationType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_update_params.DeviceEnrollmentPermissionsApplicationFooterLink]
+        | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_update_params.DeviceEnrollmentPermissionsApplicationLandingPageDesign
+        | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.DeviceEnrollmentPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.DeviceEnrollmentPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1392,10 +1604,20 @@ class ApplicationsResource(SyncAPIResource):
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
 
+          app_launcher_logo_url: The image URL of the logo shown in the App Launcher header.
+
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
 
-          policies: The policies that will apply to the application, in ascending order of
+          bg_color: The background color of the App Launcher page.
+
+          footer_links: The links in the App Launcher footer.
+
+          header_bg_color: The background color of the App Launcher header.
+
+          landing_page_design: The design of the App Launcher landing page shown to users when they log in.
+
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -1405,6 +1627,8 @@ class ApplicationsResource(SyncAPIResource):
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
               s, m, h.
+
+          skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
           extra_headers: Send extra headers
 
@@ -1419,16 +1643,24 @@ class ApplicationsResource(SyncAPIResource):
     @overload
     def update(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         type: ApplicationType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_update_params.BrowserIsolationPermissionsApplicationFooterLink]
+        | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_update_params.BrowserIsolationPermissionsApplicationLandingPageDesign
+        | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.BrowserIsolationPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.BrowserIsolationPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1451,10 +1683,20 @@ class ApplicationsResource(SyncAPIResource):
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
 
+          app_launcher_logo_url: The image URL of the logo shown in the App Launcher header.
+
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
 
-          policies: The policies that will apply to the application, in ascending order of
+          bg_color: The background color of the App Launcher page.
+
+          footer_links: The links in the App Launcher footer.
+
+          header_bg_color: The background color of the App Launcher header.
+
+          landing_page_design: The design of the App Launcher landing page shown to users when they log in.
+
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -1464,6 +1706,8 @@ class ApplicationsResource(SyncAPIResource):
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
               s, m, h.
+
+          skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
           extra_headers: Send extra headers
 
@@ -1478,7 +1722,7 @@ class ApplicationsResource(SyncAPIResource):
     @overload
     def update(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -1532,9 +1776,53 @@ class ApplicationsResource(SyncAPIResource):
         """
         ...
 
+    @overload
     def update(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
+        *,
+        target_criteria: Iterable[application_update_params.InfrastructureApplicationTargetCriterion],
+        type: ApplicationType,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        policies: Iterable[application_update_params.InfrastructureApplicationPolicy] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationUpdateResponse]:
+        """
+        Updates an Access application.
+
+        Args:
+          app_id: Identifier
+
+          type: The application type.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          name: The name of the application.
+
+          policies: The policies that Access applies to the application.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    def update(
+        self,
+        app_id: AppID,
         *,
         domain: str | NotGiven = NOT_GIVEN,
         type: str | ApplicationType | NotGiven = NOT_GIVEN,
@@ -1549,13 +1837,16 @@ class ApplicationsResource(SyncAPIResource):
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
         custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        destinations: Iterable[application_update_params.SelfHostedApplicationDestination] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: List[application_update_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.SelfHostedApplicationPolicy]
+        | Iterable[application_update_params.InfrastructureApplicationPolicy]
+        | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -1564,6 +1855,14 @@ class ApplicationsResource(SyncAPIResource):
         skip_interstitial: bool | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
         saas_app: application_update_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_update_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_update_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
+        target_criteria: Iterable[application_update_params.InfrastructureApplicationTargetCriterion]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1571,6 +1870,8 @@ class ApplicationsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[ApplicationUpdateResponse]:
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -1600,6 +1901,7 @@ class ApplicationsResource(SyncAPIResource):
                         "custom_deny_url": custom_deny_url,
                         "custom_non_identity_deny_url": custom_non_identity_deny_url,
                         "custom_pages": custom_pages,
+                        "destinations": destinations,
                         "enable_binding_cookie": enable_binding_cookie,
                         "http_only_cookie_attribute": http_only_cookie_attribute,
                         "logo_url": logo_url,
@@ -1615,6 +1917,13 @@ class ApplicationsResource(SyncAPIResource):
                         "skip_interstitial": skip_interstitial,
                         "tags": tags,
                         "saas_app": saas_app,
+                        "app_launcher_logo_url": app_launcher_logo_url,
+                        "bg_color": bg_color,
+                        "footer_links": footer_links,
+                        "header_bg_color": header_bg_color,
+                        "landing_page_design": landing_page_design,
+                        "skip_app_launcher_login_page": skip_app_launcher_login_page,
+                        "target_criteria": target_criteria,
                     },
                     application_update_params.ApplicationUpdateParams,
                 ),
@@ -1636,6 +1945,10 @@ class ApplicationsResource(SyncAPIResource):
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
+        aud: str | NotGiven = NOT_GIVEN,
+        domain: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        search: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1650,6 +1963,14 @@ class ApplicationsResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          aud: The aud of the app.
+
+          domain: The domain of the app.
+
+          name: The name of the app.
+
+          search: Search for apps by other listed query parameters.
 
           extra_headers: Send extra headers
 
@@ -1675,14 +1996,26 @@ class ApplicationsResource(SyncAPIResource):
             f"/{account_or_zone}/{account_or_zone_id}/access/apps",
             page=SyncSinglePage[ApplicationListResponse],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "aud": aud,
+                        "domain": domain,
+                        "name": name,
+                        "search": search,
+                    },
+                    application_list_params.ApplicationListParams,
+                ),
             ),
             model=cast(Any, ApplicationListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
     def delete(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -1711,6 +2044,8 @@ class ApplicationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -1737,7 +2072,7 @@ class ApplicationsResource(SyncAPIResource):
 
     def get(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -1766,6 +2101,8 @@ class ApplicationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -1797,7 +2134,7 @@ class ApplicationsResource(SyncAPIResource):
 
     def revoke_tokens(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -1826,6 +2163,8 @@ class ApplicationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -1865,11 +2204,26 @@ class AsyncApplicationsResource(AsyncAPIResource):
         return AsyncPoliciesResource(self._client)
 
     @cached_property
+    def policy_tests(self) -> AsyncPolicyTestsResource:
+        return AsyncPolicyTestsResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AsyncApplicationsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncApplicationsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncApplicationsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncApplicationsResourceWithStreamingResponse(self)
 
     @overload
@@ -1889,6 +2243,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
         custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        destinations: Iterable[application_create_params.SelfHostedApplicationDestination] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -1914,8 +2269,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
         Adds a new application to Access.
 
         Args:
-          domain: The primary hostname and path that Access will secure. If the app is visible in
-              the App Launcher dashboard, this is the domain that will be displayed.
+          domain: The primary hostname and path secured by Access. This domain will be displayed
+              if the app is visible in the App Launcher.
 
           type: The application type.
 
@@ -1947,6 +2302,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           custom_pages: The custom pages that will be displayed when applicable for this application
 
+          destinations: List of destinations secured by Access. This supersedes `self_hosted_domains` to
+              allow for more flexibility in defining different types of domains. If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
+
           enable_binding_cookie: Enables the binding cookie, which increases security against compromised
               authorization tokens and CSRF attacks.
 
@@ -1963,7 +2322,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
 
-          policies: The policies that will apply to the application, in ascending order of
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -1973,7 +2332,9 @@ class AsyncApplicationsResource(AsyncAPIResource):
           scim_config: Configuration for provisioning to this application via SCIM. This is currently
               in closed beta.
 
-          self_hosted_domains: List of domains that Access will secure.
+          self_hosted_domains: List of public domains that Access will secure. This field is deprecated in
+              favor of `destinations` and will be supported until **November 21, 2025.** If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
 
           service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
 
@@ -2042,7 +2403,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           name: The name of the application.
 
-          policies: The policies that will apply to the application, in ascending order of
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -2081,6 +2442,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
         custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        destinations: Iterable[application_create_params.BrowserSSHApplicationDestination] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -2106,8 +2468,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
         Adds a new application to Access.
 
         Args:
-          domain: The primary hostname and path that Access will secure. If the app is visible in
-              the App Launcher dashboard, this is the domain that will be displayed.
+          domain: The primary hostname and path secured by Access. This domain will be displayed
+              if the app is visible in the App Launcher.
 
           type: The application type.
 
@@ -2139,6 +2501,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           custom_pages: The custom pages that will be displayed when applicable for this application
 
+          destinations: List of destinations secured by Access. This supersedes `self_hosted_domains` to
+              allow for more flexibility in defining different types of domains. If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
+
           enable_binding_cookie: Enables the binding cookie, which increases security against compromised
               authorization tokens and CSRF attacks.
 
@@ -2155,7 +2521,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
 
-          policies: The policies that will apply to the application, in ascending order of
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -2165,7 +2531,9 @@ class AsyncApplicationsResource(AsyncAPIResource):
           scim_config: Configuration for provisioning to this application via SCIM. This is currently
               in closed beta.
 
-          self_hosted_domains: List of domains that Access will secure.
+          self_hosted_domains: List of public domains that Access will secure. This field is deprecated in
+              favor of `destinations` and will be supported until **November 21, 2025.** If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
 
           service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
 
@@ -2205,15 +2573,16 @@ class AsyncApplicationsResource(AsyncAPIResource):
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
         custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        destinations: Iterable[application_create_params.BrowserVNCApplicationDestination] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: List[application_create_params.BrowserVncApplicationPolicy] | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.BrowserVNCApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.BrowserVncApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.BrowserVNCApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
@@ -2230,8 +2599,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
         Adds a new application to Access.
 
         Args:
-          domain: The primary hostname and path that Access will secure. If the app is visible in
-              the App Launcher dashboard, this is the domain that will be displayed.
+          domain: The primary hostname and path secured by Access. This domain will be displayed
+              if the app is visible in the App Launcher.
 
           type: The application type.
 
@@ -2263,6 +2632,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           custom_pages: The custom pages that will be displayed when applicable for this application
 
+          destinations: List of destinations secured by Access. This supersedes `self_hosted_domains` to
+              allow for more flexibility in defining different types of domains. If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
+
           enable_binding_cookie: Enables the binding cookie, which increases security against compromised
               authorization tokens and CSRF attacks.
 
@@ -2279,7 +2652,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
 
-          policies: The policies that will apply to the application, in ascending order of
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -2289,7 +2662,9 @@ class AsyncApplicationsResource(AsyncAPIResource):
           scim_config: Configuration for provisioning to this application via SCIM. This is currently
               in closed beta.
 
-          self_hosted_domains: List of domains that Access will secure.
+          self_hosted_domains: List of public domains that Access will secure. This field is deprecated in
+              favor of `destinations` and will be supported until **November 21, 2025.** If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
 
           service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
 
@@ -2320,10 +2695,16 @@ class AsyncApplicationsResource(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_create_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_create_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.AppLauncherApplicationPolicy] | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.AppLauncherApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2344,10 +2725,20 @@ class AsyncApplicationsResource(AsyncAPIResource):
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
 
+          app_launcher_logo_url: The image URL of the logo shown in the App Launcher header.
+
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
 
-          policies: The policies that will apply to the application, in ascending order of
+          bg_color: The background color of the App Launcher page.
+
+          footer_links: The links in the App Launcher footer.
+
+          header_bg_color: The background color of the App Launcher header.
+
+          landing_page_design: The design of the App Launcher landing page shown to users when they log in.
+
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -2357,6 +2748,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
               s, m, h.
+
+          skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
           extra_headers: Send extra headers
 
@@ -2376,10 +2769,18 @@ class AsyncApplicationsResource(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_create_params.DeviceEnrollmentPermissionsApplicationFooterLink]
+        | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_create_params.DeviceEnrollmentPermissionsApplicationLandingPageDesign
+        | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.DeviceEnrollmentPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.DeviceEnrollmentPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2400,10 +2801,20 @@ class AsyncApplicationsResource(AsyncAPIResource):
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
 
+          app_launcher_logo_url: The image URL of the logo shown in the App Launcher header.
+
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
 
-          policies: The policies that will apply to the application, in ascending order of
+          bg_color: The background color of the App Launcher page.
+
+          footer_links: The links in the App Launcher footer.
+
+          header_bg_color: The background color of the App Launcher header.
+
+          landing_page_design: The design of the App Launcher landing page shown to users when they log in.
+
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -2413,6 +2824,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
               s, m, h.
+
+          skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
           extra_headers: Send extra headers
 
@@ -2432,10 +2845,18 @@ class AsyncApplicationsResource(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_create_params.BrowserIsolationPermissionsApplicationFooterLink]
+        | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_create_params.BrowserIsolationPermissionsApplicationLandingPageDesign
+        | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.BrowserIsolationPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.BrowserIsolationPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2456,10 +2877,20 @@ class AsyncApplicationsResource(AsyncAPIResource):
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
 
+          app_launcher_logo_url: The image URL of the logo shown in the App Launcher header.
+
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
 
-          policies: The policies that will apply to the application, in ascending order of
+          bg_color: The background color of the App Launcher page.
+
+          footer_links: The links in the App Launcher footer.
+
+          header_bg_color: The background color of the App Launcher header.
+
+          landing_page_design: The design of the App Launcher landing page shown to users when they log in.
+
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -2469,6 +2900,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
               s, m, h.
+
+          skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
           extra_headers: Send extra headers
 
@@ -2534,6 +2967,47 @@ class AsyncApplicationsResource(AsyncAPIResource):
         """
         ...
 
+    @overload
+    async def create(
+        self,
+        *,
+        target_criteria: Iterable[application_create_params.InfrastructureApplicationTargetCriterion],
+        type: ApplicationType,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        policies: Iterable[application_create_params.InfrastructureApplicationPolicy] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationCreateResponse]:
+        """
+        Adds a new application to Access.
+
+        Args:
+          type: The application type.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          name: The name of the application.
+
+          policies: The policies that Access applies to the application.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
     async def create(
         self,
         *,
@@ -2550,13 +3024,16 @@ class AsyncApplicationsResource(AsyncAPIResource):
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
         custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        destinations: Iterable[application_create_params.SelfHostedApplicationDestination] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: List[application_create_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.SelfHostedApplicationPolicy]
+        | Iterable[application_create_params.InfrastructureApplicationPolicy]
+        | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -2565,6 +3042,14 @@ class AsyncApplicationsResource(AsyncAPIResource):
         skip_interstitial: bool | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
         saas_app: application_create_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_create_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_create_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
+        target_criteria: Iterable[application_create_params.InfrastructureApplicationTargetCriterion]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2601,6 +3086,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
                         "custom_deny_url": custom_deny_url,
                         "custom_non_identity_deny_url": custom_non_identity_deny_url,
                         "custom_pages": custom_pages,
+                        "destinations": destinations,
                         "enable_binding_cookie": enable_binding_cookie,
                         "http_only_cookie_attribute": http_only_cookie_attribute,
                         "logo_url": logo_url,
@@ -2616,6 +3102,13 @@ class AsyncApplicationsResource(AsyncAPIResource):
                         "skip_interstitial": skip_interstitial,
                         "tags": tags,
                         "saas_app": saas_app,
+                        "app_launcher_logo_url": app_launcher_logo_url,
+                        "bg_color": bg_color,
+                        "footer_links": footer_links,
+                        "header_bg_color": header_bg_color,
+                        "landing_page_design": landing_page_design,
+                        "skip_app_launcher_login_page": skip_app_launcher_login_page,
+                        "target_criteria": target_criteria,
                     },
                     application_create_params.ApplicationCreateParams,
                 ),
@@ -2635,7 +3128,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
     @overload
     async def update(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         domain: str,
         type: str,
@@ -2650,6 +3143,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
         custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        destinations: Iterable[application_update_params.SelfHostedApplicationDestination] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -2677,8 +3171,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
         Args:
           app_id: Identifier
 
-          domain: The primary hostname and path that Access will secure. If the app is visible in
-              the App Launcher dashboard, this is the domain that will be displayed.
+          domain: The primary hostname and path secured by Access. This domain will be displayed
+              if the app is visible in the App Launcher.
 
           type: The application type.
 
@@ -2710,6 +3204,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           custom_pages: The custom pages that will be displayed when applicable for this application
 
+          destinations: List of destinations secured by Access. This supersedes `self_hosted_domains` to
+              allow for more flexibility in defining different types of domains. If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
+
           enable_binding_cookie: Enables the binding cookie, which increases security against compromised
               authorization tokens and CSRF attacks.
 
@@ -2726,7 +3224,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
 
-          policies: The policies that will apply to the application, in ascending order of
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -2736,7 +3234,9 @@ class AsyncApplicationsResource(AsyncAPIResource):
           scim_config: Configuration for provisioning to this application via SCIM. This is currently
               in closed beta.
 
-          self_hosted_domains: List of domains that Access will secure.
+          self_hosted_domains: List of public domains that Access will secure. This field is deprecated in
+              favor of `destinations` and will be supported until **November 21, 2025.** If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
 
           service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
 
@@ -2762,7 +3262,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
     @overload
     async def update(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -2808,7 +3308,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           name: The name of the application.
 
-          policies: The policies that will apply to the application, in ascending order of
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -2833,7 +3333,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
     @overload
     async def update(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         domain: str,
         type: str,
@@ -2848,6 +3348,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
         custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        destinations: Iterable[application_update_params.BrowserSSHApplicationDestination] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -2875,8 +3376,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
         Args:
           app_id: Identifier
 
-          domain: The primary hostname and path that Access will secure. If the app is visible in
-              the App Launcher dashboard, this is the domain that will be displayed.
+          domain: The primary hostname and path secured by Access. This domain will be displayed
+              if the app is visible in the App Launcher.
 
           type: The application type.
 
@@ -2908,6 +3409,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           custom_pages: The custom pages that will be displayed when applicable for this application
 
+          destinations: List of destinations secured by Access. This supersedes `self_hosted_domains` to
+              allow for more flexibility in defining different types of domains. If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
+
           enable_binding_cookie: Enables the binding cookie, which increases security against compromised
               authorization tokens and CSRF attacks.
 
@@ -2924,7 +3429,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
 
-          policies: The policies that will apply to the application, in ascending order of
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -2934,7 +3439,9 @@ class AsyncApplicationsResource(AsyncAPIResource):
           scim_config: Configuration for provisioning to this application via SCIM. This is currently
               in closed beta.
 
-          self_hosted_domains: List of domains that Access will secure.
+          self_hosted_domains: List of public domains that Access will secure. This field is deprecated in
+              favor of `destinations` and will be supported until **November 21, 2025.** If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
 
           service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
 
@@ -2960,7 +3467,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
     @overload
     async def update(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         domain: str,
         type: str,
@@ -2975,15 +3482,16 @@ class AsyncApplicationsResource(AsyncAPIResource):
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
         custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        destinations: Iterable[application_update_params.BrowserVNCApplicationDestination] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: List[application_update_params.BrowserVncApplicationPolicy] | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.BrowserVNCApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.BrowserVncApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.BrowserVNCApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
@@ -3002,8 +3510,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
         Args:
           app_id: Identifier
 
-          domain: The primary hostname and path that Access will secure. If the app is visible in
-              the App Launcher dashboard, this is the domain that will be displayed.
+          domain: The primary hostname and path secured by Access. This domain will be displayed
+              if the app is visible in the App Launcher.
 
           type: The application type.
 
@@ -3035,6 +3543,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           custom_pages: The custom pages that will be displayed when applicable for this application
 
+          destinations: List of destinations secured by Access. This supersedes `self_hosted_domains` to
+              allow for more flexibility in defining different types of domains. If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
+
           enable_binding_cookie: Enables the binding cookie, which increases security against compromised
               authorization tokens and CSRF attacks.
 
@@ -3051,7 +3563,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
 
-          policies: The policies that will apply to the application, in ascending order of
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -3061,7 +3573,9 @@ class AsyncApplicationsResource(AsyncAPIResource):
           scim_config: Configuration for provisioning to this application via SCIM. This is currently
               in closed beta.
 
-          self_hosted_domains: List of domains that Access will secure.
+          self_hosted_domains: List of public domains that Access will secure. This field is deprecated in
+              favor of `destinations` and will be supported until **November 21, 2025.** If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
 
           service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
 
@@ -3087,16 +3601,22 @@ class AsyncApplicationsResource(AsyncAPIResource):
     @overload
     async def update(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         type: ApplicationType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_update_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_update_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.AppLauncherApplicationPolicy] | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.AppLauncherApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3119,10 +3639,20 @@ class AsyncApplicationsResource(AsyncAPIResource):
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
 
+          app_launcher_logo_url: The image URL of the logo shown in the App Launcher header.
+
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
 
-          policies: The policies that will apply to the application, in ascending order of
+          bg_color: The background color of the App Launcher page.
+
+          footer_links: The links in the App Launcher footer.
+
+          header_bg_color: The background color of the App Launcher header.
+
+          landing_page_design: The design of the App Launcher landing page shown to users when they log in.
+
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -3132,6 +3662,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
               s, m, h.
+
+          skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
           extra_headers: Send extra headers
 
@@ -3146,16 +3678,24 @@ class AsyncApplicationsResource(AsyncAPIResource):
     @overload
     async def update(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         type: ApplicationType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_update_params.DeviceEnrollmentPermissionsApplicationFooterLink]
+        | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_update_params.DeviceEnrollmentPermissionsApplicationLandingPageDesign
+        | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.DeviceEnrollmentPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.DeviceEnrollmentPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3178,10 +3718,20 @@ class AsyncApplicationsResource(AsyncAPIResource):
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
 
+          app_launcher_logo_url: The image URL of the logo shown in the App Launcher header.
+
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
 
-          policies: The policies that will apply to the application, in ascending order of
+          bg_color: The background color of the App Launcher page.
+
+          footer_links: The links in the App Launcher footer.
+
+          header_bg_color: The background color of the App Launcher header.
+
+          landing_page_design: The design of the App Launcher landing page shown to users when they log in.
+
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -3191,6 +3741,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
               s, m, h.
+
+          skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
           extra_headers: Send extra headers
 
@@ -3205,16 +3757,24 @@ class AsyncApplicationsResource(AsyncAPIResource):
     @overload
     async def update(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         type: ApplicationType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_update_params.BrowserIsolationPermissionsApplicationFooterLink]
+        | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_update_params.BrowserIsolationPermissionsApplicationLandingPageDesign
+        | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.BrowserIsolationPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.BrowserIsolationPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3237,10 +3797,20 @@ class AsyncApplicationsResource(AsyncAPIResource):
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
 
+          app_launcher_logo_url: The image URL of the logo shown in the App Launcher header.
+
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
 
-          policies: The policies that will apply to the application, in ascending order of
+          bg_color: The background color of the App Launcher page.
+
+          footer_links: The links in the App Launcher footer.
+
+          header_bg_color: The background color of the App Launcher header.
+
+          landing_page_design: The design of the App Launcher landing page shown to users when they log in.
+
+          policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
@@ -3250,6 +3820,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
               s, m, h.
+
+          skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
           extra_headers: Send extra headers
 
@@ -3264,7 +3836,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
     @overload
     async def update(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -3318,9 +3890,53 @@ class AsyncApplicationsResource(AsyncAPIResource):
         """
         ...
 
+    @overload
     async def update(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
+        *,
+        target_criteria: Iterable[application_update_params.InfrastructureApplicationTargetCriterion],
+        type: ApplicationType,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        policies: Iterable[application_update_params.InfrastructureApplicationPolicy] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationUpdateResponse]:
+        """
+        Updates an Access application.
+
+        Args:
+          app_id: Identifier
+
+          type: The application type.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          name: The name of the application.
+
+          policies: The policies that Access applies to the application.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    async def update(
+        self,
+        app_id: AppID,
         *,
         domain: str | NotGiven = NOT_GIVEN,
         type: str | ApplicationType | NotGiven = NOT_GIVEN,
@@ -3335,13 +3951,16 @@ class AsyncApplicationsResource(AsyncAPIResource):
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
         custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        destinations: Iterable[application_update_params.SelfHostedApplicationDestination] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-        policies: List[application_update_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.SelfHostedApplicationPolicy]
+        | Iterable[application_update_params.InfrastructureApplicationPolicy]
+        | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -3350,6 +3969,14 @@ class AsyncApplicationsResource(AsyncAPIResource):
         skip_interstitial: bool | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
         saas_app: application_update_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_update_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_update_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
+        target_criteria: Iterable[application_update_params.InfrastructureApplicationTargetCriterion]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3357,6 +3984,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[ApplicationUpdateResponse]:
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -3386,6 +4015,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
                         "custom_deny_url": custom_deny_url,
                         "custom_non_identity_deny_url": custom_non_identity_deny_url,
                         "custom_pages": custom_pages,
+                        "destinations": destinations,
                         "enable_binding_cookie": enable_binding_cookie,
                         "http_only_cookie_attribute": http_only_cookie_attribute,
                         "logo_url": logo_url,
@@ -3401,6 +4031,13 @@ class AsyncApplicationsResource(AsyncAPIResource):
                         "skip_interstitial": skip_interstitial,
                         "tags": tags,
                         "saas_app": saas_app,
+                        "app_launcher_logo_url": app_launcher_logo_url,
+                        "bg_color": bg_color,
+                        "footer_links": footer_links,
+                        "header_bg_color": header_bg_color,
+                        "landing_page_design": landing_page_design,
+                        "skip_app_launcher_login_page": skip_app_launcher_login_page,
+                        "target_criteria": target_criteria,
                     },
                     application_update_params.ApplicationUpdateParams,
                 ),
@@ -3422,6 +4059,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
+        aud: str | NotGiven = NOT_GIVEN,
+        domain: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        search: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3436,6 +4077,14 @@ class AsyncApplicationsResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          aud: The aud of the app.
+
+          domain: The domain of the app.
+
+          name: The name of the app.
+
+          search: Search for apps by other listed query parameters.
 
           extra_headers: Send extra headers
 
@@ -3461,14 +4110,26 @@ class AsyncApplicationsResource(AsyncAPIResource):
             f"/{account_or_zone}/{account_or_zone_id}/access/apps",
             page=AsyncSinglePage[ApplicationListResponse],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "aud": aud,
+                        "domain": domain,
+                        "name": name,
+                        "search": search,
+                    },
+                    application_list_params.ApplicationListParams,
+                ),
             ),
             model=cast(Any, ApplicationListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
     async def delete(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -3497,6 +4158,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -3523,7 +4186,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
     async def get(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -3552,6 +4215,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -3583,7 +4248,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
     async def revoke_tokens(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -3612,6 +4277,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -3672,6 +4339,10 @@ class ApplicationsResourceWithRawResponse:
     def policies(self) -> PoliciesResourceWithRawResponse:
         return PoliciesResourceWithRawResponse(self._applications.policies)
 
+    @cached_property
+    def policy_tests(self) -> PolicyTestsResourceWithRawResponse:
+        return PolicyTestsResourceWithRawResponse(self._applications.policy_tests)
+
 
 class AsyncApplicationsResourceWithRawResponse:
     def __init__(self, applications: AsyncApplicationsResource) -> None:
@@ -3707,6 +4378,10 @@ class AsyncApplicationsResourceWithRawResponse:
     @cached_property
     def policies(self) -> AsyncPoliciesResourceWithRawResponse:
         return AsyncPoliciesResourceWithRawResponse(self._applications.policies)
+
+    @cached_property
+    def policy_tests(self) -> AsyncPolicyTestsResourceWithRawResponse:
+        return AsyncPolicyTestsResourceWithRawResponse(self._applications.policy_tests)
 
 
 class ApplicationsResourceWithStreamingResponse:
@@ -3744,6 +4419,10 @@ class ApplicationsResourceWithStreamingResponse:
     def policies(self) -> PoliciesResourceWithStreamingResponse:
         return PoliciesResourceWithStreamingResponse(self._applications.policies)
 
+    @cached_property
+    def policy_tests(self) -> PolicyTestsResourceWithStreamingResponse:
+        return PolicyTestsResourceWithStreamingResponse(self._applications.policy_tests)
+
 
 class AsyncApplicationsResourceWithStreamingResponse:
     def __init__(self, applications: AsyncApplicationsResource) -> None:
@@ -3779,3 +4458,7 @@ class AsyncApplicationsResourceWithStreamingResponse:
     @cached_property
     def policies(self) -> AsyncPoliciesResourceWithStreamingResponse:
         return AsyncPoliciesResourceWithStreamingResponse(self._applications.policies)
+
+    @cached_property
+    def policy_tests(self) -> AsyncPolicyTestsResourceWithStreamingResponse:
+        return AsyncPolicyTestsResourceWithStreamingResponse(self._applications.policy_tests)

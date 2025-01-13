@@ -2,6 +2,7 @@
 
 from typing import Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from ..._models import BaseModel
 
@@ -50,22 +51,22 @@ class RegistrantContact(BaseModel):
 
 
 class TransferIn(BaseModel):
-    accept_foa: Optional[str] = None
+    accept_foa: Optional[Literal["needed", "ok"]] = None
     """Form of authorization has been accepted by the registrant."""
 
-    approve_transfer: Optional[str] = None
+    approve_transfer: Optional[Literal["needed", "ok", "pending", "trying", "rejected", "unknown"]] = None
     """Shows transfer status with the registry."""
 
     can_cancel_transfer: Optional[bool] = None
     """Indicates if cancellation is still possible."""
 
-    disable_privacy: Optional[object] = None
+    disable_privacy: Optional[Literal["needed", "ok", "unknown"]] = None
     """Privacy guards are disabled at the foreign registrar."""
 
-    enter_auth_code: Optional[str] = None
+    enter_auth_code: Optional[Literal["needed", "ok", "pending", "trying", "rejected"]] = None
     """Auth code has been entered and verified."""
 
-    unlock_domain: Optional[object] = None
+    unlock_domain: Optional[Literal["needed", "ok", "pending", "trying", "unknown"]] = None
     """Domain is unlocked at the foreign registrar."""
 
 

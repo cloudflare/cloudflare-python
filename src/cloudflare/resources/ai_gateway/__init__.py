@@ -8,6 +8,14 @@ from .logs import (
     LogsResourceWithStreamingResponse,
     AsyncLogsResourceWithStreamingResponse,
 )
+from .datasets import (
+    DatasetsResource,
+    AsyncDatasetsResource,
+    DatasetsResourceWithRawResponse,
+    AsyncDatasetsResourceWithRawResponse,
+    DatasetsResourceWithStreamingResponse,
+    AsyncDatasetsResourceWithStreamingResponse,
+)
 from .ai_gateway import (
     AIGatewayResource,
     AsyncAIGatewayResource,
@@ -16,14 +24,48 @@ from .ai_gateway import (
     AIGatewayResourceWithStreamingResponse,
     AsyncAIGatewayResourceWithStreamingResponse,
 )
+from .evaluations import (
+    EvaluationsResource,
+    AsyncEvaluationsResource,
+    EvaluationsResourceWithRawResponse,
+    AsyncEvaluationsResourceWithRawResponse,
+    EvaluationsResourceWithStreamingResponse,
+    AsyncEvaluationsResourceWithStreamingResponse,
+)
+from .evaluation_types import (
+    EvaluationTypesResource,
+    AsyncEvaluationTypesResource,
+    EvaluationTypesResourceWithRawResponse,
+    AsyncEvaluationTypesResourceWithRawResponse,
+    EvaluationTypesResourceWithStreamingResponse,
+    AsyncEvaluationTypesResourceWithStreamingResponse,
+)
 
 __all__ = [
+    "EvaluationTypesResource",
+    "AsyncEvaluationTypesResource",
+    "EvaluationTypesResourceWithRawResponse",
+    "AsyncEvaluationTypesResourceWithRawResponse",
+    "EvaluationTypesResourceWithStreamingResponse",
+    "AsyncEvaluationTypesResourceWithStreamingResponse",
     "LogsResource",
     "AsyncLogsResource",
     "LogsResourceWithRawResponse",
     "AsyncLogsResourceWithRawResponse",
     "LogsResourceWithStreamingResponse",
     "AsyncLogsResourceWithStreamingResponse",
+    "DatasetsResource",
+    "AsyncDatasetsResource",
+    "DatasetsResourceWithRawResponse",
+    "AsyncDatasetsResourceWithRawResponse",
+    "DatasetsResourceWithStreamingResponse",
+    "AsyncDatasetsResourceWithStreamingResponse",
+    "EvaluationsResource",
+    "AsyncEvaluationsResource",
+    "EvaluationsResourceWithRawResponse",
+    "AsyncEvaluationsResourceWithRawResponse",
+    "EvaluationsResourceWithStreamingResponse",
+    "AsyncEvaluationsResourceWithStreamingResponse",
     "AIGatewayResource",
     "AsyncAIGatewayResource",
     "AIGatewayResourceWithRawResponse",

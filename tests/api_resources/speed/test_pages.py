@@ -65,7 +65,7 @@ class TestPages:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             device_type="DESKTOP",
             metrics="performanceScore,ttfb,fcp,si,lcp,tti,tbt,cls",
-            region="us-central1",
+            region="asia-east1",
             start=parse_datetime("2014-01-01T05:20:00.12345Z"),
             tz="tz",
         )
@@ -79,7 +79,7 @@ class TestPages:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             device_type="DESKTOP",
             metrics="performanceScore,ttfb,fcp,si,lcp,tti,tbt,cls",
-            region="us-central1",
+            region="asia-east1",
             start=parse_datetime("2014-01-01T05:20:00.12345Z"),
             tz="tz",
             end=parse_datetime("2014-01-01T05:20:00.12345Z"),
@@ -94,7 +94,7 @@ class TestPages:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             device_type="DESKTOP",
             metrics="performanceScore,ttfb,fcp,si,lcp,tti,tbt,cls",
-            region="us-central1",
+            region="asia-east1",
             start=parse_datetime("2014-01-01T05:20:00.12345Z"),
             tz="tz",
         )
@@ -112,7 +112,7 @@ class TestPages:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             device_type="DESKTOP",
             metrics="performanceScore,ttfb,fcp,si,lcp,tti,tbt,cls",
-            region="us-central1",
+            region="asia-east1",
             start=parse_datetime("2014-01-01T05:20:00.12345Z"),
             tz="tz",
         ) as response:
@@ -133,7 +133,7 @@ class TestPages:
                 zone_id="",
                 device_type="DESKTOP",
                 metrics="performanceScore,ttfb,fcp,si,lcp,tti,tbt,cls",
-                region="us-central1",
+                region="asia-east1",
                 start=parse_datetime("2014-01-01T05:20:00.12345Z"),
                 tz="tz",
             )
@@ -144,7 +144,7 @@ class TestPages:
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 device_type="DESKTOP",
                 metrics="performanceScore,ttfb,fcp,si,lcp,tti,tbt,cls",
-                region="us-central1",
+                region="asia-east1",
                 start=parse_datetime("2014-01-01T05:20:00.12345Z"),
                 tz="tz",
             )
@@ -199,7 +199,7 @@ class TestAsyncPages:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             device_type="DESKTOP",
             metrics="performanceScore,ttfb,fcp,si,lcp,tti,tbt,cls",
-            region="us-central1",
+            region="asia-east1",
             start=parse_datetime("2014-01-01T05:20:00.12345Z"),
             tz="tz",
         )
@@ -213,7 +213,7 @@ class TestAsyncPages:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             device_type="DESKTOP",
             metrics="performanceScore,ttfb,fcp,si,lcp,tti,tbt,cls",
-            region="us-central1",
+            region="asia-east1",
             start=parse_datetime("2014-01-01T05:20:00.12345Z"),
             tz="tz",
             end=parse_datetime("2014-01-01T05:20:00.12345Z"),
@@ -228,7 +228,7 @@ class TestAsyncPages:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             device_type="DESKTOP",
             metrics="performanceScore,ttfb,fcp,si,lcp,tti,tbt,cls",
-            region="us-central1",
+            region="asia-east1",
             start=parse_datetime("2014-01-01T05:20:00.12345Z"),
             tz="tz",
         )
@@ -246,7 +246,7 @@ class TestAsyncPages:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             device_type="DESKTOP",
             metrics="performanceScore,ttfb,fcp,si,lcp,tti,tbt,cls",
-            region="us-central1",
+            region="asia-east1",
             start=parse_datetime("2014-01-01T05:20:00.12345Z"),
             tz="tz",
         ) as response:
@@ -267,7 +267,7 @@ class TestAsyncPages:
                 zone_id="",
                 device_type="DESKTOP",
                 metrics="performanceScore,ttfb,fcp,si,lcp,tti,tbt,cls",
-                region="us-central1",
+                region="asia-east1",
                 start=parse_datetime("2014-01-01T05:20:00.12345Z"),
                 tz="tz",
             )
@@ -278,7 +278,7 @@ class TestAsyncPages:
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 device_type="DESKTOP",
                 metrics="performanceScore,ttfb,fcp,si,lcp,tti,tbt,cls",
-                region="us-central1",
+                region="asia-east1",
                 start=parse_datetime("2014-01-01T05:20:00.12345Z"),
                 tz="tz",
             )

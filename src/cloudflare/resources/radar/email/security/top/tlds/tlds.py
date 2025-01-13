@@ -68,10 +68,21 @@ class TldsResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> TldsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return TldsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> TldsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return TldsResourceWithStreamingResponse(self)
 
     def get(
@@ -98,8 +109,8 @@ class TldsResource(SyncAPIResource):
     ) -> TldGetResponse:
         """Get the top TLDs by email messages.
 
-        Values are a percentage out of the total
-        emails.
+        Values are a percentage out of total email
+        volume.
 
         Args:
           arc: Filter for arc (Authenticated Received Chain).
@@ -181,10 +192,21 @@ class AsyncTldsResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncTldsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncTldsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncTldsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncTldsResourceWithStreamingResponse(self)
 
     async def get(
@@ -211,8 +233,8 @@ class AsyncTldsResource(AsyncAPIResource):
     ) -> TldGetResponse:
         """Get the top TLDs by email messages.
 
-        Values are a percentage out of the total
-        emails.
+        Values are a percentage out of total email
+        volume.
 
         Args:
           arc: Filter for arc (Authenticated Received Chain).

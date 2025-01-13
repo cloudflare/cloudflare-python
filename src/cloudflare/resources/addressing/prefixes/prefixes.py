@@ -6,15 +6,6 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from .bgp import (
-    BGPResource,
-    AsyncBGPResource,
-    BGPResourceWithRawResponse,
-    AsyncBGPResourceWithRawResponse,
-    BGPResourceWithStreamingResponse,
-    AsyncBGPResourceWithStreamingResponse,
-)
-from .bgp.bgp import BGPResource, AsyncBGPResource
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
     maybe_transform,
@@ -37,9 +28,33 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
+from .bgp_prefixes import (
+    BGPPrefixesResource,
+    AsyncBGPPrefixesResource,
+    BGPPrefixesResourceWithRawResponse,
+    AsyncBGPPrefixesResourceWithRawResponse,
+    BGPPrefixesResourceWithStreamingResponse,
+    AsyncBGPPrefixesResourceWithStreamingResponse,
+)
 from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import AsyncPaginator, make_request_options
+from .service_bindings import (
+    ServiceBindingsResource,
+    AsyncServiceBindingsResource,
+    ServiceBindingsResourceWithRawResponse,
+    AsyncServiceBindingsResourceWithRawResponse,
+    ServiceBindingsResourceWithStreamingResponse,
+    AsyncServiceBindingsResourceWithStreamingResponse,
+)
 from ....types.addressing import prefix_edit_params, prefix_create_params
+from .advertisement_status import (
+    AdvertisementStatusResource,
+    AsyncAdvertisementStatusResource,
+    AdvertisementStatusResourceWithRawResponse,
+    AsyncAdvertisementStatusResourceWithRawResponse,
+    AdvertisementStatusResourceWithStreamingResponse,
+    AsyncAdvertisementStatusResourceWithStreamingResponse,
+)
 from ....types.addressing.prefix import Prefix
 from ....types.addressing.prefix_delete_response import PrefixDeleteResponse
 
@@ -48,8 +63,16 @@ __all__ = ["PrefixesResource", "AsyncPrefixesResource"]
 
 class PrefixesResource(SyncAPIResource):
     @cached_property
-    def bgp(self) -> BGPResource:
-        return BGPResource(self._client)
+    def service_bindings(self) -> ServiceBindingsResource:
+        return ServiceBindingsResource(self._client)
+
+    @cached_property
+    def bgp_prefixes(self) -> BGPPrefixesResource:
+        return BGPPrefixesResource(self._client)
+
+    @cached_property
+    def advertisement_status(self) -> AdvertisementStatusResource:
+        return AdvertisementStatusResource(self._client)
 
     @cached_property
     def delegations(self) -> DelegationsResource:
@@ -57,10 +80,21 @@ class PrefixesResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> PrefixesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return PrefixesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> PrefixesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return PrefixesResourceWithStreamingResponse(self)
 
     def create(
@@ -81,7 +115,7 @@ class PrefixesResource(SyncAPIResource):
         Add a new prefix under the account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
           asn: Autonomous System Number (ASN) the prefix will be advertised under.
 
@@ -134,7 +168,7 @@ class PrefixesResource(SyncAPIResource):
         List all prefixes owned by the account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
           extra_headers: Send extra headers
 
@@ -166,14 +200,14 @@ class PrefixesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PrefixDeleteResponse]:
+    ) -> PrefixDeleteResponse:
         """
         Delete an unapproved prefix owned by the account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          prefix_id: Identifier
+          prefix_id: Identifier of an IP Prefix.
 
           extra_headers: Send extra headers
 
@@ -190,13 +224,9 @@ class PrefixesResource(SyncAPIResource):
         return self._delete(
             f"/accounts/{account_id}/addressing/prefixes/{prefix_id}",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[PrefixDeleteResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[PrefixDeleteResponse]], ResultWrapper[PrefixDeleteResponse]),
+            cast_to=PrefixDeleteResponse,
         )
 
     def edit(
@@ -216,9 +246,9 @@ class PrefixesResource(SyncAPIResource):
         Modify the description for a prefix owned by the account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          prefix_id: Identifier
+          prefix_id: Identifier of an IP Prefix.
 
           description: Description of the prefix.
 
@@ -263,9 +293,9 @@ class PrefixesResource(SyncAPIResource):
         List a particular prefix owned by the account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          prefix_id: Identifier
+          prefix_id: Identifier of an IP Prefix.
 
           extra_headers: Send extra headers
 
@@ -294,8 +324,16 @@ class PrefixesResource(SyncAPIResource):
 
 class AsyncPrefixesResource(AsyncAPIResource):
     @cached_property
-    def bgp(self) -> AsyncBGPResource:
-        return AsyncBGPResource(self._client)
+    def service_bindings(self) -> AsyncServiceBindingsResource:
+        return AsyncServiceBindingsResource(self._client)
+
+    @cached_property
+    def bgp_prefixes(self) -> AsyncBGPPrefixesResource:
+        return AsyncBGPPrefixesResource(self._client)
+
+    @cached_property
+    def advertisement_status(self) -> AsyncAdvertisementStatusResource:
+        return AsyncAdvertisementStatusResource(self._client)
 
     @cached_property
     def delegations(self) -> AsyncDelegationsResource:
@@ -303,10 +341,21 @@ class AsyncPrefixesResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncPrefixesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncPrefixesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncPrefixesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncPrefixesResourceWithStreamingResponse(self)
 
     async def create(
@@ -327,7 +376,7 @@ class AsyncPrefixesResource(AsyncAPIResource):
         Add a new prefix under the account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
           asn: Autonomous System Number (ASN) the prefix will be advertised under.
 
@@ -380,7 +429,7 @@ class AsyncPrefixesResource(AsyncAPIResource):
         List all prefixes owned by the account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
           extra_headers: Send extra headers
 
@@ -412,14 +461,14 @@ class AsyncPrefixesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PrefixDeleteResponse]:
+    ) -> PrefixDeleteResponse:
         """
         Delete an unapproved prefix owned by the account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          prefix_id: Identifier
+          prefix_id: Identifier of an IP Prefix.
 
           extra_headers: Send extra headers
 
@@ -436,13 +485,9 @@ class AsyncPrefixesResource(AsyncAPIResource):
         return await self._delete(
             f"/accounts/{account_id}/addressing/prefixes/{prefix_id}",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[PrefixDeleteResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[PrefixDeleteResponse]], ResultWrapper[PrefixDeleteResponse]),
+            cast_to=PrefixDeleteResponse,
         )
 
     async def edit(
@@ -462,9 +507,9 @@ class AsyncPrefixesResource(AsyncAPIResource):
         Modify the description for a prefix owned by the account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          prefix_id: Identifier
+          prefix_id: Identifier of an IP Prefix.
 
           description: Description of the prefix.
 
@@ -509,9 +554,9 @@ class AsyncPrefixesResource(AsyncAPIResource):
         List a particular prefix owned by the account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          prefix_id: Identifier
+          prefix_id: Identifier of an IP Prefix.
 
           extra_headers: Send extra headers
 
@@ -559,8 +604,16 @@ class PrefixesResourceWithRawResponse:
         )
 
     @cached_property
-    def bgp(self) -> BGPResourceWithRawResponse:
-        return BGPResourceWithRawResponse(self._prefixes.bgp)
+    def service_bindings(self) -> ServiceBindingsResourceWithRawResponse:
+        return ServiceBindingsResourceWithRawResponse(self._prefixes.service_bindings)
+
+    @cached_property
+    def bgp_prefixes(self) -> BGPPrefixesResourceWithRawResponse:
+        return BGPPrefixesResourceWithRawResponse(self._prefixes.bgp_prefixes)
+
+    @cached_property
+    def advertisement_status(self) -> AdvertisementStatusResourceWithRawResponse:
+        return AdvertisementStatusResourceWithRawResponse(self._prefixes.advertisement_status)
 
     @cached_property
     def delegations(self) -> DelegationsResourceWithRawResponse:
@@ -588,8 +641,16 @@ class AsyncPrefixesResourceWithRawResponse:
         )
 
     @cached_property
-    def bgp(self) -> AsyncBGPResourceWithRawResponse:
-        return AsyncBGPResourceWithRawResponse(self._prefixes.bgp)
+    def service_bindings(self) -> AsyncServiceBindingsResourceWithRawResponse:
+        return AsyncServiceBindingsResourceWithRawResponse(self._prefixes.service_bindings)
+
+    @cached_property
+    def bgp_prefixes(self) -> AsyncBGPPrefixesResourceWithRawResponse:
+        return AsyncBGPPrefixesResourceWithRawResponse(self._prefixes.bgp_prefixes)
+
+    @cached_property
+    def advertisement_status(self) -> AsyncAdvertisementStatusResourceWithRawResponse:
+        return AsyncAdvertisementStatusResourceWithRawResponse(self._prefixes.advertisement_status)
 
     @cached_property
     def delegations(self) -> AsyncDelegationsResourceWithRawResponse:
@@ -617,8 +678,16 @@ class PrefixesResourceWithStreamingResponse:
         )
 
     @cached_property
-    def bgp(self) -> BGPResourceWithStreamingResponse:
-        return BGPResourceWithStreamingResponse(self._prefixes.bgp)
+    def service_bindings(self) -> ServiceBindingsResourceWithStreamingResponse:
+        return ServiceBindingsResourceWithStreamingResponse(self._prefixes.service_bindings)
+
+    @cached_property
+    def bgp_prefixes(self) -> BGPPrefixesResourceWithStreamingResponse:
+        return BGPPrefixesResourceWithStreamingResponse(self._prefixes.bgp_prefixes)
+
+    @cached_property
+    def advertisement_status(self) -> AdvertisementStatusResourceWithStreamingResponse:
+        return AdvertisementStatusResourceWithStreamingResponse(self._prefixes.advertisement_status)
 
     @cached_property
     def delegations(self) -> DelegationsResourceWithStreamingResponse:
@@ -646,8 +715,16 @@ class AsyncPrefixesResourceWithStreamingResponse:
         )
 
     @cached_property
-    def bgp(self) -> AsyncBGPResourceWithStreamingResponse:
-        return AsyncBGPResourceWithStreamingResponse(self._prefixes.bgp)
+    def service_bindings(self) -> AsyncServiceBindingsResourceWithStreamingResponse:
+        return AsyncServiceBindingsResourceWithStreamingResponse(self._prefixes.service_bindings)
+
+    @cached_property
+    def bgp_prefixes(self) -> AsyncBGPPrefixesResourceWithStreamingResponse:
+        return AsyncBGPPrefixesResourceWithStreamingResponse(self._prefixes.bgp_prefixes)
+
+    @cached_property
+    def advertisement_status(self) -> AsyncAdvertisementStatusResourceWithStreamingResponse:
+        return AsyncAdvertisementStatusResourceWithStreamingResponse(self._prefixes.advertisement_status)
 
     @cached_property
     def delegations(self) -> AsyncDelegationsResourceWithStreamingResponse:

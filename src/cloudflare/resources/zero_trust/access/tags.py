@@ -2,8 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Union, Optional, cast
-from datetime import datetime
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -33,19 +32,28 @@ __all__ = ["TagsResource", "AsyncTagsResource"]
 class TagsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> TagsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return TagsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> TagsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return TagsResourceWithStreamingResponse(self)
 
     def create(
         self,
         *,
         account_id: str,
-        name: str,
-        created_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        updated_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -73,14 +81,7 @@ class TagsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/access/tags",
-            body=maybe_transform(
-                {
-                    "name": name,
-                    "created_at": created_at,
-                    "updated_at": updated_at,
-                },
-                tag_create_params.TagCreateParams,
-            ),
+            body=maybe_transform({"name": name}, tag_create_params.TagCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -97,8 +98,6 @@ class TagsResource(SyncAPIResource):
         *,
         account_id: str,
         name: str,
-        created_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        updated_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -130,14 +129,7 @@ class TagsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `tag_name` but received {tag_name!r}")
         return self._put(
             f"/accounts/{account_id}/access/tags/{tag_name}",
-            body=maybe_transform(
-                {
-                    "name": name,
-                    "created_at": created_at,
-                    "updated_at": updated_at,
-                },
-                tag_update_params.TagUpdateParams,
-            ),
+            body=maybe_transform({"name": name}, tag_update_params.TagUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -276,19 +268,28 @@ class TagsResource(SyncAPIResource):
 class AsyncTagsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncTagsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncTagsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncTagsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncTagsResourceWithStreamingResponse(self)
 
     async def create(
         self,
         *,
         account_id: str,
-        name: str,
-        created_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        updated_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -316,14 +317,7 @@ class AsyncTagsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/access/tags",
-            body=await async_maybe_transform(
-                {
-                    "name": name,
-                    "created_at": created_at,
-                    "updated_at": updated_at,
-                },
-                tag_create_params.TagCreateParams,
-            ),
+            body=await async_maybe_transform({"name": name}, tag_create_params.TagCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -340,8 +334,6 @@ class AsyncTagsResource(AsyncAPIResource):
         *,
         account_id: str,
         name: str,
-        created_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        updated_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -373,14 +365,7 @@ class AsyncTagsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `tag_name` but received {tag_name!r}")
         return await self._put(
             f"/accounts/{account_id}/access/tags/{tag_name}",
-            body=await async_maybe_transform(
-                {
-                    "name": name,
-                    "created_at": created_at,
-                    "updated_at": updated_at,
-                },
-                tag_update_params.TagUpdateParams,
-            ),
+            body=await async_maybe_transform({"name": name}, tag_update_params.TagUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

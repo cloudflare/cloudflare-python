@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable
+from typing import Dict, List, Iterable
 from typing_extensions import Required, TypedDict
 
 from .rules_param import RulesParam
@@ -30,7 +30,7 @@ class LoadBalancerEditParams(TypedDict, total=False):
     is retried once against this alternate origin.
     """
 
-    country_pools: object
+    country_pools: Dict[str, List[str]]
     """
     A mapping of country codes to a list of pool IDs (ordered by their failover
     priority) for the given country. Any country not explicitly defined will fall
@@ -51,7 +51,7 @@ class LoadBalancerEditParams(TypedDict, total=False):
     enabled: bool
     """Whether to enable (the default) this load balancer."""
 
-    fallback_pool: object
+    fallback_pool: str
     """The pool ID to use when all other pools are detected as unhealthy."""
 
     location_strategy: LocationStrategyParam
@@ -67,7 +67,7 @@ class LoadBalancerEditParams(TypedDict, total=False):
     Balancer will take precedence and the DNS record will not be used.
     """
 
-    pop_pools: object
+    pop_pools: Dict[str, List[str]]
     """
     (Enterprise only): A mapping of Cloudflare PoP identifiers to a list of pool IDs
     (ordered by their failover priority) for the PoP (datacenter). Any PoPs not
@@ -89,7 +89,7 @@ class LoadBalancerEditParams(TypedDict, total=False):
       open connections.
     """
 
-    region_pools: object
+    region_pools: Dict[str, List[str]]
     """
     A mapping of region codes to a list of pool IDs (ordered by their failover
     priority) for the given region. Any regions not explicitly defined will fall
@@ -105,7 +105,7 @@ class LoadBalancerEditParams(TypedDict, total=False):
     session_affinity: SessionAffinity
     """
     Specifies the type of session affinity the load balancer should use unless
-    specified as `"none"` or "" (default). The supported types are:
+    specified as `"none"`. The supported types are:
 
     - `"cookie"`: On the first request to a proxied load balancer, a cookie is
       generated, encoding information of which origin the request will be forwarded

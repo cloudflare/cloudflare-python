@@ -31,6 +31,7 @@ class PostureUpdateParams(TypedDict, total=False):
             "os_version",
             "domain_joined",
             "client_certificate",
+            "client_certificate_v2",
             "unique_client_id",
             "kolide",
             "tanium_s2s",
@@ -38,6 +39,7 @@ class PostureUpdateParams(TypedDict, total=False):
             "intune",
             "workspace_one",
             "sentinelone_s2s",
+            "custom_s2s",
         ]
     ]
     """The type of device posture rule."""

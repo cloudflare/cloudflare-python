@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 __all__ = ["CertificateRequestType"]
 
-CertificateRequestType = Literal["origin-rsa", "origin-ecc", "keyless-certificate"]
+CertificateRequestType: TypeAlias = Literal["origin-rsa", "origin-ecc", "keyless-certificate"]

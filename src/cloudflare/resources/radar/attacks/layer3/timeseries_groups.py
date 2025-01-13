@@ -48,10 +48,21 @@ __all__ = ["TimeseriesGroupsResource", "AsyncTimeseriesGroupsResource"]
 class TimeseriesGroupsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> TimeseriesGroupsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return TimeseriesGroupsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> TimeseriesGroupsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return TimeseriesGroupsResourceWithStreamingResponse(self)
 
     def bitrate(
@@ -268,7 +279,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupGetResponse:
         """
-        Get a timeseries of the percentage distribution of network protocols in Layer
+        Get a time series of the percentage distribution of network protocols in Layer
         3/4 attacks.
 
         Args:
@@ -358,7 +369,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupIndustryResponse:
         """
-        Percentage distribution of attacks by industry used over time.
+        Percentage distribution of attacks by industry targeted over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -748,7 +759,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupVerticalResponse:
         """
-        Percentage distribution of attacks by vertical used over time.
+        Percentage distribution of attacks by vertical targeted over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -830,10 +841,21 @@ class TimeseriesGroupsResource(SyncAPIResource):
 class AsyncTimeseriesGroupsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncTimeseriesGroupsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncTimeseriesGroupsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncTimeseriesGroupsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncTimeseriesGroupsResourceWithStreamingResponse(self)
 
     async def bitrate(
@@ -1050,7 +1072,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupGetResponse:
         """
-        Get a timeseries of the percentage distribution of network protocols in Layer
+        Get a time series of the percentage distribution of network protocols in Layer
         3/4 attacks.
 
         Args:
@@ -1140,7 +1162,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupIndustryResponse:
         """
-        Percentage distribution of attacks by industry used over time.
+        Percentage distribution of attacks by industry targeted over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -1530,7 +1552,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupVerticalResponse:
         """
-        Percentage distribution of attacks by vertical used over time.
+        Percentage distribution of attacks by vertical targeted over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes

@@ -11,6 +11,9 @@ __all__ = ["DatasetCreation"]
 class DatasetCreation(BaseModel):
     dataset: Dataset
 
+    encoding_version: int
+    """Encoding version to use for dataset"""
+
     max_cells: int
 
     version: int

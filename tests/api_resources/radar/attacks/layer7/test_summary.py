@@ -33,22 +33,14 @@ class TestSummary:
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.attacks.layer7.summary.get(
-            asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            asn=["string"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            location=["string"],
+            name=["string"],
         )
         assert_matches_type(SummaryGetResponse, summary, path=["response"])
 
@@ -80,25 +72,18 @@ class TestSummary:
     @parametrize
     def test_method_http_method_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.attacks.layer7.summary.http_method(
-            asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            asn=["string"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
-            ip_version=["IPv4", "IPv6"],
-            location=["string", "string", "string"],
-            mitigation_product=["DDOS", "WAF", "BOT_MANAGEMENT"],
-            name=["string", "string", "string"],
+            http_version=["HTTPv1"],
+            ip_version=["IPv4"],
+            limit_per_group=10,
+            location=["string"],
+            mitigation_product=["DDOS"],
+            name=["string"],
         )
         assert_matches_type(SummaryHTTPMethodResponse, summary, path=["response"])
 
@@ -130,25 +115,17 @@ class TestSummary:
     @parametrize
     def test_method_http_version_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.attacks.layer7.summary.http_version(
-            asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            asn=["string"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            http_method=["GET", "POST", "DELETE"],
-            ip_version=["IPv4", "IPv6"],
-            location=["string", "string", "string"],
-            mitigation_product=["DDOS", "WAF", "BOT_MANAGEMENT"],
-            name=["string", "string", "string"],
+            http_method=["GET"],
+            ip_version=["IPv4"],
+            location=["string"],
+            mitigation_product=["DDOS"],
+            name=["string"],
         )
         assert_matches_type(SummaryHTTPVersionResponse, summary, path=["response"])
 
@@ -180,25 +157,17 @@ class TestSummary:
     @parametrize
     def test_method_ip_version_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.attacks.layer7.summary.ip_version(
-            asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            asn=["string"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            http_method=["GET", "POST", "DELETE"],
-            http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
-            location=["string", "string", "string"],
-            mitigation_product=["DDOS", "WAF", "BOT_MANAGEMENT"],
-            name=["string", "string", "string"],
+            http_method=["GET"],
+            http_version=["HTTPv1"],
+            location=["string"],
+            mitigation_product=["DDOS"],
+            name=["string"],
         )
         assert_matches_type(SummaryIPVersionResponse, summary, path=["response"])
 
@@ -230,26 +199,19 @@ class TestSummary:
     @parametrize
     def test_method_managed_rules_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.attacks.layer7.summary.managed_rules(
-            asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            asn=["string"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            http_method=["GET", "POST", "DELETE"],
-            http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
-            ip_version=["IPv4", "IPv6"],
-            location=["string", "string", "string"],
-            mitigation_product=["DDOS", "WAF", "BOT_MANAGEMENT"],
-            name=["string", "string", "string"],
+            http_method=["GET"],
+            http_version=["HTTPv1"],
+            ip_version=["IPv4"],
+            limit_per_group=10,
+            location=["string"],
+            mitigation_product=["DDOS"],
+            name=["string"],
         )
         assert_matches_type(SummaryManagedRulesResponse, summary, path=["response"])
 
@@ -281,25 +243,18 @@ class TestSummary:
     @parametrize
     def test_method_mitigation_product_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.attacks.layer7.summary.mitigation_product(
-            asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            asn=["string"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            http_method=["GET", "POST", "DELETE"],
-            http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
-            ip_version=["IPv4", "IPv6"],
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            http_method=["GET"],
+            http_version=["HTTPv1"],
+            ip_version=["IPv4"],
+            limit_per_group=10,
+            location=["string"],
+            name=["string"],
         )
         assert_matches_type(SummaryMitigationProductResponse, summary, path=["response"])
 
@@ -335,22 +290,14 @@ class TestAsyncSummary:
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.attacks.layer7.summary.get(
-            asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            asn=["string"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            location=["string"],
+            name=["string"],
         )
         assert_matches_type(SummaryGetResponse, summary, path=["response"])
 
@@ -382,25 +329,18 @@ class TestAsyncSummary:
     @parametrize
     async def test_method_http_method_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.attacks.layer7.summary.http_method(
-            asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            asn=["string"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
-            ip_version=["IPv4", "IPv6"],
-            location=["string", "string", "string"],
-            mitigation_product=["DDOS", "WAF", "BOT_MANAGEMENT"],
-            name=["string", "string", "string"],
+            http_version=["HTTPv1"],
+            ip_version=["IPv4"],
+            limit_per_group=10,
+            location=["string"],
+            mitigation_product=["DDOS"],
+            name=["string"],
         )
         assert_matches_type(SummaryHTTPMethodResponse, summary, path=["response"])
 
@@ -432,25 +372,17 @@ class TestAsyncSummary:
     @parametrize
     async def test_method_http_version_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.attacks.layer7.summary.http_version(
-            asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            asn=["string"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            http_method=["GET", "POST", "DELETE"],
-            ip_version=["IPv4", "IPv6"],
-            location=["string", "string", "string"],
-            mitigation_product=["DDOS", "WAF", "BOT_MANAGEMENT"],
-            name=["string", "string", "string"],
+            http_method=["GET"],
+            ip_version=["IPv4"],
+            location=["string"],
+            mitigation_product=["DDOS"],
+            name=["string"],
         )
         assert_matches_type(SummaryHTTPVersionResponse, summary, path=["response"])
 
@@ -482,25 +414,17 @@ class TestAsyncSummary:
     @parametrize
     async def test_method_ip_version_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.attacks.layer7.summary.ip_version(
-            asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            asn=["string"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            http_method=["GET", "POST", "DELETE"],
-            http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
-            location=["string", "string", "string"],
-            mitigation_product=["DDOS", "WAF", "BOT_MANAGEMENT"],
-            name=["string", "string", "string"],
+            http_method=["GET"],
+            http_version=["HTTPv1"],
+            location=["string"],
+            mitigation_product=["DDOS"],
+            name=["string"],
         )
         assert_matches_type(SummaryIPVersionResponse, summary, path=["response"])
 
@@ -532,26 +456,19 @@ class TestAsyncSummary:
     @parametrize
     async def test_method_managed_rules_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.attacks.layer7.summary.managed_rules(
-            asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            asn=["string"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            http_method=["GET", "POST", "DELETE"],
-            http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
-            ip_version=["IPv4", "IPv6"],
-            location=["string", "string", "string"],
-            mitigation_product=["DDOS", "WAF", "BOT_MANAGEMENT"],
-            name=["string", "string", "string"],
+            http_method=["GET"],
+            http_version=["HTTPv1"],
+            ip_version=["IPv4"],
+            limit_per_group=10,
+            location=["string"],
+            mitigation_product=["DDOS"],
+            name=["string"],
         )
         assert_matches_type(SummaryManagedRulesResponse, summary, path=["response"])
 
@@ -583,25 +500,18 @@ class TestAsyncSummary:
     @parametrize
     async def test_method_mitigation_product_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.attacks.layer7.summary.mitigation_product(
-            asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            asn=["string"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            http_method=["GET", "POST", "DELETE"],
-            http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
-            ip_version=["IPv4", "IPv6"],
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
+            http_method=["GET"],
+            http_version=["HTTPv1"],
+            ip_version=["IPv4"],
+            limit_per_group=10,
+            location=["string"],
+            name=["string"],
         )
         assert_matches_type(SummaryMitigationProductResponse, summary, path=["response"])
 

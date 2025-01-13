@@ -2,8 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, cast
-from typing_extensions import Literal
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -16,10 +15,6 @@ from .summary import (
     AsyncSummaryResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
 from ...._compat import cached_property
 from .behaviours import (
     BehavioursResource,
@@ -37,7 +32,8 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from .integrations import (
+from ...._base_client import make_request_options
+from .integrations.integrations import (
     IntegrationsResource,
     AsyncIntegrationsResource,
     IntegrationsResourceWithRawResponse,
@@ -45,11 +41,7 @@ from .integrations import (
     IntegrationsResourceWithStreamingResponse,
     AsyncIntegrationsResourceWithStreamingResponse,
 )
-from ...._base_client import make_request_options
-from ....types.zero_trust import risk_scoring_get_params
-from .integrations.integrations import IntegrationsResource, AsyncIntegrationsResource
 from ....types.zero_trust.risk_scoring_get_response import RiskScoringGetResponse
-from ....types.zero_trust.risk_scoring_reset_response import RiskScoringResetResponse
 
 __all__ = ["RiskScoringResource", "AsyncRiskScoringResource"]
 
@@ -69,36 +61,39 @@ class RiskScoringResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> RiskScoringResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return RiskScoringResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> RiskScoringResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return RiskScoringResourceWithStreamingResponse(self)
 
     def get(
         self,
         user_id: str,
         *,
-        account_identifier: str,
-        direction: Literal["desc", "asc"] | NotGiven = NOT_GIVEN,
-        order_by: Literal["timestamp", "risk_level"] | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RiskScoringGetResponse:
+    ) -> Optional[RiskScoringGetResponse]:
         """
         Get risk event/score information for a specific user
 
         Args:
-          account_identifier: Identifier
-
-          user_id: The ID for a user
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -107,51 +102,38 @@ class RiskScoringResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
         return self._get(
-            f"/accounts/{account_identifier}/zt_risk_scoring/{user_id}",
+            f"/accounts/{account_id}/zt_risk_scoring/{user_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "direction": direction,
-                        "order_by": order_by,
-                        "page": page,
-                        "per_page": per_page,
-                    },
-                    risk_scoring_get_params.RiskScoringGetParams,
-                ),
-                post_parser=ResultWrapper[RiskScoringGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[RiskScoringGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[RiskScoringGetResponse], ResultWrapper[RiskScoringGetResponse]),
+            cast_to=cast(Type[Optional[RiskScoringGetResponse]], ResultWrapper[RiskScoringGetResponse]),
         )
 
     def reset(
         self,
         user_id: str,
         *,
-        account_identifier: str,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RiskScoringResetResponse:
+    ) -> object:
         """
         Clear the risk score for a particular user
 
         Args:
-          account_identifier: Identifier
-
-          user_id: The ID for a user
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -160,25 +142,20 @@ class RiskScoringResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
-        return cast(
-            RiskScoringResetResponse,
-            self._post(
-                f"/accounts/{account_identifier}/zt_risk_scoring/{user_id}/reset",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[RiskScoringResetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[RiskScoringResetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._post(
+            f"/accounts/{account_id}/zt_risk_scoring/{user_id}/reset",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
 
@@ -197,36 +174,39 @@ class AsyncRiskScoringResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncRiskScoringResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncRiskScoringResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncRiskScoringResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncRiskScoringResourceWithStreamingResponse(self)
 
     async def get(
         self,
         user_id: str,
         *,
-        account_identifier: str,
-        direction: Literal["desc", "asc"] | NotGiven = NOT_GIVEN,
-        order_by: Literal["timestamp", "risk_level"] | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RiskScoringGetResponse:
+    ) -> Optional[RiskScoringGetResponse]:
         """
         Get risk event/score information for a specific user
 
         Args:
-          account_identifier: Identifier
-
-          user_id: The ID for a user
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -235,51 +215,38 @@ class AsyncRiskScoringResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
         return await self._get(
-            f"/accounts/{account_identifier}/zt_risk_scoring/{user_id}",
+            f"/accounts/{account_id}/zt_risk_scoring/{user_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "direction": direction,
-                        "order_by": order_by,
-                        "page": page,
-                        "per_page": per_page,
-                    },
-                    risk_scoring_get_params.RiskScoringGetParams,
-                ),
-                post_parser=ResultWrapper[RiskScoringGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[RiskScoringGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[RiskScoringGetResponse], ResultWrapper[RiskScoringGetResponse]),
+            cast_to=cast(Type[Optional[RiskScoringGetResponse]], ResultWrapper[RiskScoringGetResponse]),
         )
 
     async def reset(
         self,
         user_id: str,
         *,
-        account_identifier: str,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RiskScoringResetResponse:
+    ) -> object:
         """
         Clear the risk score for a particular user
 
         Args:
-          account_identifier: Identifier
-
-          user_id: The ID for a user
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -288,25 +255,20 @@ class AsyncRiskScoringResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not user_id:
             raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
-        return cast(
-            RiskScoringResetResponse,
-            await self._post(
-                f"/accounts/{account_identifier}/zt_risk_scoring/{user_id}/reset",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[RiskScoringResetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[RiskScoringResetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._post(
+            f"/accounts/{account_id}/zt_risk_scoring/{user_id}/reset",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
 

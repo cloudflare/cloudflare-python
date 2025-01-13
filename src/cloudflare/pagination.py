@@ -45,7 +45,8 @@ class SyncV4PagePagination(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
     def _get_page_items(self) -> List[_T]:
         items = None
         if self.result is not None:
-            items = self.result.items
+            if self.result.items is not None:
+                items = self.result.items
         if not items:
             return []
         return items
@@ -65,7 +66,8 @@ class AsyncV4PagePagination(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
     def _get_page_items(self) -> List[_T]:
         items = None
         if self.result is not None:
-            items = self.result.items
+            if self.result.items is not None:
+                items = self.result.items
         if not items:
             return []
         return items
@@ -142,7 +144,8 @@ class SyncCursorPagination(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
     def next_page_info(self) -> Optional[PageInfo]:
         cursor = None
         if self.result_info is not None:
-            cursor = self.result_info.cursor
+            if self.result_info.cursor is not None:
+                cursor = self.result_info.cursor
         if not cursor:
             return None
 
@@ -164,7 +167,8 @@ class AsyncCursorPagination(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
     def next_page_info(self) -> Optional[PageInfo]:
         cursor = None
         if self.result_info is not None:
-            cursor = self.result_info.cursor
+            if self.result_info.cursor is not None:
+                cursor = self.result_info.cursor
         if not cursor:
             return None
 
@@ -194,7 +198,8 @@ class SyncCursorLimitPagination(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
     def next_page_info(self) -> Optional[PageInfo]:
         cursor = None
         if self.result_info is not None:
-            cursor = self.result_info.cursor
+            if self.result_info.cursor is not None:
+                cursor = self.result_info.cursor
         if not cursor:
             return None
 
@@ -216,7 +221,8 @@ class AsyncCursorLimitPagination(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
     def next_page_info(self) -> Optional[PageInfo]:
         cursor = None
         if self.result_info is not None:
-            cursor = self.result_info.cursor
+            if self.result_info.cursor is not None:
+                cursor = self.result_info.cursor
         if not cursor:
             return None
 

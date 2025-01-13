@@ -26,6 +26,16 @@ class TestUsers:
         assert_matches_type(SyncSinglePage[AccessUser], user, path=["response"])
 
     @parametrize
+    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
+        user = client.zero_trust.access.users.list(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            email="email",
+            name="name",
+            search="search",
+        )
+        assert_matches_type(SyncSinglePage[AccessUser], user, path=["response"])
+
+    @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.users.with_raw_response.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -64,6 +74,16 @@ class TestAsyncUsers:
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         user = await async_client.zero_trust.access.users.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(AsyncSinglePage[AccessUser], user, path=["response"])
+
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        user = await async_client.zero_trust.access.users.list(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            email="email",
+            name="name",
+            search="search",
         )
         assert_matches_type(AsyncSinglePage[AccessUser], user, path=["response"])
 

@@ -33,10 +33,21 @@ __all__ = ["DirectUploadResource", "AsyncDirectUploadResource"]
 class DirectUploadResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> DirectUploadResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return DirectUploadResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> DirectUploadResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return DirectUploadResourceWithStreamingResponse(self)
 
     def create(
@@ -137,10 +148,21 @@ class DirectUploadResource(SyncAPIResource):
 class AsyncDirectUploadResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncDirectUploadResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncDirectUploadResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncDirectUploadResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncDirectUploadResourceWithStreamingResponse(self)
 
     async def create(

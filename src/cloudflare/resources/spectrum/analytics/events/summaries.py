@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Union, Iterable, Optional, cast
+from typing import List, Type, Union, Optional, cast
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -33,16 +33,27 @@ __all__ = ["SummariesResource", "AsyncSummariesResource"]
 class SummariesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> SummariesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return SummariesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> SummariesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return SummariesResourceWithStreamingResponse(self)
 
     def get(
         self,
-        zone: str,
         *,
+        zone_id: str,
         dimensions: List[Dimension] | NotGiven = NOT_GIVEN,
         filters: str | NotGiven = NOT_GIVEN,
         metrics: List[
@@ -52,7 +63,7 @@ class SummariesResource(SyncAPIResource):
         ]
         | NotGiven = NOT_GIVEN,
         since: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        sort: Iterable[object] | NotGiven = NOT_GIVEN,
+        sort: List[str] | NotGiven = NOT_GIVEN,
         until: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -65,7 +76,7 @@ class SummariesResource(SyncAPIResource):
         Retrieves a list of summarised aggregate metrics over a given time period.
 
         Args:
-          zone: Identifier
+          zone_id: Identifier
 
           dimensions:
               Can be used to break down the data by given attributes. Options are:
@@ -88,10 +99,10 @@ class SummariesResource(SyncAPIResource):
               | -------- | ------------------------ | ----------- |
               | ==       | Equals                   | %3D%3D      |
               | !=       | Does not equals          | !%3D        |
-              | >        | Greater Than             | %3E         |
-              | <        | Less Than                | %3C         |
-              | >=       | Greater than or equal to | %3E%3D      |
-              | <=       | Less than or equal to    | %3C%3D .    |
+              | \\>>       | Greater Than             | %3E         |
+              | \\<<       | Less Than                | %3C         |
+              | \\>>=      | Greater than or equal to | %3E%3D      |
+              | \\<<=      | Less than or equal to    | %3C%3D      |
 
           metrics:
               One or more metrics to compute. Options are:
@@ -123,50 +134,56 @@ class SummariesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone:
-            raise ValueError(f"Expected a non-empty value for `zone` but received {zone!r}")
-        return cast(
-            Optional[SummaryGetResponse],
-            self._get(
-                f"/zones/{zone}/spectrum/analytics/events/summary",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    query=maybe_transform(
-                        {
-                            "dimensions": dimensions,
-                            "filters": filters,
-                            "metrics": metrics,
-                            "since": since,
-                            "sort": sort,
-                            "until": until,
-                        },
-                        summary_get_params.SummaryGetParams,
-                    ),
-                    post_parser=ResultWrapper[Optional[SummaryGetResponse]]._unwrapper,
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return self._get(
+            f"/zones/{zone_id}/spectrum/analytics/events/summary",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "dimensions": dimensions,
+                        "filters": filters,
+                        "metrics": metrics,
+                        "since": since,
+                        "sort": sort,
+                        "until": until,
+                    },
+                    summary_get_params.SummaryGetParams,
                 ),
-                cast_to=cast(
-                    Any, ResultWrapper[SummaryGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+                post_parser=ResultWrapper[Optional[SummaryGetResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[SummaryGetResponse]], ResultWrapper[SummaryGetResponse]),
         )
 
 
 class AsyncSummariesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncSummariesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncSummariesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncSummariesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncSummariesResourceWithStreamingResponse(self)
 
     async def get(
         self,
-        zone: str,
         *,
+        zone_id: str,
         dimensions: List[Dimension] | NotGiven = NOT_GIVEN,
         filters: str | NotGiven = NOT_GIVEN,
         metrics: List[
@@ -176,7 +193,7 @@ class AsyncSummariesResource(AsyncAPIResource):
         ]
         | NotGiven = NOT_GIVEN,
         since: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        sort: Iterable[object] | NotGiven = NOT_GIVEN,
+        sort: List[str] | NotGiven = NOT_GIVEN,
         until: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -189,7 +206,7 @@ class AsyncSummariesResource(AsyncAPIResource):
         Retrieves a list of summarised aggregate metrics over a given time period.
 
         Args:
-          zone: Identifier
+          zone_id: Identifier
 
           dimensions:
               Can be used to break down the data by given attributes. Options are:
@@ -212,10 +229,10 @@ class AsyncSummariesResource(AsyncAPIResource):
               | -------- | ------------------------ | ----------- |
               | ==       | Equals                   | %3D%3D      |
               | !=       | Does not equals          | !%3D        |
-              | >        | Greater Than             | %3E         |
-              | <        | Less Than                | %3C         |
-              | >=       | Greater than or equal to | %3E%3D      |
-              | <=       | Less than or equal to    | %3C%3D .    |
+              | \\>>       | Greater Than             | %3E         |
+              | \\<<       | Less Than                | %3C         |
+              | \\>>=      | Greater than or equal to | %3E%3D      |
+              | \\<<=      | Less than or equal to    | %3C%3D      |
 
           metrics:
               One or more metrics to compute. Options are:
@@ -247,34 +264,29 @@ class AsyncSummariesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone:
-            raise ValueError(f"Expected a non-empty value for `zone` but received {zone!r}")
-        return cast(
-            Optional[SummaryGetResponse],
-            await self._get(
-                f"/zones/{zone}/spectrum/analytics/events/summary",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    query=await async_maybe_transform(
-                        {
-                            "dimensions": dimensions,
-                            "filters": filters,
-                            "metrics": metrics,
-                            "since": since,
-                            "sort": sort,
-                            "until": until,
-                        },
-                        summary_get_params.SummaryGetParams,
-                    ),
-                    post_parser=ResultWrapper[Optional[SummaryGetResponse]]._unwrapper,
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return await self._get(
+            f"/zones/{zone_id}/spectrum/analytics/events/summary",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "dimensions": dimensions,
+                        "filters": filters,
+                        "metrics": metrics,
+                        "since": since,
+                        "sort": sort,
+                        "until": until,
+                    },
+                    summary_get_params.SummaryGetParams,
                 ),
-                cast_to=cast(
-                    Any, ResultWrapper[SummaryGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+                post_parser=ResultWrapper[Optional[SummaryGetResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[SummaryGetResponse]], ResultWrapper[SummaryGetResponse]),
         )
 
 

@@ -11,8 +11,8 @@ class WaitingRoomListParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    page: object
+    page: float
     """Page number of paginated results."""
 
-    per_page: object
+    per_page: float
     """Maximum number of results per page. Must be a multiple of 5."""

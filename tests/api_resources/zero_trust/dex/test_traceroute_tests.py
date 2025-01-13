@@ -41,7 +41,7 @@ class TestTracerouteTests:
             interval="minute",
             to="1689606812000",
             colo="colo",
-            device_id=["string", "string", "string"],
+            device_id=["string"],
         )
         assert_matches_type(Optional[Traceroute], traceroute_test, path=["response"])
 
@@ -183,7 +183,7 @@ class TestTracerouteTests:
             from_="2023-09-20T17:00:00Z",
             to="2023-09-20T17:00:00Z",
             colo="colo",
-            device_id=["string", "string", "string"],
+            device_id=["string"],
         )
         assert_matches_type(Optional[TracerouteTestPercentilesResponse], traceroute_test, path=["response"])
 
@@ -259,7 +259,7 @@ class TestAsyncTracerouteTests:
             interval="minute",
             to="1689606812000",
             colo="colo",
-            device_id=["string", "string", "string"],
+            device_id=["string"],
         )
         assert_matches_type(Optional[Traceroute], traceroute_test, path=["response"])
 
@@ -401,7 +401,7 @@ class TestAsyncTracerouteTests:
             from_="2023-09-20T17:00:00Z",
             to="2023-09-20T17:00:00Z",
             colo="colo",
-            device_id=["string", "string", "string"],
+            device_id=["string"],
         )
         assert_matches_type(Optional[TracerouteTestPercentilesResponse], traceroute_test, path=["response"])
 

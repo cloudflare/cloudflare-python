@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
+from .pcap import PCAP as PCAP
 from .site import Site as Site
 from .scope import Scope as Scope
+from .pcap_filter import PCAPFilter as PCAPFilter
 from .scope_param import ScopeParam as ScopeParam
 from .health_check import HealthCheck as HealthCheck
 from .psk_metadata import PSKMetadata as PSKMetadata
@@ -15,7 +17,11 @@ from .app_list_response import AppListResponse as AppListResponse
 from .app_update_params import AppUpdateParams as AppUpdateParams
 from .health_check_rate import HealthCheckRate as HealthCheckRate
 from .health_check_type import HealthCheckType as HealthCheckType
+from .pcap_filter_param import PCAPFilterParam as PCAPFilterParam
+from .pcap_get_response import PCAPGetResponse as PCAPGetResponse
 from .health_check_param import HealthCheckParam as HealthCheckParam
+from .pcap_create_params import PCAPCreateParams as PCAPCreateParams
+from .pcap_list_response import PCAPListResponse as PCAPListResponse
 from .route_get_response import RouteGetResponse as RouteGetResponse
 from .site_create_params import SiteCreateParams as SiteCreateParams
 from .site_update_params import SiteUpdateParams as SiteUpdateParams
@@ -26,6 +32,7 @@ from .route_create_params import RouteCreateParams as RouteCreateParams
 from .route_list_response import RouteListResponse as RouteListResponse
 from .route_update_params import RouteUpdateParams as RouteUpdateParams
 from .site_location_param import SiteLocationParam as SiteLocationParam
+from .pcap_create_response import PCAPCreateResponse as PCAPCreateResponse
 from .route_empty_response import RouteEmptyResponse as RouteEmptyResponse
 from .connector_edit_params import ConnectorEditParams as ConnectorEditParams
 from .route_create_response import RouteCreateResponse as RouteCreateResponse
@@ -39,6 +46,7 @@ from .gre_tunnel_get_response import GRETunnelGetResponse as GRETunnelGetRespons
 from .gre_tunnel_create_params import GRETunnelCreateParams as GRETunnelCreateParams
 from .gre_tunnel_list_response import GRETunnelListResponse as GRETunnelListResponse
 from .gre_tunnel_update_params import GRETunnelUpdateParams as GRETunnelUpdateParams
+from .route_bulk_update_params import RouteBulkUpdateParams as RouteBulkUpdateParams
 from .connector_update_response import ConnectorUpdateResponse as ConnectorUpdateResponse
 from .ipsec_tunnel_get_response import IPSECTunnelGetResponse as IPSECTunnelGetResponse
 from .gre_tunnel_create_response import GRETunnelCreateResponse as GRETunnelCreateResponse
@@ -47,12 +55,19 @@ from .gre_tunnel_update_response import GRETunnelUpdateResponse as GRETunnelUpda
 from .ipsec_tunnel_create_params import IPSECTunnelCreateParams as IPSECTunnelCreateParams
 from .ipsec_tunnel_list_response import IPSECTunnelListResponse as IPSECTunnelListResponse
 from .ipsec_tunnel_update_params import IPSECTunnelUpdateParams as IPSECTunnelUpdateParams
+from .route_bulk_update_response import RouteBulkUpdateResponse as RouteBulkUpdateResponse
 from .cf_interconnect_get_response import CfInterconnectGetResponse as CfInterconnectGetResponse
 from .ipsec_tunnel_create_response import IPSECTunnelCreateResponse as IPSECTunnelCreateResponse
 from .ipsec_tunnel_delete_response import IPSECTunnelDeleteResponse as IPSECTunnelDeleteResponse
 from .ipsec_tunnel_update_response import IPSECTunnelUpdateResponse as IPSECTunnelUpdateResponse
 from .cf_interconnect_list_response import CfInterconnectListResponse as CfInterconnectListResponse
 from .cf_interconnect_update_params import CfInterconnectUpdateParams as CfInterconnectUpdateParams
+from .gre_tunnel_bulk_update_params import GRETunnelBulkUpdateParams as GRETunnelBulkUpdateParams
 from .cf_interconnect_update_response import CfInterconnectUpdateResponse as CfInterconnectUpdateResponse
+from .gre_tunnel_bulk_update_response import GRETunnelBulkUpdateResponse as GRETunnelBulkUpdateResponse
+from .ipsec_tunnel_bulk_update_params import IPSECTunnelBulkUpdateParams as IPSECTunnelBulkUpdateParams
 from .ipsec_tunnel_psk_generate_params import IPSECTunnelPSKGenerateParams as IPSECTunnelPSKGenerateParams
+from .ipsec_tunnel_bulk_update_response import IPSECTunnelBulkUpdateResponse as IPSECTunnelBulkUpdateResponse
+from .cf_interconnect_bulk_update_params import CfInterconnectBulkUpdateParams as CfInterconnectBulkUpdateParams
 from .ipsec_tunnel_psk_generate_response import IPSECTunnelPSKGenerateResponse as IPSECTunnelPSKGenerateResponse
+from .cf_interconnect_bulk_update_response import CfInterconnectBulkUpdateResponse as CfInterconnectBulkUpdateResponse

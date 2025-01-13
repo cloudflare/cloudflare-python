@@ -26,28 +26,20 @@ class TestLayer3:
     @parametrize
     def test_method_timeseries_with_all_params(self, client: Cloudflare) -> None:
         layer3 = client.radar.attacks.layer3.timeseries(
-            agg_interval="1h",
-            asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            agg_interval="15m",
+            asn=["string"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             direction="ORIGIN",
             format="JSON",
-            ip_version=["IPv4", "IPv6"],
-            location=["string", "string", "string"],
+            ip_version=["IPv4"],
+            location=["string"],
             metric="BYTES",
-            name=["string", "string", "string"],
-            normalization="MIN0_MAX",
-            protocol=["UDP", "TCP", "ICMP"],
+            name=["string"],
+            normalization="PERCENTAGE_CHANGE",
+            protocol=["UDP"],
         )
         assert_matches_type(Layer3TimeseriesResponse, layer3, path=["response"])
 
@@ -83,28 +75,20 @@ class TestAsyncLayer3:
     @parametrize
     async def test_method_timeseries_with_all_params(self, async_client: AsyncCloudflare) -> None:
         layer3 = await async_client.radar.attacks.layer3.timeseries(
-            agg_interval="1h",
-            asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            agg_interval="15m",
+            asn=["string"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             direction="ORIGIN",
             format="JSON",
-            ip_version=["IPv4", "IPv6"],
-            location=["string", "string", "string"],
+            ip_version=["IPv4"],
+            location=["string"],
             metric="BYTES",
-            name=["string", "string", "string"],
-            normalization="MIN0_MAX",
-            protocol=["UDP", "TCP", "ICMP"],
+            name=["string"],
+            normalization="PERCENTAGE_CHANGE",
+            protocol=["UDP"],
         )
         assert_matches_type(Layer3TimeseriesResponse, layer3, path=["response"])
 

@@ -50,12 +50,6 @@ from .timeseries_groups import (
 )
 
 __all__ = [
-    "TopResource",
-    "AsyncTopResource",
-    "TopResourceWithRawResponse",
-    "AsyncTopResourceWithRawResponse",
-    "TopResourceWithStreamingResponse",
-    "AsyncTopResourceWithStreamingResponse",
     "LocationsResource",
     "AsyncLocationsResource",
     "LocationsResourceWithRawResponse",
@@ -80,6 +74,12 @@ __all__ = [
     "AsyncTimeseriesGroupsResourceWithRawResponse",
     "TimeseriesGroupsResourceWithStreamingResponse",
     "AsyncTimeseriesGroupsResourceWithStreamingResponse",
+    "TopResource",
+    "AsyncTopResource",
+    "TopResourceWithRawResponse",
+    "AsyncTopResourceWithRawResponse",
+    "TopResourceWithStreamingResponse",
+    "AsyncTopResourceWithStreamingResponse",
     "HTTPResource",
     "AsyncHTTPResource",
     "HTTPResourceWithRawResponse",

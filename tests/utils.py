@@ -8,7 +8,7 @@ from typing import Any, TypeVar, Iterator, cast
 from datetime import date, datetime
 from typing_extensions import Literal, get_args, get_origin, assert_type
 
-from cloudflare._types import NoneType
+from cloudflare._types import Omit, NoneType
 from cloudflare._utils import (
     is_dict,
     is_list,
@@ -16,6 +16,7 @@ from cloudflare._utils import (
     is_union_type,
     extract_type_arg,
     is_annotated_type,
+    is_type_alias_type,
 )
 from cloudflare._compat import PYDANTIC_V2, field_outer_type, get_model_fields
 from cloudflare._models import BaseModel
@@ -51,6 +52,9 @@ def assert_matches_type(
     path: list[str],
     allow_none: bool = False,
 ) -> None:
+    if is_type_alias_type(type_):
+        type_ = type_.__value__
+
     # unwrap `Annotated[T, ...]` -> `T`
     if is_annotated_type(type_):
         type_ = extract_type_arg(type_, 0)
@@ -139,11 +143,15 @@ def _assert_list_type(type_: type[object], value: object) -> None:
 
 
 @contextlib.contextmanager
-def update_env(**new_env: str) -> Iterator[None]:
+def update_env(**new_env: str | Omit) -> Iterator[None]:
     old = os.environ.copy()
 
     try:
-        os.environ.update(new_env)
+        for name, value in new_env.items():
+            if isinstance(value, Omit):
+                os.environ.pop(name, None)
+            else:
+                os.environ[name] = value
 
         yield None
     finally:

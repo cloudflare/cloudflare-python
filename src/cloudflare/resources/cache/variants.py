@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -22,9 +22,9 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ...types.cache import variant_edit_params
 from ..._base_client import make_request_options
-from ...types.cache.cache_variant import CacheVariant
 from ...types.cache.variant_get_response import VariantGetResponse
 from ...types.cache.variant_edit_response import VariantEditResponse
+from ...types.cache.variant_delete_response import VariantDeleteResponse
 
 __all__ = ["VariantsResource", "AsyncVariantsResource"]
 
@@ -32,10 +32,21 @@ __all__ = ["VariantsResource", "AsyncVariantsResource"]
 class VariantsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> VariantsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return VariantsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> VariantsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return VariantsResourceWithStreamingResponse(self)
 
     def delete(
@@ -48,7 +59,7 @@ class VariantsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CacheVariant:
+    ) -> Optional[VariantDeleteResponse]:
         """
         Variant support enables caching variants of images with certain file extensions
         in addition to the original. This only applies when the origin server sends the
@@ -76,9 +87,9 @@ class VariantsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[CacheVariant]._unwrapper,
+                post_parser=ResultWrapper[Optional[VariantDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[CacheVariant], ResultWrapper[CacheVariant]),
+            cast_to=cast(Type[Optional[VariantDeleteResponse]], ResultWrapper[VariantDeleteResponse]),
         )
 
     def edit(
@@ -92,7 +103,7 @@ class VariantsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VariantEditResponse:
+    ) -> Optional[VariantEditResponse]:
         """
         Variant support enables caching variants of images with certain file extensions
         in addition to the original. This only applies when the origin server sends the
@@ -123,9 +134,9 @@ class VariantsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[VariantEditResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[VariantEditResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[VariantEditResponse], ResultWrapper[VariantEditResponse]),
+            cast_to=cast(Type[Optional[VariantEditResponse]], ResultWrapper[VariantEditResponse]),
         )
 
     def get(
@@ -138,7 +149,7 @@ class VariantsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VariantGetResponse:
+    ) -> Optional[VariantGetResponse]:
         """
         Variant support enables caching variants of images with certain file extensions
         in addition to the original. This only applies when the origin server sends the
@@ -166,19 +177,30 @@ class VariantsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[VariantGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[VariantGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[VariantGetResponse], ResultWrapper[VariantGetResponse]),
+            cast_to=cast(Type[Optional[VariantGetResponse]], ResultWrapper[VariantGetResponse]),
         )
 
 
 class AsyncVariantsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncVariantsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncVariantsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncVariantsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncVariantsResourceWithStreamingResponse(self)
 
     async def delete(
@@ -191,7 +213,7 @@ class AsyncVariantsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CacheVariant:
+    ) -> Optional[VariantDeleteResponse]:
         """
         Variant support enables caching variants of images with certain file extensions
         in addition to the original. This only applies when the origin server sends the
@@ -219,9 +241,9 @@ class AsyncVariantsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[CacheVariant]._unwrapper,
+                post_parser=ResultWrapper[Optional[VariantDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[CacheVariant], ResultWrapper[CacheVariant]),
+            cast_to=cast(Type[Optional[VariantDeleteResponse]], ResultWrapper[VariantDeleteResponse]),
         )
 
     async def edit(
@@ -235,7 +257,7 @@ class AsyncVariantsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VariantEditResponse:
+    ) -> Optional[VariantEditResponse]:
         """
         Variant support enables caching variants of images with certain file extensions
         in addition to the original. This only applies when the origin server sends the
@@ -266,9 +288,9 @@ class AsyncVariantsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[VariantEditResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[VariantEditResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[VariantEditResponse], ResultWrapper[VariantEditResponse]),
+            cast_to=cast(Type[Optional[VariantEditResponse]], ResultWrapper[VariantEditResponse]),
         )
 
     async def get(
@@ -281,7 +303,7 @@ class AsyncVariantsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VariantGetResponse:
+    ) -> Optional[VariantGetResponse]:
         """
         Variant support enables caching variants of images with certain file extensions
         in addition to the original. This only applies when the origin server sends the
@@ -309,9 +331,9 @@ class AsyncVariantsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[VariantGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[VariantGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[VariantGetResponse], ResultWrapper[VariantGetResponse]),
+            cast_to=cast(Type[Optional[VariantGetResponse]], ResultWrapper[VariantGetResponse]),
         )
 
 

@@ -2,15 +2,13 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Mapping, Optional, cast
+from typing import Type, Optional, cast
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
-    extract_files,
     maybe_transform,
-    deepcopy_minimal,
     async_maybe_transform,
 )
 from ...._compat import cached_property
@@ -35,10 +33,21 @@ __all__ = ["VersionsResource", "AsyncVersionsResource"]
 class VersionsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> VersionsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return VersionsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> VersionsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return VersionsResourceWithStreamingResponse(self)
 
     def create(
@@ -46,8 +55,7 @@ class VersionsResource(SyncAPIResource):
         script_name: str,
         *,
         account_id: str,
-        any_part_name: List[FileTypes] | NotGiven = NOT_GIVEN,
-        metadata: version_create_params.Metadata | NotGiven = NOT_GIVEN,
+        metadata: version_create_params.Metadata,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -55,17 +63,16 @@ class VersionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[VersionCreateResponse]:
-        """
-        Upload a Worker Version without deploying to Cloudflare's network.
+        """Upload a Worker Version without deploying to Cloudflare's network.
+
+        You can find
+        more about the multipart metadata on our docs:
+        https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/.
 
         Args:
           account_id: Identifier
 
           script_name: Name of the script.
-
-          any_part_name: A module comprising a Worker script, often a javascript file. Multiple modules
-              may be provided as separate named parts, but at least one module must be present
-              and referenced in the metadata as `main_module`.
 
           metadata: JSON encoded metadata about the uploaded parts and Worker configuration.
 
@@ -81,21 +88,13 @@ class VersionsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
-        body = deepcopy_minimal(
-            {
-                "any_part_name": any_part_name,
-                "metadata": metadata,
-            }
-        )
-        files = extract_files(cast(Mapping[str, object], body), paths=[["<any part name>", "<array>"]])
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._post(
             f"/accounts/{account_id}/workers/scripts/{script_name}/versions",
-            body=maybe_transform(body, version_create_params.VersionCreateParams),
-            files=files,
+            body=maybe_transform({"metadata": metadata}, version_create_params.VersionCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -219,10 +218,21 @@ class VersionsResource(SyncAPIResource):
 class AsyncVersionsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncVersionsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncVersionsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncVersionsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncVersionsResourceWithStreamingResponse(self)
 
     async def create(
@@ -230,8 +240,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         script_name: str,
         *,
         account_id: str,
-        any_part_name: List[FileTypes] | NotGiven = NOT_GIVEN,
-        metadata: version_create_params.Metadata | NotGiven = NOT_GIVEN,
+        metadata: version_create_params.Metadata,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -239,17 +248,16 @@ class AsyncVersionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[VersionCreateResponse]:
-        """
-        Upload a Worker Version without deploying to Cloudflare's network.
+        """Upload a Worker Version without deploying to Cloudflare's network.
+
+        You can find
+        more about the multipart metadata on our docs:
+        https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/.
 
         Args:
           account_id: Identifier
 
           script_name: Name of the script.
-
-          any_part_name: A module comprising a Worker script, often a javascript file. Multiple modules
-              may be provided as separate named parts, but at least one module must be present
-              and referenced in the metadata as `main_module`.
 
           metadata: JSON encoded metadata about the uploaded parts and Worker configuration.
 
@@ -265,21 +273,13 @@ class AsyncVersionsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
-        body = deepcopy_minimal(
-            {
-                "any_part_name": any_part_name,
-                "metadata": metadata,
-            }
-        )
-        files = extract_files(cast(Mapping[str, object], body), paths=[["<any part name>", "<array>"]])
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._post(
             f"/accounts/{account_id}/workers/scripts/{script_name}/versions",
-            body=await async_maybe_transform(body, version_create_params.VersionCreateParams),
-            files=files,
+            body=await async_maybe_transform({"metadata": metadata}, version_create_params.VersionCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

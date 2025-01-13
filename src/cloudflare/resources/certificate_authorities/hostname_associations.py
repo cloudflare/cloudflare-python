@@ -32,10 +32,21 @@ __all__ = ["HostnameAssociationsResource", "AsyncHostnameAssociationsResource"]
 class HostnameAssociationsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> HostnameAssociationsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return HostnameAssociationsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> HostnameAssociationsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return HostnameAssociationsResourceWithStreamingResponse(self)
 
     def update(
@@ -144,10 +155,21 @@ class HostnameAssociationsResource(SyncAPIResource):
 class AsyncHostnameAssociationsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncHostnameAssociationsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncHostnameAssociationsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncHostnameAssociationsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncHostnameAssociationsResourceWithStreamingResponse(self)
 
     async def update(

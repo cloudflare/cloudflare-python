@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Iterable, Optional, cast
+from typing import Type, Iterable, cast
 
 import httpx
 
@@ -24,6 +24,7 @@ from ....pagination import SyncCursorPagination, AsyncCursorPagination
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.rules.lists import item_list_params, item_create_params, item_update_params
 from ....types.rules.lists.item_get_response import ItemGetResponse
+from ....types.rules.lists.item_list_response import ItemListResponse
 from ....types.rules.lists.item_create_response import ItemCreateResponse
 from ....types.rules.lists.item_delete_response import ItemDeleteResponse
 from ....types.rules.lists.item_update_response import ItemUpdateResponse
@@ -34,10 +35,21 @@ __all__ = ["ItemsResource", "AsyncItemsResource"]
 class ItemsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ItemsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return ItemsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> ItemsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return ItemsResourceWithStreamingResponse(self)
 
     def create(
@@ -52,7 +64,7 @@ class ItemsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ItemCreateResponse]:
+    ) -> ItemCreateResponse:
         """Appends new items to the list.
 
         This operation is asynchronous.
@@ -80,15 +92,15 @@ class ItemsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
         return self._post(
             f"/accounts/{account_id}/rules/lists/{list_id}/items",
-            body=maybe_transform(body, item_create_params.ItemCreateParams),
+            body=maybe_transform(body, Iterable[item_create_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ItemCreateResponse]]._unwrapper,
+                post_parser=ResultWrapper[ItemCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ItemCreateResponse]], ResultWrapper[ItemCreateResponse]),
+            cast_to=cast(Type[ItemCreateResponse], ResultWrapper[ItemCreateResponse]),
         )
 
     def update(
@@ -103,7 +115,7 @@ class ItemsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ItemUpdateResponse]:
+    ) -> ItemUpdateResponse:
         """
         Removes all existing items from the list and adds the provided items to the
         list.
@@ -131,15 +143,15 @@ class ItemsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
         return self._put(
             f"/accounts/{account_id}/rules/lists/{list_id}/items",
-            body=maybe_transform(body, item_update_params.ItemUpdateParams),
+            body=maybe_transform(body, Iterable[item_update_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ItemUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[ItemUpdateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ItemUpdateResponse]], ResultWrapper[ItemUpdateResponse]),
+            cast_to=cast(Type[ItemUpdateResponse], ResultWrapper[ItemUpdateResponse]),
         )
 
     def list(
@@ -156,7 +168,7 @@ class ItemsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncCursorPagination[object]:
+    ) -> SyncCursorPagination[ItemListResponse]:
         """
         Fetches all the items in the list.
 
@@ -192,7 +204,7 @@ class ItemsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/rules/lists/{list_id}/items",
-            page=SyncCursorPagination[object],
+            page=SyncCursorPagination[ItemListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -207,7 +219,7 @@ class ItemsResource(SyncAPIResource):
                     item_list_params.ItemListParams,
                 ),
             ),
-            model=object,
+            model=ItemListResponse,
         )
 
     def delete(
@@ -221,7 +233,7 @@ class ItemsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ItemDeleteResponse]:
+    ) -> ItemDeleteResponse:
         """Removes one or more items from a list.
 
         This operation is asynchronous.
@@ -254,9 +266,9 @@ class ItemsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ItemDeleteResponse]]._unwrapper,
+                post_parser=ResultWrapper[ItemDeleteResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ItemDeleteResponse]], ResultWrapper[ItemDeleteResponse]),
+            cast_to=cast(Type[ItemDeleteResponse], ResultWrapper[ItemDeleteResponse]),
         )
 
     def get(
@@ -271,7 +283,7 @@ class ItemsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ItemGetResponse]:
+    ) -> ItemGetResponse:
         """
         Fetches a list item in the list.
 
@@ -296,31 +308,37 @@ class ItemsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
         if not item_id:
             raise ValueError(f"Expected a non-empty value for `item_id` but received {item_id!r}")
-        return cast(
-            Optional[ItemGetResponse],
-            self._get(
-                f"/accounts/{account_identifier}/rules/lists/{list_id}/items/{item_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[ItemGetResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[ItemGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._get(
+            f"/accounts/{account_identifier}/rules/lists/{list_id}/items/{item_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[ItemGetResponse]._unwrapper,
             ),
+            cast_to=cast(Type[ItemGetResponse], ResultWrapper[ItemGetResponse]),
         )
 
 
 class AsyncItemsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncItemsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncItemsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncItemsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncItemsResourceWithStreamingResponse(self)
 
     async def create(
@@ -335,7 +353,7 @@ class AsyncItemsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ItemCreateResponse]:
+    ) -> ItemCreateResponse:
         """Appends new items to the list.
 
         This operation is asynchronous.
@@ -363,15 +381,15 @@ class AsyncItemsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
         return await self._post(
             f"/accounts/{account_id}/rules/lists/{list_id}/items",
-            body=await async_maybe_transform(body, item_create_params.ItemCreateParams),
+            body=await async_maybe_transform(body, Iterable[item_create_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ItemCreateResponse]]._unwrapper,
+                post_parser=ResultWrapper[ItemCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ItemCreateResponse]], ResultWrapper[ItemCreateResponse]),
+            cast_to=cast(Type[ItemCreateResponse], ResultWrapper[ItemCreateResponse]),
         )
 
     async def update(
@@ -386,7 +404,7 @@ class AsyncItemsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ItemUpdateResponse]:
+    ) -> ItemUpdateResponse:
         """
         Removes all existing items from the list and adds the provided items to the
         list.
@@ -414,15 +432,15 @@ class AsyncItemsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
         return await self._put(
             f"/accounts/{account_id}/rules/lists/{list_id}/items",
-            body=await async_maybe_transform(body, item_update_params.ItemUpdateParams),
+            body=await async_maybe_transform(body, Iterable[item_update_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ItemUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[ItemUpdateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ItemUpdateResponse]], ResultWrapper[ItemUpdateResponse]),
+            cast_to=cast(Type[ItemUpdateResponse], ResultWrapper[ItemUpdateResponse]),
         )
 
     def list(
@@ -439,7 +457,7 @@ class AsyncItemsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[object, AsyncCursorPagination[object]]:
+    ) -> AsyncPaginator[ItemListResponse, AsyncCursorPagination[ItemListResponse]]:
         """
         Fetches all the items in the list.
 
@@ -475,7 +493,7 @@ class AsyncItemsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/rules/lists/{list_id}/items",
-            page=AsyncCursorPagination[object],
+            page=AsyncCursorPagination[ItemListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -490,7 +508,7 @@ class AsyncItemsResource(AsyncAPIResource):
                     item_list_params.ItemListParams,
                 ),
             ),
-            model=object,
+            model=ItemListResponse,
         )
 
     async def delete(
@@ -504,7 +522,7 @@ class AsyncItemsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ItemDeleteResponse]:
+    ) -> ItemDeleteResponse:
         """Removes one or more items from a list.
 
         This operation is asynchronous.
@@ -537,9 +555,9 @@ class AsyncItemsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ItemDeleteResponse]]._unwrapper,
+                post_parser=ResultWrapper[ItemDeleteResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ItemDeleteResponse]], ResultWrapper[ItemDeleteResponse]),
+            cast_to=cast(Type[ItemDeleteResponse], ResultWrapper[ItemDeleteResponse]),
         )
 
     async def get(
@@ -554,7 +572,7 @@ class AsyncItemsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ItemGetResponse]:
+    ) -> ItemGetResponse:
         """
         Fetches a list item in the list.
 
@@ -579,21 +597,16 @@ class AsyncItemsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
         if not item_id:
             raise ValueError(f"Expected a non-empty value for `item_id` but received {item_id!r}")
-        return cast(
-            Optional[ItemGetResponse],
-            await self._get(
-                f"/accounts/{account_identifier}/rules/lists/{list_id}/items/{item_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[ItemGetResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[ItemGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._get(
+            f"/accounts/{account_identifier}/rules/lists/{list_id}/items/{item_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[ItemGetResponse]._unwrapper,
             ),
+            cast_to=cast(Type[ItemGetResponse], ResultWrapper[ItemGetResponse]),
         )
 
 

@@ -19,26 +19,25 @@ certifi==2023.7.22
     # via httpx
 distro==1.8.0
     # via cloudflare
-exceptiongroup==1.1.3
+exceptiongroup==1.2.2
     # via anyio
 h11==0.14.0
     # via httpcore
 httpcore==1.0.2
     # via httpx
-httpx==0.25.2
+httpx==0.28.1
     # via cloudflare
 idna==3.4
     # via anyio
     # via httpx
-pydantic==2.7.1
+pydantic==2.10.3
     # via cloudflare
-pydantic-core==2.18.2
+pydantic-core==2.27.1
     # via pydantic
 sniffio==1.3.0
     # via anyio
     # via cloudflare
-    # via httpx
-typing-extensions==4.8.0
+typing-extensions==4.12.2
     # via anyio
     # via cloudflare
     # via pydantic

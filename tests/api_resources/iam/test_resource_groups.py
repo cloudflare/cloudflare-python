@@ -29,11 +29,7 @@ class TestResourceGroups:
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             scope={
                 "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
-                "objects": [
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                ],
+                "objects": [{"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"}],
             },
         )
         assert_matches_type(ResourceGroupCreateResponse, resource_group, path=["response"])
@@ -44,11 +40,7 @@ class TestResourceGroups:
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             scope={
                 "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
-                "objects": [
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                ],
+                "objects": [{"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"}],
             },
             meta={"editable": "false"},
         )
@@ -60,11 +52,7 @@ class TestResourceGroups:
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             scope={
                 "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
-                "objects": [
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                ],
+                "objects": [{"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"}],
             },
         )
 
@@ -79,11 +67,7 @@ class TestResourceGroups:
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             scope={
                 "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
-                "objects": [
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                ],
+                "objects": [{"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"}],
             },
         ) as response:
             assert not response.is_closed
@@ -101,11 +85,7 @@ class TestResourceGroups:
                 account_id="",
                 scope={
                     "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
-                    "objects": [
-                        {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                        {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                        {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                    ],
+                    "objects": [{"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"}],
                 },
             )
 
@@ -116,11 +96,7 @@ class TestResourceGroups:
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             scope={
                 "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
-                "objects": [
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                ],
+                "objects": [{"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"}],
             },
         )
         assert_matches_type(ResourceGroupUpdateResponse, resource_group, path=["response"])
@@ -132,11 +108,7 @@ class TestResourceGroups:
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             scope={
                 "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
-                "objects": [
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                ],
+                "objects": [{"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"}],
             },
             meta={"editable": "false"},
         )
@@ -149,11 +121,7 @@ class TestResourceGroups:
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             scope={
                 "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
-                "objects": [
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                ],
+                "objects": [{"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"}],
             },
         )
 
@@ -169,11 +137,7 @@ class TestResourceGroups:
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             scope={
                 "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
-                "objects": [
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                ],
+                "objects": [{"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"}],
             },
         ) as response:
             assert not response.is_closed
@@ -192,11 +156,7 @@ class TestResourceGroups:
                 account_id="",
                 scope={
                     "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
-                    "objects": [
-                        {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                        {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                        {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                    ],
+                    "objects": [{"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"}],
                 },
             )
 
@@ -206,11 +166,7 @@ class TestResourceGroups:
                 account_id="eb78d65290b24279ba6f44721b3ea3c4",
                 scope={
                     "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
-                    "objects": [
-                        {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                        {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                        {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                    ],
+                    "objects": [{"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"}],
                 },
             )
 
@@ -369,11 +325,7 @@ class TestAsyncResourceGroups:
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             scope={
                 "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
-                "objects": [
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                ],
+                "objects": [{"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"}],
             },
         )
         assert_matches_type(ResourceGroupCreateResponse, resource_group, path=["response"])
@@ -384,11 +336,7 @@ class TestAsyncResourceGroups:
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             scope={
                 "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
-                "objects": [
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                ],
+                "objects": [{"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"}],
             },
             meta={"editable": "false"},
         )
@@ -400,11 +348,7 @@ class TestAsyncResourceGroups:
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             scope={
                 "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
-                "objects": [
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                ],
+                "objects": [{"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"}],
             },
         )
 
@@ -419,11 +363,7 @@ class TestAsyncResourceGroups:
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             scope={
                 "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
-                "objects": [
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                ],
+                "objects": [{"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"}],
             },
         ) as response:
             assert not response.is_closed
@@ -441,11 +381,7 @@ class TestAsyncResourceGroups:
                 account_id="",
                 scope={
                     "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
-                    "objects": [
-                        {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                        {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                        {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                    ],
+                    "objects": [{"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"}],
                 },
             )
 
@@ -456,11 +392,7 @@ class TestAsyncResourceGroups:
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             scope={
                 "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
-                "objects": [
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                ],
+                "objects": [{"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"}],
             },
         )
         assert_matches_type(ResourceGroupUpdateResponse, resource_group, path=["response"])
@@ -472,11 +404,7 @@ class TestAsyncResourceGroups:
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             scope={
                 "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
-                "objects": [
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                ],
+                "objects": [{"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"}],
             },
             meta={"editable": "false"},
         )
@@ -489,11 +417,7 @@ class TestAsyncResourceGroups:
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             scope={
                 "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
-                "objects": [
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                ],
+                "objects": [{"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"}],
             },
         )
 
@@ -509,11 +433,7 @@ class TestAsyncResourceGroups:
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             scope={
                 "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
-                "objects": [
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                    {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                ],
+                "objects": [{"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"}],
             },
         ) as response:
             assert not response.is_closed
@@ -532,11 +452,7 @@ class TestAsyncResourceGroups:
                 account_id="",
                 scope={
                     "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
-                    "objects": [
-                        {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                        {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                        {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                    ],
+                    "objects": [{"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"}],
                 },
             )
 
@@ -546,11 +462,7 @@ class TestAsyncResourceGroups:
                 account_id="eb78d65290b24279ba6f44721b3ea3c4",
                 scope={
                     "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
-                    "objects": [
-                        {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                        {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                        {"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"},
-                    ],
+                    "objects": [{"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"}],
                 },
             )
 

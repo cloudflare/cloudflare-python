@@ -25,6 +25,9 @@ class Settings(BaseModel):
     See
     [Custom Nameservers](https://developers.cloudflare.com/dns/additional-options/custom-nameservers/)
     for more information.
+
+    Deprecated in favor of
+    [DNS Settings](https://developers.cloudflare.com/api/operations/dns-settings-for-an-account-update-dns-settings).
     """
 
     enforce_twofactor: Optional[bool] = None
@@ -38,7 +41,8 @@ class Settings(BaseModel):
     Indicates whether new zones should use the account-level custom nameservers by
     default.
 
-    Deprecated in favor of `default_nameservers`.
+    Deprecated in favor of
+    [DNS Settings](https://developers.cloudflare.com/api/operations/dns-settings-for-an-account-update-dns-settings).
     """
 
 

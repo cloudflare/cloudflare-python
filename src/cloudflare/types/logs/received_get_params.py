@@ -9,6 +9,9 @@ __all__ = ["ReceivedGetParams"]
 
 
 class ReceivedGetParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     end: Required[Union[str, int]]
     """Sets the (exclusive) end of the requested time frame.
 

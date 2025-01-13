@@ -9,6 +9,6 @@ __all__ = ["AccountUpdateParams"]
 
 class AccountUpdateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier of a Cloudflare account."""
 
     body: Required[object]

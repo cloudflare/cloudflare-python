@@ -23,10 +23,21 @@ __all__ = ["SinkholesResource", "AsyncSinkholesResource"]
 class SinkholesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> SinkholesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return SinkholesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> SinkholesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return SinkholesResourceWithStreamingResponse(self)
 
     def list(
@@ -69,10 +80,21 @@ class SinkholesResource(SyncAPIResource):
 class AsyncSinkholesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncSinkholesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncSinkholesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncSinkholesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncSinkholesResourceWithStreamingResponse(self)
 
     def list(

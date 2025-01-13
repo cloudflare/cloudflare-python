@@ -34,10 +34,21 @@ __all__ = ["RoutesResource", "AsyncRoutesResource"]
 class RoutesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> RoutesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return RoutesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> RoutesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return RoutesResourceWithStreamingResponse(self)
 
     def ases(
@@ -57,7 +68,7 @@ class RoutesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RouteAsesResponse:
         """
-        List all ASes on current global routing tables with routing statistics
+        List all ASes in current global routing tables with routing statistics
 
         Args:
           format: Format results are returned in.
@@ -115,7 +126,7 @@ class RoutesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RouteMoasResponse:
         """
-        List all Multi-origin AS (MOAS) prefixes on the global routing tables.
+        List all Multi-Origin AS (MOAS) prefixes on the global routing tables.
 
         Args:
           format: Format results are returned in.
@@ -270,10 +281,21 @@ class RoutesResource(SyncAPIResource):
 class AsyncRoutesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncRoutesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncRoutesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncRoutesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncRoutesResourceWithStreamingResponse(self)
 
     async def ases(
@@ -293,7 +315,7 @@ class AsyncRoutesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RouteAsesResponse:
         """
-        List all ASes on current global routing tables with routing statistics
+        List all ASes in current global routing tables with routing statistics
 
         Args:
           format: Format results are returned in.
@@ -351,7 +373,7 @@ class AsyncRoutesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RouteMoasResponse:
         """
-        List all Multi-origin AS (MOAS) prefixes on the global routing tables.
+        List all Multi-Origin AS (MOAS) prefixes on the global routing tables.
 
         Args:
           format: Format results are returned in.

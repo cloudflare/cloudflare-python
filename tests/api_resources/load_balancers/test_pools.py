@@ -13,6 +13,7 @@ from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.load_balancers import (
     Pool,
     PoolDeleteResponse,
+    PoolBulkEditResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -26,7 +27,7 @@ class TestPools:
         pool = client.load_balancers.pools.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="primary-dc-1",
-            origins=[{}, {}, {}],
+            origins=[{}],
         )
         assert_matches_type(Pool, pool, path=["response"])
 
@@ -39,27 +40,11 @@ class TestPools:
                 {
                     "address": "0.0.0.0",
                     "enabled": True,
-                    "header": {"host": ["example.com", "example.com", "example.com"]},
+                    "header": {"host": ["example.com"]},
                     "name": "app-server-1",
                     "virtual_network_id": "a5624d4e-044a-4ff0-b3e1-e2465353d4b4",
                     "weight": 0.6,
-                },
-                {
-                    "address": "0.0.0.0",
-                    "enabled": True,
-                    "header": {"host": ["example.com", "example.com", "example.com"]},
-                    "name": "app-server-1",
-                    "virtual_network_id": "a5624d4e-044a-4ff0-b3e1-e2465353d4b4",
-                    "weight": 0.6,
-                },
-                {
-                    "address": "0.0.0.0",
-                    "enabled": True,
-                    "header": {"host": ["example.com", "example.com", "example.com"]},
-                    "name": "app-server-1",
-                    "virtual_network_id": "a5624d4e-044a-4ff0-b3e1-e2465353d4b4",
-                    "weight": 0.6,
-                },
+                }
             ],
             description="Primary data center - Provider XYZ",
             enabled=False,
@@ -72,7 +57,7 @@ class TestPools:
             },
             longitude=0,
             minimum_origins=0,
-            monitor={},
+            monitor="monitor",
             notification_email="someone@example.com,sometwo@example.com",
             notification_filter={
                 "origin": {
@@ -93,7 +78,7 @@ class TestPools:
         response = client.load_balancers.pools.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="primary-dc-1",
-            origins=[{}, {}, {}],
+            origins=[{}],
         )
 
         assert response.is_closed is True
@@ -106,7 +91,7 @@ class TestPools:
         with client.load_balancers.pools.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="primary-dc-1",
-            origins=[{}, {}, {}],
+            origins=[{}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -122,7 +107,7 @@ class TestPools:
             client.load_balancers.pools.with_raw_response.create(
                 account_id="",
                 name="primary-dc-1",
-                origins=[{}, {}, {}],
+                origins=[{}],
             )
 
     @parametrize
@@ -131,7 +116,7 @@ class TestPools:
             pool_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="primary-dc-1",
-            origins=[{}, {}, {}],
+            origins=[{}],
         )
         assert_matches_type(Pool, pool, path=["response"])
 
@@ -145,29 +130,13 @@ class TestPools:
                 {
                     "address": "0.0.0.0",
                     "enabled": True,
-                    "header": {"host": ["example.com", "example.com", "example.com"]},
+                    "header": {"host": ["example.com"]},
                     "name": "app-server-1",
                     "virtual_network_id": "a5624d4e-044a-4ff0-b3e1-e2465353d4b4",
                     "weight": 0.6,
-                },
-                {
-                    "address": "0.0.0.0",
-                    "enabled": True,
-                    "header": {"host": ["example.com", "example.com", "example.com"]},
-                    "name": "app-server-1",
-                    "virtual_network_id": "a5624d4e-044a-4ff0-b3e1-e2465353d4b4",
-                    "weight": 0.6,
-                },
-                {
-                    "address": "0.0.0.0",
-                    "enabled": True,
-                    "header": {"host": ["example.com", "example.com", "example.com"]},
-                    "name": "app-server-1",
-                    "virtual_network_id": "a5624d4e-044a-4ff0-b3e1-e2465353d4b4",
-                    "weight": 0.6,
-                },
+                }
             ],
-            check_regions=["WEU", "ENAM"],
+            check_regions=["WNAM", "ENAM"],
             description="Primary data center - Provider XYZ",
             enabled=False,
             latitude=0,
@@ -179,7 +148,7 @@ class TestPools:
             },
             longitude=0,
             minimum_origins=0,
-            monitor={},
+            monitor="monitor",
             notification_email="someone@example.com,sometwo@example.com",
             notification_filter={
                 "origin": {
@@ -201,7 +170,7 @@ class TestPools:
             pool_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="primary-dc-1",
-            origins=[{}, {}, {}],
+            origins=[{}],
         )
 
         assert response.is_closed is True
@@ -215,7 +184,7 @@ class TestPools:
             pool_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="primary-dc-1",
-            origins=[{}, {}, {}],
+            origins=[{}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -232,7 +201,7 @@ class TestPools:
                 pool_id="17b5962d775c646f3f9725cbc7a53df4",
                 account_id="",
                 name="primary-dc-1",
-                origins=[{}, {}, {}],
+                origins=[{}],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pool_id` but received ''"):
@@ -240,7 +209,7 @@ class TestPools:
                 pool_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 name="primary-dc-1",
-                origins=[{}, {}, {}],
+                origins=[{}],
             )
 
     @parametrize
@@ -254,7 +223,7 @@ class TestPools:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         pool = client.load_balancers.pools.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            monitor={},
+            monitor="monitor",
         )
         assert_matches_type(SyncSinglePage[Pool], pool, path=["response"])
 
@@ -338,6 +307,52 @@ class TestPools:
             )
 
     @parametrize
+    def test_method_bulk_edit(self, client: Cloudflare) -> None:
+        pool = client.load_balancers.pools.bulk_edit(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(PoolBulkEditResponse, pool, path=["response"])
+
+    @parametrize
+    def test_method_bulk_edit_with_all_params(self, client: Cloudflare) -> None:
+        pool = client.load_balancers.pools.bulk_edit(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            notification_email="",
+        )
+        assert_matches_type(PoolBulkEditResponse, pool, path=["response"])
+
+    @parametrize
+    def test_raw_response_bulk_edit(self, client: Cloudflare) -> None:
+        response = client.load_balancers.pools.with_raw_response.bulk_edit(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        pool = response.parse()
+        assert_matches_type(PoolBulkEditResponse, pool, path=["response"])
+
+    @parametrize
+    def test_streaming_response_bulk_edit(self, client: Cloudflare) -> None:
+        with client.load_balancers.pools.with_streaming_response.bulk_edit(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            pool = response.parse()
+            assert_matches_type(PoolBulkEditResponse, pool, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_bulk_edit(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.load_balancers.pools.with_raw_response.bulk_edit(
+                account_id="",
+            )
+
+    @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         pool = client.load_balancers.pools.edit(
             pool_id="17b5962d775c646f3f9725cbc7a53df4",
@@ -350,7 +365,7 @@ class TestPools:
         pool = client.load_balancers.pools.edit(
             pool_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            check_regions=["WEU", "ENAM"],
+            check_regions=["WNAM", "ENAM"],
             description="Primary data center - Provider XYZ",
             enabled=False,
             latitude=0,
@@ -362,7 +377,7 @@ class TestPools:
             },
             longitude=0,
             minimum_origins=0,
-            monitor={},
+            monitor="monitor",
             name="primary-dc-1",
             notification_email="someone@example.com,sometwo@example.com",
             notification_filter={
@@ -380,27 +395,11 @@ class TestPools:
                 {
                     "address": "0.0.0.0",
                     "enabled": True,
-                    "header": {"host": ["example.com", "example.com", "example.com"]},
+                    "header": {"host": ["example.com"]},
                     "name": "app-server-1",
                     "virtual_network_id": "a5624d4e-044a-4ff0-b3e1-e2465353d4b4",
                     "weight": 0.6,
-                },
-                {
-                    "address": "0.0.0.0",
-                    "enabled": True,
-                    "header": {"host": ["example.com", "example.com", "example.com"]},
-                    "name": "app-server-1",
-                    "virtual_network_id": "a5624d4e-044a-4ff0-b3e1-e2465353d4b4",
-                    "weight": 0.6,
-                },
-                {
-                    "address": "0.0.0.0",
-                    "enabled": True,
-                    "header": {"host": ["example.com", "example.com", "example.com"]},
-                    "name": "app-server-1",
-                    "virtual_network_id": "a5624d4e-044a-4ff0-b3e1-e2465353d4b4",
-                    "weight": 0.6,
-                },
+                }
             ],
         )
         assert_matches_type(Pool, pool, path=["response"])
@@ -502,7 +501,7 @@ class TestAsyncPools:
         pool = await async_client.load_balancers.pools.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="primary-dc-1",
-            origins=[{}, {}, {}],
+            origins=[{}],
         )
         assert_matches_type(Pool, pool, path=["response"])
 
@@ -515,27 +514,11 @@ class TestAsyncPools:
                 {
                     "address": "0.0.0.0",
                     "enabled": True,
-                    "header": {"host": ["example.com", "example.com", "example.com"]},
+                    "header": {"host": ["example.com"]},
                     "name": "app-server-1",
                     "virtual_network_id": "a5624d4e-044a-4ff0-b3e1-e2465353d4b4",
                     "weight": 0.6,
-                },
-                {
-                    "address": "0.0.0.0",
-                    "enabled": True,
-                    "header": {"host": ["example.com", "example.com", "example.com"]},
-                    "name": "app-server-1",
-                    "virtual_network_id": "a5624d4e-044a-4ff0-b3e1-e2465353d4b4",
-                    "weight": 0.6,
-                },
-                {
-                    "address": "0.0.0.0",
-                    "enabled": True,
-                    "header": {"host": ["example.com", "example.com", "example.com"]},
-                    "name": "app-server-1",
-                    "virtual_network_id": "a5624d4e-044a-4ff0-b3e1-e2465353d4b4",
-                    "weight": 0.6,
-                },
+                }
             ],
             description="Primary data center - Provider XYZ",
             enabled=False,
@@ -548,7 +531,7 @@ class TestAsyncPools:
             },
             longitude=0,
             minimum_origins=0,
-            monitor={},
+            monitor="monitor",
             notification_email="someone@example.com,sometwo@example.com",
             notification_filter={
                 "origin": {
@@ -569,7 +552,7 @@ class TestAsyncPools:
         response = await async_client.load_balancers.pools.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="primary-dc-1",
-            origins=[{}, {}, {}],
+            origins=[{}],
         )
 
         assert response.is_closed is True
@@ -582,7 +565,7 @@ class TestAsyncPools:
         async with async_client.load_balancers.pools.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="primary-dc-1",
-            origins=[{}, {}, {}],
+            origins=[{}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -598,7 +581,7 @@ class TestAsyncPools:
             await async_client.load_balancers.pools.with_raw_response.create(
                 account_id="",
                 name="primary-dc-1",
-                origins=[{}, {}, {}],
+                origins=[{}],
             )
 
     @parametrize
@@ -607,7 +590,7 @@ class TestAsyncPools:
             pool_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="primary-dc-1",
-            origins=[{}, {}, {}],
+            origins=[{}],
         )
         assert_matches_type(Pool, pool, path=["response"])
 
@@ -621,29 +604,13 @@ class TestAsyncPools:
                 {
                     "address": "0.0.0.0",
                     "enabled": True,
-                    "header": {"host": ["example.com", "example.com", "example.com"]},
+                    "header": {"host": ["example.com"]},
                     "name": "app-server-1",
                     "virtual_network_id": "a5624d4e-044a-4ff0-b3e1-e2465353d4b4",
                     "weight": 0.6,
-                },
-                {
-                    "address": "0.0.0.0",
-                    "enabled": True,
-                    "header": {"host": ["example.com", "example.com", "example.com"]},
-                    "name": "app-server-1",
-                    "virtual_network_id": "a5624d4e-044a-4ff0-b3e1-e2465353d4b4",
-                    "weight": 0.6,
-                },
-                {
-                    "address": "0.0.0.0",
-                    "enabled": True,
-                    "header": {"host": ["example.com", "example.com", "example.com"]},
-                    "name": "app-server-1",
-                    "virtual_network_id": "a5624d4e-044a-4ff0-b3e1-e2465353d4b4",
-                    "weight": 0.6,
-                },
+                }
             ],
-            check_regions=["WEU", "ENAM"],
+            check_regions=["WNAM", "ENAM"],
             description="Primary data center - Provider XYZ",
             enabled=False,
             latitude=0,
@@ -655,7 +622,7 @@ class TestAsyncPools:
             },
             longitude=0,
             minimum_origins=0,
-            monitor={},
+            monitor="monitor",
             notification_email="someone@example.com,sometwo@example.com",
             notification_filter={
                 "origin": {
@@ -677,7 +644,7 @@ class TestAsyncPools:
             pool_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="primary-dc-1",
-            origins=[{}, {}, {}],
+            origins=[{}],
         )
 
         assert response.is_closed is True
@@ -691,7 +658,7 @@ class TestAsyncPools:
             pool_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="primary-dc-1",
-            origins=[{}, {}, {}],
+            origins=[{}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -708,7 +675,7 @@ class TestAsyncPools:
                 pool_id="17b5962d775c646f3f9725cbc7a53df4",
                 account_id="",
                 name="primary-dc-1",
-                origins=[{}, {}, {}],
+                origins=[{}],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pool_id` but received ''"):
@@ -716,7 +683,7 @@ class TestAsyncPools:
                 pool_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 name="primary-dc-1",
-                origins=[{}, {}, {}],
+                origins=[{}],
             )
 
     @parametrize
@@ -730,7 +697,7 @@ class TestAsyncPools:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         pool = await async_client.load_balancers.pools.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            monitor={},
+            monitor="monitor",
         )
         assert_matches_type(AsyncSinglePage[Pool], pool, path=["response"])
 
@@ -814,6 +781,52 @@ class TestAsyncPools:
             )
 
     @parametrize
+    async def test_method_bulk_edit(self, async_client: AsyncCloudflare) -> None:
+        pool = await async_client.load_balancers.pools.bulk_edit(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(PoolBulkEditResponse, pool, path=["response"])
+
+    @parametrize
+    async def test_method_bulk_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        pool = await async_client.load_balancers.pools.bulk_edit(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            notification_email="",
+        )
+        assert_matches_type(PoolBulkEditResponse, pool, path=["response"])
+
+    @parametrize
+    async def test_raw_response_bulk_edit(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.load_balancers.pools.with_raw_response.bulk_edit(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        pool = await response.parse()
+        assert_matches_type(PoolBulkEditResponse, pool, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_bulk_edit(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.load_balancers.pools.with_streaming_response.bulk_edit(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            pool = await response.parse()
+            assert_matches_type(PoolBulkEditResponse, pool, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_bulk_edit(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.load_balancers.pools.with_raw_response.bulk_edit(
+                account_id="",
+            )
+
+    @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         pool = await async_client.load_balancers.pools.edit(
             pool_id="17b5962d775c646f3f9725cbc7a53df4",
@@ -826,7 +839,7 @@ class TestAsyncPools:
         pool = await async_client.load_balancers.pools.edit(
             pool_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            check_regions=["WEU", "ENAM"],
+            check_regions=["WNAM", "ENAM"],
             description="Primary data center - Provider XYZ",
             enabled=False,
             latitude=0,
@@ -838,7 +851,7 @@ class TestAsyncPools:
             },
             longitude=0,
             minimum_origins=0,
-            monitor={},
+            monitor="monitor",
             name="primary-dc-1",
             notification_email="someone@example.com,sometwo@example.com",
             notification_filter={
@@ -856,27 +869,11 @@ class TestAsyncPools:
                 {
                     "address": "0.0.0.0",
                     "enabled": True,
-                    "header": {"host": ["example.com", "example.com", "example.com"]},
+                    "header": {"host": ["example.com"]},
                     "name": "app-server-1",
                     "virtual_network_id": "a5624d4e-044a-4ff0-b3e1-e2465353d4b4",
                     "weight": 0.6,
-                },
-                {
-                    "address": "0.0.0.0",
-                    "enabled": True,
-                    "header": {"host": ["example.com", "example.com", "example.com"]},
-                    "name": "app-server-1",
-                    "virtual_network_id": "a5624d4e-044a-4ff0-b3e1-e2465353d4b4",
-                    "weight": 0.6,
-                },
-                {
-                    "address": "0.0.0.0",
-                    "enabled": True,
-                    "header": {"host": ["example.com", "example.com", "example.com"]},
-                    "name": "app-server-1",
-                    "virtual_network_id": "a5624d4e-044a-4ff0-b3e1-e2465353d4b4",
-                    "weight": 0.6,
-                },
+                }
             ],
         )
         assert_matches_type(Pool, pool, path=["response"])

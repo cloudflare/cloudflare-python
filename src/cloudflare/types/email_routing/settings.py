@@ -10,20 +10,20 @@ __all__ = ["Settings"]
 
 
 class Settings(BaseModel):
-    id: Optional[str] = None
+    id: str
     """Email Routing settings identifier."""
+
+    enabled: Literal[True, False]
+    """State of the zone settings for Email Routing."""
+
+    name: str
+    """Domain of your zone."""
 
     created: Optional[datetime] = None
     """The date and time the settings have been created."""
 
-    enabled: Optional[Literal[True, False]] = None
-    """State of the zone settings for Email Routing."""
-
     modified: Optional[datetime] = None
     """The date and time the settings have been modified."""
-
-    name: Optional[str] = None
-    """Domain of your zone."""
 
     skip_wizard: Optional[Literal[True, False]] = None
     """Flag to check if the user skipped the configuration wizard."""

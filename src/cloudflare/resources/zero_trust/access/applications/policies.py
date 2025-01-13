@@ -22,12 +22,9 @@ from ....._response import (
 from ....._wrappers import ResultWrapper
 from .....pagination import SyncSinglePage, AsyncSinglePage
 from ....._base_client import AsyncPaginator, make_request_options
-from .....types.zero_trust.access import Decision
-from .....types.zero_trust.access.decision import Decision
-from .....types.zero_trust.access_rule_param import AccessRuleParam
 from .....types.zero_trust.access.applications import policy_create_params, policy_update_params
+from .....types.zero_trust.access.approval_group_param import ApprovalGroupParam
 from .....types.zero_trust.access.applications.policy_get_response import PolicyGetResponse
-from .....types.zero_trust.access.applications.approval_group_param import ApprovalGroupParam
 from .....types.zero_trust.access.applications.policy_list_response import PolicyListResponse
 from .....types.zero_trust.access.applications.policy_create_response import PolicyCreateResponse
 from .....types.zero_trust.access.applications.policy_delete_response import PolicyDeleteResponse
@@ -39,29 +36,35 @@ __all__ = ["PoliciesResource", "AsyncPoliciesResource"]
 class PoliciesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> PoliciesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return PoliciesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> PoliciesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return PoliciesResourceWithStreamingResponse(self)
 
     def create(
         self,
         app_id: str,
         *,
-        decision: Decision,
-        include: Iterable[AccessRuleParam],
-        name: str,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         approval_groups: Iterable[ApprovalGroupParam] | NotGiven = NOT_GIVEN,
         approval_required: bool | NotGiven = NOT_GIVEN,
-        exclude: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
         isolation_required: bool | NotGiven = NOT_GIVEN,
         precedence: int | NotGiven = NOT_GIVEN,
         purpose_justification_prompt: str | NotGiven = NOT_GIVEN,
         purpose_justification_required: bool | NotGiven = NOT_GIVEN,
-        require: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -79,13 +82,6 @@ class PoliciesResource(SyncAPIResource):
         Args:
           app_id: UUID
 
-          decision: The action Access will take if a user matches this policy.
-
-          include: Rules evaluated with an OR logical operator. A user needs to meet only one of
-              the Include rules.
-
-          name: The name of the Access policy.
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
@@ -94,9 +90,6 @@ class PoliciesResource(SyncAPIResource):
 
           approval_required: Requires the user to request access from an administrator at the start of each
               session.
-
-          exclude: Rules evaluated with a NOT logical operator. To match the policy, a user cannot
-              meet any of the Exclude rules.
 
           isolation_required: Require this application to be served in an isolated browser for users matching
               this policy. 'Client Web Isolation' must be on for the account in order to use
@@ -108,9 +101,6 @@ class PoliciesResource(SyncAPIResource):
           purpose_justification_prompt: A custom message that will appear on the purpose justification screen.
 
           purpose_justification_required: Require users to enter a justification when they log in to the application.
-
-          require: Rules evaluated with an AND logical operator. To match the policy, a user must
-              meet all of the Require rules.
 
           session_duration: The amount of time that tokens issued for the application will be valid. Must be
               in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms, s,
@@ -142,17 +132,12 @@ class PoliciesResource(SyncAPIResource):
             f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies",
             body=maybe_transform(
                 {
-                    "decision": decision,
-                    "include": include,
-                    "name": name,
                     "approval_groups": approval_groups,
                     "approval_required": approval_required,
-                    "exclude": exclude,
                     "isolation_required": isolation_required,
                     "precedence": precedence,
                     "purpose_justification_prompt": purpose_justification_prompt,
                     "purpose_justification_required": purpose_justification_required,
-                    "require": require,
                     "session_duration": session_duration,
                 },
                 policy_create_params.PolicyCreateParams,
@@ -172,19 +157,14 @@ class PoliciesResource(SyncAPIResource):
         policy_id: str,
         *,
         app_id: str,
-        decision: Decision,
-        include: Iterable[AccessRuleParam],
-        name: str,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         approval_groups: Iterable[ApprovalGroupParam] | NotGiven = NOT_GIVEN,
         approval_required: bool | NotGiven = NOT_GIVEN,
-        exclude: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
         isolation_required: bool | NotGiven = NOT_GIVEN,
         precedence: int | NotGiven = NOT_GIVEN,
         purpose_justification_prompt: str | NotGiven = NOT_GIVEN,
         purpose_justification_required: bool | NotGiven = NOT_GIVEN,
-        require: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -203,13 +183,6 @@ class PoliciesResource(SyncAPIResource):
 
           policy_id: UUID
 
-          decision: The action Access will take if a user matches this policy.
-
-          include: Rules evaluated with an OR logical operator. A user needs to meet only one of
-              the Include rules.
-
-          name: The name of the Access policy.
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
@@ -218,9 +191,6 @@ class PoliciesResource(SyncAPIResource):
 
           approval_required: Requires the user to request access from an administrator at the start of each
               session.
-
-          exclude: Rules evaluated with a NOT logical operator. To match the policy, a user cannot
-              meet any of the Exclude rules.
 
           isolation_required: Require this application to be served in an isolated browser for users matching
               this policy. 'Client Web Isolation' must be on for the account in order to use
@@ -232,9 +202,6 @@ class PoliciesResource(SyncAPIResource):
           purpose_justification_prompt: A custom message that will appear on the purpose justification screen.
 
           purpose_justification_required: Require users to enter a justification when they log in to the application.
-
-          require: Rules evaluated with an AND logical operator. To match the policy, a user must
-              meet all of the Require rules.
 
           session_duration: The amount of time that tokens issued for the application will be valid. Must be
               in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms, s,
@@ -268,17 +235,12 @@ class PoliciesResource(SyncAPIResource):
             f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
             body=maybe_transform(
                 {
-                    "decision": decision,
-                    "include": include,
-                    "name": name,
                     "approval_groups": approval_groups,
                     "approval_required": approval_required,
-                    "exclude": exclude,
                     "isolation_required": isolation_required,
                     "precedence": precedence,
                     "purpose_justification_prompt": purpose_justification_prompt,
                     "purpose_justification_required": purpose_justification_required,
-                    "require": require,
                     "session_duration": session_duration,
                 },
                 policy_update_params.PolicyUpdateParams,
@@ -481,29 +443,35 @@ class PoliciesResource(SyncAPIResource):
 class AsyncPoliciesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncPoliciesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncPoliciesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncPoliciesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncPoliciesResourceWithStreamingResponse(self)
 
     async def create(
         self,
         app_id: str,
         *,
-        decision: Decision,
-        include: Iterable[AccessRuleParam],
-        name: str,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         approval_groups: Iterable[ApprovalGroupParam] | NotGiven = NOT_GIVEN,
         approval_required: bool | NotGiven = NOT_GIVEN,
-        exclude: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
         isolation_required: bool | NotGiven = NOT_GIVEN,
         precedence: int | NotGiven = NOT_GIVEN,
         purpose_justification_prompt: str | NotGiven = NOT_GIVEN,
         purpose_justification_required: bool | NotGiven = NOT_GIVEN,
-        require: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -521,13 +489,6 @@ class AsyncPoliciesResource(AsyncAPIResource):
         Args:
           app_id: UUID
 
-          decision: The action Access will take if a user matches this policy.
-
-          include: Rules evaluated with an OR logical operator. A user needs to meet only one of
-              the Include rules.
-
-          name: The name of the Access policy.
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
@@ -536,9 +497,6 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
           approval_required: Requires the user to request access from an administrator at the start of each
               session.
-
-          exclude: Rules evaluated with a NOT logical operator. To match the policy, a user cannot
-              meet any of the Exclude rules.
 
           isolation_required: Require this application to be served in an isolated browser for users matching
               this policy. 'Client Web Isolation' must be on for the account in order to use
@@ -550,9 +508,6 @@ class AsyncPoliciesResource(AsyncAPIResource):
           purpose_justification_prompt: A custom message that will appear on the purpose justification screen.
 
           purpose_justification_required: Require users to enter a justification when they log in to the application.
-
-          require: Rules evaluated with an AND logical operator. To match the policy, a user must
-              meet all of the Require rules.
 
           session_duration: The amount of time that tokens issued for the application will be valid. Must be
               in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms, s,
@@ -584,17 +539,12 @@ class AsyncPoliciesResource(AsyncAPIResource):
             f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies",
             body=await async_maybe_transform(
                 {
-                    "decision": decision,
-                    "include": include,
-                    "name": name,
                     "approval_groups": approval_groups,
                     "approval_required": approval_required,
-                    "exclude": exclude,
                     "isolation_required": isolation_required,
                     "precedence": precedence,
                     "purpose_justification_prompt": purpose_justification_prompt,
                     "purpose_justification_required": purpose_justification_required,
-                    "require": require,
                     "session_duration": session_duration,
                 },
                 policy_create_params.PolicyCreateParams,
@@ -614,19 +564,14 @@ class AsyncPoliciesResource(AsyncAPIResource):
         policy_id: str,
         *,
         app_id: str,
-        decision: Decision,
-        include: Iterable[AccessRuleParam],
-        name: str,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         approval_groups: Iterable[ApprovalGroupParam] | NotGiven = NOT_GIVEN,
         approval_required: bool | NotGiven = NOT_GIVEN,
-        exclude: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
         isolation_required: bool | NotGiven = NOT_GIVEN,
         precedence: int | NotGiven = NOT_GIVEN,
         purpose_justification_prompt: str | NotGiven = NOT_GIVEN,
         purpose_justification_required: bool | NotGiven = NOT_GIVEN,
-        require: Iterable[AccessRuleParam] | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -645,13 +590,6 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
           policy_id: UUID
 
-          decision: The action Access will take if a user matches this policy.
-
-          include: Rules evaluated with an OR logical operator. A user needs to meet only one of
-              the Include rules.
-
-          name: The name of the Access policy.
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
@@ -660,9 +598,6 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
           approval_required: Requires the user to request access from an administrator at the start of each
               session.
-
-          exclude: Rules evaluated with a NOT logical operator. To match the policy, a user cannot
-              meet any of the Exclude rules.
 
           isolation_required: Require this application to be served in an isolated browser for users matching
               this policy. 'Client Web Isolation' must be on for the account in order to use
@@ -674,9 +609,6 @@ class AsyncPoliciesResource(AsyncAPIResource):
           purpose_justification_prompt: A custom message that will appear on the purpose justification screen.
 
           purpose_justification_required: Require users to enter a justification when they log in to the application.
-
-          require: Rules evaluated with an AND logical operator. To match the policy, a user must
-              meet all of the Require rules.
 
           session_duration: The amount of time that tokens issued for the application will be valid. Must be
               in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms, s,
@@ -710,17 +642,12 @@ class AsyncPoliciesResource(AsyncAPIResource):
             f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
             body=await async_maybe_transform(
                 {
-                    "decision": decision,
-                    "include": include,
-                    "name": name,
                     "approval_groups": approval_groups,
                     "approval_required": approval_required,
-                    "exclude": exclude,
                     "isolation_required": isolation_required,
                     "precedence": precedence,
                     "purpose_justification_prompt": purpose_justification_prompt,
                     "purpose_justification_required": purpose_justification_required,
-                    "require": require,
                     "session_duration": session_duration,
                 },
                 policy_update_params.PolicyUpdateParams,

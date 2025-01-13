@@ -27,10 +27,10 @@ class TestRulesets:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         ruleset = client.rulesets.create(
-            kind="root",
+            kind="managed",
             name="My ruleset",
-            phase="http_request_firewall_custom",
-            rules=[{}, {}, {}],
+            phase="ddos_l4",
+            rules=[{}],
             account_id="account_id",
         )
         assert_matches_type(RulesetCreateResponse, ruleset, path=["response"])
@@ -39,11 +39,12 @@ class TestRulesets:
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         ruleset = client.rulesets.create(
-            kind="root",
+            kind="managed",
             name="My ruleset",
-            phase="http_request_firewall_custom",
+            phase="ddos_l4",
             rules=[
                 {
+                    "id": "3a03d665bac047339bb530ecb439a90d",
                     "action": "block",
                     "action_parameters": {
                         "response": {
@@ -54,43 +55,24 @@ class TestRulesets:
                     },
                     "description": "Block when the IP address is not 1.1.1.1",
                     "enabled": True,
-                    "expression": "ip.src ne 1.1.1.1",
-                    "id": "3a03d665bac047339bb530ecb439a90d",
-                    "logging": {"enabled": True},
-                    "ref": "my_ref",
-                },
-                {
-                    "action": "block",
-                    "action_parameters": {
-                        "response": {
-                            "content": '{\n  "success": false,\n  "error": "you have been blocked"\n}',
-                            "content_type": "application/json",
-                            "status_code": 400,
-                        }
+                    "exposed_credential_check": {
+                        "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                        "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
                     },
-                    "description": "Block when the IP address is not 1.1.1.1",
-                    "enabled": True,
                     "expression": "ip.src ne 1.1.1.1",
-                    "id": "3a03d665bac047339bb530ecb439a90d",
                     "logging": {"enabled": True},
-                    "ref": "my_ref",
-                },
-                {
-                    "action": "block",
-                    "action_parameters": {
-                        "response": {
-                            "content": '{\n  "success": false,\n  "error": "you have been blocked"\n}',
-                            "content_type": "application/json",
-                            "status_code": 400,
-                        }
+                    "ratelimit": {
+                        "characteristics": ["ip.src"],
+                        "period": 10,
+                        "counting_expression": 'http.request.body.raw eq "abcd"',
+                        "mitigation_timeout": 600,
+                        "requests_per_period": 1000,
+                        "requests_to_origin": True,
+                        "score_per_period": 400,
+                        "score_response_header_name": "my-score",
                     },
-                    "description": "Block when the IP address is not 1.1.1.1",
-                    "enabled": True,
-                    "expression": "ip.src ne 1.1.1.1",
-                    "id": "3a03d665bac047339bb530ecb439a90d",
-                    "logging": {"enabled": True},
                     "ref": "my_ref",
-                },
+                }
             ],
             account_id="account_id",
             description="My ruleset to execute managed rulesets",
@@ -101,10 +83,10 @@ class TestRulesets:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.rulesets.with_raw_response.create(
-            kind="root",
+            kind="managed",
             name="My ruleset",
-            phase="http_request_firewall_custom",
-            rules=[{}, {}, {}],
+            phase="ddos_l4",
+            rules=[{}],
             account_id="account_id",
         )
 
@@ -117,10 +99,10 @@ class TestRulesets:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.rulesets.with_streaming_response.create(
-            kind="root",
+            kind="managed",
             name="My ruleset",
-            phase="http_request_firewall_custom",
-            rules=[{}, {}, {}],
+            phase="ddos_l4",
+            rules=[{}],
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -136,19 +118,19 @@ class TestRulesets:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.rulesets.with_raw_response.create(
-                kind="root",
+                kind="managed",
                 name="My ruleset",
-                phase="http_request_firewall_custom",
-                rules=[{}, {}, {}],
+                phase="ddos_l4",
+                rules=[{}],
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.rulesets.with_raw_response.create(
-                kind="root",
+                kind="managed",
                 name="My ruleset",
-                phase="http_request_firewall_custom",
-                rules=[{}, {}, {}],
+                phase="ddos_l4",
+                rules=[{}],
                 account_id="account_id",
             )
 
@@ -157,7 +139,7 @@ class TestRulesets:
     def test_method_update(self, client: Cloudflare) -> None:
         ruleset = client.rulesets.update(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
-            rules=[{}, {}, {}],
+            rules=[{}],
             account_id="account_id",
         )
         assert_matches_type(RulesetUpdateResponse, ruleset, path=["response"])
@@ -169,6 +151,7 @@ class TestRulesets:
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             rules=[
                 {
+                    "id": "3a03d665bac047339bb530ecb439a90d",
                     "action": "block",
                     "action_parameters": {
                         "response": {
@@ -179,49 +162,30 @@ class TestRulesets:
                     },
                     "description": "Block when the IP address is not 1.1.1.1",
                     "enabled": True,
-                    "expression": "ip.src ne 1.1.1.1",
-                    "id": "3a03d665bac047339bb530ecb439a90d",
-                    "logging": {"enabled": True},
-                    "ref": "my_ref",
-                },
-                {
-                    "action": "block",
-                    "action_parameters": {
-                        "response": {
-                            "content": '{\n  "success": false,\n  "error": "you have been blocked"\n}',
-                            "content_type": "application/json",
-                            "status_code": 400,
-                        }
+                    "exposed_credential_check": {
+                        "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                        "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
                     },
-                    "description": "Block when the IP address is not 1.1.1.1",
-                    "enabled": True,
                     "expression": "ip.src ne 1.1.1.1",
-                    "id": "3a03d665bac047339bb530ecb439a90d",
                     "logging": {"enabled": True},
-                    "ref": "my_ref",
-                },
-                {
-                    "action": "block",
-                    "action_parameters": {
-                        "response": {
-                            "content": '{\n  "success": false,\n  "error": "you have been blocked"\n}',
-                            "content_type": "application/json",
-                            "status_code": 400,
-                        }
+                    "ratelimit": {
+                        "characteristics": ["ip.src"],
+                        "period": 10,
+                        "counting_expression": 'http.request.body.raw eq "abcd"',
+                        "mitigation_timeout": 600,
+                        "requests_per_period": 1000,
+                        "requests_to_origin": True,
+                        "score_per_period": 400,
+                        "score_response_header_name": "my-score",
                     },
-                    "description": "Block when the IP address is not 1.1.1.1",
-                    "enabled": True,
-                    "expression": "ip.src ne 1.1.1.1",
-                    "id": "3a03d665bac047339bb530ecb439a90d",
-                    "logging": {"enabled": True},
                     "ref": "my_ref",
-                },
+                }
             ],
             account_id="account_id",
             description="My ruleset to execute managed rulesets",
-            kind="root",
+            kind="managed",
             name="My ruleset",
-            phase="http_request_firewall_custom",
+            phase="ddos_l4",
         )
         assert_matches_type(RulesetUpdateResponse, ruleset, path=["response"])
 
@@ -230,7 +194,7 @@ class TestRulesets:
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.rulesets.with_raw_response.update(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
-            rules=[{}, {}, {}],
+            rules=[{}],
             account_id="account_id",
         )
 
@@ -244,7 +208,7 @@ class TestRulesets:
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.rulesets.with_streaming_response.update(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
-            rules=[{}, {}, {}],
+            rules=[{}],
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -261,21 +225,21 @@ class TestRulesets:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
             client.rulesets.with_raw_response.update(
                 ruleset_id="",
-                rules=[{}, {}, {}],
+                rules=[{}],
                 account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.rulesets.with_raw_response.update(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
-                rules=[{}, {}, {}],
+                rules=[{}],
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.rulesets.with_raw_response.update(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
-                rules=[{}, {}, {}],
+                rules=[{}],
                 account_id="account_id",
             )
 
@@ -476,10 +440,10 @@ class TestAsyncRulesets:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         ruleset = await async_client.rulesets.create(
-            kind="root",
+            kind="managed",
             name="My ruleset",
-            phase="http_request_firewall_custom",
-            rules=[{}, {}, {}],
+            phase="ddos_l4",
+            rules=[{}],
             account_id="account_id",
         )
         assert_matches_type(RulesetCreateResponse, ruleset, path=["response"])
@@ -488,11 +452,12 @@ class TestAsyncRulesets:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         ruleset = await async_client.rulesets.create(
-            kind="root",
+            kind="managed",
             name="My ruleset",
-            phase="http_request_firewall_custom",
+            phase="ddos_l4",
             rules=[
                 {
+                    "id": "3a03d665bac047339bb530ecb439a90d",
                     "action": "block",
                     "action_parameters": {
                         "response": {
@@ -503,43 +468,24 @@ class TestAsyncRulesets:
                     },
                     "description": "Block when the IP address is not 1.1.1.1",
                     "enabled": True,
-                    "expression": "ip.src ne 1.1.1.1",
-                    "id": "3a03d665bac047339bb530ecb439a90d",
-                    "logging": {"enabled": True},
-                    "ref": "my_ref",
-                },
-                {
-                    "action": "block",
-                    "action_parameters": {
-                        "response": {
-                            "content": '{\n  "success": false,\n  "error": "you have been blocked"\n}',
-                            "content_type": "application/json",
-                            "status_code": 400,
-                        }
+                    "exposed_credential_check": {
+                        "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                        "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
                     },
-                    "description": "Block when the IP address is not 1.1.1.1",
-                    "enabled": True,
                     "expression": "ip.src ne 1.1.1.1",
-                    "id": "3a03d665bac047339bb530ecb439a90d",
                     "logging": {"enabled": True},
-                    "ref": "my_ref",
-                },
-                {
-                    "action": "block",
-                    "action_parameters": {
-                        "response": {
-                            "content": '{\n  "success": false,\n  "error": "you have been blocked"\n}',
-                            "content_type": "application/json",
-                            "status_code": 400,
-                        }
+                    "ratelimit": {
+                        "characteristics": ["ip.src"],
+                        "period": 10,
+                        "counting_expression": 'http.request.body.raw eq "abcd"',
+                        "mitigation_timeout": 600,
+                        "requests_per_period": 1000,
+                        "requests_to_origin": True,
+                        "score_per_period": 400,
+                        "score_response_header_name": "my-score",
                     },
-                    "description": "Block when the IP address is not 1.1.1.1",
-                    "enabled": True,
-                    "expression": "ip.src ne 1.1.1.1",
-                    "id": "3a03d665bac047339bb530ecb439a90d",
-                    "logging": {"enabled": True},
                     "ref": "my_ref",
-                },
+                }
             ],
             account_id="account_id",
             description="My ruleset to execute managed rulesets",
@@ -550,10 +496,10 @@ class TestAsyncRulesets:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.rulesets.with_raw_response.create(
-            kind="root",
+            kind="managed",
             name="My ruleset",
-            phase="http_request_firewall_custom",
-            rules=[{}, {}, {}],
+            phase="ddos_l4",
+            rules=[{}],
             account_id="account_id",
         )
 
@@ -566,10 +512,10 @@ class TestAsyncRulesets:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rulesets.with_streaming_response.create(
-            kind="root",
+            kind="managed",
             name="My ruleset",
-            phase="http_request_firewall_custom",
-            rules=[{}, {}, {}],
+            phase="ddos_l4",
+            rules=[{}],
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -585,19 +531,19 @@ class TestAsyncRulesets:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.rulesets.with_raw_response.create(
-                kind="root",
+                kind="managed",
                 name="My ruleset",
-                phase="http_request_firewall_custom",
-                rules=[{}, {}, {}],
+                phase="ddos_l4",
+                rules=[{}],
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.rulesets.with_raw_response.create(
-                kind="root",
+                kind="managed",
                 name="My ruleset",
-                phase="http_request_firewall_custom",
-                rules=[{}, {}, {}],
+                phase="ddos_l4",
+                rules=[{}],
                 account_id="account_id",
             )
 
@@ -606,7 +552,7 @@ class TestAsyncRulesets:
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         ruleset = await async_client.rulesets.update(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
-            rules=[{}, {}, {}],
+            rules=[{}],
             account_id="account_id",
         )
         assert_matches_type(RulesetUpdateResponse, ruleset, path=["response"])
@@ -618,6 +564,7 @@ class TestAsyncRulesets:
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             rules=[
                 {
+                    "id": "3a03d665bac047339bb530ecb439a90d",
                     "action": "block",
                     "action_parameters": {
                         "response": {
@@ -628,49 +575,30 @@ class TestAsyncRulesets:
                     },
                     "description": "Block when the IP address is not 1.1.1.1",
                     "enabled": True,
-                    "expression": "ip.src ne 1.1.1.1",
-                    "id": "3a03d665bac047339bb530ecb439a90d",
-                    "logging": {"enabled": True},
-                    "ref": "my_ref",
-                },
-                {
-                    "action": "block",
-                    "action_parameters": {
-                        "response": {
-                            "content": '{\n  "success": false,\n  "error": "you have been blocked"\n}',
-                            "content_type": "application/json",
-                            "status_code": 400,
-                        }
+                    "exposed_credential_check": {
+                        "password_expression": 'url_decode(http.request.body.form[\\"password\\"][0])',
+                        "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
                     },
-                    "description": "Block when the IP address is not 1.1.1.1",
-                    "enabled": True,
                     "expression": "ip.src ne 1.1.1.1",
-                    "id": "3a03d665bac047339bb530ecb439a90d",
                     "logging": {"enabled": True},
-                    "ref": "my_ref",
-                },
-                {
-                    "action": "block",
-                    "action_parameters": {
-                        "response": {
-                            "content": '{\n  "success": false,\n  "error": "you have been blocked"\n}',
-                            "content_type": "application/json",
-                            "status_code": 400,
-                        }
+                    "ratelimit": {
+                        "characteristics": ["ip.src"],
+                        "period": 10,
+                        "counting_expression": 'http.request.body.raw eq "abcd"',
+                        "mitigation_timeout": 600,
+                        "requests_per_period": 1000,
+                        "requests_to_origin": True,
+                        "score_per_period": 400,
+                        "score_response_header_name": "my-score",
                     },
-                    "description": "Block when the IP address is not 1.1.1.1",
-                    "enabled": True,
-                    "expression": "ip.src ne 1.1.1.1",
-                    "id": "3a03d665bac047339bb530ecb439a90d",
-                    "logging": {"enabled": True},
                     "ref": "my_ref",
-                },
+                }
             ],
             account_id="account_id",
             description="My ruleset to execute managed rulesets",
-            kind="root",
+            kind="managed",
             name="My ruleset",
-            phase="http_request_firewall_custom",
+            phase="ddos_l4",
         )
         assert_matches_type(RulesetUpdateResponse, ruleset, path=["response"])
 
@@ -679,7 +607,7 @@ class TestAsyncRulesets:
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.rulesets.with_raw_response.update(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
-            rules=[{}, {}, {}],
+            rules=[{}],
             account_id="account_id",
         )
 
@@ -693,7 +621,7 @@ class TestAsyncRulesets:
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rulesets.with_streaming_response.update(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
-            rules=[{}, {}, {}],
+            rules=[{}],
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -710,21 +638,21 @@ class TestAsyncRulesets:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
             await async_client.rulesets.with_raw_response.update(
                 ruleset_id="",
-                rules=[{}, {}, {}],
+                rules=[{}],
                 account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.rulesets.with_raw_response.update(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
-                rules=[{}, {}, {}],
+                rules=[{}],
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.rulesets.with_raw_response.update(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
-                rules=[{}, {}, {}],
+                rules=[{}],
                 account_id="account_id",
             )
 

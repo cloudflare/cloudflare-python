@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable
+from typing import Dict, List, Iterable
 from typing_extensions import Required, TypedDict
 
 from .rules_param import RulesParam
@@ -27,7 +27,7 @@ class LoadBalancerUpdateParams(TypedDict, total=False):
     for a given region.
     """
 
-    fallback_pool: Required[object]
+    fallback_pool: Required[str]
     """The pool ID to use when all other pools are detected as unhealthy."""
 
     name: Required[str]
@@ -47,7 +47,7 @@ class LoadBalancerUpdateParams(TypedDict, total=False):
     is retried once against this alternate origin.
     """
 
-    country_pools: object
+    country_pools: Dict[str, List[str]]
     """
     A mapping of country codes to a list of pool IDs (ordered by their failover
     priority) for the given country. Any country not explicitly defined will fall
@@ -67,7 +67,10 @@ class LoadBalancerUpdateParams(TypedDict, total=False):
     See `steering_policy` to learn how steering is affected.
     """
 
-    pop_pools: object
+    networks: List[str]
+    """List of networks where Load Balancer or Pool is enabled."""
+
+    pop_pools: Dict[str, List[str]]
     """
     (Enterprise only): A mapping of Cloudflare PoP identifiers to a list of pool IDs
     (ordered by their failover priority) for the PoP (datacenter). Any PoPs not
@@ -89,7 +92,7 @@ class LoadBalancerUpdateParams(TypedDict, total=False):
       open connections.
     """
 
-    region_pools: object
+    region_pools: Dict[str, List[str]]
     """
     A mapping of region codes to a list of pool IDs (ordered by their failover
     priority) for the given region. Any regions not explicitly defined will fall
@@ -105,7 +108,7 @@ class LoadBalancerUpdateParams(TypedDict, total=False):
     session_affinity: SessionAffinity
     """
     Specifies the type of session affinity the load balancer should use unless
-    specified as `"none"` or "" (default). The supported types are:
+    specified as `"none"`. The supported types are:
 
     - `"cookie"`: On the first request to a proxied load balancer, a cookie is
       generated, encoding information of which origin the request will be forwarded

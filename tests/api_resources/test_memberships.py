@@ -74,9 +74,9 @@ class TestMemberships:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         membership = client.memberships.list(
             account={"name": "Demo Account"},
-            direction="desc",
+            direction="asc",
             name="Demo Account",
-            order="status",
+            order="id",
             page=1,
             per_page=5,
             status="accepted",
@@ -234,9 +234,9 @@ class TestAsyncMemberships:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         membership = await async_client.memberships.list(
             account={"name": "Demo Account"},
-            direction="desc",
+            direction="asc",
             name="Demo Account",
-            order="status",
+            order="id",
             page=1,
             per_page=5,
             status="accepted",

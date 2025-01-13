@@ -52,10 +52,21 @@ __all__ = ["TimeseriesGroupsResource", "AsyncTimeseriesGroupsResource"]
 class TimeseriesGroupsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> TimeseriesGroupsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return TimeseriesGroupsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> TimeseriesGroupsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return TimeseriesGroupsResourceWithStreamingResponse(self)
 
     def bot_class(
@@ -307,6 +318,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
         http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
         ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        limit_per_group: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
@@ -357,6 +369,9 @@ class TimeseriesGroupsResource(SyncAPIResource):
 
           ip_version: Filter for ip version.
 
+          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
+              the time range.
+
           location: Array of comma separated list of locations (alpha-2 country codes). Start with
               `-` to exclude from results. For example, `-US,PT` excludes results from the US,
               but includes results from PT.
@@ -396,6 +411,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
                         "http_protocol": http_protocol,
                         "http_version": http_version,
                         "ip_version": ip_version,
+                        "limit_per_group": limit_per_group,
                         "location": location,
                         "name": name,
                         "os": os,
@@ -437,7 +453,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupDeviceTypeResponse:
         """
-        Get a time series of the percentage distribution of traffic per device type.
+        Get a time series of the percentage distribution of traffic by device type.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -548,7 +564,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupHTTPProtocolResponse:
         """
-        Get a time series of the percentage distribution of traffic per HTTP protocol.
+        Get a time series of the percentage distribution of traffic by HTTP protocol.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -659,8 +675,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupHTTPVersionResponse:
         """
-        Get a time series of the percentage distribution of traffic per HTTP protocol
-        version.
+        Get a time series of the percentage distribution of traffic by HTTP version.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -771,8 +786,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupIPVersionResponse:
         """
-        Get a time series of the percentage distribution of traffic per IP protocol
-        version.
+        Get a time series of the percentage distribution of traffic by IP version.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -995,7 +1009,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupPostQuantumResponse:
         """
-        Get a time series of the percentage distribution of traffic per Post Quantum
+        Get a time series of the percentage distribution of traffic by post-quantum
         suport.
 
         Args:
@@ -1110,7 +1124,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupTLSVersionResponse:
         """
-        Get a time series of the percentage distribution of traffic per TLS protocol
+        Get a time series of the percentage distribution of traffic by TLS protocol
         version.
 
         Args:
@@ -1199,10 +1213,21 @@ class TimeseriesGroupsResource(SyncAPIResource):
 class AsyncTimeseriesGroupsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncTimeseriesGroupsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncTimeseriesGroupsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncTimeseriesGroupsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncTimeseriesGroupsResourceWithStreamingResponse(self)
 
     async def bot_class(
@@ -1454,6 +1479,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
         http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
         ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        limit_per_group: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
@@ -1504,6 +1530,9 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
 
           ip_version: Filter for ip version.
 
+          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
+              the time range.
+
           location: Array of comma separated list of locations (alpha-2 country codes). Start with
               `-` to exclude from results. For example, `-US,PT` excludes results from the US,
               but includes results from PT.
@@ -1543,6 +1572,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                         "http_protocol": http_protocol,
                         "http_version": http_version,
                         "ip_version": ip_version,
+                        "limit_per_group": limit_per_group,
                         "location": location,
                         "name": name,
                         "os": os,
@@ -1584,7 +1614,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupDeviceTypeResponse:
         """
-        Get a time series of the percentage distribution of traffic per device type.
+        Get a time series of the percentage distribution of traffic by device type.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -1695,7 +1725,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupHTTPProtocolResponse:
         """
-        Get a time series of the percentage distribution of traffic per HTTP protocol.
+        Get a time series of the percentage distribution of traffic by HTTP protocol.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -1806,8 +1836,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupHTTPVersionResponse:
         """
-        Get a time series of the percentage distribution of traffic per HTTP protocol
-        version.
+        Get a time series of the percentage distribution of traffic by HTTP version.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -1918,8 +1947,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupIPVersionResponse:
         """
-        Get a time series of the percentage distribution of traffic per IP protocol
-        version.
+        Get a time series of the percentage distribution of traffic by IP version.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -2142,7 +2170,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupPostQuantumResponse:
         """
-        Get a time series of the percentage distribution of traffic per Post Quantum
+        Get a time series of the percentage distribution of traffic by post-quantum
         suport.
 
         Args:
@@ -2257,7 +2285,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupTLSVersionResponse:
         """
-        Get a time series of the percentage distribution of traffic per TLS protocol
+        Get a time series of the percentage distribution of traffic by TLS protocol
         version.
 
         Args:

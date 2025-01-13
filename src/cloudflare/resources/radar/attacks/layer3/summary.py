@@ -44,10 +44,21 @@ __all__ = ["SummaryResource", "AsyncSummaryResource"]
 class SummaryResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> SummaryResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return SummaryResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> SummaryResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return SummaryResourceWithStreamingResponse(self)
 
     def bitrate(
@@ -241,7 +252,7 @@ class SummaryResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SummaryGetResponse:
         """
-        Percentage distribution of network protocols in layer 3/4 attacks over a given
+        Percentage distribution of network protocols in Layer 3/4 attacks over a given
         time period.
 
         Args:
@@ -476,6 +487,7 @@ class SummaryResource(SyncAPIResource):
         direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        limit_per_group: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
@@ -509,6 +521,9 @@ class SummaryResource(SyncAPIResource):
 
           ip_version: Filter for ip version.
 
+          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
+              the time range.
+
           location: Array of comma separated list of locations (alpha-2 country codes). Start with
               `-` to exclude from results. For example, `-US,PT` excludes results from the US,
               but includes results from PT.
@@ -541,6 +556,7 @@ class SummaryResource(SyncAPIResource):
                         "direction": direction,
                         "format": format,
                         "ip_version": ip_version,
+                        "limit_per_group": limit_per_group,
                         "location": location,
                         "name": name,
                         "protocol": protocol,
@@ -556,10 +572,21 @@ class SummaryResource(SyncAPIResource):
 class AsyncSummaryResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncSummaryResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncSummaryResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncSummaryResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncSummaryResourceWithStreamingResponse(self)
 
     async def bitrate(
@@ -753,7 +780,7 @@ class AsyncSummaryResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SummaryGetResponse:
         """
-        Percentage distribution of network protocols in layer 3/4 attacks over a given
+        Percentage distribution of network protocols in Layer 3/4 attacks over a given
         time period.
 
         Args:
@@ -988,6 +1015,7 @@ class AsyncSummaryResource(AsyncAPIResource):
         direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        limit_per_group: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
@@ -1021,6 +1049,9 @@ class AsyncSummaryResource(AsyncAPIResource):
 
           ip_version: Filter for ip version.
 
+          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
+              the time range.
+
           location: Array of comma separated list of locations (alpha-2 country codes). Start with
               `-` to exclude from results. For example, `-US,PT` excludes results from the US,
               but includes results from PT.
@@ -1053,6 +1084,7 @@ class AsyncSummaryResource(AsyncAPIResource):
                         "direction": direction,
                         "format": format,
                         "ip_version": ip_version,
+                        "limit_per_group": limit_per_group,
                         "location": location,
                         "name": name,
                         "protocol": protocol,

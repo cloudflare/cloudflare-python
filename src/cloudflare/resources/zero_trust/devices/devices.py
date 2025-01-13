@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -14,14 +14,6 @@ from .revoke import (
     RevokeResourceWithStreamingResponse,
     AsyncRevokeResourceWithStreamingResponse,
 )
-from .posture import (
-    PostureResource,
-    AsyncPostureResource,
-    PostureResourceWithRawResponse,
-    AsyncPostureResourceWithRawResponse,
-    PostureResourceWithStreamingResponse,
-    AsyncPostureResourceWithStreamingResponse,
-)
 from .networks import (
     NetworksResource,
     AsyncNetworksResource,
@@ -29,14 +21,6 @@ from .networks import (
     AsyncNetworksResourceWithRawResponse,
     NetworksResourceWithStreamingResponse,
     AsyncNetworksResourceWithStreamingResponse,
-)
-from .policies import (
-    PoliciesResource,
-    AsyncPoliciesResource,
-    PoliciesResourceWithRawResponse,
-    AsyncPoliciesResourceWithRawResponse,
-    PoliciesResourceWithStreamingResponse,
-    AsyncPoliciesResourceWithStreamingResponse,
 )
 from .settings import (
     SettingsResource,
@@ -72,6 +56,14 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
+from .fleet_status import (
+    FleetStatusResource,
+    AsyncFleetStatusResource,
+    FleetStatusResourceWithRawResponse,
+    AsyncFleetStatusResourceWithRawResponse,
+    FleetStatusResourceWithStreamingResponse,
+    AsyncFleetStatusResourceWithStreamingResponse,
+)
 from ....pagination import SyncSinglePage, AsyncSinglePage
 from .override_codes import (
     OverrideCodesResource,
@@ -82,8 +74,22 @@ from .override_codes import (
     AsyncOverrideCodesResourceWithStreamingResponse,
 )
 from ...._base_client import AsyncPaginator, make_request_options
-from .posture.posture import PostureResource, AsyncPostureResource
-from .policies.policies import PoliciesResource, AsyncPoliciesResource
+from .posture.posture import (
+    PostureResource,
+    AsyncPostureResource,
+    PostureResourceWithRawResponse,
+    AsyncPostureResourceWithRawResponse,
+    PostureResourceWithStreamingResponse,
+    AsyncPostureResourceWithStreamingResponse,
+)
+from .policies.policies import (
+    PoliciesResource,
+    AsyncPoliciesResource,
+    PoliciesResourceWithRawResponse,
+    AsyncPoliciesResourceWithRawResponse,
+    PoliciesResourceWithStreamingResponse,
+    AsyncPoliciesResourceWithStreamingResponse,
+)
 from ....types.zero_trust.device import Device
 from ....types.zero_trust.device_get_response import DeviceGetResponse
 
@@ -98,6 +104,10 @@ class DevicesResource(SyncAPIResource):
     @cached_property
     def networks(self) -> NetworksResource:
         return NetworksResource(self._client)
+
+    @cached_property
+    def fleet_status(self) -> FleetStatusResource:
+        return FleetStatusResource(self._client)
 
     @cached_property
     def policies(self) -> PoliciesResource:
@@ -125,10 +135,21 @@ class DevicesResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> DevicesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return DevicesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> DevicesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return DevicesResourceWithStreamingResponse(self)
 
     def list(
@@ -176,7 +197,7 @@ class DevicesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DeviceGetResponse:
+    ) -> Optional[DeviceGetResponse]:
         """
         Fetches details for a single device.
 
@@ -195,21 +216,16 @@ class DevicesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not device_id:
             raise ValueError(f"Expected a non-empty value for `device_id` but received {device_id!r}")
-        return cast(
-            DeviceGetResponse,
-            self._get(
-                f"/accounts/{account_id}/devices/{device_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[DeviceGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[DeviceGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._get(
+            f"/accounts/{account_id}/devices/{device_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[DeviceGetResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[DeviceGetResponse]], ResultWrapper[DeviceGetResponse]),
         )
 
 
@@ -221,6 +237,10 @@ class AsyncDevicesResource(AsyncAPIResource):
     @cached_property
     def networks(self) -> AsyncNetworksResource:
         return AsyncNetworksResource(self._client)
+
+    @cached_property
+    def fleet_status(self) -> AsyncFleetStatusResource:
+        return AsyncFleetStatusResource(self._client)
 
     @cached_property
     def policies(self) -> AsyncPoliciesResource:
@@ -248,10 +268,21 @@ class AsyncDevicesResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncDevicesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncDevicesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncDevicesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncDevicesResourceWithStreamingResponse(self)
 
     def list(
@@ -299,7 +330,7 @@ class AsyncDevicesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DeviceGetResponse:
+    ) -> Optional[DeviceGetResponse]:
         """
         Fetches details for a single device.
 
@@ -318,21 +349,16 @@ class AsyncDevicesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not device_id:
             raise ValueError(f"Expected a non-empty value for `device_id` but received {device_id!r}")
-        return cast(
-            DeviceGetResponse,
-            await self._get(
-                f"/accounts/{account_id}/devices/{device_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[DeviceGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[DeviceGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._get(
+            f"/accounts/{account_id}/devices/{device_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[DeviceGetResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[DeviceGetResponse]], ResultWrapper[DeviceGetResponse]),
         )
 
 
@@ -354,6 +380,10 @@ class DevicesResourceWithRawResponse:
     @cached_property
     def networks(self) -> NetworksResourceWithRawResponse:
         return NetworksResourceWithRawResponse(self._devices.networks)
+
+    @cached_property
+    def fleet_status(self) -> FleetStatusResourceWithRawResponse:
+        return FleetStatusResourceWithRawResponse(self._devices.fleet_status)
 
     @cached_property
     def policies(self) -> PoliciesResourceWithRawResponse:
@@ -400,6 +430,10 @@ class AsyncDevicesResourceWithRawResponse:
         return AsyncNetworksResourceWithRawResponse(self._devices.networks)
 
     @cached_property
+    def fleet_status(self) -> AsyncFleetStatusResourceWithRawResponse:
+        return AsyncFleetStatusResourceWithRawResponse(self._devices.fleet_status)
+
+    @cached_property
     def policies(self) -> AsyncPoliciesResourceWithRawResponse:
         return AsyncPoliciesResourceWithRawResponse(self._devices.policies)
 
@@ -444,6 +478,10 @@ class DevicesResourceWithStreamingResponse:
         return NetworksResourceWithStreamingResponse(self._devices.networks)
 
     @cached_property
+    def fleet_status(self) -> FleetStatusResourceWithStreamingResponse:
+        return FleetStatusResourceWithStreamingResponse(self._devices.fleet_status)
+
+    @cached_property
     def policies(self) -> PoliciesResourceWithStreamingResponse:
         return PoliciesResourceWithStreamingResponse(self._devices.policies)
 
@@ -486,6 +524,10 @@ class AsyncDevicesResourceWithStreamingResponse:
     @cached_property
     def networks(self) -> AsyncNetworksResourceWithStreamingResponse:
         return AsyncNetworksResourceWithStreamingResponse(self._devices.networks)
+
+    @cached_property
+    def fleet_status(self) -> AsyncFleetStatusResourceWithStreamingResponse:
+        return AsyncFleetStatusResourceWithStreamingResponse(self._devices.fleet_status)
 
     @cached_property
     def policies(self) -> AsyncPoliciesResourceWithStreamingResponse:

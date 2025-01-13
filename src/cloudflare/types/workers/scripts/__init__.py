@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from .schedule import Schedule as Schedule
 from .deployment import Deployment as Deployment
+from .schedule_param import ScheduleParam as ScheduleParam
 from .consumer_script import ConsumerScript as ConsumerScript
 from .deployment_param import DeploymentParam as DeploymentParam
 from .tail_get_response import TailGetResponse as TailGetResponse
@@ -19,8 +20,11 @@ from .schedule_get_response import ScheduleGetResponse as ScheduleGetResponse
 from .version_create_params import VersionCreateParams as VersionCreateParams
 from .version_list_response import VersionListResponse as VersionListResponse
 from .schedule_update_params import ScheduleUpdateParams as ScheduleUpdateParams
+from .subdomain_get_response import SubdomainGetResponse as SubdomainGetResponse
 from .deployment_get_response import DeploymentGetResponse as DeploymentGetResponse
+from .subdomain_create_params import SubdomainCreateParams as SubdomainCreateParams
 from .version_create_response import VersionCreateResponse as VersionCreateResponse
 from .deployment_create_params import DeploymentCreateParams as DeploymentCreateParams
 from .schedule_update_response import ScheduleUpdateResponse as ScheduleUpdateResponse
+from .subdomain_create_response import SubdomainCreateResponse as SubdomainCreateResponse
 from .deployment_create_response import DeploymentCreateResponse as DeploymentCreateResponse

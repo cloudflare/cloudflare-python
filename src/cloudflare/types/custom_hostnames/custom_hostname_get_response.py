@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -16,7 +16,6 @@ __all__ = [
     "SSLSettings",
     "SSLValidationError",
     "SSLValidationRecord",
-    "CustomMetadata",
     "OwnershipVerification",
     "OwnershipVerificationHTTP",
 ]
@@ -48,7 +47,7 @@ class SSLValidationError(BaseModel):
 
 
 class SSLValidationRecord(BaseModel):
-    emails: Optional[List[object]] = None
+    emails: Optional[List[str]] = None
     """
     The set of email addresses that the certificate authority (CA) will use to
     complete domain validation.
@@ -103,7 +102,7 @@ class SSL(BaseModel):
     expires_on: Optional[datetime] = None
     """The time the custom certificate expires on."""
 
-    hosts: Optional[List[object]] = None
+    hosts: Optional[List[str]] = None
     """A list of Hostnames on a custom uploaded certificate."""
 
     issuer: Optional[str] = None
@@ -116,7 +115,6 @@ class SSL(BaseModel):
     """The serial number on a custom uploaded certificate."""
 
     settings: Optional[SSLSettings] = None
-    """SSL specific settings."""
 
     signature: Optional[str] = None
     """The signature on a custom uploaded certificate."""
@@ -169,11 +167,6 @@ class SSL(BaseModel):
     """Indicates whether the certificate covers a wildcard."""
 
 
-class CustomMetadata(BaseModel):
-    key: Optional[str] = None
-    """Unique metadata for this hostname."""
-
-
 class OwnershipVerification(BaseModel):
     name: Optional[str] = None
     """DNS Name for record."""
@@ -204,13 +197,15 @@ class CustomHostnameGetResponse(BaseModel):
     """The custom hostname that will point to your hostname via CNAME."""
 
     ssl: SSL
-    """SSL properties for the custom hostname."""
 
     created_at: Optional[datetime] = None
     """This is the time the hostname was created."""
 
-    custom_metadata: Optional[CustomMetadata] = None
-    """These are per-hostname (customer) settings."""
+    custom_metadata: Optional[Dict[str, str]] = None
+    """Unique key/value metadata for this hostname.
+
+    These are per-hostname (customer) settings.
+    """
 
     custom_origin_server: Optional[str] = None
     """
@@ -258,5 +253,5 @@ class CustomHostnameGetResponse(BaseModel):
     ] = None
     """Status of the hostname's activation."""
 
-    verification_errors: Optional[List[object]] = None
+    verification_errors: Optional[List[str]] = None
     """These are errors that were encountered while trying to activate a hostname."""

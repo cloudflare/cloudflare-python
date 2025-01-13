@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import List, Type, Iterable, Optional, cast
 
 import httpx
 
@@ -31,10 +31,21 @@ __all__ = ["BrandProtectionResource", "AsyncBrandProtectionResource"]
 class BrandProtectionResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> BrandProtectionResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return BrandProtectionResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> BrandProtectionResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return BrandProtectionResourceWithStreamingResponse(self)
 
     def submit(
@@ -84,8 +95,8 @@ class BrandProtectionResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        url: str | NotGiven = NOT_GIVEN,
-        url_id_param: brand_protection_url_info_params.URLIDParam | NotGiven = NOT_GIVEN,
+        url: List[str] | NotGiven = NOT_GIVEN,
+        url_id: Iterable[int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -94,10 +105,14 @@ class BrandProtectionResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[Info]:
         """
-        Get results for a URL scan
+        Gets phishing details about a URL.
 
         Args:
           account_id: Identifier
+
+          url: Submission URL(s) to filter submission results by.
+
+          url_id: Submission ID(s) to filter submission results by.
 
           extra_headers: Send extra headers
 
@@ -119,7 +134,7 @@ class BrandProtectionResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "url": url,
-                        "url_id_param": url_id_param,
+                        "url_id": url_id,
                     },
                     brand_protection_url_info_params.BrandProtectionURLInfoParams,
                 ),
@@ -132,10 +147,21 @@ class BrandProtectionResource(SyncAPIResource):
 class AsyncBrandProtectionResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncBrandProtectionResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncBrandProtectionResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncBrandProtectionResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncBrandProtectionResourceWithStreamingResponse(self)
 
     async def submit(
@@ -185,8 +211,8 @@ class AsyncBrandProtectionResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        url: str | NotGiven = NOT_GIVEN,
-        url_id_param: brand_protection_url_info_params.URLIDParam | NotGiven = NOT_GIVEN,
+        url: List[str] | NotGiven = NOT_GIVEN,
+        url_id: Iterable[int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -195,10 +221,14 @@ class AsyncBrandProtectionResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[Info]:
         """
-        Get results for a URL scan
+        Gets phishing details about a URL.
 
         Args:
           account_id: Identifier
+
+          url: Submission URL(s) to filter submission results by.
+
+          url_id: Submission ID(s) to filter submission results by.
 
           extra_headers: Send extra headers
 
@@ -220,7 +250,7 @@ class AsyncBrandProtectionResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "url": url,
-                        "url_id_param": url_id_param,
+                        "url_id": url_id,
                     },
                     brand_protection_url_info_params.BrandProtectionURLInfoParams,
                 ),

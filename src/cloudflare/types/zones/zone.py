@@ -2,7 +2,9 @@
 
 from typing import List, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
+from .type import Type
 from ..._models import BaseModel
 
 __all__ = ["Zone", "Account", "Meta", "Owner"]
@@ -92,6 +94,21 @@ class Zone(BaseModel):
 
     owner: Owner
     """The owner of the zone"""
+
+    paused: Optional[bool] = None
+    """Indicates whether the zone is only using Cloudflare DNS services.
+
+    A true value means the zone will not receive security or performance benefits.
+    """
+
+    status: Optional[Literal["initializing", "pending", "active", "moved"]] = None
+    """The zone status on Cloudflare."""
+
+    type: Optional[Type] = None
+    """A full zone implies that DNS is hosted with Cloudflare.
+
+    A partial zone is typically a partner-hosted zone or a CNAME setup.
+    """
 
     vanity_name_servers: Optional[List[str]] = None
     """An array of domains used for custom name servers.

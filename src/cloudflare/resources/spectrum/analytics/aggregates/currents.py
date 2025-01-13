@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -30,17 +30,27 @@ __all__ = ["CurrentsResource", "AsyncCurrentsResource"]
 class CurrentsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> CurrentsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return CurrentsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> CurrentsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return CurrentsResourceWithStreamingResponse(self)
 
     def get(
         self,
-        zone: str,
         *,
-        app_id_param: str | NotGiven = NOT_GIVEN,
+        zone_id: str,
         app_id: str | NotGiven = NOT_GIVEN,
         colo_name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -49,16 +59,13 @@ class CurrentsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CurrentGetResponse:
+    ) -> Optional[CurrentGetResponse]:
         """
         Retrieves analytics aggregated from the last minute of usage on Spectrum
         applications underneath a given zone.
 
         Args:
-          zone: Identifier
-
-          app_id_param: Comma-delimited list of Spectrum Application Id(s). If provided, the response
-              will be limited to Spectrum Application Id(s) that match.
+          zone_id: Identifier
 
           app_id: Comma-delimited list of Spectrum Application Id(s). If provided, the response
               will be limited to Spectrum Application Id(s) that match.
@@ -73,10 +80,10 @@ class CurrentsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone:
-            raise ValueError(f"Expected a non-empty value for `zone` but received {zone!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get(
-            f"/zones/{zone}/spectrum/analytics/aggregate/current",
+            f"/zones/{zone_id}/spectrum/analytics/aggregate/current",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -84,32 +91,41 @@ class CurrentsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "app_id_param": app_id_param,
                         "app_id": app_id,
                         "colo_name": colo_name,
                     },
                     current_get_params.CurrentGetParams,
                 ),
-                post_parser=ResultWrapper[CurrentGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[CurrentGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[CurrentGetResponse], ResultWrapper[CurrentGetResponse]),
+            cast_to=cast(Type[Optional[CurrentGetResponse]], ResultWrapper[CurrentGetResponse]),
         )
 
 
 class AsyncCurrentsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncCurrentsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncCurrentsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncCurrentsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncCurrentsResourceWithStreamingResponse(self)
 
     async def get(
         self,
-        zone: str,
         *,
-        app_id_param: str | NotGiven = NOT_GIVEN,
+        zone_id: str,
         app_id: str | NotGiven = NOT_GIVEN,
         colo_name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -118,16 +134,13 @@ class AsyncCurrentsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CurrentGetResponse:
+    ) -> Optional[CurrentGetResponse]:
         """
         Retrieves analytics aggregated from the last minute of usage on Spectrum
         applications underneath a given zone.
 
         Args:
-          zone: Identifier
-
-          app_id_param: Comma-delimited list of Spectrum Application Id(s). If provided, the response
-              will be limited to Spectrum Application Id(s) that match.
+          zone_id: Identifier
 
           app_id: Comma-delimited list of Spectrum Application Id(s). If provided, the response
               will be limited to Spectrum Application Id(s) that match.
@@ -142,10 +155,10 @@ class AsyncCurrentsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone:
-            raise ValueError(f"Expected a non-empty value for `zone` but received {zone!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._get(
-            f"/zones/{zone}/spectrum/analytics/aggregate/current",
+            f"/zones/{zone_id}/spectrum/analytics/aggregate/current",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -153,15 +166,14 @@ class AsyncCurrentsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "app_id_param": app_id_param,
                         "app_id": app_id,
                         "colo_name": colo_name,
                     },
                     current_get_params.CurrentGetParams,
                 ),
-                post_parser=ResultWrapper[CurrentGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[CurrentGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[CurrentGetResponse], ResultWrapper[CurrentGetResponse]),
+            cast_to=cast(Type[Optional[CurrentGetResponse]], ResultWrapper[CurrentGetResponse]),
         )
 
 

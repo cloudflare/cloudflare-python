@@ -27,10 +27,11 @@ class TestApps:
         reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
     )
     @parametrize
-    def test_method_create_overload_1(self, client: Cloudflare) -> None:
+    def test_method_create(self, client: Cloudflare) -> None:
         app = client.magic_transit.apps.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
+            name="Cloudflare Dashboard",
+            type="Development",
         )
         assert_matches_type(Optional[AppCreateResponse], app, path=["response"])
 
@@ -38,10 +39,25 @@ class TestApps:
         reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
     )
     @parametrize
-    def test_raw_response_create_overload_1(self, client: Cloudflare) -> None:
+    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
+        app = client.magic_transit.apps.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="Cloudflare Dashboard",
+            type="Development",
+            hostnames=["auth.cloudflare.com"],
+            ip_subnets=["1.1.1.1/32"],
+        )
+        assert_matches_type(Optional[AppCreateResponse], app, path=["response"])
+
+    @pytest.mark.skip(
+        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
+    )
+    @parametrize
+    def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.magic_transit.apps.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
+            name="Cloudflare Dashboard",
+            type="Development",
         )
 
         assert response.is_closed is True
@@ -53,10 +69,11 @@ class TestApps:
         reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
     )
     @parametrize
-    def test_streaming_response_create_overload_1(self, client: Cloudflare) -> None:
+    def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.magic_transit.apps.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
+            name="Cloudflare Dashboard",
+            type="Development",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -70,76 +87,22 @@ class TestApps:
         reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
     )
     @parametrize
-    def test_path_params_create_overload_1(self, client: Cloudflare) -> None:
+    def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.magic_transit.apps.with_raw_response.create(
                 account_id="",
-                body={},
+                name="Cloudflare Dashboard",
+                type="Development",
             )
 
     @pytest.mark.skip(
         reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
     )
     @parametrize
-    def test_method_create_overload_2(self, client: Cloudflare) -> None:
-        app = client.magic_transit.apps.create(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        )
-        assert_matches_type(Optional[AppCreateResponse], app, path=["response"])
-
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
-    )
-    @parametrize
-    def test_raw_response_create_overload_2(self, client: Cloudflare) -> None:
-        response = client.magic_transit.apps.with_raw_response.create(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        app = response.parse()
-        assert_matches_type(Optional[AppCreateResponse], app, path=["response"])
-
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
-    )
-    @parametrize
-    def test_streaming_response_create_overload_2(self, client: Cloudflare) -> None:
-        with client.magic_transit.apps.with_streaming_response.create(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            app = response.parse()
-            assert_matches_type(Optional[AppCreateResponse], app, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
-    )
-    @parametrize
-    def test_path_params_create_overload_2(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.magic_transit.apps.with_raw_response.create(
-                account_id="",
-                body={},
-            )
-
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
-    )
-    @parametrize
-    def test_method_update_overload_1(self, client: Cloudflare) -> None:
+    def test_method_update(self, client: Cloudflare) -> None:
         app = client.magic_transit.apps.update(
             account_app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
         assert_matches_type(Optional[AppUpdateResponse], app, path=["response"])
 
@@ -147,11 +110,25 @@ class TestApps:
         reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
     )
     @parametrize
-    def test_raw_response_update_overload_1(self, client: Cloudflare) -> None:
+    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
+        app = client.magic_transit.apps.update(
+            account_app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            hostnames=["auth.cloudflare.com"],
+            ip_subnets=["1.1.1.1/32"],
+            name="Cloudflare Dashboard",
+            type="Development",
+        )
+        assert_matches_type(Optional[AppUpdateResponse], app, path=["response"])
+
+    @pytest.mark.skip(
+        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
+    )
+    @parametrize
+    def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.magic_transit.apps.with_raw_response.update(
             account_app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
 
         assert response.is_closed is True
@@ -163,11 +140,10 @@ class TestApps:
         reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
     )
     @parametrize
-    def test_streaming_response_update_overload_1(self, client: Cloudflare) -> None:
+    def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.magic_transit.apps.with_streaming_response.update(
             account_app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -181,214 +157,17 @@ class TestApps:
         reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
     )
     @parametrize
-    def test_path_params_update_overload_1(self, client: Cloudflare) -> None:
+    def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.magic_transit.apps.with_raw_response.update(
                 account_app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_app_id` but received ''"):
             client.magic_transit.apps.with_raw_response.update(
                 account_app_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
-            )
-
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
-    )
-    @parametrize
-    def test_method_update_overload_2(self, client: Cloudflare) -> None:
-        app = client.magic_transit.apps.update(
-            account_app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        )
-        assert_matches_type(Optional[AppUpdateResponse], app, path=["response"])
-
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
-    )
-    @parametrize
-    def test_raw_response_update_overload_2(self, client: Cloudflare) -> None:
-        response = client.magic_transit.apps.with_raw_response.update(
-            account_app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        app = response.parse()
-        assert_matches_type(Optional[AppUpdateResponse], app, path=["response"])
-
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
-    )
-    @parametrize
-    def test_streaming_response_update_overload_2(self, client: Cloudflare) -> None:
-        with client.magic_transit.apps.with_streaming_response.update(
-            account_app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            app = response.parse()
-            assert_matches_type(Optional[AppUpdateResponse], app, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
-    )
-    @parametrize
-    def test_path_params_update_overload_2(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.magic_transit.apps.with_raw_response.update(
-                account_app_id="023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="",
-                body={},
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_app_id` but received ''"):
-            client.magic_transit.apps.with_raw_response.update(
-                account_app_id="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
-            )
-
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
-    )
-    @parametrize
-    def test_method_update_overload_3(self, client: Cloudflare) -> None:
-        app = client.magic_transit.apps.update(
-            account_app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        )
-        assert_matches_type(Optional[AppUpdateResponse], app, path=["response"])
-
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
-    )
-    @parametrize
-    def test_raw_response_update_overload_3(self, client: Cloudflare) -> None:
-        response = client.magic_transit.apps.with_raw_response.update(
-            account_app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        app = response.parse()
-        assert_matches_type(Optional[AppUpdateResponse], app, path=["response"])
-
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
-    )
-    @parametrize
-    def test_streaming_response_update_overload_3(self, client: Cloudflare) -> None:
-        with client.magic_transit.apps.with_streaming_response.update(
-            account_app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            app = response.parse()
-            assert_matches_type(Optional[AppUpdateResponse], app, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
-    )
-    @parametrize
-    def test_path_params_update_overload_3(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.magic_transit.apps.with_raw_response.update(
-                account_app_id="023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="",
-                body={},
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_app_id` but received ''"):
-            client.magic_transit.apps.with_raw_response.update(
-                account_app_id="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
-            )
-
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
-    )
-    @parametrize
-    def test_method_update_overload_4(self, client: Cloudflare) -> None:
-        app = client.magic_transit.apps.update(
-            account_app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        )
-        assert_matches_type(Optional[AppUpdateResponse], app, path=["response"])
-
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
-    )
-    @parametrize
-    def test_raw_response_update_overload_4(self, client: Cloudflare) -> None:
-        response = client.magic_transit.apps.with_raw_response.update(
-            account_app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        app = response.parse()
-        assert_matches_type(Optional[AppUpdateResponse], app, path=["response"])
-
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
-    )
-    @parametrize
-    def test_streaming_response_update_overload_4(self, client: Cloudflare) -> None:
-        with client.magic_transit.apps.with_streaming_response.update(
-            account_app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            app = response.parse()
-            assert_matches_type(Optional[AppUpdateResponse], app, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
-    )
-    @parametrize
-    def test_path_params_update_overload_4(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.magic_transit.apps.with_raw_response.update(
-                account_app_id="023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="",
-                body={},
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_app_id` but received ''"):
-            client.magic_transit.apps.with_raw_response.update(
-                account_app_id="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
     @pytest.mark.skip(
@@ -497,10 +276,11 @@ class TestAsyncApps:
         reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
     )
     @parametrize
-    async def test_method_create_overload_1(self, async_client: AsyncCloudflare) -> None:
+    async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         app = await async_client.magic_transit.apps.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
+            name="Cloudflare Dashboard",
+            type="Development",
         )
         assert_matches_type(Optional[AppCreateResponse], app, path=["response"])
 
@@ -508,10 +288,25 @@ class TestAsyncApps:
         reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
     )
     @parametrize
-    async def test_raw_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
+    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        app = await async_client.magic_transit.apps.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="Cloudflare Dashboard",
+            type="Development",
+            hostnames=["auth.cloudflare.com"],
+            ip_subnets=["1.1.1.1/32"],
+        )
+        assert_matches_type(Optional[AppCreateResponse], app, path=["response"])
+
+    @pytest.mark.skip(
+        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
+    )
+    @parametrize
+    async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.apps.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
+            name="Cloudflare Dashboard",
+            type="Development",
         )
 
         assert response.is_closed is True
@@ -523,10 +318,11 @@ class TestAsyncApps:
         reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
     )
     @parametrize
-    async def test_streaming_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
+    async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.apps.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
+            name="Cloudflare Dashboard",
+            type="Development",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -540,76 +336,22 @@ class TestAsyncApps:
         reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
     )
     @parametrize
-    async def test_path_params_create_overload_1(self, async_client: AsyncCloudflare) -> None:
+    async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.magic_transit.apps.with_raw_response.create(
                 account_id="",
-                body={},
+                name="Cloudflare Dashboard",
+                type="Development",
             )
 
     @pytest.mark.skip(
         reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
     )
     @parametrize
-    async def test_method_create_overload_2(self, async_client: AsyncCloudflare) -> None:
-        app = await async_client.magic_transit.apps.create(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        )
-        assert_matches_type(Optional[AppCreateResponse], app, path=["response"])
-
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
-    )
-    @parametrize
-    async def test_raw_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.magic_transit.apps.with_raw_response.create(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        app = await response.parse()
-        assert_matches_type(Optional[AppCreateResponse], app, path=["response"])
-
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
-    )
-    @parametrize
-    async def test_streaming_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.magic_transit.apps.with_streaming_response.create(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            app = await response.parse()
-            assert_matches_type(Optional[AppCreateResponse], app, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
-    )
-    @parametrize
-    async def test_path_params_create_overload_2(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.magic_transit.apps.with_raw_response.create(
-                account_id="",
-                body={},
-            )
-
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
-    )
-    @parametrize
-    async def test_method_update_overload_1(self, async_client: AsyncCloudflare) -> None:
+    async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         app = await async_client.magic_transit.apps.update(
             account_app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
         assert_matches_type(Optional[AppUpdateResponse], app, path=["response"])
 
@@ -617,11 +359,25 @@ class TestAsyncApps:
         reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
     )
     @parametrize
-    async def test_raw_response_update_overload_1(self, async_client: AsyncCloudflare) -> None:
+    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        app = await async_client.magic_transit.apps.update(
+            account_app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            hostnames=["auth.cloudflare.com"],
+            ip_subnets=["1.1.1.1/32"],
+            name="Cloudflare Dashboard",
+            type="Development",
+        )
+        assert_matches_type(Optional[AppUpdateResponse], app, path=["response"])
+
+    @pytest.mark.skip(
+        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
+    )
+    @parametrize
+    async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.apps.with_raw_response.update(
             account_app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
 
         assert response.is_closed is True
@@ -633,11 +389,10 @@ class TestAsyncApps:
         reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
     )
     @parametrize
-    async def test_streaming_response_update_overload_1(self, async_client: AsyncCloudflare) -> None:
+    async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.apps.with_streaming_response.update(
             account_app_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -651,214 +406,17 @@ class TestAsyncApps:
         reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
     )
     @parametrize
-    async def test_path_params_update_overload_1(self, async_client: AsyncCloudflare) -> None:
+    async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.magic_transit.apps.with_raw_response.update(
                 account_app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_app_id` but received ''"):
             await async_client.magic_transit.apps.with_raw_response.update(
                 account_app_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
-            )
-
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
-    )
-    @parametrize
-    async def test_method_update_overload_2(self, async_client: AsyncCloudflare) -> None:
-        app = await async_client.magic_transit.apps.update(
-            account_app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        )
-        assert_matches_type(Optional[AppUpdateResponse], app, path=["response"])
-
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
-    )
-    @parametrize
-    async def test_raw_response_update_overload_2(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.magic_transit.apps.with_raw_response.update(
-            account_app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        app = await response.parse()
-        assert_matches_type(Optional[AppUpdateResponse], app, path=["response"])
-
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
-    )
-    @parametrize
-    async def test_streaming_response_update_overload_2(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.magic_transit.apps.with_streaming_response.update(
-            account_app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            app = await response.parse()
-            assert_matches_type(Optional[AppUpdateResponse], app, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
-    )
-    @parametrize
-    async def test_path_params_update_overload_2(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.magic_transit.apps.with_raw_response.update(
-                account_app_id="023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="",
-                body={},
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_app_id` but received ''"):
-            await async_client.magic_transit.apps.with_raw_response.update(
-                account_app_id="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
-            )
-
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
-    )
-    @parametrize
-    async def test_method_update_overload_3(self, async_client: AsyncCloudflare) -> None:
-        app = await async_client.magic_transit.apps.update(
-            account_app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        )
-        assert_matches_type(Optional[AppUpdateResponse], app, path=["response"])
-
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
-    )
-    @parametrize
-    async def test_raw_response_update_overload_3(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.magic_transit.apps.with_raw_response.update(
-            account_app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        app = await response.parse()
-        assert_matches_type(Optional[AppUpdateResponse], app, path=["response"])
-
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
-    )
-    @parametrize
-    async def test_streaming_response_update_overload_3(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.magic_transit.apps.with_streaming_response.update(
-            account_app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            app = await response.parse()
-            assert_matches_type(Optional[AppUpdateResponse], app, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
-    )
-    @parametrize
-    async def test_path_params_update_overload_3(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.magic_transit.apps.with_raw_response.update(
-                account_app_id="023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="",
-                body={},
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_app_id` but received ''"):
-            await async_client.magic_transit.apps.with_raw_response.update(
-                account_app_id="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
-            )
-
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
-    )
-    @parametrize
-    async def test_method_update_overload_4(self, async_client: AsyncCloudflare) -> None:
-        app = await async_client.magic_transit.apps.update(
-            account_app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        )
-        assert_matches_type(Optional[AppUpdateResponse], app, path=["response"])
-
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
-    )
-    @parametrize
-    async def test_raw_response_update_overload_4(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.magic_transit.apps.with_raw_response.update(
-            account_app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        app = await response.parse()
-        assert_matches_type(Optional[AppUpdateResponse], app, path=["response"])
-
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
-    )
-    @parametrize
-    async def test_streaming_response_update_overload_4(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.magic_transit.apps.with_streaming_response.update(
-            account_app_id="023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            app = await response.parse()
-            assert_matches_type(Optional[AppUpdateResponse], app, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip(
-        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9360388260/job/25765690361?pr=482#step:5:7212"
-    )
-    @parametrize
-    async def test_path_params_update_overload_4(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.magic_transit.apps.with_raw_response.update(
-                account_app_id="023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="",
-                body={},
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_app_id` but received ''"):
-            await async_client.magic_transit.apps.with_raw_response.update(
-                account_app_id="",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
     @pytest.mark.skip(

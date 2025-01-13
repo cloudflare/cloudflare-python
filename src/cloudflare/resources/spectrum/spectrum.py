@@ -11,7 +11,8 @@ from .apps import (
     AsyncAppsResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
-from .analytics import (
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from .analytics.analytics import (
     AnalyticsResource,
     AsyncAnalyticsResource,
     AnalyticsResourceWithRawResponse,
@@ -19,8 +20,6 @@ from .analytics import (
     AnalyticsResourceWithStreamingResponse,
     AsyncAnalyticsResourceWithStreamingResponse,
 )
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from .analytics.analytics import AnalyticsResource, AsyncAnalyticsResource
 
 __all__ = ["SpectrumResource", "AsyncSpectrumResource"]
 
@@ -36,10 +35,21 @@ class SpectrumResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> SpectrumResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return SpectrumResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> SpectrumResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return SpectrumResourceWithStreamingResponse(self)
 
 
@@ -54,10 +64,21 @@ class AsyncSpectrumResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncSpectrumResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncSpectrumResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncSpectrumResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncSpectrumResourceWithStreamingResponse(self)
 
 

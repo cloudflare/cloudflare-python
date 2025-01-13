@@ -8,7 +8,7 @@ __all__ = ["HostnameEditParams"]
 
 
 class HostnameEditParams(TypedDict, total=False):
-    zone_identifier: Required[str]
+    zone_id: Required[str]
     """Identifier"""
 
     description: str

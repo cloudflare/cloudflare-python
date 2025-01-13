@@ -44,10 +44,21 @@ __all__ = ["SummaryResource", "AsyncSummaryResource"]
 class SummaryResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> SummaryResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return SummaryResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> SummaryResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return SummaryResourceWithStreamingResponse(self)
 
     def get(
@@ -140,6 +151,7 @@ class SummaryResource(SyncAPIResource):
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
         ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        limit_per_group: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         mitigation_product: List[
             Literal[
@@ -181,6 +193,9 @@ class SummaryResource(SyncAPIResource):
 
           ip_version: Filter for ip version.
 
+          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
+              the time range.
+
           location: Array of comma separated list of locations (alpha-2 country codes). Start with
               `-` to exclude from results. For example, `-US,PT` excludes results from the US,
               but includes results from PT.
@@ -214,6 +229,7 @@ class SummaryResource(SyncAPIResource):
                         "format": format,
                         "http_version": http_version,
                         "ip_version": ip_version,
+                        "limit_per_group": limit_per_group,
                         "location": location,
                         "mitigation_product": mitigation_product,
                         "name": name,
@@ -579,6 +595,7 @@ class SummaryResource(SyncAPIResource):
         | NotGiven = NOT_GIVEN,
         http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
         ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        limit_per_group: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         mitigation_product: List[
             Literal[
@@ -622,6 +639,9 @@ class SummaryResource(SyncAPIResource):
 
           ip_version: Filter for ip version.
 
+          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
+              the time range.
+
           location: Array of comma separated list of locations (alpha-2 country codes). Start with
               `-` to exclude from results. For example, `-US,PT` excludes results from the US,
               but includes results from PT.
@@ -656,6 +676,7 @@ class SummaryResource(SyncAPIResource):
                         "http_method": http_method,
                         "http_version": http_version,
                         "ip_version": ip_version,
+                        "limit_per_group": limit_per_group,
                         "location": location,
                         "mitigation_product": mitigation_product,
                         "name": name,
@@ -729,6 +750,7 @@ class SummaryResource(SyncAPIResource):
         | NotGiven = NOT_GIVEN,
         http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
         ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        limit_per_group: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -766,6 +788,9 @@ class SummaryResource(SyncAPIResource):
 
           ip_version: Filter for ip version.
 
+          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
+              the time range.
+
           location: Array of comma separated list of locations (alpha-2 country codes). Start with
               `-` to exclude from results. For example, `-US,PT` excludes results from the US,
               but includes results from PT.
@@ -798,6 +823,7 @@ class SummaryResource(SyncAPIResource):
                         "http_method": http_method,
                         "http_version": http_version,
                         "ip_version": ip_version,
+                        "limit_per_group": limit_per_group,
                         "location": location,
                         "name": name,
                     },
@@ -812,10 +838,21 @@ class SummaryResource(SyncAPIResource):
 class AsyncSummaryResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncSummaryResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncSummaryResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncSummaryResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncSummaryResourceWithStreamingResponse(self)
 
     async def get(
@@ -908,6 +945,7 @@ class AsyncSummaryResource(AsyncAPIResource):
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
         ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        limit_per_group: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         mitigation_product: List[
             Literal[
@@ -949,6 +987,9 @@ class AsyncSummaryResource(AsyncAPIResource):
 
           ip_version: Filter for ip version.
 
+          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
+              the time range.
+
           location: Array of comma separated list of locations (alpha-2 country codes). Start with
               `-` to exclude from results. For example, `-US,PT` excludes results from the US,
               but includes results from PT.
@@ -982,6 +1023,7 @@ class AsyncSummaryResource(AsyncAPIResource):
                         "format": format,
                         "http_version": http_version,
                         "ip_version": ip_version,
+                        "limit_per_group": limit_per_group,
                         "location": location,
                         "mitigation_product": mitigation_product,
                         "name": name,
@@ -1347,6 +1389,7 @@ class AsyncSummaryResource(AsyncAPIResource):
         | NotGiven = NOT_GIVEN,
         http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
         ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        limit_per_group: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         mitigation_product: List[
             Literal[
@@ -1390,6 +1433,9 @@ class AsyncSummaryResource(AsyncAPIResource):
 
           ip_version: Filter for ip version.
 
+          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
+              the time range.
+
           location: Array of comma separated list of locations (alpha-2 country codes). Start with
               `-` to exclude from results. For example, `-US,PT` excludes results from the US,
               but includes results from PT.
@@ -1424,6 +1470,7 @@ class AsyncSummaryResource(AsyncAPIResource):
                         "http_method": http_method,
                         "http_version": http_version,
                         "ip_version": ip_version,
+                        "limit_per_group": limit_per_group,
                         "location": location,
                         "mitigation_product": mitigation_product,
                         "name": name,
@@ -1497,6 +1544,7 @@ class AsyncSummaryResource(AsyncAPIResource):
         | NotGiven = NOT_GIVEN,
         http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
         ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        limit_per_group: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1534,6 +1582,9 @@ class AsyncSummaryResource(AsyncAPIResource):
 
           ip_version: Filter for ip version.
 
+          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
+              the time range.
+
           location: Array of comma separated list of locations (alpha-2 country codes). Start with
               `-` to exclude from results. For example, `-US,PT` excludes results from the US,
               but includes results from PT.
@@ -1566,6 +1617,7 @@ class AsyncSummaryResource(AsyncAPIResource):
                         "http_method": http_method,
                         "http_version": http_version,
                         "ip_version": ip_version,
+                        "limit_per_group": limit_per_group,
                         "location": location,
                         "name": name,
                     },

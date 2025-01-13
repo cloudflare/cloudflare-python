@@ -9,7 +9,6 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare._utils import parse_datetime
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.zero_trust.access import (
     CustomPage,
@@ -41,9 +40,6 @@ class TestCustomPages:
             name="name",
             type="identity_denied",
             app_count=0,
-            created_at=parse_datetime("2014-01-01T05:20:00.12345Z"),
-            uid="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            updated_at=parse_datetime("2014-01-01T05:20:00.12345Z"),
         )
         assert_matches_type(Optional[CustomPageWithoutHTML], custom_page, path=["response"])
 
@@ -107,9 +103,6 @@ class TestCustomPages:
             name="name",
             type="identity_denied",
             app_count=0,
-            created_at=parse_datetime("2014-01-01T05:20:00.12345Z"),
-            uid="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            updated_at=parse_datetime("2014-01-01T05:20:00.12345Z"),
         )
         assert_matches_type(Optional[CustomPageWithoutHTML], custom_page, path=["response"])
 
@@ -321,9 +314,6 @@ class TestAsyncCustomPages:
             name="name",
             type="identity_denied",
             app_count=0,
-            created_at=parse_datetime("2014-01-01T05:20:00.12345Z"),
-            uid="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            updated_at=parse_datetime("2014-01-01T05:20:00.12345Z"),
         )
         assert_matches_type(Optional[CustomPageWithoutHTML], custom_page, path=["response"])
 
@@ -387,9 +377,6 @@ class TestAsyncCustomPages:
             name="name",
             type="identity_denied",
             app_count=0,
-            created_at=parse_datetime("2014-01-01T05:20:00.12345Z"),
-            uid="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            updated_at=parse_datetime("2014-01-01T05:20:00.12345Z"),
         )
         assert_matches_type(Optional[CustomPageWithoutHTML], custom_page, path=["response"])
 

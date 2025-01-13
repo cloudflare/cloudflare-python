@@ -16,14 +16,6 @@ from .top import (
     TopResourceWithStreamingResponse,
     AsyncTopResourceWithStreamingResponse,
 )
-from .ases import (
-    AsesResource,
-    AsyncAsesResource,
-    AsesResourceWithRawResponse,
-    AsyncAsesResourceWithRawResponse,
-    AsesResourceWithStreamingResponse,
-    AsyncAsesResourceWithStreamingResponse,
-)
 from .summary import (
     SummaryResource,
     AsyncSummaryResource,
@@ -37,14 +29,13 @@ from ...._utils import (
     maybe_transform,
     async_maybe_transform,
 )
-from .ases.ases import AsesResource, AsyncAsesResource
-from .locations import (
-    LocationsResource,
-    AsyncLocationsResource,
-    LocationsResourceWithRawResponse,
-    AsyncLocationsResourceWithRawResponse,
-    LocationsResourceWithStreamingResponse,
-    AsyncLocationsResourceWithStreamingResponse,
+from .ases.ases import (
+    AsesResource,
+    AsyncAsesResource,
+    AsesResourceWithRawResponse,
+    AsyncAsesResourceWithRawResponse,
+    AsesResourceWithStreamingResponse,
+    AsyncAsesResourceWithStreamingResponse,
 )
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -65,17 +56,20 @@ from .timeseries_groups import (
     TimeseriesGroupsResourceWithStreamingResponse,
     AsyncTimeseriesGroupsResourceWithStreamingResponse,
 )
-from .locations.locations import LocationsResource, AsyncLocationsResource
+from .locations.locations import (
+    LocationsResource,
+    AsyncLocationsResource,
+    LocationsResourceWithRawResponse,
+    AsyncLocationsResourceWithRawResponse,
+    LocationsResourceWithStreamingResponse,
+    AsyncLocationsResourceWithStreamingResponse,
+)
 from ....types.radar.http_timeseries_response import HTTPTimeseriesResponse
 
 __all__ = ["HTTPResource", "AsyncHTTPResource"]
 
 
 class HTTPResource(SyncAPIResource):
-    @cached_property
-    def top(self) -> TopResource:
-        return TopResource(self._client)
-
     @cached_property
     def locations(self) -> LocationsResource:
         return LocationsResource(self._client)
@@ -93,11 +87,26 @@ class HTTPResource(SyncAPIResource):
         return TimeseriesGroupsResource(self._client)
 
     @cached_property
+    def top(self) -> TopResource:
+        return TopResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> HTTPResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return HTTPResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> HTTPResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return HTTPResourceWithStreamingResponse(self)
 
     def timeseries(
@@ -105,13 +114,22 @@ class HTTPResource(SyncAPIResource):
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
+        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
+        normalization: Literal["PERCENTAGE_CHANGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
+        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
+        | NotGiven = NOT_GIVEN,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -131,6 +149,9 @@ class HTTPResource(SyncAPIResource):
               For example, `-174, 3356` excludes results from AS174, but includes results from
               AS3356.
 
+          bot_class: Filter for bot class. Refer to
+              [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
+
           continent: Array of comma separated list of continents (alpha-2 continent codes). Start
               with `-` to exclude from results. For example, `-EU,NA` excludes results from
               Europe, but includes results from North America.
@@ -143,13 +164,28 @@ class HTTPResource(SyncAPIResource):
 
           date_start: Array of datetimes to filter the start of a series.
 
+          device_type: Filter for device type.
+
           format: Format results are returned in.
+
+          http_protocol: Filter for http protocol.
+
+          http_version: Filter for http version.
+
+          ip_version: Filter for ip version.
 
           location: Array of comma separated list of locations (alpha-2 country codes). Start with
               `-` to exclude from results. For example, `-US,PT` excludes results from the US,
               but includes results from PT.
 
           name: Array of names that will be used to name the series in responses.
+
+          normalization: Normalization method applied. Refer to
+              [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
+
+          os: Filter for os name.
+
+          tls_version: Filter for tls version.
 
           extra_headers: Send extra headers
 
@@ -170,13 +206,21 @@ class HTTPResource(SyncAPIResource):
                     {
                         "agg_interval": agg_interval,
                         "asn": asn,
+                        "bot_class": bot_class,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
+                        "device_type": device_type,
                         "format": format,
+                        "http_protocol": http_protocol,
+                        "http_version": http_version,
+                        "ip_version": ip_version,
                         "location": location,
                         "name": name,
+                        "normalization": normalization,
+                        "os": os,
+                        "tls_version": tls_version,
                     },
                     http_timeseries_params.HTTPTimeseriesParams,
                 ),
@@ -187,10 +231,6 @@ class HTTPResource(SyncAPIResource):
 
 
 class AsyncHTTPResource(AsyncAPIResource):
-    @cached_property
-    def top(self) -> AsyncTopResource:
-        return AsyncTopResource(self._client)
-
     @cached_property
     def locations(self) -> AsyncLocationsResource:
         return AsyncLocationsResource(self._client)
@@ -208,11 +248,26 @@ class AsyncHTTPResource(AsyncAPIResource):
         return AsyncTimeseriesGroupsResource(self._client)
 
     @cached_property
+    def top(self) -> AsyncTopResource:
+        return AsyncTopResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AsyncHTTPResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncHTTPResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncHTTPResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncHTTPResourceWithStreamingResponse(self)
 
     async def timeseries(
@@ -220,13 +275,22 @@ class AsyncHTTPResource(AsyncAPIResource):
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
+        bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
+        normalization: Literal["PERCENTAGE_CHANGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
+        os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
+        | NotGiven = NOT_GIVEN,
+        tls_version: List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -246,6 +310,9 @@ class AsyncHTTPResource(AsyncAPIResource):
               For example, `-174, 3356` excludes results from AS174, but includes results from
               AS3356.
 
+          bot_class: Filter for bot class. Refer to
+              [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
+
           continent: Array of comma separated list of continents (alpha-2 continent codes). Start
               with `-` to exclude from results. For example, `-EU,NA` excludes results from
               Europe, but includes results from North America.
@@ -258,13 +325,28 @@ class AsyncHTTPResource(AsyncAPIResource):
 
           date_start: Array of datetimes to filter the start of a series.
 
+          device_type: Filter for device type.
+
           format: Format results are returned in.
+
+          http_protocol: Filter for http protocol.
+
+          http_version: Filter for http version.
+
+          ip_version: Filter for ip version.
 
           location: Array of comma separated list of locations (alpha-2 country codes). Start with
               `-` to exclude from results. For example, `-US,PT` excludes results from the US,
               but includes results from PT.
 
           name: Array of names that will be used to name the series in responses.
+
+          normalization: Normalization method applied. Refer to
+              [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
+
+          os: Filter for os name.
+
+          tls_version: Filter for tls version.
 
           extra_headers: Send extra headers
 
@@ -285,13 +367,21 @@ class AsyncHTTPResource(AsyncAPIResource):
                     {
                         "agg_interval": agg_interval,
                         "asn": asn,
+                        "bot_class": bot_class,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
+                        "device_type": device_type,
                         "format": format,
+                        "http_protocol": http_protocol,
+                        "http_version": http_version,
+                        "ip_version": ip_version,
                         "location": location,
                         "name": name,
+                        "normalization": normalization,
+                        "os": os,
+                        "tls_version": tls_version,
                     },
                     http_timeseries_params.HTTPTimeseriesParams,
                 ),
@@ -310,10 +400,6 @@ class HTTPResourceWithRawResponse:
         )
 
     @cached_property
-    def top(self) -> TopResourceWithRawResponse:
-        return TopResourceWithRawResponse(self._http.top)
-
-    @cached_property
     def locations(self) -> LocationsResourceWithRawResponse:
         return LocationsResourceWithRawResponse(self._http.locations)
 
@@ -329,6 +415,10 @@ class HTTPResourceWithRawResponse:
     def timeseries_groups(self) -> TimeseriesGroupsResourceWithRawResponse:
         return TimeseriesGroupsResourceWithRawResponse(self._http.timeseries_groups)
 
+    @cached_property
+    def top(self) -> TopResourceWithRawResponse:
+        return TopResourceWithRawResponse(self._http.top)
+
 
 class AsyncHTTPResourceWithRawResponse:
     def __init__(self, http: AsyncHTTPResource) -> None:
@@ -337,10 +427,6 @@ class AsyncHTTPResourceWithRawResponse:
         self.timeseries = async_to_raw_response_wrapper(
             http.timeseries,
         )
-
-    @cached_property
-    def top(self) -> AsyncTopResourceWithRawResponse:
-        return AsyncTopResourceWithRawResponse(self._http.top)
 
     @cached_property
     def locations(self) -> AsyncLocationsResourceWithRawResponse:
@@ -358,6 +444,10 @@ class AsyncHTTPResourceWithRawResponse:
     def timeseries_groups(self) -> AsyncTimeseriesGroupsResourceWithRawResponse:
         return AsyncTimeseriesGroupsResourceWithRawResponse(self._http.timeseries_groups)
 
+    @cached_property
+    def top(self) -> AsyncTopResourceWithRawResponse:
+        return AsyncTopResourceWithRawResponse(self._http.top)
+
 
 class HTTPResourceWithStreamingResponse:
     def __init__(self, http: HTTPResource) -> None:
@@ -366,10 +456,6 @@ class HTTPResourceWithStreamingResponse:
         self.timeseries = to_streamed_response_wrapper(
             http.timeseries,
         )
-
-    @cached_property
-    def top(self) -> TopResourceWithStreamingResponse:
-        return TopResourceWithStreamingResponse(self._http.top)
 
     @cached_property
     def locations(self) -> LocationsResourceWithStreamingResponse:
@@ -387,6 +473,10 @@ class HTTPResourceWithStreamingResponse:
     def timeseries_groups(self) -> TimeseriesGroupsResourceWithStreamingResponse:
         return TimeseriesGroupsResourceWithStreamingResponse(self._http.timeseries_groups)
 
+    @cached_property
+    def top(self) -> TopResourceWithStreamingResponse:
+        return TopResourceWithStreamingResponse(self._http.top)
+
 
 class AsyncHTTPResourceWithStreamingResponse:
     def __init__(self, http: AsyncHTTPResource) -> None:
@@ -395,10 +485,6 @@ class AsyncHTTPResourceWithStreamingResponse:
         self.timeseries = async_to_streamed_response_wrapper(
             http.timeseries,
         )
-
-    @cached_property
-    def top(self) -> AsyncTopResourceWithStreamingResponse:
-        return AsyncTopResourceWithStreamingResponse(self._http.top)
 
     @cached_property
     def locations(self) -> AsyncLocationsResourceWithStreamingResponse:
@@ -415,3 +501,7 @@ class AsyncHTTPResourceWithStreamingResponse:
     @cached_property
     def timeseries_groups(self) -> AsyncTimeseriesGroupsResourceWithStreamingResponse:
         return AsyncTimeseriesGroupsResourceWithStreamingResponse(self._http.timeseries_groups)
+
+    @cached_property
+    def top(self) -> AsyncTopResourceWithStreamingResponse:
+        return AsyncTopResourceWithStreamingResponse(self._http.top)

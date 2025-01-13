@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import List, Type, Iterable, Optional, cast
+from typing_extensions import Literal
 
 import httpx
 
@@ -43,6 +44,7 @@ from ....types.load_balancers import (
     pool_list_params,
     pool_create_params,
     pool_update_params,
+    pool_bulk_edit_params,
 )
 from ....types.load_balancers.pool import Pool
 from ....types.load_balancers.check_region import CheckRegion
@@ -50,6 +52,7 @@ from ....types.load_balancers.origin_param import OriginParam
 from ....types.load_balancers.load_shedding_param import LoadSheddingParam
 from ....types.load_balancers.pool_delete_response import PoolDeleteResponse
 from ....types.load_balancers.origin_steering_param import OriginSteeringParam
+from ....types.load_balancers.pool_bulk_edit_response import PoolBulkEditResponse
 from ....types.load_balancers.notification_filter_param import NotificationFilterParam
 
 __all__ = ["PoolsResource", "AsyncPoolsResource"]
@@ -66,10 +69,21 @@ class PoolsResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> PoolsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return PoolsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> PoolsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return PoolsResourceWithStreamingResponse(self)
 
     def create(
@@ -84,7 +98,7 @@ class PoolsResource(SyncAPIResource):
         load_shedding: LoadSheddingParam | NotGiven = NOT_GIVEN,
         longitude: float | NotGiven = NOT_GIVEN,
         minimum_origins: int | NotGiven = NOT_GIVEN,
-        monitor: object | NotGiven = NOT_GIVEN,
+        monitor: str | NotGiven = NOT_GIVEN,
         notification_email: str | NotGiven = NOT_GIVEN,
         notification_filter: Optional[NotificationFilterParam] | NotGiven = NOT_GIVEN,
         origin_steering: OriginSteeringParam | NotGiven = NOT_GIVEN,
@@ -193,7 +207,7 @@ class PoolsResource(SyncAPIResource):
         load_shedding: LoadSheddingParam | NotGiven = NOT_GIVEN,
         longitude: float | NotGiven = NOT_GIVEN,
         minimum_origins: int | NotGiven = NOT_GIVEN,
-        monitor: object | NotGiven = NOT_GIVEN,
+        monitor: str | NotGiven = NOT_GIVEN,
         notification_email: str | NotGiven = NOT_GIVEN,
         notification_filter: Optional[NotificationFilterParam] | NotGiven = NOT_GIVEN,
         origin_steering: OriginSteeringParam | NotGiven = NOT_GIVEN,
@@ -298,7 +312,7 @@ class PoolsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        monitor: object | NotGiven = NOT_GIVEN,
+        monitor: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -380,6 +394,55 @@ class PoolsResource(SyncAPIResource):
             cast_to=cast(Type[PoolDeleteResponse], ResultWrapper[PoolDeleteResponse]),
         )
 
+    def bulk_edit(
+        self,
+        *,
+        account_id: str,
+        notification_email: Literal[""] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> PoolBulkEditResponse:
+        """Apply changes to a number of existing pools, overwriting the supplied
+        properties.
+
+        Pools are ordered by ascending `name`. Returns the list of affected
+        pools. Supports the standard pagination query parameters, either
+        `limit`/`offset` or `per_page`/`page`.
+
+        Args:
+          account_id: Identifier
+
+          notification_email: The email address to send health status notifications to. This field is now
+              deprecated in favor of Cloudflare Notifications for Load Balancing, so only
+              resetting this field with an empty string `""` is accepted.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._patch(
+            f"/accounts/{account_id}/load_balancers/pools",
+            body=maybe_transform({"notification_email": notification_email}, pool_bulk_edit_params.PoolBulkEditParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[PoolBulkEditResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[PoolBulkEditResponse], ResultWrapper[PoolBulkEditResponse]),
+        )
+
     def edit(
         self,
         pool_id: str,
@@ -392,7 +455,7 @@ class PoolsResource(SyncAPIResource):
         load_shedding: LoadSheddingParam | NotGiven = NOT_GIVEN,
         longitude: float | NotGiven = NOT_GIVEN,
         minimum_origins: int | NotGiven = NOT_GIVEN,
-        monitor: object | NotGiven = NOT_GIVEN,
+        monitor: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         notification_email: str | NotGiven = NOT_GIVEN,
         notification_filter: Optional[NotificationFilterParam] | NotGiven = NOT_GIVEN,
@@ -549,10 +612,21 @@ class AsyncPoolsResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncPoolsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncPoolsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncPoolsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncPoolsResourceWithStreamingResponse(self)
 
     async def create(
@@ -567,7 +641,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         load_shedding: LoadSheddingParam | NotGiven = NOT_GIVEN,
         longitude: float | NotGiven = NOT_GIVEN,
         minimum_origins: int | NotGiven = NOT_GIVEN,
-        monitor: object | NotGiven = NOT_GIVEN,
+        monitor: str | NotGiven = NOT_GIVEN,
         notification_email: str | NotGiven = NOT_GIVEN,
         notification_filter: Optional[NotificationFilterParam] | NotGiven = NOT_GIVEN,
         origin_steering: OriginSteeringParam | NotGiven = NOT_GIVEN,
@@ -676,7 +750,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         load_shedding: LoadSheddingParam | NotGiven = NOT_GIVEN,
         longitude: float | NotGiven = NOT_GIVEN,
         minimum_origins: int | NotGiven = NOT_GIVEN,
-        monitor: object | NotGiven = NOT_GIVEN,
+        monitor: str | NotGiven = NOT_GIVEN,
         notification_email: str | NotGiven = NOT_GIVEN,
         notification_filter: Optional[NotificationFilterParam] | NotGiven = NOT_GIVEN,
         origin_steering: OriginSteeringParam | NotGiven = NOT_GIVEN,
@@ -781,7 +855,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        monitor: object | NotGiven = NOT_GIVEN,
+        monitor: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -863,6 +937,57 @@ class AsyncPoolsResource(AsyncAPIResource):
             cast_to=cast(Type[PoolDeleteResponse], ResultWrapper[PoolDeleteResponse]),
         )
 
+    async def bulk_edit(
+        self,
+        *,
+        account_id: str,
+        notification_email: Literal[""] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> PoolBulkEditResponse:
+        """Apply changes to a number of existing pools, overwriting the supplied
+        properties.
+
+        Pools are ordered by ascending `name`. Returns the list of affected
+        pools. Supports the standard pagination query parameters, either
+        `limit`/`offset` or `per_page`/`page`.
+
+        Args:
+          account_id: Identifier
+
+          notification_email: The email address to send health status notifications to. This field is now
+              deprecated in favor of Cloudflare Notifications for Load Balancing, so only
+              resetting this field with an empty string `""` is accepted.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return await self._patch(
+            f"/accounts/{account_id}/load_balancers/pools",
+            body=await async_maybe_transform(
+                {"notification_email": notification_email}, pool_bulk_edit_params.PoolBulkEditParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[PoolBulkEditResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[PoolBulkEditResponse], ResultWrapper[PoolBulkEditResponse]),
+        )
+
     async def edit(
         self,
         pool_id: str,
@@ -875,7 +1000,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         load_shedding: LoadSheddingParam | NotGiven = NOT_GIVEN,
         longitude: float | NotGiven = NOT_GIVEN,
         minimum_origins: int | NotGiven = NOT_GIVEN,
-        monitor: object | NotGiven = NOT_GIVEN,
+        monitor: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         notification_email: str | NotGiven = NOT_GIVEN,
         notification_filter: Optional[NotificationFilterParam] | NotGiven = NOT_GIVEN,
@@ -1037,6 +1162,9 @@ class PoolsResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             pools.delete,
         )
+        self.bulk_edit = to_raw_response_wrapper(
+            pools.bulk_edit,
+        )
         self.edit = to_raw_response_wrapper(
             pools.edit,
         )
@@ -1068,6 +1196,9 @@ class AsyncPoolsResourceWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             pools.delete,
+        )
+        self.bulk_edit = async_to_raw_response_wrapper(
+            pools.bulk_edit,
         )
         self.edit = async_to_raw_response_wrapper(
             pools.edit,
@@ -1101,6 +1232,9 @@ class PoolsResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             pools.delete,
         )
+        self.bulk_edit = to_streamed_response_wrapper(
+            pools.bulk_edit,
+        )
         self.edit = to_streamed_response_wrapper(
             pools.edit,
         )
@@ -1132,6 +1266,9 @@ class AsyncPoolsResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             pools.delete,
+        )
+        self.bulk_edit = async_to_streamed_response_wrapper(
+            pools.bulk_edit,
         )
         self.edit = async_to_streamed_response_wrapper(
             pools.edit,

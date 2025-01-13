@@ -37,7 +37,7 @@ class TestHTTPTests:
             interval="minute",
             to="1689606812000",
             colo="colo",
-            device_id=["string", "string", "string"],
+            device_id=["string"],
         )
         assert_matches_type(Optional[HTTPDetails], http_test, path=["response"])
 
@@ -117,7 +117,7 @@ class TestAsyncHTTPTests:
             interval="minute",
             to="1689606812000",
             colo="colo",
-            device_id=["string", "string", "string"],
+            device_id=["string"],
         )
         assert_matches_type(Optional[HTTPDetails], http_test, path=["response"])
 

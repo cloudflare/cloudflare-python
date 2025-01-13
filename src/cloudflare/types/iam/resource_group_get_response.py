@@ -4,7 +4,7 @@ from typing import List, Optional
 
 from ..._models import BaseModel
 
-__all__ = ["ResourceGroupGetResponse", "Scope", "ScopeObject"]
+__all__ = ["ResourceGroupGetResponse", "Scope", "ScopeObject", "Meta"]
 
 
 class ScopeObject(BaseModel):
@@ -26,6 +26,12 @@ class Scope(BaseModel):
     """A list of scope objects for additional context."""
 
 
+class Meta(BaseModel):
+    key: Optional[str] = None
+
+    value: Optional[str] = None
+
+
 class ResourceGroupGetResponse(BaseModel):
     id: str
     """Identifier of the group."""
@@ -33,7 +39,7 @@ class ResourceGroupGetResponse(BaseModel):
     scope: List[Scope]
     """The scope associated to the resource group"""
 
-    meta: Optional[object] = None
+    meta: Optional[Meta] = None
     """Attributes associated to the resource group."""
 
     name: Optional[str] = None

@@ -44,10 +44,21 @@ __all__ = ["TimeseriesGroupsResource", "AsyncTimeseriesGroupsResource"]
 class TimeseriesGroupsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> TimeseriesGroupsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return TimeseriesGroupsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> TimeseriesGroupsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return TimeseriesGroupsResourceWithStreamingResponse(self)
 
     def arc(
@@ -72,7 +83,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupARCResponse:
         """
-        Percentage distribution of emails classified per Arc validation over time.
+        Percentage distribution of emails classified by ARC validation over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -159,7 +170,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupDKIMResponse:
         """
-        Percentage distribution of emails classified per DKIM validation over time.
+        Percentage distribution of emails classified by DKIM validation over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -246,7 +257,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupDMARCResponse:
         """
-        Percentage distribution of emails classified per DMARC validation over time.
+        Percentage distribution of emails classified by DMARC validation over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -333,7 +344,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupEncryptedResponse:
         """
-        Percentage distribution of emails by Encrypted over time.
+        Percentage distribution of emails by encryption status over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -420,7 +431,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupIPVersionResponse:
         """
-        Percentage distribution of emails by Ip Version over time.
+        Percentage distribution of emails by IP version over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -507,7 +518,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupSPFResponse:
         """
-        Percentage distribution of emails classified per SPF validation over time.
+        Percentage distribution of emails classified by SPF validation over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -576,10 +587,21 @@ class TimeseriesGroupsResource(SyncAPIResource):
 class AsyncTimeseriesGroupsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncTimeseriesGroupsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncTimeseriesGroupsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncTimeseriesGroupsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncTimeseriesGroupsResourceWithStreamingResponse(self)
 
     async def arc(
@@ -604,7 +626,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupARCResponse:
         """
-        Percentage distribution of emails classified per Arc validation over time.
+        Percentage distribution of emails classified by ARC validation over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -691,7 +713,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupDKIMResponse:
         """
-        Percentage distribution of emails classified per DKIM validation over time.
+        Percentage distribution of emails classified by DKIM validation over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -778,7 +800,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupDMARCResponse:
         """
-        Percentage distribution of emails classified per DMARC validation over time.
+        Percentage distribution of emails classified by DMARC validation over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -865,7 +887,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupEncryptedResponse:
         """
-        Percentage distribution of emails by Encrypted over time.
+        Percentage distribution of emails by encryption status over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -952,7 +974,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupIPVersionResponse:
         """
-        Percentage distribution of emails by Ip Version over time.
+        Percentage distribution of emails by IP version over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -1039,7 +1061,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupSPFResponse:
         """
-        Percentage distribution of emails classified per SPF validation over time.
+        Percentage distribution of emails classified by SPF validation over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes

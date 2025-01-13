@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Union, Iterable, cast
+from typing import List, Type, Union, cast
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -16,22 +16,6 @@ from .ips import (
     IPsResourceWithStreamingResponse,
     AsyncIPsResourceWithStreamingResponse,
 )
-from .top import (
-    TopResource,
-    AsyncTopResource,
-    TopResourceWithRawResponse,
-    AsyncTopResourceWithRawResponse,
-    TopResourceWithStreamingResponse,
-    AsyncTopResourceWithStreamingResponse,
-)
-from .leaks import (
-    LeaksResource,
-    AsyncLeaksResource,
-    LeaksResourceWithRawResponse,
-    AsyncLeaksResourceWithRawResponse,
-    LeaksResourceWithStreamingResponse,
-    AsyncLeaksResourceWithStreamingResponse,
-)
 from .routes import (
     RoutesResource,
     AsyncRoutesResource,
@@ -40,22 +24,28 @@ from .routes import (
     RoutesResourceWithStreamingResponse,
     AsyncRoutesResourceWithStreamingResponse,
 )
-from .hijacks import (
-    HijacksResource,
-    AsyncHijacksResource,
-    HijacksResourceWithRawResponse,
-    AsyncHijacksResourceWithRawResponse,
-    HijacksResourceWithStreamingResponse,
-    AsyncHijacksResourceWithStreamingResponse,
+from .top.top import (
+    TopResource,
+    AsyncTopResource,
+    TopResourceWithRawResponse,
+    AsyncTopResourceWithRawResponse,
+    TopResourceWithStreamingResponse,
+    AsyncTopResourceWithStreamingResponse,
 )
-from .top.top import TopResource, AsyncTopResource
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
     maybe_transform,
     async_maybe_transform,
 )
 from ...._compat import cached_property
-from .leaks.leaks import LeaksResource, AsyncLeaksResource
+from .leaks.leaks import (
+    LeaksResource,
+    AsyncLeaksResource,
+    LeaksResourceWithRawResponse,
+    AsyncLeaksResourceWithRawResponse,
+    LeaksResourceWithStreamingResponse,
+    AsyncLeaksResourceWithStreamingResponse,
+)
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
     to_raw_response_wrapper,
@@ -66,7 +56,14 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....types.radar import bgp_timeseries_params
 from ...._base_client import make_request_options
-from .hijacks.hijacks import HijacksResource, AsyncHijacksResource
+from .hijacks.hijacks import (
+    HijacksResource,
+    AsyncHijacksResource,
+    HijacksResourceWithRawResponse,
+    AsyncHijacksResourceWithRawResponse,
+    HijacksResourceWithStreamingResponse,
+    AsyncHijacksResourceWithStreamingResponse,
+)
 from ....types.radar.bgp_timeseries_response import BGPTimeseriesResponse
 
 __all__ = ["BGPResource", "AsyncBGPResource"]
@@ -95,10 +92,21 @@ class BGPResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> BGPResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return BGPResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> BGPResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return BGPResourceWithStreamingResponse(self)
 
     def timeseries(
@@ -111,7 +119,7 @@ class BGPResource(SyncAPIResource):
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
-        prefix: Iterable[bgp_timeseries_params.Prefix] | NotGiven = NOT_GIVEN,
+        prefix: List[str] | NotGiven = NOT_GIVEN,
         update_type: List[Literal["ANNOUNCEMENT", "WITHDRAWAL"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -120,10 +128,10 @@ class BGPResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BGPTimeseriesResponse:
-        """Gets BGP updates change over time.
+        """Get BGP updates change over time.
 
         Raw values are returned. When requesting
-        updates of an autonomous system (AS), only BGP updates of type announcement are
+        updates for an autonomous system (AS), only BGP updates of type announcement are
         returned.
 
         Args:
@@ -209,10 +217,21 @@ class AsyncBGPResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncBGPResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncBGPResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncBGPResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncBGPResourceWithStreamingResponse(self)
 
     async def timeseries(
@@ -225,7 +244,7 @@ class AsyncBGPResource(AsyncAPIResource):
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
-        prefix: Iterable[bgp_timeseries_params.Prefix] | NotGiven = NOT_GIVEN,
+        prefix: List[str] | NotGiven = NOT_GIVEN,
         update_type: List[Literal["ANNOUNCEMENT", "WITHDRAWAL"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -234,10 +253,10 @@ class AsyncBGPResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BGPTimeseriesResponse:
-        """Gets BGP updates change over time.
+        """Get BGP updates change over time.
 
         Raw values are returned. When requesting
-        updates of an autonomous system (AS), only BGP updates of type announcement are
+        updates for an autonomous system (AS), only BGP updates of type announcement are
         returned.
 
         Args:

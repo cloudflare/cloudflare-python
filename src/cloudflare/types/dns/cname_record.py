@@ -1,53 +1,62 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
-from datetime import datetime
 from typing_extensions import Literal
 
 from .ttl import TTL
 from ..._models import BaseModel
 from .record_tags import RecordTags
-from .record_metadata import RecordMetadata
 
-__all__ = ["CNAMERecord"]
+__all__ = ["CNAMERecord", "Settings"]
+
+
+class Settings(BaseModel):
+    flatten_cname: Optional[bool] = None
+    """
+    If enabled, causes the CNAME record to be resolved externally and the resulting
+    address records (e.g., A and AAAA) to be returned instead of the CNAME record
+    itself. This setting is unavailable for proxied records, since they are always
+    flattened.
+    """
+
+    ipv4_only: Optional[bool] = None
+    """
+    When enabled, only A records will be generated, and AAAA records will not be
+    created. This setting is intended for exceptional cases. Note that this option
+    only applies to proxied records and it has no effect on whether Cloudflare
+    communicates with the origin using IPv4 or IPv6.
+    """
+
+    ipv6_only: Optional[bool] = None
+    """
+    When enabled, only AAAA records will be generated, and A records will not be
+    created. This setting is intended for exceptional cases. Note that this option
+    only applies to proxied records and it has no effect on whether Cloudflare
+    communicates with the origin using IPv4 or IPv6.
+    """
 
 
 class CNAMERecord(BaseModel):
-    content: object
-    """A valid hostname. Must not match the record's name."""
-
-    name: str
-    """DNS record name (or @ for the zone apex) in Punycode."""
-
-    type: Literal["CNAME"]
-    """Record type."""
-
-    id: Optional[str] = None
-    """Identifier"""
-
     comment: Optional[str] = None
     """Comments or notes about the DNS record.
 
     This field has no effect on DNS responses.
     """
 
-    created_on: Optional[datetime] = None
-    """When the record was created."""
+    content: Optional[str] = None
+    """A valid hostname. Must not match the record's name."""
 
-    meta: Optional[RecordMetadata] = None
-    """Extra Cloudflare-specific information about the record."""
-
-    modified_on: Optional[datetime] = None
-    """When the record was last modified."""
-
-    proxiable: Optional[bool] = None
-    """Whether the record can be proxied by Cloudflare or not."""
+    name: Optional[str] = None
+    """DNS record name (or @ for the zone apex) in Punycode."""
 
     proxied: Optional[bool] = None
     """
     Whether the record is receiving the performance and security benefits of
     Cloudflare.
     """
+
+    settings: Optional[Settings] = None
+    """Settings for the DNS record."""
 
     tags: Optional[List[RecordTags]] = None
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
@@ -58,3 +67,6 @@ class CNAMERecord(BaseModel):
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
     minimum reduced to 30 for Enterprise zones.
     """
+
+    type: Optional[Literal["CNAME"]] = None
+    """Record type."""

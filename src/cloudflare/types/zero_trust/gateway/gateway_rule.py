@@ -9,7 +9,30 @@ from ...._models import BaseModel
 from .rule_setting import RuleSetting
 from .gateway_filter import GatewayFilter
 
-__all__ = ["GatewayRule"]
+__all__ = ["GatewayRule", "Expiration"]
+
+
+class Expiration(BaseModel):
+    expires_at: datetime
+    """The time stamp at which the policy will expire and cease to be applied.
+
+    Must adhere to RFC 3339 and include a UTC offset. Non-zero offsets are accepted
+    but will be converted to the equivalent value with offset zero (UTC+00:00) and
+    will be returned as time stamps with offset zero denoted by a trailing 'Z'.
+
+    Policies with an expiration do not consider the timezone of clients they are
+    applied to, and expire "globally" at the point given by their `expires_at`
+    value.
+    """
+
+    duration: Optional[int] = None
+    """The default duration a policy will be active in minutes.
+
+    Must be set in order to use the `reset_expiration` endpoint on this rule.
+    """
+
+    expired: Optional[bool] = None
+    """Whether the policy has expired."""
 
 
 class GatewayRule(BaseModel):
@@ -31,8 +54,8 @@ class GatewayRule(BaseModel):
             "override",
             "l4_override",
             "egress",
-            "audit_ssh",
             "resolve",
+            "quarantine",
         ]
     ] = None
     """
@@ -53,6 +76,14 @@ class GatewayRule(BaseModel):
 
     enabled: Optional[bool] = None
     """True if the rule is enabled."""
+
+    expiration: Optional[Expiration] = None
+    """The expiration time stamp and default duration of a DNS policy.
+
+    Takes precedence over the policy's `schedule` configuration, if any.
+
+    This does not apply to HTTP or network policies.
+    """
 
     filters: Optional[List[GatewayFilter]] = None
     """
@@ -86,3 +117,6 @@ class GatewayRule(BaseModel):
     """The wirefilter expression used for traffic matching."""
 
     updated_at: Optional[datetime] = None
+
+    version: Optional[int] = None
+    """version number of the rule"""

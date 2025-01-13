@@ -31,7 +31,7 @@ class TestVariants:
             options={
                 "fit": "scale-down",
                 "height": 768,
-                "metadata": "none",
+                "metadata": "keep",
                 "width": 1366,
             },
         )
@@ -45,7 +45,7 @@ class TestVariants:
             options={
                 "fit": "scale-down",
                 "height": 768,
-                "metadata": "none",
+                "metadata": "keep",
                 "width": 1366,
             },
             never_require_signed_urls=True,
@@ -60,7 +60,7 @@ class TestVariants:
             options={
                 "fit": "scale-down",
                 "height": 768,
-                "metadata": "none",
+                "metadata": "keep",
                 "width": 1366,
             },
         )
@@ -78,7 +78,7 @@ class TestVariants:
             options={
                 "fit": "scale-down",
                 "height": 768,
-                "metadata": "none",
+                "metadata": "keep",
                 "width": 1366,
             },
         ) as response:
@@ -99,7 +99,7 @@ class TestVariants:
                 options={
                     "fit": "scale-down",
                     "height": 768,
-                    "metadata": "none",
+                    "metadata": "keep",
                     "width": 1366,
                 },
             )
@@ -198,7 +198,7 @@ class TestVariants:
             options={
                 "fit": "scale-down",
                 "height": 768,
-                "metadata": "none",
+                "metadata": "keep",
                 "width": 1366,
             },
         )
@@ -212,7 +212,7 @@ class TestVariants:
             options={
                 "fit": "scale-down",
                 "height": 768,
-                "metadata": "none",
+                "metadata": "keep",
                 "width": 1366,
             },
             never_require_signed_urls=True,
@@ -227,7 +227,7 @@ class TestVariants:
             options={
                 "fit": "scale-down",
                 "height": 768,
-                "metadata": "none",
+                "metadata": "keep",
                 "width": 1366,
             },
         )
@@ -245,7 +245,7 @@ class TestVariants:
             options={
                 "fit": "scale-down",
                 "height": 768,
-                "metadata": "none",
+                "metadata": "keep",
                 "width": 1366,
             },
         ) as response:
@@ -266,7 +266,7 @@ class TestVariants:
                 options={
                     "fit": "scale-down",
                     "height": 768,
-                    "metadata": "none",
+                    "metadata": "keep",
                     "width": 1366,
                 },
             )
@@ -278,7 +278,7 @@ class TestVariants:
                 options={
                     "fit": "scale-down",
                     "height": 768,
-                    "metadata": "none",
+                    "metadata": "keep",
                     "width": 1366,
                 },
             )
@@ -343,7 +343,7 @@ class TestAsyncVariants:
             options={
                 "fit": "scale-down",
                 "height": 768,
-                "metadata": "none",
+                "metadata": "keep",
                 "width": 1366,
             },
         )
@@ -357,7 +357,7 @@ class TestAsyncVariants:
             options={
                 "fit": "scale-down",
                 "height": 768,
-                "metadata": "none",
+                "metadata": "keep",
                 "width": 1366,
             },
             never_require_signed_urls=True,
@@ -372,7 +372,7 @@ class TestAsyncVariants:
             options={
                 "fit": "scale-down",
                 "height": 768,
-                "metadata": "none",
+                "metadata": "keep",
                 "width": 1366,
             },
         )
@@ -390,7 +390,7 @@ class TestAsyncVariants:
             options={
                 "fit": "scale-down",
                 "height": 768,
-                "metadata": "none",
+                "metadata": "keep",
                 "width": 1366,
             },
         ) as response:
@@ -411,7 +411,7 @@ class TestAsyncVariants:
                 options={
                     "fit": "scale-down",
                     "height": 768,
-                    "metadata": "none",
+                    "metadata": "keep",
                     "width": 1366,
                 },
             )
@@ -510,7 +510,7 @@ class TestAsyncVariants:
             options={
                 "fit": "scale-down",
                 "height": 768,
-                "metadata": "none",
+                "metadata": "keep",
                 "width": 1366,
             },
         )
@@ -524,7 +524,7 @@ class TestAsyncVariants:
             options={
                 "fit": "scale-down",
                 "height": 768,
-                "metadata": "none",
+                "metadata": "keep",
                 "width": 1366,
             },
             never_require_signed_urls=True,
@@ -539,7 +539,7 @@ class TestAsyncVariants:
             options={
                 "fit": "scale-down",
                 "height": 768,
-                "metadata": "none",
+                "metadata": "keep",
                 "width": 1366,
             },
         )
@@ -557,7 +557,7 @@ class TestAsyncVariants:
             options={
                 "fit": "scale-down",
                 "height": 768,
-                "metadata": "none",
+                "metadata": "keep",
                 "width": 1366,
             },
         ) as response:
@@ -578,7 +578,7 @@ class TestAsyncVariants:
                 options={
                     "fit": "scale-down",
                     "height": 768,
-                    "metadata": "none",
+                    "metadata": "keep",
                     "width": 1366,
                 },
             )
@@ -590,7 +590,7 @@ class TestAsyncVariants:
                 options={
                     "fit": "scale-down",
                     "height": 768,
-                    "metadata": "none",
+                    "metadata": "keep",
                     "width": 1366,
                 },
             )

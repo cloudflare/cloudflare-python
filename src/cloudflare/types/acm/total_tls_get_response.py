@@ -19,5 +19,5 @@ class TotalTLSGetResponse(BaseModel):
     proxied A, AAAA, or CNAME record in your zone.
     """
 
-    validity_days: Optional[Literal[90]] = None
+    validity_period: Optional[Literal[90]] = None
     """The validity period in days for the certificates ordered via Total TLS."""

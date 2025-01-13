@@ -2,38 +2,24 @@
 
 from __future__ import annotations
 
-from typing import Union
+from typing import List
 from typing_extensions import Required, TypedDict
 
-__all__ = ["AppUpdateParams", "UpdateAppName", "UpdateAppType", "UpdateAppHostnames", "UpdateAppSubnets"]
+__all__ = ["AppUpdateParams"]
 
 
-class UpdateAppName(TypedDict, total=False):
+class AppUpdateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
-    body: Required[object]
+    hostnames: List[str]
+    """FQDNs to associate with traffic decisions."""
 
+    ip_subnets: List[str]
+    """CIDRs to associate with traffic decisions."""
 
-class UpdateAppType(TypedDict, total=False):
-    account_id: Required[str]
-    """Identifier"""
+    name: str
+    """Display name for the app."""
 
-    body: Required[object]
-
-
-class UpdateAppHostnames(TypedDict, total=False):
-    account_id: Required[str]
-    """Identifier"""
-
-    body: Required[object]
-
-
-class UpdateAppSubnets(TypedDict, total=False):
-    account_id: Required[str]
-    """Identifier"""
-
-    body: Required[object]
-
-
-AppUpdateParams = Union[UpdateAppName, UpdateAppType, UpdateAppHostnames, UpdateAppSubnets]
+    type: str
+    """Category of the app."""

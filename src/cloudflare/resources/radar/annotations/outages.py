@@ -33,10 +33,21 @@ __all__ = ["OutagesResource", "AsyncOutagesResource"]
 class OutagesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> OutagesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return OutagesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> OutagesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return OutagesResourceWithStreamingResponse(self)
 
     def get(
@@ -127,7 +138,7 @@ class OutagesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> OutageLocationsResponse:
         """
-        Get the number of outages for locations.
+        Get the number of outages by location.
 
         Args:
           date_end: End of the date range (inclusive).
@@ -175,10 +186,21 @@ class OutagesResource(SyncAPIResource):
 class AsyncOutagesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncOutagesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncOutagesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncOutagesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncOutagesResourceWithStreamingResponse(self)
 
     async def get(
@@ -269,7 +291,7 @@ class AsyncOutagesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> OutageLocationsResponse:
         """
-        Get the number of outages for locations.
+        Get the number of outages by location.
 
         Args:
           date_end: End of the date range (inclusive).

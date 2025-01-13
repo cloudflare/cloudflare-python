@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from .message import Message as Message
 from .settings import Settings as Settings
-from .api_shield import APIShield as APIShield
 from .configuration import Configuration as Configuration
 from .public_schema import PublicSchema as PublicSchema
 from .schema_upload import SchemaUpload as SchemaUpload
@@ -26,4 +25,7 @@ from .operation_delete_response import OperationDeleteResponse as OperationDelet
 from .user_schema_create_params import UserSchemaCreateParams as UserSchemaCreateParams
 from .configuration_update_params import ConfigurationUpdateParams as ConfigurationUpdateParams
 from .user_schema_delete_response import UserSchemaDeleteResponse as UserSchemaDeleteResponse
+from .operation_bulk_create_params import OperationBulkCreateParams as OperationBulkCreateParams
 from .configuration_update_response import ConfigurationUpdateResponse as ConfigurationUpdateResponse
+from .operation_bulk_create_response import OperationBulkCreateResponse as OperationBulkCreateResponse
+from .operation_bulk_delete_response import OperationBulkDeleteResponse as OperationBulkDeleteResponse

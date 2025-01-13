@@ -7,8 +7,8 @@ from datetime import datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
-from .cidr_list import CIDRList
-from .policy_param import PolicyParam
+from ..shared_params.token_policy import TokenPolicy
+from ..shared.token_condition_cidr_list import TokenConditionCIDRList
 
 __all__ = ["TokenUpdateParams", "Condition", "ConditionRequestIP"]
 
@@ -17,7 +17,7 @@ class TokenUpdateParams(TypedDict, total=False):
     name: Required[str]
     """Token name."""
 
-    policies: Required[Iterable[PolicyParam]]
+    policies: Required[Iterable[TokenPolicy]]
     """List of access policies assigned to the token."""
 
     status: Required[Literal["active", "disabled", "expired"]]
@@ -38,14 +38,14 @@ class TokenUpdateParams(TypedDict, total=False):
 _ConditionRequestIPReservedKeywords = TypedDict(
     "_ConditionRequestIPReservedKeywords",
     {
-        "in": List[CIDRList],
+        "in": List[TokenConditionCIDRList],
     },
     total=False,
 )
 
 
 class ConditionRequestIP(_ConditionRequestIPReservedKeywords, total=False):
-    not_in: List[CIDRList]
+    not_in: List[TokenConditionCIDRList]
     """List of IPv4/IPv6 CIDR addresses."""
 
 

@@ -1,14 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Union, Optional
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 from ..._models import BaseModel
 
-__all__ = ["EdgeIPs", "EyeballIPs", "CustomerOwnedIPs"]
+__all__ = ["EdgeIPs", "UnionMember0", "UnionMember1"]
 
 
-class EyeballIPs(BaseModel):
+class UnionMember0(BaseModel):
     connectivity: Optional[Literal["all", "ipv4", "ipv6"]] = None
     """The IP versions supported for inbound connections on Spectrum anycast IPs."""
 
@@ -20,7 +20,7 @@ class EyeballIPs(BaseModel):
     """
 
 
-class CustomerOwnedIPs(BaseModel):
+class UnionMember1(BaseModel):
     ips: Optional[List[str]] = None
     """
     The array of customer owned IPs we broadcast via anycast for this hostname and
@@ -35,4 +35,4 @@ class CustomerOwnedIPs(BaseModel):
     """
 
 
-EdgeIPs = Union[EyeballIPs, CustomerOwnedIPs]
+EdgeIPs: TypeAlias = Union[UnionMember0, UnionMember1]

@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Optional, cast, overload
-from typing_extensions import Literal
+from typing import Any, List, Optional, cast
+from typing_extensions import Literal, overload
 
 import httpx
 
@@ -34,10 +34,21 @@ __all__ = ["SettingsResource", "AsyncSettingsResource"]
 class SettingsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> SettingsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return SettingsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> SettingsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return SettingsResourceWithStreamingResponse(self)
 
     @overload
@@ -1022,43 +1033,6 @@ class SettingsResource(SyncAPIResource):
         setting_id: str,
         *,
         zone_id: str,
-        id: Literal["minify"],
-        value: setting_edit_params.MinifyValue,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SettingEditResponse]:
-        """
-        Updates a single zone setting by the identifier
-
-        Args:
-          zone_id: Identifier
-
-          setting_id: Setting name
-
-          id: Zone setting identifier.
-
-          value: Current value of the zone setting.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    def edit(
-        self,
-        setting_id: str,
-        *,
-        zone_id: str,
         id: Literal["mirage"],
         value: Literal["on", "off"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1077,43 +1051,6 @@ class SettingsResource(SyncAPIResource):
           setting_id: Setting name
 
           id: ID of the zone setting.
-
-          value: Current value of the zone setting.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    def edit(
-        self,
-        setting_id: str,
-        *,
-        zone_id: str,
-        id: Literal["mobile_redirect"],
-        value: setting_edit_params.MobileRedirectValue,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SettingEditResponse]:
-        """
-        Updates a single zone setting by the identifier
-
-        Args:
-          zone_id: Identifier
-
-          setting_id: Setting name
-
-          id: Identifier of the zone setting.
 
           value: Current value of the zone setting.
 
@@ -2157,9 +2094,7 @@ class SettingsResource(SyncAPIResource):
         | Literal["ipv6"]
         | Literal["max_upload"]
         | Literal["min_tls_version"]
-        | Literal["minify"]
         | Literal["mirage"]
-        | Literal["mobile_redirect"]
         | Literal["nel"]
         | Literal["opportunistic_encryption"]
         | Literal["opportunistic_onion"]
@@ -2250,8 +2185,6 @@ class SettingsResource(SyncAPIResource):
         | Literal["on", "off", "open"]
         | Literal[100, 200, 500]
         | Literal["1.0", "1.1", "1.2", "1.3"]
-        | setting_edit_params.MinifyValue
-        | setting_edit_params.MobileRedirectValue
         | setting_edit_params.NELValue
         | Literal["off", "lossless", "lossy"]
         | float
@@ -2352,10 +2285,21 @@ class SettingsResource(SyncAPIResource):
 class AsyncSettingsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncSettingsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncSettingsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncSettingsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncSettingsResourceWithStreamingResponse(self)
 
     @overload
@@ -3340,43 +3284,6 @@ class AsyncSettingsResource(AsyncAPIResource):
         setting_id: str,
         *,
         zone_id: str,
-        id: Literal["minify"],
-        value: setting_edit_params.MinifyValue,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SettingEditResponse]:
-        """
-        Updates a single zone setting by the identifier
-
-        Args:
-          zone_id: Identifier
-
-          setting_id: Setting name
-
-          id: Zone setting identifier.
-
-          value: Current value of the zone setting.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    async def edit(
-        self,
-        setting_id: str,
-        *,
-        zone_id: str,
         id: Literal["mirage"],
         value: Literal["on", "off"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -3395,43 +3302,6 @@ class AsyncSettingsResource(AsyncAPIResource):
           setting_id: Setting name
 
           id: ID of the zone setting.
-
-          value: Current value of the zone setting.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @overload
-    async def edit(
-        self,
-        setting_id: str,
-        *,
-        zone_id: str,
-        id: Literal["mobile_redirect"],
-        value: setting_edit_params.MobileRedirectValue,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SettingEditResponse]:
-        """
-        Updates a single zone setting by the identifier
-
-        Args:
-          zone_id: Identifier
-
-          setting_id: Setting name
-
-          id: Identifier of the zone setting.
 
           value: Current value of the zone setting.
 
@@ -4475,9 +4345,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         | Literal["ipv6"]
         | Literal["max_upload"]
         | Literal["min_tls_version"]
-        | Literal["minify"]
         | Literal["mirage"]
-        | Literal["mobile_redirect"]
         | Literal["nel"]
         | Literal["opportunistic_encryption"]
         | Literal["opportunistic_onion"]
@@ -4568,8 +4436,6 @@ class AsyncSettingsResource(AsyncAPIResource):
         | Literal["on", "off", "open"]
         | Literal[100, 200, 500]
         | Literal["1.0", "1.1", "1.2", "1.3"]
-        | setting_edit_params.MinifyValue
-        | setting_edit_params.MobileRedirectValue
         | setting_edit_params.NELValue
         | Literal["off", "lossless", "lossy"]
         | float

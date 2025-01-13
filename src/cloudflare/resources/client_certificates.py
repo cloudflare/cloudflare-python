@@ -32,10 +32,21 @@ __all__ = ["ClientCertificatesResource", "AsyncClientCertificatesResource"]
 class ClientCertificatesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ClientCertificatesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return ClientCertificatesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> ClientCertificatesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return ClientCertificatesResourceWithStreamingResponse(self)
 
     def create(
@@ -300,10 +311,21 @@ class ClientCertificatesResource(SyncAPIResource):
 class AsyncClientCertificatesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncClientCertificatesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncClientCertificatesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncClientCertificatesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncClientCertificatesResourceWithStreamingResponse(self)
 
     async def create(

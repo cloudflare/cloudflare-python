@@ -15,7 +15,10 @@ class SecretUpdateParams(TypedDict, total=False):
     """Name of the Workers for Platforms dispatch namespace."""
 
     name: str
-    """The name of this secret, this is what will be to access it inside the Worker."""
+    """
+    The name of this secret, this is what will be used to access it inside the
+    Worker.
+    """
 
     text: str
     """The value of the secret."""

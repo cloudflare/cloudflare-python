@@ -29,7 +29,7 @@ class TestIssues:
         issue = client.intel.attack_surface_report.issues.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncV4PagePagination[IssueListResponse], issue, path=["response"])
+        assert_matches_type(SyncV4PagePagination[Optional[IssueListResponse]], issue, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
@@ -46,10 +46,10 @@ class TestIssues:
             product_neq=["access", "dns"],
             severity=["low", "moderate"],
             severity_neq=["low", "moderate"],
-            subject=["example.com", "example.com", "example.com"],
-            subject_neq=["example.com", "example.com", "example.com"],
+            subject=["example.com"],
+            subject_neq=["example.com"],
         )
-        assert_matches_type(SyncV4PagePagination[IssueListResponse], issue, path=["response"])
+        assert_matches_type(SyncV4PagePagination[Optional[IssueListResponse]], issue, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -60,7 +60,7 @@ class TestIssues:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         issue = response.parse()
-        assert_matches_type(SyncV4PagePagination[IssueListResponse], issue, path=["response"])
+        assert_matches_type(SyncV4PagePagination[Optional[IssueListResponse]], issue, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -71,7 +71,7 @@ class TestIssues:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             issue = response.parse()
-            assert_matches_type(SyncV4PagePagination[IssueListResponse], issue, path=["response"])
+            assert_matches_type(SyncV4PagePagination[Optional[IssueListResponse]], issue, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -102,8 +102,8 @@ class TestIssues:
             product_neq=["access", "dns"],
             severity=["low", "moderate"],
             severity_neq=["low", "moderate"],
-            subject=["example.com", "example.com", "example.com"],
-            subject_neq=["example.com", "example.com", "example.com"],
+            subject=["example.com"],
+            subject_neq=["example.com"],
         )
         assert_matches_type(Optional[IssueClassResponse], issue, path=["response"])
 
@@ -144,7 +144,7 @@ class TestIssues:
             issue_id="issue_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[IssueDismissResponse], issue, path=["response"])
+        assert_matches_type(IssueDismissResponse, issue, path=["response"])
 
     @parametrize
     def test_method_dismiss_with_all_params(self, client: Cloudflare) -> None:
@@ -153,7 +153,7 @@ class TestIssues:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dismiss=True,
         )
-        assert_matches_type(Optional[IssueDismissResponse], issue, path=["response"])
+        assert_matches_type(IssueDismissResponse, issue, path=["response"])
 
     @parametrize
     def test_raw_response_dismiss(self, client: Cloudflare) -> None:
@@ -165,7 +165,7 @@ class TestIssues:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         issue = response.parse()
-        assert_matches_type(Optional[IssueDismissResponse], issue, path=["response"])
+        assert_matches_type(IssueDismissResponse, issue, path=["response"])
 
     @parametrize
     def test_streaming_response_dismiss(self, client: Cloudflare) -> None:
@@ -177,7 +177,7 @@ class TestIssues:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             issue = response.parse()
-            assert_matches_type(Optional[IssueDismissResponse], issue, path=["response"])
+            assert_matches_type(IssueDismissResponse, issue, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -215,8 +215,8 @@ class TestIssues:
             product_neq=["access", "dns"],
             severity=["low", "moderate"],
             severity_neq=["low", "moderate"],
-            subject=["example.com", "example.com", "example.com"],
-            subject_neq=["example.com", "example.com", "example.com"],
+            subject=["example.com"],
+            subject_neq=["example.com"],
         )
         assert_matches_type(Optional[IssueSeverityResponse], issue, path=["response"])
 
@@ -271,8 +271,8 @@ class TestIssues:
             product_neq=["access", "dns"],
             severity=["low", "moderate"],
             severity_neq=["low", "moderate"],
-            subject=["example.com", "example.com", "example.com"],
-            subject_neq=["example.com", "example.com", "example.com"],
+            subject=["example.com"],
+            subject_neq=["example.com"],
         )
         assert_matches_type(Optional[IssueTypeResponse], issue, path=["response"])
 
@@ -316,7 +316,7 @@ class TestAsyncIssues:
         issue = await async_client.intel.attack_surface_report.issues.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncV4PagePagination[IssueListResponse], issue, path=["response"])
+        assert_matches_type(AsyncV4PagePagination[Optional[IssueListResponse]], issue, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -333,10 +333,10 @@ class TestAsyncIssues:
             product_neq=["access", "dns"],
             severity=["low", "moderate"],
             severity_neq=["low", "moderate"],
-            subject=["example.com", "example.com", "example.com"],
-            subject_neq=["example.com", "example.com", "example.com"],
+            subject=["example.com"],
+            subject_neq=["example.com"],
         )
-        assert_matches_type(AsyncV4PagePagination[IssueListResponse], issue, path=["response"])
+        assert_matches_type(AsyncV4PagePagination[Optional[IssueListResponse]], issue, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -347,7 +347,7 @@ class TestAsyncIssues:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         issue = await response.parse()
-        assert_matches_type(AsyncV4PagePagination[IssueListResponse], issue, path=["response"])
+        assert_matches_type(AsyncV4PagePagination[Optional[IssueListResponse]], issue, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -358,7 +358,7 @@ class TestAsyncIssues:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             issue = await response.parse()
-            assert_matches_type(AsyncV4PagePagination[IssueListResponse], issue, path=["response"])
+            assert_matches_type(AsyncV4PagePagination[Optional[IssueListResponse]], issue, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -389,8 +389,8 @@ class TestAsyncIssues:
             product_neq=["access", "dns"],
             severity=["low", "moderate"],
             severity_neq=["low", "moderate"],
-            subject=["example.com", "example.com", "example.com"],
-            subject_neq=["example.com", "example.com", "example.com"],
+            subject=["example.com"],
+            subject_neq=["example.com"],
         )
         assert_matches_type(Optional[IssueClassResponse], issue, path=["response"])
 
@@ -431,7 +431,7 @@ class TestAsyncIssues:
             issue_id="issue_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[IssueDismissResponse], issue, path=["response"])
+        assert_matches_type(IssueDismissResponse, issue, path=["response"])
 
     @parametrize
     async def test_method_dismiss_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -440,7 +440,7 @@ class TestAsyncIssues:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dismiss=True,
         )
-        assert_matches_type(Optional[IssueDismissResponse], issue, path=["response"])
+        assert_matches_type(IssueDismissResponse, issue, path=["response"])
 
     @parametrize
     async def test_raw_response_dismiss(self, async_client: AsyncCloudflare) -> None:
@@ -452,7 +452,7 @@ class TestAsyncIssues:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         issue = await response.parse()
-        assert_matches_type(Optional[IssueDismissResponse], issue, path=["response"])
+        assert_matches_type(IssueDismissResponse, issue, path=["response"])
 
     @parametrize
     async def test_streaming_response_dismiss(self, async_client: AsyncCloudflare) -> None:
@@ -464,7 +464,7 @@ class TestAsyncIssues:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             issue = await response.parse()
-            assert_matches_type(Optional[IssueDismissResponse], issue, path=["response"])
+            assert_matches_type(IssueDismissResponse, issue, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -502,8 +502,8 @@ class TestAsyncIssues:
             product_neq=["access", "dns"],
             severity=["low", "moderate"],
             severity_neq=["low", "moderate"],
-            subject=["example.com", "example.com", "example.com"],
-            subject_neq=["example.com", "example.com", "example.com"],
+            subject=["example.com"],
+            subject_neq=["example.com"],
         )
         assert_matches_type(Optional[IssueSeverityResponse], issue, path=["response"])
 
@@ -558,8 +558,8 @@ class TestAsyncIssues:
             product_neq=["access", "dns"],
             severity=["low", "moderate"],
             severity_neq=["low", "moderate"],
-            subject=["example.com", "example.com", "example.com"],
-            subject_neq=["example.com", "example.com", "example.com"],
+            subject=["example.com"],
+            subject_neq=["example.com"],
         )
         assert_matches_type(Optional[IssueTypeResponse], issue, path=["response"])
 

@@ -9,6 +9,7 @@ __all__ = ["DomainUpdateParams"]
 
 class DomainUpdateParams(TypedDict, total=False):
     account_id: Required[str]
+    """Identifer of the account."""
 
     environment: Required[str]
     """Worker environment associated with the zone and hostname."""

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Optional, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -24,8 +24,6 @@ from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.registrar import domain_update_params
 from ...types.registrar.domain import Domain
-from ...types.registrar.domain_get_response import DomainGetResponse
-from ...types.registrar.domain_update_response import DomainUpdateResponse
 
 __all__ = ["DomainsResource", "AsyncDomainsResource"]
 
@@ -33,10 +31,21 @@ __all__ = ["DomainsResource", "AsyncDomainsResource"]
 class DomainsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> DomainsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return DomainsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> DomainsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return DomainsResourceWithStreamingResponse(self)
 
     def update(
@@ -53,7 +62,7 @@ class DomainsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DomainUpdateResponse]:
+    ) -> object:
         """
         Update individual domain.
 
@@ -81,29 +90,24 @@ class DomainsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not domain_name:
             raise ValueError(f"Expected a non-empty value for `domain_name` but received {domain_name!r}")
-        return cast(
-            Optional[DomainUpdateResponse],
-            self._put(
-                f"/accounts/{account_id}/registrar/domains/{domain_name}",
-                body=maybe_transform(
-                    {
-                        "auto_renew": auto_renew,
-                        "locked": locked,
-                        "privacy": privacy,
-                    },
-                    domain_update_params.DomainUpdateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[DomainUpdateResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[DomainUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._put(
+            f"/accounts/{account_id}/registrar/domains/{domain_name}",
+            body=maybe_transform(
+                {
+                    "auto_renew": auto_renew,
+                    "locked": locked,
+                    "privacy": privacy,
+                },
+                domain_update_params.DomainUpdateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+            ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def list(
@@ -153,7 +157,7 @@ class DomainsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DomainGetResponse]:
+    ) -> object:
         """
         Show individual domain.
 
@@ -174,31 +178,37 @@ class DomainsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not domain_name:
             raise ValueError(f"Expected a non-empty value for `domain_name` but received {domain_name!r}")
-        return cast(
-            Optional[DomainGetResponse],
-            self._get(
-                f"/accounts/{account_id}/registrar/domains/{domain_name}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[DomainGetResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[DomainGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._get(
+            f"/accounts/{account_id}/registrar/domains/{domain_name}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
 
 class AsyncDomainsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncDomainsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncDomainsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncDomainsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncDomainsResourceWithStreamingResponse(self)
 
     async def update(
@@ -215,7 +225,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DomainUpdateResponse]:
+    ) -> object:
         """
         Update individual domain.
 
@@ -243,29 +253,24 @@ class AsyncDomainsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not domain_name:
             raise ValueError(f"Expected a non-empty value for `domain_name` but received {domain_name!r}")
-        return cast(
-            Optional[DomainUpdateResponse],
-            await self._put(
-                f"/accounts/{account_id}/registrar/domains/{domain_name}",
-                body=await async_maybe_transform(
-                    {
-                        "auto_renew": auto_renew,
-                        "locked": locked,
-                        "privacy": privacy,
-                    },
-                    domain_update_params.DomainUpdateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[DomainUpdateResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[DomainUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._put(
+            f"/accounts/{account_id}/registrar/domains/{domain_name}",
+            body=await async_maybe_transform(
+                {
+                    "auto_renew": auto_renew,
+                    "locked": locked,
+                    "privacy": privacy,
+                },
+                domain_update_params.DomainUpdateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+            ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def list(
@@ -315,7 +320,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DomainGetResponse]:
+    ) -> object:
         """
         Show individual domain.
 
@@ -336,21 +341,16 @@ class AsyncDomainsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not domain_name:
             raise ValueError(f"Expected a non-empty value for `domain_name` but received {domain_name!r}")
-        return cast(
-            Optional[DomainGetResponse],
-            await self._get(
-                f"/accounts/{account_id}/registrar/domains/{domain_name}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[DomainGetResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[DomainGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._get(
+            f"/accounts/{account_id}/registrar/domains/{domain_name}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
 

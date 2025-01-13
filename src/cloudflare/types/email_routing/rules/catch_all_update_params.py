@@ -12,6 +12,9 @@ __all__ = ["CatchAllUpdateParams"]
 
 
 class CatchAllUpdateParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     actions: Required[Iterable[CatchAllActionParam]]
     """List actions for the catch-all routing rule."""
 

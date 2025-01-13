@@ -29,17 +29,7 @@ class TestSettings:
                     "china_network": False,
                     "client_certificate_forwarding": True,
                     "hostname": "admin.example.com",
-                },
-                {
-                    "china_network": False,
-                    "client_certificate_forwarding": True,
-                    "hostname": "admin.example.com",
-                },
-                {
-                    "china_network": False,
-                    "client_certificate_forwarding": True,
-                    "hostname": "admin.example.com",
-                },
+                }
             ],
             account_id="account_id",
         )
@@ -54,17 +44,7 @@ class TestSettings:
                     "china_network": False,
                     "client_certificate_forwarding": True,
                     "hostname": "admin.example.com",
-                },
-                {
-                    "china_network": False,
-                    "client_certificate_forwarding": True,
-                    "hostname": "admin.example.com",
-                },
-                {
-                    "china_network": False,
-                    "client_certificate_forwarding": True,
-                    "hostname": "admin.example.com",
-                },
+                }
             ],
             account_id="account_id",
         )
@@ -79,17 +59,7 @@ class TestSettings:
                     "china_network": False,
                     "client_certificate_forwarding": True,
                     "hostname": "admin.example.com",
-                },
-                {
-                    "china_network": False,
-                    "client_certificate_forwarding": True,
-                    "hostname": "admin.example.com",
-                },
-                {
-                    "china_network": False,
-                    "client_certificate_forwarding": True,
-                    "hostname": "admin.example.com",
-                },
+                }
             ],
             account_id="account_id",
         )
@@ -108,17 +78,7 @@ class TestSettings:
                     "china_network": False,
                     "client_certificate_forwarding": True,
                     "hostname": "admin.example.com",
-                },
-                {
-                    "china_network": False,
-                    "client_certificate_forwarding": True,
-                    "hostname": "admin.example.com",
-                },
-                {
-                    "china_network": False,
-                    "client_certificate_forwarding": True,
-                    "hostname": "admin.example.com",
-                },
+                }
             ],
             account_id="account_id",
         ) as response:
@@ -140,17 +100,7 @@ class TestSettings:
                         "china_network": False,
                         "client_certificate_forwarding": True,
                         "hostname": "admin.example.com",
-                    },
-                    {
-                        "china_network": False,
-                        "client_certificate_forwarding": True,
-                        "hostname": "admin.example.com",
-                    },
-                    {
-                        "china_network": False,
-                        "client_certificate_forwarding": True,
-                        "hostname": "admin.example.com",
-                    },
+                    }
                 ],
                 account_id="",
             )
@@ -162,17 +112,7 @@ class TestSettings:
                         "china_network": False,
                         "client_certificate_forwarding": True,
                         "hostname": "admin.example.com",
-                    },
-                    {
-                        "china_network": False,
-                        "client_certificate_forwarding": True,
-                        "hostname": "admin.example.com",
-                    },
-                    {
-                        "china_network": False,
-                        "client_certificate_forwarding": True,
-                        "hostname": "admin.example.com",
-                    },
+                    }
                 ],
                 account_id="account_id",
             )
@@ -245,17 +185,7 @@ class TestAsyncSettings:
                     "china_network": False,
                     "client_certificate_forwarding": True,
                     "hostname": "admin.example.com",
-                },
-                {
-                    "china_network": False,
-                    "client_certificate_forwarding": True,
-                    "hostname": "admin.example.com",
-                },
-                {
-                    "china_network": False,
-                    "client_certificate_forwarding": True,
-                    "hostname": "admin.example.com",
-                },
+                }
             ],
             account_id="account_id",
         )
@@ -270,17 +200,7 @@ class TestAsyncSettings:
                     "china_network": False,
                     "client_certificate_forwarding": True,
                     "hostname": "admin.example.com",
-                },
-                {
-                    "china_network": False,
-                    "client_certificate_forwarding": True,
-                    "hostname": "admin.example.com",
-                },
-                {
-                    "china_network": False,
-                    "client_certificate_forwarding": True,
-                    "hostname": "admin.example.com",
-                },
+                }
             ],
             account_id="account_id",
         )
@@ -295,17 +215,7 @@ class TestAsyncSettings:
                     "china_network": False,
                     "client_certificate_forwarding": True,
                     "hostname": "admin.example.com",
-                },
-                {
-                    "china_network": False,
-                    "client_certificate_forwarding": True,
-                    "hostname": "admin.example.com",
-                },
-                {
-                    "china_network": False,
-                    "client_certificate_forwarding": True,
-                    "hostname": "admin.example.com",
-                },
+                }
             ],
             account_id="account_id",
         )
@@ -324,17 +234,7 @@ class TestAsyncSettings:
                     "china_network": False,
                     "client_certificate_forwarding": True,
                     "hostname": "admin.example.com",
-                },
-                {
-                    "china_network": False,
-                    "client_certificate_forwarding": True,
-                    "hostname": "admin.example.com",
-                },
-                {
-                    "china_network": False,
-                    "client_certificate_forwarding": True,
-                    "hostname": "admin.example.com",
-                },
+                }
             ],
             account_id="account_id",
         ) as response:
@@ -356,17 +256,7 @@ class TestAsyncSettings:
                         "china_network": False,
                         "client_certificate_forwarding": True,
                         "hostname": "admin.example.com",
-                    },
-                    {
-                        "china_network": False,
-                        "client_certificate_forwarding": True,
-                        "hostname": "admin.example.com",
-                    },
-                    {
-                        "china_network": False,
-                        "client_certificate_forwarding": True,
-                        "hostname": "admin.example.com",
-                    },
+                    }
                 ],
                 account_id="",
             )
@@ -378,17 +268,7 @@ class TestAsyncSettings:
                         "china_network": False,
                         "client_certificate_forwarding": True,
                         "hostname": "admin.example.com",
-                    },
-                    {
-                        "china_network": False,
-                        "client_certificate_forwarding": True,
-                        "hostname": "admin.example.com",
-                    },
-                    {
-                        "china_network": False,
-                        "client_certificate_forwarding": True,
-                        "hostname": "admin.example.com",
-                    },
+                    }
                 ],
                 account_id="account_id",
             )

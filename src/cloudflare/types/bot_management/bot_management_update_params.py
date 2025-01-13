@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Union
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 __all__ = [
     "BotManagementUpdateParams",
@@ -18,6 +18,9 @@ class BotFightModeConfiguration(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
+    ai_bots_protection: Literal["block", "disabled"]
+    """Enable rule to block AI Scrapers and Crawlers."""
+
     enable_js: bool
     """Use lightweight, invisible JavaScript detections to improve Bot Management.
 
@@ -31,6 +34,9 @@ class BotFightModeConfiguration(TypedDict, total=False):
 class SuperBotFightModeDefinitelyConfiguration(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
+
+    ai_bots_protection: Literal["block", "disabled"]
+    """Enable rule to block AI Scrapers and Crawlers."""
 
     enable_js: bool
     """Use lightweight, invisible JavaScript detections to improve Bot Management.
@@ -58,6 +64,9 @@ class SuperBotFightModeDefinitelyConfiguration(TypedDict, total=False):
 class SuperBotFightModeLikelyConfiguration(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
+
+    ai_bots_protection: Literal["block", "disabled"]
+    """Enable rule to block AI Scrapers and Crawlers."""
 
     enable_js: bool
     """Use lightweight, invisible JavaScript detections to improve Bot Management.
@@ -89,6 +98,9 @@ class SubscriptionConfiguration(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
+    ai_bots_protection: Literal["block", "disabled"]
+    """Enable rule to block AI Scrapers and Crawlers."""
+
     auto_update_model: bool
     """
     Automatically update to the newest bot detection models created by Cloudflare as
@@ -109,7 +121,7 @@ class SubscriptionConfiguration(TypedDict, total=False):
     """
 
 
-BotManagementUpdateParams = Union[
+BotManagementUpdateParams: TypeAlias = Union[
     BotFightModeConfiguration,
     SuperBotFightModeDefinitelyConfiguration,
     SuperBotFightModeLikelyConfiguration,

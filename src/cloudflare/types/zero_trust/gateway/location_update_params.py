@@ -5,6 +5,8 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Required, TypedDict
 
+from .endpoint_param import EndpointParam
+
 __all__ = ["LocationUpdateParams", "Network"]
 
 
@@ -28,6 +30,13 @@ class LocationUpdateParams(TypedDict, total=False):
 
     ecs_support: bool
     """True if the location needs to resolve EDNS queries."""
+
+    endpoints: EndpointParam
+    """The destination endpoints configured for this location.
+
+    When updating a location, if this field is absent or set with null, the
+    endpoints configuration remains unchanged.
+    """
 
     networks: Iterable[Network]
     """A list of network ranges that requests from this location would originate from.

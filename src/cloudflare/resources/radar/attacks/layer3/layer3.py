@@ -8,14 +8,6 @@ from typing_extensions import Literal
 
 import httpx
 
-from .top import (
-    TopResource,
-    AsyncTopResource,
-    TopResourceWithRawResponse,
-    AsyncTopResourceWithRawResponse,
-    TopResourceWithStreamingResponse,
-    AsyncTopResourceWithStreamingResponse,
-)
 from .summary import (
     SummaryResource,
     AsyncSummaryResource,
@@ -24,7 +16,14 @@ from .summary import (
     SummaryResourceWithStreamingResponse,
     AsyncSummaryResourceWithStreamingResponse,
 )
-from .top.top import TopResource, AsyncTopResource
+from .top.top import (
+    TopResource,
+    AsyncTopResource,
+    TopResourceWithRawResponse,
+    AsyncTopResourceWithRawResponse,
+    TopResourceWithStreamingResponse,
+    AsyncTopResourceWithStreamingResponse,
+)
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ....._utils import (
     maybe_transform,
@@ -69,10 +68,21 @@ class Layer3Resource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> Layer3ResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return Layer3ResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> Layer3ResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return Layer3ResourceWithStreamingResponse(self)
 
     def timeseries(
@@ -198,10 +208,21 @@ class AsyncLayer3Resource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncLayer3ResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncLayer3ResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncLayer3ResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncLayer3ResourceWithStreamingResponse(self)
 
     async def timeseries(

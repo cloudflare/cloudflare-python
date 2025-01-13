@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -31,10 +31,21 @@ __all__ = ["ConfigurationsResource", "AsyncConfigurationsResource"]
 class ConfigurationsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ConfigurationsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return ConfigurationsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> ConfigurationsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return ConfigurationsResourceWithStreamingResponse(self)
 
     def update(
@@ -49,12 +60,12 @@ class ConfigurationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigurationUpdateResponse:
+    ) -> Optional[ConfigurationUpdateResponse]:
         """
         Adds or updates the configuration for a remotely-managed tunnel.
 
         Args:
-          account_id: Cloudflare account ID
+          account_id: Identifier
 
           tunnel_id: UUID of the tunnel.
 
@@ -72,22 +83,17 @@ class ConfigurationsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return cast(
-            ConfigurationUpdateResponse,
-            self._put(
-                f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/configurations",
-                body=maybe_transform({"config": config}, configuration_update_params.ConfigurationUpdateParams),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[ConfigurationUpdateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[ConfigurationUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._put(
+            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/configurations",
+            body=maybe_transform({"config": config}, configuration_update_params.ConfigurationUpdateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ConfigurationUpdateResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[ConfigurationUpdateResponse]], ResultWrapper[ConfigurationUpdateResponse]),
         )
 
     def get(
@@ -101,12 +107,12 @@ class ConfigurationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigurationGetResponse:
+    ) -> Optional[ConfigurationGetResponse]:
         """
         Gets the configuration for a remotely-managed tunnel
 
         Args:
-          account_id: Cloudflare account ID
+          account_id: Identifier
 
           tunnel_id: UUID of the tunnel.
 
@@ -122,31 +128,37 @@ class ConfigurationsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return cast(
-            ConfigurationGetResponse,
-            self._get(
-                f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/configurations",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[ConfigurationGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[ConfigurationGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._get(
+            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/configurations",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ConfigurationGetResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[ConfigurationGetResponse]], ResultWrapper[ConfigurationGetResponse]),
         )
 
 
 class AsyncConfigurationsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncConfigurationsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncConfigurationsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncConfigurationsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncConfigurationsResourceWithStreamingResponse(self)
 
     async def update(
@@ -161,12 +173,12 @@ class AsyncConfigurationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigurationUpdateResponse:
+    ) -> Optional[ConfigurationUpdateResponse]:
         """
         Adds or updates the configuration for a remotely-managed tunnel.
 
         Args:
-          account_id: Cloudflare account ID
+          account_id: Identifier
 
           tunnel_id: UUID of the tunnel.
 
@@ -184,24 +196,17 @@ class AsyncConfigurationsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return cast(
-            ConfigurationUpdateResponse,
-            await self._put(
-                f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/configurations",
-                body=await async_maybe_transform(
-                    {"config": config}, configuration_update_params.ConfigurationUpdateParams
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[ConfigurationUpdateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[ConfigurationUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._put(
+            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/configurations",
+            body=await async_maybe_transform({"config": config}, configuration_update_params.ConfigurationUpdateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ConfigurationUpdateResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[ConfigurationUpdateResponse]], ResultWrapper[ConfigurationUpdateResponse]),
         )
 
     async def get(
@@ -215,12 +220,12 @@ class AsyncConfigurationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ConfigurationGetResponse:
+    ) -> Optional[ConfigurationGetResponse]:
         """
         Gets the configuration for a remotely-managed tunnel
 
         Args:
-          account_id: Cloudflare account ID
+          account_id: Identifier
 
           tunnel_id: UUID of the tunnel.
 
@@ -236,21 +241,16 @@ class AsyncConfigurationsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return cast(
-            ConfigurationGetResponse,
-            await self._get(
-                f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/configurations",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[ConfigurationGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[ConfigurationGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._get(
+            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/configurations",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ConfigurationGetResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[ConfigurationGetResponse]], ResultWrapper[ConfigurationGetResponse]),
         )
 
 

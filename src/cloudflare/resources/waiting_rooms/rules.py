@@ -21,10 +21,9 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...pagination import SyncSinglePage, AsyncSinglePage
-from ..._base_client import AsyncPaginator, make_request_options
+from ..._base_client import make_request_options
 from ...types.waiting_rooms import rule_edit_params, rule_create_params, rule_update_params
-from ...types.waiting_rooms.waiting_room_rule import WaitingRoomRule
+from ...types.waiting_rooms.rule_get_response import RuleGetResponse
 from ...types.waiting_rooms.rule_edit_response import RuleEditResponse
 from ...types.waiting_rooms.rule_create_response import RuleCreateResponse
 from ...types.waiting_rooms.rule_delete_response import RuleDeleteResponse
@@ -36,10 +35,21 @@ __all__ = ["RulesResource", "AsyncRulesResource"]
 class RulesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> RulesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return RulesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> RulesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return RulesResourceWithStreamingResponse(self)
 
     def create(
@@ -47,10 +57,7 @@ class RulesResource(SyncAPIResource):
         waiting_room_id: str,
         *,
         zone_id: str,
-        action: Literal["bypass_waiting_room"],
-        expression: str,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
+        rules: rule_create_params.Rules,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -66,14 +73,6 @@ class RulesResource(SyncAPIResource):
         Args:
           zone_id: Identifier
 
-          action: The action to take when the expression matches.
-
-          expression: Criteria defining when there is a match for the current rule.
-
-          description: The description of the rule.
-
-          enabled: When set to true, the rule is enabled.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -88,15 +87,7 @@ class RulesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return self._post(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules",
-            body=maybe_transform(
-                {
-                    "action": action,
-                    "expression": expression,
-                    "description": description,
-                    "enabled": enabled,
-                },
-                rule_create_params.RuleCreateParams,
-            ),
+            body=maybe_transform(rules, rule_create_params.RuleCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -112,7 +103,7 @@ class RulesResource(SyncAPIResource):
         waiting_room_id: str,
         *,
         zone_id: str,
-        body: Iterable[rule_update_params.Body],
+        rules: Iterable[rule_update_params.Rule],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -142,7 +133,7 @@ class RulesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return self._put(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules",
-            body=maybe_transform(body, rule_update_params.RuleUpdateParams),
+            body=maybe_transform(rules, Iterable[rule_update_params.Rule]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -151,45 +142,6 @@ class RulesResource(SyncAPIResource):
                 post_parser=ResultWrapper[Optional[RuleUpdateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[RuleUpdateResponse]], ResultWrapper[RuleUpdateResponse]),
-        )
-
-    def list(
-        self,
-        waiting_room_id: str,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[WaitingRoomRule]:
-        """
-        Lists rules for a waiting room.
-
-        Args:
-          zone_id: Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not waiting_room_id:
-            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
-        return self._get_api_list(
-            f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules",
-            page=SyncSinglePage[WaitingRoomRule],
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            model=WaitingRoomRule,
         )
 
     def delete(
@@ -311,14 +263,67 @@ class RulesResource(SyncAPIResource):
             cast_to=cast(Type[Optional[RuleEditResponse]], ResultWrapper[RuleEditResponse]),
         )
 
+    def get(
+        self,
+        waiting_room_id: str,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RuleGetResponse]:
+        """
+        Lists rules for a waiting room.
+
+        Args:
+          zone_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not waiting_room_id:
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
+        return self._get(
+            f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[RuleGetResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[RuleGetResponse]], ResultWrapper[RuleGetResponse]),
+        )
+
 
 class AsyncRulesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncRulesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncRulesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncRulesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncRulesResourceWithStreamingResponse(self)
 
     async def create(
@@ -326,10 +331,7 @@ class AsyncRulesResource(AsyncAPIResource):
         waiting_room_id: str,
         *,
         zone_id: str,
-        action: Literal["bypass_waiting_room"],
-        expression: str,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
+        rules: rule_create_params.Rules,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -345,14 +347,6 @@ class AsyncRulesResource(AsyncAPIResource):
         Args:
           zone_id: Identifier
 
-          action: The action to take when the expression matches.
-
-          expression: Criteria defining when there is a match for the current rule.
-
-          description: The description of the rule.
-
-          enabled: When set to true, the rule is enabled.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -367,15 +361,7 @@ class AsyncRulesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return await self._post(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules",
-            body=await async_maybe_transform(
-                {
-                    "action": action,
-                    "expression": expression,
-                    "description": description,
-                    "enabled": enabled,
-                },
-                rule_create_params.RuleCreateParams,
-            ),
+            body=await async_maybe_transform(rules, rule_create_params.RuleCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -391,7 +377,7 @@ class AsyncRulesResource(AsyncAPIResource):
         waiting_room_id: str,
         *,
         zone_id: str,
-        body: Iterable[rule_update_params.Body],
+        rules: Iterable[rule_update_params.Rule],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -421,7 +407,7 @@ class AsyncRulesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return await self._put(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules",
-            body=await async_maybe_transform(body, rule_update_params.RuleUpdateParams),
+            body=await async_maybe_transform(rules, Iterable[rule_update_params.Rule]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -430,45 +416,6 @@ class AsyncRulesResource(AsyncAPIResource):
                 post_parser=ResultWrapper[Optional[RuleUpdateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[RuleUpdateResponse]], ResultWrapper[RuleUpdateResponse]),
-        )
-
-    def list(
-        self,
-        waiting_room_id: str,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[WaitingRoomRule, AsyncSinglePage[WaitingRoomRule]]:
-        """
-        Lists rules for a waiting room.
-
-        Args:
-          zone_id: Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        if not waiting_room_id:
-            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
-        return self._get_api_list(
-            f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules",
-            page=AsyncSinglePage[WaitingRoomRule],
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            model=WaitingRoomRule,
         )
 
     async def delete(
@@ -590,6 +537,48 @@ class AsyncRulesResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[RuleEditResponse]], ResultWrapper[RuleEditResponse]),
         )
 
+    async def get(
+        self,
+        waiting_room_id: str,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[RuleGetResponse]:
+        """
+        Lists rules for a waiting room.
+
+        Args:
+          zone_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not waiting_room_id:
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
+        return await self._get(
+            f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[RuleGetResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[RuleGetResponse]], ResultWrapper[RuleGetResponse]),
+        )
+
 
 class RulesResourceWithRawResponse:
     def __init__(self, rules: RulesResource) -> None:
@@ -601,14 +590,14 @@ class RulesResourceWithRawResponse:
         self.update = to_raw_response_wrapper(
             rules.update,
         )
-        self.list = to_raw_response_wrapper(
-            rules.list,
-        )
         self.delete = to_raw_response_wrapper(
             rules.delete,
         )
         self.edit = to_raw_response_wrapper(
             rules.edit,
+        )
+        self.get = to_raw_response_wrapper(
+            rules.get,
         )
 
 
@@ -622,14 +611,14 @@ class AsyncRulesResourceWithRawResponse:
         self.update = async_to_raw_response_wrapper(
             rules.update,
         )
-        self.list = async_to_raw_response_wrapper(
-            rules.list,
-        )
         self.delete = async_to_raw_response_wrapper(
             rules.delete,
         )
         self.edit = async_to_raw_response_wrapper(
             rules.edit,
+        )
+        self.get = async_to_raw_response_wrapper(
+            rules.get,
         )
 
 
@@ -643,14 +632,14 @@ class RulesResourceWithStreamingResponse:
         self.update = to_streamed_response_wrapper(
             rules.update,
         )
-        self.list = to_streamed_response_wrapper(
-            rules.list,
-        )
         self.delete = to_streamed_response_wrapper(
             rules.delete,
         )
         self.edit = to_streamed_response_wrapper(
             rules.edit,
+        )
+        self.get = to_streamed_response_wrapper(
+            rules.get,
         )
 
 
@@ -664,12 +653,12 @@ class AsyncRulesResourceWithStreamingResponse:
         self.update = async_to_streamed_response_wrapper(
             rules.update,
         )
-        self.list = async_to_streamed_response_wrapper(
-            rules.list,
-        )
         self.delete = async_to_streamed_response_wrapper(
             rules.delete,
         )
         self.edit = async_to_streamed_response_wrapper(
             rules.edit,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            rules.get,
         )

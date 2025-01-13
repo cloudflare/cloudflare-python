@@ -30,10 +30,21 @@ __all__ = ["AuditSSHSettingsResource", "AsyncAuditSSHSettingsResource"]
 class AuditSSHSettingsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AuditSSHSettingsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AuditSSHSettingsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AuditSSHSettingsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AuditSSHSettingsResourceWithStreamingResponse(self)
 
     def update(
@@ -41,7 +52,6 @@ class AuditSSHSettingsResource(SyncAPIResource):
         *,
         account_id: str,
         public_key: str,
-        seed_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -50,12 +60,12 @@ class AuditSSHSettingsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[GatewaySettings]:
         """
-        Updates Zero Trust Audit SSH settings.
+        Updates Zero Trust Audit SSH and SSH with Access for Infrastructure settings for
+        an account.
 
         Args:
-          public_key: SSH encryption public key
-
-          seed_id: Seed ID
+          public_key: Base64 encoded HPKE public key used to encrypt all your ssh session logs.
+              https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/use-cases/ssh/ssh-infrastructure-access/#enable-ssh-command-logging
 
           extra_headers: Send extra headers
 
@@ -70,11 +80,7 @@ class AuditSSHSettingsResource(SyncAPIResource):
         return self._put(
             f"/accounts/{account_id}/gateway/audit_ssh_settings",
             body=maybe_transform(
-                {
-                    "public_key": public_key,
-                    "seed_id": seed_id,
-                },
-                audit_ssh_setting_update_params.AuditSSHSettingUpdateParams,
+                {"public_key": public_key}, audit_ssh_setting_update_params.AuditSSHSettingUpdateParams
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -98,7 +104,8 @@ class AuditSSHSettingsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[GatewaySettings]:
         """
-        Get all Zero Trust Audit SSH settings for an account.
+        Gets all Zero Trust Audit SSH and SSH with Access for Infrastructure settings
+        for an account.
 
         Args:
           extra_headers: Send extra headers
@@ -123,22 +130,10 @@ class AuditSSHSettingsResource(SyncAPIResource):
             cast_to=cast(Type[Optional[GatewaySettings]], ResultWrapper[GatewaySettings]),
         )
 
-
-class AsyncAuditSSHSettingsResource(AsyncAPIResource):
-    @cached_property
-    def with_raw_response(self) -> AsyncAuditSSHSettingsResourceWithRawResponse:
-        return AsyncAuditSSHSettingsResourceWithRawResponse(self)
-
-    @cached_property
-    def with_streaming_response(self) -> AsyncAuditSSHSettingsResourceWithStreamingResponse:
-        return AsyncAuditSSHSettingsResourceWithStreamingResponse(self)
-
-    async def update(
+    def rotate_seed(
         self,
         *,
         account_id: str,
-        public_key: str,
-        seed_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -147,12 +142,72 @@ class AsyncAuditSSHSettingsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[GatewaySettings]:
         """
-        Updates Zero Trust Audit SSH settings.
+        Rotates the SSH account seed that is used for generating the host key identity
+        when connecting through the Cloudflare SSH Proxy.
 
         Args:
-          public_key: SSH encryption public key
+          extra_headers: Send extra headers
 
-          seed_id: Seed ID
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._post(
+            f"/accounts/{account_id}/gateway/audit_ssh_settings/rotate_seed",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[GatewaySettings]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[GatewaySettings]], ResultWrapper[GatewaySettings]),
+        )
+
+
+class AsyncAuditSSHSettingsResource(AsyncAPIResource):
+    @cached_property
+    def with_raw_response(self) -> AsyncAuditSSHSettingsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
+        return AsyncAuditSSHSettingsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncAuditSSHSettingsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
+        return AsyncAuditSSHSettingsResourceWithStreamingResponse(self)
+
+    async def update(
+        self,
+        *,
+        account_id: str,
+        public_key: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[GatewaySettings]:
+        """
+        Updates Zero Trust Audit SSH and SSH with Access for Infrastructure settings for
+        an account.
+
+        Args:
+          public_key: Base64 encoded HPKE public key used to encrypt all your ssh session logs.
+              https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/use-cases/ssh/ssh-infrastructure-access/#enable-ssh-command-logging
 
           extra_headers: Send extra headers
 
@@ -167,11 +222,7 @@ class AsyncAuditSSHSettingsResource(AsyncAPIResource):
         return await self._put(
             f"/accounts/{account_id}/gateway/audit_ssh_settings",
             body=await async_maybe_transform(
-                {
-                    "public_key": public_key,
-                    "seed_id": seed_id,
-                },
-                audit_ssh_setting_update_params.AuditSSHSettingUpdateParams,
+                {"public_key": public_key}, audit_ssh_setting_update_params.AuditSSHSettingUpdateParams
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -195,7 +246,8 @@ class AsyncAuditSSHSettingsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[GatewaySettings]:
         """
-        Get all Zero Trust Audit SSH settings for an account.
+        Gets all Zero Trust Audit SSH and SSH with Access for Infrastructure settings
+        for an account.
 
         Args:
           extra_headers: Send extra headers
@@ -220,6 +272,44 @@ class AsyncAuditSSHSettingsResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[GatewaySettings]], ResultWrapper[GatewaySettings]),
         )
 
+    async def rotate_seed(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[GatewaySettings]:
+        """
+        Rotates the SSH account seed that is used for generating the host key identity
+        when connecting through the Cloudflare SSH Proxy.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return await self._post(
+            f"/accounts/{account_id}/gateway/audit_ssh_settings/rotate_seed",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[GatewaySettings]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[GatewaySettings]], ResultWrapper[GatewaySettings]),
+        )
+
 
 class AuditSSHSettingsResourceWithRawResponse:
     def __init__(self, audit_ssh_settings: AuditSSHSettingsResource) -> None:
@@ -230,6 +320,9 @@ class AuditSSHSettingsResourceWithRawResponse:
         )
         self.get = to_raw_response_wrapper(
             audit_ssh_settings.get,
+        )
+        self.rotate_seed = to_raw_response_wrapper(
+            audit_ssh_settings.rotate_seed,
         )
 
 
@@ -243,6 +336,9 @@ class AsyncAuditSSHSettingsResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             audit_ssh_settings.get,
         )
+        self.rotate_seed = async_to_raw_response_wrapper(
+            audit_ssh_settings.rotate_seed,
+        )
 
 
 class AuditSSHSettingsResourceWithStreamingResponse:
@@ -255,6 +351,9 @@ class AuditSSHSettingsResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             audit_ssh_settings.get,
         )
+        self.rotate_seed = to_streamed_response_wrapper(
+            audit_ssh_settings.rotate_seed,
+        )
 
 
 class AsyncAuditSSHSettingsResourceWithStreamingResponse:
@@ -266,4 +365,7 @@ class AsyncAuditSSHSettingsResourceWithStreamingResponse:
         )
         self.get = async_to_streamed_response_wrapper(
             audit_ssh_settings.get,
+        )
+        self.rotate_seed = async_to_streamed_response_wrapper(
+            audit_ssh_settings.rotate_seed,
         )

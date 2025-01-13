@@ -26,22 +26,14 @@ class TestTop:
     @parametrize
     def test_method_prefixes_with_all_params(self, client: Cloudflare) -> None:
         top = client.radar.bgp.top.prefixes(
-            asn=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            asn=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             limit=5,
-            name=["string", "string", "string"],
-            update_type=["ANNOUNCEMENT", "WITHDRAWAL"],
+            name=["string"],
+            update_type=["ANNOUNCEMENT"],
         )
         assert_matches_type(TopPrefixesResponse, top, path=["response"])
 
@@ -77,22 +69,14 @@ class TestAsyncTop:
     @parametrize
     async def test_method_prefixes_with_all_params(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.bgp.top.prefixes(
-            asn=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            asn=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             limit=5,
-            name=["string", "string", "string"],
-            update_type=["ANNOUNCEMENT", "WITHDRAWAL"],
+            name=["string"],
+            update_type=["ANNOUNCEMENT"],
         )
         assert_matches_type(TopPrefixesResponse, top, path=["response"])
 

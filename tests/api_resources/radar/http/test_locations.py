@@ -26,31 +26,23 @@ class TestLocations:
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         location = client.radar.http.locations.get(
-            asn=["string", "string", "string"],
-            bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
-            browser_family=["CHROME", "EDGE", "FIREFOX"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            device_type=["DESKTOP", "MOBILE", "OTHER"],
+            asn=["string"],
+            bot_class=["LIKELY_AUTOMATED"],
+            browser_family=["CHROME"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            device_type=["DESKTOP"],
             format="JSON",
-            http_protocol=["HTTP", "HTTPS"],
-            http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
-            ip_version=["IPv4", "IPv6"],
+            http_protocol=["HTTP"],
+            http_version=["HTTPv1"],
+            ip_version=["IPv4"],
             limit=5,
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
-            os=["WINDOWS", "MACOSX", "IOS"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
+            location=["string"],
+            name=["string"],
+            os=["WINDOWS"],
+            tls_version=["TLSv1_0"],
         )
         assert_matches_type(LocationGetResponse, location, path=["response"])
 
@@ -86,31 +78,23 @@ class TestAsyncLocations:
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         location = await async_client.radar.http.locations.get(
-            asn=["string", "string", "string"],
-            bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
-            browser_family=["CHROME", "EDGE", "FIREFOX"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            device_type=["DESKTOP", "MOBILE", "OTHER"],
+            asn=["string"],
+            bot_class=["LIKELY_AUTOMATED"],
+            browser_family=["CHROME"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            device_type=["DESKTOP"],
             format="JSON",
-            http_protocol=["HTTP", "HTTPS"],
-            http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
-            ip_version=["IPv4", "IPv6"],
+            http_protocol=["HTTP"],
+            http_version=["HTTPv1"],
+            ip_version=["IPv4"],
             limit=5,
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
-            os=["WINDOWS", "MACOSX", "IOS"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
+            location=["string"],
+            name=["string"],
+            os=["WINDOWS"],
+            tls_version=["TLSv1_0"],
         )
         assert_matches_type(LocationGetResponse, location, path=["response"])
 

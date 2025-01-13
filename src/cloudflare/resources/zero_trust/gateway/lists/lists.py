@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Type, Iterable, Optional, cast
+from typing import List, Type, Iterable, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -35,7 +35,6 @@ from .....types.zero_trust.gateway import list_edit_params, list_list_params, li
 from .....types.zero_trust.gateway.gateway_list import GatewayList
 from .....types.zero_trust.gateway.gateway_item_param import GatewayItemParam
 from .....types.zero_trust.gateway.list_create_response import ListCreateResponse
-from .....types.zero_trust.gateway.list_delete_response import ListDeleteResponse
 
 __all__ = ["ListsResource", "AsyncListsResource"]
 
@@ -47,10 +46,21 @@ class ListsResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> ListsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return ListsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> ListsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return ListsResourceWithStreamingResponse(self)
 
     def create(
@@ -118,6 +128,7 @@ class ListsResource(SyncAPIResource):
         account_id: str,
         name: str,
         description: str | NotGiven = NOT_GIVEN,
+        items: Iterable[GatewayItemParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -125,8 +136,10 @@ class ListsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[GatewayList]:
-        """
-        Updates a configured Zero Trust list.
+        """Updates a configured Zero Trust list.
+
+        Skips updating list items if not included
+        in the payload.
 
         Args:
           list_id: API Resource UUID tag.
@@ -134,6 +147,8 @@ class ListsResource(SyncAPIResource):
           name: The name of the list.
 
           description: The description of the list.
+
+          items: The items in the list.
 
           extra_headers: Send extra headers
 
@@ -153,6 +168,7 @@ class ListsResource(SyncAPIResource):
                 {
                     "name": name,
                     "description": description,
+                    "items": items,
                 },
                 list_update_params.ListUpdateParams,
             ),
@@ -218,7 +234,7 @@ class ListsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ListDeleteResponse]:
+    ) -> object:
         """
         Deletes a Zero Trust list.
 
@@ -237,21 +253,16 @@ class ListsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not list_id:
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
-        return cast(
-            Optional[ListDeleteResponse],
-            self._delete(
-                f"/accounts/{account_id}/gateway/lists/{list_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[ListDeleteResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[ListDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._delete(
+            f"/accounts/{account_id}/gateway/lists/{list_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def edit(
@@ -359,10 +370,21 @@ class AsyncListsResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncListsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncListsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncListsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncListsResourceWithStreamingResponse(self)
 
     async def create(
@@ -430,6 +452,7 @@ class AsyncListsResource(AsyncAPIResource):
         account_id: str,
         name: str,
         description: str | NotGiven = NOT_GIVEN,
+        items: Iterable[GatewayItemParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -437,8 +460,10 @@ class AsyncListsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[GatewayList]:
-        """
-        Updates a configured Zero Trust list.
+        """Updates a configured Zero Trust list.
+
+        Skips updating list items if not included
+        in the payload.
 
         Args:
           list_id: API Resource UUID tag.
@@ -446,6 +471,8 @@ class AsyncListsResource(AsyncAPIResource):
           name: The name of the list.
 
           description: The description of the list.
+
+          items: The items in the list.
 
           extra_headers: Send extra headers
 
@@ -465,6 +492,7 @@ class AsyncListsResource(AsyncAPIResource):
                 {
                     "name": name,
                     "description": description,
+                    "items": items,
                 },
                 list_update_params.ListUpdateParams,
             ),
@@ -530,7 +558,7 @@ class AsyncListsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ListDeleteResponse]:
+    ) -> object:
         """
         Deletes a Zero Trust list.
 
@@ -549,21 +577,16 @@ class AsyncListsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not list_id:
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
-        return cast(
-            Optional[ListDeleteResponse],
-            await self._delete(
-                f"/accounts/{account_id}/gateway/lists/{list_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[ListDeleteResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[ListDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._delete(
+            f"/accounts/{account_id}/gateway/lists/{list_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     async def edit(

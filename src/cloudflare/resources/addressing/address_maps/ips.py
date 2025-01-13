@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
@@ -19,7 +17,6 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
 from ....types.addressing.address_maps import ip_update_params
 from ....types.addressing.address_maps.ip_delete_response import IPDeleteResponse
@@ -31,10 +28,21 @@ __all__ = ["IPsResource", "AsyncIPsResource"]
 class IPsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> IPsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return IPsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> IPsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return IPsResourceWithStreamingResponse(self)
 
     def update(
@@ -50,14 +58,14 @@ class IPsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IPUpdateResponse]:
+    ) -> IPUpdateResponse:
         """
         Add an IP from a prefix owned by the account to a particular address map.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          address_map_id: Identifier
+          address_map_id: Identifier of an Address Map.
 
           ip_address: An IPv4 or IPv6 address.
 
@@ -79,13 +87,9 @@ class IPsResource(SyncAPIResource):
             f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/ips/{ip_address}",
             body=maybe_transform(body, ip_update_params.IPUpdateParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[IPUpdateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[IPUpdateResponse]], ResultWrapper[IPUpdateResponse]),
+            cast_to=IPUpdateResponse,
         )
 
     def delete(
@@ -100,14 +104,14 @@ class IPsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IPDeleteResponse]:
+    ) -> IPDeleteResponse:
         """
         Remove an IP from a particular address map.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          address_map_id: Identifier
+          address_map_id: Identifier of an Address Map.
 
           ip_address: An IPv4 or IPv6 address.
 
@@ -128,23 +132,30 @@ class IPsResource(SyncAPIResource):
         return self._delete(
             f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/ips/{ip_address}",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[IPDeleteResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[IPDeleteResponse]], ResultWrapper[IPDeleteResponse]),
+            cast_to=IPDeleteResponse,
         )
 
 
 class AsyncIPsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncIPsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncIPsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncIPsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncIPsResourceWithStreamingResponse(self)
 
     async def update(
@@ -160,14 +171,14 @@ class AsyncIPsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IPUpdateResponse]:
+    ) -> IPUpdateResponse:
         """
         Add an IP from a prefix owned by the account to a particular address map.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          address_map_id: Identifier
+          address_map_id: Identifier of an Address Map.
 
           ip_address: An IPv4 or IPv6 address.
 
@@ -189,13 +200,9 @@ class AsyncIPsResource(AsyncAPIResource):
             f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/ips/{ip_address}",
             body=await async_maybe_transform(body, ip_update_params.IPUpdateParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[IPUpdateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[IPUpdateResponse]], ResultWrapper[IPUpdateResponse]),
+            cast_to=IPUpdateResponse,
         )
 
     async def delete(
@@ -210,14 +217,14 @@ class AsyncIPsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IPDeleteResponse]:
+    ) -> IPDeleteResponse:
         """
         Remove an IP from a particular address map.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          address_map_id: Identifier
+          address_map_id: Identifier of an Address Map.
 
           ip_address: An IPv4 or IPv6 address.
 
@@ -238,13 +245,9 @@ class AsyncIPsResource(AsyncAPIResource):
         return await self._delete(
             f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/ips/{ip_address}",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[IPDeleteResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[IPDeleteResponse]], ResultWrapper[IPDeleteResponse]),
+            cast_to=IPDeleteResponse,
         )
 
 

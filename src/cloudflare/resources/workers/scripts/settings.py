@@ -31,10 +31,21 @@ __all__ = ["SettingsResource", "AsyncSettingsResource"]
 class SettingsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> SettingsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return SettingsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> SettingsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return SettingsResourceWithStreamingResponse(self)
 
     def edit(
@@ -43,6 +54,7 @@ class SettingsResource(SyncAPIResource):
         *,
         account_id: str,
         logpush: bool | NotGiven = NOT_GIVEN,
+        observability: setting_edit_params.Observability | NotGiven = NOT_GIVEN,
         tail_consumers: Iterable[ConsumerScriptParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -54,7 +66,7 @@ class SettingsResource(SyncAPIResource):
         """
         Patch script-level settings when using
         [Worker Versions](https://developers.cloudflare.com/api/operations/worker-versions-list-versions).
-        Includes Logpush and Tail Consumers.
+        Including but not limited to Logpush and Tail Consumers.
 
         Args:
           account_id: Identifier
@@ -62,6 +74,8 @@ class SettingsResource(SyncAPIResource):
           script_name: Name of the script, used in URLs and route configuration.
 
           logpush: Whether Logpush is turned on for the Worker.
+
+          observability: Observability settings for the Worker.
 
           tail_consumers: List of Workers that will consume logs from the attached Worker.
 
@@ -82,6 +96,7 @@ class SettingsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "logpush": logpush,
+                    "observability": observability,
                     "tail_consumers": tail_consumers,
                 },
                 setting_edit_params.SettingEditParams,
@@ -146,10 +161,21 @@ class SettingsResource(SyncAPIResource):
 class AsyncSettingsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncSettingsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncSettingsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncSettingsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncSettingsResourceWithStreamingResponse(self)
 
     async def edit(
@@ -158,6 +184,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         *,
         account_id: str,
         logpush: bool | NotGiven = NOT_GIVEN,
+        observability: setting_edit_params.Observability | NotGiven = NOT_GIVEN,
         tail_consumers: Iterable[ConsumerScriptParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -169,7 +196,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         """
         Patch script-level settings when using
         [Worker Versions](https://developers.cloudflare.com/api/operations/worker-versions-list-versions).
-        Includes Logpush and Tail Consumers.
+        Including but not limited to Logpush and Tail Consumers.
 
         Args:
           account_id: Identifier
@@ -177,6 +204,8 @@ class AsyncSettingsResource(AsyncAPIResource):
           script_name: Name of the script, used in URLs and route configuration.
 
           logpush: Whether Logpush is turned on for the Worker.
+
+          observability: Observability settings for the Worker.
 
           tail_consumers: List of Workers that will consume logs from the attached Worker.
 
@@ -197,6 +226,7 @@ class AsyncSettingsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "logpush": logpush,
+                    "observability": observability,
                     "tail_consumers": tail_consumers,
                 },
                 setting_edit_params.SettingEditParams,

@@ -32,10 +32,21 @@ __all__ = ["IPVersionResource", "AsyncIPVersionResource"]
 class IPVersionResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> IPVersionResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return IPVersionResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> IPVersionResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return IPVersionResourceWithStreamingResponse(self)
 
     def get(
@@ -66,9 +77,10 @@ class IPVersionResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> IPVersionGetResponse:
-        """
-        Get the top locations, by HTTP traffic, of the requested IP protocol version.
-        Values are a percentage out of the total traffic.
+        """Get the top locations, by HTTP traffic, of the requested IP version.
+
+        Values are
+        a percentage out of the total traffic.
 
         Args:
           ip_version: IP version.
@@ -161,10 +173,21 @@ class IPVersionResource(SyncAPIResource):
 class AsyncIPVersionResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncIPVersionResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncIPVersionResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncIPVersionResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncIPVersionResourceWithStreamingResponse(self)
 
     async def get(
@@ -195,9 +218,10 @@ class AsyncIPVersionResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> IPVersionGetResponse:
-        """
-        Get the top locations, by HTTP traffic, of the requested IP protocol version.
-        Values are a percentage out of the total traffic.
+        """Get the top locations, by HTTP traffic, of the requested IP version.
+
+        Values are
+        a percentage out of the total traffic.
 
         Args:
           ip_version: IP version.

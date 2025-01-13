@@ -34,10 +34,21 @@ __all__ = ["MessageResource", "AsyncMessageResource"]
 class MessageResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> MessageResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return MessageResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> MessageResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return MessageResourceWithStreamingResponse(self)
 
     def create(
@@ -54,9 +65,7 @@ class MessageResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[Message]:
         """
-        Creating a request adds the request into the Cloudforce One queue for analysis.
-        In addition to the content, a short title, type, priority, and releasability
-        should be provided. If one is not provided a default will be assigned.
+        Create a New Request Message
 
         Args:
           account_identifier: Identifier
@@ -97,10 +106,6 @@ class MessageResource(SyncAPIResource):
         account_identifier: str,
         request_identifier: str,
         content: str | NotGiven = NOT_GIVEN,
-        priority: str | NotGiven = NOT_GIVEN,
-        request_type: str | NotGiven = NOT_GIVEN,
-        summary: str | NotGiven = NOT_GIVEN,
-        tlp: Literal["clear", "amber", "amber-strict", "green", "red"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -116,15 +121,7 @@ class MessageResource(SyncAPIResource):
 
           request_identifier: UUID
 
-          content: Request content
-
-          priority: Priority for analyzing the request
-
-          request_type: Requested information from request
-
-          summary: Brief description of the request
-
-          tlp: The CISA defined Traffic Light Protocol (TLP)
+          content: Content of message
 
           extra_headers: Send extra headers
 
@@ -140,16 +137,7 @@ class MessageResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `request_identifier` but received {request_identifier!r}")
         return self._put(
             f"/accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}/message/{message_identifer}",
-            body=maybe_transform(
-                {
-                    "content": content,
-                    "priority": priority,
-                    "request_type": request_type,
-                    "summary": summary,
-                    "tlp": tlp,
-                },
-                message_update_params.MessageUpdateParams,
-            ),
+            body=maybe_transform({"content": content}, message_update_params.MessageUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -278,10 +266,21 @@ class MessageResource(SyncAPIResource):
 class AsyncMessageResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncMessageResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncMessageResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncMessageResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncMessageResourceWithStreamingResponse(self)
 
     async def create(
@@ -298,9 +297,7 @@ class AsyncMessageResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[Message]:
         """
-        Creating a request adds the request into the Cloudforce One queue for analysis.
-        In addition to the content, a short title, type, priority, and releasability
-        should be provided. If one is not provided a default will be assigned.
+        Create a New Request Message
 
         Args:
           account_identifier: Identifier
@@ -341,10 +338,6 @@ class AsyncMessageResource(AsyncAPIResource):
         account_identifier: str,
         request_identifier: str,
         content: str | NotGiven = NOT_GIVEN,
-        priority: str | NotGiven = NOT_GIVEN,
-        request_type: str | NotGiven = NOT_GIVEN,
-        summary: str | NotGiven = NOT_GIVEN,
-        tlp: Literal["clear", "amber", "amber-strict", "green", "red"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -360,15 +353,7 @@ class AsyncMessageResource(AsyncAPIResource):
 
           request_identifier: UUID
 
-          content: Request content
-
-          priority: Priority for analyzing the request
-
-          request_type: Requested information from request
-
-          summary: Brief description of the request
-
-          tlp: The CISA defined Traffic Light Protocol (TLP)
+          content: Content of message
 
           extra_headers: Send extra headers
 
@@ -384,16 +369,7 @@ class AsyncMessageResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `request_identifier` but received {request_identifier!r}")
         return await self._put(
             f"/accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}/message/{message_identifer}",
-            body=await async_maybe_transform(
-                {
-                    "content": content,
-                    "priority": priority,
-                    "request_type": request_type,
-                    "summary": summary,
-                    "tlp": tlp,
-                },
-                message_update_params.MessageUpdateParams,
-            ),
+            body=await async_maybe_transform({"content": content}, message_update_params.MessageUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

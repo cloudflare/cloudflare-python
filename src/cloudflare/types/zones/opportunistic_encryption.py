@@ -1,7 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Optional
-from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
@@ -10,17 +9,12 @@ __all__ = ["OpportunisticEncryption"]
 
 
 class OpportunisticEncryption(BaseModel):
-    id: Literal["opportunistic_encryption"]
-    """ID of the zone setting."""
-
-    value: Literal["on", "off"]
-    """Current value of the zone setting."""
-
-    editable: Optional[Literal[True, False]] = None
+    id: Optional[Literal["opportunistic_encryption"]] = None
     """
-    Whether or not this setting can be modified for this zone (based on your
-    Cloudflare plan level).
+    Opportunistic Encryption allows browsers to access HTTP URIs over an encrypted
+    TLS channel. It's not a substitute for HTTPS, but provides additional security
+    for otherwise vulnerable requests.
     """
 
-    modified_on: Optional[datetime] = None
-    """last time this setting was modified."""
+    value: Optional[Literal["on", "off"]] = None
+    """The status of Opportunistic Encryption."""

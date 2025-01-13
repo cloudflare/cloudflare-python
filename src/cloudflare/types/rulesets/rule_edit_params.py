@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Dict, List, Union, Iterable
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .phase import Phase
 from .logging_param import LoggingParam
@@ -14,19 +14,61 @@ __all__ = [
     "BlockRule",
     "BlockRuleActionParameters",
     "BlockRuleActionParametersResponse",
+    "BlockRuleExposedCredentialCheck",
+    "BlockRulePosition",
+    "BlockRulePositionBeforePosition",
+    "BlockRulePositionAfterPosition",
+    "BlockRulePositionIndexPosition",
+    "BlockRuleRatelimit",
     "ChallengeRule",
-    "CompressResponseRule",
-    "CompressResponseRuleActionParameters",
-    "CompressResponseRuleActionParametersAlgorithm",
+    "ChallengeRuleExposedCredentialCheck",
+    "ChallengeRulePosition",
+    "ChallengeRulePositionBeforePosition",
+    "ChallengeRulePositionAfterPosition",
+    "ChallengeRulePositionIndexPosition",
+    "ChallengeRuleRatelimit",
+    "CompressionRule",
+    "CompressionRuleActionParameters",
+    "CompressionRuleActionParametersAlgorithm",
+    "CompressionRuleExposedCredentialCheck",
+    "CompressionRulePosition",
+    "CompressionRulePositionBeforePosition",
+    "CompressionRulePositionAfterPosition",
+    "CompressionRulePositionIndexPosition",
+    "CompressionRuleRatelimit",
     "ExecuteRule",
     "ExecuteRuleActionParameters",
     "ExecuteRuleActionParametersMatchedData",
     "ExecuteRuleActionParametersOverrides",
     "ExecuteRuleActionParametersOverridesCategory",
     "ExecuteRuleActionParametersOverridesRule",
-    "JSChallengeRule",
+    "ExecuteRuleExposedCredentialCheck",
+    "ExecuteRulePosition",
+    "ExecuteRulePositionBeforePosition",
+    "ExecuteRulePositionAfterPosition",
+    "ExecuteRulePositionIndexPosition",
+    "ExecuteRuleRatelimit",
+    "JavascriptChallengeRule",
+    "JavascriptChallengeRuleExposedCredentialCheck",
+    "JavascriptChallengeRulePosition",
+    "JavascriptChallengeRulePositionBeforePosition",
+    "JavascriptChallengeRulePositionAfterPosition",
+    "JavascriptChallengeRulePositionIndexPosition",
+    "JavascriptChallengeRuleRatelimit",
     "LogRule",
+    "LogRuleExposedCredentialCheck",
+    "LogRulePosition",
+    "LogRulePositionBeforePosition",
+    "LogRulePositionAfterPosition",
+    "LogRulePositionIndexPosition",
+    "LogRuleRatelimit",
     "ManagedChallengeRule",
+    "ManagedChallengeRuleExposedCredentialCheck",
+    "ManagedChallengeRulePosition",
+    "ManagedChallengeRulePositionBeforePosition",
+    "ManagedChallengeRulePositionAfterPosition",
+    "ManagedChallengeRulePositionIndexPosition",
+    "ManagedChallengeRuleRatelimit",
     "RedirectRule",
     "RedirectRuleActionParameters",
     "RedirectRuleActionParametersFromList",
@@ -34,6 +76,12 @@ __all__ = [
     "RedirectRuleActionParametersFromValueTargetURL",
     "RedirectRuleActionParametersFromValueTargetURLStaticURLRedirect",
     "RedirectRuleActionParametersFromValueTargetURLDynamicURLRedirect",
+    "RedirectRuleExposedCredentialCheck",
+    "RedirectRulePosition",
+    "RedirectRulePositionBeforePosition",
+    "RedirectRulePositionAfterPosition",
+    "RedirectRulePositionIndexPosition",
+    "RedirectRuleRatelimit",
     "RewriteRule",
     "RewriteRuleActionParameters",
     "RewriteRuleActionParametersHeaders",
@@ -41,19 +89,55 @@ __all__ = [
     "RewriteRuleActionParametersHeadersStaticHeader",
     "RewriteRuleActionParametersHeadersDynamicHeader",
     "RewriteRuleActionParametersURI",
-    "RouteRule",
-    "RouteRuleActionParameters",
-    "RouteRuleActionParametersOrigin",
-    "RouteRuleActionParametersSNI",
+    "RewriteRuleExposedCredentialCheck",
+    "RewriteRulePosition",
+    "RewriteRulePositionBeforePosition",
+    "RewriteRulePositionAfterPosition",
+    "RewriteRulePositionIndexPosition",
+    "RewriteRuleRatelimit",
+    "OriginRule",
+    "OriginRuleActionParameters",
+    "OriginRuleActionParametersOrigin",
+    "OriginRuleActionParametersSNI",
+    "OriginRuleExposedCredentialCheck",
+    "OriginRulePosition",
+    "OriginRulePositionBeforePosition",
+    "OriginRulePositionAfterPosition",
+    "OriginRulePositionIndexPosition",
+    "OriginRuleRatelimit",
     "ScoreRule",
     "ScoreRuleActionParameters",
+    "ScoreRuleExposedCredentialCheck",
+    "ScoreRulePosition",
+    "ScoreRulePositionBeforePosition",
+    "ScoreRulePositionAfterPosition",
+    "ScoreRulePositionIndexPosition",
+    "ScoreRuleRatelimit",
     "ServeErrorRule",
     "ServeErrorRuleActionParameters",
+    "ServeErrorRuleExposedCredentialCheck",
+    "ServeErrorRulePosition",
+    "ServeErrorRulePositionBeforePosition",
+    "ServeErrorRulePositionAfterPosition",
+    "ServeErrorRulePositionIndexPosition",
+    "ServeErrorRuleRatelimit",
     "SetConfigRule",
     "SetConfigRuleActionParameters",
     "SetConfigRuleActionParametersAutominify",
+    "SetConfigRuleExposedCredentialCheck",
+    "SetConfigRulePosition",
+    "SetConfigRulePositionBeforePosition",
+    "SetConfigRulePositionAfterPosition",
+    "SetConfigRulePositionIndexPosition",
+    "SetConfigRuleRatelimit",
     "SkipRule",
     "SkipRuleActionParameters",
+    "SkipRuleExposedCredentialCheck",
+    "SkipRulePosition",
+    "SkipRulePositionBeforePosition",
+    "SkipRulePositionAfterPosition",
+    "SkipRulePositionIndexPosition",
+    "SkipRuleRatelimit",
     "SetCacheSettingsRule",
     "SetCacheSettingsRuleActionParameters",
     "SetCacheSettingsRuleActionParametersBrowserTTL",
@@ -71,13 +155,37 @@ __all__ = [
     "SetCacheSettingsRuleActionParametersEdgeTTLStatusCodeTTL",
     "SetCacheSettingsRuleActionParametersEdgeTTLStatusCodeTTLStatusCodeRange",
     "SetCacheSettingsRuleActionParametersServeStale",
-    "RulesetsLogCustomFieldRule",
-    "RulesetsLogCustomFieldRuleActionParameters",
-    "RulesetsLogCustomFieldRuleActionParametersCookieField",
-    "RulesetsLogCustomFieldRuleActionParametersRequestField",
-    "RulesetsLogCustomFieldRuleActionParametersResponseField",
-    "RulesetsDDoSDynamicRule",
-    "RulesetsForceConnectionCloseRule",
+    "SetCacheSettingsRuleExposedCredentialCheck",
+    "SetCacheSettingsRulePosition",
+    "SetCacheSettingsRulePositionBeforePosition",
+    "SetCacheSettingsRulePositionAfterPosition",
+    "SetCacheSettingsRulePositionIndexPosition",
+    "SetCacheSettingsRuleRatelimit",
+    "LogCustomFieldRule",
+    "LogCustomFieldRuleActionParameters",
+    "LogCustomFieldRuleActionParametersCookieField",
+    "LogCustomFieldRuleActionParametersRequestField",
+    "LogCustomFieldRuleActionParametersResponseField",
+    "LogCustomFieldRuleExposedCredentialCheck",
+    "LogCustomFieldRulePosition",
+    "LogCustomFieldRulePositionBeforePosition",
+    "LogCustomFieldRulePositionAfterPosition",
+    "LogCustomFieldRulePositionIndexPosition",
+    "LogCustomFieldRuleRatelimit",
+    "DDoSDynamicRule",
+    "DDoSDynamicRuleExposedCredentialCheck",
+    "DDoSDynamicRulePosition",
+    "DDoSDynamicRulePositionBeforePosition",
+    "DDoSDynamicRulePositionAfterPosition",
+    "DDoSDynamicRulePositionIndexPosition",
+    "DDoSDynamicRuleRatelimit",
+    "ForceConnectionCloseRule",
+    "ForceConnectionCloseRuleExposedCredentialCheck",
+    "ForceConnectionCloseRulePosition",
+    "ForceConnectionCloseRulePositionBeforePosition",
+    "ForceConnectionCloseRulePositionAfterPosition",
+    "ForceConnectionCloseRulePositionIndexPosition",
+    "ForceConnectionCloseRuleRatelimit",
 ]
 
 
@@ -106,11 +214,20 @@ class BlockRule(TypedDict, total=False):
     enabled: bool
     """Whether the rule should be executed."""
 
+    exposed_credential_check: BlockRuleExposedCredentialCheck
+    """Configure checks for exposed credentials."""
+
     expression: str
     """The expression defining which traffic will match the rule."""
 
     logging: LoggingParam
     """An object configuring the rule's logging behavior."""
+
+    position: BlockRulePosition
+    """An object configuring where the rule will be placed."""
+
+    ratelimit: BlockRuleRatelimit
+    """An object configuring the rule's ratelimit behavior."""
 
     ref: str
     """The reference of the rule (the rule ID by default)."""
@@ -130,6 +247,84 @@ class BlockRuleActionParametersResponse(TypedDict, total=False):
 class BlockRuleActionParameters(TypedDict, total=False):
     response: BlockRuleActionParametersResponse
     """The response to show when the block is applied."""
+
+
+class BlockRuleExposedCredentialCheck(TypedDict, total=False):
+    password_expression: Required[str]
+    """Expression that selects the password used in the credentials check."""
+
+    username_expression: Required[str]
+    """Expression that selects the user ID used in the credentials check."""
+
+
+class BlockRulePositionBeforePosition(TypedDict, total=False):
+    before: str
+    """The ID of another rule to place the rule before.
+
+    An empty value causes the rule to be placed at the top.
+    """
+
+
+class BlockRulePositionAfterPosition(TypedDict, total=False):
+    after: str
+    """The ID of another rule to place the rule after.
+
+    An empty value causes the rule to be placed at the bottom.
+    """
+
+
+class BlockRulePositionIndexPosition(TypedDict, total=False):
+    index: float
+    """An index at which to place the rule, where index 1 is the first rule."""
+
+
+BlockRulePosition: TypeAlias = Union[
+    BlockRulePositionBeforePosition, BlockRulePositionAfterPosition, BlockRulePositionIndexPosition
+]
+
+
+class BlockRuleRatelimit(TypedDict, total=False):
+    characteristics: Required[List[str]]
+    """
+    Characteristics of the request on which the ratelimiter counter will be
+    incremented.
+    """
+
+    period: Required[Literal[10, 60, 600, 3600]]
+    """Period in seconds over which the counter is being incremented."""
+
+    counting_expression: str
+    """Defines when the ratelimit counter should be incremented.
+
+    It is optional and defaults to the same as the rule's expression.
+    """
+
+    mitigation_timeout: int
+    """
+    Period of time in seconds after which the action will be disabled following its
+    first execution.
+    """
+
+    requests_per_period: int
+    """
+    The threshold of requests per period after which the action will be executed for
+    the first time.
+    """
+
+    requests_to_origin: bool
+    """Defines if ratelimit counting is only done when an origin is reached."""
+
+    score_per_period: int
+    """
+    The score threshold per period for which the action will be executed the first
+    time.
+    """
+
+    score_response_header_name: str
+    """
+    The response header name provided by the origin which should contain the score
+    to increment ratelimit counter on.
+    """
 
 
 class ChallengeRule(TypedDict, total=False):
@@ -157,17 +352,104 @@ class ChallengeRule(TypedDict, total=False):
     enabled: bool
     """Whether the rule should be executed."""
 
+    exposed_credential_check: ChallengeRuleExposedCredentialCheck
+    """Configure checks for exposed credentials."""
+
     expression: str
     """The expression defining which traffic will match the rule."""
 
     logging: LoggingParam
     """An object configuring the rule's logging behavior."""
 
+    position: ChallengeRulePosition
+    """An object configuring where the rule will be placed."""
+
+    ratelimit: ChallengeRuleRatelimit
+    """An object configuring the rule's ratelimit behavior."""
+
     ref: str
     """The reference of the rule (the rule ID by default)."""
 
 
-class CompressResponseRule(TypedDict, total=False):
+class ChallengeRuleExposedCredentialCheck(TypedDict, total=False):
+    password_expression: Required[str]
+    """Expression that selects the password used in the credentials check."""
+
+    username_expression: Required[str]
+    """Expression that selects the user ID used in the credentials check."""
+
+
+class ChallengeRulePositionBeforePosition(TypedDict, total=False):
+    before: str
+    """The ID of another rule to place the rule before.
+
+    An empty value causes the rule to be placed at the top.
+    """
+
+
+class ChallengeRulePositionAfterPosition(TypedDict, total=False):
+    after: str
+    """The ID of another rule to place the rule after.
+
+    An empty value causes the rule to be placed at the bottom.
+    """
+
+
+class ChallengeRulePositionIndexPosition(TypedDict, total=False):
+    index: float
+    """An index at which to place the rule, where index 1 is the first rule."""
+
+
+ChallengeRulePosition: TypeAlias = Union[
+    ChallengeRulePositionBeforePosition, ChallengeRulePositionAfterPosition, ChallengeRulePositionIndexPosition
+]
+
+
+class ChallengeRuleRatelimit(TypedDict, total=False):
+    characteristics: Required[List[str]]
+    """
+    Characteristics of the request on which the ratelimiter counter will be
+    incremented.
+    """
+
+    period: Required[Literal[10, 60, 600, 3600]]
+    """Period in seconds over which the counter is being incremented."""
+
+    counting_expression: str
+    """Defines when the ratelimit counter should be incremented.
+
+    It is optional and defaults to the same as the rule's expression.
+    """
+
+    mitigation_timeout: int
+    """
+    Period of time in seconds after which the action will be disabled following its
+    first execution.
+    """
+
+    requests_per_period: int
+    """
+    The threshold of requests per period after which the action will be executed for
+    the first time.
+    """
+
+    requests_to_origin: bool
+    """Defines if ratelimit counting is only done when an origin is reached."""
+
+    score_per_period: int
+    """
+    The score threshold per period for which the action will be executed the first
+    time.
+    """
+
+    score_response_header_name: str
+    """
+    The response header name provided by the origin which should contain the score
+    to increment ratelimit counter on.
+    """
+
+
+class CompressionRule(TypedDict, total=False):
     ruleset_id: Required[str]
     """The unique ID of the ruleset."""
 
@@ -183,7 +465,7 @@ class CompressResponseRule(TypedDict, total=False):
     action: Literal["compress_response"]
     """The action to perform when the rule matches."""
 
-    action_parameters: CompressResponseRuleActionParameters
+    action_parameters: CompressionRuleActionParameters
     """The parameters configuring the rule's action."""
 
     description: str
@@ -192,24 +474,111 @@ class CompressResponseRule(TypedDict, total=False):
     enabled: bool
     """Whether the rule should be executed."""
 
+    exposed_credential_check: CompressionRuleExposedCredentialCheck
+    """Configure checks for exposed credentials."""
+
     expression: str
     """The expression defining which traffic will match the rule."""
 
     logging: LoggingParam
     """An object configuring the rule's logging behavior."""
 
+    position: CompressionRulePosition
+    """An object configuring where the rule will be placed."""
+
+    ratelimit: CompressionRuleRatelimit
+    """An object configuring the rule's ratelimit behavior."""
+
     ref: str
     """The reference of the rule (the rule ID by default)."""
 
 
-class CompressResponseRuleActionParametersAlgorithm(TypedDict, total=False):
+class CompressionRuleActionParametersAlgorithm(TypedDict, total=False):
     name: Literal["none", "auto", "default", "gzip", "brotli"]
     """Name of compression algorithm to enable."""
 
 
-class CompressResponseRuleActionParameters(TypedDict, total=False):
-    algorithms: Iterable[CompressResponseRuleActionParametersAlgorithm]
+class CompressionRuleActionParameters(TypedDict, total=False):
+    algorithms: Iterable[CompressionRuleActionParametersAlgorithm]
     """Custom order for compression algorithms."""
+
+
+class CompressionRuleExposedCredentialCheck(TypedDict, total=False):
+    password_expression: Required[str]
+    """Expression that selects the password used in the credentials check."""
+
+    username_expression: Required[str]
+    """Expression that selects the user ID used in the credentials check."""
+
+
+class CompressionRulePositionBeforePosition(TypedDict, total=False):
+    before: str
+    """The ID of another rule to place the rule before.
+
+    An empty value causes the rule to be placed at the top.
+    """
+
+
+class CompressionRulePositionAfterPosition(TypedDict, total=False):
+    after: str
+    """The ID of another rule to place the rule after.
+
+    An empty value causes the rule to be placed at the bottom.
+    """
+
+
+class CompressionRulePositionIndexPosition(TypedDict, total=False):
+    index: float
+    """An index at which to place the rule, where index 1 is the first rule."""
+
+
+CompressionRulePosition: TypeAlias = Union[
+    CompressionRulePositionBeforePosition, CompressionRulePositionAfterPosition, CompressionRulePositionIndexPosition
+]
+
+
+class CompressionRuleRatelimit(TypedDict, total=False):
+    characteristics: Required[List[str]]
+    """
+    Characteristics of the request on which the ratelimiter counter will be
+    incremented.
+    """
+
+    period: Required[Literal[10, 60, 600, 3600]]
+    """Period in seconds over which the counter is being incremented."""
+
+    counting_expression: str
+    """Defines when the ratelimit counter should be incremented.
+
+    It is optional and defaults to the same as the rule's expression.
+    """
+
+    mitigation_timeout: int
+    """
+    Period of time in seconds after which the action will be disabled following its
+    first execution.
+    """
+
+    requests_per_period: int
+    """
+    The threshold of requests per period after which the action will be executed for
+    the first time.
+    """
+
+    requests_to_origin: bool
+    """Defines if ratelimit counting is only done when an origin is reached."""
+
+    score_per_period: int
+    """
+    The score threshold per period for which the action will be executed the first
+    time.
+    """
+
+    score_response_header_name: str
+    """
+    The response header name provided by the origin which should contain the score
+    to increment ratelimit counter on.
+    """
 
 
 class ExecuteRule(TypedDict, total=False):
@@ -237,11 +606,20 @@ class ExecuteRule(TypedDict, total=False):
     enabled: bool
     """Whether the rule should be executed."""
 
+    exposed_credential_check: ExecuteRuleExposedCredentialCheck
+    """Configure checks for exposed credentials."""
+
     expression: str
     """The expression defining which traffic will match the rule."""
 
     logging: LoggingParam
     """An object configuring the rule's logging behavior."""
+
+    position: ExecuteRulePosition
+    """An object configuring where the rule will be placed."""
+
+    ratelimit: ExecuteRuleRatelimit
+    """An object configuring the rule's ratelimit behavior."""
 
     ref: str
     """The reference of the rule (the rule ID by default)."""
@@ -324,7 +702,85 @@ class ExecuteRuleActionParameters(TypedDict, total=False):
     """A set of overrides to apply to the target ruleset."""
 
 
-class JSChallengeRule(TypedDict, total=False):
+class ExecuteRuleExposedCredentialCheck(TypedDict, total=False):
+    password_expression: Required[str]
+    """Expression that selects the password used in the credentials check."""
+
+    username_expression: Required[str]
+    """Expression that selects the user ID used in the credentials check."""
+
+
+class ExecuteRulePositionBeforePosition(TypedDict, total=False):
+    before: str
+    """The ID of another rule to place the rule before.
+
+    An empty value causes the rule to be placed at the top.
+    """
+
+
+class ExecuteRulePositionAfterPosition(TypedDict, total=False):
+    after: str
+    """The ID of another rule to place the rule after.
+
+    An empty value causes the rule to be placed at the bottom.
+    """
+
+
+class ExecuteRulePositionIndexPosition(TypedDict, total=False):
+    index: float
+    """An index at which to place the rule, where index 1 is the first rule."""
+
+
+ExecuteRulePosition: TypeAlias = Union[
+    ExecuteRulePositionBeforePosition, ExecuteRulePositionAfterPosition, ExecuteRulePositionIndexPosition
+]
+
+
+class ExecuteRuleRatelimit(TypedDict, total=False):
+    characteristics: Required[List[str]]
+    """
+    Characteristics of the request on which the ratelimiter counter will be
+    incremented.
+    """
+
+    period: Required[Literal[10, 60, 600, 3600]]
+    """Period in seconds over which the counter is being incremented."""
+
+    counting_expression: str
+    """Defines when the ratelimit counter should be incremented.
+
+    It is optional and defaults to the same as the rule's expression.
+    """
+
+    mitigation_timeout: int
+    """
+    Period of time in seconds after which the action will be disabled following its
+    first execution.
+    """
+
+    requests_per_period: int
+    """
+    The threshold of requests per period after which the action will be executed for
+    the first time.
+    """
+
+    requests_to_origin: bool
+    """Defines if ratelimit counting is only done when an origin is reached."""
+
+    score_per_period: int
+    """
+    The score threshold per period for which the action will be executed the first
+    time.
+    """
+
+    score_response_header_name: str
+    """
+    The response header name provided by the origin which should contain the score
+    to increment ratelimit counter on.
+    """
+
+
+class JavascriptChallengeRule(TypedDict, total=False):
     ruleset_id: Required[str]
     """The unique ID of the ruleset."""
 
@@ -349,14 +805,103 @@ class JSChallengeRule(TypedDict, total=False):
     enabled: bool
     """Whether the rule should be executed."""
 
+    exposed_credential_check: JavascriptChallengeRuleExposedCredentialCheck
+    """Configure checks for exposed credentials."""
+
     expression: str
     """The expression defining which traffic will match the rule."""
 
     logging: LoggingParam
     """An object configuring the rule's logging behavior."""
 
+    position: JavascriptChallengeRulePosition
+    """An object configuring where the rule will be placed."""
+
+    ratelimit: JavascriptChallengeRuleRatelimit
+    """An object configuring the rule's ratelimit behavior."""
+
     ref: str
     """The reference of the rule (the rule ID by default)."""
+
+
+class JavascriptChallengeRuleExposedCredentialCheck(TypedDict, total=False):
+    password_expression: Required[str]
+    """Expression that selects the password used in the credentials check."""
+
+    username_expression: Required[str]
+    """Expression that selects the user ID used in the credentials check."""
+
+
+class JavascriptChallengeRulePositionBeforePosition(TypedDict, total=False):
+    before: str
+    """The ID of another rule to place the rule before.
+
+    An empty value causes the rule to be placed at the top.
+    """
+
+
+class JavascriptChallengeRulePositionAfterPosition(TypedDict, total=False):
+    after: str
+    """The ID of another rule to place the rule after.
+
+    An empty value causes the rule to be placed at the bottom.
+    """
+
+
+class JavascriptChallengeRulePositionIndexPosition(TypedDict, total=False):
+    index: float
+    """An index at which to place the rule, where index 1 is the first rule."""
+
+
+JavascriptChallengeRulePosition: TypeAlias = Union[
+    JavascriptChallengeRulePositionBeforePosition,
+    JavascriptChallengeRulePositionAfterPosition,
+    JavascriptChallengeRulePositionIndexPosition,
+]
+
+
+class JavascriptChallengeRuleRatelimit(TypedDict, total=False):
+    characteristics: Required[List[str]]
+    """
+    Characteristics of the request on which the ratelimiter counter will be
+    incremented.
+    """
+
+    period: Required[Literal[10, 60, 600, 3600]]
+    """Period in seconds over which the counter is being incremented."""
+
+    counting_expression: str
+    """Defines when the ratelimit counter should be incremented.
+
+    It is optional and defaults to the same as the rule's expression.
+    """
+
+    mitigation_timeout: int
+    """
+    Period of time in seconds after which the action will be disabled following its
+    first execution.
+    """
+
+    requests_per_period: int
+    """
+    The threshold of requests per period after which the action will be executed for
+    the first time.
+    """
+
+    requests_to_origin: bool
+    """Defines if ratelimit counting is only done when an origin is reached."""
+
+    score_per_period: int
+    """
+    The score threshold per period for which the action will be executed the first
+    time.
+    """
+
+    score_response_header_name: str
+    """
+    The response header name provided by the origin which should contain the score
+    to increment ratelimit counter on.
+    """
 
 
 class LogRule(TypedDict, total=False):
@@ -384,14 +929,101 @@ class LogRule(TypedDict, total=False):
     enabled: bool
     """Whether the rule should be executed."""
 
+    exposed_credential_check: LogRuleExposedCredentialCheck
+    """Configure checks for exposed credentials."""
+
     expression: str
     """The expression defining which traffic will match the rule."""
 
     logging: LoggingParam
     """An object configuring the rule's logging behavior."""
 
+    position: LogRulePosition
+    """An object configuring where the rule will be placed."""
+
+    ratelimit: LogRuleRatelimit
+    """An object configuring the rule's ratelimit behavior."""
+
     ref: str
     """The reference of the rule (the rule ID by default)."""
+
+
+class LogRuleExposedCredentialCheck(TypedDict, total=False):
+    password_expression: Required[str]
+    """Expression that selects the password used in the credentials check."""
+
+    username_expression: Required[str]
+    """Expression that selects the user ID used in the credentials check."""
+
+
+class LogRulePositionBeforePosition(TypedDict, total=False):
+    before: str
+    """The ID of another rule to place the rule before.
+
+    An empty value causes the rule to be placed at the top.
+    """
+
+
+class LogRulePositionAfterPosition(TypedDict, total=False):
+    after: str
+    """The ID of another rule to place the rule after.
+
+    An empty value causes the rule to be placed at the bottom.
+    """
+
+
+class LogRulePositionIndexPosition(TypedDict, total=False):
+    index: float
+    """An index at which to place the rule, where index 1 is the first rule."""
+
+
+LogRulePosition: TypeAlias = Union[
+    LogRulePositionBeforePosition, LogRulePositionAfterPosition, LogRulePositionIndexPosition
+]
+
+
+class LogRuleRatelimit(TypedDict, total=False):
+    characteristics: Required[List[str]]
+    """
+    Characteristics of the request on which the ratelimiter counter will be
+    incremented.
+    """
+
+    period: Required[Literal[10, 60, 600, 3600]]
+    """Period in seconds over which the counter is being incremented."""
+
+    counting_expression: str
+    """Defines when the ratelimit counter should be incremented.
+
+    It is optional and defaults to the same as the rule's expression.
+    """
+
+    mitigation_timeout: int
+    """
+    Period of time in seconds after which the action will be disabled following its
+    first execution.
+    """
+
+    requests_per_period: int
+    """
+    The threshold of requests per period after which the action will be executed for
+    the first time.
+    """
+
+    requests_to_origin: bool
+    """Defines if ratelimit counting is only done when an origin is reached."""
+
+    score_per_period: int
+    """
+    The score threshold per period for which the action will be executed the first
+    time.
+    """
+
+    score_response_header_name: str
+    """
+    The response header name provided by the origin which should contain the score
+    to increment ratelimit counter on.
+    """
 
 
 class ManagedChallengeRule(TypedDict, total=False):
@@ -419,14 +1051,103 @@ class ManagedChallengeRule(TypedDict, total=False):
     enabled: bool
     """Whether the rule should be executed."""
 
+    exposed_credential_check: ManagedChallengeRuleExposedCredentialCheck
+    """Configure checks for exposed credentials."""
+
     expression: str
     """The expression defining which traffic will match the rule."""
 
     logging: LoggingParam
     """An object configuring the rule's logging behavior."""
 
+    position: ManagedChallengeRulePosition
+    """An object configuring where the rule will be placed."""
+
+    ratelimit: ManagedChallengeRuleRatelimit
+    """An object configuring the rule's ratelimit behavior."""
+
     ref: str
     """The reference of the rule (the rule ID by default)."""
+
+
+class ManagedChallengeRuleExposedCredentialCheck(TypedDict, total=False):
+    password_expression: Required[str]
+    """Expression that selects the password used in the credentials check."""
+
+    username_expression: Required[str]
+    """Expression that selects the user ID used in the credentials check."""
+
+
+class ManagedChallengeRulePositionBeforePosition(TypedDict, total=False):
+    before: str
+    """The ID of another rule to place the rule before.
+
+    An empty value causes the rule to be placed at the top.
+    """
+
+
+class ManagedChallengeRulePositionAfterPosition(TypedDict, total=False):
+    after: str
+    """The ID of another rule to place the rule after.
+
+    An empty value causes the rule to be placed at the bottom.
+    """
+
+
+class ManagedChallengeRulePositionIndexPosition(TypedDict, total=False):
+    index: float
+    """An index at which to place the rule, where index 1 is the first rule."""
+
+
+ManagedChallengeRulePosition: TypeAlias = Union[
+    ManagedChallengeRulePositionBeforePosition,
+    ManagedChallengeRulePositionAfterPosition,
+    ManagedChallengeRulePositionIndexPosition,
+]
+
+
+class ManagedChallengeRuleRatelimit(TypedDict, total=False):
+    characteristics: Required[List[str]]
+    """
+    Characteristics of the request on which the ratelimiter counter will be
+    incremented.
+    """
+
+    period: Required[Literal[10, 60, 600, 3600]]
+    """Period in seconds over which the counter is being incremented."""
+
+    counting_expression: str
+    """Defines when the ratelimit counter should be incremented.
+
+    It is optional and defaults to the same as the rule's expression.
+    """
+
+    mitigation_timeout: int
+    """
+    Period of time in seconds after which the action will be disabled following its
+    first execution.
+    """
+
+    requests_per_period: int
+    """
+    The threshold of requests per period after which the action will be executed for
+    the first time.
+    """
+
+    requests_to_origin: bool
+    """Defines if ratelimit counting is only done when an origin is reached."""
+
+    score_per_period: int
+    """
+    The score threshold per period for which the action will be executed the first
+    time.
+    """
+
+    score_response_header_name: str
+    """
+    The response header name provided by the origin which should contain the score
+    to increment ratelimit counter on.
+    """
 
 
 class RedirectRule(TypedDict, total=False):
@@ -454,11 +1175,20 @@ class RedirectRule(TypedDict, total=False):
     enabled: bool
     """Whether the rule should be executed."""
 
+    exposed_credential_check: RedirectRuleExposedCredentialCheck
+    """Configure checks for exposed credentials."""
+
     expression: str
     """The expression defining which traffic will match the rule."""
 
     logging: LoggingParam
     """An object configuring the rule's logging behavior."""
+
+    position: RedirectRulePosition
+    """An object configuring where the rule will be placed."""
+
+    ratelimit: RedirectRuleRatelimit
+    """An object configuring the rule's ratelimit behavior."""
 
     ref: str
     """The reference of the rule (the rule ID by default)."""
@@ -482,7 +1212,7 @@ class RedirectRuleActionParametersFromValueTargetURLDynamicURLRedirect(TypedDict
     """An expression to evaluate to get the URL to redirect the request to."""
 
 
-RedirectRuleActionParametersFromValueTargetURL = Union[
+RedirectRuleActionParametersFromValueTargetURL: TypeAlias = Union[
     RedirectRuleActionParametersFromValueTargetURLStaticURLRedirect,
     RedirectRuleActionParametersFromValueTargetURLDynamicURLRedirect,
 ]
@@ -505,6 +1235,84 @@ class RedirectRuleActionParameters(TypedDict, total=False):
 
     from_value: RedirectRuleActionParametersFromValue
     """Serve a redirect based on the request properties."""
+
+
+class RedirectRuleExposedCredentialCheck(TypedDict, total=False):
+    password_expression: Required[str]
+    """Expression that selects the password used in the credentials check."""
+
+    username_expression: Required[str]
+    """Expression that selects the user ID used in the credentials check."""
+
+
+class RedirectRulePositionBeforePosition(TypedDict, total=False):
+    before: str
+    """The ID of another rule to place the rule before.
+
+    An empty value causes the rule to be placed at the top.
+    """
+
+
+class RedirectRulePositionAfterPosition(TypedDict, total=False):
+    after: str
+    """The ID of another rule to place the rule after.
+
+    An empty value causes the rule to be placed at the bottom.
+    """
+
+
+class RedirectRulePositionIndexPosition(TypedDict, total=False):
+    index: float
+    """An index at which to place the rule, where index 1 is the first rule."""
+
+
+RedirectRulePosition: TypeAlias = Union[
+    RedirectRulePositionBeforePosition, RedirectRulePositionAfterPosition, RedirectRulePositionIndexPosition
+]
+
+
+class RedirectRuleRatelimit(TypedDict, total=False):
+    characteristics: Required[List[str]]
+    """
+    Characteristics of the request on which the ratelimiter counter will be
+    incremented.
+    """
+
+    period: Required[Literal[10, 60, 600, 3600]]
+    """Period in seconds over which the counter is being incremented."""
+
+    counting_expression: str
+    """Defines when the ratelimit counter should be incremented.
+
+    It is optional and defaults to the same as the rule's expression.
+    """
+
+    mitigation_timeout: int
+    """
+    Period of time in seconds after which the action will be disabled following its
+    first execution.
+    """
+
+    requests_per_period: int
+    """
+    The threshold of requests per period after which the action will be executed for
+    the first time.
+    """
+
+    requests_to_origin: bool
+    """Defines if ratelimit counting is only done when an origin is reached."""
+
+    score_per_period: int
+    """
+    The score threshold per period for which the action will be executed the first
+    time.
+    """
+
+    score_response_header_name: str
+    """
+    The response header name provided by the origin which should contain the score
+    to increment ratelimit counter on.
+    """
 
 
 class RewriteRule(TypedDict, total=False):
@@ -532,11 +1340,20 @@ class RewriteRule(TypedDict, total=False):
     enabled: bool
     """Whether the rule should be executed."""
 
+    exposed_credential_check: RewriteRuleExposedCredentialCheck
+    """Configure checks for exposed credentials."""
+
     expression: str
     """The expression defining which traffic will match the rule."""
 
     logging: LoggingParam
     """An object configuring the rule's logging behavior."""
+
+    position: RewriteRulePosition
+    """An object configuring where the rule will be placed."""
+
+    ratelimit: RewriteRuleRatelimit
+    """An object configuring the rule's ratelimit behavior."""
 
     ref: str
     """The reference of the rule (the rule ID by default)."""
@@ -560,7 +1377,7 @@ class RewriteRuleActionParametersHeadersDynamicHeader(TypedDict, total=False):
     operation: Required[Literal["set"]]
 
 
-RewriteRuleActionParametersHeaders = Union[
+RewriteRuleActionParametersHeaders: TypeAlias = Union[
     RewriteRuleActionParametersHeadersRemoveHeader,
     RewriteRuleActionParametersHeadersStaticHeader,
     RewriteRuleActionParametersHeadersDynamicHeader,
@@ -583,7 +1400,85 @@ class RewriteRuleActionParameters(TypedDict, total=False):
     """URI to rewrite the request to."""
 
 
-class RouteRule(TypedDict, total=False):
+class RewriteRuleExposedCredentialCheck(TypedDict, total=False):
+    password_expression: Required[str]
+    """Expression that selects the password used in the credentials check."""
+
+    username_expression: Required[str]
+    """Expression that selects the user ID used in the credentials check."""
+
+
+class RewriteRulePositionBeforePosition(TypedDict, total=False):
+    before: str
+    """The ID of another rule to place the rule before.
+
+    An empty value causes the rule to be placed at the top.
+    """
+
+
+class RewriteRulePositionAfterPosition(TypedDict, total=False):
+    after: str
+    """The ID of another rule to place the rule after.
+
+    An empty value causes the rule to be placed at the bottom.
+    """
+
+
+class RewriteRulePositionIndexPosition(TypedDict, total=False):
+    index: float
+    """An index at which to place the rule, where index 1 is the first rule."""
+
+
+RewriteRulePosition: TypeAlias = Union[
+    RewriteRulePositionBeforePosition, RewriteRulePositionAfterPosition, RewriteRulePositionIndexPosition
+]
+
+
+class RewriteRuleRatelimit(TypedDict, total=False):
+    characteristics: Required[List[str]]
+    """
+    Characteristics of the request on which the ratelimiter counter will be
+    incremented.
+    """
+
+    period: Required[Literal[10, 60, 600, 3600]]
+    """Period in seconds over which the counter is being incremented."""
+
+    counting_expression: str
+    """Defines when the ratelimit counter should be incremented.
+
+    It is optional and defaults to the same as the rule's expression.
+    """
+
+    mitigation_timeout: int
+    """
+    Period of time in seconds after which the action will be disabled following its
+    first execution.
+    """
+
+    requests_per_period: int
+    """
+    The threshold of requests per period after which the action will be executed for
+    the first time.
+    """
+
+    requests_to_origin: bool
+    """Defines if ratelimit counting is only done when an origin is reached."""
+
+    score_per_period: int
+    """
+    The score threshold per period for which the action will be executed the first
+    time.
+    """
+
+    score_response_header_name: str
+    """
+    The response header name provided by the origin which should contain the score
+    to increment ratelimit counter on.
+    """
+
+
+class OriginRule(TypedDict, total=False):
     ruleset_id: Required[str]
     """The unique ID of the ruleset."""
 
@@ -599,7 +1494,7 @@ class RouteRule(TypedDict, total=False):
     action: Literal["route"]
     """The action to perform when the rule matches."""
 
-    action_parameters: RouteRuleActionParameters
+    action_parameters: OriginRuleActionParameters
     """The parameters configuring the rule's action."""
 
     description: str
@@ -608,17 +1503,26 @@ class RouteRule(TypedDict, total=False):
     enabled: bool
     """Whether the rule should be executed."""
 
+    exposed_credential_check: OriginRuleExposedCredentialCheck
+    """Configure checks for exposed credentials."""
+
     expression: str
     """The expression defining which traffic will match the rule."""
 
     logging: LoggingParam
     """An object configuring the rule's logging behavior."""
 
+    position: OriginRulePosition
+    """An object configuring where the rule will be placed."""
+
+    ratelimit: OriginRuleRatelimit
+    """An object configuring the rule's ratelimit behavior."""
+
     ref: str
     """The reference of the rule (the rule ID by default)."""
 
 
-class RouteRuleActionParametersOrigin(TypedDict, total=False):
+class OriginRuleActionParametersOrigin(TypedDict, total=False):
     host: str
     """Override the resolved hostname."""
 
@@ -626,20 +1530,98 @@ class RouteRuleActionParametersOrigin(TypedDict, total=False):
     """Override the destination port."""
 
 
-class RouteRuleActionParametersSNI(TypedDict, total=False):
+class OriginRuleActionParametersSNI(TypedDict, total=False):
     value: Required[str]
     """The SNI override."""
 
 
-class RouteRuleActionParameters(TypedDict, total=False):
+class OriginRuleActionParameters(TypedDict, total=False):
     host_header: str
     """Rewrite the HTTP Host header."""
 
-    origin: RouteRuleActionParametersOrigin
+    origin: OriginRuleActionParametersOrigin
     """Override the IP/TCP destination."""
 
-    sni: RouteRuleActionParametersSNI
+    sni: OriginRuleActionParametersSNI
     """Override the Server Name Indication (SNI)."""
+
+
+class OriginRuleExposedCredentialCheck(TypedDict, total=False):
+    password_expression: Required[str]
+    """Expression that selects the password used in the credentials check."""
+
+    username_expression: Required[str]
+    """Expression that selects the user ID used in the credentials check."""
+
+
+class OriginRulePositionBeforePosition(TypedDict, total=False):
+    before: str
+    """The ID of another rule to place the rule before.
+
+    An empty value causes the rule to be placed at the top.
+    """
+
+
+class OriginRulePositionAfterPosition(TypedDict, total=False):
+    after: str
+    """The ID of another rule to place the rule after.
+
+    An empty value causes the rule to be placed at the bottom.
+    """
+
+
+class OriginRulePositionIndexPosition(TypedDict, total=False):
+    index: float
+    """An index at which to place the rule, where index 1 is the first rule."""
+
+
+OriginRulePosition: TypeAlias = Union[
+    OriginRulePositionBeforePosition, OriginRulePositionAfterPosition, OriginRulePositionIndexPosition
+]
+
+
+class OriginRuleRatelimit(TypedDict, total=False):
+    characteristics: Required[List[str]]
+    """
+    Characteristics of the request on which the ratelimiter counter will be
+    incremented.
+    """
+
+    period: Required[Literal[10, 60, 600, 3600]]
+    """Period in seconds over which the counter is being incremented."""
+
+    counting_expression: str
+    """Defines when the ratelimit counter should be incremented.
+
+    It is optional and defaults to the same as the rule's expression.
+    """
+
+    mitigation_timeout: int
+    """
+    Period of time in seconds after which the action will be disabled following its
+    first execution.
+    """
+
+    requests_per_period: int
+    """
+    The threshold of requests per period after which the action will be executed for
+    the first time.
+    """
+
+    requests_to_origin: bool
+    """Defines if ratelimit counting is only done when an origin is reached."""
+
+    score_per_period: int
+    """
+    The score threshold per period for which the action will be executed the first
+    time.
+    """
+
+    score_response_header_name: str
+    """
+    The response header name provided by the origin which should contain the score
+    to increment ratelimit counter on.
+    """
 
 
 class ScoreRule(TypedDict, total=False):
@@ -667,11 +1649,20 @@ class ScoreRule(TypedDict, total=False):
     enabled: bool
     """Whether the rule should be executed."""
 
+    exposed_credential_check: ScoreRuleExposedCredentialCheck
+    """Configure checks for exposed credentials."""
+
     expression: str
     """The expression defining which traffic will match the rule."""
 
     logging: LoggingParam
     """An object configuring the rule's logging behavior."""
+
+    position: ScoreRulePosition
+    """An object configuring where the rule will be placed."""
+
+    ratelimit: ScoreRuleRatelimit
+    """An object configuring the rule's ratelimit behavior."""
 
     ref: str
     """The reference of the rule (the rule ID by default)."""
@@ -682,6 +1673,84 @@ class ScoreRuleActionParameters(TypedDict, total=False):
     """
     Increment contains the delta to change the score and can be either positive or
     negative.
+    """
+
+
+class ScoreRuleExposedCredentialCheck(TypedDict, total=False):
+    password_expression: Required[str]
+    """Expression that selects the password used in the credentials check."""
+
+    username_expression: Required[str]
+    """Expression that selects the user ID used in the credentials check."""
+
+
+class ScoreRulePositionBeforePosition(TypedDict, total=False):
+    before: str
+    """The ID of another rule to place the rule before.
+
+    An empty value causes the rule to be placed at the top.
+    """
+
+
+class ScoreRulePositionAfterPosition(TypedDict, total=False):
+    after: str
+    """The ID of another rule to place the rule after.
+
+    An empty value causes the rule to be placed at the bottom.
+    """
+
+
+class ScoreRulePositionIndexPosition(TypedDict, total=False):
+    index: float
+    """An index at which to place the rule, where index 1 is the first rule."""
+
+
+ScoreRulePosition: TypeAlias = Union[
+    ScoreRulePositionBeforePosition, ScoreRulePositionAfterPosition, ScoreRulePositionIndexPosition
+]
+
+
+class ScoreRuleRatelimit(TypedDict, total=False):
+    characteristics: Required[List[str]]
+    """
+    Characteristics of the request on which the ratelimiter counter will be
+    incremented.
+    """
+
+    period: Required[Literal[10, 60, 600, 3600]]
+    """Period in seconds over which the counter is being incremented."""
+
+    counting_expression: str
+    """Defines when the ratelimit counter should be incremented.
+
+    It is optional and defaults to the same as the rule's expression.
+    """
+
+    mitigation_timeout: int
+    """
+    Period of time in seconds after which the action will be disabled following its
+    first execution.
+    """
+
+    requests_per_period: int
+    """
+    The threshold of requests per period after which the action will be executed for
+    the first time.
+    """
+
+    requests_to_origin: bool
+    """Defines if ratelimit counting is only done when an origin is reached."""
+
+    score_per_period: int
+    """
+    The score threshold per period for which the action will be executed the first
+    time.
+    """
+
+    score_response_header_name: str
+    """
+    The response header name provided by the origin which should contain the score
+    to increment ratelimit counter on.
     """
 
 
@@ -710,11 +1779,20 @@ class ServeErrorRule(TypedDict, total=False):
     enabled: bool
     """Whether the rule should be executed."""
 
+    exposed_credential_check: ServeErrorRuleExposedCredentialCheck
+    """Configure checks for exposed credentials."""
+
     expression: str
     """The expression defining which traffic will match the rule."""
 
     logging: LoggingParam
     """An object configuring the rule's logging behavior."""
+
+    position: ServeErrorRulePosition
+    """An object configuring where the rule will be placed."""
+
+    ratelimit: ServeErrorRuleRatelimit
+    """An object configuring the rule's ratelimit behavior."""
 
     ref: str
     """The reference of the rule (the rule ID by default)."""
@@ -729,6 +1807,84 @@ class ServeErrorRuleActionParameters(TypedDict, total=False):
 
     status_code: float
     """The status code to use for the error."""
+
+
+class ServeErrorRuleExposedCredentialCheck(TypedDict, total=False):
+    password_expression: Required[str]
+    """Expression that selects the password used in the credentials check."""
+
+    username_expression: Required[str]
+    """Expression that selects the user ID used in the credentials check."""
+
+
+class ServeErrorRulePositionBeforePosition(TypedDict, total=False):
+    before: str
+    """The ID of another rule to place the rule before.
+
+    An empty value causes the rule to be placed at the top.
+    """
+
+
+class ServeErrorRulePositionAfterPosition(TypedDict, total=False):
+    after: str
+    """The ID of another rule to place the rule after.
+
+    An empty value causes the rule to be placed at the bottom.
+    """
+
+
+class ServeErrorRulePositionIndexPosition(TypedDict, total=False):
+    index: float
+    """An index at which to place the rule, where index 1 is the first rule."""
+
+
+ServeErrorRulePosition: TypeAlias = Union[
+    ServeErrorRulePositionBeforePosition, ServeErrorRulePositionAfterPosition, ServeErrorRulePositionIndexPosition
+]
+
+
+class ServeErrorRuleRatelimit(TypedDict, total=False):
+    characteristics: Required[List[str]]
+    """
+    Characteristics of the request on which the ratelimiter counter will be
+    incremented.
+    """
+
+    period: Required[Literal[10, 60, 600, 3600]]
+    """Period in seconds over which the counter is being incremented."""
+
+    counting_expression: str
+    """Defines when the ratelimit counter should be incremented.
+
+    It is optional and defaults to the same as the rule's expression.
+    """
+
+    mitigation_timeout: int
+    """
+    Period of time in seconds after which the action will be disabled following its
+    first execution.
+    """
+
+    requests_per_period: int
+    """
+    The threshold of requests per period after which the action will be executed for
+    the first time.
+    """
+
+    requests_to_origin: bool
+    """Defines if ratelimit counting is only done when an origin is reached."""
+
+    score_per_period: int
+    """
+    The score threshold per period for which the action will be executed the first
+    time.
+    """
+
+    score_response_header_name: str
+    """
+    The response header name provided by the origin which should contain the score
+    to increment ratelimit counter on.
+    """
 
 
 class SetConfigRule(TypedDict, total=False):
@@ -756,11 +1912,20 @@ class SetConfigRule(TypedDict, total=False):
     enabled: bool
     """Whether the rule should be executed."""
 
+    exposed_credential_check: SetConfigRuleExposedCredentialCheck
+    """Configure checks for exposed credentials."""
+
     expression: str
     """The expression defining which traffic will match the rule."""
 
     logging: LoggingParam
     """An object configuring the rule's logging behavior."""
+
+    position: SetConfigRulePosition
+    """An object configuring where the rule will be placed."""
+
+    ratelimit: SetConfigRuleRatelimit
+    """An object configuring the rule's ratelimit behavior."""
 
     ref: str
     """The reference of the rule (the rule ID by default)."""
@@ -830,6 +1995,84 @@ class SetConfigRuleActionParameters(TypedDict, total=False):
     """Turn on or off Signed Exchanges (SXG)."""
 
 
+class SetConfigRuleExposedCredentialCheck(TypedDict, total=False):
+    password_expression: Required[str]
+    """Expression that selects the password used in the credentials check."""
+
+    username_expression: Required[str]
+    """Expression that selects the user ID used in the credentials check."""
+
+
+class SetConfigRulePositionBeforePosition(TypedDict, total=False):
+    before: str
+    """The ID of another rule to place the rule before.
+
+    An empty value causes the rule to be placed at the top.
+    """
+
+
+class SetConfigRulePositionAfterPosition(TypedDict, total=False):
+    after: str
+    """The ID of another rule to place the rule after.
+
+    An empty value causes the rule to be placed at the bottom.
+    """
+
+
+class SetConfigRulePositionIndexPosition(TypedDict, total=False):
+    index: float
+    """An index at which to place the rule, where index 1 is the first rule."""
+
+
+SetConfigRulePosition: TypeAlias = Union[
+    SetConfigRulePositionBeforePosition, SetConfigRulePositionAfterPosition, SetConfigRulePositionIndexPosition
+]
+
+
+class SetConfigRuleRatelimit(TypedDict, total=False):
+    characteristics: Required[List[str]]
+    """
+    Characteristics of the request on which the ratelimiter counter will be
+    incremented.
+    """
+
+    period: Required[Literal[10, 60, 600, 3600]]
+    """Period in seconds over which the counter is being incremented."""
+
+    counting_expression: str
+    """Defines when the ratelimit counter should be incremented.
+
+    It is optional and defaults to the same as the rule's expression.
+    """
+
+    mitigation_timeout: int
+    """
+    Period of time in seconds after which the action will be disabled following its
+    first execution.
+    """
+
+    requests_per_period: int
+    """
+    The threshold of requests per period after which the action will be executed for
+    the first time.
+    """
+
+    requests_to_origin: bool
+    """Defines if ratelimit counting is only done when an origin is reached."""
+
+    score_per_period: int
+    """
+    The score threshold per period for which the action will be executed the first
+    time.
+    """
+
+    score_response_header_name: str
+    """
+    The response header name provided by the origin which should contain the score
+    to increment ratelimit counter on.
+    """
+
+
 class SkipRule(TypedDict, total=False):
     ruleset_id: Required[str]
     """The unique ID of the ruleset."""
@@ -855,11 +2098,20 @@ class SkipRule(TypedDict, total=False):
     enabled: bool
     """Whether the rule should be executed."""
 
+    exposed_credential_check: SkipRuleExposedCredentialCheck
+    """Configure checks for exposed credentials."""
+
     expression: str
     """The expression defining which traffic will match the rule."""
 
     logging: LoggingParam
     """An object configuring the rule's logging behavior."""
+
+    position: SkipRulePosition
+    """An object configuring where the rule will be placed."""
+
+    ratelimit: SkipRuleRatelimit
+    """An object configuring the rule's ratelimit behavior."""
 
     ref: str
     """The reference of the rule (the rule ID by default)."""
@@ -894,6 +2146,84 @@ class SkipRuleActionParameters(TypedDict, total=False):
     """
 
 
+class SkipRuleExposedCredentialCheck(TypedDict, total=False):
+    password_expression: Required[str]
+    """Expression that selects the password used in the credentials check."""
+
+    username_expression: Required[str]
+    """Expression that selects the user ID used in the credentials check."""
+
+
+class SkipRulePositionBeforePosition(TypedDict, total=False):
+    before: str
+    """The ID of another rule to place the rule before.
+
+    An empty value causes the rule to be placed at the top.
+    """
+
+
+class SkipRulePositionAfterPosition(TypedDict, total=False):
+    after: str
+    """The ID of another rule to place the rule after.
+
+    An empty value causes the rule to be placed at the bottom.
+    """
+
+
+class SkipRulePositionIndexPosition(TypedDict, total=False):
+    index: float
+    """An index at which to place the rule, where index 1 is the first rule."""
+
+
+SkipRulePosition: TypeAlias = Union[
+    SkipRulePositionBeforePosition, SkipRulePositionAfterPosition, SkipRulePositionIndexPosition
+]
+
+
+class SkipRuleRatelimit(TypedDict, total=False):
+    characteristics: Required[List[str]]
+    """
+    Characteristics of the request on which the ratelimiter counter will be
+    incremented.
+    """
+
+    period: Required[Literal[10, 60, 600, 3600]]
+    """Period in seconds over which the counter is being incremented."""
+
+    counting_expression: str
+    """Defines when the ratelimit counter should be incremented.
+
+    It is optional and defaults to the same as the rule's expression.
+    """
+
+    mitigation_timeout: int
+    """
+    Period of time in seconds after which the action will be disabled following its
+    first execution.
+    """
+
+    requests_per_period: int
+    """
+    The threshold of requests per period after which the action will be executed for
+    the first time.
+    """
+
+    requests_to_origin: bool
+    """Defines if ratelimit counting is only done when an origin is reached."""
+
+    score_per_period: int
+    """
+    The score threshold per period for which the action will be executed the first
+    time.
+    """
+
+    score_response_header_name: str
+    """
+    The response header name provided by the origin which should contain the score
+    to increment ratelimit counter on.
+    """
+
+
 class SetCacheSettingsRule(TypedDict, total=False):
     ruleset_id: Required[str]
     """The unique ID of the ruleset."""
@@ -919,11 +2249,20 @@ class SetCacheSettingsRule(TypedDict, total=False):
     enabled: bool
     """Whether the rule should be executed."""
 
+    exposed_credential_check: SetCacheSettingsRuleExposedCredentialCheck
+    """Configure checks for exposed credentials."""
+
     expression: str
     """The expression defining which traffic will match the rule."""
 
     logging: LoggingParam
     """An object configuring the rule's logging behavior."""
+
+    position: SetCacheSettingsRulePosition
+    """An object configuring where the rule will be placed."""
+
+    ratelimit: SetCacheSettingsRuleRatelimit
+    """An object configuring the rule's ratelimit behavior."""
 
     ref: str
     """The reference of the rule (the rule ID by default)."""
@@ -1078,7 +2417,7 @@ class SetCacheSettingsRuleActionParametersCacheReserve(TypedDict, total=False):
     the resource to cache reserve.
     """
 
-    min_file_size: Required[int]
+    minimum_file_size: Required[int]
     """The minimum file size eligible for store in cache reserve."""
 
 
@@ -1202,7 +2541,87 @@ class SetCacheSettingsRuleActionParameters(TypedDict, total=False):
     """
 
 
-class RulesetsLogCustomFieldRule(TypedDict, total=False):
+class SetCacheSettingsRuleExposedCredentialCheck(TypedDict, total=False):
+    password_expression: Required[str]
+    """Expression that selects the password used in the credentials check."""
+
+    username_expression: Required[str]
+    """Expression that selects the user ID used in the credentials check."""
+
+
+class SetCacheSettingsRulePositionBeforePosition(TypedDict, total=False):
+    before: str
+    """The ID of another rule to place the rule before.
+
+    An empty value causes the rule to be placed at the top.
+    """
+
+
+class SetCacheSettingsRulePositionAfterPosition(TypedDict, total=False):
+    after: str
+    """The ID of another rule to place the rule after.
+
+    An empty value causes the rule to be placed at the bottom.
+    """
+
+
+class SetCacheSettingsRulePositionIndexPosition(TypedDict, total=False):
+    index: float
+    """An index at which to place the rule, where index 1 is the first rule."""
+
+
+SetCacheSettingsRulePosition: TypeAlias = Union[
+    SetCacheSettingsRulePositionBeforePosition,
+    SetCacheSettingsRulePositionAfterPosition,
+    SetCacheSettingsRulePositionIndexPosition,
+]
+
+
+class SetCacheSettingsRuleRatelimit(TypedDict, total=False):
+    characteristics: Required[List[str]]
+    """
+    Characteristics of the request on which the ratelimiter counter will be
+    incremented.
+    """
+
+    period: Required[Literal[10, 60, 600, 3600]]
+    """Period in seconds over which the counter is being incremented."""
+
+    counting_expression: str
+    """Defines when the ratelimit counter should be incremented.
+
+    It is optional and defaults to the same as the rule's expression.
+    """
+
+    mitigation_timeout: int
+    """
+    Period of time in seconds after which the action will be disabled following its
+    first execution.
+    """
+
+    requests_per_period: int
+    """
+    The threshold of requests per period after which the action will be executed for
+    the first time.
+    """
+
+    requests_to_origin: bool
+    """Defines if ratelimit counting is only done when an origin is reached."""
+
+    score_per_period: int
+    """
+    The score threshold per period for which the action will be executed the first
+    time.
+    """
+
+    score_response_header_name: str
+    """
+    The response header name provided by the origin which should contain the score
+    to increment ratelimit counter on.
+    """
+
+
+class LogCustomFieldRule(TypedDict, total=False):
     ruleset_id: Required[str]
     """The unique ID of the ruleset."""
 
@@ -1218,7 +2637,7 @@ class RulesetsLogCustomFieldRule(TypedDict, total=False):
     action: Literal["log_custom_field"]
     """The action to perform when the rule matches."""
 
-    action_parameters: RulesetsLogCustomFieldRuleActionParameters
+    action_parameters: LogCustomFieldRuleActionParameters
     """The parameters configuring the rule's action."""
 
     description: str
@@ -1227,43 +2646,132 @@ class RulesetsLogCustomFieldRule(TypedDict, total=False):
     enabled: bool
     """Whether the rule should be executed."""
 
+    exposed_credential_check: LogCustomFieldRuleExposedCredentialCheck
+    """Configure checks for exposed credentials."""
+
     expression: str
     """The expression defining which traffic will match the rule."""
 
     logging: LoggingParam
     """An object configuring the rule's logging behavior."""
 
+    position: LogCustomFieldRulePosition
+    """An object configuring where the rule will be placed."""
+
+    ratelimit: LogCustomFieldRuleRatelimit
+    """An object configuring the rule's ratelimit behavior."""
+
     ref: str
     """The reference of the rule (the rule ID by default)."""
 
 
-class RulesetsLogCustomFieldRuleActionParametersCookieField(TypedDict, total=False):
+class LogCustomFieldRuleActionParametersCookieField(TypedDict, total=False):
     name: Required[str]
     """The name of the field."""
 
 
-class RulesetsLogCustomFieldRuleActionParametersRequestField(TypedDict, total=False):
+class LogCustomFieldRuleActionParametersRequestField(TypedDict, total=False):
     name: Required[str]
     """The name of the field."""
 
 
-class RulesetsLogCustomFieldRuleActionParametersResponseField(TypedDict, total=False):
+class LogCustomFieldRuleActionParametersResponseField(TypedDict, total=False):
     name: Required[str]
     """The name of the field."""
 
 
-class RulesetsLogCustomFieldRuleActionParameters(TypedDict, total=False):
-    cookie_fields: Iterable[RulesetsLogCustomFieldRuleActionParametersCookieField]
+class LogCustomFieldRuleActionParameters(TypedDict, total=False):
+    cookie_fields: Iterable[LogCustomFieldRuleActionParametersCookieField]
     """The cookie fields to log."""
 
-    request_fields: Iterable[RulesetsLogCustomFieldRuleActionParametersRequestField]
+    request_fields: Iterable[LogCustomFieldRuleActionParametersRequestField]
     """The request fields to log."""
 
-    response_fields: Iterable[RulesetsLogCustomFieldRuleActionParametersResponseField]
+    response_fields: Iterable[LogCustomFieldRuleActionParametersResponseField]
     """The response fields to log."""
 
 
-class RulesetsDDoSDynamicRule(TypedDict, total=False):
+class LogCustomFieldRuleExposedCredentialCheck(TypedDict, total=False):
+    password_expression: Required[str]
+    """Expression that selects the password used in the credentials check."""
+
+    username_expression: Required[str]
+    """Expression that selects the user ID used in the credentials check."""
+
+
+class LogCustomFieldRulePositionBeforePosition(TypedDict, total=False):
+    before: str
+    """The ID of another rule to place the rule before.
+
+    An empty value causes the rule to be placed at the top.
+    """
+
+
+class LogCustomFieldRulePositionAfterPosition(TypedDict, total=False):
+    after: str
+    """The ID of another rule to place the rule after.
+
+    An empty value causes the rule to be placed at the bottom.
+    """
+
+
+class LogCustomFieldRulePositionIndexPosition(TypedDict, total=False):
+    index: float
+    """An index at which to place the rule, where index 1 is the first rule."""
+
+
+LogCustomFieldRulePosition: TypeAlias = Union[
+    LogCustomFieldRulePositionBeforePosition,
+    LogCustomFieldRulePositionAfterPosition,
+    LogCustomFieldRulePositionIndexPosition,
+]
+
+
+class LogCustomFieldRuleRatelimit(TypedDict, total=False):
+    characteristics: Required[List[str]]
+    """
+    Characteristics of the request on which the ratelimiter counter will be
+    incremented.
+    """
+
+    period: Required[Literal[10, 60, 600, 3600]]
+    """Period in seconds over which the counter is being incremented."""
+
+    counting_expression: str
+    """Defines when the ratelimit counter should be incremented.
+
+    It is optional and defaults to the same as the rule's expression.
+    """
+
+    mitigation_timeout: int
+    """
+    Period of time in seconds after which the action will be disabled following its
+    first execution.
+    """
+
+    requests_per_period: int
+    """
+    The threshold of requests per period after which the action will be executed for
+    the first time.
+    """
+
+    requests_to_origin: bool
+    """Defines if ratelimit counting is only done when an origin is reached."""
+
+    score_per_period: int
+    """
+    The score threshold per period for which the action will be executed the first
+    time.
+    """
+
+    score_response_header_name: str
+    """
+    The response header name provided by the origin which should contain the score
+    to increment ratelimit counter on.
+    """
+
+
+class DDoSDynamicRule(TypedDict, total=False):
     ruleset_id: Required[str]
     """The unique ID of the ruleset."""
 
@@ -1288,17 +2796,104 @@ class RulesetsDDoSDynamicRule(TypedDict, total=False):
     enabled: bool
     """Whether the rule should be executed."""
 
+    exposed_credential_check: DDoSDynamicRuleExposedCredentialCheck
+    """Configure checks for exposed credentials."""
+
     expression: str
     """The expression defining which traffic will match the rule."""
 
     logging: LoggingParam
     """An object configuring the rule's logging behavior."""
 
+    position: DDoSDynamicRulePosition
+    """An object configuring where the rule will be placed."""
+
+    ratelimit: DDoSDynamicRuleRatelimit
+    """An object configuring the rule's ratelimit behavior."""
+
     ref: str
     """The reference of the rule (the rule ID by default)."""
 
 
-class RulesetsForceConnectionCloseRule(TypedDict, total=False):
+class DDoSDynamicRuleExposedCredentialCheck(TypedDict, total=False):
+    password_expression: Required[str]
+    """Expression that selects the password used in the credentials check."""
+
+    username_expression: Required[str]
+    """Expression that selects the user ID used in the credentials check."""
+
+
+class DDoSDynamicRulePositionBeforePosition(TypedDict, total=False):
+    before: str
+    """The ID of another rule to place the rule before.
+
+    An empty value causes the rule to be placed at the top.
+    """
+
+
+class DDoSDynamicRulePositionAfterPosition(TypedDict, total=False):
+    after: str
+    """The ID of another rule to place the rule after.
+
+    An empty value causes the rule to be placed at the bottom.
+    """
+
+
+class DDoSDynamicRulePositionIndexPosition(TypedDict, total=False):
+    index: float
+    """An index at which to place the rule, where index 1 is the first rule."""
+
+
+DDoSDynamicRulePosition: TypeAlias = Union[
+    DDoSDynamicRulePositionBeforePosition, DDoSDynamicRulePositionAfterPosition, DDoSDynamicRulePositionIndexPosition
+]
+
+
+class DDoSDynamicRuleRatelimit(TypedDict, total=False):
+    characteristics: Required[List[str]]
+    """
+    Characteristics of the request on which the ratelimiter counter will be
+    incremented.
+    """
+
+    period: Required[Literal[10, 60, 600, 3600]]
+    """Period in seconds over which the counter is being incremented."""
+
+    counting_expression: str
+    """Defines when the ratelimit counter should be incremented.
+
+    It is optional and defaults to the same as the rule's expression.
+    """
+
+    mitigation_timeout: int
+    """
+    Period of time in seconds after which the action will be disabled following its
+    first execution.
+    """
+
+    requests_per_period: int
+    """
+    The threshold of requests per period after which the action will be executed for
+    the first time.
+    """
+
+    requests_to_origin: bool
+    """Defines if ratelimit counting is only done when an origin is reached."""
+
+    score_per_period: int
+    """
+    The score threshold per period for which the action will be executed the first
+    time.
+    """
+
+    score_response_header_name: str
+    """
+    The response header name provided by the origin which should contain the score
+    to increment ratelimit counter on.
+    """
+
+
+class ForceConnectionCloseRule(TypedDict, total=False):
     ruleset_id: Required[str]
     """The unique ID of the ruleset."""
 
@@ -1323,33 +2918,122 @@ class RulesetsForceConnectionCloseRule(TypedDict, total=False):
     enabled: bool
     """Whether the rule should be executed."""
 
+    exposed_credential_check: ForceConnectionCloseRuleExposedCredentialCheck
+    """Configure checks for exposed credentials."""
+
     expression: str
     """The expression defining which traffic will match the rule."""
 
     logging: LoggingParam
     """An object configuring the rule's logging behavior."""
 
+    position: ForceConnectionCloseRulePosition
+    """An object configuring where the rule will be placed."""
+
+    ratelimit: ForceConnectionCloseRuleRatelimit
+    """An object configuring the rule's ratelimit behavior."""
+
     ref: str
     """The reference of the rule (the rule ID by default)."""
 
 
-RuleEditParams = Union[
+class ForceConnectionCloseRuleExposedCredentialCheck(TypedDict, total=False):
+    password_expression: Required[str]
+    """Expression that selects the password used in the credentials check."""
+
+    username_expression: Required[str]
+    """Expression that selects the user ID used in the credentials check."""
+
+
+class ForceConnectionCloseRulePositionBeforePosition(TypedDict, total=False):
+    before: str
+    """The ID of another rule to place the rule before.
+
+    An empty value causes the rule to be placed at the top.
+    """
+
+
+class ForceConnectionCloseRulePositionAfterPosition(TypedDict, total=False):
+    after: str
+    """The ID of another rule to place the rule after.
+
+    An empty value causes the rule to be placed at the bottom.
+    """
+
+
+class ForceConnectionCloseRulePositionIndexPosition(TypedDict, total=False):
+    index: float
+    """An index at which to place the rule, where index 1 is the first rule."""
+
+
+ForceConnectionCloseRulePosition: TypeAlias = Union[
+    ForceConnectionCloseRulePositionBeforePosition,
+    ForceConnectionCloseRulePositionAfterPosition,
+    ForceConnectionCloseRulePositionIndexPosition,
+]
+
+
+class ForceConnectionCloseRuleRatelimit(TypedDict, total=False):
+    characteristics: Required[List[str]]
+    """
+    Characteristics of the request on which the ratelimiter counter will be
+    incremented.
+    """
+
+    period: Required[Literal[10, 60, 600, 3600]]
+    """Period in seconds over which the counter is being incremented."""
+
+    counting_expression: str
+    """Defines when the ratelimit counter should be incremented.
+
+    It is optional and defaults to the same as the rule's expression.
+    """
+
+    mitigation_timeout: int
+    """
+    Period of time in seconds after which the action will be disabled following its
+    first execution.
+    """
+
+    requests_per_period: int
+    """
+    The threshold of requests per period after which the action will be executed for
+    the first time.
+    """
+
+    requests_to_origin: bool
+    """Defines if ratelimit counting is only done when an origin is reached."""
+
+    score_per_period: int
+    """
+    The score threshold per period for which the action will be executed the first
+    time.
+    """
+
+    score_response_header_name: str
+    """
+    The response header name provided by the origin which should contain the score
+    to increment ratelimit counter on.
+    """
+
+
+RuleEditParams: TypeAlias = Union[
     BlockRule,
     ChallengeRule,
-    CompressResponseRule,
+    CompressionRule,
     ExecuteRule,
-    JSChallengeRule,
+    JavascriptChallengeRule,
     LogRule,
     ManagedChallengeRule,
     RedirectRule,
     RewriteRule,
-    RouteRule,
+    OriginRule,
     ScoreRule,
     ServeErrorRule,
     SetConfigRule,
     SkipRule,
     SetCacheSettingsRule,
-    RulesetsLogCustomFieldRule,
-    RulesetsDDoSDynamicRule,
-    RulesetsForceConnectionCloseRule,
+    LogCustomFieldRule,
+    DDoSDynamicRule,
+    ForceConnectionCloseRule,
 ]

@@ -23,10 +23,21 @@ __all__ = ["ServicesResource", "AsyncServicesResource"]
 class ServicesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ServicesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return ServicesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> ServicesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return ServicesResourceWithStreamingResponse(self)
 
     def list(
@@ -47,7 +58,7 @@ class ServicesResource(SyncAPIResource):
         the Cloudflare network, and their service IDs.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
           extra_headers: Send extra headers
 
@@ -72,10 +83,21 @@ class ServicesResource(SyncAPIResource):
 class AsyncServicesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncServicesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncServicesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncServicesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncServicesResourceWithStreamingResponse(self)
 
     def list(
@@ -96,7 +118,7 @@ class AsyncServicesResource(AsyncAPIResource):
         the Cloudflare network, and their service IDs.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
           extra_headers: Send extra headers
 

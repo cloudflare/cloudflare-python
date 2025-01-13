@@ -10,7 +10,5 @@ __all__ = ["PayloadLogUpdateParams"]
 
 class PayloadLogUpdateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
 
-    public_key: Required[Optional[str]]
-    """The public key to use when encrypting extracted payloads, as a base64 string"""
+    public_key: Optional[str]

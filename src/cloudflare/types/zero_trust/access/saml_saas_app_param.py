@@ -2,32 +2,40 @@
 
 from __future__ import annotations
 
-from typing import Union
-from datetime import datetime
-from typing_extensions import Literal, Annotated, TypedDict
+from typing import Dict, Iterable
+from typing_extensions import Literal, TypedDict
 
-from ...._utils import PropertyInfo
-from .saas_app_name_format import SaaSAppNameFormat
-from .saas_app_source_param import SaaSAppSourceParam
 from .saas_app_name_id_format import SaaSAppNameIDFormat
 
-__all__ = ["SAMLSaaSAppParam", "CustomAttributes"]
+__all__ = ["SAMLSaaSAppParam", "CustomAttribute", "CustomAttributeSource"]
 
 
-class CustomAttributes(TypedDict, total=False):
+class CustomAttributeSource(TypedDict, total=False):
+    name: str
+    """The name of the IdP attribute."""
+
+    name_by_idp: Dict[str, str]
+    """A mapping from IdP ID to attribute name."""
+
+
+class CustomAttribute(TypedDict, total=False):
     friendly_name: str
     """The SAML FriendlyName of the attribute."""
 
     name: str
     """The name of the attribute."""
 
-    name_format: SaaSAppNameFormat
+    name_format: Literal[
+        "urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified",
+        "urn:oasis:names:tc:SAML:2.0:attrname-format:basic",
+        "urn:oasis:names:tc:SAML:2.0:attrname-format:uri",
+    ]
     """A globally unique name for an identity or service provider."""
 
     required: bool
     """If the attribute is required when building a SAML assertion."""
 
-    source: SaaSAppSourceParam
+    source: CustomAttributeSource
 
 
 class SAMLSaaSAppParam(TypedDict, total=False):
@@ -44,9 +52,7 @@ class SAMLSaaSAppParam(TypedDict, total=False):
     SAML assertion.
     """
 
-    created_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-
-    custom_attributes: CustomAttributes
+    custom_attributes: Iterable[CustomAttribute]
 
     default_relay_state: str
     """
@@ -85,5 +91,3 @@ class SAMLSaaSAppParam(TypedDict, total=False):
 
     sso_endpoint: str
     """The endpoint where your SaaS application will send login requests."""
-
-    updated_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]

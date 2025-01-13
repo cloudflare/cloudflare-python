@@ -46,10 +46,21 @@ class TopResource(SyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> TopResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return TopResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> TopResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return TopResourceWithStreamingResponse(self)
 
     def attacks(
@@ -178,7 +189,7 @@ class TopResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TopIndustryResponse:
         """
-        Get the Industry of attacks.
+        Get the industries targeted by attacks.
 
         Args:
           continent: Array of comma separated list of continents (alpha-2 continent codes). Start
@@ -263,7 +274,7 @@ class TopResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TopVerticalResponse:
         """
-        Get the Verticals of attacks.
+        Get the verticals targeted by attacks.
 
         Args:
           continent: Array of comma separated list of continents (alpha-2 continent codes). Start
@@ -335,10 +346,21 @@ class AsyncTopResource(AsyncAPIResource):
 
     @cached_property
     def with_raw_response(self) -> AsyncTopResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncTopResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncTopResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncTopResourceWithStreamingResponse(self)
 
     async def attacks(
@@ -467,7 +489,7 @@ class AsyncTopResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TopIndustryResponse:
         """
-        Get the Industry of attacks.
+        Get the industries targeted by attacks.
 
         Args:
           continent: Array of comma separated list of continents (alpha-2 continent codes). Start
@@ -552,7 +574,7 @@ class AsyncTopResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TopVerticalResponse:
         """
-        Get the Verticals of attacks.
+        Get the verticals targeted by attacks.
 
         Args:
           continent: Array of comma separated list of continents (alpha-2 continent codes). Start

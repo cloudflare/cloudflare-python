@@ -3,6 +3,8 @@
 from typing import Optional
 from datetime import datetime
 
+from pydantic import Field as FieldInfo
+
 from ..._models import BaseModel
 
 __all__ = ["LogListResponse"]
@@ -23,17 +25,19 @@ class LogListResponse(BaseModel):
 
     provider: str
 
-    request: str
-
-    response: str
-
     success: bool
 
-    tokens_in: int
+    tokens_in: Optional[int] = None
 
-    tokens_out: int
+    tokens_out: Optional[int] = None
+
+    cost: Optional[float] = None
+
+    custom_cost: Optional[bool] = None
 
     metadata: Optional[str] = None
+
+    ai_model_type: Optional[str] = FieldInfo(alias="model_type", default=None)
 
     request_content_type: Optional[str] = None
 

@@ -10,12 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.pages import (
-    Project,
-    Deployment,
-    ProjectEditResponse,
-    ProjectCreateResponse,
-)
+from cloudflare.types.pages import Project, Deployment
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -28,7 +23,7 @@ class TestProjects:
         project = client.pages.projects.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ProjectCreateResponse, project, path=["response"])
+        assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
@@ -42,82 +37,80 @@ class TestProjects:
                 "web_analytics_tag": "cee1c73f6e4743d0b5e6bb1a0bcaabcc",
                 "web_analytics_token": "021e1057c18547eca7b79f2516f06o7x",
             },
-            canonical_deployment={},
             deployment_configs={
                 "preview": {
-                    "ai_bindings": {"ai_binding": {"project_id": {}}},
-                    "analytics_engine_datasets": {"analytics_engine_binding": {"dataset": "api_analytics"}},
-                    "browsers": {"browser": {}},
+                    "ai_bindings": {"AI_BINDING": {"project_id": "some-project-id"}},
+                    "analytics_engine_datasets": {"ANALYTICS_ENGINE_BINDING": {"dataset": "api_analytics"}},
+                    "browsers": {"BROWSER": {}},
                     "compatibility_date": "2022-01-01",
                     "compatibility_flags": ["url_standard"],
-                    "d1_databases": {"d1_binding": {"id": "445e2955-951a-43f8-a35b-a4d0c8138f63"}},
-                    "durable_object_namespaces": {"do_binding": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
+                    "d1_databases": {"D1_BINDING": {"id": "445e2955-951a-43f8-a35b-a4d0c8138f63"}},
+                    "durable_object_namespaces": {"DO_BINDING": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
                     "env_vars": {
-                        "environment_variable": {
-                            "type": "plain_text",
+                        "foo": {
                             "value": "hello world",
+                            "type": "plain_text",
                         }
                     },
-                    "hyperdrive_bindings": {"hyperdrive": {"id": "a76a99bc342644deb02c38d66082262a"}},
-                    "kv_namespaces": {"kv_binding": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
-                    "mtls_certificates": {"mtls": {"certificate_id": "d7cdd17c-916f-4cb7-aabe-585eb382ec4e"}},
+                    "hyperdrive_bindings": {"HYPERDRIVE": {"id": "a76a99bc342644deb02c38d66082262a"}},
+                    "kv_namespaces": {"KV_BINDING": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
+                    "mtls_certificates": {"MTLS": {"certificate_id": "d7cdd17c-916f-4cb7-aabe-585eb382ec4e"}},
                     "placement": {"mode": "smart"},
-                    "queue_producers": {"queue_producer_binding": {"name": "some-queue"}},
+                    "queue_producers": {"QUEUE_PRODUCER_BINDING": {"name": "some-queue"}},
                     "r2_buckets": {
-                        "r2_binding": {
+                        "R2_BINDING": {
                             "jurisdiction": "eu",
                             "name": "some-bucket",
                         }
                     },
                     "services": {
-                        "service_binding": {
+                        "SERVICE_BINDING": {
                             "entrypoint": "MyHandler",
                             "environment": "production",
                             "service": "example-worker",
                         }
                     },
-                    "vectorize_bindings": {"vectorize": {"index_name": "my_index"}},
+                    "vectorize_bindings": {"VECTORIZE": {"index_name": "my_index"}},
                 },
                 "production": {
-                    "ai_bindings": {"ai_binding": {"project_id": {}}},
-                    "analytics_engine_datasets": {"analytics_engine_binding": {"dataset": "api_analytics"}},
-                    "browsers": {"browser": {}},
+                    "ai_bindings": {"AI_BINDING": {"project_id": "some-project-id"}},
+                    "analytics_engine_datasets": {"ANALYTICS_ENGINE_BINDING": {"dataset": "api_analytics"}},
+                    "browsers": {"BROWSER": {}},
                     "compatibility_date": "2022-01-01",
                     "compatibility_flags": ["url_standard"],
-                    "d1_databases": {"d1_binding": {"id": "445e2955-951a-43f8-a35b-a4d0c8138f63"}},
-                    "durable_object_namespaces": {"do_binding": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
+                    "d1_databases": {"D1_BINDING": {"id": "445e2955-951a-43f8-a35b-a4d0c8138f63"}},
+                    "durable_object_namespaces": {"DO_BINDING": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
                     "env_vars": {
-                        "environment_variable": {
-                            "type": "plain_text",
+                        "foo": {
                             "value": "hello world",
+                            "type": "plain_text",
                         }
                     },
-                    "hyperdrive_bindings": {"hyperdrive": {"id": "a76a99bc342644deb02c38d66082262a"}},
-                    "kv_namespaces": {"kv_binding": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
-                    "mtls_certificates": {"mtls": {"certificate_id": "d7cdd17c-916f-4cb7-aabe-585eb382ec4e"}},
+                    "hyperdrive_bindings": {"HYPERDRIVE": {"id": "a76a99bc342644deb02c38d66082262a"}},
+                    "kv_namespaces": {"KV_BINDING": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
+                    "mtls_certificates": {"MTLS": {"certificate_id": "d7cdd17c-916f-4cb7-aabe-585eb382ec4e"}},
                     "placement": {"mode": "smart"},
-                    "queue_producers": {"queue_producer_binding": {"name": "some-queue"}},
+                    "queue_producers": {"QUEUE_PRODUCER_BINDING": {"name": "some-queue"}},
                     "r2_buckets": {
-                        "r2_binding": {
+                        "R2_BINDING": {
                             "jurisdiction": "eu",
                             "name": "some-bucket",
                         }
                     },
                     "services": {
-                        "service_binding": {
+                        "SERVICE_BINDING": {
                             "entrypoint": "MyHandler",
                             "environment": "production",
                             "service": "example-worker",
                         }
                     },
-                    "vectorize_bindings": {"vectorize": {"index_name": "my_index"}},
+                    "vectorize_bindings": {"VECTORIZE": {"index_name": "my_index"}},
                 },
             },
-            latest_deployment={},
             name="NextJS Blog",
             production_branch="main",
         )
-        assert_matches_type(ProjectCreateResponse, project, path=["response"])
+        assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
@@ -128,7 +121,7 @@ class TestProjects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         project = response.parse()
-        assert_matches_type(ProjectCreateResponse, project, path=["response"])
+        assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
@@ -139,7 +132,7 @@ class TestProjects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             project = response.parse()
-            assert_matches_type(ProjectCreateResponse, project, path=["response"])
+            assert_matches_type(Project, project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -241,80 +234,128 @@ class TestProjects:
         project = client.pages.projects.edit(
             project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={
-                "deployment_configs": {
-                    "production": {
-                        "compatibility_date": "2022-01-01",
-                        "compatibility_flags": ["url_standard"],
-                        "env_vars": {
-                            "BUILD_VERSION": {"value": "3.3"},
-                            "delete_this_env_var": None,
-                            "secret_var": {
-                                "type": "secret_text",
-                                "value": "A_CMS_API_TOKEN",
-                            },
-                        },
-                    }
-                }
-            },
         )
-        assert_matches_type(ProjectEditResponse, project, path=["response"])
+        assert_matches_type(Project, project, path=["response"])
+
+    @parametrize
+    def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
+        project = client.pages.projects.edit(
+            project_name="this-is-my-project-01",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            build_config={
+                "build_caching": True,
+                "build_command": "npm run build",
+                "destination_dir": "build",
+                "root_dir": "/",
+                "web_analytics_tag": "cee1c73f6e4743d0b5e6bb1a0bcaabcc",
+                "web_analytics_token": "021e1057c18547eca7b79f2516f06o7x",
+            },
+            deployment_configs={
+                "preview": {
+                    "ai_bindings": {"AI_BINDING": {"project_id": "some-project-id"}},
+                    "analytics_engine_datasets": {"ANALYTICS_ENGINE_BINDING": {"dataset": "api_analytics"}},
+                    "browsers": {"BROWSER": {}},
+                    "compatibility_date": "2022-01-01",
+                    "compatibility_flags": ["url_standard"],
+                    "d1_databases": {"D1_BINDING": {"id": "445e2955-951a-43f8-a35b-a4d0c8138f63"}},
+                    "durable_object_namespaces": {"DO_BINDING": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
+                    "env_vars": {
+                        "foo": {
+                            "value": "hello world",
+                            "type": "plain_text",
+                        }
+                    },
+                    "hyperdrive_bindings": {"HYPERDRIVE": {"id": "a76a99bc342644deb02c38d66082262a"}},
+                    "kv_namespaces": {"KV_BINDING": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
+                    "mtls_certificates": {"MTLS": {"certificate_id": "d7cdd17c-916f-4cb7-aabe-585eb382ec4e"}},
+                    "placement": {"mode": "smart"},
+                    "queue_producers": {"QUEUE_PRODUCER_BINDING": {"name": "some-queue"}},
+                    "r2_buckets": {
+                        "R2_BINDING": {
+                            "jurisdiction": "eu",
+                            "name": "some-bucket",
+                        }
+                    },
+                    "services": {
+                        "SERVICE_BINDING": {
+                            "entrypoint": "MyHandler",
+                            "environment": "production",
+                            "service": "example-worker",
+                        }
+                    },
+                    "vectorize_bindings": {"VECTORIZE": {"index_name": "my_index"}},
+                },
+                "production": {
+                    "ai_bindings": {"AI_BINDING": {"project_id": "some-project-id"}},
+                    "analytics_engine_datasets": {"ANALYTICS_ENGINE_BINDING": {"dataset": "api_analytics"}},
+                    "browsers": {"BROWSER": {}},
+                    "compatibility_date": "2022-01-01",
+                    "compatibility_flags": ["url_standard"],
+                    "d1_databases": {"D1_BINDING": {"id": "445e2955-951a-43f8-a35b-a4d0c8138f63"}},
+                    "durable_object_namespaces": {"DO_BINDING": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
+                    "env_vars": {
+                        "BUILD_VERSION": {
+                            "value": "3.3",
+                            "type": "plain_text",
+                        },
+                        "delete_this_env_var": {
+                            "value": "value",
+                            "type": "plain_text",
+                        },
+                        "secret_var": {
+                            "value": "A_CMS_API_TOKEN",
+                            "type": "plain_text",
+                        },
+                    },
+                    "hyperdrive_bindings": {"HYPERDRIVE": {"id": "a76a99bc342644deb02c38d66082262a"}},
+                    "kv_namespaces": {"KV_BINDING": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
+                    "mtls_certificates": {"MTLS": {"certificate_id": "d7cdd17c-916f-4cb7-aabe-585eb382ec4e"}},
+                    "placement": {"mode": "smart"},
+                    "queue_producers": {"QUEUE_PRODUCER_BINDING": {"name": "some-queue"}},
+                    "r2_buckets": {
+                        "R2_BINDING": {
+                            "jurisdiction": "eu",
+                            "name": "some-bucket",
+                        }
+                    },
+                    "services": {
+                        "SERVICE_BINDING": {
+                            "entrypoint": "MyHandler",
+                            "environment": "production",
+                            "service": "example-worker",
+                        }
+                    },
+                    "vectorize_bindings": {"VECTORIZE": {"index_name": "my_index"}},
+                },
+            },
+            name="NextJS Blog",
+            production_branch="main",
+        )
+        assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.pages.projects.with_raw_response.edit(
             project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={
-                "deployment_configs": {
-                    "production": {
-                        "compatibility_date": "2022-01-01",
-                        "compatibility_flags": ["url_standard"],
-                        "env_vars": {
-                            "BUILD_VERSION": {"value": "3.3"},
-                            "delete_this_env_var": None,
-                            "secret_var": {
-                                "type": "secret_text",
-                                "value": "A_CMS_API_TOKEN",
-                            },
-                        },
-                    }
-                }
-            },
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         project = response.parse()
-        assert_matches_type(ProjectEditResponse, project, path=["response"])
+        assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.pages.projects.with_streaming_response.edit(
             project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={
-                "deployment_configs": {
-                    "production": {
-                        "compatibility_date": "2022-01-01",
-                        "compatibility_flags": ["url_standard"],
-                        "env_vars": {
-                            "BUILD_VERSION": {"value": "3.3"},
-                            "delete_this_env_var": None,
-                            "secret_var": {
-                                "type": "secret_text",
-                                "value": "A_CMS_API_TOKEN",
-                            },
-                        },
-                    }
-                }
-            },
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             project = response.parse()
-            assert_matches_type(ProjectEditResponse, project, path=["response"])
+            assert_matches_type(Project, project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -324,44 +365,12 @@ class TestProjects:
             client.pages.projects.with_raw_response.edit(
                 project_name="this-is-my-project-01",
                 account_id="",
-                body={
-                    "deployment_configs": {
-                        "production": {
-                            "compatibility_date": "2022-01-01",
-                            "compatibility_flags": ["url_standard"],
-                            "env_vars": {
-                                "BUILD_VERSION": {"value": "3.3"},
-                                "delete_this_env_var": None,
-                                "secret_var": {
-                                    "type": "secret_text",
-                                    "value": "A_CMS_API_TOKEN",
-                                },
-                            },
-                        }
-                    }
-                },
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
             client.pages.projects.with_raw_response.edit(
                 project_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={
-                    "deployment_configs": {
-                        "production": {
-                            "compatibility_date": "2022-01-01",
-                            "compatibility_flags": ["url_standard"],
-                            "env_vars": {
-                                "BUILD_VERSION": {"value": "3.3"},
-                                "delete_this_env_var": None,
-                                "secret_var": {
-                                    "type": "secret_text",
-                                    "value": "A_CMS_API_TOKEN",
-                                },
-                            },
-                        }
-                    }
-                },
             )
 
     @parametrize
@@ -469,7 +478,7 @@ class TestAsyncProjects:
         project = await async_client.pages.projects.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ProjectCreateResponse, project, path=["response"])
+        assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -483,82 +492,80 @@ class TestAsyncProjects:
                 "web_analytics_tag": "cee1c73f6e4743d0b5e6bb1a0bcaabcc",
                 "web_analytics_token": "021e1057c18547eca7b79f2516f06o7x",
             },
-            canonical_deployment={},
             deployment_configs={
                 "preview": {
-                    "ai_bindings": {"ai_binding": {"project_id": {}}},
-                    "analytics_engine_datasets": {"analytics_engine_binding": {"dataset": "api_analytics"}},
-                    "browsers": {"browser": {}},
+                    "ai_bindings": {"AI_BINDING": {"project_id": "some-project-id"}},
+                    "analytics_engine_datasets": {"ANALYTICS_ENGINE_BINDING": {"dataset": "api_analytics"}},
+                    "browsers": {"BROWSER": {}},
                     "compatibility_date": "2022-01-01",
                     "compatibility_flags": ["url_standard"],
-                    "d1_databases": {"d1_binding": {"id": "445e2955-951a-43f8-a35b-a4d0c8138f63"}},
-                    "durable_object_namespaces": {"do_binding": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
+                    "d1_databases": {"D1_BINDING": {"id": "445e2955-951a-43f8-a35b-a4d0c8138f63"}},
+                    "durable_object_namespaces": {"DO_BINDING": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
                     "env_vars": {
-                        "environment_variable": {
-                            "type": "plain_text",
+                        "foo": {
                             "value": "hello world",
+                            "type": "plain_text",
                         }
                     },
-                    "hyperdrive_bindings": {"hyperdrive": {"id": "a76a99bc342644deb02c38d66082262a"}},
-                    "kv_namespaces": {"kv_binding": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
-                    "mtls_certificates": {"mtls": {"certificate_id": "d7cdd17c-916f-4cb7-aabe-585eb382ec4e"}},
+                    "hyperdrive_bindings": {"HYPERDRIVE": {"id": "a76a99bc342644deb02c38d66082262a"}},
+                    "kv_namespaces": {"KV_BINDING": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
+                    "mtls_certificates": {"MTLS": {"certificate_id": "d7cdd17c-916f-4cb7-aabe-585eb382ec4e"}},
                     "placement": {"mode": "smart"},
-                    "queue_producers": {"queue_producer_binding": {"name": "some-queue"}},
+                    "queue_producers": {"QUEUE_PRODUCER_BINDING": {"name": "some-queue"}},
                     "r2_buckets": {
-                        "r2_binding": {
+                        "R2_BINDING": {
                             "jurisdiction": "eu",
                             "name": "some-bucket",
                         }
                     },
                     "services": {
-                        "service_binding": {
+                        "SERVICE_BINDING": {
                             "entrypoint": "MyHandler",
                             "environment": "production",
                             "service": "example-worker",
                         }
                     },
-                    "vectorize_bindings": {"vectorize": {"index_name": "my_index"}},
+                    "vectorize_bindings": {"VECTORIZE": {"index_name": "my_index"}},
                 },
                 "production": {
-                    "ai_bindings": {"ai_binding": {"project_id": {}}},
-                    "analytics_engine_datasets": {"analytics_engine_binding": {"dataset": "api_analytics"}},
-                    "browsers": {"browser": {}},
+                    "ai_bindings": {"AI_BINDING": {"project_id": "some-project-id"}},
+                    "analytics_engine_datasets": {"ANALYTICS_ENGINE_BINDING": {"dataset": "api_analytics"}},
+                    "browsers": {"BROWSER": {}},
                     "compatibility_date": "2022-01-01",
                     "compatibility_flags": ["url_standard"],
-                    "d1_databases": {"d1_binding": {"id": "445e2955-951a-43f8-a35b-a4d0c8138f63"}},
-                    "durable_object_namespaces": {"do_binding": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
+                    "d1_databases": {"D1_BINDING": {"id": "445e2955-951a-43f8-a35b-a4d0c8138f63"}},
+                    "durable_object_namespaces": {"DO_BINDING": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
                     "env_vars": {
-                        "environment_variable": {
-                            "type": "plain_text",
+                        "foo": {
                             "value": "hello world",
+                            "type": "plain_text",
                         }
                     },
-                    "hyperdrive_bindings": {"hyperdrive": {"id": "a76a99bc342644deb02c38d66082262a"}},
-                    "kv_namespaces": {"kv_binding": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
-                    "mtls_certificates": {"mtls": {"certificate_id": "d7cdd17c-916f-4cb7-aabe-585eb382ec4e"}},
+                    "hyperdrive_bindings": {"HYPERDRIVE": {"id": "a76a99bc342644deb02c38d66082262a"}},
+                    "kv_namespaces": {"KV_BINDING": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
+                    "mtls_certificates": {"MTLS": {"certificate_id": "d7cdd17c-916f-4cb7-aabe-585eb382ec4e"}},
                     "placement": {"mode": "smart"},
-                    "queue_producers": {"queue_producer_binding": {"name": "some-queue"}},
+                    "queue_producers": {"QUEUE_PRODUCER_BINDING": {"name": "some-queue"}},
                     "r2_buckets": {
-                        "r2_binding": {
+                        "R2_BINDING": {
                             "jurisdiction": "eu",
                             "name": "some-bucket",
                         }
                     },
                     "services": {
-                        "service_binding": {
+                        "SERVICE_BINDING": {
                             "entrypoint": "MyHandler",
                             "environment": "production",
                             "service": "example-worker",
                         }
                     },
-                    "vectorize_bindings": {"vectorize": {"index_name": "my_index"}},
+                    "vectorize_bindings": {"VECTORIZE": {"index_name": "my_index"}},
                 },
             },
-            latest_deployment={},
             name="NextJS Blog",
             production_branch="main",
         )
-        assert_matches_type(ProjectCreateResponse, project, path=["response"])
+        assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -569,7 +576,7 @@ class TestAsyncProjects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         project = await response.parse()
-        assert_matches_type(ProjectCreateResponse, project, path=["response"])
+        assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -580,7 +587,7 @@ class TestAsyncProjects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             project = await response.parse()
-            assert_matches_type(ProjectCreateResponse, project, path=["response"])
+            assert_matches_type(Project, project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -682,80 +689,128 @@ class TestAsyncProjects:
         project = await async_client.pages.projects.edit(
             project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={
-                "deployment_configs": {
-                    "production": {
-                        "compatibility_date": "2022-01-01",
-                        "compatibility_flags": ["url_standard"],
-                        "env_vars": {
-                            "BUILD_VERSION": {"value": "3.3"},
-                            "delete_this_env_var": None,
-                            "secret_var": {
-                                "type": "secret_text",
-                                "value": "A_CMS_API_TOKEN",
-                            },
-                        },
-                    }
-                }
-            },
         )
-        assert_matches_type(ProjectEditResponse, project, path=["response"])
+        assert_matches_type(Project, project, path=["response"])
+
+    @parametrize
+    async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        project = await async_client.pages.projects.edit(
+            project_name="this-is-my-project-01",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            build_config={
+                "build_caching": True,
+                "build_command": "npm run build",
+                "destination_dir": "build",
+                "root_dir": "/",
+                "web_analytics_tag": "cee1c73f6e4743d0b5e6bb1a0bcaabcc",
+                "web_analytics_token": "021e1057c18547eca7b79f2516f06o7x",
+            },
+            deployment_configs={
+                "preview": {
+                    "ai_bindings": {"AI_BINDING": {"project_id": "some-project-id"}},
+                    "analytics_engine_datasets": {"ANALYTICS_ENGINE_BINDING": {"dataset": "api_analytics"}},
+                    "browsers": {"BROWSER": {}},
+                    "compatibility_date": "2022-01-01",
+                    "compatibility_flags": ["url_standard"],
+                    "d1_databases": {"D1_BINDING": {"id": "445e2955-951a-43f8-a35b-a4d0c8138f63"}},
+                    "durable_object_namespaces": {"DO_BINDING": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
+                    "env_vars": {
+                        "foo": {
+                            "value": "hello world",
+                            "type": "plain_text",
+                        }
+                    },
+                    "hyperdrive_bindings": {"HYPERDRIVE": {"id": "a76a99bc342644deb02c38d66082262a"}},
+                    "kv_namespaces": {"KV_BINDING": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
+                    "mtls_certificates": {"MTLS": {"certificate_id": "d7cdd17c-916f-4cb7-aabe-585eb382ec4e"}},
+                    "placement": {"mode": "smart"},
+                    "queue_producers": {"QUEUE_PRODUCER_BINDING": {"name": "some-queue"}},
+                    "r2_buckets": {
+                        "R2_BINDING": {
+                            "jurisdiction": "eu",
+                            "name": "some-bucket",
+                        }
+                    },
+                    "services": {
+                        "SERVICE_BINDING": {
+                            "entrypoint": "MyHandler",
+                            "environment": "production",
+                            "service": "example-worker",
+                        }
+                    },
+                    "vectorize_bindings": {"VECTORIZE": {"index_name": "my_index"}},
+                },
+                "production": {
+                    "ai_bindings": {"AI_BINDING": {"project_id": "some-project-id"}},
+                    "analytics_engine_datasets": {"ANALYTICS_ENGINE_BINDING": {"dataset": "api_analytics"}},
+                    "browsers": {"BROWSER": {}},
+                    "compatibility_date": "2022-01-01",
+                    "compatibility_flags": ["url_standard"],
+                    "d1_databases": {"D1_BINDING": {"id": "445e2955-951a-43f8-a35b-a4d0c8138f63"}},
+                    "durable_object_namespaces": {"DO_BINDING": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
+                    "env_vars": {
+                        "BUILD_VERSION": {
+                            "value": "3.3",
+                            "type": "plain_text",
+                        },
+                        "delete_this_env_var": {
+                            "value": "value",
+                            "type": "plain_text",
+                        },
+                        "secret_var": {
+                            "value": "A_CMS_API_TOKEN",
+                            "type": "plain_text",
+                        },
+                    },
+                    "hyperdrive_bindings": {"HYPERDRIVE": {"id": "a76a99bc342644deb02c38d66082262a"}},
+                    "kv_namespaces": {"KV_BINDING": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
+                    "mtls_certificates": {"MTLS": {"certificate_id": "d7cdd17c-916f-4cb7-aabe-585eb382ec4e"}},
+                    "placement": {"mode": "smart"},
+                    "queue_producers": {"QUEUE_PRODUCER_BINDING": {"name": "some-queue"}},
+                    "r2_buckets": {
+                        "R2_BINDING": {
+                            "jurisdiction": "eu",
+                            "name": "some-bucket",
+                        }
+                    },
+                    "services": {
+                        "SERVICE_BINDING": {
+                            "entrypoint": "MyHandler",
+                            "environment": "production",
+                            "service": "example-worker",
+                        }
+                    },
+                    "vectorize_bindings": {"VECTORIZE": {"index_name": "my_index"}},
+                },
+            },
+            name="NextJS Blog",
+            production_branch="main",
+        )
+        assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.pages.projects.with_raw_response.edit(
             project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={
-                "deployment_configs": {
-                    "production": {
-                        "compatibility_date": "2022-01-01",
-                        "compatibility_flags": ["url_standard"],
-                        "env_vars": {
-                            "BUILD_VERSION": {"value": "3.3"},
-                            "delete_this_env_var": None,
-                            "secret_var": {
-                                "type": "secret_text",
-                                "value": "A_CMS_API_TOKEN",
-                            },
-                        },
-                    }
-                }
-            },
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         project = await response.parse()
-        assert_matches_type(ProjectEditResponse, project, path=["response"])
+        assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.pages.projects.with_streaming_response.edit(
             project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={
-                "deployment_configs": {
-                    "production": {
-                        "compatibility_date": "2022-01-01",
-                        "compatibility_flags": ["url_standard"],
-                        "env_vars": {
-                            "BUILD_VERSION": {"value": "3.3"},
-                            "delete_this_env_var": None,
-                            "secret_var": {
-                                "type": "secret_text",
-                                "value": "A_CMS_API_TOKEN",
-                            },
-                        },
-                    }
-                }
-            },
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             project = await response.parse()
-            assert_matches_type(ProjectEditResponse, project, path=["response"])
+            assert_matches_type(Project, project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -765,44 +820,12 @@ class TestAsyncProjects:
             await async_client.pages.projects.with_raw_response.edit(
                 project_name="this-is-my-project-01",
                 account_id="",
-                body={
-                    "deployment_configs": {
-                        "production": {
-                            "compatibility_date": "2022-01-01",
-                            "compatibility_flags": ["url_standard"],
-                            "env_vars": {
-                                "BUILD_VERSION": {"value": "3.3"},
-                                "delete_this_env_var": None,
-                                "secret_var": {
-                                    "type": "secret_text",
-                                    "value": "A_CMS_API_TOKEN",
-                                },
-                            },
-                        }
-                    }
-                },
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
             await async_client.pages.projects.with_raw_response.edit(
                 project_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={
-                    "deployment_configs": {
-                        "production": {
-                            "compatibility_date": "2022-01-01",
-                            "compatibility_flags": ["url_standard"],
-                            "env_vars": {
-                                "BUILD_VERSION": {"value": "3.3"},
-                                "delete_this_env_var": None,
-                                "secret_var": {
-                                    "type": "secret_text",
-                                    "value": "A_CMS_API_TOKEN",
-                                },
-                            },
-                        }
-                    }
-                },
             )
 
     @parametrize

@@ -11,15 +11,22 @@ __all__ = ["ScanCreateParams"]
 
 
 class ScanCreateParams(TypedDict, total=False):
+    account_id: Required[str]
+    """Account ID."""
+
     url: Required[str]
 
+    customagent: str
+
     custom_headers: Annotated[Dict[str, str], PropertyInfo(alias="customHeaders")]
-    """Set custom headers"""
+    """Set custom headers."""
+
+    referer: str
 
     screenshots_resolutions: Annotated[
         List[Literal["desktop", "mobile", "tablet"]], PropertyInfo(alias="screenshotsResolutions")
     ]
-    """Take multiple screenshots targeting different device types"""
+    """Take multiple screenshots targeting different device types."""
 
     visibility: Literal["Public", "Unlisted"]
     """

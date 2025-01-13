@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
@@ -19,7 +17,6 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
 from ....types.addressing.address_maps import zone_update_params
 from ....types.addressing.address_maps.zone_delete_response import ZoneDeleteResponse
@@ -31,10 +28,21 @@ __all__ = ["ZonesResource", "AsyncZonesResource"]
 class ZonesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ZonesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return ZonesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> ZonesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return ZonesResourceWithStreamingResponse(self)
 
     def update(
@@ -50,16 +58,16 @@ class ZonesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneUpdateResponse]:
+    ) -> ZoneUpdateResponse:
         """
         Add a zone as a member of a particular address map.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier of a zone.
 
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          address_map_id: Identifier
+          address_map_id: Identifier of an Address Map.
 
           extra_headers: Send extra headers
 
@@ -79,13 +87,9 @@ class ZonesResource(SyncAPIResource):
             f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}",
             body=maybe_transform(body, zone_update_params.ZoneUpdateParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ZoneUpdateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[ZoneUpdateResponse]], ResultWrapper[ZoneUpdateResponse]),
+            cast_to=ZoneUpdateResponse,
         )
 
     def delete(
@@ -100,16 +104,16 @@ class ZonesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneDeleteResponse]:
+    ) -> ZoneDeleteResponse:
         """
         Remove a zone as a member of a particular address map.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier of a zone.
 
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          address_map_id: Identifier
+          address_map_id: Identifier of an Address Map.
 
           extra_headers: Send extra headers
 
@@ -128,23 +132,30 @@ class ZonesResource(SyncAPIResource):
         return self._delete(
             f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ZoneDeleteResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[ZoneDeleteResponse]], ResultWrapper[ZoneDeleteResponse]),
+            cast_to=ZoneDeleteResponse,
         )
 
 
 class AsyncZonesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncZonesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncZonesResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncZonesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncZonesResourceWithStreamingResponse(self)
 
     async def update(
@@ -160,16 +171,16 @@ class AsyncZonesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneUpdateResponse]:
+    ) -> ZoneUpdateResponse:
         """
         Add a zone as a member of a particular address map.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier of a zone.
 
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          address_map_id: Identifier
+          address_map_id: Identifier of an Address Map.
 
           extra_headers: Send extra headers
 
@@ -189,13 +200,9 @@ class AsyncZonesResource(AsyncAPIResource):
             f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}",
             body=await async_maybe_transform(body, zone_update_params.ZoneUpdateParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ZoneUpdateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[ZoneUpdateResponse]], ResultWrapper[ZoneUpdateResponse]),
+            cast_to=ZoneUpdateResponse,
         )
 
     async def delete(
@@ -210,16 +217,16 @@ class AsyncZonesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneDeleteResponse]:
+    ) -> ZoneDeleteResponse:
         """
         Remove a zone as a member of a particular address map.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier of a zone.
 
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          address_map_id: Identifier
+          address_map_id: Identifier of an Address Map.
 
           extra_headers: Send extra headers
 
@@ -238,13 +245,9 @@ class AsyncZonesResource(AsyncAPIResource):
         return await self._delete(
             f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ZoneDeleteResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[ZoneDeleteResponse]], ResultWrapper[ZoneDeleteResponse]),
+            cast_to=ZoneDeleteResponse,
         )
 
 

@@ -10,11 +10,5 @@ __all__ = ["Pattern"]
 
 class Pattern(BaseModel):
     regex: str
-    """The regex pattern."""
 
     validation: Optional[Literal["luhn"]] = None
-    """Validation algorithm for the pattern.
-
-    This algorithm will get run on potential matches, and if it returns false, the
-    entry will not be matched.
-    """

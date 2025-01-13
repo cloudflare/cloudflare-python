@@ -2,19 +2,17 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable, Optional
-from datetime import datetime
-from typing_extensions import Required, Annotated, TypedDict
+from typing import List, Iterable, Optional
+from typing_extensions import Required, TypedDict
 
 from .kind import Kind
-from ..._utils import PropertyInfo
 
 __all__ = ["AddressMapCreateParams", "Membership"]
 
 
 class AddressMapCreateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier of a Cloudflare account."""
 
     description: Optional[str]
     """
@@ -39,8 +37,6 @@ class AddressMapCreateParams(TypedDict, total=False):
 
 
 class Membership(TypedDict, total=False):
-    created_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-
     identifier: str
     """The identifier for the membership (eg. a zone or account tag)."""
 

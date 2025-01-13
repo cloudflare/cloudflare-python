@@ -8,4 +8,4 @@ __all__ = ["SubdomainUpdateResponse"]
 
 
 class SubdomainUpdateResponse(BaseModel):
-    name: Optional[object] = None
+    subdomain: Optional[str] = None

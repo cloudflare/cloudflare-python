@@ -31,10 +31,21 @@ __all__ = ["DomainsResource", "AsyncDomainsResource"]
 class DomainsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> DomainsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return DomainsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> DomainsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return DomainsResourceWithStreamingResponse(self)
 
     def update(
@@ -56,6 +67,8 @@ class DomainsResource(SyncAPIResource):
         Attaches a Worker to a zone and hostname.
 
         Args:
+          account_id: Identifer of the account.
+
           environment: Worker environment associated with the zone and hostname.
 
           hostname: Hostname of the Worker Domain.
@@ -115,6 +128,8 @@ class DomainsResource(SyncAPIResource):
         Lists all Worker Domains for an account.
 
         Args:
+          account_id: Identifer of the account.
+
           environment: Worker environment associated with the zone and hostname.
 
           hostname: Hostname of the Worker Domain.
@@ -173,6 +188,8 @@ class DomainsResource(SyncAPIResource):
         Detaches a Worker from a zone and hostname.
 
         Args:
+          account_id: Identifer of the account.
+
           domain_id: Identifer of the Worker Domain.
 
           extra_headers: Send extra headers
@@ -212,6 +229,8 @@ class DomainsResource(SyncAPIResource):
         Gets a Worker domain.
 
         Args:
+          account_id: Identifer of the account.
+
           domain_id: Identifer of the Worker Domain.
 
           extra_headers: Send extra headers
@@ -242,10 +261,21 @@ class DomainsResource(SyncAPIResource):
 class AsyncDomainsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncDomainsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncDomainsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncDomainsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncDomainsResourceWithStreamingResponse(self)
 
     async def update(
@@ -267,6 +297,8 @@ class AsyncDomainsResource(AsyncAPIResource):
         Attaches a Worker to a zone and hostname.
 
         Args:
+          account_id: Identifer of the account.
+
           environment: Worker environment associated with the zone and hostname.
 
           hostname: Hostname of the Worker Domain.
@@ -326,6 +358,8 @@ class AsyncDomainsResource(AsyncAPIResource):
         Lists all Worker Domains for an account.
 
         Args:
+          account_id: Identifer of the account.
+
           environment: Worker environment associated with the zone and hostname.
 
           hostname: Hostname of the Worker Domain.
@@ -384,6 +418,8 @@ class AsyncDomainsResource(AsyncAPIResource):
         Detaches a Worker from a zone and hostname.
 
         Args:
+          account_id: Identifer of the account.
+
           domain_id: Identifer of the Worker Domain.
 
           extra_headers: Send extra headers
@@ -423,6 +459,8 @@ class AsyncDomainsResource(AsyncAPIResource):
         Gets a Worker domain.
 
         Args:
+          account_id: Identifer of the account.
+
           domain_id: Identifer of the Worker Domain.
 
           extra_headers: Send extra headers

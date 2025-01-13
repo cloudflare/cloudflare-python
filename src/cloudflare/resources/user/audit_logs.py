@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Union
-from datetime import datetime
+from datetime import date, datetime
 from typing_extensions import Literal
 
 import httpx
@@ -29,10 +29,21 @@ __all__ = ["AuditLogsResource", "AsyncAuditLogsResource"]
 class AuditLogsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AuditLogsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AuditLogsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AuditLogsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AuditLogsResourceWithStreamingResponse(self)
 
     def list(
@@ -41,13 +52,13 @@ class AuditLogsResource(SyncAPIResource):
         id: str | NotGiven = NOT_GIVEN,
         action: audit_log_list_params.Action | NotGiven = NOT_GIVEN,
         actor: audit_log_list_params.Actor | NotGiven = NOT_GIVEN,
-        before: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        before: Union[Union[str, date], Union[str, datetime]] | NotGiven = NOT_GIVEN,
         direction: Literal["desc", "asc"] | NotGiven = NOT_GIVEN,
         export: bool | NotGiven = NOT_GIVEN,
         hide_user_logs: bool | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
-        since: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        since: Union[Union[str, date], Union[str, datetime]] | NotGiven = NOT_GIVEN,
         zone: audit_log_list_params.Zone | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -64,8 +75,8 @@ class AuditLogsResource(SyncAPIResource):
         Args:
           id: Finds a specific log by its ID.
 
-          before: Limits the returned results to logs older than the specified date. This can be a
-              date string `2019-04-30` or an absolute timestamp that conforms to RFC3339.
+          before: Limits the returned results to logs older than the specified date. A `full-date`
+              that conforms to RFC3339.
 
           direction: Changes the direction of the chronological sorting.
 
@@ -77,8 +88,8 @@ class AuditLogsResource(SyncAPIResource):
 
           per_page: Sets the number of results to return per page.
 
-          since: Limits the returned results to logs newer than the specified date. This can be a
-              date string `2019-04-30` or an absolute timestamp that conforms to RFC3339.
+          since: Limits the returned results to logs newer than the specified date. A `full-date`
+              that conforms to RFC3339.
 
           extra_headers: Send extra headers
 
@@ -120,10 +131,21 @@ class AuditLogsResource(SyncAPIResource):
 class AsyncAuditLogsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncAuditLogsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncAuditLogsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncAuditLogsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncAuditLogsResourceWithStreamingResponse(self)
 
     def list(
@@ -132,13 +154,13 @@ class AsyncAuditLogsResource(AsyncAPIResource):
         id: str | NotGiven = NOT_GIVEN,
         action: audit_log_list_params.Action | NotGiven = NOT_GIVEN,
         actor: audit_log_list_params.Actor | NotGiven = NOT_GIVEN,
-        before: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        before: Union[Union[str, date], Union[str, datetime]] | NotGiven = NOT_GIVEN,
         direction: Literal["desc", "asc"] | NotGiven = NOT_GIVEN,
         export: bool | NotGiven = NOT_GIVEN,
         hide_user_logs: bool | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
-        since: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        since: Union[Union[str, date], Union[str, datetime]] | NotGiven = NOT_GIVEN,
         zone: audit_log_list_params.Zone | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -155,8 +177,8 @@ class AsyncAuditLogsResource(AsyncAPIResource):
         Args:
           id: Finds a specific log by its ID.
 
-          before: Limits the returned results to logs older than the specified date. This can be a
-              date string `2019-04-30` or an absolute timestamp that conforms to RFC3339.
+          before: Limits the returned results to logs older than the specified date. A `full-date`
+              that conforms to RFC3339.
 
           direction: Changes the direction of the chronological sorting.
 
@@ -168,8 +190,8 @@ class AsyncAuditLogsResource(AsyncAPIResource):
 
           per_page: Sets the number of results to return per page.
 
-          since: Limits the returned results to logs newer than the specified date. This can be a
-              date string `2019-04-30` or an absolute timestamp that conforms to RFC3339.
+          since: Limits the returned results to logs newer than the specified date. A `full-date`
+              that conforms to RFC3339.
 
           extra_headers: Send extra headers
 

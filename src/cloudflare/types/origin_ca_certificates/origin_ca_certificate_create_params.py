@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import List
 from typing_extensions import TypedDict
 
 from ..ssl.request_validity import RequestValidity
@@ -15,7 +15,7 @@ class OriginCACertificateCreateParams(TypedDict, total=False):
     csr: str
     """The Certificate Signing Request (CSR). Must be newline-encoded."""
 
-    hostnames: Iterable[object]
+    hostnames: List[str]
     """
     Array of hostnames or wildcard names (e.g., \\**.example.com) bound to the
     certificate.

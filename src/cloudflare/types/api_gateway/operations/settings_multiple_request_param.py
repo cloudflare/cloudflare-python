@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Dict, Optional
-from typing_extensions import Literal, TypedDict
+from typing_extensions import Literal, TypeAlias, TypedDict
 
 __all__ = ["SettingsMultipleRequestParam", "SettingsMultipleRequestParamItem"]
 
@@ -21,4 +21,4 @@ class SettingsMultipleRequestParamItem(TypedDict, total=False):
     """
 
 
-SettingsMultipleRequestParam = Dict[str, SettingsMultipleRequestParamItem]
+SettingsMultipleRequestParam: TypeAlias = Dict[str, SettingsMultipleRequestParamItem]

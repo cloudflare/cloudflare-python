@@ -28,6 +28,7 @@ class TestVersions:
         version = client.workers.scripts.versions.create(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            metadata={"main_module": "worker.js"},
         )
         assert_matches_type(Optional[VersionCreateResponse], version, path=["response"])
 
@@ -37,8 +38,8 @@ class TestVersions:
         version = client.workers.scripts.versions.create(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            any_part_name=[b"raw file contents", b"raw file contents", b"raw file contents"],
             metadata={
+                "main_module": "worker.js",
                 "annotations": {
                     "workers_message": "Fixed worker code.",
                     "workers_tag": "workers/tag",
@@ -46,14 +47,12 @@ class TestVersions:
                 "bindings": [
                     {
                         "name": "MY_ENV_VAR",
-                        "text": "my_data",
                         "type": "plain_text",
                     }
                 ],
-                "compatibility_date": "2023-07-25",
-                "compatibility_flags": ["string", "string", "string"],
-                "keep_bindings": ["string", "string", "string"],
-                "main_module": "worker.js",
+                "compatibility_date": "2021-01-01",
+                "compatibility_flags": ["nodejs_compat"],
+                "keep_bindings": ["string"],
                 "usage_model": "standard",
             },
         )
@@ -65,6 +64,7 @@ class TestVersions:
         response = client.workers.scripts.versions.with_raw_response.create(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            metadata={"main_module": "worker.js"},
         )
 
         assert response.is_closed is True
@@ -78,6 +78,7 @@ class TestVersions:
         with client.workers.scripts.versions.with_streaming_response.create(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            metadata={"main_module": "worker.js"},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -94,12 +95,14 @@ class TestVersions:
             client.workers.scripts.versions.with_raw_response.create(
                 script_name="this-is_my_script-01",
                 account_id="",
+                metadata={"main_module": "worker.js"},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             client.workers.scripts.versions.with_raw_response.create(
                 script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                metadata={"main_module": "worker.js"},
             )
 
     @parametrize
@@ -231,6 +234,7 @@ class TestAsyncVersions:
         version = await async_client.workers.scripts.versions.create(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            metadata={"main_module": "worker.js"},
         )
         assert_matches_type(Optional[VersionCreateResponse], version, path=["response"])
 
@@ -240,8 +244,8 @@ class TestAsyncVersions:
         version = await async_client.workers.scripts.versions.create(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            any_part_name=[b"raw file contents", b"raw file contents", b"raw file contents"],
             metadata={
+                "main_module": "worker.js",
                 "annotations": {
                     "workers_message": "Fixed worker code.",
                     "workers_tag": "workers/tag",
@@ -249,14 +253,12 @@ class TestAsyncVersions:
                 "bindings": [
                     {
                         "name": "MY_ENV_VAR",
-                        "text": "my_data",
                         "type": "plain_text",
                     }
                 ],
-                "compatibility_date": "2023-07-25",
-                "compatibility_flags": ["string", "string", "string"],
-                "keep_bindings": ["string", "string", "string"],
-                "main_module": "worker.js",
+                "compatibility_date": "2021-01-01",
+                "compatibility_flags": ["nodejs_compat"],
+                "keep_bindings": ["string"],
                 "usage_model": "standard",
             },
         )
@@ -268,6 +270,7 @@ class TestAsyncVersions:
         response = await async_client.workers.scripts.versions.with_raw_response.create(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            metadata={"main_module": "worker.js"},
         )
 
         assert response.is_closed is True
@@ -281,6 +284,7 @@ class TestAsyncVersions:
         async with async_client.workers.scripts.versions.with_streaming_response.create(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            metadata={"main_module": "worker.js"},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -297,12 +301,14 @@ class TestAsyncVersions:
             await async_client.workers.scripts.versions.with_raw_response.create(
                 script_name="this-is_my_script-01",
                 account_id="",
+                metadata={"main_module": "worker.js"},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             await async_client.workers.scripts.versions.with_raw_response.create(
                 script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                metadata={"main_module": "worker.js"},
             )
 
     @parametrize

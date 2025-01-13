@@ -2,39 +2,44 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, TypedDict
+from typing import Union
+from typing_extensions import TypeAlias, TypedDict
 
 from .health_check_rate import HealthCheckRate
 from .health_check_type import HealthCheckType
 
-__all__ = ["HealthCheckParam"]
+__all__ = ["HealthCheckParam", "Target", "TargetMagicHealthCheckTarget"]
+
+
+class TargetMagicHealthCheckTarget(TypedDict, total=False):
+    saved: str
+    """The saved health check target.
+
+    Setting the value to the empty string indicates that the calculated default
+    value will be used.
+    """
+
+
+Target: TypeAlias = Union[TargetMagicHealthCheckTarget, str]
 
 
 class HealthCheckParam(TypedDict, total=False):
-    direction: Literal["unidirectional", "bidirectional"]
-    """The direction of the flow of the healthcheck.
-
-    Either unidirectional, where the probe comes to you via the tunnel and the
-    result comes back to Cloudflare via the open Internet, or bidirectional where
-    both the probe and result come and go via the tunnel. Note in the case of
-    bidirecitonal healthchecks, the target field in health_check is ignored as the
-    interface_address is used to send traffic into the tunnel.
-    """
-
     enabled: bool
     """Determines whether to run healthchecks for a tunnel."""
 
     rate: HealthCheckRate
     """How frequent the health check is run. The default value is `mid`."""
 
-    target: str
+    target: Target
     """The destination address in a request type health check.
 
     After the healthcheck is decapsulated at the customer end of the tunnel, the
     ICMP echo will be forwarded to this address. This field defaults to
     `customer_gre_endpoint address`. This field is ignored for bidirectional
     healthchecks as the interface_address (not assigned to the Cloudflare side of
-    the tunnel) is used as the target.
+    the tunnel) is used as the target. Must be in object form if the
+    x-magic-new-hc-target header is set to true and string form if
+    x-magic-new-hc-target is absent or set to false.
     """
 
     type: HealthCheckType

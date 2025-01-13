@@ -30,10 +30,21 @@ __all__ = ["WhoisResource", "AsyncWhoisResource"]
 class WhoisResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> WhoisResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return WhoisResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> WhoisResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return WhoisResourceWithStreamingResponse(self)
 
     def get(
@@ -81,10 +92,21 @@ class WhoisResource(SyncAPIResource):
 class AsyncWhoisResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncWhoisResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncWhoisResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncWhoisResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncWhoisResourceWithStreamingResponse(self)
 
     async def get(

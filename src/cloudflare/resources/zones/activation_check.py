@@ -25,10 +25,21 @@ __all__ = ["ActivationCheckResource", "AsyncActivationCheckResource"]
 class ActivationCheckResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ActivationCheckResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return ActivationCheckResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> ActivationCheckResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return ActivationCheckResourceWithStreamingResponse(self)
 
     def trigger(
@@ -76,10 +87,21 @@ class ActivationCheckResource(SyncAPIResource):
 class AsyncActivationCheckResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncActivationCheckResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncActivationCheckResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncActivationCheckResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
+        """
         return AsyncActivationCheckResourceWithStreamingResponse(self)
 
     async def trigger(

@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import List
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -21,8 +21,7 @@ class User(BaseModel):
     name: str
 
     user_id: str
-    """The ID for a user"""
 
 
 class SummaryGetResponse(BaseModel):
-    users: Optional[List[User]] = None
+    users: List[User]

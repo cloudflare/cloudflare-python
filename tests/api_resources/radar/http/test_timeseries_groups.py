@@ -37,29 +37,21 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_bot_class_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.http.timeseries_groups.bot_class(
-            agg_interval="1h",
-            asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            device_type=["DESKTOP", "MOBILE", "OTHER"],
+            agg_interval="15m",
+            asn=["string"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            device_type=["DESKTOP"],
             format="JSON",
-            http_protocol=["HTTP", "HTTPS"],
-            http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
-            ip_version=["IPv4", "IPv6"],
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
-            os=["WINDOWS", "MACOSX", "IOS"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
+            http_protocol=["HTTP"],
+            http_version=["HTTPv1"],
+            ip_version=["IPv4"],
+            location=["string"],
+            name=["string"],
+            os=["WINDOWS"],
+            tls_version=["TLSv1_0"],
         )
         assert_matches_type(TimeseriesGroupBotClassResponse, timeseries_group, path=["response"])
 
@@ -91,31 +83,23 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_browser_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.http.timeseries_groups.browser(
-            agg_interval="1h",
-            asn=["string", "string", "string"],
-            bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            device_type=["DESKTOP", "MOBILE", "OTHER"],
+            agg_interval="15m",
+            asn=["string"],
+            bot_class=["LIKELY_AUTOMATED"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            device_type=["DESKTOP"],
             format="JSON",
-            http_protocol=["HTTP", "HTTPS"],
-            http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
-            ip_version=["IPv4", "IPv6"],
-            limit_per_group=4,
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
-            os=["WINDOWS", "MACOSX", "IOS"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
+            http_protocol=["HTTP"],
+            http_version=["HTTPv1"],
+            ip_version=["IPv4"],
+            limit_per_group=10,
+            location=["string"],
+            name=["string"],
+            os=["WINDOWS"],
+            tls_version=["TLSv1_0"],
         )
         assert_matches_type(TimeseriesGroupBrowserResponse, timeseries_group, path=["response"])
 
@@ -147,30 +131,23 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_browser_family_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.http.timeseries_groups.browser_family(
-            agg_interval="1h",
-            asn=["string", "string", "string"],
-            bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            device_type=["DESKTOP", "MOBILE", "OTHER"],
+            agg_interval="15m",
+            asn=["string"],
+            bot_class=["LIKELY_AUTOMATED"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            device_type=["DESKTOP"],
             format="JSON",
-            http_protocol=["HTTP", "HTTPS"],
-            http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
-            ip_version=["IPv4", "IPv6"],
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
-            os=["WINDOWS", "MACOSX", "IOS"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
+            http_protocol=["HTTP"],
+            http_version=["HTTPv1"],
+            ip_version=["IPv4"],
+            limit_per_group=10,
+            location=["string"],
+            name=["string"],
+            os=["WINDOWS"],
+            tls_version=["TLSv1_0"],
         )
         assert_matches_type(TimeseriesGroupBrowserFamilyResponse, timeseries_group, path=["response"])
 
@@ -202,29 +179,21 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_device_type_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.http.timeseries_groups.device_type(
-            agg_interval="1h",
-            asn=["string", "string", "string"],
-            bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            agg_interval="15m",
+            asn=["string"],
+            bot_class=["LIKELY_AUTOMATED"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            http_protocol=["HTTP", "HTTPS"],
-            http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
-            ip_version=["IPv4", "IPv6"],
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
-            os=["WINDOWS", "MACOSX", "IOS"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
+            http_protocol=["HTTP"],
+            http_version=["HTTPv1"],
+            ip_version=["IPv4"],
+            location=["string"],
+            name=["string"],
+            os=["WINDOWS"],
+            tls_version=["TLSv1_0"],
         )
         assert_matches_type(TimeseriesGroupDeviceTypeResponse, timeseries_group, path=["response"])
 
@@ -256,29 +225,21 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_http_protocol_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.http.timeseries_groups.http_protocol(
-            agg_interval="1h",
-            asn=["string", "string", "string"],
-            bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            device_type=["DESKTOP", "MOBILE", "OTHER"],
+            agg_interval="15m",
+            asn=["string"],
+            bot_class=["LIKELY_AUTOMATED"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            device_type=["DESKTOP"],
             format="JSON",
-            http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
-            ip_version=["IPv4", "IPv6"],
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
-            os=["WINDOWS", "MACOSX", "IOS"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
+            http_version=["HTTPv1"],
+            ip_version=["IPv4"],
+            location=["string"],
+            name=["string"],
+            os=["WINDOWS"],
+            tls_version=["TLSv1_0"],
         )
         assert_matches_type(TimeseriesGroupHTTPProtocolResponse, timeseries_group, path=["response"])
 
@@ -310,29 +271,21 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_http_version_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.http.timeseries_groups.http_version(
-            agg_interval="1h",
-            asn=["string", "string", "string"],
-            bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            device_type=["DESKTOP", "MOBILE", "OTHER"],
+            agg_interval="15m",
+            asn=["string"],
+            bot_class=["LIKELY_AUTOMATED"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            device_type=["DESKTOP"],
             format="JSON",
-            http_protocol=["HTTP", "HTTPS"],
-            ip_version=["IPv4", "IPv6"],
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
-            os=["WINDOWS", "MACOSX", "IOS"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
+            http_protocol=["HTTP"],
+            ip_version=["IPv4"],
+            location=["string"],
+            name=["string"],
+            os=["WINDOWS"],
+            tls_version=["TLSv1_0"],
         )
         assert_matches_type(TimeseriesGroupHTTPVersionResponse, timeseries_group, path=["response"])
 
@@ -364,29 +317,21 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_ip_version_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.http.timeseries_groups.ip_version(
-            agg_interval="1h",
-            asn=["string", "string", "string"],
-            bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            device_type=["DESKTOP", "MOBILE", "OTHER"],
+            agg_interval="15m",
+            asn=["string"],
+            bot_class=["LIKELY_AUTOMATED"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            device_type=["DESKTOP"],
             format="JSON",
-            http_protocol=["HTTP", "HTTPS"],
-            http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
-            os=["WINDOWS", "MACOSX", "IOS"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
+            http_protocol=["HTTP"],
+            http_version=["HTTPv1"],
+            location=["string"],
+            name=["string"],
+            os=["WINDOWS"],
+            tls_version=["TLSv1_0"],
         )
         assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=["response"])
 
@@ -418,29 +363,21 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_os_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.http.timeseries_groups.os(
-            agg_interval="1h",
-            asn=["string", "string", "string"],
-            bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            device_type=["DESKTOP", "MOBILE", "OTHER"],
+            agg_interval="15m",
+            asn=["string"],
+            bot_class=["LIKELY_AUTOMATED"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            device_type=["DESKTOP"],
             format="JSON",
-            http_protocol=["HTTP", "HTTPS"],
-            http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
-            ip_version=["IPv4", "IPv6"],
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
+            http_protocol=["HTTP"],
+            http_version=["HTTPv1"],
+            ip_version=["IPv4"],
+            location=["string"],
+            name=["string"],
+            tls_version=["TLSv1_0"],
         )
         assert_matches_type(TimeseriesGroupOSResponse, timeseries_group, path=["response"])
 
@@ -472,30 +409,22 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_post_quantum_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.http.timeseries_groups.post_quantum(
-            agg_interval="1h",
-            asn=["string", "string", "string"],
-            bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            device_type=["DESKTOP", "MOBILE", "OTHER"],
+            agg_interval="15m",
+            asn=["string"],
+            bot_class=["LIKELY_AUTOMATED"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            device_type=["DESKTOP"],
             format="JSON",
-            http_protocol=["HTTP", "HTTPS"],
-            http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
-            ip_version=["IPv4", "IPv6"],
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
-            os=["WINDOWS", "MACOSX", "IOS"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
+            http_protocol=["HTTP"],
+            http_version=["HTTPv1"],
+            ip_version=["IPv4"],
+            location=["string"],
+            name=["string"],
+            os=["WINDOWS"],
+            tls_version=["TLSv1_0"],
         )
         assert_matches_type(TimeseriesGroupPostQuantumResponse, timeseries_group, path=["response"])
 
@@ -527,29 +456,21 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_tls_version_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.http.timeseries_groups.tls_version(
-            agg_interval="1h",
-            asn=["string", "string", "string"],
-            bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            device_type=["DESKTOP", "MOBILE", "OTHER"],
+            agg_interval="15m",
+            asn=["string"],
+            bot_class=["LIKELY_AUTOMATED"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            device_type=["DESKTOP"],
             format="JSON",
-            http_protocol=["HTTP", "HTTPS"],
-            http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
-            ip_version=["IPv4", "IPv6"],
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
-            os=["WINDOWS", "MACOSX", "IOS"],
+            http_protocol=["HTTP"],
+            http_version=["HTTPv1"],
+            ip_version=["IPv4"],
+            location=["string"],
+            name=["string"],
+            os=["WINDOWS"],
         )
         assert_matches_type(TimeseriesGroupTLSVersionResponse, timeseries_group, path=["response"])
 
@@ -585,29 +506,21 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_bot_class_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.http.timeseries_groups.bot_class(
-            agg_interval="1h",
-            asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            device_type=["DESKTOP", "MOBILE", "OTHER"],
+            agg_interval="15m",
+            asn=["string"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            device_type=["DESKTOP"],
             format="JSON",
-            http_protocol=["HTTP", "HTTPS"],
-            http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
-            ip_version=["IPv4", "IPv6"],
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
-            os=["WINDOWS", "MACOSX", "IOS"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
+            http_protocol=["HTTP"],
+            http_version=["HTTPv1"],
+            ip_version=["IPv4"],
+            location=["string"],
+            name=["string"],
+            os=["WINDOWS"],
+            tls_version=["TLSv1_0"],
         )
         assert_matches_type(TimeseriesGroupBotClassResponse, timeseries_group, path=["response"])
 
@@ -639,31 +552,23 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_browser_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.http.timeseries_groups.browser(
-            agg_interval="1h",
-            asn=["string", "string", "string"],
-            bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            device_type=["DESKTOP", "MOBILE", "OTHER"],
+            agg_interval="15m",
+            asn=["string"],
+            bot_class=["LIKELY_AUTOMATED"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            device_type=["DESKTOP"],
             format="JSON",
-            http_protocol=["HTTP", "HTTPS"],
-            http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
-            ip_version=["IPv4", "IPv6"],
-            limit_per_group=4,
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
-            os=["WINDOWS", "MACOSX", "IOS"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
+            http_protocol=["HTTP"],
+            http_version=["HTTPv1"],
+            ip_version=["IPv4"],
+            limit_per_group=10,
+            location=["string"],
+            name=["string"],
+            os=["WINDOWS"],
+            tls_version=["TLSv1_0"],
         )
         assert_matches_type(TimeseriesGroupBrowserResponse, timeseries_group, path=["response"])
 
@@ -695,30 +600,23 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_browser_family_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.http.timeseries_groups.browser_family(
-            agg_interval="1h",
-            asn=["string", "string", "string"],
-            bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            device_type=["DESKTOP", "MOBILE", "OTHER"],
+            agg_interval="15m",
+            asn=["string"],
+            bot_class=["LIKELY_AUTOMATED"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            device_type=["DESKTOP"],
             format="JSON",
-            http_protocol=["HTTP", "HTTPS"],
-            http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
-            ip_version=["IPv4", "IPv6"],
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
-            os=["WINDOWS", "MACOSX", "IOS"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
+            http_protocol=["HTTP"],
+            http_version=["HTTPv1"],
+            ip_version=["IPv4"],
+            limit_per_group=10,
+            location=["string"],
+            name=["string"],
+            os=["WINDOWS"],
+            tls_version=["TLSv1_0"],
         )
         assert_matches_type(TimeseriesGroupBrowserFamilyResponse, timeseries_group, path=["response"])
 
@@ -750,29 +648,21 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_device_type_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.http.timeseries_groups.device_type(
-            agg_interval="1h",
-            asn=["string", "string", "string"],
-            bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
+            agg_interval="15m",
+            asn=["string"],
+            bot_class=["LIKELY_AUTOMATED"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            http_protocol=["HTTP", "HTTPS"],
-            http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
-            ip_version=["IPv4", "IPv6"],
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
-            os=["WINDOWS", "MACOSX", "IOS"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
+            http_protocol=["HTTP"],
+            http_version=["HTTPv1"],
+            ip_version=["IPv4"],
+            location=["string"],
+            name=["string"],
+            os=["WINDOWS"],
+            tls_version=["TLSv1_0"],
         )
         assert_matches_type(TimeseriesGroupDeviceTypeResponse, timeseries_group, path=["response"])
 
@@ -804,29 +694,21 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_http_protocol_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.http.timeseries_groups.http_protocol(
-            agg_interval="1h",
-            asn=["string", "string", "string"],
-            bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            device_type=["DESKTOP", "MOBILE", "OTHER"],
+            agg_interval="15m",
+            asn=["string"],
+            bot_class=["LIKELY_AUTOMATED"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            device_type=["DESKTOP"],
             format="JSON",
-            http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
-            ip_version=["IPv4", "IPv6"],
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
-            os=["WINDOWS", "MACOSX", "IOS"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
+            http_version=["HTTPv1"],
+            ip_version=["IPv4"],
+            location=["string"],
+            name=["string"],
+            os=["WINDOWS"],
+            tls_version=["TLSv1_0"],
         )
         assert_matches_type(TimeseriesGroupHTTPProtocolResponse, timeseries_group, path=["response"])
 
@@ -858,29 +740,21 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_http_version_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.http.timeseries_groups.http_version(
-            agg_interval="1h",
-            asn=["string", "string", "string"],
-            bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            device_type=["DESKTOP", "MOBILE", "OTHER"],
+            agg_interval="15m",
+            asn=["string"],
+            bot_class=["LIKELY_AUTOMATED"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            device_type=["DESKTOP"],
             format="JSON",
-            http_protocol=["HTTP", "HTTPS"],
-            ip_version=["IPv4", "IPv6"],
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
-            os=["WINDOWS", "MACOSX", "IOS"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
+            http_protocol=["HTTP"],
+            ip_version=["IPv4"],
+            location=["string"],
+            name=["string"],
+            os=["WINDOWS"],
+            tls_version=["TLSv1_0"],
         )
         assert_matches_type(TimeseriesGroupHTTPVersionResponse, timeseries_group, path=["response"])
 
@@ -912,29 +786,21 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_ip_version_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.http.timeseries_groups.ip_version(
-            agg_interval="1h",
-            asn=["string", "string", "string"],
-            bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            device_type=["DESKTOP", "MOBILE", "OTHER"],
+            agg_interval="15m",
+            asn=["string"],
+            bot_class=["LIKELY_AUTOMATED"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            device_type=["DESKTOP"],
             format="JSON",
-            http_protocol=["HTTP", "HTTPS"],
-            http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
-            os=["WINDOWS", "MACOSX", "IOS"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
+            http_protocol=["HTTP"],
+            http_version=["HTTPv1"],
+            location=["string"],
+            name=["string"],
+            os=["WINDOWS"],
+            tls_version=["TLSv1_0"],
         )
         assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=["response"])
 
@@ -966,29 +832,21 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_os_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.http.timeseries_groups.os(
-            agg_interval="1h",
-            asn=["string", "string", "string"],
-            bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            device_type=["DESKTOP", "MOBILE", "OTHER"],
+            agg_interval="15m",
+            asn=["string"],
+            bot_class=["LIKELY_AUTOMATED"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            device_type=["DESKTOP"],
             format="JSON",
-            http_protocol=["HTTP", "HTTPS"],
-            http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
-            ip_version=["IPv4", "IPv6"],
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
+            http_protocol=["HTTP"],
+            http_version=["HTTPv1"],
+            ip_version=["IPv4"],
+            location=["string"],
+            name=["string"],
+            tls_version=["TLSv1_0"],
         )
         assert_matches_type(TimeseriesGroupOSResponse, timeseries_group, path=["response"])
 
@@ -1020,30 +878,22 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_post_quantum_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.http.timeseries_groups.post_quantum(
-            agg_interval="1h",
-            asn=["string", "string", "string"],
-            bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            device_type=["DESKTOP", "MOBILE", "OTHER"],
+            agg_interval="15m",
+            asn=["string"],
+            bot_class=["LIKELY_AUTOMATED"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            device_type=["DESKTOP"],
             format="JSON",
-            http_protocol=["HTTP", "HTTPS"],
-            http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
-            ip_version=["IPv4", "IPv6"],
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
-            os=["WINDOWS", "MACOSX", "IOS"],
-            tls_version=["TLSv1_0", "TLSv1_1", "TLSv1_2"],
+            http_protocol=["HTTP"],
+            http_version=["HTTPv1"],
+            ip_version=["IPv4"],
+            location=["string"],
+            name=["string"],
+            os=["WINDOWS"],
+            tls_version=["TLSv1_0"],
         )
         assert_matches_type(TimeseriesGroupPostQuantumResponse, timeseries_group, path=["response"])
 
@@ -1075,29 +925,21 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_tls_version_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.http.timeseries_groups.tls_version(
-            agg_interval="1h",
-            asn=["string", "string", "string"],
-            bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            device_type=["DESKTOP", "MOBILE", "OTHER"],
+            agg_interval="15m",
+            asn=["string"],
+            bot_class=["LIKELY_AUTOMATED"],
+            continent=["string"],
+            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_range=["7d"],
+            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            device_type=["DESKTOP"],
             format="JSON",
-            http_protocol=["HTTP", "HTTPS"],
-            http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
-            ip_version=["IPv4", "IPv6"],
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
-            os=["WINDOWS", "MACOSX", "IOS"],
+            http_protocol=["HTTP"],
+            http_version=["HTTPv1"],
+            ip_version=["IPv4"],
+            location=["string"],
+            name=["string"],
+            os=["WINDOWS"],
         )
         assert_matches_type(TimeseriesGroupTLSVersionResponse, timeseries_group, path=["response"])
 
