@@ -35,7 +35,7 @@ class TraceItem(BaseModel):
     step_name: Optional[str] = None
     """Tracing step identifying name"""
 
-    trace: Optional[Trace] = None
+    trace: Optional["Trace"] = None
 
     type: Optional[str] = None
     """Tracing step type"""
