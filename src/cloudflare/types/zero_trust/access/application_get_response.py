@@ -23,8 +23,6 @@ __all__ = [
     "ApplicationGetResponse",
     "SelfHostedApplication",
     "SelfHostedApplicationDestination",
-    "SelfHostedApplicationDestinationPublicDestination",
-    "SelfHostedApplicationDestinationPrivateDestination",
     "SelfHostedApplicationPolicy",
     "SelfHostedApplicationSCIMConfig",
     "SelfHostedApplicationSCIMConfigAuthentication",
@@ -41,8 +39,6 @@ __all__ = [
     "SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
     "BrowserSSHApplication",
     "BrowserSSHApplicationDestination",
-    "BrowserSSHApplicationDestinationPublicDestination",
-    "BrowserSSHApplicationDestinationPrivateDestination",
     "BrowserSSHApplicationPolicy",
     "BrowserSSHApplicationSCIMConfig",
     "BrowserSSHApplicationSCIMConfigAuthentication",
@@ -51,8 +47,6 @@ __all__ = [
     "BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
     "BrowserVNCApplication",
     "BrowserVNCApplicationDestination",
-    "BrowserVNCApplicationDestinationPublicDestination",
-    "BrowserVNCApplicationDestinationPrivateDestination",
     "BrowserVNCApplicationPolicy",
     "BrowserVNCApplicationSCIMConfig",
     "BrowserVNCApplicationSCIMConfigAuthentication",
@@ -105,45 +99,18 @@ __all__ = [
 ]
 
 
-class SelfHostedApplicationDestinationPublicDestination(BaseModel):
-    type: Optional[Literal["public"]] = None
+class SelfHostedApplicationDestination(BaseModel):
+    type: Optional[Literal["public", "private"]] = None
 
     uri: Optional[str] = None
     """The URI of the destination.
 
-    Public destinations' URIs can include a domain and path with
+    Public destinations can include a domain and path with
     [wildcards](https://developers.cloudflare.com/cloudflare-one/policies/access/app-paths/).
+    Private destinations are an early access feature and gated behind a feature
+    flag. Private destinations support private IPv4, IPv6, and Server Name
+    Indications (SNI) with optional port ranges.
     """
-
-
-class SelfHostedApplicationDestinationPrivateDestination(BaseModel):
-    cidr: Optional[str] = None
-    """The CIDR range of the destination. Single IPs will be computed as /32."""
-
-    hostname: Optional[str] = None
-    """The hostname of the destination. Matches a valid SNI served by an HTTPS origin."""
-
-    l4_protocol: Optional[Literal["tcp", "udp"]] = None
-    """The L4 protocol of the destination.
-
-    When omitted, both UDP and TCP traffic will match.
-    """
-
-    port_range: Optional[str] = None
-    """The port range of the destination.
-
-    Can be a single port or a range of ports. When omitted, all ports will match.
-    """
-
-    type: Optional[Literal["private"]] = None
-
-    vnet_id: Optional[str] = None
-    """The VNET ID to match the destination. When omitted, all VNETs will match."""
-
-
-SelfHostedApplicationDestination: TypeAlias = Union[
-    SelfHostedApplicationDestinationPublicDestination, SelfHostedApplicationDestinationPrivateDestination
-]
 
 
 class SelfHostedApplicationPolicy(ApplicationPolicy):
@@ -540,45 +507,18 @@ class SaaSApplication(BaseModel):
     updated_at: Optional[datetime] = None
 
 
-class BrowserSSHApplicationDestinationPublicDestination(BaseModel):
-    type: Optional[Literal["public"]] = None
+class BrowserSSHApplicationDestination(BaseModel):
+    type: Optional[Literal["public", "private"]] = None
 
     uri: Optional[str] = None
     """The URI of the destination.
 
-    Public destinations' URIs can include a domain and path with
+    Public destinations can include a domain and path with
     [wildcards](https://developers.cloudflare.com/cloudflare-one/policies/access/app-paths/).
+    Private destinations are an early access feature and gated behind a feature
+    flag. Private destinations support private IPv4, IPv6, and Server Name
+    Indications (SNI) with optional port ranges.
     """
-
-
-class BrowserSSHApplicationDestinationPrivateDestination(BaseModel):
-    cidr: Optional[str] = None
-    """The CIDR range of the destination. Single IPs will be computed as /32."""
-
-    hostname: Optional[str] = None
-    """The hostname of the destination. Matches a valid SNI served by an HTTPS origin."""
-
-    l4_protocol: Optional[Literal["tcp", "udp"]] = None
-    """The L4 protocol of the destination.
-
-    When omitted, both UDP and TCP traffic will match.
-    """
-
-    port_range: Optional[str] = None
-    """The port range of the destination.
-
-    Can be a single port or a range of ports. When omitted, all ports will match.
-    """
-
-    type: Optional[Literal["private"]] = None
-
-    vnet_id: Optional[str] = None
-    """The VNET ID to match the destination. When omitted, all VNETs will match."""
-
-
-BrowserSSHApplicationDestination: TypeAlias = Union[
-    BrowserSSHApplicationDestinationPublicDestination, BrowserSSHApplicationDestinationPrivateDestination
-]
 
 
 class BrowserSSHApplicationPolicy(ApplicationPolicy):
@@ -822,45 +762,18 @@ class BrowserSSHApplication(BaseModel):
     updated_at: Optional[datetime] = None
 
 
-class BrowserVNCApplicationDestinationPublicDestination(BaseModel):
-    type: Optional[Literal["public"]] = None
+class BrowserVNCApplicationDestination(BaseModel):
+    type: Optional[Literal["public", "private"]] = None
 
     uri: Optional[str] = None
     """The URI of the destination.
 
-    Public destinations' URIs can include a domain and path with
+    Public destinations can include a domain and path with
     [wildcards](https://developers.cloudflare.com/cloudflare-one/policies/access/app-paths/).
+    Private destinations are an early access feature and gated behind a feature
+    flag. Private destinations support private IPv4, IPv6, and Server Name
+    Indications (SNI) with optional port ranges.
     """
-
-
-class BrowserVNCApplicationDestinationPrivateDestination(BaseModel):
-    cidr: Optional[str] = None
-    """The CIDR range of the destination. Single IPs will be computed as /32."""
-
-    hostname: Optional[str] = None
-    """The hostname of the destination. Matches a valid SNI served by an HTTPS origin."""
-
-    l4_protocol: Optional[Literal["tcp", "udp"]] = None
-    """The L4 protocol of the destination.
-
-    When omitted, both UDP and TCP traffic will match.
-    """
-
-    port_range: Optional[str] = None
-    """The port range of the destination.
-
-    Can be a single port or a range of ports. When omitted, all ports will match.
-    """
-
-    type: Optional[Literal["private"]] = None
-
-    vnet_id: Optional[str] = None
-    """The VNET ID to match the destination. When omitted, all VNETs will match."""
-
-
-BrowserVNCApplicationDestination: TypeAlias = Union[
-    BrowserVNCApplicationDestinationPublicDestination, BrowserVNCApplicationDestinationPrivateDestination
-]
 
 
 class BrowserVNCApplicationPolicy(ApplicationPolicy):
