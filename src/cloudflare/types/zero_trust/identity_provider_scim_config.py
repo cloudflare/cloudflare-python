@@ -23,6 +23,9 @@ class IdentityProviderSCIMConfig(BaseModel):
     updates in any way and users will not be prompted to reauthenticate.
     """
 
+    scim_base_url: Optional[str] = None
+    """The base URL of Cloudflare's SCIM V2.0 API endpoint."""
+
     seat_deprovision: Optional[bool] = None
     """
     A flag to remove a user's seat in Zero Trust when they have been deprovisioned
@@ -34,7 +37,7 @@ class IdentityProviderSCIMConfig(BaseModel):
     """
     A read-only token generated when the SCIM integration is enabled for the first
     time. It is redacted on subsequent requests. If you lose this you will need to
-    refresh it token at /access/identity_providers/:idpID/refresh_scim_secret.
+    refresh it at /access/identity_providers/:idpID/refresh_scim_secret.
     """
 
     user_deprovision: Optional[bool] = None
