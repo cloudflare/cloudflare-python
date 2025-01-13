@@ -93,6 +93,8 @@ class Filter(TypedDict, total=False):
             "request_type",
             "metadata.key",
             "metadata.value",
+            "prompts.prompt_id",
+            "prompts.version_id",
         ]
     ]
 
