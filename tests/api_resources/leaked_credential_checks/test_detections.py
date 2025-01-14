@@ -72,7 +72,7 @@ class TestDetections:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         detection = client.leaked_credential_checks.detections.update(
-            detection_id="18a14bafaa8eb1df04ce683ec18c765e",
+            detection_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(DetectionUpdateResponse, detection, path=["response"])
@@ -80,7 +80,7 @@ class TestDetections:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         detection = client.leaked_credential_checks.detections.update(
-            detection_id="18a14bafaa8eb1df04ce683ec18c765e",
+            detection_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             password='lookup_json_string(http.request.body.raw, "secret")',
             username='lookup_json_string(http.request.body.raw, "user")',
@@ -90,7 +90,7 @@ class TestDetections:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.leaked_credential_checks.detections.with_raw_response.update(
-            detection_id="18a14bafaa8eb1df04ce683ec18c765e",
+            detection_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -102,7 +102,7 @@ class TestDetections:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.leaked_credential_checks.detections.with_streaming_response.update(
-            detection_id="18a14bafaa8eb1df04ce683ec18c765e",
+            detection_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -117,7 +117,7 @@ class TestDetections:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.leaked_credential_checks.detections.with_raw_response.update(
-                detection_id="18a14bafaa8eb1df04ce683ec18c765e",
+                detection_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
             )
 
@@ -168,7 +168,7 @@ class TestDetections:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         detection = client.leaked_credential_checks.detections.delete(
-            detection_id="18a14bafaa8eb1df04ce683ec18c765e",
+            detection_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(object, detection, path=["response"])
@@ -176,7 +176,7 @@ class TestDetections:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.leaked_credential_checks.detections.with_raw_response.delete(
-            detection_id="18a14bafaa8eb1df04ce683ec18c765e",
+            detection_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -188,7 +188,7 @@ class TestDetections:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.leaked_credential_checks.detections.with_streaming_response.delete(
-            detection_id="18a14bafaa8eb1df04ce683ec18c765e",
+            detection_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -203,7 +203,7 @@ class TestDetections:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.leaked_credential_checks.detections.with_raw_response.delete(
-                detection_id="18a14bafaa8eb1df04ce683ec18c765e",
+                detection_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
             )
 
@@ -267,7 +267,7 @@ class TestAsyncDetections:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         detection = await async_client.leaked_credential_checks.detections.update(
-            detection_id="18a14bafaa8eb1df04ce683ec18c765e",
+            detection_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(DetectionUpdateResponse, detection, path=["response"])
@@ -275,7 +275,7 @@ class TestAsyncDetections:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         detection = await async_client.leaked_credential_checks.detections.update(
-            detection_id="18a14bafaa8eb1df04ce683ec18c765e",
+            detection_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             password='lookup_json_string(http.request.body.raw, "secret")',
             username='lookup_json_string(http.request.body.raw, "user")',
@@ -285,7 +285,7 @@ class TestAsyncDetections:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.leaked_credential_checks.detections.with_raw_response.update(
-            detection_id="18a14bafaa8eb1df04ce683ec18c765e",
+            detection_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -297,7 +297,7 @@ class TestAsyncDetections:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.leaked_credential_checks.detections.with_streaming_response.update(
-            detection_id="18a14bafaa8eb1df04ce683ec18c765e",
+            detection_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -312,7 +312,7 @@ class TestAsyncDetections:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.leaked_credential_checks.detections.with_raw_response.update(
-                detection_id="18a14bafaa8eb1df04ce683ec18c765e",
+                detection_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
             )
 
@@ -363,7 +363,7 @@ class TestAsyncDetections:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         detection = await async_client.leaked_credential_checks.detections.delete(
-            detection_id="18a14bafaa8eb1df04ce683ec18c765e",
+            detection_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(object, detection, path=["response"])
@@ -371,7 +371,7 @@ class TestAsyncDetections:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.leaked_credential_checks.detections.with_raw_response.delete(
-            detection_id="18a14bafaa8eb1df04ce683ec18c765e",
+            detection_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -383,7 +383,7 @@ class TestAsyncDetections:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.leaked_credential_checks.detections.with_streaming_response.delete(
-            detection_id="18a14bafaa8eb1df04ce683ec18c765e",
+            detection_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -398,7 +398,7 @@ class TestAsyncDetections:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.leaked_credential_checks.detections.with_raw_response.delete(
-                detection_id="18a14bafaa8eb1df04ce683ec18c765e",
+                detection_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
             )
 

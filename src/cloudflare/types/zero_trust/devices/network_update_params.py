@@ -11,10 +11,6 @@ class NetworkUpdateParams(TypedDict, total=False):
     account_id: Required[str]
 
     config: Config
-    """
-    The configuration object containing information for the WARP client to detect
-    the managed network.
-    """
 
     name: str
     """The name of the device managed network. This name must be unique."""
