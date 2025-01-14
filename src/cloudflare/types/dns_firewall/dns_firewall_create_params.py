@@ -15,11 +15,6 @@ class DNSFirewallCreateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
-    name: Required[str]
-    """DNS Firewall cluster name"""
-
-    upstream_ips: Required[List[UpstreamIPs]]
-
     attack_mitigation: Optional[AttackMitigationParam]
     """Attack mitigation settings"""
 
@@ -43,6 +38,9 @@ class DNSFirewallCreateParams(TypedDict, total=False):
     increased to the minimum defined here for caching purposes.
     """
 
+    name: str
+    """DNS Firewall cluster name"""
+
     negative_cache_ttl: Optional[float]
     """
     Negative DNS cache TTL This setting controls how long DNS Firewall should cache
@@ -60,3 +58,5 @@ class DNSFirewallCreateParams(TypedDict, total=False):
     Number of retries for fetching DNS responses from upstream nameservers (not
     counting the initial attempt)
     """
+
+    upstream_ips: List[UpstreamIPs]

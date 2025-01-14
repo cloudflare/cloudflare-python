@@ -86,7 +86,7 @@ class AppsResource(SyncAPIResource):
         origin.
 
         Args:
-          zone_id: Zone identifier.
+          zone_id: Identifier
 
           dns: The name and type of DNS record for the Spectrum application.
 
@@ -140,6 +140,7 @@ class AppsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        id: str,
         dns: DNSParam,
         protocol: str,
         origin_direct: List[str] | NotGiven = NOT_GIVEN,
@@ -155,7 +156,9 @@ class AppsResource(SyncAPIResource):
         origin.
 
         Args:
-          zone_id: Zone identifier.
+          zone_id: Identifier
+
+          id: Identifier
 
           dns: The name and type of DNS record for the Spectrum application.
 
@@ -177,7 +180,7 @@ class AppsResource(SyncAPIResource):
 
     @required_args(
         ["zone_id", "dns", "ip_firewall", "protocol", "proxy_protocol", "tls", "traffic_type"],
-        ["zone_id", "dns", "protocol"],
+        ["zone_id", "id", "dns", "protocol"],
     )
     def create(
         self,
@@ -194,6 +197,7 @@ class AppsResource(SyncAPIResource):
         origin_direct: List[str] | NotGiven = NOT_GIVEN,
         origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
         origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -220,6 +224,7 @@ class AppsResource(SyncAPIResource):
                         "origin_direct": origin_direct,
                         "origin_dns": origin_dns,
                         "origin_port": origin_port,
+                        "id": id,
                     },
                     app_create_params.AppCreateParams,
                 ),
@@ -265,9 +270,9 @@ class AppsResource(SyncAPIResource):
         the origin.
 
         Args:
-          zone_id: Zone identifier.
+          zone_id: Identifier
 
-          app_id: App identifier.
+          app_id: Identifier
 
           dns: The name and type of DNS record for the Spectrum application.
 
@@ -322,6 +327,7 @@ class AppsResource(SyncAPIResource):
         app_id: str,
         *,
         zone_id: str,
+        id: str,
         dns: DNSParam,
         protocol: str,
         origin_direct: List[str] | NotGiven = NOT_GIVEN,
@@ -337,9 +343,11 @@ class AppsResource(SyncAPIResource):
         the origin.
 
         Args:
-          zone_id: Zone identifier.
+          zone_id: Identifier
 
-          app_id: App identifier.
+          app_id: Identifier
+
+          id: Identifier
 
           dns: The name and type of DNS record for the Spectrum application.
 
@@ -361,7 +369,7 @@ class AppsResource(SyncAPIResource):
 
     @required_args(
         ["zone_id", "dns", "ip_firewall", "protocol", "proxy_protocol", "tls", "traffic_type"],
-        ["zone_id", "dns", "protocol"],
+        ["zone_id", "id", "dns", "protocol"],
     )
     def update(
         self,
@@ -379,6 +387,7 @@ class AppsResource(SyncAPIResource):
         origin_direct: List[str] | NotGiven = NOT_GIVEN,
         origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
         origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -407,6 +416,7 @@ class AppsResource(SyncAPIResource):
                         "origin_direct": origin_direct,
                         "origin_dns": origin_dns,
                         "origin_port": origin_port,
+                        "id": id,
                     },
                     app_update_params.AppUpdateParams,
                 ),
@@ -442,7 +452,7 @@ class AppsResource(SyncAPIResource):
         Retrieves a list of currently existing Spectrum applications inside a zone.
 
         Args:
-          zone_id: Zone identifier.
+          zone_id: Identifier
 
           direction: Sets the direction by which results are ordered.
 
@@ -501,9 +511,9 @@ class AppsResource(SyncAPIResource):
         Deletes a previously existing application.
 
         Args:
-          zone_id: Zone identifier.
+          zone_id: Identifier
 
-          app_id: App identifier.
+          app_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -545,9 +555,9 @@ class AppsResource(SyncAPIResource):
         Gets the application configuration of a specific application inside a zone.
 
         Args:
-          zone_id: Zone identifier.
+          zone_id: Identifier
 
-          app_id: App identifier.
+          app_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -627,7 +637,7 @@ class AsyncAppsResource(AsyncAPIResource):
         origin.
 
         Args:
-          zone_id: Zone identifier.
+          zone_id: Identifier
 
           dns: The name and type of DNS record for the Spectrum application.
 
@@ -681,6 +691,7 @@ class AsyncAppsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        id: str,
         dns: DNSParam,
         protocol: str,
         origin_direct: List[str] | NotGiven = NOT_GIVEN,
@@ -696,7 +707,9 @@ class AsyncAppsResource(AsyncAPIResource):
         origin.
 
         Args:
-          zone_id: Zone identifier.
+          zone_id: Identifier
+
+          id: Identifier
 
           dns: The name and type of DNS record for the Spectrum application.
 
@@ -718,7 +731,7 @@ class AsyncAppsResource(AsyncAPIResource):
 
     @required_args(
         ["zone_id", "dns", "ip_firewall", "protocol", "proxy_protocol", "tls", "traffic_type"],
-        ["zone_id", "dns", "protocol"],
+        ["zone_id", "id", "dns", "protocol"],
     )
     async def create(
         self,
@@ -735,6 +748,7 @@ class AsyncAppsResource(AsyncAPIResource):
         origin_direct: List[str] | NotGiven = NOT_GIVEN,
         origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
         origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -761,6 +775,7 @@ class AsyncAppsResource(AsyncAPIResource):
                         "origin_direct": origin_direct,
                         "origin_dns": origin_dns,
                         "origin_port": origin_port,
+                        "id": id,
                     },
                     app_create_params.AppCreateParams,
                 ),
@@ -806,9 +821,9 @@ class AsyncAppsResource(AsyncAPIResource):
         the origin.
 
         Args:
-          zone_id: Zone identifier.
+          zone_id: Identifier
 
-          app_id: App identifier.
+          app_id: Identifier
 
           dns: The name and type of DNS record for the Spectrum application.
 
@@ -863,6 +878,7 @@ class AsyncAppsResource(AsyncAPIResource):
         app_id: str,
         *,
         zone_id: str,
+        id: str,
         dns: DNSParam,
         protocol: str,
         origin_direct: List[str] | NotGiven = NOT_GIVEN,
@@ -878,9 +894,11 @@ class AsyncAppsResource(AsyncAPIResource):
         the origin.
 
         Args:
-          zone_id: Zone identifier.
+          zone_id: Identifier
 
-          app_id: App identifier.
+          app_id: Identifier
+
+          id: Identifier
 
           dns: The name and type of DNS record for the Spectrum application.
 
@@ -902,7 +920,7 @@ class AsyncAppsResource(AsyncAPIResource):
 
     @required_args(
         ["zone_id", "dns", "ip_firewall", "protocol", "proxy_protocol", "tls", "traffic_type"],
-        ["zone_id", "dns", "protocol"],
+        ["zone_id", "id", "dns", "protocol"],
     )
     async def update(
         self,
@@ -920,6 +938,7 @@ class AsyncAppsResource(AsyncAPIResource):
         origin_direct: List[str] | NotGiven = NOT_GIVEN,
         origin_dns: OriginDNSParam | NotGiven = NOT_GIVEN,
         origin_port: OriginPortParam | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -948,6 +967,7 @@ class AsyncAppsResource(AsyncAPIResource):
                         "origin_direct": origin_direct,
                         "origin_dns": origin_dns,
                         "origin_port": origin_port,
+                        "id": id,
                     },
                     app_update_params.AppUpdateParams,
                 ),
@@ -983,7 +1003,7 @@ class AsyncAppsResource(AsyncAPIResource):
         Retrieves a list of currently existing Spectrum applications inside a zone.
 
         Args:
-          zone_id: Zone identifier.
+          zone_id: Identifier
 
           direction: Sets the direction by which results are ordered.
 
@@ -1042,9 +1062,9 @@ class AsyncAppsResource(AsyncAPIResource):
         Deletes a previously existing application.
 
         Args:
-          zone_id: Zone identifier.
+          zone_id: Identifier
 
-          app_id: App identifier.
+          app_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -1086,9 +1106,9 @@ class AsyncAppsResource(AsyncAPIResource):
         Gets the application configuration of a specific application inside a zone.
 
         Args:
-          zone_id: Zone identifier.
+          zone_id: Identifier
 
-          app_id: App identifier.
+          app_id: Identifier
 
           extra_headers: Send extra headers
 

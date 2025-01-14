@@ -24,7 +24,7 @@ class Integration(BaseModel):
     """API UUID."""
 
     config: Optional[Config] = None
-    """The configuration object containing third-party integration information."""
+    """The Workspace One Config Response."""
 
     interval: Optional[str] = None
     """The interval between each posture check with the third-party API.
