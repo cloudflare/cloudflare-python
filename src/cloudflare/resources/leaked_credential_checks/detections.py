@@ -122,7 +122,7 @@ class DetectionsResource(SyncAPIResource):
         Args:
           zone_id: Identifier
 
-          detection_id: The unique ID for this custom detection
+          detection_id: Identifier
 
           password: The ruleset expression to use in matching the password in a request
 
@@ -213,7 +213,7 @@ class DetectionsResource(SyncAPIResource):
         Args:
           zone_id: Identifier
 
-          detection_id: The unique ID for this custom detection
+          detection_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -332,7 +332,7 @@ class AsyncDetectionsResource(AsyncAPIResource):
         Args:
           zone_id: Identifier
 
-          detection_id: The unique ID for this custom detection
+          detection_id: Identifier
 
           password: The ruleset expression to use in matching the password in a request
 
@@ -423,7 +423,7 @@ class AsyncDetectionsResource(AsyncAPIResource):
         Args:
           zone_id: Identifier
 
-          detection_id: The unique ID for this custom detection
+          detection_id: Identifier
 
           extra_headers: Send extra headers
 

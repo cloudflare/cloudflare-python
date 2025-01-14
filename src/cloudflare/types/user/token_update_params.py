@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import List, Union, Iterable
 from datetime import datetime
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Literal, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 from ..shared_params.token_policy import TokenPolicy
@@ -14,15 +14,6 @@ __all__ = ["TokenUpdateParams", "Condition", "ConditionRequestIP"]
 
 
 class TokenUpdateParams(TypedDict, total=False):
-    name: Required[str]
-    """Token name."""
-
-    policies: Required[Iterable[TokenPolicy]]
-    """List of access policies assigned to the token."""
-
-    status: Required[Literal["active", "disabled", "expired"]]
-    """Status of the token."""
-
     condition: Condition
 
     expires_on: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
@@ -31,8 +22,17 @@ class TokenUpdateParams(TypedDict, total=False):
     processing.
     """
 
+    name: str
+    """Token name."""
+
     not_before: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """The time before which the token MUST NOT be accepted for processing."""
+
+    policies: Iterable[TokenPolicy]
+    """List of access policies assigned to the token."""
+
+    status: Literal["active", "disabled", "expired"]
+    """Status of the token."""
 
 
 _ConditionRequestIPReservedKeywords = TypedDict(

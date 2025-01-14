@@ -145,7 +145,7 @@ class PayloadsResource(SyncAPIResource):
         Args:
           zone_id: Identifier
 
-          expression_id: The unique ID for this custom scan expression
+          expression_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -287,7 +287,7 @@ class AsyncPayloadsResource(AsyncAPIResource):
         Args:
           zone_id: Identifier
 
-          expression_id: The unique ID for this custom scan expression
+          expression_id: Identifier
 
           extra_headers: Send extra headers
 

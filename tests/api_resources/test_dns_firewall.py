@@ -29,8 +29,6 @@ class TestDNSFirewall:
     def test_method_create(self, client: Cloudflare) -> None:
         dns_firewall = client.dns_firewall.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name="My Awesome DNS Firewall cluster",
-            upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
         )
         assert_matches_type(Optional[DNSFirewallCreateResponse], dns_firewall, path=["response"])
 
@@ -39,8 +37,6 @@ class TestDNSFirewall:
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         dns_firewall = client.dns_firewall.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name="My Awesome DNS Firewall cluster",
-            upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
             attack_mitigation={
                 "enabled": True,
                 "only_when_upstream_unhealthy": False,
@@ -49,9 +45,11 @@ class TestDNSFirewall:
             ecs_fallback=False,
             maximum_cache_ttl=900,
             minimum_cache_ttl=60,
+            name="My Awesome DNS Firewall cluster",
             negative_cache_ttl=900,
             ratelimit=600,
             retries=2,
+            upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
         )
         assert_matches_type(Optional[DNSFirewallCreateResponse], dns_firewall, path=["response"])
 
@@ -60,8 +58,6 @@ class TestDNSFirewall:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.dns_firewall.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name="My Awesome DNS Firewall cluster",
-            upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
         )
 
         assert response.is_closed is True
@@ -74,8 +70,6 @@ class TestDNSFirewall:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.dns_firewall.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name="My Awesome DNS Firewall cluster",
-            upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -91,8 +85,6 @@ class TestDNSFirewall:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.dns_firewall.with_raw_response.create(
                 account_id="",
-                name="My Awesome DNS Firewall cluster",
-                upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
             )
 
     @parametrize
@@ -321,8 +313,6 @@ class TestAsyncDNSFirewall:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         dns_firewall = await async_client.dns_firewall.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name="My Awesome DNS Firewall cluster",
-            upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
         )
         assert_matches_type(Optional[DNSFirewallCreateResponse], dns_firewall, path=["response"])
 
@@ -331,8 +321,6 @@ class TestAsyncDNSFirewall:
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         dns_firewall = await async_client.dns_firewall.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name="My Awesome DNS Firewall cluster",
-            upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
             attack_mitigation={
                 "enabled": True,
                 "only_when_upstream_unhealthy": False,
@@ -341,9 +329,11 @@ class TestAsyncDNSFirewall:
             ecs_fallback=False,
             maximum_cache_ttl=900,
             minimum_cache_ttl=60,
+            name="My Awesome DNS Firewall cluster",
             negative_cache_ttl=900,
             ratelimit=600,
             retries=2,
+            upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
         )
         assert_matches_type(Optional[DNSFirewallCreateResponse], dns_firewall, path=["response"])
 
@@ -352,8 +342,6 @@ class TestAsyncDNSFirewall:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns_firewall.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name="My Awesome DNS Firewall cluster",
-            upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
         )
 
         assert response.is_closed is True
@@ -366,8 +354,6 @@ class TestAsyncDNSFirewall:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns_firewall.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name="My Awesome DNS Firewall cluster",
-            upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -383,8 +369,6 @@ class TestAsyncDNSFirewall:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.dns_firewall.with_raw_response.create(
                 account_id="",
-                name="My Awesome DNS Firewall cluster",
-                upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
             )
 
     @parametrize

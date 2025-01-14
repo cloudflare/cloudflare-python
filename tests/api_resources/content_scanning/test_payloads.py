@@ -105,7 +105,7 @@ class TestPayloads:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         payload = client.content_scanning.payloads.delete(
-            expression_id="a350a054caa840c9becd89c3b4f0195b",
+            expression_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[PayloadDeleteResponse], payload, path=["response"])
@@ -113,7 +113,7 @@ class TestPayloads:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.content_scanning.payloads.with_raw_response.delete(
-            expression_id="a350a054caa840c9becd89c3b4f0195b",
+            expression_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -125,7 +125,7 @@ class TestPayloads:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.content_scanning.payloads.with_streaming_response.delete(
-            expression_id="a350a054caa840c9becd89c3b4f0195b",
+            expression_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -140,7 +140,7 @@ class TestPayloads:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.content_scanning.payloads.with_raw_response.delete(
-                expression_id="a350a054caa840c9becd89c3b4f0195b",
+                expression_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
             )
 
@@ -237,7 +237,7 @@ class TestAsyncPayloads:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         payload = await async_client.content_scanning.payloads.delete(
-            expression_id="a350a054caa840c9becd89c3b4f0195b",
+            expression_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[PayloadDeleteResponse], payload, path=["response"])
@@ -245,7 +245,7 @@ class TestAsyncPayloads:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.content_scanning.payloads.with_raw_response.delete(
-            expression_id="a350a054caa840c9becd89c3b4f0195b",
+            expression_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -257,7 +257,7 @@ class TestAsyncPayloads:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.content_scanning.payloads.with_streaming_response.delete(
-            expression_id="a350a054caa840c9becd89c3b4f0195b",
+            expression_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -272,7 +272,7 @@ class TestAsyncPayloads:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.content_scanning.payloads.with_raw_response.delete(
-                expression_id="a350a054caa840c9becd89c3b4f0195b",
+                expression_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
             )
 
