@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
-from typing import Type, Union, Iterable, Optional, cast
+from typing import List, Type, Union, Iterable, Optional, cast
 from datetime import datetime
+from typing_extensions import Literal
 
 import httpx
 
@@ -176,11 +177,16 @@ class TargetsResource(SyncAPIResource):
         *,
         account_id: str,
         created_after: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
+        created_before: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
+        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         hostname: Optional[str] | NotGiven = NOT_GIVEN,
         hostname_contains: Optional[str] | NotGiven = NOT_GIVEN,
         ip_v4: Optional[str] | NotGiven = NOT_GIVEN,
         ip_v6: Optional[str] | NotGiven = NOT_GIVEN,
+        ips: List[str] | NotGiven = NOT_GIVEN,
         modified_after: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
+        modified_before: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
+        order: Literal["hostname", "created_at"] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         virtual_network_id: Optional[str] | NotGiven = NOT_GIVEN,
@@ -191,13 +197,20 @@ class TargetsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncV4PagePaginationArray[TargetListResponse]:
-        """
-        List all targets
+        """Lists and sorts an account’s targets.
+
+        Filters are optional and are ORed
+        together. However, when a timestamp is specified with both its before and after
+        counterparts, the timestamp filters are ANDed.
 
         Args:
           account_id: Account identifier
 
-          created_after: Date and time at which the target was created
+          created_after: Date and time at which the target was created after (inclusive)
+
+          created_before: Date and time at which the target was created before (inclusive)
+
+          direction: The sorting direction.
 
           hostname: Hostname of a target
 
@@ -207,7 +220,14 @@ class TargetsResource(SyncAPIResource):
 
           ip_v6: IPv6 address of the target
 
-          modified_after: Date and time at which the target was modified
+          ips: Filters for targets that have any of the following IP addresses. Specify `ips`
+              multiple times in query parameter to build list of candidates.
+
+          modified_after: Date and time at which the target was modified after (inclusive)
+
+          modified_before: Date and time at which the target was modified before (inclusive)
+
+          order: The field to sort by.
 
           page: Current page in the response
 
@@ -236,11 +256,16 @@ class TargetsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "created_after": created_after,
+                        "created_before": created_before,
+                        "direction": direction,
                         "hostname": hostname,
                         "hostname_contains": hostname_contains,
                         "ip_v4": ip_v4,
                         "ip_v6": ip_v6,
+                        "ips": ips,
                         "modified_after": modified_after,
+                        "modified_before": modified_before,
+                        "order": order,
                         "page": page,
                         "per_page": per_page,
                         "virtual_network_id": virtual_network_id,
@@ -548,11 +573,16 @@ class AsyncTargetsResource(AsyncAPIResource):
         *,
         account_id: str,
         created_after: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
+        created_before: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
+        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         hostname: Optional[str] | NotGiven = NOT_GIVEN,
         hostname_contains: Optional[str] | NotGiven = NOT_GIVEN,
         ip_v4: Optional[str] | NotGiven = NOT_GIVEN,
         ip_v6: Optional[str] | NotGiven = NOT_GIVEN,
+        ips: List[str] | NotGiven = NOT_GIVEN,
         modified_after: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
+        modified_before: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
+        order: Literal["hostname", "created_at"] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         virtual_network_id: Optional[str] | NotGiven = NOT_GIVEN,
@@ -563,13 +593,20 @@ class AsyncTargetsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[TargetListResponse, AsyncV4PagePaginationArray[TargetListResponse]]:
-        """
-        List all targets
+        """Lists and sorts an account’s targets.
+
+        Filters are optional and are ORed
+        together. However, when a timestamp is specified with both its before and after
+        counterparts, the timestamp filters are ANDed.
 
         Args:
           account_id: Account identifier
 
-          created_after: Date and time at which the target was created
+          created_after: Date and time at which the target was created after (inclusive)
+
+          created_before: Date and time at which the target was created before (inclusive)
+
+          direction: The sorting direction.
 
           hostname: Hostname of a target
 
@@ -579,7 +616,14 @@ class AsyncTargetsResource(AsyncAPIResource):
 
           ip_v6: IPv6 address of the target
 
-          modified_after: Date and time at which the target was modified
+          ips: Filters for targets that have any of the following IP addresses. Specify `ips`
+              multiple times in query parameter to build list of candidates.
+
+          modified_after: Date and time at which the target was modified after (inclusive)
+
+          modified_before: Date and time at which the target was modified before (inclusive)
+
+          order: The field to sort by.
 
           page: Current page in the response
 
@@ -608,11 +652,16 @@ class AsyncTargetsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "created_after": created_after,
+                        "created_before": created_before,
+                        "direction": direction,
                         "hostname": hostname,
                         "hostname_contains": hostname_contains,
                         "ip_v4": ip_v4,
                         "ip_v6": ip_v6,
+                        "ips": ips,
                         "modified_after": modified_after,
+                        "modified_before": modified_before,
+                        "order": order,
                         "page": page,
                         "per_page": per_page,
                         "virtual_network_id": virtual_network_id,

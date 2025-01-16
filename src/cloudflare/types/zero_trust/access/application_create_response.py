@@ -23,45 +23,75 @@ __all__ = [
     "ApplicationCreateResponse",
     "SelfHostedApplication",
     "SelfHostedApplicationDestination",
+    "SelfHostedApplicationDestinationPublicDestination",
+    "SelfHostedApplicationDestinationPrivateDestination",
     "SelfHostedApplicationPolicy",
     "SelfHostedApplicationSCIMConfig",
     "SelfHostedApplicationSCIMConfigAuthentication",
+    "SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
+    "SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication",
+    "SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
     "SaaSApplication",
     "SaaSApplicationPolicy",
     "SaaSApplicationSaaSApp",
     "SaaSApplicationSCIMConfig",
     "SaaSApplicationSCIMConfigAuthentication",
+    "SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
+    "SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication",
+    "SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
     "BrowserSSHApplication",
     "BrowserSSHApplicationDestination",
+    "BrowserSSHApplicationDestinationPublicDestination",
+    "BrowserSSHApplicationDestinationPrivateDestination",
     "BrowserSSHApplicationPolicy",
     "BrowserSSHApplicationSCIMConfig",
     "BrowserSSHApplicationSCIMConfigAuthentication",
+    "BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
+    "BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication",
+    "BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
     "BrowserVNCApplication",
     "BrowserVNCApplicationDestination",
+    "BrowserVNCApplicationDestinationPublicDestination",
+    "BrowserVNCApplicationDestinationPrivateDestination",
     "BrowserVNCApplicationPolicy",
     "BrowserVNCApplicationSCIMConfig",
     "BrowserVNCApplicationSCIMConfigAuthentication",
+    "BrowserVNCApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
+    "BrowserVNCApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication",
+    "BrowserVNCApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
     "AppLauncherApplication",
     "AppLauncherApplicationFooterLink",
     "AppLauncherApplicationLandingPageDesign",
     "AppLauncherApplicationPolicy",
     "AppLauncherApplicationSCIMConfig",
     "AppLauncherApplicationSCIMConfigAuthentication",
+    "AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
+    "AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication",
+    "AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
     "DeviceEnrollmentPermissionsApplication",
     "DeviceEnrollmentPermissionsApplicationFooterLink",
     "DeviceEnrollmentPermissionsApplicationLandingPageDesign",
     "DeviceEnrollmentPermissionsApplicationPolicy",
     "DeviceEnrollmentPermissionsApplicationSCIMConfig",
     "DeviceEnrollmentPermissionsApplicationSCIMConfigAuthentication",
+    "DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
+    "DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication",
+    "DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
     "BrowserIsolationPermissionsApplication",
     "BrowserIsolationPermissionsApplicationFooterLink",
     "BrowserIsolationPermissionsApplicationLandingPageDesign",
     "BrowserIsolationPermissionsApplicationPolicy",
     "BrowserIsolationPermissionsApplicationSCIMConfig",
     "BrowserIsolationPermissionsApplicationSCIMConfigAuthentication",
+    "BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
+    "BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication",
+    "BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
     "BookmarkApplication",
     "BookmarkApplicationSCIMConfig",
     "BookmarkApplicationSCIMConfigAuthentication",
+    "BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
+    "BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication",
+    "BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
     "InfrastructureApplication",
     "InfrastructureApplicationTargetCriterion",
     "InfrastructureApplicationPolicy",
@@ -69,21 +99,51 @@ __all__ = [
     "InfrastructureApplicationPolicyConnectionRulesSSH",
     "InfrastructureApplicationSCIMConfig",
     "InfrastructureApplicationSCIMConfigAuthentication",
+    "InfrastructureApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
+    "InfrastructureApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication",
+    "InfrastructureApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
 ]
 
 
-class SelfHostedApplicationDestination(BaseModel):
-    type: Optional[Literal["public", "private"]] = None
+class SelfHostedApplicationDestinationPublicDestination(BaseModel):
+    type: Optional[Literal["public"]] = None
 
     uri: Optional[str] = None
     """The URI of the destination.
 
-    Public destinations can include a domain and path with
+    Public destinations' URIs can include a domain and path with
     [wildcards](https://developers.cloudflare.com/cloudflare-one/policies/access/app-paths/).
-    Private destinations are an early access feature and gated behind a feature
-    flag. Private destinations support private IPv4, IPv6, and Server Name
-    Indications (SNI) with optional port ranges.
     """
+
+
+class SelfHostedApplicationDestinationPrivateDestination(BaseModel):
+    cidr: Optional[str] = None
+    """The CIDR range of the destination. Single IPs will be computed as /32."""
+
+    hostname: Optional[str] = None
+    """The hostname of the destination. Matches a valid SNI served by an HTTPS origin."""
+
+    l4_protocol: Optional[Literal["tcp", "udp"]] = None
+    """The L4 protocol of the destination.
+
+    When omitted, both UDP and TCP traffic will match.
+    """
+
+    port_range: Optional[str] = None
+    """The port range of the destination.
+
+    Can be a single port or a range of ports. When omitted, all ports will match.
+    """
+
+    type: Optional[Literal["private"]] = None
+
+    vnet_id: Optional[str] = None
+    """The VNET ID to match the destination. When omitted, all VNETs will match."""
+
+
+SelfHostedApplicationDestination: TypeAlias = Union[
+    SelfHostedApplicationDestinationPublicDestination, SelfHostedApplicationDestinationPrivateDestination
+]
 
 
 class SelfHostedApplicationPolicy(ApplicationPolicy):
@@ -94,8 +154,55 @@ class SelfHostedApplicationPolicy(ApplicationPolicy):
     """
 
 
+class SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(BaseModel):
+    client_id: str
+    """
+    Client ID of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    client_secret: str
+    """
+    Client secret of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    scheme: Literal["access_service_token"]
+    """The authentication scheme to use when making SCIM requests to this application."""
+
+
+class SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
+    BaseModel
+):
+    client_id: str
+    """
+    Client ID of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    client_secret: str
+    """
+    Client secret of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    scheme: Literal["access_service_token"]
+    """The authentication scheme to use when making SCIM requests to this application."""
+
+
+SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication: TypeAlias = Union[
+    SCIMConfigAuthenticationHTTPBasic,
+    SCIMConfigAuthenticationOAuthBearerToken,
+    SCIMConfigAuthenticationOauth2,
+    SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
+]
+
 SelfHostedApplicationSCIMConfigAuthentication: TypeAlias = Union[
-    SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2
+    SCIMConfigAuthenticationHTTPBasic,
+    SCIMConfigAuthenticationOAuthBearerToken,
+    SCIMConfigAuthenticationOauth2,
+    SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
+    List[SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication],
 ]
 
 
@@ -290,8 +397,56 @@ class SaaSApplicationPolicy(ApplicationPolicy):
 
 SaaSApplicationSaaSApp: TypeAlias = Union[SAMLSaaSApp, OIDCSaaSApp]
 
+
+class SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(BaseModel):
+    client_id: str
+    """
+    Client ID of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    client_secret: str
+    """
+    Client secret of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    scheme: Literal["access_service_token"]
+    """The authentication scheme to use when making SCIM requests to this application."""
+
+
+class SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
+    BaseModel
+):
+    client_id: str
+    """
+    Client ID of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    client_secret: str
+    """
+    Client secret of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    scheme: Literal["access_service_token"]
+    """The authentication scheme to use when making SCIM requests to this application."""
+
+
+SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication: TypeAlias = Union[
+    SCIMConfigAuthenticationHTTPBasic,
+    SCIMConfigAuthenticationOAuthBearerToken,
+    SCIMConfigAuthenticationOauth2,
+    SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
+]
+
 SaaSApplicationSCIMConfigAuthentication: TypeAlias = Union[
-    SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2
+    SCIMConfigAuthenticationHTTPBasic,
+    SCIMConfigAuthenticationOAuthBearerToken,
+    SCIMConfigAuthenticationOauth2,
+    SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
+    List[SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication],
 ]
 
 
@@ -385,18 +540,45 @@ class SaaSApplication(BaseModel):
     updated_at: Optional[datetime] = None
 
 
-class BrowserSSHApplicationDestination(BaseModel):
-    type: Optional[Literal["public", "private"]] = None
+class BrowserSSHApplicationDestinationPublicDestination(BaseModel):
+    type: Optional[Literal["public"]] = None
 
     uri: Optional[str] = None
     """The URI of the destination.
 
-    Public destinations can include a domain and path with
+    Public destinations' URIs can include a domain and path with
     [wildcards](https://developers.cloudflare.com/cloudflare-one/policies/access/app-paths/).
-    Private destinations are an early access feature and gated behind a feature
-    flag. Private destinations support private IPv4, IPv6, and Server Name
-    Indications (SNI) with optional port ranges.
     """
+
+
+class BrowserSSHApplicationDestinationPrivateDestination(BaseModel):
+    cidr: Optional[str] = None
+    """The CIDR range of the destination. Single IPs will be computed as /32."""
+
+    hostname: Optional[str] = None
+    """The hostname of the destination. Matches a valid SNI served by an HTTPS origin."""
+
+    l4_protocol: Optional[Literal["tcp", "udp"]] = None
+    """The L4 protocol of the destination.
+
+    When omitted, both UDP and TCP traffic will match.
+    """
+
+    port_range: Optional[str] = None
+    """The port range of the destination.
+
+    Can be a single port or a range of ports. When omitted, all ports will match.
+    """
+
+    type: Optional[Literal["private"]] = None
+
+    vnet_id: Optional[str] = None
+    """The VNET ID to match the destination. When omitted, all VNETs will match."""
+
+
+BrowserSSHApplicationDestination: TypeAlias = Union[
+    BrowserSSHApplicationDestinationPublicDestination, BrowserSSHApplicationDestinationPrivateDestination
+]
 
 
 class BrowserSSHApplicationPolicy(ApplicationPolicy):
@@ -407,8 +589,55 @@ class BrowserSSHApplicationPolicy(ApplicationPolicy):
     """
 
 
+class BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(BaseModel):
+    client_id: str
+    """
+    Client ID of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    client_secret: str
+    """
+    Client secret of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    scheme: Literal["access_service_token"]
+    """The authentication scheme to use when making SCIM requests to this application."""
+
+
+class BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
+    BaseModel
+):
+    client_id: str
+    """
+    Client ID of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    client_secret: str
+    """
+    Client secret of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    scheme: Literal["access_service_token"]
+    """The authentication scheme to use when making SCIM requests to this application."""
+
+
+BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication: TypeAlias = Union[
+    SCIMConfigAuthenticationHTTPBasic,
+    SCIMConfigAuthenticationOAuthBearerToken,
+    SCIMConfigAuthenticationOauth2,
+    BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
+]
+
 BrowserSSHApplicationSCIMConfigAuthentication: TypeAlias = Union[
-    SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2
+    SCIMConfigAuthenticationHTTPBasic,
+    SCIMConfigAuthenticationOAuthBearerToken,
+    SCIMConfigAuthenticationOauth2,
+    BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
+    List[BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication],
 ]
 
 
@@ -593,18 +822,45 @@ class BrowserSSHApplication(BaseModel):
     updated_at: Optional[datetime] = None
 
 
-class BrowserVNCApplicationDestination(BaseModel):
-    type: Optional[Literal["public", "private"]] = None
+class BrowserVNCApplicationDestinationPublicDestination(BaseModel):
+    type: Optional[Literal["public"]] = None
 
     uri: Optional[str] = None
     """The URI of the destination.
 
-    Public destinations can include a domain and path with
+    Public destinations' URIs can include a domain and path with
     [wildcards](https://developers.cloudflare.com/cloudflare-one/policies/access/app-paths/).
-    Private destinations are an early access feature and gated behind a feature
-    flag. Private destinations support private IPv4, IPv6, and Server Name
-    Indications (SNI) with optional port ranges.
     """
+
+
+class BrowserVNCApplicationDestinationPrivateDestination(BaseModel):
+    cidr: Optional[str] = None
+    """The CIDR range of the destination. Single IPs will be computed as /32."""
+
+    hostname: Optional[str] = None
+    """The hostname of the destination. Matches a valid SNI served by an HTTPS origin."""
+
+    l4_protocol: Optional[Literal["tcp", "udp"]] = None
+    """The L4 protocol of the destination.
+
+    When omitted, both UDP and TCP traffic will match.
+    """
+
+    port_range: Optional[str] = None
+    """The port range of the destination.
+
+    Can be a single port or a range of ports. When omitted, all ports will match.
+    """
+
+    type: Optional[Literal["private"]] = None
+
+    vnet_id: Optional[str] = None
+    """The VNET ID to match the destination. When omitted, all VNETs will match."""
+
+
+BrowserVNCApplicationDestination: TypeAlias = Union[
+    BrowserVNCApplicationDestinationPublicDestination, BrowserVNCApplicationDestinationPrivateDestination
+]
 
 
 class BrowserVNCApplicationPolicy(ApplicationPolicy):
@@ -615,8 +871,55 @@ class BrowserVNCApplicationPolicy(ApplicationPolicy):
     """
 
 
+class BrowserVNCApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(BaseModel):
+    client_id: str
+    """
+    Client ID of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    client_secret: str
+    """
+    Client secret of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    scheme: Literal["access_service_token"]
+    """The authentication scheme to use when making SCIM requests to this application."""
+
+
+class BrowserVNCApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
+    BaseModel
+):
+    client_id: str
+    """
+    Client ID of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    client_secret: str
+    """
+    Client secret of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    scheme: Literal["access_service_token"]
+    """The authentication scheme to use when making SCIM requests to this application."""
+
+
+BrowserVNCApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication: TypeAlias = Union[
+    SCIMConfigAuthenticationHTTPBasic,
+    SCIMConfigAuthenticationOAuthBearerToken,
+    SCIMConfigAuthenticationOauth2,
+    BrowserVNCApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
+]
+
 BrowserVNCApplicationSCIMConfigAuthentication: TypeAlias = Union[
-    SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2
+    SCIMConfigAuthenticationHTTPBasic,
+    SCIMConfigAuthenticationOAuthBearerToken,
+    SCIMConfigAuthenticationOauth2,
+    BrowserVNCApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
+    List[BrowserVNCApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication],
 ]
 
 
@@ -834,8 +1137,55 @@ class AppLauncherApplicationPolicy(ApplicationPolicy):
     """
 
 
+class AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(BaseModel):
+    client_id: str
+    """
+    Client ID of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    client_secret: str
+    """
+    Client secret of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    scheme: Literal["access_service_token"]
+    """The authentication scheme to use when making SCIM requests to this application."""
+
+
+class AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
+    BaseModel
+):
+    client_id: str
+    """
+    Client ID of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    client_secret: str
+    """
+    Client secret of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    scheme: Literal["access_service_token"]
+    """The authentication scheme to use when making SCIM requests to this application."""
+
+
+AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication: TypeAlias = Union[
+    SCIMConfigAuthenticationHTTPBasic,
+    SCIMConfigAuthenticationOAuthBearerToken,
+    SCIMConfigAuthenticationOauth2,
+    AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
+]
+
 AppLauncherApplicationSCIMConfigAuthentication: TypeAlias = Union[
-    SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2
+    SCIMConfigAuthenticationHTTPBasic,
+    SCIMConfigAuthenticationOAuthBearerToken,
+    SCIMConfigAuthenticationOauth2,
+    AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
+    List[AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication],
 ]
 
 
@@ -976,8 +1326,57 @@ class DeviceEnrollmentPermissionsApplicationPolicy(ApplicationPolicy):
     """
 
 
+class DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
+    BaseModel
+):
+    client_id: str
+    """
+    Client ID of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    client_secret: str
+    """
+    Client secret of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    scheme: Literal["access_service_token"]
+    """The authentication scheme to use when making SCIM requests to this application."""
+
+
+class DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
+    BaseModel
+):
+    client_id: str
+    """
+    Client ID of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    client_secret: str
+    """
+    Client secret of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    scheme: Literal["access_service_token"]
+    """The authentication scheme to use when making SCIM requests to this application."""
+
+
+DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication: TypeAlias = Union[
+    SCIMConfigAuthenticationHTTPBasic,
+    SCIMConfigAuthenticationOAuthBearerToken,
+    SCIMConfigAuthenticationOauth2,
+    DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
+]
+
 DeviceEnrollmentPermissionsApplicationSCIMConfigAuthentication: TypeAlias = Union[
-    SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2
+    SCIMConfigAuthenticationHTTPBasic,
+    SCIMConfigAuthenticationOAuthBearerToken,
+    SCIMConfigAuthenticationOauth2,
+    DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
+    List[DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication],
 ]
 
 
@@ -1118,8 +1517,57 @@ class BrowserIsolationPermissionsApplicationPolicy(ApplicationPolicy):
     """
 
 
+class BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
+    BaseModel
+):
+    client_id: str
+    """
+    Client ID of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    client_secret: str
+    """
+    Client secret of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    scheme: Literal["access_service_token"]
+    """The authentication scheme to use when making SCIM requests to this application."""
+
+
+class BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
+    BaseModel
+):
+    client_id: str
+    """
+    Client ID of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    client_secret: str
+    """
+    Client secret of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    scheme: Literal["access_service_token"]
+    """The authentication scheme to use when making SCIM requests to this application."""
+
+
+BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication: TypeAlias = Union[
+    SCIMConfigAuthenticationHTTPBasic,
+    SCIMConfigAuthenticationOAuthBearerToken,
+    SCIMConfigAuthenticationOauth2,
+    BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
+]
+
 BrowserIsolationPermissionsApplicationSCIMConfigAuthentication: TypeAlias = Union[
-    SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2
+    SCIMConfigAuthenticationHTTPBasic,
+    SCIMConfigAuthenticationOAuthBearerToken,
+    SCIMConfigAuthenticationOauth2,
+    BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
+    List[BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication],
 ]
 
 
@@ -1227,8 +1675,55 @@ class BrowserIsolationPermissionsApplication(BaseModel):
     updated_at: Optional[datetime] = None
 
 
+class BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(BaseModel):
+    client_id: str
+    """
+    Client ID of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    client_secret: str
+    """
+    Client secret of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    scheme: Literal["access_service_token"]
+    """The authentication scheme to use when making SCIM requests to this application."""
+
+
+class BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
+    BaseModel
+):
+    client_id: str
+    """
+    Client ID of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    client_secret: str
+    """
+    Client secret of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    scheme: Literal["access_service_token"]
+    """The authentication scheme to use when making SCIM requests to this application."""
+
+
+BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication: TypeAlias = Union[
+    SCIMConfigAuthenticationHTTPBasic,
+    SCIMConfigAuthenticationOAuthBearerToken,
+    SCIMConfigAuthenticationOauth2,
+    BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
+]
+
 BookmarkApplicationSCIMConfigAuthentication: TypeAlias = Union[
-    SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2
+    SCIMConfigAuthenticationHTTPBasic,
+    SCIMConfigAuthenticationOAuthBearerToken,
+    SCIMConfigAuthenticationOauth2,
+    BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
+    List[BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication],
 ]
 
 
@@ -1376,8 +1871,55 @@ class InfrastructureApplicationPolicy(BaseModel):
     updated_at: Optional[datetime] = None
 
 
+class InfrastructureApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(BaseModel):
+    client_id: str
+    """
+    Client ID of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    client_secret: str
+    """
+    Client secret of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    scheme: Literal["access_service_token"]
+    """The authentication scheme to use when making SCIM requests to this application."""
+
+
+class InfrastructureApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
+    BaseModel
+):
+    client_id: str
+    """
+    Client ID of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    client_secret: str
+    """
+    Client secret of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    scheme: Literal["access_service_token"]
+    """The authentication scheme to use when making SCIM requests to this application."""
+
+
+InfrastructureApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication: TypeAlias = Union[
+    SCIMConfigAuthenticationHTTPBasic,
+    SCIMConfigAuthenticationOAuthBearerToken,
+    SCIMConfigAuthenticationOauth2,
+    InfrastructureApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
+]
+
 InfrastructureApplicationSCIMConfigAuthentication: TypeAlias = Union[
-    SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2
+    SCIMConfigAuthenticationHTTPBasic,
+    SCIMConfigAuthenticationOAuthBearerToken,
+    SCIMConfigAuthenticationOauth2,
+    InfrastructureApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
+    List[InfrastructureApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication],
 ]
 
 

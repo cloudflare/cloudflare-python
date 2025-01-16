@@ -29,6 +29,14 @@ from ..._utils import (
     async_maybe_transform,
 )
 from ..._compat import cached_property
+from .logs.logs import (
+    LogsResource,
+    AsyncLogsResource,
+    LogsResourceWithRawResponse,
+    AsyncLogsResourceWithRawResponse,
+    LogsResourceWithStreamingResponse,
+    AsyncLogsResourceWithStreamingResponse,
+)
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
@@ -78,6 +86,10 @@ class AccountsResource(SyncAPIResource):
     @cached_property
     def tokens(self) -> TokensResource:
         return TokensResource(self._client)
+
+    @cached_property
+    def logs(self) -> LogsResource:
+        return LogsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AccountsResourceWithRawResponse:
@@ -357,6 +369,10 @@ class AsyncAccountsResource(AsyncAPIResource):
     @cached_property
     def tokens(self) -> AsyncTokensResource:
         return AsyncTokensResource(self._client)
+
+    @cached_property
+    def logs(self) -> AsyncLogsResource:
+        return AsyncLogsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncAccountsResourceWithRawResponse:
@@ -656,6 +672,10 @@ class AccountsResourceWithRawResponse:
     def tokens(self) -> TokensResourceWithRawResponse:
         return TokensResourceWithRawResponse(self._accounts.tokens)
 
+    @cached_property
+    def logs(self) -> LogsResourceWithRawResponse:
+        return LogsResourceWithRawResponse(self._accounts.logs)
+
 
 class AsyncAccountsResourceWithRawResponse:
     def __init__(self, accounts: AsyncAccountsResource) -> None:
@@ -692,6 +712,10 @@ class AsyncAccountsResourceWithRawResponse:
     @cached_property
     def tokens(self) -> AsyncTokensResourceWithRawResponse:
         return AsyncTokensResourceWithRawResponse(self._accounts.tokens)
+
+    @cached_property
+    def logs(self) -> AsyncLogsResourceWithRawResponse:
+        return AsyncLogsResourceWithRawResponse(self._accounts.logs)
 
 
 class AccountsResourceWithStreamingResponse:
@@ -730,6 +754,10 @@ class AccountsResourceWithStreamingResponse:
     def tokens(self) -> TokensResourceWithStreamingResponse:
         return TokensResourceWithStreamingResponse(self._accounts.tokens)
 
+    @cached_property
+    def logs(self) -> LogsResourceWithStreamingResponse:
+        return LogsResourceWithStreamingResponse(self._accounts.logs)
+
 
 class AsyncAccountsResourceWithStreamingResponse:
     def __init__(self, accounts: AsyncAccountsResource) -> None:
@@ -766,3 +794,7 @@ class AsyncAccountsResourceWithStreamingResponse:
     @cached_property
     def tokens(self) -> AsyncTokensResourceWithStreamingResponse:
         return AsyncTokensResourceWithStreamingResponse(self._accounts.tokens)
+
+    @cached_property
+    def logs(self) -> AsyncLogsResourceWithStreamingResponse:
+        return AsyncLogsResourceWithStreamingResponse(self._accounts.logs)

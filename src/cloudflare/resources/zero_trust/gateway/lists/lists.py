@@ -128,6 +128,7 @@ class ListsResource(SyncAPIResource):
         account_id: str,
         name: str,
         description: str | NotGiven = NOT_GIVEN,
+        items: Iterable[GatewayItemParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -135,8 +136,10 @@ class ListsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[GatewayList]:
-        """
-        Updates a configured Zero Trust list.
+        """Updates a configured Zero Trust list.
+
+        Skips updating list items if not included
+        in the payload.
 
         Args:
           list_id: API Resource UUID tag.
@@ -144,6 +147,8 @@ class ListsResource(SyncAPIResource):
           name: The name of the list.
 
           description: The description of the list.
+
+          items: The items in the list.
 
           extra_headers: Send extra headers
 
@@ -163,6 +168,7 @@ class ListsResource(SyncAPIResource):
                 {
                     "name": name,
                     "description": description,
+                    "items": items,
                 },
                 list_update_params.ListUpdateParams,
             ),
@@ -446,6 +452,7 @@ class AsyncListsResource(AsyncAPIResource):
         account_id: str,
         name: str,
         description: str | NotGiven = NOT_GIVEN,
+        items: Iterable[GatewayItemParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -453,8 +460,10 @@ class AsyncListsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[GatewayList]:
-        """
-        Updates a configured Zero Trust list.
+        """Updates a configured Zero Trust list.
+
+        Skips updating list items if not included
+        in the payload.
 
         Args:
           list_id: API Resource UUID tag.
@@ -462,6 +471,8 @@ class AsyncListsResource(AsyncAPIResource):
           name: The name of the list.
 
           description: The description of the list.
+
+          items: The items in the list.
 
           extra_headers: Send extra headers
 
@@ -481,6 +492,7 @@ class AsyncListsResource(AsyncAPIResource):
                 {
                     "name": name,
                     "description": description,
+                    "items": items,
                 },
                 list_update_params.ListUpdateParams,
             ),

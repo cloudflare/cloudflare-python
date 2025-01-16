@@ -19,16 +19,16 @@ class TestResponses:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         response = client.url_scanner.responses.get(
-            response_id="responseId",
-            account_id="accountId",
+            response_id="response_id",
+            account_id="account_id",
         )
         assert_matches_type(str, response, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         http_response = client.url_scanner.responses.with_raw_response.get(
-            response_id="responseId",
-            account_id="accountId",
+            response_id="response_id",
+            account_id="account_id",
         )
 
         assert http_response.is_closed is True
@@ -39,8 +39,8 @@ class TestResponses:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.url_scanner.responses.with_streaming_response.get(
-            response_id="responseId",
-            account_id="accountId",
+            response_id="response_id",
+            account_id="account_id",
         ) as http_response:
             assert not http_response.is_closed
             assert http_response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -54,14 +54,14 @@ class TestResponses:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.url_scanner.responses.with_raw_response.get(
-                response_id="responseId",
+                response_id="response_id",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `response_id` but received ''"):
             client.url_scanner.responses.with_raw_response.get(
                 response_id="",
-                account_id="accountId",
+                account_id="account_id",
             )
 
 
@@ -71,16 +71,16 @@ class TestAsyncResponses:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.url_scanner.responses.get(
-            response_id="responseId",
-            account_id="accountId",
+            response_id="response_id",
+            account_id="account_id",
         )
         assert_matches_type(str, response, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         http_response = await async_client.url_scanner.responses.with_raw_response.get(
-            response_id="responseId",
-            account_id="accountId",
+            response_id="response_id",
+            account_id="account_id",
         )
 
         assert http_response.is_closed is True
@@ -91,8 +91,8 @@ class TestAsyncResponses:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.url_scanner.responses.with_streaming_response.get(
-            response_id="responseId",
-            account_id="accountId",
+            response_id="response_id",
+            account_id="account_id",
         ) as http_response:
             assert not http_response.is_closed
             assert http_response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -106,12 +106,12 @@ class TestAsyncResponses:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.url_scanner.responses.with_raw_response.get(
-                response_id="responseId",
+                response_id="response_id",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `response_id` but received ''"):
             await async_client.url_scanner.responses.with_raw_response.get(
                 response_id="",
-                account_id="accountId",
+                account_id="account_id",
             )

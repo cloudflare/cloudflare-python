@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from typing import List, Type, cast
-from typing_extensions import Literal
 
 import httpx
 
@@ -111,8 +110,6 @@ class EvaluationsResource(SyncAPIResource):
         *,
         account_id: str,
         name: str | NotGiven = NOT_GIVEN,
-        order_by: str | NotGiven = NOT_GIVEN,
-        order_by_direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         processed: bool | NotGiven = NOT_GIVEN,
@@ -129,10 +126,6 @@ class EvaluationsResource(SyncAPIResource):
 
         Args:
           gateway_id: gateway id
-
-          order_by: Order By Column Name
-
-          order_by_direction: Order By Direction
 
           search: Search by id, name
 
@@ -159,8 +152,6 @@ class EvaluationsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "name": name,
-                        "order_by": order_by,
-                        "order_by_direction": order_by_direction,
                         "page": page,
                         "per_page": per_page,
                         "processed": processed,
@@ -342,8 +333,6 @@ class AsyncEvaluationsResource(AsyncAPIResource):
         *,
         account_id: str,
         name: str | NotGiven = NOT_GIVEN,
-        order_by: str | NotGiven = NOT_GIVEN,
-        order_by_direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         processed: bool | NotGiven = NOT_GIVEN,
@@ -360,10 +349,6 @@ class AsyncEvaluationsResource(AsyncAPIResource):
 
         Args:
           gateway_id: gateway id
-
-          order_by: Order By Column Name
-
-          order_by_direction: Order By Direction
 
           search: Search by id, name
 
@@ -390,8 +375,6 @@ class AsyncEvaluationsResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "name": name,
-                        "order_by": order_by,
-                        "order_by_direction": order_by_direction,
                         "page": page,
                         "per_page": per_page,
                         "processed": processed,

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
+from typing import Dict, List, Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .target_param import TargetParam
@@ -31,14 +31,15 @@ __all__ = [
     "ActionBypassCacheOnCookie",
     "ActionCacheByDeviceType",
     "ActionCacheDeceptionArmor",
-    "ActionCacheKey",
-    "ActionCacheKeyValue",
-    "ActionCacheKeyValueCookie",
-    "ActionCacheKeyValueHeader",
-    "ActionCacheKeyValueHost",
-    "ActionCacheKeyValueQueryString",
-    "ActionCacheKeyValueUser",
+    "ActionCacheKeyFields",
+    "ActionCacheKeyFieldsValue",
+    "ActionCacheKeyFieldsValueCookie",
+    "ActionCacheKeyFieldsValueHeader",
+    "ActionCacheKeyFieldsValueHost",
+    "ActionCacheKeyFieldsValueQueryString",
+    "ActionCacheKeyFieldsValueUser",
     "ActionCacheOnCookie",
+    "ActionCacheTTLByStatus",
     "ActionDisableApps",
     "ActionDisablePerformance",
     "ActionDisableSecurity",
@@ -115,7 +116,7 @@ class ActionCacheDeceptionArmor(TypedDict, total=False):
     """The status of Cache Deception Armor."""
 
 
-class ActionCacheKeyValueCookie(TypedDict, total=False):
+class ActionCacheKeyFieldsValueCookie(TypedDict, total=False):
     check_presence: List[str]
     """
     A list of cookies to check for the presence of, without including their actual
@@ -126,7 +127,7 @@ class ActionCacheKeyValueCookie(TypedDict, total=False):
     """A list of cookies to include."""
 
 
-class ActionCacheKeyValueHeader(TypedDict, total=False):
+class ActionCacheKeyFieldsValueHeader(TypedDict, total=False):
     check_presence: List[str]
     """
     A list of headers to check for the presence of, without including their actual
@@ -140,12 +141,12 @@ class ActionCacheKeyValueHeader(TypedDict, total=False):
     """A list of headers to include."""
 
 
-class ActionCacheKeyValueHost(TypedDict, total=False):
+class ActionCacheKeyFieldsValueHost(TypedDict, total=False):
     resolved: bool
     """Whether to include the Host header in the HTTP request sent to the origin."""
 
 
-class ActionCacheKeyValueQueryString(TypedDict, total=False):
+class ActionCacheKeyFieldsValueQueryString(TypedDict, total=False):
     exclude: Union[Literal["*"], List[str]]
     """Ignore all query string parameters."""
 
@@ -153,7 +154,7 @@ class ActionCacheKeyValueQueryString(TypedDict, total=False):
     """Include all query string parameters."""
 
 
-class ActionCacheKeyValueUser(TypedDict, total=False):
+class ActionCacheKeyFieldsValueUser(TypedDict, total=False):
     device_type: bool
     """
     Classifies a request as `mobile`, `desktop`, or `tablet` based on the User
@@ -170,38 +171,38 @@ class ActionCacheKeyValueUser(TypedDict, total=False):
     """
 
 
-class ActionCacheKeyValue(TypedDict, total=False):
-    cookie: ActionCacheKeyValueCookie
+class ActionCacheKeyFieldsValue(TypedDict, total=False):
+    cookie: ActionCacheKeyFieldsValueCookie
     """Controls which cookies appear in the Cache Key."""
 
-    header: ActionCacheKeyValueHeader
+    header: ActionCacheKeyFieldsValueHeader
     """Controls which headers go into the Cache Key.
 
     Exactly one of `include` or `exclude` is expected.
     """
 
-    host: ActionCacheKeyValueHost
+    host: ActionCacheKeyFieldsValueHost
     """Determines which host header to include in the Cache Key."""
 
-    query_string: ActionCacheKeyValueQueryString
+    query_string: ActionCacheKeyFieldsValueQueryString
     """Controls which URL query string parameters go into the Cache Key.
 
     Exactly one of `include` or `exclude` is expected.
     """
 
-    user: ActionCacheKeyValueUser
+    user: ActionCacheKeyFieldsValueUser
     """Feature fields to add features about the end-user (client) into the Cache Key."""
 
 
-class ActionCacheKey(TypedDict, total=False):
-    id: Literal["cache_key"]
+class ActionCacheKeyFields(TypedDict, total=False):
+    id: Literal["cache_key_fields"]
     """
     Control specifically what variables to include when deciding which resources to
     cache. This allows customers to determine what to cache based on something other
     than just the URL.
     """
 
-    value: ActionCacheKeyValue
+    value: ActionCacheKeyFieldsValue
 
 
 class ActionCacheOnCookie(TypedDict, total=False):
@@ -213,6 +214,36 @@ class ActionCacheOnCookie(TypedDict, total=False):
 
     value: str
     """The regular expression to use for matching cookie names in the request."""
+
+
+class ActionCacheTTLByStatus(TypedDict, total=False):
+    id: Literal["cache_ttl_by_status"]
+    """
+    Enterprise customers can set cache time-to-live (TTL) based on the response
+    status from the origin web server. Cache TTL refers to the duration of a
+    resource in the Cloudflare network before being marked as stale or discarded
+    from cache. Status codes are returned by a resource's origin. Setting cache TTL
+    based on response status overrides the default cache behavior (standard caching)
+    for static files and overrides cache instructions sent by the origin web server.
+    To cache non-static assets, set a Cache Level of Cache Everything using a Page
+    Rule. Setting no-store Cache-Control or a low TTL (using `max-age`/`s-maxage`)
+    increases requests to origin web servers and decreases performance.
+    """
+
+    value: Dict[str, Union[Literal["no-cache", "no-store"], int]]
+    """
+    A JSON object containing status codes and their corresponding TTLs. Each
+    key-value pair in the cache TTL by status cache rule has the following syntax
+
+    - `status_code`: An integer value such as 200 or 500. status_code matches the
+      exact status code from the origin web server. Valid status codes are between
+      100-999.
+    - `status_code_range`: Integer values for from and to. status_code_range matches
+      any status code from the origin web server within the specified range.
+    - `value`: An integer value that defines the duration an asset is valid in
+      seconds or one of the following strings: no-store (equivalent to -1), no-cache
+      (equivalent to 0).
+    """
 
 
 class ActionDisableApps(TypedDict, total=False):
@@ -333,9 +364,10 @@ Action: TypeAlias = Union[
     ActionBypassCacheOnCookie,
     ActionCacheByDeviceType,
     ActionCacheDeceptionArmor,
-    ActionCacheKey,
+    ActionCacheKeyFields,
     CacheLevelParam,
     ActionCacheOnCookie,
+    ActionCacheTTLByStatus,
     ActionDisableApps,
     ActionDisablePerformance,
     ActionDisableSecurity,

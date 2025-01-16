@@ -34,7 +34,7 @@ class TestManaged:
             bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             enabled=True,
-            cf_r2_jurisdiction="default",
+            jurisdiction="default",
         )
         assert_matches_type(ManagedUpdateResponse, managed, path=["response"])
 
@@ -100,7 +100,7 @@ class TestManaged:
         managed = client.r2.buckets.domains.managed.list(
             bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            cf_r2_jurisdiction="default",
+            jurisdiction="default",
         )
         assert_matches_type(ManagedListResponse, managed, path=["response"])
 
@@ -168,7 +168,7 @@ class TestAsyncManaged:
             bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             enabled=True,
-            cf_r2_jurisdiction="default",
+            jurisdiction="default",
         )
         assert_matches_type(ManagedUpdateResponse, managed, path=["response"])
 
@@ -234,7 +234,7 @@ class TestAsyncManaged:
         managed = await async_client.r2.buckets.domains.managed.list(
             bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            cf_r2_jurisdiction="default",
+            jurisdiction="default",
         )
         assert_matches_type(ManagedListResponse, managed, path=["response"])
 

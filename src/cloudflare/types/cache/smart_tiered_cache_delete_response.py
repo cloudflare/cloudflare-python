@@ -1,5 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from typing import Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -9,14 +10,11 @@ __all__ = ["SmartTieredCacheDeleteResponse"]
 
 
 class SmartTieredCacheDeleteResponse(BaseModel):
-    id: str
-    """The identifier of the caching setting"""
+    id: Literal["tiered_cache_smart_topology_enable"]
+    """ID of the zone setting."""
 
     editable: bool
     """Whether the setting is editable"""
 
-    modified_on: datetime
-    """The time when the setting was last modified"""
-
-    value: Literal["on", "off"]
-    """The status of the feature being on / off"""
+    modified_on: Optional[datetime] = None
+    """Last time this setting was modified."""

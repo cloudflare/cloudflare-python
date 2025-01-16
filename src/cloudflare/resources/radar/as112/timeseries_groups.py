@@ -411,6 +411,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         date_range: List[str] | NotGiven = NOT_GIVEN,
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        limit_per_group: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -446,6 +447,9 @@ class TimeseriesGroupsResource(SyncAPIResource):
 
           format: Format results are returned in.
 
+          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
+              the time range.
+
           location: Array of comma separated list of locations (alpha-2 country codes). Start with
               `-` to exclude from results. For example, `-US,PT` excludes results from the US,
               but includes results from PT.
@@ -476,6 +480,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
+                        "limit_per_group": limit_per_group,
                         "location": location,
                         "name": name,
                     },
@@ -496,6 +501,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         date_range: List[str] | NotGiven = NOT_GIVEN,
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        limit_per_group: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -532,6 +538,9 @@ class TimeseriesGroupsResource(SyncAPIResource):
 
           format: Format results are returned in.
 
+          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
+              the time range.
+
           location: Array of comma separated list of locations (alpha-2 country codes). Start with
               `-` to exclude from results. For example, `-US,PT` excludes results from the US,
               but includes results from PT.
@@ -562,6 +571,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
+                        "limit_per_group": limit_per_group,
                         "location": location,
                         "name": name,
                     },
@@ -945,6 +955,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         date_range: List[str] | NotGiven = NOT_GIVEN,
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        limit_per_group: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -980,6 +991,9 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
 
           format: Format results are returned in.
 
+          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
+              the time range.
+
           location: Array of comma separated list of locations (alpha-2 country codes). Start with
               `-` to exclude from results. For example, `-US,PT` excludes results from the US,
               but includes results from PT.
@@ -1010,6 +1024,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
+                        "limit_per_group": limit_per_group,
                         "location": location,
                         "name": name,
                     },
@@ -1030,6 +1045,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         date_range: List[str] | NotGiven = NOT_GIVEN,
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        limit_per_group: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1066,6 +1082,9 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
 
           format: Format results are returned in.
 
+          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
+              the time range.
+
           location: Array of comma separated list of locations (alpha-2 country codes). Start with
               `-` to exclude from results. For example, `-US,PT` excludes results from the US,
               but includes results from PT.
@@ -1096,6 +1115,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
+                        "limit_per_group": limit_per_group,
                         "location": location,
                         "name": name,
                     },

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Required, TypedDict
 
 __all__ = ["DatasetListParams"]
 
@@ -13,12 +13,6 @@ class DatasetListParams(TypedDict, total=False):
     enable: bool
 
     name: str
-
-    order_by: str
-    """Order By Column Name"""
-
-    order_by_direction: Literal["asc", "desc"]
-    """Order By Direction"""
 
     page: int
 

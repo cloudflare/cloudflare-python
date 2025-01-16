@@ -8,6 +8,22 @@ from .quota import (
     QuotaResourceWithStreamingResponse,
     AsyncQuotaResourceWithStreamingResponse,
 )
+from .users import (
+    UsersResource,
+    AsyncUsersResource,
+    UsersResourceWithRawResponse,
+    AsyncUsersResourceWithRawResponse,
+    UsersResourceWithStreamingResponse,
+    AsyncUsersResourceWithStreamingResponse,
+)
+from .devices import (
+    DevicesResource,
+    AsyncDevicesResource,
+    DevicesResourceWithRawResponse,
+    AsyncDevicesResourceWithRawResponse,
+    DevicesResourceWithStreamingResponse,
+    AsyncDevicesResourceWithStreamingResponse,
+)
 from .commands import (
     CommandsResource,
     AsyncCommandsResource,
@@ -26,6 +42,18 @@ from .downloads import (
 )
 
 __all__ = [
+    "UsersResource",
+    "AsyncUsersResource",
+    "UsersResourceWithRawResponse",
+    "AsyncUsersResourceWithRawResponse",
+    "UsersResourceWithStreamingResponse",
+    "AsyncUsersResourceWithStreamingResponse",
+    "DevicesResource",
+    "AsyncDevicesResource",
+    "DevicesResourceWithRawResponse",
+    "AsyncDevicesResourceWithRawResponse",
+    "DevicesResourceWithStreamingResponse",
+    "AsyncDevicesResourceWithStreamingResponse",
     "DownloadsResource",
     "AsyncDownloadsResource",
     "DownloadsResourceWithRawResponse",

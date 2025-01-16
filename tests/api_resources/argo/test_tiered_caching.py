@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -23,7 +23,7 @@ class TestTieredCaching:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value="on",
         )
-        assert_matches_type(TieredCachingEditResponse, tiered_caching, path=["response"])
+        assert_matches_type(Optional[TieredCachingEditResponse], tiered_caching, path=["response"])
 
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
@@ -35,7 +35,7 @@ class TestTieredCaching:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tiered_caching = response.parse()
-        assert_matches_type(TieredCachingEditResponse, tiered_caching, path=["response"])
+        assert_matches_type(Optional[TieredCachingEditResponse], tiered_caching, path=["response"])
 
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
@@ -47,7 +47,7 @@ class TestTieredCaching:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tiered_caching = response.parse()
-            assert_matches_type(TieredCachingEditResponse, tiered_caching, path=["response"])
+            assert_matches_type(Optional[TieredCachingEditResponse], tiered_caching, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -64,7 +64,7 @@ class TestTieredCaching:
         tiered_caching = client.argo.tiered_caching.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(TieredCachingGetResponse, tiered_caching, path=["response"])
+        assert_matches_type(Optional[TieredCachingGetResponse], tiered_caching, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -75,7 +75,7 @@ class TestTieredCaching:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tiered_caching = response.parse()
-        assert_matches_type(TieredCachingGetResponse, tiered_caching, path=["response"])
+        assert_matches_type(Optional[TieredCachingGetResponse], tiered_caching, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -86,7 +86,7 @@ class TestTieredCaching:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tiered_caching = response.parse()
-            assert_matches_type(TieredCachingGetResponse, tiered_caching, path=["response"])
+            assert_matches_type(Optional[TieredCachingGetResponse], tiered_caching, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -107,7 +107,7 @@ class TestAsyncTieredCaching:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value="on",
         )
-        assert_matches_type(TieredCachingEditResponse, tiered_caching, path=["response"])
+        assert_matches_type(Optional[TieredCachingEditResponse], tiered_caching, path=["response"])
 
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -119,7 +119,7 @@ class TestAsyncTieredCaching:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tiered_caching = await response.parse()
-        assert_matches_type(TieredCachingEditResponse, tiered_caching, path=["response"])
+        assert_matches_type(Optional[TieredCachingEditResponse], tiered_caching, path=["response"])
 
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -131,7 +131,7 @@ class TestAsyncTieredCaching:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tiered_caching = await response.parse()
-            assert_matches_type(TieredCachingEditResponse, tiered_caching, path=["response"])
+            assert_matches_type(Optional[TieredCachingEditResponse], tiered_caching, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -148,7 +148,7 @@ class TestAsyncTieredCaching:
         tiered_caching = await async_client.argo.tiered_caching.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(TieredCachingGetResponse, tiered_caching, path=["response"])
+        assert_matches_type(Optional[TieredCachingGetResponse], tiered_caching, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -159,7 +159,7 @@ class TestAsyncTieredCaching:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tiered_caching = await response.parse()
-        assert_matches_type(TieredCachingGetResponse, tiered_caching, path=["response"])
+        assert_matches_type(Optional[TieredCachingGetResponse], tiered_caching, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -170,7 +170,7 @@ class TestAsyncTieredCaching:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tiered_caching = await response.parse()
-            assert_matches_type(TieredCachingGetResponse, tiered_caching, path=["response"])
+            assert_matches_type(Optional[TieredCachingGetResponse], tiered_caching, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

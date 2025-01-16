@@ -2,31 +2,23 @@
 
 from typing import Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from ..._models import BaseModel
 from .regional_tiered_cache import RegionalTieredCache
 
-__all__ = ["RegionalTieredCacheEditResponse", "Value"]
-
-
-class Value(BaseModel):
-    id: RegionalTieredCache
-    """ID of the zone setting."""
-
-    modified_on: Optional[datetime] = None
-    """last time this setting was modified."""
+__all__ = ["RegionalTieredCacheEditResponse"]
 
 
 class RegionalTieredCacheEditResponse(BaseModel):
     id: RegionalTieredCache
     """ID of the zone setting."""
 
-    modified_on: Optional[datetime] = None
-    """last time this setting was modified."""
+    editable: bool
+    """Whether the setting is editable"""
 
-    value: Value
-    """
-    Instructs Cloudflare to check a regional hub data center on the way to your
-    upper tier. This can help improve performance for smart and custom tiered cache
-    topologies.
-    """
+    value: Literal["on", "off"]
+    """The value of the feature"""
+
+    modified_on: Optional[datetime] = None
+    """Last time this setting was modified."""

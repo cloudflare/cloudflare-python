@@ -230,8 +230,6 @@ class AIGatewayResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        order_by: str | NotGiven = NOT_GIVEN,
-        order_by_direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         search: str | NotGiven = NOT_GIVEN,
@@ -246,10 +244,6 @@ class AIGatewayResource(SyncAPIResource):
         List Gateways
 
         Args:
-          order_by: Order By Column Name
-
-          order_by_direction: Order By Direction
-
           search: Search by id
 
           extra_headers: Send extra headers
@@ -272,8 +266,6 @@ class AIGatewayResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "order_by": order_by,
-                        "order_by_direction": order_by_direction,
                         "page": page,
                         "per_page": per_page,
                         "search": search,
@@ -534,8 +526,6 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        order_by: str | NotGiven = NOT_GIVEN,
-        order_by_direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         search: str | NotGiven = NOT_GIVEN,
@@ -550,10 +540,6 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         List Gateways
 
         Args:
-          order_by: Order By Column Name
-
-          order_by_direction: Order By Direction
-
           search: Search by id
 
           extra_headers: Send extra headers
@@ -576,8 +562,6 @@ class AsyncAIGatewayResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "order_by": order_by,
-                        "order_by_direction": order_by_direction,
                         "page": page,
                         "per_page": per_page,
                         "search": search,

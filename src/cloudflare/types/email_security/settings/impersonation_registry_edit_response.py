@@ -13,6 +13,8 @@ class ImpersonationRegistryEditResponse(BaseModel):
 
     created_at: datetime
 
+    email: str
+
     is_email_regex: bool
 
     last_modified: datetime
@@ -24,8 +26,6 @@ class ImpersonationRegistryEditResponse(BaseModel):
     directory_id: Optional[int] = None
 
     directory_node_id: Optional[int] = None
-
-    email: Optional[str] = None
 
     external_directory_node_id: Optional[str] = None
 

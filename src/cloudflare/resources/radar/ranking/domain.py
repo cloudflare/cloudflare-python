@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import List, Type, cast
+from typing import List, Type, Union, cast
+from datetime import date
 from typing_extensions import Literal
 
 import httpx
@@ -52,8 +53,9 @@ class DomainResource(SyncAPIResource):
         self,
         domain: str,
         *,
-        date: List[str] | NotGiven = NOT_GIVEN,
+        date: List[Union[str, date]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        include_top_locations: bool | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         ranking_type: Literal["POPULAR", "TRENDING_RISE", "TRENDING_STEADY"] | NotGiven = NOT_GIVEN,
@@ -75,6 +77,8 @@ class DomainResource(SyncAPIResource):
           date: Array of dates to filter the ranking.
 
           format: Format results are returned in.
+
+          include_top_locations: Include top locations in the response.
 
           limit: Limit the number of objects in the response.
 
@@ -103,6 +107,7 @@ class DomainResource(SyncAPIResource):
                     {
                         "date": date,
                         "format": format,
+                        "include_top_locations": include_top_locations,
                         "limit": limit,
                         "name": name,
                         "ranking_type": ranking_type,
@@ -139,8 +144,9 @@ class AsyncDomainResource(AsyncAPIResource):
         self,
         domain: str,
         *,
-        date: List[str] | NotGiven = NOT_GIVEN,
+        date: List[Union[str, date]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        include_top_locations: bool | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         ranking_type: Literal["POPULAR", "TRENDING_RISE", "TRENDING_STEADY"] | NotGiven = NOT_GIVEN,
@@ -162,6 +168,8 @@ class AsyncDomainResource(AsyncAPIResource):
           date: Array of dates to filter the ranking.
 
           format: Format results are returned in.
+
+          include_top_locations: Include top locations in the response.
 
           limit: Limit the number of objects in the response.
 
@@ -190,6 +198,7 @@ class AsyncDomainResource(AsyncAPIResource):
                     {
                         "date": date,
                         "format": format,
+                        "include_top_locations": include_top_locations,
                         "limit": limit,
                         "name": name,
                         "ranking_type": ranking_type,

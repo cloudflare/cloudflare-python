@@ -1,16 +1,17 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
+from typing import Optional
 from datetime import datetime
-from typing_extensions import Literal, TypeAlias
+from typing_extensions import Literal
 
 from ...._models import BaseModel
 
-__all__ = ["BlockSenderCreateResponse", "EmailSecurityBlockedSender", "UnionMember1"]
+__all__ = ["BlockSenderCreateResponse"]
 
 
-class EmailSecurityBlockedSender(BaseModel):
+class BlockSenderCreateResponse(BaseModel):
     id: int
+    """The unique identifier for the allow policy."""
 
     created_at: datetime
 
@@ -23,22 +24,3 @@ class EmailSecurityBlockedSender(BaseModel):
     pattern_type: Literal["EMAIL", "DOMAIN", "IP", "UNKNOWN"]
 
     comments: Optional[str] = None
-
-
-class UnionMember1(BaseModel):
-    id: int
-
-    created_at: datetime
-
-    is_regex: bool
-
-    last_modified: datetime
-
-    pattern: str
-
-    pattern_type: Literal["EMAIL", "DOMAIN", "IP", "UNKNOWN"]
-
-    comments: Optional[str] = None
-
-
-BlockSenderCreateResponse: TypeAlias = Union[EmailSecurityBlockedSender, List[UnionMember1]]

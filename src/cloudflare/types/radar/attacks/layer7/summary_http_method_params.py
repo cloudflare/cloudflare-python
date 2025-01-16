@@ -48,6 +48,12 @@ class SummaryHTTPMethodParams(TypedDict, total=False):
     ip_version: Annotated[List[Literal["IPv4", "IPv6"]], PropertyInfo(alias="ipVersion")]
     """Filter for ip version."""
 
+    limit_per_group: Annotated[int, PropertyInfo(alias="limitPerGroup")]
+    """
+    Limit the number of objects (eg browsers, verticals, etc) to the top items over
+    the time range.
+    """
+
     location: List[str]
     """Array of comma separated list of locations (alpha-2 country codes).
 

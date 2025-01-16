@@ -8,3 +8,4 @@ __all__ = ["BlockSenderDeleteResponse"]
 
 class BlockSenderDeleteResponse(BaseModel):
     id: int
+    """The unique identifier for the allow policy."""

@@ -9,7 +9,10 @@ __all__ = ["ServiceListResponse"]
 
 class ServiceListResponse(BaseModel):
     id: Optional[str] = None
-    """Identifier"""
+    """Identifier of a Service on the Cloudflare network.
+
+    Available services and their IDs may be found in the **List Services** endpoint.
+    """
 
     name: Optional[str] = None
     """Name of a service running on the Cloudflare network"""

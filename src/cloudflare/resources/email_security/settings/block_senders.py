@@ -2,14 +2,13 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Iterable, Optional, cast
-from typing_extensions import Literal, overload
+from typing import Type, Optional, cast
+from typing_extensions import Literal
 
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
-    required_args,
     maybe_transform,
     async_maybe_transform,
 )
@@ -58,7 +57,6 @@ class BlockSendersResource(SyncAPIResource):
         """
         return BlockSendersResourceWithStreamingResponse(self)
 
-    @overload
     def create(
         self,
         *,
@@ -88,81 +86,27 @@ class BlockSendersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        ...
-
-    @overload
-    def create(
-        self,
-        *,
-        account_id: str,
-        body: Iterable[block_sender_create_params.Variant1Body],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BlockSenderCreateResponse:
-        """
-        Create a blocked email sender
-
-        Args:
-          account_id: Account Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @required_args(["account_id", "is_regex", "pattern", "pattern_type"], ["account_id", "body"])
-    def create(
-        self,
-        *,
-        account_id: str,
-        is_regex: bool | NotGiven = NOT_GIVEN,
-        pattern: str | NotGiven = NOT_GIVEN,
-        pattern_type: Literal["EMAIL", "DOMAIN", "IP", "UNKNOWN"] | NotGiven = NOT_GIVEN,
-        comments: Optional[str] | NotGiven = NOT_GIVEN,
-        body: Iterable[block_sender_create_params.Variant1Body] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BlockSenderCreateResponse:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return cast(
-            BlockSenderCreateResponse,
-            self._post(
-                f"/accounts/{account_id}/email-security/settings/block_senders",
-                body=maybe_transform(
-                    {
-                        "is_regex": is_regex,
-                        "pattern": pattern,
-                        "pattern_type": pattern_type,
-                        "comments": comments,
-                        "body": body,
-                    },
-                    block_sender_create_params.BlockSenderCreateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[BlockSenderCreateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[BlockSenderCreateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._post(
+            f"/accounts/{account_id}/email-security/settings/block_senders",
+            body=maybe_transform(
+                {
+                    "is_regex": is_regex,
+                    "pattern": pattern,
+                    "pattern_type": pattern_type,
+                    "comments": comments,
+                },
+                block_sender_create_params.BlockSenderCreateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[BlockSenderCreateResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[BlockSenderCreateResponse], ResultWrapper[BlockSenderCreateResponse]),
         )
 
     def list(
@@ -251,6 +195,8 @@ class BlockSendersResource(SyncAPIResource):
         Args:
           account_id: Account Identifier
 
+          pattern_id: The unique identifier for the allow policy.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -294,6 +240,8 @@ class BlockSendersResource(SyncAPIResource):
 
         Args:
           account_id: Account Identifier
+
+          pattern_id: The unique identifier for the allow policy.
 
           extra_headers: Send extra headers
 
@@ -344,6 +292,8 @@ class BlockSendersResource(SyncAPIResource):
         Args:
           account_id: Account Identifier
 
+          pattern_id: The unique identifier for the allow policy.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -387,7 +337,6 @@ class AsyncBlockSendersResource(AsyncAPIResource):
         """
         return AsyncBlockSendersResourceWithStreamingResponse(self)
 
-    @overload
     async def create(
         self,
         *,
@@ -417,81 +366,27 @@ class AsyncBlockSendersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        ...
-
-    @overload
-    async def create(
-        self,
-        *,
-        account_id: str,
-        body: Iterable[block_sender_create_params.Variant1Body],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BlockSenderCreateResponse:
-        """
-        Create a blocked email sender
-
-        Args:
-          account_id: Account Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @required_args(["account_id", "is_regex", "pattern", "pattern_type"], ["account_id", "body"])
-    async def create(
-        self,
-        *,
-        account_id: str,
-        is_regex: bool | NotGiven = NOT_GIVEN,
-        pattern: str | NotGiven = NOT_GIVEN,
-        pattern_type: Literal["EMAIL", "DOMAIN", "IP", "UNKNOWN"] | NotGiven = NOT_GIVEN,
-        comments: Optional[str] | NotGiven = NOT_GIVEN,
-        body: Iterable[block_sender_create_params.Variant1Body] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BlockSenderCreateResponse:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return cast(
-            BlockSenderCreateResponse,
-            await self._post(
-                f"/accounts/{account_id}/email-security/settings/block_senders",
-                body=await async_maybe_transform(
-                    {
-                        "is_regex": is_regex,
-                        "pattern": pattern,
-                        "pattern_type": pattern_type,
-                        "comments": comments,
-                        "body": body,
-                    },
-                    block_sender_create_params.BlockSenderCreateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[BlockSenderCreateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[BlockSenderCreateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._post(
+            f"/accounts/{account_id}/email-security/settings/block_senders",
+            body=await async_maybe_transform(
+                {
+                    "is_regex": is_regex,
+                    "pattern": pattern,
+                    "pattern_type": pattern_type,
+                    "comments": comments,
+                },
+                block_sender_create_params.BlockSenderCreateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[BlockSenderCreateResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[BlockSenderCreateResponse], ResultWrapper[BlockSenderCreateResponse]),
         )
 
     def list(
@@ -580,6 +475,8 @@ class AsyncBlockSendersResource(AsyncAPIResource):
         Args:
           account_id: Account Identifier
 
+          pattern_id: The unique identifier for the allow policy.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -623,6 +520,8 @@ class AsyncBlockSendersResource(AsyncAPIResource):
 
         Args:
           account_id: Account Identifier
+
+          pattern_id: The unique identifier for the allow policy.
 
           extra_headers: Send extra headers
 
@@ -672,6 +571,8 @@ class AsyncBlockSendersResource(AsyncAPIResource):
 
         Args:
           account_id: Account Identifier
+
+          pattern_id: The unique identifier for the allow policy.
 
           extra_headers: Send extra headers
 

@@ -318,6 +318,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
         http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
         ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        limit_per_group: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
@@ -368,6 +369,9 @@ class TimeseriesGroupsResource(SyncAPIResource):
 
           ip_version: Filter for ip version.
 
+          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
+              the time range.
+
           location: Array of comma separated list of locations (alpha-2 country codes). Start with
               `-` to exclude from results. For example, `-US,PT` excludes results from the US,
               but includes results from PT.
@@ -407,6 +411,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
                         "http_protocol": http_protocol,
                         "http_version": http_version,
                         "ip_version": ip_version,
+                        "limit_per_group": limit_per_group,
                         "location": location,
                         "name": name,
                         "os": os,
@@ -1474,6 +1479,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         http_protocol: List[Literal["HTTP", "HTTPS"]] | NotGiven = NOT_GIVEN,
         http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
         ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        limit_per_group: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
@@ -1524,6 +1530,9 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
 
           ip_version: Filter for ip version.
 
+          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
+              the time range.
+
           location: Array of comma separated list of locations (alpha-2 country codes). Start with
               `-` to exclude from results. For example, `-US,PT` excludes results from the US,
               but includes results from PT.
@@ -1563,6 +1572,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                         "http_protocol": http_protocol,
                         "http_version": http_version,
                         "ip_version": ip_version,
+                        "limit_per_group": limit_per_group,
                         "location": location,
                         "name": name,
                         "os": os,

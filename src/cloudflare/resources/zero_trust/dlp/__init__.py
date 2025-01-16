@@ -8,6 +8,14 @@ from .dlp import (
     DLPResourceWithStreamingResponse,
     AsyncDLPResourceWithStreamingResponse,
 )
+from .email import (
+    EmailResource,
+    AsyncEmailResource,
+    EmailResourceWithRawResponse,
+    AsyncEmailResourceWithRawResponse,
+    EmailResourceWithStreamingResponse,
+    AsyncEmailResourceWithStreamingResponse,
+)
 from .limits import (
     LimitsResource,
     AsyncLimitsResource,
@@ -76,6 +84,12 @@ __all__ = [
     "AsyncPayloadLogsResourceWithRawResponse",
     "PayloadLogsResourceWithStreamingResponse",
     "AsyncPayloadLogsResourceWithStreamingResponse",
+    "EmailResource",
+    "AsyncEmailResource",
+    "EmailResourceWithRawResponse",
+    "AsyncEmailResourceWithRawResponse",
+    "EmailResourceWithStreamingResponse",
+    "AsyncEmailResourceWithStreamingResponse",
     "ProfilesResource",
     "AsyncProfilesResource",
     "ProfilesResourceWithRawResponse",

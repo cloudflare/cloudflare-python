@@ -2,8 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Optional, cast
-from typing_extensions import overload
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -47,13 +46,20 @@ from .settings import (
     SettingsResourceWithStreamingResponse,
     AsyncSettingsResourceWithStreamingResponse,
 )
-from ......_types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, FileTypes
+from ......_types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from ......_utils import (
-    required_args,
     maybe_transform,
     async_maybe_transform,
 )
 from ......_compat import cached_property
+from .asset_upload import (
+    AssetUploadResource,
+    AsyncAssetUploadResource,
+    AssetUploadResourceWithRawResponse,
+    AsyncAssetUploadResourceWithRawResponse,
+    AssetUploadResourceWithStreamingResponse,
+    AsyncAssetUploadResourceWithStreamingResponse,
+)
 from ......_resource import SyncAPIResource, AsyncAPIResource
 from ......_response import (
     to_raw_response_wrapper,
@@ -71,6 +77,10 @@ __all__ = ["ScriptsResource", "AsyncScriptsResource"]
 
 
 class ScriptsResource(SyncAPIResource):
+    @cached_property
+    def asset_upload(self) -> AssetUploadResource:
+        return AssetUploadResource(self._client)
+
     @cached_property
     def content(self) -> ContentResource:
         return ContentResource(self._client)
@@ -110,15 +120,13 @@ class ScriptsResource(SyncAPIResource):
         """
         return ScriptsResourceWithStreamingResponse(self)
 
-    @overload
     def update(
         self,
         script_name: str,
         *,
         account_id: str,
         dispatch_namespace: str,
-        any_part_name: List[FileTypes] | NotGiven = NOT_GIVEN,
-        metadata: script_update_params.Variant0Metadata | NotGiven = NOT_GIVEN,
+        metadata: script_update_params.Metadata,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -138,12 +146,6 @@ class ScriptsResource(SyncAPIResource):
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
           script_name: Name of the script, used in URLs and route configuration.
-
-          any_part_name: A module comprising a Worker script, often a javascript file. Multiple modules
-              may be provided as separate named parts, but at least one module must be present
-              and referenced in the metadata as `main_module` or `body_part` by part name.
-              Source maps may also be included using the `application/source-map` content
-              type.
 
           metadata: JSON encoded metadata about the uploaded parts and Worker configuration.
 
@@ -155,66 +157,6 @@ class ScriptsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        ...
-
-    @overload
-    def update(
-        self,
-        script_name: str,
-        *,
-        account_id: str,
-        dispatch_namespace: str,
-        message: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ScriptUpdateResponse]:
-        """Upload a worker module to a Workers for Platforms namespace.
-
-        You can find more
-        about the multipart metadata on our docs:
-        https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/.
-
-        Args:
-          account_id: Identifier
-
-          dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
-
-          script_name: Name of the script, used in URLs and route configuration.
-
-          message: Rollback message to be associated with this deployment. Only parsed when query
-              param `"rollback_to"` is present.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @required_args(["account_id", "dispatch_namespace"])
-    def update(
-        self,
-        script_name: str,
-        *,
-        account_id: str,
-        dispatch_namespace: str,
-        any_part_name: List[FileTypes] | NotGiven = NOT_GIVEN,
-        metadata: script_update_params.Variant0Metadata | NotGiven = NOT_GIVEN,
-        message: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ScriptUpdateResponse]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dispatch_namespace:
@@ -223,14 +165,7 @@ class ScriptsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return self._put(
             f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}",
-            body=maybe_transform(
-                {
-                    "any_part_name": any_part_name,
-                    "metadata": metadata,
-                    "message": message,
-                },
-                script_update_params.ScriptUpdateParams,
-            ),
+            body=maybe_transform({"metadata": metadata}, script_update_params.ScriptUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -350,6 +285,10 @@ class ScriptsResource(SyncAPIResource):
 
 class AsyncScriptsResource(AsyncAPIResource):
     @cached_property
+    def asset_upload(self) -> AsyncAssetUploadResource:
+        return AsyncAssetUploadResource(self._client)
+
+    @cached_property
     def content(self) -> AsyncContentResource:
         return AsyncContentResource(self._client)
 
@@ -388,15 +327,13 @@ class AsyncScriptsResource(AsyncAPIResource):
         """
         return AsyncScriptsResourceWithStreamingResponse(self)
 
-    @overload
     async def update(
         self,
         script_name: str,
         *,
         account_id: str,
         dispatch_namespace: str,
-        any_part_name: List[FileTypes] | NotGiven = NOT_GIVEN,
-        metadata: script_update_params.Variant0Metadata | NotGiven = NOT_GIVEN,
+        metadata: script_update_params.Metadata,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -416,12 +353,6 @@ class AsyncScriptsResource(AsyncAPIResource):
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
           script_name: Name of the script, used in URLs and route configuration.
-
-          any_part_name: A module comprising a Worker script, often a javascript file. Multiple modules
-              may be provided as separate named parts, but at least one module must be present
-              and referenced in the metadata as `main_module` or `body_part` by part name.
-              Source maps may also be included using the `application/source-map` content
-              type.
 
           metadata: JSON encoded metadata about the uploaded parts and Worker configuration.
 
@@ -433,66 +364,6 @@ class AsyncScriptsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        ...
-
-    @overload
-    async def update(
-        self,
-        script_name: str,
-        *,
-        account_id: str,
-        dispatch_namespace: str,
-        message: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ScriptUpdateResponse]:
-        """Upload a worker module to a Workers for Platforms namespace.
-
-        You can find more
-        about the multipart metadata on our docs:
-        https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/.
-
-        Args:
-          account_id: Identifier
-
-          dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
-
-          script_name: Name of the script, used in URLs and route configuration.
-
-          message: Rollback message to be associated with this deployment. Only parsed when query
-              param `"rollback_to"` is present.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        ...
-
-    @required_args(["account_id", "dispatch_namespace"])
-    async def update(
-        self,
-        script_name: str,
-        *,
-        account_id: str,
-        dispatch_namespace: str,
-        any_part_name: List[FileTypes] | NotGiven = NOT_GIVEN,
-        metadata: script_update_params.Variant0Metadata | NotGiven = NOT_GIVEN,
-        message: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ScriptUpdateResponse]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dispatch_namespace:
@@ -501,14 +372,7 @@ class AsyncScriptsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return await self._put(
             f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}",
-            body=await async_maybe_transform(
-                {
-                    "any_part_name": any_part_name,
-                    "metadata": metadata,
-                    "message": message,
-                },
-                script_update_params.ScriptUpdateParams,
-            ),
+            body=await async_maybe_transform({"metadata": metadata}, script_update_params.ScriptUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -641,6 +505,10 @@ class ScriptsResourceWithRawResponse:
         )
 
     @cached_property
+    def asset_upload(self) -> AssetUploadResourceWithRawResponse:
+        return AssetUploadResourceWithRawResponse(self._scripts.asset_upload)
+
+    @cached_property
     def content(self) -> ContentResourceWithRawResponse:
         return ContentResourceWithRawResponse(self._scripts.content)
 
@@ -674,6 +542,10 @@ class AsyncScriptsResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             scripts.get,
         )
+
+    @cached_property
+    def asset_upload(self) -> AsyncAssetUploadResourceWithRawResponse:
+        return AsyncAssetUploadResourceWithRawResponse(self._scripts.asset_upload)
 
     @cached_property
     def content(self) -> AsyncContentResourceWithRawResponse:
@@ -711,6 +583,10 @@ class ScriptsResourceWithStreamingResponse:
         )
 
     @cached_property
+    def asset_upload(self) -> AssetUploadResourceWithStreamingResponse:
+        return AssetUploadResourceWithStreamingResponse(self._scripts.asset_upload)
+
+    @cached_property
     def content(self) -> ContentResourceWithStreamingResponse:
         return ContentResourceWithStreamingResponse(self._scripts.content)
 
@@ -744,6 +620,10 @@ class AsyncScriptsResourceWithStreamingResponse:
         self.get = async_to_streamed_response_wrapper(
             scripts.get,
         )
+
+    @cached_property
+    def asset_upload(self) -> AsyncAssetUploadResourceWithStreamingResponse:
+        return AsyncAssetUploadResourceWithStreamingResponse(self._scripts.asset_upload)
 
     @cached_property
     def content(self) -> AsyncContentResourceWithStreamingResponse:

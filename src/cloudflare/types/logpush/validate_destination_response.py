@@ -8,4 +8,6 @@ __all__ = ["ValidateDestinationResponse"]
 
 
 class ValidateDestinationResponse(BaseModel):
-    exists: Optional[bool] = None
+    message: Optional[str] = None
+
+    valid: Optional[bool] = None

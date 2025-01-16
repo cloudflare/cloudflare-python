@@ -180,6 +180,9 @@ class WaitingRoomsResource(SyncAPIResource):
         queueing_status_code: Literal[200, 202, 429] | NotGiven = NOT_GIVEN,
         session_duration: int | NotGiven = NOT_GIVEN,
         suspended: bool | NotGiven = NOT_GIVEN,
+        turnstile_action: Literal["log", "infinite_queue"] | NotGiven = NOT_GIVEN,
+        turnstile_mode: Literal["off", "invisible", "visible_non_interactive", "visible_managed"]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -451,6 +454,18 @@ class WaitingRoomsResource(SyncAPIResource):
           suspended: Suspends or allows traffic going to the waiting room. If set to `true`, the
               traffic will not go to the waiting room.
 
+          turnstile_action: Which action to take when a bot is detected using Turnstile. `log` will have no
+              impact on queueing behavior, simply keeping track of how many bots are detected
+              in Waiting Room Analytics. `infinite_queue` will send bots to a false queueing
+              state, where they will never reach your origin. `infinite_queue` requires
+              Advanced Waiting Room.
+
+          turnstile_mode: Which Turnstile widget type to use for detecting bot traffic. See
+              [the Turnstile documentation](https://developers.cloudflare.com/turnstile/concepts/widget/#widget-types)
+              for the definitions of these widget types. Set to `off` to disable the Turnstile
+              integration entirely. Setting this to anything other than `off` or `invisible`
+              requires Advanced Waiting Room.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -484,6 +499,8 @@ class WaitingRoomsResource(SyncAPIResource):
                     "queueing_status_code": queueing_status_code,
                     "session_duration": session_duration,
                     "suspended": suspended,
+                    "turnstile_action": turnstile_action,
+                    "turnstile_mode": turnstile_mode,
                 },
                 waiting_room_create_params.WaitingRoomCreateParams,
             ),
@@ -561,6 +578,9 @@ class WaitingRoomsResource(SyncAPIResource):
         queueing_status_code: Literal[200, 202, 429] | NotGiven = NOT_GIVEN,
         session_duration: int | NotGiven = NOT_GIVEN,
         suspended: bool | NotGiven = NOT_GIVEN,
+        turnstile_action: Literal["log", "infinite_queue"] | NotGiven = NOT_GIVEN,
+        turnstile_mode: Literal["off", "invisible", "visible_non_interactive", "visible_managed"]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -832,6 +852,18 @@ class WaitingRoomsResource(SyncAPIResource):
           suspended: Suspends or allows traffic going to the waiting room. If set to `true`, the
               traffic will not go to the waiting room.
 
+          turnstile_action: Which action to take when a bot is detected using Turnstile. `log` will have no
+              impact on queueing behavior, simply keeping track of how many bots are detected
+              in Waiting Room Analytics. `infinite_queue` will send bots to a false queueing
+              state, where they will never reach your origin. `infinite_queue` requires
+              Advanced Waiting Room.
+
+          turnstile_mode: Which Turnstile widget type to use for detecting bot traffic. See
+              [the Turnstile documentation](https://developers.cloudflare.com/turnstile/concepts/widget/#widget-types)
+              for the definitions of these widget types. Set to `off` to disable the Turnstile
+              integration entirely. Setting this to anything other than `off` or `invisible`
+              requires Advanced Waiting Room.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -867,6 +899,8 @@ class WaitingRoomsResource(SyncAPIResource):
                     "queueing_status_code": queueing_status_code,
                     "session_duration": session_duration,
                     "suspended": suspended,
+                    "turnstile_action": turnstile_action,
+                    "turnstile_mode": turnstile_mode,
                 },
                 waiting_room_update_params.WaitingRoomUpdateParams,
             ),
@@ -1038,6 +1072,9 @@ class WaitingRoomsResource(SyncAPIResource):
         queueing_status_code: Literal[200, 202, 429] | NotGiven = NOT_GIVEN,
         session_duration: int | NotGiven = NOT_GIVEN,
         suspended: bool | NotGiven = NOT_GIVEN,
+        turnstile_action: Literal["log", "infinite_queue"] | NotGiven = NOT_GIVEN,
+        turnstile_mode: Literal["off", "invisible", "visible_non_interactive", "visible_managed"]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1309,6 +1346,18 @@ class WaitingRoomsResource(SyncAPIResource):
           suspended: Suspends or allows traffic going to the waiting room. If set to `true`, the
               traffic will not go to the waiting room.
 
+          turnstile_action: Which action to take when a bot is detected using Turnstile. `log` will have no
+              impact on queueing behavior, simply keeping track of how many bots are detected
+              in Waiting Room Analytics. `infinite_queue` will send bots to a false queueing
+              state, where they will never reach your origin. `infinite_queue` requires
+              Advanced Waiting Room.
+
+          turnstile_mode: Which Turnstile widget type to use for detecting bot traffic. See
+              [the Turnstile documentation](https://developers.cloudflare.com/turnstile/concepts/widget/#widget-types)
+              for the definitions of these widget types. Set to `off` to disable the Turnstile
+              integration entirely. Setting this to anything other than `off` or `invisible`
+              requires Advanced Waiting Room.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1344,6 +1393,8 @@ class WaitingRoomsResource(SyncAPIResource):
                     "queueing_status_code": queueing_status_code,
                     "session_duration": session_duration,
                     "suspended": suspended,
+                    "turnstile_action": turnstile_action,
+                    "turnstile_mode": turnstile_mode,
                 },
                 waiting_room_edit_params.WaitingRoomEditParams,
             ),
@@ -1503,6 +1554,9 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
         queueing_status_code: Literal[200, 202, 429] | NotGiven = NOT_GIVEN,
         session_duration: int | NotGiven = NOT_GIVEN,
         suspended: bool | NotGiven = NOT_GIVEN,
+        turnstile_action: Literal["log", "infinite_queue"] | NotGiven = NOT_GIVEN,
+        turnstile_mode: Literal["off", "invisible", "visible_non_interactive", "visible_managed"]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1774,6 +1828,18 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
           suspended: Suspends or allows traffic going to the waiting room. If set to `true`, the
               traffic will not go to the waiting room.
 
+          turnstile_action: Which action to take when a bot is detected using Turnstile. `log` will have no
+              impact on queueing behavior, simply keeping track of how many bots are detected
+              in Waiting Room Analytics. `infinite_queue` will send bots to a false queueing
+              state, where they will never reach your origin. `infinite_queue` requires
+              Advanced Waiting Room.
+
+          turnstile_mode: Which Turnstile widget type to use for detecting bot traffic. See
+              [the Turnstile documentation](https://developers.cloudflare.com/turnstile/concepts/widget/#widget-types)
+              for the definitions of these widget types. Set to `off` to disable the Turnstile
+              integration entirely. Setting this to anything other than `off` or `invisible`
+              requires Advanced Waiting Room.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1807,6 +1873,8 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
                     "queueing_status_code": queueing_status_code,
                     "session_duration": session_duration,
                     "suspended": suspended,
+                    "turnstile_action": turnstile_action,
+                    "turnstile_mode": turnstile_mode,
                 },
                 waiting_room_create_params.WaitingRoomCreateParams,
             ),
@@ -1884,6 +1952,9 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
         queueing_status_code: Literal[200, 202, 429] | NotGiven = NOT_GIVEN,
         session_duration: int | NotGiven = NOT_GIVEN,
         suspended: bool | NotGiven = NOT_GIVEN,
+        turnstile_action: Literal["log", "infinite_queue"] | NotGiven = NOT_GIVEN,
+        turnstile_mode: Literal["off", "invisible", "visible_non_interactive", "visible_managed"]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2155,6 +2226,18 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
           suspended: Suspends or allows traffic going to the waiting room. If set to `true`, the
               traffic will not go to the waiting room.
 
+          turnstile_action: Which action to take when a bot is detected using Turnstile. `log` will have no
+              impact on queueing behavior, simply keeping track of how many bots are detected
+              in Waiting Room Analytics. `infinite_queue` will send bots to a false queueing
+              state, where they will never reach your origin. `infinite_queue` requires
+              Advanced Waiting Room.
+
+          turnstile_mode: Which Turnstile widget type to use for detecting bot traffic. See
+              [the Turnstile documentation](https://developers.cloudflare.com/turnstile/concepts/widget/#widget-types)
+              for the definitions of these widget types. Set to `off` to disable the Turnstile
+              integration entirely. Setting this to anything other than `off` or `invisible`
+              requires Advanced Waiting Room.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -2190,6 +2273,8 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
                     "queueing_status_code": queueing_status_code,
                     "session_duration": session_duration,
                     "suspended": suspended,
+                    "turnstile_action": turnstile_action,
+                    "turnstile_mode": turnstile_mode,
                 },
                 waiting_room_update_params.WaitingRoomUpdateParams,
             ),
@@ -2361,6 +2446,9 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
         queueing_status_code: Literal[200, 202, 429] | NotGiven = NOT_GIVEN,
         session_duration: int | NotGiven = NOT_GIVEN,
         suspended: bool | NotGiven = NOT_GIVEN,
+        turnstile_action: Literal["log", "infinite_queue"] | NotGiven = NOT_GIVEN,
+        turnstile_mode: Literal["off", "invisible", "visible_non_interactive", "visible_managed"]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2632,6 +2720,18 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
           suspended: Suspends or allows traffic going to the waiting room. If set to `true`, the
               traffic will not go to the waiting room.
 
+          turnstile_action: Which action to take when a bot is detected using Turnstile. `log` will have no
+              impact on queueing behavior, simply keeping track of how many bots are detected
+              in Waiting Room Analytics. `infinite_queue` will send bots to a false queueing
+              state, where they will never reach your origin. `infinite_queue` requires
+              Advanced Waiting Room.
+
+          turnstile_mode: Which Turnstile widget type to use for detecting bot traffic. See
+              [the Turnstile documentation](https://developers.cloudflare.com/turnstile/concepts/widget/#widget-types)
+              for the definitions of these widget types. Set to `off` to disable the Turnstile
+              integration entirely. Setting this to anything other than `off` or `invisible`
+              requires Advanced Waiting Room.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -2667,6 +2767,8 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
                     "queueing_status_code": queueing_status_code,
                     "session_duration": session_duration,
                     "suspended": suspended,
+                    "turnstile_action": turnstile_action,
+                    "turnstile_mode": turnstile_mode,
                 },
                 waiting_room_edit_params.WaitingRoomEditParams,
             ),

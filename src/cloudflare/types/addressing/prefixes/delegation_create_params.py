@@ -9,7 +9,7 @@ __all__ = ["DelegationCreateParams"]
 
 class DelegationCreateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier of a Cloudflare account."""
 
     cidr: Required[str]
     """IP Prefix in Classless Inter-Domain Routing format."""

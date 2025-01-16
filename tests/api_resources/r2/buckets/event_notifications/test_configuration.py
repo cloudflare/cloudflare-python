@@ -32,7 +32,7 @@ class TestConfiguration:
         configuration = client.r2.buckets.event_notifications.configuration.get(
             bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            cf_r2_jurisdiction="default",
+            jurisdiction="default",
         )
         assert_matches_type(ConfigurationGetResponse, configuration, path=["response"])
 
@@ -98,7 +98,7 @@ class TestAsyncConfiguration:
         configuration = await async_client.r2.buckets.event_notifications.configuration.get(
             bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            cf_r2_jurisdiction="default",
+            jurisdiction="default",
         )
         assert_matches_type(ConfigurationGetResponse, configuration, path=["response"])
 

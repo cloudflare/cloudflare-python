@@ -45,6 +45,10 @@ class Dataset(BaseModel):
     status: Literal["empty", "uploading", "processing", "failed", "complete"]
 
     updated_at: datetime
+    """When the dataset was last updated.
+
+    This includes name or description changes as well as uploads.
+    """
 
     uploads: List[Upload]
 

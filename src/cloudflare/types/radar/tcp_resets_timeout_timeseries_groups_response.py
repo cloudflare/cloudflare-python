@@ -59,31 +59,14 @@ class Meta(BaseModel):
 
 class Serie0(BaseModel):
     later_in_flow: List[str]
-    """
-    Connection resets within the first 10 packets from the client, but after the
-    server has received multiple data packets.
-    """
 
     no_match: List[str]
-    """All other connections."""
 
     post_ack: List[str]
-    """
-    Connection resets or timeouts after the server received both a SYN packet and an
-    ACK packet, meaning the connection was successfully established.
-    """
 
     post_psh: List[str]
-    """
-    Connection resets or timeouts after the server received a packet with PSH flag
-    set, following connection establishment.
-    """
 
     post_syn: List[str]
-    """
-    Connection resets or timeouts after the server received only a single SYN
-    packet.
-    """
 
     timestamps: List[datetime]
 

@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
+from typing import Dict, List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, Annotated, TypeAlias
 
@@ -32,14 +32,15 @@ __all__ = [
     "ActionBypassCacheOnCookie",
     "ActionCacheByDeviceType",
     "ActionCacheDeceptionArmor",
-    "ActionCacheKey",
-    "ActionCacheKeyValue",
-    "ActionCacheKeyValueCookie",
-    "ActionCacheKeyValueHeader",
-    "ActionCacheKeyValueHost",
-    "ActionCacheKeyValueQueryString",
-    "ActionCacheKeyValueUser",
+    "ActionCacheKeyFields",
+    "ActionCacheKeyFieldsValue",
+    "ActionCacheKeyFieldsValueCookie",
+    "ActionCacheKeyFieldsValueHeader",
+    "ActionCacheKeyFieldsValueHost",
+    "ActionCacheKeyFieldsValueQueryString",
+    "ActionCacheKeyFieldsValueUser",
     "ActionCacheOnCookie",
+    "ActionCacheTTLByStatus",
     "ActionDisableApps",
     "ActionDisablePerformance",
     "ActionDisableSecurity",
@@ -90,7 +91,7 @@ class ActionCacheDeceptionArmor(BaseModel):
     """The status of Cache Deception Armor."""
 
 
-class ActionCacheKeyValueCookie(BaseModel):
+class ActionCacheKeyFieldsValueCookie(BaseModel):
     check_presence: Optional[List[str]] = None
     """
     A list of cookies to check for the presence of, without including their actual
@@ -101,7 +102,7 @@ class ActionCacheKeyValueCookie(BaseModel):
     """A list of cookies to include."""
 
 
-class ActionCacheKeyValueHeader(BaseModel):
+class ActionCacheKeyFieldsValueHeader(BaseModel):
     check_presence: Optional[List[str]] = None
     """
     A list of headers to check for the presence of, without including their actual
@@ -115,12 +116,12 @@ class ActionCacheKeyValueHeader(BaseModel):
     """A list of headers to include."""
 
 
-class ActionCacheKeyValueHost(BaseModel):
+class ActionCacheKeyFieldsValueHost(BaseModel):
     resolved: Optional[bool] = None
     """Whether to include the Host header in the HTTP request sent to the origin."""
 
 
-class ActionCacheKeyValueQueryString(BaseModel):
+class ActionCacheKeyFieldsValueQueryString(BaseModel):
     exclude: Union[Literal["*"], List[str], None] = None
     """Ignore all query string parameters."""
 
@@ -128,7 +129,7 @@ class ActionCacheKeyValueQueryString(BaseModel):
     """Include all query string parameters."""
 
 
-class ActionCacheKeyValueUser(BaseModel):
+class ActionCacheKeyFieldsValueUser(BaseModel):
     device_type: Optional[bool] = None
     """
     Classifies a request as `mobile`, `desktop`, or `tablet` based on the User
@@ -145,38 +146,38 @@ class ActionCacheKeyValueUser(BaseModel):
     """
 
 
-class ActionCacheKeyValue(BaseModel):
-    cookie: Optional[ActionCacheKeyValueCookie] = None
+class ActionCacheKeyFieldsValue(BaseModel):
+    cookie: Optional[ActionCacheKeyFieldsValueCookie] = None
     """Controls which cookies appear in the Cache Key."""
 
-    header: Optional[ActionCacheKeyValueHeader] = None
+    header: Optional[ActionCacheKeyFieldsValueHeader] = None
     """Controls which headers go into the Cache Key.
 
     Exactly one of `include` or `exclude` is expected.
     """
 
-    host: Optional[ActionCacheKeyValueHost] = None
+    host: Optional[ActionCacheKeyFieldsValueHost] = None
     """Determines which host header to include in the Cache Key."""
 
-    query_string: Optional[ActionCacheKeyValueQueryString] = None
+    query_string: Optional[ActionCacheKeyFieldsValueQueryString] = None
     """Controls which URL query string parameters go into the Cache Key.
 
     Exactly one of `include` or `exclude` is expected.
     """
 
-    user: Optional[ActionCacheKeyValueUser] = None
+    user: Optional[ActionCacheKeyFieldsValueUser] = None
     """Feature fields to add features about the end-user (client) into the Cache Key."""
 
 
-class ActionCacheKey(BaseModel):
-    id: Optional[Literal["cache_key"]] = None
+class ActionCacheKeyFields(BaseModel):
+    id: Optional[Literal["cache_key_fields"]] = None
     """
     Control specifically what variables to include when deciding which resources to
     cache. This allows customers to determine what to cache based on something other
     than just the URL.
     """
 
-    value: Optional[ActionCacheKeyValue] = None
+    value: Optional[ActionCacheKeyFieldsValue] = None
 
 
 class ActionCacheOnCookie(BaseModel):
@@ -188,6 +189,36 @@ class ActionCacheOnCookie(BaseModel):
 
     value: Optional[str] = None
     """The regular expression to use for matching cookie names in the request."""
+
+
+class ActionCacheTTLByStatus(BaseModel):
+    id: Optional[Literal["cache_ttl_by_status"]] = None
+    """
+    Enterprise customers can set cache time-to-live (TTL) based on the response
+    status from the origin web server. Cache TTL refers to the duration of a
+    resource in the Cloudflare network before being marked as stale or discarded
+    from cache. Status codes are returned by a resource's origin. Setting cache TTL
+    based on response status overrides the default cache behavior (standard caching)
+    for static files and overrides cache instructions sent by the origin web server.
+    To cache non-static assets, set a Cache Level of Cache Everything using a Page
+    Rule. Setting no-store Cache-Control or a low TTL (using `max-age`/`s-maxage`)
+    increases requests to origin web servers and decreases performance.
+    """
+
+    value: Optional[Dict[str, Union[Literal["no-cache", "no-store"], int]]] = None
+    """
+    A JSON object containing status codes and their corresponding TTLs. Each
+    key-value pair in the cache TTL by status cache rule has the following syntax
+
+    - `status_code`: An integer value such as 200 or 500. status_code matches the
+      exact status code from the origin web server. Valid status codes are between
+      100-999.
+    - `status_code_range`: Integer values for from and to. status_code_range matches
+      any status code from the origin web server within the specified range.
+    - `value`: An integer value that defines the duration an asset is valid in
+      seconds or one of the following strings: no-store (equivalent to -1), no-cache
+      (equivalent to 0).
+    """
 
 
 class ActionDisableApps(BaseModel):
@@ -309,9 +340,10 @@ Action: TypeAlias = Annotated[
         ActionBypassCacheOnCookie,
         ActionCacheByDeviceType,
         ActionCacheDeceptionArmor,
-        ActionCacheKey,
+        ActionCacheKeyFields,
         CacheLevel,
         ActionCacheOnCookie,
+        ActionCacheTTLByStatus,
         ActionDisableApps,
         ActionDisablePerformance,
         ActionDisableSecurity,

@@ -63,6 +63,8 @@ class TestWaitingRooms:
             queueing_status_code=200,
             session_duration=1,
             suspended=True,
+            turnstile_action="log",
+            turnstile_mode="off",
         )
         assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
@@ -153,6 +155,8 @@ class TestWaitingRooms:
             queueing_status_code=200,
             session_duration=1,
             suspended=True,
+            turnstile_action="log",
+            turnstile_mode="off",
         )
         assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
@@ -351,6 +355,8 @@ class TestWaitingRooms:
             queueing_status_code=200,
             session_duration=1,
             suspended=True,
+            turnstile_action="log",
+            turnstile_mode="off",
         )
         assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
@@ -504,6 +510,8 @@ class TestAsyncWaitingRooms:
             queueing_status_code=200,
             session_duration=1,
             suspended=True,
+            turnstile_action="log",
+            turnstile_mode="off",
         )
         assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
@@ -594,6 +602,8 @@ class TestAsyncWaitingRooms:
             queueing_status_code=200,
             session_duration=1,
             suspended=True,
+            turnstile_action="log",
+            turnstile_mode="off",
         )
         assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 
@@ -792,6 +802,8 @@ class TestAsyncWaitingRooms:
             queueing_status_code=200,
             session_duration=1,
             suspended=True,
+            turnstile_action="log",
+            turnstile_mode="off",
         )
         assert_matches_type(WaitingRoom, waiting_room, path=["response"])
 

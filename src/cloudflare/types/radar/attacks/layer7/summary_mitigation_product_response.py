@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 from datetime import datetime
 
 from pydantic import Field as FieldInfo
@@ -13,7 +13,6 @@ __all__ = [
     "MetaDateRange",
     "MetaConfidenceInfo",
     "MetaConfidenceInfoAnnotation",
-    "Summary0",
 ]
 
 
@@ -57,13 +56,7 @@ class Meta(BaseModel):
     confidence_info: Optional[MetaConfidenceInfo] = FieldInfo(alias="confidenceInfo", default=None)
 
 
-class Summary0(BaseModel):
-    ddos: str = FieldInfo(alias="DDOS")
-
-    waf: str = FieldInfo(alias="WAF")
-
-
 class SummaryMitigationProductResponse(BaseModel):
     meta: Meta
 
-    summary_0: Summary0
+    summary_0: Dict[str, str]

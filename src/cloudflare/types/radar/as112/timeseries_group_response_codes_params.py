@@ -49,6 +49,12 @@ class TimeseriesGroupResponseCodesParams(TypedDict, total=False):
     format: Literal["JSON", "CSV"]
     """Format results are returned in."""
 
+    limit_per_group: Annotated[int, PropertyInfo(alias="limitPerGroup")]
+    """
+    Limit the number of objects (eg browsers, verticals, etc) to the top items over
+    the time range.
+    """
+
     location: List[str]
     """Array of comma separated list of locations (alpha-2 country codes).
 

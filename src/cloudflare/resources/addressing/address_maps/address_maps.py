@@ -106,7 +106,7 @@ class AddressMapsResource(SyncAPIResource):
         Create a new address map under the account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
           description: An optional description field which may be used to describe the types of IPs or
               zones on the map.
@@ -163,7 +163,7 @@ class AddressMapsResource(SyncAPIResource):
         List all address maps owned by the account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
           extra_headers: Send extra headers
 
@@ -202,9 +202,9 @@ class AddressMapsResource(SyncAPIResource):
         disabled before it can be deleted.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          address_map_id: Identifier
+          address_map_id: Identifier of an Address Map.
 
           extra_headers: Send extra headers
 
@@ -245,9 +245,9 @@ class AddressMapsResource(SyncAPIResource):
         Modify properties of an address map owned by the account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          address_map_id: Identifier
+          address_map_id: Identifier of an Address Map.
 
           default_sni: If you have legacy TLS clients which do not send the TLS server name indicator,
               then you can specify one default SNI on the map. If Cloudflare receives a TLS
@@ -309,9 +309,9 @@ class AddressMapsResource(SyncAPIResource):
         Show a particular address map owned by the account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          address_map_id: Identifier
+          address_map_id: Identifier of an Address Map.
 
           extra_headers: Send extra headers
 
@@ -389,7 +389,7 @@ class AsyncAddressMapsResource(AsyncAPIResource):
         Create a new address map under the account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
           description: An optional description field which may be used to describe the types of IPs or
               zones on the map.
@@ -446,7 +446,7 @@ class AsyncAddressMapsResource(AsyncAPIResource):
         List all address maps owned by the account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
           extra_headers: Send extra headers
 
@@ -485,9 +485,9 @@ class AsyncAddressMapsResource(AsyncAPIResource):
         disabled before it can be deleted.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          address_map_id: Identifier
+          address_map_id: Identifier of an Address Map.
 
           extra_headers: Send extra headers
 
@@ -528,9 +528,9 @@ class AsyncAddressMapsResource(AsyncAPIResource):
         Modify properties of an address map owned by the account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          address_map_id: Identifier
+          address_map_id: Identifier of an Address Map.
 
           default_sni: If you have legacy TLS clients which do not send the TLS server name indicator,
               then you can specify one default SNI on the map. If Cloudflare receives a TLS
@@ -592,9 +592,9 @@ class AsyncAddressMapsResource(AsyncAPIResource):
         Show a particular address map owned by the account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier of a Cloudflare account.
 
-          address_map_id: Identifier
+          address_map_id: Identifier of an Address Map.
 
           extra_headers: Send extra headers
 

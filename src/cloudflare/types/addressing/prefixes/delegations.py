@@ -10,7 +10,7 @@ __all__ = ["Delegations"]
 
 class Delegations(BaseModel):
     id: Optional[str] = None
-    """Delegation identifier tag."""
+    """Identifier of a Delegation."""
 
     cidr: Optional[str] = None
     """IP Prefix in Classless Inter-Domain Routing format."""
@@ -23,4 +23,4 @@ class Delegations(BaseModel):
     modified_at: Optional[datetime] = None
 
     parent_prefix_id: Optional[str] = None
-    """Identifier"""
+    """Identifier of an IP Prefix."""

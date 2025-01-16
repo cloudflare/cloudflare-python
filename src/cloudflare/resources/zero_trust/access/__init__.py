@@ -64,6 +64,14 @@ from .bookmarks import (
     BookmarksResourceWithStreamingResponse,
     AsyncBookmarksResourceWithStreamingResponse,
 )
+from .gateway_ca import (
+    GatewayCAResource,
+    AsyncGatewayCAResource,
+    GatewayCAResourceWithRawResponse,
+    AsyncGatewayCAResourceWithRawResponse,
+    GatewayCAResourceWithStreamingResponse,
+    AsyncGatewayCAResourceWithStreamingResponse,
+)
 from .applications import (
     ApplicationsResource,
     AsyncApplicationsResource,
@@ -106,6 +114,12 @@ from .service_tokens import (
 )
 
 __all__ = [
+    "GatewayCAResource",
+    "AsyncGatewayCAResource",
+    "GatewayCAResourceWithRawResponse",
+    "AsyncGatewayCAResourceWithRawResponse",
+    "GatewayCAResourceWithStreamingResponse",
+    "AsyncGatewayCAResourceWithStreamingResponse",
     "InfrastructureResource",
     "AsyncInfrastructureResource",
     "InfrastructureResourceWithRawResponse",

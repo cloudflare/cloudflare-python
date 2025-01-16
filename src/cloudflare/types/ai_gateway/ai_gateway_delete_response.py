@@ -13,6 +13,10 @@ class AIGatewayDeleteResponse(BaseModel):
     id: str
     """gateway id"""
 
+    account_id: str
+
+    account_tag: str
+
     cache_invalidate_on_update: bool
 
     cache_ttl: Optional[int] = None
@@ -20,6 +24,8 @@ class AIGatewayDeleteResponse(BaseModel):
     collect_logs: bool
 
     created_at: datetime
+
+    internal_id: str
 
     modified_at: datetime
 

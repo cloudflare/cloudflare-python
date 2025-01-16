@@ -31,7 +31,7 @@ class LifecycleUpdateParams(TypedDict, total=False):
 
     rules: Iterable[Rule]
 
-    cf_r2_jurisdiction: Annotated[Literal["default", "eu", "fedramp"], PropertyInfo(alias="cf-r2-jurisdiction")]
+    jurisdiction: Annotated[Literal["default", "eu", "fedramp"], PropertyInfo(alias="cf-r2-jurisdiction")]
     """The bucket jurisdiction"""
 
 

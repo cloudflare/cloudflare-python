@@ -12,6 +12,10 @@ __all__ = ["TimeseriesGroupHTTPVersionResponse", "Serie0"]
 class Serie0(BaseModel):
     http_1_x: List[str] = FieldInfo(alias="HTTP/1.x")
 
+    http_2: List[str] = FieldInfo(alias="HTTP/2")
+
+    http_3: List[str] = FieldInfo(alias="HTTP/3")
+
     timestamps: List[str]
 
 

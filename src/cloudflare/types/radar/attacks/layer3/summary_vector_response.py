@@ -53,4 +53,4 @@ class Meta(BaseModel):
 class SummaryVectorResponse(BaseModel):
     meta: Meta
 
-    summary_0: Dict[str, List[str]]
+    summary_0: Dict[str, str]

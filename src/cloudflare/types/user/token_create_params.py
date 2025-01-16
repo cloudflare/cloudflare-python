@@ -47,5 +47,5 @@ class ConditionRequestIP(_ConditionRequestIPReservedKeywords, total=False):
 
 
 class Condition(TypedDict, total=False):
-    request_ip: Annotated[ConditionRequestIP, PropertyInfo(alias="request.ip")]
+    request_ip: ConditionRequestIP
     """Client IP restrictions."""

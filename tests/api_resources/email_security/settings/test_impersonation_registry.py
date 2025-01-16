@@ -25,7 +25,7 @@ class TestImpersonationRegistry:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    def test_method_create_overload_1(self, client: Cloudflare) -> None:
+    def test_method_create(self, client: Cloudflare) -> None:
         impersonation_registry = client.email_security.settings.impersonation_registry.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             email="email",
@@ -35,7 +35,7 @@ class TestImpersonationRegistry:
         assert_matches_type(ImpersonationRegistryCreateResponse, impersonation_registry, path=["response"])
 
     @parametrize
-    def test_raw_response_create_overload_1(self, client: Cloudflare) -> None:
+    def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.email_security.settings.impersonation_registry.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             email="email",
@@ -49,7 +49,7 @@ class TestImpersonationRegistry:
         assert_matches_type(ImpersonationRegistryCreateResponse, impersonation_registry, path=["response"])
 
     @parametrize
-    def test_streaming_response_create_overload_1(self, client: Cloudflare) -> None:
+    def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.email_security.settings.impersonation_registry.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             email="email",
@@ -65,79 +65,13 @@ class TestImpersonationRegistry:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    def test_path_params_create_overload_1(self, client: Cloudflare) -> None:
+    def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.email_security.settings.impersonation_registry.with_raw_response.create(
                 account_id="",
                 email="email",
                 is_email_regex=True,
                 name="name",
-            )
-
-    @parametrize
-    def test_method_create_overload_2(self, client: Cloudflare) -> None:
-        impersonation_registry = client.email_security.settings.impersonation_registry.create(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[
-                {
-                    "email": "email",
-                    "is_email_regex": True,
-                    "name": "name",
-                }
-            ],
-        )
-        assert_matches_type(ImpersonationRegistryCreateResponse, impersonation_registry, path=["response"])
-
-    @parametrize
-    def test_raw_response_create_overload_2(self, client: Cloudflare) -> None:
-        response = client.email_security.settings.impersonation_registry.with_raw_response.create(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[
-                {
-                    "email": "email",
-                    "is_email_regex": True,
-                    "name": "name",
-                }
-            ],
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        impersonation_registry = response.parse()
-        assert_matches_type(ImpersonationRegistryCreateResponse, impersonation_registry, path=["response"])
-
-    @parametrize
-    def test_streaming_response_create_overload_2(self, client: Cloudflare) -> None:
-        with client.email_security.settings.impersonation_registry.with_streaming_response.create(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[
-                {
-                    "email": "email",
-                    "is_email_regex": True,
-                    "name": "name",
-                }
-            ],
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            impersonation_registry = response.parse()
-            assert_matches_type(ImpersonationRegistryCreateResponse, impersonation_registry, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    def test_path_params_create_overload_2(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.email_security.settings.impersonation_registry.with_raw_response.create(
-                account_id="",
-                body=[
-                    {
-                        "email": "email",
-                        "is_email_regex": True,
-                        "name": "name",
-                    }
-                ],
             )
 
     @parametrize
@@ -341,7 +275,7 @@ class TestAsyncImpersonationRegistry:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    async def test_method_create_overload_1(self, async_client: AsyncCloudflare) -> None:
+    async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         impersonation_registry = await async_client.email_security.settings.impersonation_registry.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             email="email",
@@ -351,7 +285,7 @@ class TestAsyncImpersonationRegistry:
         assert_matches_type(ImpersonationRegistryCreateResponse, impersonation_registry, path=["response"])
 
     @parametrize
-    async def test_raw_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
+    async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.email_security.settings.impersonation_registry.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             email="email",
@@ -365,7 +299,7 @@ class TestAsyncImpersonationRegistry:
         assert_matches_type(ImpersonationRegistryCreateResponse, impersonation_registry, path=["response"])
 
     @parametrize
-    async def test_streaming_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
+    async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.email_security.settings.impersonation_registry.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             email="email",
@@ -381,79 +315,13 @@ class TestAsyncImpersonationRegistry:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
-    async def test_path_params_create_overload_1(self, async_client: AsyncCloudflare) -> None:
+    async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.email_security.settings.impersonation_registry.with_raw_response.create(
                 account_id="",
                 email="email",
                 is_email_regex=True,
                 name="name",
-            )
-
-    @parametrize
-    async def test_method_create_overload_2(self, async_client: AsyncCloudflare) -> None:
-        impersonation_registry = await async_client.email_security.settings.impersonation_registry.create(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[
-                {
-                    "email": "email",
-                    "is_email_regex": True,
-                    "name": "name",
-                }
-            ],
-        )
-        assert_matches_type(ImpersonationRegistryCreateResponse, impersonation_registry, path=["response"])
-
-    @parametrize
-    async def test_raw_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.email_security.settings.impersonation_registry.with_raw_response.create(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[
-                {
-                    "email": "email",
-                    "is_email_regex": True,
-                    "name": "name",
-                }
-            ],
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        impersonation_registry = await response.parse()
-        assert_matches_type(ImpersonationRegistryCreateResponse, impersonation_registry, path=["response"])
-
-    @parametrize
-    async def test_streaming_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.email_security.settings.impersonation_registry.with_streaming_response.create(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=[
-                {
-                    "email": "email",
-                    "is_email_regex": True,
-                    "name": "name",
-                }
-            ],
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            impersonation_registry = await response.parse()
-            assert_matches_type(ImpersonationRegistryCreateResponse, impersonation_registry, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    async def test_path_params_create_overload_2(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.email_security.settings.impersonation_registry.with_raw_response.create(
-                account_id="",
-                body=[
-                    {
-                        "email": "email",
-                        "is_email_regex": True,
-                        "name": "name",
-                    }
-                ],
             )
 
     @parametrize

@@ -49,6 +49,7 @@ from .tls_client_auth import TLSClientAuth as TLSClientAuth
 from .websocket_param import WebsocketParam as WebsocketParam
 from .always_use_https import AlwaysUseHTTPS as AlwaysUseHTTPS
 from .development_mode import DevelopmentMode as DevelopmentMode
+from .hold_edit_params import HoldEditParams as HoldEditParams
 from .orange_to_orange import OrangeToOrange as OrangeToOrange
 from .prefetch_preload import PrefetchPreload as PrefetchPreload
 from .security_headers import SecurityHeaders as SecurityHeaders
@@ -94,7 +95,6 @@ from .security_headers_param import SecurityHeadersParam as SecurityHeadersParam
 from .browser_cache_ttl_param import BrowserCacheTTLParam as BrowserCacheTTLParam
 from .email_obfuscation_param import EmailObfuscationParam as EmailObfuscationParam
 from .h2_prioritization_param import H2PrioritizationParam as H2PrioritizationParam
-from .origin_max_http_version import OriginMaxHTTPVersion as OriginMaxHTTPVersion
 from .automatic_https_rewrites import AutomaticHTTPSRewrites as AutomaticHTTPSRewrites
 from .hotlink_protection_param import HotlinkProtectionParam as HotlinkProtectionParam
 from .opportunistic_encryption import OpportunisticEncryption as OpportunisticEncryption
