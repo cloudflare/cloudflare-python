@@ -31,7 +31,7 @@ class Membership(BaseModel):
 
 class AddressMapGetResponse(BaseModel):
     id: Optional[str] = None
-    """Identifier of an Address Map."""
+    """Identifier"""
 
     can_delete: Optional[bool] = None
     """If set to false, then the Address Map cannot be deleted via API.

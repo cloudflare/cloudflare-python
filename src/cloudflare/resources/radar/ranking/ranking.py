@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import List, Type, Union, cast
-from datetime import date, datetime
+from datetime import datetime
 from typing_extensions import Literal
 
 import httpx
@@ -143,7 +143,7 @@ class RankingResource(SyncAPIResource):
     def top(
         self,
         *,
-        date: List[Union[str, date]] | NotGiven = NOT_GIVEN,
+        date: List[str] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
@@ -313,7 +313,7 @@ class AsyncRankingResource(AsyncAPIResource):
     async def top(
         self,
         *,
-        date: List[Union[str, date]] | NotGiven = NOT_GIVEN,
+        date: List[str] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,

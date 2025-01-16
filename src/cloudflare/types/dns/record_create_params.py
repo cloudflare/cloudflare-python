@@ -11,60 +11,40 @@ from .record_tags import RecordTags
 __all__ = [
     "RecordCreateParams",
     "ARecord",
-    "ARecordSettings",
     "AAAARecord",
-    "AAAARecordSettings",
     "CAARecord",
     "CAARecordData",
-    "CAARecordSettings",
     "CERTRecord",
     "CERTRecordData",
-    "CERTRecordSettings",
     "CNAMERecord",
     "CNAMERecordSettings",
     "DNSKEYRecord",
     "DNSKEYRecordData",
-    "DNSKEYRecordSettings",
     "DSRecord",
     "DSRecordData",
-    "DSRecordSettings",
     "HTTPSRecord",
     "HTTPSRecordData",
-    "HTTPSRecordSettings",
     "LOCRecord",
     "LOCRecordData",
-    "LOCRecordSettings",
     "MXRecord",
-    "MXRecordSettings",
     "NAPTRRecord",
     "NAPTRRecordData",
-    "NAPTRRecordSettings",
     "NSRecord",
-    "NSRecordSettings",
     "DNSRecordsOpenpgpkeyRecord",
-    "DNSRecordsOpenpgpkeyRecordSettings",
     "PTRRecord",
-    "PTRRecordSettings",
     "SMIMEARecord",
     "SMIMEARecordData",
-    "SMIMEARecordSettings",
     "SRVRecord",
     "SRVRecordData",
-    "SRVRecordSettings",
     "SSHFPRecord",
     "SSHFPRecordData",
-    "SSHFPRecordSettings",
     "SVCBRecord",
     "SVCBRecordData",
-    "SVCBRecordSettings",
     "TLSARecord",
     "TLSARecordData",
-    "TLSARecordSettings",
     "TXTRecord",
-    "TXTRecordSettings",
     "URIRecord",
     "URIRecordData",
-    "URIRecordSettings",
 ]
 
 
@@ -90,9 +70,6 @@ class ARecord(TypedDict, total=False):
     Cloudflare.
     """
 
-    settings: ARecordSettings
-    """Settings for the DNS record."""
-
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
@@ -105,24 +82,6 @@ class ARecord(TypedDict, total=False):
 
     type: Literal["A"]
     """Record type."""
-
-
-class ARecordSettings(TypedDict, total=False):
-    ipv4_only: bool
-    """
-    When enabled, only A records will be generated, and AAAA records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-    ipv6_only: bool
-    """
-    When enabled, only AAAA records will be generated, and A records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
 
 
 class AAAARecord(TypedDict, total=False):
@@ -147,9 +106,6 @@ class AAAARecord(TypedDict, total=False):
     Cloudflare.
     """
 
-    settings: AAAARecordSettings
-    """Settings for the DNS record."""
-
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
@@ -162,24 +118,6 @@ class AAAARecord(TypedDict, total=False):
 
     type: Literal["AAAA"]
     """Record type."""
-
-
-class AAAARecordSettings(TypedDict, total=False):
-    ipv4_only: bool
-    """
-    When enabled, only A records will be generated, and AAAA records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-    ipv6_only: bool
-    """
-    When enabled, only AAAA records will be generated, and A records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
 
 
 class CAARecord(TypedDict, total=False):
@@ -203,9 +141,6 @@ class CAARecord(TypedDict, total=False):
     Whether the record is receiving the performance and security benefits of
     Cloudflare.
     """
-
-    settings: CAARecordSettings
-    """Settings for the DNS record."""
 
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
@@ -232,24 +167,6 @@ class CAARecordData(TypedDict, total=False):
     """Value of the record. This field's semantics depend on the chosen tag."""
 
 
-class CAARecordSettings(TypedDict, total=False):
-    ipv4_only: bool
-    """
-    When enabled, only A records will be generated, and AAAA records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-    ipv6_only: bool
-    """
-    When enabled, only AAAA records will be generated, and A records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-
 class CERTRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -271,9 +188,6 @@ class CERTRecord(TypedDict, total=False):
     Whether the record is receiving the performance and security benefits of
     Cloudflare.
     """
-
-    settings: CERTRecordSettings
-    """Settings for the DNS record."""
 
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
@@ -303,24 +217,6 @@ class CERTRecordData(TypedDict, total=False):
     """Type."""
 
 
-class CERTRecordSettings(TypedDict, total=False):
-    ipv4_only: bool
-    """
-    When enabled, only A records will be generated, and AAAA records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-    ipv6_only: bool
-    """
-    When enabled, only AAAA records will be generated, and A records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-
 class CNAMERecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -344,7 +240,6 @@ class CNAMERecord(TypedDict, total=False):
     """
 
     settings: CNAMERecordSettings
-    """Settings for the DNS record."""
 
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
@@ -365,24 +260,8 @@ class CNAMERecordSettings(TypedDict, total=False):
     """
     If enabled, causes the CNAME record to be resolved externally and the resulting
     address records (e.g., A and AAAA) to be returned instead of the CNAME record
-    itself. This setting is unavailable for proxied records, since they are always
+    itself. This setting has no effect on proxied records, which are always
     flattened.
-    """
-
-    ipv4_only: bool
-    """
-    When enabled, only A records will be generated, and AAAA records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-    ipv6_only: bool
-    """
-    When enabled, only AAAA records will be generated, and A records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
     """
 
 
@@ -407,9 +286,6 @@ class DNSKEYRecord(TypedDict, total=False):
     Whether the record is receiving the performance and security benefits of
     Cloudflare.
     """
-
-    settings: DNSKEYRecordSettings
-    """Settings for the DNS record."""
 
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
@@ -439,24 +315,6 @@ class DNSKEYRecordData(TypedDict, total=False):
     """Public Key."""
 
 
-class DNSKEYRecordSettings(TypedDict, total=False):
-    ipv4_only: bool
-    """
-    When enabled, only A records will be generated, and AAAA records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-    ipv6_only: bool
-    """
-    When enabled, only AAAA records will be generated, and A records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-
 class DSRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -478,9 +336,6 @@ class DSRecord(TypedDict, total=False):
     Whether the record is receiving the performance and security benefits of
     Cloudflare.
     """
-
-    settings: DSRecordSettings
-    """Settings for the DNS record."""
 
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
@@ -510,24 +365,6 @@ class DSRecordData(TypedDict, total=False):
     """Key Tag."""
 
 
-class DSRecordSettings(TypedDict, total=False):
-    ipv4_only: bool
-    """
-    When enabled, only A records will be generated, and AAAA records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-    ipv6_only: bool
-    """
-    When enabled, only AAAA records will be generated, and A records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-
 class HTTPSRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -549,9 +386,6 @@ class HTTPSRecord(TypedDict, total=False):
     Whether the record is receiving the performance and security benefits of
     Cloudflare.
     """
-
-    settings: HTTPSRecordSettings
-    """Settings for the DNS record."""
 
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
@@ -578,24 +412,6 @@ class HTTPSRecordData(TypedDict, total=False):
     """value."""
 
 
-class HTTPSRecordSettings(TypedDict, total=False):
-    ipv4_only: bool
-    """
-    When enabled, only A records will be generated, and AAAA records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-    ipv6_only: bool
-    """
-    When enabled, only AAAA records will be generated, and A records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-
 class LOCRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -617,9 +433,6 @@ class LOCRecord(TypedDict, total=False):
     Whether the record is receiving the performance and security benefits of
     Cloudflare.
     """
-
-    settings: LOCRecordSettings
-    """Settings for the DNS record."""
 
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
@@ -673,24 +486,6 @@ class LOCRecordData(TypedDict, total=False):
     """Size of location in meters."""
 
 
-class LOCRecordSettings(TypedDict, total=False):
-    ipv4_only: bool
-    """
-    When enabled, only A records will be generated, and AAAA records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-    ipv6_only: bool
-    """
-    When enabled, only AAAA records will be generated, and A records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-
 class MXRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -719,9 +514,6 @@ class MXRecord(TypedDict, total=False):
     Cloudflare.
     """
 
-    settings: MXRecordSettings
-    """Settings for the DNS record."""
-
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
@@ -734,24 +526,6 @@ class MXRecord(TypedDict, total=False):
 
     type: Literal["MX"]
     """Record type."""
-
-
-class MXRecordSettings(TypedDict, total=False):
-    ipv4_only: bool
-    """
-    When enabled, only A records will be generated, and AAAA records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-    ipv6_only: bool
-    """
-    When enabled, only AAAA records will be generated, and A records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
 
 
 class NAPTRRecord(TypedDict, total=False):
@@ -775,9 +549,6 @@ class NAPTRRecord(TypedDict, total=False):
     Whether the record is receiving the performance and security benefits of
     Cloudflare.
     """
-
-    settings: NAPTRRecordSettings
-    """Settings for the DNS record."""
 
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
@@ -813,24 +584,6 @@ class NAPTRRecordData(TypedDict, total=False):
     """Service."""
 
 
-class NAPTRRecordSettings(TypedDict, total=False):
-    ipv4_only: bool
-    """
-    When enabled, only A records will be generated, and AAAA records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-    ipv6_only: bool
-    """
-    When enabled, only AAAA records will be generated, and A records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-
 class NSRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -853,9 +606,6 @@ class NSRecord(TypedDict, total=False):
     Cloudflare.
     """
 
-    settings: NSRecordSettings
-    """Settings for the DNS record."""
-
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
@@ -868,24 +618,6 @@ class NSRecord(TypedDict, total=False):
 
     type: Literal["NS"]
     """Record type."""
-
-
-class NSRecordSettings(TypedDict, total=False):
-    ipv4_only: bool
-    """
-    When enabled, only A records will be generated, and AAAA records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-    ipv6_only: bool
-    """
-    When enabled, only AAAA records will be generated, and A records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
 
 
 class DNSRecordsOpenpgpkeyRecord(TypedDict, total=False):
@@ -910,9 +642,6 @@ class DNSRecordsOpenpgpkeyRecord(TypedDict, total=False):
     Cloudflare.
     """
 
-    settings: DNSRecordsOpenpgpkeyRecordSettings
-    """Settings for the DNS record."""
-
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
@@ -925,24 +654,6 @@ class DNSRecordsOpenpgpkeyRecord(TypedDict, total=False):
 
     type: Literal["OPENPGPKEY"]
     """Record type."""
-
-
-class DNSRecordsOpenpgpkeyRecordSettings(TypedDict, total=False):
-    ipv4_only: bool
-    """
-    When enabled, only A records will be generated, and AAAA records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-    ipv6_only: bool
-    """
-    When enabled, only AAAA records will be generated, and A records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
 
 
 class PTRRecord(TypedDict, total=False):
@@ -967,9 +678,6 @@ class PTRRecord(TypedDict, total=False):
     Cloudflare.
     """
 
-    settings: PTRRecordSettings
-    """Settings for the DNS record."""
-
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
@@ -982,24 +690,6 @@ class PTRRecord(TypedDict, total=False):
 
     type: Literal["PTR"]
     """Record type."""
-
-
-class PTRRecordSettings(TypedDict, total=False):
-    ipv4_only: bool
-    """
-    When enabled, only A records will be generated, and AAAA records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-    ipv6_only: bool
-    """
-    When enabled, only AAAA records will be generated, and A records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
 
 
 class SMIMEARecord(TypedDict, total=False):
@@ -1023,9 +713,6 @@ class SMIMEARecord(TypedDict, total=False):
     Whether the record is receiving the performance and security benefits of
     Cloudflare.
     """
-
-    settings: SMIMEARecordSettings
-    """Settings for the DNS record."""
 
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
@@ -1055,24 +742,6 @@ class SMIMEARecordData(TypedDict, total=False):
     """Usage."""
 
 
-class SMIMEARecordSettings(TypedDict, total=False):
-    ipv4_only: bool
-    """
-    When enabled, only A records will be generated, and AAAA records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-    ipv6_only: bool
-    """
-    When enabled, only AAAA records will be generated, and A records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-
 class SRVRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -1094,9 +763,6 @@ class SRVRecord(TypedDict, total=False):
     Whether the record is receiving the performance and security benefits of
     Cloudflare.
     """
-
-    settings: SRVRecordSettings
-    """Settings for the DNS record."""
 
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
@@ -1129,24 +795,6 @@ class SRVRecordData(TypedDict, total=False):
     """The record weight."""
 
 
-class SRVRecordSettings(TypedDict, total=False):
-    ipv4_only: bool
-    """
-    When enabled, only A records will be generated, and AAAA records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-    ipv6_only: bool
-    """
-    When enabled, only AAAA records will be generated, and A records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-
 class SSHFPRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -1168,9 +816,6 @@ class SSHFPRecord(TypedDict, total=False):
     Whether the record is receiving the performance and security benefits of
     Cloudflare.
     """
-
-    settings: SSHFPRecordSettings
-    """Settings for the DNS record."""
 
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
@@ -1197,24 +842,6 @@ class SSHFPRecordData(TypedDict, total=False):
     """type."""
 
 
-class SSHFPRecordSettings(TypedDict, total=False):
-    ipv4_only: bool
-    """
-    When enabled, only A records will be generated, and AAAA records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-    ipv6_only: bool
-    """
-    When enabled, only AAAA records will be generated, and A records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-
 class SVCBRecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -1236,9 +863,6 @@ class SVCBRecord(TypedDict, total=False):
     Whether the record is receiving the performance and security benefits of
     Cloudflare.
     """
-
-    settings: SVCBRecordSettings
-    """Settings for the DNS record."""
 
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
@@ -1265,24 +889,6 @@ class SVCBRecordData(TypedDict, total=False):
     """value."""
 
 
-class SVCBRecordSettings(TypedDict, total=False):
-    ipv4_only: bool
-    """
-    When enabled, only A records will be generated, and AAAA records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-    ipv6_only: bool
-    """
-    When enabled, only AAAA records will be generated, and A records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-
 class TLSARecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -1304,9 +910,6 @@ class TLSARecord(TypedDict, total=False):
     Whether the record is receiving the performance and security benefits of
     Cloudflare.
     """
-
-    settings: TLSARecordSettings
-    """Settings for the DNS record."""
 
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
@@ -1334,24 +937,6 @@ class TLSARecordData(TypedDict, total=False):
 
     usage: float
     """Usage."""
-
-
-class TLSARecordSettings(TypedDict, total=False):
-    ipv4_only: bool
-    """
-    When enabled, only A records will be generated, and AAAA records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-    ipv6_only: bool
-    """
-    When enabled, only AAAA records will be generated, and A records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
 
 
 class TXTRecord(TypedDict, total=False):
@@ -1384,9 +969,6 @@ class TXTRecord(TypedDict, total=False):
     Cloudflare.
     """
 
-    settings: TXTRecordSettings
-    """Settings for the DNS record."""
-
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
@@ -1399,24 +981,6 @@ class TXTRecord(TypedDict, total=False):
 
     type: Literal["TXT"]
     """Record type."""
-
-
-class TXTRecordSettings(TypedDict, total=False):
-    ipv4_only: bool
-    """
-    When enabled, only A records will be generated, and AAAA records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-    ipv6_only: bool
-    """
-    When enabled, only AAAA records will be generated, and A records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
 
 
 class URIRecord(TypedDict, total=False):
@@ -1447,9 +1011,6 @@ class URIRecord(TypedDict, total=False):
     Cloudflare.
     """
 
-    settings: URIRecordSettings
-    """Settings for the DNS record."""
-
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
 
@@ -1470,24 +1031,6 @@ class URIRecordData(TypedDict, total=False):
 
     weight: float
     """The record weight."""
-
-
-class URIRecordSettings(TypedDict, total=False):
-    ipv4_only: bool
-    """
-    When enabled, only A records will be generated, and AAAA records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-    ipv6_only: bool
-    """
-    When enabled, only AAAA records will be generated, and A records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
 
 
 RecordCreateParams: TypeAlias = Union[

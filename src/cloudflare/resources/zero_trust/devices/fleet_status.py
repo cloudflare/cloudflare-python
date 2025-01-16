@@ -85,7 +85,7 @@ class FleetStatusResource(SyncAPIResource):
         if not device_id:
             raise ValueError(f"Expected a non-empty value for `device_id` but received {device_id!r}")
         return self._get(
-            f"/accounts/{account_id}/dex/devices/{device_id}/fleet-status/live",
+            f"/accounts/{account_id}/devices/{device_id}/fleet-status/live",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -165,7 +165,7 @@ class AsyncFleetStatusResource(AsyncAPIResource):
         if not device_id:
             raise ValueError(f"Expected a non-empty value for `device_id` but received {device_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/dex/devices/{device_id}/fleet-status/live",
+            f"/accounts/{account_id}/devices/{device_id}/fleet-status/live",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from .routes import (
-    RoutesResource,
-    AsyncRoutesResource,
-    RoutesResourceWithRawResponse,
-    AsyncRoutesResourceWithRawResponse,
-    RoutesResourceWithStreamingResponse,
-    AsyncRoutesResourceWithStreamingResponse,
+from .ai.ai import (
+    AIResource,
+    AsyncAIResource,
+    AIResourceWithRawResponse,
+    AsyncAIResourceWithRawResponse,
+    AIResourceWithStreamingResponse,
+    AsyncAIResourceWithStreamingResponse,
 )
 from .domains import (
     DomainsResource,
@@ -58,8 +58,8 @@ __all__ = ["WorkersResource", "AsyncWorkersResource"]
 
 class WorkersResource(SyncAPIResource):
     @cached_property
-    def routes(self) -> RoutesResource:
-        return RoutesResource(self._client)
+    def ai(self) -> AIResource:
+        return AIResource(self._client)
 
     @cached_property
     def assets(self) -> AssetsResource:
@@ -103,8 +103,8 @@ class WorkersResource(SyncAPIResource):
 
 class AsyncWorkersResource(AsyncAPIResource):
     @cached_property
-    def routes(self) -> AsyncRoutesResource:
-        return AsyncRoutesResource(self._client)
+    def ai(self) -> AsyncAIResource:
+        return AsyncAIResource(self._client)
 
     @cached_property
     def assets(self) -> AsyncAssetsResource:
@@ -151,8 +151,8 @@ class WorkersResourceWithRawResponse:
         self._workers = workers
 
     @cached_property
-    def routes(self) -> RoutesResourceWithRawResponse:
-        return RoutesResourceWithRawResponse(self._workers.routes)
+    def ai(self) -> AIResourceWithRawResponse:
+        return AIResourceWithRawResponse(self._workers.ai)
 
     @cached_property
     def assets(self) -> AssetsResourceWithRawResponse:
@@ -180,8 +180,8 @@ class AsyncWorkersResourceWithRawResponse:
         self._workers = workers
 
     @cached_property
-    def routes(self) -> AsyncRoutesResourceWithRawResponse:
-        return AsyncRoutesResourceWithRawResponse(self._workers.routes)
+    def ai(self) -> AsyncAIResourceWithRawResponse:
+        return AsyncAIResourceWithRawResponse(self._workers.ai)
 
     @cached_property
     def assets(self) -> AsyncAssetsResourceWithRawResponse:
@@ -209,8 +209,8 @@ class WorkersResourceWithStreamingResponse:
         self._workers = workers
 
     @cached_property
-    def routes(self) -> RoutesResourceWithStreamingResponse:
-        return RoutesResourceWithStreamingResponse(self._workers.routes)
+    def ai(self) -> AIResourceWithStreamingResponse:
+        return AIResourceWithStreamingResponse(self._workers.ai)
 
     @cached_property
     def assets(self) -> AssetsResourceWithStreamingResponse:
@@ -238,8 +238,8 @@ class AsyncWorkersResourceWithStreamingResponse:
         self._workers = workers
 
     @cached_property
-    def routes(self) -> AsyncRoutesResourceWithStreamingResponse:
-        return AsyncRoutesResourceWithStreamingResponse(self._workers.routes)
+    def ai(self) -> AsyncAIResourceWithStreamingResponse:
+        return AsyncAIResourceWithStreamingResponse(self._workers.ai)
 
     @cached_property
     def assets(self) -> AsyncAssetsResourceWithStreamingResponse:

@@ -175,7 +175,7 @@ class IndexesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IndexDeleteResponse]:
+    ) -> IndexDeleteResponse:
         """
         Deletes the specified Vectorize Index.
 
@@ -195,7 +195,7 @@ class IndexesResource(SyncAPIResource):
         if not index_name:
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return cast(
-            Optional[IndexDeleteResponse],
+            IndexDeleteResponse,
             self._delete(
                 f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}",
                 options=make_request_options(
@@ -203,7 +203,7 @@ class IndexesResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[IndexDeleteResponse]]._unwrapper,
+                    post_parser=ResultWrapper[IndexDeleteResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[IndexDeleteResponse]
@@ -687,7 +687,7 @@ class AsyncIndexesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IndexDeleteResponse]:
+    ) -> IndexDeleteResponse:
         """
         Deletes the specified Vectorize Index.
 
@@ -707,7 +707,7 @@ class AsyncIndexesResource(AsyncAPIResource):
         if not index_name:
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return cast(
-            Optional[IndexDeleteResponse],
+            IndexDeleteResponse,
             await self._delete(
                 f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}",
                 options=make_request_options(
@@ -715,7 +715,7 @@ class AsyncIndexesResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[IndexDeleteResponse]]._unwrapper,
+                    post_parser=ResultWrapper[IndexDeleteResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[IndexDeleteResponse]

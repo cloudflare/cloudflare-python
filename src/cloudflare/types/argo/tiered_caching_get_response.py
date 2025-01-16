@@ -1,6 +1,5 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -10,14 +9,14 @@ __all__ = ["TieredCachingGetResponse"]
 
 
 class TieredCachingGetResponse(BaseModel):
-    id: Literal["tiered_caching"]
-    """ID of the zone setting."""
+    id: str
+    """The identifier of the caching setting"""
 
     editable: bool
     """Whether the setting is editable"""
 
-    value: Literal["on", "off"]
-    """The value of the feature"""
+    modified_on: datetime
+    """The time when the setting was last modified"""
 
-    modified_on: Optional[datetime] = None
-    """Last time this setting was modified."""
+    value: Literal["on", "off"]
+    """The status of the feature being on / off"""

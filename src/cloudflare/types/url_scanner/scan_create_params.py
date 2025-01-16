@@ -11,9 +11,6 @@ __all__ = ["ScanCreateParams"]
 
 
 class ScanCreateParams(TypedDict, total=False):
-    account_id: Required[str]
-    """Account ID."""
-
     url: Required[str]
 
     customagent: str

@@ -293,7 +293,6 @@ class TestFilters:
                     zone_id="",
                 )
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_bulk_update(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
@@ -303,7 +302,6 @@ class TestFilters:
 
         assert_matches_type(Optional[FilterBulkUpdateResponse], filter, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_bulk_update(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
@@ -316,7 +314,6 @@ class TestFilters:
         filter = response.parse()
         assert_matches_type(Optional[FilterBulkUpdateResponse], filter, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_bulk_update(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
@@ -331,7 +328,6 @@ class TestFilters:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_bulk_update(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
@@ -665,7 +661,6 @@ class TestAsyncFilters:
                     zone_id="",
                 )
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_bulk_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
@@ -675,7 +670,6 @@ class TestAsyncFilters:
 
         assert_matches_type(Optional[FilterBulkUpdateResponse], filter, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_bulk_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
@@ -688,7 +682,6 @@ class TestAsyncFilters:
         filter = await response.parse()
         assert_matches_type(Optional[FilterBulkUpdateResponse], filter, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_bulk_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
@@ -703,7 +696,6 @@ class TestAsyncFilters:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_bulk_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):

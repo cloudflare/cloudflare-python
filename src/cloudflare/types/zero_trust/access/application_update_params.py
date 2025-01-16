@@ -23,16 +23,11 @@ __all__ = [
     "ApplicationUpdateParams",
     "SelfHostedApplication",
     "SelfHostedApplicationDestination",
-    "SelfHostedApplicationDestinationPublicDestination",
-    "SelfHostedApplicationDestinationPrivateDestination",
     "SelfHostedApplicationPolicy",
     "SelfHostedApplicationPolicyAccessAppPolicyLink",
     "SelfHostedApplicationPolicyUnionMember2",
     "SelfHostedApplicationSCIMConfig",
     "SelfHostedApplicationSCIMConfigAuthentication",
-    "SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
-    "SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication",
-    "SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
     "SaaSApplication",
     "SaaSApplicationPolicy",
     "SaaSApplicationPolicyAccessAppPolicyLink",
@@ -40,33 +35,20 @@ __all__ = [
     "SaaSApplicationSaaSApp",
     "SaaSApplicationSCIMConfig",
     "SaaSApplicationSCIMConfigAuthentication",
-    "SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
-    "SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication",
-    "SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
     "BrowserSSHApplication",
     "BrowserSSHApplicationDestination",
-    "BrowserSSHApplicationDestinationPublicDestination",
-    "BrowserSSHApplicationDestinationPrivateDestination",
     "BrowserSSHApplicationPolicy",
     "BrowserSSHApplicationPolicyAccessAppPolicyLink",
     "BrowserSSHApplicationPolicyUnionMember2",
     "BrowserSSHApplicationSCIMConfig",
     "BrowserSSHApplicationSCIMConfigAuthentication",
-    "BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
-    "BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication",
-    "BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
     "BrowserVNCApplication",
     "BrowserVNCApplicationDestination",
-    "BrowserVNCApplicationDestinationPublicDestination",
-    "BrowserVNCApplicationDestinationPrivateDestination",
     "BrowserVNCApplicationPolicy",
     "BrowserVNCApplicationPolicyAccessAppPolicyLink",
     "BrowserVNCApplicationPolicyUnionMember2",
     "BrowserVNCApplicationSCIMConfig",
     "BrowserVNCApplicationSCIMConfigAuthentication",
-    "BrowserVNCApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
-    "BrowserVNCApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication",
-    "BrowserVNCApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
     "AppLauncherApplication",
     "AppLauncherApplicationFooterLink",
     "AppLauncherApplicationLandingPageDesign",
@@ -75,9 +57,6 @@ __all__ = [
     "AppLauncherApplicationPolicyUnionMember2",
     "AppLauncherApplicationSCIMConfig",
     "AppLauncherApplicationSCIMConfigAuthentication",
-    "AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
-    "AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication",
-    "AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
     "DeviceEnrollmentPermissionsApplication",
     "DeviceEnrollmentPermissionsApplicationFooterLink",
     "DeviceEnrollmentPermissionsApplicationLandingPageDesign",
@@ -86,9 +65,6 @@ __all__ = [
     "DeviceEnrollmentPermissionsApplicationPolicyUnionMember2",
     "DeviceEnrollmentPermissionsApplicationSCIMConfig",
     "DeviceEnrollmentPermissionsApplicationSCIMConfigAuthentication",
-    "DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
-    "DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication",
-    "DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
     "BrowserIsolationPermissionsApplication",
     "BrowserIsolationPermissionsApplicationFooterLink",
     "BrowserIsolationPermissionsApplicationLandingPageDesign",
@@ -97,15 +73,9 @@ __all__ = [
     "BrowserIsolationPermissionsApplicationPolicyUnionMember2",
     "BrowserIsolationPermissionsApplicationSCIMConfig",
     "BrowserIsolationPermissionsApplicationSCIMConfigAuthentication",
-    "BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
-    "BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication",
-    "BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
     "BookmarkApplication",
     "BookmarkApplicationSCIMConfig",
     "BookmarkApplicationSCIMConfigAuthentication",
-    "BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
-    "BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication",
-    "BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
     "InfrastructureApplication",
     "InfrastructureApplicationTargetCriterion",
     "InfrastructureApplicationPolicy",
@@ -263,45 +233,18 @@ class SelfHostedApplication(TypedDict, total=False):
     """
 
 
-class SelfHostedApplicationDestinationPublicDestination(TypedDict, total=False):
-    type: Literal["public"]
+class SelfHostedApplicationDestination(TypedDict, total=False):
+    type: Literal["public", "private"]
 
     uri: str
     """The URI of the destination.
 
-    Public destinations' URIs can include a domain and path with
+    Public destinations can include a domain and path with
     [wildcards](https://developers.cloudflare.com/cloudflare-one/policies/access/app-paths/).
+    Private destinations are an early access feature and gated behind a feature
+    flag. Private destinations support private IPv4, IPv6, and Server Name
+    Indications (SNI) with optional port ranges.
     """
-
-
-class SelfHostedApplicationDestinationPrivateDestination(TypedDict, total=False):
-    cidr: str
-    """The CIDR range of the destination. Single IPs will be computed as /32."""
-
-    hostname: str
-    """The hostname of the destination. Matches a valid SNI served by an HTTPS origin."""
-
-    l4_protocol: Literal["tcp", "udp"]
-    """The L4 protocol of the destination.
-
-    When omitted, both UDP and TCP traffic will match.
-    """
-
-    port_range: str
-    """The port range of the destination.
-
-    Can be a single port or a range of ports. When omitted, all ports will match.
-    """
-
-    type: Literal["private"]
-
-    vnet_id: str
-    """The VNET ID to match the destination. When omitted, all VNETs will match."""
-
-
-SelfHostedApplicationDestination: TypeAlias = Union[
-    SelfHostedApplicationDestinationPublicDestination, SelfHostedApplicationDestinationPrivateDestination
-]
 
 
 class SelfHostedApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
@@ -359,58 +302,10 @@ SelfHostedApplicationPolicy: TypeAlias = Union[
     SelfHostedApplicationPolicyAccessAppPolicyLink, str, SelfHostedApplicationPolicyUnionMember2
 ]
 
-
-class SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
-    TypedDict, total=False
-):
-    client_id: Required[str]
-    """
-    Client ID of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    client_secret: Required[str]
-    """
-    Client secret of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    scheme: Required[Literal["access_service_token"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-
-class SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
-    TypedDict, total=False
-):
-    client_id: Required[str]
-    """
-    Client ID of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    client_secret: Required[str]
-    """
-    Client secret of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    scheme: Required[Literal["access_service_token"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-
-SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication: TypeAlias = Union[
-    SCIMConfigAuthenticationHTTPBasicParam,
-    SCIMConfigAuthenticationOAuthBearerTokenParam,
-    SCIMConfigAuthenticationOauth2Param,
-    SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
-]
-
 SelfHostedApplicationSCIMConfigAuthentication: TypeAlias = Union[
     SCIMConfigAuthenticationHTTPBasicParam,
     SCIMConfigAuthenticationOAuthBearerTokenParam,
     SCIMConfigAuthenticationOauth2Param,
-    SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
-    Iterable[SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication],
 ]
 
 
@@ -562,56 +457,10 @@ SaaSApplicationPolicy: TypeAlias = Union[
 
 SaaSApplicationSaaSApp: TypeAlias = Union[SAMLSaaSAppParam, OIDCSaaSAppParam]
 
-
-class SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(TypedDict, total=False):
-    client_id: Required[str]
-    """
-    Client ID of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    client_secret: Required[str]
-    """
-    Client secret of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    scheme: Required[Literal["access_service_token"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-
-class SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
-    TypedDict, total=False
-):
-    client_id: Required[str]
-    """
-    Client ID of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    client_secret: Required[str]
-    """
-    Client secret of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    scheme: Required[Literal["access_service_token"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-
-SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication: TypeAlias = Union[
-    SCIMConfigAuthenticationHTTPBasicParam,
-    SCIMConfigAuthenticationOAuthBearerTokenParam,
-    SCIMConfigAuthenticationOauth2Param,
-    SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
-]
-
 SaaSApplicationSCIMConfigAuthentication: TypeAlias = Union[
     SCIMConfigAuthenticationHTTPBasicParam,
     SCIMConfigAuthenticationOAuthBearerTokenParam,
     SCIMConfigAuthenticationOauth2Param,
-    SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
-    Iterable[SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication],
 ]
 
 
@@ -797,45 +646,18 @@ class BrowserSSHApplication(TypedDict, total=False):
     """
 
 
-class BrowserSSHApplicationDestinationPublicDestination(TypedDict, total=False):
-    type: Literal["public"]
+class BrowserSSHApplicationDestination(TypedDict, total=False):
+    type: Literal["public", "private"]
 
     uri: str
     """The URI of the destination.
 
-    Public destinations' URIs can include a domain and path with
+    Public destinations can include a domain and path with
     [wildcards](https://developers.cloudflare.com/cloudflare-one/policies/access/app-paths/).
+    Private destinations are an early access feature and gated behind a feature
+    flag. Private destinations support private IPv4, IPv6, and Server Name
+    Indications (SNI) with optional port ranges.
     """
-
-
-class BrowserSSHApplicationDestinationPrivateDestination(TypedDict, total=False):
-    cidr: str
-    """The CIDR range of the destination. Single IPs will be computed as /32."""
-
-    hostname: str
-    """The hostname of the destination. Matches a valid SNI served by an HTTPS origin."""
-
-    l4_protocol: Literal["tcp", "udp"]
-    """The L4 protocol of the destination.
-
-    When omitted, both UDP and TCP traffic will match.
-    """
-
-    port_range: str
-    """The port range of the destination.
-
-    Can be a single port or a range of ports. When omitted, all ports will match.
-    """
-
-    type: Literal["private"]
-
-    vnet_id: str
-    """The VNET ID to match the destination. When omitted, all VNETs will match."""
-
-
-BrowserSSHApplicationDestination: TypeAlias = Union[
-    BrowserSSHApplicationDestinationPublicDestination, BrowserSSHApplicationDestinationPrivateDestination
-]
 
 
 class BrowserSSHApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
@@ -893,58 +715,10 @@ BrowserSSHApplicationPolicy: TypeAlias = Union[
     BrowserSSHApplicationPolicyAccessAppPolicyLink, str, BrowserSSHApplicationPolicyUnionMember2
 ]
 
-
-class BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
-    TypedDict, total=False
-):
-    client_id: Required[str]
-    """
-    Client ID of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    client_secret: Required[str]
-    """
-    Client secret of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    scheme: Required[Literal["access_service_token"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-
-class BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
-    TypedDict, total=False
-):
-    client_id: Required[str]
-    """
-    Client ID of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    client_secret: Required[str]
-    """
-    Client secret of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    scheme: Required[Literal["access_service_token"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-
-BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication: TypeAlias = Union[
-    SCIMConfigAuthenticationHTTPBasicParam,
-    SCIMConfigAuthenticationOAuthBearerTokenParam,
-    SCIMConfigAuthenticationOauth2Param,
-    BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
-]
-
 BrowserSSHApplicationSCIMConfigAuthentication: TypeAlias = Union[
     SCIMConfigAuthenticationHTTPBasicParam,
     SCIMConfigAuthenticationOAuthBearerTokenParam,
     SCIMConfigAuthenticationOauth2Param,
-    BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
-    Iterable[BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication],
 ]
 
 
@@ -1130,45 +904,18 @@ class BrowserVNCApplication(TypedDict, total=False):
     """
 
 
-class BrowserVNCApplicationDestinationPublicDestination(TypedDict, total=False):
-    type: Literal["public"]
+class BrowserVNCApplicationDestination(TypedDict, total=False):
+    type: Literal["public", "private"]
 
     uri: str
     """The URI of the destination.
 
-    Public destinations' URIs can include a domain and path with
+    Public destinations can include a domain and path with
     [wildcards](https://developers.cloudflare.com/cloudflare-one/policies/access/app-paths/).
+    Private destinations are an early access feature and gated behind a feature
+    flag. Private destinations support private IPv4, IPv6, and Server Name
+    Indications (SNI) with optional port ranges.
     """
-
-
-class BrowserVNCApplicationDestinationPrivateDestination(TypedDict, total=False):
-    cidr: str
-    """The CIDR range of the destination. Single IPs will be computed as /32."""
-
-    hostname: str
-    """The hostname of the destination. Matches a valid SNI served by an HTTPS origin."""
-
-    l4_protocol: Literal["tcp", "udp"]
-    """The L4 protocol of the destination.
-
-    When omitted, both UDP and TCP traffic will match.
-    """
-
-    port_range: str
-    """The port range of the destination.
-
-    Can be a single port or a range of ports. When omitted, all ports will match.
-    """
-
-    type: Literal["private"]
-
-    vnet_id: str
-    """The VNET ID to match the destination. When omitted, all VNETs will match."""
-
-
-BrowserVNCApplicationDestination: TypeAlias = Union[
-    BrowserVNCApplicationDestinationPublicDestination, BrowserVNCApplicationDestinationPrivateDestination
-]
 
 
 class BrowserVNCApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
@@ -1226,58 +973,10 @@ BrowserVNCApplicationPolicy: TypeAlias = Union[
     BrowserVNCApplicationPolicyAccessAppPolicyLink, str, BrowserVNCApplicationPolicyUnionMember2
 ]
 
-
-class BrowserVNCApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
-    TypedDict, total=False
-):
-    client_id: Required[str]
-    """
-    Client ID of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    client_secret: Required[str]
-    """
-    Client secret of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    scheme: Required[Literal["access_service_token"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-
-class BrowserVNCApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
-    TypedDict, total=False
-):
-    client_id: Required[str]
-    """
-    Client ID of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    client_secret: Required[str]
-    """
-    Client secret of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    scheme: Required[Literal["access_service_token"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-
-BrowserVNCApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication: TypeAlias = Union[
-    SCIMConfigAuthenticationHTTPBasicParam,
-    SCIMConfigAuthenticationOAuthBearerTokenParam,
-    SCIMConfigAuthenticationOauth2Param,
-    BrowserVNCApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
-]
-
 BrowserVNCApplicationSCIMConfigAuthentication: TypeAlias = Union[
     SCIMConfigAuthenticationHTTPBasicParam,
     SCIMConfigAuthenticationOAuthBearerTokenParam,
     SCIMConfigAuthenticationOauth2Param,
-    BrowserVNCApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
-    Iterable[BrowserVNCApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication],
 ]
 
 
@@ -1457,58 +1156,10 @@ AppLauncherApplicationPolicy: TypeAlias = Union[
     AppLauncherApplicationPolicyAccessAppPolicyLink, str, AppLauncherApplicationPolicyUnionMember2
 ]
 
-
-class AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
-    TypedDict, total=False
-):
-    client_id: Required[str]
-    """
-    Client ID of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    client_secret: Required[str]
-    """
-    Client secret of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    scheme: Required[Literal["access_service_token"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-
-class AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
-    TypedDict, total=False
-):
-    client_id: Required[str]
-    """
-    Client ID of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    client_secret: Required[str]
-    """
-    Client secret of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    scheme: Required[Literal["access_service_token"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-
-AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication: TypeAlias = Union[
-    SCIMConfigAuthenticationHTTPBasicParam,
-    SCIMConfigAuthenticationOAuthBearerTokenParam,
-    SCIMConfigAuthenticationOauth2Param,
-    AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
-]
-
 AppLauncherApplicationSCIMConfigAuthentication: TypeAlias = Union[
     SCIMConfigAuthenticationHTTPBasicParam,
     SCIMConfigAuthenticationOAuthBearerTokenParam,
     SCIMConfigAuthenticationOauth2Param,
-    AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
-    Iterable[AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication],
 ]
 
 
@@ -1690,58 +1341,10 @@ DeviceEnrollmentPermissionsApplicationPolicy: TypeAlias = Union[
     DeviceEnrollmentPermissionsApplicationPolicyUnionMember2,
 ]
 
-
-class DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
-    TypedDict, total=False
-):
-    client_id: Required[str]
-    """
-    Client ID of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    client_secret: Required[str]
-    """
-    Client secret of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    scheme: Required[Literal["access_service_token"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-
-class DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
-    TypedDict, total=False
-):
-    client_id: Required[str]
-    """
-    Client ID of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    client_secret: Required[str]
-    """
-    Client secret of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    scheme: Required[Literal["access_service_token"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-
-DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication: TypeAlias = Union[
-    SCIMConfigAuthenticationHTTPBasicParam,
-    SCIMConfigAuthenticationOAuthBearerTokenParam,
-    SCIMConfigAuthenticationOauth2Param,
-    DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
-]
-
 DeviceEnrollmentPermissionsApplicationSCIMConfigAuthentication: TypeAlias = Union[
     SCIMConfigAuthenticationHTTPBasicParam,
     SCIMConfigAuthenticationOAuthBearerTokenParam,
     SCIMConfigAuthenticationOauth2Param,
-    DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
-    Iterable[DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication],
 ]
 
 
@@ -1923,58 +1526,10 @@ BrowserIsolationPermissionsApplicationPolicy: TypeAlias = Union[
     BrowserIsolationPermissionsApplicationPolicyUnionMember2,
 ]
 
-
-class BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
-    TypedDict, total=False
-):
-    client_id: Required[str]
-    """
-    Client ID of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    client_secret: Required[str]
-    """
-    Client secret of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    scheme: Required[Literal["access_service_token"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-
-class BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
-    TypedDict, total=False
-):
-    client_id: Required[str]
-    """
-    Client ID of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    client_secret: Required[str]
-    """
-    Client secret of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    scheme: Required[Literal["access_service_token"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-
-BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication: TypeAlias = Union[
-    SCIMConfigAuthenticationHTTPBasicParam,
-    SCIMConfigAuthenticationOAuthBearerTokenParam,
-    SCIMConfigAuthenticationOauth2Param,
-    BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
-]
-
 BrowserIsolationPermissionsApplicationSCIMConfigAuthentication: TypeAlias = Union[
     SCIMConfigAuthenticationHTTPBasicParam,
     SCIMConfigAuthenticationOAuthBearerTokenParam,
     SCIMConfigAuthenticationOauth2Param,
-    BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
-    Iterable[BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication],
 ]
 
 
@@ -2046,57 +1601,10 @@ class BookmarkApplication(TypedDict, total=False):
     """The application type."""
 
 
-class BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
-    TypedDict, total=False
-):
-    client_id: Required[str]
-    """
-    Client ID of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    client_secret: Required[str]
-    """
-    Client secret of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    scheme: Required[Literal["access_service_token"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-
-class BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
-    TypedDict, total=False
-):
-    client_id: Required[str]
-    """
-    Client ID of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    client_secret: Required[str]
-    """
-    Client secret of the Access service token used to authenticate with the remote
-    service.
-    """
-
-    scheme: Required[Literal["access_service_token"]]
-    """The authentication scheme to use when making SCIM requests to this application."""
-
-
-BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication: TypeAlias = Union[
-    SCIMConfigAuthenticationHTTPBasicParam,
-    SCIMConfigAuthenticationOAuthBearerTokenParam,
-    SCIMConfigAuthenticationOauth2Param,
-    BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
-]
-
 BookmarkApplicationSCIMConfigAuthentication: TypeAlias = Union[
     SCIMConfigAuthenticationHTTPBasicParam,
     SCIMConfigAuthenticationOAuthBearerTokenParam,
     SCIMConfigAuthenticationOauth2Param,
-    BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
-    Iterable[BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication],
 ]
 
 

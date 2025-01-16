@@ -14,11 +14,8 @@ class CacheReserveEditResponse(BaseModel):
     id: CacheReserve
     """ID of the zone setting."""
 
-    editable: bool
-    """Whether the setting is editable"""
+    modified_on: Optional[datetime] = None
+    """last time this setting was modified."""
 
     value: Literal["on", "off"]
-    """The value of the feature"""
-
-    modified_on: Optional[datetime] = None
-    """Last time this setting was modified."""
+    """Value of the Cache Reserve zone setting."""

@@ -2,26 +2,11 @@
 
 from typing import List, Optional
 from datetime import datetime
-from typing_extensions import Literal
 
 from ....._models import BaseModel
 from ....workers.scripts.consumer_script import ConsumerScript
 
-__all__ = ["ScriptUpdateResponse", "Placement"]
-
-
-class Placement(BaseModel):
-    mode: Optional[Literal["smart"]] = None
-    """
-    Enables
-    [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
-    """
-
-    status: Optional[Literal["SUCCESS", "UNSUPPORTED_APPLICATION", "INSUFFICIENT_INVOCATIONS"]] = None
-    """
-    Status of
-    [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
-    """
+__all__ = ["ScriptUpdateResponse"]
 
 
 class ScriptUpdateResponse(BaseModel):
@@ -46,28 +31,13 @@ class ScriptUpdateResponse(BaseModel):
     modified_on: Optional[datetime] = None
     """When the script was last modified."""
 
-    placement: Optional[Placement] = None
-    """
-    Configuration for
-    [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
-    """
-
-    placement_mode: Optional[Literal["smart"]] = None
-    """
-    Enables
-    [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
-    """
-
-    placement_status: Optional[Literal["SUCCESS", "UNSUPPORTED_APPLICATION", "INSUFFICIENT_INVOCATIONS"]] = None
-    """
-    Status of
-    [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
-    """
+    placement_mode: Optional[str] = None
+    """Specifies the placement mode for the Worker (e.g. 'smart')."""
 
     startup_time_ms: Optional[int] = None
 
     tail_consumers: Optional[List[ConsumerScript]] = None
     """List of Workers that will consume logs from the attached Worker."""
 
-    usage_model: Optional[Literal["standard"]] = None
-    """Usage model for the Worker invocations."""
+    usage_model: Optional[str] = None
+    """Specifies the usage model for the Worker (e.g. 'bundled' or 'unbound')."""
