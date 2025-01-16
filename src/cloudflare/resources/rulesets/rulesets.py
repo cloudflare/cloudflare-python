@@ -36,7 +36,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...pagination import SyncSinglePage, AsyncSinglePage
+from ...pagination import SyncCursorPagination, AsyncCursorPagination
 from .phases.phases import (
     PhasesResource,
     AsyncPhasesResource,
@@ -46,7 +46,7 @@ from .phases.phases import (
     AsyncPhasesResourceWithStreamingResponse,
 )
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.rulesets import Kind, Phase, ruleset_create_params, ruleset_update_params
+from ...types.rulesets import Kind, Phase, ruleset_list_params, ruleset_create_params, ruleset_update_params
 from ...types.rulesets.kind import Kind
 from ...types.rulesets.phase import Phase
 from ...types.rulesets.ruleset_get_response import RulesetGetResponse
@@ -253,13 +253,15 @@ class RulesetsResource(SyncAPIResource):
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
+        cursor: str | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[RulesetListResponse]:
+    ) -> SyncCursorPagination[RulesetListResponse]:
         """
         Fetches all rulesets.
 
@@ -267,6 +269,10 @@ class RulesetsResource(SyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          cursor: Cursor to use for the next page.
+
+          per_page: Number of rulesets to return per page.
 
           extra_headers: Send extra headers
 
@@ -290,9 +296,19 @@ class RulesetsResource(SyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/rulesets",
-            page=SyncSinglePage[RulesetListResponse],
+            page=SyncCursorPagination[RulesetListResponse],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "cursor": cursor,
+                        "per_page": per_page,
+                    },
+                    ruleset_list_params.RulesetListParams,
+                ),
             ),
             model=RulesetListResponse,
         )
@@ -605,13 +621,15 @@ class AsyncRulesetsResource(AsyncAPIResource):
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
+        cursor: str | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[RulesetListResponse, AsyncSinglePage[RulesetListResponse]]:
+    ) -> AsyncPaginator[RulesetListResponse, AsyncCursorPagination[RulesetListResponse]]:
         """
         Fetches all rulesets.
 
@@ -619,6 +637,10 @@ class AsyncRulesetsResource(AsyncAPIResource):
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          cursor: Cursor to use for the next page.
+
+          per_page: Number of rulesets to return per page.
 
           extra_headers: Send extra headers
 
@@ -642,9 +664,19 @@ class AsyncRulesetsResource(AsyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/rulesets",
-            page=AsyncSinglePage[RulesetListResponse],
+            page=AsyncCursorPagination[RulesetListResponse],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "cursor": cursor,
+                        "per_page": per_page,
+                    },
+                    ruleset_list_params.RulesetListParams,
+                ),
             ),
             model=RulesetListResponse,
         )

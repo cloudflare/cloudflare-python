@@ -3,6 +3,8 @@
 from typing import Dict, List, Optional
 from typing_extensions import Literal
 
+from pydantic import Field as FieldInfo
+
 from ...._models import BaseModel
 from .dns_resolver_settings_v4 import DNSResolverSettingsV4
 from .dns_resolver_settings_v6 import DNSResolverSettingsV6
@@ -29,20 +31,63 @@ class AuditSSH(BaseModel):
 
 
 class BISOAdminControls(BaseModel):
+    copy_: Optional[Literal["enabled", "disabled", "remote_only"]] = FieldInfo(alias="copy", default=None)
+    """Configure whether copy is enabled or not.
+
+    When set with "remote_only", copying isolated content from the remote browser to
+    the user's local clipboard is disabled. When absent, copy is enabled. Only
+    applies when `version == "v2"`.
+    """
+
     dcp: Optional[bool] = None
-    """Set to false to enable copy-pasting."""
+    """Set to false to enable copy-pasting. Only applies when `version == "v1"`."""
 
     dd: Optional[bool] = None
-    """Set to false to enable downloading."""
+    """Set to false to enable downloading. Only applies when `version == "v1"`."""
 
     dk: Optional[bool] = None
-    """Set to false to enable keyboard usage."""
+    """Set to false to enable keyboard usage. Only applies when `version == "v1"`."""
+
+    download: Optional[Literal["enabled", "disabled"]] = None
+    """Configure whether downloading enabled or not.
+
+    When absent, downloading is enabled. Only applies when `version == "v2"`.
+    """
 
     dp: Optional[bool] = None
-    """Set to false to enable printing."""
+    """Set to false to enable printing. Only applies when `version == "v1"`."""
 
     du: Optional[bool] = None
-    """Set to false to enable uploading."""
+    """Set to false to enable uploading. Only applies when `version == "v1"`."""
+
+    keyboard: Optional[Literal["enabled", "disabled"]] = None
+    """Configure whether keyboard usage is enabled or not.
+
+    When absent, keyboard usage is enabled. Only applies when `version == "v2"`.
+    """
+
+    paste: Optional[Literal["enabled", "disabled", "remote_only"]] = None
+    """Configure whether pasting is enabled or not.
+
+    When set with "remote_only", pasting content from the user's local clipboard
+    into isolated pages is disabled. When absent, paste is enabled. Only applies
+    when `version == "v2"`.
+    """
+
+    printing: Optional[Literal["enabled", "disabled"]] = None
+    """Configure whether printing is enabled or not.
+
+    When absent, printing is enabled. Only applies when `version == "v2"`.
+    """
+
+    upload: Optional[Literal["enabled", "disabled"]] = None
+    """Configure whether uploading is enabled or not.
+
+    When absent, uploading is enabled. Only applies when `version == "v2"`.
+    """
+
+    version: Optional[Literal["v1", "v2"]] = None
+    """Indicates which version of the browser isolation controls should apply."""
 
 
 class CheckSession(BaseModel):

@@ -199,9 +199,8 @@ class TargetsResource(SyncAPIResource):
     ) -> SyncV4PagePaginationArray[TargetListResponse]:
         """Lists and sorts an account’s targets.
 
-        Filters are optional and are ORed
-        together. However, when a timestamp is specified with both its before and after
-        counterparts, the timestamp filters are ANDed.
+        Filters are optional and are ANDed
+        together.
 
         Args:
           account_id: Account identifier
@@ -595,9 +594,8 @@ class AsyncTargetsResource(AsyncAPIResource):
     ) -> AsyncPaginator[TargetListResponse, AsyncV4PagePaginationArray[TargetListResponse]]:
         """Lists and sorts an account’s targets.
 
-        Filters are optional and are ORed
-        together. However, when a timestamp is specified with both its before and after
-        counterparts, the timestamp filters are ANDed.
+        Filters are optional and are ANDed
+        together.
 
         Args:
           account_id: Account identifier
