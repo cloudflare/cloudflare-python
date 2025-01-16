@@ -60,7 +60,7 @@ class TestLifecycle:
                     ],
                 }
             ],
-            cf_r2_jurisdiction="default",
+            jurisdiction="default",
         )
         assert_matches_type(object, lifecycle, path=["response"])
 
@@ -122,7 +122,7 @@ class TestLifecycle:
         lifecycle = client.r2.buckets.lifecycle.get(
             bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            cf_r2_jurisdiction="default",
+            jurisdiction="default",
         )
         assert_matches_type(LifecycleGetResponse, lifecycle, path=["response"])
 
@@ -216,7 +216,7 @@ class TestAsyncLifecycle:
                     ],
                 }
             ],
-            cf_r2_jurisdiction="default",
+            jurisdiction="default",
         )
         assert_matches_type(object, lifecycle, path=["response"])
 
@@ -278,7 +278,7 @@ class TestAsyncLifecycle:
         lifecycle = await async_client.r2.buckets.lifecycle.get(
             bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            cf_r2_jurisdiction="default",
+            jurisdiction="default",
         )
         assert_matches_type(LifecycleGetResponse, lifecycle, path=["response"])
 

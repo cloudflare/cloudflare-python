@@ -11,6 +11,7 @@ __all__ = ["BlockSenderEditResponse"]
 
 class BlockSenderEditResponse(BaseModel):
     id: int
+    """The unique identifier for the allow policy."""
 
     created_at: datetime
 

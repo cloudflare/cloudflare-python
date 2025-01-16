@@ -25,5 +25,5 @@ class CustomUpdateParams(TypedDict, total=False):
     If not set, defaults to previous value.
     """
 
-    cf_r2_jurisdiction: Annotated[Literal["default", "eu", "fedramp"], PropertyInfo(alias="cf-r2-jurisdiction")]
+    jurisdiction: Annotated[Literal["default", "eu", "fedramp"], PropertyInfo(alias="cf-r2-jurisdiction")]
     """The bucket jurisdiction"""
