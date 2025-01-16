@@ -1,13 +1,5 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .bgp import (
-    BGPResource,
-    AsyncBGPResource,
-    BGPResourceWithRawResponse,
-    AsyncBGPResourceWithRawResponse,
-    BGPResourceWithStreamingResponse,
-    AsyncBGPResourceWithStreamingResponse,
-)
 from .prefixes import (
     PrefixesResource,
     AsyncPrefixesResource,
@@ -24,14 +16,50 @@ from .delegations import (
     DelegationsResourceWithStreamingResponse,
     AsyncDelegationsResourceWithStreamingResponse,
 )
+from .bgp_prefixes import (
+    BGPPrefixesResource,
+    AsyncBGPPrefixesResource,
+    BGPPrefixesResourceWithRawResponse,
+    AsyncBGPPrefixesResourceWithRawResponse,
+    BGPPrefixesResourceWithStreamingResponse,
+    AsyncBGPPrefixesResourceWithStreamingResponse,
+)
+from .service_bindings import (
+    ServiceBindingsResource,
+    AsyncServiceBindingsResource,
+    ServiceBindingsResourceWithRawResponse,
+    AsyncServiceBindingsResourceWithRawResponse,
+    ServiceBindingsResourceWithStreamingResponse,
+    AsyncServiceBindingsResourceWithStreamingResponse,
+)
+from .advertisement_status import (
+    AdvertisementStatusResource,
+    AsyncAdvertisementStatusResource,
+    AdvertisementStatusResourceWithRawResponse,
+    AsyncAdvertisementStatusResourceWithRawResponse,
+    AdvertisementStatusResourceWithStreamingResponse,
+    AsyncAdvertisementStatusResourceWithStreamingResponse,
+)
 
 __all__ = [
-    "BGPResource",
-    "AsyncBGPResource",
-    "BGPResourceWithRawResponse",
-    "AsyncBGPResourceWithRawResponse",
-    "BGPResourceWithStreamingResponse",
-    "AsyncBGPResourceWithStreamingResponse",
+    "ServiceBindingsResource",
+    "AsyncServiceBindingsResource",
+    "ServiceBindingsResourceWithRawResponse",
+    "AsyncServiceBindingsResourceWithRawResponse",
+    "ServiceBindingsResourceWithStreamingResponse",
+    "AsyncServiceBindingsResourceWithStreamingResponse",
+    "BGPPrefixesResource",
+    "AsyncBGPPrefixesResource",
+    "BGPPrefixesResourceWithRawResponse",
+    "AsyncBGPPrefixesResourceWithRawResponse",
+    "BGPPrefixesResourceWithStreamingResponse",
+    "AsyncBGPPrefixesResourceWithStreamingResponse",
+    "AdvertisementStatusResource",
+    "AsyncAdvertisementStatusResource",
+    "AdvertisementStatusResourceWithRawResponse",
+    "AsyncAdvertisementStatusResourceWithRawResponse",
+    "AdvertisementStatusResourceWithStreamingResponse",
+    "AsyncAdvertisementStatusResourceWithStreamingResponse",
     "DelegationsResource",
     "AsyncDelegationsResource",
     "DelegationsResourceWithRawResponse",

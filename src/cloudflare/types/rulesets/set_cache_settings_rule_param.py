@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Iterable
-from typing_extensions import Literal, Required, TypedDict
+from typing import Dict, List, Union, Iterable
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .logging_param import LoggingParam
 
@@ -17,8 +17,14 @@ __all__ = [
     "ActionParametersCacheKeyCustomKeyHeader",
     "ActionParametersCacheKeyCustomKeyHost",
     "ActionParametersCacheKeyCustomKeyQueryString",
-    "ActionParametersCacheKeyCustomKeyQueryStringExclude",
-    "ActionParametersCacheKeyCustomKeyQueryStringInclude",
+    "ActionParametersCacheKeyCustomKeyQueryStringIncludedQueryStringParameters",
+    "ActionParametersCacheKeyCustomKeyQueryStringIncludedQueryStringParametersInclude",
+    "ActionParametersCacheKeyCustomKeyQueryStringIncludedQueryStringParametersIncludeSomeQueryStringParameters",
+    "ActionParametersCacheKeyCustomKeyQueryStringIncludedQueryStringParametersIncludeAllQueryStringParameters",
+    "ActionParametersCacheKeyCustomKeyQueryStringExcludedQueryStringParameters",
+    "ActionParametersCacheKeyCustomKeyQueryStringExcludedQueryStringParametersExclude",
+    "ActionParametersCacheKeyCustomKeyQueryStringExcludedQueryStringParametersExcludeSomeQueryStringParameters",
+    "ActionParametersCacheKeyCustomKeyQueryStringExcludedQueryStringParametersExcludeAllQueryStringParameters",
     "ActionParametersCacheKeyCustomKeyUser",
     "ActionParametersCacheReserve",
     "ActionParametersEdgeTTL",
@@ -83,11 +89,51 @@ class ActionParametersCacheKeyCustomKeyHost(TypedDict, total=False):
     """
 
 
-class ActionParametersCacheKeyCustomKeyQueryStringExclude(TypedDict, total=False):
-    all: bool
-    """Exclude all query string parameters from use in building the cache key."""
-
+class ActionParametersCacheKeyCustomKeyQueryStringIncludedQueryStringParametersIncludeSomeQueryStringParameters(
+    TypedDict, total=False
+):
     list: List[str]
+
+
+class ActionParametersCacheKeyCustomKeyQueryStringIncludedQueryStringParametersIncludeAllQueryStringParameters(
+    TypedDict, total=False
+):
+    all: bool
+    """Determines whether to include all query string parameters in the cache key."""
+
+
+ActionParametersCacheKeyCustomKeyQueryStringIncludedQueryStringParametersInclude: TypeAlias = Union[
+    ActionParametersCacheKeyCustomKeyQueryStringIncludedQueryStringParametersIncludeSomeQueryStringParameters,
+    ActionParametersCacheKeyCustomKeyQueryStringIncludedQueryStringParametersIncludeAllQueryStringParameters,
+]
+
+
+class ActionParametersCacheKeyCustomKeyQueryStringIncludedQueryStringParameters(TypedDict, total=False):
+    include: ActionParametersCacheKeyCustomKeyQueryStringIncludedQueryStringParametersInclude
+    """A list of query string parameters used to build the cache key."""
+
+
+class ActionParametersCacheKeyCustomKeyQueryStringExcludedQueryStringParametersExcludeSomeQueryStringParameters(
+    TypedDict, total=False
+):
+    list: List[str]
+
+
+class ActionParametersCacheKeyCustomKeyQueryStringExcludedQueryStringParametersExcludeAllQueryStringParameters(
+    TypedDict, total=False
+):
+    all: bool
+    """Determines whether to exclude all query string parameters from the cache key."""
+
+
+ActionParametersCacheKeyCustomKeyQueryStringExcludedQueryStringParametersExclude: TypeAlias = Union[
+    ActionParametersCacheKeyCustomKeyQueryStringExcludedQueryStringParametersExcludeSomeQueryStringParameters,
+    ActionParametersCacheKeyCustomKeyQueryStringExcludedQueryStringParametersExcludeAllQueryStringParameters,
+]
+
+
+class ActionParametersCacheKeyCustomKeyQueryStringExcludedQueryStringParameters(TypedDict, total=False):
+    exclude: ActionParametersCacheKeyCustomKeyQueryStringExcludedQueryStringParametersExclude
     """A list of query string parameters NOT used to build the cache key.
 
     All parameters present in the request but missing in this list will be used to
@@ -95,26 +141,10 @@ class ActionParametersCacheKeyCustomKeyQueryStringExclude(TypedDict, total=False
     """
 
 
-class ActionParametersCacheKeyCustomKeyQueryStringInclude(TypedDict, total=False):
-    all: bool
-    """Use all query string parameters in the cache key."""
-
-    list: List[str]
-    """A list of query string parameters used to build the cache key."""
-
-
-class ActionParametersCacheKeyCustomKeyQueryString(TypedDict, total=False):
-    exclude: ActionParametersCacheKeyCustomKeyQueryStringExclude
-    """
-    build the cache key using all query string parameters EXCECPT these excluded
-    parameters
-    """
-
-    include: ActionParametersCacheKeyCustomKeyQueryStringInclude
-    """
-    build the cache key using a list of query string parameters that ARE in the
-    request.
-    """
+ActionParametersCacheKeyCustomKeyQueryString: TypeAlias = Union[
+    ActionParametersCacheKeyCustomKeyQueryStringIncludedQueryStringParameters,
+    ActionParametersCacheKeyCustomKeyQueryStringExcludedQueryStringParameters,
+]
 
 
 class ActionParametersCacheKeyCustomKeyUser(TypedDict, total=False):
@@ -139,10 +169,7 @@ class ActionParametersCacheKeyCustomKey(TypedDict, total=False):
     """Whether to use the original host or the resolved host in the cache key."""
 
     query_string: ActionParametersCacheKeyCustomKeyQueryString
-    """
-    Use the presence or absence of parameters in the query string to build the cache
-    key.
-    """
+    """Use the presence of parameters in the query string to build the cache key."""
 
     user: ActionParametersCacheKeyCustomKeyUser
     """Characteristics of the request user agent used in building the cache key."""

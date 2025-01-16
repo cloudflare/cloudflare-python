@@ -69,7 +69,7 @@ class QuotaResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
-            f"/accounts/{account_id}/commands/quota",
+            f"/accounts/{account_id}/dex/commands/quota",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -128,7 +128,7 @@ class AsyncQuotaResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/commands/quota",
+            f"/accounts/{account_id}/dex/commands/quota",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

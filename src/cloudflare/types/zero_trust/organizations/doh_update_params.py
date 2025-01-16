@@ -11,7 +11,7 @@ class DOHUpdateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
-    jwt_duration: str
+    doh_jwt_duration: str
     """The duration the DoH JWT is valid for.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),

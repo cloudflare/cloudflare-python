@@ -21,14 +21,14 @@ class TestServices:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         service = client.addressing.services.list(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="258def64c72dae45f3e4c8516e2111f2",
         )
         assert_matches_type(SyncSinglePage[ServiceListResponse], service, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.addressing.services.with_raw_response.list(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="258def64c72dae45f3e4c8516e2111f2",
         )
 
         assert response.is_closed is True
@@ -39,7 +39,7 @@ class TestServices:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.addressing.services.with_streaming_response.list(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="258def64c72dae45f3e4c8516e2111f2",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -63,14 +63,14 @@ class TestAsyncServices:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         service = await async_client.addressing.services.list(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="258def64c72dae45f3e4c8516e2111f2",
         )
         assert_matches_type(AsyncSinglePage[ServiceListResponse], service, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.addressing.services.with_raw_response.list(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="258def64c72dae45f3e4c8516e2111f2",
         )
 
         assert response.is_closed is True
@@ -81,7 +81,7 @@ class TestAsyncServices:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.addressing.services.with_streaming_response.list(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="258def64c72dae45f3e4c8516e2111f2",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

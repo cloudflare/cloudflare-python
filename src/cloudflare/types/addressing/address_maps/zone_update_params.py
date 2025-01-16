@@ -9,9 +9,9 @@ __all__ = ["ZoneUpdateParams"]
 
 class ZoneUpdateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier of a zone."""
 
     account_id: Required[str]
-    """Identifier"""
+    """Identifier of a Cloudflare account."""
 
     body: Required[object]
