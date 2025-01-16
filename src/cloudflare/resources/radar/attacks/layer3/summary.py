@@ -487,7 +487,6 @@ class SummaryResource(SyncAPIResource):
         direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        limit_per_group: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
@@ -521,9 +520,6 @@ class SummaryResource(SyncAPIResource):
 
           ip_version: Filter for ip version.
 
-          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
-              the time range.
-
           location: Array of comma separated list of locations (alpha-2 country codes). Start with
               `-` to exclude from results. For example, `-US,PT` excludes results from the US,
               but includes results from PT.
@@ -556,7 +552,6 @@ class SummaryResource(SyncAPIResource):
                         "direction": direction,
                         "format": format,
                         "ip_version": ip_version,
-                        "limit_per_group": limit_per_group,
                         "location": location,
                         "name": name,
                         "protocol": protocol,
@@ -1015,7 +1010,6 @@ class AsyncSummaryResource(AsyncAPIResource):
         direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
-        limit_per_group: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
@@ -1049,9 +1043,6 @@ class AsyncSummaryResource(AsyncAPIResource):
 
           ip_version: Filter for ip version.
 
-          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
-              the time range.
-
           location: Array of comma separated list of locations (alpha-2 country codes). Start with
               `-` to exclude from results. For example, `-US,PT` excludes results from the US,
               but includes results from PT.
@@ -1084,7 +1075,6 @@ class AsyncSummaryResource(AsyncAPIResource):
                         "direction": direction,
                         "format": format,
                         "ip_version": ip_version,
-                        "limit_per_group": limit_per_group,
                         "location": location,
                         "name": name,
                         "protocol": protocol,

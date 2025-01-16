@@ -10,10 +10,10 @@ __all__ = ["Prefix"]
 
 class Prefix(BaseModel):
     id: Optional[str] = None
-    """Identifier of an IP Prefix."""
+    """Identifier"""
 
     account_id: Optional[str] = None
-    """Identifier of a Cloudflare account."""
+    """Identifier"""
 
     advertised: Optional[bool] = None
     """Prefix advertisement status to the Internet.

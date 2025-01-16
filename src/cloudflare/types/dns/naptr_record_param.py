@@ -8,7 +8,7 @@ from typing_extensions import Literal, TypedDict
 from .ttl_param import TTLParam
 from .record_tags import RecordTags
 
-__all__ = ["NAPTRRecordParam", "Data", "Settings"]
+__all__ = ["NAPTRRecordParam", "Data"]
 
 
 class Data(TypedDict, total=False):
@@ -31,24 +31,6 @@ class Data(TypedDict, total=False):
     """Service."""
 
 
-class Settings(TypedDict, total=False):
-    ipv4_only: bool
-    """
-    When enabled, only A records will be generated, and AAAA records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-    ipv6_only: bool
-    """
-    When enabled, only AAAA records will be generated, and A records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-
 class NAPTRRecordParam(TypedDict, total=False):
     comment: str
     """Comments or notes about the DNS record.
@@ -67,9 +49,6 @@ class NAPTRRecordParam(TypedDict, total=False):
     Whether the record is receiving the performance and security benefits of
     Cloudflare.
     """
-
-    settings: Settings
-    """Settings for the DNS record."""
 
     tags: List[RecordTags]
     """Custom tags for the DNS record. This field has no effect on DNS responses."""

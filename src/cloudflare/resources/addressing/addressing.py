@@ -12,14 +12,6 @@ from .services import (
 )
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from .loa_documents import (
-    LOADocumentsResource,
-    AsyncLOADocumentsResource,
-    LOADocumentsResourceWithRawResponse,
-    AsyncLOADocumentsResourceWithRawResponse,
-    LOADocumentsResourceWithStreamingResponse,
-    AsyncLOADocumentsResourceWithStreamingResponse,
-)
 from .prefixes.prefixes import (
     PrefixesResource,
     AsyncPrefixesResource,
@@ -35,6 +27,14 @@ from .address_maps.address_maps import (
     AsyncAddressMapsResourceWithRawResponse,
     AddressMapsResourceWithStreamingResponse,
     AsyncAddressMapsResourceWithStreamingResponse,
+)
+from .loa_documents.loa_documents import (
+    LOADocumentsResource,
+    AsyncLOADocumentsResource,
+    LOADocumentsResourceWithRawResponse,
+    AsyncLOADocumentsResourceWithRawResponse,
+    LOADocumentsResourceWithStreamingResponse,
+    AsyncLOADocumentsResourceWithStreamingResponse,
 )
 from .regional_hostnames.regional_hostnames import (
     RegionalHostnamesResource,

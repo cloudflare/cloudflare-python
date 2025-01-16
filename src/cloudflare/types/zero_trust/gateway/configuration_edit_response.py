@@ -13,6 +13,6 @@ class ConfigurationEditResponse(BaseModel):
     created_at: Optional[datetime] = None
 
     settings: Optional[GatewayConfigurationSettings] = None
-    """Account settings"""
+    """account settings."""
 
     updated_at: Optional[datetime] = None

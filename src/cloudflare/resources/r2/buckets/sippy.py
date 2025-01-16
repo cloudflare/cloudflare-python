@@ -60,7 +60,7 @@ class SippyResource(SyncAPIResource):
         account_id: str,
         destination: sippy_update_params.R2EnableSippyAwsDestination | NotGiven = NOT_GIVEN,
         source: sippy_update_params.R2EnableSippyAwsSource | NotGiven = NOT_GIVEN,
-        jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
+        cf_r2_jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -80,7 +80,7 @@ class SippyResource(SyncAPIResource):
 
           source: AWS S3 bucket to copy objects from
 
-          jurisdiction: The bucket jurisdiction
+          cf_r2_jurisdiction: The bucket jurisdiction
 
           extra_headers: Send extra headers
 
@@ -100,7 +100,7 @@ class SippyResource(SyncAPIResource):
         account_id: str,
         destination: sippy_update_params.R2EnableSippyGcsDestination | NotGiven = NOT_GIVEN,
         source: sippy_update_params.R2EnableSippyGcsSource | NotGiven = NOT_GIVEN,
-        jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
+        cf_r2_jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -120,7 +120,7 @@ class SippyResource(SyncAPIResource):
 
           source: GCS bucket to copy objects from
 
-          jurisdiction: The bucket jurisdiction
+          cf_r2_jurisdiction: The bucket jurisdiction
 
           extra_headers: Send extra headers
 
@@ -142,7 +142,7 @@ class SippyResource(SyncAPIResource):
         source: sippy_update_params.R2EnableSippyAwsSource
         | sippy_update_params.R2EnableSippyGcsSource
         | NotGiven = NOT_GIVEN,
-        jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
+        cf_r2_jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -155,7 +155,9 @@ class SippyResource(SyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else NOT_GIVEN}),
+            **strip_not_given(
+                {"cf-r2-jurisdiction": str(cf_r2_jurisdiction) if is_given(cf_r2_jurisdiction) else NOT_GIVEN}
+            ),
             **(extra_headers or {}),
         }
         return self._put(
@@ -182,7 +184,7 @@ class SippyResource(SyncAPIResource):
         bucket_name: str,
         *,
         account_id: str,
-        jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
+        cf_r2_jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -198,7 +200,7 @@ class SippyResource(SyncAPIResource):
 
           bucket_name: Name of the bucket
 
-          jurisdiction: The bucket jurisdiction
+          cf_r2_jurisdiction: The bucket jurisdiction
 
           extra_headers: Send extra headers
 
@@ -213,7 +215,9 @@ class SippyResource(SyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else NOT_GIVEN}),
+            **strip_not_given(
+                {"cf-r2-jurisdiction": str(cf_r2_jurisdiction) if is_given(cf_r2_jurisdiction) else NOT_GIVEN}
+            ),
             **(extra_headers or {}),
         }
         return self._delete(
@@ -233,7 +237,7 @@ class SippyResource(SyncAPIResource):
         bucket_name: str,
         *,
         account_id: str,
-        jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
+        cf_r2_jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -249,7 +253,7 @@ class SippyResource(SyncAPIResource):
 
           bucket_name: Name of the bucket
 
-          jurisdiction: The bucket jurisdiction
+          cf_r2_jurisdiction: The bucket jurisdiction
 
           extra_headers: Send extra headers
 
@@ -264,7 +268,9 @@ class SippyResource(SyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else NOT_GIVEN}),
+            **strip_not_given(
+                {"cf-r2-jurisdiction": str(cf_r2_jurisdiction) if is_given(cf_r2_jurisdiction) else NOT_GIVEN}
+            ),
             **(extra_headers or {}),
         }
         return self._get(
@@ -308,7 +314,7 @@ class AsyncSippyResource(AsyncAPIResource):
         account_id: str,
         destination: sippy_update_params.R2EnableSippyAwsDestination | NotGiven = NOT_GIVEN,
         source: sippy_update_params.R2EnableSippyAwsSource | NotGiven = NOT_GIVEN,
-        jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
+        cf_r2_jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -328,7 +334,7 @@ class AsyncSippyResource(AsyncAPIResource):
 
           source: AWS S3 bucket to copy objects from
 
-          jurisdiction: The bucket jurisdiction
+          cf_r2_jurisdiction: The bucket jurisdiction
 
           extra_headers: Send extra headers
 
@@ -348,7 +354,7 @@ class AsyncSippyResource(AsyncAPIResource):
         account_id: str,
         destination: sippy_update_params.R2EnableSippyGcsDestination | NotGiven = NOT_GIVEN,
         source: sippy_update_params.R2EnableSippyGcsSource | NotGiven = NOT_GIVEN,
-        jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
+        cf_r2_jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -368,7 +374,7 @@ class AsyncSippyResource(AsyncAPIResource):
 
           source: GCS bucket to copy objects from
 
-          jurisdiction: The bucket jurisdiction
+          cf_r2_jurisdiction: The bucket jurisdiction
 
           extra_headers: Send extra headers
 
@@ -390,7 +396,7 @@ class AsyncSippyResource(AsyncAPIResource):
         source: sippy_update_params.R2EnableSippyAwsSource
         | sippy_update_params.R2EnableSippyGcsSource
         | NotGiven = NOT_GIVEN,
-        jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
+        cf_r2_jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -403,7 +409,9 @@ class AsyncSippyResource(AsyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else NOT_GIVEN}),
+            **strip_not_given(
+                {"cf-r2-jurisdiction": str(cf_r2_jurisdiction) if is_given(cf_r2_jurisdiction) else NOT_GIVEN}
+            ),
             **(extra_headers or {}),
         }
         return await self._put(
@@ -430,7 +438,7 @@ class AsyncSippyResource(AsyncAPIResource):
         bucket_name: str,
         *,
         account_id: str,
-        jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
+        cf_r2_jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -446,7 +454,7 @@ class AsyncSippyResource(AsyncAPIResource):
 
           bucket_name: Name of the bucket
 
-          jurisdiction: The bucket jurisdiction
+          cf_r2_jurisdiction: The bucket jurisdiction
 
           extra_headers: Send extra headers
 
@@ -461,7 +469,9 @@ class AsyncSippyResource(AsyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else NOT_GIVEN}),
+            **strip_not_given(
+                {"cf-r2-jurisdiction": str(cf_r2_jurisdiction) if is_given(cf_r2_jurisdiction) else NOT_GIVEN}
+            ),
             **(extra_headers or {}),
         }
         return await self._delete(
@@ -481,7 +491,7 @@ class AsyncSippyResource(AsyncAPIResource):
         bucket_name: str,
         *,
         account_id: str,
-        jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
+        cf_r2_jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -497,7 +507,7 @@ class AsyncSippyResource(AsyncAPIResource):
 
           bucket_name: Name of the bucket
 
-          jurisdiction: The bucket jurisdiction
+          cf_r2_jurisdiction: The bucket jurisdiction
 
           extra_headers: Send extra headers
 
@@ -512,7 +522,9 @@ class AsyncSippyResource(AsyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else NOT_GIVEN}),
+            **strip_not_given(
+                {"cf-r2-jurisdiction": str(cf_r2_jurisdiction) if is_given(cf_r2_jurisdiction) else NOT_GIVEN}
+            ),
             **(extra_headers or {}),
         }
         return await self._get(

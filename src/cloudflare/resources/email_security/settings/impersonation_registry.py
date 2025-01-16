@@ -2,13 +2,14 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-from typing_extensions import Literal
+from typing import Any, Type, Iterable, Optional, cast
+from typing_extensions import Literal, overload
 
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
+    required_args,
     maybe_transform,
     async_maybe_transform,
 )
@@ -57,6 +58,7 @@ class ImpersonationRegistryResource(SyncAPIResource):
         """
         return ImpersonationRegistryResourceWithStreamingResponse(self)
 
+    @overload
     def create(
         self,
         *,
@@ -85,26 +87,79 @@ class ImpersonationRegistryResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        account_id: str,
+        body: Iterable[impersonation_registry_create_params.Variant1Body],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ImpersonationRegistryCreateResponse:
+        """
+        Create an entry in impersonation registry
+
+        Args:
+          account_id: Account Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["account_id", "email", "is_email_regex", "name"], ["account_id", "body"])
+    def create(
+        self,
+        *,
+        account_id: str,
+        email: str | NotGiven = NOT_GIVEN,
+        is_email_regex: bool | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        body: Iterable[impersonation_registry_create_params.Variant1Body] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ImpersonationRegistryCreateResponse:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._post(
-            f"/accounts/{account_id}/email-security/settings/impersonation_registry",
-            body=maybe_transform(
-                {
-                    "email": email,
-                    "is_email_regex": is_email_regex,
-                    "name": name,
-                },
-                impersonation_registry_create_params.ImpersonationRegistryCreateParams,
+        return cast(
+            ImpersonationRegistryCreateResponse,
+            self._post(
+                f"/accounts/{account_id}/email-security/settings/impersonation_registry",
+                body=maybe_transform(
+                    {
+                        "email": email,
+                        "is_email_regex": is_email_regex,
+                        "name": name,
+                        "body": body,
+                    },
+                    impersonation_registry_create_params.ImpersonationRegistryCreateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[ImpersonationRegistryCreateResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[ImpersonationRegistryCreateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[ImpersonationRegistryCreateResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[ImpersonationRegistryCreateResponse], ResultWrapper[ImpersonationRegistryCreateResponse]),
         )
 
     def list(
@@ -328,6 +383,7 @@ class AsyncImpersonationRegistryResource(AsyncAPIResource):
         """
         return AsyncImpersonationRegistryResourceWithStreamingResponse(self)
 
+    @overload
     async def create(
         self,
         *,
@@ -356,26 +412,79 @@ class AsyncImpersonationRegistryResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        account_id: str,
+        body: Iterable[impersonation_registry_create_params.Variant1Body],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ImpersonationRegistryCreateResponse:
+        """
+        Create an entry in impersonation registry
+
+        Args:
+          account_id: Account Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["account_id", "email", "is_email_regex", "name"], ["account_id", "body"])
+    async def create(
+        self,
+        *,
+        account_id: str,
+        email: str | NotGiven = NOT_GIVEN,
+        is_email_regex: bool | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        body: Iterable[impersonation_registry_create_params.Variant1Body] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ImpersonationRegistryCreateResponse:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._post(
-            f"/accounts/{account_id}/email-security/settings/impersonation_registry",
-            body=await async_maybe_transform(
-                {
-                    "email": email,
-                    "is_email_regex": is_email_regex,
-                    "name": name,
-                },
-                impersonation_registry_create_params.ImpersonationRegistryCreateParams,
+        return cast(
+            ImpersonationRegistryCreateResponse,
+            await self._post(
+                f"/accounts/{account_id}/email-security/settings/impersonation_registry",
+                body=await async_maybe_transform(
+                    {
+                        "email": email,
+                        "is_email_regex": is_email_regex,
+                        "name": name,
+                        "body": body,
+                    },
+                    impersonation_registry_create_params.ImpersonationRegistryCreateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[ImpersonationRegistryCreateResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[ImpersonationRegistryCreateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[ImpersonationRegistryCreateResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[ImpersonationRegistryCreateResponse], ResultWrapper[ImpersonationRegistryCreateResponse]),
         )
 
     def list(

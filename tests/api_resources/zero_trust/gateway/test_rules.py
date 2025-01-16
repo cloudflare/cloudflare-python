@@ -105,10 +105,6 @@ class TestRules:
                 "override_ips": ["1.1.1.1", "2.2.2.2"],
                 "payload_log": {"enabled": True},
                 "quarantine": {"file_types": ["exe"]},
-                "resolve_dns_internally": {
-                    "fallback": "none",
-                    "view_id": "view_id",
-                },
                 "resolve_dns_through_cloudflare": True,
                 "untrusted_cert": {"action": "pass_through"},
             },
@@ -249,10 +245,6 @@ class TestRules:
                 "override_ips": ["1.1.1.1", "2.2.2.2"],
                 "payload_log": {"enabled": True},
                 "quarantine": {"file_types": ["exe"]},
-                "resolve_dns_internally": {
-                    "fallback": "none",
-                    "view_id": "view_id",
-                },
                 "resolve_dns_through_cloudflare": True,
                 "untrusted_cert": {"action": "pass_through"},
             },
@@ -588,10 +580,6 @@ class TestAsyncRules:
                 "override_ips": ["1.1.1.1", "2.2.2.2"],
                 "payload_log": {"enabled": True},
                 "quarantine": {"file_types": ["exe"]},
-                "resolve_dns_internally": {
-                    "fallback": "none",
-                    "view_id": "view_id",
-                },
                 "resolve_dns_through_cloudflare": True,
                 "untrusted_cert": {"action": "pass_through"},
             },
@@ -732,10 +720,6 @@ class TestAsyncRules:
                 "override_ips": ["1.1.1.1", "2.2.2.2"],
                 "payload_log": {"enabled": True},
                 "quarantine": {"file_types": ["exe"]},
-                "resolve_dns_internally": {
-                    "fallback": "none",
-                    "view_id": "view_id",
-                },
                 "resolve_dns_through_cloudflare": True,
                 "untrusted_cert": {"action": "pass_through"},
             },

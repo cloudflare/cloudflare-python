@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, cast
+from typing import Iterable
 
 import httpx
 
-from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import (
     maybe_transform,
     async_maybe_transform,
@@ -19,9 +19,9 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._wrappers import ResultWrapper
 from .._base_client import make_request_options
 from ..types.managed_transforms import managed_transform_edit_params
+from ..types.managed_transforms.request_model_param import RequestModelParam
 from ..types.managed_transforms.managed_transform_edit_response import ManagedTransformEditResponse
 from ..types.managed_transforms.managed_transform_list_response import ManagedTransformListResponse
 
@@ -63,7 +63,7 @@ class ManagedTransformsResource(SyncAPIResource):
         Fetches a list of all Managed Transforms.
 
         Args:
-          zone_id: The unique ID of the zone.
+          zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -78,57 +78,17 @@ class ManagedTransformsResource(SyncAPIResource):
         return self._get(
             f"/zones/{zone_id}/managed_headers",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[ManagedTransformListResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[ManagedTransformListResponse], ResultWrapper[ManagedTransformListResponse]),
-        )
-
-    def delete(
-        self,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> None:
-        """
-        Disables all Managed Transforms.
-
-        Args:
-          zone_id: The unique ID of the zone.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        return self._delete(
-            f"/zones/{zone_id}/managed_headers",
-            options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=ManagedTransformListResponse,
         )
 
     def edit(
         self,
         *,
         zone_id: str,
-        managed_request_headers: Iterable[managed_transform_edit_params.ManagedRequestHeader],
-        managed_response_headers: Iterable[managed_transform_edit_params.ManagedResponseHeader],
+        managed_request_headers: Iterable[RequestModelParam],
+        managed_response_headers: Iterable[RequestModelParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -140,11 +100,7 @@ class ManagedTransformsResource(SyncAPIResource):
         Updates the status of one or more Managed Transforms.
 
         Args:
-          zone_id: The unique ID of the zone.
-
-          managed_request_headers: The list of Managed Request Transforms.
-
-          managed_response_headers: The list of Managed Response Transforms.
+          zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -166,13 +122,9 @@ class ManagedTransformsResource(SyncAPIResource):
                 managed_transform_edit_params.ManagedTransformEditParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[ManagedTransformEditResponse]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[ManagedTransformEditResponse], ResultWrapper[ManagedTransformEditResponse]),
+            cast_to=ManagedTransformEditResponse,
         )
 
 
@@ -211,7 +163,7 @@ class AsyncManagedTransformsResource(AsyncAPIResource):
         Fetches a list of all Managed Transforms.
 
         Args:
-          zone_id: The unique ID of the zone.
+          zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -226,57 +178,17 @@ class AsyncManagedTransformsResource(AsyncAPIResource):
         return await self._get(
             f"/zones/{zone_id}/managed_headers",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[ManagedTransformListResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[ManagedTransformListResponse], ResultWrapper[ManagedTransformListResponse]),
-        )
-
-    async def delete(
-        self,
-        *,
-        zone_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> None:
-        """
-        Disables all Managed Transforms.
-
-        Args:
-          zone_id: The unique ID of the zone.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        return await self._delete(
-            f"/zones/{zone_id}/managed_headers",
-            options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=ManagedTransformListResponse,
         )
 
     async def edit(
         self,
         *,
         zone_id: str,
-        managed_request_headers: Iterable[managed_transform_edit_params.ManagedRequestHeader],
-        managed_response_headers: Iterable[managed_transform_edit_params.ManagedResponseHeader],
+        managed_request_headers: Iterable[RequestModelParam],
+        managed_response_headers: Iterable[RequestModelParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -288,11 +200,7 @@ class AsyncManagedTransformsResource(AsyncAPIResource):
         Updates the status of one or more Managed Transforms.
 
         Args:
-          zone_id: The unique ID of the zone.
-
-          managed_request_headers: The list of Managed Request Transforms.
-
-          managed_response_headers: The list of Managed Response Transforms.
+          zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -314,13 +222,9 @@ class AsyncManagedTransformsResource(AsyncAPIResource):
                 managed_transform_edit_params.ManagedTransformEditParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[ManagedTransformEditResponse]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[ManagedTransformEditResponse], ResultWrapper[ManagedTransformEditResponse]),
+            cast_to=ManagedTransformEditResponse,
         )
 
 
@@ -330,9 +234,6 @@ class ManagedTransformsResourceWithRawResponse:
 
         self.list = to_raw_response_wrapper(
             managed_transforms.list,
-        )
-        self.delete = to_raw_response_wrapper(
-            managed_transforms.delete,
         )
         self.edit = to_raw_response_wrapper(
             managed_transforms.edit,
@@ -346,9 +247,6 @@ class AsyncManagedTransformsResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             managed_transforms.list,
         )
-        self.delete = async_to_raw_response_wrapper(
-            managed_transforms.delete,
-        )
         self.edit = async_to_raw_response_wrapper(
             managed_transforms.edit,
         )
@@ -361,9 +259,6 @@ class ManagedTransformsResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             managed_transforms.list,
         )
-        self.delete = to_streamed_response_wrapper(
-            managed_transforms.delete,
-        )
         self.edit = to_streamed_response_wrapper(
             managed_transforms.edit,
         )
@@ -375,9 +270,6 @@ class AsyncManagedTransformsResourceWithStreamingResponse:
 
         self.list = async_to_streamed_response_wrapper(
             managed_transforms.list,
-        )
-        self.delete = async_to_streamed_response_wrapper(
-            managed_transforms.delete,
         )
         self.edit = async_to_streamed_response_wrapper(
             managed_transforms.edit,

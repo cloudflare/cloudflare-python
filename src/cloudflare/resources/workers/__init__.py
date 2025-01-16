@@ -1,5 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from .ai import (
+    AIResource,
+    AsyncAIResource,
+    AIResourceWithRawResponse,
+    AsyncAIResourceWithRawResponse,
+    AIResourceWithStreamingResponse,
+    AsyncAIResourceWithStreamingResponse,
+)
 from .assets import (
     AssetsResource,
     AsyncAssetsResource,
@@ -7,14 +15,6 @@ from .assets import (
     AsyncAssetsResourceWithRawResponse,
     AssetsResourceWithStreamingResponse,
     AsyncAssetsResourceWithStreamingResponse,
-)
-from .routes import (
-    RoutesResource,
-    AsyncRoutesResource,
-    RoutesResourceWithRawResponse,
-    AsyncRoutesResourceWithRawResponse,
-    RoutesResourceWithStreamingResponse,
-    AsyncRoutesResourceWithStreamingResponse,
 )
 from .domains import (
     DomainsResource,
@@ -58,12 +58,12 @@ from .account_settings import (
 )
 
 __all__ = [
-    "RoutesResource",
-    "AsyncRoutesResource",
-    "RoutesResourceWithRawResponse",
-    "AsyncRoutesResourceWithRawResponse",
-    "RoutesResourceWithStreamingResponse",
-    "AsyncRoutesResourceWithStreamingResponse",
+    "AIResource",
+    "AsyncAIResource",
+    "AIResourceWithRawResponse",
+    "AsyncAIResourceWithRawResponse",
+    "AIResourceWithStreamingResponse",
+    "AsyncAIResourceWithStreamingResponse",
     "AssetsResource",
     "AsyncAssetsResource",
     "AssetsResourceWithRawResponse",

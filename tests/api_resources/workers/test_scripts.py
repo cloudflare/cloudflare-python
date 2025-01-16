@@ -5,15 +5,20 @@ from __future__ import annotations
 import os
 from typing import Any, Optional, cast
 
+import httpx
 import pytest
+from respx import MockRouter
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.workers import (
-    Script,
-    ScriptUpdateResponse,
+from cloudflare._response import (
+    BinaryAPIResponse,
+    AsyncBinaryAPIResponse,
+    StreamedBinaryAPIResponse,
+    AsyncStreamedBinaryAPIResponse,
 )
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.types.workers import Script, ScriptUpdateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -23,20 +28,21 @@ class TestScripts:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    def test_method_update(self, client: Cloudflare) -> None:
+    def test_method_update_overload_1(self, client: Cloudflare) -> None:
         script = client.workers.scripts.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            metadata={},
         )
         assert_matches_type(Optional[ScriptUpdateResponse], script, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
+    def test_method_update_with_all_params_overload_1(self, client: Cloudflare) -> None:
         script = client.workers.scripts.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            rollback_to="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            any_part_name=[b"raw file contents"],
             metadata={
                 "assets": {
                     "config": {
@@ -53,8 +59,8 @@ class TestScripts:
                     }
                 ],
                 "body_part": "worker.js",
-                "compatibility_date": "2021-01-01",
-                "compatibility_flags": ["nodejs_compat"],
+                "compatibility_date": "2023-07-25",
+                "compatibility_flags": ["string"],
                 "keep_assets": False,
                 "keep_bindings": ["string"],
                 "logpush": False,
@@ -92,18 +98,18 @@ class TestScripts:
                         "namespace": "my-namespace",
                     }
                 ],
-                "usage_model": "standard",
+                "usage_model": "bundled",
+                "version_tags": {"foo": "string"},
             },
         )
         assert_matches_type(Optional[ScriptUpdateResponse], script, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    def test_raw_response_update(self, client: Cloudflare) -> None:
+    def test_raw_response_update_overload_1(self, client: Cloudflare) -> None:
         response = client.workers.scripts.with_raw_response.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            metadata={},
         )
 
         assert response.is_closed is True
@@ -113,11 +119,10 @@ class TestScripts:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    def test_streaming_response_update(self, client: Cloudflare) -> None:
+    def test_streaming_response_update_overload_1(self, client: Cloudflare) -> None:
         with client.workers.scripts.with_streaming_response.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            metadata={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -129,19 +134,80 @@ class TestScripts:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    def test_path_params_update(self, client: Cloudflare) -> None:
+    def test_path_params_update_overload_1(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.workers.scripts.with_raw_response.update(
                 script_name="this-is_my_script-01",
                 account_id="",
-                metadata={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             client.workers.scripts.with_raw_response.update(
                 script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                metadata={},
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_update_overload_2(self, client: Cloudflare) -> None:
+        script = client.workers.scripts.update(
+            script_name="this-is_my_script-01",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(Optional[ScriptUpdateResponse], script, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_update_with_all_params_overload_2(self, client: Cloudflare) -> None:
+        script = client.workers.scripts.update(
+            script_name="this-is_my_script-01",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            rollback_to="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            message="message",
+        )
+        assert_matches_type(Optional[ScriptUpdateResponse], script, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_raw_response_update_overload_2(self, client: Cloudflare) -> None:
+        response = client.workers.scripts.with_raw_response.update(
+            script_name="this-is_my_script-01",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        script = response.parse()
+        assert_matches_type(Optional[ScriptUpdateResponse], script, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_streaming_response_update_overload_2(self, client: Cloudflare) -> None:
+        with client.workers.scripts.with_streaming_response.update(
+            script_name="this-is_my_script-01",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            script = response.parse()
+            assert_matches_type(Optional[ScriptUpdateResponse], script, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_path_params_update_overload_2(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.workers.scripts.with_raw_response.update(
+                script_name="this-is_my_script-01",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
+            client.workers.scripts.with_raw_response.update(
+                script_name="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
@@ -240,40 +306,58 @@ class TestScripts:
             )
 
     @parametrize
-    def test_method_get(self, client: Cloudflare) -> None:
+    @pytest.mark.respx(base_url=base_url)
+    def test_method_get(self, client: Cloudflare, respx_mock: MockRouter) -> None:
+        respx_mock.get("/accounts/023e105f4ecef8ad9ca31a8372d0c353/workers/scripts/this-is_my_script-01").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
         script = client.workers.scripts.get(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(str, script, path=["response"])
+        assert script.is_closed
+        assert script.json() == {"foo": "bar"}
+        assert cast(Any, script.is_closed) is True
+        assert isinstance(script, BinaryAPIResponse)
 
     @parametrize
-    def test_raw_response_get(self, client: Cloudflare) -> None:
-        response = client.workers.scripts.with_raw_response.get(
+    @pytest.mark.respx(base_url=base_url)
+    def test_raw_response_get(self, client: Cloudflare, respx_mock: MockRouter) -> None:
+        respx_mock.get("/accounts/023e105f4ecef8ad9ca31a8372d0c353/workers/scripts/this-is_my_script-01").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
+
+        script = client.workers.scripts.with_raw_response.get(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        script = response.parse()
-        assert_matches_type(str, script, path=["response"])
+        assert script.is_closed is True
+        assert script.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert script.json() == {"foo": "bar"}
+        assert isinstance(script, BinaryAPIResponse)
 
     @parametrize
-    def test_streaming_response_get(self, client: Cloudflare) -> None:
+    @pytest.mark.respx(base_url=base_url)
+    def test_streaming_response_get(self, client: Cloudflare, respx_mock: MockRouter) -> None:
+        respx_mock.get("/accounts/023e105f4ecef8ad9ca31a8372d0c353/workers/scripts/this-is_my_script-01").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
         with client.workers.scripts.with_streaming_response.get(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ) as script:
+            assert not script.is_closed
+            assert script.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            script = response.parse()
-            assert_matches_type(str, script, path=["response"])
+            assert script.json() == {"foo": "bar"}
+            assert cast(Any, script.is_closed) is True
+            assert isinstance(script, StreamedBinaryAPIResponse)
 
-        assert cast(Any, response.is_closed) is True
+        assert cast(Any, script.is_closed) is True
 
     @parametrize
+    @pytest.mark.respx(base_url=base_url)
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.workers.scripts.with_raw_response.get(
@@ -293,20 +377,21 @@ class TestAsyncScripts:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    async def test_method_update(self, async_client: AsyncCloudflare) -> None:
+    async def test_method_update_overload_1(self, async_client: AsyncCloudflare) -> None:
         script = await async_client.workers.scripts.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            metadata={},
         )
         assert_matches_type(Optional[ScriptUpdateResponse], script, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
+    async def test_method_update_with_all_params_overload_1(self, async_client: AsyncCloudflare) -> None:
         script = await async_client.workers.scripts.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            rollback_to="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            any_part_name=[b"raw file contents"],
             metadata={
                 "assets": {
                     "config": {
@@ -323,8 +408,8 @@ class TestAsyncScripts:
                     }
                 ],
                 "body_part": "worker.js",
-                "compatibility_date": "2021-01-01",
-                "compatibility_flags": ["nodejs_compat"],
+                "compatibility_date": "2023-07-25",
+                "compatibility_flags": ["string"],
                 "keep_assets": False,
                 "keep_bindings": ["string"],
                 "logpush": False,
@@ -362,18 +447,18 @@ class TestAsyncScripts:
                         "namespace": "my-namespace",
                     }
                 ],
-                "usage_model": "standard",
+                "usage_model": "bundled",
+                "version_tags": {"foo": "string"},
             },
         )
         assert_matches_type(Optional[ScriptUpdateResponse], script, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
+    async def test_raw_response_update_overload_1(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.scripts.with_raw_response.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            metadata={},
         )
 
         assert response.is_closed is True
@@ -383,11 +468,10 @@ class TestAsyncScripts:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
+    async def test_streaming_response_update_overload_1(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.scripts.with_streaming_response.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            metadata={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -399,19 +483,80 @@ class TestAsyncScripts:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
-    async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
+    async def test_path_params_update_overload_1(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.workers.scripts.with_raw_response.update(
                 script_name="this-is_my_script-01",
                 account_id="",
-                metadata={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             await async_client.workers.scripts.with_raw_response.update(
                 script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                metadata={},
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_update_overload_2(self, async_client: AsyncCloudflare) -> None:
+        script = await async_client.workers.scripts.update(
+            script_name="this-is_my_script-01",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(Optional[ScriptUpdateResponse], script, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_update_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
+        script = await async_client.workers.scripts.update(
+            script_name="this-is_my_script-01",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            rollback_to="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            message="message",
+        )
+        assert_matches_type(Optional[ScriptUpdateResponse], script, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_raw_response_update_overload_2(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.workers.scripts.with_raw_response.update(
+            script_name="this-is_my_script-01",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        script = await response.parse()
+        assert_matches_type(Optional[ScriptUpdateResponse], script, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_streaming_response_update_overload_2(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.workers.scripts.with_streaming_response.update(
+            script_name="this-is_my_script-01",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            script = await response.parse()
+            assert_matches_type(Optional[ScriptUpdateResponse], script, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_path_params_update_overload_2(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.workers.scripts.with_raw_response.update(
+                script_name="this-is_my_script-01",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
+            await async_client.workers.scripts.with_raw_response.update(
+                script_name="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
@@ -510,40 +655,58 @@ class TestAsyncScripts:
             )
 
     @parametrize
-    async def test_method_get(self, async_client: AsyncCloudflare) -> None:
+    @pytest.mark.respx(base_url=base_url)
+    async def test_method_get(self, async_client: AsyncCloudflare, respx_mock: MockRouter) -> None:
+        respx_mock.get("/accounts/023e105f4ecef8ad9ca31a8372d0c353/workers/scripts/this-is_my_script-01").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
         script = await async_client.workers.scripts.get(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(str, script, path=["response"])
+        assert script.is_closed
+        assert await script.json() == {"foo": "bar"}
+        assert cast(Any, script.is_closed) is True
+        assert isinstance(script, AsyncBinaryAPIResponse)
 
     @parametrize
-    async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.workers.scripts.with_raw_response.get(
+    @pytest.mark.respx(base_url=base_url)
+    async def test_raw_response_get(self, async_client: AsyncCloudflare, respx_mock: MockRouter) -> None:
+        respx_mock.get("/accounts/023e105f4ecef8ad9ca31a8372d0c353/workers/scripts/this-is_my_script-01").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
+
+        script = await async_client.workers.scripts.with_raw_response.get(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        script = await response.parse()
-        assert_matches_type(str, script, path=["response"])
+        assert script.is_closed is True
+        assert script.http_request.headers.get("X-Stainless-Lang") == "python"
+        assert await script.json() == {"foo": "bar"}
+        assert isinstance(script, AsyncBinaryAPIResponse)
 
     @parametrize
-    async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
+    @pytest.mark.respx(base_url=base_url)
+    async def test_streaming_response_get(self, async_client: AsyncCloudflare, respx_mock: MockRouter) -> None:
+        respx_mock.get("/accounts/023e105f4ecef8ad9ca31a8372d0c353/workers/scripts/this-is_my_script-01").mock(
+            return_value=httpx.Response(200, json={"foo": "bar"})
+        )
         async with async_client.workers.scripts.with_streaming_response.get(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        ) as script:
+            assert not script.is_closed
+            assert script.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            script = await response.parse()
-            assert_matches_type(str, script, path=["response"])
+            assert await script.json() == {"foo": "bar"}
+            assert cast(Any, script.is_closed) is True
+            assert isinstance(script, AsyncStreamedBinaryAPIResponse)
 
-        assert cast(Any, response.is_closed) is True
+        assert cast(Any, script.is_closed) is True
 
     @parametrize
+    @pytest.mark.respx(base_url=base_url)
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.workers.scripts.with_raw_response.get(

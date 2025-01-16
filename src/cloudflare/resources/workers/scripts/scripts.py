@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import List, Type, Optional, cast
+from typing_extensions import overload
 
 import httpx
 
@@ -38,8 +39,9 @@ from .versions import (
     VersionsResourceWithStreamingResponse,
     AsyncVersionsResourceWithStreamingResponse,
 )
-from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, FileTypes
 from ...._utils import (
+    required_args,
     maybe_transform,
     async_maybe_transform,
 )
@@ -70,10 +72,18 @@ from .deployments import (
 )
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
+    BinaryAPIResponse,
+    AsyncBinaryAPIResponse,
+    StreamedBinaryAPIResponse,
+    AsyncStreamedBinaryAPIResponse,
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
+    to_custom_raw_response_wrapper,
     async_to_streamed_response_wrapper,
+    to_custom_streamed_response_wrapper,
+    async_to_custom_raw_response_wrapper,
+    async_to_custom_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
@@ -145,12 +155,15 @@ class ScriptsResource(SyncAPIResource):
         """
         return ScriptsResourceWithStreamingResponse(self)
 
+    @overload
     def update(
         self,
         script_name: str,
         *,
         account_id: str,
-        metadata: script_update_params.Metadata,
+        rollback_to: str | NotGiven = NOT_GIVEN,
+        any_part_name: List[FileTypes] | NotGiven = NOT_GIVEN,
+        metadata: script_update_params.Variant0Metadata | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -169,6 +182,16 @@ class ScriptsResource(SyncAPIResource):
 
           script_name: Name of the script, used in URLs and route configuration.
 
+          rollback_to: Rollback to provided deployment based on deployment ID. Request body will only
+              parse a "message" part. You can learn more about deployments
+              [here](https://developers.cloudflare.com/workers/platform/deployments/).
+
+          any_part_name: A module comprising a Worker script, often a javascript file. Multiple modules
+              may be provided as separate named parts, but at least one module must be present
+              and referenced in the metadata as `main_module` or `body_part` by part name.
+              Source maps may also be included using the `application/source-map` content
+              type.
+
           metadata: JSON encoded metadata about the uploaded parts and Worker configuration.
 
           extra_headers: Send extra headers
@@ -179,18 +202,88 @@ class ScriptsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    def update(
+        self,
+        script_name: str,
+        *,
+        account_id: str,
+        rollback_to: str | NotGiven = NOT_GIVEN,
+        message: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ScriptUpdateResponse]:
+        """Upload a worker module.
+
+        You can find more about the multipart metadata on our
+        docs:
+        https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/.
+
+        Args:
+          account_id: Identifier
+
+          script_name: Name of the script, used in URLs and route configuration.
+
+          rollback_to: Rollback to provided deployment based on deployment ID. Request body will only
+              parse a "message" part. You can learn more about deployments
+              [here](https://developers.cloudflare.com/workers/platform/deployments/).
+
+          message: Rollback message to be associated with this deployment. Only parsed when query
+              param `"rollback_to"` is present.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["account_id"])
+    def update(
+        self,
+        script_name: str,
+        *,
+        account_id: str,
+        rollback_to: str | NotGiven = NOT_GIVEN,
+        any_part_name: List[FileTypes] | NotGiven = NOT_GIVEN,
+        metadata: script_update_params.Variant0Metadata | NotGiven = NOT_GIVEN,
+        message: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ScriptUpdateResponse]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return self._put(
             f"/accounts/{account_id}/workers/scripts/{script_name}",
-            body=maybe_transform({"metadata": metadata}, script_update_params.ScriptUpdateParams),
+            body=maybe_transform(
+                {
+                    "any_part_name": any_part_name,
+                    "metadata": metadata,
+                    "message": message,
+                },
+                script_update_params.ScriptUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=maybe_transform({"rollback_to": rollback_to}, script_update_params.ScriptUpdateParams),
                 post_parser=ResultWrapper[Optional[ScriptUpdateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ScriptUpdateResponse]], ResultWrapper[ScriptUpdateResponse]),
@@ -294,7 +387,7 @@ class ScriptsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> str:
+    ) -> BinaryAPIResponse:
         """Fetch raw script content for your worker.
 
         Note this is the original script
@@ -317,13 +410,13 @@ class ScriptsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
-        extra_headers = {"Accept": "application/javascript", **(extra_headers or {})}
+        extra_headers = {"Accept": "undefined", **(extra_headers or {})}
         return self._get(
             f"/accounts/{account_id}/workers/scripts/{script_name}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=str,
+            cast_to=BinaryAPIResponse,
         )
 
 
@@ -379,12 +472,15 @@ class AsyncScriptsResource(AsyncAPIResource):
         """
         return AsyncScriptsResourceWithStreamingResponse(self)
 
+    @overload
     async def update(
         self,
         script_name: str,
         *,
         account_id: str,
-        metadata: script_update_params.Metadata,
+        rollback_to: str | NotGiven = NOT_GIVEN,
+        any_part_name: List[FileTypes] | NotGiven = NOT_GIVEN,
+        metadata: script_update_params.Variant0Metadata | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -403,6 +499,16 @@ class AsyncScriptsResource(AsyncAPIResource):
 
           script_name: Name of the script, used in URLs and route configuration.
 
+          rollback_to: Rollback to provided deployment based on deployment ID. Request body will only
+              parse a "message" part. You can learn more about deployments
+              [here](https://developers.cloudflare.com/workers/platform/deployments/).
+
+          any_part_name: A module comprising a Worker script, often a javascript file. Multiple modules
+              may be provided as separate named parts, but at least one module must be present
+              and referenced in the metadata as `main_module` or `body_part` by part name.
+              Source maps may also be included using the `application/source-map` content
+              type.
+
           metadata: JSON encoded metadata about the uploaded parts and Worker configuration.
 
           extra_headers: Send extra headers
@@ -413,18 +519,90 @@ class AsyncScriptsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    async def update(
+        self,
+        script_name: str,
+        *,
+        account_id: str,
+        rollback_to: str | NotGiven = NOT_GIVEN,
+        message: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ScriptUpdateResponse]:
+        """Upload a worker module.
+
+        You can find more about the multipart metadata on our
+        docs:
+        https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/.
+
+        Args:
+          account_id: Identifier
+
+          script_name: Name of the script, used in URLs and route configuration.
+
+          rollback_to: Rollback to provided deployment based on deployment ID. Request body will only
+              parse a "message" part. You can learn more about deployments
+              [here](https://developers.cloudflare.com/workers/platform/deployments/).
+
+          message: Rollback message to be associated with this deployment. Only parsed when query
+              param `"rollback_to"` is present.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["account_id"])
+    async def update(
+        self,
+        script_name: str,
+        *,
+        account_id: str,
+        rollback_to: str | NotGiven = NOT_GIVEN,
+        any_part_name: List[FileTypes] | NotGiven = NOT_GIVEN,
+        metadata: script_update_params.Variant0Metadata | NotGiven = NOT_GIVEN,
+        message: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ScriptUpdateResponse]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return await self._put(
             f"/accounts/{account_id}/workers/scripts/{script_name}",
-            body=await async_maybe_transform({"metadata": metadata}, script_update_params.ScriptUpdateParams),
+            body=await async_maybe_transform(
+                {
+                    "any_part_name": any_part_name,
+                    "metadata": metadata,
+                    "message": message,
+                },
+                script_update_params.ScriptUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=await async_maybe_transform(
+                    {"rollback_to": rollback_to}, script_update_params.ScriptUpdateParams
+                ),
                 post_parser=ResultWrapper[Optional[ScriptUpdateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[ScriptUpdateResponse]], ResultWrapper[ScriptUpdateResponse]),
@@ -528,7 +706,7 @@ class AsyncScriptsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> str:
+    ) -> AsyncBinaryAPIResponse:
         """Fetch raw script content for your worker.
 
         Note this is the original script
@@ -551,13 +729,13 @@ class AsyncScriptsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
-        extra_headers = {"Accept": "application/javascript", **(extra_headers or {})}
+        extra_headers = {"Accept": "undefined", **(extra_headers or {})}
         return await self._get(
             f"/accounts/{account_id}/workers/scripts/{script_name}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=str,
+            cast_to=AsyncBinaryAPIResponse,
         )
 
 
@@ -574,8 +752,9 @@ class ScriptsResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             scripts.delete,
         )
-        self.get = to_raw_response_wrapper(
+        self.get = to_custom_raw_response_wrapper(
             scripts.get,
+            BinaryAPIResponse,
         )
 
     @cached_property
@@ -624,8 +803,9 @@ class AsyncScriptsResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             scripts.delete,
         )
-        self.get = async_to_raw_response_wrapper(
+        self.get = async_to_custom_raw_response_wrapper(
             scripts.get,
+            AsyncBinaryAPIResponse,
         )
 
     @cached_property
@@ -674,8 +854,9 @@ class ScriptsResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             scripts.delete,
         )
-        self.get = to_streamed_response_wrapper(
+        self.get = to_custom_streamed_response_wrapper(
             scripts.get,
+            StreamedBinaryAPIResponse,
         )
 
     @cached_property
@@ -724,8 +905,9 @@ class AsyncScriptsResourceWithStreamingResponse:
         self.delete = async_to_streamed_response_wrapper(
             scripts.delete,
         )
-        self.get = async_to_streamed_response_wrapper(
+        self.get = async_to_custom_streamed_response_wrapper(
             scripts.get,
+            AsyncStreamedBinaryAPIResponse,
         )
 
     @cached_property

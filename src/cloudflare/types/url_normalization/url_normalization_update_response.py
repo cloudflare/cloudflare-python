@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing_extensions import Literal
+from typing import Optional
 
 from ..._models import BaseModel
 
@@ -8,8 +8,8 @@ __all__ = ["URLNormalizationUpdateResponse"]
 
 
 class URLNormalizationUpdateResponse(BaseModel):
-    scope: Literal["incoming", "both"]
+    scope: Optional[str] = None
     """The scope of the URL normalization."""
 
-    type: Literal["cloudflare", "rfc3986"]
+    type: Optional[str] = None
     """The type of URL normalization performed by Cloudflare."""
