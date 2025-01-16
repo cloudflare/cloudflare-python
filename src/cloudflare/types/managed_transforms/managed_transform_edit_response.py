@@ -8,42 +8,28 @@ __all__ = ["ManagedTransformEditResponse", "ManagedRequestHeader", "ManagedRespo
 
 
 class ManagedRequestHeader(BaseModel):
-    id: str
-    """The human-readable identifier of the Managed Transform."""
+    id: Optional[str] = None
+    """Human-readable identifier of the Managed Transform."""
 
-    enabled: bool
-    """Whether the Managed Transform is enabled."""
+    available: Optional[bool] = None
+    """When true, the Managed Transform is available in the current Cloudflare plan."""
 
-    has_conflict: bool
-    """
-    Whether the Managed Transform conflicts with the currently-enabled Managed
-    Transforms.
-    """
-
-    conflicts_with: Optional[List[str]] = None
-    """The Managed Transforms that this Managed Transform conflicts with."""
+    enabled: Optional[bool] = None
+    """When true, the Managed Transform is enabled."""
 
 
 class ManagedResponseHeader(BaseModel):
-    id: str
-    """The human-readable identifier of the Managed Transform."""
+    id: Optional[str] = None
+    """Human-readable identifier of the Managed Transform."""
 
-    enabled: bool
-    """Whether the Managed Transform is enabled."""
+    available: Optional[bool] = None
+    """When true, the Managed Transform is available in the current Cloudflare plan."""
 
-    has_conflict: bool
-    """
-    Whether the Managed Transform conflicts with the currently-enabled Managed
-    Transforms.
-    """
-
-    conflicts_with: Optional[List[str]] = None
-    """The Managed Transforms that this Managed Transform conflicts with."""
+    enabled: Optional[bool] = None
+    """When true, the Managed Transform is enabled."""
 
 
 class ManagedTransformEditResponse(BaseModel):
-    managed_request_headers: List[ManagedRequestHeader]
-    """The list of Managed Request Transforms."""
+    managed_request_headers: Optional[List[ManagedRequestHeader]] = None
 
-    managed_response_headers: List[ManagedResponseHeader]
-    """The list of Managed Response Transforms."""
+    managed_response_headers: Optional[List[ManagedResponseHeader]] = None

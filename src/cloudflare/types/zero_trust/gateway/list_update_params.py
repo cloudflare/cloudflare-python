@@ -2,10 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
 from typing_extensions import Required, TypedDict
-
-from .gateway_item_param import GatewayItemParam
 
 __all__ = ["ListUpdateParams"]
 
@@ -18,6 +15,3 @@ class ListUpdateParams(TypedDict, total=False):
 
     description: str
     """The description of the list."""
-
-    items: Iterable[GatewayItemParam]
-    """The items in the list."""

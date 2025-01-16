@@ -10,7 +10,7 @@ __all__ = ["AddressMapEditParams"]
 
 class AddressMapEditParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier of a Cloudflare account."""
+    """Identifier"""
 
     default_sni: Optional[str]
     """

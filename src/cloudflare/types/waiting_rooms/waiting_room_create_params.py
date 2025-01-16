@@ -365,22 +365,3 @@ class WaitingRoomCreateParams(TypedDict, total=False):
 
     If set to `true`, the traffic will not go to the waiting room.
     """
-
-    turnstile_action: Literal["log", "infinite_queue"]
-    """Which action to take when a bot is detected using Turnstile.
-
-    `log` will have no impact on queueing behavior, simply keeping track of how many
-    bots are detected in Waiting Room Analytics. `infinite_queue` will send bots to
-    a false queueing state, where they will never reach your origin.
-    `infinite_queue` requires Advanced Waiting Room.
-    """
-
-    turnstile_mode: Literal["off", "invisible", "visible_non_interactive", "visible_managed"]
-    """Which Turnstile widget type to use for detecting bot traffic.
-
-    See
-    [the Turnstile documentation](https://developers.cloudflare.com/turnstile/concepts/widget/#widget-types)
-    for the definitions of these widget types. Set to `off` to disable the Turnstile
-    integration entirely. Setting this to anything other than `off` or `invisible`
-    requires Advanced Waiting Room.
-    """

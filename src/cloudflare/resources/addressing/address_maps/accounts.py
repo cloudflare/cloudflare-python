@@ -62,9 +62,9 @@ class AccountsResource(SyncAPIResource):
         Add an account as a member of a particular address map.
 
         Args:
-          account_id: Identifier of a Cloudflare account.
+          account_id: Identifier
 
-          address_map_id: Identifier of an Address Map.
+          address_map_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -103,9 +103,9 @@ class AccountsResource(SyncAPIResource):
         Remove an account as a member of a particular address map.
 
         Args:
-          account_id: Identifier of a Cloudflare account.
+          account_id: Identifier
 
-          address_map_id: Identifier of an Address Map.
+          address_map_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -165,9 +165,9 @@ class AsyncAccountsResource(AsyncAPIResource):
         Add an account as a member of a particular address map.
 
         Args:
-          account_id: Identifier of a Cloudflare account.
+          account_id: Identifier
 
-          address_map_id: Identifier of an Address Map.
+          address_map_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -206,9 +206,9 @@ class AsyncAccountsResource(AsyncAPIResource):
         Remove an account as a member of a particular address map.
 
         Args:
-          account_id: Identifier of a Cloudflare account.
+          account_id: Identifier
 
-          address_map_id: Identifier of an Address Map.
+          address_map_id: Identifier
 
           extra_headers: Send extra headers
 

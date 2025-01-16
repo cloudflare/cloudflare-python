@@ -27,7 +27,7 @@ class TestDownloads:
     @pytest.mark.respx(base_url=base_url)
     def test_method_get(self, client: Cloudflare, respx_mock: MockRouter) -> None:
         respx_mock.get(
-            "/accounts/01a7362d577a6c3019a474fd6f485823/dex/commands/5758fefe-ae7e-4538-a39b-1fef6abcb909/downloads/filename"
+            "/accounts/01a7362d577a6c3019a474fd6f485823/commands/5758fefe-ae7e-4538-a39b-1fef6abcb909/downloads/filename"
         ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         download = client.zero_trust.dex.commands.downloads.get(
             filename="filename",
@@ -43,7 +43,7 @@ class TestDownloads:
     @pytest.mark.respx(base_url=base_url)
     def test_raw_response_get(self, client: Cloudflare, respx_mock: MockRouter) -> None:
         respx_mock.get(
-            "/accounts/01a7362d577a6c3019a474fd6f485823/dex/commands/5758fefe-ae7e-4538-a39b-1fef6abcb909/downloads/filename"
+            "/accounts/01a7362d577a6c3019a474fd6f485823/commands/5758fefe-ae7e-4538-a39b-1fef6abcb909/downloads/filename"
         ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
 
         download = client.zero_trust.dex.commands.downloads.with_raw_response.get(
@@ -61,7 +61,7 @@ class TestDownloads:
     @pytest.mark.respx(base_url=base_url)
     def test_streaming_response_get(self, client: Cloudflare, respx_mock: MockRouter) -> None:
         respx_mock.get(
-            "/accounts/01a7362d577a6c3019a474fd6f485823/dex/commands/5758fefe-ae7e-4538-a39b-1fef6abcb909/downloads/filename"
+            "/accounts/01a7362d577a6c3019a474fd6f485823/commands/5758fefe-ae7e-4538-a39b-1fef6abcb909/downloads/filename"
         ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         with client.zero_trust.dex.commands.downloads.with_streaming_response.get(
             filename="filename",
@@ -109,7 +109,7 @@ class TestAsyncDownloads:
     @pytest.mark.respx(base_url=base_url)
     async def test_method_get(self, async_client: AsyncCloudflare, respx_mock: MockRouter) -> None:
         respx_mock.get(
-            "/accounts/01a7362d577a6c3019a474fd6f485823/dex/commands/5758fefe-ae7e-4538-a39b-1fef6abcb909/downloads/filename"
+            "/accounts/01a7362d577a6c3019a474fd6f485823/commands/5758fefe-ae7e-4538-a39b-1fef6abcb909/downloads/filename"
         ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         download = await async_client.zero_trust.dex.commands.downloads.get(
             filename="filename",
@@ -125,7 +125,7 @@ class TestAsyncDownloads:
     @pytest.mark.respx(base_url=base_url)
     async def test_raw_response_get(self, async_client: AsyncCloudflare, respx_mock: MockRouter) -> None:
         respx_mock.get(
-            "/accounts/01a7362d577a6c3019a474fd6f485823/dex/commands/5758fefe-ae7e-4538-a39b-1fef6abcb909/downloads/filename"
+            "/accounts/01a7362d577a6c3019a474fd6f485823/commands/5758fefe-ae7e-4538-a39b-1fef6abcb909/downloads/filename"
         ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
 
         download = await async_client.zero_trust.dex.commands.downloads.with_raw_response.get(
@@ -143,7 +143,7 @@ class TestAsyncDownloads:
     @pytest.mark.respx(base_url=base_url)
     async def test_streaming_response_get(self, async_client: AsyncCloudflare, respx_mock: MockRouter) -> None:
         respx_mock.get(
-            "/accounts/01a7362d577a6c3019a474fd6f485823/dex/commands/5758fefe-ae7e-4538-a39b-1fef6abcb909/downloads/filename"
+            "/accounts/01a7362d577a6c3019a474fd6f485823/commands/5758fefe-ae7e-4538-a39b-1fef6abcb909/downloads/filename"
         ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         async with async_client.zero_trust.dex.commands.downloads.with_streaming_response.get(
             filename="filename",

@@ -2,8 +2,7 @@
 
 from __future__ import annotations
 
-import datetime
-from typing import List, Union
+from typing import List
 from typing_extensions import Literal, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
@@ -12,7 +11,7 @@ __all__ = ["RankingTopParams"]
 
 
 class RankingTopParams(TypedDict, total=False):
-    date: Annotated[List[Union[str, datetime.date]], PropertyInfo(format="iso8601")]
+    date: List[str]
     """Array of dates to filter the ranking."""
 
     format: Literal["JSON", "CSV"]

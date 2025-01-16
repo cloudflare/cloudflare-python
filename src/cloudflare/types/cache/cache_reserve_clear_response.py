@@ -14,6 +14,9 @@ class CacheReserveClearResponse(BaseModel):
     id: CacheReserveClear
     """ID of the zone setting."""
 
+    modified_on: Optional[datetime] = None
+    """last time this setting was modified."""
+
     start_ts: datetime
     """The time that the latest Cache Reserve Clear operation started."""
 
@@ -22,6 +25,3 @@ class CacheReserveClearResponse(BaseModel):
 
     end_ts: Optional[datetime] = None
     """The time that the latest Cache Reserve Clear operation completed."""
-
-    modified_on: Optional[datetime] = None
-    """Last time this setting was modified."""
