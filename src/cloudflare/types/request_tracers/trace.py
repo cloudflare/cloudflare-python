@@ -7,4 +7,6 @@ from typing_extensions import TypeAlias
 
 __all__ = ["Trace"]
 
-Trace: TypeAlias = List[TraceItem]
+Trace: TypeAlias = List["TraceItem"]
+
+from .trace_item import TraceItem
