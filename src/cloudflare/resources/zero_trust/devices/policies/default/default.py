@@ -129,7 +129,7 @@ class DefaultResource(SyncAPIResource):
 
           allowed_to_leave: Whether to allow devices to leave the organization.
 
-          auto_connect: The amount of time in minutes to reconnect after having been disabled.
+          auto_connect: The amount of time in seconds to reconnect after having been disabled.
 
           captive_portal: Turn on the captive portal after the specified amount of time.
 
@@ -290,7 +290,7 @@ class AsyncDefaultResource(AsyncAPIResource):
 
           allowed_to_leave: Whether to allow devices to leave the organization.
 
-          auto_connect: The amount of time in minutes to reconnect after having been disabled.
+          auto_connect: The amount of time in seconds to reconnect after having been disabled.
 
           captive_portal: Turn on the captive portal after the specified amount of time.
 
