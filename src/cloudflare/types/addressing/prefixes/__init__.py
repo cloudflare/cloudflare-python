@@ -2,6 +2,15 @@
 
 from __future__ import annotations
 
+from .bgp_prefix import BGPPrefix as BGPPrefix
 from .delegations import Delegations as Delegations
+from .service_binding import ServiceBinding as ServiceBinding
+from .bgp_prefix_edit_params import BGPPrefixEditParams as BGPPrefixEditParams
+from .bgp_prefix_create_params import BGPPrefixCreateParams as BGPPrefixCreateParams
 from .delegation_create_params import DelegationCreateParams as DelegationCreateParams
 from .delegation_delete_response import DelegationDeleteResponse as DelegationDeleteResponse
+from .service_binding_create_params import ServiceBindingCreateParams as ServiceBindingCreateParams
+from .service_binding_delete_response import ServiceBindingDeleteResponse as ServiceBindingDeleteResponse
+from .advertisement_status_edit_params import AdvertisementStatusEditParams as AdvertisementStatusEditParams
+from .advertisement_status_get_response import AdvertisementStatusGetResponse as AdvertisementStatusGetResponse
+from .advertisement_status_edit_response import AdvertisementStatusEditResponse as AdvertisementStatusEditResponse

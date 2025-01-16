@@ -32,6 +32,7 @@ class TestSummary:
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
+            limit_per_group=10,
             location=["string"],
             name=["string"],
         )
@@ -75,6 +76,7 @@ class TestAsyncSummary:
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
+            limit_per_group=10,
             location=["string"],
             name=["string"],
         )

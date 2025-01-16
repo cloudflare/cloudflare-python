@@ -20,7 +20,7 @@ class QueueUpdateParams(TypedDict, total=False):
     rules: Iterable[Rule]
     """Array of rules to drive notifications"""
 
-    cf_r2_jurisdiction: Annotated[Literal["default", "eu", "fedramp"], PropertyInfo(alias="cf-r2-jurisdiction")]
+    jurisdiction: Annotated[Literal["default", "eu", "fedramp"], PropertyInfo(alias="cf-r2-jurisdiction")]
     """The bucket jurisdiction"""
 
 
