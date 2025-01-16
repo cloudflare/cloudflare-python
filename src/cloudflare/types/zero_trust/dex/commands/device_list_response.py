@@ -16,6 +16,12 @@ class Device(BaseModel):
     device_name: Optional[str] = FieldInfo(alias="deviceName", default=None)
     """Device identifier (human readable)"""
 
+    eligible: Optional[bool] = None
+    """Whether the device is eligible for remote captures"""
+
+    ineligible_reason: Optional[str] = FieldInfo(alias="ineligibleReason", default=None)
+    """If the device is not eligible, the reason why."""
+
     person_email: Optional[str] = FieldInfo(alias="personEmail", default=None)
     """User contact email address"""
 
