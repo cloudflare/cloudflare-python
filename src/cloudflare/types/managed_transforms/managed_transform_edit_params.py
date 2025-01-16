@@ -5,31 +5,15 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Required, TypedDict
 
-__all__ = ["ManagedTransformEditParams", "ManagedRequestHeader", "ManagedResponseHeader"]
+from .request_model_param import RequestModelParam
+
+__all__ = ["ManagedTransformEditParams"]
 
 
 class ManagedTransformEditParams(TypedDict, total=False):
     zone_id: Required[str]
-    """The unique ID of the zone."""
+    """Identifier"""
 
-    managed_request_headers: Required[Iterable[ManagedRequestHeader]]
-    """The list of Managed Request Transforms."""
+    managed_request_headers: Required[Iterable[RequestModelParam]]
 
-    managed_response_headers: Required[Iterable[ManagedResponseHeader]]
-    """The list of Managed Response Transforms."""
-
-
-class ManagedRequestHeader(TypedDict, total=False):
-    id: Required[str]
-    """The human-readable identifier of the Managed Transform."""
-
-    enabled: Required[bool]
-    """Whether the Managed Transform is enabled."""
-
-
-class ManagedResponseHeader(TypedDict, total=False):
-    id: Required[str]
-    """The human-readable identifier of the Managed Transform."""
-
-    enabled: Required[bool]
-    """Whether the Managed Transform is enabled."""
+    managed_response_headers: Required[Iterable[RequestModelParam]]

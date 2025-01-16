@@ -1,13 +1,20 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
+from typing import List, Optional
 from datetime import datetime
 
 from pydantic import Field as FieldInfo
 
 from ....._models import BaseModel
 
-__all__ = ["SummaryHTTPMethodResponse", "Meta", "MetaDateRange", "MetaConfidenceInfo", "MetaConfidenceInfoAnnotation"]
+__all__ = [
+    "SummaryHTTPMethodResponse",
+    "Meta",
+    "MetaDateRange",
+    "MetaConfidenceInfo",
+    "MetaConfidenceInfoAnnotation",
+    "Summary0",
+]
 
 
 class MetaDateRange(BaseModel):
@@ -50,7 +57,13 @@ class Meta(BaseModel):
     confidence_info: Optional[MetaConfidenceInfo] = FieldInfo(alias="confidenceInfo", default=None)
 
 
+class Summary0(BaseModel):
+    get: str = FieldInfo(alias="GET")
+
+    post: str = FieldInfo(alias="POST")
+
+
 class SummaryHTTPMethodResponse(BaseModel):
     meta: Meta
 
-    summary_0: Dict[str, str]
+    summary_0: Summary0

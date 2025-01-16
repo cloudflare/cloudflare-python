@@ -15,24 +15,8 @@ class Settings(BaseModel):
     """
     If enabled, causes the CNAME record to be resolved externally and the resulting
     address records (e.g., A and AAAA) to be returned instead of the CNAME record
-    itself. This setting is unavailable for proxied records, since they are always
+    itself. This setting has no effect on proxied records, which are always
     flattened.
-    """
-
-    ipv4_only: Optional[bool] = None
-    """
-    When enabled, only A records will be generated, and AAAA records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
-    """
-
-    ipv6_only: Optional[bool] = None
-    """
-    When enabled, only AAAA records will be generated, and A records will not be
-    created. This setting is intended for exceptional cases. Note that this option
-    only applies to proxied records and it has no effect on whether Cloudflare
-    communicates with the origin using IPv4 or IPv6.
     """
 
 
@@ -56,7 +40,6 @@ class CNAMERecord(BaseModel):
     """
 
     settings: Optional[Settings] = None
-    """Settings for the DNS record."""
 
     tags: Optional[List[RecordTags]] = None
     """Custom tags for the DNS record. This field has no effect on DNS responses."""

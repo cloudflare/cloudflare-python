@@ -9,9 +9,9 @@ __all__ = ["IPUpdateParams"]
 
 class IPUpdateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier of a Cloudflare account."""
+    """Identifier"""
 
     address_map_id: Required[str]
-    """Identifier of an Address Map."""
+    """Identifier"""
 
     body: Required[object]

@@ -3,13 +3,13 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.cache import VariantGetResponse, VariantEditResponse, VariantDeleteResponse
+from cloudflare.types.cache import CacheVariant, VariantGetResponse, VariantEditResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -22,7 +22,7 @@ class TestVariants:
         variant = client.cache.variants.delete(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[VariantDeleteResponse], variant, path=["response"])
+        assert_matches_type(CacheVariant, variant, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -33,7 +33,7 @@ class TestVariants:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         variant = response.parse()
-        assert_matches_type(Optional[VariantDeleteResponse], variant, path=["response"])
+        assert_matches_type(CacheVariant, variant, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -44,7 +44,7 @@ class TestVariants:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             variant = response.parse()
-            assert_matches_type(Optional[VariantDeleteResponse], variant, path=["response"])
+            assert_matches_type(CacheVariant, variant, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -55,16 +55,14 @@ class TestVariants:
                 zone_id="",
             )
 
-    @pytest.mark.skip(reason="TODO: investigate HTTP 422 errors on test suite")
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         variant = client.cache.variants.edit(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value={},
         )
-        assert_matches_type(Optional[VariantEditResponse], variant, path=["response"])
+        assert_matches_type(VariantEditResponse, variant, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate HTTP 422 errors on test suite")
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         variant = client.cache.variants.edit(
@@ -83,9 +81,8 @@ class TestVariants:
                 "webp": ["image/jpeg", "image/avif"],
             },
         )
-        assert_matches_type(Optional[VariantEditResponse], variant, path=["response"])
+        assert_matches_type(VariantEditResponse, variant, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate HTTP 422 errors on test suite")
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.cache.variants.with_raw_response.edit(
@@ -96,9 +93,8 @@ class TestVariants:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         variant = response.parse()
-        assert_matches_type(Optional[VariantEditResponse], variant, path=["response"])
+        assert_matches_type(VariantEditResponse, variant, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate HTTP 422 errors on test suite")
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.cache.variants.with_streaming_response.edit(
@@ -109,11 +105,10 @@ class TestVariants:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             variant = response.parse()
-            assert_matches_type(Optional[VariantEditResponse], variant, path=["response"])
+            assert_matches_type(VariantEditResponse, variant, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate HTTP 422 errors on test suite")
     @parametrize
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -122,15 +117,13 @@ class TestVariants:
                 value={},
             )
 
-    @pytest.mark.skip(reason="TODO: investigate HTTP 422 errors on test suite")
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         variant = client.cache.variants.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[VariantGetResponse], variant, path=["response"])
+        assert_matches_type(VariantGetResponse, variant, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate HTTP 422 errors on test suite")
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.cache.variants.with_raw_response.get(
@@ -140,9 +133,8 @@ class TestVariants:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         variant = response.parse()
-        assert_matches_type(Optional[VariantGetResponse], variant, path=["response"])
+        assert_matches_type(VariantGetResponse, variant, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate HTTP 422 errors on test suite")
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.cache.variants.with_streaming_response.get(
@@ -152,11 +144,10 @@ class TestVariants:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             variant = response.parse()
-            assert_matches_type(Optional[VariantGetResponse], variant, path=["response"])
+            assert_matches_type(VariantGetResponse, variant, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate HTTP 422 errors on test suite")
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -173,7 +164,7 @@ class TestAsyncVariants:
         variant = await async_client.cache.variants.delete(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[VariantDeleteResponse], variant, path=["response"])
+        assert_matches_type(CacheVariant, variant, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -184,7 +175,7 @@ class TestAsyncVariants:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         variant = await response.parse()
-        assert_matches_type(Optional[VariantDeleteResponse], variant, path=["response"])
+        assert_matches_type(CacheVariant, variant, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -195,7 +186,7 @@ class TestAsyncVariants:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             variant = await response.parse()
-            assert_matches_type(Optional[VariantDeleteResponse], variant, path=["response"])
+            assert_matches_type(CacheVariant, variant, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -206,16 +197,14 @@ class TestAsyncVariants:
                 zone_id="",
             )
 
-    @pytest.mark.skip(reason="TODO: investigate HTTP 422 errors on test suite")
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         variant = await async_client.cache.variants.edit(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value={},
         )
-        assert_matches_type(Optional[VariantEditResponse], variant, path=["response"])
+        assert_matches_type(VariantEditResponse, variant, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate HTTP 422 errors on test suite")
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         variant = await async_client.cache.variants.edit(
@@ -234,9 +223,8 @@ class TestAsyncVariants:
                 "webp": ["image/jpeg", "image/avif"],
             },
         )
-        assert_matches_type(Optional[VariantEditResponse], variant, path=["response"])
+        assert_matches_type(VariantEditResponse, variant, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate HTTP 422 errors on test suite")
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cache.variants.with_raw_response.edit(
@@ -247,9 +235,8 @@ class TestAsyncVariants:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         variant = await response.parse()
-        assert_matches_type(Optional[VariantEditResponse], variant, path=["response"])
+        assert_matches_type(VariantEditResponse, variant, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate HTTP 422 errors on test suite")
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cache.variants.with_streaming_response.edit(
@@ -260,11 +247,10 @@ class TestAsyncVariants:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             variant = await response.parse()
-            assert_matches_type(Optional[VariantEditResponse], variant, path=["response"])
+            assert_matches_type(VariantEditResponse, variant, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate HTTP 422 errors on test suite")
     @parametrize
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -273,15 +259,13 @@ class TestAsyncVariants:
                 value={},
             )
 
-    @pytest.mark.skip(reason="TODO: investigate HTTP 422 errors on test suite")
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         variant = await async_client.cache.variants.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[VariantGetResponse], variant, path=["response"])
+        assert_matches_type(VariantGetResponse, variant, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate HTTP 422 errors on test suite")
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cache.variants.with_raw_response.get(
@@ -291,9 +275,8 @@ class TestAsyncVariants:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         variant = await response.parse()
-        assert_matches_type(Optional[VariantGetResponse], variant, path=["response"])
+        assert_matches_type(VariantGetResponse, variant, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate HTTP 422 errors on test suite")
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cache.variants.with_streaming_response.get(
@@ -303,11 +286,10 @@ class TestAsyncVariants:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             variant = await response.parse()
-            assert_matches_type(Optional[VariantGetResponse], variant, path=["response"])
+            assert_matches_type(VariantGetResponse, variant, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate HTTP 422 errors on test suite")
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):

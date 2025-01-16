@@ -56,7 +56,7 @@ class QueuesResource(SyncAPIResource):
         account_id: str,
         bucket_name: str,
         rules: Iterable[queue_update_params.Rule] | NotGiven = NOT_GIVEN,
-        jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
+        cf_r2_jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -76,7 +76,7 @@ class QueuesResource(SyncAPIResource):
 
           rules: Array of rules to drive notifications
 
-          jurisdiction: The bucket jurisdiction
+          cf_r2_jurisdiction: The bucket jurisdiction
 
           extra_headers: Send extra headers
 
@@ -93,7 +93,9 @@ class QueuesResource(SyncAPIResource):
         if not queue_id:
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else NOT_GIVEN}),
+            **strip_not_given(
+                {"cf-r2-jurisdiction": str(cf_r2_jurisdiction) if is_given(cf_r2_jurisdiction) else NOT_GIVEN}
+            ),
             **(extra_headers or {}),
         }
         return self._put(
@@ -115,7 +117,7 @@ class QueuesResource(SyncAPIResource):
         *,
         account_id: str,
         bucket_name: str,
-        jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
+        cf_r2_jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -135,7 +137,7 @@ class QueuesResource(SyncAPIResource):
 
           queue_id: Queue ID
 
-          jurisdiction: The bucket jurisdiction
+          cf_r2_jurisdiction: The bucket jurisdiction
 
           extra_headers: Send extra headers
 
@@ -152,7 +154,9 @@ class QueuesResource(SyncAPIResource):
         if not queue_id:
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else NOT_GIVEN}),
+            **strip_not_given(
+                {"cf-r2-jurisdiction": str(cf_r2_jurisdiction) if is_given(cf_r2_jurisdiction) else NOT_GIVEN}
+            ),
             **(extra_headers or {}),
         }
         return self._delete(
@@ -195,7 +199,7 @@ class AsyncQueuesResource(AsyncAPIResource):
         account_id: str,
         bucket_name: str,
         rules: Iterable[queue_update_params.Rule] | NotGiven = NOT_GIVEN,
-        jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
+        cf_r2_jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -215,7 +219,7 @@ class AsyncQueuesResource(AsyncAPIResource):
 
           rules: Array of rules to drive notifications
 
-          jurisdiction: The bucket jurisdiction
+          cf_r2_jurisdiction: The bucket jurisdiction
 
           extra_headers: Send extra headers
 
@@ -232,7 +236,9 @@ class AsyncQueuesResource(AsyncAPIResource):
         if not queue_id:
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else NOT_GIVEN}),
+            **strip_not_given(
+                {"cf-r2-jurisdiction": str(cf_r2_jurisdiction) if is_given(cf_r2_jurisdiction) else NOT_GIVEN}
+            ),
             **(extra_headers or {}),
         }
         return await self._put(
@@ -254,7 +260,7 @@ class AsyncQueuesResource(AsyncAPIResource):
         *,
         account_id: str,
         bucket_name: str,
-        jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
+        cf_r2_jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -274,7 +280,7 @@ class AsyncQueuesResource(AsyncAPIResource):
 
           queue_id: Queue ID
 
-          jurisdiction: The bucket jurisdiction
+          cf_r2_jurisdiction: The bucket jurisdiction
 
           extra_headers: Send extra headers
 
@@ -291,7 +297,9 @@ class AsyncQueuesResource(AsyncAPIResource):
         if not queue_id:
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else NOT_GIVEN}),
+            **strip_not_given(
+                {"cf-r2-jurisdiction": str(cf_r2_jurisdiction) if is_given(cf_r2_jurisdiction) else NOT_GIVEN}
+            ),
             **(extra_headers or {}),
         }
         return await self._delete(

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import Type, Iterable, cast
+from typing_extensions import Literal
 
 import httpx
 
@@ -168,6 +169,8 @@ class DatasetsResource(SyncAPIResource):
         account_id: str,
         enable: bool | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        order_by: str | NotGiven = NOT_GIVEN,
+        order_by_direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         search: str | NotGiven = NOT_GIVEN,
@@ -183,6 +186,10 @@ class DatasetsResource(SyncAPIResource):
 
         Args:
           gateway_id: gateway id
+
+          order_by: Order By Column Name
+
+          order_by_direction: Order By Direction
 
           search: Search by id, name, filters
 
@@ -210,6 +217,8 @@ class DatasetsResource(SyncAPIResource):
                     {
                         "enable": enable,
                         "name": name,
+                        "order_by": order_by,
+                        "order_by_direction": order_by_direction,
                         "page": page,
                         "per_page": per_page,
                         "search": search,
@@ -447,6 +456,8 @@ class AsyncDatasetsResource(AsyncAPIResource):
         account_id: str,
         enable: bool | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        order_by: str | NotGiven = NOT_GIVEN,
+        order_by_direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         search: str | NotGiven = NOT_GIVEN,
@@ -462,6 +473,10 @@ class AsyncDatasetsResource(AsyncAPIResource):
 
         Args:
           gateway_id: gateway id
+
+          order_by: Order By Column Name
+
+          order_by_direction: Order By Direction
 
           search: Search by id, name, filters
 
@@ -489,6 +504,8 @@ class AsyncDatasetsResource(AsyncAPIResource):
                     {
                         "enable": enable,
                         "name": name,
+                        "order_by": order_by,
+                        "order_by_direction": order_by_direction,
                         "page": page,
                         "per_page": per_page,
                         "search": search,

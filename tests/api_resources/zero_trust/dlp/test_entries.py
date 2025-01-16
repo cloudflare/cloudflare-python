@@ -91,7 +91,6 @@ class TestEntries:
                 profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_update_overload_1(self, client: Cloudflare) -> None:
         entry = client.zero_trust.dlp.entries.update(
@@ -103,7 +102,6 @@ class TestEntries:
         )
         assert_matches_type(Optional[EntryUpdateResponse], entry, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_update_with_all_params_overload_1(self, client: Cloudflare) -> None:
         entry = client.zero_trust.dlp.entries.update(
@@ -119,7 +117,6 @@ class TestEntries:
         )
         assert_matches_type(Optional[EntryUpdateResponse], entry, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update_overload_1(self, client: Cloudflare) -> None:
         response = client.zero_trust.dlp.entries.with_raw_response.update(
@@ -135,7 +132,6 @@ class TestEntries:
         entry = response.parse()
         assert_matches_type(Optional[EntryUpdateResponse], entry, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_update_overload_1(self, client: Cloudflare) -> None:
         with client.zero_trust.dlp.entries.with_streaming_response.update(
@@ -153,7 +149,6 @@ class TestEntries:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_1(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -174,7 +169,6 @@ class TestEntries:
                 type="custom",
             )
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_update_overload_2(self, client: Cloudflare) -> None:
         entry = client.zero_trust.dlp.entries.update(
@@ -184,7 +178,6 @@ class TestEntries:
         )
         assert_matches_type(Optional[EntryUpdateResponse], entry, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_update_with_all_params_overload_2(self, client: Cloudflare) -> None:
         entry = client.zero_trust.dlp.entries.update(
@@ -195,7 +188,6 @@ class TestEntries:
         )
         assert_matches_type(Optional[EntryUpdateResponse], entry, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update_overload_2(self, client: Cloudflare) -> None:
         response = client.zero_trust.dlp.entries.with_raw_response.update(
@@ -209,7 +201,6 @@ class TestEntries:
         entry = response.parse()
         assert_matches_type(Optional[EntryUpdateResponse], entry, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_update_overload_2(self, client: Cloudflare) -> None:
         with client.zero_trust.dlp.entries.with_streaming_response.update(
@@ -225,7 +216,6 @@ class TestEntries:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_2(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -242,7 +232,6 @@ class TestEntries:
                 type="predefined",
             )
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_update_overload_3(self, client: Cloudflare) -> None:
         entry = client.zero_trust.dlp.entries.update(
@@ -252,7 +241,6 @@ class TestEntries:
         )
         assert_matches_type(Optional[EntryUpdateResponse], entry, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_update_with_all_params_overload_3(self, client: Cloudflare) -> None:
         entry = client.zero_trust.dlp.entries.update(
@@ -263,7 +251,6 @@ class TestEntries:
         )
         assert_matches_type(Optional[EntryUpdateResponse], entry, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update_overload_3(self, client: Cloudflare) -> None:
         response = client.zero_trust.dlp.entries.with_raw_response.update(
@@ -277,7 +264,6 @@ class TestEntries:
         entry = response.parse()
         assert_matches_type(Optional[EntryUpdateResponse], entry, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_update_overload_3(self, client: Cloudflare) -> None:
         with client.zero_trust.dlp.entries.with_streaming_response.update(
@@ -293,7 +279,6 @@ class TestEntries:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_3(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -516,7 +501,6 @@ class TestAsyncEntries:
                 profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             )
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_update_overload_1(self, async_client: AsyncCloudflare) -> None:
         entry = await async_client.zero_trust.dlp.entries.update(
@@ -528,7 +512,6 @@ class TestAsyncEntries:
         )
         assert_matches_type(Optional[EntryUpdateResponse], entry, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_update_with_all_params_overload_1(self, async_client: AsyncCloudflare) -> None:
         entry = await async_client.zero_trust.dlp.entries.update(
@@ -544,7 +527,6 @@ class TestAsyncEntries:
         )
         assert_matches_type(Optional[EntryUpdateResponse], entry, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update_overload_1(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.dlp.entries.with_raw_response.update(
@@ -560,7 +542,6 @@ class TestAsyncEntries:
         entry = await response.parse()
         assert_matches_type(Optional[EntryUpdateResponse], entry, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_update_overload_1(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.dlp.entries.with_streaming_response.update(
@@ -578,7 +559,6 @@ class TestAsyncEntries:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_1(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -599,7 +579,6 @@ class TestAsyncEntries:
                 type="custom",
             )
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_update_overload_2(self, async_client: AsyncCloudflare) -> None:
         entry = await async_client.zero_trust.dlp.entries.update(
@@ -609,7 +588,6 @@ class TestAsyncEntries:
         )
         assert_matches_type(Optional[EntryUpdateResponse], entry, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_update_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
         entry = await async_client.zero_trust.dlp.entries.update(
@@ -620,7 +598,6 @@ class TestAsyncEntries:
         )
         assert_matches_type(Optional[EntryUpdateResponse], entry, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update_overload_2(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.dlp.entries.with_raw_response.update(
@@ -634,7 +611,6 @@ class TestAsyncEntries:
         entry = await response.parse()
         assert_matches_type(Optional[EntryUpdateResponse], entry, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_update_overload_2(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.dlp.entries.with_streaming_response.update(
@@ -650,7 +626,6 @@ class TestAsyncEntries:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_2(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -667,7 +642,6 @@ class TestAsyncEntries:
                 type="predefined",
             )
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_update_overload_3(self, async_client: AsyncCloudflare) -> None:
         entry = await async_client.zero_trust.dlp.entries.update(
@@ -677,7 +651,6 @@ class TestAsyncEntries:
         )
         assert_matches_type(Optional[EntryUpdateResponse], entry, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_update_with_all_params_overload_3(self, async_client: AsyncCloudflare) -> None:
         entry = await async_client.zero_trust.dlp.entries.update(
@@ -688,7 +661,6 @@ class TestAsyncEntries:
         )
         assert_matches_type(Optional[EntryUpdateResponse], entry, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update_overload_3(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.dlp.entries.with_raw_response.update(
@@ -702,7 +674,6 @@ class TestAsyncEntries:
         entry = await response.parse()
         assert_matches_type(Optional[EntryUpdateResponse], entry, path=["response"])
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_update_overload_3(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.dlp.entries.with_streaming_response.update(
@@ -718,7 +689,6 @@ class TestAsyncEntries:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_3(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

@@ -58,7 +58,7 @@ class ServicesResource(SyncAPIResource):
         the Cloudflare network, and their service IDs.
 
         Args:
-          account_id: Identifier of a Cloudflare account.
+          account_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -118,7 +118,7 @@ class AsyncServicesResource(AsyncAPIResource):
         the Cloudflare network, and their service IDs.
 
         Args:
-          account_id: Identifier of a Cloudflare account.
+          account_id: Identifier
 
           extra_headers: Send extra headers
 

@@ -51,14 +51,6 @@ from .logs.logs import (
     AsyncLogsResourceWithStreamingResponse,
 )
 from ...._compat import cached_property
-from .gateway_ca import (
-    GatewayCAResource,
-    AsyncGatewayCAResource,
-    GatewayCAResourceWithRawResponse,
-    AsyncGatewayCAResourceWithRawResponse,
-    GatewayCAResourceWithStreamingResponse,
-    AsyncGatewayCAResourceWithStreamingResponse,
-)
 from .users.users import (
     UsersResource,
     AsyncUsersResource,
@@ -113,10 +105,6 @@ __all__ = ["AccessResource", "AsyncAccessResource"]
 
 
 class AccessResource(SyncAPIResource):
-    @cached_property
-    def gateway_ca(self) -> GatewayCAResource:
-        return GatewayCAResource(self._client)
-
     @cached_property
     def infrastructure(self) -> InfrastructureResource:
         return InfrastructureResource(self._client)
@@ -186,10 +174,6 @@ class AccessResource(SyncAPIResource):
 
 
 class AsyncAccessResource(AsyncAPIResource):
-    @cached_property
-    def gateway_ca(self) -> AsyncGatewayCAResource:
-        return AsyncGatewayCAResource(self._client)
-
     @cached_property
     def infrastructure(self) -> AsyncInfrastructureResource:
         return AsyncInfrastructureResource(self._client)
@@ -263,10 +247,6 @@ class AccessResourceWithRawResponse:
         self._access = access
 
     @cached_property
-    def gateway_ca(self) -> GatewayCAResourceWithRawResponse:
-        return GatewayCAResourceWithRawResponse(self._access.gateway_ca)
-
-    @cached_property
     def infrastructure(self) -> InfrastructureResourceWithRawResponse:
         return InfrastructureResourceWithRawResponse(self._access.infrastructure)
 
@@ -318,10 +298,6 @@ class AccessResourceWithRawResponse:
 class AsyncAccessResourceWithRawResponse:
     def __init__(self, access: AsyncAccessResource) -> None:
         self._access = access
-
-    @cached_property
-    def gateway_ca(self) -> AsyncGatewayCAResourceWithRawResponse:
-        return AsyncGatewayCAResourceWithRawResponse(self._access.gateway_ca)
 
     @cached_property
     def infrastructure(self) -> AsyncInfrastructureResourceWithRawResponse:
@@ -377,10 +353,6 @@ class AccessResourceWithStreamingResponse:
         self._access = access
 
     @cached_property
-    def gateway_ca(self) -> GatewayCAResourceWithStreamingResponse:
-        return GatewayCAResourceWithStreamingResponse(self._access.gateway_ca)
-
-    @cached_property
     def infrastructure(self) -> InfrastructureResourceWithStreamingResponse:
         return InfrastructureResourceWithStreamingResponse(self._access.infrastructure)
 
@@ -432,10 +404,6 @@ class AccessResourceWithStreamingResponse:
 class AsyncAccessResourceWithStreamingResponse:
     def __init__(self, access: AsyncAccessResource) -> None:
         self._access = access
-
-    @cached_property
-    def gateway_ca(self) -> AsyncGatewayCAResourceWithStreamingResponse:
-        return AsyncGatewayCAResourceWithStreamingResponse(self._access.gateway_ca)
 
     @cached_property
     def infrastructure(self) -> AsyncInfrastructureResourceWithStreamingResponse:

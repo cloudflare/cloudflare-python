@@ -20,14 +20,6 @@ class DOHUpdateResponse(BaseModel):
 
     created_at: Optional[datetime] = None
 
-    doh_jwt_duration: Optional[str] = None
-    """The duration the DoH JWT is valid for.
-
-    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h. Note that the maximum duration for this setting is the same as the
-    key rotation period on the account. Default expiration is 24h
-    """
-
     duration: Optional[str] = None
     """The duration for how long the service token will be valid.
 
@@ -36,6 +28,14 @@ class DOHUpdateResponse(BaseModel):
     """
 
     expires_at: Optional[datetime] = None
+
+    jwt_duration: Optional[str] = None
+    """The duration the DoH JWT is valid for.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
+    ms, s, m, h. Note that the maximum duration for this setting is the same as the
+    key rotation period on the account. Default expiration is 24h
+    """
 
     name: Optional[str] = None
     """The name of the service token."""

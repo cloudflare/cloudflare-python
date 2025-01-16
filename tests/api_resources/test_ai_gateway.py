@@ -211,6 +211,8 @@ class TestAIGateway:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         ai_gateway = client.ai_gateway.list(
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
+            order_by="order_by",
+            order_by_direction="asc",
             page=1,
             per_page=1,
             search="search",
@@ -535,6 +537,8 @@ class TestAsyncAIGateway:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         ai_gateway = await async_client.ai_gateway.list(
             account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
+            order_by="order_by",
+            order_by_direction="asc",
             page=1,
             per_page=1,
             search="search",

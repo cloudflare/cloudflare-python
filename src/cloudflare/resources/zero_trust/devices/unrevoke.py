@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Optional, cast
+from typing import Any, List, cast
 
 import httpx
 
@@ -57,7 +57,7 @@ class UnrevokeResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[UnrevokeCreateResponse]:
+    ) -> UnrevokeCreateResponse:
         """
         Unrevokes a list of devices.
 
@@ -75,7 +75,7 @@ class UnrevokeResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            Optional[UnrevokeCreateResponse],
+            UnrevokeCreateResponse,
             self._post(
                 f"/accounts/{account_id}/devices/unrevoke",
                 body=maybe_transform(body, List[str]),
@@ -84,7 +84,7 @@ class UnrevokeResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[UnrevokeCreateResponse]]._unwrapper,
+                    post_parser=ResultWrapper[UnrevokeCreateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[UnrevokeCreateResponse]
@@ -124,7 +124,7 @@ class AsyncUnrevokeResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[UnrevokeCreateResponse]:
+    ) -> UnrevokeCreateResponse:
         """
         Unrevokes a list of devices.
 
@@ -142,7 +142,7 @@ class AsyncUnrevokeResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
-            Optional[UnrevokeCreateResponse],
+            UnrevokeCreateResponse,
             await self._post(
                 f"/accounts/{account_id}/devices/unrevoke",
                 body=await async_maybe_transform(body, List[str]),
@@ -151,7 +151,7 @@ class AsyncUnrevokeResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[UnrevokeCreateResponse]]._unwrapper,
+                    post_parser=ResultWrapper[UnrevokeCreateResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[UnrevokeCreateResponse]

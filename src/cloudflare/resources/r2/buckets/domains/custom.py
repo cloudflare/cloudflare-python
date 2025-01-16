@@ -63,7 +63,7 @@ class CustomResource(SyncAPIResource):
         enabled: bool,
         zone_id: str,
         min_tls: Literal["1.0", "1.1", "1.2", "1.3"] | NotGiven = NOT_GIVEN,
-        jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
+        cf_r2_jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -89,7 +89,7 @@ class CustomResource(SyncAPIResource):
           min_tls: Minimum TLS Version the custom domain will accept for incoming connections. If
               not set, defaults to 1.0.
 
-          jurisdiction: The bucket jurisdiction
+          cf_r2_jurisdiction: The bucket jurisdiction
 
           extra_headers: Send extra headers
 
@@ -104,7 +104,9 @@ class CustomResource(SyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else NOT_GIVEN}),
+            **strip_not_given(
+                {"cf-r2-jurisdiction": str(cf_r2_jurisdiction) if is_given(cf_r2_jurisdiction) else NOT_GIVEN}
+            ),
             **(extra_headers or {}),
         }
         return self._post(
@@ -136,7 +138,7 @@ class CustomResource(SyncAPIResource):
         bucket_name: str,
         enabled: bool | NotGiven = NOT_GIVEN,
         min_tls: Literal["1.0", "1.1", "1.2", "1.3"] | NotGiven = NOT_GIVEN,
-        jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
+        cf_r2_jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -159,7 +161,7 @@ class CustomResource(SyncAPIResource):
           min_tls: Minimum TLS Version the custom domain will accept for incoming connections. If
               not set, defaults to previous value.
 
-          jurisdiction: The bucket jurisdiction
+          cf_r2_jurisdiction: The bucket jurisdiction
 
           extra_headers: Send extra headers
 
@@ -176,7 +178,9 @@ class CustomResource(SyncAPIResource):
         if not domain_name:
             raise ValueError(f"Expected a non-empty value for `domain_name` but received {domain_name!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else NOT_GIVEN}),
+            **strip_not_given(
+                {"cf-r2-jurisdiction": str(cf_r2_jurisdiction) if is_given(cf_r2_jurisdiction) else NOT_GIVEN}
+            ),
             **(extra_headers or {}),
         }
         return self._put(
@@ -203,7 +207,7 @@ class CustomResource(SyncAPIResource):
         bucket_name: str,
         *,
         account_id: str,
-        jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
+        cf_r2_jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -219,7 +223,7 @@ class CustomResource(SyncAPIResource):
 
           bucket_name: Name of the bucket
 
-          jurisdiction: The bucket jurisdiction
+          cf_r2_jurisdiction: The bucket jurisdiction
 
           extra_headers: Send extra headers
 
@@ -234,7 +238,9 @@ class CustomResource(SyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else NOT_GIVEN}),
+            **strip_not_given(
+                {"cf-r2-jurisdiction": str(cf_r2_jurisdiction) if is_given(cf_r2_jurisdiction) else NOT_GIVEN}
+            ),
             **(extra_headers or {}),
         }
         return self._get(
@@ -255,7 +261,7 @@ class CustomResource(SyncAPIResource):
         *,
         account_id: str,
         bucket_name: str,
-        jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
+        cf_r2_jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -273,7 +279,7 @@ class CustomResource(SyncAPIResource):
 
           domain_name: Name of the custom domain
 
-          jurisdiction: The bucket jurisdiction
+          cf_r2_jurisdiction: The bucket jurisdiction
 
           extra_headers: Send extra headers
 
@@ -290,7 +296,9 @@ class CustomResource(SyncAPIResource):
         if not domain_name:
             raise ValueError(f"Expected a non-empty value for `domain_name` but received {domain_name!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else NOT_GIVEN}),
+            **strip_not_given(
+                {"cf-r2-jurisdiction": str(cf_r2_jurisdiction) if is_given(cf_r2_jurisdiction) else NOT_GIVEN}
+            ),
             **(extra_headers or {}),
         }
         return self._delete(
@@ -311,7 +319,7 @@ class CustomResource(SyncAPIResource):
         *,
         account_id: str,
         bucket_name: str,
-        jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
+        cf_r2_jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -329,7 +337,7 @@ class CustomResource(SyncAPIResource):
 
           domain_name: Name of the custom domain
 
-          jurisdiction: The bucket jurisdiction
+          cf_r2_jurisdiction: The bucket jurisdiction
 
           extra_headers: Send extra headers
 
@@ -346,7 +354,9 @@ class CustomResource(SyncAPIResource):
         if not domain_name:
             raise ValueError(f"Expected a non-empty value for `domain_name` but received {domain_name!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else NOT_GIVEN}),
+            **strip_not_given(
+                {"cf-r2-jurisdiction": str(cf_r2_jurisdiction) if is_given(cf_r2_jurisdiction) else NOT_GIVEN}
+            ),
             **(extra_headers or {}),
         }
         return self._get(
@@ -391,7 +401,7 @@ class AsyncCustomResource(AsyncAPIResource):
         enabled: bool,
         zone_id: str,
         min_tls: Literal["1.0", "1.1", "1.2", "1.3"] | NotGiven = NOT_GIVEN,
-        jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
+        cf_r2_jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -417,7 +427,7 @@ class AsyncCustomResource(AsyncAPIResource):
           min_tls: Minimum TLS Version the custom domain will accept for incoming connections. If
               not set, defaults to 1.0.
 
-          jurisdiction: The bucket jurisdiction
+          cf_r2_jurisdiction: The bucket jurisdiction
 
           extra_headers: Send extra headers
 
@@ -432,7 +442,9 @@ class AsyncCustomResource(AsyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else NOT_GIVEN}),
+            **strip_not_given(
+                {"cf-r2-jurisdiction": str(cf_r2_jurisdiction) if is_given(cf_r2_jurisdiction) else NOT_GIVEN}
+            ),
             **(extra_headers or {}),
         }
         return await self._post(
@@ -464,7 +476,7 @@ class AsyncCustomResource(AsyncAPIResource):
         bucket_name: str,
         enabled: bool | NotGiven = NOT_GIVEN,
         min_tls: Literal["1.0", "1.1", "1.2", "1.3"] | NotGiven = NOT_GIVEN,
-        jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
+        cf_r2_jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -487,7 +499,7 @@ class AsyncCustomResource(AsyncAPIResource):
           min_tls: Minimum TLS Version the custom domain will accept for incoming connections. If
               not set, defaults to previous value.
 
-          jurisdiction: The bucket jurisdiction
+          cf_r2_jurisdiction: The bucket jurisdiction
 
           extra_headers: Send extra headers
 
@@ -504,7 +516,9 @@ class AsyncCustomResource(AsyncAPIResource):
         if not domain_name:
             raise ValueError(f"Expected a non-empty value for `domain_name` but received {domain_name!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else NOT_GIVEN}),
+            **strip_not_given(
+                {"cf-r2-jurisdiction": str(cf_r2_jurisdiction) if is_given(cf_r2_jurisdiction) else NOT_GIVEN}
+            ),
             **(extra_headers or {}),
         }
         return await self._put(
@@ -531,7 +545,7 @@ class AsyncCustomResource(AsyncAPIResource):
         bucket_name: str,
         *,
         account_id: str,
-        jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
+        cf_r2_jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -547,7 +561,7 @@ class AsyncCustomResource(AsyncAPIResource):
 
           bucket_name: Name of the bucket
 
-          jurisdiction: The bucket jurisdiction
+          cf_r2_jurisdiction: The bucket jurisdiction
 
           extra_headers: Send extra headers
 
@@ -562,7 +576,9 @@ class AsyncCustomResource(AsyncAPIResource):
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else NOT_GIVEN}),
+            **strip_not_given(
+                {"cf-r2-jurisdiction": str(cf_r2_jurisdiction) if is_given(cf_r2_jurisdiction) else NOT_GIVEN}
+            ),
             **(extra_headers or {}),
         }
         return await self._get(
@@ -583,7 +599,7 @@ class AsyncCustomResource(AsyncAPIResource):
         *,
         account_id: str,
         bucket_name: str,
-        jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
+        cf_r2_jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -601,7 +617,7 @@ class AsyncCustomResource(AsyncAPIResource):
 
           domain_name: Name of the custom domain
 
-          jurisdiction: The bucket jurisdiction
+          cf_r2_jurisdiction: The bucket jurisdiction
 
           extra_headers: Send extra headers
 
@@ -618,7 +634,9 @@ class AsyncCustomResource(AsyncAPIResource):
         if not domain_name:
             raise ValueError(f"Expected a non-empty value for `domain_name` but received {domain_name!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else NOT_GIVEN}),
+            **strip_not_given(
+                {"cf-r2-jurisdiction": str(cf_r2_jurisdiction) if is_given(cf_r2_jurisdiction) else NOT_GIVEN}
+            ),
             **(extra_headers or {}),
         }
         return await self._delete(
@@ -639,7 +657,7 @@ class AsyncCustomResource(AsyncAPIResource):
         *,
         account_id: str,
         bucket_name: str,
-        jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
+        cf_r2_jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -657,7 +675,7 @@ class AsyncCustomResource(AsyncAPIResource):
 
           domain_name: Name of the custom domain
 
-          jurisdiction: The bucket jurisdiction
+          cf_r2_jurisdiction: The bucket jurisdiction
 
           extra_headers: Send extra headers
 
@@ -674,7 +692,9 @@ class AsyncCustomResource(AsyncAPIResource):
         if not domain_name:
             raise ValueError(f"Expected a non-empty value for `domain_name` but received {domain_name!r}")
         extra_headers = {
-            **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else NOT_GIVEN}),
+            **strip_not_given(
+                {"cf-r2-jurisdiction": str(cf_r2_jurisdiction) if is_given(cf_r2_jurisdiction) else NOT_GIVEN}
+            ),
             **(extra_headers or {}),
         }
         return await self._get(

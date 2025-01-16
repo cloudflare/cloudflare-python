@@ -52,7 +52,6 @@ class TestACLs:
             description="Allows local traffic between PIN pads and cash register.",
             forward_locally=True,
             protocols=["tcp"],
-            unidirectional=True,
         )
         assert_matches_type(ACL, acl, path=["response"])
 
@@ -139,7 +138,6 @@ class TestACLs:
             },
             name="PIN Pad - Cash Register",
             protocols=["tcp"],
-            unidirectional=True,
         )
         assert_matches_type(ACL, acl, path=["response"])
 
@@ -333,7 +331,6 @@ class TestACLs:
             },
             name="PIN Pad - Cash Register",
             protocols=["tcp"],
-            unidirectional=True,
         )
         assert_matches_type(ACL, acl, path=["response"])
 
@@ -484,7 +481,6 @@ class TestAsyncACLs:
             description="Allows local traffic between PIN pads and cash register.",
             forward_locally=True,
             protocols=["tcp"],
-            unidirectional=True,
         )
         assert_matches_type(ACL, acl, path=["response"])
 
@@ -571,7 +567,6 @@ class TestAsyncACLs:
             },
             name="PIN Pad - Cash Register",
             protocols=["tcp"],
-            unidirectional=True,
         )
         assert_matches_type(ACL, acl, path=["response"])
 
@@ -765,7 +760,6 @@ class TestAsyncACLs:
             },
             name="PIN Pad - Cash Register",
             protocols=["tcp"],
-            unidirectional=True,
         )
         assert_matches_type(ACL, acl, path=["response"])
 

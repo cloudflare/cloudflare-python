@@ -48,22 +48,8 @@ from .settings import (
     SettingsResourceWithStreamingResponse,
     AsyncSettingsResourceWithStreamingResponse,
 )
-from .asset_upload import (
-    AssetUploadResource,
-    AsyncAssetUploadResource,
-    AssetUploadResourceWithRawResponse,
-    AsyncAssetUploadResourceWithRawResponse,
-    AssetUploadResourceWithStreamingResponse,
-    AsyncAssetUploadResourceWithStreamingResponse,
-)
 
 __all__ = [
-    "AssetUploadResource",
-    "AsyncAssetUploadResource",
-    "AssetUploadResourceWithRawResponse",
-    "AsyncAssetUploadResourceWithRawResponse",
-    "AssetUploadResourceWithStreamingResponse",
-    "AsyncAssetUploadResourceWithStreamingResponse",
     "ContentResource",
     "AsyncContentResource",
     "ContentResourceWithRawResponse",

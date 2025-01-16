@@ -5,23 +5,23 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["RuleUpdateParams", "Rule", "RuleParameters"]
+__all__ = ["RuleUpdateParams", "Body", "BodyParameters"]
 
 
 class RuleUpdateParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    rules: Required[Iterable[Rule]]
+    body: Required[Iterable[Body]]
     """List of Cloud Connector rules"""
 
 
-class RuleParameters(TypedDict, total=False):
+class BodyParameters(TypedDict, total=False):
     host: str
     """Host to perform Cloud Connection to"""
 
 
-class Rule(TypedDict, total=False):
+class Body(TypedDict, total=False):
     id: str
 
     description: str
@@ -30,7 +30,7 @@ class Rule(TypedDict, total=False):
 
     expression: str
 
-    parameters: RuleParameters
+    parameters: BodyParameters
     """Parameters of Cloud Connector Rule"""
 
     provider: Literal["aws_s3", "r2", "gcp_storage", "azure_storage"]

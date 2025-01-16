@@ -12,7 +12,7 @@ __all__ = ["AddressMapCreateParams", "Membership"]
 
 class AddressMapCreateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier of a Cloudflare account."""
+    """Identifier"""
 
     description: Optional[str]
     """

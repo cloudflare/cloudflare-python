@@ -1,8 +1,8 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Union, Optional
+from typing import Dict, List, Optional
 from datetime import datetime
-from typing_extensions import Literal, TypeAlias
+from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
@@ -19,14 +19,8 @@ __all__ = [
     "ActionParametersCacheKeyCustomKeyHeader",
     "ActionParametersCacheKeyCustomKeyHost",
     "ActionParametersCacheKeyCustomKeyQueryString",
-    "ActionParametersCacheKeyCustomKeyQueryStringIncludedQueryStringParameters",
-    "ActionParametersCacheKeyCustomKeyQueryStringIncludedQueryStringParametersInclude",
-    "ActionParametersCacheKeyCustomKeyQueryStringIncludedQueryStringParametersIncludeSomeQueryStringParameters",
-    "ActionParametersCacheKeyCustomKeyQueryStringIncludedQueryStringParametersIncludeAllQueryStringParameters",
-    "ActionParametersCacheKeyCustomKeyQueryStringExcludedQueryStringParameters",
-    "ActionParametersCacheKeyCustomKeyQueryStringExcludedQueryStringParametersExclude",
-    "ActionParametersCacheKeyCustomKeyQueryStringExcludedQueryStringParametersExcludeSomeQueryStringParameters",
-    "ActionParametersCacheKeyCustomKeyQueryStringExcludedQueryStringParametersExcludeAllQueryStringParameters",
+    "ActionParametersCacheKeyCustomKeyQueryStringExclude",
+    "ActionParametersCacheKeyCustomKeyQueryStringInclude",
     "ActionParametersCacheKeyCustomKeyUser",
     "ActionParametersCacheReserve",
     "ActionParametersEdgeTTL",
@@ -91,51 +85,11 @@ class ActionParametersCacheKeyCustomKeyHost(BaseModel):
     """
 
 
-class ActionParametersCacheKeyCustomKeyQueryStringIncludedQueryStringParametersIncludeSomeQueryStringParameters(
-    BaseModel
-):
-    rule_list: Optional[List[str]] = FieldInfo(alias="list", default=None)
-
-
-class ActionParametersCacheKeyCustomKeyQueryStringIncludedQueryStringParametersIncludeAllQueryStringParameters(
-    BaseModel
-):
+class ActionParametersCacheKeyCustomKeyQueryStringExclude(BaseModel):
     all: Optional[bool] = None
-    """Determines whether to include all query string parameters in the cache key."""
+    """Exclude all query string parameters from use in building the cache key."""
 
-
-ActionParametersCacheKeyCustomKeyQueryStringIncludedQueryStringParametersInclude: TypeAlias = Union[
-    ActionParametersCacheKeyCustomKeyQueryStringIncludedQueryStringParametersIncludeSomeQueryStringParameters,
-    ActionParametersCacheKeyCustomKeyQueryStringIncludedQueryStringParametersIncludeAllQueryStringParameters,
-]
-
-
-class ActionParametersCacheKeyCustomKeyQueryStringIncludedQueryStringParameters(BaseModel):
-    include: Optional[ActionParametersCacheKeyCustomKeyQueryStringIncludedQueryStringParametersInclude] = None
-    """A list of query string parameters used to build the cache key."""
-
-
-class ActionParametersCacheKeyCustomKeyQueryStringExcludedQueryStringParametersExcludeSomeQueryStringParameters(
-    BaseModel
-):
     rule_list: Optional[List[str]] = FieldInfo(alias="list", default=None)
-
-
-class ActionParametersCacheKeyCustomKeyQueryStringExcludedQueryStringParametersExcludeAllQueryStringParameters(
-    BaseModel
-):
-    all: Optional[bool] = None
-    """Determines whether to exclude all query string parameters from the cache key."""
-
-
-ActionParametersCacheKeyCustomKeyQueryStringExcludedQueryStringParametersExclude: TypeAlias = Union[
-    ActionParametersCacheKeyCustomKeyQueryStringExcludedQueryStringParametersExcludeSomeQueryStringParameters,
-    ActionParametersCacheKeyCustomKeyQueryStringExcludedQueryStringParametersExcludeAllQueryStringParameters,
-]
-
-
-class ActionParametersCacheKeyCustomKeyQueryStringExcludedQueryStringParameters(BaseModel):
-    exclude: Optional[ActionParametersCacheKeyCustomKeyQueryStringExcludedQueryStringParametersExclude] = None
     """A list of query string parameters NOT used to build the cache key.
 
     All parameters present in the request but missing in this list will be used to
@@ -143,10 +97,26 @@ class ActionParametersCacheKeyCustomKeyQueryStringExcludedQueryStringParameters(
     """
 
 
-ActionParametersCacheKeyCustomKeyQueryString: TypeAlias = Union[
-    ActionParametersCacheKeyCustomKeyQueryStringIncludedQueryStringParameters,
-    ActionParametersCacheKeyCustomKeyQueryStringExcludedQueryStringParameters,
-]
+class ActionParametersCacheKeyCustomKeyQueryStringInclude(BaseModel):
+    all: Optional[bool] = None
+    """Use all query string parameters in the cache key."""
+
+    rule_list: Optional[List[str]] = FieldInfo(alias="list", default=None)
+    """A list of query string parameters used to build the cache key."""
+
+
+class ActionParametersCacheKeyCustomKeyQueryString(BaseModel):
+    exclude: Optional[ActionParametersCacheKeyCustomKeyQueryStringExclude] = None
+    """
+    build the cache key using all query string parameters EXCECPT these excluded
+    parameters
+    """
+
+    include: Optional[ActionParametersCacheKeyCustomKeyQueryStringInclude] = None
+    """
+    build the cache key using a list of query string parameters that ARE in the
+    request.
+    """
 
 
 class ActionParametersCacheKeyCustomKeyUser(BaseModel):
@@ -171,7 +141,10 @@ class ActionParametersCacheKeyCustomKey(BaseModel):
     """Whether to use the original host or the resolved host in the cache key."""
 
     query_string: Optional[ActionParametersCacheKeyCustomKeyQueryString] = None
-    """Use the presence of parameters in the query string to build the cache key."""
+    """
+    Use the presence or absence of parameters in the query string to build the cache
+    key.
+    """
 
     user: Optional[ActionParametersCacheKeyCustomKeyUser] = None
     """Characteristics of the request user agent used in building the cache key."""

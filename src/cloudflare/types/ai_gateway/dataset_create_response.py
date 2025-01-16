@@ -34,10 +34,6 @@ class Filter(BaseModel):
 class DatasetCreateResponse(BaseModel):
     id: str
 
-    account_id: str
-
-    account_tag: str
-
     created_at: datetime
 
     enable: bool

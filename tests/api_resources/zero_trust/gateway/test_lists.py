@@ -99,12 +99,6 @@ class TestLists:
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
             description="The serial numbers for administrators",
-            items=[
-                {
-                    "description": "Austin office IP",
-                    "value": "8GE8721REF",
-                }
-            ],
         )
         assert_matches_type(Optional[GatewayList], list_, path=["response"])
 
@@ -439,12 +433,6 @@ class TestAsyncLists:
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
             description="The serial numbers for administrators",
-            items=[
-                {
-                    "description": "Austin office IP",
-                    "value": "8GE8721REF",
-                }
-            ],
         )
         assert_matches_type(Optional[GatewayList], list_, path=["response"])
 

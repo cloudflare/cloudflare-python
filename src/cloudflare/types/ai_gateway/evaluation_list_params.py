@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["EvaluationListParams"]
 
@@ -11,6 +11,12 @@ class EvaluationListParams(TypedDict, total=False):
     account_id: Required[str]
 
     name: str
+
+    order_by: str
+    """Order By Column Name"""
+
+    order_by_direction: Literal["asc", "desc"]
+    """Order By Direction"""
 
     page: int
 

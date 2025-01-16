@@ -11,9 +11,6 @@ __all__ = ["ScanBulkCreateParams", "Body"]
 
 
 class ScanBulkCreateParams(TypedDict, total=False):
-    account_id: Required[str]
-    """Account ID."""
-
     body: Required[Iterable[Body]]
     """List of urls to scan (up to a 100)."""
 

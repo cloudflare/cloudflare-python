@@ -42,7 +42,7 @@ class TestLogs:
             feedback=0,
             filters=[
                 {
-                    "key": "id",
+                    "key": "created_at",
                     "operator": "eq",
                     "value": ["string"],
                 }
@@ -128,7 +128,7 @@ class TestLogs:
             account_id="0d37909e38d3e99c29fa2cd343ac421a",
             filters=[
                 {
-                    "key": "id",
+                    "key": "created_at",
                     "operator": "eq",
                     "value": ["string"],
                 }
@@ -454,7 +454,7 @@ class TestAsyncLogs:
             feedback=0,
             filters=[
                 {
-                    "key": "id",
+                    "key": "created_at",
                     "operator": "eq",
                     "value": ["string"],
                 }
@@ -540,7 +540,7 @@ class TestAsyncLogs:
             account_id="0d37909e38d3e99c29fa2cd343ac421a",
             filters=[
                 {
-                    "key": "id",
+                    "key": "created_at",
                     "operator": "eq",
                     "value": ["string"],
                 }

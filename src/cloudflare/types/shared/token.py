@@ -22,7 +22,7 @@ class ConditionRequestIP(BaseModel):
 
 
 class Condition(BaseModel):
-    request_ip: Optional[ConditionRequestIP] = None
+    request_ip: Optional[ConditionRequestIP] = FieldInfo(alias="request.ip", default=None)
     """Client IP restrictions."""
 
 

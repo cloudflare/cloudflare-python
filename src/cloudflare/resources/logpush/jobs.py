@@ -196,7 +196,6 @@ class JobsResource(SyncAPIResource):
         max_upload_bytes: Optional[int] | NotGiven = NOT_GIVEN,
         max_upload_interval_seconds: Optional[int] | NotGiven = NOT_GIVEN,
         max_upload_records: Optional[int] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
         output_options: Optional[OutputOptionsParam] | NotGiven = NOT_GIVEN,
         ownership_challenge: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -254,10 +253,6 @@ class JobsResource(SyncAPIResource):
               lines than this. This parameter is not available for jobs with `edge` as its
               kind.
 
-          name: Optional human readable job name. Not unique. Cloudflare suggests that you set
-              this to a meaningful string, like the domain name, to make it easier to identify
-              your job.
-
           output_options: The structured replacement for `logpull_options`. When including this field, the
               `logpull_option` field will be ignored.
 
@@ -295,7 +290,6 @@ class JobsResource(SyncAPIResource):
                     "max_upload_bytes": max_upload_bytes,
                     "max_upload_interval_seconds": max_upload_interval_seconds,
                     "max_upload_records": max_upload_records,
-                    "name": name,
                     "output_options": output_options,
                     "ownership_challenge": ownership_challenge,
                 },
@@ -636,7 +630,6 @@ class AsyncJobsResource(AsyncAPIResource):
         max_upload_bytes: Optional[int] | NotGiven = NOT_GIVEN,
         max_upload_interval_seconds: Optional[int] | NotGiven = NOT_GIVEN,
         max_upload_records: Optional[int] | NotGiven = NOT_GIVEN,
-        name: Optional[str] | NotGiven = NOT_GIVEN,
         output_options: Optional[OutputOptionsParam] | NotGiven = NOT_GIVEN,
         ownership_challenge: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -694,10 +687,6 @@ class AsyncJobsResource(AsyncAPIResource):
               lines than this. This parameter is not available for jobs with `edge` as its
               kind.
 
-          name: Optional human readable job name. Not unique. Cloudflare suggests that you set
-              this to a meaningful string, like the domain name, to make it easier to identify
-              your job.
-
           output_options: The structured replacement for `logpull_options`. When including this field, the
               `logpull_option` field will be ignored.
 
@@ -735,7 +724,6 @@ class AsyncJobsResource(AsyncAPIResource):
                     "max_upload_bytes": max_upload_bytes,
                     "max_upload_interval_seconds": max_upload_interval_seconds,
                     "max_upload_records": max_upload_records,
-                    "name": name,
                     "output_options": output_options,
                     "ownership_challenge": ownership_challenge,
                 },

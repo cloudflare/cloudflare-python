@@ -78,7 +78,7 @@ class DownloadsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `filename` but received {filename!r}")
         extra_headers = {"Accept": "application/zip", **(extra_headers or {})}
         return self._get(
-            f"/accounts/{account_id}/dex/commands/{command_id}/downloads/{filename}",
+            f"/accounts/{account_id}/commands/{command_id}/downloads/{filename}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -142,7 +142,7 @@ class AsyncDownloadsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `filename` but received {filename!r}")
         extra_headers = {"Accept": "application/zip", **(extra_headers or {})}
         return await self._get(
-            f"/accounts/{account_id}/dex/commands/{command_id}/downloads/{filename}",
+            f"/accounts/{account_id}/commands/{command_id}/downloads/{filename}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

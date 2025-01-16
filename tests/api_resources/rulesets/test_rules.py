@@ -1411,7 +1411,16 @@ class TestRules:
                             "include": ["string"],
                         },
                         "host": {"resolved": True},
-                        "query_string": {"include": {"list": ["foo", "bar"]}},
+                        "query_string": {
+                            "exclude": {
+                                "all": True,
+                                "list": ["string"],
+                            },
+                            "include": {
+                                "all": True,
+                                "list": ["string"],
+                            },
+                        },
                         "user": {
                             "device_type": True,
                             "geo": True,
@@ -3459,7 +3468,16 @@ class TestRules:
                             "include": ["string"],
                         },
                         "host": {"resolved": True},
-                        "query_string": {"include": {"list": ["foo", "bar"]}},
+                        "query_string": {
+                            "exclude": {
+                                "all": True,
+                                "list": ["string"],
+                            },
+                            "include": {
+                                "all": True,
+                                "list": ["string"],
+                            },
+                        },
                         "user": {
                             "device_type": True,
                             "geo": True,
@@ -5286,7 +5304,16 @@ class TestAsyncRules:
                             "include": ["string"],
                         },
                         "host": {"resolved": True},
-                        "query_string": {"include": {"list": ["foo", "bar"]}},
+                        "query_string": {
+                            "exclude": {
+                                "all": True,
+                                "list": ["string"],
+                            },
+                            "include": {
+                                "all": True,
+                                "list": ["string"],
+                            },
+                        },
                         "user": {
                             "device_type": True,
                             "geo": True,
@@ -7334,7 +7361,16 @@ class TestAsyncRules:
                             "include": ["string"],
                         },
                         "host": {"resolved": True},
-                        "query_string": {"include": {"list": ["foo", "bar"]}},
+                        "query_string": {
+                            "exclude": {
+                                "all": True,
+                                "list": ["string"],
+                            },
+                            "include": {
+                                "all": True,
+                                "list": ["string"],
+                            },
+                        },
                         "user": {
                             "device_type": True,
                             "geo": True,

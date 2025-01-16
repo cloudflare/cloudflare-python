@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, cast
+from typing import Any, Type, Iterable, cast
 
 import httpx
 
@@ -219,7 +219,7 @@ class ItemsResource(SyncAPIResource):
                     item_list_params.ItemListParams,
                 ),
             ),
-            model=ItemListResponse,
+            model=cast(Any, ItemListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
     def delete(
@@ -308,16 +308,21 @@ class ItemsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
         if not item_id:
             raise ValueError(f"Expected a non-empty value for `item_id` but received {item_id!r}")
-        return self._get(
-            f"/accounts/{account_identifier}/rules/lists/{list_id}/items/{item_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[ItemGetResponse]._unwrapper,
+        return cast(
+            ItemGetResponse,
+            self._get(
+                f"/accounts/{account_identifier}/rules/lists/{list_id}/items/{item_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[ItemGetResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[ItemGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[ItemGetResponse], ResultWrapper[ItemGetResponse]),
         )
 
 
@@ -508,7 +513,7 @@ class AsyncItemsResource(AsyncAPIResource):
                     item_list_params.ItemListParams,
                 ),
             ),
-            model=ItemListResponse,
+            model=cast(Any, ItemListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
     async def delete(
@@ -597,16 +602,21 @@ class AsyncItemsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
         if not item_id:
             raise ValueError(f"Expected a non-empty value for `item_id` but received {item_id!r}")
-        return await self._get(
-            f"/accounts/{account_identifier}/rules/lists/{list_id}/items/{item_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[ItemGetResponse]._unwrapper,
+        return cast(
+            ItemGetResponse,
+            await self._get(
+                f"/accounts/{account_identifier}/rules/lists/{list_id}/items/{item_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[ItemGetResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[ItemGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[ItemGetResponse], ResultWrapper[ItemGetResponse]),
         )
 
 

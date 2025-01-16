@@ -62,8 +62,8 @@ class ScansResource(SyncAPIResource):
 
     def create(
         self,
-        *,
         account_id: str,
+        *,
         url: str,
         customagent: str | NotGiven = NOT_GIVEN,
         custom_headers: Dict[str, str] | NotGiven = NOT_GIVEN,
@@ -83,7 +83,7 @@ class ScansResource(SyncAPIResource):
         https://developers.cloudflare.com/security-center/investigate/scan-limits/.
 
         Args:
-          account_id: Account ID.
+          account_id: Account Id.
 
           custom_headers: Set custom headers.
 
@@ -130,8 +130,8 @@ class ScansResource(SyncAPIResource):
 
     def list(
         self,
-        *,
         account_id: str,
+        *,
         q: str | NotGiven = NOT_GIVEN,
         size: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -155,7 +155,7 @@ class ScansResource(SyncAPIResource):
         with the given hash was downloaded.
 
         Args:
-          account_id: Account ID.
+          account_id: Account Id.
 
           q: Filter scans
 
@@ -191,8 +191,8 @@ class ScansResource(SyncAPIResource):
 
     def bulk_create(
         self,
-        *,
         account_id: str,
+        *,
         body: Iterable[scan_bulk_create_params.Body],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -209,7 +209,7 @@ class ScansResource(SyncAPIResource):
         longer to finish.
 
         Args:
-          account_id: Account ID.
+          account_id: Account Id.
 
           body: List of urls to scan (up to a 100).
 
@@ -249,9 +249,9 @@ class ScansResource(SyncAPIResource):
         Chrome.
 
         Args:
-          account_id: Account ID.
+          account_id: Account Id.
 
-          scan_id: Scan UUID.
+          scan_id: Scan uuid.
 
           extra_headers: Send extra headers
 
@@ -290,9 +290,9 @@ class ScansResource(SyncAPIResource):
         Get URL scan by uuid
 
         Args:
-          account_id: Account ID.
+          account_id: Account Id.
 
-          scan_id: Scan UUID.
+          scan_id: Scan uuid.
 
           extra_headers: Send extra headers
 
@@ -332,9 +332,9 @@ class ScansResource(SyncAPIResource):
         http://www.softwareishard.com/blog/har-12-spec/.
 
         Args:
-          account_id: Account ID.
+          account_id: Account Id.
 
-          scan_id: Scan UUID.
+          scan_id: Scan uuid.
 
           extra_headers: Send extra headers
 
@@ -373,9 +373,9 @@ class ScansResource(SyncAPIResource):
         Get scan's screenshot by resolution (desktop/mobile/tablet).
 
         Args:
-          account_id: Account ID.
+          account_id: Account Id.
 
-          scan_id: Scan UUID.
+          scan_id: Scan uuid.
 
           resolution: Target device type.
 
@@ -427,8 +427,8 @@ class AsyncScansResource(AsyncAPIResource):
 
     async def create(
         self,
-        *,
         account_id: str,
+        *,
         url: str,
         customagent: str | NotGiven = NOT_GIVEN,
         custom_headers: Dict[str, str] | NotGiven = NOT_GIVEN,
@@ -448,7 +448,7 @@ class AsyncScansResource(AsyncAPIResource):
         https://developers.cloudflare.com/security-center/investigate/scan-limits/.
 
         Args:
-          account_id: Account ID.
+          account_id: Account Id.
 
           custom_headers: Set custom headers.
 
@@ -495,8 +495,8 @@ class AsyncScansResource(AsyncAPIResource):
 
     async def list(
         self,
-        *,
         account_id: str,
+        *,
         q: str | NotGiven = NOT_GIVEN,
         size: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -520,7 +520,7 @@ class AsyncScansResource(AsyncAPIResource):
         with the given hash was downloaded.
 
         Args:
-          account_id: Account ID.
+          account_id: Account Id.
 
           q: Filter scans
 
@@ -556,8 +556,8 @@ class AsyncScansResource(AsyncAPIResource):
 
     async def bulk_create(
         self,
-        *,
         account_id: str,
+        *,
         body: Iterable[scan_bulk_create_params.Body],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -574,7 +574,7 @@ class AsyncScansResource(AsyncAPIResource):
         longer to finish.
 
         Args:
-          account_id: Account ID.
+          account_id: Account Id.
 
           body: List of urls to scan (up to a 100).
 
@@ -614,9 +614,9 @@ class AsyncScansResource(AsyncAPIResource):
         Chrome.
 
         Args:
-          account_id: Account ID.
+          account_id: Account Id.
 
-          scan_id: Scan UUID.
+          scan_id: Scan uuid.
 
           extra_headers: Send extra headers
 
@@ -655,9 +655,9 @@ class AsyncScansResource(AsyncAPIResource):
         Get URL scan by uuid
 
         Args:
-          account_id: Account ID.
+          account_id: Account Id.
 
-          scan_id: Scan UUID.
+          scan_id: Scan uuid.
 
           extra_headers: Send extra headers
 
@@ -697,9 +697,9 @@ class AsyncScansResource(AsyncAPIResource):
         http://www.softwareishard.com/blog/har-12-spec/.
 
         Args:
-          account_id: Account ID.
+          account_id: Account Id.
 
-          scan_id: Scan UUID.
+          scan_id: Scan uuid.
 
           extra_headers: Send extra headers
 
@@ -738,9 +738,9 @@ class AsyncScansResource(AsyncAPIResource):
         Get scan's screenshot by resolution (desktop/mobile/tablet).
 
         Args:
-          account_id: Account ID.
+          account_id: Account Id.
 
-          scan_id: Scan UUID.
+          scan_id: Scan uuid.
 
           resolution: Target device type.
 

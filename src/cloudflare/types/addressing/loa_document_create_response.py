@@ -13,7 +13,7 @@ class LOADocumentCreateResponse(BaseModel):
     """Identifier for the uploaded LOA document."""
 
     account_id: Optional[str] = None
-    """Identifier of a Cloudflare account."""
+    """Identifier"""
 
     created: Optional[datetime] = None
 

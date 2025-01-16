@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Optional
+from typing import Union, Optional
 from datetime import datetime
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Required, Annotated, TypedDict
 
 from ....._utils import PropertyInfo
 
@@ -16,13 +16,7 @@ class TargetListParams(TypedDict, total=False):
     """Account identifier"""
 
     created_after: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
-    """Date and time at which the target was created after (inclusive)"""
-
-    created_before: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
-    """Date and time at which the target was created before (inclusive)"""
-
-    direction: Literal["asc", "desc"]
-    """The sorting direction."""
+    """Date and time at which the target was created"""
 
     hostname: Optional[str]
     """Hostname of a target"""
@@ -36,20 +30,8 @@ class TargetListParams(TypedDict, total=False):
     ip_v6: Optional[str]
     """IPv6 address of the target"""
 
-    ips: List[str]
-    """Filters for targets that have any of the following IP addresses.
-
-    Specify `ips` multiple times in query parameter to build list of candidates.
-    """
-
     modified_after: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
-    """Date and time at which the target was modified after (inclusive)"""
-
-    modified_before: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
-    """Date and time at which the target was modified before (inclusive)"""
-
-    order: Literal["hostname", "created_at"]
-    """The field to sort by."""
+    """Date and time at which the target was modified"""
 
     page: int
     """Current page in the response"""

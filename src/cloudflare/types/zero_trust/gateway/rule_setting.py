@@ -18,7 +18,6 @@ __all__ = [
     "NotificationSettings",
     "PayloadLog",
     "Quarantine",
-    "ResolveDNSInternally",
     "UntrustedCERT",
 ]
 
@@ -108,18 +107,6 @@ class Quarantine(BaseModel):
     """Types of files to sandbox."""
 
 
-class ResolveDNSInternally(BaseModel):
-    fallback: Optional[Literal["none", "public_dns"]] = None
-    """
-    The fallback behavior to apply when the internal DNS response code is different
-    from 'NOERROR' or when the response data only contains CNAME records for 'A' or
-    'AAAA' queries.
-    """
-
-    view_id: Optional[str] = None
-    """The internal DNS view identifier that's passed to the internal DNS service."""
-
-
 class UntrustedCERT(BaseModel):
     action: Optional[Literal["pass_through", "block", "error"]] = None
     """The action performed when an untrusted certificate is seen.
@@ -162,9 +149,9 @@ class RuleSetting(BaseModel):
     dns_resolvers: Optional[DNSResolvers] = None
     """Add your own custom resolvers to route queries that match the resolver policy.
 
-    Cannot be used when 'resolve_dns_through_cloudflare' or 'resolve_dns_internally'
-    are set. DNS queries will route to the address closest to their origin. Only
-    valid when a rule's action is set to 'resolve'.
+    Cannot be used when resolve_dns_through_cloudflare is set. DNS queries will
+    route to the address closest to their origin. Only valid when a rule's action is
+    set to 'resolve'.
     """
 
     egress: Optional[Egress] = None
@@ -217,20 +204,11 @@ class RuleSetting(BaseModel):
     quarantine: Optional[Quarantine] = None
     """Settings that apply to quarantine rules"""
 
-    resolve_dns_internally: Optional[ResolveDNSInternally] = None
-    """
-    Configure to forward the query to the internal DNS service, passing the
-    specified 'view_id' as input. Cannot be set when 'dns_resolvers' are specified
-    or 'resolve_dns_through_cloudflare' is set. Only valid when a rule's action is
-    set to 'resolve'.
-    """
-
     resolve_dns_through_cloudflare: Optional[bool] = None
     """
     Enable to send queries that match the policy to Cloudflare's default 1.1.1.1 DNS
-    resolver. Cannot be set when 'dns_resolvers' are specified or
-    'resolve_dns_internally' is set. Only valid when a rule's action is set to
-    'resolve'.
+    resolver. Cannot be set when dns_resolvers are specified. Only valid when a
+    rule's action is set to 'resolve'.
     """
 
     untrusted_cert: Optional[UntrustedCERT] = None

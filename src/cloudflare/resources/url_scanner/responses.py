@@ -56,7 +56,7 @@ class ResponsesResource(SyncAPIResource):
         will be returned.
 
         Args:
-          account_id: Account ID.
+          account_id: Account Id.
 
           response_id: Response hash.
 
@@ -120,7 +120,7 @@ class AsyncResponsesResource(AsyncAPIResource):
         will be returned.
 
         Args:
-          account_id: Account ID.
+          account_id: Account Id.
 
           response_id: Response hash.
 

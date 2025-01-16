@@ -28,7 +28,7 @@ class TestDOH:
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         doh = client.zero_trust.organizations.doh.update(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            doh_jwt_duration="800h",
+            jwt_duration="800h",
             service_token_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
         )
         assert_matches_type(Optional[DOHUpdateResponse], doh, path=["response"])
@@ -117,7 +117,7 @@ class TestAsyncDOH:
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         doh = await async_client.zero_trust.organizations.doh.update(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            doh_jwt_duration="800h",
+            jwt_duration="800h",
             service_token_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
         )
         assert_matches_type(Optional[DOHUpdateResponse], doh, path=["response"])

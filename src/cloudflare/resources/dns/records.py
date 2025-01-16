@@ -36,14 +36,16 @@ from ..._base_client import AsyncPaginator, make_request_options
 from ...types.dns.ttl_param import TTLParam
 from ...types.dns.record_tags import RecordTags
 from ...types.dns.record_param import RecordParam
-from ...types.dns.batch_put_param import BatchPutParam
-from ...types.dns.record_response import RecordResponse
-from ...types.dns.batch_patch_param import BatchPatchParam
 from ...types.shared.sort_direction import SortDirection
+from ...types.dns.record_get_response import RecordGetResponse
+from ...types.dns.record_edit_response import RecordEditResponse
+from ...types.dns.record_list_response import RecordListResponse
 from ...types.dns.record_scan_response import RecordScanResponse
 from ...types.dns.record_batch_response import RecordBatchResponse
+from ...types.dns.record_create_response import RecordCreateResponse
 from ...types.dns.record_delete_response import RecordDeleteResponse
 from ...types.dns.record_import_response import RecordImportResponse
+from ...types.dns.record_update_response import RecordUpdateResponse
 
 __all__ = ["RecordsResource", "AsyncRecordsResource"]
 
@@ -77,7 +79,6 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.ARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["A"] | NotGiven = NOT_GIVEN,
@@ -87,7 +88,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -110,8 +111,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -140,7 +139,6 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.AAAARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["AAAA"] | NotGiven = NOT_GIVEN,
@@ -150,7 +148,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -173,8 +171,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -203,7 +199,6 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.CAARecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.CAARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["CAA"] | NotGiven = NOT_GIVEN,
@@ -213,7 +208,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -236,8 +231,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -266,7 +259,6 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.CERTRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.CERTRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["CERT"] | NotGiven = NOT_GIVEN,
@@ -276,7 +268,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -299,8 +291,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -339,7 +329,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -362,8 +352,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -392,7 +380,6 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.DNSKEYRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.DNSKEYRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["DNSKEY"] | NotGiven = NOT_GIVEN,
@@ -402,7 +389,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -425,8 +412,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -455,7 +440,6 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.DSRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.DSRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["DS"] | NotGiven = NOT_GIVEN,
@@ -465,7 +449,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -488,8 +472,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -518,7 +500,6 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.HTTPSRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.HTTPSRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["HTTPS"] | NotGiven = NOT_GIVEN,
@@ -528,7 +509,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -551,8 +532,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -581,7 +560,6 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.LOCRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.LOCRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["LOC"] | NotGiven = NOT_GIVEN,
@@ -591,7 +569,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -614,8 +592,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -645,7 +621,6 @@ class RecordsResource(SyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.MXRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["MX"] | NotGiven = NOT_GIVEN,
@@ -655,7 +630,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -681,8 +656,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -711,7 +684,6 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.NAPTRRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.NAPTRRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["NAPTR"] | NotGiven = NOT_GIVEN,
@@ -721,7 +693,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -745,8 +717,6 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
-          settings: Settings for the DNS record.
-
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -774,7 +744,6 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.NSRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["NS"] | NotGiven = NOT_GIVEN,
@@ -784,7 +753,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -808,8 +777,6 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
-          settings: Settings for the DNS record.
-
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -837,7 +804,6 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.DNSRecordsOpenpgpkeyRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["OPENPGPKEY"] | NotGiven = NOT_GIVEN,
@@ -847,7 +813,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -871,8 +837,6 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
-          settings: Settings for the DNS record.
-
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -900,7 +864,6 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.PTRRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["PTR"] | NotGiven = NOT_GIVEN,
@@ -910,7 +873,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -933,8 +896,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -963,7 +924,6 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.SMIMEARecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.SMIMEARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SMIMEA"] | NotGiven = NOT_GIVEN,
@@ -973,7 +933,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -996,8 +956,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -1026,7 +984,6 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.SRVRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.SRVRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SRV"] | NotGiven = NOT_GIVEN,
@@ -1036,7 +993,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -1059,8 +1016,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -1089,7 +1044,6 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.SSHFPRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.SSHFPRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SSHFP"] | NotGiven = NOT_GIVEN,
@@ -1099,7 +1053,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -1122,8 +1076,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -1152,7 +1104,6 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.SVCBRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.SVCBRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SVCB"] | NotGiven = NOT_GIVEN,
@@ -1162,7 +1113,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -1185,8 +1136,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -1215,7 +1164,6 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.TLSARecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.TLSARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["TLSA"] | NotGiven = NOT_GIVEN,
@@ -1225,7 +1173,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -1248,8 +1196,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -1278,7 +1224,6 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.TXTRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["TXT"] | NotGiven = NOT_GIVEN,
@@ -1288,7 +1233,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -1316,8 +1261,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -1347,7 +1290,6 @@ class RecordsResource(SyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.URIRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["URI"] | NotGiven = NOT_GIVEN,
@@ -1357,7 +1299,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -1383,8 +1325,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -1413,9 +1353,6 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.ARecordSettings
-        | record_create_params.CNAMERecordSettings
-        | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["A"]
@@ -1452,6 +1389,7 @@ class RecordsResource(SyncAPIResource):
         | record_create_params.SSHFPRecordData
         | record_create_params.URIRecordData
         | NotGiven = NOT_GIVEN,
+        settings: record_create_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1459,11 +1397,11 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordCreateResponse]:
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            Optional[RecordResponse],
+            Optional[RecordCreateResponse],
             self._post(
                 f"/zones/{zone_id}/dns_records",
                 body=maybe_transform(
@@ -1472,11 +1410,11 @@ class RecordsResource(SyncAPIResource):
                         "content": content,
                         "name": name,
                         "proxied": proxied,
-                        "settings": settings,
                         "tags": tags,
                         "ttl": ttl,
                         "type": type,
                         "data": data,
+                        "settings": settings,
                         "priority": priority,
                     },
                     record_create_params.RecordCreateParams,
@@ -1486,10 +1424,10 @@ class RecordsResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[RecordResponse]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[RecordCreateResponse]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[RecordResponse]
+                    Any, ResultWrapper[RecordCreateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -1504,7 +1442,6 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.ARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["A"] | NotGiven = NOT_GIVEN,
@@ -1514,7 +1451,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordUpdateResponse]:
         """
         Overwrite an existing DNS record.
 
@@ -1539,8 +1476,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -1570,7 +1505,6 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.AAAARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["AAAA"] | NotGiven = NOT_GIVEN,
@@ -1580,7 +1514,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordUpdateResponse]:
         """
         Overwrite an existing DNS record.
 
@@ -1605,8 +1539,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -1636,7 +1568,6 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.CAARecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.CAARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["CAA"] | NotGiven = NOT_GIVEN,
@@ -1646,7 +1577,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordUpdateResponse]:
         """
         Overwrite an existing DNS record.
 
@@ -1671,8 +1602,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -1702,7 +1631,6 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.CERTRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.CERTRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["CERT"] | NotGiven = NOT_GIVEN,
@@ -1712,7 +1640,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordUpdateResponse]:
         """
         Overwrite an existing DNS record.
 
@@ -1737,8 +1665,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -1778,7 +1704,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordUpdateResponse]:
         """
         Overwrite an existing DNS record.
 
@@ -1803,8 +1729,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -1834,7 +1758,6 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.DNSKEYRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.DNSKEYRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["DNSKEY"] | NotGiven = NOT_GIVEN,
@@ -1844,7 +1767,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordUpdateResponse]:
         """
         Overwrite an existing DNS record.
 
@@ -1869,8 +1792,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -1900,7 +1821,6 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.DSRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.DSRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["DS"] | NotGiven = NOT_GIVEN,
@@ -1910,7 +1830,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordUpdateResponse]:
         """
         Overwrite an existing DNS record.
 
@@ -1935,8 +1855,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -1966,7 +1884,6 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.HTTPSRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.HTTPSRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["HTTPS"] | NotGiven = NOT_GIVEN,
@@ -1976,7 +1893,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordUpdateResponse]:
         """
         Overwrite an existing DNS record.
 
@@ -2001,8 +1918,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -2032,7 +1947,6 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.LOCRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.LOCRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["LOC"] | NotGiven = NOT_GIVEN,
@@ -2042,7 +1956,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordUpdateResponse]:
         """
         Overwrite an existing DNS record.
 
@@ -2067,8 +1981,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -2099,7 +2011,6 @@ class RecordsResource(SyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.MXRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["MX"] | NotGiven = NOT_GIVEN,
@@ -2109,7 +2020,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordUpdateResponse]:
         """
         Overwrite an existing DNS record.
 
@@ -2137,8 +2048,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -2168,7 +2077,6 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.NAPTRRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.NAPTRRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["NAPTR"] | NotGiven = NOT_GIVEN,
@@ -2178,7 +2086,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordUpdateResponse]:
         """
         Overwrite an existing DNS record.
 
@@ -2204,8 +2112,6 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
-          settings: Settings for the DNS record.
-
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -2234,7 +2140,6 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.NSRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["NS"] | NotGiven = NOT_GIVEN,
@@ -2244,7 +2149,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordUpdateResponse]:
         """
         Overwrite an existing DNS record.
 
@@ -2270,8 +2175,6 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
-          settings: Settings for the DNS record.
-
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -2300,7 +2203,6 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.DNSRecordsOpenpgpkeyRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["OPENPGPKEY"] | NotGiven = NOT_GIVEN,
@@ -2310,7 +2212,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordUpdateResponse]:
         """
         Overwrite an existing DNS record.
 
@@ -2336,8 +2238,6 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
-          settings: Settings for the DNS record.
-
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -2366,7 +2266,6 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.PTRRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["PTR"] | NotGiven = NOT_GIVEN,
@@ -2376,7 +2275,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordUpdateResponse]:
         """
         Overwrite an existing DNS record.
 
@@ -2401,8 +2300,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -2432,7 +2329,6 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.SMIMEARecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.SMIMEARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SMIMEA"] | NotGiven = NOT_GIVEN,
@@ -2442,7 +2338,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordUpdateResponse]:
         """
         Overwrite an existing DNS record.
 
@@ -2467,8 +2363,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -2498,7 +2392,6 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.SRVRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.SRVRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SRV"] | NotGiven = NOT_GIVEN,
@@ -2508,7 +2401,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordUpdateResponse]:
         """
         Overwrite an existing DNS record.
 
@@ -2533,8 +2426,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -2564,7 +2455,6 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.SSHFPRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.SSHFPRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SSHFP"] | NotGiven = NOT_GIVEN,
@@ -2574,7 +2464,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordUpdateResponse]:
         """
         Overwrite an existing DNS record.
 
@@ -2599,8 +2489,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -2630,7 +2518,6 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.SVCBRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.SVCBRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SVCB"] | NotGiven = NOT_GIVEN,
@@ -2640,7 +2527,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordUpdateResponse]:
         """
         Overwrite an existing DNS record.
 
@@ -2665,8 +2552,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -2696,7 +2581,6 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.TLSARecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.TLSARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["TLSA"] | NotGiven = NOT_GIVEN,
@@ -2706,7 +2590,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordUpdateResponse]:
         """
         Overwrite an existing DNS record.
 
@@ -2731,8 +2615,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -2762,7 +2644,6 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.TXTRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["TXT"] | NotGiven = NOT_GIVEN,
@@ -2772,7 +2653,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordUpdateResponse]:
         """
         Overwrite an existing DNS record.
 
@@ -2803,8 +2684,6 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
-          settings: Settings for the DNS record.
-
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -2834,7 +2713,6 @@ class RecordsResource(SyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.URIRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["URI"] | NotGiven = NOT_GIVEN,
@@ -2844,7 +2722,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordUpdateResponse]:
         """
         Overwrite an existing DNS record.
 
@@ -2872,8 +2750,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -2903,9 +2779,6 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.ARecordSettings
-        | record_update_params.CNAMERecordSettings
-        | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["A"]
@@ -2942,6 +2815,7 @@ class RecordsResource(SyncAPIResource):
         | record_update_params.SSHFPRecordData
         | record_update_params.URIRecordData
         | NotGiven = NOT_GIVEN,
+        settings: record_update_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2949,13 +2823,13 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordUpdateResponse]:
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not dns_record_id:
             raise ValueError(f"Expected a non-empty value for `dns_record_id` but received {dns_record_id!r}")
         return cast(
-            Optional[RecordResponse],
+            Optional[RecordUpdateResponse],
             self._put(
                 f"/zones/{zone_id}/dns_records/{dns_record_id}",
                 body=maybe_transform(
@@ -2964,11 +2838,11 @@ class RecordsResource(SyncAPIResource):
                         "content": content,
                         "name": name,
                         "proxied": proxied,
-                        "settings": settings,
                         "tags": tags,
                         "ttl": ttl,
                         "type": type,
                         "data": data,
+                        "settings": settings,
                         "priority": priority,
                     },
                     record_update_params.RecordUpdateParams,
@@ -2978,10 +2852,10 @@ class RecordsResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[RecordResponse]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[RecordUpdateResponse]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[RecordResponse]
+                    Any, ResultWrapper[RecordUpdateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -3032,7 +2906,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[RecordResponse]:
+    ) -> SyncV4PagePaginationArray[RecordListResponse]:
         """
         List, search, sort, and filter a zones' DNS records.
 
@@ -3080,7 +2954,7 @@ class RecordsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/dns_records",
-            page=SyncV4PagePaginationArray[RecordResponse],
+            page=SyncV4PagePaginationArray[RecordListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -3105,7 +2979,7 @@ class RecordsResource(SyncAPIResource):
                     record_list_params.RecordListParams,
                 ),
             ),
-            model=cast(Any, RecordResponse),  # Union types cannot be passed in as arguments in the type system
+            model=cast(Any, RecordListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
     def delete(
@@ -3157,9 +3031,9 @@ class RecordsResource(SyncAPIResource):
         *,
         zone_id: str,
         deletes: Iterable[record_batch_params.Delete] | NotGiven = NOT_GIVEN,
-        patches: Iterable[BatchPatchParam] | NotGiven = NOT_GIVEN,
+        patches: Iterable[record_batch_params.Patch] | NotGiven = NOT_GIVEN,
         posts: Iterable[RecordParam] | NotGiven = NOT_GIVEN,
-        puts: Iterable[BatchPutParam] | NotGiven = NOT_GIVEN,
+        puts: Iterable[record_batch_params.Put] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3230,7 +3104,6 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.ARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["A"] | NotGiven = NOT_GIVEN,
@@ -3240,7 +3113,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordEditResponse]:
         """
         Update an existing DNS record.
 
@@ -3265,8 +3138,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -3296,7 +3167,6 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.AAAARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["AAAA"] | NotGiven = NOT_GIVEN,
@@ -3306,7 +3176,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordEditResponse]:
         """
         Update an existing DNS record.
 
@@ -3331,8 +3201,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -3362,7 +3230,6 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.CAARecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.CAARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["CAA"] | NotGiven = NOT_GIVEN,
@@ -3372,7 +3239,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordEditResponse]:
         """
         Update an existing DNS record.
 
@@ -3397,8 +3264,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -3428,7 +3293,6 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.CERTRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.CERTRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["CERT"] | NotGiven = NOT_GIVEN,
@@ -3438,7 +3302,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordEditResponse]:
         """
         Update an existing DNS record.
 
@@ -3463,8 +3327,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -3504,7 +3366,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordEditResponse]:
         """
         Update an existing DNS record.
 
@@ -3529,8 +3391,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -3560,7 +3420,6 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.DNSKEYRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.DNSKEYRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["DNSKEY"] | NotGiven = NOT_GIVEN,
@@ -3570,7 +3429,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordEditResponse]:
         """
         Update an existing DNS record.
 
@@ -3595,8 +3454,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -3626,7 +3483,6 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.DSRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.DSRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["DS"] | NotGiven = NOT_GIVEN,
@@ -3636,7 +3492,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordEditResponse]:
         """
         Update an existing DNS record.
 
@@ -3661,8 +3517,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -3692,7 +3546,6 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.HTTPSRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.HTTPSRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["HTTPS"] | NotGiven = NOT_GIVEN,
@@ -3702,7 +3555,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordEditResponse]:
         """
         Update an existing DNS record.
 
@@ -3727,8 +3580,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -3758,7 +3609,6 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.LOCRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.LOCRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["LOC"] | NotGiven = NOT_GIVEN,
@@ -3768,7 +3618,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordEditResponse]:
         """
         Update an existing DNS record.
 
@@ -3793,8 +3643,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -3825,7 +3673,6 @@ class RecordsResource(SyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.MXRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["MX"] | NotGiven = NOT_GIVEN,
@@ -3835,7 +3682,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordEditResponse]:
         """
         Update an existing DNS record.
 
@@ -3863,8 +3710,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -3894,7 +3739,6 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.NAPTRRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.NAPTRRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["NAPTR"] | NotGiven = NOT_GIVEN,
@@ -3904,7 +3748,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordEditResponse]:
         """
         Update an existing DNS record.
 
@@ -3930,8 +3774,6 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
-          settings: Settings for the DNS record.
-
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -3960,7 +3802,6 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.NSRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["NS"] | NotGiven = NOT_GIVEN,
@@ -3970,7 +3811,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordEditResponse]:
         """
         Update an existing DNS record.
 
@@ -3996,8 +3837,6 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
-          settings: Settings for the DNS record.
-
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -4026,7 +3865,6 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.DNSRecordsOpenpgpkeyRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["OPENPGPKEY"] | NotGiven = NOT_GIVEN,
@@ -4036,7 +3874,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordEditResponse]:
         """
         Update an existing DNS record.
 
@@ -4062,8 +3900,6 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
-          settings: Settings for the DNS record.
-
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -4092,7 +3928,6 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.PTRRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["PTR"] | NotGiven = NOT_GIVEN,
@@ -4102,7 +3937,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordEditResponse]:
         """
         Update an existing DNS record.
 
@@ -4127,8 +3962,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -4158,7 +3991,6 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.SMIMEARecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.SMIMEARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SMIMEA"] | NotGiven = NOT_GIVEN,
@@ -4168,7 +4000,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordEditResponse]:
         """
         Update an existing DNS record.
 
@@ -4193,8 +4025,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -4224,7 +4054,6 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.SRVRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.SRVRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SRV"] | NotGiven = NOT_GIVEN,
@@ -4234,7 +4063,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordEditResponse]:
         """
         Update an existing DNS record.
 
@@ -4259,8 +4088,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -4290,7 +4117,6 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.SSHFPRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.SSHFPRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SSHFP"] | NotGiven = NOT_GIVEN,
@@ -4300,7 +4126,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordEditResponse]:
         """
         Update an existing DNS record.
 
@@ -4325,8 +4151,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -4356,7 +4180,6 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.SVCBRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.SVCBRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SVCB"] | NotGiven = NOT_GIVEN,
@@ -4366,7 +4189,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordEditResponse]:
         """
         Update an existing DNS record.
 
@@ -4391,8 +4214,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -4422,7 +4243,6 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.TLSARecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.TLSARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["TLSA"] | NotGiven = NOT_GIVEN,
@@ -4432,7 +4252,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordEditResponse]:
         """
         Update an existing DNS record.
 
@@ -4457,8 +4277,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -4488,7 +4306,6 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.TXTRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["TXT"] | NotGiven = NOT_GIVEN,
@@ -4498,7 +4315,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordEditResponse]:
         """
         Update an existing DNS record.
 
@@ -4529,8 +4346,6 @@ class RecordsResource(SyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
-          settings: Settings for the DNS record.
-
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -4560,7 +4375,6 @@ class RecordsResource(SyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.URIRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["URI"] | NotGiven = NOT_GIVEN,
@@ -4570,7 +4384,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordEditResponse]:
         """
         Update an existing DNS record.
 
@@ -4598,8 +4412,6 @@ class RecordsResource(SyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -4629,7 +4441,6 @@ class RecordsResource(SyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.ARecordSettings | record_edit_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["A"]
@@ -4666,6 +4477,7 @@ class RecordsResource(SyncAPIResource):
         | record_edit_params.SSHFPRecordData
         | record_edit_params.URIRecordData
         | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4673,13 +4485,13 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordEditResponse]:
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not dns_record_id:
             raise ValueError(f"Expected a non-empty value for `dns_record_id` but received {dns_record_id!r}")
         return cast(
-            Optional[RecordResponse],
+            Optional[RecordEditResponse],
             self._patch(
                 f"/zones/{zone_id}/dns_records/{dns_record_id}",
                 body=maybe_transform(
@@ -4688,11 +4500,11 @@ class RecordsResource(SyncAPIResource):
                         "content": content,
                         "name": name,
                         "proxied": proxied,
-                        "settings": settings,
                         "tags": tags,
                         "ttl": ttl,
                         "type": type,
                         "data": data,
+                        "settings": settings,
                         "priority": priority,
                     },
                     record_edit_params.RecordEditParams,
@@ -4702,10 +4514,10 @@ class RecordsResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[RecordResponse]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[RecordEditResponse]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[RecordResponse]
+                    Any, ResultWrapper[RecordEditResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -4763,7 +4575,7 @@ class RecordsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordGetResponse]:
         """
         DNS Record Details
 
@@ -4785,7 +4597,7 @@ class RecordsResource(SyncAPIResource):
         if not dns_record_id:
             raise ValueError(f"Expected a non-empty value for `dns_record_id` but received {dns_record_id!r}")
         return cast(
-            Optional[RecordResponse],
+            Optional[RecordGetResponse],
             self._get(
                 f"/zones/{zone_id}/dns_records/{dns_record_id}",
                 options=make_request_options(
@@ -4793,10 +4605,10 @@ class RecordsResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[RecordResponse]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[RecordGetResponse]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[RecordResponse]
+                    Any, ResultWrapper[RecordGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -4942,7 +4754,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.ARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["A"] | NotGiven = NOT_GIVEN,
@@ -4952,7 +4763,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -4975,8 +4786,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -5005,7 +4814,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.AAAARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["AAAA"] | NotGiven = NOT_GIVEN,
@@ -5015,7 +4823,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -5038,8 +4846,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -5068,7 +4874,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.CAARecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.CAARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["CAA"] | NotGiven = NOT_GIVEN,
@@ -5078,7 +4883,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -5101,8 +4906,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -5131,7 +4934,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.CERTRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.CERTRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["CERT"] | NotGiven = NOT_GIVEN,
@@ -5141,7 +4943,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -5164,8 +4966,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -5204,7 +5004,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -5227,8 +5027,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -5257,7 +5055,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.DNSKEYRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.DNSKEYRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["DNSKEY"] | NotGiven = NOT_GIVEN,
@@ -5267,7 +5064,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -5290,8 +5087,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -5320,7 +5115,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.DSRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.DSRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["DS"] | NotGiven = NOT_GIVEN,
@@ -5330,7 +5124,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -5353,8 +5147,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -5383,7 +5175,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.HTTPSRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.HTTPSRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["HTTPS"] | NotGiven = NOT_GIVEN,
@@ -5393,7 +5184,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -5416,8 +5207,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -5446,7 +5235,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.LOCRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.LOCRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["LOC"] | NotGiven = NOT_GIVEN,
@@ -5456,7 +5244,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -5479,8 +5267,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -5510,7 +5296,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.MXRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["MX"] | NotGiven = NOT_GIVEN,
@@ -5520,7 +5305,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -5546,8 +5331,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -5576,7 +5359,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.NAPTRRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.NAPTRRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["NAPTR"] | NotGiven = NOT_GIVEN,
@@ -5586,7 +5368,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -5610,8 +5392,6 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
-          settings: Settings for the DNS record.
-
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -5639,7 +5419,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.NSRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["NS"] | NotGiven = NOT_GIVEN,
@@ -5649,7 +5428,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -5673,8 +5452,6 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
-          settings: Settings for the DNS record.
-
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -5702,7 +5479,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.DNSRecordsOpenpgpkeyRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["OPENPGPKEY"] | NotGiven = NOT_GIVEN,
@@ -5712,7 +5488,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -5736,8 +5512,6 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
-          settings: Settings for the DNS record.
-
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -5765,7 +5539,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.PTRRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["PTR"] | NotGiven = NOT_GIVEN,
@@ -5775,7 +5548,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -5798,8 +5571,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -5828,7 +5599,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.SMIMEARecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.SMIMEARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SMIMEA"] | NotGiven = NOT_GIVEN,
@@ -5838,7 +5608,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -5861,8 +5631,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -5891,7 +5659,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.SRVRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.SRVRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SRV"] | NotGiven = NOT_GIVEN,
@@ -5901,7 +5668,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -5924,8 +5691,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -5954,7 +5719,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.SSHFPRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.SSHFPRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SSHFP"] | NotGiven = NOT_GIVEN,
@@ -5964,7 +5728,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -5987,8 +5751,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -6017,7 +5779,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.SVCBRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.SVCBRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SVCB"] | NotGiven = NOT_GIVEN,
@@ -6027,7 +5788,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -6050,8 +5811,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -6080,7 +5839,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.TLSARecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.TLSARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["TLSA"] | NotGiven = NOT_GIVEN,
@@ -6090,7 +5848,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -6113,8 +5871,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -6143,7 +5899,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.TXTRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["TXT"] | NotGiven = NOT_GIVEN,
@@ -6153,7 +5908,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -6181,8 +5936,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -6212,7 +5965,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.URIRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["URI"] | NotGiven = NOT_GIVEN,
@@ -6222,7 +5974,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordCreateResponse]:
         """
         Create a new DNS record for a zone.
 
@@ -6248,8 +6000,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -6278,9 +6028,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_create_params.ARecordSettings
-        | record_create_params.CNAMERecordSettings
-        | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["A"]
@@ -6317,6 +6064,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         | record_create_params.SSHFPRecordData
         | record_create_params.URIRecordData
         | NotGiven = NOT_GIVEN,
+        settings: record_create_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -6324,11 +6072,11 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordCreateResponse]:
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            Optional[RecordResponse],
+            Optional[RecordCreateResponse],
             await self._post(
                 f"/zones/{zone_id}/dns_records",
                 body=await async_maybe_transform(
@@ -6337,11 +6085,11 @@ class AsyncRecordsResource(AsyncAPIResource):
                         "content": content,
                         "name": name,
                         "proxied": proxied,
-                        "settings": settings,
                         "tags": tags,
                         "ttl": ttl,
                         "type": type,
                         "data": data,
+                        "settings": settings,
                         "priority": priority,
                     },
                     record_create_params.RecordCreateParams,
@@ -6351,10 +6099,10 @@ class AsyncRecordsResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[RecordResponse]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[RecordCreateResponse]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[RecordResponse]
+                    Any, ResultWrapper[RecordCreateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -6369,7 +6117,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.ARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["A"] | NotGiven = NOT_GIVEN,
@@ -6379,7 +6126,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordUpdateResponse]:
         """
         Overwrite an existing DNS record.
 
@@ -6404,8 +6151,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -6435,7 +6180,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.AAAARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["AAAA"] | NotGiven = NOT_GIVEN,
@@ -6445,7 +6189,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordUpdateResponse]:
         """
         Overwrite an existing DNS record.
 
@@ -6470,8 +6214,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -6501,7 +6243,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.CAARecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.CAARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["CAA"] | NotGiven = NOT_GIVEN,
@@ -6511,7 +6252,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordUpdateResponse]:
         """
         Overwrite an existing DNS record.
 
@@ -6536,8 +6277,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -6567,7 +6306,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.CERTRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.CERTRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["CERT"] | NotGiven = NOT_GIVEN,
@@ -6577,7 +6315,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordUpdateResponse]:
         """
         Overwrite an existing DNS record.
 
@@ -6602,8 +6340,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -6643,7 +6379,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordUpdateResponse]:
         """
         Overwrite an existing DNS record.
 
@@ -6668,8 +6404,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -6699,7 +6433,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.DNSKEYRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.DNSKEYRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["DNSKEY"] | NotGiven = NOT_GIVEN,
@@ -6709,7 +6442,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordUpdateResponse]:
         """
         Overwrite an existing DNS record.
 
@@ -6734,8 +6467,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -6765,7 +6496,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.DSRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.DSRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["DS"] | NotGiven = NOT_GIVEN,
@@ -6775,7 +6505,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordUpdateResponse]:
         """
         Overwrite an existing DNS record.
 
@@ -6800,8 +6530,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -6831,7 +6559,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.HTTPSRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.HTTPSRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["HTTPS"] | NotGiven = NOT_GIVEN,
@@ -6841,7 +6568,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordUpdateResponse]:
         """
         Overwrite an existing DNS record.
 
@@ -6866,8 +6593,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -6897,7 +6622,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.LOCRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.LOCRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["LOC"] | NotGiven = NOT_GIVEN,
@@ -6907,7 +6631,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordUpdateResponse]:
         """
         Overwrite an existing DNS record.
 
@@ -6932,8 +6656,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -6964,7 +6686,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.MXRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["MX"] | NotGiven = NOT_GIVEN,
@@ -6974,7 +6695,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordUpdateResponse]:
         """
         Overwrite an existing DNS record.
 
@@ -7002,8 +6723,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -7033,7 +6752,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.NAPTRRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.NAPTRRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["NAPTR"] | NotGiven = NOT_GIVEN,
@@ -7043,7 +6761,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordUpdateResponse]:
         """
         Overwrite an existing DNS record.
 
@@ -7069,8 +6787,6 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
-          settings: Settings for the DNS record.
-
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -7099,7 +6815,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.NSRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["NS"] | NotGiven = NOT_GIVEN,
@@ -7109,7 +6824,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordUpdateResponse]:
         """
         Overwrite an existing DNS record.
 
@@ -7135,8 +6850,6 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
-          settings: Settings for the DNS record.
-
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -7165,7 +6878,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.DNSRecordsOpenpgpkeyRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["OPENPGPKEY"] | NotGiven = NOT_GIVEN,
@@ -7175,7 +6887,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordUpdateResponse]:
         """
         Overwrite an existing DNS record.
 
@@ -7201,8 +6913,6 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
-          settings: Settings for the DNS record.
-
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -7231,7 +6941,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.PTRRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["PTR"] | NotGiven = NOT_GIVEN,
@@ -7241,7 +6950,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordUpdateResponse]:
         """
         Overwrite an existing DNS record.
 
@@ -7266,8 +6975,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -7297,7 +7004,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.SMIMEARecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.SMIMEARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SMIMEA"] | NotGiven = NOT_GIVEN,
@@ -7307,7 +7013,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordUpdateResponse]:
         """
         Overwrite an existing DNS record.
 
@@ -7332,8 +7038,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -7363,7 +7067,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.SRVRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.SRVRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SRV"] | NotGiven = NOT_GIVEN,
@@ -7373,7 +7076,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordUpdateResponse]:
         """
         Overwrite an existing DNS record.
 
@@ -7398,8 +7101,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -7429,7 +7130,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.SSHFPRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.SSHFPRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SSHFP"] | NotGiven = NOT_GIVEN,
@@ -7439,7 +7139,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordUpdateResponse]:
         """
         Overwrite an existing DNS record.
 
@@ -7464,8 +7164,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -7495,7 +7193,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.SVCBRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.SVCBRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SVCB"] | NotGiven = NOT_GIVEN,
@@ -7505,7 +7202,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordUpdateResponse]:
         """
         Overwrite an existing DNS record.
 
@@ -7530,8 +7227,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -7561,7 +7256,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.TLSARecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.TLSARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["TLSA"] | NotGiven = NOT_GIVEN,
@@ -7571,7 +7265,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordUpdateResponse]:
         """
         Overwrite an existing DNS record.
 
@@ -7596,8 +7290,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -7627,7 +7319,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.TXTRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["TXT"] | NotGiven = NOT_GIVEN,
@@ -7637,7 +7328,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordUpdateResponse]:
         """
         Overwrite an existing DNS record.
 
@@ -7668,8 +7359,6 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
-          settings: Settings for the DNS record.
-
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -7699,7 +7388,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.URIRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["URI"] | NotGiven = NOT_GIVEN,
@@ -7709,7 +7397,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordUpdateResponse]:
         """
         Overwrite an existing DNS record.
 
@@ -7737,8 +7425,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -7768,9 +7454,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_update_params.ARecordSettings
-        | record_update_params.CNAMERecordSettings
-        | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["A"]
@@ -7807,6 +7490,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         | record_update_params.SSHFPRecordData
         | record_update_params.URIRecordData
         | NotGiven = NOT_GIVEN,
+        settings: record_update_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -7814,13 +7498,13 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordUpdateResponse]:
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not dns_record_id:
             raise ValueError(f"Expected a non-empty value for `dns_record_id` but received {dns_record_id!r}")
         return cast(
-            Optional[RecordResponse],
+            Optional[RecordUpdateResponse],
             await self._put(
                 f"/zones/{zone_id}/dns_records/{dns_record_id}",
                 body=await async_maybe_transform(
@@ -7829,11 +7513,11 @@ class AsyncRecordsResource(AsyncAPIResource):
                         "content": content,
                         "name": name,
                         "proxied": proxied,
-                        "settings": settings,
                         "tags": tags,
                         "ttl": ttl,
                         "type": type,
                         "data": data,
+                        "settings": settings,
                         "priority": priority,
                     },
                     record_update_params.RecordUpdateParams,
@@ -7843,10 +7527,10 @@ class AsyncRecordsResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[RecordResponse]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[RecordUpdateResponse]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[RecordResponse]
+                    Any, ResultWrapper[RecordUpdateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -7897,7 +7581,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[RecordResponse, AsyncV4PagePaginationArray[RecordResponse]]:
+    ) -> AsyncPaginator[RecordListResponse, AsyncV4PagePaginationArray[RecordListResponse]]:
         """
         List, search, sort, and filter a zones' DNS records.
 
@@ -7945,7 +7629,7 @@ class AsyncRecordsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/dns_records",
-            page=AsyncV4PagePaginationArray[RecordResponse],
+            page=AsyncV4PagePaginationArray[RecordListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -7970,7 +7654,7 @@ class AsyncRecordsResource(AsyncAPIResource):
                     record_list_params.RecordListParams,
                 ),
             ),
-            model=cast(Any, RecordResponse),  # Union types cannot be passed in as arguments in the type system
+            model=cast(Any, RecordListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
     async def delete(
@@ -8022,9 +7706,9 @@ class AsyncRecordsResource(AsyncAPIResource):
         *,
         zone_id: str,
         deletes: Iterable[record_batch_params.Delete] | NotGiven = NOT_GIVEN,
-        patches: Iterable[BatchPatchParam] | NotGiven = NOT_GIVEN,
+        patches: Iterable[record_batch_params.Patch] | NotGiven = NOT_GIVEN,
         posts: Iterable[RecordParam] | NotGiven = NOT_GIVEN,
-        puts: Iterable[BatchPutParam] | NotGiven = NOT_GIVEN,
+        puts: Iterable[record_batch_params.Put] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -8095,7 +7779,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.ARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["A"] | NotGiven = NOT_GIVEN,
@@ -8105,7 +7788,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordEditResponse]:
         """
         Update an existing DNS record.
 
@@ -8130,8 +7813,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -8161,7 +7842,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.AAAARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["AAAA"] | NotGiven = NOT_GIVEN,
@@ -8171,7 +7851,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordEditResponse]:
         """
         Update an existing DNS record.
 
@@ -8196,8 +7876,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -8227,7 +7905,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.CAARecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.CAARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["CAA"] | NotGiven = NOT_GIVEN,
@@ -8237,7 +7914,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordEditResponse]:
         """
         Update an existing DNS record.
 
@@ -8262,8 +7939,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -8293,7 +7968,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.CERTRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.CERTRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["CERT"] | NotGiven = NOT_GIVEN,
@@ -8303,7 +7977,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordEditResponse]:
         """
         Update an existing DNS record.
 
@@ -8328,8 +8002,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -8369,7 +8041,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordEditResponse]:
         """
         Update an existing DNS record.
 
@@ -8394,8 +8066,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -8425,7 +8095,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.DNSKEYRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.DNSKEYRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["DNSKEY"] | NotGiven = NOT_GIVEN,
@@ -8435,7 +8104,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordEditResponse]:
         """
         Update an existing DNS record.
 
@@ -8460,8 +8129,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -8491,7 +8158,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.DSRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.DSRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["DS"] | NotGiven = NOT_GIVEN,
@@ -8501,7 +8167,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordEditResponse]:
         """
         Update an existing DNS record.
 
@@ -8526,8 +8192,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -8557,7 +8221,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.HTTPSRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.HTTPSRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["HTTPS"] | NotGiven = NOT_GIVEN,
@@ -8567,7 +8230,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordEditResponse]:
         """
         Update an existing DNS record.
 
@@ -8592,8 +8255,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -8623,7 +8284,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.LOCRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.LOCRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["LOC"] | NotGiven = NOT_GIVEN,
@@ -8633,7 +8293,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordEditResponse]:
         """
         Update an existing DNS record.
 
@@ -8658,8 +8318,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -8690,7 +8348,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.MXRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["MX"] | NotGiven = NOT_GIVEN,
@@ -8700,7 +8357,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordEditResponse]:
         """
         Update an existing DNS record.
 
@@ -8728,8 +8385,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -8759,7 +8414,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.NAPTRRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.NAPTRRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["NAPTR"] | NotGiven = NOT_GIVEN,
@@ -8769,7 +8423,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordEditResponse]:
         """
         Update an existing DNS record.
 
@@ -8795,8 +8449,6 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
-          settings: Settings for the DNS record.
-
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -8825,7 +8477,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.NSRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["NS"] | NotGiven = NOT_GIVEN,
@@ -8835,7 +8486,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordEditResponse]:
         """
         Update an existing DNS record.
 
@@ -8861,8 +8512,6 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
-          settings: Settings for the DNS record.
-
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -8891,7 +8540,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.DNSRecordsOpenpgpkeyRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["OPENPGPKEY"] | NotGiven = NOT_GIVEN,
@@ -8901,7 +8549,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordEditResponse]:
         """
         Update an existing DNS record.
 
@@ -8927,8 +8575,6 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
-          settings: Settings for the DNS record.
-
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -8957,7 +8603,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.PTRRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["PTR"] | NotGiven = NOT_GIVEN,
@@ -8967,7 +8612,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordEditResponse]:
         """
         Update an existing DNS record.
 
@@ -8992,8 +8637,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -9023,7 +8666,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.SMIMEARecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.SMIMEARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SMIMEA"] | NotGiven = NOT_GIVEN,
@@ -9033,7 +8675,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordEditResponse]:
         """
         Update an existing DNS record.
 
@@ -9058,8 +8700,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -9089,7 +8729,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.SRVRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.SRVRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SRV"] | NotGiven = NOT_GIVEN,
@@ -9099,7 +8738,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordEditResponse]:
         """
         Update an existing DNS record.
 
@@ -9124,8 +8763,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -9155,7 +8792,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.SSHFPRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.SSHFPRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SSHFP"] | NotGiven = NOT_GIVEN,
@@ -9165,7 +8801,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordEditResponse]:
         """
         Update an existing DNS record.
 
@@ -9190,8 +8826,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -9221,7 +8855,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.SVCBRecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.SVCBRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["SVCB"] | NotGiven = NOT_GIVEN,
@@ -9231,7 +8864,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordEditResponse]:
         """
         Update an existing DNS record.
 
@@ -9256,8 +8889,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -9287,7 +8918,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.TLSARecordData | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.TLSARecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["TLSA"] | NotGiven = NOT_GIVEN,
@@ -9297,7 +8927,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordEditResponse]:
         """
         Update an existing DNS record.
 
@@ -9322,8 +8952,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -9353,7 +8981,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.TXTRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["TXT"] | NotGiven = NOT_GIVEN,
@@ -9363,7 +8990,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordEditResponse]:
         """
         Update an existing DNS record.
 
@@ -9394,8 +9021,6 @@ class AsyncRecordsResource(AsyncAPIResource):
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
 
-          settings: Settings for the DNS record.
-
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
@@ -9425,7 +9050,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.URIRecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["URI"] | NotGiven = NOT_GIVEN,
@@ -9435,7 +9059,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordEditResponse]:
         """
         Update an existing DNS record.
 
@@ -9463,8 +9087,6 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           proxied: Whether the record is receiving the performance and security benefits of
               Cloudflare.
-
-          settings: Settings for the DNS record.
 
           tags: Custom tags for the DNS record. This field has no effect on DNS responses.
 
@@ -9494,7 +9116,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
-        settings: record_edit_params.ARecordSettings | record_edit_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
         type: Literal["A"]
@@ -9531,6 +9152,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         | record_edit_params.SSHFPRecordData
         | record_edit_params.URIRecordData
         | NotGiven = NOT_GIVEN,
+        settings: record_edit_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
         priority: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -9538,13 +9160,13 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordEditResponse]:
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not dns_record_id:
             raise ValueError(f"Expected a non-empty value for `dns_record_id` but received {dns_record_id!r}")
         return cast(
-            Optional[RecordResponse],
+            Optional[RecordEditResponse],
             await self._patch(
                 f"/zones/{zone_id}/dns_records/{dns_record_id}",
                 body=await async_maybe_transform(
@@ -9553,11 +9175,11 @@ class AsyncRecordsResource(AsyncAPIResource):
                         "content": content,
                         "name": name,
                         "proxied": proxied,
-                        "settings": settings,
                         "tags": tags,
                         "ttl": ttl,
                         "type": type,
                         "data": data,
+                        "settings": settings,
                         "priority": priority,
                     },
                     record_edit_params.RecordEditParams,
@@ -9567,10 +9189,10 @@ class AsyncRecordsResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[RecordResponse]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[RecordEditResponse]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[RecordResponse]
+                    Any, ResultWrapper[RecordEditResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -9628,7 +9250,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RecordResponse]:
+    ) -> Optional[RecordGetResponse]:
         """
         DNS Record Details
 
@@ -9650,7 +9272,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         if not dns_record_id:
             raise ValueError(f"Expected a non-empty value for `dns_record_id` but received {dns_record_id!r}")
         return cast(
-            Optional[RecordResponse],
+            Optional[RecordGetResponse],
             await self._get(
                 f"/zones/{zone_id}/dns_records/{dns_record_id}",
                 options=make_request_options(
@@ -9658,10 +9280,10 @@ class AsyncRecordsResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[RecordResponse]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[RecordGetResponse]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[RecordResponse]
+                    Any, ResultWrapper[RecordGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

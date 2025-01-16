@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare._utils import parse_date, parse_datetime
+from cloudflare._utils import parse_datetime
 from cloudflare.types.radar import (
     RankingTopResponse,
     RankingTimeseriesGroupsResponse,
@@ -69,7 +69,7 @@ class TestRanking:
     @parametrize
     def test_method_top_with_all_params(self, client: Cloudflare) -> None:
         ranking = client.radar.ranking.top(
-            date=[parse_date("2019-12-27")],
+            date=["string"],
             format="JSON",
             limit=5,
             location=["string"],
@@ -150,7 +150,7 @@ class TestAsyncRanking:
     @parametrize
     async def test_method_top_with_all_params(self, async_client: AsyncCloudflare) -> None:
         ranking = await async_client.radar.ranking.top(
-            date=[parse_date("2019-12-27")],
+            date=["string"],
             format="JSON",
             limit=5,
             location=["string"],

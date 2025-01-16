@@ -61,7 +61,6 @@ class ACLsResource(SyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         forward_locally: bool | NotGiven = NOT_GIVEN,
         protocols: List[AllowedProtocol] | NotGiven = NOT_GIVEN,
-        unidirectional: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -86,10 +85,6 @@ class ACLsResource(SyncAPIResource):
               traffic locally on the Magic Connector. If not included in request, will default
               to false.
 
-          unidirectional: The desired traffic direction for this ACL policy. If set to "false", the policy
-              will allow bidirectional traffic. If set to "true", the policy will only allow
-              traffic in one direction. If not included in request, will default to false.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -112,7 +107,6 @@ class ACLsResource(SyncAPIResource):
                     "description": description,
                     "forward_locally": forward_locally,
                     "protocols": protocols,
-                    "unidirectional": unidirectional,
                 },
                 acl_create_params.ACLCreateParams,
             ),
@@ -138,7 +132,6 @@ class ACLsResource(SyncAPIResource):
         lan_2: ACLConfigurationParam | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         protocols: List[AllowedProtocol] | NotGiven = NOT_GIVEN,
-        unidirectional: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -165,10 +158,6 @@ class ACLsResource(SyncAPIResource):
 
           name: The name of the ACL.
 
-          unidirectional: The desired traffic direction for this ACL policy. If set to "false", the policy
-              will allow bidirectional traffic. If set to "true", the policy will only allow
-              traffic in one direction. If not included in request, will default to false.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -193,7 +182,6 @@ class ACLsResource(SyncAPIResource):
                     "lan_2": lan_2,
                     "name": name,
                     "protocols": protocols,
-                    "unidirectional": unidirectional,
                 },
                 acl_update_params.ACLUpdateParams,
             ),
@@ -309,7 +297,6 @@ class ACLsResource(SyncAPIResource):
         lan_2: ACLConfigurationParam | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         protocols: List[AllowedProtocol] | NotGiven = NOT_GIVEN,
-        unidirectional: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -336,10 +323,6 @@ class ACLsResource(SyncAPIResource):
 
           name: The name of the ACL.
 
-          unidirectional: The desired traffic direction for this ACL policy. If set to "false", the policy
-              will allow bidirectional traffic. If set to "true", the policy will only allow
-              traffic in one direction. If not included in request, will default to false.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -364,7 +347,6 @@ class ACLsResource(SyncAPIResource):
                     "lan_2": lan_2,
                     "name": name,
                     "protocols": protocols,
-                    "unidirectional": unidirectional,
                 },
                 acl_edit_params.ACLEditParams,
             ),
@@ -459,7 +441,6 @@ class AsyncACLsResource(AsyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         forward_locally: bool | NotGiven = NOT_GIVEN,
         protocols: List[AllowedProtocol] | NotGiven = NOT_GIVEN,
-        unidirectional: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -484,10 +465,6 @@ class AsyncACLsResource(AsyncAPIResource):
               traffic locally on the Magic Connector. If not included in request, will default
               to false.
 
-          unidirectional: The desired traffic direction for this ACL policy. If set to "false", the policy
-              will allow bidirectional traffic. If set to "true", the policy will only allow
-              traffic in one direction. If not included in request, will default to false.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -510,7 +487,6 @@ class AsyncACLsResource(AsyncAPIResource):
                     "description": description,
                     "forward_locally": forward_locally,
                     "protocols": protocols,
-                    "unidirectional": unidirectional,
                 },
                 acl_create_params.ACLCreateParams,
             ),
@@ -536,7 +512,6 @@ class AsyncACLsResource(AsyncAPIResource):
         lan_2: ACLConfigurationParam | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         protocols: List[AllowedProtocol] | NotGiven = NOT_GIVEN,
-        unidirectional: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -563,10 +538,6 @@ class AsyncACLsResource(AsyncAPIResource):
 
           name: The name of the ACL.
 
-          unidirectional: The desired traffic direction for this ACL policy. If set to "false", the policy
-              will allow bidirectional traffic. If set to "true", the policy will only allow
-              traffic in one direction. If not included in request, will default to false.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -591,7 +562,6 @@ class AsyncACLsResource(AsyncAPIResource):
                     "lan_2": lan_2,
                     "name": name,
                     "protocols": protocols,
-                    "unidirectional": unidirectional,
                 },
                 acl_update_params.ACLUpdateParams,
             ),
@@ -707,7 +677,6 @@ class AsyncACLsResource(AsyncAPIResource):
         lan_2: ACLConfigurationParam | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         protocols: List[AllowedProtocol] | NotGiven = NOT_GIVEN,
-        unidirectional: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -734,10 +703,6 @@ class AsyncACLsResource(AsyncAPIResource):
 
           name: The name of the ACL.
 
-          unidirectional: The desired traffic direction for this ACL policy. If set to "false", the policy
-              will allow bidirectional traffic. If set to "true", the policy will only allow
-              traffic in one direction. If not included in request, will default to false.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -762,7 +727,6 @@ class AsyncACLsResource(AsyncAPIResource):
                     "lan_2": lan_2,
                     "name": name,
                     "protocols": protocols,
-                    "unidirectional": unidirectional,
                 },
                 acl_edit_params.ACLEditParams,
             ),

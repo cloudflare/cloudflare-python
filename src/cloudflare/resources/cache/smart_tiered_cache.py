@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, cast
 from typing_extensions import Literal
 
 import httpx
@@ -60,14 +60,9 @@ class SmartTieredCacheResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SmartTieredCacheDeleteResponse]:
+    ) -> SmartTieredCacheDeleteResponse:
         """
-        Smart Tiered Cache dynamically selects the single closest upper tier for each of
-        your website’s origins with no configuration required, using our in-house
-        performance and routing data. Cloudflare collects latency data for each request
-        to an origin, and uses the latency data to determine how well any upper-tier
-        data center is connected with an origin. As a result, Cloudflare can select the
-        data center with the lowest latency to be the upper-tier for an origin.
+        Remvoves enablement of Smart Tiered Cache
 
         Args:
           zone_id: Identifier
@@ -89,9 +84,9 @@ class SmartTieredCacheResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[SmartTieredCacheDeleteResponse]]._unwrapper,
+                post_parser=ResultWrapper[SmartTieredCacheDeleteResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SmartTieredCacheDeleteResponse]], ResultWrapper[SmartTieredCacheDeleteResponse]),
+            cast_to=cast(Type[SmartTieredCacheDeleteResponse], ResultWrapper[SmartTieredCacheDeleteResponse]),
         )
 
     def edit(
@@ -105,14 +100,9 @@ class SmartTieredCacheResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SmartTieredCacheEditResponse]:
+    ) -> SmartTieredCacheEditResponse:
         """
-        Smart Tiered Cache dynamically selects the single closest upper tier for each of
-        your website’s origins with no configuration required, using our in-house
-        performance and routing data. Cloudflare collects latency data for each request
-        to an origin, and uses the latency data to determine how well any upper-tier
-        data center is connected with an origin. As a result, Cloudflare can select the
-        data center with the lowest latency to be the upper-tier for an origin.
+        Updates enablement of Tiered Cache
 
         Args:
           zone_id: Identifier
@@ -137,9 +127,9 @@ class SmartTieredCacheResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[SmartTieredCacheEditResponse]]._unwrapper,
+                post_parser=ResultWrapper[SmartTieredCacheEditResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SmartTieredCacheEditResponse]], ResultWrapper[SmartTieredCacheEditResponse]),
+            cast_to=cast(Type[SmartTieredCacheEditResponse], ResultWrapper[SmartTieredCacheEditResponse]),
         )
 
     def get(
@@ -152,14 +142,9 @@ class SmartTieredCacheResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SmartTieredCacheGetResponse]:
+    ) -> SmartTieredCacheGetResponse:
         """
-        Smart Tiered Cache dynamically selects the single closest upper tier for each of
-        your website’s origins with no configuration required, using our in-house
-        performance and routing data. Cloudflare collects latency data for each request
-        to an origin, and uses the latency data to determine how well any upper-tier
-        data center is connected with an origin. As a result, Cloudflare can select the
-        data center with the lowest latency to be the upper-tier for an origin.
+        Get Smart Tiered Cache setting
 
         Args:
           zone_id: Identifier
@@ -181,9 +166,9 @@ class SmartTieredCacheResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[SmartTieredCacheGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[SmartTieredCacheGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SmartTieredCacheGetResponse]], ResultWrapper[SmartTieredCacheGetResponse]),
+            cast_to=cast(Type[SmartTieredCacheGetResponse], ResultWrapper[SmartTieredCacheGetResponse]),
         )
 
 
@@ -217,14 +202,9 @@ class AsyncSmartTieredCacheResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SmartTieredCacheDeleteResponse]:
+    ) -> SmartTieredCacheDeleteResponse:
         """
-        Smart Tiered Cache dynamically selects the single closest upper tier for each of
-        your website’s origins with no configuration required, using our in-house
-        performance and routing data. Cloudflare collects latency data for each request
-        to an origin, and uses the latency data to determine how well any upper-tier
-        data center is connected with an origin. As a result, Cloudflare can select the
-        data center with the lowest latency to be the upper-tier for an origin.
+        Remvoves enablement of Smart Tiered Cache
 
         Args:
           zone_id: Identifier
@@ -246,9 +226,9 @@ class AsyncSmartTieredCacheResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[SmartTieredCacheDeleteResponse]]._unwrapper,
+                post_parser=ResultWrapper[SmartTieredCacheDeleteResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SmartTieredCacheDeleteResponse]], ResultWrapper[SmartTieredCacheDeleteResponse]),
+            cast_to=cast(Type[SmartTieredCacheDeleteResponse], ResultWrapper[SmartTieredCacheDeleteResponse]),
         )
 
     async def edit(
@@ -262,14 +242,9 @@ class AsyncSmartTieredCacheResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SmartTieredCacheEditResponse]:
+    ) -> SmartTieredCacheEditResponse:
         """
-        Smart Tiered Cache dynamically selects the single closest upper tier for each of
-        your website’s origins with no configuration required, using our in-house
-        performance and routing data. Cloudflare collects latency data for each request
-        to an origin, and uses the latency data to determine how well any upper-tier
-        data center is connected with an origin. As a result, Cloudflare can select the
-        data center with the lowest latency to be the upper-tier for an origin.
+        Updates enablement of Tiered Cache
 
         Args:
           zone_id: Identifier
@@ -296,9 +271,9 @@ class AsyncSmartTieredCacheResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[SmartTieredCacheEditResponse]]._unwrapper,
+                post_parser=ResultWrapper[SmartTieredCacheEditResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SmartTieredCacheEditResponse]], ResultWrapper[SmartTieredCacheEditResponse]),
+            cast_to=cast(Type[SmartTieredCacheEditResponse], ResultWrapper[SmartTieredCacheEditResponse]),
         )
 
     async def get(
@@ -311,14 +286,9 @@ class AsyncSmartTieredCacheResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SmartTieredCacheGetResponse]:
+    ) -> SmartTieredCacheGetResponse:
         """
-        Smart Tiered Cache dynamically selects the single closest upper tier for each of
-        your website’s origins with no configuration required, using our in-house
-        performance and routing data. Cloudflare collects latency data for each request
-        to an origin, and uses the latency data to determine how well any upper-tier
-        data center is connected with an origin. As a result, Cloudflare can select the
-        data center with the lowest latency to be the upper-tier for an origin.
+        Get Smart Tiered Cache setting
 
         Args:
           zone_id: Identifier
@@ -340,9 +310,9 @@ class AsyncSmartTieredCacheResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[SmartTieredCacheGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[SmartTieredCacheGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SmartTieredCacheGetResponse]], ResultWrapper[SmartTieredCacheGetResponse]),
+            cast_to=cast(Type[SmartTieredCacheGetResponse], ResultWrapper[SmartTieredCacheGetResponse]),
         )
 
 

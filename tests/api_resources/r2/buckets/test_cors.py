@@ -44,7 +44,7 @@ class TestCORS:
                     "max_age_seconds": 3600,
                 }
             ],
-            jurisdiction="default",
+            cf_r2_jurisdiction="default",
         )
         assert_matches_type(object, cors, path=["response"])
 
@@ -106,7 +106,7 @@ class TestCORS:
         cors = client.r2.buckets.cors.delete(
             bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            jurisdiction="default",
+            cf_r2_jurisdiction="default",
         )
         assert_matches_type(object, cors, path=["response"])
 
@@ -168,7 +168,7 @@ class TestCORS:
         cors = client.r2.buckets.cors.get(
             bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            jurisdiction="default",
+            cf_r2_jurisdiction="default",
         )
         assert_matches_type(CORSGetResponse, cors, path=["response"])
 
@@ -246,7 +246,7 @@ class TestAsyncCORS:
                     "max_age_seconds": 3600,
                 }
             ],
-            jurisdiction="default",
+            cf_r2_jurisdiction="default",
         )
         assert_matches_type(object, cors, path=["response"])
 
@@ -308,7 +308,7 @@ class TestAsyncCORS:
         cors = await async_client.r2.buckets.cors.delete(
             bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            jurisdiction="default",
+            cf_r2_jurisdiction="default",
         )
         assert_matches_type(object, cors, path=["response"])
 
@@ -370,7 +370,7 @@ class TestAsyncCORS:
         cors = await async_client.r2.buckets.cors.get(
             bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            jurisdiction="default",
+            cf_r2_jurisdiction="default",
         )
         assert_matches_type(CORSGetResponse, cors, path=["response"])
 
