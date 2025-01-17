@@ -37,6 +37,8 @@ from .automatic_platform_optimization import AutomaticPlatformOptimization
 
 __all__ = [
     "SettingGetResponse",
+    "ZonesCacheRulesAegis",
+    "ZonesCacheRulesAegisValue",
     "ZonesSchemasAlwaysUseHTTPS",
     "ZonesSchemasAutomaticHTTPSRewrites",
     "ZonesSchemasBrowserCacheTTL",
@@ -50,6 +52,8 @@ __all__ = [
     "ZonesSchemasMirage",
     "ZonesSchemasOpportunisticEncryption",
     "ZonesSchemasOriginErrorPagePassThru",
+    "ZonesCacheRulesOriginH2MaxStreams",
+    "ZonesCacheRulesOriginMaxHTTPVersion",
     "ZonesSchemasPolish",
     "ZonesReplaceInsecureJS",
     "ZonesSchemasResponseBuffering",
@@ -63,6 +67,28 @@ __all__ = [
     "ZonesSchemasTrueClientIPHeader",
     "ZonesSchemasWAF",
 ]
+
+
+class ZonesCacheRulesAegisValue(BaseModel):
+    enabled: Optional[bool] = None
+    """Whether the feature is enabled or not."""
+
+    pool_id: Optional[str] = None
+    """
+    Egress pool id which refers to a grouping of dedicated egress IPs through which
+    Cloudflare will connect to origin.
+    """
+
+
+class ZonesCacheRulesAegis(BaseModel):
+    id: Literal["aegis"]
+    """ID of the zone setting."""
+
+    modified_on: Optional[datetime] = None
+    """Last time this setting was modified."""
+
+    value: Optional[ZonesCacheRulesAegisValue] = None
+    """Value of the zone setting."""
 
 
 class ZonesSchemasAlwaysUseHTTPS(BaseModel):
@@ -337,6 +363,28 @@ class ZonesSchemasOriginErrorPagePassThru(BaseModel):
     """last time this setting was modified."""
 
 
+class ZonesCacheRulesOriginH2MaxStreams(BaseModel):
+    id: Literal["origin_h2_max_streams"]
+    """Value of the zone setting."""
+
+    modified_on: Optional[datetime] = None
+    """Last time this setting was modified."""
+
+    value: Optional[int] = None
+    """Value of the Origin H2 Max Streams Setting."""
+
+
+class ZonesCacheRulesOriginMaxHTTPVersion(BaseModel):
+    id: Literal["origin_max_http_version"]
+    """Value of the zone setting."""
+
+    modified_on: Optional[datetime] = None
+    """Last time this setting was modified."""
+
+    value: Optional[Literal["2", "1"]] = None
+    """Value of the Origin Max HTTP Version Setting."""
+
+
 class ZonesSchemasPolish(BaseModel):
     id: Literal["polish"]
     """ID of the zone setting."""
@@ -544,6 +592,7 @@ class ZonesSchemasWAF(BaseModel):
 SettingGetResponse: TypeAlias = Union[
     ZeroRTT,
     AdvancedDDoS,
+    ZonesCacheRulesAegis,
     AlwaysOnline,
     ZonesSchemasAlwaysUseHTTPS,
     ZonesSchemasAutomaticHTTPSRewrites,
@@ -573,6 +622,8 @@ SettingGetResponse: TypeAlias = Union[
     OpportunisticOnion,
     OrangeToOrange,
     ZonesSchemasOriginErrorPagePassThru,
+    ZonesCacheRulesOriginH2MaxStreams,
+    ZonesCacheRulesOriginMaxHTTPVersion,
     ZonesSchemasPolish,
     PrefetchPreload,
     ProxyReadTimeout,
