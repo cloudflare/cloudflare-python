@@ -37,6 +37,8 @@ class DOHGetResponse(BaseModel):
 
     expires_at: Optional[datetime] = None
 
+    last_seen_at: Optional[datetime] = None
+
     name: Optional[str] = None
     """The name of the service token."""
 
