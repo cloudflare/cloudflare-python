@@ -58,7 +58,7 @@ class ListsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ListsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -316,7 +316,7 @@ class AsyncListsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncListsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
