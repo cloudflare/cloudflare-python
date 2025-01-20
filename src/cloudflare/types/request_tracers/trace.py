@@ -2,8 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List
-from typing_extensions import TypeAlias
+from typing_extensions import List, TypeAlias
 
 __all__ = ["Trace"]
 
