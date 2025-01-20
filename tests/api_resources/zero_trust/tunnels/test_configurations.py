@@ -81,6 +81,7 @@ class TestConfigurations:
                     "tcp_keep_alive": 0,
                     "tls_timeout": 0,
                 },
+                "warp_routing": {"enabled": True},
             },
         )
         assert_matches_type(Optional[ConfigurationUpdateResponse], configuration, path=["response"])
@@ -238,6 +239,7 @@ class TestAsyncConfigurations:
                     "tcp_keep_alive": 0,
                     "tls_timeout": 0,
                 },
+                "warp_routing": {"enabled": True},
             },
         )
         assert_matches_type(Optional[ConfigurationUpdateResponse], configuration, path=["response"])
