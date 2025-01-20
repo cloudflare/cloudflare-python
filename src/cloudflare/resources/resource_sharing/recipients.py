@@ -55,8 +55,8 @@ class RecipientsResource(SyncAPIResource):
         self,
         share_id: str,
         *,
-        path_account_id: str,
-        body_account_id: str | NotGiven = NOT_GIVEN,
+        account_id_1: str,
+        account_id_2: str | NotGiven = NOT_GIVEN,
         organization_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -69,11 +69,11 @@ class RecipientsResource(SyncAPIResource):
         Create a new share recipient
 
         Args:
-          path_account_id: Account identifier.
+          account_id_1: Account identifier.
 
           share_id: Share identifier tag.
 
-          body_account_id: Account identifier.
+          account_id_2: Account identifier.
 
           organization_id: Organization identifier.
 
@@ -85,15 +85,15 @@ class RecipientsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not path_account_id:
-            raise ValueError(f"Expected a non-empty value for `path_account_id` but received {path_account_id!r}")
+        if not account_id_1:
+            raise ValueError(f"Expected a non-empty value for `account_id_1` but received {account_id_1!r}")
         if not share_id:
             raise ValueError(f"Expected a non-empty value for `share_id` but received {share_id!r}")
         return self._post(
-            f"/accounts/{path_account_id}/shares/{share_id}/recipients",
+            f"/accounts/{account_id_1}/shares/{share_id}/recipients",
             body=maybe_transform(
                 {
-                    "body_account_id": body_account_id,
+                    "account_id_2": account_id_2,
                     "organization_id": organization_id,
                 },
                 recipient_create_params.RecipientCreateParams,
@@ -289,8 +289,8 @@ class AsyncRecipientsResource(AsyncAPIResource):
         self,
         share_id: str,
         *,
-        path_account_id: str,
-        body_account_id: str | NotGiven = NOT_GIVEN,
+        account_id_1: str,
+        account_id_2: str | NotGiven = NOT_GIVEN,
         organization_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -303,11 +303,11 @@ class AsyncRecipientsResource(AsyncAPIResource):
         Create a new share recipient
 
         Args:
-          path_account_id: Account identifier.
+          account_id_1: Account identifier.
 
           share_id: Share identifier tag.
 
-          body_account_id: Account identifier.
+          account_id_2: Account identifier.
 
           organization_id: Organization identifier.
 
@@ -319,15 +319,15 @@ class AsyncRecipientsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not path_account_id:
-            raise ValueError(f"Expected a non-empty value for `path_account_id` but received {path_account_id!r}")
+        if not account_id_1:
+            raise ValueError(f"Expected a non-empty value for `account_id_1` but received {account_id_1!r}")
         if not share_id:
             raise ValueError(f"Expected a non-empty value for `share_id` but received {share_id!r}")
         return await self._post(
-            f"/accounts/{path_account_id}/shares/{share_id}/recipients",
+            f"/accounts/{account_id_1}/shares/{share_id}/recipients",
             body=await async_maybe_transform(
                 {
-                    "body_account_id": body_account_id,
+                    "account_id_2": account_id_2,
                     "organization_id": organization_id,
                 },
                 recipient_create_params.RecipientCreateParams,

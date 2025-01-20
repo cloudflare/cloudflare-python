@@ -27,7 +27,7 @@ class TestRecipients:
     def test_method_create(self, client: Cloudflare) -> None:
         recipient = client.resource_sharing.recipients.create(
             share_id="3fd85f74b32742f1bff64a85009dda07",
-            path_account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id_1="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[RecipientCreateResponse], recipient, path=["response"])
 
@@ -35,8 +35,8 @@ class TestRecipients:
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         recipient = client.resource_sharing.recipients.create(
             share_id="3fd85f74b32742f1bff64a85009dda07",
-            path_account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body_account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id_1="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id_2="023e105f4ecef8ad9ca31a8372d0c353",
             organization_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[RecipientCreateResponse], recipient, path=["response"])
@@ -45,7 +45,7 @@ class TestRecipients:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.resource_sharing.recipients.with_raw_response.create(
             share_id="3fd85f74b32742f1bff64a85009dda07",
-            path_account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id_1="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -57,7 +57,7 @@ class TestRecipients:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.resource_sharing.recipients.with_streaming_response.create(
             share_id="3fd85f74b32742f1bff64a85009dda07",
-            path_account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id_1="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -69,17 +69,17 @@ class TestRecipients:
 
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id_1` but received ''"):
             client.resource_sharing.recipients.with_raw_response.create(
                 share_id="3fd85f74b32742f1bff64a85009dda07",
-                path_account_id="",
-                body_account_id="",
+                account_id_1="",
+                account_id_2="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `share_id` but received ''"):
             client.resource_sharing.recipients.with_raw_response.create(
                 share_id="",
-                path_account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id_1="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
@@ -268,7 +268,7 @@ class TestAsyncRecipients:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         recipient = await async_client.resource_sharing.recipients.create(
             share_id="3fd85f74b32742f1bff64a85009dda07",
-            path_account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id_1="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[RecipientCreateResponse], recipient, path=["response"])
 
@@ -276,8 +276,8 @@ class TestAsyncRecipients:
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         recipient = await async_client.resource_sharing.recipients.create(
             share_id="3fd85f74b32742f1bff64a85009dda07",
-            path_account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body_account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id_1="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id_2="023e105f4ecef8ad9ca31a8372d0c353",
             organization_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[RecipientCreateResponse], recipient, path=["response"])
@@ -286,7 +286,7 @@ class TestAsyncRecipients:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.resource_sharing.recipients.with_raw_response.create(
             share_id="3fd85f74b32742f1bff64a85009dda07",
-            path_account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id_1="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -298,7 +298,7 @@ class TestAsyncRecipients:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.resource_sharing.recipients.with_streaming_response.create(
             share_id="3fd85f74b32742f1bff64a85009dda07",
-            path_account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id_1="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -310,17 +310,17 @@ class TestAsyncRecipients:
 
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id_1` but received ''"):
             await async_client.resource_sharing.recipients.with_raw_response.create(
                 share_id="3fd85f74b32742f1bff64a85009dda07",
-                path_account_id="",
-                body_account_id="",
+                account_id_1="",
+                account_id_2="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `share_id` but received ''"):
             await async_client.resource_sharing.recipients.with_raw_response.create(
                 share_id="",
-                path_account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id_1="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
