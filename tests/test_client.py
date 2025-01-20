@@ -5,6 +5,7 @@ from __future__ import annotations
 import gc
 import os
 import json
+import time
 import asyncio
 import inspect
 import tracemalloc
@@ -1781,3 +1782,48 @@ class TestAsyncCloudflare:
         )
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
+
+    def test_get_platform(self) -> None:
+        # A previous implementation of asyncify could leave threads unterminated when
+        # used with nest_asyncio.
+        #
+        # Since nest_asyncio.apply() is global and cannot be un-applied, this
+        # test is run in a separate process to avoid affecting other tests.
+        test_code = dedent("""
+        import asyncio
+        import nest_asyncio
+        import threading
+
+        from cloudflare._utils import asyncify
+        from cloudflare._base_client import get_platform 
+
+        async def test_main() -> None:
+            result = await asyncify(get_platform)()
+            print(result)
+            for thread in threading.enumerate():
+                print(thread.name)
+
+        nest_asyncio.apply()
+        asyncio.run(test_main())
+        """)
+        with subprocess.Popen(
+            [sys.executable, "-c", test_code],
+            text=True,
+        ) as process:
+            timeout = 10  # seconds
+
+            start_time = time.monotonic()
+            while True:
+                return_code = process.poll()
+                if return_code is not None:
+                    if return_code != 0:
+                        raise AssertionError("calling get_platform using asyncify resulted in a non-zero exit code")
+
+                    # success
+                    break
+
+                if time.monotonic() - start_time > timeout:
+                    process.kill()
+                    raise AssertionError("calling get_platform using asyncify resulted in a hung process")
+
+                time.sleep(0.1)
