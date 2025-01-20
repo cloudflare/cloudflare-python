@@ -80,7 +80,7 @@ class DefaultResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> DefaultResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -241,7 +241,7 @@ class AsyncDefaultResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncDefaultResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
