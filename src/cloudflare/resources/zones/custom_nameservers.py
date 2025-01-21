@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Type, Optional, cast
 
 import httpx
@@ -48,6 +49,9 @@ class CustomNameserversResource(SyncAPIResource):
         """
         return CustomNameserversResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use [DNS settings API](https://developers.cloudflare.com/api/resources/dns/subresources/settings/methods/put/) instead."
+    )
     def update(
         self,
         *,
@@ -107,6 +111,9 @@ class CustomNameserversResource(SyncAPIResource):
             cast_to=cast(Type[Optional[CustomNameserverUpdateResponse]], ResultWrapper[CustomNameserverUpdateResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [DNS settings API](https://developers.cloudflare.com/api/resources/dns/subresources/settings/methods/get/) instead."
+    )
     def get(
         self,
         *,
@@ -166,6 +173,9 @@ class AsyncCustomNameserversResource(AsyncAPIResource):
         """
         return AsyncCustomNameserversResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use [DNS settings API](https://developers.cloudflare.com/api/resources/dns/subresources/settings/methods/put/) instead."
+    )
     async def update(
         self,
         *,
@@ -225,6 +235,9 @@ class AsyncCustomNameserversResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[CustomNameserverUpdateResponse]], ResultWrapper[CustomNameserverUpdateResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Use [DNS settings API](https://developers.cloudflare.com/api/resources/dns/subresources/settings/methods/get/) instead."
+    )
     async def get(
         self,
         *,
@@ -268,11 +281,15 @@ class CustomNameserversResourceWithRawResponse:
     def __init__(self, custom_nameservers: CustomNameserversResource) -> None:
         self._custom_nameservers = custom_nameservers
 
-        self.update = to_raw_response_wrapper(
-            custom_nameservers.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                custom_nameservers.update  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_raw_response_wrapper(
-            custom_nameservers.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                custom_nameservers.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -280,11 +297,15 @@ class AsyncCustomNameserversResourceWithRawResponse:
     def __init__(self, custom_nameservers: AsyncCustomNameserversResource) -> None:
         self._custom_nameservers = custom_nameservers
 
-        self.update = async_to_raw_response_wrapper(
-            custom_nameservers.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                custom_nameservers.update  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_raw_response_wrapper(
-            custom_nameservers.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                custom_nameservers.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -292,11 +313,15 @@ class CustomNameserversResourceWithStreamingResponse:
     def __init__(self, custom_nameservers: CustomNameserversResource) -> None:
         self._custom_nameservers = custom_nameservers
 
-        self.update = to_streamed_response_wrapper(
-            custom_nameservers.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                custom_nameservers.update  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_streamed_response_wrapper(
-            custom_nameservers.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                custom_nameservers.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -304,9 +329,13 @@ class AsyncCustomNameserversResourceWithStreamingResponse:
     def __init__(self, custom_nameservers: AsyncCustomNameserversResource) -> None:
         self._custom_nameservers = custom_nameservers
 
-        self.update = async_to_streamed_response_wrapper(
-            custom_nameservers.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                custom_nameservers.update  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_streamed_response_wrapper(
-            custom_nameservers.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                custom_nameservers.get  # pyright: ignore[reportDeprecated],
+            )
         )
