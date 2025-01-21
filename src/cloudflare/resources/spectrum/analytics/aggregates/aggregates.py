@@ -24,7 +24,7 @@ class AggregatesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AggregatesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -49,7 +49,7 @@ class AsyncAggregatesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncAggregatesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers

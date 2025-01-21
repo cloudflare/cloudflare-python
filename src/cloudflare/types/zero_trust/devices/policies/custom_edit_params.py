@@ -23,7 +23,7 @@ class CustomEditParams(TypedDict, total=False):
     """Whether to allow devices to leave the organization."""
 
     auto_connect: float
-    """The amount of time in minutes to reconnect after having been disabled."""
+    """The amount of time in seconds to reconnect after having been disabled."""
 
     captive_portal: float
     """Turn on the captive portal after the specified amount of time."""

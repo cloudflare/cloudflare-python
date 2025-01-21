@@ -69,7 +69,7 @@ class CustomResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> CustomResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -133,7 +133,7 @@ class CustomResource(SyncAPIResource):
 
           allowed_to_leave: Whether to allow devices to leave the organization.
 
-          auto_connect: The amount of time in minutes to reconnect after having been disabled.
+          auto_connect: The amount of time in seconds to reconnect after having been disabled.
 
           captive_portal: Turn on the captive portal after the specified amount of time.
 
@@ -324,7 +324,7 @@ class CustomResource(SyncAPIResource):
 
           allowed_to_leave: Whether to allow devices to leave the organization.
 
-          auto_connect: The amount of time in minutes to reconnect after having been disabled.
+          auto_connect: The amount of time in seconds to reconnect after having been disabled.
 
           captive_portal: Turn on the captive portal after the specified amount of time.
 
@@ -455,7 +455,7 @@ class AsyncCustomResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncCustomResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -519,7 +519,7 @@ class AsyncCustomResource(AsyncAPIResource):
 
           allowed_to_leave: Whether to allow devices to leave the organization.
 
-          auto_connect: The amount of time in minutes to reconnect after having been disabled.
+          auto_connect: The amount of time in seconds to reconnect after having been disabled.
 
           captive_portal: Turn on the captive portal after the specified amount of time.
 
@@ -710,7 +710,7 @@ class AsyncCustomResource(AsyncAPIResource):
 
           allowed_to_leave: Whether to allow devices to leave the organization.
 
-          auto_connect: The amount of time in minutes to reconnect after having been disabled.
+          auto_connect: The amount of time in seconds to reconnect after having been disabled.
 
           captive_portal: Turn on the captive portal after the specified amount of time.
 

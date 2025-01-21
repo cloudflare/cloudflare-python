@@ -81,7 +81,9 @@ class OriginHyperdriveHyperdriveInternetOrigin(TypedDict, total=False):
 
 class OriginHyperdriveHyperdriveOverAccessOrigin(TypedDict, total=False):
     access_client_id: Required[str]
-    """The Client ID of the Access token to use when connecting to the origin database"""
+    """
+    The Client ID of the Access token to use when connecting to the origin database.
+    """
 
     access_client_secret: Required[str]
     """

@@ -16,14 +16,6 @@ from .quota import (
     QuotaResourceWithStreamingResponse,
     AsyncQuotaResourceWithStreamingResponse,
 )
-from .users import (
-    UsersResource,
-    AsyncUsersResource,
-    UsersResourceWithRawResponse,
-    AsyncUsersResourceWithRawResponse,
-    UsersResourceWithStreamingResponse,
-    AsyncUsersResourceWithStreamingResponse,
-)
 from .devices import (
     DevicesResource,
     AsyncDevicesResource,
@@ -65,10 +57,6 @@ __all__ = ["CommandsResource", "AsyncCommandsResource"]
 
 class CommandsResource(SyncAPIResource):
     @cached_property
-    def users(self) -> UsersResource:
-        return UsersResource(self._client)
-
-    @cached_property
     def devices(self) -> DevicesResource:
         return DevicesResource(self._client)
 
@@ -83,7 +71,7 @@ class CommandsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> CommandsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -218,10 +206,6 @@ class CommandsResource(SyncAPIResource):
 
 class AsyncCommandsResource(AsyncAPIResource):
     @cached_property
-    def users(self) -> AsyncUsersResource:
-        return AsyncUsersResource(self._client)
-
-    @cached_property
     def devices(self) -> AsyncDevicesResource:
         return AsyncDevicesResource(self._client)
 
@@ -236,7 +220,7 @@ class AsyncCommandsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncCommandsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -381,10 +365,6 @@ class CommandsResourceWithRawResponse:
         )
 
     @cached_property
-    def users(self) -> UsersResourceWithRawResponse:
-        return UsersResourceWithRawResponse(self._commands.users)
-
-    @cached_property
     def devices(self) -> DevicesResourceWithRawResponse:
         return DevicesResourceWithRawResponse(self._commands.devices)
 
@@ -407,10 +387,6 @@ class AsyncCommandsResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             commands.list,
         )
-
-    @cached_property
-    def users(self) -> AsyncUsersResourceWithRawResponse:
-        return AsyncUsersResourceWithRawResponse(self._commands.users)
 
     @cached_property
     def devices(self) -> AsyncDevicesResourceWithRawResponse:
@@ -437,10 +413,6 @@ class CommandsResourceWithStreamingResponse:
         )
 
     @cached_property
-    def users(self) -> UsersResourceWithStreamingResponse:
-        return UsersResourceWithStreamingResponse(self._commands.users)
-
-    @cached_property
     def devices(self) -> DevicesResourceWithStreamingResponse:
         return DevicesResourceWithStreamingResponse(self._commands.devices)
 
@@ -463,10 +435,6 @@ class AsyncCommandsResourceWithStreamingResponse:
         self.list = async_to_streamed_response_wrapper(
             commands.list,
         )
-
-    @cached_property
-    def users(self) -> AsyncUsersResourceWithStreamingResponse:
-        return AsyncUsersResourceWithStreamingResponse(self._commands.users)
 
     @cached_property
     def devices(self) -> AsyncDevicesResourceWithStreamingResponse:

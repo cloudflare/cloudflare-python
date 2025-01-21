@@ -2,16 +2,10 @@
 
 from __future__ import annotations
 
-from typing_extensions import TYPE_CHECKING, List, TypeAlias, TypeAliasType
-
-from ..._compat import PYDANTIC_V2
+from typing_extensions import List, TypeAlias
 
 __all__ = ["Trace"]
 
-
-if TYPE_CHECKING or PYDANTIC_V2:
-    Trace = TypeAliasType("Trace", List["TraceItem"])
-else:
-    Trace: TypeAlias = List["TraceItem"]
+Trace: TypeAlias = List["TraceItem"]
 
 from .trace_item import TraceItem

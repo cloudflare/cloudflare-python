@@ -156,18 +156,6 @@ class TestTokens:
         token = client.accounts.tokens.update(
             token_id="ed17574386854bf78a67040be0a770b0",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
-            name="readonly token",
-            policies=[
-                {
-                    "effect": "allow",
-                    "permission_groups": [{}, {}],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
-                }
-            ],
-            status="active",
         )
         assert_matches_type(Optional[Token], token, path=["response"])
 
@@ -177,7 +165,15 @@ class TestTokens:
         token = client.accounts.tokens.update(
             token_id="ed17574386854bf78a67040be0a770b0",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            condition={
+                "request_ip": {
+                    "in": ["123.123.123.0/24", "2606:4700::/32"],
+                    "not_in": ["123.123.123.100/24", "2606:4700:4700::/48"],
+                }
+            },
+            expires_on=parse_datetime("2020-01-01T00:00:00Z"),
             name="readonly token",
+            not_before=parse_datetime("2018-07-01T05:20:00Z"),
             policies=[
                 {
                     "effect": "allow",
@@ -202,14 +198,6 @@ class TestTokens:
                 }
             ],
             status="active",
-            condition={
-                "request_ip": {
-                    "in": ["123.123.123.0/24", "2606:4700::/32"],
-                    "not_in": ["123.123.123.100/24", "2606:4700:4700::/48"],
-                }
-            },
-            expires_on=parse_datetime("2020-01-01T00:00:00Z"),
-            not_before=parse_datetime("2018-07-01T05:20:00Z"),
         )
         assert_matches_type(Optional[Token], token, path=["response"])
 
@@ -219,18 +207,6 @@ class TestTokens:
         response = client.accounts.tokens.with_raw_response.update(
             token_id="ed17574386854bf78a67040be0a770b0",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
-            name="readonly token",
-            policies=[
-                {
-                    "effect": "allow",
-                    "permission_groups": [{}, {}],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
-                }
-            ],
-            status="active",
         )
 
         assert response.is_closed is True
@@ -244,18 +220,6 @@ class TestTokens:
         with client.accounts.tokens.with_streaming_response.update(
             token_id="ed17574386854bf78a67040be0a770b0",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
-            name="readonly token",
-            policies=[
-                {
-                    "effect": "allow",
-                    "permission_groups": [{}, {}],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
-                }
-            ],
-            status="active",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -272,36 +236,12 @@ class TestTokens:
             client.accounts.tokens.with_raw_response.update(
                 token_id="ed17574386854bf78a67040be0a770b0",
                 account_id="",
-                name="readonly token",
-                policies=[
-                    {
-                        "effect": "allow",
-                        "permission_groups": [{}, {}],
-                        "resources": {
-                            "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                            "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                        },
-                    }
-                ],
-                status="active",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `token_id` but received ''"):
             client.accounts.tokens.with_raw_response.update(
                 token_id="",
                 account_id="eb78d65290b24279ba6f44721b3ea3c4",
-                name="readonly token",
-                policies=[
-                    {
-                        "effect": "allow",
-                        "permission_groups": [{}, {}],
-                        "resources": {
-                            "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                            "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                        },
-                    }
-                ],
-                status="active",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -639,18 +579,6 @@ class TestAsyncTokens:
         token = await async_client.accounts.tokens.update(
             token_id="ed17574386854bf78a67040be0a770b0",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
-            name="readonly token",
-            policies=[
-                {
-                    "effect": "allow",
-                    "permission_groups": [{}, {}],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
-                }
-            ],
-            status="active",
         )
         assert_matches_type(Optional[Token], token, path=["response"])
 
@@ -660,7 +588,15 @@ class TestAsyncTokens:
         token = await async_client.accounts.tokens.update(
             token_id="ed17574386854bf78a67040be0a770b0",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            condition={
+                "request_ip": {
+                    "in": ["123.123.123.0/24", "2606:4700::/32"],
+                    "not_in": ["123.123.123.100/24", "2606:4700:4700::/48"],
+                }
+            },
+            expires_on=parse_datetime("2020-01-01T00:00:00Z"),
             name="readonly token",
+            not_before=parse_datetime("2018-07-01T05:20:00Z"),
             policies=[
                 {
                     "effect": "allow",
@@ -685,14 +621,6 @@ class TestAsyncTokens:
                 }
             ],
             status="active",
-            condition={
-                "request_ip": {
-                    "in": ["123.123.123.0/24", "2606:4700::/32"],
-                    "not_in": ["123.123.123.100/24", "2606:4700:4700::/48"],
-                }
-            },
-            expires_on=parse_datetime("2020-01-01T00:00:00Z"),
-            not_before=parse_datetime("2018-07-01T05:20:00Z"),
         )
         assert_matches_type(Optional[Token], token, path=["response"])
 
@@ -702,18 +630,6 @@ class TestAsyncTokens:
         response = await async_client.accounts.tokens.with_raw_response.update(
             token_id="ed17574386854bf78a67040be0a770b0",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
-            name="readonly token",
-            policies=[
-                {
-                    "effect": "allow",
-                    "permission_groups": [{}, {}],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
-                }
-            ],
-            status="active",
         )
 
         assert response.is_closed is True
@@ -727,18 +643,6 @@ class TestAsyncTokens:
         async with async_client.accounts.tokens.with_streaming_response.update(
             token_id="ed17574386854bf78a67040be0a770b0",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
-            name="readonly token",
-            policies=[
-                {
-                    "effect": "allow",
-                    "permission_groups": [{}, {}],
-                    "resources": {
-                        "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                        "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                    },
-                }
-            ],
-            status="active",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -755,36 +659,12 @@ class TestAsyncTokens:
             await async_client.accounts.tokens.with_raw_response.update(
                 token_id="ed17574386854bf78a67040be0a770b0",
                 account_id="",
-                name="readonly token",
-                policies=[
-                    {
-                        "effect": "allow",
-                        "permission_groups": [{}, {}],
-                        "resources": {
-                            "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                            "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                        },
-                    }
-                ],
-                status="active",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `token_id` but received ''"):
             await async_client.accounts.tokens.with_raw_response.update(
                 token_id="",
                 account_id="eb78d65290b24279ba6f44721b3ea3c4",
-                name="readonly token",
-                policies=[
-                    {
-                        "effect": "allow",
-                        "permission_groups": [{}, {}],
-                        "resources": {
-                            "com.cloudflare.api.account.zone.22b1de5f1c0e4b3ea97bb1e963b06a43": "*",
-                            "com.cloudflare.api.account.zone.eb78d65290b24279ba6f44721b3ea3c4": "*",
-                        },
-                    }
-                ],
-                status="active",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")

@@ -34,7 +34,7 @@ class NetworksResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> NetworksResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -68,9 +68,6 @@ class NetworksResource(SyncAPIResource):
         Creates a new device managed network.
 
         Args:
-          config: The configuration object containing information for the WARP client to detect
-              the managed network.
-
           name: The name of the device managed network. This name must be unique.
 
           type: The type of device managed network.
@@ -125,9 +122,6 @@ class NetworksResource(SyncAPIResource):
 
         Args:
           network_id: API UUID.
-
-          config: The configuration object containing information for the WARP client to detect
-              the managed network.
 
           name: The name of the device managed network. This name must be unique.
 
@@ -289,7 +283,7 @@ class AsyncNetworksResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncNetworksResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -323,9 +317,6 @@ class AsyncNetworksResource(AsyncAPIResource):
         Creates a new device managed network.
 
         Args:
-          config: The configuration object containing information for the WARP client to detect
-              the managed network.
-
           name: The name of the device managed network. This name must be unique.
 
           type: The type of device managed network.
@@ -380,9 +371,6 @@ class AsyncNetworksResource(AsyncAPIResource):
 
         Args:
           network_id: API UUID.
-
-          config: The configuration object containing information for the WARP client to detect
-              the managed network.
 
           name: The name of the device managed network. This name must be unique.
 

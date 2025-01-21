@@ -31,7 +31,7 @@ class MiscategorizationsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> MiscategorizationsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -120,7 +120,7 @@ class AsyncMiscategorizationsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncMiscategorizationsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers

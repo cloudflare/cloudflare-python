@@ -43,7 +43,7 @@ class TargetsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> TargetsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -199,9 +199,8 @@ class TargetsResource(SyncAPIResource):
     ) -> SyncV4PagePaginationArray[TargetListResponse]:
         """Lists and sorts an account’s targets.
 
-        Filters are optional and are ORed
-        together. However, when a timestamp is specified with both its before and after
-        counterparts, the timestamp filters are ANDed.
+        Filters are optional and are ANDed
+        together.
 
         Args:
           account_id: Account identifier
@@ -439,7 +438,7 @@ class AsyncTargetsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncTargetsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -595,9 +594,8 @@ class AsyncTargetsResource(AsyncAPIResource):
     ) -> AsyncPaginator[TargetListResponse, AsyncV4PagePaginationArray[TargetListResponse]]:
         """Lists and sorts an account’s targets.
 
-        Filters are optional and are ORed
-        together. However, when a timestamp is specified with both its before and after
-        counterparts, the timestamp filters are ANDed.
+        Filters are optional and are ANDed
+        together.
 
         Args:
           account_id: Account identifier

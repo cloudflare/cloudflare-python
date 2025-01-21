@@ -91,16 +91,14 @@ class SpectrumConfigAppConfig(BaseModel):
 
 class SpectrumConfigPaygoAppConfig(BaseModel):
     id: str
-    """App identifier."""
+    """Identifier"""
 
     created_on: datetime
-    """When the Application was created."""
 
     dns: DNS
     """The name and type of DNS record for the Spectrum application."""
 
     modified_on: datetime
-    """When the Application was last modified."""
 
     protocol: str
     """The port configuration at Cloudflare's edge.

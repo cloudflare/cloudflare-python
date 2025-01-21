@@ -34,7 +34,7 @@ class BytimesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> BytimesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -120,14 +120,8 @@ class BytimesResource(SyncAPIResource):
               | duration90th   | 90th percentile connection duration | 1.0     | Time in milliseconds  |
               | duration99th   | 99th percentile connection duration | 1.0     | Time in milliseconds. |
 
-          since: Start of time interval to query, defaults to `until` - 6 hours. Timestamp must
-              be in RFC3339 format and uses UTC unless otherwise specified.
-
           sort: The sort order for the result set; sort fields must be included in `metrics` or
               `dimensions`.
-
-          until: End of time interval to query, defaults to current time. Timestamp must be in
-              RFC3339 format and uses UTC unless otherwise specified.
 
           extra_headers: Send extra headers
 
@@ -168,7 +162,7 @@ class AsyncBytimesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncBytimesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -254,14 +248,8 @@ class AsyncBytimesResource(AsyncAPIResource):
               | duration90th   | 90th percentile connection duration | 1.0     | Time in milliseconds  |
               | duration99th   | 99th percentile connection duration | 1.0     | Time in milliseconds. |
 
-          since: Start of time interval to query, defaults to `until` - 6 hours. Timestamp must
-              be in RFC3339 format and uses UTC unless otherwise specified.
-
           sort: The sort order for the result set; sort fields must be included in `metrics` or
               `dimensions`.
-
-          until: End of time interval to query, defaults to current time. Timestamp must be in
-              RFC3339 format and uses UTC unless otherwise specified.
 
           extra_headers: Send extra headers
 

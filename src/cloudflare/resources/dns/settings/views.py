@@ -37,7 +37,7 @@ class ViewsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ViewsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -57,8 +57,8 @@ class ViewsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        name: str,
-        zones: List[str],
+        name: str | NotGiven = NOT_GIVEN,
+        zones: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -331,7 +331,7 @@ class AsyncViewsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncViewsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -351,8 +351,8 @@ class AsyncViewsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        name: str,
-        zones: List[str],
+        name: str | NotGiven = NOT_GIVEN,
+        zones: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
