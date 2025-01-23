@@ -377,8 +377,14 @@ class ImageToText(TypedDict, total=False):
     integer values
     """
 
+    frequency_penalty: float
+    """Decreases the likelihood of the model repeating the same lines verbatim."""
+
     max_tokens: int
     """The maximum number of tokens to generate in the response."""
+
+    presence_penalty: float
+    """Increases the likelihood of the model introducing new topics."""
 
     prompt: str
     """The input text prompt for the model to generate a response."""
@@ -389,10 +395,30 @@ class ImageToText(TypedDict, total=False):
     model's expected formatting.
     """
 
+    repetition_penalty: float
+    """Penalty for repeated tokens; higher values discourage repetition."""
+
+    seed: float
+    """Random seed for reproducibility of the generation."""
+
     temperature: float
     """
     Controls the randomness of the output; higher values produce more random
     results.
+    """
+
+    top_k: float
+    """Limits the AI to choose from the top 'k' most probable words.
+
+    Lower values make responses more focused; higher values introduce more variety
+    and potential surprises.
+    """
+
+    top_p: float
+    """
+    Controls the creativity of the AI's responses by adjusting how many possible
+    words it considers. Lower values make outputs more predictable; higher values
+    allow for more varied and creative responses.
     """
 
 
