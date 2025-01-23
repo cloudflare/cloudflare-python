@@ -6,7 +6,7 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
 from ......_utils import (
     maybe_transform,
     async_maybe_transform,
@@ -54,7 +54,7 @@ class EntriesResource(SyncAPIResource):
         account_id: str,
         dataset_id: str,
         version: int,
-        body: str,
+        body: FileTypes,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -123,7 +123,7 @@ class AsyncEntriesResource(AsyncAPIResource):
         account_id: str,
         dataset_id: str,
         version: int,
-        body: str,
+        body: FileTypes,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
