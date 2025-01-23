@@ -73,7 +73,7 @@ class TestUpload:
             version=0,
             account_id="account_id",
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            body="body",
+            body=b"raw file contents",
         )
         assert_matches_type(Optional[Dataset], upload, path=["response"])
 
@@ -84,7 +84,7 @@ class TestUpload:
             version=0,
             account_id="account_id",
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            body="body",
+            body=b"raw file contents",
         )
 
         assert response.is_closed is True
@@ -99,7 +99,7 @@ class TestUpload:
             version=0,
             account_id="account_id",
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            body="body",
+            body=b"raw file contents",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -117,7 +117,7 @@ class TestUpload:
                 version=0,
                 account_id="",
                 dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                body="body",
+                body=b"raw file contents",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dataset_id` but received ''"):
@@ -125,7 +125,7 @@ class TestUpload:
                 version=0,
                 account_id="account_id",
                 dataset_id="",
-                body="body",
+                body=b"raw file contents",
             )
 
 
@@ -187,7 +187,7 @@ class TestAsyncUpload:
             version=0,
             account_id="account_id",
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            body="body",
+            body=b"raw file contents",
         )
         assert_matches_type(Optional[Dataset], upload, path=["response"])
 
@@ -198,7 +198,7 @@ class TestAsyncUpload:
             version=0,
             account_id="account_id",
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            body="body",
+            body=b"raw file contents",
         )
 
         assert response.is_closed is True
@@ -213,7 +213,7 @@ class TestAsyncUpload:
             version=0,
             account_id="account_id",
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-            body="body",
+            body=b"raw file contents",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -231,7 +231,7 @@ class TestAsyncUpload:
                 version=0,
                 account_id="",
                 dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-                body="body",
+                body=b"raw file contents",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dataset_id` but received ''"):
@@ -239,5 +239,5 @@ class TestAsyncUpload:
                 version=0,
                 account_id="account_id",
                 dataset_id="",
-                body="body",
+                body=b"raw file contents",
             )
