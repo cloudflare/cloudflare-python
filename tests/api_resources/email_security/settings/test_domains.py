@@ -35,6 +35,7 @@ class TestDomains:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         domain = client.email_security.settings.domains.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            active_delivery_mode="DIRECT",
             allowed_delivery_mode="DIRECT",
             direction="asc",
             domain=["string"],
@@ -276,6 +277,7 @@ class TestAsyncDomains:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         domain = await async_client.email_security.settings.domains.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            active_delivery_mode="DIRECT",
             allowed_delivery_mode="DIRECT",
             direction="asc",
             domain=["string"],
