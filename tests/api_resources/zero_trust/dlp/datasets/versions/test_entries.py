@@ -25,7 +25,7 @@ class TestEntries:
             account_id="account_id",
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             version=0,
-            body="body",
+            body=b"raw file contents",
         )
         assert_matches_type(Optional[EntryCreateResponse], entry, path=["response"])
 
@@ -37,7 +37,7 @@ class TestEntries:
             account_id="account_id",
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             version=0,
-            body="body",
+            body=b"raw file contents",
         )
 
         assert response.is_closed is True
@@ -53,7 +53,7 @@ class TestEntries:
             account_id="account_id",
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             version=0,
-            body="body",
+            body=b"raw file contents",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -72,7 +72,7 @@ class TestEntries:
                 account_id="",
                 dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 version=0,
-                body="body",
+                body=b"raw file contents",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dataset_id` but received ''"):
@@ -81,7 +81,7 @@ class TestEntries:
                 account_id="account_id",
                 dataset_id="",
                 version=0,
-                body="body",
+                body=b"raw file contents",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `entry_id` but received ''"):
@@ -90,7 +90,7 @@ class TestEntries:
                 account_id="account_id",
                 dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 version=0,
-                body="body",
+                body=b"raw file contents",
             )
 
 
@@ -105,7 +105,7 @@ class TestAsyncEntries:
             account_id="account_id",
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             version=0,
-            body="body",
+            body=b"raw file contents",
         )
         assert_matches_type(Optional[EntryCreateResponse], entry, path=["response"])
 
@@ -117,7 +117,7 @@ class TestAsyncEntries:
             account_id="account_id",
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             version=0,
-            body="body",
+            body=b"raw file contents",
         )
 
         assert response.is_closed is True
@@ -133,7 +133,7 @@ class TestAsyncEntries:
             account_id="account_id",
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             version=0,
-            body="body",
+            body=b"raw file contents",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -152,7 +152,7 @@ class TestAsyncEntries:
                 account_id="",
                 dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 version=0,
-                body="body",
+                body=b"raw file contents",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dataset_id` but received ''"):
@@ -161,7 +161,7 @@ class TestAsyncEntries:
                 account_id="account_id",
                 dataset_id="",
                 version=0,
-                body="body",
+                body=b"raw file contents",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `entry_id` but received ''"):
@@ -170,5 +170,5 @@ class TestAsyncEntries:
                 account_id="account_id",
                 dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
                 version=0,
-                body="body",
+                body=b"raw file contents",
             )
