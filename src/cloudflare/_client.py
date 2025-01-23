@@ -115,6 +115,7 @@ if TYPE_CHECKING:
         client_certificates,
         custom_certificates,
         keyless_certificates,
+        network_interconnects,
         workers_for_platforms,
         origin_ca_certificates,
         origin_tls_client_auth,
@@ -209,6 +210,10 @@ if TYPE_CHECKING:
     from .resources.custom_certificates.custom_certificates import (
         CustomCertificatesResource,
         AsyncCustomCertificatesResource,
+    )
+    from .resources.network_interconnects.network_interconnects import (
+        NetworkInterconnectsResource,
+        AsyncNetworkInterconnectsResource,
     )
     from .resources.workers_for_platforms.workers_for_platforms import (
         WorkersForPlatformsResource,
@@ -615,6 +620,12 @@ class Cloudflare(SyncAPIClient):
         from .resources.magic_network_monitoring import MagicNetworkMonitoringResource
 
         return MagicNetworkMonitoringResource(self)
+
+    @cached_property
+    def network_interconnects(self) -> NetworkInterconnectsResource:
+        from .resources.network_interconnects import NetworkInterconnectsResource
+
+        return NetworkInterconnectsResource(self)
 
     @cached_property
     def mtls_certificates(self) -> MTLSCertificatesResource:
@@ -1388,6 +1399,12 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncMagicNetworkMonitoringResource(self)
 
     @cached_property
+    def network_interconnects(self) -> AsyncNetworkInterconnectsResource:
+        from .resources.network_interconnects import AsyncNetworkInterconnectsResource
+
+        return AsyncNetworkInterconnectsResource(self)
+
+    @cached_property
     def mtls_certificates(self) -> AsyncMTLSCertificatesResource:
         from .resources.mtls_certificates import AsyncMTLSCertificatesResource
 
@@ -2092,6 +2109,12 @@ class CloudflareWithRawResponse:
         return MagicNetworkMonitoringResourceWithRawResponse(self._client.magic_network_monitoring)
 
     @cached_property
+    def network_interconnects(self) -> network_interconnects.NetworkInterconnectsResourceWithRawResponse:
+        from .resources.network_interconnects import NetworkInterconnectsResourceWithRawResponse
+
+        return NetworkInterconnectsResourceWithRawResponse(self._client.network_interconnects)
+
+    @cached_property
     def mtls_certificates(self) -> mtls_certificates.MTLSCertificatesResourceWithRawResponse:
         from .resources.mtls_certificates import MTLSCertificatesResourceWithRawResponse
 
@@ -2617,6 +2640,12 @@ class AsyncCloudflareWithRawResponse:
         return AsyncMagicNetworkMonitoringResourceWithRawResponse(self._client.magic_network_monitoring)
 
     @cached_property
+    def network_interconnects(self) -> network_interconnects.AsyncNetworkInterconnectsResourceWithRawResponse:
+        from .resources.network_interconnects import AsyncNetworkInterconnectsResourceWithRawResponse
+
+        return AsyncNetworkInterconnectsResourceWithRawResponse(self._client.network_interconnects)
+
+    @cached_property
     def mtls_certificates(self) -> mtls_certificates.AsyncMTLSCertificatesResourceWithRawResponse:
         from .resources.mtls_certificates import AsyncMTLSCertificatesResourceWithRawResponse
 
@@ -3140,6 +3169,12 @@ class CloudflareWithStreamedResponse:
         from .resources.magic_network_monitoring import MagicNetworkMonitoringResourceWithStreamingResponse
 
         return MagicNetworkMonitoringResourceWithStreamingResponse(self._client.magic_network_monitoring)
+
+    @cached_property
+    def network_interconnects(self) -> network_interconnects.NetworkInterconnectsResourceWithStreamingResponse:
+        from .resources.network_interconnects import NetworkInterconnectsResourceWithStreamingResponse
+
+        return NetworkInterconnectsResourceWithStreamingResponse(self._client.network_interconnects)
 
     @cached_property
     def mtls_certificates(self) -> mtls_certificates.MTLSCertificatesResourceWithStreamingResponse:
@@ -3669,6 +3704,12 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.magic_network_monitoring import AsyncMagicNetworkMonitoringResourceWithStreamingResponse
 
         return AsyncMagicNetworkMonitoringResourceWithStreamingResponse(self._client.magic_network_monitoring)
+
+    @cached_property
+    def network_interconnects(self) -> network_interconnects.AsyncNetworkInterconnectsResourceWithStreamingResponse:
+        from .resources.network_interconnects import AsyncNetworkInterconnectsResourceWithStreamingResponse
+
+        return AsyncNetworkInterconnectsResourceWithStreamingResponse(self._client.network_interconnects)
 
     @cached_property
     def mtls_certificates(self) -> mtls_certificates.AsyncMTLSCertificatesResourceWithStreamingResponse:
