@@ -57,6 +57,7 @@ class DomainsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
+        active_delivery_mode: Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"] | NotGiven = NOT_GIVEN,
         allowed_delivery_mode: Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"] | NotGiven = NOT_GIVEN,
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         domain: List[str] | NotGiven = NOT_GIVEN,
@@ -76,6 +77,8 @@ class DomainsResource(SyncAPIResource):
 
         Args:
           account_id: Account Identifier
+
+          active_delivery_mode: Filters response to domains with the currently active delivery mode.
 
           allowed_delivery_mode: Filters response to domains with the provided delivery mode.
 
@@ -113,6 +116,7 @@ class DomainsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "active_delivery_mode": active_delivery_mode,
                         "allowed_delivery_mode": allowed_delivery_mode,
                         "direction": direction,
                         "domain": domain,
@@ -354,6 +358,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        active_delivery_mode: Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"] | NotGiven = NOT_GIVEN,
         allowed_delivery_mode: Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"] | NotGiven = NOT_GIVEN,
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         domain: List[str] | NotGiven = NOT_GIVEN,
@@ -373,6 +378,8 @@ class AsyncDomainsResource(AsyncAPIResource):
 
         Args:
           account_id: Account Identifier
+
+          active_delivery_mode: Filters response to domains with the currently active delivery mode.
 
           allowed_delivery_mode: Filters response to domains with the provided delivery mode.
 
@@ -410,6 +417,7 @@ class AsyncDomainsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "active_delivery_mode": active_delivery_mode,
                         "allowed_delivery_mode": allowed_delivery_mode,
                         "direction": direction,
                         "domain": domain,
