@@ -62,6 +62,13 @@ class MetadataAssetsConfig(TypedDict, total=False):
     is no Worker script.
     """
 
+    run_worker_first: bool
+    """When true, requests will always invoke the Worker script.
+
+    Otherwise, attempt to serve an asset matching the request, falling back to the
+    Worker script.
+    """
+
     serve_directly: bool
     """
     When true and the incoming request matches an asset, that will be served instead
