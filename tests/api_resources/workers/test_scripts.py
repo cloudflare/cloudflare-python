@@ -42,6 +42,7 @@ class TestScripts:
                     "config": {
                         "html_handling": "auto-trailing-slash",
                         "not_found_handling": "none",
+                        "run_worker_first": False,
                         "serve_directly": True,
                     },
                     "jwt": "jwt",
@@ -312,6 +313,7 @@ class TestAsyncScripts:
                     "config": {
                         "html_handling": "auto-trailing-slash",
                         "not_found_handling": "none",
+                        "run_worker_first": False,
                         "serve_directly": True,
                     },
                     "jwt": "jwt",
