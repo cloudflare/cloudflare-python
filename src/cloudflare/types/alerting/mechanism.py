@@ -1,16 +1,30 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
-from typing_extensions import TypeAlias
+from typing import List, Optional
 
 from ..._models import BaseModel
 
-__all__ = ["Mechanism", "MechanismItem"]
+__all__ = ["Mechanism", "Email", "Pagerduty", "Webhook"]
 
 
-class MechanismItem(BaseModel):
+class Email(BaseModel):
+    id: Optional[str] = None
+    """The email address"""
+
+
+class Pagerduty(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
 
-Mechanism: TypeAlias = Dict[str, List[MechanismItem]]
+class Webhook(BaseModel):
+    id: Optional[str] = None
+    """UUID"""
+
+
+class Mechanism(BaseModel):
+    email: Optional[List[Email]] = None
+
+    pagerduty: Optional[List[Pagerduty]] = None
+
+    webhooks: Optional[List[Webhook]] = None
