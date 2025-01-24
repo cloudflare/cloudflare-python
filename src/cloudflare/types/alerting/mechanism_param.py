@@ -2,15 +2,28 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable
-from typing_extensions import TypeAlias, TypedDict
+from typing import Iterable
+from typing_extensions import TypedDict
 
-__all__ = ["MechanismParam", "MechanismParamItem"]
+__all__ = ["MechanismParam", "Email", "Pagerduty", "Webhook"]
 
 
-class MechanismParamItem(TypedDict, total=False):
+class Email(TypedDict, total=False):
     id: str
-    """UUID"""
+    """The email address"""
 
 
-MechanismParam: TypeAlias = Dict[str, Iterable[MechanismParamItem]]
+class Pagerduty(TypedDict, total=False):
+    pass
+
+
+class Webhook(TypedDict, total=False):
+    pass
+
+
+class MechanismParam(TypedDict, total=False):
+    email: Iterable[Email]
+
+    pagerduty: Iterable[Pagerduty]
+
+    webhooks: Iterable[Webhook]
