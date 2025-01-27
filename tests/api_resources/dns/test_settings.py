@@ -33,6 +33,7 @@ class TestSettings:
             zone_defaults={
                 "flatten_all_cnames": False,
                 "foundation_dns": False,
+                "internal_dns": {"reference_zone_id": "reference_zone_id"},
                 "multi_provider": False,
                 "nameservers": {"type": "cloudflare.standard"},
                 "ns_ttl": 86400,
@@ -165,6 +166,7 @@ class TestAsyncSettings:
             zone_defaults={
                 "flatten_all_cnames": False,
                 "foundation_dns": False,
+                "internal_dns": {"reference_zone_id": "reference_zone_id"},
                 "multi_provider": False,
                 "nameservers": {"type": "cloudflare.standard"},
                 "ns_ttl": 86400,
