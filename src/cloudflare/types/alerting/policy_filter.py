@@ -63,6 +63,9 @@ class PolicyFilter(BaseModel):
     input_id: Optional[List[str]] = None
     """Used for configuring stream_live_notifications"""
 
+    insight_class: Optional[List[str]] = None
+    """Used for configuring security_insights_alert"""
+
     limit: Optional[List[str]] = None
     """Used for configuring billing_usage_alert"""
 
@@ -84,7 +87,7 @@ class PolicyFilter(BaseModel):
     pool_id: Optional[List[str]] = None
     """Usage depends on specific alert type"""
 
-    pop_name: Optional[List[str]] = None
+    pop_names: Optional[List[str]] = None
     """Usage depends on specific alert type"""
 
     product: Optional[List[str]] = None
