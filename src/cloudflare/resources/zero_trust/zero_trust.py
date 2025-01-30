@@ -68,14 +68,6 @@ from .networks.networks import (
     NetworksResourceWithStreamingResponse,
     AsyncNetworksResourceWithStreamingResponse,
 )
-from .identity_providers import (
-    IdentityProvidersResource,
-    AsyncIdentityProvidersResource,
-    IdentityProvidersResourceWithRawResponse,
-    AsyncIdentityProvidersResourceWithRawResponse,
-    IdentityProvidersResourceWithStreamingResponse,
-    AsyncIdentityProvidersResourceWithStreamingResponse,
-)
 from .connectivity_settings import (
     ConnectivitySettingsResource,
     AsyncConnectivitySettingsResource,
@@ -99,6 +91,14 @@ from .organizations.organizations import (
     AsyncOrganizationsResourceWithRawResponse,
     OrganizationsResourceWithStreamingResponse,
     AsyncOrganizationsResourceWithStreamingResponse,
+)
+from .identity_providers.identity_providers import (
+    IdentityProvidersResource,
+    AsyncIdentityProvidersResource,
+    IdentityProvidersResourceWithRawResponse,
+    AsyncIdentityProvidersResourceWithRawResponse,
+    IdentityProvidersResourceWithStreamingResponse,
+    AsyncIdentityProvidersResourceWithStreamingResponse,
 )
 
 __all__ = ["ZeroTrustResource", "AsyncZeroTrustResource"]

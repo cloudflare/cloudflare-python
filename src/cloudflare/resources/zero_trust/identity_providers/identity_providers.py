@@ -7,40 +7,52 @@ from typing_extensions import overload
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
     required_args,
     maybe_transform,
     async_maybe_transform,
 )
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
+from .scim.scim import (
+    SCIMResource,
+    AsyncSCIMResource,
+    SCIMResourceWithRawResponse,
+    AsyncSCIMResourceWithRawResponse,
+    SCIMResourceWithStreamingResponse,
+    AsyncSCIMResourceWithStreamingResponse,
+)
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._wrappers import ResultWrapper
-from ...pagination import SyncSinglePage, AsyncSinglePage
-from ..._base_client import AsyncPaginator, make_request_options
-from ...types.zero_trust import (
+from ...._wrappers import ResultWrapper
+from ....pagination import SyncSinglePage, AsyncSinglePage
+from ...._base_client import AsyncPaginator, make_request_options
+from ....types.zero_trust import (
     IdentityProviderType,
     identity_provider_list_params,
     identity_provider_create_params,
     identity_provider_update_params,
 )
-from ...types.zero_trust.identity_provider import IdentityProvider
-from ...types.zero_trust.identity_provider_type import IdentityProviderType
-from ...types.zero_trust.generic_oauth_config_param import GenericOAuthConfigParam
-from ...types.zero_trust.identity_provider_list_response import IdentityProviderListResponse
-from ...types.zero_trust.identity_provider_delete_response import IdentityProviderDeleteResponse
-from ...types.zero_trust.identity_provider_scim_config_param import IdentityProviderSCIMConfigParam
+from ....types.zero_trust.identity_provider import IdentityProvider
+from ....types.zero_trust.identity_provider_type import IdentityProviderType
+from ....types.zero_trust.generic_oauth_config_param import GenericOAuthConfigParam
+from ....types.zero_trust.identity_provider_list_response import IdentityProviderListResponse
+from ....types.zero_trust.identity_provider_delete_response import IdentityProviderDeleteResponse
+from ....types.zero_trust.identity_provider_scim_config_param import IdentityProviderSCIMConfigParam
 
 __all__ = ["IdentityProvidersResource", "AsyncIdentityProvidersResource"]
 
 
 class IdentityProvidersResource(SyncAPIResource):
+    @cached_property
+    def scim(self) -> SCIMResource:
+        return SCIMResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> IdentityProvidersResourceWithRawResponse:
         """
@@ -1767,6 +1779,10 @@ class IdentityProvidersResource(SyncAPIResource):
 
 
 class AsyncIdentityProvidersResource(AsyncAPIResource):
+    @cached_property
+    def scim(self) -> AsyncSCIMResource:
+        return AsyncSCIMResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AsyncIdentityProvidersResourceWithRawResponse:
         """
@@ -3512,6 +3528,10 @@ class IdentityProvidersResourceWithRawResponse:
             identity_providers.get,
         )
 
+    @cached_property
+    def scim(self) -> SCIMResourceWithRawResponse:
+        return SCIMResourceWithRawResponse(self._identity_providers.scim)
+
 
 class AsyncIdentityProvidersResourceWithRawResponse:
     def __init__(self, identity_providers: AsyncIdentityProvidersResource) -> None:
@@ -3532,6 +3552,10 @@ class AsyncIdentityProvidersResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             identity_providers.get,
         )
+
+    @cached_property
+    def scim(self) -> AsyncSCIMResourceWithRawResponse:
+        return AsyncSCIMResourceWithRawResponse(self._identity_providers.scim)
 
 
 class IdentityProvidersResourceWithStreamingResponse:
@@ -3554,6 +3578,10 @@ class IdentityProvidersResourceWithStreamingResponse:
             identity_providers.get,
         )
 
+    @cached_property
+    def scim(self) -> SCIMResourceWithStreamingResponse:
+        return SCIMResourceWithStreamingResponse(self._identity_providers.scim)
+
 
 class AsyncIdentityProvidersResourceWithStreamingResponse:
     def __init__(self, identity_providers: AsyncIdentityProvidersResource) -> None:
@@ -3574,3 +3602,7 @@ class AsyncIdentityProvidersResourceWithStreamingResponse:
         self.get = async_to_streamed_response_wrapper(
             identity_providers.get,
         )
+
+    @cached_property
+    def scim(self) -> AsyncSCIMResourceWithStreamingResponse:
+        return AsyncSCIMResourceWithStreamingResponse(self._identity_providers.scim)

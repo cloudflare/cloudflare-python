@@ -2,6 +2,14 @@
 
 from __future__ import annotations
 
+from .scim.scim import (
+    SCIMResource,
+    AsyncSCIMResource,
+    SCIMResourceWithRawResponse,
+    AsyncSCIMResourceWithRawResponse,
+    SCIMResourceWithStreamingResponse,
+    AsyncSCIMResourceWithStreamingResponse,
+)
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from .access_requests import (
@@ -20,6 +28,10 @@ class LogsResource(SyncAPIResource):
     @cached_property
     def access_requests(self) -> AccessRequestsResource:
         return AccessRequestsResource(self._client)
+
+    @cached_property
+    def scim(self) -> SCIMResource:
+        return SCIMResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> LogsResourceWithRawResponse:
@@ -45,6 +57,10 @@ class AsyncLogsResource(AsyncAPIResource):
     @cached_property
     def access_requests(self) -> AsyncAccessRequestsResource:
         return AsyncAccessRequestsResource(self._client)
+
+    @cached_property
+    def scim(self) -> AsyncSCIMResource:
+        return AsyncSCIMResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncLogsResourceWithRawResponse:
@@ -74,6 +90,10 @@ class LogsResourceWithRawResponse:
     def access_requests(self) -> AccessRequestsResourceWithRawResponse:
         return AccessRequestsResourceWithRawResponse(self._logs.access_requests)
 
+    @cached_property
+    def scim(self) -> SCIMResourceWithRawResponse:
+        return SCIMResourceWithRawResponse(self._logs.scim)
+
 
 class AsyncLogsResourceWithRawResponse:
     def __init__(self, logs: AsyncLogsResource) -> None:
@@ -82,6 +102,10 @@ class AsyncLogsResourceWithRawResponse:
     @cached_property
     def access_requests(self) -> AsyncAccessRequestsResourceWithRawResponse:
         return AsyncAccessRequestsResourceWithRawResponse(self._logs.access_requests)
+
+    @cached_property
+    def scim(self) -> AsyncSCIMResourceWithRawResponse:
+        return AsyncSCIMResourceWithRawResponse(self._logs.scim)
 
 
 class LogsResourceWithStreamingResponse:
@@ -92,6 +116,10 @@ class LogsResourceWithStreamingResponse:
     def access_requests(self) -> AccessRequestsResourceWithStreamingResponse:
         return AccessRequestsResourceWithStreamingResponse(self._logs.access_requests)
 
+    @cached_property
+    def scim(self) -> SCIMResourceWithStreamingResponse:
+        return SCIMResourceWithStreamingResponse(self._logs.scim)
+
 
 class AsyncLogsResourceWithStreamingResponse:
     def __init__(self, logs: AsyncLogsResource) -> None:
@@ -100,3 +128,7 @@ class AsyncLogsResourceWithStreamingResponse:
     @cached_property
     def access_requests(self) -> AsyncAccessRequestsResourceWithStreamingResponse:
         return AsyncAccessRequestsResourceWithStreamingResponse(self._logs.access_requests)
+
+    @cached_property
+    def scim(self) -> AsyncSCIMResourceWithStreamingResponse:
+        return AsyncSCIMResourceWithStreamingResponse(self._logs.scim)
