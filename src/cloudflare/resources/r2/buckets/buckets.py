@@ -15,6 +15,14 @@ from .cors import (
     CORSResourceWithStreamingResponse,
     AsyncCORSResourceWithStreamingResponse,
 )
+from .locks import (
+    LocksResource,
+    AsyncLocksResource,
+    LocksResourceWithRawResponse,
+    AsyncLocksResourceWithRawResponse,
+    LocksResourceWithStreamingResponse,
+    AsyncLocksResourceWithStreamingResponse,
+)
 from .sippy import (
     SippyResource,
     AsyncSippyResource,
@@ -22,6 +30,14 @@ from .sippy import (
     AsyncSippyResourceWithRawResponse,
     SippyResourceWithStreamingResponse,
     AsyncSippyResourceWithStreamingResponse,
+)
+from .metrics import (
+    MetricsResource,
+    AsyncMetricsResource,
+    MetricsResourceWithRawResponse,
+    AsyncMetricsResourceWithRawResponse,
+    MetricsResourceWithStreamingResponse,
+    AsyncMetricsResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
@@ -87,6 +103,14 @@ class BucketsResource(SyncAPIResource):
     @cached_property
     def event_notifications(self) -> EventNotificationsResource:
         return EventNotificationsResource(self._client)
+
+    @cached_property
+    def locks(self) -> LocksResource:
+        return LocksResource(self._client)
+
+    @cached_property
+    def metrics(self) -> MetricsResource:
+        return MetricsResource(self._client)
 
     @cached_property
     def sippy(self) -> SippyResource:
@@ -370,6 +394,14 @@ class AsyncBucketsResource(AsyncAPIResource):
     @cached_property
     def event_notifications(self) -> AsyncEventNotificationsResource:
         return AsyncEventNotificationsResource(self._client)
+
+    @cached_property
+    def locks(self) -> AsyncLocksResource:
+        return AsyncLocksResource(self._client)
+
+    @cached_property
+    def metrics(self) -> AsyncMetricsResource:
+        return AsyncMetricsResource(self._client)
 
     @cached_property
     def sippy(self) -> AsyncSippyResource:
@@ -671,6 +703,14 @@ class BucketsResourceWithRawResponse:
         return EventNotificationsResourceWithRawResponse(self._buckets.event_notifications)
 
     @cached_property
+    def locks(self) -> LocksResourceWithRawResponse:
+        return LocksResourceWithRawResponse(self._buckets.locks)
+
+    @cached_property
+    def metrics(self) -> MetricsResourceWithRawResponse:
+        return MetricsResourceWithRawResponse(self._buckets.metrics)
+
+    @cached_property
     def sippy(self) -> SippyResourceWithRawResponse:
         return SippyResourceWithRawResponse(self._buckets.sippy)
 
@@ -707,6 +747,14 @@ class AsyncBucketsResourceWithRawResponse:
     @cached_property
     def event_notifications(self) -> AsyncEventNotificationsResourceWithRawResponse:
         return AsyncEventNotificationsResourceWithRawResponse(self._buckets.event_notifications)
+
+    @cached_property
+    def locks(self) -> AsyncLocksResourceWithRawResponse:
+        return AsyncLocksResourceWithRawResponse(self._buckets.locks)
+
+    @cached_property
+    def metrics(self) -> AsyncMetricsResourceWithRawResponse:
+        return AsyncMetricsResourceWithRawResponse(self._buckets.metrics)
 
     @cached_property
     def sippy(self) -> AsyncSippyResourceWithRawResponse:
@@ -747,6 +795,14 @@ class BucketsResourceWithStreamingResponse:
         return EventNotificationsResourceWithStreamingResponse(self._buckets.event_notifications)
 
     @cached_property
+    def locks(self) -> LocksResourceWithStreamingResponse:
+        return LocksResourceWithStreamingResponse(self._buckets.locks)
+
+    @cached_property
+    def metrics(self) -> MetricsResourceWithStreamingResponse:
+        return MetricsResourceWithStreamingResponse(self._buckets.metrics)
+
+    @cached_property
     def sippy(self) -> SippyResourceWithStreamingResponse:
         return SippyResourceWithStreamingResponse(self._buckets.sippy)
 
@@ -783,6 +839,14 @@ class AsyncBucketsResourceWithStreamingResponse:
     @cached_property
     def event_notifications(self) -> AsyncEventNotificationsResourceWithStreamingResponse:
         return AsyncEventNotificationsResourceWithStreamingResponse(self._buckets.event_notifications)
+
+    @cached_property
+    def locks(self) -> AsyncLocksResourceWithStreamingResponse:
+        return AsyncLocksResourceWithStreamingResponse(self._buckets.locks)
+
+    @cached_property
+    def metrics(self) -> AsyncMetricsResourceWithStreamingResponse:
+        return AsyncMetricsResourceWithStreamingResponse(self._buckets.metrics)
 
     @cached_property
     def sippy(self) -> AsyncSippyResourceWithStreamingResponse:

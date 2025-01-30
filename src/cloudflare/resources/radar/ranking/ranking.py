@@ -32,6 +32,14 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....types.radar import ranking_top_params, ranking_timeseries_groups_params
 from ...._base_client import make_request_options
+from .internet_services import (
+    InternetServicesResource,
+    AsyncInternetServicesResource,
+    InternetServicesResourceWithRawResponse,
+    AsyncInternetServicesResourceWithRawResponse,
+    InternetServicesResourceWithStreamingResponse,
+    AsyncInternetServicesResourceWithStreamingResponse,
+)
 from ....types.radar.ranking_top_response import RankingTopResponse
 from ....types.radar.ranking_timeseries_groups_response import RankingTimeseriesGroupsResponse
 
@@ -42,6 +50,10 @@ class RankingResource(SyncAPIResource):
     @cached_property
     def domain(self) -> DomainResource:
         return DomainResource(self._client)
+
+    @cached_property
+    def internet_services(self) -> InternetServicesResource:
+        return InternetServicesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> RankingResourceWithRawResponse:
@@ -212,6 +224,10 @@ class AsyncRankingResource(AsyncAPIResource):
     @cached_property
     def domain(self) -> AsyncDomainResource:
         return AsyncDomainResource(self._client)
+
+    @cached_property
+    def internet_services(self) -> AsyncInternetServicesResource:
+        return AsyncInternetServicesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncRankingResourceWithRawResponse:
@@ -393,6 +409,10 @@ class RankingResourceWithRawResponse:
     def domain(self) -> DomainResourceWithRawResponse:
         return DomainResourceWithRawResponse(self._ranking.domain)
 
+    @cached_property
+    def internet_services(self) -> InternetServicesResourceWithRawResponse:
+        return InternetServicesResourceWithRawResponse(self._ranking.internet_services)
+
 
 class AsyncRankingResourceWithRawResponse:
     def __init__(self, ranking: AsyncRankingResource) -> None:
@@ -408,6 +428,10 @@ class AsyncRankingResourceWithRawResponse:
     @cached_property
     def domain(self) -> AsyncDomainResourceWithRawResponse:
         return AsyncDomainResourceWithRawResponse(self._ranking.domain)
+
+    @cached_property
+    def internet_services(self) -> AsyncInternetServicesResourceWithRawResponse:
+        return AsyncInternetServicesResourceWithRawResponse(self._ranking.internet_services)
 
 
 class RankingResourceWithStreamingResponse:
@@ -425,6 +449,10 @@ class RankingResourceWithStreamingResponse:
     def domain(self) -> DomainResourceWithStreamingResponse:
         return DomainResourceWithStreamingResponse(self._ranking.domain)
 
+    @cached_property
+    def internet_services(self) -> InternetServicesResourceWithStreamingResponse:
+        return InternetServicesResourceWithStreamingResponse(self._ranking.internet_services)
+
 
 class AsyncRankingResourceWithStreamingResponse:
     def __init__(self, ranking: AsyncRankingResource) -> None:
@@ -440,3 +468,7 @@ class AsyncRankingResourceWithStreamingResponse:
     @cached_property
     def domain(self) -> AsyncDomainResourceWithStreamingResponse:
         return AsyncDomainResourceWithStreamingResponse(self._ranking.domain)
+
+    @cached_property
+    def internet_services(self) -> AsyncInternetServicesResourceWithStreamingResponse:
+        return AsyncInternetServicesResourceWithStreamingResponse(self._ranking.internet_services)

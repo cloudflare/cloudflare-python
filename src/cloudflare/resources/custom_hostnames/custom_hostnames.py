@@ -36,6 +36,14 @@ from ...types.custom_hostnames import (
     custom_hostname_list_params,
     custom_hostname_create_params,
 )
+from .certificate_pack.certificate_pack import (
+    CertificatePackResource,
+    AsyncCertificatePackResource,
+    CertificatePackResourceWithRawResponse,
+    AsyncCertificatePackResourceWithRawResponse,
+    CertificatePackResourceWithStreamingResponse,
+    AsyncCertificatePackResourceWithStreamingResponse,
+)
 from ...types.custom_hostnames.custom_hostname_get_response import CustomHostnameGetResponse
 from ...types.custom_hostnames.custom_hostname_edit_response import CustomHostnameEditResponse
 from ...types.custom_hostnames.custom_hostname_list_response import CustomHostnameListResponse
@@ -49,6 +57,10 @@ class CustomHostnamesResource(SyncAPIResource):
     @cached_property
     def fallback_origin(self) -> FallbackOriginResource:
         return FallbackOriginResource(self._client)
+
+    @cached_property
+    def certificate_pack(self) -> CertificatePackResource:
+        return CertificatePackResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> CustomHostnamesResourceWithRawResponse:
@@ -377,6 +389,10 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
     @cached_property
     def fallback_origin(self) -> AsyncFallbackOriginResource:
         return AsyncFallbackOriginResource(self._client)
+
+    @cached_property
+    def certificate_pack(self) -> AsyncCertificatePackResource:
+        return AsyncCertificatePackResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncCustomHostnamesResourceWithRawResponse:
@@ -725,6 +741,10 @@ class CustomHostnamesResourceWithRawResponse:
     def fallback_origin(self) -> FallbackOriginResourceWithRawResponse:
         return FallbackOriginResourceWithRawResponse(self._custom_hostnames.fallback_origin)
 
+    @cached_property
+    def certificate_pack(self) -> CertificatePackResourceWithRawResponse:
+        return CertificatePackResourceWithRawResponse(self._custom_hostnames.certificate_pack)
+
 
 class AsyncCustomHostnamesResourceWithRawResponse:
     def __init__(self, custom_hostnames: AsyncCustomHostnamesResource) -> None:
@@ -749,6 +769,10 @@ class AsyncCustomHostnamesResourceWithRawResponse:
     @cached_property
     def fallback_origin(self) -> AsyncFallbackOriginResourceWithRawResponse:
         return AsyncFallbackOriginResourceWithRawResponse(self._custom_hostnames.fallback_origin)
+
+    @cached_property
+    def certificate_pack(self) -> AsyncCertificatePackResourceWithRawResponse:
+        return AsyncCertificatePackResourceWithRawResponse(self._custom_hostnames.certificate_pack)
 
 
 class CustomHostnamesResourceWithStreamingResponse:
@@ -775,6 +799,10 @@ class CustomHostnamesResourceWithStreamingResponse:
     def fallback_origin(self) -> FallbackOriginResourceWithStreamingResponse:
         return FallbackOriginResourceWithStreamingResponse(self._custom_hostnames.fallback_origin)
 
+    @cached_property
+    def certificate_pack(self) -> CertificatePackResourceWithStreamingResponse:
+        return CertificatePackResourceWithStreamingResponse(self._custom_hostnames.certificate_pack)
+
 
 class AsyncCustomHostnamesResourceWithStreamingResponse:
     def __init__(self, custom_hostnames: AsyncCustomHostnamesResource) -> None:
@@ -799,3 +827,7 @@ class AsyncCustomHostnamesResourceWithStreamingResponse:
     @cached_property
     def fallback_origin(self) -> AsyncFallbackOriginResourceWithStreamingResponse:
         return AsyncFallbackOriginResourceWithStreamingResponse(self._custom_hostnames.fallback_origin)
+
+    @cached_property
+    def certificate_pack(self) -> AsyncCertificatePackResourceWithStreamingResponse:
+        return AsyncCertificatePackResourceWithStreamingResponse(self._custom_hostnames.certificate_pack)
