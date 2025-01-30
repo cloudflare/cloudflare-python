@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -25,37 +25,40 @@ class TestPolicyTests:
         policy_test = client.zero_trust.access.applications.policy_tests.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(PolicyTestCreateResponse, policy_test, path=["response"])
+        assert_matches_type(Optional[PolicyTestCreateResponse], policy_test, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         policy_test = client.zero_trust.access.applications.policy_tests.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            approval_groups=[
+            policies=[
                 {
-                    "approvals_needed": 1,
-                    "email_addresses": ["test1@cloudflare.com", "test2@cloudflare.com"],
-                    "email_list_uuid": "email_list_uuid",
-                },
-                {
-                    "approvals_needed": 3,
-                    "email_addresses": ["test@cloudflare.com", "test2@cloudflare.com"],
-                    "email_list_uuid": "597147a1-976b-4ef2-9af0-81d5d007fc34",
-                },
+                    "decision": "allow",
+                    "include": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
+                    "name": "Allow devs",
+                    "approval_groups": [
+                        {
+                            "approvals_needed": 1,
+                            "email_addresses": ["test1@cloudflare.com", "test2@cloudflare.com"],
+                            "email_list_uuid": "email_list_uuid",
+                        },
+                        {
+                            "approvals_needed": 3,
+                            "email_addresses": ["test@cloudflare.com", "test2@cloudflare.com"],
+                            "email_list_uuid": "597147a1-976b-4ef2-9af0-81d5d007fc34",
+                        },
+                    ],
+                    "approval_required": True,
+                    "exclude": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
+                    "isolation_required": False,
+                    "purpose_justification_prompt": "Please enter a justification for entering this protected domain.",
+                    "purpose_justification_required": True,
+                    "require": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
+                    "session_duration": "24h",
+                }
             ],
-            approval_required=True,
-            decision="allow",
-            exclude=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
-            include=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
-            isolation_required=False,
-            name="Allow devs",
-            purpose_justification_prompt="Please enter a justification for entering this protected domain.",
-            purpose_justification_required=True,
-            require=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
-            session_duration="24h",
         )
-        assert_matches_type(PolicyTestCreateResponse, policy_test, path=["response"])
+        assert_matches_type(Optional[PolicyTestCreateResponse], policy_test, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
@@ -66,7 +69,7 @@ class TestPolicyTests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy_test = response.parse()
-        assert_matches_type(PolicyTestCreateResponse, policy_test, path=["response"])
+        assert_matches_type(Optional[PolicyTestCreateResponse], policy_test, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
@@ -77,7 +80,7 @@ class TestPolicyTests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy_test = response.parse()
-            assert_matches_type(PolicyTestCreateResponse, policy_test, path=["response"])
+            assert_matches_type(Optional[PolicyTestCreateResponse], policy_test, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -94,7 +97,16 @@ class TestPolicyTests:
             policy_test_id="f1a8b3c9d4e5f6789a0b1c2d3e4f5678a9b0c1d2e3f4a5b67890c1d2e3f4b5a6",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(PolicyTestGetResponse, policy_test, path=["response"])
+        assert_matches_type(Optional[PolicyTestGetResponse], policy_test, path=["response"])
+
+    @parametrize
+    def test_method_get_with_all_params(self, client: Cloudflare) -> None:
+        policy_test = client.zero_trust.access.applications.policy_tests.get(
+            policy_test_id="f1a8b3c9d4e5f6789a0b1c2d3e4f5678a9b0c1d2e3f4a5b67890c1d2e3f4b5a6",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            page=0,
+        )
+        assert_matches_type(Optional[PolicyTestGetResponse], policy_test, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -106,7 +118,7 @@ class TestPolicyTests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy_test = response.parse()
-        assert_matches_type(PolicyTestGetResponse, policy_test, path=["response"])
+        assert_matches_type(Optional[PolicyTestGetResponse], policy_test, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -118,7 +130,7 @@ class TestPolicyTests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy_test = response.parse()
-            assert_matches_type(PolicyTestGetResponse, policy_test, path=["response"])
+            assert_matches_type(Optional[PolicyTestGetResponse], policy_test, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -145,37 +157,40 @@ class TestAsyncPolicyTests:
         policy_test = await async_client.zero_trust.access.applications.policy_tests.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(PolicyTestCreateResponse, policy_test, path=["response"])
+        assert_matches_type(Optional[PolicyTestCreateResponse], policy_test, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         policy_test = await async_client.zero_trust.access.applications.policy_tests.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            approval_groups=[
+            policies=[
                 {
-                    "approvals_needed": 1,
-                    "email_addresses": ["test1@cloudflare.com", "test2@cloudflare.com"],
-                    "email_list_uuid": "email_list_uuid",
-                },
-                {
-                    "approvals_needed": 3,
-                    "email_addresses": ["test@cloudflare.com", "test2@cloudflare.com"],
-                    "email_list_uuid": "597147a1-976b-4ef2-9af0-81d5d007fc34",
-                },
+                    "decision": "allow",
+                    "include": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
+                    "name": "Allow devs",
+                    "approval_groups": [
+                        {
+                            "approvals_needed": 1,
+                            "email_addresses": ["test1@cloudflare.com", "test2@cloudflare.com"],
+                            "email_list_uuid": "email_list_uuid",
+                        },
+                        {
+                            "approvals_needed": 3,
+                            "email_addresses": ["test@cloudflare.com", "test2@cloudflare.com"],
+                            "email_list_uuid": "597147a1-976b-4ef2-9af0-81d5d007fc34",
+                        },
+                    ],
+                    "approval_required": True,
+                    "exclude": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
+                    "isolation_required": False,
+                    "purpose_justification_prompt": "Please enter a justification for entering this protected domain.",
+                    "purpose_justification_required": True,
+                    "require": [{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
+                    "session_duration": "24h",
+                }
             ],
-            approval_required=True,
-            decision="allow",
-            exclude=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
-            include=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
-            isolation_required=False,
-            name="Allow devs",
-            purpose_justification_prompt="Please enter a justification for entering this protected domain.",
-            purpose_justification_required=True,
-            require=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
-            session_duration="24h",
         )
-        assert_matches_type(PolicyTestCreateResponse, policy_test, path=["response"])
+        assert_matches_type(Optional[PolicyTestCreateResponse], policy_test, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -186,7 +201,7 @@ class TestAsyncPolicyTests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy_test = await response.parse()
-        assert_matches_type(PolicyTestCreateResponse, policy_test, path=["response"])
+        assert_matches_type(Optional[PolicyTestCreateResponse], policy_test, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -197,7 +212,7 @@ class TestAsyncPolicyTests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy_test = await response.parse()
-            assert_matches_type(PolicyTestCreateResponse, policy_test, path=["response"])
+            assert_matches_type(Optional[PolicyTestCreateResponse], policy_test, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -214,7 +229,16 @@ class TestAsyncPolicyTests:
             policy_test_id="f1a8b3c9d4e5f6789a0b1c2d3e4f5678a9b0c1d2e3f4a5b67890c1d2e3f4b5a6",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(PolicyTestGetResponse, policy_test, path=["response"])
+        assert_matches_type(Optional[PolicyTestGetResponse], policy_test, path=["response"])
+
+    @parametrize
+    async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        policy_test = await async_client.zero_trust.access.applications.policy_tests.get(
+            policy_test_id="f1a8b3c9d4e5f6789a0b1c2d3e4f5678a9b0c1d2e3f4a5b67890c1d2e3f4b5a6",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            page=0,
+        )
+        assert_matches_type(Optional[PolicyTestGetResponse], policy_test, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -226,7 +250,7 @@ class TestAsyncPolicyTests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy_test = await response.parse()
-        assert_matches_type(PolicyTestGetResponse, policy_test, path=["response"])
+        assert_matches_type(Optional[PolicyTestGetResponse], policy_test, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -238,7 +262,7 @@ class TestAsyncPolicyTests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy_test = await response.parse()
-            assert_matches_type(PolicyTestGetResponse, policy_test, path=["response"])
+            assert_matches_type(Optional[PolicyTestGetResponse], policy_test, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
