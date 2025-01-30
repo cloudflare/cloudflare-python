@@ -23,12 +23,12 @@ from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.zero_trust.access import group_list_params, group_create_params, group_update_params
-from ....types.zero_trust.access_rule_param import AccessRuleParam
 from ....types.zero_trust.access.group_get_response import GroupGetResponse
 from ....types.zero_trust.access.group_list_response import GroupListResponse
 from ....types.zero_trust.access.group_create_response import GroupCreateResponse
 from ....types.zero_trust.access.group_delete_response import GroupDeleteResponse
 from ....types.zero_trust.access.group_update_response import GroupUpdateResponse
+from ....types.zero_trust.access.applications.access_rule_param import AccessRuleParam
 
 __all__ = ["GroupsResource", "AsyncGroupsResource"]
 

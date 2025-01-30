@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Required, TypedDict
 
-from ..access_rule_param import AccessRuleParam
+from .applications.access_rule_param import AccessRuleParam
 
 __all__ = ["GroupCreateParams"]
 
