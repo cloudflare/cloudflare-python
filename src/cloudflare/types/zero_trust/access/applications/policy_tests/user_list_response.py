@@ -1,14 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-from typing_extensions import Literal, TypeAlias
+from typing import Optional
+from typing_extensions import Literal
 
 from ......_models import BaseModel
 
-__all__ = ["UserListResponse", "UserListResponseItem"]
+__all__ = ["UserListResponse"]
 
 
-class UserListResponseItem(BaseModel):
+class UserListResponse(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
@@ -20,6 +20,3 @@ class UserListResponseItem(BaseModel):
 
     status: Optional[Literal["approved", "blocked"]] = None
     """Policy evaluation result for an individual user."""
-
-
-UserListResponse: TypeAlias = List[UserListResponseItem]

@@ -6,10 +6,10 @@ from datetime import datetime
 from ...._models import BaseModel
 from ..access_rule import AccessRule
 
-__all__ = ["ZeroTrustGroup"]
+__all__ = ["GroupUpdateResponse"]
 
 
-class ZeroTrustGroup(BaseModel):
+class GroupUpdateResponse(BaseModel):
     id: Optional[str] = None
     """UUID"""
 

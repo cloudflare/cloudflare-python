@@ -6,7 +6,6 @@ from .tag import Tag as Tag
 from .app_id import AppID as AppID
 from .bookmark import Bookmark as Bookmark
 from .decision import Decision as Decision
-from .access_user import AccessUser as AccessUser
 from .certificate import Certificate as Certificate
 from .custom_page import CustomPage as CustomPage
 from .allowed_idps import AllowedIdPs as AllowedIdPs
@@ -21,14 +20,16 @@ from .allowed_origins import AllowedOrigins as AllowedOrigins
 from .application_type import ApplicationType as ApplicationType
 from .key_get_response import KeyGetResponse as KeyGetResponse
 from .user_list_params import UserListParams as UserListParams
-from .zero_trust_group import ZeroTrustGroup as ZeroTrustGroup
 from .group_list_params import GroupListParams as GroupListParams
 from .key_update_params import KeyUpdateParams as KeyUpdateParams
 from .tag_create_params import TagCreateParams as TagCreateParams
 from .tag_update_params import TagUpdateParams as TagUpdateParams
 from .application_policy import ApplicationPolicy as ApplicationPolicy
 from .cors_headers_param import CORSHeadersParam as CORSHeadersParam
+from .group_get_response import GroupGetResponse as GroupGetResponse
+from .user_list_response import UserListResponse as UserListResponse
 from .group_create_params import GroupCreateParams as GroupCreateParams
+from .group_list_response import GroupListResponse as GroupListResponse
 from .group_update_params import GroupUpdateParams as GroupUpdateParams
 from .key_rotate_response import KeyRotateResponse as KeyRotateResponse
 from .key_update_response import KeyUpdateResponse as KeyUpdateResponse
@@ -43,7 +44,9 @@ from .associated_hostnames import AssociatedHostnames as AssociatedHostnames
 from .policy_create_params import PolicyCreateParams as PolicyCreateParams
 from .policy_list_response import PolicyListResponse as PolicyListResponse
 from .policy_update_params import PolicyUpdateParams as PolicyUpdateParams
+from .group_create_response import GroupCreateResponse as GroupCreateResponse
 from .group_delete_response import GroupDeleteResponse as GroupDeleteResponse
+from .group_update_response import GroupUpdateResponse as GroupUpdateResponse
 from .bookmark_create_params import BookmarkCreateParams as BookmarkCreateParams
 from .bookmark_update_params import BookmarkUpdateParams as BookmarkUpdateParams
 from .policy_create_response import PolicyCreateResponse as PolicyCreateResponse

@@ -11,6 +11,7 @@ from .policy_update_params import PolicyUpdateParams as PolicyUpdateParams
 from .user_policy_check_geo import UserPolicyCheckGeo as UserPolicyCheckGeo
 from .policy_create_response import PolicyCreateResponse as PolicyCreateResponse
 from .policy_delete_response import PolicyDeleteResponse as PolicyDeleteResponse
+from .policy_test_get_params import PolicyTestGetParams as PolicyTestGetParams
 from .policy_update_response import PolicyUpdateResponse as PolicyUpdateResponse
 from .policy_test_get_response import PolicyTestGetResponse as PolicyTestGetResponse
 from .policy_test_create_params import PolicyTestCreateParams as PolicyTestCreateParams
