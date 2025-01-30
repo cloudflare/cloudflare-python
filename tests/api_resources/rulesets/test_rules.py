@@ -807,8 +807,8 @@ class TestRules:
                     }
                 },
                 "uri": {
-                    "path": {"expression": 'regex_replace(http.request.uri.path, "/bar$", "/baz")'},
-                    "query": {"expression": 'regex_replace(http.request.uri.query, "foo=bar", "")'},
+                    "path": {"value": "/images"},
+                    "query": {"value": "/images"},
                 },
             },
             description="Add a header when the IP address is not 1.1.1.1",
@@ -2771,8 +2771,8 @@ class TestRules:
                     }
                 },
                 "uri": {
-                    "path": {"expression": 'regex_replace(http.request.uri.path, "/bar$", "/baz")'},
-                    "query": {"expression": 'regex_replace(http.request.uri.query, "foo=bar", "")'},
+                    "path": {"value": "/images"},
+                    "query": {"value": "/images"},
                 },
             },
             description="Add a header when the IP address is not 1.1.1.1",
@@ -4682,8 +4682,8 @@ class TestAsyncRules:
                     }
                 },
                 "uri": {
-                    "path": {"expression": 'regex_replace(http.request.uri.path, "/bar$", "/baz")'},
-                    "query": {"expression": 'regex_replace(http.request.uri.query, "foo=bar", "")'},
+                    "path": {"value": "/images"},
+                    "query": {"value": "/images"},
                 },
             },
             description="Add a header when the IP address is not 1.1.1.1",
@@ -6646,8 +6646,8 @@ class TestAsyncRules:
                     }
                 },
                 "uri": {
-                    "path": {"expression": 'regex_replace(http.request.uri.path, "/bar$", "/baz")'},
-                    "query": {"expression": 'regex_replace(http.request.uri.query, "foo=bar", "")'},
+                    "path": {"value": "/images"},
+                    "query": {"value": "/images"},
                 },
             },
             description="Add a header when the IP address is not 1.1.1.1",
