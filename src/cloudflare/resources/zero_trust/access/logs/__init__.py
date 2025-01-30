@@ -8,6 +8,14 @@ from .logs import (
     LogsResourceWithStreamingResponse,
     AsyncLogsResourceWithStreamingResponse,
 )
+from .scim import (
+    SCIMResource,
+    AsyncSCIMResource,
+    SCIMResourceWithRawResponse,
+    AsyncSCIMResourceWithRawResponse,
+    SCIMResourceWithStreamingResponse,
+    AsyncSCIMResourceWithStreamingResponse,
+)
 from .access_requests import (
     AccessRequestsResource,
     AsyncAccessRequestsResource,
@@ -24,6 +32,12 @@ __all__ = [
     "AsyncAccessRequestsResourceWithRawResponse",
     "AccessRequestsResourceWithStreamingResponse",
     "AsyncAccessRequestsResourceWithStreamingResponse",
+    "SCIMResource",
+    "AsyncSCIMResource",
+    "SCIMResourceWithRawResponse",
+    "AsyncSCIMResourceWithRawResponse",
+    "SCIMResourceWithStreamingResponse",
+    "AsyncSCIMResourceWithStreamingResponse",
     "LogsResource",
     "AsyncLogsResource",
     "LogsResourceWithRawResponse",
