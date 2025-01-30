@@ -4,9 +4,9 @@ from typing import Union
 from typing_extensions import TypeAlias
 
 from .ip_rule import IPRule
-from ..._models import BaseModel
 from .email_rule import EmailRule
 from .group_rule import GroupRule
+from ....._models import BaseModel
 from .domain_rule import DomainRule
 from .country_rule import CountryRule
 from .ip_list_rule import IPListRule

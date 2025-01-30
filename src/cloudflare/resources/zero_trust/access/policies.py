@@ -24,13 +24,13 @@ from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.zero_trust.access import Decision, policy_create_params, policy_update_params
 from ....types.zero_trust.access.decision import Decision
-from ....types.zero_trust.access_rule_param import AccessRuleParam
 from ....types.zero_trust.access.policy_get_response import PolicyGetResponse
 from ....types.zero_trust.access.approval_group_param import ApprovalGroupParam
 from ....types.zero_trust.access.policy_list_response import PolicyListResponse
 from ....types.zero_trust.access.policy_create_response import PolicyCreateResponse
 from ....types.zero_trust.access.policy_delete_response import PolicyDeleteResponse
 from ....types.zero_trust.access.policy_update_response import PolicyUpdateResponse
+from ....types.zero_trust.access.applications.access_rule_param import AccessRuleParam
 
 __all__ = ["PoliciesResource", "AsyncPoliciesResource"]
 

@@ -5331,33 +5331,6 @@ Methods:
 
 ## Access
 
-Types:
-
-```python
-from cloudflare.types.zero_trust import (
-    AccessDevicePostureRule,
-    AccessRule,
-    AnyValidServiceTokenRule,
-    AuthenticationMethodRule,
-    AzureGroupRule,
-    CertificateRule,
-    CountryRule,
-    DomainRule,
-    EmailListRule,
-    EmailRule,
-    EveryoneRule,
-    ExternalEvaluationRule,
-    GitHubOrganizationRule,
-    GroupRule,
-    GSuiteGroupRule,
-    IPListRule,
-    IPRule,
-    OktaGroupRule,
-    SAMLGroupRule,
-    ServiceTokenRule,
-)
-```
-
 ### GatewayCA
 
 Types:
@@ -5481,6 +5454,26 @@ Types:
 
 ```python
 from cloudflare.types.zero_trust.access.applications import (
+    AccessDevicePostureRule,
+    AccessRule,
+    AnyValidServiceTokenRule,
+    AuthenticationMethodRule,
+    AzureGroupRule,
+    CertificateRule,
+    CountryRule,
+    DomainRule,
+    EmailListRule,
+    EmailRule,
+    EveryoneRule,
+    ExternalEvaluationRule,
+    GitHubOrganizationRule,
+    GroupRule,
+    GSuiteGroupRule,
+    IPListRule,
+    IPRule,
+    OktaGroupRule,
+    SAMLGroupRule,
+    ServiceTokenRule,
     PolicyCreateResponse,
     PolicyUpdateResponse,
     PolicyListResponse,

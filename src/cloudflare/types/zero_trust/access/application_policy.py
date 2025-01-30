@@ -5,8 +5,8 @@ from datetime import datetime
 
 from .decision import Decision
 from ...._models import BaseModel
-from ..access_rule import AccessRule
 from .approval_group import ApprovalGroup
+from .applications.access_rule import AccessRule
 
 __all__ = ["ApplicationPolicy"]
 
