@@ -4,7 +4,7 @@ from typing import List, Optional
 from datetime import datetime
 
 from ...._models import BaseModel
-from ..access_rule import AccessRule
+from .applications.access_rule import AccessRule
 
 __all__ = ["GroupUpdateResponse"]
 

@@ -6,7 +6,6 @@ from typing_extensions import Literal, TypeAlias
 
 from .decision import Decision
 from ...._models import BaseModel
-from ..access_rule import AccessRule
 from .allowed_idps import AllowedIdPs
 from .cors_headers import CORSHeaders
 from .oidc_saas_app import OIDCSaaSApp
@@ -15,6 +14,7 @@ from .application_type import ApplicationType
 from .application_policy import ApplicationPolicy
 from .scim_config_mapping import SCIMConfigMapping
 from .self_hosted_domains import SelfHostedDomains
+from .applications.access_rule import AccessRule
 from .scim_config_authentication_oauth2 import SCIMConfigAuthenticationOauth2
 from .scim_config_authentication_http_basic import SCIMConfigAuthenticationHTTPBasic
 from .scim_config_authentication_oauth_bearer_token import SCIMConfigAuthenticationOAuthBearerToken
