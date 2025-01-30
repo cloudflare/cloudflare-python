@@ -13,7 +13,8 @@ from ......_response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ......_base_client import make_request_options
+from ......pagination import SyncSinglePage, AsyncSinglePage
+from ......_base_client import AsyncPaginator, make_request_options
 from ......types.zero_trust.access.applications.policy_tests.user_list_response import UserListResponse
 
 __all__ = ["UsersResource", "AsyncUsersResource"]
@@ -50,7 +51,7 @@ class UsersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UserListResponse:
+    ) -> SyncSinglePage[UserListResponse]:
         """
         Fetches a single page of user results from an Access policy test.
 
@@ -71,12 +72,13 @@ class UsersResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_test_id:
             raise ValueError(f"Expected a non-empty value for `policy_test_id` but received {policy_test_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/access/policy-tests/{policy_test_id}/users",
+            page=SyncSinglePage[UserListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=UserListResponse,
+            model=UserListResponse,
         )
 
 
@@ -100,7 +102,7 @@ class AsyncUsersResource(AsyncAPIResource):
         """
         return AsyncUsersResourceWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         policy_test_id: str,
         *,
@@ -111,7 +113,7 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UserListResponse:
+    ) -> AsyncPaginator[UserListResponse, AsyncSinglePage[UserListResponse]]:
         """
         Fetches a single page of user results from an Access policy test.
 
@@ -132,12 +134,13 @@ class AsyncUsersResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_test_id:
             raise ValueError(f"Expected a non-empty value for `policy_test_id` but received {policy_test_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/access/policy-tests/{policy_test_id}/users",
+            page=AsyncSinglePage[UserListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=UserListResponse,
+            model=UserListResponse,
         )
 
 
