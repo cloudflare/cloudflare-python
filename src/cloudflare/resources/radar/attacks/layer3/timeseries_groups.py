@@ -24,7 +24,6 @@ from ....._response import (
 from ....._wrappers import ResultWrapper
 from ....._base_client import make_request_options
 from .....types.radar.attacks.layer3 import (
-    timeseries_group_get_params,
     timeseries_group_vector_params,
     timeseries_group_bitrate_params,
     timeseries_group_duration_params,
@@ -33,7 +32,6 @@ from .....types.radar.attacks.layer3 import (
     timeseries_group_vertical_params,
     timeseries_group_ip_version_params,
 )
-from .....types.radar.attacks.layer3.timeseries_group_get_response import TimeseriesGroupGetResponse
 from .....types.radar.attacks.layer3.timeseries_group_vector_response import TimeseriesGroupVectorResponse
 from .....types.radar.attacks.layer3.timeseries_group_bitrate_response import TimeseriesGroupBitrateResponse
 from .....types.radar.attacks.layer3.timeseries_group_duration_response import TimeseriesGroupDurationResponse
@@ -257,92 +255,6 @@ class TimeseriesGroupsResource(SyncAPIResource):
                 post_parser=ResultWrapper[TimeseriesGroupDurationResponse]._unwrapper,
             ),
             cast_to=cast(Type[TimeseriesGroupDurationResponse], ResultWrapper[TimeseriesGroupDurationResponse]),
-        )
-
-    def get(
-        self,
-        *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        asn: List[str] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TimeseriesGroupGetResponse:
-        """
-        Get a time series of the percentage distribution of network protocols in Layer
-        3/4 attacks.
-
-        Args:
-          agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
-              or 1 hour intervals). Refer to
-              [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
-
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
-
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
-          date_end: End of the date range (inclusive).
-
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
-
-          date_start: Array of datetimes to filter the start of a series.
-
-          format: Format results are returned in.
-
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
-
-          name: Array of names that will be used to name the series in responses.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._get(
-            "/radar/attacks/layer3/timeseries_groups",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "agg_interval": agg_interval,
-                        "asn": asn,
-                        "continent": continent,
-                        "date_end": date_end,
-                        "date_range": date_range,
-                        "date_start": date_start,
-                        "format": format,
-                        "location": location,
-                        "name": name,
-                    },
-                    timeseries_group_get_params.TimeseriesGroupGetParams,
-                ),
-                post_parser=ResultWrapper[TimeseriesGroupGetResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[TimeseriesGroupGetResponse], ResultWrapper[TimeseriesGroupGetResponse]),
         )
 
     def industry(
@@ -1052,92 +964,6 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
             cast_to=cast(Type[TimeseriesGroupDurationResponse], ResultWrapper[TimeseriesGroupDurationResponse]),
         )
 
-    async def get(
-        self,
-        *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        asn: List[str] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TimeseriesGroupGetResponse:
-        """
-        Get a time series of the percentage distribution of network protocols in Layer
-        3/4 attacks.
-
-        Args:
-          agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
-              or 1 hour intervals). Refer to
-              [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
-
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
-
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
-          date_end: End of the date range (inclusive).
-
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
-
-          date_start: Array of datetimes to filter the start of a series.
-
-          format: Format results are returned in.
-
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
-
-          name: Array of names that will be used to name the series in responses.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._get(
-            "/radar/attacks/layer3/timeseries_groups",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "agg_interval": agg_interval,
-                        "asn": asn,
-                        "continent": continent,
-                        "date_end": date_end,
-                        "date_range": date_range,
-                        "date_start": date_start,
-                        "format": format,
-                        "location": location,
-                        "name": name,
-                    },
-                    timeseries_group_get_params.TimeseriesGroupGetParams,
-                ),
-                post_parser=ResultWrapper[TimeseriesGroupGetResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[TimeseriesGroupGetResponse], ResultWrapper[TimeseriesGroupGetResponse]),
-        )
-
     async def industry(
         self,
         *,
@@ -1641,9 +1467,6 @@ class TimeseriesGroupsResourceWithRawResponse:
         self.duration = to_raw_response_wrapper(
             timeseries_groups.duration,
         )
-        self.get = to_raw_response_wrapper(
-            timeseries_groups.get,
-        )
         self.industry = to_raw_response_wrapper(
             timeseries_groups.industry,
         )
@@ -1670,9 +1493,6 @@ class AsyncTimeseriesGroupsResourceWithRawResponse:
         )
         self.duration = async_to_raw_response_wrapper(
             timeseries_groups.duration,
-        )
-        self.get = async_to_raw_response_wrapper(
-            timeseries_groups.get,
         )
         self.industry = async_to_raw_response_wrapper(
             timeseries_groups.industry,
@@ -1701,9 +1521,6 @@ class TimeseriesGroupsResourceWithStreamingResponse:
         self.duration = to_streamed_response_wrapper(
             timeseries_groups.duration,
         )
-        self.get = to_streamed_response_wrapper(
-            timeseries_groups.get,
-        )
         self.industry = to_streamed_response_wrapper(
             timeseries_groups.industry,
         )
@@ -1730,9 +1547,6 @@ class AsyncTimeseriesGroupsResourceWithStreamingResponse:
         )
         self.duration = async_to_streamed_response_wrapper(
             timeseries_groups.duration,
-        )
-        self.get = async_to_streamed_response_wrapper(
-            timeseries_groups.get,
         )
         self.industry = async_to_streamed_response_wrapper(
             timeseries_groups.industry,

@@ -72,6 +72,7 @@ class AbuseReportsResource(SyncAPIResource):
             "abuse_registrar_whois",
             "abuse_ncsei",
         ],
+        agree: Literal[0, 1],
         email: str,
         email2: str,
         host_notification: Literal["send", "send-anon", "none"],
@@ -80,7 +81,6 @@ class AbuseReportsResource(SyncAPIResource):
         urls: str,
         address1: str | NotGiven = NOT_GIVEN,
         agent_name: str | NotGiven = NOT_GIVEN,
-        agree: Literal[0, 1] | NotGiven = NOT_GIVEN,
         city: str | NotGiven = NOT_GIVEN,
         comments: str | NotGiven = NOT_GIVEN,
         company: str | NotGiven = NOT_GIVEN,
@@ -114,7 +114,10 @@ class AbuseReportsResource(SyncAPIResource):
 
           act: The abuse report type
 
-          email: A valid email of the abuse reporter
+          agree: Can be `0` for false or `1` for true
+
+          email: A valid email of the abuse reporter. This field may be released by Cloudflare to
+              third parties such as the Lumen Database (https://lumendatabase.org/).
 
           email2: Should match the value provided in `email`
 
@@ -129,21 +132,26 @@ class AbuseReportsResource(SyncAPIResource):
 
           urls: A list of valid URLs separated by ‘ ’ (new line character). The list of the URLs
               should not exceed 250 URLs. All URLs should have the same hostname. Each URL
-              should be unique
+              should be unique. This field may be released by Cloudflare to third parties such
+              as the Lumen Database (https://lumendatabase.org/).
 
-          address1: Text not exceeding 100 characters
+          address1: Text not exceeding 100 characters. This field may be released by Cloudflare to
+              third parties such as the Lumen Database (https://lumendatabase.org/).
 
-          agent_name: The name of the copyright holder. Text not exceeding 60 characters.
+          agent_name: The name of the copyright holder. Text not exceeding 60 characters. This field
+              may be released by Cloudflare to third parties such as the Lumen Database
+              (https://lumendatabase.org/).
 
-          agree: Can be 0 or 1
-
-          city: Text not exceeding 255 characters
+          city: Text not exceeding 255 characters. This field may be released by Cloudflare to
+              third parties such as the Lumen Database (https://lumendatabase.org/).
 
           comments: Any additional comments about the infringement not exceeding 2000 characters
 
-          company: Text not exceeding 100 characters
+          company: Text not exceeding 100 characters. This field may be released by Cloudflare to
+              third parties such as the Lumen Database (https://lumendatabase.org/).
 
-          country: Text not exceeding 255 characters
+          country: Text not exceeding 255 characters. This field may be released by Cloudflare to
+              third parties such as the Lumen Database (https://lumendatabase.org/).
 
           destination_ips: A list of IP addresses separated by ‘ ’ (new line character). The list of
               destination IPs should not exceed 30 IP addresses. Each one of the IP addresses
@@ -153,11 +161,13 @@ class AbuseReportsResource(SyncAPIResource):
               details and the exact steps needed to view the content, not exceeding 5000
               characters
 
-          name: Text not exceeding 255 characters
+          name: Text not exceeding 255 characters. This field may be released by Cloudflare to
+              third parties such as the Lumen Database (https://lumendatabase.org/).
 
           ncsei_subject_representation: If the submitter is the target of NCSEI in the URLs of the abuse report
 
-          original_work: Text not exceeding 255 characters
+          original_work: Text not exceeding 255 characters. This field may be released by Cloudflare to
+              third parties such as the Lumen Database (https://lumendatabase.org/).
 
           ports_protocols: A comma separated list of ports and protocols e.g. 80/TCP, 22/UDP. The total
               size of the field should not exceed 2000 characters. Each individual
@@ -172,9 +182,11 @@ class AbuseReportsResource(SyncAPIResource):
               IPs should not exceed 30 IP addresses. Each one of the IP addresses ought to be
               unique
 
-          state: Text not exceeding 255 characters
+          state: Text not exceeding 255 characters. This field may be released by Cloudflare to
+              third parties such as the Lumen Database (https://lumendatabase.org/).
 
-          tele: Text not exceeding 20 characters
+          tele: Text not exceeding 20 characters. This field may be released by Cloudflare to
+              third parties such as the Lumen Database (https://lumendatabase.org/).
 
           title: Text not exceeding 255 characters
 
@@ -201,6 +213,7 @@ class AbuseReportsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "act": act,
+                    "agree": agree,
                     "email": email,
                     "email2": email2,
                     "host_notification": host_notification,
@@ -209,7 +222,6 @@ class AbuseReportsResource(SyncAPIResource):
                     "urls": urls,
                     "address1": address1,
                     "agent_name": agent_name,
-                    "agree": agree,
                     "city": city,
                     "comments": comments,
                     "company": company,
@@ -286,6 +298,7 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
             "abuse_registrar_whois",
             "abuse_ncsei",
         ],
+        agree: Literal[0, 1],
         email: str,
         email2: str,
         host_notification: Literal["send", "send-anon", "none"],
@@ -294,7 +307,6 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
         urls: str,
         address1: str | NotGiven = NOT_GIVEN,
         agent_name: str | NotGiven = NOT_GIVEN,
-        agree: Literal[0, 1] | NotGiven = NOT_GIVEN,
         city: str | NotGiven = NOT_GIVEN,
         comments: str | NotGiven = NOT_GIVEN,
         company: str | NotGiven = NOT_GIVEN,
@@ -328,7 +340,10 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
 
           act: The abuse report type
 
-          email: A valid email of the abuse reporter
+          agree: Can be `0` for false or `1` for true
+
+          email: A valid email of the abuse reporter. This field may be released by Cloudflare to
+              third parties such as the Lumen Database (https://lumendatabase.org/).
 
           email2: Should match the value provided in `email`
 
@@ -343,21 +358,26 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
 
           urls: A list of valid URLs separated by ‘ ’ (new line character). The list of the URLs
               should not exceed 250 URLs. All URLs should have the same hostname. Each URL
-              should be unique
+              should be unique. This field may be released by Cloudflare to third parties such
+              as the Lumen Database (https://lumendatabase.org/).
 
-          address1: Text not exceeding 100 characters
+          address1: Text not exceeding 100 characters. This field may be released by Cloudflare to
+              third parties such as the Lumen Database (https://lumendatabase.org/).
 
-          agent_name: The name of the copyright holder. Text not exceeding 60 characters.
+          agent_name: The name of the copyright holder. Text not exceeding 60 characters. This field
+              may be released by Cloudflare to third parties such as the Lumen Database
+              (https://lumendatabase.org/).
 
-          agree: Can be 0 or 1
-
-          city: Text not exceeding 255 characters
+          city: Text not exceeding 255 characters. This field may be released by Cloudflare to
+              third parties such as the Lumen Database (https://lumendatabase.org/).
 
           comments: Any additional comments about the infringement not exceeding 2000 characters
 
-          company: Text not exceeding 100 characters
+          company: Text not exceeding 100 characters. This field may be released by Cloudflare to
+              third parties such as the Lumen Database (https://lumendatabase.org/).
 
-          country: Text not exceeding 255 characters
+          country: Text not exceeding 255 characters. This field may be released by Cloudflare to
+              third parties such as the Lumen Database (https://lumendatabase.org/).
 
           destination_ips: A list of IP addresses separated by ‘ ’ (new line character). The list of
               destination IPs should not exceed 30 IP addresses. Each one of the IP addresses
@@ -367,11 +387,13 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
               details and the exact steps needed to view the content, not exceeding 5000
               characters
 
-          name: Text not exceeding 255 characters
+          name: Text not exceeding 255 characters. This field may be released by Cloudflare to
+              third parties such as the Lumen Database (https://lumendatabase.org/).
 
           ncsei_subject_representation: If the submitter is the target of NCSEI in the URLs of the abuse report
 
-          original_work: Text not exceeding 255 characters
+          original_work: Text not exceeding 255 characters. This field may be released by Cloudflare to
+              third parties such as the Lumen Database (https://lumendatabase.org/).
 
           ports_protocols: A comma separated list of ports and protocols e.g. 80/TCP, 22/UDP. The total
               size of the field should not exceed 2000 characters. Each individual
@@ -386,9 +408,11 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
               IPs should not exceed 30 IP addresses. Each one of the IP addresses ought to be
               unique
 
-          state: Text not exceeding 255 characters
+          state: Text not exceeding 255 characters. This field may be released by Cloudflare to
+              third parties such as the Lumen Database (https://lumendatabase.org/).
 
-          tele: Text not exceeding 20 characters
+          tele: Text not exceeding 20 characters. This field may be released by Cloudflare to
+              third parties such as the Lumen Database (https://lumendatabase.org/).
 
           title: Text not exceeding 255 characters
 
@@ -415,6 +439,7 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "act": act,
+                    "agree": agree,
                     "email": email,
                     "email2": email2,
                     "host_notification": host_notification,
@@ -423,7 +448,6 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
                     "urls": urls,
                     "address1": address1,
                     "agent_name": agent_name,
-                    "agree": agree,
                     "city": city,
                     "comments": comments,
                     "company": company,

@@ -117,7 +117,7 @@ class DatasetsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> DatasetDownloadResponse:
         """
-        Get a url to download a single dataset.
+        Get a URL to download a single dataset.
 
         Args:
           format: Format results are returned in.
@@ -272,7 +272,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> DatasetDownloadResponse:
         """
-        Get a url to download a single dataset.
+        Get a URL to download a single dataset.
 
         Args:
           format: Format results are returned in.

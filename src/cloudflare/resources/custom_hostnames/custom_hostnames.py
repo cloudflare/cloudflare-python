@@ -90,7 +90,10 @@ class CustomHostnamesResource(SyncAPIResource):
         'email' will send an email to the WHOIS contacts on file for the base domain
         plus hostmaster, postmaster, webmaster, admin, administrator. If http is used
         and the domain is not already pointing to the Managed CNAME host, the PATCH
-        method must be used once it is (to complete validation).
+        method must be used once it is (to complete validation). Enable bundling of
+        certificates using the custom_cert_bundle field. The bundling process requires
+        the following condition One certificate in the bundle must use an RSA, and the
+        other must use an ECDSA.
 
         Args:
           zone_id: Identifier
@@ -268,7 +271,10 @@ class CustomHostnamesResource(SyncAPIResource):
         When sent with SSL config that
         matches existing config, used to indicate that hostname should pass domain
         control validation (DCV). Can also be used to change validation type, e.g., from
-        'http' to 'email'.
+        'http' to 'email'. Bundle an existing certificate with another certificate by
+        using the "custom_cert_bundle" field. The bundling process supports combining
+        certificates as long as the following condition is met. One certificate must use
+        the RSA algorithm, and the other must use the ECDSA algorithm.
 
         Args:
           zone_id: Identifier
@@ -412,7 +418,10 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
         'email' will send an email to the WHOIS contacts on file for the base domain
         plus hostmaster, postmaster, webmaster, admin, administrator. If http is used
         and the domain is not already pointing to the Managed CNAME host, the PATCH
-        method must be used once it is (to complete validation).
+        method must be used once it is (to complete validation). Enable bundling of
+        certificates using the custom_cert_bundle field. The bundling process requires
+        the following condition One certificate in the bundle must use an RSA, and the
+        other must use an ECDSA.
 
         Args:
           zone_id: Identifier
@@ -590,7 +599,10 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
         When sent with SSL config that
         matches existing config, used to indicate that hostname should pass domain
         control validation (DCV). Can also be used to change validation type, e.g., from
-        'http' to 'email'.
+        'http' to 'email'. Bundle an existing certificate with another certificate by
+        using the "custom_cert_bundle" field. The bundling process supports combining
+        certificates as long as the following condition is met. One certificate must use
+        the RSA algorithm, and the other must use the ECDSA algorithm.
 
         Args:
           zone_id: Identifier
