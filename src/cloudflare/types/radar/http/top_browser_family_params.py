@@ -26,9 +26,6 @@ class TopBrowserFamilyParams(TypedDict, total=False):
     [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
     """
 
-    browser_family: Annotated[List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]], PropertyInfo(alias="browserFamily")]
-    """Filter for browser family."""
-
     continent: List[str]
     """Array of comma separated list of continents (alpha-2 continent codes).
 

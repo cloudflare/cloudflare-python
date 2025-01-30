@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List
+from typing import Dict, List, Iterable
 from typing_extensions import Literal, Required, TypedDict
 
 from .dcv_method import DCVMethod
@@ -10,7 +10,7 @@ from .bundle_method import BundleMethod
 from ..shared.certificate_ca import CertificateCA
 from .domain_validation_type import DomainValidationType
 
-__all__ = ["CustomHostnameCreateParams", "SSL", "SSLSettings"]
+__all__ = ["CustomHostnameCreateParams", "SSL", "SSLCustomCERTBundle", "SSLSettings"]
 
 
 class CustomHostnameCreateParams(TypedDict, total=False):
@@ -28,6 +28,14 @@ class CustomHostnameCreateParams(TypedDict, total=False):
 
     These are per-hostname (customer) settings.
     """
+
+
+class SSLCustomCERTBundle(TypedDict, total=False):
+    custom_certificate: Required[str]
+    """If a custom uploaded certificate is used."""
+
+    custom_key: Required[str]
+    """The key for a custom uploaded certificate."""
 
 
 class SSLSettings(TypedDict, total=False):
@@ -68,6 +76,9 @@ class SSL(TypedDict, total=False):
     This will add a subdomain of sni.cloudflaressl.com as the Common Name if set to
     true
     """
+
+    custom_cert_bundle: Iterable[SSLCustomCERTBundle]
+    """Array of custom certificate and key pairs (1 or 2 pairs allowed)"""
 
     custom_certificate: str
     """If a custom uploaded certificate is used."""

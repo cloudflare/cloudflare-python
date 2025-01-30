@@ -24,14 +24,12 @@ from ....._response import (
 from ....._wrappers import ResultWrapper
 from ....._base_client import make_request_options
 from .....types.radar.attacks.layer7 import (
-    summary_get_params,
     summary_ip_version_params,
     summary_http_method_params,
     summary_http_version_params,
     summary_managed_rules_params,
     summary_mitigation_product_params,
 )
-from .....types.radar.attacks.layer7.summary_get_response import SummaryGetResponse
 from .....types.radar.attacks.layer7.summary_ip_version_response import SummaryIPVersionResponse
 from .....types.radar.attacks.layer7.summary_http_method_response import SummaryHTTPMethodResponse
 from .....types.radar.attacks.layer7.summary_http_version_response import SummaryHTTPVersionResponse
@@ -60,85 +58,6 @@ class SummaryResource(SyncAPIResource):
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
         return SummaryResourceWithStreamingResponse(self)
-
-    def get(
-        self,
-        *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SummaryGetResponse:
-        """
-        Percentage distribution of mitigation techniques in Layer 7 attacks.
-
-        Args:
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
-
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
-          date_end: End of the date range (inclusive).
-
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
-
-          date_start: Array of datetimes to filter the start of a series.
-
-          format: Format results are returned in.
-
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
-
-          name: Array of names that will be used to name the series in responses.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._get(
-            "/radar/attacks/layer7/summary",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "asn": asn,
-                        "continent": continent,
-                        "date_end": date_end,
-                        "date_range": date_range,
-                        "date_start": date_start,
-                        "format": format,
-                        "location": location,
-                        "name": name,
-                    },
-                    summary_get_params.SummaryGetParams,
-                ),
-                post_parser=ResultWrapper[SummaryGetResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[SummaryGetResponse], ResultWrapper[SummaryGetResponse]),
-        )
 
     def http_method(
         self,
@@ -855,85 +774,6 @@ class AsyncSummaryResource(AsyncAPIResource):
         """
         return AsyncSummaryResourceWithStreamingResponse(self)
 
-    async def get(
-        self,
-        *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SummaryGetResponse:
-        """
-        Percentage distribution of mitigation techniques in Layer 7 attacks.
-
-        Args:
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
-
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
-          date_end: End of the date range (inclusive).
-
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
-
-          date_start: Array of datetimes to filter the start of a series.
-
-          format: Format results are returned in.
-
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
-
-          name: Array of names that will be used to name the series in responses.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._get(
-            "/radar/attacks/layer7/summary",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "asn": asn,
-                        "continent": continent,
-                        "date_end": date_end,
-                        "date_range": date_range,
-                        "date_start": date_start,
-                        "format": format,
-                        "location": location,
-                        "name": name,
-                    },
-                    summary_get_params.SummaryGetParams,
-                ),
-                post_parser=ResultWrapper[SummaryGetResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[SummaryGetResponse], ResultWrapper[SummaryGetResponse]),
-        )
-
     async def http_method(
         self,
         *,
@@ -1633,9 +1473,6 @@ class SummaryResourceWithRawResponse:
     def __init__(self, summary: SummaryResource) -> None:
         self._summary = summary
 
-        self.get = to_raw_response_wrapper(
-            summary.get,
-        )
         self.http_method = to_raw_response_wrapper(
             summary.http_method,
         )
@@ -1657,9 +1494,6 @@ class AsyncSummaryResourceWithRawResponse:
     def __init__(self, summary: AsyncSummaryResource) -> None:
         self._summary = summary
 
-        self.get = async_to_raw_response_wrapper(
-            summary.get,
-        )
         self.http_method = async_to_raw_response_wrapper(
             summary.http_method,
         )
@@ -1681,9 +1515,6 @@ class SummaryResourceWithStreamingResponse:
     def __init__(self, summary: SummaryResource) -> None:
         self._summary = summary
 
-        self.get = to_streamed_response_wrapper(
-            summary.get,
-        )
         self.http_method = to_streamed_response_wrapper(
             summary.http_method,
         )
@@ -1705,9 +1536,6 @@ class AsyncSummaryResourceWithStreamingResponse:
     def __init__(self, summary: AsyncSummaryResource) -> None:
         self._summary = summary
 
-        self.get = async_to_streamed_response_wrapper(
-            summary.get,
-        )
         self.http_method = async_to_streamed_response_wrapper(
             summary.http_method,
         )

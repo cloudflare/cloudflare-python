@@ -181,14 +181,20 @@ class TargetsResource(SyncAPIResource):
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         hostname: Optional[str] | NotGiven = NOT_GIVEN,
         hostname_contains: Optional[str] | NotGiven = NOT_GIVEN,
+        ip_like: Optional[str] | NotGiven = NOT_GIVEN,
         ip_v4: Optional[str] | NotGiven = NOT_GIVEN,
         ip_v6: Optional[str] | NotGiven = NOT_GIVEN,
         ips: List[str] | NotGiven = NOT_GIVEN,
+        ipv4_end: Optional[str] | NotGiven = NOT_GIVEN,
+        ipv4_start: Optional[str] | NotGiven = NOT_GIVEN,
+        ipv6_end: Optional[str] | NotGiven = NOT_GIVEN,
+        ipv6_start: Optional[str] | NotGiven = NOT_GIVEN,
         modified_after: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         modified_before: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         order: Literal["hostname", "created_at"] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
+        target_ids: List[str] | NotGiven = NOT_GIVEN,
         virtual_network_id: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -215,12 +221,27 @@ class TargetsResource(SyncAPIResource):
 
           hostname_contains: Partial match to the hostname of a target
 
+          ip_like: Filters for targets whose IP addresses look like the specified string. Supports
+              `*` as a wildcard character
+
           ip_v4: IPv4 address of the target
 
           ip_v6: IPv6 address of the target
 
           ips: Filters for targets that have any of the following IP addresses. Specify `ips`
               multiple times in query parameter to build list of candidates.
+
+          ipv4_end: Defines an IPv4 filter range's ending value (inclusive). Requires `ipv4_start`
+              to be specified as well.
+
+          ipv4_start: Defines an IPv4 filter range's starting value (inclusive). Requires `ipv4_end`
+              to be specified as well.
+
+          ipv6_end: Defines an IPv6 filter range's ending value (inclusive). Requires `ipv6_start`
+              to be specified as well.
+
+          ipv6_start: Defines an IPv6 filter range's starting value (inclusive). Requires `ipv6_end`
+              to be specified as well.
 
           modified_after: Date and time at which the target was modified after (inclusive)
 
@@ -231,6 +252,9 @@ class TargetsResource(SyncAPIResource):
           page: Current page in the response
 
           per_page: Max amount of entries returned per page
+
+          target_ids: Filters for targets that have any of the following UUIDs. Specify `target_ids`
+              multiple times in query parameter to build list of candidates.
 
           virtual_network_id: Private virtual network identifier of the target
 
@@ -259,14 +283,20 @@ class TargetsResource(SyncAPIResource):
                         "direction": direction,
                         "hostname": hostname,
                         "hostname_contains": hostname_contains,
+                        "ip_like": ip_like,
                         "ip_v4": ip_v4,
                         "ip_v6": ip_v6,
                         "ips": ips,
+                        "ipv4_end": ipv4_end,
+                        "ipv4_start": ipv4_start,
+                        "ipv6_end": ipv6_end,
+                        "ipv6_start": ipv6_start,
                         "modified_after": modified_after,
                         "modified_before": modified_before,
                         "order": order,
                         "page": page,
                         "per_page": per_page,
+                        "target_ids": target_ids,
                         "virtual_network_id": virtual_network_id,
                     },
                     target_list_params.TargetListParams,
@@ -576,14 +606,20 @@ class AsyncTargetsResource(AsyncAPIResource):
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
         hostname: Optional[str] | NotGiven = NOT_GIVEN,
         hostname_contains: Optional[str] | NotGiven = NOT_GIVEN,
+        ip_like: Optional[str] | NotGiven = NOT_GIVEN,
         ip_v4: Optional[str] | NotGiven = NOT_GIVEN,
         ip_v6: Optional[str] | NotGiven = NOT_GIVEN,
         ips: List[str] | NotGiven = NOT_GIVEN,
+        ipv4_end: Optional[str] | NotGiven = NOT_GIVEN,
+        ipv4_start: Optional[str] | NotGiven = NOT_GIVEN,
+        ipv6_end: Optional[str] | NotGiven = NOT_GIVEN,
+        ipv6_start: Optional[str] | NotGiven = NOT_GIVEN,
         modified_after: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         modified_before: Union[str, datetime, None] | NotGiven = NOT_GIVEN,
         order: Literal["hostname", "created_at"] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
+        target_ids: List[str] | NotGiven = NOT_GIVEN,
         virtual_network_id: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -610,12 +646,27 @@ class AsyncTargetsResource(AsyncAPIResource):
 
           hostname_contains: Partial match to the hostname of a target
 
+          ip_like: Filters for targets whose IP addresses look like the specified string. Supports
+              `*` as a wildcard character
+
           ip_v4: IPv4 address of the target
 
           ip_v6: IPv6 address of the target
 
           ips: Filters for targets that have any of the following IP addresses. Specify `ips`
               multiple times in query parameter to build list of candidates.
+
+          ipv4_end: Defines an IPv4 filter range's ending value (inclusive). Requires `ipv4_start`
+              to be specified as well.
+
+          ipv4_start: Defines an IPv4 filter range's starting value (inclusive). Requires `ipv4_end`
+              to be specified as well.
+
+          ipv6_end: Defines an IPv6 filter range's ending value (inclusive). Requires `ipv6_start`
+              to be specified as well.
+
+          ipv6_start: Defines an IPv6 filter range's starting value (inclusive). Requires `ipv6_end`
+              to be specified as well.
 
           modified_after: Date and time at which the target was modified after (inclusive)
 
@@ -626,6 +677,9 @@ class AsyncTargetsResource(AsyncAPIResource):
           page: Current page in the response
 
           per_page: Max amount of entries returned per page
+
+          target_ids: Filters for targets that have any of the following UUIDs. Specify `target_ids`
+              multiple times in query parameter to build list of candidates.
 
           virtual_network_id: Private virtual network identifier of the target
 
@@ -654,14 +708,20 @@ class AsyncTargetsResource(AsyncAPIResource):
                         "direction": direction,
                         "hostname": hostname,
                         "hostname_contains": hostname_contains,
+                        "ip_like": ip_like,
                         "ip_v4": ip_v4,
                         "ip_v6": ip_v6,
                         "ips": ips,
+                        "ipv4_end": ipv4_end,
+                        "ipv4_start": ipv4_start,
+                        "ipv6_end": ipv6_end,
+                        "ipv6_start": ipv6_start,
                         "modified_after": modified_after,
                         "modified_before": modified_before,
                         "order": order,
                         "page": page,
                         "per_page": per_page,
+                        "target_ids": target_ids,
                         "virtual_network_id": virtual_network_id,
                     },
                     target_list_params.TargetListParams,
