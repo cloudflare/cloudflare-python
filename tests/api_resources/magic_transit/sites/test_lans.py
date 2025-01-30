@@ -55,6 +55,7 @@ class TestLANs:
                     "dhcp_pool_end": "192.0.2.1",
                     "dhcp_pool_start": "192.0.2.1",
                     "dns_server": "192.0.2.1",
+                    "dns_servers": ["192.0.2.1"],
                     "reservations": {
                         "00:11:22:33:44:55": "192.0.2.100",
                         "AA:BB:CC:DD:EE:FF": "192.168.1.101",
@@ -146,6 +147,7 @@ class TestLANs:
                     "dhcp_pool_end": "192.0.2.1",
                     "dhcp_pool_start": "192.0.2.1",
                     "dns_server": "192.0.2.1",
+                    "dns_servers": ["192.0.2.1"],
                     "reservations": {
                         "00:11:22:33:44:55": "192.0.2.100",
                         "AA:BB:CC:DD:EE:FF": "192.168.1.101",
@@ -349,6 +351,7 @@ class TestLANs:
                     "dhcp_pool_end": "192.0.2.1",
                     "dhcp_pool_start": "192.0.2.1",
                     "dns_server": "192.0.2.1",
+                    "dns_servers": ["192.0.2.1"],
                     "reservations": {
                         "00:11:22:33:44:55": "192.0.2.100",
                         "AA:BB:CC:DD:EE:FF": "192.168.1.101",
@@ -510,6 +513,7 @@ class TestAsyncLANs:
                     "dhcp_pool_end": "192.0.2.1",
                     "dhcp_pool_start": "192.0.2.1",
                     "dns_server": "192.0.2.1",
+                    "dns_servers": ["192.0.2.1"],
                     "reservations": {
                         "00:11:22:33:44:55": "192.0.2.100",
                         "AA:BB:CC:DD:EE:FF": "192.168.1.101",
@@ -601,6 +605,7 @@ class TestAsyncLANs:
                     "dhcp_pool_end": "192.0.2.1",
                     "dhcp_pool_start": "192.0.2.1",
                     "dns_server": "192.0.2.1",
+                    "dns_servers": ["192.0.2.1"],
                     "reservations": {
                         "00:11:22:33:44:55": "192.0.2.100",
                         "AA:BB:CC:DD:EE:FF": "192.168.1.101",
@@ -804,6 +809,7 @@ class TestAsyncLANs:
                     "dhcp_pool_end": "192.0.2.1",
                     "dhcp_pool_start": "192.0.2.1",
                     "dns_server": "192.0.2.1",
+                    "dns_servers": ["192.0.2.1"],
                     "reservations": {
                         "00:11:22:33:44:55": "192.0.2.100",
                         "AA:BB:CC:DD:EE:FF": "192.168.1.101",

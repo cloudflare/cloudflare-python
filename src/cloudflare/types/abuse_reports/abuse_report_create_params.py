@@ -24,8 +24,15 @@ class AbuseReportCreateParams(TypedDict, total=False):
     ]
     """The abuse report type"""
 
+    agree: Required[Literal[0, 1]]
+    """Can be `0` for false or `1` for true"""
+
     email: Required[str]
-    """A valid email of the abuse reporter"""
+    """A valid email of the abuse reporter.
+
+    This field may be released by Cloudflare to third parties such as the Lumen
+    Database (https://lumendatabase.org/).
+    """
 
     email2: Required[str]
     """Should match the value provided in `email`"""
@@ -52,29 +59,47 @@ class AbuseReportCreateParams(TypedDict, total=False):
     """A list of valid URLs separated by ‘ ’ (new line character).
 
     The list of the URLs should not exceed 250 URLs. All URLs should have the same
-    hostname. Each URL should be unique
+    hostname. Each URL should be unique. This field may be released by Cloudflare to
+    third parties such as the Lumen Database (https://lumendatabase.org/).
     """
 
     address1: str
-    """Text not exceeding 100 characters"""
+    """Text not exceeding 100 characters.
+
+    This field may be released by Cloudflare to third parties such as the Lumen
+    Database (https://lumendatabase.org/).
+    """
 
     agent_name: str
-    """The name of the copyright holder. Text not exceeding 60 characters."""
+    """The name of the copyright holder.
 
-    agree: Literal[0, 1]
-    """Can be 0 or 1"""
+    Text not exceeding 60 characters. This field may be released by Cloudflare to
+    third parties such as the Lumen Database (https://lumendatabase.org/).
+    """
 
     city: str
-    """Text not exceeding 255 characters"""
+    """Text not exceeding 255 characters.
+
+    This field may be released by Cloudflare to third parties such as the Lumen
+    Database (https://lumendatabase.org/).
+    """
 
     comments: str
     """Any additional comments about the infringement not exceeding 2000 characters"""
 
     company: str
-    """Text not exceeding 100 characters"""
+    """Text not exceeding 100 characters.
+
+    This field may be released by Cloudflare to third parties such as the Lumen
+    Database (https://lumendatabase.org/).
+    """
 
     country: str
-    """Text not exceeding 255 characters"""
+    """Text not exceeding 255 characters.
+
+    This field may be released by Cloudflare to third parties such as the Lumen
+    Database (https://lumendatabase.org/).
+    """
 
     destination_ips: str
     """A list of IP addresses separated by ‘ ’ (new line character).
@@ -91,13 +116,21 @@ class AbuseReportCreateParams(TypedDict, total=False):
     """
 
     name: str
-    """Text not exceeding 255 characters"""
+    """Text not exceeding 255 characters.
+
+    This field may be released by Cloudflare to third parties such as the Lumen
+    Database (https://lumendatabase.org/).
+    """
 
     ncsei_subject_representation: bool
     """If the submitter is the target of NCSEI in the URLs of the abuse report"""
 
     original_work: str
-    """Text not exceeding 255 characters"""
+    """Text not exceeding 255 characters.
+
+    This field may be released by Cloudflare to third parties such as the Lumen
+    Database (https://lumendatabase.org/).
+    """
 
     ports_protocols: str
     """A comma separated list of ports and protocols e.g.
@@ -122,10 +155,18 @@ class AbuseReportCreateParams(TypedDict, total=False):
     """
 
     state: str
-    """Text not exceeding 255 characters"""
+    """Text not exceeding 255 characters.
+
+    This field may be released by Cloudflare to third parties such as the Lumen
+    Database (https://lumendatabase.org/).
+    """
 
     tele: str
-    """Text not exceeding 20 characters"""
+    """Text not exceeding 20 characters.
+
+    This field may be released by Cloudflare to third parties such as the Lumen
+    Database (https://lumendatabase.org/).
+    """
 
     title: str
     """Text not exceeding 255 characters"""

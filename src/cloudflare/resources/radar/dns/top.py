@@ -53,12 +53,12 @@ class TopResource(SyncAPIResource):
     def ases(
         self,
         *,
-        domain: List[str],
         asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        domain: List[str] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
@@ -75,8 +75,6 @@ class TopResource(SyncAPIResource):
         resolver.
 
         Args:
-          domain: Array of domain names.
-
           asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
               For example, `-174, 3356` excludes results from AS174, but includes results from
               AS3356.
@@ -92,6 +90,8 @@ class TopResource(SyncAPIResource):
               `dateEnd` parameters).
 
           date_start: Array of datetimes to filter the start of a series.
+
+          domain: Array of domain names.
 
           format: Format results are returned in.
 
@@ -120,12 +120,12 @@ class TopResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "domain": domain,
                         "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
+                        "domain": domain,
                         "format": format,
                         "limit": limit,
                         "location": location,
@@ -141,12 +141,12 @@ class TopResource(SyncAPIResource):
     def locations(
         self,
         *,
-        domain: List[str],
         asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        domain: List[str] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
@@ -162,8 +162,6 @@ class TopResource(SyncAPIResource):
         Get top locations by DNS queries made to Cloudflare's public DNS resolver.
 
         Args:
-          domain: Array of domain names.
-
           asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
               For example, `-174, 3356` excludes results from AS174, but includes results from
               AS3356.
@@ -179,6 +177,8 @@ class TopResource(SyncAPIResource):
               `dateEnd` parameters).
 
           date_start: Array of datetimes to filter the start of a series.
+
+          domain: Array of domain names.
 
           format: Format results are returned in.
 
@@ -207,12 +207,12 @@ class TopResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "domain": domain,
                         "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
+                        "domain": domain,
                         "format": format,
                         "limit": limit,
                         "location": location,
@@ -249,12 +249,12 @@ class AsyncTopResource(AsyncAPIResource):
     async def ases(
         self,
         *,
-        domain: List[str],
         asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        domain: List[str] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
@@ -271,8 +271,6 @@ class AsyncTopResource(AsyncAPIResource):
         resolver.
 
         Args:
-          domain: Array of domain names.
-
           asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
               For example, `-174, 3356` excludes results from AS174, but includes results from
               AS3356.
@@ -288,6 +286,8 @@ class AsyncTopResource(AsyncAPIResource):
               `dateEnd` parameters).
 
           date_start: Array of datetimes to filter the start of a series.
+
+          domain: Array of domain names.
 
           format: Format results are returned in.
 
@@ -316,12 +316,12 @@ class AsyncTopResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "domain": domain,
                         "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
+                        "domain": domain,
                         "format": format,
                         "limit": limit,
                         "location": location,
@@ -337,12 +337,12 @@ class AsyncTopResource(AsyncAPIResource):
     async def locations(
         self,
         *,
-        domain: List[str],
         asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        domain: List[str] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
@@ -358,8 +358,6 @@ class AsyncTopResource(AsyncAPIResource):
         Get top locations by DNS queries made to Cloudflare's public DNS resolver.
 
         Args:
-          domain: Array of domain names.
-
           asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
               For example, `-174, 3356` excludes results from AS174, but includes results from
               AS3356.
@@ -375,6 +373,8 @@ class AsyncTopResource(AsyncAPIResource):
               `dateEnd` parameters).
 
           date_start: Array of datetimes to filter the start of a series.
+
+          domain: Array of domain names.
 
           format: Format results are returned in.
 
@@ -403,12 +403,12 @@ class AsyncTopResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "domain": domain,
                         "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
+                        "domain": domain,
                         "format": format,
                         "limit": limit,
                         "location": location,
