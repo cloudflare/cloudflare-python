@@ -132,7 +132,7 @@ class TestVersions:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_version` but received ''"):
             client.rulesets.phases.versions.with_raw_response.get(
                 ruleset_version="",
                 ruleset_phase="ddos_l4",
@@ -271,7 +271,7 @@ class TestAsyncVersions:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_version` but received ''"):
             await async_client.rulesets.phases.versions.with_raw_response.get(
                 ruleset_version="",
                 ruleset_phase="ddos_l4",

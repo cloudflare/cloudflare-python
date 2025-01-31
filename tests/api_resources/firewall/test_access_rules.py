@@ -210,7 +210,7 @@ class TestAccessRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
             client.firewall.access_rules.with_raw_response.delete(
                 rule_id="",
                 account_id="account_id",
@@ -289,7 +289,7 @@ class TestAccessRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_edit(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
             client.firewall.access_rules.with_raw_response.edit(
                 rule_id="",
                 configuration={},
@@ -362,7 +362,7 @@ class TestAccessRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
             client.firewall.access_rules.with_raw_response.get(
                 rule_id="",
                 account_id="account_id",
@@ -570,7 +570,7 @@ class TestAsyncAccessRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
             await async_client.firewall.access_rules.with_raw_response.delete(
                 rule_id="",
                 account_id="account_id",
@@ -649,7 +649,7 @@ class TestAsyncAccessRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
             await async_client.firewall.access_rules.with_raw_response.edit(
                 rule_id="",
                 configuration={},
@@ -722,7 +722,7 @@ class TestAsyncAccessRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
             await async_client.firewall.access_rules.with_raw_response.get(
                 rule_id="",
                 account_id="account_id",

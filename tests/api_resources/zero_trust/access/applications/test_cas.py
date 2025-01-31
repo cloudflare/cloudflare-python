@@ -67,7 +67,7 @@ class TestCAs:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             client.zero_trust.access.applications.cas.with_raw_response.create(
                 app_id="",
                 account_id="account_id",
@@ -189,7 +189,7 @@ class TestCAs:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             client.zero_trust.access.applications.cas.with_raw_response.delete(
                 app_id="",
                 account_id="account_id",
@@ -256,7 +256,7 @@ class TestCAs:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             client.zero_trust.access.applications.cas.with_raw_response.get(
                 app_id="",
                 account_id="account_id",
@@ -327,7 +327,7 @@ class TestAsyncCAs:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             await async_client.zero_trust.access.applications.cas.with_raw_response.create(
                 app_id="",
                 account_id="account_id",
@@ -449,7 +449,7 @@ class TestAsyncCAs:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             await async_client.zero_trust.access.applications.cas.with_raw_response.delete(
                 app_id="",
                 account_id="account_id",
@@ -516,7 +516,7 @@ class TestAsyncCAs:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             await async_client.zero_trust.access.applications.cas.with_raw_response.get(
                 app_id="",
                 account_id="account_id",

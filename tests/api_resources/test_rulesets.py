@@ -222,7 +222,7 @@ class TestRulesets:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
             client.rulesets.with_raw_response.update(
                 ruleset_id="",
                 rules=[{}],
@@ -349,7 +349,7 @@ class TestRulesets:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
             client.rulesets.with_raw_response.delete(
                 ruleset_id="",
                 account_id="account_id",
@@ -416,7 +416,7 @@ class TestRulesets:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
             client.rulesets.with_raw_response.get(
                 ruleset_id="",
                 account_id="account_id",
@@ -637,7 +637,7 @@ class TestAsyncRulesets:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
             await async_client.rulesets.with_raw_response.update(
                 ruleset_id="",
                 rules=[{}],
@@ -764,7 +764,7 @@ class TestAsyncRulesets:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
             await async_client.rulesets.with_raw_response.delete(
                 ruleset_id="",
                 account_id="account_id",
@@ -831,7 +831,7 @@ class TestAsyncRulesets:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
             await async_client.rulesets.with_raw_response.get(
                 ruleset_id="",
                 account_id="account_id",

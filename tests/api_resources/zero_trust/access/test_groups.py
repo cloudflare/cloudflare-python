@@ -154,7 +154,7 @@ class TestGroups:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `group_id` but received ''"):
             client.zero_trust.access.groups.with_raw_response.update(
                 group_id="",
                 include=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
@@ -284,7 +284,7 @@ class TestGroups:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `group_id` but received ''"):
             client.zero_trust.access.groups.with_raw_response.delete(
                 group_id="",
                 account_id="account_id",
@@ -351,7 +351,7 @@ class TestGroups:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `group_id` but received ''"):
             client.zero_trust.access.groups.with_raw_response.get(
                 group_id="",
                 account_id="account_id",
@@ -503,7 +503,7 @@ class TestAsyncGroups:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `group_id` but received ''"):
             await async_client.zero_trust.access.groups.with_raw_response.update(
                 group_id="",
                 include=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
@@ -633,7 +633,7 @@ class TestAsyncGroups:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `group_id` but received ''"):
             await async_client.zero_trust.access.groups.with_raw_response.delete(
                 group_id="",
                 account_id="account_id",
@@ -700,7 +700,7 @@ class TestAsyncGroups:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `group_id` but received ''"):
             await async_client.zero_trust.access.groups.with_raw_response.get(
                 group_id="",
                 account_id="account_id",
