@@ -1285,7 +1285,7 @@ class TestIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_1(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="",
                 config={},
@@ -1386,7 +1386,7 @@ class TestIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_2(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="",
                 config={},
@@ -1483,7 +1483,7 @@ class TestIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_3(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="",
                 config={},
@@ -1580,7 +1580,7 @@ class TestIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_4(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="",
                 config={},
@@ -1679,7 +1679,7 @@ class TestIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_5(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="",
                 config={},
@@ -1779,7 +1779,7 @@ class TestIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_6(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="",
                 config={},
@@ -1876,7 +1876,7 @@ class TestIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_7(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="",
                 config={},
@@ -1980,7 +1980,7 @@ class TestIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_8(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="",
                 config={},
@@ -2081,7 +2081,7 @@ class TestIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_9(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="",
                 config={},
@@ -2181,7 +2181,7 @@ class TestIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_10(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="",
                 config={},
@@ -2281,7 +2281,7 @@ class TestIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_11(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="",
                 config={},
@@ -2388,7 +2388,7 @@ class TestIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_12(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="",
                 config={},
@@ -2485,7 +2485,7 @@ class TestIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_13(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="",
                 config={},
@@ -2579,7 +2579,7 @@ class TestIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_14(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="",
                 config={},
@@ -2711,7 +2711,7 @@ class TestIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.delete(
                 identity_provider_id="",
                 account_id="account_id",
@@ -2778,7 +2778,7 @@ class TestIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.get(
                 identity_provider_id="",
                 account_id="account_id",
@@ -4063,7 +4063,7 @@ class TestAsyncIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_1(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="",
                 config={},
@@ -4164,7 +4164,7 @@ class TestAsyncIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_2(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="",
                 config={},
@@ -4261,7 +4261,7 @@ class TestAsyncIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_3(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="",
                 config={},
@@ -4358,7 +4358,7 @@ class TestAsyncIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_4(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="",
                 config={},
@@ -4457,7 +4457,7 @@ class TestAsyncIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_5(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="",
                 config={},
@@ -4557,7 +4557,7 @@ class TestAsyncIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_6(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="",
                 config={},
@@ -4654,7 +4654,7 @@ class TestAsyncIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_7(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="",
                 config={},
@@ -4758,7 +4758,7 @@ class TestAsyncIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_8(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="",
                 config={},
@@ -4859,7 +4859,7 @@ class TestAsyncIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_9(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="",
                 config={},
@@ -4959,7 +4959,7 @@ class TestAsyncIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_10(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="",
                 config={},
@@ -5059,7 +5059,7 @@ class TestAsyncIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_11(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="",
                 config={},
@@ -5166,7 +5166,7 @@ class TestAsyncIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_12(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="",
                 config={},
@@ -5263,7 +5263,7 @@ class TestAsyncIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_13(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="",
                 config={},
@@ -5357,7 +5357,7 @@ class TestAsyncIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_14(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="",
                 config={},
@@ -5489,7 +5489,7 @@ class TestAsyncIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.delete(
                 identity_provider_id="",
                 account_id="account_id",
@@ -5556,7 +5556,7 @@ class TestAsyncIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.get(
                 identity_provider_id="",
                 account_id="account_id",
