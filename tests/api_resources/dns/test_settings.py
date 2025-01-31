@@ -81,12 +81,12 @@ class TestSettings:
     @pytest.mark.skip(reason="HTTP 422 from prism")
     @parametrize
     def test_path_params_edit(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.dns.settings.with_raw_response.edit(
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.dns.settings.with_raw_response.edit(
                 account_id="account_id",
             )
@@ -136,12 +136,12 @@ class TestSettings:
     @pytest.mark.skip(reason="HTTP 422 from prism")
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.dns.settings.with_raw_response.get(
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.dns.settings.with_raw_response.get(
                 account_id="account_id",
             )
@@ -214,12 +214,12 @@ class TestAsyncSettings:
     @pytest.mark.skip(reason="HTTP 422 from prism")
     @parametrize
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.dns.settings.with_raw_response.edit(
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.dns.settings.with_raw_response.edit(
                 account_id="account_id",
             )
@@ -269,12 +269,12 @@ class TestAsyncSettings:
     @pytest.mark.skip(reason="HTTP 422 from prism")
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.dns.settings.with_raw_response.get(
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.dns.settings.with_raw_response.get(
                 account_id="account_id",
             )
