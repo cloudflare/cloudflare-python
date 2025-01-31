@@ -3,13 +3,14 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.mtls_certificates import AssociationGetResponse
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.types.mtls_certificates import CertificateAsssociation
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -23,7 +24,7 @@ class TestAssociations:
             mtls_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[AssociationGetResponse], association, path=["response"])
+        assert_matches_type(SyncSinglePage[CertificateAsssociation], association, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -35,7 +36,7 @@ class TestAssociations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         association = response.parse()
-        assert_matches_type(Optional[AssociationGetResponse], association, path=["response"])
+        assert_matches_type(SyncSinglePage[CertificateAsssociation], association, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -47,7 +48,7 @@ class TestAssociations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             association = response.parse()
-            assert_matches_type(Optional[AssociationGetResponse], association, path=["response"])
+            assert_matches_type(SyncSinglePage[CertificateAsssociation], association, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -75,7 +76,7 @@ class TestAsyncAssociations:
             mtls_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[AssociationGetResponse], association, path=["response"])
+        assert_matches_type(AsyncSinglePage[CertificateAsssociation], association, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -87,7 +88,7 @@ class TestAsyncAssociations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         association = await response.parse()
-        assert_matches_type(Optional[AssociationGetResponse], association, path=["response"])
+        assert_matches_type(AsyncSinglePage[CertificateAsssociation], association, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -99,7 +100,7 @@ class TestAsyncAssociations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             association = await response.parse()
-            assert_matches_type(Optional[AssociationGetResponse], association, path=["response"])
+            assert_matches_type(AsyncSinglePage[CertificateAsssociation], association, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

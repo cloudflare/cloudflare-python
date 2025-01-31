@@ -3,13 +3,14 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zero_trust import SeatEditResponse
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.types.zero_trust import Seat
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -30,7 +31,7 @@ class TestSeats:
                 }
             ],
         )
-        assert_matches_type(Optional[SeatEditResponse], seat, path=["response"])
+        assert_matches_type(SyncSinglePage[Seat], seat, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -49,7 +50,7 @@ class TestSeats:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         seat = response.parse()
-        assert_matches_type(Optional[SeatEditResponse], seat, path=["response"])
+        assert_matches_type(SyncSinglePage[Seat], seat, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -68,7 +69,7 @@ class TestSeats:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             seat = response.parse()
-            assert_matches_type(Optional[SeatEditResponse], seat, path=["response"])
+            assert_matches_type(SyncSinglePage[Seat], seat, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -104,7 +105,7 @@ class TestAsyncSeats:
                 }
             ],
         )
-        assert_matches_type(Optional[SeatEditResponse], seat, path=["response"])
+        assert_matches_type(AsyncSinglePage[Seat], seat, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -123,7 +124,7 @@ class TestAsyncSeats:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         seat = await response.parse()
-        assert_matches_type(Optional[SeatEditResponse], seat, path=["response"])
+        assert_matches_type(AsyncSinglePage[Seat], seat, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -142,7 +143,7 @@ class TestAsyncSeats:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             seat = await response.parse()
-            assert_matches_type(Optional[SeatEditResponse], seat, path=["response"])
+            assert_matches_type(AsyncSinglePage[Seat], seat, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

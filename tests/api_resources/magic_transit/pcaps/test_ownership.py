@@ -3,16 +3,14 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.magic_transit.pcaps import (
-    Ownership,
-    OwnershipGetResponse,
-)
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.types.magic_transit.pcaps import Ownership
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -115,7 +113,7 @@ class TestOwnership:
         ownership = client.magic_transit.pcaps.ownership.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[OwnershipGetResponse], ownership, path=["response"])
+        assert_matches_type(SyncSinglePage[Ownership], ownership, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -126,7 +124,7 @@ class TestOwnership:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ownership = response.parse()
-        assert_matches_type(Optional[OwnershipGetResponse], ownership, path=["response"])
+        assert_matches_type(SyncSinglePage[Ownership], ownership, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -137,7 +135,7 @@ class TestOwnership:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ownership = response.parse()
-            assert_matches_type(Optional[OwnershipGetResponse], ownership, path=["response"])
+            assert_matches_type(SyncSinglePage[Ownership], ownership, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -293,7 +291,7 @@ class TestAsyncOwnership:
         ownership = await async_client.magic_transit.pcaps.ownership.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[OwnershipGetResponse], ownership, path=["response"])
+        assert_matches_type(AsyncSinglePage[Ownership], ownership, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -304,7 +302,7 @@ class TestAsyncOwnership:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ownership = await response.parse()
-        assert_matches_type(Optional[OwnershipGetResponse], ownership, path=["response"])
+        assert_matches_type(AsyncSinglePage[Ownership], ownership, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -315,7 +313,7 @@ class TestAsyncOwnership:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ownership = await response.parse()
-            assert_matches_type(Optional[OwnershipGetResponse], ownership, path=["response"])
+            assert_matches_type(AsyncSinglePage[Ownership], ownership, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

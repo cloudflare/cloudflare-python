@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from .client import Client as Client
 from .token_get_response import TokenGetResponse as TokenGetResponse
-from .connection_get_response import ConnectionGetResponse as ConnectionGetResponse
 from .connection_delete_params import ConnectionDeleteParams as ConnectionDeleteParams
 from .management_create_params import ManagementCreateParams as ManagementCreateParams
 from .configuration_get_response import ConfigurationGetResponse as ConfigurationGetResponse

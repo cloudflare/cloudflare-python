@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import typing_extensions
-from typing import Type, Optional, cast
+from typing import Type, cast
 
 import httpx
 
@@ -21,7 +21,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from ...pagination import SyncSinglePage, AsyncSinglePage, SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.firewall import (
     rule_get_params,
@@ -32,12 +32,7 @@ from ...types.firewall import (
     rule_bulk_update_params,
 )
 from ...types.firewall.firewall_rule import FirewallRule
-from ...types.firewall.rule_edit_response import RuleEditResponse
 from ...types.filters.firewall_filter_param import FirewallFilterParam
-from ...types.firewall.rule_create_response import RuleCreateResponse
-from ...types.firewall.rule_bulk_edit_response import RuleBulkEditResponse
-from ...types.firewall.rule_bulk_delete_response import RuleBulkDeleteResponse
-from ...types.firewall.rule_bulk_update_response import RuleBulkUpdateResponse
 
 __all__ = ["RulesResource", "AsyncRulesResource"]
 
@@ -77,7 +72,7 @@ class RulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RuleCreateResponse]:
+    ) -> SyncSinglePage[FirewallRule]:
         """
         Create one or more firewall rules.
 
@@ -97,8 +92,9 @@ class RulesResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._post(
+        return self._get_api_list(
             f"/zones/{zone_id}/firewall/rules",
+            page=SyncSinglePage[FirewallRule],
             body=maybe_transform(
                 {
                     "action": action,
@@ -107,13 +103,10 @@ class RulesResource(SyncAPIResource):
                 rule_create_params.RuleCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[RuleCreateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[RuleCreateResponse]], ResultWrapper[RuleCreateResponse]),
+            model=FirewallRule,
+            method="post",
         )
 
     @typing_extensions.deprecated(
@@ -308,7 +301,7 @@ class RulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RuleBulkDeleteResponse]:
+    ) -> SyncSinglePage[FirewallRule]:
         """
         Deletes existing firewall rules.
 
@@ -325,16 +318,14 @@ class RulesResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._delete(
+        return self._get_api_list(
             f"/zones/{zone_id}/firewall/rules",
+            page=SyncSinglePage[FirewallRule],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[RuleBulkDeleteResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[RuleBulkDeleteResponse]], ResultWrapper[RuleBulkDeleteResponse]),
+            model=FirewallRule,
+            method="delete",
         )
 
     @typing_extensions.deprecated(
@@ -351,7 +342,7 @@ class RulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RuleBulkEditResponse]:
+    ) -> SyncSinglePage[FirewallRule]:
         """
         Updates the priority of existing firewall rules.
 
@@ -368,17 +359,15 @@ class RulesResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._patch(
+        return self._get_api_list(
             f"/zones/{zone_id}/firewall/rules",
+            page=SyncSinglePage[FirewallRule],
             body=maybe_transform(body, rule_bulk_edit_params.RuleBulkEditParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[RuleBulkEditResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[RuleBulkEditResponse]], ResultWrapper[RuleBulkEditResponse]),
+            model=FirewallRule,
+            method="patch",
         )
 
     @typing_extensions.deprecated(
@@ -395,7 +384,7 @@ class RulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RuleBulkUpdateResponse]:
+    ) -> SyncSinglePage[FirewallRule]:
         """
         Updates one or more existing firewall rules.
 
@@ -412,17 +401,15 @@ class RulesResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._put(
+        return self._get_api_list(
             f"/zones/{zone_id}/firewall/rules",
+            page=SyncSinglePage[FirewallRule],
             body=maybe_transform(body, rule_bulk_update_params.RuleBulkUpdateParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[RuleBulkUpdateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[RuleBulkUpdateResponse]], ResultWrapper[RuleBulkUpdateResponse]),
+            model=FirewallRule,
+            method="put",
         )
 
     @typing_extensions.deprecated(
@@ -439,7 +426,7 @@ class RulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RuleEditResponse]:
+    ) -> SyncSinglePage[FirewallRule]:
         """
         Updates the priority of an existing firewall rule.
 
@@ -460,16 +447,14 @@ class RulesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
-        return self._patch(
+        return self._get_api_list(
             f"/zones/{zone_id}/firewall/rules/{rule_id}",
+            page=SyncSinglePage[FirewallRule],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[RuleEditResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[RuleEditResponse]], ResultWrapper[RuleEditResponse]),
+            model=FirewallRule,
+            method="patch",
         )
 
     @typing_extensions.deprecated(
@@ -547,7 +532,7 @@ class AsyncRulesResource(AsyncAPIResource):
     @typing_extensions.deprecated(
         "The Firewall Rules API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
     )
-    async def create(
+    def create(
         self,
         *,
         zone_id: str,
@@ -559,7 +544,7 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RuleCreateResponse]:
+    ) -> AsyncPaginator[FirewallRule, AsyncSinglePage[FirewallRule]]:
         """
         Create one or more firewall rules.
 
@@ -579,9 +564,10 @@ class AsyncRulesResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._post(
+        return self._get_api_list(
             f"/zones/{zone_id}/firewall/rules",
-            body=await async_maybe_transform(
+            page=AsyncSinglePage[FirewallRule],
+            body=maybe_transform(
                 {
                     "action": action,
                     "filter": filter,
@@ -589,13 +575,10 @@ class AsyncRulesResource(AsyncAPIResource):
                 rule_create_params.RuleCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[RuleCreateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[RuleCreateResponse]], ResultWrapper[RuleCreateResponse]),
+            model=FirewallRule,
+            method="post",
         )
 
     @typing_extensions.deprecated(
@@ -780,7 +763,7 @@ class AsyncRulesResource(AsyncAPIResource):
     @typing_extensions.deprecated(
         "The Firewall Rules API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
     )
-    async def bulk_delete(
+    def bulk_delete(
         self,
         *,
         zone_id: str,
@@ -790,7 +773,7 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RuleBulkDeleteResponse]:
+    ) -> AsyncPaginator[FirewallRule, AsyncSinglePage[FirewallRule]]:
         """
         Deletes existing firewall rules.
 
@@ -807,22 +790,20 @@ class AsyncRulesResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._delete(
+        return self._get_api_list(
             f"/zones/{zone_id}/firewall/rules",
+            page=AsyncSinglePage[FirewallRule],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[RuleBulkDeleteResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[RuleBulkDeleteResponse]], ResultWrapper[RuleBulkDeleteResponse]),
+            model=FirewallRule,
+            method="delete",
         )
 
     @typing_extensions.deprecated(
         "The Firewall Rules API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
     )
-    async def bulk_edit(
+    def bulk_edit(
         self,
         *,
         zone_id: str,
@@ -833,7 +814,7 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RuleBulkEditResponse]:
+    ) -> AsyncPaginator[FirewallRule, AsyncSinglePage[FirewallRule]]:
         """
         Updates the priority of existing firewall rules.
 
@@ -850,23 +831,21 @@ class AsyncRulesResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._patch(
+        return self._get_api_list(
             f"/zones/{zone_id}/firewall/rules",
-            body=await async_maybe_transform(body, rule_bulk_edit_params.RuleBulkEditParams),
+            page=AsyncSinglePage[FirewallRule],
+            body=maybe_transform(body, rule_bulk_edit_params.RuleBulkEditParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[RuleBulkEditResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[RuleBulkEditResponse]], ResultWrapper[RuleBulkEditResponse]),
+            model=FirewallRule,
+            method="patch",
         )
 
     @typing_extensions.deprecated(
         "The Firewall Rules API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
     )
-    async def bulk_update(
+    def bulk_update(
         self,
         *,
         zone_id: str,
@@ -877,7 +856,7 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RuleBulkUpdateResponse]:
+    ) -> AsyncPaginator[FirewallRule, AsyncSinglePage[FirewallRule]]:
         """
         Updates one or more existing firewall rules.
 
@@ -894,23 +873,21 @@ class AsyncRulesResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._put(
+        return self._get_api_list(
             f"/zones/{zone_id}/firewall/rules",
-            body=await async_maybe_transform(body, rule_bulk_update_params.RuleBulkUpdateParams),
+            page=AsyncSinglePage[FirewallRule],
+            body=maybe_transform(body, rule_bulk_update_params.RuleBulkUpdateParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[RuleBulkUpdateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[RuleBulkUpdateResponse]], ResultWrapper[RuleBulkUpdateResponse]),
+            model=FirewallRule,
+            method="put",
         )
 
     @typing_extensions.deprecated(
         "The Firewall Rules API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
     )
-    async def edit(
+    def edit(
         self,
         rule_id: str,
         *,
@@ -921,7 +898,7 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RuleEditResponse]:
+    ) -> AsyncPaginator[FirewallRule, AsyncSinglePage[FirewallRule]]:
         """
         Updates the priority of an existing firewall rule.
 
@@ -942,16 +919,14 @@ class AsyncRulesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
-        return await self._patch(
+        return self._get_api_list(
             f"/zones/{zone_id}/firewall/rules/{rule_id}",
+            page=AsyncSinglePage[FirewallRule],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[RuleEditResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[RuleEditResponse]], ResultWrapper[RuleEditResponse]),
+            model=FirewallRule,
+            method="patch",
         )
 
     @typing_extensions.deprecated(

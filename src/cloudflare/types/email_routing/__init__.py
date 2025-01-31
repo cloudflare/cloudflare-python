@@ -18,7 +18,6 @@ from .email_routing_rule import EmailRoutingRule as EmailRoutingRule
 from .rule_create_params import RuleCreateParams as RuleCreateParams
 from .rule_update_params import RuleUpdateParams as RuleUpdateParams
 from .address_list_params import AddressListParams as AddressListParams
-from .dns_delete_response import DNSDeleteResponse as DNSDeleteResponse
 from .address_create_params import AddressCreateParams as AddressCreateParams
 from .email_routing_enable_params import EmailRoutingEnableParams as EmailRoutingEnableParams
 from .email_routing_disable_params import EmailRoutingDisableParams as EmailRoutingDisableParams

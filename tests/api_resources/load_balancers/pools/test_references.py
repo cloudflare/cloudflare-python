@@ -9,6 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.load_balancers.pools import ReferenceGetResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -23,7 +24,7 @@ class TestReferences:
             pool_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ReferenceGetResponse, reference, path=["response"])
+        assert_matches_type(SyncSinglePage[ReferenceGetResponse], reference, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -35,7 +36,7 @@ class TestReferences:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         reference = response.parse()
-        assert_matches_type(ReferenceGetResponse, reference, path=["response"])
+        assert_matches_type(SyncSinglePage[ReferenceGetResponse], reference, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -47,7 +48,7 @@ class TestReferences:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             reference = response.parse()
-            assert_matches_type(ReferenceGetResponse, reference, path=["response"])
+            assert_matches_type(SyncSinglePage[ReferenceGetResponse], reference, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -75,7 +76,7 @@ class TestAsyncReferences:
             pool_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ReferenceGetResponse, reference, path=["response"])
+        assert_matches_type(AsyncSinglePage[ReferenceGetResponse], reference, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -87,7 +88,7 @@ class TestAsyncReferences:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         reference = await response.parse()
-        assert_matches_type(ReferenceGetResponse, reference, path=["response"])
+        assert_matches_type(AsyncSinglePage[ReferenceGetResponse], reference, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -99,7 +100,7 @@ class TestAsyncReferences:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             reference = await response.parse()
-            assert_matches_type(ReferenceGetResponse, reference, path=["response"])
+            assert_matches_type(AsyncSinglePage[ReferenceGetResponse], reference, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

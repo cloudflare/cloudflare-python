@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage, SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from cloudflare.types.email_security.settings import (
     DomainGetResponse,
     DomainEditResponse,
@@ -124,7 +124,7 @@ class TestDomains:
         domain = client.email_security.settings.domains.bulk_delete(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(DomainBulkDeleteResponse, domain, path=["response"])
+        assert_matches_type(SyncSinglePage[DomainBulkDeleteResponse], domain, path=["response"])
 
     @parametrize
     def test_raw_response_bulk_delete(self, client: Cloudflare) -> None:
@@ -135,7 +135,7 @@ class TestDomains:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         domain = response.parse()
-        assert_matches_type(DomainBulkDeleteResponse, domain, path=["response"])
+        assert_matches_type(SyncSinglePage[DomainBulkDeleteResponse], domain, path=["response"])
 
     @parametrize
     def test_streaming_response_bulk_delete(self, client: Cloudflare) -> None:
@@ -146,7 +146,7 @@ class TestDomains:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             domain = response.parse()
-            assert_matches_type(DomainBulkDeleteResponse, domain, path=["response"])
+            assert_matches_type(SyncSinglePage[DomainBulkDeleteResponse], domain, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -366,7 +366,7 @@ class TestAsyncDomains:
         domain = await async_client.email_security.settings.domains.bulk_delete(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(DomainBulkDeleteResponse, domain, path=["response"])
+        assert_matches_type(AsyncSinglePage[DomainBulkDeleteResponse], domain, path=["response"])
 
     @parametrize
     async def test_raw_response_bulk_delete(self, async_client: AsyncCloudflare) -> None:
@@ -377,7 +377,7 @@ class TestAsyncDomains:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         domain = await response.parse()
-        assert_matches_type(DomainBulkDeleteResponse, domain, path=["response"])
+        assert_matches_type(AsyncSinglePage[DomainBulkDeleteResponse], domain, path=["response"])
 
     @parametrize
     async def test_streaming_response_bulk_delete(self, async_client: AsyncCloudflare) -> None:
@@ -388,7 +388,7 @@ class TestAsyncDomains:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             domain = await response.parse()
-            assert_matches_type(DomainBulkDeleteResponse, domain, path=["response"])
+            assert_matches_type(AsyncSinglePage[DomainBulkDeleteResponse], domain, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
