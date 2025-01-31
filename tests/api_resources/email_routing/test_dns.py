@@ -9,10 +9,11 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.email_routing import (
     Settings,
+    DNSRecord,
     DNSGetResponse,
-    DNSDeleteResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -68,7 +69,7 @@ class TestDNS:
         dns = client.email_routing.dns.delete(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(DNSDeleteResponse, dns, path=["response"])
+        assert_matches_type(SyncSinglePage[DNSRecord], dns, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -79,7 +80,7 @@ class TestDNS:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dns = response.parse()
-        assert_matches_type(DNSDeleteResponse, dns, path=["response"])
+        assert_matches_type(SyncSinglePage[DNSRecord], dns, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -90,7 +91,7 @@ class TestDNS:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dns = response.parse()
-            assert_matches_type(DNSDeleteResponse, dns, path=["response"])
+            assert_matches_type(SyncSinglePage[DNSRecord], dns, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -240,7 +241,7 @@ class TestAsyncDNS:
         dns = await async_client.email_routing.dns.delete(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(DNSDeleteResponse, dns, path=["response"])
+        assert_matches_type(AsyncSinglePage[DNSRecord], dns, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -251,7 +252,7 @@ class TestAsyncDNS:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         dns = await response.parse()
-        assert_matches_type(DNSDeleteResponse, dns, path=["response"])
+        assert_matches_type(AsyncSinglePage[DNSRecord], dns, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -262,7 +263,7 @@ class TestAsyncDNS:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             dns = await response.parse()
-            assert_matches_type(DNSDeleteResponse, dns, path=["response"])
+            assert_matches_type(AsyncSinglePage[DNSRecord], dns, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

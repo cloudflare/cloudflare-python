@@ -3,12 +3,13 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.workers_for_platforms.dispatch.namespaces.scripts import BindingGetResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -24,7 +25,7 @@ class TestBindings:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
         )
-        assert_matches_type(Optional[BindingGetResponse], binding, path=["response"])
+        assert_matches_type(SyncSinglePage[BindingGetResponse], binding, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -37,7 +38,7 @@ class TestBindings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         binding = response.parse()
-        assert_matches_type(Optional[BindingGetResponse], binding, path=["response"])
+        assert_matches_type(SyncSinglePage[BindingGetResponse], binding, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -50,7 +51,7 @@ class TestBindings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             binding = response.parse()
-            assert_matches_type(Optional[BindingGetResponse], binding, path=["response"])
+            assert_matches_type(SyncSinglePage[BindingGetResponse], binding, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -88,7 +89,7 @@ class TestAsyncBindings:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
         )
-        assert_matches_type(Optional[BindingGetResponse], binding, path=["response"])
+        assert_matches_type(AsyncSinglePage[BindingGetResponse], binding, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -101,7 +102,7 @@ class TestAsyncBindings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         binding = await response.parse()
-        assert_matches_type(Optional[BindingGetResponse], binding, path=["response"])
+        assert_matches_type(AsyncSinglePage[BindingGetResponse], binding, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -114,7 +115,7 @@ class TestAsyncBindings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             binding = await response.parse()
-            assert_matches_type(Optional[BindingGetResponse], binding, path=["response"])
+            assert_matches_type(AsyncSinglePage[BindingGetResponse], binding, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -8,29 +8,28 @@ from ..._models import BaseModel
 
 __all__ = [
     "OperationBulkCreateResponse",
-    "OperationBulkCreateResponseItem",
-    "OperationBulkCreateResponseItemFeatures",
-    "OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureThresholds",
-    "OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureThresholdsThresholds",
-    "OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureParameterSchemas",
-    "OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureParameterSchemasParameterSchemas",
-    "OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureParameterSchemasParameterSchemasParameterSchemas",
-    "OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureAPIRouting",
-    "OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureAPIRoutingAPIRouting",
-    "OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureConfidenceIntervals",
-    "OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervals",
-    "OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThreshold",
-    "OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervals",
-    "OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP90",
-    "OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP95",
-    "OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP99",
-    "OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureSchemaInfo",
-    "OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfo",
-    "OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfoActiveSchema",
+    "Features",
+    "FeaturesAPIShieldOperationFeatureThresholds",
+    "FeaturesAPIShieldOperationFeatureThresholdsThresholds",
+    "FeaturesAPIShieldOperationFeatureParameterSchemas",
+    "FeaturesAPIShieldOperationFeatureParameterSchemasParameterSchemas",
+    "FeaturesAPIShieldOperationFeatureParameterSchemasParameterSchemasParameterSchemas",
+    "FeaturesAPIShieldOperationFeatureAPIRouting",
+    "FeaturesAPIShieldOperationFeatureAPIRoutingAPIRouting",
+    "FeaturesAPIShieldOperationFeatureConfidenceIntervals",
+    "FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervals",
+    "FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThreshold",
+    "FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervals",
+    "FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP90",
+    "FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP95",
+    "FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP99",
+    "FeaturesAPIShieldOperationFeatureSchemaInfo",
+    "FeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfo",
+    "FeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfoActiveSchema",
 ]
 
 
-class OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureThresholdsThresholds(BaseModel):
+class FeaturesAPIShieldOperationFeatureThresholdsThresholds(BaseModel):
     auth_id_tokens: Optional[int] = None
     """The total number of auth-ids seen across this calculation."""
 
@@ -58,13 +57,11 @@ class OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureThresholds
     """The suggested threshold in requests done by the same auth_id or period_seconds."""
 
 
-class OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureThresholds(BaseModel):
-    thresholds: Optional[OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureThresholdsThresholds] = None
+class FeaturesAPIShieldOperationFeatureThresholds(BaseModel):
+    thresholds: Optional[FeaturesAPIShieldOperationFeatureThresholdsThresholds] = None
 
 
-class OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureParameterSchemasParameterSchemasParameterSchemas(
-    BaseModel
-):
+class FeaturesAPIShieldOperationFeatureParameterSchemasParameterSchemasParameterSchemas(BaseModel):
     parameters: Optional[List[object]] = None
     """An array containing the learned parameter schemas."""
 
@@ -75,32 +72,32 @@ class OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureParameterS
     """
 
 
-class OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureParameterSchemasParameterSchemas(BaseModel):
+class FeaturesAPIShieldOperationFeatureParameterSchemasParameterSchemas(BaseModel):
     last_updated: Optional[datetime] = None
 
-    parameter_schemas: Optional[
-        OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureParameterSchemasParameterSchemasParameterSchemas
-    ] = None
+    parameter_schemas: Optional[FeaturesAPIShieldOperationFeatureParameterSchemasParameterSchemasParameterSchemas] = (
+        None
+    )
     """An operation schema object containing a response."""
 
 
-class OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureParameterSchemas(BaseModel):
-    parameter_schemas: OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureParameterSchemasParameterSchemas
+class FeaturesAPIShieldOperationFeatureParameterSchemas(BaseModel):
+    parameter_schemas: FeaturesAPIShieldOperationFeatureParameterSchemasParameterSchemas
 
 
-class OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureAPIRoutingAPIRouting(BaseModel):
+class FeaturesAPIShieldOperationFeatureAPIRoutingAPIRouting(BaseModel):
     last_updated: Optional[datetime] = None
 
     route: Optional[str] = None
     """Target route."""
 
 
-class OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureAPIRouting(BaseModel):
-    api_routing: Optional[OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureAPIRoutingAPIRouting] = None
+class FeaturesAPIShieldOperationFeatureAPIRouting(BaseModel):
+    api_routing: Optional[FeaturesAPIShieldOperationFeatureAPIRoutingAPIRouting] = None
     """API Routing settings on endpoint."""
 
 
-class OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP90(
+class FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP90(
     BaseModel
 ):
     lower: Optional[float] = None
@@ -110,7 +107,7 @@ class OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureConfidence
     """Upper bound for percentile estimate"""
 
 
-class OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP95(
+class FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP95(
     BaseModel
 ):
     lower: Optional[float] = None
@@ -120,7 +117,7 @@ class OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureConfidence
     """Upper bound for percentile estimate"""
 
 
-class OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP99(
+class FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP99(
     BaseModel
 ):
     lower: Optional[float] = None
@@ -130,51 +127,47 @@ class OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureConfidence
     """Upper bound for percentile estimate"""
 
 
-class OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervals(
+class FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervals(
     BaseModel
 ):
     p90: Optional[
-        OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP90
+        FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP90
     ] = None
     """Upper and lower bound for percentile estimate"""
 
     p95: Optional[
-        OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP95
+        FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP95
     ] = None
     """Upper and lower bound for percentile estimate"""
 
     p99: Optional[
-        OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP99
+        FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP99
     ] = None
     """Upper and lower bound for percentile estimate"""
 
 
-class OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThreshold(
-    BaseModel
-):
+class FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThreshold(BaseModel):
     confidence_intervals: Optional[
-        OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervals
+        FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervals
     ] = None
 
     mean: Optional[float] = None
     """Suggested threshold."""
 
 
-class OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervals(BaseModel):
+class FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervals(BaseModel):
     last_updated: Optional[datetime] = None
 
     suggested_threshold: Optional[
-        OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThreshold
+        FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThreshold
     ] = None
 
 
-class OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureConfidenceIntervals(BaseModel):
-    confidence_intervals: Optional[
-        OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervals
-    ] = None
+class FeaturesAPIShieldOperationFeatureConfidenceIntervals(BaseModel):
+    confidence_intervals: Optional[FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervals] = None
 
 
-class OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfoActiveSchema(BaseModel):
+class FeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfoActiveSchema(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
@@ -187,10 +180,8 @@ class OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureSchemaInfo
     """Schema file name."""
 
 
-class OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfo(BaseModel):
-    active_schema: Optional[
-        OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfoActiveSchema
-    ] = None
+class FeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfo(BaseModel):
+    active_schema: Optional[FeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfoActiveSchema] = None
     """Schema active on endpoint."""
 
     learned_available: Optional[bool] = None
@@ -200,20 +191,20 @@ class OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureSchemaInfo
     """Action taken on requests failing validation."""
 
 
-class OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureSchemaInfo(BaseModel):
-    schema_info: Optional[OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfo] = None
+class FeaturesAPIShieldOperationFeatureSchemaInfo(BaseModel):
+    schema_info: Optional[FeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfo] = None
 
 
-OperationBulkCreateResponseItemFeatures: TypeAlias = Union[
-    OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureThresholds,
-    OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureParameterSchemas,
-    OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureAPIRouting,
-    OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureConfidenceIntervals,
-    OperationBulkCreateResponseItemFeaturesAPIShieldOperationFeatureSchemaInfo,
+Features: TypeAlias = Union[
+    FeaturesAPIShieldOperationFeatureThresholds,
+    FeaturesAPIShieldOperationFeatureParameterSchemas,
+    FeaturesAPIShieldOperationFeatureAPIRouting,
+    FeaturesAPIShieldOperationFeatureConfidenceIntervals,
+    FeaturesAPIShieldOperationFeatureSchemaInfo,
 ]
 
 
-class OperationBulkCreateResponseItem(BaseModel):
+class OperationBulkCreateResponse(BaseModel):
     endpoint: str
     """
     The endpoint which can contain path parameter templates in curly braces, each
@@ -233,7 +224,4 @@ class OperationBulkCreateResponseItem(BaseModel):
     operation_id: str
     """UUID"""
 
-    features: Optional[OperationBulkCreateResponseItemFeatures] = None
-
-
-OperationBulkCreateResponse: TypeAlias = List[OperationBulkCreateResponseItem]
+    features: Optional[Features] = None

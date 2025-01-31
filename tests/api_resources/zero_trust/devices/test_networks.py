@@ -10,10 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.zero_trust.devices import (
-    DeviceNetwork,
-    NetworkDeleteResponse,
-)
+from cloudflare.types.zero_trust.devices import DeviceNetwork
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -190,7 +187,7 @@ class TestNetworks:
             network_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[NetworkDeleteResponse], network, path=["response"])
+        assert_matches_type(SyncSinglePage[DeviceNetwork], network, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -202,7 +199,7 @@ class TestNetworks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         network = response.parse()
-        assert_matches_type(Optional[NetworkDeleteResponse], network, path=["response"])
+        assert_matches_type(SyncSinglePage[DeviceNetwork], network, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -214,7 +211,7 @@ class TestNetworks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             network = response.parse()
-            assert_matches_type(Optional[NetworkDeleteResponse], network, path=["response"])
+            assert_matches_type(SyncSinglePage[DeviceNetwork], network, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -453,7 +450,7 @@ class TestAsyncNetworks:
             network_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[NetworkDeleteResponse], network, path=["response"])
+        assert_matches_type(AsyncSinglePage[DeviceNetwork], network, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -465,7 +462,7 @@ class TestAsyncNetworks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         network = await response.parse()
-        assert_matches_type(Optional[NetworkDeleteResponse], network, path=["response"])
+        assert_matches_type(AsyncSinglePage[DeviceNetwork], network, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -477,7 +474,7 @@ class TestAsyncNetworks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             network = await response.parse()
-            assert_matches_type(Optional[NetworkDeleteResponse], network, path=["response"])
+            assert_matches_type(AsyncSinglePage[DeviceNetwork], network, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

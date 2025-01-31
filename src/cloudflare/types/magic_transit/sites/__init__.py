@@ -24,9 +24,7 @@ from .lan_create_params import LANCreateParams as LANCreateParams
 from .lan_update_params import LANUpdateParams as LANUpdateParams
 from .wan_create_params import WANCreateParams as WANCreateParams
 from .wan_update_params import WANUpdateParams as WANUpdateParams
-from .lan_create_response import LANCreateResponse as LANCreateResponse
 from .routed_subnet_param import RoutedSubnetParam as RoutedSubnetParam
-from .wan_create_response import WANCreateResponse as WANCreateResponse
 from .lan_static_addressing import LANStaticAddressing as LANStaticAddressing
 from .wan_static_addressing import WANStaticAddressing as WANStaticAddressing
 from .acl_configuration_param import ACLConfigurationParam as ACLConfigurationParam

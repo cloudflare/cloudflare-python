@@ -24,7 +24,6 @@ from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.magic_transit.sites import wan_edit_params, wan_create_params, wan_update_params
 from ....types.magic_transit.sites.wan import WAN
-from ....types.magic_transit.sites.wan_create_response import WANCreateResponse
 from ....types.magic_transit.sites.wan_static_addressing_param import WANStaticAddressingParam
 
 __all__ = ["WANsResource", "AsyncWANsResource"]
@@ -66,7 +65,7 @@ class WANsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WANCreateResponse:
+    ) -> SyncSinglePage[WAN]:
         """
         Creates a new Site WAN.
 
@@ -92,8 +91,9 @@ class WANsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not site_id:
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
-        return self._post(
+        return self._get_api_list(
             f"/accounts/{account_id}/magic/sites/{site_id}/wans",
+            page=SyncSinglePage[WAN],
             body=maybe_transform(
                 {
                     "physport": physport,
@@ -105,13 +105,10 @@ class WANsResource(SyncAPIResource):
                 wan_create_params.WANCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[WANCreateResponse]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[WANCreateResponse], ResultWrapper[WANCreateResponse]),
+            model=WAN,
+            method="post",
         )
 
     def update(
@@ -412,7 +409,7 @@ class AsyncWANsResource(AsyncAPIResource):
         """
         return AsyncWANsResourceWithStreamingResponse(self)
 
-    async def create(
+    def create(
         self,
         site_id: str,
         *,
@@ -428,7 +425,7 @@ class AsyncWANsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WANCreateResponse:
+    ) -> AsyncPaginator[WAN, AsyncSinglePage[WAN]]:
         """
         Creates a new Site WAN.
 
@@ -454,9 +451,10 @@ class AsyncWANsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not site_id:
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
-        return await self._post(
+        return self._get_api_list(
             f"/accounts/{account_id}/magic/sites/{site_id}/wans",
-            body=await async_maybe_transform(
+            page=AsyncSinglePage[WAN],
+            body=maybe_transform(
                 {
                     "physport": physport,
                     "vlan_tag": vlan_tag,
@@ -467,13 +465,10 @@ class AsyncWANsResource(AsyncAPIResource):
                 wan_create_params.WANCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[WANCreateResponse]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[WANCreateResponse], ResultWrapper[WANCreateResponse]),
+            model=WAN,
+            method="post",
         )
 
     async def update(

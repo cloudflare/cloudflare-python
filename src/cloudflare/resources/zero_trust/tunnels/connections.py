@@ -20,9 +20,10 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ...._base_client import make_request_options
+from ....pagination import SyncSinglePage, AsyncSinglePage
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.zero_trust.tunnels import connection_delete_params
-from ....types.zero_trust.tunnels.connection_get_response import ConnectionGetResponse
+from ....types.zero_trust.tunnels.client import Client
 
 __all__ = ["ConnectionsResource", "AsyncConnectionsResource"]
 
@@ -109,7 +110,7 @@ class ConnectionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ConnectionGetResponse]:
+    ) -> SyncSinglePage[Client]:
         """
         Fetches connection details for a Cloudflare Tunnel.
 
@@ -130,16 +131,13 @@ class ConnectionsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/connections",
+            page=SyncSinglePage[Client],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ConnectionGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[ConnectionGetResponse]], ResultWrapper[ConnectionGetResponse]),
+            model=Client,
         )
 
 
@@ -216,7 +214,7 @@ class AsyncConnectionsResource(AsyncAPIResource):
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
-    async def get(
+    def get(
         self,
         tunnel_id: str,
         *,
@@ -227,7 +225,7 @@ class AsyncConnectionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ConnectionGetResponse]:
+    ) -> AsyncPaginator[Client, AsyncSinglePage[Client]]:
         """
         Fetches connection details for a Cloudflare Tunnel.
 
@@ -248,16 +246,13 @@ class AsyncConnectionsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/connections",
+            page=AsyncSinglePage[Client],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ConnectionGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[ConnectionGetResponse]], ResultWrapper[ConnectionGetResponse]),
+            model=Client,
         )
 
 

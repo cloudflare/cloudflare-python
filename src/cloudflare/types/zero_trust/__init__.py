@@ -13,7 +13,6 @@ from .azure_ad_param import AzureADParam as AzureADParam
 from .seat_edit_params import SeatEditParams as SeatEditParams
 from .identity_provider import IdentityProvider as IdentityProvider
 from .login_design_param import LoginDesignParam as LoginDesignParam
-from .seat_edit_response import SeatEditResponse as SeatEditResponse
 from .tunnel_edit_params import TunnelEditParams as TunnelEditParams
 from .tunnel_list_params import TunnelListParams as TunnelListParams
 from .device_get_response import DeviceGetResponse as DeviceGetResponse

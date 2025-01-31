@@ -45,7 +45,6 @@ from .random_steering_param import RandomSteeringParam as RandomSteeringParam
 from .adaptive_routing_param import AdaptiveRoutingParam as AdaptiveRoutingParam
 from .location_strategy_param import LocationStrategyParam as LocationStrategyParam
 from .monitor_delete_response import MonitorDeleteResponse as MonitorDeleteResponse
-from .pool_bulk_edit_response import PoolBulkEditResponse as PoolBulkEditResponse
 from .load_balancer_edit_params import LoadBalancerEditParams as LoadBalancerEditParams
 from .notification_filter_param import NotificationFilterParam as NotificationFilterParam
 from .load_balancer_create_params import LoadBalancerCreateParams as LoadBalancerCreateParams
