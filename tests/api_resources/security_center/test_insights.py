@@ -65,7 +65,7 @@ class TestInsights:
 
     @parametrize
     def test_path_params_dismiss(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `issue_id` but received ''"):
             client.security_center.insights.with_raw_response.dismiss(
                 issue_id="",
                 account_id="account_id",
@@ -195,7 +195,7 @@ class TestAsyncInsights:
 
     @parametrize
     async def test_path_params_dismiss(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `issue_id` but received ''"):
             await async_client.security_center.insights.with_raw_response.dismiss(
                 issue_id="",
                 account_id="account_id",

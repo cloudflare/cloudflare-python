@@ -66,7 +66,7 @@ class TestUserPolicyChecks:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             client.zero_trust.access.applications.user_policy_checks.with_raw_response.list(
                 app_id="",
                 account_id="account_id",
@@ -137,7 +137,7 @@ class TestAsyncUserPolicyChecks:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             await async_client.zero_trust.access.applications.user_policy_checks.with_raw_response.list(
                 app_id="",
                 account_id="account_id",

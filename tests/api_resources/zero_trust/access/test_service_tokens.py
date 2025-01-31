@@ -135,7 +135,7 @@ class TestServiceTokens:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `service_token_id` but received ''"):
             client.zero_trust.access.service_tokens.with_raw_response.update(
                 service_token_id="",
                 account_id="account_id",
@@ -259,7 +259,7 @@ class TestServiceTokens:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `service_token_id` but received ''"):
             client.zero_trust.access.service_tokens.with_raw_response.delete(
                 service_token_id="",
                 account_id="account_id",
@@ -326,7 +326,7 @@ class TestServiceTokens:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `service_token_id` but received ''"):
             client.zero_trust.access.service_tokens.with_raw_response.get(
                 service_token_id="",
                 account_id="account_id",
@@ -557,7 +557,7 @@ class TestAsyncServiceTokens:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `service_token_id` but received ''"):
             await async_client.zero_trust.access.service_tokens.with_raw_response.update(
                 service_token_id="",
                 account_id="account_id",
@@ -681,7 +681,7 @@ class TestAsyncServiceTokens:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `service_token_id` but received ''"):
             await async_client.zero_trust.access.service_tokens.with_raw_response.delete(
                 service_token_id="",
                 account_id="account_id",
@@ -748,7 +748,7 @@ class TestAsyncServiceTokens:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `service_token_id` but received ''"):
             await async_client.zero_trust.access.service_tokens.with_raw_response.get(
                 service_token_id="",
                 account_id="account_id",
