@@ -99,19 +99,19 @@ class TestRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_1(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -189,19 +189,19 @@ class TestRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_2(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -279,19 +279,19 @@ class TestRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_3(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -394,19 +394,19 @@ class TestRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_4(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -484,19 +484,19 @@ class TestRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_5(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -574,19 +574,19 @@ class TestRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_6(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -664,19 +664,19 @@ class TestRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_7(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -764,19 +764,19 @@ class TestRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_8(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -865,19 +865,19 @@ class TestRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_9(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -962,19 +962,19 @@ class TestRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_10(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -1052,19 +1052,19 @@ class TestRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_11(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -1146,19 +1146,19 @@ class TestRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_12(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -1258,19 +1258,19 @@ class TestRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_13(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -1354,19 +1354,19 @@ class TestRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_14(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -1498,19 +1498,19 @@ class TestRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_15(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -1592,19 +1592,19 @@ class TestRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_16(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -1682,19 +1682,19 @@ class TestRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_17(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -1772,19 +1772,19 @@ class TestRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_18(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -1843,28 +1843,28 @@ class TestRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.delete(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.delete(
                 rule_id="",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.delete(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.delete(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -1953,28 +1953,28 @@ class TestRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_edit_overload_1(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -2057,28 +2057,28 @@ class TestRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_edit_overload_2(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -2161,28 +2161,28 @@ class TestRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_edit_overload_3(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -2290,28 +2290,28 @@ class TestRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_edit_overload_4(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -2394,28 +2394,28 @@ class TestRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_edit_overload_5(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -2498,28 +2498,28 @@ class TestRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_edit_overload_6(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -2602,28 +2602,28 @@ class TestRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_edit_overload_7(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -2716,28 +2716,28 @@ class TestRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_edit_overload_8(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -2831,28 +2831,28 @@ class TestRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_edit_overload_9(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -2942,28 +2942,28 @@ class TestRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_edit_overload_10(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -3046,28 +3046,28 @@ class TestRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_edit_overload_11(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -3154,28 +3154,28 @@ class TestRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_edit_overload_12(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -3280,28 +3280,28 @@ class TestRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_edit_overload_13(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -3390,28 +3390,28 @@ class TestRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_edit_overload_14(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -3548,28 +3548,28 @@ class TestRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_edit_overload_15(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -3656,28 +3656,28 @@ class TestRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_edit_overload_16(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -3760,28 +3760,28 @@ class TestRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_edit_overload_17(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -3864,28 +3864,28 @@ class TestRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_edit_overload_18(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -3974,19 +3974,19 @@ class TestAsyncRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_1(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -4064,19 +4064,19 @@ class TestAsyncRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_2(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -4154,19 +4154,19 @@ class TestAsyncRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_3(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -4269,19 +4269,19 @@ class TestAsyncRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_4(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -4359,19 +4359,19 @@ class TestAsyncRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_5(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -4449,19 +4449,19 @@ class TestAsyncRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_6(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -4539,19 +4539,19 @@ class TestAsyncRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_7(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -4639,19 +4639,19 @@ class TestAsyncRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_8(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -4740,19 +4740,19 @@ class TestAsyncRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_9(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -4837,19 +4837,19 @@ class TestAsyncRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_10(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -4927,19 +4927,19 @@ class TestAsyncRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_11(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -5021,19 +5021,19 @@ class TestAsyncRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_12(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -5133,19 +5133,19 @@ class TestAsyncRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_13(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -5229,19 +5229,19 @@ class TestAsyncRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_14(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -5373,19 +5373,19 @@ class TestAsyncRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_15(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -5467,19 +5467,19 @@ class TestAsyncRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_16(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -5557,19 +5557,19 @@ class TestAsyncRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_17(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -5647,19 +5647,19 @@ class TestAsyncRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_18(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -5718,28 +5718,28 @@ class TestAsyncRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.delete(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.delete(
                 rule_id="",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.delete(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.delete(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -5828,28 +5828,28 @@ class TestAsyncRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_edit_overload_1(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -5932,28 +5932,28 @@ class TestAsyncRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_edit_overload_2(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -6036,28 +6036,28 @@ class TestAsyncRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_edit_overload_3(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -6165,28 +6165,28 @@ class TestAsyncRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_edit_overload_4(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -6269,28 +6269,28 @@ class TestAsyncRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_edit_overload_5(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -6373,28 +6373,28 @@ class TestAsyncRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_edit_overload_6(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -6477,28 +6477,28 @@ class TestAsyncRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_edit_overload_7(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -6591,28 +6591,28 @@ class TestAsyncRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_edit_overload_8(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -6706,28 +6706,28 @@ class TestAsyncRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_edit_overload_9(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -6817,28 +6817,28 @@ class TestAsyncRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_edit_overload_10(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -6921,28 +6921,28 @@ class TestAsyncRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_edit_overload_11(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -7029,28 +7029,28 @@ class TestAsyncRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_edit_overload_12(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -7155,28 +7155,28 @@ class TestAsyncRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_edit_overload_13(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -7265,28 +7265,28 @@ class TestAsyncRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_edit_overload_14(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -7423,28 +7423,28 @@ class TestAsyncRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_edit_overload_15(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -7531,28 +7531,28 @@ class TestAsyncRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_edit_overload_16(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -7635,28 +7635,28 @@ class TestAsyncRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_edit_overload_17(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -7739,28 +7739,28 @@ class TestAsyncRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_edit_overload_18(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",

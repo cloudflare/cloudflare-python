@@ -70,13 +70,13 @@ class TestValidate:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_destination(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.logpush.validate.with_raw_response.destination(
                 destination_conf="s3://mybucket/logs?region=us-west-2",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.logpush.validate.with_raw_response.destination(
                 destination_conf="s3://mybucket/logs?region=us-west-2",
                 account_id="account_id",
@@ -131,13 +131,13 @@ class TestValidate:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_destination_exists(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.logpush.validate.with_raw_response.destination_exists(
                 destination_conf="s3://mybucket/logs?region=us-west-2",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.logpush.validate.with_raw_response.destination_exists(
                 destination_conf="s3://mybucket/logs?region=us-west-2",
                 account_id="account_id",
@@ -192,13 +192,13 @@ class TestValidate:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_origin(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.logpush.validate.with_raw_response.origin(
                 logpull_options="fields=RayID,ClientIP,EdgeStartTimestamp&timestamps=rfc3339",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.logpush.validate.with_raw_response.origin(
                 logpull_options="fields=RayID,ClientIP,EdgeStartTimestamp&timestamps=rfc3339",
                 account_id="account_id",
@@ -257,13 +257,13 @@ class TestAsyncValidate:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_destination(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.logpush.validate.with_raw_response.destination(
                 destination_conf="s3://mybucket/logs?region=us-west-2",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.logpush.validate.with_raw_response.destination(
                 destination_conf="s3://mybucket/logs?region=us-west-2",
                 account_id="account_id",
@@ -318,13 +318,13 @@ class TestAsyncValidate:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_destination_exists(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.logpush.validate.with_raw_response.destination_exists(
                 destination_conf="s3://mybucket/logs?region=us-west-2",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.logpush.validate.with_raw_response.destination_exists(
                 destination_conf="s3://mybucket/logs?region=us-west-2",
                 account_id="account_id",
@@ -379,13 +379,13 @@ class TestAsyncValidate:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_origin(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.logpush.validate.with_raw_response.origin(
                 logpull_options="fields=RayID,ClientIP,EdgeStartTimestamp&timestamps=rfc3339",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.logpush.validate.with_raw_response.origin(
                 logpull_options="fields=RayID,ClientIP,EdgeStartTimestamp&timestamps=rfc3339",
                 account_id="account_id",
