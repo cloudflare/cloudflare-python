@@ -9,8 +9,9 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.alerting.destinations import (
-    PagerdutyGetResponse,
+    Pagerduty,
     PagerdutyLinkResponse,
     PagerdutyCreateResponse,
     PagerdutyDeleteResponse,
@@ -115,7 +116,7 @@ class TestPagerduty:
         pagerduty = client.alerting.destinations.pagerduty.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[PagerdutyGetResponse], pagerduty, path=["response"])
+        assert_matches_type(SyncSinglePage[Pagerduty], pagerduty, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -126,7 +127,7 @@ class TestPagerduty:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pagerduty = response.parse()
-        assert_matches_type(Optional[PagerdutyGetResponse], pagerduty, path=["response"])
+        assert_matches_type(SyncSinglePage[Pagerduty], pagerduty, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -137,7 +138,7 @@ class TestPagerduty:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pagerduty = response.parse()
-            assert_matches_type(Optional[PagerdutyGetResponse], pagerduty, path=["response"])
+            assert_matches_type(SyncSinglePage[Pagerduty], pagerduty, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -305,7 +306,7 @@ class TestAsyncPagerduty:
         pagerduty = await async_client.alerting.destinations.pagerduty.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[PagerdutyGetResponse], pagerduty, path=["response"])
+        assert_matches_type(AsyncSinglePage[Pagerduty], pagerduty, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -316,7 +317,7 @@ class TestAsyncPagerduty:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pagerduty = await response.parse()
-        assert_matches_type(Optional[PagerdutyGetResponse], pagerduty, path=["response"])
+        assert_matches_type(AsyncSinglePage[Pagerduty], pagerduty, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -327,7 +328,7 @@ class TestAsyncPagerduty:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pagerduty = await response.parse()
-            assert_matches_type(Optional[PagerdutyGetResponse], pagerduty, path=["response"])
+            assert_matches_type(AsyncSinglePage[Pagerduty], pagerduty, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

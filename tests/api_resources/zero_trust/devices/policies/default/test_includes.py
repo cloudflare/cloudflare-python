@@ -3,16 +3,14 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zero_trust.devices.policies.default import (
-    IncludeGetResponse,
-    IncludeUpdateResponse,
-)
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.types.zero_trust.devices import SplitTunnelInclude
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -31,7 +29,7 @@ class TestIncludes:
                 }
             ],
         )
-        assert_matches_type(Optional[IncludeUpdateResponse], include, path=["response"])
+        assert_matches_type(SyncSinglePage[SplitTunnelInclude], include, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
@@ -48,7 +46,7 @@ class TestIncludes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         include = response.parse()
-        assert_matches_type(Optional[IncludeUpdateResponse], include, path=["response"])
+        assert_matches_type(SyncSinglePage[SplitTunnelInclude], include, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
@@ -65,7 +63,7 @@ class TestIncludes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             include = response.parse()
-            assert_matches_type(Optional[IncludeUpdateResponse], include, path=["response"])
+            assert_matches_type(SyncSinglePage[SplitTunnelInclude], include, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -87,7 +85,7 @@ class TestIncludes:
         include = client.zero_trust.devices.policies.default.includes.get(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[IncludeGetResponse], include, path=["response"])
+        assert_matches_type(SyncSinglePage[SplitTunnelInclude], include, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -98,7 +96,7 @@ class TestIncludes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         include = response.parse()
-        assert_matches_type(Optional[IncludeGetResponse], include, path=["response"])
+        assert_matches_type(SyncSinglePage[SplitTunnelInclude], include, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -109,7 +107,7 @@ class TestIncludes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             include = response.parse()
-            assert_matches_type(Optional[IncludeGetResponse], include, path=["response"])
+            assert_matches_type(SyncSinglePage[SplitTunnelInclude], include, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -135,7 +133,7 @@ class TestAsyncIncludes:
                 }
             ],
         )
-        assert_matches_type(Optional[IncludeUpdateResponse], include, path=["response"])
+        assert_matches_type(AsyncSinglePage[SplitTunnelInclude], include, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -152,7 +150,7 @@ class TestAsyncIncludes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         include = await response.parse()
-        assert_matches_type(Optional[IncludeUpdateResponse], include, path=["response"])
+        assert_matches_type(AsyncSinglePage[SplitTunnelInclude], include, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -169,7 +167,7 @@ class TestAsyncIncludes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             include = await response.parse()
-            assert_matches_type(Optional[IncludeUpdateResponse], include, path=["response"])
+            assert_matches_type(AsyncSinglePage[SplitTunnelInclude], include, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -191,7 +189,7 @@ class TestAsyncIncludes:
         include = await async_client.zero_trust.devices.policies.default.includes.get(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[IncludeGetResponse], include, path=["response"])
+        assert_matches_type(AsyncSinglePage[SplitTunnelInclude], include, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -202,7 +200,7 @@ class TestAsyncIncludes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         include = await response.parse()
-        assert_matches_type(Optional[IncludeGetResponse], include, path=["response"])
+        assert_matches_type(AsyncSinglePage[SplitTunnelInclude], include, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -213,7 +211,7 @@ class TestAsyncIncludes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             include = await response.parse()
-            assert_matches_type(Optional[IncludeGetResponse], include, path=["response"])
+            assert_matches_type(AsyncSinglePage[SplitTunnelInclude], include, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

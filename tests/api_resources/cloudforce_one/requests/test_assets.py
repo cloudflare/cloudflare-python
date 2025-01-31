@@ -9,6 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.cloudforce_one.requests import (
     AssetGetResponse,
     AssetCreateResponse,
@@ -30,7 +31,7 @@ class TestAssets:
             page=0,
             per_page=10,
         )
-        assert_matches_type(Optional[AssetCreateResponse], asset, path=["response"])
+        assert_matches_type(SyncSinglePage[AssetCreateResponse], asset, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
@@ -44,7 +45,7 @@ class TestAssets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         asset = response.parse()
-        assert_matches_type(Optional[AssetCreateResponse], asset, path=["response"])
+        assert_matches_type(SyncSinglePage[AssetCreateResponse], asset, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
@@ -58,7 +59,7 @@ class TestAssets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             asset = response.parse()
-            assert_matches_type(Optional[AssetCreateResponse], asset, path=["response"])
+            assert_matches_type(SyncSinglePage[AssetCreateResponse], asset, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -217,7 +218,7 @@ class TestAssets:
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             request_identifier="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
         )
-        assert_matches_type(Optional[AssetGetResponse], asset, path=["response"])
+        assert_matches_type(SyncSinglePage[AssetGetResponse], asset, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -230,7 +231,7 @@ class TestAssets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         asset = response.parse()
-        assert_matches_type(Optional[AssetGetResponse], asset, path=["response"])
+        assert_matches_type(SyncSinglePage[AssetGetResponse], asset, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -243,7 +244,7 @@ class TestAssets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             asset = response.parse()
-            assert_matches_type(Optional[AssetGetResponse], asset, path=["response"])
+            assert_matches_type(SyncSinglePage[AssetGetResponse], asset, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -282,7 +283,7 @@ class TestAsyncAssets:
             page=0,
             per_page=10,
         )
-        assert_matches_type(Optional[AssetCreateResponse], asset, path=["response"])
+        assert_matches_type(AsyncSinglePage[AssetCreateResponse], asset, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -296,7 +297,7 @@ class TestAsyncAssets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         asset = await response.parse()
-        assert_matches_type(Optional[AssetCreateResponse], asset, path=["response"])
+        assert_matches_type(AsyncSinglePage[AssetCreateResponse], asset, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -310,7 +311,7 @@ class TestAsyncAssets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             asset = await response.parse()
-            assert_matches_type(Optional[AssetCreateResponse], asset, path=["response"])
+            assert_matches_type(AsyncSinglePage[AssetCreateResponse], asset, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -469,7 +470,7 @@ class TestAsyncAssets:
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             request_identifier="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
         )
-        assert_matches_type(Optional[AssetGetResponse], asset, path=["response"])
+        assert_matches_type(AsyncSinglePage[AssetGetResponse], asset, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -482,7 +483,7 @@ class TestAsyncAssets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         asset = await response.parse()
-        assert_matches_type(Optional[AssetGetResponse], asset, path=["response"])
+        assert_matches_type(AsyncSinglePage[AssetGetResponse], asset, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -495,7 +496,7 @@ class TestAsyncAssets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             asset = await response.parse()
-            assert_matches_type(Optional[AssetGetResponse], asset, path=["response"])
+            assert_matches_type(AsyncSinglePage[AssetGetResponse], asset, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

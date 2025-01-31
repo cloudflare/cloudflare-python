@@ -2,15 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, Optional, cast
+from typing import Iterable
 
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ..._utils import maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -19,10 +16,10 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._wrappers import ResultWrapper
-from ..._base_client import make_request_options
+from ...pagination import SyncSinglePage, AsyncSinglePage
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.custom_certificates import prioritize_update_params
-from ...types.custom_certificates.prioritize_update_response import PrioritizeUpdateResponse
+from ...types.custom_certificates.custom_certificate import CustomCertificate
 
 __all__ = ["PrioritizeResource", "AsyncPrioritizeResource"]
 
@@ -58,7 +55,7 @@ class PrioritizeResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PrioritizeUpdateResponse]:
+    ) -> SyncSinglePage[CustomCertificate]:
         """
         If a zone has multiple SSL certificates, you can set the order in which they
         should be used during a request. The higher priority will break ties across
@@ -79,17 +76,15 @@ class PrioritizeResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._put(
+        return self._get_api_list(
             f"/zones/{zone_id}/custom_certificates/prioritize",
+            page=SyncSinglePage[CustomCertificate],
             body=maybe_transform({"certificates": certificates}, prioritize_update_params.PrioritizeUpdateParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[PrioritizeUpdateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[PrioritizeUpdateResponse]], ResultWrapper[PrioritizeUpdateResponse]),
+            model=CustomCertificate,
+            method="put",
         )
 
 
@@ -113,7 +108,7 @@ class AsyncPrioritizeResource(AsyncAPIResource):
         """
         return AsyncPrioritizeResourceWithStreamingResponse(self)
 
-    async def update(
+    def update(
         self,
         *,
         zone_id: str,
@@ -124,7 +119,7 @@ class AsyncPrioritizeResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PrioritizeUpdateResponse]:
+    ) -> AsyncPaginator[CustomCertificate, AsyncSinglePage[CustomCertificate]]:
         """
         If a zone has multiple SSL certificates, you can set the order in which they
         should be used during a request. The higher priority will break ties across
@@ -145,19 +140,15 @@ class AsyncPrioritizeResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._put(
+        return self._get_api_list(
             f"/zones/{zone_id}/custom_certificates/prioritize",
-            body=await async_maybe_transform(
-                {"certificates": certificates}, prioritize_update_params.PrioritizeUpdateParams
-            ),
+            page=AsyncSinglePage[CustomCertificate],
+            body=maybe_transform({"certificates": certificates}, prioritize_update_params.PrioritizeUpdateParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[PrioritizeUpdateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[PrioritizeUpdateResponse]], ResultWrapper[PrioritizeUpdateResponse]),
+            model=CustomCertificate,
+            method="put",
         )
 
 

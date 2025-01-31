@@ -3,17 +3,15 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.user import (
-    SubscriptionGetResponse,
-    SubscriptionDeleteResponse,
-    SubscriptionUpdateResponse,
-)
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.types.user import SubscriptionDeleteResponse, SubscriptionUpdateResponse
+from cloudflare.types.shared import Subscription
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -117,7 +115,7 @@ class TestSubscriptions:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         subscription = client.user.subscriptions.get()
-        assert_matches_type(Optional[SubscriptionGetResponse], subscription, path=["response"])
+        assert_matches_type(SyncSinglePage[Subscription], subscription, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -126,7 +124,7 @@ class TestSubscriptions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         subscription = response.parse()
-        assert_matches_type(Optional[SubscriptionGetResponse], subscription, path=["response"])
+        assert_matches_type(SyncSinglePage[Subscription], subscription, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -135,7 +133,7 @@ class TestSubscriptions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             subscription = response.parse()
-            assert_matches_type(Optional[SubscriptionGetResponse], subscription, path=["response"])
+            assert_matches_type(SyncSinglePage[Subscription], subscription, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -239,7 +237,7 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         subscription = await async_client.user.subscriptions.get()
-        assert_matches_type(Optional[SubscriptionGetResponse], subscription, path=["response"])
+        assert_matches_type(AsyncSinglePage[Subscription], subscription, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -248,7 +246,7 @@ class TestAsyncSubscriptions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         subscription = await response.parse()
-        assert_matches_type(Optional[SubscriptionGetResponse], subscription, path=["response"])
+        assert_matches_type(AsyncSinglePage[Subscription], subscription, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -257,6 +255,6 @@ class TestAsyncSubscriptions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             subscription = await response.parse()
-            assert_matches_type(Optional[SubscriptionGetResponse], subscription, path=["response"])
+            assert_matches_type(AsyncSinglePage[Subscription], subscription, path=["response"])
 
         assert cast(Any, response.is_closed) is True

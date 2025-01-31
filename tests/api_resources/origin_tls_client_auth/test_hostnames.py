@@ -9,6 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.origin_tls_client_auth import (
     HostnameUpdateResponse,
     AuthenticatedOriginPull,
@@ -26,7 +27,7 @@ class TestHostnames:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             config=[{}],
         )
-        assert_matches_type(Optional[HostnameUpdateResponse], hostname, path=["response"])
+        assert_matches_type(SyncSinglePage[HostnameUpdateResponse], hostname, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
@@ -38,7 +39,7 @@ class TestHostnames:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hostname = response.parse()
-        assert_matches_type(Optional[HostnameUpdateResponse], hostname, path=["response"])
+        assert_matches_type(SyncSinglePage[HostnameUpdateResponse], hostname, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
@@ -50,7 +51,7 @@ class TestHostnames:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hostname = response.parse()
-            assert_matches_type(Optional[HostnameUpdateResponse], hostname, path=["response"])
+            assert_matches_type(SyncSinglePage[HostnameUpdateResponse], hostname, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -120,7 +121,7 @@ class TestAsyncHostnames:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             config=[{}],
         )
-        assert_matches_type(Optional[HostnameUpdateResponse], hostname, path=["response"])
+        assert_matches_type(AsyncSinglePage[HostnameUpdateResponse], hostname, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -132,7 +133,7 @@ class TestAsyncHostnames:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hostname = await response.parse()
-        assert_matches_type(Optional[HostnameUpdateResponse], hostname, path=["response"])
+        assert_matches_type(AsyncSinglePage[HostnameUpdateResponse], hostname, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -144,7 +145,7 @@ class TestAsyncHostnames:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hostname = await response.parse()
-            assert_matches_type(Optional[HostnameUpdateResponse], hostname, path=["response"])
+            assert_matches_type(AsyncSinglePage[HostnameUpdateResponse], hostname, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

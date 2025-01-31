@@ -1,15 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
 from datetime import datetime
-from typing_extensions import TypeAlias
 
 from ...._models import BaseModel
 
-__all__ = ["MoveBulkResponse", "MoveBulkResponseItem"]
+__all__ = ["MoveBulkResponse"]
 
 
-class MoveBulkResponseItem(BaseModel):
+class MoveBulkResponse(BaseModel):
     completed_timestamp: datetime
 
     destination: str
@@ -23,6 +21,3 @@ class MoveBulkResponseItem(BaseModel):
     recipient: str
 
     status: str
-
-
-MoveBulkResponse: TypeAlias = List[MoveBulkResponseItem]

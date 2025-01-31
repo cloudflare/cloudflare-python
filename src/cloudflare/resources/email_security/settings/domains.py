@@ -21,7 +21,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from ....pagination import SyncSinglePage, AsyncSinglePage, SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.email_security.settings import domain_edit_params, domain_list_params
 from ....types.email_security.settings.domain_get_response import DomainGetResponse
@@ -183,7 +183,7 @@ class DomainsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DomainBulkDeleteResponse:
+    ) -> SyncSinglePage[DomainBulkDeleteResponse]:
         """
         Unprotect multiple email domains
 
@@ -200,16 +200,14 @@ class DomainsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._delete(
+        return self._get_api_list(
             f"/accounts/{account_id}/email-security/settings/domains",
+            page=SyncSinglePage[DomainBulkDeleteResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[DomainBulkDeleteResponse]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[DomainBulkDeleteResponse], ResultWrapper[DomainBulkDeleteResponse]),
+            model=DomainBulkDeleteResponse,
+            method="delete",
         )
 
     def edit(
@@ -474,7 +472,7 @@ class AsyncDomainsResource(AsyncAPIResource):
             cast_to=cast(Type[DomainDeleteResponse], ResultWrapper[DomainDeleteResponse]),
         )
 
-    async def bulk_delete(
+    def bulk_delete(
         self,
         *,
         account_id: str,
@@ -484,7 +482,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DomainBulkDeleteResponse:
+    ) -> AsyncPaginator[DomainBulkDeleteResponse, AsyncSinglePage[DomainBulkDeleteResponse]]:
         """
         Unprotect multiple email domains
 
@@ -501,16 +499,14 @@ class AsyncDomainsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._delete(
+        return self._get_api_list(
             f"/accounts/{account_id}/email-security/settings/domains",
+            page=AsyncSinglePage[DomainBulkDeleteResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[DomainBulkDeleteResponse]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[DomainBulkDeleteResponse], ResultWrapper[DomainBulkDeleteResponse]),
+            model=DomainBulkDeleteResponse,
+            method="delete",
         )
 
     async def edit(
