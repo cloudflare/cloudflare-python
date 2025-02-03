@@ -52,8 +52,8 @@ class ResponsesResource(SyncAPIResource):
     ) -> str:
         """Returns the raw response of the network request.
 
-        If HTML, a plain text response
-        will be returned.
+        Find the `response_id` in the
+        `data.requests.response.hash`.
 
         Args:
           account_id: Account ID.
@@ -116,8 +116,8 @@ class AsyncResponsesResource(AsyncAPIResource):
     ) -> str:
         """Returns the raw response of the network request.
 
-        If HTML, a plain text response
-        will be returned.
+        Find the `response_id` in the
+        `data.requests.response.hash`.
 
         Args:
           account_id: Account ID.
