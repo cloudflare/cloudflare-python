@@ -240,11 +240,13 @@ class TestAsyncContent:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.workers_for_platforms.dispatch.namespaces.scripts.content.with_streaming_response.update(
-            script_name="this-is_my_script-01",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            dispatch_namespace="my-dispatch-namespace",
-            metadata={},
+        async with (
+            async_client.workers_for_platforms.dispatch.namespaces.scripts.content.with_streaming_response.update(
+                script_name="this-is_my_script-01",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                dispatch_namespace="my-dispatch-namespace",
+                metadata={},
+            )
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
