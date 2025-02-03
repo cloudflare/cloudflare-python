@@ -382,7 +382,9 @@ class TestAsyncTimeseriesGroups:
 
     @parametrize
     async def test_streaming_response_http_method(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.radar.attacks.layer7.timeseries_groups.with_streaming_response.http_method() as response:
+        async with (
+            async_client.radar.attacks.layer7.timeseries_groups.with_streaming_response.http_method()
+        ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -426,7 +428,9 @@ class TestAsyncTimeseriesGroups:
 
     @parametrize
     async def test_streaming_response_http_version(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.radar.attacks.layer7.timeseries_groups.with_streaming_response.http_version() as response:
+        async with (
+            async_client.radar.attacks.layer7.timeseries_groups.with_streaming_response.http_version()
+        ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -562,7 +566,9 @@ class TestAsyncTimeseriesGroups:
 
     @parametrize
     async def test_streaming_response_managed_rules(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.radar.attacks.layer7.timeseries_groups.with_streaming_response.managed_rules() as response:
+        async with (
+            async_client.radar.attacks.layer7.timeseries_groups.with_streaming_response.managed_rules()
+        ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -607,7 +613,9 @@ class TestAsyncTimeseriesGroups:
 
     @parametrize
     async def test_streaming_response_mitigation_product(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.radar.attacks.layer7.timeseries_groups.with_streaming_response.mitigation_product() as response:
+        async with (
+            async_client.radar.attacks.layer7.timeseries_groups.with_streaming_response.mitigation_product()
+        ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
