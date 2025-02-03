@@ -130,7 +130,9 @@ class TestAsyncSummary:
 
     @parametrize
     async def test_streaming_response_model(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.radar.ai.inference.timeseries_groups.summary.with_streaming_response.model() as response:
+        async with (
+            async_client.radar.ai.inference.timeseries_groups.summary.with_streaming_response.model()
+        ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
