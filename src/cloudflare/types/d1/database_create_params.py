@@ -12,6 +12,7 @@ class DatabaseCreateParams(TypedDict, total=False):
     """Account identifier tag."""
 
     name: Required[str]
+    """D1 database name."""
 
     primary_location_hint: Literal["wnam", "enam", "weur", "eeur", "apac", "oc"]
     """Specify the region to create the D1 primary, if available.
