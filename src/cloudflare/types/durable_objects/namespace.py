@@ -18,6 +18,4 @@ class Namespace(BaseModel):
 
     script: Optional[str] = None
 
-    use_containers: Optional[bool] = None
-
     use_sqlite: Optional[bool] = None
