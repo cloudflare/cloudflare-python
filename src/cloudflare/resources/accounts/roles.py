@@ -16,9 +16,9 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...pagination import SyncSinglePage, AsyncSinglePage
-from ..._base_client import AsyncPaginator, make_request_options
+from ..._base_client import make_request_options
 from ...types.shared.role import Role
+from ...types.accounts.role_list_response import RoleListResponse
 
 __all__ = ["RolesResource", "AsyncRolesResource"]
 
@@ -53,7 +53,7 @@ class RolesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[Role]:
+    ) -> Optional[RoleListResponse]:
         """
         Get all available roles for an account.
 
@@ -70,13 +70,16 @@ class RolesResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get_api_list(
+        return self._get(
             f"/accounts/{account_id}/roles",
-            page=SyncSinglePage[Role],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[RoleListResponse]]._unwrapper,
             ),
-            model=Role,
+            cast_to=cast(Type[Optional[RoleListResponse]], ResultWrapper[RoleListResponse]),
         )
 
     def get(
@@ -144,7 +147,7 @@ class AsyncRolesResource(AsyncAPIResource):
         """
         return AsyncRolesResourceWithStreamingResponse(self)
 
-    def list(
+    async def list(
         self,
         *,
         account_id: str,
@@ -154,7 +157,7 @@ class AsyncRolesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Role, AsyncSinglePage[Role]]:
+    ) -> Optional[RoleListResponse]:
         """
         Get all available roles for an account.
 
@@ -171,13 +174,16 @@ class AsyncRolesResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get_api_list(
+        return await self._get(
             f"/accounts/{account_id}/roles",
-            page=AsyncSinglePage[Role],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[RoleListResponse]]._unwrapper,
             ),
-            model=Role,
+            cast_to=cast(Type[Optional[RoleListResponse]], ResultWrapper[RoleListResponse]),
         )
 
     async def get(
