@@ -335,8 +335,8 @@ class OrganizationsResource(SyncAPIResource):
         email: str,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        devices_1: bool | NotGiven = NOT_GIVEN,
-        devices_2: bool | NotGiven = NOT_GIVEN,
+        query_devices: bool | NotGiven = NOT_GIVEN,
+        body_devices: bool | NotGiven = NOT_GIVEN,
         user_uid: str | NotGiven = NOT_GIVEN,
         warp_session_reauth: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -356,9 +356,9 @@ class OrganizationsResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
-          devices_1: When set to `true`, all devices associated with the user will be revoked.
+          query_devices: When set to `true`, all devices associated with the user will be revoked.
 
-          devices_2: When set to `true`, all devices associated with the user will be revoked.
+          body_devices: When set to `true`, all devices associated with the user will be revoked.
 
           user_uid: The uuid of the user to revoke.
 
@@ -391,7 +391,7 @@ class OrganizationsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "email": email,
-                    "devices_2": devices_2,
+                    "body_devices": body_devices,
                     "user_uid": user_uid,
                     "warp_session_reauth": warp_session_reauth,
                 },
@@ -403,7 +403,7 @@ class OrganizationsResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform(
-                    {"devices_1": devices_1}, organization_revoke_users_params.OrganizationRevokeUsersParams
+                    {"query_devices": query_devices}, organization_revoke_users_params.OrganizationRevokeUsersParams
                 ),
                 post_parser=ResultWrapper[Optional[OrganizationRevokeUsersResponse]]._unwrapper,
             ),
@@ -707,8 +707,8 @@ class AsyncOrganizationsResource(AsyncAPIResource):
         email: str,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        devices_1: bool | NotGiven = NOT_GIVEN,
-        devices_2: bool | NotGiven = NOT_GIVEN,
+        query_devices: bool | NotGiven = NOT_GIVEN,
+        body_devices: bool | NotGiven = NOT_GIVEN,
         user_uid: str | NotGiven = NOT_GIVEN,
         warp_session_reauth: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -728,9 +728,9 @@ class AsyncOrganizationsResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
-          devices_1: When set to `true`, all devices associated with the user will be revoked.
+          query_devices: When set to `true`, all devices associated with the user will be revoked.
 
-          devices_2: When set to `true`, all devices associated with the user will be revoked.
+          body_devices: When set to `true`, all devices associated with the user will be revoked.
 
           user_uid: The uuid of the user to revoke.
 
@@ -763,7 +763,7 @@ class AsyncOrganizationsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "email": email,
-                    "devices_2": devices_2,
+                    "body_devices": body_devices,
                     "user_uid": user_uid,
                     "warp_session_reauth": warp_session_reauth,
                 },
@@ -775,7 +775,7 @@ class AsyncOrganizationsResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {"devices_1": devices_1}, organization_revoke_users_params.OrganizationRevokeUsersParams
+                    {"query_devices": query_devices}, organization_revoke_users_params.OrganizationRevokeUsersParams
                 ),
                 post_parser=ResultWrapper[Optional[OrganizationRevokeUsersResponse]]._unwrapper,
             ),
