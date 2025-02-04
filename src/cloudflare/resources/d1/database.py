@@ -81,6 +81,8 @@ class DatabaseResource(SyncAPIResource):
         Args:
           account_id: Account identifier tag.
 
+          name: D1 database name.
+
           primary_location_hint: Specify the region to create the D1 primary, if available. If this option is
               omitted, the D1 will be created as close as possible to the current user.
 
@@ -187,6 +189,8 @@ class DatabaseResource(SyncAPIResource):
         Args:
           account_id: Account identifier tag.
 
+          database_id: D1 database identifier (UUID).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -235,6 +239,8 @@ class DatabaseResource(SyncAPIResource):
 
         Args:
           account_id: Account identifier tag.
+
+          database_id: D1 database identifier (UUID).
 
           output_format: Specifies that you will poll this endpoint until the export completes
 
@@ -291,6 +297,8 @@ class DatabaseResource(SyncAPIResource):
         Args:
           account_id: Account identifier tag.
 
+          database_id: D1 database identifier (UUID).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -338,6 +346,8 @@ class DatabaseResource(SyncAPIResource):
         Args:
           account_id: Account identifier tag.
 
+          database_id: D1 database identifier (UUID).
+
           action: Indicates you have a new SQL file to upload.
 
           etag: Required when action is 'init' or 'ingest'. An md5 hash of the file you're
@@ -378,6 +388,8 @@ class DatabaseResource(SyncAPIResource):
         Args:
           account_id: Account identifier tag.
 
+          database_id: D1 database identifier (UUID).
+
           action: Indicates you've finished uploading to tell the D1 to start consuming it
 
           etag: An md5 hash of the file you're uploading. Used to check if it already exists,
@@ -417,6 +429,8 @@ class DatabaseResource(SyncAPIResource):
 
         Args:
           account_id: Account identifier tag.
+
+          database_id: D1 database identifier (UUID).
 
           action: Indicates you've finished uploading to tell the D1 to start consuming it
 
@@ -498,6 +512,8 @@ class DatabaseResource(SyncAPIResource):
         Args:
           account_id: Account identifier tag.
 
+          database_id: D1 database identifier (UUID).
+
           sql: Your SQL query. Supports multiple statements, joined by semicolons, which will
               be executed as a batch.
 
@@ -551,6 +567,8 @@ class DatabaseResource(SyncAPIResource):
 
         Args:
           account_id: Account identifier tag.
+
+          database_id: D1 database identifier (UUID).
 
           sql: Your SQL query. Supports multiple statements, joined by semicolons, which will
               be executed as a batch.
@@ -623,6 +641,8 @@ class AsyncDatabaseResource(AsyncAPIResource):
 
         Args:
           account_id: Account identifier tag.
+
+          name: D1 database name.
 
           primary_location_hint: Specify the region to create the D1 primary, if available. If this option is
               omitted, the D1 will be created as close as possible to the current user.
@@ -730,6 +750,8 @@ class AsyncDatabaseResource(AsyncAPIResource):
         Args:
           account_id: Account identifier tag.
 
+          database_id: D1 database identifier (UUID).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -778,6 +800,8 @@ class AsyncDatabaseResource(AsyncAPIResource):
 
         Args:
           account_id: Account identifier tag.
+
+          database_id: D1 database identifier (UUID).
 
           output_format: Specifies that you will poll this endpoint until the export completes
 
@@ -834,6 +858,8 @@ class AsyncDatabaseResource(AsyncAPIResource):
         Args:
           account_id: Account identifier tag.
 
+          database_id: D1 database identifier (UUID).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -881,6 +907,8 @@ class AsyncDatabaseResource(AsyncAPIResource):
         Args:
           account_id: Account identifier tag.
 
+          database_id: D1 database identifier (UUID).
+
           action: Indicates you have a new SQL file to upload.
 
           etag: Required when action is 'init' or 'ingest'. An md5 hash of the file you're
@@ -921,6 +949,8 @@ class AsyncDatabaseResource(AsyncAPIResource):
         Args:
           account_id: Account identifier tag.
 
+          database_id: D1 database identifier (UUID).
+
           action: Indicates you've finished uploading to tell the D1 to start consuming it
 
           etag: An md5 hash of the file you're uploading. Used to check if it already exists,
@@ -960,6 +990,8 @@ class AsyncDatabaseResource(AsyncAPIResource):
 
         Args:
           account_id: Account identifier tag.
+
+          database_id: D1 database identifier (UUID).
 
           action: Indicates you've finished uploading to tell the D1 to start consuming it
 
@@ -1041,6 +1073,8 @@ class AsyncDatabaseResource(AsyncAPIResource):
         Args:
           account_id: Account identifier tag.
 
+          database_id: D1 database identifier (UUID).
+
           sql: Your SQL query. Supports multiple statements, joined by semicolons, which will
               be executed as a batch.
 
@@ -1094,6 +1128,8 @@ class AsyncDatabaseResource(AsyncAPIResource):
 
         Args:
           account_id: Account identifier tag.
+
+          database_id: D1 database identifier (UUID).
 
           sql: Your SQL query. Supports multiple statements, joined by semicolons, which will
               be executed as a batch.
