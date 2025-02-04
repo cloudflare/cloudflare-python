@@ -19,10 +19,10 @@ class OrganizationRevokeUsersParams(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    devices_1: Annotated[bool, PropertyInfo(alias="devices")]
+    query_devices: Annotated[bool, PropertyInfo(alias="devices")]
     """When set to `true`, all devices associated with the user will be revoked."""
 
-    devices_2: Annotated[bool, PropertyInfo(alias="devices")]
+    body_devices: Annotated[bool, PropertyInfo(alias="devices")]
     """When set to `true`, all devices associated with the user will be revoked."""
 
     user_uid: str
