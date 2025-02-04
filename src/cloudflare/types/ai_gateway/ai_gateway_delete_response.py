@@ -35,10 +35,6 @@ class AIGatewayDeleteResponse(BaseModel):
 
     rate_limiting_technique: Literal["fixed", "sliding"]
 
-    authentication: Optional[bool] = None
-
-    log_management: Optional[int] = None
-
     logpush: Optional[bool] = None
 
     logpush_public_key: Optional[str] = None

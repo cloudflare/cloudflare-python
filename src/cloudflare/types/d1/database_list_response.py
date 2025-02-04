@@ -13,9 +13,7 @@ class DatabaseListResponse(BaseModel):
     """Specifies the timestamp the resource was created as an ISO8601 string."""
 
     name: Optional[str] = None
-    """D1 database name."""
 
     uuid: Optional[str] = None
-    """D1 database identifier (UUID)."""
 
     version: Optional[str] = None
