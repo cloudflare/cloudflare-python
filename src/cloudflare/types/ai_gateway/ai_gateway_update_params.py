@@ -23,6 +23,10 @@ class AIGatewayUpdateParams(TypedDict, total=False):
 
     rate_limiting_technique: Required[Literal["fixed", "sliding"]]
 
+    authentication: bool
+
+    log_management: Optional[int]
+
     logpush: bool
 
     logpush_public_key: Optional[str]

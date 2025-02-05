@@ -16,9 +16,11 @@ class D1(BaseModel):
     """The D1 database's size, in bytes."""
 
     name: Optional[str] = None
+    """D1 database name."""
 
     num_tables: Optional[float] = None
 
     uuid: Optional[str] = None
+    """D1 database identifier (UUID)."""
 
     version: Optional[str] = None
