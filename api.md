@@ -771,18 +771,6 @@ Methods:
 
 - <code title="get /zones/{zone_id}/ssl/certificate_packs/quota">client.ssl.certificate_packs.quota.<a href="./src/cloudflare/resources/ssl/certificate_packs/quota.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/ssl/certificate_packs/quota_get_response.py">Optional[QuotaGetResponse]</a></code>
 
-## Recommendations
-
-Types:
-
-```python
-from cloudflare.types.ssl import RecommendationGetResponse
-```
-
-Methods:
-
-- <code title="get /zones/{zone_identifier}/ssl/recommendation">client.ssl.recommendations.<a href="./src/cloudflare/resources/ssl/recommendations.py">get</a>(zone_identifier) -> <a href="./src/cloudflare/types/ssl/recommendation_get_response.py">Optional[RecommendationGetResponse]</a></code>
-
 ## Universal
 
 ### Settings
