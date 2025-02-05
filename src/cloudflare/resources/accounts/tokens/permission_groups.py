@@ -75,6 +75,42 @@ class PermissionGroupsResource(SyncAPIResource):
             model=object,
         )
 
+    def get(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncSinglePage[object]:
+        """
+        Find all available permission groups for Account Owned API Tokens
+
+        Args:
+          account_id: Account identifier tag.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._get_api_list(
+            f"/accounts/{account_id}/tokens/permission_groups",
+            page=SyncSinglePage[object],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            model=object,
+        )
+
 
 class AsyncPermissionGroupsResource(AsyncAPIResource):
     @cached_property
@@ -132,6 +168,42 @@ class AsyncPermissionGroupsResource(AsyncAPIResource):
             model=object,
         )
 
+    def get(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[object, AsyncSinglePage[object]]:
+        """
+        Find all available permission groups for Account Owned API Tokens
+
+        Args:
+          account_id: Account identifier tag.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._get_api_list(
+            f"/accounts/{account_id}/tokens/permission_groups",
+            page=AsyncSinglePage[object],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            model=object,
+        )
+
 
 class PermissionGroupsResourceWithRawResponse:
     def __init__(self, permission_groups: PermissionGroupsResource) -> None:
@@ -139,6 +211,9 @@ class PermissionGroupsResourceWithRawResponse:
 
         self.list = to_raw_response_wrapper(
             permission_groups.list,
+        )
+        self.get = to_raw_response_wrapper(
+            permission_groups.get,
         )
 
 
@@ -149,6 +224,9 @@ class AsyncPermissionGroupsResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             permission_groups.list,
         )
+        self.get = async_to_raw_response_wrapper(
+            permission_groups.get,
+        )
 
 
 class PermissionGroupsResourceWithStreamingResponse:
@@ -158,6 +236,9 @@ class PermissionGroupsResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             permission_groups.list,
         )
+        self.get = to_streamed_response_wrapper(
+            permission_groups.get,
+        )
 
 
 class AsyncPermissionGroupsResourceWithStreamingResponse:
@@ -166,4 +247,7 @@ class AsyncPermissionGroupsResourceWithStreamingResponse:
 
         self.list = async_to_streamed_response_wrapper(
             permission_groups.list,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            permission_groups.get,
         )

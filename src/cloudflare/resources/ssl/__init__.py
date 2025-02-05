@@ -32,6 +32,14 @@ from .verification import (
     VerificationResourceWithStreamingResponse,
     AsyncVerificationResourceWithStreamingResponse,
 )
+from .recommendations import (
+    RecommendationsResource,
+    AsyncRecommendationsResource,
+    RecommendationsResourceWithRawResponse,
+    AsyncRecommendationsResourceWithRawResponse,
+    RecommendationsResourceWithStreamingResponse,
+    AsyncRecommendationsResourceWithStreamingResponse,
+)
 from .certificate_packs import (
     CertificatePacksResource,
     AsyncCertificatePacksResource,
@@ -54,6 +62,12 @@ __all__ = [
     "AsyncCertificatePacksResourceWithRawResponse",
     "CertificatePacksResourceWithStreamingResponse",
     "AsyncCertificatePacksResourceWithStreamingResponse",
+    "RecommendationsResource",
+    "AsyncRecommendationsResource",
+    "RecommendationsResourceWithRawResponse",
+    "AsyncRecommendationsResourceWithRawResponse",
+    "RecommendationsResourceWithStreamingResponse",
+    "AsyncRecommendationsResourceWithStreamingResponse",
     "UniversalResource",
     "AsyncUniversalResource",
     "UniversalResourceWithRawResponse",
