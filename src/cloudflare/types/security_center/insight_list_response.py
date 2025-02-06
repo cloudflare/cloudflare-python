@@ -7,7 +7,7 @@ from typing_extensions import Literal
 from ..._models import BaseModel
 from ..intel.attack_surface_report.issue_type import IssueType
 
-__all__ = ["InsightGetResponse", "Issue"]
+__all__ = ["InsightListResponse", "Issue"]
 
 
 class Issue(BaseModel):
@@ -34,7 +34,7 @@ class Issue(BaseModel):
     timestamp: Optional[datetime] = None
 
 
-class InsightGetResponse(BaseModel):
+class InsightListResponse(BaseModel):
     count: Optional[int] = None
     """Total number of results"""
 
