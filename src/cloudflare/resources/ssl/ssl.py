@@ -20,14 +20,6 @@ from .verification import (
     VerificationResourceWithStreamingResponse,
     AsyncVerificationResourceWithStreamingResponse,
 )
-from .recommendations import (
-    RecommendationsResource,
-    AsyncRecommendationsResource,
-    RecommendationsResourceWithRawResponse,
-    AsyncRecommendationsResourceWithRawResponse,
-    RecommendationsResourceWithStreamingResponse,
-    AsyncRecommendationsResourceWithStreamingResponse,
-)
 from .universal.universal import (
     UniversalResource,
     AsyncUniversalResource,
@@ -56,10 +48,6 @@ class SSLResource(SyncAPIResource):
     @cached_property
     def certificate_packs(self) -> CertificatePacksResource:
         return CertificatePacksResource(self._client)
-
-    @cached_property
-    def recommendations(self) -> RecommendationsResource:
-        return RecommendationsResource(self._client)
 
     @cached_property
     def universal(self) -> UniversalResource:
@@ -97,10 +85,6 @@ class AsyncSSLResource(AsyncAPIResource):
     @cached_property
     def certificate_packs(self) -> AsyncCertificatePacksResource:
         return AsyncCertificatePacksResource(self._client)
-
-    @cached_property
-    def recommendations(self) -> AsyncRecommendationsResource:
-        return AsyncRecommendationsResource(self._client)
 
     @cached_property
     def universal(self) -> AsyncUniversalResource:
@@ -143,10 +127,6 @@ class SSLResourceWithRawResponse:
         return CertificatePacksResourceWithRawResponse(self._ssl.certificate_packs)
 
     @cached_property
-    def recommendations(self) -> RecommendationsResourceWithRawResponse:
-        return RecommendationsResourceWithRawResponse(self._ssl.recommendations)
-
-    @cached_property
     def universal(self) -> UniversalResourceWithRawResponse:
         return UniversalResourceWithRawResponse(self._ssl.universal)
 
@@ -166,10 +146,6 @@ class AsyncSSLResourceWithRawResponse:
     @cached_property
     def certificate_packs(self) -> AsyncCertificatePacksResourceWithRawResponse:
         return AsyncCertificatePacksResourceWithRawResponse(self._ssl.certificate_packs)
-
-    @cached_property
-    def recommendations(self) -> AsyncRecommendationsResourceWithRawResponse:
-        return AsyncRecommendationsResourceWithRawResponse(self._ssl.recommendations)
 
     @cached_property
     def universal(self) -> AsyncUniversalResourceWithRawResponse:
@@ -193,10 +169,6 @@ class SSLResourceWithStreamingResponse:
         return CertificatePacksResourceWithStreamingResponse(self._ssl.certificate_packs)
 
     @cached_property
-    def recommendations(self) -> RecommendationsResourceWithStreamingResponse:
-        return RecommendationsResourceWithStreamingResponse(self._ssl.recommendations)
-
-    @cached_property
     def universal(self) -> UniversalResourceWithStreamingResponse:
         return UniversalResourceWithStreamingResponse(self._ssl.universal)
 
@@ -216,10 +188,6 @@ class AsyncSSLResourceWithStreamingResponse:
     @cached_property
     def certificate_packs(self) -> AsyncCertificatePacksResourceWithStreamingResponse:
         return AsyncCertificatePacksResourceWithStreamingResponse(self._ssl.certificate_packs)
-
-    @cached_property
-    def recommendations(self) -> AsyncRecommendationsResourceWithStreamingResponse:
-        return AsyncRecommendationsResourceWithStreamingResponse(self._ssl.recommendations)
 
     @cached_property
     def universal(self) -> AsyncUniversalResourceWithStreamingResponse:
