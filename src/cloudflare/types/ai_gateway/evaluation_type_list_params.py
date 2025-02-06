@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["EvaluationTypeGetParams"]
+__all__ = ["EvaluationTypeListParams"]
 
 
-class EvaluationTypeGetParams(TypedDict, total=False):
+class EvaluationTypeListParams(TypedDict, total=False):
     account_id: Required[str]
 
     order_by: str

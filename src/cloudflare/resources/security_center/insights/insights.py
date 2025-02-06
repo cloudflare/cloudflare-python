@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Optional, cast
+from typing import List, Optional
 
 import httpx
 
@@ -43,10 +43,10 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._wrappers import ResultWrapper
-from ...._base_client import make_request_options
-from ....types.security_center import insight_get_params, insight_dismiss_params
-from ....types.security_center.insight_get_response import InsightGetResponse
+from ....pagination import SyncV4PagePagination, AsyncV4PagePagination
+from ...._base_client import AsyncPaginator, make_request_options
+from ....types.security_center import insight_list_params, insight_dismiss_params
+from ....types.security_center.insight_list_response import InsightListResponse
 from ....types.intel.attack_surface_report.issue_type import IssueType
 from ....types.security_center.insight_dismiss_response import InsightDismissResponse
 from ....types.intel.attack_surface_report.severity_query_param import SeverityQueryParam
@@ -85,6 +85,93 @@ class InsightsResource(SyncAPIResource):
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
         return InsightsResourceWithStreamingResponse(self)
+
+    def list(
+        self,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        dismissed: bool | NotGiven = NOT_GIVEN,
+        issue_class: List[str] | NotGiven = NOT_GIVEN,
+        issue_class_neq: List[str] | NotGiven = NOT_GIVEN,
+        issue_type: List[IssueType] | NotGiven = NOT_GIVEN,
+        issue_type_neq: List[IssueType] | NotGiven = NOT_GIVEN,
+        page: int | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
+        product: List[str] | NotGiven = NOT_GIVEN,
+        product_neq: List[str] | NotGiven = NOT_GIVEN,
+        severity: List[SeverityQueryParam] | NotGiven = NOT_GIVEN,
+        severity_neq: List[SeverityQueryParam] | NotGiven = NOT_GIVEN,
+        subject: List[str] | NotGiven = NOT_GIVEN,
+        subject_neq: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncV4PagePagination[Optional[InsightListResponse]]:
+        """
+        Get Security Center Insights
+
+        Args:
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          page: Current page within paginated list of results
+
+          per_page: Number of results per page of results
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
+        return self._get_api_list(
+            f"/{account_or_zone}/{account_or_zone_id}/security-center/insights",
+            page=SyncV4PagePagination[Optional[InsightListResponse]],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "dismissed": dismissed,
+                        "issue_class": issue_class,
+                        "issue_class_neq": issue_class_neq,
+                        "issue_type": issue_type,
+                        "issue_type_neq": issue_type_neq,
+                        "page": page,
+                        "per_page": per_page,
+                        "product": product,
+                        "product_neq": product_neq,
+                        "severity": severity,
+                        "severity_neq": severity_neq,
+                        "subject": subject,
+                        "subject_neq": subject_neq,
+                    },
+                    insight_list_params.InsightListParams,
+                ),
+            ),
+            model=InsightListResponse,
+        )
 
     def dismiss(
         self,
@@ -139,93 +226,6 @@ class InsightsResource(SyncAPIResource):
             cast_to=InsightDismissResponse,
         )
 
-    def get(
-        self,
-        *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        dismissed: bool | NotGiven = NOT_GIVEN,
-        issue_class: List[str] | NotGiven = NOT_GIVEN,
-        issue_class_neq: List[str] | NotGiven = NOT_GIVEN,
-        issue_type: List[IssueType] | NotGiven = NOT_GIVEN,
-        issue_type_neq: List[IssueType] | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        product: List[str] | NotGiven = NOT_GIVEN,
-        product_neq: List[str] | NotGiven = NOT_GIVEN,
-        severity: List[SeverityQueryParam] | NotGiven = NOT_GIVEN,
-        severity_neq: List[SeverityQueryParam] | NotGiven = NOT_GIVEN,
-        subject: List[str] | NotGiven = NOT_GIVEN,
-        subject_neq: List[str] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[InsightGetResponse]:
-        """
-        Get Security Center Insights
-
-        Args:
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          page: Current page within paginated list of results
-
-          per_page: Number of results per page of results
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if account_id and zone_id:
-            raise ValueError("You cannot provide both account_id and zone_id")
-
-        if account_id:
-            account_or_zone = "accounts"
-            account_or_zone_id = account_id
-        else:
-            if not zone_id:
-                raise ValueError("You must provide either account_id or zone_id")
-
-            account_or_zone = "zones"
-            account_or_zone_id = zone_id
-        return self._get(
-            f"/{account_or_zone}/{account_or_zone_id}/security-center/insights",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "dismissed": dismissed,
-                        "issue_class": issue_class,
-                        "issue_class_neq": issue_class_neq,
-                        "issue_type": issue_type,
-                        "issue_type_neq": issue_type_neq,
-                        "page": page,
-                        "per_page": per_page,
-                        "product": product,
-                        "product_neq": product_neq,
-                        "severity": severity,
-                        "severity_neq": severity_neq,
-                        "subject": subject,
-                        "subject_neq": subject_neq,
-                    },
-                    insight_get_params.InsightGetParams,
-                ),
-                post_parser=ResultWrapper[Optional[InsightGetResponse]]._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[InsightGetResponse]], ResultWrapper[InsightGetResponse]),
-        )
-
 
 class AsyncInsightsResource(AsyncAPIResource):
     @cached_property
@@ -258,6 +258,93 @@ class AsyncInsightsResource(AsyncAPIResource):
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
         return AsyncInsightsResourceWithStreamingResponse(self)
+
+    def list(
+        self,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        dismissed: bool | NotGiven = NOT_GIVEN,
+        issue_class: List[str] | NotGiven = NOT_GIVEN,
+        issue_class_neq: List[str] | NotGiven = NOT_GIVEN,
+        issue_type: List[IssueType] | NotGiven = NOT_GIVEN,
+        issue_type_neq: List[IssueType] | NotGiven = NOT_GIVEN,
+        page: int | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
+        product: List[str] | NotGiven = NOT_GIVEN,
+        product_neq: List[str] | NotGiven = NOT_GIVEN,
+        severity: List[SeverityQueryParam] | NotGiven = NOT_GIVEN,
+        severity_neq: List[SeverityQueryParam] | NotGiven = NOT_GIVEN,
+        subject: List[str] | NotGiven = NOT_GIVEN,
+        subject_neq: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[Optional[InsightListResponse], AsyncV4PagePagination[Optional[InsightListResponse]]]:
+        """
+        Get Security Center Insights
+
+        Args:
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          page: Current page within paginated list of results
+
+          per_page: Number of results per page of results
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
+        return self._get_api_list(
+            f"/{account_or_zone}/{account_or_zone_id}/security-center/insights",
+            page=AsyncV4PagePagination[Optional[InsightListResponse]],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "dismissed": dismissed,
+                        "issue_class": issue_class,
+                        "issue_class_neq": issue_class_neq,
+                        "issue_type": issue_type,
+                        "issue_type_neq": issue_type_neq,
+                        "page": page,
+                        "per_page": per_page,
+                        "product": product,
+                        "product_neq": product_neq,
+                        "severity": severity,
+                        "severity_neq": severity_neq,
+                        "subject": subject,
+                        "subject_neq": subject_neq,
+                    },
+                    insight_list_params.InsightListParams,
+                ),
+            ),
+            model=InsightListResponse,
+        )
 
     async def dismiss(
         self,
@@ -312,103 +399,16 @@ class AsyncInsightsResource(AsyncAPIResource):
             cast_to=InsightDismissResponse,
         )
 
-    async def get(
-        self,
-        *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        dismissed: bool | NotGiven = NOT_GIVEN,
-        issue_class: List[str] | NotGiven = NOT_GIVEN,
-        issue_class_neq: List[str] | NotGiven = NOT_GIVEN,
-        issue_type: List[IssueType] | NotGiven = NOT_GIVEN,
-        issue_type_neq: List[IssueType] | NotGiven = NOT_GIVEN,
-        page: int | NotGiven = NOT_GIVEN,
-        per_page: int | NotGiven = NOT_GIVEN,
-        product: List[str] | NotGiven = NOT_GIVEN,
-        product_neq: List[str] | NotGiven = NOT_GIVEN,
-        severity: List[SeverityQueryParam] | NotGiven = NOT_GIVEN,
-        severity_neq: List[SeverityQueryParam] | NotGiven = NOT_GIVEN,
-        subject: List[str] | NotGiven = NOT_GIVEN,
-        subject_neq: List[str] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[InsightGetResponse]:
-        """
-        Get Security Center Insights
-
-        Args:
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          page: Current page within paginated list of results
-
-          per_page: Number of results per page of results
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if account_id and zone_id:
-            raise ValueError("You cannot provide both account_id and zone_id")
-
-        if account_id:
-            account_or_zone = "accounts"
-            account_or_zone_id = account_id
-        else:
-            if not zone_id:
-                raise ValueError("You must provide either account_id or zone_id")
-
-            account_or_zone = "zones"
-            account_or_zone_id = zone_id
-        return await self._get(
-            f"/{account_or_zone}/{account_or_zone_id}/security-center/insights",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "dismissed": dismissed,
-                        "issue_class": issue_class,
-                        "issue_class_neq": issue_class_neq,
-                        "issue_type": issue_type,
-                        "issue_type_neq": issue_type_neq,
-                        "page": page,
-                        "per_page": per_page,
-                        "product": product,
-                        "product_neq": product_neq,
-                        "severity": severity,
-                        "severity_neq": severity_neq,
-                        "subject": subject,
-                        "subject_neq": subject_neq,
-                    },
-                    insight_get_params.InsightGetParams,
-                ),
-                post_parser=ResultWrapper[Optional[InsightGetResponse]]._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[InsightGetResponse]], ResultWrapper[InsightGetResponse]),
-        )
-
 
 class InsightsResourceWithRawResponse:
     def __init__(self, insights: InsightsResource) -> None:
         self._insights = insights
 
+        self.list = to_raw_response_wrapper(
+            insights.list,
+        )
         self.dismiss = to_raw_response_wrapper(
             insights.dismiss,
-        )
-        self.get = to_raw_response_wrapper(
-            insights.get,
         )
 
     @cached_property
@@ -428,11 +428,11 @@ class AsyncInsightsResourceWithRawResponse:
     def __init__(self, insights: AsyncInsightsResource) -> None:
         self._insights = insights
 
+        self.list = async_to_raw_response_wrapper(
+            insights.list,
+        )
         self.dismiss = async_to_raw_response_wrapper(
             insights.dismiss,
-        )
-        self.get = async_to_raw_response_wrapper(
-            insights.get,
         )
 
     @cached_property
@@ -452,11 +452,11 @@ class InsightsResourceWithStreamingResponse:
     def __init__(self, insights: InsightsResource) -> None:
         self._insights = insights
 
+        self.list = to_streamed_response_wrapper(
+            insights.list,
+        )
         self.dismiss = to_streamed_response_wrapper(
             insights.dismiss,
-        )
-        self.get = to_streamed_response_wrapper(
-            insights.get,
         )
 
     @cached_property
@@ -476,11 +476,11 @@ class AsyncInsightsResourceWithStreamingResponse:
     def __init__(self, insights: AsyncInsightsResource) -> None:
         self._insights = insights
 
+        self.list = async_to_streamed_response_wrapper(
+            insights.list,
+        )
         self.dismiss = async_to_streamed_response_wrapper(
             insights.dismiss,
-        )
-        self.get = async_to_streamed_response_wrapper(
-            insights.get,
         )
 
     @cached_property

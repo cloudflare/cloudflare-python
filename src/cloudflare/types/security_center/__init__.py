@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from .insight_get_params import InsightGetParams as InsightGetParams
-from .insight_get_response import InsightGetResponse as InsightGetResponse
+from .insight_list_params import InsightListParams as InsightListParams
+from .insight_list_response import InsightListResponse as InsightListResponse
 from .insight_dismiss_params import InsightDismissParams as InsightDismissParams
 from .insight_dismiss_response import InsightDismissResponse as InsightDismissResponse
