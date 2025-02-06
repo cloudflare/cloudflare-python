@@ -5,7 +5,7 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["SearchGetResponse", "Resource"]
+__all__ = ["SearchListResponse", "Resource"]
 
 
 class Resource(BaseModel):
@@ -24,6 +24,6 @@ class Resource(BaseModel):
     """The type of the resource."""
 
 
-class SearchGetResponse(BaseModel):
+class SearchListResponse(BaseModel):
     resources: Optional[List[Resource]] = None
     """A list of resources matching the search query."""

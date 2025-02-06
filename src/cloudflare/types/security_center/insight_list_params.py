@@ -9,10 +9,10 @@ from ..._utils import PropertyInfo
 from ..intel.attack_surface_report.issue_type import IssueType
 from ..intel.attack_surface_report.severity_query_param import SeverityQueryParam
 
-__all__ = ["InsightGetParams"]
+__all__ = ["InsightListParams"]
 
 
-class InsightGetParams(TypedDict, total=False):
+class InsightListParams(TypedDict, total=False):
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
 

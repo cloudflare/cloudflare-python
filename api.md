@@ -624,12 +624,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.load_balancers import SearchGetResponse
+from cloudflare.types.load_balancers import SearchListResponse
 ```
 
 Methods:
 
-- <code title="get /accounts/{account_id}/load_balancers/search">client.load_balancers.searches.<a href="./src/cloudflare/resources/load_balancers/searches.py">get</a>(\*, account_id, \*\*<a href="src/cloudflare/types/load_balancers/search_get_params.py">params</a>) -> <a href="./src/cloudflare/types/load_balancers/search_get_response.py">SearchGetResponse</a></code>
+- <code title="get /accounts/{account_id}/load_balancers/search">client.load_balancers.searches.<a href="./src/cloudflare/resources/load_balancers/searches.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/load_balancers/search_list_params.py">params</a>) -> <a href="./src/cloudflare/types/load_balancers/search_list_response.py">SyncV4PagePagination[SearchListResponse]</a></code>
 
 # Cache
 
@@ -8236,12 +8236,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.ai_gateway import EvaluationTypeGetResponse
+from cloudflare.types.ai_gateway import EvaluationTypeListResponse
 ```
 
 Methods:
 
-- <code title="get /accounts/{account_id}/ai-gateway/evaluation-types">client.ai_gateway.evaluation_types.<a href="./src/cloudflare/resources/ai_gateway/evaluation_types.py">get</a>(\*, account_id, \*\*<a href="src/cloudflare/types/ai_gateway/evaluation_type_get_params.py">params</a>) -> <a href="./src/cloudflare/types/ai_gateway/evaluation_type_get_response.py">EvaluationTypeGetResponse</a></code>
+- <code title="get /accounts/{account_id}/ai-gateway/evaluation-types">client.ai_gateway.evaluation_types.<a href="./src/cloudflare/resources/ai_gateway/evaluation_types.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/ai_gateway/evaluation_type_list_params.py">params</a>) -> <a href="./src/cloudflare/types/ai_gateway/evaluation_type_list_response.py">SyncV4PagePaginationArray[EvaluationTypeListResponse]</a></code>
 
 ## Logs
 
@@ -8732,13 +8732,13 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.security_center import InsightDismissResponse, InsightGetResponse
+from cloudflare.types.security_center import InsightListResponse, InsightDismissResponse
 ```
 
 Methods:
 
+- <code title="get /{account_or_zone}/{account_or_zone_id}/security-center/insights">client.security_center.insights.<a href="./src/cloudflare/resources/security_center/insights/insights.py">list</a>(\*, account_id, zone_id, \*\*<a href="src/cloudflare/types/security_center/insight_list_params.py">params</a>) -> <a href="./src/cloudflare/types/security_center/insight_list_response.py">SyncV4PagePagination[Optional[InsightListResponse]]</a></code>
 - <code title="put /{account_or_zone}/{account_or_zone_id}/security-center/insights/{issue_id}/dismiss">client.security_center.insights.<a href="./src/cloudflare/resources/security_center/insights/insights.py">dismiss</a>(issue_id, \*, account_id, zone_id, \*\*<a href="src/cloudflare/types/security_center/insight_dismiss_params.py">params</a>) -> <a href="./src/cloudflare/types/security_center/insight_dismiss_response.py">InsightDismissResponse</a></code>
-- <code title="get /{account_or_zone}/{account_or_zone_id}/security-center/insights">client.security_center.insights.<a href="./src/cloudflare/resources/security_center/insights/insights.py">get</a>(\*, account_id, zone_id, \*\*<a href="src/cloudflare/types/security_center/insight_get_params.py">params</a>) -> <a href="./src/cloudflare/types/security_center/insight_get_response.py">Optional[InsightGetResponse]</a></code>
 
 ### Class
 

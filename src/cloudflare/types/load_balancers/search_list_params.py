@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["SearchGetParams", "SearchParams"]
+__all__ = ["SearchListParams", "SearchParams"]
 
 
-class SearchGetParams(TypedDict, total=False):
+class SearchListParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
