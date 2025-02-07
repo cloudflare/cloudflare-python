@@ -49,7 +49,7 @@ class TestDNSFirewall:
             negative_cache_ttl=900,
             ratelimit=600,
             retries=2,
-            upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
+            upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
         )
         assert_matches_type(Optional[DNSFirewallCreateResponse], dns_firewall, path=["response"])
 
@@ -209,7 +209,7 @@ class TestDNSFirewall:
             negative_cache_ttl=900,
             ratelimit=600,
             retries=2,
-            upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
+            upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
         )
         assert_matches_type(Optional[DNSFirewallEditResponse], dns_firewall, path=["response"])
 
@@ -333,7 +333,7 @@ class TestAsyncDNSFirewall:
             negative_cache_ttl=900,
             ratelimit=600,
             retries=2,
-            upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
+            upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
         )
         assert_matches_type(Optional[DNSFirewallCreateResponse], dns_firewall, path=["response"])
 
@@ -493,7 +493,7 @@ class TestAsyncDNSFirewall:
             negative_cache_ttl=900,
             ratelimit=600,
             retries=2,
-            upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
+            upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
         )
         assert_matches_type(Optional[DNSFirewallEditResponse], dns_firewall, path=["response"])
 
