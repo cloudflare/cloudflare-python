@@ -66,6 +66,7 @@ class StatusesResource(SyncAPIResource):
              held in the waiting room.
            - **event_prequeueing** indicates that an event is active and is currently
              prequeueing users before it starts.
+           - **suspended** indicates that the room is suspended.
         2. `event_id`: String of the current event's `id` if an event is active,
            otherwise an empty string.
         3. `estimated_queued_users`: Integer of the estimated number of users currently
@@ -147,6 +148,7 @@ class AsyncStatusesResource(AsyncAPIResource):
              held in the waiting room.
            - **event_prequeueing** indicates that an event is active and is currently
              prequeueing users before it starts.
+           - **suspended** indicates that the room is suspended.
         2. `event_id`: String of the current event's `id` if an event is active,
            otherwise an empty string.
         3. `estimated_queued_users`: Integer of the estimated number of users currently
