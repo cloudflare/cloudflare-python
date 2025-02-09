@@ -5520,7 +5520,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.access.logs import AccessRequests
+from cloudflare.types.zero_trust.access.logs import AccessRequest
 ```
 
 ##### Updates
