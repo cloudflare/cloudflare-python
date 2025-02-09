@@ -7,10 +7,10 @@ from pydantic import Field as FieldInfo
 
 from ....._models import BaseModel
 
-__all__ = ["AccessRequests"]
+__all__ = ["AccessRequest"]
 
 
-class AccessRequests(BaseModel):
+class AccessRequest(BaseModel):
     action: Optional[str] = None
     """The event that occurred, such as a login attempt."""
 
