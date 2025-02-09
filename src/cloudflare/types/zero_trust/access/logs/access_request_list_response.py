@@ -3,8 +3,8 @@
 from typing import List
 from typing_extensions import TypeAlias
 
-from .access_requests import AccessRequests
+from .access_request import AccessRequest
 
 __all__ = ["AccessRequestListResponse"]
 
-AccessRequestListResponse: TypeAlias = List[AccessRequests]
+AccessRequestListResponse: TypeAlias = List[AccessRequest]
