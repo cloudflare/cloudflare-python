@@ -13,3 +13,5 @@ from .metric_list_response import MetricListResponse as MetricListResponse
 from .sippy_delete_response import SippyDeleteResponse as SippyDeleteResponse
 from .lifecycle_get_response import LifecycleGetResponse as LifecycleGetResponse
 from .lifecycle_update_params import LifecycleUpdateParams as LifecycleUpdateParams
+from .event_notification_get_response import EventNotificationGetResponse as EventNotificationGetResponse
+from .event_notification_update_params import EventNotificationUpdateParams as EventNotificationUpdateParams

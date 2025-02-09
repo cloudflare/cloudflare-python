@@ -5,12 +5,12 @@ from __future__ import annotations
 from typing import List, Iterable
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
-from ......_utils import PropertyInfo
+from ...._utils import PropertyInfo
 
-__all__ = ["QueueUpdateParams", "Rule"]
+__all__ = ["EventNotificationUpdateParams", "Rule"]
 
 
-class QueueUpdateParams(TypedDict, total=False):
+class EventNotificationUpdateParams(TypedDict, total=False):
     account_id: Required[str]
     """Account ID"""
 

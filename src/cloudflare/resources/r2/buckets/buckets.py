@@ -74,8 +74,7 @@ from .domains.domains import (
     AsyncDomainsResourceWithStreamingResponse,
 )
 from ....types.r2.bucket import Bucket
-from ....types.r2.bucket_list_response import BucketListResponse
-from .event_notifications.event_notifications import (
+from .event_notifications import (
     EventNotificationsResource,
     AsyncEventNotificationsResource,
     EventNotificationsResourceWithRawResponse,
@@ -83,6 +82,7 @@ from .event_notifications.event_notifications import (
     EventNotificationsResourceWithStreamingResponse,
     AsyncEventNotificationsResourceWithStreamingResponse,
 )
+from ....types.r2.bucket_list_response import BucketListResponse
 
 __all__ = ["BucketsResource", "AsyncBucketsResource"]
 

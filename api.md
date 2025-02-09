@@ -4673,33 +4673,21 @@ Methods:
 
 ### EventNotifications
 
-#### Configuration
-
 Types:
 
 ```python
-from cloudflare.types.r2.buckets.event_notifications import ConfigurationGetResponse
-```
-
-Methods:
-
-- <code title="get /accounts/{account_id}/event_notifications/r2/{bucket_name}/configuration">client.r2.buckets.event_notifications.configuration.<a href="./src/cloudflare/resources/r2/buckets/event_notifications/configuration/configuration.py">get</a>(bucket_name, \*, account_id) -> <a href="./src/cloudflare/types/r2/buckets/event_notifications/configuration_get_response.py">ConfigurationGetResponse</a></code>
-
-##### Queues
-
-Types:
-
-```python
-from cloudflare.types.r2.buckets.event_notifications.configuration import (
-    QueueUpdateResponse,
-    QueueDeleteResponse,
+from cloudflare.types.r2.buckets import (
+    EventNotificationUpdateResponse,
+    EventNotificationDeleteResponse,
+    EventNotificationGetResponse,
 )
 ```
 
 Methods:
 
-- <code title="put /accounts/{account_id}/event_notifications/r2/{bucket_name}/configuration/queues/{queue_id}">client.r2.buckets.event_notifications.configuration.queues.<a href="./src/cloudflare/resources/r2/buckets/event_notifications/configuration/queues.py">update</a>(queue_id, \*, account_id, bucket_name, \*\*<a href="src/cloudflare/types/r2/buckets/event_notifications/configuration/queue_update_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/buckets/event_notifications/configuration/queue_update_response.py">object</a></code>
-- <code title="delete /accounts/{account_id}/event_notifications/r2/{bucket_name}/configuration/queues/{queue_id}">client.r2.buckets.event_notifications.configuration.queues.<a href="./src/cloudflare/resources/r2/buckets/event_notifications/configuration/queues.py">delete</a>(queue_id, \*, account_id, bucket_name) -> <a href="./src/cloudflare/types/r2/buckets/event_notifications/configuration/queue_delete_response.py">object</a></code>
+- <code title="put /accounts/{account_id}/event_notifications/r2/{bucket_name}/configuration/queues/{queue_id}">client.r2.buckets.event_notifications.<a href="./src/cloudflare/resources/r2/buckets/event_notifications.py">update</a>(queue_id, \*, account_id, bucket_name, \*\*<a href="src/cloudflare/types/r2/buckets/event_notification_update_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/buckets/event_notification_update_response.py">object</a></code>
+- <code title="delete /accounts/{account_id}/event_notifications/r2/{bucket_name}/configuration/queues/{queue_id}">client.r2.buckets.event_notifications.<a href="./src/cloudflare/resources/r2/buckets/event_notifications.py">delete</a>(queue_id, \*, account_id, bucket_name) -> <a href="./src/cloudflare/types/r2/buckets/event_notification_delete_response.py">object</a></code>
+- <code title="get /accounts/{account_id}/event_notifications/r2/{bucket_name}/configuration">client.r2.buckets.event_notifications.<a href="./src/cloudflare/resources/r2/buckets/event_notifications.py">get</a>(bucket_name, \*, account_id) -> <a href="./src/cloudflare/types/r2/buckets/event_notification_get_response.py">EventNotificationGetResponse</a></code>
 
 ### Locks
 
