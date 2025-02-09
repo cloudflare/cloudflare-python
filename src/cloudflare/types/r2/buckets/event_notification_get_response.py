@@ -5,9 +5,9 @@ from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
-from ....._models import BaseModel
+from ...._models import BaseModel
 
-__all__ = ["ConfigurationGetResponse", "Queue", "QueueRule"]
+__all__ = ["EventNotificationGetResponse", "Queue", "QueueRule"]
 
 
 class QueueRule(BaseModel):
@@ -43,7 +43,7 @@ class Queue(BaseModel):
     rules: Optional[List[QueueRule]] = None
 
 
-class ConfigurationGetResponse(BaseModel):
+class EventNotificationGetResponse(BaseModel):
     bucket_name: Optional[str] = FieldInfo(alias="bucketName", default=None)
     """Name of the bucket."""
 
