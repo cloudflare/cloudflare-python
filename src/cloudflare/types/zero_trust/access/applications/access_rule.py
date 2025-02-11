@@ -30,6 +30,8 @@ __all__ = [
     "AccessAuthContextRuleAuthContext",
     "AccessCommonNameRule",
     "AccessCommonNameRuleCommonName",
+    "AccessLoginMethodRule",
+    "AccessLoginMethodRuleLoginMethod",
 ]
 
 
@@ -57,6 +59,15 @@ class AccessCommonNameRule(BaseModel):
     common_name: AccessCommonNameRuleCommonName
 
 
+class AccessLoginMethodRuleLoginMethod(BaseModel):
+    id: str
+    """The ID of an identity provider."""
+
+
+class AccessLoginMethodRule(BaseModel):
+    login_method: AccessLoginMethodRuleLoginMethod
+
+
 AccessRule: TypeAlias = Union[
     GroupRule,
     AnyValidServiceTokenRule,
@@ -74,6 +85,7 @@ AccessRule: TypeAlias = Union[
     ExternalEvaluationRule,
     GitHubOrganizationRule,
     GSuiteGroupRule,
+    AccessLoginMethodRule,
     IPListRule,
     IPRule,
     OktaGroupRule,
