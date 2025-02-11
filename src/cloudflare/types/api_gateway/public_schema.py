@@ -1,7 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Optional
-from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
@@ -10,7 +9,7 @@ __all__ = ["PublicSchema"]
 
 
 class PublicSchema(BaseModel):
-    created_at: datetime
+    created_at: str
 
     kind: Literal["openapi_v3"]
     """Kind of schema"""
@@ -19,7 +18,6 @@ class PublicSchema(BaseModel):
     """Name of the schema"""
 
     schema_id: str
-    """UUID"""
 
     source: Optional[str] = None
     """Source of the schema"""

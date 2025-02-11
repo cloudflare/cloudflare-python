@@ -21,7 +21,6 @@ from .ua_rule_get_response import UARuleGetResponse as UARuleGetResponse
 from .country_configuration import CountryConfiguration as CountryConfiguration
 from .rule_bulk_edit_params import RuleBulkEditParams as RuleBulkEditParams
 from .ua_rule_create_params import UARuleCreateParams as UARuleCreateParams
-from .ua_rule_list_response import UARuleListResponse as UARuleListResponse
 from .ua_rule_update_params import UARuleUpdateParams as UARuleUpdateParams
 from .lockdown_create_params import LockdownCreateParams as LockdownCreateParams
 from .lockdown_update_params import LockdownUpdateParams as LockdownUpdateParams

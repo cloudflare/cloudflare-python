@@ -14,10 +14,10 @@ __all__ = ["AppUpdateResponse", "SpectrumConfigAppConfig", "SpectrumConfigPaygoA
 
 
 class SpectrumConfigAppConfig(BaseModel):
-    id: str
+    id: object
     """App identifier."""
 
-    created_on: datetime
+    created_on: object
     """When the Application was created."""
 
     dns: DNS
@@ -29,7 +29,7 @@ class SpectrumConfigAppConfig(BaseModel):
     applications.
     """
 
-    modified_on: datetime
+    modified_on: object
     """When the Application was last modified."""
 
     protocol: str

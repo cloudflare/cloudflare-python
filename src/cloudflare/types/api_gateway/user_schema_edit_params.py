@@ -9,7 +9,6 @@ __all__ = ["UserSchemaEditParams"]
 
 class UserSchemaEditParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
 
     validation_enabled: Literal[True]
     """Flag whether schema is enabled for validation."""

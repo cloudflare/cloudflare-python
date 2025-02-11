@@ -21,14 +21,14 @@ class TestHosts:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         host = client.api_gateway.user_schemas.hosts.list(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="zone_id",
         )
         assert_matches_type(SyncV4PagePaginationArray[HostListResponse], host, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         host = client.api_gateway.user_schemas.hosts.list(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="zone_id",
             page=1,
             per_page=5,
         )
@@ -37,7 +37,7 @@ class TestHosts:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.api_gateway.user_schemas.hosts.with_raw_response.list(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="zone_id",
         )
 
         assert response.is_closed is True
@@ -48,7 +48,7 @@ class TestHosts:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.api_gateway.user_schemas.hosts.with_streaming_response.list(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="zone_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -72,14 +72,14 @@ class TestAsyncHosts:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         host = await async_client.api_gateway.user_schemas.hosts.list(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="zone_id",
         )
         assert_matches_type(AsyncV4PagePaginationArray[HostListResponse], host, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         host = await async_client.api_gateway.user_schemas.hosts.list(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="zone_id",
             page=1,
             per_page=5,
         )
@@ -88,7 +88,7 @@ class TestAsyncHosts:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.api_gateway.user_schemas.hosts.with_raw_response.list(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="zone_id",
         )
 
         assert response.is_closed is True
@@ -99,7 +99,7 @@ class TestAsyncHosts:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.api_gateway.user_schemas.hosts.with_streaming_response.list(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="zone_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

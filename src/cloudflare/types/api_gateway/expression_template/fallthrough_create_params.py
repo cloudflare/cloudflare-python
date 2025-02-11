@@ -10,7 +10,6 @@ __all__ = ["FallthroughCreateParams"]
 
 class FallthroughCreateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
 
     hosts: Required[List[str]]
     """List of hosts to be targeted in the expression"""

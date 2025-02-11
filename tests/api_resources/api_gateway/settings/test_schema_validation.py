@@ -22,7 +22,7 @@ class TestSchemaValidation:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         schema_validation = client.api_gateway.settings.schema_validation.update(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="zone_id",
             validation_default_mitigation_action="none",
         )
         assert_matches_type(Settings, schema_validation, path=["response"])
@@ -30,7 +30,7 @@ class TestSchemaValidation:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         schema_validation = client.api_gateway.settings.schema_validation.update(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="zone_id",
             validation_default_mitigation_action="none",
             validation_override_mitigation_action="none",
         )
@@ -39,7 +39,7 @@ class TestSchemaValidation:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.api_gateway.settings.schema_validation.with_raw_response.update(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="zone_id",
             validation_default_mitigation_action="none",
         )
 
@@ -51,7 +51,7 @@ class TestSchemaValidation:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.api_gateway.settings.schema_validation.with_streaming_response.update(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="zone_id",
             validation_default_mitigation_action="none",
         ) as response:
             assert not response.is_closed
@@ -73,14 +73,14 @@ class TestSchemaValidation:
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         schema_validation = client.api_gateway.settings.schema_validation.edit(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="zone_id",
         )
         assert_matches_type(Settings, schema_validation, path=["response"])
 
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         schema_validation = client.api_gateway.settings.schema_validation.edit(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="zone_id",
             validation_default_mitigation_action="none",
             validation_override_mitigation_action="none",
         )
@@ -89,7 +89,7 @@ class TestSchemaValidation:
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.api_gateway.settings.schema_validation.with_raw_response.edit(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="zone_id",
         )
 
         assert response.is_closed is True
@@ -100,7 +100,7 @@ class TestSchemaValidation:
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.api_gateway.settings.schema_validation.with_streaming_response.edit(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="zone_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -120,14 +120,14 @@ class TestSchemaValidation:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         schema_validation = client.api_gateway.settings.schema_validation.get(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="zone_id",
         )
         assert_matches_type(Settings, schema_validation, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.api_gateway.settings.schema_validation.with_raw_response.get(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="zone_id",
         )
 
         assert response.is_closed is True
@@ -138,7 +138,7 @@ class TestSchemaValidation:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.api_gateway.settings.schema_validation.with_streaming_response.get(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="zone_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -162,7 +162,7 @@ class TestAsyncSchemaValidation:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         schema_validation = await async_client.api_gateway.settings.schema_validation.update(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="zone_id",
             validation_default_mitigation_action="none",
         )
         assert_matches_type(Settings, schema_validation, path=["response"])
@@ -170,7 +170,7 @@ class TestAsyncSchemaValidation:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         schema_validation = await async_client.api_gateway.settings.schema_validation.update(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="zone_id",
             validation_default_mitigation_action="none",
             validation_override_mitigation_action="none",
         )
@@ -179,7 +179,7 @@ class TestAsyncSchemaValidation:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.api_gateway.settings.schema_validation.with_raw_response.update(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="zone_id",
             validation_default_mitigation_action="none",
         )
 
@@ -191,7 +191,7 @@ class TestAsyncSchemaValidation:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.api_gateway.settings.schema_validation.with_streaming_response.update(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="zone_id",
             validation_default_mitigation_action="none",
         ) as response:
             assert not response.is_closed
@@ -213,14 +213,14 @@ class TestAsyncSchemaValidation:
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         schema_validation = await async_client.api_gateway.settings.schema_validation.edit(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="zone_id",
         )
         assert_matches_type(Settings, schema_validation, path=["response"])
 
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         schema_validation = await async_client.api_gateway.settings.schema_validation.edit(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="zone_id",
             validation_default_mitigation_action="none",
             validation_override_mitigation_action="none",
         )
@@ -229,7 +229,7 @@ class TestAsyncSchemaValidation:
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.api_gateway.settings.schema_validation.with_raw_response.edit(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="zone_id",
         )
 
         assert response.is_closed is True
@@ -240,7 +240,7 @@ class TestAsyncSchemaValidation:
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.api_gateway.settings.schema_validation.with_streaming_response.edit(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="zone_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -260,14 +260,14 @@ class TestAsyncSchemaValidation:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         schema_validation = await async_client.api_gateway.settings.schema_validation.get(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="zone_id",
         )
         assert_matches_type(Settings, schema_validation, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.api_gateway.settings.schema_validation.with_raw_response.get(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="zone_id",
         )
 
         assert response.is_closed is True
@@ -278,7 +278,7 @@ class TestAsyncSchemaValidation:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.api_gateway.settings.schema_validation.with_streaming_response.get(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="zone_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
