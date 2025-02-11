@@ -55,7 +55,11 @@ class TestConfigs:
                 "scheme": "postgres",
                 "user": "postgres",
             },
-            caching={"disabled": True},
+            caching={
+                "disabled": True,
+                "max_age": 60,
+                "stale_while_revalidate": 15,
+            },
         )
         assert_matches_type(ConfigCreateResponse, config, path=["response"])
 
@@ -153,7 +157,11 @@ class TestConfigs:
                 "scheme": "postgres",
                 "user": "postgres",
             },
-            caching={"disabled": True},
+            caching={
+                "disabled": True,
+                "max_age": 60,
+                "stale_while_revalidate": 15,
+            },
         )
         assert_matches_type(ConfigUpdateResponse, config, path=["response"])
 
@@ -337,7 +345,11 @@ class TestConfigs:
         config = client.hyperdrive.configs.edit(
             hyperdrive_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            caching={"disabled": True},
+            caching={
+                "disabled": True,
+                "max_age": 60,
+                "stale_while_revalidate": 15,
+            },
             name="example-hyperdrive",
             origin={
                 "database": "postgres",
@@ -473,7 +485,11 @@ class TestAsyncConfigs:
                 "scheme": "postgres",
                 "user": "postgres",
             },
-            caching={"disabled": True},
+            caching={
+                "disabled": True,
+                "max_age": 60,
+                "stale_while_revalidate": 15,
+            },
         )
         assert_matches_type(ConfigCreateResponse, config, path=["response"])
 
@@ -571,7 +587,11 @@ class TestAsyncConfigs:
                 "scheme": "postgres",
                 "user": "postgres",
             },
-            caching={"disabled": True},
+            caching={
+                "disabled": True,
+                "max_age": 60,
+                "stale_while_revalidate": 15,
+            },
         )
         assert_matches_type(ConfigUpdateResponse, config, path=["response"])
 
@@ -755,7 +775,11 @@ class TestAsyncConfigs:
         config = await async_client.hyperdrive.configs.edit(
             hyperdrive_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            caching={"disabled": True},
+            caching={
+                "disabled": True,
+                "max_age": 60,
+                "stale_while_revalidate": 15,
+            },
             name="example-hyperdrive",
             origin={
                 "database": "postgres",

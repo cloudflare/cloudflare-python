@@ -10,7 +10,6 @@ __all__ = ["OperationListParams"]
 
 class OperationListParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
 
     endpoint: str
     """Filter results to only include endpoints containing this pattern."""

@@ -5,7 +5,6 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Required, TypedDict
 
-from .record_param import RecordParam
 from .batch_put_param import BatchPutParam
 from .batch_patch_param import BatchPatchParam
 
@@ -20,7 +19,7 @@ class RecordBatchParams(TypedDict, total=False):
 
     patches: Iterable[BatchPatchParam]
 
-    posts: Iterable[RecordParam]
+    posts: Iterable[object]
 
     puts: Iterable[BatchPutParam]
 

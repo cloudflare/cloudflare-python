@@ -4,7 +4,6 @@ from typing import List, Optional
 from typing_extensions import Literal
 
 from ..._models import BaseModel
-from ..accounts.account import Account
 from ..shared.permission_grant import PermissionGrant
 
 __all__ = ["Membership", "Permissions"]
@@ -40,7 +39,7 @@ class Membership(BaseModel):
     id: Optional[str] = None
     """Membership identifier tag."""
 
-    account: Optional[Account] = None
+    account: Optional[object] = None
 
     api_access_enabled: Optional[bool] = None
     """Enterprise only.

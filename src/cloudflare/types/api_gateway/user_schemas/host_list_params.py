@@ -9,7 +9,6 @@ __all__ = ["HostListParams"]
 
 class HostListParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
 
     page: int
     """Page number of paginated results."""

@@ -8,7 +8,7 @@ __all__ = ["DetectionListResponse"]
 
 
 class DetectionListResponse(BaseModel):
-    id: Optional[str] = None
+    id: Optional[object] = None
     """The unique ID for this custom detection"""
 
     password: Optional[str] = None

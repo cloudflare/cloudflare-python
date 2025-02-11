@@ -15,7 +15,6 @@ from ..._response import (
 )
 from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.zones.rate_plan_get_response import RatePlanGetResponse
 
 __all__ = ["RatePlansResource", "AsyncRatePlansResource"]
 
@@ -50,7 +49,7 @@ class RatePlansResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[RatePlanGetResponse]:
+    ) -> SyncSinglePage[object]:
         """
         Lists all rate plans the zone can subscribe to.
 
@@ -69,11 +68,11 @@ class RatePlansResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/available_rate_plans",
-            page=SyncSinglePage[RatePlanGetResponse],
+            page=SyncSinglePage[object],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=RatePlanGetResponse,
+            model=object,
         )
 
 
@@ -107,7 +106,7 @@ class AsyncRatePlansResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[RatePlanGetResponse, AsyncSinglePage[RatePlanGetResponse]]:
+    ) -> AsyncPaginator[object, AsyncSinglePage[object]]:
         """
         Lists all rate plans the zone can subscribe to.
 
@@ -126,11 +125,11 @@ class AsyncRatePlansResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/available_rate_plans",
-            page=AsyncSinglePage[RatePlanGetResponse],
+            page=AsyncSinglePage[object],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=RatePlanGetResponse,
+            model=object,
         )
 
 

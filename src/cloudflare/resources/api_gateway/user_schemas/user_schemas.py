@@ -101,8 +101,6 @@ class UserSchemasResource(SyncAPIResource):
         Upload a schema to a zone
 
         Args:
-          zone_id: Identifier
-
           file: Schema file bytes
 
           kind: Kind of schema
@@ -167,8 +165,6 @@ class UserSchemasResource(SyncAPIResource):
         Retrieve information about all schemas on a zone
 
         Args:
-          zone_id: Identifier
-
           omit_source: Omit the source-files of schemas and only retrieve their meta-data.
 
           page: Page number of paginated results.
@@ -224,8 +220,6 @@ class UserSchemasResource(SyncAPIResource):
         Delete a schema
 
         Args:
-          zone_id: Identifier
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -263,8 +257,6 @@ class UserSchemasResource(SyncAPIResource):
         Enable validation for a schema
 
         Args:
-          zone_id: Identifier
-
           validation_enabled: Flag whether schema is enabled for validation.
 
           extra_headers: Send extra headers
@@ -311,8 +303,6 @@ class UserSchemasResource(SyncAPIResource):
         Retrieve information about a specific schema on a zone
 
         Args:
-          zone_id: Identifier
-
           omit_source: Omit the source-files of schemas and only retrieve their meta-data.
 
           extra_headers: Send extra headers
@@ -388,8 +378,6 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         Upload a schema to a zone
 
         Args:
-          zone_id: Identifier
-
           file: Schema file bytes
 
           kind: Kind of schema
@@ -454,8 +442,6 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         Retrieve information about all schemas on a zone
 
         Args:
-          zone_id: Identifier
-
           omit_source: Omit the source-files of schemas and only retrieve their meta-data.
 
           page: Page number of paginated results.
@@ -511,8 +497,6 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         Delete a schema
 
         Args:
-          zone_id: Identifier
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -550,8 +534,6 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         Enable validation for a schema
 
         Args:
-          zone_id: Identifier
-
           validation_enabled: Flag whether schema is enabled for validation.
 
           extra_headers: Send extra headers
@@ -598,8 +580,6 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         Retrieve information about a specific schema on a zone
 
         Args:
-          zone_id: Identifier
-
           omit_source: Omit the source-files of schemas and only retrieve their meta-data.
 
           extra_headers: Send extra headers

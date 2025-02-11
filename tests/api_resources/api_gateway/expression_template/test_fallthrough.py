@@ -20,7 +20,7 @@ class TestFallthrough:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         fallthrough = client.api_gateway.expression_template.fallthrough.create(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="zone_id",
             hosts=["{zone}.domain1.tld", "domain2.tld"],
         )
         assert_matches_type(FallthroughCreateResponse, fallthrough, path=["response"])
@@ -28,7 +28,7 @@ class TestFallthrough:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.api_gateway.expression_template.fallthrough.with_raw_response.create(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="zone_id",
             hosts=["{zone}.domain1.tld", "domain2.tld"],
         )
 
@@ -40,7 +40,7 @@ class TestFallthrough:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.api_gateway.expression_template.fallthrough.with_streaming_response.create(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="zone_id",
             hosts=["{zone}.domain1.tld", "domain2.tld"],
         ) as response:
             assert not response.is_closed
@@ -66,7 +66,7 @@ class TestAsyncFallthrough:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         fallthrough = await async_client.api_gateway.expression_template.fallthrough.create(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="zone_id",
             hosts=["{zone}.domain1.tld", "domain2.tld"],
         )
         assert_matches_type(FallthroughCreateResponse, fallthrough, path=["response"])
@@ -74,7 +74,7 @@ class TestAsyncFallthrough:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.api_gateway.expression_template.fallthrough.with_raw_response.create(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="zone_id",
             hosts=["{zone}.domain1.tld", "domain2.tld"],
         )
 
@@ -86,7 +86,7 @@ class TestAsyncFallthrough:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.api_gateway.expression_template.fallthrough.with_streaming_response.create(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="zone_id",
             hosts=["{zone}.domain1.tld", "domain2.tld"],
         ) as response:
             assert not response.is_closed

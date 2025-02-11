@@ -20,14 +20,14 @@ class TestDiscovery:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         discovery = client.api_gateway.discovery.get(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="zone_id",
         )
         assert_matches_type(DiscoveryGetResponse, discovery, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.api_gateway.discovery.with_raw_response.get(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="zone_id",
         )
 
         assert response.is_closed is True
@@ -38,7 +38,7 @@ class TestDiscovery:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.api_gateway.discovery.with_streaming_response.get(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="zone_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -62,14 +62,14 @@ class TestAsyncDiscovery:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         discovery = await async_client.api_gateway.discovery.get(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="zone_id",
         )
         assert_matches_type(DiscoveryGetResponse, discovery, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.api_gateway.discovery.with_raw_response.get(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="zone_id",
         )
 
         assert response.is_closed is True
@@ -80,7 +80,7 @@ class TestAsyncDiscovery:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.api_gateway.discovery.with_streaming_response.get(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="zone_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

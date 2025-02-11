@@ -9,7 +9,6 @@ __all__ = ["OperationCreateParams"]
 
 class OperationCreateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
 
     endpoint: Required[str]
     """
