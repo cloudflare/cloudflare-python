@@ -25,6 +25,8 @@ class CustomUpdateParams(TypedDict, total=False):
 
     name: Required[str]
 
+    ai_context_enabled: bool
+
     allowed_match_count: Optional[int]
 
     confidence_threshold: Optional[str]

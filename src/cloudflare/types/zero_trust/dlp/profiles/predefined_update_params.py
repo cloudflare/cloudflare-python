@@ -15,6 +15,8 @@ class PredefinedUpdateParams(TypedDict, total=False):
 
     entries: Required[Iterable[Entry]]
 
+    ai_context_enabled: bool
+
     allowed_match_count: Optional[int]
 
     confidence_threshold: Optional[str]

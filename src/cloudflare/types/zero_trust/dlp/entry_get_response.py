@@ -37,6 +37,8 @@ class CustomEntry(BaseModel):
 
 
 class PredefinedEntryConfidence(BaseModel):
+    ai_context_available: bool
+
     available: bool
     """
     Indicates whether this entry can be made more or less sensitive by setting a
