@@ -70,8 +70,6 @@ class OperationsResource(SyncAPIResource):
         Shield Endpoint Management will be returned as full operations.
 
         Args:
-          zone_id: Identifier
-
           endpoint: Filter results to only include endpoints containing this pattern.
 
           feature: Add feature(s) to the results. The feature name that is given here corresponds
@@ -173,8 +171,6 @@ class AsyncOperationsResource(AsyncAPIResource):
         Shield Endpoint Management will be returned as full operations.
 
         Args:
-          zone_id: Identifier
-
           endpoint: Filter results to only include endpoints containing this pattern.
 
           feature: Add feature(s) to the results. The feature name that is given here corresponds

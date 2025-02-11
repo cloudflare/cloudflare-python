@@ -14,10 +14,10 @@ __all__ = ["AppListResponse", "UnionMember0", "UnionMember1"]
 
 
 class UnionMember0(BaseModel):
-    id: str
+    id: object
     """App identifier."""
 
-    created_on: datetime
+    created_on: object
     """When the Application was created."""
 
     dns: DNS
@@ -29,7 +29,7 @@ class UnionMember0(BaseModel):
     applications.
     """
 
-    modified_on: datetime
+    modified_on: object
     """When the Application was last modified."""
 
     protocol: str

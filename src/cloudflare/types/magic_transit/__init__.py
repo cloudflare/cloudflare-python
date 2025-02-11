@@ -7,7 +7,6 @@ from .site import Site as Site
 from .scope import Scope as Scope
 from .pcap_filter import PCAPFilter as PCAPFilter
 from .scope_param import ScopeParam as ScopeParam
-from .health_check import HealthCheck as HealthCheck
 from .psk_metadata import PSKMetadata as PSKMetadata
 from .site_location import SiteLocation as SiteLocation
 from .site_edit_params import SiteEditParams as SiteEditParams

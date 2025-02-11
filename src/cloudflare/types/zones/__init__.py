@@ -90,7 +90,6 @@ from .always_use_https_param import AlwaysUseHTTPSParam as AlwaysUseHTTPSParam
 from .development_mode_param import DevelopmentModeParam as DevelopmentModeParam
 from .orange_to_orange_param import OrangeToOrangeParam as OrangeToOrangeParam
 from .prefetch_preload_param import PrefetchPreloadParam as PrefetchPreloadParam
-from .rate_plan_get_response import RatePlanGetResponse as RatePlanGetResponse
 from .security_headers_param import SecurityHeadersParam as SecurityHeadersParam
 from .browser_cache_ttl_param import BrowserCacheTTLParam as BrowserCacheTTLParam
 from .email_obfuscation_param import EmailObfuscationParam as EmailObfuscationParam

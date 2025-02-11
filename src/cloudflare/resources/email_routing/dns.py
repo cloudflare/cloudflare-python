@@ -23,7 +23,6 @@ from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.email_routing import dns_get_params, dns_edit_params, dns_create_params
-from ...types.email_routing.settings import Settings
 from ...types.email_routing.dns_record import DNSRecord
 from ...types.email_routing.dns_get_response import DNSGetResponse
 
@@ -61,7 +60,7 @@ class DNSResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Settings]:
+    ) -> object:
         """Enable you Email Routing zone.
 
         Add and lock the necessary MX and SPF records.
@@ -89,9 +88,9 @@ class DNSResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Settings]]._unwrapper,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Settings]], ResultWrapper[Settings]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def delete(
@@ -144,7 +143,7 @@ class DNSResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Settings]:
+    ) -> object:
         """
         Unlock MX Records previously locked by Email Routing.
 
@@ -171,9 +170,9 @@ class DNSResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Settings]]._unwrapper,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Settings]], ResultWrapper[Settings]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def get(
@@ -253,7 +252,7 @@ class AsyncDNSResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Settings]:
+    ) -> object:
         """Enable you Email Routing zone.
 
         Add and lock the necessary MX and SPF records.
@@ -281,9 +280,9 @@ class AsyncDNSResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Settings]]._unwrapper,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Settings]], ResultWrapper[Settings]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def delete(
@@ -336,7 +335,7 @@ class AsyncDNSResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Settings]:
+    ) -> object:
         """
         Unlock MX Records previously locked by Email Routing.
 
@@ -363,9 +362,9 @@ class AsyncDNSResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Settings]]._unwrapper,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Settings]], ResultWrapper[Settings]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     async def get(

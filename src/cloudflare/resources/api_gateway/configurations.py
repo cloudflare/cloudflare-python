@@ -65,8 +65,6 @@ class ConfigurationsResource(SyncAPIResource):
         Set configuration properties
 
         Args:
-          zone_id: Identifier
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -105,8 +103,6 @@ class ConfigurationsResource(SyncAPIResource):
         Retrieve information about specific configuration properties
 
         Args:
-          zone_id: Identifier
-
           properties: Requests information about certain properties.
 
           extra_headers: Send extra headers
@@ -169,8 +165,6 @@ class AsyncConfigurationsResource(AsyncAPIResource):
         Set configuration properties
 
         Args:
-          zone_id: Identifier
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -209,8 +203,6 @@ class AsyncConfigurationsResource(AsyncAPIResource):
         Retrieve information about specific configuration properties
 
         Args:
-          zone_id: Identifier
-
           properties: Requests information about certain properties.
 
           extra_headers: Send extra headers

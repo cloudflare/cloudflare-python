@@ -10,7 +10,6 @@ __all__ = ["SchemaListParams"]
 
 class SchemaListParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
 
     feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]]
     """Add feature(s) to the results.

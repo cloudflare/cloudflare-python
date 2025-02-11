@@ -11,9 +11,6 @@ __all__ = [
     "BulkGetResponseItemAdditionalInformation",
     "BulkGetResponseItemApplication",
     "BulkGetResponseItemContentCategory",
-    "BulkGetResponseItemInheritedContentCategory",
-    "BulkGetResponseItemInheritedRiskType",
-    "BulkGetResponseItemRiskType",
 ]
 
 
@@ -36,30 +33,6 @@ class BulkGetResponseItemContentCategory(BaseModel):
     super_category_id: Optional[int] = None
 
 
-class BulkGetResponseItemInheritedContentCategory(BaseModel):
-    id: Optional[int] = None
-
-    name: Optional[str] = None
-
-    super_category_id: Optional[int] = None
-
-
-class BulkGetResponseItemInheritedRiskType(BaseModel):
-    id: Optional[int] = None
-
-    name: Optional[str] = None
-
-    super_category_id: Optional[int] = None
-
-
-class BulkGetResponseItemRiskType(BaseModel):
-    id: Optional[int] = None
-
-    name: Optional[str] = None
-
-    super_category_id: Optional[int] = None
-
-
 class BulkGetResponseItem(BaseModel):
     additional_information: Optional[BulkGetResponseItemAdditionalInformation] = None
     """Additional information related to the host name."""
@@ -71,7 +44,7 @@ class BulkGetResponseItem(BaseModel):
 
     domain: Optional[str] = None
 
-    inherited_content_categories: Optional[List[BulkGetResponseItemInheritedContentCategory]] = None
+    inherited_content_categories: Optional[object] = None
 
     inherited_from: Optional[str] = None
     """
@@ -79,7 +52,7 @@ class BulkGetResponseItem(BaseModel):
     inherited, if applicable.
     """
 
-    inherited_risk_types: Optional[List[BulkGetResponseItemInheritedRiskType]] = None
+    inherited_risk_types: Optional[object] = None
 
     popularity_rank: Optional[int] = None
     """
@@ -93,7 +66,7 @@ class BulkGetResponseItem(BaseModel):
     risk).
     """
 
-    risk_types: Optional[List[BulkGetResponseItemRiskType]] = None
+    risk_types: Optional[object] = None
 
 
 BulkGetResponse: TypeAlias = List[BulkGetResponseItem]

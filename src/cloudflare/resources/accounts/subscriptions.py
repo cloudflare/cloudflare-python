@@ -24,7 +24,6 @@ from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.accounts import subscription_create_params, subscription_update_params
-from ...types.shared.subscription import Subscription
 from ...types.shared_params.rate_plan import RatePlan
 from ...types.accounts.subscription_create_response import SubscriptionCreateResponse
 from ...types.accounts.subscription_delete_response import SubscriptionDeleteResponse
@@ -230,7 +229,7 @@ class SubscriptionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[Subscription]:
+    ) -> SyncSinglePage[object]:
         """
         Lists all of an account's subscriptions.
 
@@ -249,11 +248,11 @@ class SubscriptionsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/subscriptions",
-            page=SyncSinglePage[Subscription],
+            page=SyncSinglePage[object],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=Subscription,
+            model=object,
         )
 
 
@@ -454,7 +453,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Subscription, AsyncSinglePage[Subscription]]:
+    ) -> AsyncPaginator[object, AsyncSinglePage[object]]:
         """
         Lists all of an account's subscriptions.
 
@@ -473,11 +472,11 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/subscriptions",
-            page=AsyncSinglePage[Subscription],
+            page=AsyncSinglePage[object],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=Subscription,
+            model=object,
         )
 
 
