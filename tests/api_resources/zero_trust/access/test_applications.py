@@ -222,10 +222,12 @@ class TestApplications:
                         "required": True,
                         "source": {
                             "name": "last_name",
-                            "name_by_idp": {
-                                "exampleIdPID1": "AttributeName1",
-                                "exampleIdPID2": "AttributeName2",
-                            },
+                            "name_by_idp": [
+                                {
+                                    "idp_id": "exampleIdPID1",
+                                    "source_name": "AttributeName1",
+                                }
+                            ],
                         },
                     }
                 ],
@@ -1386,10 +1388,12 @@ class TestApplications:
                         "required": True,
                         "source": {
                             "name": "last_name",
-                            "name_by_idp": {
-                                "exampleIdPID1": "AttributeName1",
-                                "exampleIdPID2": "AttributeName2",
-                            },
+                            "name_by_idp": [
+                                {
+                                    "idp_id": "exampleIdPID1",
+                                    "source_name": "AttributeName1",
+                                }
+                            ],
                         },
                     }
                 ],
@@ -2907,10 +2911,12 @@ class TestAsyncApplications:
                         "required": True,
                         "source": {
                             "name": "last_name",
-                            "name_by_idp": {
-                                "exampleIdPID1": "AttributeName1",
-                                "exampleIdPID2": "AttributeName2",
-                            },
+                            "name_by_idp": [
+                                {
+                                    "idp_id": "exampleIdPID1",
+                                    "source_name": "AttributeName1",
+                                }
+                            ],
                         },
                     }
                 ],
@@ -4071,10 +4077,12 @@ class TestAsyncApplications:
                         "required": True,
                         "source": {
                             "name": "last_name",
-                            "name_by_idp": {
-                                "exampleIdPID1": "AttributeName1",
-                                "exampleIdPID2": "AttributeName2",
-                            },
+                            "name_by_idp": [
+                                {
+                                    "idp_id": "exampleIdPID1",
+                                    "source_name": "AttributeName1",
+                                }
+                            ],
                         },
                     }
                 ],

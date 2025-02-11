@@ -31,6 +31,8 @@ __all__ = [
     "AccessAuthContextRuleAuthContext",
     "AccessCommonNameRule",
     "AccessCommonNameRuleCommonName",
+    "AccessLoginMethodRule",
+    "AccessLoginMethodRuleLoginMethod",
 ]
 
 
@@ -58,6 +60,15 @@ class AccessCommonNameRule(TypedDict, total=False):
     common_name: Required[AccessCommonNameRuleCommonName]
 
 
+class AccessLoginMethodRuleLoginMethod(TypedDict, total=False):
+    id: Required[str]
+    """The ID of an identity provider."""
+
+
+class AccessLoginMethodRule(TypedDict, total=False):
+    login_method: Required[AccessLoginMethodRuleLoginMethod]
+
+
 AccessRuleParam: TypeAlias = Union[
     GroupRuleParam,
     AnyValidServiceTokenRuleParam,
@@ -75,6 +86,7 @@ AccessRuleParam: TypeAlias = Union[
     ExternalEvaluationRuleParam,
     GitHubOrganizationRuleParam,
     GSuiteGroupRuleParam,
+    AccessLoginMethodRule,
     IPListRuleParam,
     IPRuleParam,
     OktaGroupRuleParam,
