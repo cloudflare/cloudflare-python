@@ -11,6 +11,7 @@ __all__ = [
     "OriginPublicDatabase",
     "OriginAccessProtectedDatabaseBehindCloudflareTunnel",
     "Caching",
+    "CachingHyperdriveHyperdriveCachingCommon",
     "CachingHyperdriveHyperdriveCachingEnabled",
 ]
 
@@ -83,6 +84,11 @@ class OriginAccessProtectedDatabaseBehindCloudflareTunnel(TypedDict, total=False
 Origin: TypeAlias = Union[OriginPublicDatabase, OriginAccessProtectedDatabaseBehindCloudflareTunnel]
 
 
+class CachingHyperdriveHyperdriveCachingCommon(TypedDict, total=False):
+    disabled: bool
+    """When set to true, disables the caching of SQL responses. (Default: false)"""
+
+
 class CachingHyperdriveHyperdriveCachingEnabled(TypedDict, total=False):
     disabled: bool
     """When set to true, disables the caching of SQL responses. (Default: false)"""
@@ -101,4 +107,4 @@ class CachingHyperdriveHyperdriveCachingEnabled(TypedDict, total=False):
     """
 
 
-Caching: TypeAlias = Union[CachingHyperdriveHyperdriveCachingEnabled, object]
+Caching: TypeAlias = Union[CachingHyperdriveHyperdriveCachingCommon, CachingHyperdriveHyperdriveCachingEnabled]

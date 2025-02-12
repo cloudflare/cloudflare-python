@@ -7,6 +7,7 @@ from typing_extensions import Literal
 from ..._models import BaseModel
 from .geo_restrictions import GeoRestrictions
 from ..custom_hostnames.bundle_method import BundleMethod
+from ..keyless_certificates.keyless_certificate import KeylessCertificate
 
 __all__ = ["CustomCertificate"]
 
@@ -65,7 +66,7 @@ class CustomCertificate(BaseModel):
     for optimal performance.
     """
 
-    keyless_server: Optional[object] = None
+    keyless_server: Optional[KeylessCertificate] = None
 
     policy: Optional[str] = None
     """

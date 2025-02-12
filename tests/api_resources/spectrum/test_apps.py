@@ -124,7 +124,6 @@ class TestApps:
     def test_method_create_overload_2(self, client: Cloudflare) -> None:
         app = client.spectrum.apps.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            id="023e105f4ecef8ad9ca31a8372d0c353",
             dns={},
             protocol="tcp/22",
         )
@@ -135,7 +134,6 @@ class TestApps:
     def test_method_create_with_all_params_overload_2(self, client: Cloudflare) -> None:
         app = client.spectrum.apps.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            id="023e105f4ecef8ad9ca31a8372d0c353",
             dns={
                 "name": "ssh.example.com",
                 "type": "CNAME",
@@ -150,7 +148,6 @@ class TestApps:
     def test_raw_response_create_overload_2(self, client: Cloudflare) -> None:
         response = client.spectrum.apps.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            id="023e105f4ecef8ad9ca31a8372d0c353",
             dns={},
             protocol="tcp/22",
         )
@@ -165,7 +162,6 @@ class TestApps:
     def test_streaming_response_create_overload_2(self, client: Cloudflare) -> None:
         with client.spectrum.apps.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            id="023e105f4ecef8ad9ca31a8372d0c353",
             dns={},
             protocol="tcp/22",
         ) as response:
@@ -183,7 +179,6 @@ class TestApps:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.spectrum.apps.with_raw_response.create(
                 zone_id="",
-                id="023e105f4ecef8ad9ca31a8372d0c353",
                 dns={},
                 protocol="tcp/22",
             )
@@ -306,7 +301,6 @@ class TestApps:
         app = client.spectrum.apps.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            id="023e105f4ecef8ad9ca31a8372d0c353",
             dns={},
             protocol="tcp/22",
         )
@@ -318,7 +312,6 @@ class TestApps:
         app = client.spectrum.apps.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            id="023e105f4ecef8ad9ca31a8372d0c353",
             dns={
                 "name": "ssh.example.com",
                 "type": "CNAME",
@@ -334,7 +327,6 @@ class TestApps:
         response = client.spectrum.apps.with_raw_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            id="023e105f4ecef8ad9ca31a8372d0c353",
             dns={},
             protocol="tcp/22",
         )
@@ -350,7 +342,6 @@ class TestApps:
         with client.spectrum.apps.with_streaming_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            id="023e105f4ecef8ad9ca31a8372d0c353",
             dns={},
             protocol="tcp/22",
         ) as response:
@@ -369,7 +360,6 @@ class TestApps:
             client.spectrum.apps.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
-                id="023e105f4ecef8ad9ca31a8372d0c353",
                 dns={},
                 protocol="tcp/22",
             )
@@ -378,7 +368,6 @@ class TestApps:
             client.spectrum.apps.with_raw_response.update(
                 app_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="023e105f4ecef8ad9ca31a8372d0c353",
                 dns={},
                 protocol="tcp/22",
             )
@@ -637,7 +626,6 @@ class TestAsyncApps:
     async def test_method_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         app = await async_client.spectrum.apps.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            id="023e105f4ecef8ad9ca31a8372d0c353",
             dns={},
             protocol="tcp/22",
         )
@@ -648,7 +636,6 @@ class TestAsyncApps:
     async def test_method_create_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
         app = await async_client.spectrum.apps.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            id="023e105f4ecef8ad9ca31a8372d0c353",
             dns={
                 "name": "ssh.example.com",
                 "type": "CNAME",
@@ -663,7 +650,6 @@ class TestAsyncApps:
     async def test_raw_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.spectrum.apps.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            id="023e105f4ecef8ad9ca31a8372d0c353",
             dns={},
             protocol="tcp/22",
         )
@@ -678,7 +664,6 @@ class TestAsyncApps:
     async def test_streaming_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         async with async_client.spectrum.apps.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            id="023e105f4ecef8ad9ca31a8372d0c353",
             dns={},
             protocol="tcp/22",
         ) as response:
@@ -696,7 +681,6 @@ class TestAsyncApps:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.spectrum.apps.with_raw_response.create(
                 zone_id="",
-                id="023e105f4ecef8ad9ca31a8372d0c353",
                 dns={},
                 protocol="tcp/22",
             )
@@ -819,7 +803,6 @@ class TestAsyncApps:
         app = await async_client.spectrum.apps.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            id="023e105f4ecef8ad9ca31a8372d0c353",
             dns={},
             protocol="tcp/22",
         )
@@ -831,7 +814,6 @@ class TestAsyncApps:
         app = await async_client.spectrum.apps.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            id="023e105f4ecef8ad9ca31a8372d0c353",
             dns={
                 "name": "ssh.example.com",
                 "type": "CNAME",
@@ -847,7 +829,6 @@ class TestAsyncApps:
         response = await async_client.spectrum.apps.with_raw_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            id="023e105f4ecef8ad9ca31a8372d0c353",
             dns={},
             protocol="tcp/22",
         )
@@ -863,7 +844,6 @@ class TestAsyncApps:
         async with async_client.spectrum.apps.with_streaming_response.update(
             app_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            id="023e105f4ecef8ad9ca31a8372d0c353",
             dns={},
             protocol="tcp/22",
         ) as response:
@@ -882,7 +862,6 @@ class TestAsyncApps:
             await async_client.spectrum.apps.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
-                id="023e105f4ecef8ad9ca31a8372d0c353",
                 dns={},
                 protocol="tcp/22",
             )
@@ -891,7 +870,6 @@ class TestAsyncApps:
             await async_client.spectrum.apps.with_raw_response.update(
                 app_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="023e105f4ecef8ad9ca31a8372d0c353",
                 dns={},
                 protocol="tcp/22",
             )

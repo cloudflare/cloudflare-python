@@ -12,6 +12,7 @@ from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from cloudflare.types.firewall import (
     UARuleGetResponse,
+    UARuleListResponse,
     UARuleCreateResponse,
     UARuleDeleteResponse,
     UARuleUpdateResponse,
@@ -167,7 +168,7 @@ class TestUARules:
         ua_rule = client.firewall.ua_rules.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncV4PagePaginationArray[object], ua_rule, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[UARuleListResponse], ua_rule, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
@@ -179,7 +180,7 @@ class TestUARules:
             per_page=1,
             ua_search="Safari",
         )
-        assert_matches_type(SyncV4PagePaginationArray[object], ua_rule, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[UARuleListResponse], ua_rule, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -190,7 +191,7 @@ class TestUARules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ua_rule = response.parse()
-        assert_matches_type(SyncV4PagePaginationArray[object], ua_rule, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[UARuleListResponse], ua_rule, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -201,7 +202,7 @@ class TestUARules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ua_rule = response.parse()
-            assert_matches_type(SyncV4PagePaginationArray[object], ua_rule, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[UARuleListResponse], ua_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -456,7 +457,7 @@ class TestAsyncUARules:
         ua_rule = await async_client.firewall.ua_rules.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[object], ua_rule, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[UARuleListResponse], ua_rule, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -468,7 +469,7 @@ class TestAsyncUARules:
             per_page=1,
             ua_search="Safari",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[object], ua_rule, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[UARuleListResponse], ua_rule, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -479,7 +480,7 @@ class TestAsyncUARules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ua_rule = await response.parse()
-        assert_matches_type(AsyncV4PagePaginationArray[object], ua_rule, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[UARuleListResponse], ua_rule, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -490,7 +491,7 @@ class TestAsyncUARules:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ua_rule = await response.parse()
-            assert_matches_type(AsyncV4PagePaginationArray[object], ua_rule, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[UARuleListResponse], ua_rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

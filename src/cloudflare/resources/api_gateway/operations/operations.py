@@ -94,6 +94,8 @@ class OperationsResource(SyncAPIResource):
         last_updated date.
 
         Args:
+          zone_id: Identifier
+
           endpoint: The endpoint which can contain path parameter templates in curly braces, each
               will be replaced from left to right with {varN}, starting with {var1}, during
               insertion. This will further be Cloudflare-normalized upon insertion. See:
@@ -156,6 +158,8 @@ class OperationsResource(SyncAPIResource):
         Retrieve information about all operations on a zone
 
         Args:
+          zone_id: Identifier
+
           direction: Direction to order results.
 
           endpoint: Filter results to only include endpoints containing this pattern.
@@ -226,6 +230,8 @@ class OperationsResource(SyncAPIResource):
         Delete an operation
 
         Args:
+          zone_id: Identifier
+
           operation_id: UUID
 
           extra_headers: Send extra headers
@@ -269,6 +275,8 @@ class OperationsResource(SyncAPIResource):
         its last_updated date.
 
         Args:
+          zone_id: Identifier
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -305,6 +313,8 @@ class OperationsResource(SyncAPIResource):
         Delete multiple operations
 
         Args:
+          zone_id: Identifier
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -340,6 +350,8 @@ class OperationsResource(SyncAPIResource):
         Retrieve information about an operation
 
         Args:
+          zone_id: Identifier
+
           operation_id: UUID
 
           feature: Add feature(s) to the results. The feature name that is given here corresponds
@@ -419,6 +431,8 @@ class AsyncOperationsResource(AsyncAPIResource):
         last_updated date.
 
         Args:
+          zone_id: Identifier
+
           endpoint: The endpoint which can contain path parameter templates in curly braces, each
               will be replaced from left to right with {varN}, starting with {var1}, during
               insertion. This will further be Cloudflare-normalized upon insertion. See:
@@ -481,6 +495,8 @@ class AsyncOperationsResource(AsyncAPIResource):
         Retrieve information about all operations on a zone
 
         Args:
+          zone_id: Identifier
+
           direction: Direction to order results.
 
           endpoint: Filter results to only include endpoints containing this pattern.
@@ -551,6 +567,8 @@ class AsyncOperationsResource(AsyncAPIResource):
         Delete an operation
 
         Args:
+          zone_id: Identifier
+
           operation_id: UUID
 
           extra_headers: Send extra headers
@@ -594,6 +612,8 @@ class AsyncOperationsResource(AsyncAPIResource):
         its last_updated date.
 
         Args:
+          zone_id: Identifier
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -630,6 +650,8 @@ class AsyncOperationsResource(AsyncAPIResource):
         Delete multiple operations
 
         Args:
+          zone_id: Identifier
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -665,6 +687,8 @@ class AsyncOperationsResource(AsyncAPIResource):
         Retrieve information about an operation
 
         Args:
+          zone_id: Identifier
+
           operation_id: UUID
 
           feature: Add feature(s) to the results. The feature name that is given here corresponds

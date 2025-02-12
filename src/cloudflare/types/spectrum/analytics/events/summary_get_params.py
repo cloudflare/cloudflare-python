@@ -64,6 +64,10 @@ class SummaryGetParams(TypedDict, total=False):
     """
 
     since: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """Start of time interval to query, defaults to `until` - 6 hours.
+
+    Timestamp must be in RFC3339 format and uses UTC unless otherwise specified.
+    """
 
     sort: List[str]
     """
@@ -72,3 +76,7 @@ class SummaryGetParams(TypedDict, total=False):
     """
 
     until: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """End of time interval to query, defaults to current time.
+
+    Timestamp must be in RFC3339 format and uses UTC unless otherwise specified.
+    """

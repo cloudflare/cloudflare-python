@@ -28,13 +28,6 @@ class TestViews:
     def test_method_create(self, client: Cloudflare) -> None:
         view = client.dns.settings.views.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(Optional[ViewCreateResponse], view, path=["response"])
-
-    @parametrize
-    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
-        view = client.dns.settings.views.create(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="my view",
             zones=["372e67954025e0ba6aaa6d586b9e0b59"],
         )
@@ -44,6 +37,8 @@ class TestViews:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.dns.settings.views.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="my view",
+            zones=["372e67954025e0ba6aaa6d586b9e0b59"],
         )
 
         assert response.is_closed is True
@@ -55,6 +50,8 @@ class TestViews:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.dns.settings.views.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="my view",
+            zones=["372e67954025e0ba6aaa6d586b9e0b59"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -69,6 +66,8 @@ class TestViews:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.dns.settings.views.with_raw_response.create(
                 account_id="",
+                name="my view",
+                zones=["372e67954025e0ba6aaa6d586b9e0b59"],
             )
 
     @parametrize
@@ -291,13 +290,6 @@ class TestAsyncViews:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         view = await async_client.dns.settings.views.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(Optional[ViewCreateResponse], view, path=["response"])
-
-    @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        view = await async_client.dns.settings.views.create(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="my view",
             zones=["372e67954025e0ba6aaa6d586b9e0b59"],
         )
@@ -307,6 +299,8 @@ class TestAsyncViews:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.settings.views.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="my view",
+            zones=["372e67954025e0ba6aaa6d586b9e0b59"],
         )
 
         assert response.is_closed is True
@@ -318,6 +312,8 @@ class TestAsyncViews:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.settings.views.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="my view",
+            zones=["372e67954025e0ba6aaa6d586b9e0b59"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -332,6 +328,8 @@ class TestAsyncViews:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.dns.settings.views.with_raw_response.create(
                 account_id="",
+                name="my view",
+                zones=["372e67954025e0ba6aaa6d586b9e0b59"],
             )
 
     @parametrize

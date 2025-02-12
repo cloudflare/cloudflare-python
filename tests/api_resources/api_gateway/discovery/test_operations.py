@@ -25,14 +25,14 @@ class TestOperations:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         operation = client.api_gateway.discovery.operations.list(
-            zone_id="zone_id",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(SyncV4PagePaginationArray[DiscoveryOperation], operation, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         operation = client.api_gateway.discovery.operations.list(
-            zone_id="zone_id",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             diff=True,
             direction="asc",
             endpoint="/api/v1",
@@ -49,7 +49,7 @@ class TestOperations:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.api_gateway.discovery.operations.with_raw_response.list(
-            zone_id="zone_id",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -60,7 +60,7 @@ class TestOperations:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.api_gateway.discovery.operations.with_streaming_response.list(
-            zone_id="zone_id",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -80,7 +80,7 @@ class TestOperations:
     @parametrize
     def test_method_bulk_edit(self, client: Cloudflare) -> None:
         operation = client.api_gateway.discovery.operations.bulk_edit(
-            zone_id="zone_id",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={
                 "3818d821-5901-4147-a474-f5f5aec1d54e": {},
                 "b17c8043-99a0-4202-b7d9-8f7cdbee02cd": {},
@@ -91,7 +91,7 @@ class TestOperations:
     @parametrize
     def test_raw_response_bulk_edit(self, client: Cloudflare) -> None:
         response = client.api_gateway.discovery.operations.with_raw_response.bulk_edit(
-            zone_id="zone_id",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={
                 "3818d821-5901-4147-a474-f5f5aec1d54e": {},
                 "b17c8043-99a0-4202-b7d9-8f7cdbee02cd": {},
@@ -106,7 +106,7 @@ class TestOperations:
     @parametrize
     def test_streaming_response_bulk_edit(self, client: Cloudflare) -> None:
         with client.api_gateway.discovery.operations.with_streaming_response.bulk_edit(
-            zone_id="zone_id",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={
                 "3818d821-5901-4147-a474-f5f5aec1d54e": {},
                 "b17c8043-99a0-4202-b7d9-8f7cdbee02cd": {},
@@ -134,16 +134,16 @@ class TestOperations:
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         operation = client.api_gateway.discovery.operations.edit(
-            operation_id="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-            zone_id="zone_id",
+            operation_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(OperationEditResponse, operation, path=["response"])
 
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         operation = client.api_gateway.discovery.operations.edit(
-            operation_id="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-            zone_id="zone_id",
+            operation_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             state="review",
         )
         assert_matches_type(OperationEditResponse, operation, path=["response"])
@@ -151,8 +151,8 @@ class TestOperations:
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.api_gateway.discovery.operations.with_raw_response.edit(
-            operation_id="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-            zone_id="zone_id",
+            operation_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -163,8 +163,8 @@ class TestOperations:
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.api_gateway.discovery.operations.with_streaming_response.edit(
-            operation_id="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-            zone_id="zone_id",
+            operation_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -178,14 +178,14 @@ class TestOperations:
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.api_gateway.discovery.operations.with_raw_response.edit(
-                operation_id="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+                operation_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `operation_id` but received ''"):
             client.api_gateway.discovery.operations.with_raw_response.edit(
                 operation_id="",
-                zone_id="zone_id",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
 
@@ -195,14 +195,14 @@ class TestAsyncOperations:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         operation = await async_client.api_gateway.discovery.operations.list(
-            zone_id="zone_id",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(AsyncV4PagePaginationArray[DiscoveryOperation], operation, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         operation = await async_client.api_gateway.discovery.operations.list(
-            zone_id="zone_id",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             diff=True,
             direction="asc",
             endpoint="/api/v1",
@@ -219,7 +219,7 @@ class TestAsyncOperations:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.api_gateway.discovery.operations.with_raw_response.list(
-            zone_id="zone_id",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -230,7 +230,7 @@ class TestAsyncOperations:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.api_gateway.discovery.operations.with_streaming_response.list(
-            zone_id="zone_id",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -250,7 +250,7 @@ class TestAsyncOperations:
     @parametrize
     async def test_method_bulk_edit(self, async_client: AsyncCloudflare) -> None:
         operation = await async_client.api_gateway.discovery.operations.bulk_edit(
-            zone_id="zone_id",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={
                 "3818d821-5901-4147-a474-f5f5aec1d54e": {},
                 "b17c8043-99a0-4202-b7d9-8f7cdbee02cd": {},
@@ -261,7 +261,7 @@ class TestAsyncOperations:
     @parametrize
     async def test_raw_response_bulk_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.api_gateway.discovery.operations.with_raw_response.bulk_edit(
-            zone_id="zone_id",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={
                 "3818d821-5901-4147-a474-f5f5aec1d54e": {},
                 "b17c8043-99a0-4202-b7d9-8f7cdbee02cd": {},
@@ -276,7 +276,7 @@ class TestAsyncOperations:
     @parametrize
     async def test_streaming_response_bulk_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.api_gateway.discovery.operations.with_streaming_response.bulk_edit(
-            zone_id="zone_id",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={
                 "3818d821-5901-4147-a474-f5f5aec1d54e": {},
                 "b17c8043-99a0-4202-b7d9-8f7cdbee02cd": {},
@@ -304,16 +304,16 @@ class TestAsyncOperations:
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         operation = await async_client.api_gateway.discovery.operations.edit(
-            operation_id="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-            zone_id="zone_id",
+            operation_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(OperationEditResponse, operation, path=["response"])
 
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         operation = await async_client.api_gateway.discovery.operations.edit(
-            operation_id="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-            zone_id="zone_id",
+            operation_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             state="review",
         )
         assert_matches_type(OperationEditResponse, operation, path=["response"])
@@ -321,8 +321,8 @@ class TestAsyncOperations:
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.api_gateway.discovery.operations.with_raw_response.edit(
-            operation_id="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-            zone_id="zone_id",
+            operation_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -333,8 +333,8 @@ class TestAsyncOperations:
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.api_gateway.discovery.operations.with_streaming_response.edit(
-            operation_id="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-            zone_id="zone_id",
+            operation_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -348,12 +348,12 @@ class TestAsyncOperations:
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.api_gateway.discovery.operations.with_raw_response.edit(
-                operation_id="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+                operation_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `operation_id` but received ''"):
             await async_client.api_gateway.discovery.operations.with_raw_response.edit(
                 operation_id="",
-                zone_id="zone_id",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

@@ -14,10 +14,10 @@ __all__ = ["AppGetResponse", "SpectrumConfigAppConfig", "SpectrumConfigPaygoAppC
 
 
 class SpectrumConfigAppConfig(BaseModel):
-    id: object
+    id: str
     """App identifier."""
 
-    created_on: object
+    created_on: datetime
     """When the Application was created."""
 
     dns: DNS
@@ -29,7 +29,7 @@ class SpectrumConfigAppConfig(BaseModel):
     applications.
     """
 
-    modified_on: object
+    modified_on: datetime
     """When the Application was last modified."""
 
     protocol: str
@@ -91,14 +91,16 @@ class SpectrumConfigAppConfig(BaseModel):
 
 class SpectrumConfigPaygoAppConfig(BaseModel):
     id: str
-    """Identifier"""
+    """App identifier."""
 
     created_on: datetime
+    """When the Application was created."""
 
     dns: DNS
     """The name and type of DNS record for the Spectrum application."""
 
     modified_on: datetime
+    """When the Application was last modified."""
 
     protocol: str
     """The port configuration at Cloudflare's edge.

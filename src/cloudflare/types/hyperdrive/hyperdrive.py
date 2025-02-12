@@ -11,6 +11,7 @@ __all__ = [
     "OriginPublicDatabase",
     "OriginAccessProtectedDatabaseBehindCloudflareTunnel",
     "Caching",
+    "CachingHyperdriveHyperdriveCachingCommon",
     "CachingHyperdriveHyperdriveCachingEnabled",
 ]
 
@@ -54,6 +55,11 @@ class OriginAccessProtectedDatabaseBehindCloudflareTunnel(BaseModel):
 Origin: TypeAlias = Union[OriginPublicDatabase, OriginAccessProtectedDatabaseBehindCloudflareTunnel]
 
 
+class CachingHyperdriveHyperdriveCachingCommon(BaseModel):
+    disabled: Optional[bool] = None
+    """When set to true, disables the caching of SQL responses. (Default: false)"""
+
+
 class CachingHyperdriveHyperdriveCachingEnabled(BaseModel):
     disabled: Optional[bool] = None
     """When set to true, disables the caching of SQL responses. (Default: false)"""
@@ -72,7 +78,7 @@ class CachingHyperdriveHyperdriveCachingEnabled(BaseModel):
     """
 
 
-Caching: TypeAlias = Union[CachingHyperdriveHyperdriveCachingEnabled, object]
+Caching: TypeAlias = Union[CachingHyperdriveHyperdriveCachingCommon, CachingHyperdriveHyperdriveCachingEnabled]
 
 
 class Hyperdrive(BaseModel):

@@ -22,7 +22,7 @@ class TestNetworks:
     def test_method_create(self, client: Cloudflare) -> None:
         network = client.zero_trust.devices.networks.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            config={"tls_sockaddr": "foobar:1234"},
+            config={"tls_sockaddr": "foo.bar:1234"},
             name="managed-network-1",
             type="tls",
         )
@@ -33,7 +33,7 @@ class TestNetworks:
         network = client.zero_trust.devices.networks.create(
             account_id="699d98642c564d2e855e9661899b7252",
             config={
-                "tls_sockaddr": "foobar:1234",
+                "tls_sockaddr": "foo.bar:1234",
                 "sha256": "b5bb9d8014a0f9b1d61e21e796d78dccdf1352f23cd32812f4850b878ae4944c",
             },
             name="managed-network-1",
@@ -45,7 +45,7 @@ class TestNetworks:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.zero_trust.devices.networks.with_raw_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            config={"tls_sockaddr": "foobar:1234"},
+            config={"tls_sockaddr": "foo.bar:1234"},
             name="managed-network-1",
             type="tls",
         )
@@ -59,7 +59,7 @@ class TestNetworks:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.zero_trust.devices.networks.with_streaming_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            config={"tls_sockaddr": "foobar:1234"},
+            config={"tls_sockaddr": "foo.bar:1234"},
             name="managed-network-1",
             type="tls",
         ) as response:
@@ -76,7 +76,7 @@ class TestNetworks:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.devices.networks.with_raw_response.create(
                 account_id="",
-                config={"tls_sockaddr": "foobar:1234"},
+                config={"tls_sockaddr": "foo.bar:1234"},
                 name="managed-network-1",
                 type="tls",
             )
@@ -95,7 +95,7 @@ class TestNetworks:
             network_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             config={
-                "tls_sockaddr": "foobar:1234",
+                "tls_sockaddr": "foo.bar:1234",
                 "sha256": "b5bb9d8014a0f9b1d61e21e796d78dccdf1352f23cd32812f4850b878ae4944c",
             },
             name="managed-network-1",
@@ -285,7 +285,7 @@ class TestAsyncNetworks:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         network = await async_client.zero_trust.devices.networks.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            config={"tls_sockaddr": "foobar:1234"},
+            config={"tls_sockaddr": "foo.bar:1234"},
             name="managed-network-1",
             type="tls",
         )
@@ -296,7 +296,7 @@ class TestAsyncNetworks:
         network = await async_client.zero_trust.devices.networks.create(
             account_id="699d98642c564d2e855e9661899b7252",
             config={
-                "tls_sockaddr": "foobar:1234",
+                "tls_sockaddr": "foo.bar:1234",
                 "sha256": "b5bb9d8014a0f9b1d61e21e796d78dccdf1352f23cd32812f4850b878ae4944c",
             },
             name="managed-network-1",
@@ -308,7 +308,7 @@ class TestAsyncNetworks:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.devices.networks.with_raw_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            config={"tls_sockaddr": "foobar:1234"},
+            config={"tls_sockaddr": "foo.bar:1234"},
             name="managed-network-1",
             type="tls",
         )
@@ -322,7 +322,7 @@ class TestAsyncNetworks:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.devices.networks.with_streaming_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            config={"tls_sockaddr": "foobar:1234"},
+            config={"tls_sockaddr": "foo.bar:1234"},
             name="managed-network-1",
             type="tls",
         ) as response:
@@ -339,7 +339,7 @@ class TestAsyncNetworks:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.devices.networks.with_raw_response.create(
                 account_id="",
-                config={"tls_sockaddr": "foobar:1234"},
+                config={"tls_sockaddr": "foo.bar:1234"},
                 name="managed-network-1",
                 type="tls",
             )
@@ -358,7 +358,7 @@ class TestAsyncNetworks:
             network_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             config={
-                "tls_sockaddr": "foobar:1234",
+                "tls_sockaddr": "foo.bar:1234",
                 "sha256": "b5bb9d8014a0f9b1d61e21e796d78dccdf1352f23cd32812f4850b878ae4944c",
             },
             name="managed-network-1",

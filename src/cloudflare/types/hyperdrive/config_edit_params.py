@@ -8,6 +8,7 @@ from typing_extensions import Literal, Required, TypeAlias, TypedDict
 __all__ = [
     "ConfigEditParams",
     "Caching",
+    "CachingHyperdriveHyperdriveCachingCommon",
     "CachingHyperdriveHyperdriveCachingEnabled",
     "Origin",
     "OriginHyperdriveHyperdriveDatabase",
@@ -25,6 +26,11 @@ class ConfigEditParams(TypedDict, total=False):
     name: str
 
     origin: Origin
+
+
+class CachingHyperdriveHyperdriveCachingCommon(TypedDict, total=False):
+    disabled: bool
+    """When set to true, disables the caching of SQL responses. (Default: false)"""
 
 
 class CachingHyperdriveHyperdriveCachingEnabled(TypedDict, total=False):
@@ -45,7 +51,7 @@ class CachingHyperdriveHyperdriveCachingEnabled(TypedDict, total=False):
     """
 
 
-Caching: TypeAlias = Union[CachingHyperdriveHyperdriveCachingEnabled, object]
+Caching: TypeAlias = Union[CachingHyperdriveHyperdriveCachingCommon, CachingHyperdriveHyperdriveCachingEnabled]
 
 
 class OriginHyperdriveHyperdriveDatabase(TypedDict, total=False):
