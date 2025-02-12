@@ -23,6 +23,7 @@ from pydantic import ValidationError
 
 from cloudflare import Cloudflare, AsyncCloudflare, APIResponseValidationError
 from cloudflare._types import Omit
+from cloudflare._utils import maybe_transform
 from cloudflare._models import BaseModel, FinalRequestOptions
 from cloudflare._constants import RAW_RESPONSE_HEADER
 from cloudflare._exceptions import APIStatusError, APITimeoutError, APIResponseValidationError
@@ -32,6 +33,7 @@ from cloudflare._base_client import (
     BaseClient,
     make_request_options,
 )
+from cloudflare.types.zones.zone_create_params import ZoneCreateParams
 
 from .utils import update_env
 
@@ -806,7 +808,11 @@ class TestCloudflare:
             self.client.post(
                 "/zones",
                 body=cast(
-                    object, dict(account={"id": "023e105f4ecef8ad9ca31a8372d0c353"}, name="example.com", type="full")
+                    object,
+                    maybe_transform(
+                        dict(account={"id": "023e105f4ecef8ad9ca31a8372d0c353"}, name="example.com", type="full"),
+                        ZoneCreateParams,
+                    ),
                 ),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
@@ -823,7 +829,11 @@ class TestCloudflare:
             self.client.post(
                 "/zones",
                 body=cast(
-                    object, dict(account={"id": "023e105f4ecef8ad9ca31a8372d0c353"}, name="example.com", type="full")
+                    object,
+                    maybe_transform(
+                        dict(account={"id": "023e105f4ecef8ad9ca31a8372d0c353"}, name="example.com", type="full"),
+                        ZoneCreateParams,
+                    ),
                 ),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
@@ -1677,7 +1687,11 @@ class TestAsyncCloudflare:
             await self.client.post(
                 "/zones",
                 body=cast(
-                    object, dict(account={"id": "023e105f4ecef8ad9ca31a8372d0c353"}, name="example.com", type="full")
+                    object,
+                    maybe_transform(
+                        dict(account={"id": "023e105f4ecef8ad9ca31a8372d0c353"}, name="example.com", type="full"),
+                        ZoneCreateParams,
+                    ),
                 ),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
@@ -1694,7 +1708,11 @@ class TestAsyncCloudflare:
             await self.client.post(
                 "/zones",
                 body=cast(
-                    object, dict(account={"id": "023e105f4ecef8ad9ca31a8372d0c353"}, name="example.com", type="full")
+                    object,
+                    maybe_transform(
+                        dict(account={"id": "023e105f4ecef8ad9ca31a8372d0c353"}, name="example.com", type="full"),
+                        ZoneCreateParams,
+                    ),
                 ),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
