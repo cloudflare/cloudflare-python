@@ -86,16 +86,16 @@ class DNSFirewallResource(SyncAPIResource):
         self,
         *,
         account_id: str,
+        name: str,
+        upstream_ips: List[UpstreamIPs],
         attack_mitigation: Optional[AttackMitigationParam] | NotGiven = NOT_GIVEN,
         deprecate_any_requests: bool | NotGiven = NOT_GIVEN,
         ecs_fallback: bool | NotGiven = NOT_GIVEN,
         maximum_cache_ttl: float | NotGiven = NOT_GIVEN,
         minimum_cache_ttl: float | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
         negative_cache_ttl: Optional[float] | NotGiven = NOT_GIVEN,
         ratelimit: Optional[float] | NotGiven = NOT_GIVEN,
         retries: float | NotGiven = NOT_GIVEN,
-        upstream_ips: List[UpstreamIPs] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -108,6 +108,8 @@ class DNSFirewallResource(SyncAPIResource):
 
         Args:
           account_id: Identifier
+
+          name: DNS Firewall cluster name
 
           attack_mitigation: Attack mitigation settings
 
@@ -122,8 +124,6 @@ class DNSFirewallResource(SyncAPIResource):
           minimum_cache_ttl: Minimum DNS cache TTL This setting sets a lower bound on DNS TTLs for purposes
               of caching between DNS Firewall and the upstream servers. Lower TTLs will be
               increased to the minimum defined here for caching purposes.
-
-          name: DNS Firewall cluster name
 
           negative_cache_ttl: Negative DNS cache TTL This setting controls how long DNS Firewall should cache
               negative responses (e.g., NXDOMAIN) from the upstream servers.
@@ -148,16 +148,16 @@ class DNSFirewallResource(SyncAPIResource):
             f"/accounts/{account_id}/dns_firewall",
             body=maybe_transform(
                 {
+                    "name": name,
+                    "upstream_ips": upstream_ips,
                     "attack_mitigation": attack_mitigation,
                     "deprecate_any_requests": deprecate_any_requests,
                     "ecs_fallback": ecs_fallback,
                     "maximum_cache_ttl": maximum_cache_ttl,
                     "minimum_cache_ttl": minimum_cache_ttl,
-                    "name": name,
                     "negative_cache_ttl": negative_cache_ttl,
                     "ratelimit": ratelimit,
                     "retries": retries,
-                    "upstream_ips": upstream_ips,
                 },
                 dns_firewall_create_params.DNSFirewallCreateParams,
             ),
@@ -438,16 +438,16 @@ class AsyncDNSFirewallResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        name: str,
+        upstream_ips: List[UpstreamIPs],
         attack_mitigation: Optional[AttackMitigationParam] | NotGiven = NOT_GIVEN,
         deprecate_any_requests: bool | NotGiven = NOT_GIVEN,
         ecs_fallback: bool | NotGiven = NOT_GIVEN,
         maximum_cache_ttl: float | NotGiven = NOT_GIVEN,
         minimum_cache_ttl: float | NotGiven = NOT_GIVEN,
-        name: str | NotGiven = NOT_GIVEN,
         negative_cache_ttl: Optional[float] | NotGiven = NOT_GIVEN,
         ratelimit: Optional[float] | NotGiven = NOT_GIVEN,
         retries: float | NotGiven = NOT_GIVEN,
-        upstream_ips: List[UpstreamIPs] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -460,6 +460,8 @@ class AsyncDNSFirewallResource(AsyncAPIResource):
 
         Args:
           account_id: Identifier
+
+          name: DNS Firewall cluster name
 
           attack_mitigation: Attack mitigation settings
 
@@ -474,8 +476,6 @@ class AsyncDNSFirewallResource(AsyncAPIResource):
           minimum_cache_ttl: Minimum DNS cache TTL This setting sets a lower bound on DNS TTLs for purposes
               of caching between DNS Firewall and the upstream servers. Lower TTLs will be
               increased to the minimum defined here for caching purposes.
-
-          name: DNS Firewall cluster name
 
           negative_cache_ttl: Negative DNS cache TTL This setting controls how long DNS Firewall should cache
               negative responses (e.g., NXDOMAIN) from the upstream servers.
@@ -500,16 +500,16 @@ class AsyncDNSFirewallResource(AsyncAPIResource):
             f"/accounts/{account_id}/dns_firewall",
             body=await async_maybe_transform(
                 {
+                    "name": name,
+                    "upstream_ips": upstream_ips,
                     "attack_mitigation": attack_mitigation,
                     "deprecate_any_requests": deprecate_any_requests,
                     "ecs_fallback": ecs_fallback,
                     "maximum_cache_ttl": maximum_cache_ttl,
                     "minimum_cache_ttl": minimum_cache_ttl,
-                    "name": name,
                     "negative_cache_ttl": negative_cache_ttl,
                     "ratelimit": ratelimit,
                     "retries": retries,
-                    "upstream_ips": upstream_ips,
                 },
                 dns_firewall_create_params.DNSFirewallCreateParams,
             ),

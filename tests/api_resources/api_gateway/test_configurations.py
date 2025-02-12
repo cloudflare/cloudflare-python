@@ -23,7 +23,7 @@ class TestConfigurations:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         configuration = client.api_gateway.configurations.update(
-            zone_id="zone_id",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             auth_id_characteristics=[
                 {
                     "name": "authorization",
@@ -36,7 +36,7 @@ class TestConfigurations:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.api_gateway.configurations.with_raw_response.update(
-            zone_id="zone_id",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             auth_id_characteristics=[
                 {
                     "name": "authorization",
@@ -53,7 +53,7 @@ class TestConfigurations:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.api_gateway.configurations.with_streaming_response.update(
-            zone_id="zone_id",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             auth_id_characteristics=[
                 {
                     "name": "authorization",
@@ -85,14 +85,14 @@ class TestConfigurations:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         configuration = client.api_gateway.configurations.get(
-            zone_id="zone_id",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Configuration, configuration, path=["response"])
 
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         configuration = client.api_gateway.configurations.get(
-            zone_id="zone_id",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             properties=["auth_id_characteristics"],
         )
         assert_matches_type(Configuration, configuration, path=["response"])
@@ -100,7 +100,7 @@ class TestConfigurations:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.api_gateway.configurations.with_raw_response.get(
-            zone_id="zone_id",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -111,7 +111,7 @@ class TestConfigurations:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.api_gateway.configurations.with_streaming_response.get(
-            zone_id="zone_id",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -135,7 +135,7 @@ class TestAsyncConfigurations:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         configuration = await async_client.api_gateway.configurations.update(
-            zone_id="zone_id",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             auth_id_characteristics=[
                 {
                     "name": "authorization",
@@ -148,7 +148,7 @@ class TestAsyncConfigurations:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.api_gateway.configurations.with_raw_response.update(
-            zone_id="zone_id",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             auth_id_characteristics=[
                 {
                     "name": "authorization",
@@ -165,7 +165,7 @@ class TestAsyncConfigurations:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.api_gateway.configurations.with_streaming_response.update(
-            zone_id="zone_id",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             auth_id_characteristics=[
                 {
                     "name": "authorization",
@@ -197,14 +197,14 @@ class TestAsyncConfigurations:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         configuration = await async_client.api_gateway.configurations.get(
-            zone_id="zone_id",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Configuration, configuration, path=["response"])
 
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         configuration = await async_client.api_gateway.configurations.get(
-            zone_id="zone_id",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             properties=["auth_id_characteristics"],
         )
         assert_matches_type(Configuration, configuration, path=["response"])
@@ -212,7 +212,7 @@ class TestAsyncConfigurations:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.api_gateway.configurations.with_raw_response.get(
-            zone_id="zone_id",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -223,7 +223,7 @@ class TestAsyncConfigurations:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.api_gateway.configurations.with_streaming_response.get(
-            zone_id="zone_id",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

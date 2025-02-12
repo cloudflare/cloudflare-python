@@ -25,6 +25,7 @@ from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.firewall import ua_rule_list_params, ua_rule_create_params, ua_rule_update_params
 from ...types.firewall.ua_rule_get_response import UARuleGetResponse
+from ...types.firewall.ua_rule_list_response import UARuleListResponse
 from ...types.firewall.ua_rule_create_response import UARuleCreateResponse
 from ...types.firewall.ua_rule_delete_response import UARuleDeleteResponse
 from ...types.firewall.ua_rule_update_response import UARuleUpdateResponse
@@ -186,7 +187,7 @@ class UARulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[object]:
+    ) -> SyncV4PagePaginationArray[UARuleListResponse]:
         """Fetches User Agent Blocking rules in a zone.
 
         You can filter the results using
@@ -218,7 +219,7 @@ class UARulesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/firewall/ua_rules",
-            page=SyncV4PagePaginationArray[object],
+            page=SyncV4PagePaginationArray[UARuleListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -235,7 +236,7 @@ class UARulesResource(SyncAPIResource):
                     ua_rule_list_params.UARuleListParams,
                 ),
             ),
-            model=object,
+            model=UARuleListResponse,
         )
 
     def delete(
@@ -486,7 +487,7 @@ class AsyncUARulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[object, AsyncV4PagePaginationArray[object]]:
+    ) -> AsyncPaginator[UARuleListResponse, AsyncV4PagePaginationArray[UARuleListResponse]]:
         """Fetches User Agent Blocking rules in a zone.
 
         You can filter the results using
@@ -518,7 +519,7 @@ class AsyncUARulesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/firewall/ua_rules",
-            page=AsyncV4PagePaginationArray[object],
+            page=AsyncV4PagePaginationArray[UARuleListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -535,7 +536,7 @@ class AsyncUARulesResource(AsyncAPIResource):
                     ua_rule_list_params.UARuleListParams,
                 ),
             ),
-            model=object,
+            model=UARuleListResponse,
         )
 
     async def delete(

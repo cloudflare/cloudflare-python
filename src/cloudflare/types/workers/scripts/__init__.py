@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from .schedule import Schedule as Schedule
 from .deployment import Deployment as Deployment
 from .schedule_param import ScheduleParam as ScheduleParam
 from .consumer_script import ConsumerScript as ConsumerScript

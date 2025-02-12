@@ -175,6 +175,7 @@ class APIShieldOperationFeaturesAPIShieldOperationFeatureConfidenceIntervals(Bas
 
 class APIShieldOperationFeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfoActiveSchema(BaseModel):
     id: Optional[str] = None
+    """UUID"""
 
     created_at: Optional[datetime] = None
 
@@ -221,12 +222,13 @@ class APIShieldOperation(BaseModel):
     host: str
     """RFC3986-compliant host."""
 
-    last_updated: str
+    last_updated: datetime
 
     method: Literal["GET", "POST", "HEAD", "OPTIONS", "PUT", "DELETE", "CONNECT", "PATCH", "TRACE"]
     """The HTTP method used to access the endpoint."""
 
     operation_id: str
+    """UUID"""
 
     features: Optional[APIShieldOperationFeatures] = None
 

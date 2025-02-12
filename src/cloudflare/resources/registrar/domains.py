@@ -23,6 +23,7 @@ from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.registrar import domain_update_params
+from ...types.registrar.domain import Domain
 
 __all__ = ["DomainsResource", "AsyncDomainsResource"]
 
@@ -119,7 +120,7 @@ class DomainsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[object]:
+    ) -> SyncSinglePage[Domain]:
         """
         List domains handled by Registrar.
 
@@ -138,11 +139,11 @@ class DomainsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/registrar/domains",
-            page=SyncSinglePage[object],
+            page=SyncSinglePage[Domain],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=object,
+            model=Domain,
         )
 
     def get(
@@ -282,7 +283,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[object, AsyncSinglePage[object]]:
+    ) -> AsyncPaginator[Domain, AsyncSinglePage[Domain]]:
         """
         List domains handled by Registrar.
 
@@ -301,11 +302,11 @@ class AsyncDomainsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/registrar/domains",
-            page=AsyncSinglePage[object],
+            page=AsyncSinglePage[Domain],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=object,
+            model=Domain,
         )
 
     async def get(

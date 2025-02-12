@@ -11,9 +11,6 @@ class DetectionUpdateParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    id: object
-    """The unique ID for this custom detection"""
-
     password: str
     """The ruleset expression to use in matching the password in a request"""
 

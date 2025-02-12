@@ -10,6 +10,7 @@ __all__ = ["OperationBulkCreateParams", "Body"]
 
 class OperationBulkCreateParams(TypedDict, total=False):
     zone_id: Required[str]
+    """Identifier"""
 
     body: Required[Iterable[Body]]
 

@@ -25,6 +25,7 @@ class Features(BaseModel):
 
 class DiscoveryOperation(BaseModel):
     id: str
+    """UUID"""
 
     endpoint: str
     """
@@ -37,7 +38,7 @@ class DiscoveryOperation(BaseModel):
     host: str
     """RFC3986-compliant host."""
 
-    last_updated: str
+    last_updated: datetime
 
     method: Literal["GET", "POST", "HEAD", "OPTIONS", "PUT", "DELETE", "CONNECT", "PATCH", "TRACE"]
     """The HTTP method used to access the endpoint."""

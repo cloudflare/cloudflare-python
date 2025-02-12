@@ -5,6 +5,7 @@ from __future__ import annotations
 from .action import Action as Action
 from .address import Address as Address
 from .matcher import Matcher as Matcher
+from .settings import Settings as Settings
 from .dns_record import DNSRecord as DNSRecord
 from .action_param import ActionParam as ActionParam
 from .matcher_param import MatcherParam as MatcherParam

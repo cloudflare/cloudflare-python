@@ -64,6 +64,8 @@ class SchemaValidationResource(SyncAPIResource):
         Updates zone level schema validation settings on the zone
 
         Args:
+          zone_id: Identifier
+
           validation_default_mitigation_action: The default mitigation action used when there is no mitigation action defined on
               the operation
 
@@ -124,6 +126,8 @@ class SchemaValidationResource(SyncAPIResource):
         Updates zone level schema validation settings on the zone
 
         Args:
+          zone_id: Identifier
+
           validation_default_mitigation_action: The default mitigation action used when there is no mitigation action defined on
               the operation Mitigation actions are as follows:
 
@@ -183,6 +187,8 @@ class SchemaValidationResource(SyncAPIResource):
         Retrieves zone level schema validation settings currently set on the zone
 
         Args:
+          zone_id: Identifier
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -239,6 +245,8 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
         Updates zone level schema validation settings on the zone
 
         Args:
+          zone_id: Identifier
+
           validation_default_mitigation_action: The default mitigation action used when there is no mitigation action defined on
               the operation
 
@@ -299,6 +307,8 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
         Updates zone level schema validation settings on the zone
 
         Args:
+          zone_id: Identifier
+
           validation_default_mitigation_action: The default mitigation action used when there is no mitigation action defined on
               the operation Mitigation actions are as follows:
 
@@ -358,6 +368,8 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
         Retrieves zone level schema validation settings currently set on the zone
 
         Args:
+          zone_id: Identifier
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

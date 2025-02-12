@@ -9,6 +9,7 @@ __all__ = ["OperationEditParams"]
 
 class OperationEditParams(TypedDict, total=False):
     zone_id: Required[str]
+    """Identifier"""
 
     state: Literal["review", "ignored"]
     """Mark state of operation in API Discovery

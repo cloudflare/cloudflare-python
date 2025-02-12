@@ -71,7 +71,7 @@ class Query(BaseModel):
     | duration99th   | 99th percentile connection duration | 1.0     | Time in milliseconds. |
     """
 
-    since: Optional[object] = None
+    since: Optional[datetime] = None
     """Start of time interval to query, defaults to `until` - 6 hours.
 
     Timestamp must be in RFC3339 format and uses UTC unless otherwise specified.
@@ -83,7 +83,7 @@ class Query(BaseModel):
     `dimensions`.
     """
 
-    until: Optional[object] = None
+    until: Optional[datetime] = None
     """End of time interval to query, defaults to current time.
 
     Timestamp must be in RFC3339 format and uses UTC unless otherwise specified.

@@ -12,8 +12,8 @@ class ViewCreateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
-    name: str
+    name: Required[str]
     """The name of the view."""
 
-    zones: List[str]
+    zones: Required[List[str]]
     """The list of zones linked to this view."""
