@@ -10,6 +10,7 @@ __all__ = ["OperationBulkEditParams", "Body"]
 
 class OperationBulkEditParams(TypedDict, total=False):
     zone_id: Required[str]
+    """Identifier"""
 
     body: Required[Dict[str, Body]]
 

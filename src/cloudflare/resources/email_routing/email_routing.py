@@ -46,6 +46,7 @@ from .rules.rules import (
 )
 from ..._base_client import make_request_options
 from ...types.email_routing import email_routing_enable_params, email_routing_disable_params
+from ...types.email_routing.settings import Settings
 
 __all__ = ["EmailRoutingResource", "AsyncEmailRoutingResource"]
 
@@ -93,7 +94,7 @@ class EmailRoutingResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[Settings]:
         """Disable your Email Routing zone.
 
         Also removes additional MX records previously
@@ -120,9 +121,9 @@ class EmailRoutingResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Settings]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[Settings]], ResultWrapper[Settings]),
         )
 
     def enable(
@@ -136,7 +137,7 @@ class EmailRoutingResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[Settings]:
         """Enable you Email Routing zone.
 
         Add and lock the necessary MX and SPF records.
@@ -162,9 +163,9 @@ class EmailRoutingResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Settings]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[Settings]], ResultWrapper[Settings]),
         )
 
     def get(
@@ -177,7 +178,7 @@ class EmailRoutingResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[Settings]:
         """
         Get information about the settings for your Email Routing zone.
 
@@ -201,9 +202,9 @@ class EmailRoutingResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Settings]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[Settings]], ResultWrapper[Settings]),
         )
 
 
@@ -250,7 +251,7 @@ class AsyncEmailRoutingResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[Settings]:
         """Disable your Email Routing zone.
 
         Also removes additional MX records previously
@@ -277,9 +278,9 @@ class AsyncEmailRoutingResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Settings]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[Settings]], ResultWrapper[Settings]),
         )
 
     async def enable(
@@ -293,7 +294,7 @@ class AsyncEmailRoutingResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[Settings]:
         """Enable you Email Routing zone.
 
         Add and lock the necessary MX and SPF records.
@@ -319,9 +320,9 @@ class AsyncEmailRoutingResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Settings]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[Settings]], ResultWrapper[Settings]),
         )
 
     async def get(
@@ -334,7 +335,7 @@ class AsyncEmailRoutingResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[Settings]:
         """
         Get information about the settings for your Email Routing zone.
 
@@ -358,9 +359,9 @@ class AsyncEmailRoutingResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Settings]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[Settings]], ResultWrapper[Settings]),
         )
 
 

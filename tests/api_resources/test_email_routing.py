@@ -3,12 +3,13 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.types.email_routing import Settings
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -22,7 +23,7 @@ class TestEmailRouting:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(object, email_routing, path=["response"])
+        assert_matches_type(Optional[Settings], email_routing, path=["response"])
 
     @parametrize
     def test_raw_response_disable(self, client: Cloudflare) -> None:
@@ -34,7 +35,7 @@ class TestEmailRouting:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         email_routing = response.parse()
-        assert_matches_type(object, email_routing, path=["response"])
+        assert_matches_type(Optional[Settings], email_routing, path=["response"])
 
     @parametrize
     def test_streaming_response_disable(self, client: Cloudflare) -> None:
@@ -46,7 +47,7 @@ class TestEmailRouting:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             email_routing = response.parse()
-            assert_matches_type(object, email_routing, path=["response"])
+            assert_matches_type(Optional[Settings], email_routing, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -64,7 +65,7 @@ class TestEmailRouting:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(object, email_routing, path=["response"])
+        assert_matches_type(Optional[Settings], email_routing, path=["response"])
 
     @parametrize
     def test_raw_response_enable(self, client: Cloudflare) -> None:
@@ -76,7 +77,7 @@ class TestEmailRouting:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         email_routing = response.parse()
-        assert_matches_type(object, email_routing, path=["response"])
+        assert_matches_type(Optional[Settings], email_routing, path=["response"])
 
     @parametrize
     def test_streaming_response_enable(self, client: Cloudflare) -> None:
@@ -88,7 +89,7 @@ class TestEmailRouting:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             email_routing = response.parse()
-            assert_matches_type(object, email_routing, path=["response"])
+            assert_matches_type(Optional[Settings], email_routing, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -105,7 +106,7 @@ class TestEmailRouting:
         email_routing = client.email_routing.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(object, email_routing, path=["response"])
+        assert_matches_type(Optional[Settings], email_routing, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -116,7 +117,7 @@ class TestEmailRouting:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         email_routing = response.parse()
-        assert_matches_type(object, email_routing, path=["response"])
+        assert_matches_type(Optional[Settings], email_routing, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -127,7 +128,7 @@ class TestEmailRouting:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             email_routing = response.parse()
-            assert_matches_type(object, email_routing, path=["response"])
+            assert_matches_type(Optional[Settings], email_routing, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -148,7 +149,7 @@ class TestAsyncEmailRouting:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(object, email_routing, path=["response"])
+        assert_matches_type(Optional[Settings], email_routing, path=["response"])
 
     @parametrize
     async def test_raw_response_disable(self, async_client: AsyncCloudflare) -> None:
@@ -160,7 +161,7 @@ class TestAsyncEmailRouting:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         email_routing = await response.parse()
-        assert_matches_type(object, email_routing, path=["response"])
+        assert_matches_type(Optional[Settings], email_routing, path=["response"])
 
     @parametrize
     async def test_streaming_response_disable(self, async_client: AsyncCloudflare) -> None:
@@ -172,7 +173,7 @@ class TestAsyncEmailRouting:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             email_routing = await response.parse()
-            assert_matches_type(object, email_routing, path=["response"])
+            assert_matches_type(Optional[Settings], email_routing, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -190,7 +191,7 @@ class TestAsyncEmailRouting:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(object, email_routing, path=["response"])
+        assert_matches_type(Optional[Settings], email_routing, path=["response"])
 
     @parametrize
     async def test_raw_response_enable(self, async_client: AsyncCloudflare) -> None:
@@ -202,7 +203,7 @@ class TestAsyncEmailRouting:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         email_routing = await response.parse()
-        assert_matches_type(object, email_routing, path=["response"])
+        assert_matches_type(Optional[Settings], email_routing, path=["response"])
 
     @parametrize
     async def test_streaming_response_enable(self, async_client: AsyncCloudflare) -> None:
@@ -214,7 +215,7 @@ class TestAsyncEmailRouting:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             email_routing = await response.parse()
-            assert_matches_type(object, email_routing, path=["response"])
+            assert_matches_type(Optional[Settings], email_routing, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -231,7 +232,7 @@ class TestAsyncEmailRouting:
         email_routing = await async_client.email_routing.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(object, email_routing, path=["response"])
+        assert_matches_type(Optional[Settings], email_routing, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -242,7 +243,7 @@ class TestAsyncEmailRouting:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         email_routing = await response.parse()
-        assert_matches_type(object, email_routing, path=["response"])
+        assert_matches_type(Optional[Settings], email_routing, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -253,7 +254,7 @@ class TestAsyncEmailRouting:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             email_routing = await response.parse()
-            assert_matches_type(object, email_routing, path=["response"])
+            assert_matches_type(Optional[Settings], email_routing, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

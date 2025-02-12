@@ -35,6 +35,7 @@ from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.dns.ttl_param import TTLParam
 from ...types.dns.record_tags import RecordTags
+from ...types.dns.record_param import RecordParam
 from ...types.dns.batch_put_param import BatchPutParam
 from ...types.dns.record_response import RecordResponse
 from ...types.dns.batch_patch_param import BatchPatchParam
@@ -3157,7 +3158,7 @@ class RecordsResource(SyncAPIResource):
         zone_id: str,
         deletes: Iterable[record_batch_params.Delete] | NotGiven = NOT_GIVEN,
         patches: Iterable[BatchPatchParam] | NotGiven = NOT_GIVEN,
-        posts: Iterable[object] | NotGiven = NOT_GIVEN,
+        posts: Iterable[RecordParam] | NotGiven = NOT_GIVEN,
         puts: Iterable[BatchPutParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -8022,7 +8023,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         zone_id: str,
         deletes: Iterable[record_batch_params.Delete] | NotGiven = NOT_GIVEN,
         patches: Iterable[BatchPatchParam] | NotGiven = NOT_GIVEN,
-        posts: Iterable[object] | NotGiven = NOT_GIVEN,
+        posts: Iterable[RecordParam] | NotGiven = NOT_GIVEN,
         puts: Iterable[BatchPutParam] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

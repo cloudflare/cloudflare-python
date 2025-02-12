@@ -10,6 +10,7 @@ __all__ = ["ConfigurationGetParams"]
 
 class ConfigurationGetParams(TypedDict, total=False):
     zone_id: Required[str]
+    """Identifier"""
 
     properties: List[Literal["auth_id_characteristics"]]
     """Requests information about certain properties."""

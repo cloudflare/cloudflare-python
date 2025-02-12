@@ -9,7 +9,7 @@ __all__ = ["AppListParams"]
 
 class AppListParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Zone identifier."""
 
     direction: Literal["asc", "desc"]
     """Sets the direction by which results are ordered."""

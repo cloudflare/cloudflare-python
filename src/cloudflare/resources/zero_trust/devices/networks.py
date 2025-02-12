@@ -67,6 +67,9 @@ class NetworksResource(SyncAPIResource):
         Creates a new device managed network.
 
         Args:
+          config: The configuration object containing information for the WARP client to detect
+              the managed network.
+
           name: The name of the device managed network. This name must be unique.
 
           type: The type of device managed network.
@@ -121,6 +124,9 @@ class NetworksResource(SyncAPIResource):
 
         Args:
           network_id: API UUID.
+
+          config: The configuration object containing information for the WARP client to detect
+              the managed network.
 
           name: The name of the device managed network. This name must be unique.
 
@@ -314,6 +320,9 @@ class AsyncNetworksResource(AsyncAPIResource):
         Creates a new device managed network.
 
         Args:
+          config: The configuration object containing information for the WARP client to detect
+              the managed network.
+
           name: The name of the device managed network. This name must be unique.
 
           type: The type of device managed network.
@@ -368,6 +377,9 @@ class AsyncNetworksResource(AsyncAPIResource):
 
         Args:
           network_id: API UUID.
+
+          config: The configuration object containing information for the WARP client to detect
+              the managed network.
 
           name: The name of the device managed network. This name must be unique.
 

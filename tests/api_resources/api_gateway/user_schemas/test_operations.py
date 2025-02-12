@@ -22,7 +22,7 @@ class TestOperations:
     def test_method_list(self, client: Cloudflare) -> None:
         operation = client.api_gateway.user_schemas.operations.list(
             schema_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            zone_id="zone_id",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(SyncV4PagePaginationArray[OperationListResponse], operation, path=["response"])
 
@@ -30,7 +30,7 @@ class TestOperations:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         operation = client.api_gateway.user_schemas.operations.list(
             schema_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            zone_id="zone_id",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             endpoint="/api/v1",
             feature=["thresholds"],
             host=["api.cloudflare.com"],
@@ -45,7 +45,7 @@ class TestOperations:
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.api_gateway.user_schemas.operations.with_raw_response.list(
             schema_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            zone_id="zone_id",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -57,7 +57,7 @@ class TestOperations:
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.api_gateway.user_schemas.operations.with_streaming_response.list(
             schema_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            zone_id="zone_id",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -78,7 +78,7 @@ class TestOperations:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `schema_id` but received ''"):
             client.api_gateway.user_schemas.operations.with_raw_response.list(
                 schema_id="",
-                zone_id="zone_id",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
 
@@ -89,7 +89,7 @@ class TestAsyncOperations:
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         operation = await async_client.api_gateway.user_schemas.operations.list(
             schema_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            zone_id="zone_id",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(AsyncV4PagePaginationArray[OperationListResponse], operation, path=["response"])
 
@@ -97,7 +97,7 @@ class TestAsyncOperations:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         operation = await async_client.api_gateway.user_schemas.operations.list(
             schema_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            zone_id="zone_id",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             endpoint="/api/v1",
             feature=["thresholds"],
             host=["api.cloudflare.com"],
@@ -112,7 +112,7 @@ class TestAsyncOperations:
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.api_gateway.user_schemas.operations.with_raw_response.list(
             schema_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            zone_id="zone_id",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -124,7 +124,7 @@ class TestAsyncOperations:
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.api_gateway.user_schemas.operations.with_streaming_response.list(
             schema_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            zone_id="zone_id",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -145,5 +145,5 @@ class TestAsyncOperations:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `schema_id` but received ''"):
             await async_client.api_gateway.user_schemas.operations.with_raw_response.list(
                 schema_id="",
-                zone_id="zone_id",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

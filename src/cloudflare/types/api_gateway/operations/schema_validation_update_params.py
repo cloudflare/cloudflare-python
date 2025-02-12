@@ -10,6 +10,7 @@ __all__ = ["SchemaValidationUpdateParams"]
 
 class SchemaValidationUpdateParams(TypedDict, total=False):
     zone_id: Required[str]
+    """Identifier"""
 
     mitigation_action: Optional[Literal["log", "block", "none"]]
     """When set, this applies a mitigation action to this operation

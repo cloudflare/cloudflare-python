@@ -54,7 +54,6 @@ class DetectionsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        id: object | NotGiven = NOT_GIVEN,
         password: str | NotGiven = NOT_GIVEN,
         username: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -69,8 +68,6 @@ class DetectionsResource(SyncAPIResource):
 
         Args:
           zone_id: Identifier
-
-          id: The unique ID for this custom detection
 
           password: The ruleset expression to use in matching the password in a request
 
@@ -90,7 +87,6 @@ class DetectionsResource(SyncAPIResource):
             f"/zones/{zone_id}/leaked-credential-checks/detections",
             body=maybe_transform(
                 {
-                    "id": id,
                     "password": password,
                     "username": username,
                 },
@@ -111,7 +107,6 @@ class DetectionsResource(SyncAPIResource):
         detection_id: str,
         *,
         zone_id: str,
-        id: object | NotGiven = NOT_GIVEN,
         password: str | NotGiven = NOT_GIVEN,
         username: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -127,9 +122,7 @@ class DetectionsResource(SyncAPIResource):
         Args:
           zone_id: Identifier
 
-          detection_id: Identifier
-
-          id: The unique ID for this custom detection
+          detection_id: The unique ID for this custom detection
 
           password: The ruleset expression to use in matching the password in a request
 
@@ -151,7 +144,6 @@ class DetectionsResource(SyncAPIResource):
             f"/zones/{zone_id}/leaked-credential-checks/detections/{detection_id}",
             body=maybe_transform(
                 {
-                    "id": id,
                     "password": password,
                     "username": username,
                 },
@@ -221,7 +213,7 @@ class DetectionsResource(SyncAPIResource):
         Args:
           zone_id: Identifier
 
-          detection_id: Identifier
+          detection_id: The unique ID for this custom detection
 
           extra_headers: Send extra headers
 
@@ -272,7 +264,6 @@ class AsyncDetectionsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        id: object | NotGiven = NOT_GIVEN,
         password: str | NotGiven = NOT_GIVEN,
         username: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -287,8 +278,6 @@ class AsyncDetectionsResource(AsyncAPIResource):
 
         Args:
           zone_id: Identifier
-
-          id: The unique ID for this custom detection
 
           password: The ruleset expression to use in matching the password in a request
 
@@ -308,7 +297,6 @@ class AsyncDetectionsResource(AsyncAPIResource):
             f"/zones/{zone_id}/leaked-credential-checks/detections",
             body=await async_maybe_transform(
                 {
-                    "id": id,
                     "password": password,
                     "username": username,
                 },
@@ -329,7 +317,6 @@ class AsyncDetectionsResource(AsyncAPIResource):
         detection_id: str,
         *,
         zone_id: str,
-        id: object | NotGiven = NOT_GIVEN,
         password: str | NotGiven = NOT_GIVEN,
         username: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -345,9 +332,7 @@ class AsyncDetectionsResource(AsyncAPIResource):
         Args:
           zone_id: Identifier
 
-          detection_id: Identifier
-
-          id: The unique ID for this custom detection
+          detection_id: The unique ID for this custom detection
 
           password: The ruleset expression to use in matching the password in a request
 
@@ -369,7 +354,6 @@ class AsyncDetectionsResource(AsyncAPIResource):
             f"/zones/{zone_id}/leaked-credential-checks/detections/{detection_id}",
             body=await async_maybe_transform(
                 {
-                    "id": id,
                     "password": password,
                     "username": username,
                 },
@@ -439,7 +423,7 @@ class AsyncDetectionsResource(AsyncAPIResource):
         Args:
           zone_id: Identifier
 
-          detection_id: Identifier
+          detection_id: The unique ID for this custom detection
 
           extra_headers: Send extra headers
 

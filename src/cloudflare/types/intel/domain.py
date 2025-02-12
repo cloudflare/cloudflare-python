@@ -4,7 +4,16 @@ from typing import List, Optional
 
 from ..._models import BaseModel
 
-__all__ = ["Domain", "AdditionalInformation", "Application", "ContentCategory", "ResolvesToRef"]
+__all__ = [
+    "Domain",
+    "AdditionalInformation",
+    "Application",
+    "ContentCategory",
+    "InheritedContentCategory",
+    "InheritedRiskType",
+    "ResolvesToRef",
+    "RiskType",
+]
 
 
 class AdditionalInformation(BaseModel):
@@ -26,6 +35,22 @@ class ContentCategory(BaseModel):
     super_category_id: Optional[int] = None
 
 
+class InheritedContentCategory(BaseModel):
+    id: Optional[int] = None
+
+    name: Optional[str] = None
+
+    super_category_id: Optional[int] = None
+
+
+class InheritedRiskType(BaseModel):
+    id: Optional[int] = None
+
+    name: Optional[str] = None
+
+    super_category_id: Optional[int] = None
+
+
 class ResolvesToRef(BaseModel):
     id: Optional[str] = None
     """
@@ -35,6 +60,14 @@ class ResolvesToRef(BaseModel):
 
     value: Optional[str] = None
     """IP address or domain name."""
+
+
+class RiskType(BaseModel):
+    id: Optional[int] = None
+
+    name: Optional[str] = None
+
+    super_category_id: Optional[int] = None
 
 
 class Domain(BaseModel):
@@ -48,7 +81,7 @@ class Domain(BaseModel):
 
     domain: Optional[str] = None
 
-    inherited_content_categories: Optional[object] = None
+    inherited_content_categories: Optional[List[InheritedContentCategory]] = None
 
     inherited_from: Optional[str] = None
     """
@@ -56,7 +89,7 @@ class Domain(BaseModel):
     inherited, if applicable.
     """
 
-    inherited_risk_types: Optional[object] = None
+    inherited_risk_types: Optional[List[InheritedRiskType]] = None
 
     popularity_rank: Optional[int] = None
     """
@@ -76,4 +109,4 @@ class Domain(BaseModel):
     risk).
     """
 
-    risk_types: Optional[object] = None
+    risk_types: Optional[List[RiskType]] = None

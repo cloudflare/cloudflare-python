@@ -4,6 +4,7 @@ from typing import List, Optional
 from datetime import datetime
 
 from ..._models import BaseModel
+from .health_check import HealthCheck
 
 __all__ = ["CfInterconnectListResponse", "Interconnect", "InterconnectGRE"]
 
@@ -32,7 +33,7 @@ class Interconnect(BaseModel):
     gre: Optional[InterconnectGRE] = None
     """The configuration specific to GRE interconnects."""
 
-    health_check: Optional[object] = None
+    health_check: Optional[HealthCheck] = None
 
     interface_address: Optional[str] = None
     """

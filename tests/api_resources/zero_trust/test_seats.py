@@ -22,7 +22,7 @@ class TestSeats:
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         seat = client.zero_trust.seats.edit(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="699d98642c564d2e855e9661899b7252",
             body=[
                 {
                     "access_seat": False,
@@ -37,7 +37,7 @@ class TestSeats:
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.zero_trust.seats.with_raw_response.edit(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="699d98642c564d2e855e9661899b7252",
             body=[
                 {
                     "access_seat": False,
@@ -56,7 +56,7 @@ class TestSeats:
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.zero_trust.seats.with_streaming_response.edit(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="699d98642c564d2e855e9661899b7252",
             body=[
                 {
                     "access_seat": False,
@@ -96,7 +96,7 @@ class TestAsyncSeats:
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         seat = await async_client.zero_trust.seats.edit(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="699d98642c564d2e855e9661899b7252",
             body=[
                 {
                     "access_seat": False,
@@ -111,7 +111,7 @@ class TestAsyncSeats:
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.seats.with_raw_response.edit(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="699d98642c564d2e855e9661899b7252",
             body=[
                 {
                     "access_seat": False,
@@ -130,7 +130,7 @@ class TestAsyncSeats:
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.seats.with_streaming_response.edit(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="699d98642c564d2e855e9661899b7252",
             body=[
                 {
                     "access_seat": False,

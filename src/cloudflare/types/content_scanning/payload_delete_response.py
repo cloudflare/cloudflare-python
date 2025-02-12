@@ -8,7 +8,7 @@ __all__ = ["PayloadDeleteResponse"]
 
 
 class PayloadDeleteResponse(BaseModel):
-    id: Optional[object] = None
+    id: Optional[str] = None
     """The unique ID for this custom scan expression"""
 
     payload: Optional[str] = None
