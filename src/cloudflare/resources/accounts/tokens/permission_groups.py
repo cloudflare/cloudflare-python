@@ -15,6 +15,8 @@ from ...._response import (
 )
 from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import AsyncPaginator, make_request_options
+from ....types.accounts.tokens.permission_group_get_response import PermissionGroupGetResponse
+from ....types.accounts.tokens.permission_group_list_response import PermissionGroupListResponse
 
 __all__ = ["PermissionGroupsResource", "AsyncPermissionGroupsResource"]
 
@@ -49,7 +51,7 @@ class PermissionGroupsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[object]:
+    ) -> SyncSinglePage[PermissionGroupListResponse]:
         """
         Find all available permission groups for Account Owned API Tokens
 
@@ -68,11 +70,11 @@ class PermissionGroupsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/tokens/permission_groups",
-            page=SyncSinglePage[object],
+            page=SyncSinglePage[PermissionGroupListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=object,
+            model=PermissionGroupListResponse,
         )
 
     def get(
@@ -85,7 +87,7 @@ class PermissionGroupsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[object]:
+    ) -> SyncSinglePage[PermissionGroupGetResponse]:
         """
         Find all available permission groups for Account Owned API Tokens
 
@@ -104,11 +106,11 @@ class PermissionGroupsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/tokens/permission_groups",
-            page=SyncSinglePage[object],
+            page=SyncSinglePage[PermissionGroupGetResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=object,
+            model=PermissionGroupGetResponse,
         )
 
 
@@ -142,7 +144,7 @@ class AsyncPermissionGroupsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[object, AsyncSinglePage[object]]:
+    ) -> AsyncPaginator[PermissionGroupListResponse, AsyncSinglePage[PermissionGroupListResponse]]:
         """
         Find all available permission groups for Account Owned API Tokens
 
@@ -161,11 +163,11 @@ class AsyncPermissionGroupsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/tokens/permission_groups",
-            page=AsyncSinglePage[object],
+            page=AsyncSinglePage[PermissionGroupListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=object,
+            model=PermissionGroupListResponse,
         )
 
     def get(
@@ -178,7 +180,7 @@ class AsyncPermissionGroupsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[object, AsyncSinglePage[object]]:
+    ) -> AsyncPaginator[PermissionGroupGetResponse, AsyncSinglePage[PermissionGroupGetResponse]]:
         """
         Find all available permission groups for Account Owned API Tokens
 
@@ -197,11 +199,11 @@ class AsyncPermissionGroupsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/tokens/permission_groups",
-            page=AsyncSinglePage[object],
+            page=AsyncSinglePage[PermissionGroupGetResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=object,
+            model=PermissionGroupGetResponse,
         )
 
 
