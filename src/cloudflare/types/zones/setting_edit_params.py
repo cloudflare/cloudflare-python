@@ -47,6 +47,7 @@ __all__ = [
     "ZonesCacheRulesOriginMaxHTTPVersion",
     "ZonesSchemasPolish",
     "PrefetchPreload",
+    "ZonesPrivacyPass",
     "ProxyReadTimeout",
     "PseudoIPV4",
     "ZonesReplaceInsecureJS",
@@ -540,6 +541,17 @@ class PrefetchPreload(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
+class ZonesPrivacyPass(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
+    id: Required[Literal["privacy_pass"]]
+    """ID of the zone setting."""
+
+    value: Required[Literal["on", "off"]]
+    """Current value of the zone setting."""
+
+
 class ProxyReadTimeout(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -819,6 +831,7 @@ SettingEditParams: TypeAlias = Union[
     ZonesCacheRulesOriginMaxHTTPVersion,
     ZonesSchemasPolish,
     PrefetchPreload,
+    ZonesPrivacyPass,
     ProxyReadTimeout,
     PseudoIPV4,
     ZonesReplaceInsecureJS,

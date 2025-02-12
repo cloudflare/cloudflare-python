@@ -12,7 +12,7 @@ class ZoneEditParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    type: Literal["full", "partial", "secondary"]
+    type: Literal["full", "partial", "secondary", "internal"]
     """A full zone implies that DNS is hosted with Cloudflare.
 
     A partial zone is typically a partner-hosted zone or a CNAME setup. This
