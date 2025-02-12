@@ -55,6 +55,7 @@ __all__ = [
     "ZonesCacheRulesOriginH2MaxStreams",
     "ZonesCacheRulesOriginMaxHTTPVersion",
     "ZonesSchemasPolish",
+    "ZonesPrivacyPass",
     "ZonesReplaceInsecureJS",
     "ZonesSchemasResponseBuffering",
     "ZonesSchemasRocketLoader",
@@ -402,6 +403,23 @@ class ZonesSchemasPolish(BaseModel):
     """last time this setting was modified."""
 
 
+class ZonesPrivacyPass(BaseModel):
+    id: Literal["privacy_pass"]
+    """ID of the zone setting."""
+
+    value: Literal["on", "off"]
+    """Current value of the zone setting."""
+
+    editable: Optional[Literal[True, False]] = None
+    """
+    Whether or not this setting can be modified for this zone (based on your
+    Cloudflare plan level).
+    """
+
+    modified_on: Optional[datetime] = None
+    """last time this setting was modified."""
+
+
 class ZonesReplaceInsecureJS(BaseModel):
     id: Literal["replace_insecure_js"]
     """ID of the zone setting."""
@@ -626,6 +644,7 @@ SettingGetResponse: TypeAlias = Union[
     ZonesCacheRulesOriginMaxHTTPVersion,
     ZonesSchemasPolish,
     PrefetchPreload,
+    ZonesPrivacyPass,
     ProxyReadTimeout,
     PseudoIPV4,
     ZonesReplaceInsecureJS,

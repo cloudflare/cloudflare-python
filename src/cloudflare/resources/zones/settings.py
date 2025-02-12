@@ -1440,6 +1440,43 @@ class SettingsResource(SyncAPIResource):
         setting_id: str,
         *,
         zone_id: str,
+        id: Literal["privacy_pass"],
+        value: Literal["on", "off"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[SettingEditResponse]:
+        """
+        Updates a single zone setting by the identifier
+
+        Args:
+          zone_id: Identifier
+
+          setting_id: Setting name
+
+          id: ID of the zone setting.
+
+          value: Current value of the zone setting.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def edit(
+        self,
+        setting_id: str,
+        *,
+        zone_id: str,
         id: Literal["proxy_read_timeout"],
         value: float,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -2216,6 +2253,7 @@ class SettingsResource(SyncAPIResource):
         | Literal["origin_max_http_version"]
         | Literal["polish"]
         | Literal["prefetch_preload"]
+        | Literal["privacy_pass"]
         | Literal["proxy_read_timeout"]
         | Literal["pseudo_ipv4"]
         | Literal["replace_insecure_js"]
@@ -3808,6 +3846,43 @@ class AsyncSettingsResource(AsyncAPIResource):
         setting_id: str,
         *,
         zone_id: str,
+        id: Literal["privacy_pass"],
+        value: Literal["on", "off"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[SettingEditResponse]:
+        """
+        Updates a single zone setting by the identifier
+
+        Args:
+          zone_id: Identifier
+
+          setting_id: Setting name
+
+          id: ID of the zone setting.
+
+          value: Current value of the zone setting.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def edit(
+        self,
+        setting_id: str,
+        *,
+        zone_id: str,
         id: Literal["proxy_read_timeout"],
         value: float,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -4584,6 +4659,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         | Literal["origin_max_http_version"]
         | Literal["polish"]
         | Literal["prefetch_preload"]
+        | Literal["privacy_pass"]
         | Literal["proxy_read_timeout"]
         | Literal["pseudo_ipv4"]
         | Literal["replace_insecure_js"]
