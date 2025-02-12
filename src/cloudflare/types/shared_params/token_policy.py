@@ -15,6 +15,9 @@ class PermissionGroupMeta(TypedDict, total=False):
 
 
 class PermissionGroup(TypedDict, total=False):
+    id: Required[str]
+    """Identifier of the group."""
+
     meta: PermissionGroupMeta
     """Attributes associated to the permission group."""
 

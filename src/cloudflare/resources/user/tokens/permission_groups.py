@@ -15,6 +15,7 @@ from ...._response import (
 )
 from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import AsyncPaginator, make_request_options
+from ....types.user.tokens.permission_group_list_response import PermissionGroupListResponse
 
 __all__ = ["PermissionGroupsResource", "AsyncPermissionGroupsResource"]
 
@@ -48,15 +49,15 @@ class PermissionGroupsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[object]:
+    ) -> SyncSinglePage[PermissionGroupListResponse]:
         """Find all available permission groups for API Tokens"""
         return self._get_api_list(
             "/user/tokens/permission_groups",
-            page=SyncSinglePage[object],
+            page=SyncSinglePage[PermissionGroupListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=object,
+            model=PermissionGroupListResponse,
         )
 
 
@@ -89,15 +90,15 @@ class AsyncPermissionGroupsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[object, AsyncSinglePage[object]]:
+    ) -> AsyncPaginator[PermissionGroupListResponse, AsyncSinglePage[PermissionGroupListResponse]]:
         """Find all available permission groups for API Tokens"""
         return self._get_api_list(
             "/user/tokens/permission_groups",
-            page=AsyncSinglePage[object],
+            page=AsyncSinglePage[PermissionGroupListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=object,
+            model=PermissionGroupListResponse,
         )
 
 
