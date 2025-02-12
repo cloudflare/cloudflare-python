@@ -24,6 +24,7 @@ from ...types.iam import resource_group_list_params, resource_group_create_param
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.iam.resource_group_get_response import ResourceGroupGetResponse
+from ...types.iam.resource_group_list_response import ResourceGroupListResponse
 from ...types.iam.resource_group_create_response import ResourceGroupCreateResponse
 from ...types.iam.resource_group_delete_response import ResourceGroupDeleteResponse
 from ...types.iam.resource_group_update_response import ResourceGroupUpdateResponse
@@ -166,7 +167,7 @@ class ResourceGroupsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[object]:
+    ) -> SyncV4PagePaginationArray[ResourceGroupListResponse]:
         """
         List all the resource groups for an account.
 
@@ -193,7 +194,7 @@ class ResourceGroupsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/iam/resource_groups",
-            page=SyncV4PagePaginationArray[object],
+            page=SyncV4PagePaginationArray[ResourceGroupListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -209,7 +210,7 @@ class ResourceGroupsResource(SyncAPIResource):
                     resource_group_list_params.ResourceGroupListParams,
                 ),
             ),
-            model=object,
+            model=ResourceGroupListResponse,
         )
 
     def delete(
@@ -432,7 +433,7 @@ class AsyncResourceGroupsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[object, AsyncV4PagePaginationArray[object]]:
+    ) -> AsyncPaginator[ResourceGroupListResponse, AsyncV4PagePaginationArray[ResourceGroupListResponse]]:
         """
         List all the resource groups for an account.
 
@@ -459,7 +460,7 @@ class AsyncResourceGroupsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/iam/resource_groups",
-            page=AsyncV4PagePaginationArray[object],
+            page=AsyncV4PagePaginationArray[ResourceGroupListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -475,7 +476,7 @@ class AsyncResourceGroupsResource(AsyncAPIResource):
                     resource_group_list_params.ResourceGroupListParams,
                 ),
             ),
-            model=object,
+            model=ResourceGroupListResponse,
         )
 
     async def delete(
