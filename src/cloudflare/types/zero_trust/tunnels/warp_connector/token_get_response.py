@@ -2,6 +2,6 @@
 
 from typing_extensions import TypeAlias
 
-__all__ = ["WARPConnectorTokenResponse"]
+__all__ = ["TokenGetResponse"]
 
-WARPConnectorTokenResponse: TypeAlias = str
+TokenGetResponse: TypeAlias = str

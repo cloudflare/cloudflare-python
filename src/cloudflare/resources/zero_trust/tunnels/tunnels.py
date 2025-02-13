@@ -63,7 +63,9 @@ from .configurations import (
     ConfigurationsResourceWithStreamingResponse,
     AsyncConfigurationsResourceWithStreamingResponse,
 )
-from .warp_connector import (
+from ...._base_client import AsyncPaginator, make_request_options
+from ....types.zero_trust import tunnel_edit_params, tunnel_list_params, tunnel_create_params
+from .warp_connector.warp_connector import (
     WARPConnectorResource,
     AsyncWARPConnectorResource,
     WARPConnectorResourceWithRawResponse,
@@ -71,8 +73,6 @@ from .warp_connector import (
     WARPConnectorResourceWithStreamingResponse,
     AsyncWARPConnectorResourceWithStreamingResponse,
 )
-from ...._base_client import AsyncPaginator, make_request_options
-from ....types.zero_trust import tunnel_edit_params, tunnel_list_params, tunnel_create_params
 from ....types.zero_trust.tunnel_get_response import TunnelGetResponse
 from ....types.zero_trust.tunnel_edit_response import TunnelEditResponse
 from ....types.zero_trust.tunnel_list_response import TunnelListResponse
