@@ -195,7 +195,7 @@ class TunnelsResource(SyncAPIResource):
         *,
         account_id: str,
         exclude_prefix: str | NotGiven = NOT_GIVEN,
-        existed_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        existed_at: str | NotGiven = NOT_GIVEN,
         include_prefix: str | NotGiven = NOT_GIVEN,
         is_deleted: bool | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
@@ -218,8 +218,8 @@ class TunnelsResource(SyncAPIResource):
         Args:
           account_id: Cloudflare account ID
 
-          existed_at: If provided, include only tunnels that were created (and not deleted) before
-              this time.
+          existed_at: If provided, include only resources that were created (and not deleted) before
+              this time. URL encoded.
 
           is_deleted: If `true`, only include deleted tunnels. If `false`, exclude deleted tunnels. If
               empty, all tunnels will be included.
@@ -550,7 +550,7 @@ class AsyncTunnelsResource(AsyncAPIResource):
         *,
         account_id: str,
         exclude_prefix: str | NotGiven = NOT_GIVEN,
-        existed_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        existed_at: str | NotGiven = NOT_GIVEN,
         include_prefix: str | NotGiven = NOT_GIVEN,
         is_deleted: bool | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
@@ -573,8 +573,8 @@ class AsyncTunnelsResource(AsyncAPIResource):
         Args:
           account_id: Cloudflare account ID
 
-          existed_at: If provided, include only tunnels that were created (and not deleted) before
-              this time.
+          existed_at: If provided, include only resources that were created (and not deleted) before
+              this time. URL encoded.
 
           is_deleted: If `true`, only include deleted tunnels. If `false`, exclude deleted tunnels. If
               empty, all tunnels will be included.

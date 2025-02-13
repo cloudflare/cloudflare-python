@@ -79,7 +79,7 @@ class TestWARPConnector:
         warp_connector = client.zero_trust.tunnels.warp_connector.list(
             account_id="699d98642c564d2e855e9661899b7252",
             exclude_prefix="vpc1-",
-            existed_at=parse_datetime("2019-10-12T07:20:50.52Z"),
+            existed_at="2019-10-12T07%3A20%3A50.52Z",
             include_prefix="vpc1-",
             is_deleted=True,
             name="blog",
@@ -335,7 +335,7 @@ class TestAsyncWARPConnector:
         warp_connector = await async_client.zero_trust.tunnels.warp_connector.list(
             account_id="699d98642c564d2e855e9661899b7252",
             exclude_prefix="vpc1-",
-            existed_at=parse_datetime("2019-10-12T07:20:50.52Z"),
+            existed_at="2019-10-12T07%3A20%3A50.52Z",
             include_prefix="vpc1-",
             is_deleted=True,
             name="blog",
