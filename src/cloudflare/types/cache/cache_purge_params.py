@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
+from typing import Dict, List, Union, Iterable
 from typing_extensions import Required, TypeAlias, TypedDict
 
 __all__ = [
@@ -78,7 +78,7 @@ class CachePurgeSingleFileWithURLAndHeaders(TypedDict, total=False):
 
 
 class CachePurgeSingleFileWithURLAndHeadersFile(TypedDict, total=False):
-    headers: object
+    headers: Dict[str, str]
 
     url: str
 
