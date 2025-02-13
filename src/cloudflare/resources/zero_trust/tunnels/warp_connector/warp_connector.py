@@ -2,44 +2,55 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Union, cast
+from typing import Any, Union, cast
 from datetime import datetime
 from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
+from .token import (
+    TokenResource,
+    AsyncTokenResource,
+    TokenResourceWithRawResponse,
+    AsyncTokenResourceWithRawResponse,
+    TokenResourceWithStreamingResponse,
+    AsyncTokenResourceWithStreamingResponse,
+)
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._utils import (
     maybe_transform,
     async_maybe_transform,
 )
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
+from ....._compat import cached_property
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from ....._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._wrappers import ResultWrapper
-from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ...._base_client import AsyncPaginator, make_request_options
-from ....types.zero_trust.tunnels import (
+from ....._wrappers import ResultWrapper
+from .....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from ....._base_client import AsyncPaginator, make_request_options
+from .....types.zero_trust.tunnels import (
     warp_connector_edit_params,
     warp_connector_list_params,
     warp_connector_create_params,
 )
-from ....types.zero_trust.tunnels.warp_connector_get_response import WARPConnectorGetResponse
-from ....types.zero_trust.tunnels.warp_connector_edit_response import WARPConnectorEditResponse
-from ....types.zero_trust.tunnels.warp_connector_list_response import WARPConnectorListResponse
-from ....types.zero_trust.tunnels.warp_connector_token_response import WARPConnectorTokenResponse
-from ....types.zero_trust.tunnels.warp_connector_create_response import WARPConnectorCreateResponse
-from ....types.zero_trust.tunnels.warp_connector_delete_response import WARPConnectorDeleteResponse
+from .....types.zero_trust.tunnels.warp_connector_get_response import WARPConnectorGetResponse
+from .....types.zero_trust.tunnels.warp_connector_edit_response import WARPConnectorEditResponse
+from .....types.zero_trust.tunnels.warp_connector_list_response import WARPConnectorListResponse
+from .....types.zero_trust.tunnels.warp_connector_create_response import WARPConnectorCreateResponse
+from .....types.zero_trust.tunnels.warp_connector_delete_response import WARPConnectorDeleteResponse
 
 __all__ = ["WARPConnectorResource", "AsyncWARPConnectorResource"]
 
 
 class WARPConnectorResource(SyncAPIResource):
+    @cached_property
+    def token(self) -> TokenResource:
+        return TokenResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> WARPConnectorResourceWithRawResponse:
         """
@@ -355,53 +366,12 @@ class WARPConnectorResource(SyncAPIResource):
             ),
         )
 
-    def token(
-        self,
-        tunnel_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> str:
-        """
-        Gets the token used to associate warp device with a specific Warp Connector
-        tunnel.
-
-        Args:
-          account_id: Cloudflare account ID
-
-          tunnel_id: UUID of the tunnel.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not tunnel_id:
-            raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return self._get(
-            f"/accounts/{account_id}/warp_connector/{tunnel_id}/token",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[WARPConnectorTokenResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[str], ResultWrapper[str]),
-        )
-
 
 class AsyncWARPConnectorResource(AsyncAPIResource):
+    @cached_property
+    def token(self) -> AsyncTokenResource:
+        return AsyncTokenResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AsyncWARPConnectorResourceWithRawResponse:
         """
@@ -719,51 +689,6 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
             ),
         )
 
-    async def token(
-        self,
-        tunnel_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> str:
-        """
-        Gets the token used to associate warp device with a specific Warp Connector
-        tunnel.
-
-        Args:
-          account_id: Cloudflare account ID
-
-          tunnel_id: UUID of the tunnel.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not tunnel_id:
-            raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return await self._get(
-            f"/accounts/{account_id}/warp_connector/{tunnel_id}/token",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[WARPConnectorTokenResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[str], ResultWrapper[str]),
-        )
-
 
 class WARPConnectorResourceWithRawResponse:
     def __init__(self, warp_connector: WARPConnectorResource) -> None:
@@ -784,9 +709,10 @@ class WARPConnectorResourceWithRawResponse:
         self.get = to_raw_response_wrapper(
             warp_connector.get,
         )
-        self.token = to_raw_response_wrapper(
-            warp_connector.token,
-        )
+
+    @cached_property
+    def token(self) -> TokenResourceWithRawResponse:
+        return TokenResourceWithRawResponse(self._warp_connector.token)
 
 
 class AsyncWARPConnectorResourceWithRawResponse:
@@ -808,9 +734,10 @@ class AsyncWARPConnectorResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             warp_connector.get,
         )
-        self.token = async_to_raw_response_wrapper(
-            warp_connector.token,
-        )
+
+    @cached_property
+    def token(self) -> AsyncTokenResourceWithRawResponse:
+        return AsyncTokenResourceWithRawResponse(self._warp_connector.token)
 
 
 class WARPConnectorResourceWithStreamingResponse:
@@ -832,9 +759,10 @@ class WARPConnectorResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             warp_connector.get,
         )
-        self.token = to_streamed_response_wrapper(
-            warp_connector.token,
-        )
+
+    @cached_property
+    def token(self) -> TokenResourceWithStreamingResponse:
+        return TokenResourceWithStreamingResponse(self._warp_connector.token)
 
 
 class AsyncWARPConnectorResourceWithStreamingResponse:
@@ -856,6 +784,7 @@ class AsyncWARPConnectorResourceWithStreamingResponse:
         self.get = async_to_streamed_response_wrapper(
             warp_connector.get,
         )
-        self.token = async_to_streamed_response_wrapper(
-            warp_connector.token,
-        )
+
+    @cached_property
+    def token(self) -> AsyncTokenResourceWithStreamingResponse:
+        return AsyncTokenResourceWithStreamingResponse(self._warp_connector.token)
