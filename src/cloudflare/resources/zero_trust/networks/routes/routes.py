@@ -2,8 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Union, cast
-from datetime import datetime
+from typing import Type, cast
 
 import httpx
 
@@ -139,7 +138,7 @@ class RoutesResource(SyncAPIResource):
         *,
         account_id: str,
         comment: str | NotGiven = NOT_GIVEN,
-        existed_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        existed_at: str | NotGiven = NOT_GIVEN,
         is_deleted: bool | NotGiven = NOT_GIVEN,
         network_subset: str | NotGiven = NOT_GIVEN,
         network_superset: str | NotGiven = NOT_GIVEN,
@@ -164,8 +163,8 @@ class RoutesResource(SyncAPIResource):
 
           comment: Optional remark describing the route.
 
-          existed_at: If provided, include only tunnels that were created (and not deleted) before
-              this time.
+          existed_at: If provided, include only resources that were created (and not deleted) before
+              this time. URL encoded.
 
           is_deleted: If `true`, only include deleted routes. If `false`, exclude deleted routes. If
               empty, all routes will be included.
@@ -473,7 +472,7 @@ class AsyncRoutesResource(AsyncAPIResource):
         *,
         account_id: str,
         comment: str | NotGiven = NOT_GIVEN,
-        existed_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        existed_at: str | NotGiven = NOT_GIVEN,
         is_deleted: bool | NotGiven = NOT_GIVEN,
         network_subset: str | NotGiven = NOT_GIVEN,
         network_superset: str | NotGiven = NOT_GIVEN,
@@ -498,8 +497,8 @@ class AsyncRoutesResource(AsyncAPIResource):
 
           comment: Optional remark describing the route.
 
-          existed_at: If provided, include only tunnels that were created (and not deleted) before
-              this time.
+          existed_at: If provided, include only resources that were created (and not deleted) before
+              this time. URL encoded.
 
           is_deleted: If `true`, only include deleted routes. If `false`, exclude deleted routes. If
               empty, all routes will be included.

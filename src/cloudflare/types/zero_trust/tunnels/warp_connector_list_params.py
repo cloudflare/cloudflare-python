@@ -17,10 +17,10 @@ class WARPConnectorListParams(TypedDict, total=False):
 
     exclude_prefix: str
 
-    existed_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    existed_at: str
     """
-    If provided, include only tunnels that were created (and not deleted) before
-    this time.
+    If provided, include only resources that were created (and not deleted) before
+    this time. URL encoded.
     """
 
     include_prefix: str
