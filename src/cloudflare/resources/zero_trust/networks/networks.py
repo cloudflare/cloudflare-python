@@ -12,6 +12,14 @@ from .routes.routes import (
     RoutesResourceWithStreamingResponse,
     AsyncRoutesResourceWithStreamingResponse,
 )
+from .subnets.subnets import (
+    SubnetsResource,
+    AsyncSubnetsResource,
+    SubnetsResourceWithRawResponse,
+    AsyncSubnetsResourceWithRawResponse,
+    SubnetsResourceWithStreamingResponse,
+    AsyncSubnetsResourceWithStreamingResponse,
+)
 from .virtual_networks import (
     VirtualNetworksResource,
     AsyncVirtualNetworksResource,
@@ -32,6 +40,10 @@ class NetworksResource(SyncAPIResource):
     @cached_property
     def virtual_networks(self) -> VirtualNetworksResource:
         return VirtualNetworksResource(self._client)
+
+    @cached_property
+    def subnets(self) -> SubnetsResource:
+        return SubnetsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> NetworksResourceWithRawResponse:
@@ -61,6 +73,10 @@ class AsyncNetworksResource(AsyncAPIResource):
     @cached_property
     def virtual_networks(self) -> AsyncVirtualNetworksResource:
         return AsyncVirtualNetworksResource(self._client)
+
+    @cached_property
+    def subnets(self) -> AsyncSubnetsResource:
+        return AsyncSubnetsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncNetworksResourceWithRawResponse:
@@ -94,6 +110,10 @@ class NetworksResourceWithRawResponse:
     def virtual_networks(self) -> VirtualNetworksResourceWithRawResponse:
         return VirtualNetworksResourceWithRawResponse(self._networks.virtual_networks)
 
+    @cached_property
+    def subnets(self) -> SubnetsResourceWithRawResponse:
+        return SubnetsResourceWithRawResponse(self._networks.subnets)
+
 
 class AsyncNetworksResourceWithRawResponse:
     def __init__(self, networks: AsyncNetworksResource) -> None:
@@ -106,6 +126,10 @@ class AsyncNetworksResourceWithRawResponse:
     @cached_property
     def virtual_networks(self) -> AsyncVirtualNetworksResourceWithRawResponse:
         return AsyncVirtualNetworksResourceWithRawResponse(self._networks.virtual_networks)
+
+    @cached_property
+    def subnets(self) -> AsyncSubnetsResourceWithRawResponse:
+        return AsyncSubnetsResourceWithRawResponse(self._networks.subnets)
 
 
 class NetworksResourceWithStreamingResponse:
@@ -120,6 +144,10 @@ class NetworksResourceWithStreamingResponse:
     def virtual_networks(self) -> VirtualNetworksResourceWithStreamingResponse:
         return VirtualNetworksResourceWithStreamingResponse(self._networks.virtual_networks)
 
+    @cached_property
+    def subnets(self) -> SubnetsResourceWithStreamingResponse:
+        return SubnetsResourceWithStreamingResponse(self._networks.subnets)
+
 
 class AsyncNetworksResourceWithStreamingResponse:
     def __init__(self, networks: AsyncNetworksResource) -> None:
@@ -132,3 +160,7 @@ class AsyncNetworksResourceWithStreamingResponse:
     @cached_property
     def virtual_networks(self) -> AsyncVirtualNetworksResourceWithStreamingResponse:
         return AsyncVirtualNetworksResourceWithStreamingResponse(self._networks.virtual_networks)
+
+    @cached_property
+    def subnets(self) -> AsyncSubnetsResourceWithStreamingResponse:
+        return AsyncSubnetsResourceWithStreamingResponse(self._networks.subnets)
