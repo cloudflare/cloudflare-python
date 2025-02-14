@@ -6450,6 +6450,30 @@ Methods:
 - <code title="patch /accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}">client.zero_trust.networks.virtual_networks.<a href="./src/cloudflare/resources/zero_trust/networks/virtual_networks.py">edit</a>(virtual_network_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/networks/virtual_network_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/networks/virtual_network.py">VirtualNetwork</a></code>
 - <code title="get /accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}">client.zero_trust.networks.virtual_networks.<a href="./src/cloudflare/resources/zero_trust/networks/virtual_networks.py">get</a>(virtual_network_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/networks/virtual_network.py">VirtualNetwork</a></code>
 
+### Subnets
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.networks import SubnetListResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/zerotrust/subnets">client.zero_trust.networks.subnets.<a href="./src/cloudflare/resources/zero_trust/networks/subnets/subnets.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/networks/subnet_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/networks/subnet_list_response.py">SyncV4PagePaginationArray[SubnetListResponse]</a></code>
+
+#### CloudflareSource
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.networks.subnets import CloudflareSourceUpdateResponse
+```
+
+Methods:
+
+- <code title="patch /accounts/{account_id}/zerotrust/subnets/cloudflare_source/{address_family}">client.zero_trust.networks.subnets.cloudflare_source.<a href="./src/cloudflare/resources/zero_trust/networks/subnets/cloudflare_source.py">update</a>(address_family, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/networks/subnets/cloudflare_source_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/networks/subnets/cloudflare_source_update_response.py">CloudflareSourceUpdateResponse</a></code>
+
 ## RiskScoring
 
 Types:
