@@ -4,10 +4,10 @@ from typing import List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, TypeAlias
 
-from ..._models import BaseModel
-from ..shared.cloudflare_tunnel import CloudflareTunnel
+from ...._models import BaseModel
+from ...shared.cloudflare_tunnel import CloudflareTunnel
 
-__all__ = ["TunnelGetResponse", "TunnelWARPConnectorTunnel", "TunnelWARPConnectorTunnelConnection"]
+__all__ = ["CloudflaredListResponse", "TunnelWARPConnectorTunnel", "TunnelWARPConnectorTunnelConnection"]
 
 
 class TunnelWARPConnectorTunnelConnection(BaseModel):
@@ -91,4 +91,4 @@ class TunnelWARPConnectorTunnel(BaseModel):
     """The type of tunnel."""
 
 
-TunnelGetResponse: TypeAlias = Union[CloudflareTunnel, TunnelWARPConnectorTunnel]
+CloudflaredListResponse: TypeAlias = Union[CloudflareTunnel, TunnelWARPConnectorTunnel]

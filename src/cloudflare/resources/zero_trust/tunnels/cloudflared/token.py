@@ -2,58 +2,51 @@
 
 from __future__ import annotations
 
-from typing import List, Type, cast
-from typing_extensions import Literal
+from typing import Type, cast
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._compat import cached_property
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from ....._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._wrappers import ResultWrapper
-from ...._base_client import make_request_options
-from ....types.zero_trust.tunnels import management_create_params
-from ....types.zero_trust.tunnels.management_create_response import ManagementCreateResponse
+from ....._wrappers import ResultWrapper
+from ....._base_client import make_request_options
+from .....types.zero_trust.tunnels.cloudflared.token_get_response import TokenGetResponse
 
-__all__ = ["ManagementResource", "AsyncManagementResource"]
+__all__ = ["TokenResource", "AsyncTokenResource"]
 
 
-class ManagementResource(SyncAPIResource):
+class TokenResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ManagementResourceWithRawResponse:
+    def with_raw_response(self) -> TokenResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return ManagementResourceWithRawResponse(self)
+        return TokenResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ManagementResourceWithStreamingResponse:
+    def with_streaming_response(self) -> TokenResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return ManagementResourceWithStreamingResponse(self)
+        return TokenResourceWithStreamingResponse(self)
 
-    def create(
+    def get(
         self,
         tunnel_id: str,
         *,
         account_id: str,
-        resources: List[Literal["logs"]],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -61,10 +54,8 @@ class ManagementResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> str:
-        """Gets a management token used to access the management resources (i.e.
-
-        Streaming
-        Logs) of a tunnel.
+        """
+        Gets the token used to associate cloudflared with a specific tunnel.
 
         Args:
           account_id: Cloudflare account ID
@@ -83,46 +74,44 @@ class ManagementResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return self._post(
-            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/management",
-            body=maybe_transform({"resources": resources}, management_create_params.ManagementCreateParams),
+        return self._get(
+            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/token",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ManagementCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[TokenGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[str], ResultWrapper[str]),
         )
 
 
-class AsyncManagementResource(AsyncAPIResource):
+class AsyncTokenResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncManagementResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncTokenResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncManagementResourceWithRawResponse(self)
+        return AsyncTokenResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncManagementResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncTokenResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return AsyncManagementResourceWithStreamingResponse(self)
+        return AsyncTokenResourceWithStreamingResponse(self)
 
-    async def create(
+    async def get(
         self,
         tunnel_id: str,
         *,
         account_id: str,
-        resources: List[Literal["logs"]],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -130,10 +119,8 @@ class AsyncManagementResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> str:
-        """Gets a management token used to access the management resources (i.e.
-
-        Streaming
-        Logs) of a tunnel.
+        """
+        Gets the token used to associate cloudflared with a specific tunnel.
 
         Args:
           account_id: Cloudflare account ID
@@ -152,51 +139,50 @@ class AsyncManagementResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return await self._post(
-            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/management",
-            body=await async_maybe_transform({"resources": resources}, management_create_params.ManagementCreateParams),
+        return await self._get(
+            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/token",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ManagementCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[TokenGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[str], ResultWrapper[str]),
         )
 
 
-class ManagementResourceWithRawResponse:
-    def __init__(self, management: ManagementResource) -> None:
-        self._management = management
+class TokenResourceWithRawResponse:
+    def __init__(self, token: TokenResource) -> None:
+        self._token = token
 
-        self.create = to_raw_response_wrapper(
-            management.create,
+        self.get = to_raw_response_wrapper(
+            token.get,
         )
 
 
-class AsyncManagementResourceWithRawResponse:
-    def __init__(self, management: AsyncManagementResource) -> None:
-        self._management = management
+class AsyncTokenResourceWithRawResponse:
+    def __init__(self, token: AsyncTokenResource) -> None:
+        self._token = token
 
-        self.create = async_to_raw_response_wrapper(
-            management.create,
+        self.get = async_to_raw_response_wrapper(
+            token.get,
         )
 
 
-class ManagementResourceWithStreamingResponse:
-    def __init__(self, management: ManagementResource) -> None:
-        self._management = management
+class TokenResourceWithStreamingResponse:
+    def __init__(self, token: TokenResource) -> None:
+        self._token = token
 
-        self.create = to_streamed_response_wrapper(
-            management.create,
+        self.get = to_streamed_response_wrapper(
+            token.get,
         )
 
 
-class AsyncManagementResourceWithStreamingResponse:
-    def __init__(self, management: AsyncManagementResource) -> None:
-        self._management = management
+class AsyncTokenResourceWithStreamingResponse:
+    def __init__(self, token: AsyncTokenResource) -> None:
+        self._token = token
 
-        self.create = async_to_streamed_response_wrapper(
-            management.create,
+        self.get = async_to_streamed_response_wrapper(
+            token.get,
         )
