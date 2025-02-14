@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["TunnelEditParams"]
+__all__ = ["CloudflaredEditParams"]
 
 
-class TunnelEditParams(TypedDict, total=False):
+class CloudflaredEditParams(TypedDict, total=False):
     account_id: Required[str]
     """Cloudflare account ID"""
 

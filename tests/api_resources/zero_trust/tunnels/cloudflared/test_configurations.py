@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zero_trust.tunnels import (
+from cloudflare.types.zero_trust.tunnels.cloudflared import (
     ConfigurationGetResponse,
     ConfigurationUpdateResponse,
 )
@@ -22,7 +22,7 @@ class TestConfigurations:
 
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
-        configuration = client.zero_trust.tunnels.configurations.update(
+        configuration = client.zero_trust.tunnels.cloudflared.configurations.update(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -30,7 +30,7 @@ class TestConfigurations:
 
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
-        configuration = client.zero_trust.tunnels.configurations.update(
+        configuration = client.zero_trust.tunnels.cloudflared.configurations.update(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             config={
@@ -87,7 +87,7 @@ class TestConfigurations:
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
-        response = client.zero_trust.tunnels.configurations.with_raw_response.update(
+        response = client.zero_trust.tunnels.cloudflared.configurations.with_raw_response.update(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -99,7 +99,7 @@ class TestConfigurations:
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
-        with client.zero_trust.tunnels.configurations.with_streaming_response.update(
+        with client.zero_trust.tunnels.cloudflared.configurations.with_streaming_response.update(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -114,20 +114,20 @@ class TestConfigurations:
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.zero_trust.tunnels.configurations.with_raw_response.update(
+            client.zero_trust.tunnels.cloudflared.configurations.with_raw_response.update(
                 tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_id` but received ''"):
-            client.zero_trust.tunnels.configurations.with_raw_response.update(
+            client.zero_trust.tunnels.cloudflared.configurations.with_raw_response.update(
                 tunnel_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
-        configuration = client.zero_trust.tunnels.configurations.get(
+        configuration = client.zero_trust.tunnels.cloudflared.configurations.get(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -135,7 +135,7 @@ class TestConfigurations:
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
-        response = client.zero_trust.tunnels.configurations.with_raw_response.get(
+        response = client.zero_trust.tunnels.cloudflared.configurations.with_raw_response.get(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -147,7 +147,7 @@ class TestConfigurations:
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
-        with client.zero_trust.tunnels.configurations.with_streaming_response.get(
+        with client.zero_trust.tunnels.cloudflared.configurations.with_streaming_response.get(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -162,13 +162,13 @@ class TestConfigurations:
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.zero_trust.tunnels.configurations.with_raw_response.get(
+            client.zero_trust.tunnels.cloudflared.configurations.with_raw_response.get(
                 tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_id` but received ''"):
-            client.zero_trust.tunnels.configurations.with_raw_response.get(
+            client.zero_trust.tunnels.cloudflared.configurations.with_raw_response.get(
                 tunnel_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
@@ -179,7 +179,7 @@ class TestAsyncConfigurations:
 
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
-        configuration = await async_client.zero_trust.tunnels.configurations.update(
+        configuration = await async_client.zero_trust.tunnels.cloudflared.configurations.update(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -187,7 +187,7 @@ class TestAsyncConfigurations:
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        configuration = await async_client.zero_trust.tunnels.configurations.update(
+        configuration = await async_client.zero_trust.tunnels.cloudflared.configurations.update(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             config={
@@ -244,7 +244,7 @@ class TestAsyncConfigurations:
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.zero_trust.tunnels.configurations.with_raw_response.update(
+        response = await async_client.zero_trust.tunnels.cloudflared.configurations.with_raw_response.update(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -256,7 +256,7 @@ class TestAsyncConfigurations:
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.zero_trust.tunnels.configurations.with_streaming_response.update(
+        async with async_client.zero_trust.tunnels.cloudflared.configurations.with_streaming_response.update(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -271,20 +271,20 @@ class TestAsyncConfigurations:
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.zero_trust.tunnels.configurations.with_raw_response.update(
+            await async_client.zero_trust.tunnels.cloudflared.configurations.with_raw_response.update(
                 tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_id` but received ''"):
-            await async_client.zero_trust.tunnels.configurations.with_raw_response.update(
+            await async_client.zero_trust.tunnels.cloudflared.configurations.with_raw_response.update(
                 tunnel_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
-        configuration = await async_client.zero_trust.tunnels.configurations.get(
+        configuration = await async_client.zero_trust.tunnels.cloudflared.configurations.get(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -292,7 +292,7 @@ class TestAsyncConfigurations:
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.zero_trust.tunnels.configurations.with_raw_response.get(
+        response = await async_client.zero_trust.tunnels.cloudflared.configurations.with_raw_response.get(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -304,7 +304,7 @@ class TestAsyncConfigurations:
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.zero_trust.tunnels.configurations.with_streaming_response.get(
+        async with async_client.zero_trust.tunnels.cloudflared.configurations.with_streaming_response.get(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -319,13 +319,13 @@ class TestAsyncConfigurations:
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.zero_trust.tunnels.configurations.with_raw_response.get(
+            await async_client.zero_trust.tunnels.cloudflared.configurations.with_raw_response.get(
                 tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_id` but received ''"):
-            await async_client.zero_trust.tunnels.configurations.with_raw_response.get(
+            await async_client.zero_trust.tunnels.cloudflared.configurations.with_raw_response.get(
                 tunnel_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

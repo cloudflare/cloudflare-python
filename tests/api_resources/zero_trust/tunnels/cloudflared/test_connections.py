@@ -10,7 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.zero_trust.tunnels import Client
+from cloudflare.types.zero_trust.tunnels.cloudflared import Client
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -20,7 +20,7 @@ class TestConnections:
 
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
-        connection = client.zero_trust.tunnels.connections.delete(
+        connection = client.zero_trust.tunnels.cloudflared.connections.delete(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
@@ -28,7 +28,7 @@ class TestConnections:
 
     @parametrize
     def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
-        connection = client.zero_trust.tunnels.connections.delete(
+        connection = client.zero_trust.tunnels.cloudflared.connections.delete(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             client_id="1bedc50d-42b3-473c-b108-ff3d10c0d925",
@@ -37,7 +37,7 @@ class TestConnections:
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
-        response = client.zero_trust.tunnels.connections.with_raw_response.delete(
+        response = client.zero_trust.tunnels.cloudflared.connections.with_raw_response.delete(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
@@ -49,7 +49,7 @@ class TestConnections:
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
-        with client.zero_trust.tunnels.connections.with_streaming_response.delete(
+        with client.zero_trust.tunnels.cloudflared.connections.with_streaming_response.delete(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
@@ -64,20 +64,20 @@ class TestConnections:
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.zero_trust.tunnels.connections.with_raw_response.delete(
+            client.zero_trust.tunnels.cloudflared.connections.with_raw_response.delete(
                 tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_id` but received ''"):
-            client.zero_trust.tunnels.connections.with_raw_response.delete(
+            client.zero_trust.tunnels.cloudflared.connections.with_raw_response.delete(
                 tunnel_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
-        connection = client.zero_trust.tunnels.connections.get(
+        connection = client.zero_trust.tunnels.cloudflared.connections.get(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
@@ -85,7 +85,7 @@ class TestConnections:
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
-        response = client.zero_trust.tunnels.connections.with_raw_response.get(
+        response = client.zero_trust.tunnels.cloudflared.connections.with_raw_response.get(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
@@ -97,7 +97,7 @@ class TestConnections:
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
-        with client.zero_trust.tunnels.connections.with_streaming_response.get(
+        with client.zero_trust.tunnels.cloudflared.connections.with_streaming_response.get(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
@@ -112,13 +112,13 @@ class TestConnections:
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.zero_trust.tunnels.connections.with_raw_response.get(
+            client.zero_trust.tunnels.cloudflared.connections.with_raw_response.get(
                 tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_id` but received ''"):
-            client.zero_trust.tunnels.connections.with_raw_response.get(
+            client.zero_trust.tunnels.cloudflared.connections.with_raw_response.get(
                 tunnel_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
@@ -129,7 +129,7 @@ class TestAsyncConnections:
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
-        connection = await async_client.zero_trust.tunnels.connections.delete(
+        connection = await async_client.zero_trust.tunnels.cloudflared.connections.delete(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
@@ -137,7 +137,7 @@ class TestAsyncConnections:
 
     @parametrize
     async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        connection = await async_client.zero_trust.tunnels.connections.delete(
+        connection = await async_client.zero_trust.tunnels.cloudflared.connections.delete(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             client_id="1bedc50d-42b3-473c-b108-ff3d10c0d925",
@@ -146,7 +146,7 @@ class TestAsyncConnections:
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.zero_trust.tunnels.connections.with_raw_response.delete(
+        response = await async_client.zero_trust.tunnels.cloudflared.connections.with_raw_response.delete(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
@@ -158,7 +158,7 @@ class TestAsyncConnections:
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.zero_trust.tunnels.connections.with_streaming_response.delete(
+        async with async_client.zero_trust.tunnels.cloudflared.connections.with_streaming_response.delete(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
@@ -173,20 +173,20 @@ class TestAsyncConnections:
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.zero_trust.tunnels.connections.with_raw_response.delete(
+            await async_client.zero_trust.tunnels.cloudflared.connections.with_raw_response.delete(
                 tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_id` but received ''"):
-            await async_client.zero_trust.tunnels.connections.with_raw_response.delete(
+            await async_client.zero_trust.tunnels.cloudflared.connections.with_raw_response.delete(
                 tunnel_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
-        connection = await async_client.zero_trust.tunnels.connections.get(
+        connection = await async_client.zero_trust.tunnels.cloudflared.connections.get(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
@@ -194,7 +194,7 @@ class TestAsyncConnections:
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.zero_trust.tunnels.connections.with_raw_response.get(
+        response = await async_client.zero_trust.tunnels.cloudflared.connections.with_raw_response.get(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
@@ -206,7 +206,7 @@ class TestAsyncConnections:
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.zero_trust.tunnels.connections.with_streaming_response.get(
+        async with async_client.zero_trust.tunnels.cloudflared.connections.with_streaming_response.get(
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
@@ -221,13 +221,13 @@ class TestAsyncConnections:
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.zero_trust.tunnels.connections.with_raw_response.get(
+            await async_client.zero_trust.tunnels.cloudflared.connections.with_raw_response.get(
                 tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_id` but received ''"):
-            await async_client.zero_trust.tunnels.connections.with_raw_response.get(
+            await async_client.zero_trust.tunnels.cloudflared.connections.with_raw_response.get(
                 tunnel_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )

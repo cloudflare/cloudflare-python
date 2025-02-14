@@ -6,12 +6,12 @@ from typing import Union
 from datetime import datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
-from ..._utils import PropertyInfo
+from ...._utils import PropertyInfo
 
-__all__ = ["TunnelListParams"]
+__all__ = ["CloudflaredListParams"]
 
 
-class TunnelListParams(TypedDict, total=False):
+class CloudflaredListParams(TypedDict, total=False):
     account_id: Required[str]
     """Cloudflare account ID"""
 
@@ -32,7 +32,7 @@ class TunnelListParams(TypedDict, total=False):
     """
 
     name: str
-    """A user-friendly name for the tunnel."""
+    """A user-friendly name for a tunnel."""
 
     page: float
     """Page number of paginated results."""
@@ -48,9 +48,6 @@ class TunnelListParams(TypedDict, total=False):
     is active and able to serve traffic), or `down` (tunnel can not serve traffic as
     it has no connections to the Cloudflare Edge).
     """
-
-    tun_types: str
-    """The types of tunnels to filter separated by a comma."""
 
     uuid: str
     """UUID of the tunnel."""
