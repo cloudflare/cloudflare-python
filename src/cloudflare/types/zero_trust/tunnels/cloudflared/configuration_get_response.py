@@ -6,10 +6,10 @@ from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
-from ...._models import BaseModel
+from ....._models import BaseModel
 
 __all__ = [
-    "ConfigurationUpdateResponse",
+    "ConfigurationGetResponse",
     "Config",
     "ConfigIngress",
     "ConfigIngressOriginRequest",
@@ -242,7 +242,7 @@ class Config(BaseModel):
     """
 
 
-class ConfigurationUpdateResponse(BaseModel):
+class ConfigurationGetResponse(BaseModel):
     account_id: Optional[str] = None
     """Identifier"""
 

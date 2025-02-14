@@ -6,70 +6,73 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._utils import (
     maybe_transform,
     async_maybe_transform,
 )
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
+from ....._compat import cached_property
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from ....._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._wrappers import ResultWrapper
-from ...._base_client import make_request_options
-from ....types.zero_trust.tunnels import configuration_update_params
-from ....types.zero_trust.tunnels.configuration_get_response import ConfigurationGetResponse
-from ....types.zero_trust.tunnels.configuration_update_response import ConfigurationUpdateResponse
+from ....._wrappers import ResultWrapper
+from .....pagination import SyncSinglePage, AsyncSinglePage
+from ....._base_client import AsyncPaginator, make_request_options
+from .....types.zero_trust.tunnels.cloudflared import connection_delete_params
+from .....types.zero_trust.tunnels.cloudflared.client import Client
 
-__all__ = ["ConfigurationsResource", "AsyncConfigurationsResource"]
+__all__ = ["ConnectionsResource", "AsyncConnectionsResource"]
 
 
-class ConfigurationsResource(SyncAPIResource):
+class ConnectionsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ConfigurationsResourceWithRawResponse:
+    def with_raw_response(self) -> ConnectionsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return ConfigurationsResourceWithRawResponse(self)
+        return ConnectionsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ConfigurationsResourceWithStreamingResponse:
+    def with_streaming_response(self) -> ConnectionsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return ConfigurationsResourceWithStreamingResponse(self)
+        return ConnectionsResourceWithStreamingResponse(self)
 
-    def update(
+    def delete(
         self,
         tunnel_id: str,
         *,
         account_id: str,
-        config: configuration_update_params.Config | NotGiven = NOT_GIVEN,
+        client_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ConfigurationUpdateResponse]:
+    ) -> object:
         """
-        Adds or updates the configuration for a remotely-managed tunnel.
+        Removes a connection (aka Cloudflare Tunnel Connector) from a Cloudflare Tunnel
+        independently of its current state. If no connector id (client_id) is provided
+        all connectors will be removed. We recommend running this command after rotating
+        tokens.
 
         Args:
-          account_id: Identifier
+          account_id: Cloudflare account ID
 
           tunnel_id: UUID of the tunnel.
 
-          config: The tunnel configuration and ingress rules.
+          client_id: UUID of the Cloudflare Tunnel connector.
 
           extra_headers: Send extra headers
 
@@ -83,17 +86,17 @@ class ConfigurationsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return self._put(
-            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/configurations",
-            body=maybe_transform({"config": config}, configuration_update_params.ConfigurationUpdateParams),
+        return self._delete(
+            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/connections",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ConfigurationUpdateResponse]]._unwrapper,
+                query=maybe_transform({"client_id": client_id}, connection_delete_params.ConnectionDeleteParams),
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ConfigurationUpdateResponse]], ResultWrapper[ConfigurationUpdateResponse]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def get(
@@ -107,12 +110,12 @@ class ConfigurationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ConfigurationGetResponse]:
+    ) -> SyncSinglePage[Client]:
         """
-        Gets the configuration for a remotely-managed tunnel
+        Fetches connection details for a Cloudflare Tunnel.
 
         Args:
-          account_id: Identifier
+          account_id: Cloudflare account ID
 
           tunnel_id: UUID of the tunnel.
 
@@ -128,61 +131,61 @@ class ConfigurationsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return self._get(
-            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/configurations",
+        return self._get_api_list(
+            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/connections",
+            page=SyncSinglePage[Client],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ConfigurationGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[ConfigurationGetResponse]], ResultWrapper[ConfigurationGetResponse]),
+            model=Client,
         )
 
 
-class AsyncConfigurationsResource(AsyncAPIResource):
+class AsyncConnectionsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncConfigurationsResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncConnectionsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncConfigurationsResourceWithRawResponse(self)
+        return AsyncConnectionsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncConfigurationsResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncConnectionsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return AsyncConfigurationsResourceWithStreamingResponse(self)
+        return AsyncConnectionsResourceWithStreamingResponse(self)
 
-    async def update(
+    async def delete(
         self,
         tunnel_id: str,
         *,
         account_id: str,
-        config: configuration_update_params.Config | NotGiven = NOT_GIVEN,
+        client_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ConfigurationUpdateResponse]:
+    ) -> object:
         """
-        Adds or updates the configuration for a remotely-managed tunnel.
+        Removes a connection (aka Cloudflare Tunnel Connector) from a Cloudflare Tunnel
+        independently of its current state. If no connector id (client_id) is provided
+        all connectors will be removed. We recommend running this command after rotating
+        tokens.
 
         Args:
-          account_id: Identifier
+          account_id: Cloudflare account ID
 
           tunnel_id: UUID of the tunnel.
 
-          config: The tunnel configuration and ingress rules.
+          client_id: UUID of the Cloudflare Tunnel connector.
 
           extra_headers: Send extra headers
 
@@ -196,20 +199,22 @@ class AsyncConfigurationsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return await self._put(
-            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/configurations",
-            body=await async_maybe_transform({"config": config}, configuration_update_params.ConfigurationUpdateParams),
+        return await self._delete(
+            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/connections",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ConfigurationUpdateResponse]]._unwrapper,
+                query=await async_maybe_transform(
+                    {"client_id": client_id}, connection_delete_params.ConnectionDeleteParams
+                ),
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ConfigurationUpdateResponse]], ResultWrapper[ConfigurationUpdateResponse]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
-    async def get(
+    def get(
         self,
         tunnel_id: str,
         *,
@@ -220,12 +225,12 @@ class AsyncConfigurationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ConfigurationGetResponse]:
+    ) -> AsyncPaginator[Client, AsyncSinglePage[Client]]:
         """
-        Gets the configuration for a remotely-managed tunnel
+        Fetches connection details for a Cloudflare Tunnel.
 
         Args:
-          account_id: Identifier
+          account_id: Cloudflare account ID
 
           tunnel_id: UUID of the tunnel.
 
@@ -241,62 +246,59 @@ class AsyncConfigurationsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
             raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return await self._get(
-            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/configurations",
+        return self._get_api_list(
+            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/connections",
+            page=AsyncSinglePage[Client],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ConfigurationGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[ConfigurationGetResponse]], ResultWrapper[ConfigurationGetResponse]),
+            model=Client,
         )
 
 
-class ConfigurationsResourceWithRawResponse:
-    def __init__(self, configurations: ConfigurationsResource) -> None:
-        self._configurations = configurations
+class ConnectionsResourceWithRawResponse:
+    def __init__(self, connections: ConnectionsResource) -> None:
+        self._connections = connections
 
-        self.update = to_raw_response_wrapper(
-            configurations.update,
+        self.delete = to_raw_response_wrapper(
+            connections.delete,
         )
         self.get = to_raw_response_wrapper(
-            configurations.get,
+            connections.get,
         )
 
 
-class AsyncConfigurationsResourceWithRawResponse:
-    def __init__(self, configurations: AsyncConfigurationsResource) -> None:
-        self._configurations = configurations
+class AsyncConnectionsResourceWithRawResponse:
+    def __init__(self, connections: AsyncConnectionsResource) -> None:
+        self._connections = connections
 
-        self.update = async_to_raw_response_wrapper(
-            configurations.update,
+        self.delete = async_to_raw_response_wrapper(
+            connections.delete,
         )
         self.get = async_to_raw_response_wrapper(
-            configurations.get,
+            connections.get,
         )
 
 
-class ConfigurationsResourceWithStreamingResponse:
-    def __init__(self, configurations: ConfigurationsResource) -> None:
-        self._configurations = configurations
+class ConnectionsResourceWithStreamingResponse:
+    def __init__(self, connections: ConnectionsResource) -> None:
+        self._connections = connections
 
-        self.update = to_streamed_response_wrapper(
-            configurations.update,
+        self.delete = to_streamed_response_wrapper(
+            connections.delete,
         )
         self.get = to_streamed_response_wrapper(
-            configurations.get,
+            connections.get,
         )
 
 
-class AsyncConfigurationsResourceWithStreamingResponse:
-    def __init__(self, configurations: AsyncConfigurationsResource) -> None:
-        self._configurations = configurations
+class AsyncConnectionsResourceWithStreamingResponse:
+    def __init__(self, connections: AsyncConnectionsResource) -> None:
+        self._connections = connections
 
-        self.update = async_to_streamed_response_wrapper(
-            configurations.update,
+        self.delete = async_to_streamed_response_wrapper(
+            connections.delete,
         )
         self.get = async_to_streamed_response_wrapper(
-            configurations.get,
+            connections.get,
         )
