@@ -47,8 +47,8 @@ body:
   - type: input
     id: language-version
     attributes:
-      label: Go version
-      placeholder: Go 1.22.0
+      label: Python version
+      placeholder: 3.9.0
     validations:
       required: true
   - type: input
