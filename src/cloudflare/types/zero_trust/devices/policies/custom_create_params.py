@@ -51,6 +51,13 @@ class CustomCreateParams(TypedDict, total=False):
     option is set to `true`.
     """
 
+    doh_in_tunnel: bool
+    """Determines how the WARP client sends DNS requests to Cloudflare Gateway.
+
+    When `true`, DNS traffic is sent over DoH inside the WARP tunnel. When `false`,
+    the DoH connection operates outside of the WARP tunnel.
+    """
+
     enabled: bool
     """Whether the policy will be applied to matching devices."""
 
@@ -69,6 +76,12 @@ class CustomCreateParams(TypedDict, total=False):
     """The size of the subnet for the local access network.
 
     Note that this field is omitted from the response if null or unset.
+    """
+
+    register_interface_ip_with_dns: bool
+    """
+    Determines if the operating system will register WARP's local interface IP with
+    your on-premises DNS server.
     """
 
     service_mode_v2: ServiceModeV2
