@@ -521,17 +521,6 @@ class TestRules:
         assert_matches_type(FirewallRule, rule, path=["response"])
 
     @parametrize
-    def test_method_get_with_all_params(self, client: Cloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            rule = client.firewall.rules.get(
-                rule_id="372e67954025e0ba6aaa6d586b9e0b60",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="372e67954025e0ba6aaa6d586b9e0b60",
-            )
-
-        assert_matches_type(FirewallRule, rule, path=["response"])
-
-    @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = client.firewall.rules.with_raw_response.get(
@@ -1072,17 +1061,6 @@ class TestAsyncRules:
             rule = await async_client.firewall.rules.get(
                 rule_id="372e67954025e0ba6aaa6d586b9e0b60",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            )
-
-        assert_matches_type(FirewallRule, rule, path=["response"])
-
-    @parametrize
-    async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            rule = await async_client.firewall.rules.get(
-                rule_id="372e67954025e0ba6aaa6d586b9e0b60",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="372e67954025e0ba6aaa6d586b9e0b60",
             )
 
         assert_matches_type(FirewallRule, rule, path=["response"])

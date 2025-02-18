@@ -1668,7 +1668,7 @@ Methods:
 - <code title="patch /zones/{zone_id}/firewall/rules">client.firewall.rules.<a href="./src/cloudflare/resources/firewall/rules.py">bulk_edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/firewall/rule_bulk_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/firewall/firewall_rule.py">SyncSinglePage[FirewallRule]</a></code>
 - <code title="put /zones/{zone_id}/firewall/rules">client.firewall.rules.<a href="./src/cloudflare/resources/firewall/rules.py">bulk_update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/firewall/rule_bulk_update_params.py">params</a>) -> <a href="./src/cloudflare/types/firewall/firewall_rule.py">SyncSinglePage[FirewallRule]</a></code>
 - <code title="patch /zones/{zone_id}/firewall/rules/{rule_id}">client.firewall.rules.<a href="./src/cloudflare/resources/firewall/rules.py">edit</a>(rule_id, \*, zone_id) -> <a href="./src/cloudflare/types/firewall/firewall_rule.py">SyncSinglePage[FirewallRule]</a></code>
-- <code title="get /zones/{zone_id}/firewall/rules/{rule_id}">client.firewall.rules.<a href="./src/cloudflare/resources/firewall/rules.py">get</a>(rule_id, \*, zone_id, \*\*<a href="src/cloudflare/types/firewall/rule_get_params.py">params</a>) -> <a href="./src/cloudflare/types/firewall/firewall_rule.py">FirewallRule</a></code>
+- <code title="get /zones/{zone_id}/firewall/rules/{rule_id}">client.firewall.rules.<a href="./src/cloudflare/resources/firewall/rules.py">get</a>(rule_id, \*, zone_id) -> <a href="./src/cloudflare/types/firewall/firewall_rule.py">FirewallRule</a></code>
 
 ## AccessRules
 
