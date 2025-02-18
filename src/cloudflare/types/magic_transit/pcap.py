@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Optional
+from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
@@ -15,6 +16,13 @@ class PCAP(BaseModel):
 
     filter_v1: Optional[PCAPFilter] = None
     """The packet capture filter. When this field is empty, all packets are captured."""
+
+    offset_time: Optional[datetime] = None
+    """The RFC 3339 offset timestamp from which to query backwards for packets.
+
+    Must be within the last 24h. When this field is empty, defaults to time of
+    request.
+    """
 
     status: Optional[
         Literal[
