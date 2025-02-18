@@ -98,10 +98,12 @@ class CustomResource(SyncAPIResource):
         captive_portal: float | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         disable_auto_fallback: bool | NotGiven = NOT_GIVEN,
+        doh_in_tunnel: bool | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         exclude_office_ips: bool | NotGiven = NOT_GIVEN,
         lan_allow_minutes: float | NotGiven = NOT_GIVEN,
         lan_allow_subnet_size: float | NotGiven = NOT_GIVEN,
+        register_interface_ip_with_dns: bool | NotGiven = NOT_GIVEN,
         service_mode_v2: custom_create_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
         support_url: str | NotGiven = NOT_GIVEN,
         switch_locked: bool | NotGiven = NOT_GIVEN,
@@ -142,6 +144,10 @@ class CustomResource(SyncAPIResource):
               fall back to a best guess of the default/system DNS resolvers unless this policy
               option is set to `true`.
 
+          doh_in_tunnel: Determines how the WARP client sends DNS requests to Cloudflare Gateway. When
+              `true`, DNS traffic is sent over DoH inside the WARP tunnel. When `false`, the
+              DoH connection operates outside of the WARP tunnel.
+
           enabled: Whether the policy will be applied to matching devices.
 
           exclude_office_ips: Whether to add Microsoft IPs to Split Tunnel exclusions.
@@ -153,6 +159,9 @@ class CustomResource(SyncAPIResource):
 
           lan_allow_subnet_size: The size of the subnet for the local access network. Note that this field is
               omitted from the response if null or unset.
+
+          register_interface_ip_with_dns: Determines if the operating system will register WARP's local interface IP with
+              your on-premises DNS server.
 
           support_url: The URL to launch when the Send Feedback button is clicked.
 
@@ -184,10 +193,12 @@ class CustomResource(SyncAPIResource):
                     "captive_portal": captive_portal,
                     "description": description,
                     "disable_auto_fallback": disable_auto_fallback,
+                    "doh_in_tunnel": doh_in_tunnel,
                     "enabled": enabled,
                     "exclude_office_ips": exclude_office_ips,
                     "lan_allow_minutes": lan_allow_minutes,
                     "lan_allow_subnet_size": lan_allow_subnet_size,
+                    "register_interface_ip_with_dns": register_interface_ip_with_dns,
                     "service_mode_v2": service_mode_v2,
                     "support_url": support_url,
                     "switch_locked": switch_locked,
@@ -292,11 +303,13 @@ class CustomResource(SyncAPIResource):
         captive_portal: float | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         disable_auto_fallback: bool | NotGiven = NOT_GIVEN,
+        doh_in_tunnel: bool | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         exclude_office_ips: bool | NotGiven = NOT_GIVEN,
         match: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         precedence: float | NotGiven = NOT_GIVEN,
+        register_interface_ip_with_dns: bool | NotGiven = NOT_GIVEN,
         service_mode_v2: custom_edit_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
         support_url: str | NotGiven = NOT_GIVEN,
         switch_locked: bool | NotGiven = NOT_GIVEN,
@@ -331,6 +344,10 @@ class CustomResource(SyncAPIResource):
               fall back to a best guess of the default/system DNS resolvers unless this policy
               option is set to `true`.
 
+          doh_in_tunnel: Determines how the WARP client sends DNS requests to Cloudflare Gateway. When
+              `true`, DNS traffic is sent over DoH inside the WARP tunnel. When `false`, the
+              DoH connection operates outside of the WARP tunnel.
+
           enabled: Whether the policy will be applied to matching devices.
 
           exclude_office_ips: Whether to add Microsoft IPs to Split Tunnel exclusions.
@@ -341,6 +358,9 @@ class CustomResource(SyncAPIResource):
 
           precedence: The precedence of the policy. Lower values indicate higher precedence. Policies
               will be evaluated in ascending order of this field.
+
+          register_interface_ip_with_dns: Determines if the operating system will register WARP's local interface IP with
+              your on-premises DNS server.
 
           support_url: The URL to launch when the Send Feedback button is clicked.
 
@@ -371,11 +391,13 @@ class CustomResource(SyncAPIResource):
                     "captive_portal": captive_portal,
                     "description": description,
                     "disable_auto_fallback": disable_auto_fallback,
+                    "doh_in_tunnel": doh_in_tunnel,
                     "enabled": enabled,
                     "exclude_office_ips": exclude_office_ips,
                     "match": match,
                     "name": name,
                     "precedence": precedence,
+                    "register_interface_ip_with_dns": register_interface_ip_with_dns,
                     "service_mode_v2": service_mode_v2,
                     "support_url": support_url,
                     "switch_locked": switch_locked,
@@ -482,10 +504,12 @@ class AsyncCustomResource(AsyncAPIResource):
         captive_portal: float | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         disable_auto_fallback: bool | NotGiven = NOT_GIVEN,
+        doh_in_tunnel: bool | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         exclude_office_ips: bool | NotGiven = NOT_GIVEN,
         lan_allow_minutes: float | NotGiven = NOT_GIVEN,
         lan_allow_subnet_size: float | NotGiven = NOT_GIVEN,
+        register_interface_ip_with_dns: bool | NotGiven = NOT_GIVEN,
         service_mode_v2: custom_create_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
         support_url: str | NotGiven = NOT_GIVEN,
         switch_locked: bool | NotGiven = NOT_GIVEN,
@@ -526,6 +550,10 @@ class AsyncCustomResource(AsyncAPIResource):
               fall back to a best guess of the default/system DNS resolvers unless this policy
               option is set to `true`.
 
+          doh_in_tunnel: Determines how the WARP client sends DNS requests to Cloudflare Gateway. When
+              `true`, DNS traffic is sent over DoH inside the WARP tunnel. When `false`, the
+              DoH connection operates outside of the WARP tunnel.
+
           enabled: Whether the policy will be applied to matching devices.
 
           exclude_office_ips: Whether to add Microsoft IPs to Split Tunnel exclusions.
@@ -537,6 +565,9 @@ class AsyncCustomResource(AsyncAPIResource):
 
           lan_allow_subnet_size: The size of the subnet for the local access network. Note that this field is
               omitted from the response if null or unset.
+
+          register_interface_ip_with_dns: Determines if the operating system will register WARP's local interface IP with
+              your on-premises DNS server.
 
           support_url: The URL to launch when the Send Feedback button is clicked.
 
@@ -568,10 +599,12 @@ class AsyncCustomResource(AsyncAPIResource):
                     "captive_portal": captive_portal,
                     "description": description,
                     "disable_auto_fallback": disable_auto_fallback,
+                    "doh_in_tunnel": doh_in_tunnel,
                     "enabled": enabled,
                     "exclude_office_ips": exclude_office_ips,
                     "lan_allow_minutes": lan_allow_minutes,
                     "lan_allow_subnet_size": lan_allow_subnet_size,
+                    "register_interface_ip_with_dns": register_interface_ip_with_dns,
                     "service_mode_v2": service_mode_v2,
                     "support_url": support_url,
                     "switch_locked": switch_locked,
@@ -676,11 +709,13 @@ class AsyncCustomResource(AsyncAPIResource):
         captive_portal: float | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         disable_auto_fallback: bool | NotGiven = NOT_GIVEN,
+        doh_in_tunnel: bool | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         exclude_office_ips: bool | NotGiven = NOT_GIVEN,
         match: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         precedence: float | NotGiven = NOT_GIVEN,
+        register_interface_ip_with_dns: bool | NotGiven = NOT_GIVEN,
         service_mode_v2: custom_edit_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
         support_url: str | NotGiven = NOT_GIVEN,
         switch_locked: bool | NotGiven = NOT_GIVEN,
@@ -715,6 +750,10 @@ class AsyncCustomResource(AsyncAPIResource):
               fall back to a best guess of the default/system DNS resolvers unless this policy
               option is set to `true`.
 
+          doh_in_tunnel: Determines how the WARP client sends DNS requests to Cloudflare Gateway. When
+              `true`, DNS traffic is sent over DoH inside the WARP tunnel. When `false`, the
+              DoH connection operates outside of the WARP tunnel.
+
           enabled: Whether the policy will be applied to matching devices.
 
           exclude_office_ips: Whether to add Microsoft IPs to Split Tunnel exclusions.
@@ -725,6 +764,9 @@ class AsyncCustomResource(AsyncAPIResource):
 
           precedence: The precedence of the policy. Lower values indicate higher precedence. Policies
               will be evaluated in ascending order of this field.
+
+          register_interface_ip_with_dns: Determines if the operating system will register WARP's local interface IP with
+              your on-premises DNS server.
 
           support_url: The URL to launch when the Send Feedback button is clicked.
 
@@ -755,11 +797,13 @@ class AsyncCustomResource(AsyncAPIResource):
                     "captive_portal": captive_portal,
                     "description": description,
                     "disable_auto_fallback": disable_auto_fallback,
+                    "doh_in_tunnel": doh_in_tunnel,
                     "enabled": enabled,
                     "exclude_office_ips": exclude_office_ips,
                     "match": match,
                     "name": name,
                     "precedence": precedence,
+                    "register_interface_ip_with_dns": register_interface_ip_with_dns,
                     "service_mode_v2": service_mode_v2,
                     "support_url": support_url,
                     "switch_locked": switch_locked,

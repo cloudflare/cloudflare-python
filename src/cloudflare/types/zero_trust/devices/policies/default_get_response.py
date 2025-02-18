@@ -47,6 +47,13 @@ class DefaultGetResponse(BaseModel):
     option is set to `true`.
     """
 
+    doh_in_tunnel: Optional[bool] = None
+    """Determines how the WARP client sends DNS requests to Cloudflare Gateway.
+
+    When `true`, DNS traffic is sent over DoH inside the WARP tunnel. When `false`,
+    the DoH connection operates outside of the WARP tunnel.
+    """
+
     enabled: Optional[bool] = None
     """Whether the policy will be applied to matching devices."""
 
@@ -60,6 +67,12 @@ class DefaultGetResponse(BaseModel):
     gateway_unique_id: Optional[str] = None
 
     include: Optional[List[SplitTunnelInclude]] = None
+
+    register_interface_ip_with_dns: Optional[bool] = None
+    """
+    Determines if the operating system will register WARP's local interface IP with
+    your on-premises DNS server.
+    """
 
     service_mode_v2: Optional[ServiceModeV2] = None
 
