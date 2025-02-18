@@ -3,8 +3,10 @@
 from __future__ import annotations
 
 from typing import Union
-from typing_extensions import Literal, Required, TypeAlias, TypedDict
+from datetime import datetime
+from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
+from ..._utils import PropertyInfo
 from .pcap_filter_param import PCAPFilterParam
 
 __all__ = ["PCAPCreateParams", "MagicVisibilityPCAPsPCAPsRequestSimple", "MagicVisibilityPCAPsPCAPsRequestFull"]
@@ -32,6 +34,13 @@ class MagicVisibilityPCAPsPCAPsRequestSimple(TypedDict, total=False):
 
     filter_v1: PCAPFilterParam
     """The packet capture filter. When this field is empty, all packets are captured."""
+
+    offset_time: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """The RFC 3339 offset timestamp from which to query backwards for packets.
+
+    Must be within the last 24h. When this field is empty, defaults to time of
+    request.
+    """
 
 
 class MagicVisibilityPCAPsPCAPsRequestFull(TypedDict, total=False):
