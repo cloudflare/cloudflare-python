@@ -35,8 +35,21 @@ class DefaultEditParams(TypedDict, total=False):
     option is set to `true`.
     """
 
+    doh_in_tunnel: bool
+    """Determines how the WARP client sends DNS requests to Cloudflare Gateway.
+
+    When `true`, DNS traffic is sent over DoH inside the WARP tunnel. When `false`,
+    the DoH connection operates outside of the WARP tunnel.
+    """
+
     exclude_office_ips: bool
     """Whether to add Microsoft IPs to Split Tunnel exclusions."""
+
+    register_interface_ip_with_dns: bool
+    """
+    Determines if the operating system will register WARP's local interface IP with
+    your on-premises DNS server.
+    """
 
     service_mode_v2: ServiceModeV2
 
