@@ -73,13 +73,13 @@ class TestVersions:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.versions.with_raw_response.list(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.versions.with_raw_response.list(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -152,14 +152,14 @@ class TestVersions:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.versions.with_raw_response.delete(
                 ruleset_version="1",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.versions.with_raw_response.delete(
                 ruleset_version="1",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -233,14 +233,14 @@ class TestVersions:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.versions.with_raw_response.get(
                 ruleset_version="1",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.versions.with_raw_response.get(
                 ruleset_version="1",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -306,13 +306,13 @@ class TestAsyncVersions:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.versions.with_raw_response.list(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.versions.with_raw_response.list(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -385,14 +385,14 @@ class TestAsyncVersions:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.versions.with_raw_response.delete(
                 ruleset_version="1",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.versions.with_raw_response.delete(
                 ruleset_version="1",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -466,14 +466,14 @@ class TestAsyncVersions:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.versions.with_raw_response.get(
                 ruleset_version="1",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.versions.with_raw_response.get(
                 ruleset_version="1",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",

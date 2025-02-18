@@ -42,6 +42,7 @@ class TestPredefined:
                     "enabled": True,
                 }
             ],
+            ai_context_enabled=True,
             allowed_match_count=0,
             confidence_threshold="confidence_threshold",
             context_awareness={
@@ -193,6 +194,7 @@ class TestAsyncPredefined:
                     "enabled": True,
                 }
             ],
+            ai_context_enabled=True,
             allowed_match_count=0,
             confidence_threshold="confidence_threshold",
             context_awareness={

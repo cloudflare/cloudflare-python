@@ -5,7 +5,18 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 
-__all__ = ["SettingGetResponse", "ZoneDefaults", "ZoneDefaultsNameservers", "ZoneDefaultsSOA"]
+__all__ = [
+    "SettingGetResponse",
+    "ZoneDefaults",
+    "ZoneDefaultsInternalDNS",
+    "ZoneDefaultsNameservers",
+    "ZoneDefaultsSOA",
+]
+
+
+class ZoneDefaultsInternalDNS(BaseModel):
+    reference_zone_id: Optional[str] = None
+    """The ID of the zone to fallback to."""
 
 
 class ZoneDefaultsNameservers(BaseModel):
@@ -58,6 +69,9 @@ class ZoneDefaults(BaseModel):
 
     foundation_dns: Optional[bool] = None
     """Whether to enable Foundation DNS Advanced Nameservers on the zone."""
+
+    internal_dns: Optional[ZoneDefaultsInternalDNS] = None
+    """Settings for this internal zone."""
 
     multi_provider: Optional[bool] = None
     """

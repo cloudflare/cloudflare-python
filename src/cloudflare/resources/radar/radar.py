@@ -116,6 +116,14 @@ from .tcp_resets_timeouts import (
     TCPResetsTimeoutsResourceWithStreamingResponse,
     AsyncTCPResetsTimeoutsResourceWithStreamingResponse,
 )
+from .robots_txt.robots_txt import (
+    RobotsTXTResource,
+    AsyncRobotsTXTResource,
+    RobotsTXTResourceWithRawResponse,
+    AsyncRobotsTXTResourceWithRawResponse,
+    RobotsTXTResourceWithStreamingResponse,
+    AsyncRobotsTXTResourceWithStreamingResponse,
+)
 from .annotations.annotations import (
     AnnotationsResource,
     AsyncAnnotationsResource,
@@ -214,9 +222,13 @@ class RadarResource(SyncAPIResource):
         return TCPResetsTimeoutsResource(self._client)
 
     @cached_property
+    def robots_txt(self) -> RobotsTXTResource:
+        return RobotsTXTResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> RadarResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -303,9 +315,13 @@ class AsyncRadarResource(AsyncAPIResource):
         return AsyncTCPResetsTimeoutsResource(self._client)
 
     @cached_property
+    def robots_txt(self) -> AsyncRobotsTXTResource:
+        return AsyncRobotsTXTResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AsyncRadarResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -394,6 +410,10 @@ class RadarResourceWithRawResponse:
     def tcp_resets_timeouts(self) -> TCPResetsTimeoutsResourceWithRawResponse:
         return TCPResetsTimeoutsResourceWithRawResponse(self._radar.tcp_resets_timeouts)
 
+    @cached_property
+    def robots_txt(self) -> RobotsTXTResourceWithRawResponse:
+        return RobotsTXTResourceWithRawResponse(self._radar.robots_txt)
+
 
 class AsyncRadarResourceWithRawResponse:
     def __init__(self, radar: AsyncRadarResource) -> None:
@@ -466,6 +486,10 @@ class AsyncRadarResourceWithRawResponse:
     @cached_property
     def tcp_resets_timeouts(self) -> AsyncTCPResetsTimeoutsResourceWithRawResponse:
         return AsyncTCPResetsTimeoutsResourceWithRawResponse(self._radar.tcp_resets_timeouts)
+
+    @cached_property
+    def robots_txt(self) -> AsyncRobotsTXTResourceWithRawResponse:
+        return AsyncRobotsTXTResourceWithRawResponse(self._radar.robots_txt)
 
 
 class RadarResourceWithStreamingResponse:
@@ -540,6 +564,10 @@ class RadarResourceWithStreamingResponse:
     def tcp_resets_timeouts(self) -> TCPResetsTimeoutsResourceWithStreamingResponse:
         return TCPResetsTimeoutsResourceWithStreamingResponse(self._radar.tcp_resets_timeouts)
 
+    @cached_property
+    def robots_txt(self) -> RobotsTXTResourceWithStreamingResponse:
+        return RobotsTXTResourceWithStreamingResponse(self._radar.robots_txt)
+
 
 class AsyncRadarResourceWithStreamingResponse:
     def __init__(self, radar: AsyncRadarResource) -> None:
@@ -612,3 +640,7 @@ class AsyncRadarResourceWithStreamingResponse:
     @cached_property
     def tcp_resets_timeouts(self) -> AsyncTCPResetsTimeoutsResourceWithStreamingResponse:
         return AsyncTCPResetsTimeoutsResourceWithStreamingResponse(self._radar.tcp_resets_timeouts)
+
+    @cached_property
+    def robots_txt(self) -> AsyncRobotsTXTResourceWithStreamingResponse:
+        return AsyncRobotsTXTResourceWithStreamingResponse(self._radar.robots_txt)

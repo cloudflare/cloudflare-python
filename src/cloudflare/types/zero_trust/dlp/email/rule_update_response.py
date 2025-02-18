@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -20,7 +20,7 @@ class Condition(BaseModel):
 
     selector: Literal["Recipients", "Sender", "DLPProfiles"]
 
-    value: object
+    value: Union[List[str], str]
 
 
 class RuleUpdateResponse(BaseModel):

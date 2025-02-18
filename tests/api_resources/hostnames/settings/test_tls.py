@@ -9,6 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.hostnames.settings import (
     Setting,
     TLSGetResponse,
@@ -138,7 +139,7 @@ class TestTLS:
             setting_id="ciphers",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[TLSGetResponse], tls, path=["response"])
+        assert_matches_type(SyncSinglePage[TLSGetResponse], tls, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -150,7 +151,7 @@ class TestTLS:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tls = response.parse()
-        assert_matches_type(Optional[TLSGetResponse], tls, path=["response"])
+        assert_matches_type(SyncSinglePage[TLSGetResponse], tls, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -162,7 +163,7 @@ class TestTLS:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tls = response.parse()
-            assert_matches_type(Optional[TLSGetResponse], tls, path=["response"])
+            assert_matches_type(SyncSinglePage[TLSGetResponse], tls, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -295,7 +296,7 @@ class TestAsyncTLS:
             setting_id="ciphers",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[TLSGetResponse], tls, path=["response"])
+        assert_matches_type(AsyncSinglePage[TLSGetResponse], tls, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -307,7 +308,7 @@ class TestAsyncTLS:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tls = await response.parse()
-        assert_matches_type(Optional[TLSGetResponse], tls, path=["response"])
+        assert_matches_type(AsyncSinglePage[TLSGetResponse], tls, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -319,7 +320,7 @@ class TestAsyncTLS:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tls = await response.parse()
-            assert_matches_type(Optional[TLSGetResponse], tls, path=["response"])
+            assert_matches_type(AsyncSinglePage[TLSGetResponse], tls, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

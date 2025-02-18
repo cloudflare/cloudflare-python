@@ -17,4 +17,4 @@ class StatusGetResponse(BaseModel):
 
     max_estimated_time_minutes: Optional[int] = None
 
-    status: Optional[Literal["event_prequeueing", "not_queueing", "queueing"]] = None
+    status: Optional[Literal["event_prequeueing", "not_queueing", "queueing", "suspended"]] = None

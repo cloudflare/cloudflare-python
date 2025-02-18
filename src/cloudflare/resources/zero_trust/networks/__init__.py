@@ -8,6 +8,14 @@ from .routes import (
     RoutesResourceWithStreamingResponse,
     AsyncRoutesResourceWithStreamingResponse,
 )
+from .subnets import (
+    SubnetsResource,
+    AsyncSubnetsResource,
+    SubnetsResourceWithRawResponse,
+    AsyncSubnetsResourceWithRawResponse,
+    SubnetsResourceWithStreamingResponse,
+    AsyncSubnetsResourceWithStreamingResponse,
+)
 from .networks import (
     NetworksResource,
     AsyncNetworksResource,
@@ -38,6 +46,12 @@ __all__ = [
     "AsyncVirtualNetworksResourceWithRawResponse",
     "VirtualNetworksResourceWithStreamingResponse",
     "AsyncVirtualNetworksResourceWithStreamingResponse",
+    "SubnetsResource",
+    "AsyncSubnetsResource",
+    "SubnetsResourceWithRawResponse",
+    "AsyncSubnetsResourceWithRawResponse",
+    "SubnetsResourceWithStreamingResponse",
+    "AsyncSubnetsResourceWithStreamingResponse",
     "NetworksResource",
     "AsyncNetworksResource",
     "NetworksResourceWithRawResponse",

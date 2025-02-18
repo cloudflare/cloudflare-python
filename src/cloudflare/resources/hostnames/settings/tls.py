@@ -21,7 +21,8 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ...._base_client import make_request_options
+from ....pagination import SyncSinglePage, AsyncSinglePage
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.hostnames.settings import tls_update_params
 from ....types.hostnames.settings.setting import Setting
 from ....types.hostnames.settings.tls_get_response import TLSGetResponse
@@ -35,7 +36,7 @@ class TLSResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> TLSResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -164,7 +165,7 @@ class TLSResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TLSGetResponse]:
+    ) -> SyncSinglePage[TLSGetResponse]:
         """
         List the requested TLS setting for the hostnames under this zone.
 
@@ -185,16 +186,13 @@ class TLSResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not setting_id:
             raise ValueError(f"Expected a non-empty value for `setting_id` but received {setting_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/zones/{zone_id}/hostnames/settings/{setting_id}",
+            page=SyncSinglePage[TLSGetResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[TLSGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[TLSGetResponse]], ResultWrapper[TLSGetResponse]),
+            model=TLSGetResponse,
         )
 
 
@@ -202,7 +200,7 @@ class AsyncTLSResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncTLSResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -320,7 +318,7 @@ class AsyncTLSResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[TLSDeleteResponse]], ResultWrapper[TLSDeleteResponse]),
         )
 
-    async def get(
+    def get(
         self,
         setting_id: Literal["ciphers", "min_tls_version", "http2"],
         *,
@@ -331,7 +329,7 @@ class AsyncTLSResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TLSGetResponse]:
+    ) -> AsyncPaginator[TLSGetResponse, AsyncSinglePage[TLSGetResponse]]:
         """
         List the requested TLS setting for the hostnames under this zone.
 
@@ -352,16 +350,13 @@ class AsyncTLSResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not setting_id:
             raise ValueError(f"Expected a non-empty value for `setting_id` but received {setting_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/zones/{zone_id}/hostnames/settings/{setting_id}",
+            page=AsyncSinglePage[TLSGetResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[TLSGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[TLSGetResponse]], ResultWrapper[TLSGetResponse]),
+            model=TLSGetResponse,
         )
 
 

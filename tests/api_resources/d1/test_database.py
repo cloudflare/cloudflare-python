@@ -11,13 +11,13 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.d1 import (
     D1,
+    QueryResult,
     DatabaseRawResponse,
     DatabaseListResponse,
-    DatabaseQueryResponse,
     DatabaseExportResponse,
     DatabaseImportResponse,
 )
-from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage, SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -474,7 +474,7 @@ class TestDatabase:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             sql="SELECT * FROM myTable WHERE field = ? OR field = ?;",
         )
-        assert_matches_type(DatabaseQueryResponse, database, path=["response"])
+        assert_matches_type(SyncSinglePage[QueryResult], database, path=["response"])
 
     @parametrize
     def test_method_query_with_all_params(self, client: Cloudflare) -> None:
@@ -484,7 +484,7 @@ class TestDatabase:
             sql="SELECT * FROM myTable WHERE field = ? OR field = ?;",
             params=["firstParam", "secondParam"],
         )
-        assert_matches_type(DatabaseQueryResponse, database, path=["response"])
+        assert_matches_type(SyncSinglePage[QueryResult], database, path=["response"])
 
     @parametrize
     def test_raw_response_query(self, client: Cloudflare) -> None:
@@ -497,7 +497,7 @@ class TestDatabase:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         database = response.parse()
-        assert_matches_type(DatabaseQueryResponse, database, path=["response"])
+        assert_matches_type(SyncSinglePage[QueryResult], database, path=["response"])
 
     @parametrize
     def test_streaming_response_query(self, client: Cloudflare) -> None:
@@ -510,7 +510,7 @@ class TestDatabase:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             database = response.parse()
-            assert_matches_type(DatabaseQueryResponse, database, path=["response"])
+            assert_matches_type(SyncSinglePage[QueryResult], database, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -537,7 +537,7 @@ class TestDatabase:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             sql="SELECT * FROM myTable WHERE field = ? OR field = ?;",
         )
-        assert_matches_type(DatabaseRawResponse, database, path=["response"])
+        assert_matches_type(SyncSinglePage[DatabaseRawResponse], database, path=["response"])
 
     @parametrize
     def test_method_raw_with_all_params(self, client: Cloudflare) -> None:
@@ -547,7 +547,7 @@ class TestDatabase:
             sql="SELECT * FROM myTable WHERE field = ? OR field = ?;",
             params=["firstParam", "secondParam"],
         )
-        assert_matches_type(DatabaseRawResponse, database, path=["response"])
+        assert_matches_type(SyncSinglePage[DatabaseRawResponse], database, path=["response"])
 
     @parametrize
     def test_raw_response_raw(self, client: Cloudflare) -> None:
@@ -560,7 +560,7 @@ class TestDatabase:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         database = response.parse()
-        assert_matches_type(DatabaseRawResponse, database, path=["response"])
+        assert_matches_type(SyncSinglePage[DatabaseRawResponse], database, path=["response"])
 
     @parametrize
     def test_streaming_response_raw(self, client: Cloudflare) -> None:
@@ -573,7 +573,7 @@ class TestDatabase:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             database = response.parse()
-            assert_matches_type(DatabaseRawResponse, database, path=["response"])
+            assert_matches_type(SyncSinglePage[DatabaseRawResponse], database, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1046,7 +1046,7 @@ class TestAsyncDatabase:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             sql="SELECT * FROM myTable WHERE field = ? OR field = ?;",
         )
-        assert_matches_type(DatabaseQueryResponse, database, path=["response"])
+        assert_matches_type(AsyncSinglePage[QueryResult], database, path=["response"])
 
     @parametrize
     async def test_method_query_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -1056,7 +1056,7 @@ class TestAsyncDatabase:
             sql="SELECT * FROM myTable WHERE field = ? OR field = ?;",
             params=["firstParam", "secondParam"],
         )
-        assert_matches_type(DatabaseQueryResponse, database, path=["response"])
+        assert_matches_type(AsyncSinglePage[QueryResult], database, path=["response"])
 
     @parametrize
     async def test_raw_response_query(self, async_client: AsyncCloudflare) -> None:
@@ -1069,7 +1069,7 @@ class TestAsyncDatabase:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         database = await response.parse()
-        assert_matches_type(DatabaseQueryResponse, database, path=["response"])
+        assert_matches_type(AsyncSinglePage[QueryResult], database, path=["response"])
 
     @parametrize
     async def test_streaming_response_query(self, async_client: AsyncCloudflare) -> None:
@@ -1082,7 +1082,7 @@ class TestAsyncDatabase:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             database = await response.parse()
-            assert_matches_type(DatabaseQueryResponse, database, path=["response"])
+            assert_matches_type(AsyncSinglePage[QueryResult], database, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1109,7 +1109,7 @@ class TestAsyncDatabase:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             sql="SELECT * FROM myTable WHERE field = ? OR field = ?;",
         )
-        assert_matches_type(DatabaseRawResponse, database, path=["response"])
+        assert_matches_type(AsyncSinglePage[DatabaseRawResponse], database, path=["response"])
 
     @parametrize
     async def test_method_raw_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -1119,7 +1119,7 @@ class TestAsyncDatabase:
             sql="SELECT * FROM myTable WHERE field = ? OR field = ?;",
             params=["firstParam", "secondParam"],
         )
-        assert_matches_type(DatabaseRawResponse, database, path=["response"])
+        assert_matches_type(AsyncSinglePage[DatabaseRawResponse], database, path=["response"])
 
     @parametrize
     async def test_raw_response_raw(self, async_client: AsyncCloudflare) -> None:
@@ -1132,7 +1132,7 @@ class TestAsyncDatabase:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         database = await response.parse()
-        assert_matches_type(DatabaseRawResponse, database, path=["response"])
+        assert_matches_type(AsyncSinglePage[DatabaseRawResponse], database, path=["response"])
 
     @parametrize
     async def test_streaming_response_raw(self, async_client: AsyncCloudflare) -> None:
@@ -1145,7 +1145,7 @@ class TestAsyncDatabase:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             database = await response.parse()
-            assert_matches_type(DatabaseRawResponse, database, path=["response"])
+            assert_matches_type(AsyncSinglePage[DatabaseRawResponse], database, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

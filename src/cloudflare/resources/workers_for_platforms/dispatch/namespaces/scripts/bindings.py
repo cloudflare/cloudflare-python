@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Any, cast
 
 import httpx
 
@@ -15,8 +15,8 @@ from ......_response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ......_wrappers import ResultWrapper
-from ......_base_client import make_request_options
+from ......pagination import SyncSinglePage, AsyncSinglePage
+from ......_base_client import AsyncPaginator, make_request_options
 from ......types.workers_for_platforms.dispatch.namespaces.scripts.binding_get_response import BindingGetResponse
 
 __all__ = ["BindingsResource", "AsyncBindingsResource"]
@@ -26,7 +26,7 @@ class BindingsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> BindingsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -54,7 +54,7 @@ class BindingsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[BindingGetResponse]:
+    ) -> SyncSinglePage[BindingGetResponse]:
         """
         Fetch script bindings from a script uploaded to a Workers for Platforms
         namespace.
@@ -80,16 +80,13 @@ class BindingsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `dispatch_namespace` but received {dispatch_namespace!r}")
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/bindings",
+            page=SyncSinglePage[BindingGetResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[BindingGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[BindingGetResponse]], ResultWrapper[BindingGetResponse]),
+            model=cast(Any, BindingGetResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
 
@@ -97,7 +94,7 @@ class AsyncBindingsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncBindingsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -113,7 +110,7 @@ class AsyncBindingsResource(AsyncAPIResource):
         """
         return AsyncBindingsResourceWithStreamingResponse(self)
 
-    async def get(
+    def get(
         self,
         script_name: str,
         *,
@@ -125,7 +122,7 @@ class AsyncBindingsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[BindingGetResponse]:
+    ) -> AsyncPaginator[BindingGetResponse, AsyncSinglePage[BindingGetResponse]]:
         """
         Fetch script bindings from a script uploaded to a Workers for Platforms
         namespace.
@@ -151,16 +148,13 @@ class AsyncBindingsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `dispatch_namespace` but received {dispatch_namespace!r}")
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/bindings",
+            page=AsyncSinglePage[BindingGetResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[BindingGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[BindingGetResponse]], ResultWrapper[BindingGetResponse]),
+            model=cast(Any, BindingGetResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
 

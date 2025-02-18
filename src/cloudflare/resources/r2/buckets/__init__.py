@@ -8,6 +8,14 @@ from .cors import (
     CORSResourceWithStreamingResponse,
     AsyncCORSResourceWithStreamingResponse,
 )
+from .locks import (
+    LocksResource,
+    AsyncLocksResource,
+    LocksResourceWithRawResponse,
+    AsyncLocksResourceWithRawResponse,
+    LocksResourceWithStreamingResponse,
+    AsyncLocksResourceWithStreamingResponse,
+)
 from .sippy import (
     SippyResource,
     AsyncSippyResource,
@@ -31,6 +39,14 @@ from .domains import (
     AsyncDomainsResourceWithRawResponse,
     DomainsResourceWithStreamingResponse,
     AsyncDomainsResourceWithStreamingResponse,
+)
+from .metrics import (
+    MetricsResource,
+    AsyncMetricsResource,
+    MetricsResourceWithRawResponse,
+    AsyncMetricsResourceWithRawResponse,
+    MetricsResourceWithStreamingResponse,
+    AsyncMetricsResourceWithStreamingResponse,
 )
 from .lifecycle import (
     LifecycleResource,
@@ -74,6 +90,18 @@ __all__ = [
     "AsyncEventNotificationsResourceWithRawResponse",
     "EventNotificationsResourceWithStreamingResponse",
     "AsyncEventNotificationsResourceWithStreamingResponse",
+    "LocksResource",
+    "AsyncLocksResource",
+    "LocksResourceWithRawResponse",
+    "AsyncLocksResourceWithRawResponse",
+    "LocksResourceWithStreamingResponse",
+    "AsyncLocksResourceWithStreamingResponse",
+    "MetricsResource",
+    "AsyncMetricsResource",
+    "MetricsResourceWithRawResponse",
+    "AsyncMetricsResourceWithRawResponse",
+    "MetricsResourceWithStreamingResponse",
+    "AsyncMetricsResourceWithStreamingResponse",
     "SippyResource",
     "AsyncSippyResource",
     "SippyResourceWithRawResponse",

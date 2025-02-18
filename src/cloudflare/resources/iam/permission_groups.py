@@ -18,6 +18,7 @@ from ...types.iam import permission_group_list_params
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.iam.permission_group_get_response import PermissionGroupGetResponse
+from ...types.iam.permission_group_list_response import PermissionGroupListResponse
 
 __all__ = ["PermissionGroupsResource", "AsyncPermissionGroupsResource"]
 
@@ -26,7 +27,7 @@ class PermissionGroupsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> PermissionGroupsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -57,7 +58,7 @@ class PermissionGroupsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[object]:
+    ) -> SyncV4PagePaginationArray[PermissionGroupListResponse]:
         """
         List all the permissions groups for an account.
 
@@ -86,7 +87,7 @@ class PermissionGroupsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/iam/permission_groups",
-            page=SyncV4PagePaginationArray[object],
+            page=SyncV4PagePaginationArray[PermissionGroupListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -103,7 +104,7 @@ class PermissionGroupsResource(SyncAPIResource):
                     permission_group_list_params.PermissionGroupListParams,
                 ),
             ),
-            model=object,
+            model=PermissionGroupListResponse,
         )
 
     def get(
@@ -153,7 +154,7 @@ class AsyncPermissionGroupsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncPermissionGroupsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -184,7 +185,7 @@ class AsyncPermissionGroupsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[object, AsyncV4PagePaginationArray[object]]:
+    ) -> AsyncPaginator[PermissionGroupListResponse, AsyncV4PagePaginationArray[PermissionGroupListResponse]]:
         """
         List all the permissions groups for an account.
 
@@ -213,7 +214,7 @@ class AsyncPermissionGroupsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/iam/permission_groups",
-            page=AsyncV4PagePaginationArray[object],
+            page=AsyncV4PagePaginationArray[PermissionGroupListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -230,7 +231,7 @@ class AsyncPermissionGroupsResource(AsyncAPIResource):
                     permission_group_list_params.PermissionGroupListParams,
                 ),
             ),
-            model=object,
+            model=PermissionGroupListResponse,
         )
 
     async def get(

@@ -1,41 +1,56 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import List, Optional
 from datetime import datetime
+
+from pydantic import Field as FieldInfo
 
 from ...._models import BaseModel
 
-__all__ = ["AccessUser"]
+__all__ = ["AccessUser", "Email", "Meta"]
+
+
+class Email(BaseModel):
+    primary: Optional[bool] = None
+    """
+    Indicates if the email address is the primary email belonging to the SCIM User
+    resource.
+    """
+
+    type: Optional[str] = None
+    """Indicates the type of the email address."""
+
+    value: Optional[str] = None
+    """The email address of the SCIM User resource."""
+
+
+class Meta(BaseModel):
+    created: Optional[datetime] = None
+    """The timestamp of when the SCIM resource was created."""
+
+    last_modified: Optional[datetime] = FieldInfo(alias="lastModified", default=None)
+    """The timestamp of when the SCIM resource was last modified."""
 
 
 class AccessUser(BaseModel):
     id: Optional[str] = None
-    """UUID"""
+    """The unique Cloudflare-generated Id of the SCIM resource."""
 
-    access_seat: Optional[bool] = None
-    """True if the user has authenticated with Cloudflare Access."""
+    active: Optional[bool] = None
+    """Determines the status of the SCIM User resource."""
 
-    active_device_count: Optional[float] = None
-    """The number of active devices registered to the user."""
+    display_name: Optional[str] = FieldInfo(alias="displayName", default=None)
+    """The name of the SCIM User resource."""
 
-    created_at: Optional[datetime] = None
+    emails: Optional[List[Email]] = None
 
-    email: Optional[str] = None
-    """The email of the user."""
+    external_id: Optional[str] = FieldInfo(alias="externalId", default=None)
+    """The IdP-generated Id of the SCIM resource."""
 
-    gateway_seat: Optional[bool] = None
-    """True if the user has logged into the WARP client."""
+    meta: Optional[Meta] = None
+    """The metadata of the SCIM resource."""
 
-    last_successful_login: Optional[datetime] = None
-    """The time at which the user last successfully logged in."""
-
-    name: Optional[str] = None
-    """The name of the user."""
-
-    seat_uid: Optional[str] = None
-    """The unique API identifier for the Zero Trust seat."""
-
-    uid: Optional[str] = None
-    """The unique API identifier for the user."""
-
-    updated_at: Optional[datetime] = None
+    schemas: Optional[List[str]] = None
+    """
+    The list of URIs which indicate the attributes contained within a SCIM resource.
+    """

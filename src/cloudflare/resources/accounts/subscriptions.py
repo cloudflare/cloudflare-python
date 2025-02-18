@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Optional, cast
+from typing import Any, Type, cast
 from typing_extensions import Literal
 
 import httpx
@@ -21,10 +21,11 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ..._base_client import make_request_options
+from ...pagination import SyncSinglePage, AsyncSinglePage
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.accounts import subscription_create_params, subscription_update_params
+from ...types.shared.subscription import Subscription
 from ...types.shared_params.rate_plan import RatePlan
-from ...types.accounts.subscription_get_response import SubscriptionGetResponse
 from ...types.accounts.subscription_create_response import SubscriptionCreateResponse
 from ...types.accounts.subscription_delete_response import SubscriptionDeleteResponse
 from ...types.accounts.subscription_update_response import SubscriptionUpdateResponse
@@ -36,7 +37,7 @@ class SubscriptionsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> SubscriptionsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -229,7 +230,7 @@ class SubscriptionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SubscriptionGetResponse]:
+    ) -> SyncSinglePage[Subscription]:
         """
         Lists all of an account's subscriptions.
 
@@ -246,16 +247,13 @@ class SubscriptionsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/subscriptions",
+            page=SyncSinglePage[Subscription],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[SubscriptionGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[SubscriptionGetResponse]], ResultWrapper[SubscriptionGetResponse]),
+            model=Subscription,
         )
 
 
@@ -263,7 +261,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncSubscriptionsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -446,7 +444,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
             cast_to=cast(Type[SubscriptionDeleteResponse], ResultWrapper[SubscriptionDeleteResponse]),
         )
 
-    async def get(
+    def get(
         self,
         *,
         account_id: str,
@@ -456,7 +454,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SubscriptionGetResponse]:
+    ) -> AsyncPaginator[Subscription, AsyncSinglePage[Subscription]]:
         """
         Lists all of an account's subscriptions.
 
@@ -473,16 +471,13 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/subscriptions",
+            page=AsyncSinglePage[Subscription],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[SubscriptionGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[SubscriptionGetResponse]], ResultWrapper[SubscriptionGetResponse]),
+            model=Subscription,
         )
 
 

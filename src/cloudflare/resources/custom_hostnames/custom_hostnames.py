@@ -36,6 +36,14 @@ from ...types.custom_hostnames import (
     custom_hostname_list_params,
     custom_hostname_create_params,
 )
+from .certificate_pack.certificate_pack import (
+    CertificatePackResource,
+    AsyncCertificatePackResource,
+    CertificatePackResourceWithRawResponse,
+    AsyncCertificatePackResourceWithRawResponse,
+    CertificatePackResourceWithStreamingResponse,
+    AsyncCertificatePackResourceWithStreamingResponse,
+)
 from ...types.custom_hostnames.custom_hostname_get_response import CustomHostnameGetResponse
 from ...types.custom_hostnames.custom_hostname_edit_response import CustomHostnameEditResponse
 from ...types.custom_hostnames.custom_hostname_list_response import CustomHostnameListResponse
@@ -51,9 +59,13 @@ class CustomHostnamesResource(SyncAPIResource):
         return FallbackOriginResource(self._client)
 
     @cached_property
+    def certificate_pack(self) -> CertificatePackResource:
+        return CertificatePackResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> CustomHostnamesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -90,7 +102,10 @@ class CustomHostnamesResource(SyncAPIResource):
         'email' will send an email to the WHOIS contacts on file for the base domain
         plus hostmaster, postmaster, webmaster, admin, administrator. If http is used
         and the domain is not already pointing to the Managed CNAME host, the PATCH
-        method must be used once it is (to complete validation).
+        method must be used once it is (to complete validation). Enable bundling of
+        certificates using the custom_cert_bundle field. The bundling process requires
+        the following condition One certificate in the bundle must use an RSA, and the
+        other must use an ECDSA.
 
         Args:
           zone_id: Identifier
@@ -268,7 +283,10 @@ class CustomHostnamesResource(SyncAPIResource):
         When sent with SSL config that
         matches existing config, used to indicate that hostname should pass domain
         control validation (DCV). Can also be used to change validation type, e.g., from
-        'http' to 'email'.
+        'http' to 'email'. Bundle an existing certificate with another certificate by
+        using the "custom_cert_bundle" field. The bundling process supports combining
+        certificates as long as the following condition is met. One certificate must use
+        the RSA algorithm, and the other must use the ECDSA algorithm.
 
         Args:
           zone_id: Identifier
@@ -373,9 +391,13 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
         return AsyncFallbackOriginResource(self._client)
 
     @cached_property
+    def certificate_pack(self) -> AsyncCertificatePackResource:
+        return AsyncCertificatePackResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AsyncCustomHostnamesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -412,7 +434,10 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
         'email' will send an email to the WHOIS contacts on file for the base domain
         plus hostmaster, postmaster, webmaster, admin, administrator. If http is used
         and the domain is not already pointing to the Managed CNAME host, the PATCH
-        method must be used once it is (to complete validation).
+        method must be used once it is (to complete validation). Enable bundling of
+        certificates using the custom_cert_bundle field. The bundling process requires
+        the following condition One certificate in the bundle must use an RSA, and the
+        other must use an ECDSA.
 
         Args:
           zone_id: Identifier
@@ -590,7 +615,10 @@ class AsyncCustomHostnamesResource(AsyncAPIResource):
         When sent with SSL config that
         matches existing config, used to indicate that hostname should pass domain
         control validation (DCV). Can also be used to change validation type, e.g., from
-        'http' to 'email'.
+        'http' to 'email'. Bundle an existing certificate with another certificate by
+        using the "custom_cert_bundle" field. The bundling process supports combining
+        certificates as long as the following condition is met. One certificate must use
+        the RSA algorithm, and the other must use the ECDSA algorithm.
 
         Args:
           zone_id: Identifier
@@ -713,6 +741,10 @@ class CustomHostnamesResourceWithRawResponse:
     def fallback_origin(self) -> FallbackOriginResourceWithRawResponse:
         return FallbackOriginResourceWithRawResponse(self._custom_hostnames.fallback_origin)
 
+    @cached_property
+    def certificate_pack(self) -> CertificatePackResourceWithRawResponse:
+        return CertificatePackResourceWithRawResponse(self._custom_hostnames.certificate_pack)
+
 
 class AsyncCustomHostnamesResourceWithRawResponse:
     def __init__(self, custom_hostnames: AsyncCustomHostnamesResource) -> None:
@@ -737,6 +769,10 @@ class AsyncCustomHostnamesResourceWithRawResponse:
     @cached_property
     def fallback_origin(self) -> AsyncFallbackOriginResourceWithRawResponse:
         return AsyncFallbackOriginResourceWithRawResponse(self._custom_hostnames.fallback_origin)
+
+    @cached_property
+    def certificate_pack(self) -> AsyncCertificatePackResourceWithRawResponse:
+        return AsyncCertificatePackResourceWithRawResponse(self._custom_hostnames.certificate_pack)
 
 
 class CustomHostnamesResourceWithStreamingResponse:
@@ -763,6 +799,10 @@ class CustomHostnamesResourceWithStreamingResponse:
     def fallback_origin(self) -> FallbackOriginResourceWithStreamingResponse:
         return FallbackOriginResourceWithStreamingResponse(self._custom_hostnames.fallback_origin)
 
+    @cached_property
+    def certificate_pack(self) -> CertificatePackResourceWithStreamingResponse:
+        return CertificatePackResourceWithStreamingResponse(self._custom_hostnames.certificate_pack)
+
 
 class AsyncCustomHostnamesResourceWithStreamingResponse:
     def __init__(self, custom_hostnames: AsyncCustomHostnamesResource) -> None:
@@ -787,3 +827,7 @@ class AsyncCustomHostnamesResourceWithStreamingResponse:
     @cached_property
     def fallback_origin(self) -> AsyncFallbackOriginResourceWithStreamingResponse:
         return AsyncFallbackOriginResourceWithStreamingResponse(self._custom_hostnames.fallback_origin)
+
+    @cached_property
+    def certificate_pack(self) -> AsyncCertificatePackResourceWithStreamingResponse:
+        return AsyncCertificatePackResourceWithStreamingResponse(self._custom_hostnames.certificate_pack)

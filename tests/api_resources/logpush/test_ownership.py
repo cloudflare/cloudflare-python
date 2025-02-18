@@ -69,13 +69,13 @@ class TestOwnership:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.logpush.ownership.with_raw_response.create(
                 destination_conf="s3://mybucket/logs?region=us-west-2",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.logpush.ownership.with_raw_response.create(
                 destination_conf="s3://mybucket/logs?region=us-west-2",
                 account_id="account_id",
@@ -134,14 +134,14 @@ class TestOwnership:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_validate(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.logpush.ownership.with_raw_response.validate(
                 destination_conf="s3://mybucket/logs?region=us-west-2",
                 ownership_challenge="00000000000000000000",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.logpush.ownership.with_raw_response.validate(
                 destination_conf="s3://mybucket/logs?region=us-west-2",
                 ownership_challenge="00000000000000000000",
@@ -201,13 +201,13 @@ class TestAsyncOwnership:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.logpush.ownership.with_raw_response.create(
                 destination_conf="s3://mybucket/logs?region=us-west-2",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.logpush.ownership.with_raw_response.create(
                 destination_conf="s3://mybucket/logs?region=us-west-2",
                 account_id="account_id",
@@ -266,14 +266,14 @@ class TestAsyncOwnership:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_validate(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.logpush.ownership.with_raw_response.validate(
                 destination_conf="s3://mybucket/logs?region=us-west-2",
                 ownership_challenge="00000000000000000000",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.logpush.ownership.with_raw_response.validate(
                 destination_conf="s3://mybucket/logs?region=us-west-2",
                 ownership_challenge="00000000000000000000",

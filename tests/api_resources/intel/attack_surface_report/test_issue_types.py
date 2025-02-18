@@ -3,12 +3,13 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.intel.attack_surface_report import IssueTypeGetResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -22,7 +23,7 @@ class TestIssueTypes:
         issue_type = client.intel.attack_surface_report.issue_types.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[IssueTypeGetResponse], issue_type, path=["response"])
+        assert_matches_type(SyncSinglePage[IssueTypeGetResponse], issue_type, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -33,7 +34,7 @@ class TestIssueTypes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         issue_type = response.parse()
-        assert_matches_type(Optional[IssueTypeGetResponse], issue_type, path=["response"])
+        assert_matches_type(SyncSinglePage[IssueTypeGetResponse], issue_type, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -44,7 +45,7 @@ class TestIssueTypes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             issue_type = response.parse()
-            assert_matches_type(Optional[IssueTypeGetResponse], issue_type, path=["response"])
+            assert_matches_type(SyncSinglePage[IssueTypeGetResponse], issue_type, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -64,7 +65,7 @@ class TestAsyncIssueTypes:
         issue_type = await async_client.intel.attack_surface_report.issue_types.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[IssueTypeGetResponse], issue_type, path=["response"])
+        assert_matches_type(AsyncSinglePage[IssueTypeGetResponse], issue_type, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -75,7 +76,7 @@ class TestAsyncIssueTypes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         issue_type = await response.parse()
-        assert_matches_type(Optional[IssueTypeGetResponse], issue_type, path=["response"])
+        assert_matches_type(AsyncSinglePage[IssueTypeGetResponse], issue_type, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -86,7 +87,7 @@ class TestAsyncIssueTypes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             issue_type = await response.parse()
-            assert_matches_type(Optional[IssueTypeGetResponse], issue_type, path=["response"])
+            assert_matches_type(AsyncSinglePage[IssueTypeGetResponse], issue_type, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

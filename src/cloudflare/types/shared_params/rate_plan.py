@@ -3,13 +3,24 @@
 from __future__ import annotations
 
 from typing import List
-from typing_extensions import TypedDict
+from typing_extensions import Literal, TypedDict
 
 __all__ = ["RatePlan"]
 
 
 class RatePlan(TypedDict, total=False):
-    id: str
+    id: Literal[
+        "free",
+        "lite",
+        "pro",
+        "pro_plus",
+        "business",
+        "enterprise",
+        "partners_free",
+        "partners_pro",
+        "partners_business",
+        "partners_enterprise",
+    ]
     """The ID of the rate plan."""
 
     currency: str

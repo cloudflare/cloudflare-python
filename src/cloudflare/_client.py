@@ -104,6 +104,7 @@ if TYPE_CHECKING:
         cloud_connector,
         durable_objects,
         request_tracers,
+        security_center,
         brand_protection,
         content_scanning,
         custom_hostnames,
@@ -115,6 +116,7 @@ if TYPE_CHECKING:
         client_certificates,
         custom_certificates,
         keyless_certificates,
+        network_interconnects,
         workers_for_platforms,
         origin_ca_certificates,
         origin_tls_client_auth,
@@ -202,6 +204,7 @@ if TYPE_CHECKING:
     from .resources.cloud_connector.cloud_connector import CloudConnectorResource, AsyncCloudConnectorResource
     from .resources.durable_objects.durable_objects import DurableObjectsResource, AsyncDurableObjectsResource
     from .resources.request_tracers.request_tracers import RequestTracersResource, AsyncRequestTracersResource
+    from .resources.security_center.security_center import SecurityCenterResource, AsyncSecurityCenterResource
     from .resources.content_scanning.content_scanning import ContentScanningResource, AsyncContentScanningResource
     from .resources.custom_hostnames.custom_hostnames import CustomHostnamesResource, AsyncCustomHostnamesResource
     from .resources.resource_sharing.resource_sharing import ResourceSharingResource, AsyncResourceSharingResource
@@ -209,6 +212,10 @@ if TYPE_CHECKING:
     from .resources.custom_certificates.custom_certificates import (
         CustomCertificatesResource,
         AsyncCustomCertificatesResource,
+    )
+    from .resources.network_interconnects.network_interconnects import (
+        NetworkInterconnectsResource,
+        AsyncNetworkInterconnectsResource,
     )
     from .resources.workers_for_platforms.workers_for_platforms import (
         WorkersForPlatformsResource,
@@ -617,6 +624,12 @@ class Cloudflare(SyncAPIClient):
         return MagicNetworkMonitoringResource(self)
 
     @cached_property
+    def network_interconnects(self) -> NetworkInterconnectsResource:
+        from .resources.network_interconnects import NetworkInterconnectsResource
+
+        return NetworkInterconnectsResource(self)
+
+    @cached_property
     def mtls_certificates(self) -> MTLSCertificatesResource:
         from .resources.mtls_certificates import MTLSCertificatesResource
 
@@ -831,6 +844,12 @@ class Cloudflare(SyncAPIClient):
         from .resources.ai import AIResource
 
         return AIResource(self)
+
+    @cached_property
+    def security_center(self) -> SecurityCenterResource:
+        from .resources.security_center import SecurityCenterResource
+
+        return SecurityCenterResource(self)
 
     @cached_property
     def with_raw_response(self) -> CloudflareWithRawResponse:
@@ -1388,6 +1407,12 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncMagicNetworkMonitoringResource(self)
 
     @cached_property
+    def network_interconnects(self) -> AsyncNetworkInterconnectsResource:
+        from .resources.network_interconnects import AsyncNetworkInterconnectsResource
+
+        return AsyncNetworkInterconnectsResource(self)
+
+    @cached_property
     def mtls_certificates(self) -> AsyncMTLSCertificatesResource:
         from .resources.mtls_certificates import AsyncMTLSCertificatesResource
 
@@ -1602,6 +1627,12 @@ class AsyncCloudflare(AsyncAPIClient):
         from .resources.ai import AsyncAIResource
 
         return AsyncAIResource(self)
+
+    @cached_property
+    def security_center(self) -> AsyncSecurityCenterResource:
+        from .resources.security_center import AsyncSecurityCenterResource
+
+        return AsyncSecurityCenterResource(self)
 
     @cached_property
     def with_raw_response(self) -> AsyncCloudflareWithRawResponse:
@@ -2092,6 +2123,12 @@ class CloudflareWithRawResponse:
         return MagicNetworkMonitoringResourceWithRawResponse(self._client.magic_network_monitoring)
 
     @cached_property
+    def network_interconnects(self) -> network_interconnects.NetworkInterconnectsResourceWithRawResponse:
+        from .resources.network_interconnects import NetworkInterconnectsResourceWithRawResponse
+
+        return NetworkInterconnectsResourceWithRawResponse(self._client.network_interconnects)
+
+    @cached_property
     def mtls_certificates(self) -> mtls_certificates.MTLSCertificatesResourceWithRawResponse:
         from .resources.mtls_certificates import MTLSCertificatesResourceWithRawResponse
 
@@ -2308,6 +2345,12 @@ class CloudflareWithRawResponse:
         from .resources.ai import AIResourceWithRawResponse
 
         return AIResourceWithRawResponse(self._client.ai)
+
+    @cached_property
+    def security_center(self) -> security_center.SecurityCenterResourceWithRawResponse:
+        from .resources.security_center import SecurityCenterResourceWithRawResponse
+
+        return SecurityCenterResourceWithRawResponse(self._client.security_center)
 
 
 class AsyncCloudflareWithRawResponse:
@@ -2617,6 +2660,12 @@ class AsyncCloudflareWithRawResponse:
         return AsyncMagicNetworkMonitoringResourceWithRawResponse(self._client.magic_network_monitoring)
 
     @cached_property
+    def network_interconnects(self) -> network_interconnects.AsyncNetworkInterconnectsResourceWithRawResponse:
+        from .resources.network_interconnects import AsyncNetworkInterconnectsResourceWithRawResponse
+
+        return AsyncNetworkInterconnectsResourceWithRawResponse(self._client.network_interconnects)
+
+    @cached_property
     def mtls_certificates(self) -> mtls_certificates.AsyncMTLSCertificatesResourceWithRawResponse:
         from .resources.mtls_certificates import AsyncMTLSCertificatesResourceWithRawResponse
 
@@ -2833,6 +2882,12 @@ class AsyncCloudflareWithRawResponse:
         from .resources.ai import AsyncAIResourceWithRawResponse
 
         return AsyncAIResourceWithRawResponse(self._client.ai)
+
+    @cached_property
+    def security_center(self) -> security_center.AsyncSecurityCenterResourceWithRawResponse:
+        from .resources.security_center import AsyncSecurityCenterResourceWithRawResponse
+
+        return AsyncSecurityCenterResourceWithRawResponse(self._client.security_center)
 
 
 class CloudflareWithStreamedResponse:
@@ -3142,6 +3197,12 @@ class CloudflareWithStreamedResponse:
         return MagicNetworkMonitoringResourceWithStreamingResponse(self._client.magic_network_monitoring)
 
     @cached_property
+    def network_interconnects(self) -> network_interconnects.NetworkInterconnectsResourceWithStreamingResponse:
+        from .resources.network_interconnects import NetworkInterconnectsResourceWithStreamingResponse
+
+        return NetworkInterconnectsResourceWithStreamingResponse(self._client.network_interconnects)
+
+    @cached_property
     def mtls_certificates(self) -> mtls_certificates.MTLSCertificatesResourceWithStreamingResponse:
         from .resources.mtls_certificates import MTLSCertificatesResourceWithStreamingResponse
 
@@ -3358,6 +3419,12 @@ class CloudflareWithStreamedResponse:
         from .resources.ai import AIResourceWithStreamingResponse
 
         return AIResourceWithStreamingResponse(self._client.ai)
+
+    @cached_property
+    def security_center(self) -> security_center.SecurityCenterResourceWithStreamingResponse:
+        from .resources.security_center import SecurityCenterResourceWithStreamingResponse
+
+        return SecurityCenterResourceWithStreamingResponse(self._client.security_center)
 
 
 class AsyncCloudflareWithStreamedResponse:
@@ -3671,6 +3738,12 @@ class AsyncCloudflareWithStreamedResponse:
         return AsyncMagicNetworkMonitoringResourceWithStreamingResponse(self._client.magic_network_monitoring)
 
     @cached_property
+    def network_interconnects(self) -> network_interconnects.AsyncNetworkInterconnectsResourceWithStreamingResponse:
+        from .resources.network_interconnects import AsyncNetworkInterconnectsResourceWithStreamingResponse
+
+        return AsyncNetworkInterconnectsResourceWithStreamingResponse(self._client.network_interconnects)
+
+    @cached_property
     def mtls_certificates(self) -> mtls_certificates.AsyncMTLSCertificatesResourceWithStreamingResponse:
         from .resources.mtls_certificates import AsyncMTLSCertificatesResourceWithStreamingResponse
 
@@ -3893,6 +3966,12 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.ai import AsyncAIResourceWithStreamingResponse
 
         return AsyncAIResourceWithStreamingResponse(self._client.ai)
+
+    @cached_property
+    def security_center(self) -> security_center.AsyncSecurityCenterResourceWithStreamingResponse:
+        from .resources.security_center import AsyncSecurityCenterResourceWithStreamingResponse
+
+        return AsyncSecurityCenterResourceWithStreamingResponse(self._client.security_center)
 
 
 Client = Cloudflare

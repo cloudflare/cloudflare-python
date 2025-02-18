@@ -17,6 +17,7 @@ __all__ = [
     "ObjectDetectionBox",
     "UnionMember7",
     "UnionMember7ToolCall",
+    "UnionMember7Usage",
     "Translation",
     "Summarization",
     "ImageToText",
@@ -111,12 +112,26 @@ class UnionMember7ToolCall(BaseModel):
     """The name of the tool to be called"""
 
 
+class UnionMember7Usage(BaseModel):
+    completion_tokens: Optional[float] = None
+    """Total number of tokens in output"""
+
+    prompt_tokens: Optional[float] = None
+    """Total number of tokens in input"""
+
+    total_tokens: Optional[float] = None
+    """Total number of input and output tokens"""
+
+
 class UnionMember7(BaseModel):
     response: Optional[str] = None
     """The generated text response from the model"""
 
     tool_calls: Optional[List[UnionMember7ToolCall]] = None
     """An array of tool calls requests made during the response generation"""
+
+    usage: Optional[UnionMember7Usage] = None
+    """Usage statistics for the inference request"""
 
 
 class Translation(BaseModel):

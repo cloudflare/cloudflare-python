@@ -112,6 +112,14 @@ from .netflows import (
     NetflowsResourceWithStreamingResponse,
     AsyncNetflowsResourceWithStreamingResponse,
 )
+from .robots_txt import (
+    RobotsTXTResource,
+    AsyncRobotsTXTResource,
+    RobotsTXTResourceWithRawResponse,
+    AsyncRobotsTXTResourceWithRawResponse,
+    RobotsTXTResourceWithStreamingResponse,
+    AsyncRobotsTXTResourceWithStreamingResponse,
+)
 from .annotations import (
     AnnotationsResource,
     AsyncAnnotationsResource,
@@ -248,6 +256,12 @@ __all__ = [
     "AsyncTCPResetsTimeoutsResourceWithRawResponse",
     "TCPResetsTimeoutsResourceWithStreamingResponse",
     "AsyncTCPResetsTimeoutsResourceWithStreamingResponse",
+    "RobotsTXTResource",
+    "AsyncRobotsTXTResource",
+    "RobotsTXTResourceWithRawResponse",
+    "AsyncRobotsTXTResourceWithRawResponse",
+    "RobotsTXTResourceWithStreamingResponse",
+    "AsyncRobotsTXTResourceWithStreamingResponse",
     "RadarResource",
     "AsyncRadarResource",
     "RadarResourceWithRawResponse",

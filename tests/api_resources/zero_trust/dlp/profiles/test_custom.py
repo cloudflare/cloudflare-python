@@ -134,6 +134,7 @@ class TestCustom:
                 }
             ],
             name="name",
+            ai_context_enabled=True,
             allowed_match_count=5,
             confidence_threshold="confidence_threshold",
             context_awareness={
@@ -222,6 +223,7 @@ class TestCustom:
             profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="account_id",
             name="name",
+            ai_context_enabled=True,
             allowed_match_count=0,
             confidence_threshold="confidence_threshold",
             context_awareness={
@@ -511,6 +513,7 @@ class TestAsyncCustom:
                 }
             ],
             name="name",
+            ai_context_enabled=True,
             allowed_match_count=5,
             confidence_threshold="confidence_threshold",
             context_awareness={
@@ -599,6 +602,7 @@ class TestAsyncCustom:
             profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="account_id",
             name="name",
+            ai_context_enabled=True,
             allowed_match_count=0,
             confidence_threshold="confidence_threshold",
             context_awareness={

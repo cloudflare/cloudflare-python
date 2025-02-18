@@ -6,7 +6,23 @@ from typing_extensions import Literal
 
 from ...._models import BaseModel
 
-__all__ = ["DomainGetResponse"]
+__all__ = ["DomainGetResponse", "Authorization", "EmailsProcessed"]
+
+
+class Authorization(BaseModel):
+    authorized: bool
+
+    timestamp: datetime
+
+    status_message: Optional[str] = None
+
+
+class EmailsProcessed(BaseModel):
+    timestamp: datetime
+
+    total_emails_processed: int
+
+    total_emails_processed_previous: int
 
 
 class DomainGetResponse(BaseModel):
@@ -41,6 +57,10 @@ class DomainGetResponse(BaseModel):
     lookback_hops: int
 
     transport: str
+
+    authorization: Optional[Authorization] = None
+
+    emails_processed: Optional[EmailsProcessed] = None
 
     folder: Optional[Literal["AllItems", "Inbox"]] = None
 

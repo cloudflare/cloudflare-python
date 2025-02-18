@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["SettingEditParams", "ZoneDefaults", "ZoneDefaultsNameservers", "ZoneDefaultsSOA"]
+__all__ = ["SettingEditParams", "ZoneDefaults", "ZoneDefaultsInternalDNS", "ZoneDefaultsNameservers", "ZoneDefaultsSOA"]
 
 
 class SettingEditParams(TypedDict, total=False):
@@ -15,6 +15,11 @@ class SettingEditParams(TypedDict, total=False):
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
     zone_defaults: ZoneDefaults
+
+
+class ZoneDefaultsInternalDNS(TypedDict, total=False):
+    reference_zone_id: str
+    """The ID of the zone to fallback to."""
 
 
 class ZoneDefaultsNameservers(TypedDict, total=False):
@@ -67,6 +72,9 @@ class ZoneDefaults(TypedDict, total=False):
 
     foundation_dns: bool
     """Whether to enable Foundation DNS Advanced Nameservers on the zone."""
+
+    internal_dns: ZoneDefaultsInternalDNS
+    """Settings for this internal zone."""
 
     multi_provider: bool
     """

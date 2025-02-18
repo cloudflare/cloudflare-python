@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Optional
 
 import httpx
 
@@ -15,9 +15,9 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._wrappers import ResultWrapper
-from ...._base_client import make_request_options
-from ....types.logpush.datasets.job_get_response import JobGetResponse
+from ....pagination import SyncSinglePage, AsyncSinglePage
+from ...._base_client import AsyncPaginator, make_request_options
+from ....types.logpush.logpush_job import LogpushJob
 
 __all__ = ["JobsResource", "AsyncJobsResource"]
 
@@ -26,7 +26,7 @@ class JobsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> JobsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -54,7 +54,7 @@ class JobsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[JobGetResponse]:
+    ) -> SyncSinglePage[Optional[LogpushJob]]:
         """
         Lists Logpush jobs for an account or zone for a dataset.
 
@@ -88,16 +88,13 @@ class JobsResource(SyncAPIResource):
 
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return self._get(
+        return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/logpush/datasets/{dataset_id}/jobs",
+            page=SyncSinglePage[Optional[LogpushJob]],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[JobGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[JobGetResponse]], ResultWrapper[JobGetResponse]),
+            model=LogpushJob,
         )
 
 
@@ -105,7 +102,7 @@ class AsyncJobsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncJobsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -121,7 +118,7 @@ class AsyncJobsResource(AsyncAPIResource):
         """
         return AsyncJobsResourceWithStreamingResponse(self)
 
-    async def get(
+    def get(
         self,
         dataset_id: Optional[str],
         *,
@@ -133,7 +130,7 @@ class AsyncJobsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[JobGetResponse]:
+    ) -> AsyncPaginator[Optional[LogpushJob], AsyncSinglePage[Optional[LogpushJob]]]:
         """
         Lists Logpush jobs for an account or zone for a dataset.
 
@@ -167,16 +164,13 @@ class AsyncJobsResource(AsyncAPIResource):
 
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return await self._get(
+        return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/logpush/datasets/{dataset_id}/jobs",
+            page=AsyncSinglePage[Optional[LogpushJob]],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[JobGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[JobGetResponse]], ResultWrapper[JobGetResponse]),
+            model=LogpushJob,
         )
 
 

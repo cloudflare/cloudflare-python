@@ -2,15 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, Optional, cast
+from typing import Iterable
 
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ..._utils import maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -19,7 +16,6 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.content_scanning import payload_create_params
@@ -34,7 +30,7 @@ class PayloadsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> PayloadsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -61,7 +57,7 @@ class PayloadsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PayloadCreateResponse]:
+    ) -> SyncSinglePage[PayloadCreateResponse]:
         """
         Add custom scan expressions for Content Scanning
 
@@ -78,17 +74,15 @@ class PayloadsResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._post(
+        return self._get_api_list(
             f"/zones/{zone_id}/content-upload-scan/payloads",
+            page=SyncSinglePage[PayloadCreateResponse],
             body=maybe_transform(body, Iterable[payload_create_params.Body]),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[PayloadCreateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[PayloadCreateResponse]], ResultWrapper[PayloadCreateResponse]),
+            model=PayloadCreateResponse,
+            method="post",
         )
 
     def list(
@@ -138,7 +132,7 @@ class PayloadsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PayloadDeleteResponse]:
+    ) -> SyncSinglePage[PayloadDeleteResponse]:
         """
         Delete a Content Scan Custom Expression
 
@@ -159,16 +153,14 @@ class PayloadsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not expression_id:
             raise ValueError(f"Expected a non-empty value for `expression_id` but received {expression_id!r}")
-        return self._delete(
+        return self._get_api_list(
             f"/zones/{zone_id}/content-upload-scan/payloads/{expression_id}",
+            page=SyncSinglePage[PayloadDeleteResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[PayloadDeleteResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[PayloadDeleteResponse]], ResultWrapper[PayloadDeleteResponse]),
+            model=PayloadDeleteResponse,
+            method="delete",
         )
 
 
@@ -176,7 +168,7 @@ class AsyncPayloadsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncPayloadsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -192,7 +184,7 @@ class AsyncPayloadsResource(AsyncAPIResource):
         """
         return AsyncPayloadsResourceWithStreamingResponse(self)
 
-    async def create(
+    def create(
         self,
         *,
         zone_id: str,
@@ -203,7 +195,7 @@ class AsyncPayloadsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PayloadCreateResponse]:
+    ) -> AsyncPaginator[PayloadCreateResponse, AsyncSinglePage[PayloadCreateResponse]]:
         """
         Add custom scan expressions for Content Scanning
 
@@ -220,17 +212,15 @@ class AsyncPayloadsResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._post(
+        return self._get_api_list(
             f"/zones/{zone_id}/content-upload-scan/payloads",
-            body=await async_maybe_transform(body, Iterable[payload_create_params.Body]),
+            page=AsyncSinglePage[PayloadCreateResponse],
+            body=maybe_transform(body, Iterable[payload_create_params.Body]),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[PayloadCreateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[PayloadCreateResponse]], ResultWrapper[PayloadCreateResponse]),
+            model=PayloadCreateResponse,
+            method="post",
         )
 
     def list(
@@ -269,7 +259,7 @@ class AsyncPayloadsResource(AsyncAPIResource):
             model=PayloadListResponse,
         )
 
-    async def delete(
+    def delete(
         self,
         expression_id: str,
         *,
@@ -280,7 +270,7 @@ class AsyncPayloadsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PayloadDeleteResponse]:
+    ) -> AsyncPaginator[PayloadDeleteResponse, AsyncSinglePage[PayloadDeleteResponse]]:
         """
         Delete a Content Scan Custom Expression
 
@@ -301,16 +291,14 @@ class AsyncPayloadsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not expression_id:
             raise ValueError(f"Expected a non-empty value for `expression_id` but received {expression_id!r}")
-        return await self._delete(
+        return self._get_api_list(
             f"/zones/{zone_id}/content-upload-scan/payloads/{expression_id}",
+            page=AsyncSinglePage[PayloadDeleteResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[PayloadDeleteResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[PayloadDeleteResponse]], ResultWrapper[PayloadDeleteResponse]),
+            model=PayloadDeleteResponse,
+            method="delete",
         )
 
 

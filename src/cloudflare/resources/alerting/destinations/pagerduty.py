@@ -16,8 +16,9 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ...._base_client import make_request_options
-from ....types.alerting.destinations.pagerduty_get_response import PagerdutyGetResponse
+from ....pagination import SyncSinglePage, AsyncSinglePage
+from ...._base_client import AsyncPaginator, make_request_options
+from ....types.alerting.destinations.pagerduty import Pagerduty
 from ....types.alerting.destinations.pagerduty_link_response import PagerdutyLinkResponse
 from ....types.alerting.destinations.pagerduty_create_response import PagerdutyCreateResponse
 from ....types.alerting.destinations.pagerduty_delete_response import PagerdutyDeleteResponse
@@ -29,7 +30,7 @@ class PagerdutyResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> PagerdutyResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -129,7 +130,7 @@ class PagerdutyResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PagerdutyGetResponse]:
+    ) -> SyncSinglePage[Pagerduty]:
         """
         Get a list of all configured PagerDuty services.
 
@@ -146,16 +147,13 @@ class PagerdutyResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/alerting/v3/destinations/pagerduty",
+            page=SyncSinglePage[Pagerduty],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[PagerdutyGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[PagerdutyGetResponse]], ResultWrapper[PagerdutyGetResponse]),
+            model=Pagerduty,
         )
 
     def link(
@@ -207,7 +205,7 @@ class AsyncPagerdutyResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncPagerdutyResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -297,7 +295,7 @@ class AsyncPagerdutyResource(AsyncAPIResource):
             cast_to=PagerdutyDeleteResponse,
         )
 
-    async def get(
+    def get(
         self,
         *,
         account_id: str,
@@ -307,7 +305,7 @@ class AsyncPagerdutyResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PagerdutyGetResponse]:
+    ) -> AsyncPaginator[Pagerduty, AsyncSinglePage[Pagerduty]]:
         """
         Get a list of all configured PagerDuty services.
 
@@ -324,16 +322,13 @@ class AsyncPagerdutyResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/alerting/v3/destinations/pagerduty",
+            page=AsyncSinglePage[Pagerduty],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[PagerdutyGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[PagerdutyGetResponse]], ResultWrapper[PagerdutyGetResponse]),
+            model=Pagerduty,
         )
 
     async def link(

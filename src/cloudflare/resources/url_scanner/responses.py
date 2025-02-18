@@ -22,7 +22,7 @@ class ResponsesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ResponsesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -52,8 +52,8 @@ class ResponsesResource(SyncAPIResource):
     ) -> str:
         """Returns the raw response of the network request.
 
-        If HTML, a plain text response
-        will be returned.
+        Find the `response_id` in the
+        `data.requests.response.hash`.
 
         Args:
           account_id: Account ID.
@@ -86,7 +86,7 @@ class AsyncResponsesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncResponsesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -116,8 +116,8 @@ class AsyncResponsesResource(AsyncAPIResource):
     ) -> str:
         """Returns the raw response of the network request.
 
-        If HTML, a plain text response
-        will be returned.
+        Find the `response_id` in the
+        `data.requests.response.hash`.
 
         Args:
           account_id: Account ID.

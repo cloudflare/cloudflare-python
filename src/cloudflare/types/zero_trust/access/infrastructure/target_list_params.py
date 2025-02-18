@@ -30,6 +30,12 @@ class TargetListParams(TypedDict, total=False):
     hostname_contains: Optional[str]
     """Partial match to the hostname of a target"""
 
+    ip_like: Optional[str]
+    """
+    Filters for targets whose IP addresses look like the specified string. Supports
+    `*` as a wildcard character
+    """
+
     ip_v4: Optional[str]
     """IPv4 address of the target"""
 
@@ -40,6 +46,30 @@ class TargetListParams(TypedDict, total=False):
     """Filters for targets that have any of the following IP addresses.
 
     Specify `ips` multiple times in query parameter to build list of candidates.
+    """
+
+    ipv4_end: Optional[str]
+    """Defines an IPv4 filter range's ending value (inclusive).
+
+    Requires `ipv4_start` to be specified as well.
+    """
+
+    ipv4_start: Optional[str]
+    """Defines an IPv4 filter range's starting value (inclusive).
+
+    Requires `ipv4_end` to be specified as well.
+    """
+
+    ipv6_end: Optional[str]
+    """Defines an IPv6 filter range's ending value (inclusive).
+
+    Requires `ipv6_start` to be specified as well.
+    """
+
+    ipv6_start: Optional[str]
+    """Defines an IPv6 filter range's starting value (inclusive).
+
+    Requires `ipv6_end` to be specified as well.
     """
 
     modified_after: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
@@ -56,6 +86,13 @@ class TargetListParams(TypedDict, total=False):
 
     per_page: int
     """Max amount of entries returned per page"""
+
+    target_ids: List[str]
+    """Filters for targets that have any of the following UUIDs.
+
+    Specify `target_ids` multiple times in query parameter to build list of
+    candidates.
+    """
 
     virtual_network_id: Optional[str]
     """Private virtual network identifier of the target"""

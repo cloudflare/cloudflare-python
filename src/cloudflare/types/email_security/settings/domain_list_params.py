@@ -12,6 +12,9 @@ class DomainListParams(TypedDict, total=False):
     account_id: Required[str]
     """Account Identifier"""
 
+    active_delivery_mode: Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"]
+    """Filters response to domains with the currently active delivery mode."""
+
     allowed_delivery_mode: Literal["DIRECT", "BCC", "JOURNAL", "API", "RETRO_SCAN"]
     """Filters response to domains with the provided delivery mode."""
 

@@ -71,13 +71,13 @@ class TestFields:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.logpush.datasets.fields.with_raw_response.get(
                 dataset_id="gateway_dns",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.logpush.datasets.fields.with_raw_response.get(
                 dataset_id="gateway_dns",
                 account_id="account_id",
@@ -142,13 +142,13 @@ class TestAsyncFields:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.logpush.datasets.fields.with_raw_response.get(
                 dataset_id="gateway_dns",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.logpush.datasets.fields.with_raw_response.get(
                 dataset_id="gateway_dns",
                 account_id="account_id",

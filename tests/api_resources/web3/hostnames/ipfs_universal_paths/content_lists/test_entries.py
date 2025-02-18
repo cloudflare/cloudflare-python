@@ -393,11 +393,13 @@ class TestAsyncEntries:
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_streaming_response.create(
-            identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            content="QmPZ9gcCEpqKTo6aq61g2nXGUhM4iCL3ewB6LDXZCtioEB",
-            type="cid",
+        async with (
+            async_client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_streaming_response.create(
+                identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                content="QmPZ9gcCEpqKTo6aq61g2nXGUhM4iCL3ewB6LDXZCtioEB",
+                type="cid",
+            )
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -467,12 +469,14 @@ class TestAsyncEntries:
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_streaming_response.update(
-            content_list_entry_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            content="QmPZ9gcCEpqKTo6aq61g2nXGUhM4iCL3ewB6LDXZCtioEB",
-            type="cid",
+        async with (
+            async_client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_streaming_response.update(
+                content_list_entry_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                content="QmPZ9gcCEpqKTo6aq61g2nXGUhM4iCL3ewB6LDXZCtioEB",
+                type="cid",
+            )
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -587,10 +591,12 @@ class TestAsyncEntries:
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_streaming_response.delete(
-            content_list_entry_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            identifier="023e105f4ecef8ad9ca31a8372d0c353",
+        async with (
+            async_client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_streaming_response.delete(
+                content_list_entry_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            )
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

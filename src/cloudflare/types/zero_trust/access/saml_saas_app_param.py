@@ -2,19 +2,27 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable
+from typing import Iterable
 from typing_extensions import Literal, TypedDict
 
 from .saas_app_name_id_format import SaaSAppNameIDFormat
 
-__all__ = ["SAMLSaaSAppParam", "CustomAttribute", "CustomAttributeSource"]
+__all__ = ["SAMLSaaSAppParam", "CustomAttribute", "CustomAttributeSource", "CustomAttributeSourceNameByIdP"]
+
+
+class CustomAttributeSourceNameByIdP(TypedDict, total=False):
+    idp_id: str
+    """The UID of the IdP."""
+
+    source_name: str
+    """The name of the IdP provided attribute."""
 
 
 class CustomAttributeSource(TypedDict, total=False):
     name: str
     """The name of the IdP attribute."""
 
-    name_by_idp: Dict[str, str]
+    name_by_idp: Iterable[CustomAttributeSourceNameByIdP]
     """A mapping from IdP ID to attribute name."""
 
 

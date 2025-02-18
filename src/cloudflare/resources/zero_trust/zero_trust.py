@@ -68,14 +68,6 @@ from .networks.networks import (
     NetworksResourceWithStreamingResponse,
     AsyncNetworksResourceWithStreamingResponse,
 )
-from .identity_providers import (
-    IdentityProvidersResource,
-    AsyncIdentityProvidersResource,
-    IdentityProvidersResourceWithRawResponse,
-    AsyncIdentityProvidersResourceWithRawResponse,
-    IdentityProvidersResourceWithStreamingResponse,
-    AsyncIdentityProvidersResourceWithStreamingResponse,
-)
 from .connectivity_settings import (
     ConnectivitySettingsResource,
     AsyncConnectivitySettingsResource,
@@ -99,6 +91,14 @@ from .organizations.organizations import (
     AsyncOrganizationsResourceWithRawResponse,
     OrganizationsResourceWithStreamingResponse,
     AsyncOrganizationsResourceWithStreamingResponse,
+)
+from .identity_providers.identity_providers import (
+    IdentityProvidersResource,
+    AsyncIdentityProvidersResource,
+    IdentityProvidersResourceWithRawResponse,
+    AsyncIdentityProvidersResourceWithRawResponse,
+    IdentityProvidersResourceWithStreamingResponse,
+    AsyncIdentityProvidersResourceWithStreamingResponse,
 )
 
 __all__ = ["ZeroTrustResource", "AsyncZeroTrustResource"]
@@ -156,7 +156,7 @@ class ZeroTrustResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ZeroTrustResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -225,7 +225,7 @@ class AsyncZeroTrustResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncZeroTrustResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers

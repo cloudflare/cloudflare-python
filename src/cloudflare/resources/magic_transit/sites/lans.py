@@ -29,7 +29,6 @@ from ....types.magic_transit.sites import (
 )
 from ....types.magic_transit.sites.lan import LAN
 from ....types.magic_transit.sites.nat_param import NatParam
-from ....types.magic_transit.sites.lan_create_response import LANCreateResponse
 from ....types.magic_transit.sites.routed_subnet_param import RoutedSubnetParam
 from ....types.magic_transit.sites.lan_static_addressing_param import LANStaticAddressingParam
 
@@ -40,7 +39,7 @@ class LANsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> LANsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -74,7 +73,7 @@ class LANsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LANCreateResponse:
+    ) -> SyncSinglePage[LAN]:
         """Creates a new Site LAN.
 
         If the site is in high availability mode,
@@ -106,8 +105,9 @@ class LANsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not site_id:
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
-        return self._post(
+        return self._get_api_list(
             f"/accounts/{account_id}/magic/sites/{site_id}/lans",
+            page=SyncSinglePage[LAN],
             body=maybe_transform(
                 {
                     "physport": physport,
@@ -121,13 +121,10 @@ class LANsResource(SyncAPIResource):
                 lan_create_params.LANCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[LANCreateResponse]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[LANCreateResponse], ResultWrapper[LANCreateResponse]),
+            model=LAN,
+            method="post",
         )
 
     def update(
@@ -418,7 +415,7 @@ class AsyncLANsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncLANsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -434,7 +431,7 @@ class AsyncLANsResource(AsyncAPIResource):
         """
         return AsyncLANsResourceWithStreamingResponse(self)
 
-    async def create(
+    def create(
         self,
         site_id: str,
         *,
@@ -452,7 +449,7 @@ class AsyncLANsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> LANCreateResponse:
+    ) -> AsyncPaginator[LAN, AsyncSinglePage[LAN]]:
         """Creates a new Site LAN.
 
         If the site is in high availability mode,
@@ -484,9 +481,10 @@ class AsyncLANsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not site_id:
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
-        return await self._post(
+        return self._get_api_list(
             f"/accounts/{account_id}/magic/sites/{site_id}/lans",
-            body=await async_maybe_transform(
+            page=AsyncSinglePage[LAN],
+            body=maybe_transform(
                 {
                     "physport": physport,
                     "vlan_tag": vlan_tag,
@@ -499,13 +497,10 @@ class AsyncLANsResource(AsyncAPIResource):
                 lan_create_params.LANCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[LANCreateResponse]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[LANCreateResponse], ResultWrapper[LANCreateResponse]),
+            model=LAN,
+            method="post",
         )
 
     async def update(

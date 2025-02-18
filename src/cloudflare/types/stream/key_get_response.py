@@ -1,20 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Optional
 from datetime import datetime
-from typing_extensions import TypeAlias
 
 from ..._models import BaseModel
 
-__all__ = ["KeyGetResponse", "KeyGetResponseItem"]
+__all__ = ["KeyGetResponse"]
 
 
-class KeyGetResponseItem(BaseModel):
+class KeyGetResponse(BaseModel):
     id: Optional[str] = None
     """Identifier"""
 
     created: Optional[datetime] = None
     """The date and time a signing key was created."""
-
-
-KeyGetResponse: TypeAlias = List[KeyGetResponseItem]

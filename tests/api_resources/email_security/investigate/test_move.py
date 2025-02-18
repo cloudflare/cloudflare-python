@@ -9,6 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.email_security.investigate import (
     MoveBulkResponse,
     MoveCreateResponse,
@@ -27,7 +28,7 @@ class TestMove:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             destination="Inbox",
         )
-        assert_matches_type(MoveCreateResponse, move, path=["response"])
+        assert_matches_type(SyncSinglePage[MoveCreateResponse], move, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
@@ -40,7 +41,7 @@ class TestMove:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         move = response.parse()
-        assert_matches_type(MoveCreateResponse, move, path=["response"])
+        assert_matches_type(SyncSinglePage[MoveCreateResponse], move, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
@@ -53,7 +54,7 @@ class TestMove:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             move = response.parse()
-            assert_matches_type(MoveCreateResponse, move, path=["response"])
+            assert_matches_type(SyncSinglePage[MoveCreateResponse], move, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -80,7 +81,7 @@ class TestMove:
             destination="Inbox",
             postfix_ids=["4Njp3P0STMz2c02Q"],
         )
-        assert_matches_type(MoveBulkResponse, move, path=["response"])
+        assert_matches_type(SyncSinglePage[MoveBulkResponse], move, path=["response"])
 
     @parametrize
     def test_raw_response_bulk(self, client: Cloudflare) -> None:
@@ -93,7 +94,7 @@ class TestMove:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         move = response.parse()
-        assert_matches_type(MoveBulkResponse, move, path=["response"])
+        assert_matches_type(SyncSinglePage[MoveBulkResponse], move, path=["response"])
 
     @parametrize
     def test_streaming_response_bulk(self, client: Cloudflare) -> None:
@@ -106,7 +107,7 @@ class TestMove:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             move = response.parse()
-            assert_matches_type(MoveBulkResponse, move, path=["response"])
+            assert_matches_type(SyncSinglePage[MoveBulkResponse], move, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -130,7 +131,7 @@ class TestAsyncMove:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             destination="Inbox",
         )
-        assert_matches_type(MoveCreateResponse, move, path=["response"])
+        assert_matches_type(AsyncSinglePage[MoveCreateResponse], move, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -143,7 +144,7 @@ class TestAsyncMove:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         move = await response.parse()
-        assert_matches_type(MoveCreateResponse, move, path=["response"])
+        assert_matches_type(AsyncSinglePage[MoveCreateResponse], move, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -156,7 +157,7 @@ class TestAsyncMove:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             move = await response.parse()
-            assert_matches_type(MoveCreateResponse, move, path=["response"])
+            assert_matches_type(AsyncSinglePage[MoveCreateResponse], move, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -183,7 +184,7 @@ class TestAsyncMove:
             destination="Inbox",
             postfix_ids=["4Njp3P0STMz2c02Q"],
         )
-        assert_matches_type(MoveBulkResponse, move, path=["response"])
+        assert_matches_type(AsyncSinglePage[MoveBulkResponse], move, path=["response"])
 
     @parametrize
     async def test_raw_response_bulk(self, async_client: AsyncCloudflare) -> None:
@@ -196,7 +197,7 @@ class TestAsyncMove:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         move = await response.parse()
-        assert_matches_type(MoveBulkResponse, move, path=["response"])
+        assert_matches_type(AsyncSinglePage[MoveBulkResponse], move, path=["response"])
 
     @parametrize
     async def test_streaming_response_bulk(self, async_client: AsyncCloudflare) -> None:
@@ -209,7 +210,7 @@ class TestAsyncMove:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             move = await response.parse()
-            assert_matches_type(MoveBulkResponse, move, path=["response"])
+            assert_matches_type(AsyncSinglePage[MoveBulkResponse], move, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -1,20 +1,28 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
+from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from ...._models import BaseModel
 from .saas_app_name_id_format import SaaSAppNameIDFormat
 
-__all__ = ["SAMLSaaSApp", "CustomAttribute", "CustomAttributeSource"]
+__all__ = ["SAMLSaaSApp", "CustomAttribute", "CustomAttributeSource", "CustomAttributeSourceNameByIdP"]
+
+
+class CustomAttributeSourceNameByIdP(BaseModel):
+    idp_id: Optional[str] = None
+    """The UID of the IdP."""
+
+    source_name: Optional[str] = None
+    """The name of the IdP provided attribute."""
 
 
 class CustomAttributeSource(BaseModel):
     name: Optional[str] = None
     """The name of the IdP attribute."""
 
-    name_by_idp: Optional[Dict[str, str]] = None
+    name_by_idp: Optional[List[CustomAttributeSourceNameByIdP]] = None
     """A mapping from IdP ID to attribute name."""
 
 

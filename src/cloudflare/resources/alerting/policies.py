@@ -38,7 +38,7 @@ class PoliciesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> PoliciesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -88,9 +88,9 @@ class PoliciesResource(SyncAPIResource):
             "hostname_aop_custom_certificate_expiration_type",
             "http_alert_edge_error",
             "http_alert_origin_error",
-            "incident_alert",
             "image_notification",
             "image_resizing_notification",
+            "incident_alert",
             "load_balancing_health_alert",
             "load_balancing_pool_enablement_alert",
             "logo_match_alert",
@@ -113,6 +113,7 @@ class PoliciesResource(SyncAPIResource):
             "secondary_dns_warning",
             "secondary_dns_zone_successfully_updated",
             "secondary_dns_zone_validation_warning",
+            "security_insights_alert",
             "sentinel_alert",
             "stream_live_notifications",
             "synthetic_test_latency_alert",
@@ -233,9 +234,9 @@ class PoliciesResource(SyncAPIResource):
             "hostname_aop_custom_certificate_expiration_type",
             "http_alert_edge_error",
             "http_alert_origin_error",
-            "incident_alert",
             "image_notification",
             "image_resizing_notification",
+            "incident_alert",
             "load_balancing_health_alert",
             "load_balancing_pool_enablement_alert",
             "logo_match_alert",
@@ -258,6 +259,7 @@ class PoliciesResource(SyncAPIResource):
             "secondary_dns_warning",
             "secondary_dns_zone_successfully_updated",
             "secondary_dns_zone_validation_warning",
+            "security_insights_alert",
             "sentinel_alert",
             "stream_live_notifications",
             "synthetic_test_latency_alert",
@@ -471,7 +473,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncPoliciesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -521,9 +523,9 @@ class AsyncPoliciesResource(AsyncAPIResource):
             "hostname_aop_custom_certificate_expiration_type",
             "http_alert_edge_error",
             "http_alert_origin_error",
-            "incident_alert",
             "image_notification",
             "image_resizing_notification",
+            "incident_alert",
             "load_balancing_health_alert",
             "load_balancing_pool_enablement_alert",
             "logo_match_alert",
@@ -546,6 +548,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
             "secondary_dns_warning",
             "secondary_dns_zone_successfully_updated",
             "secondary_dns_zone_validation_warning",
+            "security_insights_alert",
             "sentinel_alert",
             "stream_live_notifications",
             "synthetic_test_latency_alert",
@@ -666,9 +669,9 @@ class AsyncPoliciesResource(AsyncAPIResource):
             "hostname_aop_custom_certificate_expiration_type",
             "http_alert_edge_error",
             "http_alert_origin_error",
-            "incident_alert",
             "image_notification",
             "image_resizing_notification",
+            "incident_alert",
             "load_balancing_health_alert",
             "load_balancing_pool_enablement_alert",
             "logo_match_alert",
@@ -691,6 +694,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
             "secondary_dns_warning",
             "secondary_dns_zone_successfully_updated",
             "secondary_dns_zone_validation_warning",
+            "security_insights_alert",
             "sentinel_alert",
             "stream_live_notifications",
             "synthetic_test_latency_alert",

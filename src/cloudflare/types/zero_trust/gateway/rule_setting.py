@@ -3,6 +3,8 @@
 from typing import Dict, List, Optional
 from typing_extensions import Literal
 
+from pydantic import Field as FieldInfo
+
 from ...._models import BaseModel
 from .dns_resolver_settings_v4 import DNSResolverSettingsV4
 from .dns_resolver_settings_v6 import DNSResolverSettingsV6
@@ -18,6 +20,7 @@ __all__ = [
     "NotificationSettings",
     "PayloadLog",
     "Quarantine",
+    "ResolveDNSInternally",
     "UntrustedCERT",
 ]
 
@@ -28,20 +31,63 @@ class AuditSSH(BaseModel):
 
 
 class BISOAdminControls(BaseModel):
+    copy_: Optional[Literal["enabled", "disabled", "remote_only"]] = FieldInfo(alias="copy", default=None)
+    """Configure whether copy is enabled or not.
+
+    When set with "remote_only", copying isolated content from the remote browser to
+    the user's local clipboard is disabled. When absent, copy is enabled. Only
+    applies when `version == "v2"`.
+    """
+
     dcp: Optional[bool] = None
-    """Set to false to enable copy-pasting."""
+    """Set to false to enable copy-pasting. Only applies when `version == "v1"`."""
 
     dd: Optional[bool] = None
-    """Set to false to enable downloading."""
+    """Set to false to enable downloading. Only applies when `version == "v1"`."""
 
     dk: Optional[bool] = None
-    """Set to false to enable keyboard usage."""
+    """Set to false to enable keyboard usage. Only applies when `version == "v1"`."""
+
+    download: Optional[Literal["enabled", "disabled"]] = None
+    """Configure whether downloading enabled or not.
+
+    When absent, downloading is enabled. Only applies when `version == "v2"`.
+    """
 
     dp: Optional[bool] = None
-    """Set to false to enable printing."""
+    """Set to false to enable printing. Only applies when `version == "v1"`."""
 
     du: Optional[bool] = None
-    """Set to false to enable uploading."""
+    """Set to false to enable uploading. Only applies when `version == "v1"`."""
+
+    keyboard: Optional[Literal["enabled", "disabled"]] = None
+    """Configure whether keyboard usage is enabled or not.
+
+    When absent, keyboard usage is enabled. Only applies when `version == "v2"`.
+    """
+
+    paste: Optional[Literal["enabled", "disabled", "remote_only"]] = None
+    """Configure whether pasting is enabled or not.
+
+    When set with "remote_only", pasting content from the user's local clipboard
+    into isolated pages is disabled. When absent, paste is enabled. Only applies
+    when `version == "v2"`.
+    """
+
+    printing: Optional[Literal["enabled", "disabled"]] = None
+    """Configure whether printing is enabled or not.
+
+    When absent, printing is enabled. Only applies when `version == "v2"`.
+    """
+
+    upload: Optional[Literal["enabled", "disabled"]] = None
+    """Configure whether uploading is enabled or not.
+
+    When absent, uploading is enabled. Only applies when `version == "v2"`.
+    """
+
+    version: Optional[Literal["v1", "v2"]] = None
+    """Indicates which version of the browser isolation controls should apply."""
 
 
 class CheckSession(BaseModel):
@@ -107,6 +153,18 @@ class Quarantine(BaseModel):
     """Types of files to sandbox."""
 
 
+class ResolveDNSInternally(BaseModel):
+    fallback: Optional[Literal["none", "public_dns"]] = None
+    """
+    The fallback behavior to apply when the internal DNS response code is different
+    from 'NOERROR' or when the response data only contains CNAME records for 'A' or
+    'AAAA' queries.
+    """
+
+    view_id: Optional[str] = None
+    """The internal DNS view identifier that's passed to the internal DNS service."""
+
+
 class UntrustedCERT(BaseModel):
     action: Optional[Literal["pass_through", "block", "error"]] = None
     """The action performed when an untrusted certificate is seen.
@@ -149,9 +207,9 @@ class RuleSetting(BaseModel):
     dns_resolvers: Optional[DNSResolvers] = None
     """Add your own custom resolvers to route queries that match the resolver policy.
 
-    Cannot be used when resolve_dns_through_cloudflare is set. DNS queries will
-    route to the address closest to their origin. Only valid when a rule's action is
-    set to 'resolve'.
+    Cannot be used when 'resolve_dns_through_cloudflare' or 'resolve_dns_internally'
+    are set. DNS queries will route to the address closest to their origin. Only
+    valid when a rule's action is set to 'resolve'.
     """
 
     egress: Optional[Egress] = None
@@ -204,11 +262,20 @@ class RuleSetting(BaseModel):
     quarantine: Optional[Quarantine] = None
     """Settings that apply to quarantine rules"""
 
+    resolve_dns_internally: Optional[ResolveDNSInternally] = None
+    """
+    Configure to forward the query to the internal DNS service, passing the
+    specified 'view_id' as input. Cannot be set when 'dns_resolvers' are specified
+    or 'resolve_dns_through_cloudflare' is set. Only valid when a rule's action is
+    set to 'resolve'.
+    """
+
     resolve_dns_through_cloudflare: Optional[bool] = None
     """
     Enable to send queries that match the policy to Cloudflare's default 1.1.1.1 DNS
-    resolver. Cannot be set when dns_resolvers are specified. Only valid when a
-    rule's action is set to 'resolve'.
+    resolver. Cannot be set when 'dns_resolvers' are specified or
+    'resolve_dns_internally' is set. Only valid when a rule's action is set to
+    'resolve'.
     """
 
     untrusted_cert: Optional[UntrustedCERT] = None

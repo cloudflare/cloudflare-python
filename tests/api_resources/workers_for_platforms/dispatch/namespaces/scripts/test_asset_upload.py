@@ -139,10 +139,12 @@ class TestAsyncAssetUpload:
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.workers_for_platforms.dispatch.namespaces.scripts.asset_upload.with_streaming_response.create(
-            script_name="this-is_my_script-01",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            dispatch_namespace="my-dispatch-namespace",
+        async with (
+            async_client.workers_for_platforms.dispatch.namespaces.scripts.asset_upload.with_streaming_response.create(
+                script_name="this-is_my_script-01",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                dispatch_namespace="my-dispatch-namespace",
+            )
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

@@ -7,10 +7,7 @@ from typing import Type, Iterable, Optional, cast
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -28,7 +25,8 @@ from .certificates import (
     CertificatesResourceWithStreamingResponse,
     AsyncCertificatesResourceWithStreamingResponse,
 )
-from ...._base_client import make_request_options
+from ....pagination import SyncSinglePage, AsyncSinglePage
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.origin_tls_client_auth import hostname_update_params
 from ....types.origin_tls_client_auth.hostname_update_response import HostnameUpdateResponse
 from ....types.origin_tls_client_auth.authenticated_origin_pull import AuthenticatedOriginPull
@@ -44,7 +42,7 @@ class HostnamesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> HostnamesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -71,7 +69,7 @@ class HostnamesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[HostnameUpdateResponse]:
+    ) -> SyncSinglePage[HostnameUpdateResponse]:
         """
         Associate a hostname to a certificate and enable, disable or invalidate the
         association. If disabled, client certificate will not be sent to the hostname
@@ -92,17 +90,15 @@ class HostnamesResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._put(
+        return self._get_api_list(
             f"/zones/{zone_id}/origin_tls_client_auth/hostnames",
+            page=SyncSinglePage[HostnameUpdateResponse],
             body=maybe_transform({"config": config}, hostname_update_params.HostnameUpdateParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[HostnameUpdateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[HostnameUpdateResponse]], ResultWrapper[HostnameUpdateResponse]),
+            model=HostnameUpdateResponse,
+            method="put",
         )
 
     def get(
@@ -159,7 +155,7 @@ class AsyncHostnamesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncHostnamesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -175,7 +171,7 @@ class AsyncHostnamesResource(AsyncAPIResource):
         """
         return AsyncHostnamesResourceWithStreamingResponse(self)
 
-    async def update(
+    def update(
         self,
         *,
         zone_id: str,
@@ -186,7 +182,7 @@ class AsyncHostnamesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[HostnameUpdateResponse]:
+    ) -> AsyncPaginator[HostnameUpdateResponse, AsyncSinglePage[HostnameUpdateResponse]]:
         """
         Associate a hostname to a certificate and enable, disable or invalidate the
         association. If disabled, client certificate will not be sent to the hostname
@@ -207,17 +203,15 @@ class AsyncHostnamesResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._put(
+        return self._get_api_list(
             f"/zones/{zone_id}/origin_tls_client_auth/hostnames",
-            body=await async_maybe_transform({"config": config}, hostname_update_params.HostnameUpdateParams),
+            page=AsyncSinglePage[HostnameUpdateResponse],
+            body=maybe_transform({"config": config}, hostname_update_params.HostnameUpdateParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[HostnameUpdateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[HostnameUpdateResponse]], ResultWrapper[HostnameUpdateResponse]),
+            model=HostnameUpdateResponse,
+            method="put",
         )
 
     async def get(

@@ -3,19 +3,14 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.filters import (
-    FirewallFilter,
-    FilterCreateResponse,
-    FilterBulkDeleteResponse,
-    FilterBulkUpdateResponse,
-)
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage, SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from cloudflare.types.filters import FirewallFilter
 
 # pyright: reportDeprecated=false
 
@@ -34,7 +29,7 @@ class TestFilters:
                 expression='(http.request.uri.path ~ ".*wp-login.php" or http.request.uri.path ~ ".*xmlrpc.php") and ip.addr ne 172.16.22.155',
             )
 
-        assert_matches_type(Optional[FilterCreateResponse], filter, path=["response"])
+        assert_matches_type(SyncSinglePage[FirewallFilter], filter, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -48,7 +43,7 @@ class TestFilters:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         filter = response.parse()
-        assert_matches_type(Optional[FilterCreateResponse], filter, path=["response"])
+        assert_matches_type(SyncSinglePage[FirewallFilter], filter, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -62,7 +57,7 @@ class TestFilters:
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
                 filter = response.parse()
-                assert_matches_type(Optional[FilterCreateResponse], filter, path=["response"])
+                assert_matches_type(SyncSinglePage[FirewallFilter], filter, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -257,7 +252,7 @@ class TestFilters:
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-        assert_matches_type(Optional[FilterBulkDeleteResponse], filter, path=["response"])
+        assert_matches_type(SyncSinglePage[FirewallFilter], filter, path=["response"])
 
     @parametrize
     def test_raw_response_bulk_delete(self, client: Cloudflare) -> None:
@@ -269,7 +264,7 @@ class TestFilters:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         filter = response.parse()
-        assert_matches_type(Optional[FilterBulkDeleteResponse], filter, path=["response"])
+        assert_matches_type(SyncSinglePage[FirewallFilter], filter, path=["response"])
 
     @parametrize
     def test_streaming_response_bulk_delete(self, client: Cloudflare) -> None:
@@ -281,7 +276,7 @@ class TestFilters:
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
                 filter = response.parse()
-                assert_matches_type(Optional[FilterBulkDeleteResponse], filter, path=["response"])
+                assert_matches_type(SyncSinglePage[FirewallFilter], filter, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -301,7 +296,7 @@ class TestFilters:
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-        assert_matches_type(Optional[FilterBulkUpdateResponse], filter, path=["response"])
+        assert_matches_type(SyncSinglePage[FirewallFilter], filter, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -314,7 +309,7 @@ class TestFilters:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         filter = response.parse()
-        assert_matches_type(Optional[FilterBulkUpdateResponse], filter, path=["response"])
+        assert_matches_type(SyncSinglePage[FirewallFilter], filter, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -327,7 +322,7 @@ class TestFilters:
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
                 filter = response.parse()
-                assert_matches_type(Optional[FilterBulkUpdateResponse], filter, path=["response"])
+                assert_matches_type(SyncSinglePage[FirewallFilter], filter, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -406,7 +401,7 @@ class TestAsyncFilters:
                 expression='(http.request.uri.path ~ ".*wp-login.php" or http.request.uri.path ~ ".*xmlrpc.php") and ip.addr ne 172.16.22.155',
             )
 
-        assert_matches_type(Optional[FilterCreateResponse], filter, path=["response"])
+        assert_matches_type(AsyncSinglePage[FirewallFilter], filter, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -420,7 +415,7 @@ class TestAsyncFilters:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         filter = await response.parse()
-        assert_matches_type(Optional[FilterCreateResponse], filter, path=["response"])
+        assert_matches_type(AsyncSinglePage[FirewallFilter], filter, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -434,7 +429,7 @@ class TestAsyncFilters:
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
                 filter = await response.parse()
-                assert_matches_type(Optional[FilterCreateResponse], filter, path=["response"])
+                assert_matches_type(AsyncSinglePage[FirewallFilter], filter, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -629,7 +624,7 @@ class TestAsyncFilters:
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-        assert_matches_type(Optional[FilterBulkDeleteResponse], filter, path=["response"])
+        assert_matches_type(AsyncSinglePage[FirewallFilter], filter, path=["response"])
 
     @parametrize
     async def test_raw_response_bulk_delete(self, async_client: AsyncCloudflare) -> None:
@@ -641,7 +636,7 @@ class TestAsyncFilters:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         filter = await response.parse()
-        assert_matches_type(Optional[FilterBulkDeleteResponse], filter, path=["response"])
+        assert_matches_type(AsyncSinglePage[FirewallFilter], filter, path=["response"])
 
     @parametrize
     async def test_streaming_response_bulk_delete(self, async_client: AsyncCloudflare) -> None:
@@ -653,7 +648,7 @@ class TestAsyncFilters:
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
                 filter = await response.parse()
-                assert_matches_type(Optional[FilterBulkDeleteResponse], filter, path=["response"])
+                assert_matches_type(AsyncSinglePage[FirewallFilter], filter, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -673,7 +668,7 @@ class TestAsyncFilters:
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-        assert_matches_type(Optional[FilterBulkUpdateResponse], filter, path=["response"])
+        assert_matches_type(AsyncSinglePage[FirewallFilter], filter, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -686,7 +681,7 @@ class TestAsyncFilters:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         filter = await response.parse()
-        assert_matches_type(Optional[FilterBulkUpdateResponse], filter, path=["response"])
+        assert_matches_type(AsyncSinglePage[FirewallFilter], filter, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -699,7 +694,7 @@ class TestAsyncFilters:
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
                 filter = await response.parse()
-                assert_matches_type(Optional[FilterBulkUpdateResponse], filter, path=["response"])
+                assert_matches_type(AsyncSinglePage[FirewallFilter], filter, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

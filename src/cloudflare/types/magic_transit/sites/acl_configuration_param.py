@@ -17,10 +17,18 @@ class ACLConfigurationParam(TypedDict, total=False):
     lan_name: str
     """The name of the LAN based on the provided lan_id."""
 
+    port_ranges: List[str]
+    """Array of port ranges on the provided LAN that will be included in the ACL.
+
+    If no ports or port rangess are provided, communication on any port on this LAN
+    is allowed.
+    """
+
     ports: Iterable[int]
     """Array of ports on the provided LAN that will be included in the ACL.
 
-    If no ports are provided, communication on any port on this LAN is allowed.
+    If no ports or port ranges are provided, communication on any port on this LAN
+    is allowed.
     """
 
     subnets: List[Subnet]

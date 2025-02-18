@@ -48,7 +48,6 @@ from .fallback_domains import (
 from ......_base_client import AsyncPaginator, make_request_options
 from ......types.zero_trust.devices.policies import custom_edit_params, custom_create_params
 from ......types.zero_trust.devices.settings_policy import SettingsPolicy
-from ......types.zero_trust.devices.policies.custom_delete_response import CustomDeleteResponse
 
 __all__ = ["CustomResource", "AsyncCustomResource"]
 
@@ -69,7 +68,7 @@ class CustomResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> CustomResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -133,7 +132,7 @@ class CustomResource(SyncAPIResource):
 
           allowed_to_leave: Whether to allow devices to leave the organization.
 
-          auto_connect: The amount of time in minutes to reconnect after having been disabled.
+          auto_connect: The amount of time in seconds to reconnect after having been disabled.
 
           captive_portal: Turn on the captive portal after the specified amount of time.
 
@@ -251,7 +250,7 @@ class CustomResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CustomDeleteResponse]:
+    ) -> SyncSinglePage[SettingsPolicy]:
         """
         Deletes a device settings profile and fetches a list of the remaining profiles
         for an account.
@@ -271,16 +270,14 @@ class CustomResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
-        return self._delete(
+        return self._get_api_list(
             f"/accounts/{account_id}/devices/policy/{policy_id}",
+            page=SyncSinglePage[SettingsPolicy],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[CustomDeleteResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[CustomDeleteResponse]], ResultWrapper[CustomDeleteResponse]),
+            model=SettingsPolicy,
+            method="delete",
         )
 
     def edit(
@@ -324,7 +321,7 @@ class CustomResource(SyncAPIResource):
 
           allowed_to_leave: Whether to allow devices to leave the organization.
 
-          auto_connect: The amount of time in minutes to reconnect after having been disabled.
+          auto_connect: The amount of time in seconds to reconnect after having been disabled.
 
           captive_portal: Turn on the captive portal after the specified amount of time.
 
@@ -455,7 +452,7 @@ class AsyncCustomResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncCustomResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -519,7 +516,7 @@ class AsyncCustomResource(AsyncAPIResource):
 
           allowed_to_leave: Whether to allow devices to leave the organization.
 
-          auto_connect: The amount of time in minutes to reconnect after having been disabled.
+          auto_connect: The amount of time in seconds to reconnect after having been disabled.
 
           captive_portal: Turn on the captive portal after the specified amount of time.
 
@@ -626,7 +623,7 @@ class AsyncCustomResource(AsyncAPIResource):
             model=SettingsPolicy,
         )
 
-    async def delete(
+    def delete(
         self,
         policy_id: str,
         *,
@@ -637,7 +634,7 @@ class AsyncCustomResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CustomDeleteResponse]:
+    ) -> AsyncPaginator[SettingsPolicy, AsyncSinglePage[SettingsPolicy]]:
         """
         Deletes a device settings profile and fetches a list of the remaining profiles
         for an account.
@@ -657,16 +654,14 @@ class AsyncCustomResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
-        return await self._delete(
+        return self._get_api_list(
             f"/accounts/{account_id}/devices/policy/{policy_id}",
+            page=AsyncSinglePage[SettingsPolicy],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[CustomDeleteResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[CustomDeleteResponse]], ResultWrapper[CustomDeleteResponse]),
+            model=SettingsPolicy,
+            method="delete",
         )
 
     async def edit(
@@ -710,7 +705,7 @@ class AsyncCustomResource(AsyncAPIResource):
 
           allowed_to_leave: Whether to allow devices to leave the organization.
 
-          auto_connect: The amount of time in minutes to reconnect after having been disabled.
+          auto_connect: The amount of time in seconds to reconnect after having been disabled.
 
           captive_portal: Turn on the captive portal after the specified amount of time.
 

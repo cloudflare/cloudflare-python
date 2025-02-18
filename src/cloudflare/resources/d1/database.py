@@ -30,12 +30,12 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from ...pagination import SyncSinglePage, AsyncSinglePage, SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...types.d1.d1 import D1
 from ..._base_client import AsyncPaginator, make_request_options
+from ...types.d1.query_result import QueryResult
 from ...types.d1.database_raw_response import DatabaseRawResponse
 from ...types.d1.database_list_response import DatabaseListResponse
-from ...types.d1.database_query_response import DatabaseQueryResponse
 from ...types.d1.database_export_response import DatabaseExportResponse
 from ...types.d1.database_import_response import DatabaseImportResponse
 
@@ -46,7 +46,7 @@ class DatabaseResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> DatabaseResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -80,6 +80,8 @@ class DatabaseResource(SyncAPIResource):
 
         Args:
           account_id: Account identifier tag.
+
+          name: D1 database name.
 
           primary_location_hint: Specify the region to create the D1 primary, if available. If this option is
               omitted, the D1 will be created as close as possible to the current user.
@@ -187,6 +189,8 @@ class DatabaseResource(SyncAPIResource):
         Args:
           account_id: Account identifier tag.
 
+          database_id: D1 database identifier (UUID).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -235,6 +239,8 @@ class DatabaseResource(SyncAPIResource):
 
         Args:
           account_id: Account identifier tag.
+
+          database_id: D1 database identifier (UUID).
 
           output_format: Specifies that you will poll this endpoint until the export completes
 
@@ -291,6 +297,8 @@ class DatabaseResource(SyncAPIResource):
         Args:
           account_id: Account identifier tag.
 
+          database_id: D1 database identifier (UUID).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -338,6 +346,8 @@ class DatabaseResource(SyncAPIResource):
         Args:
           account_id: Account identifier tag.
 
+          database_id: D1 database identifier (UUID).
+
           action: Indicates you have a new SQL file to upload.
 
           etag: Required when action is 'init' or 'ingest'. An md5 hash of the file you're
@@ -378,6 +388,8 @@ class DatabaseResource(SyncAPIResource):
         Args:
           account_id: Account identifier tag.
 
+          database_id: D1 database identifier (UUID).
+
           action: Indicates you've finished uploading to tell the D1 to start consuming it
 
           etag: An md5 hash of the file you're uploading. Used to check if it already exists,
@@ -417,6 +429,8 @@ class DatabaseResource(SyncAPIResource):
 
         Args:
           account_id: Account identifier tag.
+
+          database_id: D1 database identifier (UUID).
 
           action: Indicates you've finished uploading to tell the D1 to start consuming it
 
@@ -491,12 +505,14 @@ class DatabaseResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DatabaseQueryResponse:
+    ) -> SyncSinglePage[QueryResult]:
         """
         Returns the query result as an object.
 
         Args:
           account_id: Account identifier tag.
+
+          database_id: D1 database identifier (UUID).
 
           sql: Your SQL query. Supports multiple statements, joined by semicolons, which will
               be executed as a batch.
@@ -513,8 +529,9 @@ class DatabaseResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not database_id:
             raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
-        return self._post(
+        return self._get_api_list(
             f"/accounts/{account_id}/d1/database/{database_id}/query",
+            page=SyncSinglePage[QueryResult],
             body=maybe_transform(
                 {
                     "sql": sql,
@@ -523,13 +540,10 @@ class DatabaseResource(SyncAPIResource):
                 database_query_params.DatabaseQueryParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[DatabaseQueryResponse]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[DatabaseQueryResponse], ResultWrapper[DatabaseQueryResponse]),
+            model=QueryResult,
+            method="post",
         )
 
     def raw(
@@ -545,7 +559,7 @@ class DatabaseResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DatabaseRawResponse:
+    ) -> SyncSinglePage[DatabaseRawResponse]:
         """Returns the query result rows as arrays rather than objects.
 
         This is a
@@ -553,6 +567,8 @@ class DatabaseResource(SyncAPIResource):
 
         Args:
           account_id: Account identifier tag.
+
+          database_id: D1 database identifier (UUID).
 
           sql: Your SQL query. Supports multiple statements, joined by semicolons, which will
               be executed as a batch.
@@ -569,8 +585,9 @@ class DatabaseResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not database_id:
             raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
-        return self._post(
+        return self._get_api_list(
             f"/accounts/{account_id}/d1/database/{database_id}/raw",
+            page=SyncSinglePage[DatabaseRawResponse],
             body=maybe_transform(
                 {
                     "sql": sql,
@@ -579,13 +596,10 @@ class DatabaseResource(SyncAPIResource):
                 database_raw_params.DatabaseRawParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[DatabaseRawResponse]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[DatabaseRawResponse], ResultWrapper[DatabaseRawResponse]),
+            model=DatabaseRawResponse,
+            method="post",
         )
 
 
@@ -593,7 +607,7 @@ class AsyncDatabaseResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncDatabaseResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -627,6 +641,8 @@ class AsyncDatabaseResource(AsyncAPIResource):
 
         Args:
           account_id: Account identifier tag.
+
+          name: D1 database name.
 
           primary_location_hint: Specify the region to create the D1 primary, if available. If this option is
               omitted, the D1 will be created as close as possible to the current user.
@@ -734,6 +750,8 @@ class AsyncDatabaseResource(AsyncAPIResource):
         Args:
           account_id: Account identifier tag.
 
+          database_id: D1 database identifier (UUID).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -782,6 +800,8 @@ class AsyncDatabaseResource(AsyncAPIResource):
 
         Args:
           account_id: Account identifier tag.
+
+          database_id: D1 database identifier (UUID).
 
           output_format: Specifies that you will poll this endpoint until the export completes
 
@@ -838,6 +858,8 @@ class AsyncDatabaseResource(AsyncAPIResource):
         Args:
           account_id: Account identifier tag.
 
+          database_id: D1 database identifier (UUID).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -885,6 +907,8 @@ class AsyncDatabaseResource(AsyncAPIResource):
         Args:
           account_id: Account identifier tag.
 
+          database_id: D1 database identifier (UUID).
+
           action: Indicates you have a new SQL file to upload.
 
           etag: Required when action is 'init' or 'ingest'. An md5 hash of the file you're
@@ -925,6 +949,8 @@ class AsyncDatabaseResource(AsyncAPIResource):
         Args:
           account_id: Account identifier tag.
 
+          database_id: D1 database identifier (UUID).
+
           action: Indicates you've finished uploading to tell the D1 to start consuming it
 
           etag: An md5 hash of the file you're uploading. Used to check if it already exists,
@@ -964,6 +990,8 @@ class AsyncDatabaseResource(AsyncAPIResource):
 
         Args:
           account_id: Account identifier tag.
+
+          database_id: D1 database identifier (UUID).
 
           action: Indicates you've finished uploading to tell the D1 to start consuming it
 
@@ -1025,7 +1053,7 @@ class AsyncDatabaseResource(AsyncAPIResource):
             cast_to=cast(Type[DatabaseImportResponse], ResultWrapper[DatabaseImportResponse]),
         )
 
-    async def query(
+    def query(
         self,
         database_id: str,
         *,
@@ -1038,12 +1066,14 @@ class AsyncDatabaseResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DatabaseQueryResponse:
+    ) -> AsyncPaginator[QueryResult, AsyncSinglePage[QueryResult]]:
         """
         Returns the query result as an object.
 
         Args:
           account_id: Account identifier tag.
+
+          database_id: D1 database identifier (UUID).
 
           sql: Your SQL query. Supports multiple statements, joined by semicolons, which will
               be executed as a batch.
@@ -1060,9 +1090,10 @@ class AsyncDatabaseResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not database_id:
             raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
-        return await self._post(
+        return self._get_api_list(
             f"/accounts/{account_id}/d1/database/{database_id}/query",
-            body=await async_maybe_transform(
+            page=AsyncSinglePage[QueryResult],
+            body=maybe_transform(
                 {
                     "sql": sql,
                     "params": params,
@@ -1070,16 +1101,13 @@ class AsyncDatabaseResource(AsyncAPIResource):
                 database_query_params.DatabaseQueryParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[DatabaseQueryResponse]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[DatabaseQueryResponse], ResultWrapper[DatabaseQueryResponse]),
+            model=QueryResult,
+            method="post",
         )
 
-    async def raw(
+    def raw(
         self,
         database_id: str,
         *,
@@ -1092,7 +1120,7 @@ class AsyncDatabaseResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DatabaseRawResponse:
+    ) -> AsyncPaginator[DatabaseRawResponse, AsyncSinglePage[DatabaseRawResponse]]:
         """Returns the query result rows as arrays rather than objects.
 
         This is a
@@ -1101,6 +1129,8 @@ class AsyncDatabaseResource(AsyncAPIResource):
         Args:
           account_id: Account identifier tag.
 
+          database_id: D1 database identifier (UUID).
+
           sql: Your SQL query. Supports multiple statements, joined by semicolons, which will
               be executed as a batch.
 
@@ -1116,9 +1146,10 @@ class AsyncDatabaseResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not database_id:
             raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
-        return await self._post(
+        return self._get_api_list(
             f"/accounts/{account_id}/d1/database/{database_id}/raw",
-            body=await async_maybe_transform(
+            page=AsyncSinglePage[DatabaseRawResponse],
+            body=maybe_transform(
                 {
                     "sql": sql,
                     "params": params,
@@ -1126,13 +1157,10 @@ class AsyncDatabaseResource(AsyncAPIResource):
                 database_raw_params.DatabaseRawParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[DatabaseRawResponse]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[DatabaseRawResponse], ResultWrapper[DatabaseRawResponse]),
+            model=DatabaseRawResponse,
+            method="post",
         )
 
 

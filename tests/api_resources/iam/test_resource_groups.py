@@ -11,6 +11,7 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.iam import (
     ResourceGroupGetResponse,
+    ResourceGroupListResponse,
     ResourceGroupCreateResponse,
     ResourceGroupDeleteResponse,
     ResourceGroupUpdateResponse,
@@ -175,7 +176,7 @@ class TestResourceGroups:
         resource_group = client.iam.resource_groups.list(
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         )
-        assert_matches_type(SyncV4PagePaginationArray[object], resource_group, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[ResourceGroupListResponse], resource_group, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
@@ -186,7 +187,7 @@ class TestResourceGroups:
             page=1,
             per_page=5,
         )
-        assert_matches_type(SyncV4PagePaginationArray[object], resource_group, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[ResourceGroupListResponse], resource_group, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -197,7 +198,7 @@ class TestResourceGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         resource_group = response.parse()
-        assert_matches_type(SyncV4PagePaginationArray[object], resource_group, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[ResourceGroupListResponse], resource_group, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -208,7 +209,7 @@ class TestResourceGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             resource_group = response.parse()
-            assert_matches_type(SyncV4PagePaginationArray[object], resource_group, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[ResourceGroupListResponse], resource_group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -471,7 +472,7 @@ class TestAsyncResourceGroups:
         resource_group = await async_client.iam.resource_groups.list(
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[object], resource_group, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[ResourceGroupListResponse], resource_group, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -482,7 +483,7 @@ class TestAsyncResourceGroups:
             page=1,
             per_page=5,
         )
-        assert_matches_type(AsyncV4PagePaginationArray[object], resource_group, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[ResourceGroupListResponse], resource_group, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -493,7 +494,7 @@ class TestAsyncResourceGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         resource_group = await response.parse()
-        assert_matches_type(AsyncV4PagePaginationArray[object], resource_group, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[ResourceGroupListResponse], resource_group, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -504,7 +505,9 @@ class TestAsyncResourceGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             resource_group = await response.parse()
-            assert_matches_type(AsyncV4PagePaginationArray[object], resource_group, path=["response"])
+            assert_matches_type(
+                AsyncV4PagePaginationArray[ResourceGroupListResponse], resource_group, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 

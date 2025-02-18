@@ -16,6 +16,14 @@ from .bots import (
     BotsResourceWithStreamingResponse,
     AsyncBotsResourceWithStreamingResponse,
 )
+from .inference import (
+    InferenceResource,
+    AsyncInferenceResource,
+    InferenceResourceWithRawResponse,
+    AsyncInferenceResourceWithRawResponse,
+    InferenceResourceWithStreamingResponse,
+    AsyncInferenceResourceWithStreamingResponse,
+)
 from .timeseries_groups import (
     TimeseriesGroupsResource,
     AsyncTimeseriesGroupsResource,
@@ -26,6 +34,12 @@ from .timeseries_groups import (
 )
 
 __all__ = [
+    "InferenceResource",
+    "AsyncInferenceResource",
+    "InferenceResourceWithRawResponse",
+    "AsyncInferenceResourceWithRawResponse",
+    "InferenceResourceWithStreamingResponse",
+    "AsyncInferenceResourceWithStreamingResponse",
     "BotsResource",
     "AsyncBotsResource",
     "BotsResourceWithRawResponse",

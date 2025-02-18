@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
@@ -15,9 +13,9 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._wrappers import ResultWrapper
-from ..._base_client import make_request_options
-from ...types.intel.ip_list_get_response import IPListGetResponse
+from ...pagination import SyncSinglePage, AsyncSinglePage
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.intel.ip_list import IPList
 
 __all__ = ["IPListsResource", "AsyncIPListsResource"]
 
@@ -26,7 +24,7 @@ class IPListsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> IPListsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -52,7 +50,7 @@ class IPListsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IPListGetResponse]:
+    ) -> SyncSinglePage[IPList]:
         """
         Get IP Lists
 
@@ -69,16 +67,13 @@ class IPListsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/intel/ip-list",
+            page=SyncSinglePage[IPList],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[IPListGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[IPListGetResponse]], ResultWrapper[IPListGetResponse]),
+            model=IPList,
         )
 
 
@@ -86,7 +81,7 @@ class AsyncIPListsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncIPListsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -102,7 +97,7 @@ class AsyncIPListsResource(AsyncAPIResource):
         """
         return AsyncIPListsResourceWithStreamingResponse(self)
 
-    async def get(
+    def get(
         self,
         *,
         account_id: str,
@@ -112,7 +107,7 @@ class AsyncIPListsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IPListGetResponse]:
+    ) -> AsyncPaginator[IPList, AsyncSinglePage[IPList]]:
         """
         Get IP Lists
 
@@ -129,16 +124,13 @@ class AsyncIPListsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/intel/ip-list",
+            page=AsyncSinglePage[IPList],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[IPListGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[IPListGetResponse]], ResultWrapper[IPListGetResponse]),
+            model=IPList,
         )
 
 

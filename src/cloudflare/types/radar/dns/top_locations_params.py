@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import List, Union
 from datetime import datetime
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Literal, Annotated, TypedDict
 
 from ...._utils import PropertyInfo
 
@@ -12,9 +12,6 @@ __all__ = ["TopLocationsParams"]
 
 
 class TopLocationsParams(TypedDict, total=False):
-    domain: Required[List[str]]
-    """Array of domain names."""
-
     asn: List[str]
     """Array of comma separated list of ASNs, start with `-` to exclude from results.
 
@@ -41,6 +38,9 @@ class TopLocationsParams(TypedDict, total=False):
 
     date_start: Annotated[List[Union[str, datetime]], PropertyInfo(alias="dateStart", format="iso8601")]
     """Array of datetimes to filter the start of a series."""
+
+    domain: List[str]
+    """Array of domain names."""
 
     format: Literal["JSON", "CSV"]
     """Format results are returned in."""

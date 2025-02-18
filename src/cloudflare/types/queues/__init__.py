@@ -9,7 +9,6 @@ from .message_pull_params import MessagePullParams as MessagePullParams
 from .queue_create_params import QueueCreateParams as QueueCreateParams
 from .queue_update_params import QueueUpdateParams as QueueUpdateParams
 from .message_ack_response import MessageAckResponse as MessageAckResponse
-from .consumer_get_response import ConsumerGetResponse as ConsumerGetResponse
 from .message_pull_response import MessagePullResponse as MessagePullResponse
 from .queue_delete_response import QueueDeleteResponse as QueueDeleteResponse
 from .consumer_create_params import ConsumerCreateParams as ConsumerCreateParams

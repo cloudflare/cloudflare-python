@@ -34,7 +34,7 @@ class TestRules:
                 {
                     "operator": "InList",
                     "selector": "Recipients",
-                    "value": {},
+                    "value": ["string"],
                 }
             ],
             enabled=True,
@@ -54,7 +54,7 @@ class TestRules:
                 {
                     "operator": "InList",
                     "selector": "Recipients",
-                    "value": {},
+                    "value": ["string"],
                 }
             ],
             enabled=True,
@@ -72,7 +72,7 @@ class TestRules:
                 {
                     "operator": "InList",
                     "selector": "Recipients",
-                    "value": {},
+                    "value": ["string"],
                 }
             ],
             enabled=True,
@@ -93,7 +93,7 @@ class TestRules:
                 {
                     "operator": "InList",
                     "selector": "Recipients",
-                    "value": {},
+                    "value": ["string"],
                 }
             ],
             enabled=True,
@@ -117,7 +117,7 @@ class TestRules:
                     {
                         "operator": "InList",
                         "selector": "Recipients",
-                        "value": {},
+                        "value": ["string"],
                     }
                 ],
                 enabled=True,
@@ -134,7 +134,7 @@ class TestRules:
                 {
                     "operator": "InList",
                     "selector": "Recipients",
-                    "value": {},
+                    "value": ["string"],
                 }
             ],
             enabled=True,
@@ -155,7 +155,7 @@ class TestRules:
                 {
                     "operator": "InList",
                     "selector": "Recipients",
-                    "value": {},
+                    "value": ["string"],
                 }
             ],
             enabled=True,
@@ -174,7 +174,7 @@ class TestRules:
                 {
                     "operator": "InList",
                     "selector": "Recipients",
-                    "value": {},
+                    "value": ["string"],
                 }
             ],
             enabled=True,
@@ -196,7 +196,7 @@ class TestRules:
                 {
                     "operator": "InList",
                     "selector": "Recipients",
-                    "value": {},
+                    "value": ["string"],
                 }
             ],
             enabled=True,
@@ -221,7 +221,7 @@ class TestRules:
                     {
                         "operator": "InList",
                         "selector": "Recipients",
-                        "value": {},
+                        "value": ["string"],
                     }
                 ],
                 enabled=True,
@@ -237,7 +237,7 @@ class TestRules:
                     {
                         "operator": "InList",
                         "selector": "Recipients",
-                        "value": {},
+                        "value": ["string"],
                     }
                 ],
                 enabled=True,
@@ -433,7 +433,7 @@ class TestAsyncRules:
                 {
                     "operator": "InList",
                     "selector": "Recipients",
-                    "value": {},
+                    "value": ["string"],
                 }
             ],
             enabled=True,
@@ -453,7 +453,7 @@ class TestAsyncRules:
                 {
                     "operator": "InList",
                     "selector": "Recipients",
-                    "value": {},
+                    "value": ["string"],
                 }
             ],
             enabled=True,
@@ -471,7 +471,7 @@ class TestAsyncRules:
                 {
                     "operator": "InList",
                     "selector": "Recipients",
-                    "value": {},
+                    "value": ["string"],
                 }
             ],
             enabled=True,
@@ -492,7 +492,7 @@ class TestAsyncRules:
                 {
                     "operator": "InList",
                     "selector": "Recipients",
-                    "value": {},
+                    "value": ["string"],
                 }
             ],
             enabled=True,
@@ -516,7 +516,7 @@ class TestAsyncRules:
                     {
                         "operator": "InList",
                         "selector": "Recipients",
-                        "value": {},
+                        "value": ["string"],
                     }
                 ],
                 enabled=True,
@@ -533,7 +533,7 @@ class TestAsyncRules:
                 {
                     "operator": "InList",
                     "selector": "Recipients",
-                    "value": {},
+                    "value": ["string"],
                 }
             ],
             enabled=True,
@@ -554,7 +554,7 @@ class TestAsyncRules:
                 {
                     "operator": "InList",
                     "selector": "Recipients",
-                    "value": {},
+                    "value": ["string"],
                 }
             ],
             enabled=True,
@@ -573,7 +573,7 @@ class TestAsyncRules:
                 {
                     "operator": "InList",
                     "selector": "Recipients",
-                    "value": {},
+                    "value": ["string"],
                 }
             ],
             enabled=True,
@@ -595,7 +595,7 @@ class TestAsyncRules:
                 {
                     "operator": "InList",
                     "selector": "Recipients",
-                    "value": {},
+                    "value": ["string"],
                 }
             ],
             enabled=True,
@@ -620,7 +620,7 @@ class TestAsyncRules:
                     {
                         "operator": "InList",
                         "selector": "Recipients",
-                        "value": {},
+                        "value": ["string"],
                     }
                 ],
                 enabled=True,
@@ -636,7 +636,7 @@ class TestAsyncRules:
                     {
                         "operator": "InList",
                         "selector": "Recipients",
-                        "value": {},
+                        "value": ["string"],
                     }
                 ],
                 enabled=True,

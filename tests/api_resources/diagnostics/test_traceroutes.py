@@ -3,13 +3,14 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.diagnostics import TracerouteCreateResponse
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.types.diagnostics import Traceroute
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -23,7 +24,7 @@ class TestTraceroutes:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             targets=["203.0.113.1", "cloudflare.com"],
         )
-        assert_matches_type(Optional[TracerouteCreateResponse], traceroute, path=["response"])
+        assert_matches_type(SyncSinglePage[Traceroute], traceroute, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
@@ -39,7 +40,7 @@ class TestTraceroutes:
                 "wait_time": 1,
             },
         )
-        assert_matches_type(Optional[TracerouteCreateResponse], traceroute, path=["response"])
+        assert_matches_type(SyncSinglePage[Traceroute], traceroute, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
@@ -51,7 +52,7 @@ class TestTraceroutes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         traceroute = response.parse()
-        assert_matches_type(Optional[TracerouteCreateResponse], traceroute, path=["response"])
+        assert_matches_type(SyncSinglePage[Traceroute], traceroute, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
@@ -63,7 +64,7 @@ class TestTraceroutes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             traceroute = response.parse()
-            assert_matches_type(Optional[TracerouteCreateResponse], traceroute, path=["response"])
+            assert_matches_type(SyncSinglePage[Traceroute], traceroute, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -85,7 +86,7 @@ class TestAsyncTraceroutes:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             targets=["203.0.113.1", "cloudflare.com"],
         )
-        assert_matches_type(Optional[TracerouteCreateResponse], traceroute, path=["response"])
+        assert_matches_type(AsyncSinglePage[Traceroute], traceroute, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -101,7 +102,7 @@ class TestAsyncTraceroutes:
                 "wait_time": 1,
             },
         )
-        assert_matches_type(Optional[TracerouteCreateResponse], traceroute, path=["response"])
+        assert_matches_type(AsyncSinglePage[Traceroute], traceroute, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -113,7 +114,7 @@ class TestAsyncTraceroutes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         traceroute = await response.parse()
-        assert_matches_type(Optional[TracerouteCreateResponse], traceroute, path=["response"])
+        assert_matches_type(AsyncSinglePage[Traceroute], traceroute, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -125,7 +126,7 @@ class TestAsyncTraceroutes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             traceroute = await response.parse()
-            assert_matches_type(Optional[TracerouteCreateResponse], traceroute, path=["response"])
+            assert_matches_type(AsyncSinglePage[Traceroute], traceroute, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

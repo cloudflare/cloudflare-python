@@ -7,7 +7,6 @@ from .pagerduty import Pagerduty as Pagerduty
 from .eligible_get_response import EligibleGetResponse as EligibleGetResponse
 from .webhook_create_params import WebhookCreateParams as WebhookCreateParams
 from .webhook_update_params import WebhookUpdateParams as WebhookUpdateParams
-from .pagerduty_get_response import PagerdutyGetResponse as PagerdutyGetResponse
 from .pagerduty_link_response import PagerdutyLinkResponse as PagerdutyLinkResponse
 from .webhook_create_response import WebhookCreateResponse as WebhookCreateResponse
 from .webhook_delete_response import WebhookDeleteResponse as WebhookDeleteResponse

@@ -91,7 +91,7 @@ class TestAI:
             image_b64="image_b64",
             mask=[0],
             negative_prompt="negative_prompt",
-            num_steps=0,
+            num_steps=20,
             seed=0,
             strength=0,
             width=256,
@@ -775,10 +775,16 @@ class TestAI:
             model_name="model_name",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             image=[0],
+            frequency_penalty=0,
             max_tokens=0,
+            presence_penalty=0,
             prompt="prompt",
             raw=True,
+            repetition_penalty=0,
+            seed=0,
             temperature=0,
+            top_k=0,
+            top_p=0,
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -904,7 +910,7 @@ class TestAsyncAI:
             image_b64="image_b64",
             mask=[0],
             negative_prompt="negative_prompt",
-            num_steps=0,
+            num_steps=20,
             seed=0,
             strength=0,
             width=256,
@@ -1588,10 +1594,16 @@ class TestAsyncAI:
             model_name="model_name",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             image=[0],
+            frequency_penalty=0,
             max_tokens=0,
+            presence_penalty=0,
             prompt="prompt",
             raw=True,
+            repetition_penalty=0,
+            seed=0,
             temperature=0,
+            top_k=0,
+            top_p=0,
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 

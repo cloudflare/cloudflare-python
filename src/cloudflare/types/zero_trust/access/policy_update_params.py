@@ -6,8 +6,8 @@ from typing import Iterable
 from typing_extensions import Required, TypedDict
 
 from .decision import Decision
-from ..access_rule_param import AccessRuleParam
 from .approval_group_param import ApprovalGroupParam
+from .applications.access_rule_param import AccessRuleParam
 
 __all__ = ["PolicyUpdateParams"]
 

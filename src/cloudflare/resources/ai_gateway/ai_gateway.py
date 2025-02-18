@@ -85,7 +85,7 @@ class AIGatewayResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AIGatewayResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -112,6 +112,9 @@ class AIGatewayResource(SyncAPIResource):
         rate_limiting_interval: Optional[int],
         rate_limiting_limit: Optional[int],
         rate_limiting_technique: Literal["fixed", "sliding"],
+        authentication: bool | NotGiven = NOT_GIVEN,
+        log_management: Optional[int] | NotGiven = NOT_GIVEN,
+        log_management_strategy: Optional[Literal["STOP_INSERTING", "DELETE_OLDEST"]] | NotGiven = NOT_GIVEN,
         logpush: bool | NotGiven = NOT_GIVEN,
         logpush_public_key: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -148,6 +151,9 @@ class AIGatewayResource(SyncAPIResource):
                     "rate_limiting_interval": rate_limiting_interval,
                     "rate_limiting_limit": rate_limiting_limit,
                     "rate_limiting_technique": rate_limiting_technique,
+                    "authentication": authentication,
+                    "log_management": log_management,
+                    "log_management_strategy": log_management_strategy,
                     "logpush": logpush,
                     "logpush_public_key": logpush_public_key,
                 },
@@ -174,6 +180,9 @@ class AIGatewayResource(SyncAPIResource):
         rate_limiting_interval: Optional[int],
         rate_limiting_limit: Optional[int],
         rate_limiting_technique: Literal["fixed", "sliding"],
+        authentication: bool | NotGiven = NOT_GIVEN,
+        log_management: Optional[int] | NotGiven = NOT_GIVEN,
+        log_management_strategy: Optional[Literal["STOP_INSERTING", "DELETE_OLDEST"]] | NotGiven = NOT_GIVEN,
         logpush: bool | NotGiven = NOT_GIVEN,
         logpush_public_key: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -211,6 +220,9 @@ class AIGatewayResource(SyncAPIResource):
                     "rate_limiting_interval": rate_limiting_interval,
                     "rate_limiting_limit": rate_limiting_limit,
                     "rate_limiting_technique": rate_limiting_technique,
+                    "authentication": authentication,
+                    "log_management": log_management,
+                    "log_management_strategy": log_management_strategy,
                     "logpush": logpush,
                     "logpush_public_key": logpush_public_key,
                 },
@@ -381,7 +393,7 @@ class AsyncAIGatewayResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncAIGatewayResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -408,6 +420,9 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         rate_limiting_interval: Optional[int],
         rate_limiting_limit: Optional[int],
         rate_limiting_technique: Literal["fixed", "sliding"],
+        authentication: bool | NotGiven = NOT_GIVEN,
+        log_management: Optional[int] | NotGiven = NOT_GIVEN,
+        log_management_strategy: Optional[Literal["STOP_INSERTING", "DELETE_OLDEST"]] | NotGiven = NOT_GIVEN,
         logpush: bool | NotGiven = NOT_GIVEN,
         logpush_public_key: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -444,6 +459,9 @@ class AsyncAIGatewayResource(AsyncAPIResource):
                     "rate_limiting_interval": rate_limiting_interval,
                     "rate_limiting_limit": rate_limiting_limit,
                     "rate_limiting_technique": rate_limiting_technique,
+                    "authentication": authentication,
+                    "log_management": log_management,
+                    "log_management_strategy": log_management_strategy,
                     "logpush": logpush,
                     "logpush_public_key": logpush_public_key,
                 },
@@ -470,6 +488,9 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         rate_limiting_interval: Optional[int],
         rate_limiting_limit: Optional[int],
         rate_limiting_technique: Literal["fixed", "sliding"],
+        authentication: bool | NotGiven = NOT_GIVEN,
+        log_management: Optional[int] | NotGiven = NOT_GIVEN,
+        log_management_strategy: Optional[Literal["STOP_INSERTING", "DELETE_OLDEST"]] | NotGiven = NOT_GIVEN,
         logpush: bool | NotGiven = NOT_GIVEN,
         logpush_public_key: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -507,6 +528,9 @@ class AsyncAIGatewayResource(AsyncAPIResource):
                     "rate_limiting_interval": rate_limiting_interval,
                     "rate_limiting_limit": rate_limiting_limit,
                     "rate_limiting_technique": rate_limiting_technique,
+                    "authentication": authentication,
+                    "log_management": log_management,
+                    "log_management_strategy": log_management_strategy,
                     "logpush": logpush,
                     "logpush_public_key": logpush_public_key,
                 },

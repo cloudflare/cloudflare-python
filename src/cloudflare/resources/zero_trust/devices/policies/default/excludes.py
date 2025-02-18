@@ -2,15 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, Optional, cast
+from typing import Iterable
 
 import httpx
 
 from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ......_utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ......_utils import maybe_transform
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
 from ......_response import (
@@ -19,11 +16,10 @@ from ......_response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ......_wrappers import ResultWrapper
-from ......_base_client import make_request_options
+from ......pagination import SyncSinglePage, AsyncSinglePage
+from ......_base_client import AsyncPaginator, make_request_options
+from ......types.zero_trust.devices.split_tunnel_exclude import SplitTunnelExclude
 from ......types.zero_trust.devices.split_tunnel_exclude_param import SplitTunnelExcludeParam
-from ......types.zero_trust.devices.policies.default.exclude_get_response import ExcludeGetResponse
-from ......types.zero_trust.devices.policies.default.exclude_update_response import ExcludeUpdateResponse
 
 __all__ = ["ExcludesResource", "AsyncExcludesResource"]
 
@@ -32,7 +28,7 @@ class ExcludesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ExcludesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -59,7 +55,7 @@ class ExcludesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ExcludeUpdateResponse]:
+    ) -> SyncSinglePage[SplitTunnelExclude]:
         """
         Sets the list of routes excluded from the WARP client's tunnel.
 
@@ -74,17 +70,15 @@ class ExcludesResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._put(
+        return self._get_api_list(
             f"/accounts/{account_id}/devices/policy/exclude",
+            page=SyncSinglePage[SplitTunnelExclude],
             body=maybe_transform(body, Iterable[SplitTunnelExcludeParam]),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ExcludeUpdateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[ExcludeUpdateResponse]], ResultWrapper[ExcludeUpdateResponse]),
+            model=SplitTunnelExclude,
+            method="put",
         )
 
     def get(
@@ -97,7 +91,7 @@ class ExcludesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ExcludeGetResponse]:
+    ) -> SyncSinglePage[SplitTunnelExclude]:
         """
         Fetches the list of routes excluded from the WARP client's tunnel.
 
@@ -112,16 +106,13 @@ class ExcludesResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/devices/policy/exclude",
+            page=SyncSinglePage[SplitTunnelExclude],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ExcludeGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[ExcludeGetResponse]], ResultWrapper[ExcludeGetResponse]),
+            model=SplitTunnelExclude,
         )
 
 
@@ -129,7 +120,7 @@ class AsyncExcludesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncExcludesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -145,7 +136,7 @@ class AsyncExcludesResource(AsyncAPIResource):
         """
         return AsyncExcludesResourceWithStreamingResponse(self)
 
-    async def update(
+    def update(
         self,
         *,
         account_id: str,
@@ -156,7 +147,7 @@ class AsyncExcludesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ExcludeUpdateResponse]:
+    ) -> AsyncPaginator[SplitTunnelExclude, AsyncSinglePage[SplitTunnelExclude]]:
         """
         Sets the list of routes excluded from the WARP client's tunnel.
 
@@ -171,20 +162,18 @@ class AsyncExcludesResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._put(
+        return self._get_api_list(
             f"/accounts/{account_id}/devices/policy/exclude",
-            body=await async_maybe_transform(body, Iterable[SplitTunnelExcludeParam]),
+            page=AsyncSinglePage[SplitTunnelExclude],
+            body=maybe_transform(body, Iterable[SplitTunnelExcludeParam]),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ExcludeUpdateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[ExcludeUpdateResponse]], ResultWrapper[ExcludeUpdateResponse]),
+            model=SplitTunnelExclude,
+            method="put",
         )
 
-    async def get(
+    def get(
         self,
         *,
         account_id: str,
@@ -194,7 +183,7 @@ class AsyncExcludesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ExcludeGetResponse]:
+    ) -> AsyncPaginator[SplitTunnelExclude, AsyncSinglePage[SplitTunnelExclude]]:
         """
         Fetches the list of routes excluded from the WARP client's tunnel.
 
@@ -209,16 +198,13 @@ class AsyncExcludesResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/devices/policy/exclude",
+            page=AsyncSinglePage[SplitTunnelExclude],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ExcludeGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[ExcludeGetResponse]], ResultWrapper[ExcludeGetResponse]),
+            model=SplitTunnelExclude,
         )
 
 

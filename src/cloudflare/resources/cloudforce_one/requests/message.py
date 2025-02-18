@@ -22,10 +22,10 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ...._base_client import make_request_options
+from ....pagination import SyncSinglePage, AsyncSinglePage
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.cloudforce_one.requests import message_get_params, message_create_params, message_update_params
 from ....types.cloudforce_one.requests.message import Message
-from ....types.cloudforce_one.requests.message_get_response import MessageGetResponse
 from ....types.cloudforce_one.requests.message_delete_response import MessageDeleteResponse
 
 __all__ = ["MessageResource", "AsyncMessageResource"]
@@ -35,7 +35,7 @@ class MessageResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> MessageResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -206,7 +206,7 @@ class MessageResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MessageGetResponse]:
+    ) -> SyncSinglePage[Message]:
         """
         List Request Messages
 
@@ -239,8 +239,9 @@ class MessageResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
         if not request_identifier:
             raise ValueError(f"Expected a non-empty value for `request_identifier` but received {request_identifier!r}")
-        return self._post(
+        return self._get_api_list(
             f"/accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}/message",
+            page=SyncSinglePage[Message],
             body=maybe_transform(
                 {
                     "page": page,
@@ -253,13 +254,10 @@ class MessageResource(SyncAPIResource):
                 message_get_params.MessageGetParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[MessageGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[MessageGetResponse]], ResultWrapper[MessageGetResponse]),
+            model=Message,
+            method="post",
         )
 
 
@@ -267,7 +265,7 @@ class AsyncMessageResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncMessageResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -421,7 +419,7 @@ class AsyncMessageResource(AsyncAPIResource):
             cast_to=MessageDeleteResponse,
         )
 
-    async def get(
+    def get(
         self,
         request_identifier: str,
         *,
@@ -438,7 +436,7 @@ class AsyncMessageResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MessageGetResponse]:
+    ) -> AsyncPaginator[Message, AsyncSinglePage[Message]]:
         """
         List Request Messages
 
@@ -471,9 +469,10 @@ class AsyncMessageResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
         if not request_identifier:
             raise ValueError(f"Expected a non-empty value for `request_identifier` but received {request_identifier!r}")
-        return await self._post(
+        return self._get_api_list(
             f"/accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}/message",
-            body=await async_maybe_transform(
+            page=AsyncSinglePage[Message],
+            body=maybe_transform(
                 {
                     "page": page,
                     "per_page": per_page,
@@ -485,13 +484,10 @@ class AsyncMessageResource(AsyncAPIResource):
                 message_get_params.MessageGetParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[MessageGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[MessageGetResponse]], ResultWrapper[MessageGetResponse]),
+            model=Message,
+            method="post",
         )
 
 

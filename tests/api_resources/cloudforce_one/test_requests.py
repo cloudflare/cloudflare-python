@@ -10,13 +10,13 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
-from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.cloudforce_one import (
     Item,
     Quota,
     ListItem,
-    RequestTypes,
     RequestConstants,
+    RequestTypesResponse,
     RequestDeleteResponse,
 )
 
@@ -144,7 +144,7 @@ class TestRequests:
             page=0,
             per_page=10,
         )
-        assert_matches_type(SyncV4PagePaginationArray[ListItem], request, path=["response"])
+        assert_matches_type(SyncSinglePage[ListItem], request, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
@@ -161,7 +161,7 @@ class TestRequests:
             sort_order="asc",
             status="open",
         )
-        assert_matches_type(SyncV4PagePaginationArray[ListItem], request, path=["response"])
+        assert_matches_type(SyncSinglePage[ListItem], request, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -174,7 +174,7 @@ class TestRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         request = response.parse()
-        assert_matches_type(SyncV4PagePaginationArray[ListItem], request, path=["response"])
+        assert_matches_type(SyncSinglePage[ListItem], request, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -187,7 +187,7 @@ class TestRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             request = response.parse()
-            assert_matches_type(SyncV4PagePaginationArray[ListItem], request, path=["response"])
+            assert_matches_type(SyncSinglePage[ListItem], request, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -377,7 +377,7 @@ class TestRequests:
         request = client.cloudforce_one.requests.types(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RequestTypes], request, path=["response"])
+        assert_matches_type(SyncSinglePage[RequestTypesResponse], request, path=["response"])
 
     @parametrize
     def test_raw_response_types(self, client: Cloudflare) -> None:
@@ -388,7 +388,7 @@ class TestRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         request = response.parse()
-        assert_matches_type(Optional[RequestTypes], request, path=["response"])
+        assert_matches_type(SyncSinglePage[RequestTypesResponse], request, path=["response"])
 
     @parametrize
     def test_streaming_response_types(self, client: Cloudflare) -> None:
@@ -399,7 +399,7 @@ class TestRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             request = response.parse()
-            assert_matches_type(Optional[RequestTypes], request, path=["response"])
+            assert_matches_type(SyncSinglePage[RequestTypesResponse], request, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -532,7 +532,7 @@ class TestAsyncRequests:
             page=0,
             per_page=10,
         )
-        assert_matches_type(AsyncV4PagePaginationArray[ListItem], request, path=["response"])
+        assert_matches_type(AsyncSinglePage[ListItem], request, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -549,7 +549,7 @@ class TestAsyncRequests:
             sort_order="asc",
             status="open",
         )
-        assert_matches_type(AsyncV4PagePaginationArray[ListItem], request, path=["response"])
+        assert_matches_type(AsyncSinglePage[ListItem], request, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -562,7 +562,7 @@ class TestAsyncRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         request = await response.parse()
-        assert_matches_type(AsyncV4PagePaginationArray[ListItem], request, path=["response"])
+        assert_matches_type(AsyncSinglePage[ListItem], request, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -575,7 +575,7 @@ class TestAsyncRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             request = await response.parse()
-            assert_matches_type(AsyncV4PagePaginationArray[ListItem], request, path=["response"])
+            assert_matches_type(AsyncSinglePage[ListItem], request, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -765,7 +765,7 @@ class TestAsyncRequests:
         request = await async_client.cloudforce_one.requests.types(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RequestTypes], request, path=["response"])
+        assert_matches_type(AsyncSinglePage[RequestTypesResponse], request, path=["response"])
 
     @parametrize
     async def test_raw_response_types(self, async_client: AsyncCloudflare) -> None:
@@ -776,7 +776,7 @@ class TestAsyncRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         request = await response.parse()
-        assert_matches_type(Optional[RequestTypes], request, path=["response"])
+        assert_matches_type(AsyncSinglePage[RequestTypesResponse], request, path=["response"])
 
     @parametrize
     async def test_streaming_response_types(self, async_client: AsyncCloudflare) -> None:
@@ -787,7 +787,7 @@ class TestAsyncRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             request = await response.parse()
-            assert_matches_type(Optional[RequestTypes], request, path=["response"])
+            assert_matches_type(AsyncSinglePage[RequestTypesResponse], request, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

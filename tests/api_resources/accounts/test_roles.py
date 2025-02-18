@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from cloudflare.types.shared import Role
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -23,7 +23,16 @@ class TestRoles:
         role = client.accounts.roles.list(
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         )
-        assert_matches_type(SyncSinglePage[Role], role, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[Role], role, path=["response"])
+
+    @parametrize
+    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
+        role = client.accounts.roles.list(
+            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            page=1,
+            per_page=5,
+        )
+        assert_matches_type(SyncV4PagePaginationArray[Role], role, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -34,7 +43,7 @@ class TestRoles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         role = response.parse()
-        assert_matches_type(SyncSinglePage[Role], role, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[Role], role, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -45,7 +54,7 @@ class TestRoles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             role = response.parse()
-            assert_matches_type(SyncSinglePage[Role], role, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[Role], role, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -113,7 +122,16 @@ class TestAsyncRoles:
         role = await async_client.accounts.roles.list(
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         )
-        assert_matches_type(AsyncSinglePage[Role], role, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[Role], role, path=["response"])
+
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        role = await async_client.accounts.roles.list(
+            account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            page=1,
+            per_page=5,
+        )
+        assert_matches_type(AsyncV4PagePaginationArray[Role], role, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -124,7 +142,7 @@ class TestAsyncRoles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         role = await response.parse()
-        assert_matches_type(AsyncSinglePage[Role], role, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[Role], role, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -135,7 +153,7 @@ class TestAsyncRoles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             role = await response.parse()
-            assert_matches_type(AsyncSinglePage[Role], role, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[Role], role, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

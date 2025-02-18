@@ -1,14 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-from typing_extensions import TypeAlias
+from typing import Optional
 
 from .authenticated_origin_pull import AuthenticatedOriginPull
 
-__all__ = ["HostnameUpdateResponse", "HostnameUpdateResponseItem"]
+__all__ = ["HostnameUpdateResponse"]
 
 
-class HostnameUpdateResponseItem(AuthenticatedOriginPull):
+class HostnameUpdateResponse(AuthenticatedOriginPull):
     id: Optional[str] = None
     """Identifier"""
 
@@ -32,6 +31,3 @@ class HostnameUpdateResponseItem(AuthenticatedOriginPull):
 
     private_key: Optional[str] = None
     """The hostname certificate's private key."""
-
-
-HostnameUpdateResponse: TypeAlias = List[HostnameUpdateResponseItem]

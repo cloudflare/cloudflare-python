@@ -11,7 +11,6 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
 from cloudflare.types.radar.attacks.layer3 import (
-    SummaryGetResponse,
     SummaryVectorResponse,
     SummaryBitrateResponse,
     SummaryDurationResponse,
@@ -104,45 +103,6 @@ class TestSummary:
 
             summary = response.parse()
             assert_matches_type(SummaryDurationResponse, summary, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    def test_method_get(self, client: Cloudflare) -> None:
-        summary = client.radar.attacks.layer3.summary.get()
-        assert_matches_type(SummaryGetResponse, summary, path=["response"])
-
-    @parametrize
-    def test_method_get_with_all_params(self, client: Cloudflare) -> None:
-        summary = client.radar.attacks.layer3.summary.get(
-            asn=["string"],
-            continent=["string"],
-            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
-            date_range=["7d"],
-            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
-            format="JSON",
-            location=["string"],
-            name=["string"],
-        )
-        assert_matches_type(SummaryGetResponse, summary, path=["response"])
-
-    @parametrize
-    def test_raw_response_get(self, client: Cloudflare) -> None:
-        response = client.radar.attacks.layer3.summary.with_raw_response.get()
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        summary = response.parse()
-        assert_matches_type(SummaryGetResponse, summary, path=["response"])
-
-    @parametrize
-    def test_streaming_response_get(self, client: Cloudflare) -> None:
-        with client.radar.attacks.layer3.summary.with_streaming_response.get() as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            summary = response.parse()
-            assert_matches_type(SummaryGetResponse, summary, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -351,45 +311,6 @@ class TestAsyncSummary:
 
             summary = await response.parse()
             assert_matches_type(SummaryDurationResponse, summary, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    async def test_method_get(self, async_client: AsyncCloudflare) -> None:
-        summary = await async_client.radar.attacks.layer3.summary.get()
-        assert_matches_type(SummaryGetResponse, summary, path=["response"])
-
-    @parametrize
-    async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        summary = await async_client.radar.attacks.layer3.summary.get(
-            asn=["string"],
-            continent=["string"],
-            date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
-            date_range=["7d"],
-            date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
-            format="JSON",
-            location=["string"],
-            name=["string"],
-        )
-        assert_matches_type(SummaryGetResponse, summary, path=["response"])
-
-    @parametrize
-    async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.radar.attacks.layer3.summary.with_raw_response.get()
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        summary = await response.parse()
-        assert_matches_type(SummaryGetResponse, summary, path=["response"])
-
-    @parametrize
-    async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.radar.attacks.layer3.summary.with_streaming_response.get() as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            summary = await response.parse()
-            assert_matches_type(SummaryGetResponse, summary, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -1,19 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Union, Optional
-from typing_extensions import TypeAlias
 
 from ..._models import BaseModel
 
-__all__ = [
-    "DatabaseRawResponse",
-    "DatabaseRawResponseItem",
-    "DatabaseRawResponseItemMeta",
-    "DatabaseRawResponseItemResults",
-]
+__all__ = ["DatabaseRawResponse", "Meta", "Results"]
 
 
-class DatabaseRawResponseItemMeta(BaseModel):
+class Meta(BaseModel):
     changed_db: Optional[bool] = None
 
     changes: Optional[float] = None
@@ -29,18 +23,15 @@ class DatabaseRawResponseItemMeta(BaseModel):
     size_after: Optional[float] = None
 
 
-class DatabaseRawResponseItemResults(BaseModel):
+class Results(BaseModel):
     columns: Optional[List[str]] = None
 
     rows: Optional[List[List[Union[float, str, object]]]] = None
 
 
-class DatabaseRawResponseItem(BaseModel):
-    meta: Optional[DatabaseRawResponseItemMeta] = None
+class DatabaseRawResponse(BaseModel):
+    meta: Optional[Meta] = None
 
-    results: Optional[DatabaseRawResponseItemResults] = None
+    results: Optional[Results] = None
 
     success: Optional[bool] = None
-
-
-DatabaseRawResponse: TypeAlias = List[DatabaseRawResponseItem]

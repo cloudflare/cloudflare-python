@@ -1,15 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Optional
 from datetime import datetime
-from typing_extensions import TypeAlias
 
 from ...._models import BaseModel
 
-__all__ = ["AssetGetResponse", "AssetGetResponseItem"]
+__all__ = ["AssetGetResponse"]
 
 
-class AssetGetResponseItem(BaseModel):
+class AssetGetResponse(BaseModel):
     id: int
     """Asset ID"""
 
@@ -24,6 +23,3 @@ class AssetGetResponseItem(BaseModel):
 
     file_type: Optional[str] = None
     """Asset file type"""
-
-
-AssetGetResponse: TypeAlias = List[AssetGetResponseItem]

@@ -57,6 +57,8 @@ class CustomProfileEntryCustomEntry(BaseModel):
 
 
 class CustomProfileEntryPredefinedEntryConfidence(BaseModel):
+    ai_context_available: bool
+
     available: bool
     """
     Indicates whether this entry can be made more or less sensitive by setting a
@@ -166,6 +168,8 @@ class CustomProfile(BaseModel):
     updated_at: datetime
     """When the profile was lasted updated"""
 
+    ai_context_enabled: Optional[bool] = None
+
     confidence_threshold: Optional[Literal["low", "medium", "high", "very_high"]] = None
 
     description: Optional[str] = None
@@ -191,6 +195,8 @@ class PredefinedProfileEntryCustomEntry(BaseModel):
 
 
 class PredefinedProfileEntryPredefinedEntryConfidence(BaseModel):
+    ai_context_available: bool
+
     available: bool
     """
     Indicates whether this entry can be made more or less sensitive by setting a
@@ -285,6 +291,8 @@ class PredefinedProfile(BaseModel):
 
     type: Literal["predefined"]
 
+    ai_context_enabled: Optional[bool] = None
+
     confidence_threshold: Optional[Literal["low", "medium", "high", "very_high"]] = None
 
     context_awareness: Optional[ContextAwareness] = None
@@ -318,6 +326,8 @@ class IntegrationProfileEntryCustomEntry(BaseModel):
 
 
 class IntegrationProfileEntryPredefinedEntryConfidence(BaseModel):
+    ai_context_available: bool
+
     available: bool
     """
     Indicates whether this entry can be made more or less sensitive by setting a

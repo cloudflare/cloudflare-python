@@ -41,7 +41,7 @@ from .last_seen_identity import (
     AsyncLastSeenIdentityResourceWithStreamingResponse,
 )
 from .....types.zero_trust.access import user_list_params
-from .....types.zero_trust.access.access_user import AccessUser
+from .....types.zero_trust.access.user_list_response import UserListResponse
 
 __all__ = ["UsersResource", "AsyncUsersResource"]
 
@@ -62,7 +62,7 @@ class UsersResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> UsersResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -91,7 +91,7 @@ class UsersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[AccessUser]:
+    ) -> SyncSinglePage[UserListResponse]:
         """
         Gets a list of users for an account.
 
@@ -116,7 +116,7 @@ class UsersResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/access/users",
-            page=SyncSinglePage[AccessUser],
+            page=SyncSinglePage[UserListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -131,7 +131,7 @@ class UsersResource(SyncAPIResource):
                     user_list_params.UserListParams,
                 ),
             ),
-            model=AccessUser,
+            model=UserListResponse,
         )
 
 
@@ -151,7 +151,7 @@ class AsyncUsersResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncUsersResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -180,7 +180,7 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[AccessUser, AsyncSinglePage[AccessUser]]:
+    ) -> AsyncPaginator[UserListResponse, AsyncSinglePage[UserListResponse]]:
         """
         Gets a list of users for an account.
 
@@ -205,7 +205,7 @@ class AsyncUsersResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/access/users",
-            page=AsyncSinglePage[AccessUser],
+            page=AsyncSinglePage[UserListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -220,7 +220,7 @@ class AsyncUsersResource(AsyncAPIResource):
                     user_list_params.UserListParams,
                 ),
             ),
-            model=AccessUser,
+            model=UserListResponse,
         )
 
 

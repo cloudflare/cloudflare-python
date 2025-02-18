@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, Optional, cast
+from typing import Iterable
 
 import httpx
 
@@ -15,10 +15,7 @@ from .entries import (
     AsyncEntriesResourceWithStreamingResponse,
 )
 from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ......_utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ......_utils import maybe_transform
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
 from ......_response import (
@@ -27,8 +24,8 @@ from ......_response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ......_wrappers import ResultWrapper
-from ......_base_client import make_request_options
+from ......pagination import SyncSinglePage, AsyncSinglePage
+from ......_base_client import AsyncPaginator, make_request_options
 from ......types.zero_trust.dlp.datasets import version_create_params
 from ......types.zero_trust.dlp.datasets.version_create_response import VersionCreateResponse
 
@@ -43,7 +40,7 @@ class VersionsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> VersionsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -72,7 +69,7 @@ class VersionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[VersionCreateResponse]:
+    ) -> SyncSinglePage[VersionCreateResponse]:
         """This is used for multi-column EDMv2 datasets.
 
         The EDMv2 format can only be
@@ -92,17 +89,15 @@ class VersionsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dataset_id:
             raise ValueError(f"Expected a non-empty value for `dataset_id` but received {dataset_id!r}")
-        return self._post(
+        return self._get_api_list(
             f"/accounts/{account_id}/dlp/datasets/{dataset_id}/versions/{version}",
+            page=SyncSinglePage[VersionCreateResponse],
             body=maybe_transform(body, Iterable[version_create_params.Body]),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[VersionCreateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[VersionCreateResponse]], ResultWrapper[VersionCreateResponse]),
+            model=VersionCreateResponse,
+            method="post",
         )
 
 
@@ -114,7 +109,7 @@ class AsyncVersionsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncVersionsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -130,7 +125,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         """
         return AsyncVersionsResourceWithStreamingResponse(self)
 
-    async def create(
+    def create(
         self,
         version: int,
         *,
@@ -143,7 +138,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[VersionCreateResponse]:
+    ) -> AsyncPaginator[VersionCreateResponse, AsyncSinglePage[VersionCreateResponse]]:
         """This is used for multi-column EDMv2 datasets.
 
         The EDMv2 format can only be
@@ -163,17 +158,15 @@ class AsyncVersionsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dataset_id:
             raise ValueError(f"Expected a non-empty value for `dataset_id` but received {dataset_id!r}")
-        return await self._post(
+        return self._get_api_list(
             f"/accounts/{account_id}/dlp/datasets/{dataset_id}/versions/{version}",
-            body=await async_maybe_transform(body, Iterable[version_create_params.Body]),
+            page=AsyncSinglePage[VersionCreateResponse],
+            body=maybe_transform(body, Iterable[version_create_params.Body]),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[VersionCreateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[VersionCreateResponse]], ResultWrapper[VersionCreateResponse]),
+            model=VersionCreateResponse,
+            method="post",
         )
 
 

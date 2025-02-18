@@ -20,10 +20,10 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._wrappers import ResultWrapper
-from .._base_client import make_request_options
+from ..pagination import SyncSinglePage, AsyncSinglePage
+from .._base_client import AsyncPaginator, make_request_options
 from ..types.custom_nameservers import custom_nameserver_create_params
 from ..types.custom_nameservers.custom_nameserver import CustomNameserver
-from ..types.custom_nameservers.custom_nameserver_get_response import CustomNameserverGetResponse
 from ..types.custom_nameservers.custom_nameserver_delete_response import CustomNameserverDeleteResponse
 from ..types.custom_nameservers.custom_nameserver_availabilty_response import CustomNameserverAvailabiltyResponse
 
@@ -34,7 +34,7 @@ class CustomNameserversResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> CustomNameserversResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -113,7 +113,7 @@ class CustomNameserversResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CustomNameserverDeleteResponse]:
+    ) -> SyncSinglePage[CustomNameserverDeleteResponse]:
         """
         Delete Account Custom Nameserver
 
@@ -134,16 +134,14 @@ class CustomNameserversResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not custom_ns_id:
             raise ValueError(f"Expected a non-empty value for `custom_ns_id` but received {custom_ns_id!r}")
-        return self._delete(
+        return self._get_api_list(
             f"/accounts/{account_id}/custom_ns/{custom_ns_id}",
+            page=SyncSinglePage[CustomNameserverDeleteResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[CustomNameserverDeleteResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[CustomNameserverDeleteResponse]], ResultWrapper[CustomNameserverDeleteResponse]),
+            model=str,
+            method="delete",
         )
 
     def availabilty(
@@ -156,7 +154,7 @@ class CustomNameserversResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CustomNameserverAvailabiltyResponse]:
+    ) -> SyncSinglePage[CustomNameserverAvailabiltyResponse]:
         """
         Get Eligible Zones for Account Custom Nameservers
 
@@ -173,18 +171,13 @@ class CustomNameserversResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/custom_ns/availability",
+            page=SyncSinglePage[CustomNameserverAvailabiltyResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[CustomNameserverAvailabiltyResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(
-                Type[Optional[CustomNameserverAvailabiltyResponse]], ResultWrapper[CustomNameserverAvailabiltyResponse]
-            ),
+            model=str,
         )
 
     def get(
@@ -197,7 +190,7 @@ class CustomNameserversResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CustomNameserverGetResponse]:
+    ) -> SyncSinglePage[CustomNameserver]:
         """
         List an account's custom nameservers.
 
@@ -214,16 +207,13 @@ class CustomNameserversResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/custom_ns",
+            page=SyncSinglePage[CustomNameserver],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[CustomNameserverGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[CustomNameserverGetResponse]], ResultWrapper[CustomNameserverGetResponse]),
+            model=CustomNameserver,
         )
 
 
@@ -231,7 +221,7 @@ class AsyncCustomNameserversResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncCustomNameserversResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -299,7 +289,7 @@ class AsyncCustomNameserversResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[CustomNameserver]], ResultWrapper[CustomNameserver]),
         )
 
-    async def delete(
+    def delete(
         self,
         custom_ns_id: str,
         *,
@@ -310,7 +300,7 @@ class AsyncCustomNameserversResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CustomNameserverDeleteResponse]:
+    ) -> AsyncPaginator[CustomNameserverDeleteResponse, AsyncSinglePage[CustomNameserverDeleteResponse]]:
         """
         Delete Account Custom Nameserver
 
@@ -331,19 +321,17 @@ class AsyncCustomNameserversResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not custom_ns_id:
             raise ValueError(f"Expected a non-empty value for `custom_ns_id` but received {custom_ns_id!r}")
-        return await self._delete(
+        return self._get_api_list(
             f"/accounts/{account_id}/custom_ns/{custom_ns_id}",
+            page=AsyncSinglePage[CustomNameserverDeleteResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[CustomNameserverDeleteResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[CustomNameserverDeleteResponse]], ResultWrapper[CustomNameserverDeleteResponse]),
+            model=str,
+            method="delete",
         )
 
-    async def availabilty(
+    def availabilty(
         self,
         *,
         account_id: str,
@@ -353,7 +341,7 @@ class AsyncCustomNameserversResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CustomNameserverAvailabiltyResponse]:
+    ) -> AsyncPaginator[CustomNameserverAvailabiltyResponse, AsyncSinglePage[CustomNameserverAvailabiltyResponse]]:
         """
         Get Eligible Zones for Account Custom Nameservers
 
@@ -370,21 +358,16 @@ class AsyncCustomNameserversResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/custom_ns/availability",
+            page=AsyncSinglePage[CustomNameserverAvailabiltyResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[CustomNameserverAvailabiltyResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(
-                Type[Optional[CustomNameserverAvailabiltyResponse]], ResultWrapper[CustomNameserverAvailabiltyResponse]
-            ),
+            model=str,
         )
 
-    async def get(
+    def get(
         self,
         *,
         account_id: str,
@@ -394,7 +377,7 @@ class AsyncCustomNameserversResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CustomNameserverGetResponse]:
+    ) -> AsyncPaginator[CustomNameserver, AsyncSinglePage[CustomNameserver]]:
         """
         List an account's custom nameservers.
 
@@ -411,16 +394,13 @@ class AsyncCustomNameserversResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/custom_ns",
+            page=AsyncSinglePage[CustomNameserver],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[CustomNameserverGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[CustomNameserverGetResponse]], ResultWrapper[CustomNameserverGetResponse]),
+            model=CustomNameserver,
         )
 
 

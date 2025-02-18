@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
@@ -29,7 +29,7 @@ class TestTags:
             dispatch_namespace="my-dispatch-namespace",
             body=["my-tag"],
         )
-        assert_matches_type(Optional[TagUpdateResponse], tag, path=["response"])
+        assert_matches_type(SyncSinglePage[TagUpdateResponse], tag, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
@@ -43,7 +43,7 @@ class TestTags:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tag = response.parse()
-        assert_matches_type(Optional[TagUpdateResponse], tag, path=["response"])
+        assert_matches_type(SyncSinglePage[TagUpdateResponse], tag, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
@@ -57,7 +57,7 @@ class TestTags:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tag = response.parse()
-            assert_matches_type(Optional[TagUpdateResponse], tag, path=["response"])
+            assert_matches_type(SyncSinglePage[TagUpdateResponse], tag, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -233,7 +233,7 @@ class TestAsyncTags:
             dispatch_namespace="my-dispatch-namespace",
             body=["my-tag"],
         )
-        assert_matches_type(Optional[TagUpdateResponse], tag, path=["response"])
+        assert_matches_type(AsyncSinglePage[TagUpdateResponse], tag, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -247,7 +247,7 @@ class TestAsyncTags:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tag = await response.parse()
-        assert_matches_type(Optional[TagUpdateResponse], tag, path=["response"])
+        assert_matches_type(AsyncSinglePage[TagUpdateResponse], tag, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -261,7 +261,7 @@ class TestAsyncTags:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tag = await response.parse()
-            assert_matches_type(Optional[TagUpdateResponse], tag, path=["response"])
+            assert_matches_type(AsyncSinglePage[TagUpdateResponse], tag, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

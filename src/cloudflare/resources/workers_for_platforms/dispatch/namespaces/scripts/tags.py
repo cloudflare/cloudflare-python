@@ -7,10 +7,7 @@ from typing import List, Type, Optional, cast
 import httpx
 
 from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ......_utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ......_utils import maybe_transform
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
 from ......_response import (
@@ -32,7 +29,7 @@ class TagsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> TagsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -61,7 +58,7 @@ class TagsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TagUpdateResponse]:
+    ) -> SyncSinglePage[TagUpdateResponse]:
         """
         Put script tags for a script uploaded to a Workers for Platforms namespace.
 
@@ -88,17 +85,15 @@ class TagsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `dispatch_namespace` but received {dispatch_namespace!r}")
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
-        return self._put(
+        return self._get_api_list(
             f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/tags",
+            page=SyncSinglePage[TagUpdateResponse],
             body=maybe_transform(body, List[str]),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[TagUpdateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[TagUpdateResponse]], ResultWrapper[TagUpdateResponse]),
+            model=str,
+            method="put",
         )
 
     def list(
@@ -206,7 +201,7 @@ class AsyncTagsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncTagsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -222,7 +217,7 @@ class AsyncTagsResource(AsyncAPIResource):
         """
         return AsyncTagsResourceWithStreamingResponse(self)
 
-    async def update(
+    def update(
         self,
         script_name: str,
         *,
@@ -235,7 +230,7 @@ class AsyncTagsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TagUpdateResponse]:
+    ) -> AsyncPaginator[TagUpdateResponse, AsyncSinglePage[TagUpdateResponse]]:
         """
         Put script tags for a script uploaded to a Workers for Platforms namespace.
 
@@ -262,17 +257,15 @@ class AsyncTagsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `dispatch_namespace` but received {dispatch_namespace!r}")
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
-        return await self._put(
+        return self._get_api_list(
             f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/tags",
-            body=await async_maybe_transform(body, List[str]),
+            page=AsyncSinglePage[TagUpdateResponse],
+            body=maybe_transform(body, List[str]),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[TagUpdateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[TagUpdateResponse]], ResultWrapper[TagUpdateResponse]),
+            model=str,
+            method="put",
         )
 
     def list(

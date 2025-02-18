@@ -26,7 +26,7 @@ class RecommendationsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> RecommendationsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -44,8 +44,8 @@ class RecommendationsResource(SyncAPIResource):
 
     def get(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -57,7 +57,7 @@ class RecommendationsResource(SyncAPIResource):
         Retrieve the SSL/TLS Recommender's recommendation for a zone.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -67,10 +67,10 @@ class RecommendationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get(
-            f"/zones/{zone_identifier}/ssl/recommendation",
+            f"/zones/{zone_id}/ssl/recommendation",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -86,7 +86,7 @@ class AsyncRecommendationsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncRecommendationsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -104,8 +104,8 @@ class AsyncRecommendationsResource(AsyncAPIResource):
 
     async def get(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -117,7 +117,7 @@ class AsyncRecommendationsResource(AsyncAPIResource):
         Retrieve the SSL/TLS Recommender's recommendation for a zone.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -127,10 +127,10 @@ class AsyncRecommendationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._get(
-            f"/zones/{zone_identifier}/ssl/recommendation",
+            f"/zones/{zone_id}/ssl/recommendation",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

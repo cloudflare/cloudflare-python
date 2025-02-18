@@ -20,7 +20,8 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ...._base_client import make_request_options
+from ....pagination import SyncSinglePage, AsyncSinglePage
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.cloudforce_one.requests import asset_create_params, asset_update_params
 from ....types.cloudforce_one.requests.asset_get_response import AssetGetResponse
 from ....types.cloudforce_one.requests.asset_create_response import AssetCreateResponse
@@ -34,7 +35,7 @@ class AssetsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AssetsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -63,7 +64,7 @@ class AssetsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AssetCreateResponse]:
+    ) -> SyncSinglePage[AssetCreateResponse]:
         """
         List Request Assets
 
@@ -88,8 +89,9 @@ class AssetsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
         if not request_identifier:
             raise ValueError(f"Expected a non-empty value for `request_identifier` but received {request_identifier!r}")
-        return self._post(
+        return self._get_api_list(
             f"/accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}/asset",
+            page=SyncSinglePage[AssetCreateResponse],
             body=maybe_transform(
                 {
                     "page": page,
@@ -98,13 +100,10 @@ class AssetsResource(SyncAPIResource):
                 asset_create_params.AssetCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[AssetCreateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[AssetCreateResponse]], ResultWrapper[AssetCreateResponse]),
+            model=AssetCreateResponse,
+            method="post",
         )
 
     def update(
@@ -217,7 +216,7 @@ class AssetsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AssetGetResponse]:
+    ) -> SyncSinglePage[AssetGetResponse]:
         """
         Get a Request Asset
 
@@ -242,16 +241,13 @@ class AssetsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `request_identifier` but received {request_identifier!r}")
         if not asset_identifer:
             raise ValueError(f"Expected a non-empty value for `asset_identifer` but received {asset_identifer!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}/asset/{asset_identifer}",
+            page=SyncSinglePage[AssetGetResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[AssetGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[AssetGetResponse]], ResultWrapper[AssetGetResponse]),
+            model=AssetGetResponse,
         )
 
 
@@ -259,7 +255,7 @@ class AsyncAssetsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncAssetsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -275,7 +271,7 @@ class AsyncAssetsResource(AsyncAPIResource):
         """
         return AsyncAssetsResourceWithStreamingResponse(self)
 
-    async def create(
+    def create(
         self,
         request_identifier: str,
         *,
@@ -288,7 +284,7 @@ class AsyncAssetsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AssetCreateResponse]:
+    ) -> AsyncPaginator[AssetCreateResponse, AsyncSinglePage[AssetCreateResponse]]:
         """
         List Request Assets
 
@@ -313,9 +309,10 @@ class AsyncAssetsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
         if not request_identifier:
             raise ValueError(f"Expected a non-empty value for `request_identifier` but received {request_identifier!r}")
-        return await self._post(
+        return self._get_api_list(
             f"/accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}/asset",
-            body=await async_maybe_transform(
+            page=AsyncSinglePage[AssetCreateResponse],
+            body=maybe_transform(
                 {
                     "page": page,
                     "per_page": per_page,
@@ -323,13 +320,10 @@ class AsyncAssetsResource(AsyncAPIResource):
                 asset_create_params.AssetCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[AssetCreateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[AssetCreateResponse]], ResultWrapper[AssetCreateResponse]),
+            model=AssetCreateResponse,
+            method="post",
         )
 
     async def update(
@@ -430,7 +424,7 @@ class AsyncAssetsResource(AsyncAPIResource):
             cast_to=AssetDeleteResponse,
         )
 
-    async def get(
+    def get(
         self,
         asset_identifer: str,
         *,
@@ -442,7 +436,7 @@ class AsyncAssetsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AssetGetResponse]:
+    ) -> AsyncPaginator[AssetGetResponse, AsyncSinglePage[AssetGetResponse]]:
         """
         Get a Request Asset
 
@@ -467,16 +461,13 @@ class AsyncAssetsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `request_identifier` but received {request_identifier!r}")
         if not asset_identifer:
             raise ValueError(f"Expected a non-empty value for `asset_identifer` but received {asset_identifer!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}/asset/{asset_identifer}",
+            page=AsyncSinglePage[AssetGetResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[AssetGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[AssetGetResponse]], ResultWrapper[AssetGetResponse]),
+            model=AssetGetResponse,
         )
 
 

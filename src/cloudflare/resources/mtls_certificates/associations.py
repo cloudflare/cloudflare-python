@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
@@ -15,9 +13,9 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._wrappers import ResultWrapper
-from ..._base_client import make_request_options
-from ...types.mtls_certificates.association_get_response import AssociationGetResponse
+from ...pagination import SyncSinglePage, AsyncSinglePage
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.mtls_certificates.certificate_asssociation import CertificateAsssociation
 
 __all__ = ["AssociationsResource", "AsyncAssociationsResource"]
 
@@ -26,7 +24,7 @@ class AssociationsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AssociationsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -53,7 +51,7 @@ class AssociationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AssociationGetResponse]:
+    ) -> SyncSinglePage[CertificateAsssociation]:
         """
         Lists all active associations between the certificate and Cloudflare services.
 
@@ -76,16 +74,13 @@ class AssociationsResource(SyncAPIResource):
             raise ValueError(
                 f"Expected a non-empty value for `mtls_certificate_id` but received {mtls_certificate_id!r}"
             )
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/mtls_certificates/{mtls_certificate_id}/associations",
+            page=SyncSinglePage[CertificateAsssociation],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[AssociationGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[AssociationGetResponse]], ResultWrapper[AssociationGetResponse]),
+            model=CertificateAsssociation,
         )
 
 
@@ -93,7 +88,7 @@ class AsyncAssociationsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncAssociationsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -109,7 +104,7 @@ class AsyncAssociationsResource(AsyncAPIResource):
         """
         return AsyncAssociationsResourceWithStreamingResponse(self)
 
-    async def get(
+    def get(
         self,
         mtls_certificate_id: str,
         *,
@@ -120,7 +115,7 @@ class AsyncAssociationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AssociationGetResponse]:
+    ) -> AsyncPaginator[CertificateAsssociation, AsyncSinglePage[CertificateAsssociation]]:
         """
         Lists all active associations between the certificate and Cloudflare services.
 
@@ -143,16 +138,13 @@ class AsyncAssociationsResource(AsyncAPIResource):
             raise ValueError(
                 f"Expected a non-empty value for `mtls_certificate_id` but received {mtls_certificate_id!r}"
             )
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/mtls_certificates/{mtls_certificate_id}/associations",
+            page=AsyncSinglePage[CertificateAsssociation],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[AssociationGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[AssociationGetResponse]], ResultWrapper[AssociationGetResponse]),
+            model=CertificateAsssociation,
         )
 
 

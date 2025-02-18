@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
+from typing_extensions import Literal
 
 from ..._models import BaseModel
 
@@ -8,7 +9,20 @@ __all__ = ["RatePlan"]
 
 
 class RatePlan(BaseModel):
-    id: Optional[str] = None
+    id: Optional[
+        Literal[
+            "free",
+            "lite",
+            "pro",
+            "pro_plus",
+            "business",
+            "enterprise",
+            "partners_free",
+            "partners_pro",
+            "partners_business",
+            "partners_enterprise",
+        ]
+    ] = None
     """The ID of the rate plan."""
 
     currency: Optional[str] = None

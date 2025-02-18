@@ -9,6 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.queues import MessageAckResponse, MessagePullResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -90,7 +91,7 @@ class TestMessages:
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[MessagePullResponse], message, path=["response"])
+        assert_matches_type(SyncSinglePage[MessagePullResponse], message, path=["response"])
 
     @parametrize
     def test_method_pull_with_all_params(self, client: Cloudflare) -> None:
@@ -100,7 +101,7 @@ class TestMessages:
             batch_size=50,
             visibility_timeout_ms=6000,
         )
-        assert_matches_type(Optional[MessagePullResponse], message, path=["response"])
+        assert_matches_type(SyncSinglePage[MessagePullResponse], message, path=["response"])
 
     @parametrize
     def test_raw_response_pull(self, client: Cloudflare) -> None:
@@ -112,7 +113,7 @@ class TestMessages:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         message = response.parse()
-        assert_matches_type(Optional[MessagePullResponse], message, path=["response"])
+        assert_matches_type(SyncSinglePage[MessagePullResponse], message, path=["response"])
 
     @parametrize
     def test_streaming_response_pull(self, client: Cloudflare) -> None:
@@ -124,7 +125,7 @@ class TestMessages:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             message = response.parse()
-            assert_matches_type(Optional[MessagePullResponse], message, path=["response"])
+            assert_matches_type(SyncSinglePage[MessagePullResponse], message, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -219,7 +220,7 @@ class TestAsyncMessages:
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[MessagePullResponse], message, path=["response"])
+        assert_matches_type(AsyncSinglePage[MessagePullResponse], message, path=["response"])
 
     @parametrize
     async def test_method_pull_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -229,7 +230,7 @@ class TestAsyncMessages:
             batch_size=50,
             visibility_timeout_ms=6000,
         )
-        assert_matches_type(Optional[MessagePullResponse], message, path=["response"])
+        assert_matches_type(AsyncSinglePage[MessagePullResponse], message, path=["response"])
 
     @parametrize
     async def test_raw_response_pull(self, async_client: AsyncCloudflare) -> None:
@@ -241,7 +242,7 @@ class TestAsyncMessages:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         message = await response.parse()
-        assert_matches_type(Optional[MessagePullResponse], message, path=["response"])
+        assert_matches_type(AsyncSinglePage[MessagePullResponse], message, path=["response"])
 
     @parametrize
     async def test_streaming_response_pull(self, async_client: AsyncCloudflare) -> None:
@@ -253,7 +254,7 @@ class TestAsyncMessages:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             message = await response.parse()
-            assert_matches_type(Optional[MessagePullResponse], message, path=["response"])
+            assert_matches_type(AsyncSinglePage[MessagePullResponse], message, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

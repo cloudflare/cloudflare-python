@@ -153,7 +153,7 @@ class TestSites:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         site = client.magic_transit.sites.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            connector_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            connectorid="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(SyncSinglePage[Site], site, path=["response"])
 
@@ -494,7 +494,7 @@ class TestAsyncSites:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         site = await async_client.magic_transit.sites.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            connector_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            connectorid="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(AsyncSinglePage[Site], site, path=["response"])
 
