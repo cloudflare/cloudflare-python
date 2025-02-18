@@ -39,6 +39,8 @@ class AIGatewayGetResponse(BaseModel):
 
     log_management: Optional[int] = None
 
+    log_management_strategy: Optional[Literal["STOP_INSERTING", "DELETE_OLDEST"]] = None
+
     logpush: Optional[bool] = None
 
     logpush_public_key: Optional[str] = None
