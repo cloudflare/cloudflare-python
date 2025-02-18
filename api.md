@@ -3877,10 +3877,36 @@ from cloudflare.types.magic_transit import (
 
 Methods:
 
-- <code title="put /accounts/{account_id}/magic/connectors/{connector_id}">client.magic_transit.connectors.<a href="./src/cloudflare/resources/magic_transit/connectors.py">update</a>(connector_id, \*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/connector_update_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/connector_update_response.py">ConnectorUpdateResponse</a></code>
-- <code title="get /accounts/{account_id}/magic/connectors">client.magic_transit.connectors.<a href="./src/cloudflare/resources/magic_transit/connectors.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/magic_transit/connector_list_response.py">SyncSinglePage[ConnectorListResponse]</a></code>
-- <code title="patch /accounts/{account_id}/magic/connectors/{connector_id}">client.magic_transit.connectors.<a href="./src/cloudflare/resources/magic_transit/connectors.py">edit</a>(connector_id, \*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/connector_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/connector_edit_response.py">ConnectorEditResponse</a></code>
-- <code title="get /accounts/{account_id}/magic/connectors/{connector_id}">client.magic_transit.connectors.<a href="./src/cloudflare/resources/magic_transit/connectors.py">get</a>(connector_id, \*, account_id) -> <a href="./src/cloudflare/types/magic_transit/connector_get_response.py">ConnectorGetResponse</a></code>
+- <code title="put /accounts/{account_id}/magic/connectors/{connector_id}">client.magic_transit.connectors.<a href="./src/cloudflare/resources/magic_transit/connectors/connectors.py">update</a>(connector_id, \*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/connector_update_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/connector_update_response.py">ConnectorUpdateResponse</a></code>
+- <code title="get /accounts/{account_id}/magic/connectors">client.magic_transit.connectors.<a href="./src/cloudflare/resources/magic_transit/connectors/connectors.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/magic_transit/connector_list_response.py">SyncSinglePage[ConnectorListResponse]</a></code>
+- <code title="patch /accounts/{account_id}/magic/connectors/{connector_id}">client.magic_transit.connectors.<a href="./src/cloudflare/resources/magic_transit/connectors/connectors.py">edit</a>(connector_id, \*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/connector_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/connector_edit_response.py">ConnectorEditResponse</a></code>
+- <code title="get /accounts/{account_id}/magic/connectors/{connector_id}">client.magic_transit.connectors.<a href="./src/cloudflare/resources/magic_transit/connectors/connectors.py">get</a>(connector_id, \*, account_id) -> <a href="./src/cloudflare/types/magic_transit/connector_get_response.py">ConnectorGetResponse</a></code>
+
+### Telemetry
+
+Types:
+
+```python
+from cloudflare.types.magic_transit.connectors import TelemetryListResponse, TelemetryGetResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/magic/connectors/{connector_id}/telemetry/events">client.magic_transit.connectors.telemetry.<a href="./src/cloudflare/resources/magic_transit/connectors/telemetry.py">list</a>(connector_id, \*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/connectors/telemetry_list_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/connectors/telemetry_list_response.py">TelemetryListResponse</a></code>
+- <code title="get /accounts/{account_id}/magic/connectors/{connector_id}/telemetry/events/{event_t}.{event_n}">client.magic_transit.connectors.telemetry.<a href="./src/cloudflare/resources/magic_transit/connectors/telemetry.py">get</a>(event_n, \*, account_id, connector_id, event_t) -> <a href="./src/cloudflare/types/magic_transit/connectors/telemetry_get_response.py">TelemetryGetResponse</a></code>
+
+### Snapshots
+
+Types:
+
+```python
+from cloudflare.types.magic_transit.connectors import SnapshotListResponse, SnapshotGetResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/magic/connectors/{connector_id}/telemetry/snapshots">client.magic_transit.connectors.snapshots.<a href="./src/cloudflare/resources/magic_transit/connectors/snapshots.py">list</a>(connector_id, \*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/connectors/snapshot_list_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/connectors/snapshot_list_response.py">SnapshotListResponse</a></code>
+- <code title="get /accounts/{account_id}/magic/connectors/{connector_id}/telemetry/snapshots/{snapshot_t}">client.magic_transit.connectors.snapshots.<a href="./src/cloudflare/resources/magic_transit/connectors/snapshots.py">get</a>(snapshot_t, \*, account_id, connector_id) -> <a href="./src/cloudflare/types/magic_transit/connectors/snapshot_get_response.py">SnapshotGetResponse</a></code>
 
 ## PCAPs
 
