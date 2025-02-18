@@ -24,7 +24,6 @@ from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage, SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.firewall import (
-    rule_get_params,
     rule_list_params,
     rule_create_params,
     rule_update_params,
@@ -465,7 +464,6 @@ class RulesResource(SyncAPIResource):
         rule_id: str,
         *,
         zone_id: str,
-        id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -480,8 +478,6 @@ class RulesResource(SyncAPIResource):
           zone_id: Identifier
 
           rule_id: The unique identifier of the firewall rule.
-
-          id: The unique identifier of the firewall rule.
 
           extra_headers: Send extra headers
 
@@ -502,7 +498,6 @@ class RulesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"id": id}, rule_get_params.RuleGetParams),
                 post_parser=ResultWrapper[FirewallRule]._unwrapper,
             ),
             cast_to=cast(Type[FirewallRule], ResultWrapper[FirewallRule]),
@@ -937,7 +932,6 @@ class AsyncRulesResource(AsyncAPIResource):
         rule_id: str,
         *,
         zone_id: str,
-        id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -952,8 +946,6 @@ class AsyncRulesResource(AsyncAPIResource):
           zone_id: Identifier
 
           rule_id: The unique identifier of the firewall rule.
-
-          id: The unique identifier of the firewall rule.
 
           extra_headers: Send extra headers
 
@@ -974,7 +966,6 @@ class AsyncRulesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"id": id}, rule_get_params.RuleGetParams),
                 post_parser=ResultWrapper[FirewallRule]._unwrapper,
             ),
             cast_to=cast(Type[FirewallRule], ResultWrapper[FirewallRule]),

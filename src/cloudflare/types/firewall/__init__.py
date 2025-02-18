@@ -8,7 +8,6 @@ from .lockdown_url import LockdownURL as LockdownURL
 from .configuration import Configuration as Configuration
 from .firewall_rule import FirewallRule as FirewallRule
 from .deleted_filter import DeletedFilter as DeletedFilter
-from .rule_get_params import RuleGetParams as RuleGetParams
 from .rule_list_params import RuleListParams as RuleListParams
 from .asn_configuration import ASNConfiguration as ASNConfiguration
 from .ipv6_configuration import IPV6Configuration as IPV6Configuration
