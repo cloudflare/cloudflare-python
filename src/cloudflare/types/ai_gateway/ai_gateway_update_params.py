@@ -27,6 +27,8 @@ class AIGatewayUpdateParams(TypedDict, total=False):
 
     log_management: Optional[int]
 
+    log_management_strategy: Optional[Literal["STOP_INSERTING", "DELETE_OLDEST"]]
+
     logpush: bool
 
     logpush_public_key: Optional[str]
