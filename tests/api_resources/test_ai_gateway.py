@@ -51,6 +51,7 @@ class TestAIGateway:
             rate_limiting_technique="fixed",
             authentication=True,
             log_management=10000,
+            log_management_strategy="STOP_INSERTING",
             logpush=True,
             logpush_public_key="xxxxxxxxxxxxxxxx",
         )
@@ -135,6 +136,7 @@ class TestAIGateway:
             rate_limiting_technique="fixed",
             authentication=True,
             log_management=10000,
+            log_management_strategy="STOP_INSERTING",
             logpush=True,
             logpush_public_key="xxxxxxxxxxxxxxxx",
         )
@@ -379,6 +381,7 @@ class TestAsyncAIGateway:
             rate_limiting_technique="fixed",
             authentication=True,
             log_management=10000,
+            log_management_strategy="STOP_INSERTING",
             logpush=True,
             logpush_public_key="xxxxxxxxxxxxxxxx",
         )
@@ -463,6 +466,7 @@ class TestAsyncAIGateway:
             rate_limiting_technique="fixed",
             authentication=True,
             log_management=10000,
+            log_management_strategy="STOP_INSERTING",
             logpush=True,
             logpush_public_key="xxxxxxxxxxxxxxxx",
         )
