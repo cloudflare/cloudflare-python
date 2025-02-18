@@ -57,6 +57,7 @@ if TYPE_CHECKING:
         radar,
         rules,
         speed,
+        zaraz,
         zones,
         images,
         queues,
@@ -151,6 +152,7 @@ if TYPE_CHECKING:
     from .resources.rate_limits import RateLimitsResource, AsyncRateLimitsResource
     from .resources.rules.rules import RulesResource, AsyncRulesResource
     from .resources.speed.speed import SpeedResource, AsyncSpeedResource
+    from .resources.zaraz.zaraz import ZarazResource, AsyncZarazResource
     from .resources.zones.zones import ZonesResource, AsyncZonesResource
     from .resources.security_txt import SecurityTXTResource, AsyncSecurityTXTResource
     from .resources.abuse_reports import AbuseReportsResource, AsyncAbuseReportsResource
@@ -742,6 +744,12 @@ class Cloudflare(SyncAPIClient):
         from .resources.origin_post_quantum_encryption import OriginPostQuantumEncryptionResource
 
         return OriginPostQuantumEncryptionResource(self)
+
+    @cached_property
+    def zaraz(self) -> ZarazResource:
+        from .resources.zaraz import ZarazResource
+
+        return ZarazResource(self)
 
     @cached_property
     def speed(self) -> SpeedResource:
@@ -1527,6 +1535,12 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncOriginPostQuantumEncryptionResource(self)
 
     @cached_property
+    def zaraz(self) -> AsyncZarazResource:
+        from .resources.zaraz import AsyncZarazResource
+
+        return AsyncZarazResource(self)
+
+    @cached_property
     def speed(self) -> AsyncSpeedResource:
         from .resources.speed import AsyncSpeedResource
 
@@ -2245,6 +2259,12 @@ class CloudflareWithRawResponse:
         return OriginPostQuantumEncryptionResourceWithRawResponse(self._client.origin_post_quantum_encryption)
 
     @cached_property
+    def zaraz(self) -> zaraz.ZarazResourceWithRawResponse:
+        from .resources.zaraz import ZarazResourceWithRawResponse
+
+        return ZarazResourceWithRawResponse(self._client.zaraz)
+
+    @cached_property
     def speed(self) -> speed.SpeedResourceWithRawResponse:
         from .resources.speed import SpeedResourceWithRawResponse
 
@@ -2782,6 +2802,12 @@ class AsyncCloudflareWithRawResponse:
         return AsyncOriginPostQuantumEncryptionResourceWithRawResponse(self._client.origin_post_quantum_encryption)
 
     @cached_property
+    def zaraz(self) -> zaraz.AsyncZarazResourceWithRawResponse:
+        from .resources.zaraz import AsyncZarazResourceWithRawResponse
+
+        return AsyncZarazResourceWithRawResponse(self._client.zaraz)
+
+    @cached_property
     def speed(self) -> speed.AsyncSpeedResourceWithRawResponse:
         from .resources.speed import AsyncSpeedResourceWithRawResponse
 
@@ -3317,6 +3343,12 @@ class CloudflareWithStreamedResponse:
         from .resources.origin_post_quantum_encryption import OriginPostQuantumEncryptionResourceWithStreamingResponse
 
         return OriginPostQuantumEncryptionResourceWithStreamingResponse(self._client.origin_post_quantum_encryption)
+
+    @cached_property
+    def zaraz(self) -> zaraz.ZarazResourceWithStreamingResponse:
+        from .resources.zaraz import ZarazResourceWithStreamingResponse
+
+        return ZarazResourceWithStreamingResponse(self._client.zaraz)
 
     @cached_property
     def speed(self) -> speed.SpeedResourceWithStreamingResponse:
@@ -3862,6 +3894,12 @@ class AsyncCloudflareWithStreamedResponse:
         return AsyncOriginPostQuantumEncryptionResourceWithStreamingResponse(
             self._client.origin_post_quantum_encryption
         )
+
+    @cached_property
+    def zaraz(self) -> zaraz.AsyncZarazResourceWithStreamingResponse:
+        from .resources.zaraz import AsyncZarazResourceWithStreamingResponse
+
+        return AsyncZarazResourceWithStreamingResponse(self._client.zaraz)
 
     @cached_property
     def speed(self) -> speed.AsyncSpeedResourceWithStreamingResponse:
