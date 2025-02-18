@@ -6,32 +6,56 @@ from typing import Type, cast
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
     maybe_transform,
     async_maybe_transform,
 )
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
+from .snapshots import (
+    SnapshotsResource,
+    AsyncSnapshotsResource,
+    SnapshotsResourceWithRawResponse,
+    AsyncSnapshotsResourceWithRawResponse,
+    SnapshotsResourceWithStreamingResponse,
+    AsyncSnapshotsResourceWithStreamingResponse,
+)
+from .telemetry import (
+    TelemetryResource,
+    AsyncTelemetryResource,
+    TelemetryResourceWithRawResponse,
+    AsyncTelemetryResourceWithRawResponse,
+    TelemetryResourceWithStreamingResponse,
+    AsyncTelemetryResourceWithStreamingResponse,
+)
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._wrappers import ResultWrapper
-from ...pagination import SyncSinglePage, AsyncSinglePage
-from ..._base_client import AsyncPaginator, make_request_options
-from ...types.magic_transit import connector_edit_params, connector_update_params
-from ...types.magic_transit.connector_get_response import ConnectorGetResponse
-from ...types.magic_transit.connector_edit_response import ConnectorEditResponse
-from ...types.magic_transit.connector_list_response import ConnectorListResponse
-from ...types.magic_transit.connector_update_response import ConnectorUpdateResponse
+from ...._wrappers import ResultWrapper
+from ....pagination import SyncSinglePage, AsyncSinglePage
+from ...._base_client import AsyncPaginator, make_request_options
+from ....types.magic_transit import connector_edit_params, connector_update_params
+from ....types.magic_transit.connector_get_response import ConnectorGetResponse
+from ....types.magic_transit.connector_edit_response import ConnectorEditResponse
+from ....types.magic_transit.connector_list_response import ConnectorListResponse
+from ....types.magic_transit.connector_update_response import ConnectorUpdateResponse
 
 __all__ = ["ConnectorsResource", "AsyncConnectorsResource"]
 
 
 class ConnectorsResource(SyncAPIResource):
+    @cached_property
+    def telemetry(self) -> TelemetryResource:
+        return TelemetryResource(self._client)
+
+    @cached_property
+    def snapshots(self) -> SnapshotsResource:
+        return SnapshotsResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> ConnectorsResourceWithRawResponse:
         """
@@ -245,6 +269,14 @@ class ConnectorsResource(SyncAPIResource):
 
 
 class AsyncConnectorsResource(AsyncAPIResource):
+    @cached_property
+    def telemetry(self) -> AsyncTelemetryResource:
+        return AsyncTelemetryResource(self._client)
+
+    @cached_property
+    def snapshots(self) -> AsyncSnapshotsResource:
+        return AsyncSnapshotsResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AsyncConnectorsResourceWithRawResponse:
         """
@@ -474,6 +506,14 @@ class ConnectorsResourceWithRawResponse:
             connectors.get,
         )
 
+    @cached_property
+    def telemetry(self) -> TelemetryResourceWithRawResponse:
+        return TelemetryResourceWithRawResponse(self._connectors.telemetry)
+
+    @cached_property
+    def snapshots(self) -> SnapshotsResourceWithRawResponse:
+        return SnapshotsResourceWithRawResponse(self._connectors.snapshots)
+
 
 class AsyncConnectorsResourceWithRawResponse:
     def __init__(self, connectors: AsyncConnectorsResource) -> None:
@@ -491,6 +531,14 @@ class AsyncConnectorsResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             connectors.get,
         )
+
+    @cached_property
+    def telemetry(self) -> AsyncTelemetryResourceWithRawResponse:
+        return AsyncTelemetryResourceWithRawResponse(self._connectors.telemetry)
+
+    @cached_property
+    def snapshots(self) -> AsyncSnapshotsResourceWithRawResponse:
+        return AsyncSnapshotsResourceWithRawResponse(self._connectors.snapshots)
 
 
 class ConnectorsResourceWithStreamingResponse:
@@ -510,6 +558,14 @@ class ConnectorsResourceWithStreamingResponse:
             connectors.get,
         )
 
+    @cached_property
+    def telemetry(self) -> TelemetryResourceWithStreamingResponse:
+        return TelemetryResourceWithStreamingResponse(self._connectors.telemetry)
+
+    @cached_property
+    def snapshots(self) -> SnapshotsResourceWithStreamingResponse:
+        return SnapshotsResourceWithStreamingResponse(self._connectors.snapshots)
+
 
 class AsyncConnectorsResourceWithStreamingResponse:
     def __init__(self, connectors: AsyncConnectorsResource) -> None:
@@ -527,3 +583,11 @@ class AsyncConnectorsResourceWithStreamingResponse:
         self.get = async_to_streamed_response_wrapper(
             connectors.get,
         )
+
+    @cached_property
+    def telemetry(self) -> AsyncTelemetryResourceWithStreamingResponse:
+        return AsyncTelemetryResourceWithStreamingResponse(self._connectors.telemetry)
+
+    @cached_property
+    def snapshots(self) -> AsyncSnapshotsResourceWithStreamingResponse:
+        return AsyncSnapshotsResourceWithStreamingResponse(self._connectors.snapshots)

@@ -19,14 +19,6 @@ from .routes import (
     AsyncRoutesResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
-from .connectors import (
-    ConnectorsResource,
-    AsyncConnectorsResource,
-    ConnectorsResourceWithRawResponse,
-    AsyncConnectorsResourceWithRawResponse,
-    ConnectorsResourceWithStreamingResponse,
-    AsyncConnectorsResourceWithStreamingResponse,
-)
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from .gre_tunnels import (
     GRETunnelsResource,
@@ -67,6 +59,14 @@ from .cf_interconnects import (
     AsyncCfInterconnectsResourceWithRawResponse,
     CfInterconnectsResourceWithStreamingResponse,
     AsyncCfInterconnectsResourceWithStreamingResponse,
+)
+from .connectors.connectors import (
+    ConnectorsResource,
+    AsyncConnectorsResource,
+    ConnectorsResourceWithRawResponse,
+    AsyncConnectorsResourceWithRawResponse,
+    ConnectorsResourceWithStreamingResponse,
+    AsyncConnectorsResourceWithStreamingResponse,
 )
 
 __all__ = ["MagicTransitResource", "AsyncMagicTransitResource"]
