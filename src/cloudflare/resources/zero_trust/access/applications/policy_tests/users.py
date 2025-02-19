@@ -2,9 +2,12 @@
 
 from __future__ import annotations
 
+from typing_extensions import Literal
+
 import httpx
 
 from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ......_utils import maybe_transform
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
 from ......_response import (
@@ -15,6 +18,7 @@ from ......_response import (
 )
 from ......pagination import SyncSinglePage, AsyncSinglePage
 from ......_base_client import AsyncPaginator, make_request_options
+from ......types.zero_trust.access.applications.policy_tests import user_list_params
 from ......types.zero_trust.access.applications.policy_tests.user_list_response import UserListResponse
 
 __all__ = ["UsersResource", "AsyncUsersResource"]
@@ -45,6 +49,7 @@ class UsersResource(SyncAPIResource):
         policy_test_id: str,
         *,
         account_id: str,
+        status: Literal["success", "fail"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -59,6 +64,8 @@ class UsersResource(SyncAPIResource):
           account_id: Identifier
 
           policy_test_id: The UUID of the policy test.
+
+          status: Filter users by their policy evaluation status.
 
           extra_headers: Send extra headers
 
@@ -76,7 +83,11 @@ class UsersResource(SyncAPIResource):
             f"/accounts/{account_id}/access/policy-tests/{policy_test_id}/users",
             page=SyncSinglePage[UserListResponse],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"status": status}, user_list_params.UserListParams),
             ),
             model=UserListResponse,
         )
@@ -107,6 +118,7 @@ class AsyncUsersResource(AsyncAPIResource):
         policy_test_id: str,
         *,
         account_id: str,
+        status: Literal["success", "fail"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -121,6 +133,8 @@ class AsyncUsersResource(AsyncAPIResource):
           account_id: Identifier
 
           policy_test_id: The UUID of the policy test.
+
+          status: Filter users by their policy evaluation status.
 
           extra_headers: Send extra headers
 
@@ -138,7 +152,11 @@ class AsyncUsersResource(AsyncAPIResource):
             f"/accounts/{account_id}/access/policy-tests/{policy_test_id}/users",
             page=AsyncSinglePage[UserListResponse],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"status": status}, user_list_params.UserListParams),
             ),
             model=UserListResponse,
         )
