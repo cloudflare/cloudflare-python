@@ -4,7 +4,7 @@ from typing import List, Optional
 
 from ...._models import BaseModel
 
-__all__ = ["TelemetryListResponse", "Item"]
+__all__ = ["EventListResponse", "Item"]
 
 
 class Item(BaseModel):
@@ -21,7 +21,7 @@ class Item(BaseModel):
     """Time the Event was recorded (seconds since the Unix epoch)"""
 
 
-class TelemetryListResponse(BaseModel):
+class EventListResponse(BaseModel):
     count: float
 
     items: List[Item]

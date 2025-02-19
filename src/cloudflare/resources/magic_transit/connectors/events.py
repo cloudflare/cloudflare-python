@@ -21,32 +21,32 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
-from ....types.magic_transit.connectors import telemetry_list_params
-from ....types.magic_transit.connectors.telemetry_get_response import TelemetryGetResponse
-from ....types.magic_transit.connectors.telemetry_list_response import TelemetryListResponse
+from ....types.magic_transit.connectors import event_list_params
+from ....types.magic_transit.connectors.event_get_response import EventGetResponse
+from ....types.magic_transit.connectors.event_list_response import EventListResponse
 
-__all__ = ["TelemetryResource", "AsyncTelemetryResource"]
+__all__ = ["EventsResource", "AsyncEventsResource"]
 
 
-class TelemetryResource(SyncAPIResource):
+class EventsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> TelemetryResourceWithRawResponse:
+    def with_raw_response(self) -> EventsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return TelemetryResourceWithRawResponse(self)
+        return EventsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> TelemetryResourceWithStreamingResponse:
+    def with_streaming_response(self) -> EventsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return TelemetryResourceWithStreamingResponse(self)
+        return EventsResourceWithStreamingResponse(self)
 
     def list(
         self,
@@ -63,7 +63,7 @@ class TelemetryResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TelemetryListResponse:
+    ) -> EventListResponse:
         """
         List Events
 
@@ -92,11 +92,11 @@ class TelemetryResource(SyncAPIResource):
                         "cursor": cursor,
                         "limit": limit,
                     },
-                    telemetry_list_params.TelemetryListParams,
+                    event_list_params.EventListParams,
                 ),
-                post_parser=ResultWrapper[TelemetryListResponse]._unwrapper,
+                post_parser=ResultWrapper[EventListResponse]._unwrapper,
             ),
-            cast_to=cast(Type[TelemetryListResponse], ResultWrapper[TelemetryListResponse]),
+            cast_to=cast(Type[EventListResponse], ResultWrapper[EventListResponse]),
         )
 
     def get(
@@ -112,7 +112,7 @@ class TelemetryResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TelemetryGetResponse:
+    ) -> EventGetResponse:
         """
         Get Event
 
@@ -134,31 +134,31 @@ class TelemetryResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[TelemetryGetResponse]._unwrapper,
+                post_parser=ResultWrapper[EventGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[TelemetryGetResponse], ResultWrapper[TelemetryGetResponse]),
+            cast_to=cast(Type[EventGetResponse], ResultWrapper[EventGetResponse]),
         )
 
 
-class AsyncTelemetryResource(AsyncAPIResource):
+class AsyncEventsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncTelemetryResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncEventsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncTelemetryResourceWithRawResponse(self)
+        return AsyncEventsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncTelemetryResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncEventsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return AsyncTelemetryResourceWithStreamingResponse(self)
+        return AsyncEventsResourceWithStreamingResponse(self)
 
     async def list(
         self,
@@ -175,7 +175,7 @@ class AsyncTelemetryResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TelemetryListResponse:
+    ) -> EventListResponse:
         """
         List Events
 
@@ -204,11 +204,11 @@ class AsyncTelemetryResource(AsyncAPIResource):
                         "cursor": cursor,
                         "limit": limit,
                     },
-                    telemetry_list_params.TelemetryListParams,
+                    event_list_params.EventListParams,
                 ),
-                post_parser=ResultWrapper[TelemetryListResponse]._unwrapper,
+                post_parser=ResultWrapper[EventListResponse]._unwrapper,
             ),
-            cast_to=cast(Type[TelemetryListResponse], ResultWrapper[TelemetryListResponse]),
+            cast_to=cast(Type[EventListResponse], ResultWrapper[EventListResponse]),
         )
 
     async def get(
@@ -224,7 +224,7 @@ class AsyncTelemetryResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TelemetryGetResponse:
+    ) -> EventGetResponse:
         """
         Get Event
 
@@ -246,55 +246,55 @@ class AsyncTelemetryResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[TelemetryGetResponse]._unwrapper,
+                post_parser=ResultWrapper[EventGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[TelemetryGetResponse], ResultWrapper[TelemetryGetResponse]),
+            cast_to=cast(Type[EventGetResponse], ResultWrapper[EventGetResponse]),
         )
 
 
-class TelemetryResourceWithRawResponse:
-    def __init__(self, telemetry: TelemetryResource) -> None:
-        self._telemetry = telemetry
+class EventsResourceWithRawResponse:
+    def __init__(self, events: EventsResource) -> None:
+        self._events = events
 
         self.list = to_raw_response_wrapper(
-            telemetry.list,
+            events.list,
         )
         self.get = to_raw_response_wrapper(
-            telemetry.get,
+            events.get,
         )
 
 
-class AsyncTelemetryResourceWithRawResponse:
-    def __init__(self, telemetry: AsyncTelemetryResource) -> None:
-        self._telemetry = telemetry
+class AsyncEventsResourceWithRawResponse:
+    def __init__(self, events: AsyncEventsResource) -> None:
+        self._events = events
 
         self.list = async_to_raw_response_wrapper(
-            telemetry.list,
+            events.list,
         )
         self.get = async_to_raw_response_wrapper(
-            telemetry.get,
+            events.get,
         )
 
 
-class TelemetryResourceWithStreamingResponse:
-    def __init__(self, telemetry: TelemetryResource) -> None:
-        self._telemetry = telemetry
+class EventsResourceWithStreamingResponse:
+    def __init__(self, events: EventsResource) -> None:
+        self._events = events
 
         self.list = to_streamed_response_wrapper(
-            telemetry.list,
+            events.list,
         )
         self.get = to_streamed_response_wrapper(
-            telemetry.get,
+            events.get,
         )
 
 
-class AsyncTelemetryResourceWithStreamingResponse:
-    def __init__(self, telemetry: AsyncTelemetryResource) -> None:
-        self._telemetry = telemetry
+class AsyncEventsResourceWithStreamingResponse:
+    def __init__(self, events: AsyncEventsResource) -> None:
+        self._events = events
 
         self.list = async_to_streamed_response_wrapper(
-            telemetry.list,
+            events.list,
         )
         self.get = async_to_streamed_response_wrapper(
-            telemetry.get,
+            events.get,
         )

@@ -6,6 +6,14 @@ from typing import Type, cast
 
 import httpx
 
+from .events import (
+    EventsResource,
+    AsyncEventsResource,
+    EventsResourceWithRawResponse,
+    AsyncEventsResourceWithRawResponse,
+    EventsResourceWithStreamingResponse,
+    AsyncEventsResourceWithStreamingResponse,
+)
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
     maybe_transform,
@@ -18,14 +26,6 @@ from .snapshots import (
     AsyncSnapshotsResourceWithRawResponse,
     SnapshotsResourceWithStreamingResponse,
     AsyncSnapshotsResourceWithStreamingResponse,
-)
-from .telemetry import (
-    TelemetryResource,
-    AsyncTelemetryResource,
-    TelemetryResourceWithRawResponse,
-    AsyncTelemetryResourceWithRawResponse,
-    TelemetryResourceWithStreamingResponse,
-    AsyncTelemetryResourceWithStreamingResponse,
 )
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -49,8 +49,8 @@ __all__ = ["ConnectorsResource", "AsyncConnectorsResource"]
 
 class ConnectorsResource(SyncAPIResource):
     @cached_property
-    def telemetry(self) -> TelemetryResource:
-        return TelemetryResource(self._client)
+    def events(self) -> EventsResource:
+        return EventsResource(self._client)
 
     @cached_property
     def snapshots(self) -> SnapshotsResource:
@@ -270,8 +270,8 @@ class ConnectorsResource(SyncAPIResource):
 
 class AsyncConnectorsResource(AsyncAPIResource):
     @cached_property
-    def telemetry(self) -> AsyncTelemetryResource:
-        return AsyncTelemetryResource(self._client)
+    def events(self) -> AsyncEventsResource:
+        return AsyncEventsResource(self._client)
 
     @cached_property
     def snapshots(self) -> AsyncSnapshotsResource:
@@ -507,8 +507,8 @@ class ConnectorsResourceWithRawResponse:
         )
 
     @cached_property
-    def telemetry(self) -> TelemetryResourceWithRawResponse:
-        return TelemetryResourceWithRawResponse(self._connectors.telemetry)
+    def events(self) -> EventsResourceWithRawResponse:
+        return EventsResourceWithRawResponse(self._connectors.events)
 
     @cached_property
     def snapshots(self) -> SnapshotsResourceWithRawResponse:
@@ -533,8 +533,8 @@ class AsyncConnectorsResourceWithRawResponse:
         )
 
     @cached_property
-    def telemetry(self) -> AsyncTelemetryResourceWithRawResponse:
-        return AsyncTelemetryResourceWithRawResponse(self._connectors.telemetry)
+    def events(self) -> AsyncEventsResourceWithRawResponse:
+        return AsyncEventsResourceWithRawResponse(self._connectors.events)
 
     @cached_property
     def snapshots(self) -> AsyncSnapshotsResourceWithRawResponse:
@@ -559,8 +559,8 @@ class ConnectorsResourceWithStreamingResponse:
         )
 
     @cached_property
-    def telemetry(self) -> TelemetryResourceWithStreamingResponse:
-        return TelemetryResourceWithStreamingResponse(self._connectors.telemetry)
+    def events(self) -> EventsResourceWithStreamingResponse:
+        return EventsResourceWithStreamingResponse(self._connectors.events)
 
     @cached_property
     def snapshots(self) -> SnapshotsResourceWithStreamingResponse:
@@ -585,8 +585,8 @@ class AsyncConnectorsResourceWithStreamingResponse:
         )
 
     @cached_property
-    def telemetry(self) -> AsyncTelemetryResourceWithStreamingResponse:
-        return AsyncTelemetryResourceWithStreamingResponse(self._connectors.telemetry)
+    def events(self) -> AsyncEventsResourceWithStreamingResponse:
+        return AsyncEventsResourceWithStreamingResponse(self._connectors.events)
 
     @cached_property
     def snapshots(self) -> AsyncSnapshotsResourceWithStreamingResponse:

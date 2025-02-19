@@ -3882,18 +3882,18 @@ Methods:
 - <code title="patch /accounts/{account_id}/magic/connectors/{connector_id}">client.magic_transit.connectors.<a href="./src/cloudflare/resources/magic_transit/connectors/connectors.py">edit</a>(connector_id, \*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/connector_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/connector_edit_response.py">ConnectorEditResponse</a></code>
 - <code title="get /accounts/{account_id}/magic/connectors/{connector_id}">client.magic_transit.connectors.<a href="./src/cloudflare/resources/magic_transit/connectors/connectors.py">get</a>(connector_id, \*, account_id) -> <a href="./src/cloudflare/types/magic_transit/connector_get_response.py">ConnectorGetResponse</a></code>
 
-### Telemetry
+### Events
 
 Types:
 
 ```python
-from cloudflare.types.magic_transit.connectors import TelemetryListResponse, TelemetryGetResponse
+from cloudflare.types.magic_transit.connectors import EventListResponse, EventGetResponse
 ```
 
 Methods:
 
-- <code title="get /accounts/{account_id}/magic/connectors/{connector_id}/telemetry/events">client.magic_transit.connectors.telemetry.<a href="./src/cloudflare/resources/magic_transit/connectors/telemetry.py">list</a>(connector_id, \*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/connectors/telemetry_list_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/connectors/telemetry_list_response.py">TelemetryListResponse</a></code>
-- <code title="get /accounts/{account_id}/magic/connectors/{connector_id}/telemetry/events/{event_t}.{event_n}">client.magic_transit.connectors.telemetry.<a href="./src/cloudflare/resources/magic_transit/connectors/telemetry.py">get</a>(event_n, \*, account_id, connector_id, event_t) -> <a href="./src/cloudflare/types/magic_transit/connectors/telemetry_get_response.py">TelemetryGetResponse</a></code>
+- <code title="get /accounts/{account_id}/magic/connectors/{connector_id}/telemetry/events">client.magic_transit.connectors.events.<a href="./src/cloudflare/resources/magic_transit/connectors/events.py">list</a>(connector_id, \*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/connectors/event_list_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/connectors/event_list_response.py">EventListResponse</a></code>
+- <code title="get /accounts/{account_id}/magic/connectors/{connector_id}/telemetry/events/{event_t}.{event_n}">client.magic_transit.connectors.events.<a href="./src/cloudflare/resources/magic_transit/connectors/events.py">get</a>(event_n, \*, account_id, connector_id, event_t) -> <a href="./src/cloudflare/types/magic_transit/connectors/event_get_response.py">EventGetResponse</a></code>
 
 ### Snapshots
 
