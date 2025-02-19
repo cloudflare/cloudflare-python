@@ -2,24 +2,24 @@
 
 from __future__ import annotations
 
-from typing import Iterable
-from typing_extensions import Required, TypedDict
+from typing import List, Union, Iterable
+from typing_extensions import Required, TypeAlias, TypedDict
 
 from ..decision import Decision
 from .access_rule_param import AccessRuleParam
 from ..approval_group_param import ApprovalGroupParam
 
-__all__ = ["PolicyTestCreateParams", "Policy"]
+__all__ = ["PolicyTestCreateParams", "Policy", "PolicyUnionMember0"]
 
 
 class PolicyTestCreateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
-    policies: Iterable[Policy]
+    policies: List[Policy]
 
 
-class Policy(TypedDict, total=False):
+class PolicyUnionMember0(TypedDict, total=False):
     decision: Required[Decision]
     """The action Access will take if a user matches this policy.
 
@@ -75,3 +75,6 @@ class Policy(TypedDict, total=False):
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
     ms, s, m, h.
     """
+
+
+Policy: TypeAlias = Union[PolicyUnionMember0, str]
