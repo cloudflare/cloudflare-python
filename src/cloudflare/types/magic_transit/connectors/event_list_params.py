@@ -6,10 +6,10 @@ from typing_extensions import Required, Annotated, TypedDict
 
 from ...._utils import PropertyInfo
 
-__all__ = ["TelemetryListParams"]
+__all__ = ["EventListParams"]
 
 
-class TelemetryListParams(TypedDict, total=False):
+class EventListParams(TypedDict, total=False):
     account_id: Required[float]
 
     from_: Required[Annotated[float, PropertyInfo(alias="from")]]

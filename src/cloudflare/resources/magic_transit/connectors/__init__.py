@@ -1,5 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from .events import (
+    EventsResource,
+    AsyncEventsResource,
+    EventsResourceWithRawResponse,
+    AsyncEventsResourceWithRawResponse,
+    EventsResourceWithStreamingResponse,
+    AsyncEventsResourceWithStreamingResponse,
+)
 from .snapshots import (
     SnapshotsResource,
     AsyncSnapshotsResource,
@@ -7,14 +15,6 @@ from .snapshots import (
     AsyncSnapshotsResourceWithRawResponse,
     SnapshotsResourceWithStreamingResponse,
     AsyncSnapshotsResourceWithStreamingResponse,
-)
-from .telemetry import (
-    TelemetryResource,
-    AsyncTelemetryResource,
-    TelemetryResourceWithRawResponse,
-    AsyncTelemetryResourceWithRawResponse,
-    TelemetryResourceWithStreamingResponse,
-    AsyncTelemetryResourceWithStreamingResponse,
 )
 from .connectors import (
     ConnectorsResource,
@@ -26,12 +26,12 @@ from .connectors import (
 )
 
 __all__ = [
-    "TelemetryResource",
-    "AsyncTelemetryResource",
-    "TelemetryResourceWithRawResponse",
-    "AsyncTelemetryResourceWithRawResponse",
-    "TelemetryResourceWithStreamingResponse",
-    "AsyncTelemetryResourceWithStreamingResponse",
+    "EventsResource",
+    "AsyncEventsResource",
+    "EventsResourceWithRawResponse",
+    "AsyncEventsResourceWithRawResponse",
+    "EventsResourceWithStreamingResponse",
+    "AsyncEventsResourceWithStreamingResponse",
     "SnapshotsResource",
     "AsyncSnapshotsResource",
     "SnapshotsResourceWithRawResponse",

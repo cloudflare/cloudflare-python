@@ -5,7 +5,7 @@ from typing_extensions import Literal, TypeAlias
 
 from ...._models import BaseModel
 
-__all__ = ["TelemetryGetResponse", "E", "EK", "EUnionMember8"]
+__all__ = ["EventGetResponse", "E", "EK", "EUnionMember8"]
 
 
 class EK(BaseModel):
@@ -24,7 +24,7 @@ class EUnionMember8(BaseModel):
 E: TypeAlias = Union[EK, EK, EK, EK, EK, EK, EK, EK, EUnionMember8, EK, EK, EK, EK]
 
 
-class TelemetryGetResponse(BaseModel):
+class EventGetResponse(BaseModel):
     e: E
 
     n: float
