@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
+from .event_list_params import EventListParams as EventListParams
+from .event_get_response import EventGetResponse as EventGetResponse
+from .event_list_response import EventListResponse as EventListResponse
 from .snapshot_list_params import SnapshotListParams as SnapshotListParams
 from .snapshot_get_response import SnapshotGetResponse as SnapshotGetResponse
-from .telemetry_list_params import TelemetryListParams as TelemetryListParams
 from .snapshot_list_response import SnapshotListResponse as SnapshotListResponse
-from .telemetry_get_response import TelemetryGetResponse as TelemetryGetResponse
-from .telemetry_list_response import TelemetryListResponse as TelemetryListResponse
