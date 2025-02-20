@@ -11,5 +11,5 @@ class PublishCreateParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    body: Required[str]
+    body: str
     """Zaraz configuration description."""

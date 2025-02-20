@@ -136,7 +136,23 @@ class TestScans:
     def test_method_bulk_create(self, client: Cloudflare) -> None:
         scan = client.url_scanner.scans.bulk_create(
             account_id="account_id",
-            body=[{"url": "https://www.example.com"}],
+        )
+        assert_matches_type(ScanBulkCreateResponse, scan, path=["response"])
+
+    @parametrize
+    def test_method_bulk_create_with_all_params(self, client: Cloudflare) -> None:
+        scan = client.url_scanner.scans.bulk_create(
+            account_id="account_id",
+            body=[
+                {
+                    "url": "https://www.example.com",
+                    "customagent": "customagent",
+                    "custom_headers": {"foo": "string"},
+                    "referer": "referer",
+                    "screenshots_resolutions": ["desktop"],
+                    "visibility": "Public",
+                }
+            ],
         )
         assert_matches_type(ScanBulkCreateResponse, scan, path=["response"])
 
@@ -144,7 +160,6 @@ class TestScans:
     def test_raw_response_bulk_create(self, client: Cloudflare) -> None:
         response = client.url_scanner.scans.with_raw_response.bulk_create(
             account_id="account_id",
-            body=[{"url": "https://www.example.com"}],
         )
 
         assert response.is_closed is True
@@ -156,7 +171,6 @@ class TestScans:
     def test_streaming_response_bulk_create(self, client: Cloudflare) -> None:
         with client.url_scanner.scans.with_streaming_response.bulk_create(
             account_id="account_id",
-            body=[{"url": "https://www.example.com"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -171,7 +185,6 @@ class TestScans:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.url_scanner.scans.with_raw_response.bulk_create(
                 account_id="",
-                body=[{"url": "https://www.example.com"}],
             )
 
     @parametrize
@@ -514,7 +527,23 @@ class TestAsyncScans:
     async def test_method_bulk_create(self, async_client: AsyncCloudflare) -> None:
         scan = await async_client.url_scanner.scans.bulk_create(
             account_id="account_id",
-            body=[{"url": "https://www.example.com"}],
+        )
+        assert_matches_type(ScanBulkCreateResponse, scan, path=["response"])
+
+    @parametrize
+    async def test_method_bulk_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        scan = await async_client.url_scanner.scans.bulk_create(
+            account_id="account_id",
+            body=[
+                {
+                    "url": "https://www.example.com",
+                    "customagent": "customagent",
+                    "custom_headers": {"foo": "string"},
+                    "referer": "referer",
+                    "screenshots_resolutions": ["desktop"],
+                    "visibility": "Public",
+                }
+            ],
         )
         assert_matches_type(ScanBulkCreateResponse, scan, path=["response"])
 
@@ -522,7 +551,6 @@ class TestAsyncScans:
     async def test_raw_response_bulk_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.url_scanner.scans.with_raw_response.bulk_create(
             account_id="account_id",
-            body=[{"url": "https://www.example.com"}],
         )
 
         assert response.is_closed is True
@@ -534,7 +562,6 @@ class TestAsyncScans:
     async def test_streaming_response_bulk_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.url_scanner.scans.with_streaming_response.bulk_create(
             account_id="account_id",
-            body=[{"url": "https://www.example.com"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -549,7 +576,6 @@ class TestAsyncScans:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.url_scanner.scans.with_raw_response.bulk_create(
                 account_id="",
-                body=[{"url": "https://www.example.com"}],
             )
 
     @parametrize
