@@ -307,8 +307,10 @@ class TimeseriesGroupsResource(SyncAPIResource):
 
           ip_version: Filter for ip version.
 
-          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
-              the time range.
+          limit_per_group: Limit the number of objects (e.g., browsers, verticals, etc.) to the top items
+              within the specified time range. If the limitPerGroup is set, the response will
+              include that number of items, with the remaining items grouped together under an
+              "other" category.
 
           location: Array of comma separated list of locations (alpha-2 country codes). Start with
               `-` to exclude from results. For example, `-US,PT` excludes results from the US,
@@ -595,8 +597,10 @@ class TimeseriesGroupsResource(SyncAPIResource):
 
           ip_version: Filter for ip version.
 
-          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
-              the time range.
+          limit_per_group: Limit the number of objects (e.g., browsers, verticals, etc.) to the top items
+              within the specified time range. If the limitPerGroup is set, the response will
+              include that number of items, with the remaining items grouped together under an
+              "other" category.
 
           location: Array of comma separated list of locations (alpha-2 country codes). Start with
               `-` to exclude from results. For example, `-US,PT` excludes results from the US,
@@ -697,8 +701,10 @@ class TimeseriesGroupsResource(SyncAPIResource):
 
           ip_version: Filter for ip version.
 
-          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
-              the time range.
+          limit_per_group: Limit the number of objects (e.g., browsers, verticals, etc.) to the top items
+              within the specified time range. If the limitPerGroup is set, the response will
+              include that number of items, with the remaining items grouped together under an
+              "other" category.
 
           location: Array of comma separated list of locations (alpha-2 country codes). Start with
               `-` to exclude from results. For example, `-US,PT` excludes results from the US,
@@ -1014,8 +1020,10 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
 
           ip_version: Filter for ip version.
 
-          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
-              the time range.
+          limit_per_group: Limit the number of objects (e.g., browsers, verticals, etc.) to the top items
+              within the specified time range. If the limitPerGroup is set, the response will
+              include that number of items, with the remaining items grouped together under an
+              "other" category.
 
           location: Array of comma separated list of locations (alpha-2 country codes). Start with
               `-` to exclude from results. For example, `-US,PT` excludes results from the US,
@@ -1302,8 +1310,10 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
 
           ip_version: Filter for ip version.
 
-          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
-              the time range.
+          limit_per_group: Limit the number of objects (e.g., browsers, verticals, etc.) to the top items
+              within the specified time range. If the limitPerGroup is set, the response will
+              include that number of items, with the remaining items grouped together under an
+              "other" category.
 
           location: Array of comma separated list of locations (alpha-2 country codes). Start with
               `-` to exclude from results. For example, `-US,PT` excludes results from the US,
@@ -1404,8 +1414,10 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
 
           ip_version: Filter for ip version.
 
-          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
-              the time range.
+          limit_per_group: Limit the number of objects (e.g., browsers, verticals, etc.) to the top items
+              within the specified time range. If the limitPerGroup is set, the response will
+              include that number of items, with the remaining items grouped together under an
+              "other" category.
 
           location: Array of comma separated list of locations (alpha-2 country codes). Start with
               `-` to exclude from results. For example, `-US,PT` excludes results from the US,
