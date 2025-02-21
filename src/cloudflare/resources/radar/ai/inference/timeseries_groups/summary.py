@@ -85,8 +85,10 @@ class SummaryResource(SyncAPIResource):
 
           format: Format results are returned in.
 
-          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
-              the time range.
+          limit_per_group: Limit the number of objects (e.g., browsers, verticals, etc.) to the top items
+              within the specified time range. If the limitPerGroup is set, the response will
+              include that number of items, with the remaining items grouped together under an
+              "other" category.
 
           name: Array of names that will be used to name the series in responses.
 
@@ -157,8 +159,10 @@ class SummaryResource(SyncAPIResource):
 
           format: Format results are returned in.
 
-          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
-              the time range.
+          limit_per_group: Limit the number of objects (e.g., browsers, verticals, etc.) to the top items
+              within the specified time range. If the limitPerGroup is set, the response will
+              include that number of items, with the remaining items grouped together under an
+              "other" category.
 
           name: Array of names that will be used to name the series in responses.
 
@@ -250,8 +254,10 @@ class AsyncSummaryResource(AsyncAPIResource):
 
           format: Format results are returned in.
 
-          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
-              the time range.
+          limit_per_group: Limit the number of objects (e.g., browsers, verticals, etc.) to the top items
+              within the specified time range. If the limitPerGroup is set, the response will
+              include that number of items, with the remaining items grouped together under an
+              "other" category.
 
           name: Array of names that will be used to name the series in responses.
 
@@ -322,8 +328,10 @@ class AsyncSummaryResource(AsyncAPIResource):
 
           format: Format results are returned in.
 
-          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
-              the time range.
+          limit_per_group: Limit the number of objects (e.g., browsers, verticals, etc.) to the top items
+              within the specified time range. If the limitPerGroup is set, the response will
+              include that number of items, with the remaining items grouped together under an
+              "other" category.
 
           name: Array of names that will be used to name the series in responses.
 
