@@ -80,6 +80,7 @@ class RankingResource(SyncAPIResource):
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        domain_category: List[str] | NotGiven = NOT_GIVEN,
         domains: List[str] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
@@ -105,6 +106,8 @@ class RankingResource(SyncAPIResource):
               `dateEnd` parameters).
 
           date_start: Array of datetimes to filter the start of a series.
+
+          domain_category: Filter by domain category.
 
           domains: Array of comma separated list of domains names.
 
@@ -138,6 +141,7 @@ class RankingResource(SyncAPIResource):
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
+                        "domain_category": domain_category,
                         "domains": domains,
                         "format": format,
                         "limit": limit,
@@ -156,6 +160,7 @@ class RankingResource(SyncAPIResource):
         self,
         *,
         date: List[Union[str, date]] | NotGiven = NOT_GIVEN,
+        domain_category: List[str] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
@@ -177,6 +182,8 @@ class RankingResource(SyncAPIResource):
 
         Args:
           date: Array of dates to filter the ranking.
+
+          domain_category: Filter by domain category.
 
           format: Format results are returned in.
 
@@ -206,6 +213,7 @@ class RankingResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "date": date,
+                        "domain_category": domain_category,
                         "format": format,
                         "limit": limit,
                         "location": location,
@@ -254,6 +262,7 @@ class AsyncRankingResource(AsyncAPIResource):
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        domain_category: List[str] | NotGiven = NOT_GIVEN,
         domains: List[str] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
@@ -279,6 +288,8 @@ class AsyncRankingResource(AsyncAPIResource):
               `dateEnd` parameters).
 
           date_start: Array of datetimes to filter the start of a series.
+
+          domain_category: Filter by domain category.
 
           domains: Array of comma separated list of domains names.
 
@@ -312,6 +323,7 @@ class AsyncRankingResource(AsyncAPIResource):
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
+                        "domain_category": domain_category,
                         "domains": domains,
                         "format": format,
                         "limit": limit,
@@ -330,6 +342,7 @@ class AsyncRankingResource(AsyncAPIResource):
         self,
         *,
         date: List[Union[str, date]] | NotGiven = NOT_GIVEN,
+        domain_category: List[str] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
@@ -351,6 +364,8 @@ class AsyncRankingResource(AsyncAPIResource):
 
         Args:
           date: Array of dates to filter the ranking.
+
+          domain_category: Filter by domain category.
 
           format: Format results are returned in.
 
@@ -380,6 +395,7 @@ class AsyncRankingResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "date": date,
+                        "domain_category": domain_category,
                         "format": format,
                         "limit": limit,
                         "location": location,

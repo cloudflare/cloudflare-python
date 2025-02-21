@@ -10,11 +10,11 @@ __all__ = ["DomainGetResponse", "Details0", "Details0Category", "Details0TopLoca
 
 
 class Details0Category(BaseModel):
-    id: float
+    id: int
 
     name: str
 
-    super_category_id: float = FieldInfo(alias="superCategoryId")
+    super_category_id: int = FieldInfo(alias="superCategoryId")
 
 
 class Details0TopLocation(BaseModel):
@@ -28,12 +28,12 @@ class Details0TopLocation(BaseModel):
 class Details0(BaseModel):
     categories: List[Details0Category]
 
-    top_locations: List[Details0TopLocation]
-
     bucket: Optional[str] = None
     """Only available in POPULAR ranking for the most recent ranking."""
 
     rank: Optional[int] = None
+
+    top_locations: Optional[List[Details0TopLocation]] = None
 
 
 class DomainGetResponse(BaseModel):

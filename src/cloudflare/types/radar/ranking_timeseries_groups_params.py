@@ -25,6 +25,9 @@ class RankingTimeseriesGroupsParams(TypedDict, total=False):
     date_start: Annotated[List[Union[str, datetime]], PropertyInfo(alias="dateStart", format="iso8601")]
     """Array of datetimes to filter the start of a series."""
 
+    domain_category: Annotated[List[str], PropertyInfo(alias="domainCategory")]
+    """Filter by domain category."""
+
     domains: List[str]
     """Array of comma separated list of domains names."""
 

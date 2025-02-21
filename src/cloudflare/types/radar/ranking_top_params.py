@@ -15,6 +15,9 @@ class RankingTopParams(TypedDict, total=False):
     date: Annotated[List[Union[str, datetime.date]], PropertyInfo(format="iso8601")]
     """Array of dates to filter the ranking."""
 
+    domain_category: Annotated[List[str], PropertyInfo(alias="domainCategory")]
+    """Filter by domain category."""
+
     format: Literal["JSON", "CSV"]
     """Format results are returned in."""
 
