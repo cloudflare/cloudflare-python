@@ -95,10 +95,10 @@ class RulesetsResource(SyncAPIResource):
         kind: Kind,
         name: str,
         phase: Phase,
-        rules: Iterable[ruleset_create_params.Rule],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
+        rules: Iterable[ruleset_create_params.Rule] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -116,13 +116,13 @@ class RulesetsResource(SyncAPIResource):
 
           phase: The phase of the ruleset.
 
-          rules: The list of rules in the ruleset.
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           description: An informative description of the ruleset.
+
+          rules: The list of rules in the ruleset.
 
           extra_headers: Send extra headers
 
@@ -151,8 +151,8 @@ class RulesetsResource(SyncAPIResource):
                     "kind": kind,
                     "name": name,
                     "phase": phase,
-                    "rules": rules,
                     "description": description,
+                    "rules": rules,
                 },
                 ruleset_create_params.RulesetCreateParams,
             ),
@@ -170,13 +170,13 @@ class RulesetsResource(SyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        rules: Iterable[ruleset_update_params.Rule],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         kind: Kind | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         phase: Phase | NotGiven = NOT_GIVEN,
+        rules: Iterable[ruleset_update_params.Rule] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -190,8 +190,6 @@ class RulesetsResource(SyncAPIResource):
         Args:
           ruleset_id: The unique ID of the ruleset.
 
-          rules: The list of rules in the ruleset.
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
@@ -203,6 +201,8 @@ class RulesetsResource(SyncAPIResource):
           name: The human-readable name of the ruleset.
 
           phase: The phase of the ruleset.
+
+          rules: The list of rules in the ruleset.
 
           extra_headers: Send extra headers
 
@@ -230,11 +230,11 @@ class RulesetsResource(SyncAPIResource):
             f"/{account_or_zone}/{account_or_zone_id}/rulesets/{ruleset_id}",
             body=maybe_transform(
                 {
-                    "rules": rules,
                     "description": description,
                     "kind": kind,
                     "name": name,
                     "phase": phase,
+                    "rules": rules,
                 },
                 ruleset_update_params.RulesetUpdateParams,
             ),
@@ -463,10 +463,10 @@ class AsyncRulesetsResource(AsyncAPIResource):
         kind: Kind,
         name: str,
         phase: Phase,
-        rules: Iterable[ruleset_create_params.Rule],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
+        rules: Iterable[ruleset_create_params.Rule] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -484,13 +484,13 @@ class AsyncRulesetsResource(AsyncAPIResource):
 
           phase: The phase of the ruleset.
 
-          rules: The list of rules in the ruleset.
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           description: An informative description of the ruleset.
+
+          rules: The list of rules in the ruleset.
 
           extra_headers: Send extra headers
 
@@ -519,8 +519,8 @@ class AsyncRulesetsResource(AsyncAPIResource):
                     "kind": kind,
                     "name": name,
                     "phase": phase,
-                    "rules": rules,
                     "description": description,
+                    "rules": rules,
                 },
                 ruleset_create_params.RulesetCreateParams,
             ),
@@ -538,13 +538,13 @@ class AsyncRulesetsResource(AsyncAPIResource):
         self,
         ruleset_id: str,
         *,
-        rules: Iterable[ruleset_update_params.Rule],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         kind: Kind | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         phase: Phase | NotGiven = NOT_GIVEN,
+        rules: Iterable[ruleset_update_params.Rule] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -558,8 +558,6 @@ class AsyncRulesetsResource(AsyncAPIResource):
         Args:
           ruleset_id: The unique ID of the ruleset.
 
-          rules: The list of rules in the ruleset.
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
@@ -571,6 +569,8 @@ class AsyncRulesetsResource(AsyncAPIResource):
           name: The human-readable name of the ruleset.
 
           phase: The phase of the ruleset.
+
+          rules: The list of rules in the ruleset.
 
           extra_headers: Send extra headers
 
@@ -598,11 +598,11 @@ class AsyncRulesetsResource(AsyncAPIResource):
             f"/{account_or_zone}/{account_or_zone_id}/rulesets/{ruleset_id}",
             body=await async_maybe_transform(
                 {
-                    "rules": rules,
                     "description": description,
                     "kind": kind,
                     "name": name,
                     "phase": phase,
+                    "rules": rules,
                 },
                 ruleset_update_params.RulesetUpdateParams,
             ),
