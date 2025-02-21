@@ -38,9 +38,6 @@ __all__ = [
 
 
 class RulesetUpdateParams(TypedDict, total=False):
-    rules: Required[Iterable[Rule]]
-    """The list of rules in the ruleset."""
-
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
 
@@ -58,6 +55,9 @@ class RulesetUpdateParams(TypedDict, total=False):
 
     phase: Phase
     """The phase of the ruleset."""
+
+    rules: Iterable[Rule]
+    """The list of rules in the ruleset."""
 
 
 class RuleRulesetsChallengeRuleExposedCredentialCheck(TypedDict, total=False):

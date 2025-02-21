@@ -47,9 +47,6 @@ class RulesetCreateParams(TypedDict, total=False):
     phase: Required[Phase]
     """The phase of the ruleset."""
 
-    rules: Required[Iterable[Rule]]
-    """The list of rules in the ruleset."""
-
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
 
@@ -58,6 +55,9 @@ class RulesetCreateParams(TypedDict, total=False):
 
     description: str
     """An informative description of the ruleset."""
+
+    rules: Iterable[Rule]
+    """The list of rules in the ruleset."""
 
 
 class RuleRulesetsChallengeRuleExposedCredentialCheck(TypedDict, total=False):
