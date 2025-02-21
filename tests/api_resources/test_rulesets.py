@@ -30,7 +30,6 @@ class TestRulesets:
             kind="managed",
             name="My ruleset",
             phase="ddos_l4",
-            rules=[{}],
             account_id="account_id",
         )
         assert_matches_type(RulesetCreateResponse, ruleset, path=["response"])
@@ -42,6 +41,8 @@ class TestRulesets:
             kind="managed",
             name="My ruleset",
             phase="ddos_l4",
+            account_id="account_id",
+            description="My ruleset to execute managed rulesets",
             rules=[
                 {
                     "id": "3a03d665bac047339bb530ecb439a90d",
@@ -74,8 +75,6 @@ class TestRulesets:
                     "ref": "my_ref",
                 }
             ],
-            account_id="account_id",
-            description="My ruleset to execute managed rulesets",
         )
         assert_matches_type(RulesetCreateResponse, ruleset, path=["response"])
 
@@ -86,7 +85,6 @@ class TestRulesets:
             kind="managed",
             name="My ruleset",
             phase="ddos_l4",
-            rules=[{}],
             account_id="account_id",
         )
 
@@ -102,7 +100,6 @@ class TestRulesets:
             kind="managed",
             name="My ruleset",
             phase="ddos_l4",
-            rules=[{}],
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -121,7 +118,6 @@ class TestRulesets:
                 kind="managed",
                 name="My ruleset",
                 phase="ddos_l4",
-                rules=[{}],
                 account_id="",
             )
 
@@ -130,7 +126,6 @@ class TestRulesets:
                 kind="managed",
                 name="My ruleset",
                 phase="ddos_l4",
-                rules=[{}],
                 account_id="account_id",
             )
 
@@ -139,7 +134,6 @@ class TestRulesets:
     def test_method_update(self, client: Cloudflare) -> None:
         ruleset = client.rulesets.update(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
-            rules=[{}],
             account_id="account_id",
         )
         assert_matches_type(RulesetUpdateResponse, ruleset, path=["response"])
@@ -149,6 +143,11 @@ class TestRulesets:
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         ruleset = client.rulesets.update(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+            description="My ruleset to execute managed rulesets",
+            kind="managed",
+            name="My ruleset",
+            phase="ddos_l4",
             rules=[
                 {
                     "id": "3a03d665bac047339bb530ecb439a90d",
@@ -181,11 +180,6 @@ class TestRulesets:
                     "ref": "my_ref",
                 }
             ],
-            account_id="account_id",
-            description="My ruleset to execute managed rulesets",
-            kind="managed",
-            name="My ruleset",
-            phase="ddos_l4",
         )
         assert_matches_type(RulesetUpdateResponse, ruleset, path=["response"])
 
@@ -194,7 +188,6 @@ class TestRulesets:
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.rulesets.with_raw_response.update(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
-            rules=[{}],
             account_id="account_id",
         )
 
@@ -208,7 +201,6 @@ class TestRulesets:
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.rulesets.with_streaming_response.update(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
-            rules=[{}],
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -225,21 +217,18 @@ class TestRulesets:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
             client.rulesets.with_raw_response.update(
                 ruleset_id="",
-                rules=[{}],
                 account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.with_raw_response.update(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
-                rules=[{}],
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.with_raw_response.update(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
-                rules=[{}],
                 account_id="account_id",
             )
 
@@ -445,7 +434,6 @@ class TestAsyncRulesets:
             kind="managed",
             name="My ruleset",
             phase="ddos_l4",
-            rules=[{}],
             account_id="account_id",
         )
         assert_matches_type(RulesetCreateResponse, ruleset, path=["response"])
@@ -457,6 +445,8 @@ class TestAsyncRulesets:
             kind="managed",
             name="My ruleset",
             phase="ddos_l4",
+            account_id="account_id",
+            description="My ruleset to execute managed rulesets",
             rules=[
                 {
                     "id": "3a03d665bac047339bb530ecb439a90d",
@@ -489,8 +479,6 @@ class TestAsyncRulesets:
                     "ref": "my_ref",
                 }
             ],
-            account_id="account_id",
-            description="My ruleset to execute managed rulesets",
         )
         assert_matches_type(RulesetCreateResponse, ruleset, path=["response"])
 
@@ -501,7 +489,6 @@ class TestAsyncRulesets:
             kind="managed",
             name="My ruleset",
             phase="ddos_l4",
-            rules=[{}],
             account_id="account_id",
         )
 
@@ -517,7 +504,6 @@ class TestAsyncRulesets:
             kind="managed",
             name="My ruleset",
             phase="ddos_l4",
-            rules=[{}],
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -536,7 +522,6 @@ class TestAsyncRulesets:
                 kind="managed",
                 name="My ruleset",
                 phase="ddos_l4",
-                rules=[{}],
                 account_id="",
             )
 
@@ -545,7 +530,6 @@ class TestAsyncRulesets:
                 kind="managed",
                 name="My ruleset",
                 phase="ddos_l4",
-                rules=[{}],
                 account_id="account_id",
             )
 
@@ -554,7 +538,6 @@ class TestAsyncRulesets:
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         ruleset = await async_client.rulesets.update(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
-            rules=[{}],
             account_id="account_id",
         )
         assert_matches_type(RulesetUpdateResponse, ruleset, path=["response"])
@@ -564,6 +547,11 @@ class TestAsyncRulesets:
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         ruleset = await async_client.rulesets.update(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+            description="My ruleset to execute managed rulesets",
+            kind="managed",
+            name="My ruleset",
+            phase="ddos_l4",
             rules=[
                 {
                     "id": "3a03d665bac047339bb530ecb439a90d",
@@ -596,11 +584,6 @@ class TestAsyncRulesets:
                     "ref": "my_ref",
                 }
             ],
-            account_id="account_id",
-            description="My ruleset to execute managed rulesets",
-            kind="managed",
-            name="My ruleset",
-            phase="ddos_l4",
         )
         assert_matches_type(RulesetUpdateResponse, ruleset, path=["response"])
 
@@ -609,7 +592,6 @@ class TestAsyncRulesets:
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.rulesets.with_raw_response.update(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
-            rules=[{}],
             account_id="account_id",
         )
 
@@ -623,7 +605,6 @@ class TestAsyncRulesets:
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rulesets.with_streaming_response.update(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
-            rules=[{}],
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -640,21 +621,18 @@ class TestAsyncRulesets:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
             await async_client.rulesets.with_raw_response.update(
                 ruleset_id="",
-                rules=[{}],
                 account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.with_raw_response.update(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
-                rules=[{}],
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.with_raw_response.update(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
-                rules=[{}],
                 account_id="account_id",
             )
 
