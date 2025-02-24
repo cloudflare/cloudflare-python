@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Dict, List, Union, Iterable
-from typing_extensions import Required, TypeAlias, TypedDict
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 __all__ = [
     "AIRunParams",
@@ -15,9 +15,11 @@ __all__ = [
     "ImageClassification",
     "ObjectDetection",
     "Prompt",
+    "PromptResponseFormat",
     "Messages",
     "MessagesMessage",
     "MessagesFunction",
+    "MessagesResponseFormat",
     "MessagesTool",
     "MessagesToolUnionMember0",
     "MessagesToolUnionMember0Parameters",
@@ -177,6 +179,8 @@ class Prompt(TypedDict, total=False):
     repetition_penalty: float
     """Penalty for repeated tokens; higher values discourage repetition."""
 
+    response_format: PromptResponseFormat
+
     seed: int
     """Random seed for reproducibility of the generation."""
 
@@ -207,6 +211,12 @@ class Prompt(TypedDict, total=False):
     """
 
 
+class PromptResponseFormat(TypedDict, total=False):
+    json_schema: object
+
+    type: Literal["json_object", "json_schema"]
+
+
 class Messages(TypedDict, total=False):
     account_id: Required[str]
 
@@ -226,6 +236,8 @@ class Messages(TypedDict, total=False):
 
     repetition_penalty: float
     """Penalty for repeated tokens; higher values discourage repetition."""
+
+    response_format: MessagesResponseFormat
 
     seed: int
     """Random seed for reproducibility of the generation."""
@@ -269,6 +281,12 @@ class MessagesFunction(TypedDict, total=False):
     code: Required[str]
 
     name: Required[str]
+
+
+class MessagesResponseFormat(TypedDict, total=False):
+    json_schema: object
+
+    type: Literal["json_object", "json_schema"]
 
 
 class MessagesToolUnionMember0ParametersProperties(TypedDict, total=False):

@@ -453,6 +453,10 @@ class TestAI:
             presence_penalty=0,
             raw=True,
             repetition_penalty=0,
+            response_format={
+                "json_schema": {},
+                "type": "json_object",
+            },
             seed=1,
             stream=True,
             temperature=0,
@@ -540,6 +544,10 @@ class TestAI:
             max_tokens=0,
             presence_penalty=0,
             repetition_penalty=0,
+            response_format={
+                "json_schema": {},
+                "type": "json_object",
+            },
             seed=1,
             stream=True,
             temperature=0,
@@ -1272,6 +1280,10 @@ class TestAsyncAI:
             presence_penalty=0,
             raw=True,
             repetition_penalty=0,
+            response_format={
+                "json_schema": {},
+                "type": "json_object",
+            },
             seed=1,
             stream=True,
             temperature=0,
@@ -1359,6 +1371,10 @@ class TestAsyncAI:
             max_tokens=0,
             presence_penalty=0,
             repetition_penalty=0,
+            response_format={
+                "json_schema": {},
+                "type": "json_object",
+            },
             seed=1,
             stream=True,
             temperature=0,
