@@ -1535,8 +1535,20 @@ class TestRules:
             action="log_custom_field",
             action_parameters={
                 "cookie_fields": [{"name": "cookie_name_1"}],
+                "raw_response_fields": [
+                    {
+                        "name": "http_response_header_name_1_in_lower_case",
+                        "preserve_duplicates": True,
+                    }
+                ],
                 "request_fields": [{"name": "http_request_header_name_1_in_lower_case"}],
-                "response_fields": [{"name": "http_response_header_name_1_in_lower_case"}],
+                "response_fields": [
+                    {
+                        "name": "http_response_header_name_1_in_lower_case",
+                        "preserve_duplicates": True,
+                    }
+                ],
+                "transformed_request_fields": [{"name": "http_request_header_name_1_in_lower_case"}],
             },
             description="Log custom field when the IP address is not 1.1.1.1",
             enabled=True,
@@ -3597,8 +3609,20 @@ class TestRules:
             action="log_custom_field",
             action_parameters={
                 "cookie_fields": [{"name": "cookie_name_1"}],
+                "raw_response_fields": [
+                    {
+                        "name": "http_response_header_name_1_in_lower_case",
+                        "preserve_duplicates": True,
+                    }
+                ],
                 "request_fields": [{"name": "http_request_header_name_1_in_lower_case"}],
-                "response_fields": [{"name": "http_response_header_name_1_in_lower_case"}],
+                "response_fields": [
+                    {
+                        "name": "http_response_header_name_1_in_lower_case",
+                        "preserve_duplicates": True,
+                    }
+                ],
+                "transformed_request_fields": [{"name": "http_request_header_name_1_in_lower_case"}],
             },
             description="Log custom field when the IP address is not 1.1.1.1",
             enabled=True,
@@ -5410,8 +5434,20 @@ class TestAsyncRules:
             action="log_custom_field",
             action_parameters={
                 "cookie_fields": [{"name": "cookie_name_1"}],
+                "raw_response_fields": [
+                    {
+                        "name": "http_response_header_name_1_in_lower_case",
+                        "preserve_duplicates": True,
+                    }
+                ],
                 "request_fields": [{"name": "http_request_header_name_1_in_lower_case"}],
-                "response_fields": [{"name": "http_response_header_name_1_in_lower_case"}],
+                "response_fields": [
+                    {
+                        "name": "http_response_header_name_1_in_lower_case",
+                        "preserve_duplicates": True,
+                    }
+                ],
+                "transformed_request_fields": [{"name": "http_request_header_name_1_in_lower_case"}],
             },
             description="Log custom field when the IP address is not 1.1.1.1",
             enabled=True,
@@ -7472,8 +7508,20 @@ class TestAsyncRules:
             action="log_custom_field",
             action_parameters={
                 "cookie_fields": [{"name": "cookie_name_1"}],
+                "raw_response_fields": [
+                    {
+                        "name": "http_response_header_name_1_in_lower_case",
+                        "preserve_duplicates": True,
+                    }
+                ],
                 "request_fields": [{"name": "http_request_header_name_1_in_lower_case"}],
-                "response_fields": [{"name": "http_response_header_name_1_in_lower_case"}],
+                "response_fields": [
+                    {
+                        "name": "http_response_header_name_1_in_lower_case",
+                        "preserve_duplicates": True,
+                    }
+                ],
+                "transformed_request_fields": [{"name": "http_request_header_name_1_in_lower_case"}],
             },
             description="Log custom field when the IP address is not 1.1.1.1",
             enabled=True,

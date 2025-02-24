@@ -11,8 +11,10 @@ __all__ = [
     "LogCustomFieldRuleParam",
     "ActionParameters",
     "ActionParametersCookieField",
+    "ActionParametersRawResponseField",
     "ActionParametersRequestField",
     "ActionParametersResponseField",
+    "ActionParametersTransformedRequestField",
     "ExposedCredentialCheck",
     "Ratelimit",
 ]
@@ -21,6 +23,14 @@ __all__ = [
 class ActionParametersCookieField(TypedDict, total=False):
     name: Required[str]
     """The name of the field."""
+
+
+class ActionParametersRawResponseField(TypedDict, total=False):
+    name: Required[str]
+    """The name of the field."""
+
+    preserve_duplicates: bool
+    """Whether to log duplicate values of the same header."""
 
 
 class ActionParametersRequestField(TypedDict, total=False):
@@ -32,16 +42,30 @@ class ActionParametersResponseField(TypedDict, total=False):
     name: Required[str]
     """The name of the field."""
 
+    preserve_duplicates: bool
+    """Whether to log duplicate values of the same header."""
+
+
+class ActionParametersTransformedRequestField(TypedDict, total=False):
+    name: Required[str]
+    """The name of the field."""
+
 
 class ActionParameters(TypedDict, total=False):
     cookie_fields: Iterable[ActionParametersCookieField]
     """The cookie fields to log."""
 
+    raw_response_fields: Iterable[ActionParametersRawResponseField]
+    """The raw response fields to log."""
+
     request_fields: Iterable[ActionParametersRequestField]
-    """The request fields to log."""
+    """The raw request fields to log."""
 
     response_fields: Iterable[ActionParametersResponseField]
-    """The response fields to log."""
+    """The transformed response fields to log."""
+
+    transformed_request_fields: Iterable[ActionParametersTransformedRequestField]
+    """The transformed request fields to log."""
 
 
 class ExposedCredentialCheck(TypedDict, total=False):

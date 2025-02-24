@@ -170,8 +170,10 @@ __all__ = [
     "LogCustomFieldRule",
     "LogCustomFieldRuleActionParameters",
     "LogCustomFieldRuleActionParametersCookieField",
+    "LogCustomFieldRuleActionParametersRawResponseField",
     "LogCustomFieldRuleActionParametersRequestField",
     "LogCustomFieldRuleActionParametersResponseField",
+    "LogCustomFieldRuleActionParametersTransformedRequestField",
     "LogCustomFieldRuleExposedCredentialCheck",
     "LogCustomFieldRulePosition",
     "LogCustomFieldRulePositionBeforePosition",
@@ -2653,6 +2655,14 @@ class LogCustomFieldRuleActionParametersCookieField(TypedDict, total=False):
     """The name of the field."""
 
 
+class LogCustomFieldRuleActionParametersRawResponseField(TypedDict, total=False):
+    name: Required[str]
+    """The name of the field."""
+
+    preserve_duplicates: bool
+    """Whether to log duplicate values of the same header."""
+
+
 class LogCustomFieldRuleActionParametersRequestField(TypedDict, total=False):
     name: Required[str]
     """The name of the field."""
@@ -2662,16 +2672,30 @@ class LogCustomFieldRuleActionParametersResponseField(TypedDict, total=False):
     name: Required[str]
     """The name of the field."""
 
+    preserve_duplicates: bool
+    """Whether to log duplicate values of the same header."""
+
+
+class LogCustomFieldRuleActionParametersTransformedRequestField(TypedDict, total=False):
+    name: Required[str]
+    """The name of the field."""
+
 
 class LogCustomFieldRuleActionParameters(TypedDict, total=False):
     cookie_fields: Iterable[LogCustomFieldRuleActionParametersCookieField]
     """The cookie fields to log."""
 
+    raw_response_fields: Iterable[LogCustomFieldRuleActionParametersRawResponseField]
+    """The raw response fields to log."""
+
     request_fields: Iterable[LogCustomFieldRuleActionParametersRequestField]
-    """The request fields to log."""
+    """The raw request fields to log."""
 
     response_fields: Iterable[LogCustomFieldRuleActionParametersResponseField]
-    """The response fields to log."""
+    """The transformed response fields to log."""
+
+    transformed_request_fields: Iterable[LogCustomFieldRuleActionParametersTransformedRequestField]
+    """The transformed request fields to log."""
 
 
 class LogCustomFieldRuleExposedCredentialCheck(TypedDict, total=False):
