@@ -11,8 +11,10 @@ __all__ = [
     "LogCustomFieldRule",
     "ActionParameters",
     "ActionParametersCookieField",
+    "ActionParametersRawResponseField",
     "ActionParametersRequestField",
     "ActionParametersResponseField",
+    "ActionParametersTransformedRequestField",
     "ExposedCredentialCheck",
     "Ratelimit",
 ]
@@ -21,6 +23,14 @@ __all__ = [
 class ActionParametersCookieField(BaseModel):
     name: str
     """The name of the field."""
+
+
+class ActionParametersRawResponseField(BaseModel):
+    name: str
+    """The name of the field."""
+
+    preserve_duplicates: Optional[bool] = None
+    """Whether to log duplicate values of the same header."""
 
 
 class ActionParametersRequestField(BaseModel):
@@ -32,16 +42,30 @@ class ActionParametersResponseField(BaseModel):
     name: str
     """The name of the field."""
 
+    preserve_duplicates: Optional[bool] = None
+    """Whether to log duplicate values of the same header."""
+
+
+class ActionParametersTransformedRequestField(BaseModel):
+    name: str
+    """The name of the field."""
+
 
 class ActionParameters(BaseModel):
     cookie_fields: Optional[List[ActionParametersCookieField]] = None
     """The cookie fields to log."""
 
+    raw_response_fields: Optional[List[ActionParametersRawResponseField]] = None
+    """The raw response fields to log."""
+
     request_fields: Optional[List[ActionParametersRequestField]] = None
-    """The request fields to log."""
+    """The raw request fields to log."""
 
     response_fields: Optional[List[ActionParametersResponseField]] = None
-    """The response fields to log."""
+    """The transformed response fields to log."""
+
+    transformed_request_fields: Optional[List[ActionParametersTransformedRequestField]] = None
+    """The transformed request fields to log."""
 
 
 class ExposedCredentialCheck(BaseModel):
