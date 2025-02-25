@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import TYPE_CHECKING, List, Union, Optional
+from typing import List, Union, Optional
 from typing_extensions import Literal, TypeAlias
 
 from pydantic import Field as FieldInfo
@@ -13,7 +13,6 @@ from .....workers.scripts.consumer_script import ConsumerScript
 __all__ = [
     "SettingGetResponse",
     "Binding",
-    "BindingWorkersBindingKindAny",
     "BindingWorkersBindingKindAI",
     "BindingWorkersBindingKindAnalyticsEngine",
     "BindingWorkersBindingKindAssets",
@@ -22,15 +21,15 @@ __all__ = [
     "BindingWorkersBindingKindDispatchNamespace",
     "BindingWorkersBindingKindDispatchNamespaceOutbound",
     "BindingWorkersBindingKindDispatchNamespaceOutboundWorker",
-    "BindingWorkersBindingKindDo",
+    "BindingWorkersBindingKindDurableObjectNamespace",
     "BindingWorkersBindingKindHyperdrive",
     "BindingWorkersBindingKindJson",
     "BindingWorkersBindingKindKVNamespace",
-    "BindingWorkersBindingKindMTLSCERT",
+    "BindingWorkersBindingKindMTLSCertificate",
     "BindingWorkersBindingKindPlainText",
     "BindingWorkersBindingKindQueue",
-    "BindingWorkersBindingKindR2",
-    "BindingWorkersBindingKindSecret",
+    "BindingWorkersBindingKindR2Bucket",
+    "BindingWorkersBindingKindSecretText",
     "BindingWorkersBindingKindService",
     "BindingWorkersBindingKindTailConsumer",
     "BindingWorkersBindingKindVectorize",
@@ -43,36 +42,22 @@ __all__ = [
 ]
 
 
-class BindingWorkersBindingKindAny(BaseModel):
+class BindingWorkersBindingKindAI(BaseModel):
     name: str
     """A JavaScript variable name for the binding."""
 
     type: str
     """The kind of resource that the binding provides."""
 
-    if TYPE_CHECKING:
-        # Stub to indicate that arbitrary properties are accepted.
-        # To access properties that are not valid identifiers you can use `getattr`, e.g.
-        # `getattr(obj, '$type')`
-        def __getattr__(self, attr: str) -> object: ...
-
-
-class BindingWorkersBindingKindAI(BaseModel):
-    name: str
-    """A JavaScript variable name for the binding."""
-
-    type: Literal["ai"]
-    """The kind of resource that the binding provides."""
-
 
 class BindingWorkersBindingKindAnalyticsEngine(BaseModel):
     dataset: str
-    """The dataset name to bind to."""
+    """The name of the dataset to bind to."""
 
     name: str
     """A JavaScript variable name for the binding."""
 
-    type: Literal["analytics_engine"]
+    type: str
     """The kind of resource that the binding provides."""
 
 
@@ -80,7 +65,7 @@ class BindingWorkersBindingKindAssets(BaseModel):
     name: str
     """A JavaScript variable name for the binding."""
 
-    type: Literal["assets"]
+    type: str
     """The kind of resource that the binding provides."""
 
 
@@ -88,7 +73,7 @@ class BindingWorkersBindingKindBrowserRendering(BaseModel):
     name: str
     """A JavaScript variable name for the binding."""
 
-    type: Literal["browser_rendering"]
+    type: str
     """The kind of resource that the binding provides."""
 
 
@@ -99,7 +84,7 @@ class BindingWorkersBindingKindD1(BaseModel):
     name: str
     """A JavaScript variable name for the binding."""
 
-    type: Literal["d1"]
+    type: str
     """The kind of resource that the binding provides."""
 
 
@@ -129,21 +114,21 @@ class BindingWorkersBindingKindDispatchNamespace(BaseModel):
     namespace: str
     """Namespace to bind to."""
 
-    type: Literal["dispatch_namespace"]
+    type: str
     """The kind of resource that the binding provides."""
 
     outbound: Optional[BindingWorkersBindingKindDispatchNamespaceOutbound] = None
     """Outbound worker."""
 
 
-class BindingWorkersBindingKindDo(BaseModel):
+class BindingWorkersBindingKindDurableObjectNamespace(BaseModel):
     class_name: str
     """The exported class name of the Durable Object."""
 
     name: str
     """A JavaScript variable name for the binding."""
 
-    type: Literal["durable_object_namespace"]
+    type: str
     """The kind of resource that the binding provides."""
 
     environment: Optional[str] = None
@@ -166,7 +151,7 @@ class BindingWorkersBindingKindHyperdrive(BaseModel):
     name: str
     """A JavaScript variable name for the binding."""
 
-    type: Literal["hyperdrive"]
+    type: str
     """The kind of resource that the binding provides."""
 
 
@@ -177,7 +162,7 @@ class BindingWorkersBindingKindJson(BaseModel):
     name: str
     """A JavaScript variable name for the binding."""
 
-    type: Literal["json"]
+    type: str
     """The kind of resource that the binding provides."""
 
 
@@ -188,18 +173,18 @@ class BindingWorkersBindingKindKVNamespace(BaseModel):
     namespace_id: str
     """Namespace identifier tag."""
 
-    type: Literal["kv_namespace"]
+    type: str
     """The kind of resource that the binding provides."""
 
 
-class BindingWorkersBindingKindMTLSCERT(BaseModel):
+class BindingWorkersBindingKindMTLSCertificate(BaseModel):
     certificate_id: str
     """Identifier of the certificate to bind to."""
 
     name: str
     """A JavaScript variable name for the binding."""
 
-    type: Literal["mtls_certificate"]
+    type: str
     """The kind of resource that the binding provides."""
 
 
@@ -210,7 +195,7 @@ class BindingWorkersBindingKindPlainText(BaseModel):
     text: str
     """The text value to use."""
 
-    type: Literal["plain_text"]
+    type: str
     """The kind of resource that the binding provides."""
 
 
@@ -221,29 +206,29 @@ class BindingWorkersBindingKindQueue(BaseModel):
     queue_name: str
     """Name of the Queue to bind to."""
 
-    type: Literal["queue"]
+    type: str
     """The kind of resource that the binding provides."""
 
 
-class BindingWorkersBindingKindR2(BaseModel):
+class BindingWorkersBindingKindR2Bucket(BaseModel):
     bucket_name: str
     """R2 bucket to bind to."""
 
     name: str
     """A JavaScript variable name for the binding."""
 
-    type: Literal["r2_bucket"]
+    type: str
     """The kind of resource that the binding provides."""
 
 
-class BindingWorkersBindingKindSecret(BaseModel):
+class BindingWorkersBindingKindSecretText(BaseModel):
     name: str
     """A JavaScript variable name for the binding."""
 
     text: str
     """The secret value to use."""
 
-    type: Literal["secret_text"]
+    type: str
     """The kind of resource that the binding provides."""
 
 
@@ -257,7 +242,7 @@ class BindingWorkersBindingKindService(BaseModel):
     service: str
     """Name of Worker to bind to."""
 
-    type: Literal["service"]
+    type: str
     """The kind of resource that the binding provides."""
 
 
@@ -268,7 +253,7 @@ class BindingWorkersBindingKindTailConsumer(BaseModel):
     service: str
     """Name of Tail Worker to bind to."""
 
-    type: Literal["tail_consumer"]
+    type: str
     """The kind of resource that the binding provides."""
 
 
@@ -279,7 +264,7 @@ class BindingWorkersBindingKindVectorize(BaseModel):
     name: str
     """A JavaScript variable name for the binding."""
 
-    type: Literal["vectorize"]
+    type: str
     """The kind of resource that the binding provides."""
 
 
@@ -287,27 +272,26 @@ class BindingWorkersBindingKindVersionMetadata(BaseModel):
     name: str
     """A JavaScript variable name for the binding."""
 
-    type: Literal["version_metadata"]
+    type: str
     """The kind of resource that the binding provides."""
 
 
 Binding: TypeAlias = Union[
-    BindingWorkersBindingKindAny,
     BindingWorkersBindingKindAI,
     BindingWorkersBindingKindAnalyticsEngine,
     BindingWorkersBindingKindAssets,
     BindingWorkersBindingKindBrowserRendering,
     BindingWorkersBindingKindD1,
     BindingWorkersBindingKindDispatchNamespace,
-    BindingWorkersBindingKindDo,
+    BindingWorkersBindingKindDurableObjectNamespace,
     BindingWorkersBindingKindHyperdrive,
     BindingWorkersBindingKindJson,
     BindingWorkersBindingKindKVNamespace,
-    BindingWorkersBindingKindMTLSCERT,
+    BindingWorkersBindingKindMTLSCertificate,
     BindingWorkersBindingKindPlainText,
     BindingWorkersBindingKindQueue,
-    BindingWorkersBindingKindR2,
-    BindingWorkersBindingKindSecret,
+    BindingWorkersBindingKindR2Bucket,
+    BindingWorkersBindingKindSecretText,
     BindingWorkersBindingKindService,
     BindingWorkersBindingKindTailConsumer,
     BindingWorkersBindingKindVectorize,

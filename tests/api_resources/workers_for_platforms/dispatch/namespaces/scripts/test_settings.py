@@ -41,7 +41,6 @@ class TestSettings:
                 "bindings": [
                     {
                         "name": "MY_ENV_VAR",
-                        "text": "my_data",
                         "type": "plain_text",
                     }
                 ],
@@ -226,7 +225,6 @@ class TestAsyncSettings:
                 "bindings": [
                     {
                         "name": "MY_ENV_VAR",
-                        "text": "my_data",
                         "type": "plain_text",
                     }
                 ],
