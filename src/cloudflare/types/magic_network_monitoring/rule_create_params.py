@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import List, Optional
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["RuleCreateParams"]
 
@@ -11,13 +11,11 @@ __all__ = ["RuleCreateParams"]
 class RuleCreateParams(TypedDict, total=False):
     account_id: Required[str]
 
-    duration: Required[str]
+    duration: Required[Literal["1m", "5m", "10m", "15m", "20m", "30m", "45m", "60m"]]
     """
     The amount of time that the rule threshold must be exceeded to send an alert
     notification. The final value must be equivalent to one of the following 8
-    values ["1m","5m","10m","15m","20m","30m","45m","60m"]. The format is
-    AhBmCsDmsEusFns where A, B, C, D, E and F durations are optional; however at
-    least one unit must be provided.
+    values ["1m","5m","10m","15m","20m","30m","45m","60m"].
     """
 
     name: Required[str]
