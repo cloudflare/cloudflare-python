@@ -37,7 +37,7 @@ class TestLayer3:
             ip_version=["IPv4"],
             location=["string"],
             metric="BYTES",
-            name=["string"],
+            name=["main_series"],
             normalization="PERCENTAGE_CHANGE",
             protocol=["UDP"],
         )
@@ -86,7 +86,7 @@ class TestAsyncLayer3:
             ip_version=["IPv4"],
             location=["string"],
             metric="BYTES",
-            name=["string"],
+            name=["main_series"],
             normalization="PERCENTAGE_CHANGE",
             protocol=["UDP"],
         )

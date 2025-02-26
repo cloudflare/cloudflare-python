@@ -35,7 +35,7 @@ class TestTimeseriesGroups:
             format="JSON",
             limit_per_group=10,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(TimeseriesGroupUserAgentResponse, timeseries_group, path=["response"])
 
@@ -80,7 +80,7 @@ class TestAsyncTimeseriesGroups:
             format="JSON",
             limit_per_group=10,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(TimeseriesGroupUserAgentResponse, timeseries_group, path=["response"])
 

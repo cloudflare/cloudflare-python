@@ -43,7 +43,7 @@ class TestTLSVersion:
             ip_version=["IPv4"],
             limit=5,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
         )
         assert_matches_type(TLSVersionGetResponse, tls_version, path=["response"])
@@ -101,7 +101,7 @@ class TestAsyncTLSVersion:
             ip_version=["IPv4"],
             limit=5,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
         )
         assert_matches_type(TLSVersionGetResponse, tls_version, path=["response"])

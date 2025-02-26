@@ -32,7 +32,7 @@ class TestBGP:
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            name=["string"],
+            name=["main_series"],
             prefix=["1.1.1.0/24"],
             update_type=["ANNOUNCEMENT"],
         )
@@ -76,7 +76,7 @@ class TestAsyncBGP:
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            name=["string"],
+            name=["main_series"],
             prefix=["1.1.1.0/24"],
             update_type=["ANNOUNCEMENT"],
         )

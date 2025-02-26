@@ -43,7 +43,7 @@ class TestOS:
             ip_version=["IPv4"],
             limit=5,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             tls_version=["TLSv1_0"],
         )
         assert_matches_type(OSGetResponse, os, path=["response"])
@@ -101,7 +101,7 @@ class TestAsyncOS:
             ip_version=["IPv4"],
             limit=5,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             tls_version=["TLSv1_0"],
         )
         assert_matches_type(OSGetResponse, os, path=["response"])

@@ -34,7 +34,7 @@ class TestSummary:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             limit_per_group=10,
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(SummaryModelResponse, summary, path=["response"])
 
@@ -71,7 +71,7 @@ class TestSummary:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             limit_per_group=10,
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(SummaryTaskResponse, summary, path=["response"])
 
@@ -112,7 +112,7 @@ class TestAsyncSummary:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             limit_per_group=10,
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(SummaryModelResponse, summary, path=["response"])
 
@@ -149,7 +149,7 @@ class TestAsyncSummary:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             limit_per_group=10,
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(SummaryTaskResponse, summary, path=["response"])
 

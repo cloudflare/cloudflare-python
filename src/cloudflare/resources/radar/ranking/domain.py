@@ -66,25 +66,27 @@ class DomainResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> DomainGetResponse:
-        """Gets Domains Rank details.
+        """Retrieves domain rank details.
 
-        Cloudflare provides an ordered rank for the top 100
-        domains, but for the remainder it only provides ranking buckets like top 200
+        Cloudflare provides an ordered rank for the top
+        100 domains, but for the remainder it only provides ranking buckets like top 200
         thousand, top one million, etc.. These are available through Radar datasets
         endpoints.
 
         Args:
+          domain: Domain name.
+
           date: Array of dates to filter the ranking.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          include_top_locations: Include top locations in the response.
+          include_top_locations: Includes top locations in the response.
 
-          limit: Limit the number of objects in the response.
+          limit: Limits the number of objects returned in the response.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
-          ranking_type: The ranking type.
+          ranking_type: Ranking type.
 
           extra_headers: Send extra headers
 
@@ -157,25 +159,27 @@ class AsyncDomainResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> DomainGetResponse:
-        """Gets Domains Rank details.
+        """Retrieves domain rank details.
 
-        Cloudflare provides an ordered rank for the top 100
-        domains, but for the remainder it only provides ranking buckets like top 200
+        Cloudflare provides an ordered rank for the top
+        100 domains, but for the remainder it only provides ranking buckets like top 200
         thousand, top one million, etc.. These are available through Radar datasets
         endpoints.
 
         Args:
+          domain: Domain name.
+
           date: Array of dates to filter the ranking.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          include_top_locations: Include top locations in the response.
+          include_top_locations: Includes top locations in the response.
 
-          limit: Limit the number of objects in the response.
+          limit: Limits the number of objects returned in the response.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
-          ranking_type: The ranking type.
+          ranking_type: Ranking type.
 
           extra_headers: Send extra headers
 

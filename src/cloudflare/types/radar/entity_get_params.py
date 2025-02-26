@@ -12,4 +12,4 @@ class EntityGetParams(TypedDict, total=False):
     """IP address."""
 
     format: Literal["JSON", "CSV"]
-    """Format results are returned in."""
+    """Format in which results will be returned."""

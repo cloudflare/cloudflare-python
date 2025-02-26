@@ -40,7 +40,7 @@ class TestSummary:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(SummaryDNSSECResponse, summary, path=["response"])
 
@@ -79,7 +79,7 @@ class TestSummary:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(SummaryEdnsResponse, summary, path=["response"])
 
@@ -118,7 +118,7 @@ class TestSummary:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(SummaryIPVersionResponse, summary, path=["response"])
 
@@ -157,7 +157,7 @@ class TestSummary:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(SummaryProtocolResponse, summary, path=["response"])
 
@@ -197,7 +197,7 @@ class TestSummary:
             format="JSON",
             limit_per_group=10,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(SummaryQueryTypeResponse, summary, path=["response"])
 
@@ -237,7 +237,7 @@ class TestSummary:
             format="JSON",
             limit_per_group=10,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(SummaryResponseCodesResponse, summary, path=["response"])
 
@@ -280,7 +280,7 @@ class TestAsyncSummary:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(SummaryDNSSECResponse, summary, path=["response"])
 
@@ -319,7 +319,7 @@ class TestAsyncSummary:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(SummaryEdnsResponse, summary, path=["response"])
 
@@ -358,7 +358,7 @@ class TestAsyncSummary:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(SummaryIPVersionResponse, summary, path=["response"])
 
@@ -397,7 +397,7 @@ class TestAsyncSummary:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(SummaryProtocolResponse, summary, path=["response"])
 
@@ -437,7 +437,7 @@ class TestAsyncSummary:
             format="JSON",
             limit_per_group=10,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(SummaryQueryTypeResponse, summary, path=["response"])
 
@@ -477,7 +477,7 @@ class TestAsyncSummary:
             format="JSON",
             limit_per_group=10,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(SummaryResponseCodesResponse, summary, path=["response"])
 

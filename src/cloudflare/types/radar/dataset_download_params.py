@@ -13,4 +13,4 @@ class DatasetDownloadParams(TypedDict, total=False):
     dataset_id: Required[Annotated[int, PropertyInfo(alias="datasetId")]]
 
     format: Literal["JSON", "CSV"]
-    """Format results are returned in."""
+    """Format in which results will be returned."""

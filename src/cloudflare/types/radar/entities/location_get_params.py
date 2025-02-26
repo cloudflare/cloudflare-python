@@ -9,4 +9,4 @@ __all__ = ["LocationGetParams"]
 
 class LocationGetParams(TypedDict, total=False):
     format: Literal["JSON", "CSV"]
-    """Format results are returned in."""
+    """Format in which results will be returned."""

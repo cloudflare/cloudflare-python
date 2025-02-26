@@ -12,19 +12,19 @@ __all__ = ["SearchGlobalParams"]
 
 class SearchGlobalParams(TypedDict, total=False):
     query: Required[str]
-    """Search for locations, AS and reports."""
+    """Search for locations, autonomous systems and reports."""
 
     exclude: List[Literal["SPECIAL_EVENTS", "NOTEBOOKS", "LOCATIONS", "ASNS"]]
     """Search types to be excluded from results."""
 
     format: Literal["JSON", "CSV"]
-    """Format results are returned in."""
+    """Format in which results will be returned."""
 
     include: List[Literal["SPECIAL_EVENTS", "NOTEBOOKS", "LOCATIONS", "ASNS"]]
     """Search types to be included in results."""
 
     limit: int
-    """Limit the number of objects in the response."""
+    """Limits the number of objects returned in the response."""
 
     limit_per_group: Annotated[float, PropertyInfo(alias="limitPerGroup")]
     """Limit the number of objects per search category."""

@@ -11,13 +11,13 @@ __all__ = ["DatasetListParams"]
 
 class DatasetListParams(TypedDict, total=False):
     dataset_type: Annotated[Literal["RANKING_BUCKET", "REPORT"], PropertyInfo(alias="datasetType")]
-    """Dataset type."""
+    """Filters results by dataset type."""
 
     format: Literal["JSON", "CSV"]
-    """Format results are returned in."""
+    """Format in which results will be returned."""
 
     limit: int
-    """Limit the number of objects in the response."""
+    """Limits the number of objects returned in the response."""
 
     offset: int
-    """Number of objects to skip before grabbing results."""
+    """Skips the specified number of objects before fetching the results."""

@@ -9,10 +9,10 @@ __all__ = ["RouteStatsParams"]
 
 class RouteStatsParams(TypedDict, total=False):
     asn: int
-    """Single ASN as integer."""
+    """Single Autonomous System Number (ASN) as integer."""
 
     format: Literal["JSON", "CSV"]
-    """Format results are returned in."""
+    """Format in which results will be returned."""
 
     location: str
-    """Location Alpha2 code."""
+    """Location alpha-2 code."""

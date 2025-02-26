@@ -37,7 +37,7 @@ class TestLocations:
             ip_version=["IPv4"],
             limit=5,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             protocol=["UDP"],
         )
         assert_matches_type(LocationOriginResponse, location, path=["response"])
@@ -78,7 +78,7 @@ class TestLocations:
             ip_version=["IPv4"],
             limit=5,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             protocol=["UDP"],
         )
         assert_matches_type(LocationTargetResponse, location, path=["response"])
@@ -123,7 +123,7 @@ class TestAsyncLocations:
             ip_version=["IPv4"],
             limit=5,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             protocol=["UDP"],
         )
         assert_matches_type(LocationOriginResponse, location, path=["response"])
@@ -164,7 +164,7 @@ class TestAsyncLocations:
             ip_version=["IPv4"],
             limit=5,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             protocol=["UDP"],
         )
         assert_matches_type(LocationTargetResponse, location, path=["response"])

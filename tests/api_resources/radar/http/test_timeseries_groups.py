@@ -49,7 +49,7 @@ class TestTimeseriesGroups:
             http_version=["HTTPv1"],
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -97,7 +97,7 @@ class TestTimeseriesGroups:
             ip_version=["IPv4"],
             limit_per_group=10,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -145,7 +145,7 @@ class TestTimeseriesGroups:
             ip_version=["IPv4"],
             limit_per_group=10,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -191,7 +191,7 @@ class TestTimeseriesGroups:
             http_version=["HTTPv1"],
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -237,7 +237,7 @@ class TestTimeseriesGroups:
             http_version=["HTTPv1"],
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -283,7 +283,7 @@ class TestTimeseriesGroups:
             http_protocol=["HTTP"],
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -329,7 +329,7 @@ class TestTimeseriesGroups:
             http_protocol=["HTTP"],
             http_version=["HTTPv1"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -376,7 +376,7 @@ class TestTimeseriesGroups:
             http_version=["HTTPv1"],
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             tls_version=["TLSv1_0"],
         )
         assert_matches_type(TimeseriesGroupOSResponse, timeseries_group, path=["response"])
@@ -422,7 +422,7 @@ class TestTimeseriesGroups:
             http_version=["HTTPv1"],
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -469,7 +469,7 @@ class TestTimeseriesGroups:
             http_version=["HTTPv1"],
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
         )
         assert_matches_type(TimeseriesGroupTLSVersionResponse, timeseries_group, path=["response"])
@@ -518,7 +518,7 @@ class TestAsyncTimeseriesGroups:
             http_version=["HTTPv1"],
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -566,7 +566,7 @@ class TestAsyncTimeseriesGroups:
             ip_version=["IPv4"],
             limit_per_group=10,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -614,7 +614,7 @@ class TestAsyncTimeseriesGroups:
             ip_version=["IPv4"],
             limit_per_group=10,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -660,7 +660,7 @@ class TestAsyncTimeseriesGroups:
             http_version=["HTTPv1"],
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -706,7 +706,7 @@ class TestAsyncTimeseriesGroups:
             http_version=["HTTPv1"],
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -752,7 +752,7 @@ class TestAsyncTimeseriesGroups:
             http_protocol=["HTTP"],
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -798,7 +798,7 @@ class TestAsyncTimeseriesGroups:
             http_protocol=["HTTP"],
             http_version=["HTTPv1"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -845,7 +845,7 @@ class TestAsyncTimeseriesGroups:
             http_version=["HTTPv1"],
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             tls_version=["TLSv1_0"],
         )
         assert_matches_type(TimeseriesGroupOSResponse, timeseries_group, path=["response"])
@@ -891,7 +891,7 @@ class TestAsyncTimeseriesGroups:
             http_version=["HTTPv1"],
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -938,7 +938,7 @@ class TestAsyncTimeseriesGroups:
             http_version=["HTTPv1"],
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
         )
         assert_matches_type(TimeseriesGroupTLSVersionResponse, timeseries_group, path=["response"])

@@ -25,9 +25,9 @@ class LocationGetParams(TypedDict, total=False):
     """Start of the date range (inclusive)."""
 
     format: Literal["JSON", "CSV"]
-    """Format results are returned in."""
+    """Format in which results will be returned."""
 
     limit: int
-    """Limit the number of objects in the response."""
+    """Limits the number of objects returned in the response."""
 
     status: Literal["VERIFIED", "UNVERIFIED"]

@@ -36,7 +36,7 @@ class TestSpeed:
             format="JSON",
             location=["string"],
             metric_group="BANDWIDTH",
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(SpeedHistogramResponse, speed, path=["response"])
 
@@ -73,7 +73,7 @@ class TestSpeed:
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(SpeedSummaryResponse, speed, path=["response"])
 
@@ -116,7 +116,7 @@ class TestAsyncSpeed:
             format="JSON",
             location=["string"],
             metric_group="BANDWIDTH",
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(SpeedHistogramResponse, speed, path=["response"])
 
@@ -153,7 +153,7 @@ class TestAsyncSpeed:
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(SpeedSummaryResponse, speed, path=["response"])
 

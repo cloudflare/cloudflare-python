@@ -36,7 +36,7 @@ class TestNetflows:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(NetflowSummaryResponse, netflow, path=["response"])
 
@@ -76,7 +76,7 @@ class TestNetflows:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             normalization="PERCENTAGE_CHANGE",
             product=["HTTP"],
         )
@@ -121,7 +121,7 @@ class TestAsyncNetflows:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(NetflowSummaryResponse, netflow, path=["response"])
 
@@ -161,7 +161,7 @@ class TestAsyncNetflows:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             normalization="PERCENTAGE_CHANGE",
             product=["HTTP"],
         )

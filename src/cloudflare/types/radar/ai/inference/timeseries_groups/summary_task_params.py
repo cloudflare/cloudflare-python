@@ -23,25 +23,26 @@ class SummaryTaskParams(TypedDict, total=False):
     """End of the date range (inclusive)."""
 
     date_range: Annotated[List[str], PropertyInfo(alias="dateRange")]
-    """
-    For example, use `7d` and `7dControl` to compare this week with the previous
+    """Filters results by the specified date range.
+
+    For example, use `7d` and `7dcontrol` to compare this week with the previous
     week. Use this parameter or set specific start and end dates (`dateStart` and
     `dateEnd` parameters).
     """
 
     date_start: Annotated[List[Union[str, datetime]], PropertyInfo(alias="dateStart", format="iso8601")]
-    """Array of datetimes to filter the start of a series."""
+    """Start of the date range."""
 
     format: Literal["JSON", "CSV"]
-    """Format results are returned in."""
+    """Format in which results will be returned."""
 
     limit_per_group: Annotated[int, PropertyInfo(alias="limitPerGroup")]
     """
-    Limit the number of objects (e.g., browsers, verticals, etc.) to the top items
-    within the specified time range. If the limitPerGroup is set, the response will
-    include that number of items, with the remaining items grouped together under an
-    "other" category.
+    Limits the number of objects per group to the top items within the specified
+    time range. If there are more items than the limit, the response will include
+    the count of items, with any remaining items grouped together under an "other"
+    category.
     """
 
     name: List[str]
-    """Array of names that will be used to name the series in responses."""
+    """Array of names used to label the series in the response."""
