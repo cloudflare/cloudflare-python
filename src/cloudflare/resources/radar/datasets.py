@@ -64,16 +64,16 @@ class DatasetsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> DatasetListResponse:
         """
-        Get a list of datasets.
+        Retrieves a list of datasets.
 
         Args:
-          dataset_type: Dataset type.
+          dataset_type: Filters results by dataset type.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          limit: Limit the number of objects in the response.
+          limit: Limits the number of objects returned in the response.
 
-          offset: Number of objects to skip before grabbing results.
+          offset: Skips the specified number of objects before fetching the results.
 
           extra_headers: Send extra headers
 
@@ -117,10 +117,10 @@ class DatasetsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> DatasetDownloadResponse:
         """
-        Get a URL to download a single dataset.
+        Retrieves an URL to download a single dataset.
 
         Args:
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
           extra_headers: Send extra headers
 
@@ -155,14 +155,14 @@ class DatasetsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> str:
-        """Get the CSV content of a given dataset by alias or ID.
+        """Retrieves the CSV content of a given dataset by alias or ID.
 
-        When getting the content
-        by alias the latest dataset is returned, optionally filtered by the latest
-        available at a given date.
+        When getting the
+        content by alias the latest dataset is returned, optionally filtered by the
+        latest available at a given date.
 
         Args:
-          alias: Dataset alias or id
+          alias: Dataset alias or ID.
 
           extra_headers: Send extra headers
 
@@ -219,16 +219,16 @@ class AsyncDatasetsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> DatasetListResponse:
         """
-        Get a list of datasets.
+        Retrieves a list of datasets.
 
         Args:
-          dataset_type: Dataset type.
+          dataset_type: Filters results by dataset type.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          limit: Limit the number of objects in the response.
+          limit: Limits the number of objects returned in the response.
 
-          offset: Number of objects to skip before grabbing results.
+          offset: Skips the specified number of objects before fetching the results.
 
           extra_headers: Send extra headers
 
@@ -272,10 +272,10 @@ class AsyncDatasetsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> DatasetDownloadResponse:
         """
-        Get a URL to download a single dataset.
+        Retrieves an URL to download a single dataset.
 
         Args:
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
           extra_headers: Send extra headers
 
@@ -310,14 +310,14 @@ class AsyncDatasetsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> str:
-        """Get the CSV content of a given dataset by alias or ID.
+        """Retrieves the CSV content of a given dataset by alias or ID.
 
-        When getting the content
-        by alias the latest dataset is returned, optionally filtered by the latest
-        available at a given date.
+        When getting the
+        content by alias the latest dataset is returned, optionally filtered by the
+        latest available at a given date.
 
         Args:
-          alias: Dataset alias or id
+          alias: Dataset alias or ID.
 
           extra_headers: Send extra headers
 

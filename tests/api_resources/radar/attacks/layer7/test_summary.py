@@ -43,7 +43,7 @@ class TestSummary:
             limit_per_group=10,
             location=["string"],
             mitigation_product=["DDOS"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(SummaryHTTPMethodResponse, summary, path=["response"])
 
@@ -85,7 +85,7 @@ class TestSummary:
             ip_version=["IPv4"],
             location=["string"],
             mitigation_product=["DDOS"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(SummaryHTTPVersionResponse, summary, path=["response"])
 
@@ -127,7 +127,7 @@ class TestSummary:
             http_version=["HTTPv1"],
             location=["string"],
             mitigation_product=["DDOS"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(SummaryIPVersionResponse, summary, path=["response"])
 
@@ -171,7 +171,7 @@ class TestSummary:
             limit_per_group=10,
             location=["string"],
             mitigation_product=["DDOS"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(SummaryManagedRulesResponse, summary, path=["response"])
 
@@ -214,7 +214,7 @@ class TestSummary:
             ip_version=["IPv4"],
             limit_per_group=10,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(SummaryMitigationProductResponse, summary, path=["response"])
 
@@ -261,7 +261,7 @@ class TestAsyncSummary:
             limit_per_group=10,
             location=["string"],
             mitigation_product=["DDOS"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(SummaryHTTPMethodResponse, summary, path=["response"])
 
@@ -303,7 +303,7 @@ class TestAsyncSummary:
             ip_version=["IPv4"],
             location=["string"],
             mitigation_product=["DDOS"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(SummaryHTTPVersionResponse, summary, path=["response"])
 
@@ -345,7 +345,7 @@ class TestAsyncSummary:
             http_version=["HTTPv1"],
             location=["string"],
             mitigation_product=["DDOS"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(SummaryIPVersionResponse, summary, path=["response"])
 
@@ -389,7 +389,7 @@ class TestAsyncSummary:
             limit_per_group=10,
             location=["string"],
             mitigation_product=["DDOS"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(SummaryManagedRulesResponse, summary, path=["response"])
 
@@ -432,7 +432,7 @@ class TestAsyncSummary:
             ip_version=["IPv4"],
             limit_per_group=10,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(SummaryMitigationProductResponse, summary, path=["response"])
 

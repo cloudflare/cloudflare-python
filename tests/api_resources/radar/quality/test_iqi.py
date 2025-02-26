@@ -39,7 +39,7 @@ class TestIQI:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(IQISummaryResponse, iqi, path=["response"])
 
@@ -87,7 +87,7 @@ class TestIQI:
             format="JSON",
             interpolation=True,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(IQITimeseriesGroupsResponse, iqi, path=["response"])
 
@@ -137,7 +137,7 @@ class TestAsyncIQI:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(IQISummaryResponse, iqi, path=["response"])
 
@@ -185,7 +185,7 @@ class TestAsyncIQI:
             format="JSON",
             interpolation=True,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(IQITimeseriesGroupsResponse, iqi, path=["response"])
 

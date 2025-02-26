@@ -34,7 +34,7 @@ class TestInternetServices:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             limit=5,
-            name=["string"],
+            name=["main_series"],
             service_category=["string"],
         )
         assert_matches_type(InternetServiceTimeseriesGroupsResponse, internet_service, path=["response"])
@@ -70,7 +70,7 @@ class TestInternetServices:
             date=[parse_date("2019-12-27")],
             format="JSON",
             limit=5,
-            name=["string"],
+            name=["main_series"],
             service_category=["string"],
         )
         assert_matches_type(InternetServiceTopResponse, internet_service, path=["response"])
@@ -112,7 +112,7 @@ class TestAsyncInternetServices:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             limit=5,
-            name=["string"],
+            name=["main_series"],
             service_category=["string"],
         )
         assert_matches_type(InternetServiceTimeseriesGroupsResponse, internet_service, path=["response"])
@@ -148,7 +148,7 @@ class TestAsyncInternetServices:
             date=[parse_date("2019-12-27")],
             format="JSON",
             limit=5,
-            name=["string"],
+            name=["main_series"],
             service_category=["string"],
         )
         assert_matches_type(InternetServiceTopResponse, internet_service, path=["response"])

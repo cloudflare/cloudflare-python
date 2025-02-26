@@ -40,7 +40,8 @@ class TestTop:
             limit_direction="ORIGIN",
             limit_per_location=10,
             location=["string"],
-            name=["string"],
+            magnitude="MITIGATED_BYTES",
+            name=["main_series"],
             normalization="PERCENTAGE",
             protocol=["UDP"],
         )
@@ -82,7 +83,7 @@ class TestTop:
             ip_version=["IPv4"],
             limit=5,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             protocol=["UDP"],
         )
         assert_matches_type(TopIndustryResponse, top, path=["response"])
@@ -123,7 +124,7 @@ class TestTop:
             ip_version=["IPv4"],
             limit=5,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             protocol=["UDP"],
         )
         assert_matches_type(TopVerticalResponse, top, path=["response"])
@@ -170,7 +171,8 @@ class TestAsyncTop:
             limit_direction="ORIGIN",
             limit_per_location=10,
             location=["string"],
-            name=["string"],
+            magnitude="MITIGATED_BYTES",
+            name=["main_series"],
             normalization="PERCENTAGE",
             protocol=["UDP"],
         )
@@ -212,7 +214,7 @@ class TestAsyncTop:
             ip_version=["IPv4"],
             limit=5,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             protocol=["UDP"],
         )
         assert_matches_type(TopIndustryResponse, top, path=["response"])
@@ -253,7 +255,7 @@ class TestAsyncTop:
             ip_version=["IPv4"],
             limit=5,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             protocol=["UDP"],
         )
         assert_matches_type(TopVerticalResponse, top, path=["response"])

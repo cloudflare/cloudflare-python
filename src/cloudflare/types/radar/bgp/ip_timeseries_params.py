@@ -13,36 +13,37 @@ __all__ = ["IPTimeseriesParams"]
 
 class IPTimeseriesParams(TypedDict, total=False):
     asn: List[str]
-    """Array of comma separated list of ASNs, start with `-` to exclude from results.
+    """Comma-separated list of Autonomous System Numbers (ASNs).
 
-    For example, `-174, 3356` excludes results from AS174, but includes results from
-    AS3356.
+    Prefix with `-` to exclude ASNs from results. For example, `-174, 3356` excludes
+    results from AS174, but includes results from AS3356.
     """
 
     date_end: Annotated[List[Union[str, datetime]], PropertyInfo(alias="dateEnd", format="iso8601")]
     """End of the date range (inclusive)."""
 
     date_range: Annotated[List[str], PropertyInfo(alias="dateRange")]
-    """
-    For example, use `7d` and `7dControl` to compare this week with the previous
+    """Filters results by the specified date range.
+
+    For example, use `7d` and `7dcontrol` to compare this week with the previous
     week. Use this parameter or set specific start and end dates (`dateStart` and
     `dateEnd` parameters).
     """
 
     date_start: Annotated[List[Union[str, datetime]], PropertyInfo(alias="dateStart", format="iso8601")]
-    """Array of datetimes to filter the start of a series."""
+    """Start of the date range."""
 
     format: Literal["JSON", "CSV"]
-    """Format results are returned in."""
+    """Format in which results will be returned."""
 
     include_delay: Annotated[bool, PropertyInfo(alias="includeDelay")]
-    """Include data delay meta information"""
+    """Include data delay meta information."""
 
     ip_version: Annotated[List[Literal["IPv4", "IPv6"]], PropertyInfo(alias="ipVersion")]
-    """Filter for ip version."""
+    """Filters results by IP version (Ipv4 vs. IPv6)."""
 
     location: List[str]
-    """Array of locations (alpha-2 country codes)."""
+    """Comma-separated list of locations (alpha-2 codes)."""
 
     name: List[str]
-    """Array of names that will be used to name the series in responses."""
+    """Array of names used to label the series in the response."""

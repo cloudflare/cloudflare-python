@@ -67,26 +67,25 @@ class InternetServicesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> InternetServiceTimeseriesGroupsResponse:
-        """Gets Internet Services rank update changes over time.
-
-        Raw values are returned.
+        """
+        Retrieves Internet Services rank update changes over time.
 
         Args:
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          limit: Limit the number of objects in the response.
+          limit: Limits the number of objects returned in the response.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
-          service_category: Filter for services category.
+          service_category: Filters results by Internet service category.
 
           extra_headers: Send extra headers
 
@@ -138,18 +137,18 @@ class InternetServicesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> InternetServiceTopResponse:
         """
-        Get top Internet services based on their rank.
+        Retrieves top Internet services based on their rank.
 
         Args:
           date: Array of dates to filter the ranking.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          limit: Limit the number of objects in the response.
+          limit: Limits the number of objects returned in the response.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
-          service_category: Filter for services category.
+          service_category: Filters results by Internet service category.
 
           extra_headers: Send extra headers
 
@@ -219,26 +218,25 @@ class AsyncInternetServicesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> InternetServiceTimeseriesGroupsResponse:
-        """Gets Internet Services rank update changes over time.
-
-        Raw values are returned.
+        """
+        Retrieves Internet Services rank update changes over time.
 
         Args:
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          limit: Limit the number of objects in the response.
+          limit: Limits the number of objects returned in the response.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
-          service_category: Filter for services category.
+          service_category: Filters results by Internet service category.
 
           extra_headers: Send extra headers
 
@@ -290,18 +288,18 @@ class AsyncInternetServicesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> InternetServiceTopResponse:
         """
-        Get top Internet services based on their rank.
+        Retrieves top Internet services based on their rank.
 
         Args:
           date: Array of dates to filter the ranking.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          limit: Limit the number of objects in the response.
+          limit: Limits the number of objects returned in the response.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
-          service_category: Filter for services category.
+          service_category: Filters results by Internet service category.
 
           extra_headers: Send extra headers
 

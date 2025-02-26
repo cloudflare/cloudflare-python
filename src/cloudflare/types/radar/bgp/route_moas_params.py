@@ -9,13 +9,13 @@ __all__ = ["RouteMoasParams"]
 
 class RouteMoasParams(TypedDict, total=False):
     format: Literal["JSON", "CSV"]
-    """Format results are returned in."""
+    """Format in which results will be returned."""
 
     invalid_only: bool
-    """Lookup only RPKI invalid MOASes"""
+    """Lookup only RPKI invalid MOASes."""
 
     origin: int
-    """Lookup MOASes originated by the given ASN"""
+    """Lookup MOASes originated by the given ASN."""
 
     prefix: str
     """Network prefix, IPv4 or IPv6."""

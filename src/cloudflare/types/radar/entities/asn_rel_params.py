@@ -9,7 +9,7 @@ __all__ = ["ASNRelParams"]
 
 class ASNRelParams(TypedDict, total=False):
     asn2: int
-    """Get the AS relationship of ASN2 with respect to the given ASN"""
+    """Retrieves the AS relationship of ASN2 with respect to the given ASN."""
 
     format: Literal["JSON", "CSV"]
-    """Format results are returned in."""
+    """Format in which results will be returned."""

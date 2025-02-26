@@ -37,7 +37,7 @@ class TestRanking:
             format="JSON",
             limit=5,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             ranking_type="POPULAR",
         )
         assert_matches_type(RankingTimeseriesGroupsResponse, ranking, path=["response"])
@@ -75,7 +75,7 @@ class TestRanking:
             format="JSON",
             limit=5,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             ranking_type="POPULAR",
         )
         assert_matches_type(RankingTopResponse, ranking, path=["response"])
@@ -120,7 +120,7 @@ class TestAsyncRanking:
             format="JSON",
             limit=5,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             ranking_type="POPULAR",
         )
         assert_matches_type(RankingTimeseriesGroupsResponse, ranking, path=["response"])
@@ -158,7 +158,7 @@ class TestAsyncRanking:
             format="JSON",
             limit=5,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             ranking_type="POPULAR",
         )
         assert_matches_type(RankingTopResponse, ranking, path=["response"])

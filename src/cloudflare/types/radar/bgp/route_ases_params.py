@@ -11,19 +11,19 @@ __all__ = ["RouteAsesParams"]
 
 class RouteAsesParams(TypedDict, total=False):
     format: Literal["JSON", "CSV"]
-    """Format results are returned in."""
+    """Format in which results will be returned."""
 
     limit: int
-    """Limit the number of objects in the response."""
+    """Limits the number of objects returned in the response."""
 
     location: str
-    """Location Alpha2 code."""
+    """Location alpha-2 code."""
 
     sort_by: Annotated[
         Literal["cone", "pfxs", "ipv4", "ipv6", "rpki_valid", "rpki_invalid", "rpki_unknown"],
         PropertyInfo(alias="sortBy"),
     ]
-    """Return order results by given type"""
+    """Sorts results by the specified field."""
 
-    sort_order: Annotated[Literal["asc", "desc"], PropertyInfo(alias="sortOrder")]
-    """Sort by value ascending or descending"""
+    sort_order: Annotated[Literal["ASC", "DESC"], PropertyInfo(alias="sortOrder")]
+    """Sort order."""

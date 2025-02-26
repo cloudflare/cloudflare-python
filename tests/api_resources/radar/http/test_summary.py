@@ -46,7 +46,7 @@ class TestSummary:
             http_version=["HTTPv1"],
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -91,7 +91,7 @@ class TestSummary:
             http_version=["HTTPv1"],
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -136,7 +136,7 @@ class TestSummary:
             http_version=["HTTPv1"],
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -181,7 +181,7 @@ class TestSummary:
             http_protocol=["HTTP"],
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -226,7 +226,7 @@ class TestSummary:
             http_protocol=["HTTP"],
             http_version=["HTTPv1"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -272,7 +272,7 @@ class TestSummary:
             http_version=["HTTPv1"],
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             tls_version=["TLSv1_0"],
         )
         assert_matches_type(SummaryOSResponse, summary, path=["response"])
@@ -317,7 +317,7 @@ class TestSummary:
             http_version=["HTTPv1"],
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -363,7 +363,7 @@ class TestSummary:
             http_version=["HTTPv1"],
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
         )
         assert_matches_type(SummaryTLSVersionResponse, summary, path=["response"])
@@ -411,7 +411,7 @@ class TestAsyncSummary:
             http_version=["HTTPv1"],
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -456,7 +456,7 @@ class TestAsyncSummary:
             http_version=["HTTPv1"],
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -501,7 +501,7 @@ class TestAsyncSummary:
             http_version=["HTTPv1"],
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -546,7 +546,7 @@ class TestAsyncSummary:
             http_protocol=["HTTP"],
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -591,7 +591,7 @@ class TestAsyncSummary:
             http_protocol=["HTTP"],
             http_version=["HTTPv1"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -637,7 +637,7 @@ class TestAsyncSummary:
             http_version=["HTTPv1"],
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             tls_version=["TLSv1_0"],
         )
         assert_matches_type(SummaryOSResponse, summary, path=["response"])
@@ -682,7 +682,7 @@ class TestAsyncSummary:
             http_version=["HTTPv1"],
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -728,7 +728,7 @@ class TestAsyncSummary:
             http_version=["HTTPv1"],
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
         )
         assert_matches_type(SummaryTLSVersionResponse, summary, path=["response"])

@@ -35,7 +35,7 @@ class TestTop:
             format="JSON",
             limit=5,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             order_by="BANDWIDTH_DOWNLOAD",
             reverse=True,
         )
@@ -75,7 +75,7 @@ class TestTop:
             format="JSON",
             limit=5,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             order_by="BANDWIDTH_DOWNLOAD",
             reverse=True,
         )
@@ -119,7 +119,7 @@ class TestAsyncTop:
             format="JSON",
             limit=5,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             order_by="BANDWIDTH_DOWNLOAD",
             reverse=True,
         )
@@ -159,7 +159,7 @@ class TestAsyncTop:
             format="JSON",
             limit=5,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             order_by="BANDWIDTH_DOWNLOAD",
             reverse=True,
         )

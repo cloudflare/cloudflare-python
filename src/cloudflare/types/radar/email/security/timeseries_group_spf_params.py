@@ -20,32 +20,36 @@ class TimeseriesGroupSPFParams(TypedDict, total=False):
     """
 
     arc: List[Literal["PASS", "NONE", "FAIL"]]
-    """Filter for arc (Authenticated Received Chain)."""
+    """Filters results by ARC (Authenticated Received Chain) validation."""
 
     date_end: Annotated[List[Union[str, datetime]], PropertyInfo(alias="dateEnd", format="iso8601")]
     """End of the date range (inclusive)."""
 
     date_range: Annotated[List[str], PropertyInfo(alias="dateRange")]
-    """
-    For example, use `7d` and `7dControl` to compare this week with the previous
+    """Filters results by the specified date range.
+
+    For example, use `7d` and `7dcontrol` to compare this week with the previous
     week. Use this parameter or set specific start and end dates (`dateStart` and
     `dateEnd` parameters).
     """
 
     date_start: Annotated[List[Union[str, datetime]], PropertyInfo(alias="dateStart", format="iso8601")]
-    """Array of datetimes to filter the start of a series."""
+    """Start of the date range."""
 
     dkim: List[Literal["PASS", "NONE", "FAIL"]]
-    """Filter for dkim."""
+    """Filters results by DKIM (DomainKeys Identified Mail) validation status."""
 
     dmarc: List[Literal["PASS", "NONE", "FAIL"]]
-    """Filter for dmarc."""
+    """
+    Filters results by DMARC (Domain-based Message Authentication, Reporting and
+    Conformance) validation status.
+    """
 
     format: Literal["JSON", "CSV"]
-    """Format results are returned in."""
+    """Format in which results will be returned."""
 
     name: List[str]
-    """Array of names that will be used to name the series in responses."""
+    """Array of names used to label the series in the response."""
 
     tls_version: Annotated[List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3"]], PropertyInfo(alias="tlsVersion")]
-    """Filter for tls version."""
+    """Filters results by TLS version."""

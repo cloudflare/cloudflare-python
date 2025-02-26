@@ -40,7 +40,7 @@ class TestSummary:
             format="JSON",
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             protocol=["UDP"],
         )
         assert_matches_type(SummaryBitrateResponse, summary, path=["response"])
@@ -81,7 +81,7 @@ class TestSummary:
             format="JSON",
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             protocol=["UDP"],
         )
         assert_matches_type(SummaryDurationResponse, summary, path=["response"])
@@ -121,7 +121,7 @@ class TestSummary:
             direction="ORIGIN",
             format="JSON",
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             protocol=["UDP"],
         )
         assert_matches_type(SummaryIPVersionResponse, summary, path=["response"])
@@ -162,7 +162,7 @@ class TestSummary:
             format="JSON",
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(SummaryProtocolResponse, summary, path=["response"])
 
@@ -203,7 +203,7 @@ class TestSummary:
             ip_version=["IPv4"],
             limit_per_group=10,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             protocol=["UDP"],
         )
         assert_matches_type(SummaryVectorResponse, summary, path=["response"])
@@ -248,7 +248,7 @@ class TestAsyncSummary:
             format="JSON",
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             protocol=["UDP"],
         )
         assert_matches_type(SummaryBitrateResponse, summary, path=["response"])
@@ -289,7 +289,7 @@ class TestAsyncSummary:
             format="JSON",
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             protocol=["UDP"],
         )
         assert_matches_type(SummaryDurationResponse, summary, path=["response"])
@@ -329,7 +329,7 @@ class TestAsyncSummary:
             direction="ORIGIN",
             format="JSON",
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             protocol=["UDP"],
         )
         assert_matches_type(SummaryIPVersionResponse, summary, path=["response"])
@@ -370,7 +370,7 @@ class TestAsyncSummary:
             format="JSON",
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(SummaryProtocolResponse, summary, path=["response"])
 
@@ -411,7 +411,7 @@ class TestAsyncSummary:
             ip_version=["IPv4"],
             limit_per_group=10,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             protocol=["UDP"],
         )
         assert_matches_type(SummaryVectorResponse, summary, path=["response"])

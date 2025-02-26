@@ -25,40 +25,40 @@ class EventListParams(TypedDict, total=False):
     """Start of the date range (inclusive)."""
 
     event_id: Annotated[int, PropertyInfo(alias="eventId")]
-    """The unique identifier of a event"""
+    """The unique identifier of a event."""
 
     format: Literal["JSON", "CSV"]
-    """Format results are returned in."""
+    """Format in which results will be returned."""
 
     hijacker_asn: Annotated[int, PropertyInfo(alias="hijackerAsn")]
-    """The potential hijacker AS of a BGP hijack event"""
+    """The potential hijacker AS of a BGP hijack event."""
 
     involved_asn: Annotated[int, PropertyInfo(alias="involvedAsn")]
-    """The potential hijacker or victim AS of a BGP hijack event"""
+    """The potential hijacker or victim AS of a BGP hijack event."""
 
     involved_country: Annotated[str, PropertyInfo(alias="involvedCountry")]
-    """The country code of the potential hijacker or victim AS of a BGP hijack event"""
+    """The country code of the potential hijacker or victim AS of a BGP hijack event."""
 
     max_confidence: Annotated[int, PropertyInfo(alias="maxConfidence")]
-    """The maximum confidence score to filter events (1-4 low, 5-7 mid, 8+ high)"""
+    """The maximum confidence score to filter events (1-4 low, 5-7 mid, 8+ high)."""
 
     min_confidence: Annotated[int, PropertyInfo(alias="minConfidence")]
-    """The minimum confidence score to filter events (1-4 low, 5-7 mid, 8+ high)"""
+    """The minimum confidence score to filter events (1-4 low, 5-7 mid, 8+ high)."""
 
     page: int
-    """Current page number, starting from 1"""
+    """Current page number, starting from 1."""
 
     per_page: int
-    """Number of entries per page"""
+    """Number of entries per page."""
 
     prefix: str
     """Network prefix, IPv4 or IPv6."""
 
     sort_by: Annotated[Literal["ID", "TIME", "CONFIDENCE"], PropertyInfo(alias="sortBy")]
-    """Sort events by field"""
+    """Sorts results by the specified field."""
 
     sort_order: Annotated[Literal["ASC", "DESC"], PropertyInfo(alias="sortOrder")]
-    """Sort order"""
+    """Sort order."""
 
     victim_asn: Annotated[int, PropertyInfo(alias="victimAsn")]
-    """The potential victim AS of a BGP hijack event"""
+    """The potential victim AS of a BGP hijack event."""

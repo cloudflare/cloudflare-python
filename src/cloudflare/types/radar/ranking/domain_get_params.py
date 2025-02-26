@@ -16,16 +16,16 @@ class DomainGetParams(TypedDict, total=False):
     """Array of dates to filter the ranking."""
 
     format: Literal["JSON", "CSV"]
-    """Format results are returned in."""
+    """Format in which results will be returned."""
 
     include_top_locations: Annotated[bool, PropertyInfo(alias="includeTopLocations")]
-    """Include top locations in the response."""
+    """Includes top locations in the response."""
 
     limit: int
-    """Limit the number of objects in the response."""
+    """Limits the number of objects returned in the response."""
 
     name: List[str]
-    """Array of names that will be used to name the series in responses."""
+    """Array of names used to label the series in the response."""
 
     ranking_type: Annotated[Literal["POPULAR", "TRENDING_RISE", "TRENDING_STEADY"], PropertyInfo(alias="rankingType")]
-    """The ranking type."""
+    """Ranking type."""

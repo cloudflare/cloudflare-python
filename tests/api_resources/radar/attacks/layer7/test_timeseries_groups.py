@@ -46,7 +46,7 @@ class TestTimeseriesGroups:
             limit_per_group=10,
             location=["string"],
             mitigation_product=["DDOS"],
-            name=["string"],
+            name=["main_series"],
             normalization="PERCENTAGE",
         )
         assert_matches_type(TimeseriesGroupHTTPMethodResponse, timeseries_group, path=["response"])
@@ -90,7 +90,7 @@ class TestTimeseriesGroups:
             ip_version=["IPv4"],
             location=["string"],
             mitigation_product=["DDOS"],
-            name=["string"],
+            name=["main_series"],
             normalization="PERCENTAGE",
         )
         assert_matches_type(TimeseriesGroupHTTPVersionResponse, timeseries_group, path=["response"])
@@ -136,7 +136,7 @@ class TestTimeseriesGroups:
             limit_per_group=10,
             location=["string"],
             mitigation_product=["DDOS"],
-            name=["string"],
+            name=["main_series"],
             normalization="PERCENTAGE",
         )
         assert_matches_type(TimeseriesGroupIndustryResponse, timeseries_group, path=["response"])
@@ -180,7 +180,7 @@ class TestTimeseriesGroups:
             http_version=["HTTPv1"],
             location=["string"],
             mitigation_product=["DDOS"],
-            name=["string"],
+            name=["main_series"],
             normalization="PERCENTAGE",
         )
         assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=["response"])
@@ -226,7 +226,7 @@ class TestTimeseriesGroups:
             limit_per_group=10,
             location=["string"],
             mitigation_product=["DDOS"],
-            name=["string"],
+            name=["main_series"],
             normalization="PERCENTAGE",
         )
         assert_matches_type(TimeseriesGroupManagedRulesResponse, timeseries_group, path=["response"])
@@ -271,7 +271,7 @@ class TestTimeseriesGroups:
             ip_version=["IPv4"],
             limit_per_group=10,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             normalization="PERCENTAGE",
         )
         assert_matches_type(TimeseriesGroupMitigationProductResponse, timeseries_group, path=["response"])
@@ -317,7 +317,7 @@ class TestTimeseriesGroups:
             limit_per_group=10,
             location=["string"],
             mitigation_product=["DDOS"],
-            name=["string"],
+            name=["main_series"],
             normalization="PERCENTAGE",
         )
         assert_matches_type(TimeseriesGroupVerticalResponse, timeseries_group, path=["response"])
@@ -366,7 +366,7 @@ class TestAsyncTimeseriesGroups:
             limit_per_group=10,
             location=["string"],
             mitigation_product=["DDOS"],
-            name=["string"],
+            name=["main_series"],
             normalization="PERCENTAGE",
         )
         assert_matches_type(TimeseriesGroupHTTPMethodResponse, timeseries_group, path=["response"])
@@ -412,7 +412,7 @@ class TestAsyncTimeseriesGroups:
             ip_version=["IPv4"],
             location=["string"],
             mitigation_product=["DDOS"],
-            name=["string"],
+            name=["main_series"],
             normalization="PERCENTAGE",
         )
         assert_matches_type(TimeseriesGroupHTTPVersionResponse, timeseries_group, path=["response"])
@@ -460,7 +460,7 @@ class TestAsyncTimeseriesGroups:
             limit_per_group=10,
             location=["string"],
             mitigation_product=["DDOS"],
-            name=["string"],
+            name=["main_series"],
             normalization="PERCENTAGE",
         )
         assert_matches_type(TimeseriesGroupIndustryResponse, timeseries_group, path=["response"])
@@ -504,7 +504,7 @@ class TestAsyncTimeseriesGroups:
             http_version=["HTTPv1"],
             location=["string"],
             mitigation_product=["DDOS"],
-            name=["string"],
+            name=["main_series"],
             normalization="PERCENTAGE",
         )
         assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=["response"])
@@ -550,7 +550,7 @@ class TestAsyncTimeseriesGroups:
             limit_per_group=10,
             location=["string"],
             mitigation_product=["DDOS"],
-            name=["string"],
+            name=["main_series"],
             normalization="PERCENTAGE",
         )
         assert_matches_type(TimeseriesGroupManagedRulesResponse, timeseries_group, path=["response"])
@@ -597,7 +597,7 @@ class TestAsyncTimeseriesGroups:
             ip_version=["IPv4"],
             limit_per_group=10,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             normalization="PERCENTAGE",
         )
         assert_matches_type(TimeseriesGroupMitigationProductResponse, timeseries_group, path=["response"])
@@ -645,7 +645,7 @@ class TestAsyncTimeseriesGroups:
             limit_per_group=10,
             location=["string"],
             mitigation_product=["DDOS"],
-            name=["string"],
+            name=["main_series"],
             normalization="PERCENTAGE",
         )
         assert_matches_type(TimeseriesGroupVerticalResponse, timeseries_group, path=["response"])

@@ -40,7 +40,7 @@ class TestLocations:
             ip_version=["IPv4"],
             limit=5,
             mitigation_product=["DDOS"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(LocationOriginResponse, location, path=["response"])
 
@@ -82,7 +82,7 @@ class TestLocations:
             ip_version=["IPv4"],
             limit=5,
             mitigation_product=["DDOS"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(LocationTargetResponse, location, path=["response"])
 
@@ -129,7 +129,7 @@ class TestAsyncLocations:
             ip_version=["IPv4"],
             limit=5,
             mitigation_product=["DDOS"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(LocationOriginResponse, location, path=["response"])
 
@@ -171,7 +171,7 @@ class TestAsyncLocations:
             ip_version=["IPv4"],
             limit=5,
             mitigation_product=["DDOS"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(LocationTargetResponse, location, path=["response"])
 

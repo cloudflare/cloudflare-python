@@ -9,4 +9,4 @@ __all__ = ["ASNGetParams"]
 
 class ASNGetParams(TypedDict, total=False):
     format: Literal["JSON", "CSV"]
-    """Format results are returned in."""
+    """Format in which results will be returned."""
