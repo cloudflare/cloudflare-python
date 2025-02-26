@@ -43,7 +43,7 @@ class TestTimeseriesGroups:
             format="JSON",
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             normalization="PERCENTAGE",
             protocol=["UDP"],
         )
@@ -86,7 +86,7 @@ class TestTimeseriesGroups:
             format="JSON",
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             normalization="PERCENTAGE",
             protocol=["UDP"],
         )
@@ -130,7 +130,7 @@ class TestTimeseriesGroups:
             ip_version=["IPv4"],
             limit_per_group=10,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             normalization="PERCENTAGE",
             protocol=["UDP"],
         )
@@ -172,7 +172,7 @@ class TestTimeseriesGroups:
             direction="ORIGIN",
             format="JSON",
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             normalization="PERCENTAGE",
             protocol=["UDP"],
         )
@@ -215,7 +215,7 @@ class TestTimeseriesGroups:
             format="JSON",
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             normalization="PERCENTAGE",
         )
         assert_matches_type(TimeseriesGroupProtocolResponse, timeseries_group, path=["response"])
@@ -258,7 +258,7 @@ class TestTimeseriesGroups:
             ip_version=["IPv4"],
             limit_per_group=10,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             normalization="PERCENTAGE",
             protocol=["UDP"],
         )
@@ -302,7 +302,7 @@ class TestTimeseriesGroups:
             ip_version=["IPv4"],
             limit_per_group=10,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             normalization="PERCENTAGE",
             protocol=["UDP"],
         )
@@ -349,7 +349,7 @@ class TestAsyncTimeseriesGroups:
             format="JSON",
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             normalization="PERCENTAGE",
             protocol=["UDP"],
         )
@@ -392,7 +392,7 @@ class TestAsyncTimeseriesGroups:
             format="JSON",
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             normalization="PERCENTAGE",
             protocol=["UDP"],
         )
@@ -436,7 +436,7 @@ class TestAsyncTimeseriesGroups:
             ip_version=["IPv4"],
             limit_per_group=10,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             normalization="PERCENTAGE",
             protocol=["UDP"],
         )
@@ -478,7 +478,7 @@ class TestAsyncTimeseriesGroups:
             direction="ORIGIN",
             format="JSON",
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             normalization="PERCENTAGE",
             protocol=["UDP"],
         )
@@ -521,7 +521,7 @@ class TestAsyncTimeseriesGroups:
             format="JSON",
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             normalization="PERCENTAGE",
         )
         assert_matches_type(TimeseriesGroupProtocolResponse, timeseries_group, path=["response"])
@@ -564,7 +564,7 @@ class TestAsyncTimeseriesGroups:
             ip_version=["IPv4"],
             limit_per_group=10,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             normalization="PERCENTAGE",
             protocol=["UDP"],
         )
@@ -608,7 +608,7 @@ class TestAsyncTimeseriesGroups:
             ip_version=["IPv4"],
             limit_per_group=10,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             normalization="PERCENTAGE",
             protocol=["UDP"],
         )

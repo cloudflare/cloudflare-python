@@ -29,7 +29,7 @@ class TestTop:
             date=[parse_date("2019-12-27")],
             format="JSON",
             limit=5,
-            name=["string"],
+            name=["main_series"],
             user_agent_category="AI",
         )
         assert_matches_type(TopDomainCategoriesResponse, top, path=["response"])
@@ -69,7 +69,7 @@ class TestAsyncTop:
             date=[parse_date("2019-12-27")],
             format="JSON",
             limit=5,
-            name=["string"],
+            name=["main_series"],
             user_agent_category="AI",
         )
         assert_matches_type(TopDomainCategoriesResponse, top, path=["response"])

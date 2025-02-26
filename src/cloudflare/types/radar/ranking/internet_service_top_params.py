@@ -16,13 +16,13 @@ class InternetServiceTopParams(TypedDict, total=False):
     """Array of dates to filter the ranking."""
 
     format: Literal["JSON", "CSV"]
-    """Format results are returned in."""
+    """Format in which results will be returned."""
 
     limit: int
-    """Limit the number of objects in the response."""
+    """Limits the number of objects returned in the response."""
 
     name: List[str]
-    """Array of names that will be used to name the series in responses."""
+    """Array of names used to label the series in the response."""
 
     service_category: Annotated[List[str], PropertyInfo(alias="serviceCategory")]
-    """Filter for services category."""
+    """Filters results by Internet service category."""

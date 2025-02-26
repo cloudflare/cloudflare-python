@@ -35,7 +35,7 @@ class TestTop:
             format="JSON",
             limit=5,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(TopAsesResponse, top, path=["response"])
 
@@ -76,7 +76,7 @@ class TestTop:
             format="JSON",
             limit=5,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(TopLocationsResponse, top, path=["response"])
 
@@ -121,7 +121,7 @@ class TestAsyncTop:
             format="JSON",
             limit=5,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(TopAsesResponse, top, path=["response"])
 
@@ -162,7 +162,7 @@ class TestAsyncTop:
             format="JSON",
             limit=5,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(TopLocationsResponse, top, path=["response"])
 

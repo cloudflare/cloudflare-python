@@ -39,7 +39,7 @@ class TestLayer7:
             ip_version=["IPv4"],
             location=["string"],
             mitigation_product=["DDOS"],
-            name=["string"],
+            name=["main_series"],
             normalization="PERCENTAGE_CHANGE",
         )
         assert_matches_type(Layer7TimeseriesResponse, layer7, path=["response"])
@@ -89,7 +89,7 @@ class TestAsyncLayer7:
             ip_version=["IPv4"],
             location=["string"],
             mitigation_product=["DDOS"],
-            name=["string"],
+            name=["main_series"],
             normalization="PERCENTAGE_CHANGE",
         )
         assert_matches_type(Layer7TimeseriesResponse, layer7, path=["response"])

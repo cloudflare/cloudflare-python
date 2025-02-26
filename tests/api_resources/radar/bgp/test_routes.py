@@ -34,7 +34,7 @@ class TestRoutes:
             limit=5,
             location="US",
             sort_by="cone",
-            sort_order="asc",
+            sort_order="ASC",
         )
         assert_matches_type(RouteAsesResponse, route, path=["response"])
 
@@ -179,7 +179,7 @@ class TestAsyncRoutes:
             limit=5,
             location="US",
             sort_by="cone",
-            sort_order="asc",
+            sort_order="ASC",
         )
         assert_matches_type(RouteAsesResponse, route, path=["response"])
 

@@ -85,12 +85,12 @@ class EntitiesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> EntityGetResponse:
         """
-        Get IP address information.
+        Retrieves IP address information.
 
         Args:
           ip: IP address.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
           extra_headers: Send extra headers
 
@@ -161,12 +161,12 @@ class AsyncEntitiesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> EntityGetResponse:
         """
-        Get IP address information.
+        Retrieves IP address information.
 
         Args:
           ip: IP address.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
           extra_headers: Send extra headers
 

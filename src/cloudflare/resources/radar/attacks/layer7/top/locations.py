@@ -127,42 +127,42 @@ class LocationsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LocationOriginResponse:
-        """Get the top origin locations of and by Layer 7 attacks.
+        """Retrieves the top origin locations of layer 7 attacks.
 
-        Values are a percentage
-        out of the total Layer 7 attacks. The origin location is determined by the
-        client IP address.
+        Values are percentages of
+        the total layer 7 attacks, with the origin location determined by the client IP
+        address.
 
         Args:
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
+          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
+              exclude ASNs from results. For example, `-174, 3356` excludes results from
+              AS174, but includes results from AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
+          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
+              exclude continents from results. For example, `-EU,NA` excludes results from EU,
+              but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          http_method: Filter for http method.
+          http_method: Filters results by HTTP method.
 
-          http_version: Filter for http version.
+          http_version: Filters results by HTTP version.
 
-          ip_version: Filter for ip version.
+          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
-          limit: Limit the number of objects in the response.
+          limit: Limits the number of objects returned in the response.
 
           mitigation_product: Array of L7 mitigation products.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
           extra_headers: Send extra headers
 
@@ -277,38 +277,38 @@ class LocationsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LocationTargetResponse:
-        """Get the top target locations of and by layer 7 attacks.
+        """Retrieves the top target locations of and by layer 7 attacks.
 
-        Values are a percentage
-        out of the total layer 7 attacks. The target location is determined by the
-        attacked zone's billing country, when available.
+        Values are a
+        percentage out of the total layer 7 attacks. The target location is determined
+        by the attacked zone's billing country, when available.
 
         Args:
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
+          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
+              exclude continents from results. For example, `-EU,NA` excludes results from EU,
+              but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          http_method: Filter for http method.
+          http_method: Filters results by HTTP method.
 
-          http_version: Filter for http version.
+          http_version: Filters results by HTTP version.
 
-          ip_version: Filter for ip version.
+          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
-          limit: Limit the number of objects in the response.
+          limit: Limits the number of objects returned in the response.
 
           mitigation_product: Array of L7 mitigation products.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
           extra_headers: Send extra headers
 
@@ -444,42 +444,42 @@ class AsyncLocationsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LocationOriginResponse:
-        """Get the top origin locations of and by Layer 7 attacks.
+        """Retrieves the top origin locations of layer 7 attacks.
 
-        Values are a percentage
-        out of the total Layer 7 attacks. The origin location is determined by the
-        client IP address.
+        Values are percentages of
+        the total layer 7 attacks, with the origin location determined by the client IP
+        address.
 
         Args:
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
+          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
+              exclude ASNs from results. For example, `-174, 3356` excludes results from
+              AS174, but includes results from AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
+          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
+              exclude continents from results. For example, `-EU,NA` excludes results from EU,
+              but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          http_method: Filter for http method.
+          http_method: Filters results by HTTP method.
 
-          http_version: Filter for http version.
+          http_version: Filters results by HTTP version.
 
-          ip_version: Filter for ip version.
+          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
-          limit: Limit the number of objects in the response.
+          limit: Limits the number of objects returned in the response.
 
           mitigation_product: Array of L7 mitigation products.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
           extra_headers: Send extra headers
 
@@ -594,38 +594,38 @@ class AsyncLocationsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LocationTargetResponse:
-        """Get the top target locations of and by layer 7 attacks.
+        """Retrieves the top target locations of and by layer 7 attacks.
 
-        Values are a percentage
-        out of the total layer 7 attacks. The target location is determined by the
-        attacked zone's billing country, when available.
+        Values are a
+        percentage out of the total layer 7 attacks. The target location is determined
+        by the attacked zone's billing country, when available.
 
         Args:
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
+          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
+              exclude continents from results. For example, `-EU,NA` excludes results from EU,
+              but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          http_method: Filter for http method.
+          http_method: Filters results by HTTP method.
 
-          http_version: Filter for http version.
+          http_version: Filters results by HTTP version.
 
-          ip_version: Filter for ip version.
+          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
-          limit: Limit the number of objects in the response.
+          limit: Limits the number of objects returned in the response.
 
           mitigation_product: Array of L7 mitigation products.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
           extra_headers: Send extra headers
 

@@ -33,7 +33,7 @@ class TestDomain:
             format="JSON",
             include_top_locations=True,
             limit=5,
-            name=["string"],
+            name=["main_series"],
             ranking_type="POPULAR",
         )
         assert_matches_type(DomainGetResponse, domain, path=["response"])
@@ -88,7 +88,7 @@ class TestAsyncDomain:
             format="JSON",
             include_top_locations=True,
             limit=5,
-            name=["string"],
+            name=["main_series"],
             ranking_type="POPULAR",
         )
         assert_matches_type(DomainGetResponse, domain, path=["response"])

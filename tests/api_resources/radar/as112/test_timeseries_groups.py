@@ -41,7 +41,7 @@ class TestTimeseriesGroups:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(TimeseriesGroupDNSSECResponse, timeseries_group, path=["response"])
 
@@ -81,7 +81,7 @@ class TestTimeseriesGroups:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(TimeseriesGroupEdnsResponse, timeseries_group, path=["response"])
 
@@ -121,7 +121,7 @@ class TestTimeseriesGroups:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=["response"])
 
@@ -161,7 +161,7 @@ class TestTimeseriesGroups:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(TimeseriesGroupProtocolResponse, timeseries_group, path=["response"])
 
@@ -202,7 +202,7 @@ class TestTimeseriesGroups:
             format="JSON",
             limit_per_group=10,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(TimeseriesGroupQueryTypeResponse, timeseries_group, path=["response"])
 
@@ -243,7 +243,7 @@ class TestTimeseriesGroups:
             format="JSON",
             limit_per_group=10,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(TimeseriesGroupResponseCodesResponse, timeseries_group, path=["response"])
 
@@ -287,7 +287,7 @@ class TestAsyncTimeseriesGroups:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(TimeseriesGroupDNSSECResponse, timeseries_group, path=["response"])
 
@@ -327,7 +327,7 @@ class TestAsyncTimeseriesGroups:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(TimeseriesGroupEdnsResponse, timeseries_group, path=["response"])
 
@@ -367,7 +367,7 @@ class TestAsyncTimeseriesGroups:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=["response"])
 
@@ -407,7 +407,7 @@ class TestAsyncTimeseriesGroups:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(TimeseriesGroupProtocolResponse, timeseries_group, path=["response"])
 
@@ -448,7 +448,7 @@ class TestAsyncTimeseriesGroups:
             format="JSON",
             limit_per_group=10,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(TimeseriesGroupQueryTypeResponse, timeseries_group, path=["response"])
 
@@ -489,7 +489,7 @@ class TestAsyncTimeseriesGroups:
             format="JSON",
             limit_per_group=10,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(TimeseriesGroupResponseCodesResponse, timeseries_group, path=["response"])
 

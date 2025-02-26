@@ -31,7 +31,7 @@ class TestUserAgents:
             domain_category=["string"],
             format="JSON",
             limit=5,
-            name=["string"],
+            name=["main_series"],
             user_agent_category="AI",
         )
         assert_matches_type(UserAgentDirectiveResponse, user_agent, path=["response"])
@@ -73,7 +73,7 @@ class TestAsyncUserAgents:
             domain_category=["string"],
             format="JSON",
             limit=5,
-            name=["string"],
+            name=["main_series"],
             user_agent_category="AI",
         )
         assert_matches_type(UserAgentDirectiveResponse, user_agent, path=["response"])

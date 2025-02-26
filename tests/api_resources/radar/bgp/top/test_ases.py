@@ -32,7 +32,7 @@ class TestAses:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             limit=5,
-            name=["string"],
+            name=["main_series"],
             prefix=["1.1.1.0/24"],
             update_type=["ANNOUNCEMENT"],
         )
@@ -110,7 +110,7 @@ class TestAsyncAses:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             limit=5,
-            name=["string"],
+            name=["main_series"],
             prefix=["1.1.1.0/24"],
             update_type=["ANNOUNCEMENT"],
         )

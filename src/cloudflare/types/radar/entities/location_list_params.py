@@ -9,13 +9,13 @@ __all__ = ["LocationListParams"]
 
 class LocationListParams(TypedDict, total=False):
     format: Literal["JSON", "CSV"]
-    """Format results are returned in."""
+    """Format in which results will be returned."""
 
     limit: int
-    """Limit the number of objects in the response."""
+    """Limits the number of objects returned in the response."""
 
     location: str
-    """Comma separated list of locations."""
+    """Comma-separated list of locations (alpha-2 location codes)."""
 
     offset: int
-    """Number of objects to skip before grabbing results."""
+    """Skips the specified number of objects before fetching the results."""

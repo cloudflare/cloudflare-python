@@ -73,36 +73,37 @@ class MaliciousResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> MaliciousGetResponse:
         """
-        Get the TLDs by emails classified as malicious or not.
+        Retrieves the top TLDs by emails classified as malicious or not.
 
         Args:
-          malicious: Malicious.
+          malicious: Malicious classification.
 
-          arc: Filter for arc (Authenticated Received Chain).
+          arc: Filters results by ARC (Authenticated Received Chain) validation.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          dkim: Filter for dkim.
+          dkim: Filters results by DKIM (DomainKeys Identified Mail) validation status.
 
-          dmarc: Filter for dmarc.
+          dmarc: Filters results by DMARC (Domain-based Message Authentication, Reporting and
+              Conformance) validation status.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          limit: Limit the number of objects in the response.
+          limit: Limits the number of objects returned in the response.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
-          spf: Filter for spf.
+          spf: Filters results by SPF (Sender Policy Framework) validation status.
 
-          tld_category: Filter for TLDs by category.
+          tld_category: Filters results by TLD category.
 
-          tls_version: Filter for tls version.
+          tls_version: Filters results by TLS version.
 
           extra_headers: Send extra headers
 
@@ -188,36 +189,37 @@ class AsyncMaliciousResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> MaliciousGetResponse:
         """
-        Get the TLDs by emails classified as malicious or not.
+        Retrieves the top TLDs by emails classified as malicious or not.
 
         Args:
-          malicious: Malicious.
+          malicious: Malicious classification.
 
-          arc: Filter for arc (Authenticated Received Chain).
+          arc: Filters results by ARC (Authenticated Received Chain) validation.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          dkim: Filter for dkim.
+          dkim: Filters results by DKIM (DomainKeys Identified Mail) validation status.
 
-          dmarc: Filter for dmarc.
+          dmarc: Filters results by DMARC (Domain-based Message Authentication, Reporting and
+              Conformance) validation status.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          limit: Limit the number of objects in the response.
+          limit: Limits the number of objects returned in the response.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
-          spf: Filter for spf.
+          spf: Filters results by SPF (Sender Policy Framework) validation status.
 
-          tld_category: Filter for TLDs by category.
+          tld_category: Filters results by TLD category.
 
-          tls_version: Filter for tls version.
+          tls_version: Filters results by TLS version.
 
           extra_headers: Send extra headers
 

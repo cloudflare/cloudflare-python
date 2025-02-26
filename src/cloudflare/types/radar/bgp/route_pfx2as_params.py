@@ -11,7 +11,7 @@ __all__ = ["RoutePfx2asParams"]
 
 class RoutePfx2asParams(TypedDict, total=False):
     format: Literal["JSON", "CSV"]
-    """Format results are returned in."""
+    """Format in which results will be returned."""
 
     longest_prefix_match: Annotated[bool, PropertyInfo(alias="longestPrefixMatch")]
     """Return only results with the longest prefix match for the given prefix.
@@ -20,10 +20,10 @@ class RoutePfx2asParams(TypedDict, total=False):
     """
 
     origin: int
-    """Lookup prefixes originated by the given ASN"""
+    """Lookup prefixes originated by the given ASN."""
 
     prefix: str
     """Network prefix, IPv4 or IPv6."""
 
     rpki_status: Annotated[Literal["VALID", "INVALID", "UNKNOWN"], PropertyInfo(alias="rpkiStatus")]
-    """Return only results with matching rpki status: valid, invalid or unknown"""
+    """Return only results with matching rpki status: valid, invalid or unknown."""

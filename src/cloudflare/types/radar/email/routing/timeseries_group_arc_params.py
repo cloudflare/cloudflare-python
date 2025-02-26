@@ -23,32 +23,36 @@ class TimeseriesGroupARCParams(TypedDict, total=False):
     """End of the date range (inclusive)."""
 
     date_range: Annotated[List[str], PropertyInfo(alias="dateRange")]
-    """
-    For example, use `7d` and `7dControl` to compare this week with the previous
+    """Filters results by the specified date range.
+
+    For example, use `7d` and `7dcontrol` to compare this week with the previous
     week. Use this parameter or set specific start and end dates (`dateStart` and
     `dateEnd` parameters).
     """
 
     date_start: Annotated[List[Union[str, datetime]], PropertyInfo(alias="dateStart", format="iso8601")]
-    """Array of datetimes to filter the start of a series."""
+    """Start of the date range."""
 
     dkim: List[Literal["PASS", "NONE", "FAIL"]]
-    """Filter for dkim."""
+    """Filters results by DKIM (DomainKeys Identified Mail) validation status."""
 
     dmarc: List[Literal["PASS", "NONE", "FAIL"]]
-    """Filter for dmarc."""
+    """
+    Filters results by DMARC (Domain-based Message Authentication, Reporting and
+    Conformance) validation status.
+    """
 
     encrypted: List[Literal["ENCRYPTED", "NOT_ENCRYPTED"]]
-    """Filter for encrypted emails."""
+    """Filters results by encryption status (encrypted vs. not-encrypted)."""
 
     format: Literal["JSON", "CSV"]
-    """Format results are returned in."""
+    """Format in which results will be returned."""
 
     ip_version: Annotated[List[Literal["IPv4", "IPv6"]], PropertyInfo(alias="ipVersion")]
-    """Filter for ip version."""
+    """Filters results by IP version (Ipv4 vs. IPv6)."""
 
     name: List[str]
-    """Array of names that will be used to name the series in responses."""
+    """Array of names used to label the series in the response."""
 
     spf: List[Literal["PASS", "NONE", "FAIL"]]
-    """Filter for spf."""
+    """Filters results by SPF (Sender Policy Framework) validation status."""

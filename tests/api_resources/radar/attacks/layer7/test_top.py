@@ -45,7 +45,7 @@ class TestTop:
             location=["string"],
             magnitude="AFFECTED_ZONES",
             mitigation_product=["DDOS"],
-            name=["string"],
+            name=["main_series"],
             normalization="PERCENTAGE",
         )
         assert_matches_type(TopAttacksResponse, top, path=["response"])
@@ -90,7 +90,7 @@ class TestTop:
             limit=5,
             location=["string"],
             mitigation_product=["DDOS"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(TopIndustryResponse, top, path=["response"])
 
@@ -134,7 +134,7 @@ class TestTop:
             limit=5,
             location=["string"],
             mitigation_product=["DDOS"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(TopVerticalResponse, top, path=["response"])
 
@@ -185,7 +185,7 @@ class TestAsyncTop:
             location=["string"],
             magnitude="AFFECTED_ZONES",
             mitigation_product=["DDOS"],
-            name=["string"],
+            name=["main_series"],
             normalization="PERCENTAGE",
         )
         assert_matches_type(TopAttacksResponse, top, path=["response"])
@@ -230,7 +230,7 @@ class TestAsyncTop:
             limit=5,
             location=["string"],
             mitigation_product=["DDOS"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(TopIndustryResponse, top, path=["response"])
 
@@ -274,7 +274,7 @@ class TestAsyncTop:
             limit=5,
             location=["string"],
             mitigation_product=["DDOS"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(TopVerticalResponse, top, path=["response"])
 

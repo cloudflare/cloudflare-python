@@ -13,7 +13,7 @@ __all__ = ["TrafficAnomalyGetParams"]
 
 class TrafficAnomalyGetParams(TypedDict, total=False):
     asn: int
-    """Single ASN as integer."""
+    """Single Autonomous System Number (ASN) as integer."""
 
     date_end: Annotated[Union[str, datetime], PropertyInfo(alias="dateEnd", format="iso8601")]
     """End of the date range (inclusive)."""
@@ -28,15 +28,15 @@ class TrafficAnomalyGetParams(TypedDict, total=False):
     """Start of the date range (inclusive)."""
 
     format: Literal["JSON", "CSV"]
-    """Format results are returned in."""
+    """Format in which results will be returned."""
 
     limit: int
-    """Limit the number of objects in the response."""
+    """Limits the number of objects returned in the response."""
 
     location: str
-    """Location Alpha2 code."""
+    """Location alpha-2 code."""
 
     offset: int
-    """Number of objects to skip before grabbing results."""
+    """Skips the specified number of objects before fetching the results."""
 
     status: Literal["VERIFIED", "UNVERIFIED"]

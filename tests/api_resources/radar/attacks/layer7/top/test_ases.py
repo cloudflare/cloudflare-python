@@ -37,7 +37,7 @@ class TestAses:
             limit=5,
             location=["string"],
             mitigation_product=["DDOS"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(AseOriginResponse, ase, path=["response"])
 
@@ -84,7 +84,7 @@ class TestAsyncAses:
             limit=5,
             location=["string"],
             mitigation_product=["DDOS"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(AseOriginResponse, ase, path=["response"])
 

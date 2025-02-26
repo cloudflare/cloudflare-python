@@ -67,22 +67,22 @@ class UserAgentsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> UserAgentDirectiveResponse:
         """
-        Get the top user agents on robots.txt files by directive.
+        Retrieves the top user agents on robots.txt files.
 
         Args:
           date: Array of dates to filter the ranking.
 
-          directive: Filter by directive.
+          directive: Filters results by robots.txt directive.
 
-          domain_category: Filter by domain category.
+          domain_category: Filters results by domain category.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          limit: Limit the number of objects in the response.
+          limit: Limits the number of objects returned in the response.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
-          user_agent_category: Filter by user agent category.
+          user_agent_category: Filters results by user agent category.
 
           extra_headers: Send extra headers
 
@@ -155,22 +155,22 @@ class AsyncUserAgentsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> UserAgentDirectiveResponse:
         """
-        Get the top user agents on robots.txt files by directive.
+        Retrieves the top user agents on robots.txt files.
 
         Args:
           date: Array of dates to filter the ranking.
 
-          directive: Filter by directive.
+          directive: Filters results by robots.txt directive.
 
-          domain_category: Filter by domain category.
+          domain_category: Filters results by domain category.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          limit: Limit the number of objects in the response.
+          limit: Limits the number of objects returned in the response.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
-          user_agent_category: Filter by user agent category.
+          user_agent_category: Filters results by user agent category.
 
           extra_headers: Send extra headers
 

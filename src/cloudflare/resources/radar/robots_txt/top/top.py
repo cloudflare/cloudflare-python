@@ -77,18 +77,18 @@ class TopResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TopDomainCategoriesResponse:
         """
-        Get the top domain categories by the number of robots.txt files parsed.
+        Retrieves the top domain categories by the number of robots.txt files parsed.
 
         Args:
           date: Array of dates to filter the ranking.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          limit: Limit the number of objects in the response.
+          limit: Limits the number of objects returned in the response.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
-          user_agent_category: Filter by user agent category.
+          user_agent_category: Filters results by user agent category.
 
           extra_headers: Send extra headers
 
@@ -161,18 +161,18 @@ class AsyncTopResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TopDomainCategoriesResponse:
         """
-        Get the top domain categories by the number of robots.txt files parsed.
+        Retrieves the top domain categories by the number of robots.txt files parsed.
 
         Args:
           date: Array of dates to filter the ranking.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          limit: Limit the number of objects in the response.
+          limit: Limits the number of objects returned in the response.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
-          user_agent_category: Filter by user agent category.
+          user_agent_category: Filters results by user agent category.
 
           extra_headers: Send extra headers
 

@@ -42,7 +42,7 @@ class TestBrowserFamily:
             ip_version=["IPv4"],
             limit=5,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -100,7 +100,7 @@ class TestAsyncBrowserFamily:
             ip_version=["IPv4"],
             limit=5,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
