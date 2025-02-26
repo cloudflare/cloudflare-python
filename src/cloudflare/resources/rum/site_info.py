@@ -113,7 +113,9 @@ class SiteInfoResource(SyncAPIResource):
         *,
         account_id: str,
         auto_install: bool | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
         host: str | NotGiven = NOT_GIVEN,
+        lite: bool | NotGiven = NOT_GIVEN,
         zone_tag: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -133,7 +135,13 @@ class SiteInfoResource(SyncAPIResource):
           auto_install: If enabled, the JavaScript snippet is automatically injected for orange-clouded
               sites.
 
+          enabled: Enables or disables RUM. This option can be used only when auto_install is set
+              to true.
+
           host: The hostname to use for gray-clouded sites.
+
+          lite: If enabled, the JavaScript snippet will not be injected for visitors from the
+              EU.
 
           zone_tag: The zone identifier.
 
@@ -154,7 +162,9 @@ class SiteInfoResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "auto_install": auto_install,
+                    "enabled": enabled,
                     "host": host,
+                    "lite": lite,
                     "zone_tag": zone_tag,
                 },
                 site_info_update_params.SiteInfoUpdateParams,
@@ -397,7 +407,9 @@ class AsyncSiteInfoResource(AsyncAPIResource):
         *,
         account_id: str,
         auto_install: bool | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
         host: str | NotGiven = NOT_GIVEN,
+        lite: bool | NotGiven = NOT_GIVEN,
         zone_tag: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -417,7 +429,13 @@ class AsyncSiteInfoResource(AsyncAPIResource):
           auto_install: If enabled, the JavaScript snippet is automatically injected for orange-clouded
               sites.
 
+          enabled: Enables or disables RUM. This option can be used only when auto_install is set
+              to true.
+
           host: The hostname to use for gray-clouded sites.
+
+          lite: If enabled, the JavaScript snippet will not be injected for visitors from the
+              EU.
 
           zone_tag: The zone identifier.
 
@@ -438,7 +456,9 @@ class AsyncSiteInfoResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "auto_install": auto_install,
+                    "enabled": enabled,
                     "host": host,
+                    "lite": lite,
                     "zone_tag": zone_tag,
                 },
                 site_info_update_params.SiteInfoUpdateParams,
