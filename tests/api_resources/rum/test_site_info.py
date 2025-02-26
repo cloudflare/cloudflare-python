@@ -83,7 +83,9 @@ class TestSiteInfo:
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             auto_install=True,
+            enabled=True,
             host="example.com",
+            lite=True,
             zone_tag="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Site], site_info, path=["response"])
@@ -338,7 +340,9 @@ class TestAsyncSiteInfo:
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             auto_install=True,
+            enabled=True,
             host="example.com",
+            lite=True,
             zone_tag="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Site], site_info, path=["response"])
