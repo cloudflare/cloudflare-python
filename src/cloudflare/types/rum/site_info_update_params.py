@@ -17,8 +17,20 @@ class SiteInfoUpdateParams(TypedDict, total=False):
     sites.
     """
 
+    enabled: bool
+    """Enables or disables RUM.
+
+    This option can be used only when auto_install is set to true.
+    """
+
     host: str
     """The hostname to use for gray-clouded sites."""
+
+    lite: bool
+    """
+    If enabled, the JavaScript snippet will not be injected for visitors from the
+    EU.
+    """
 
     zone_tag: str
     """The zone identifier."""
