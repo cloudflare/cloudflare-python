@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Union, cast
+from typing import Any, List, Union, cast
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -82,7 +82,8 @@ class TunnelsResource(SyncAPIResource):
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         status: Literal["inactive", "degraded", "healthy", "down"] | NotGiven = NOT_GIVEN,
-        tun_types: str | NotGiven = NOT_GIVEN,
+        tun_types: List[Literal["cfd_tunnel", "warp_connector", "warp", "magic", "ip_sec", "gre", "cni"]]
+        | NotGiven = NOT_GIVEN,
         uuid: str | NotGiven = NOT_GIVEN,
         was_active_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         was_inactive_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
@@ -116,7 +117,7 @@ class TunnelsResource(SyncAPIResource):
               state), `healthy` (tunnel is active and able to serve traffic), or `down`
               (tunnel can not serve traffic as it has no connections to the Cloudflare Edge).
 
-          tun_types: The types of tunnels to filter separated by a comma.
+          tun_types: The types of tunnels to filter by, separated by commas.
 
           uuid: UUID of the tunnel.
 
@@ -200,7 +201,8 @@ class AsyncTunnelsResource(AsyncAPIResource):
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         status: Literal["inactive", "degraded", "healthy", "down"] | NotGiven = NOT_GIVEN,
-        tun_types: str | NotGiven = NOT_GIVEN,
+        tun_types: List[Literal["cfd_tunnel", "warp_connector", "warp", "magic", "ip_sec", "gre", "cni"]]
+        | NotGiven = NOT_GIVEN,
         uuid: str | NotGiven = NOT_GIVEN,
         was_active_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         was_inactive_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
@@ -234,7 +236,7 @@ class AsyncTunnelsResource(AsyncAPIResource):
               state), `healthy` (tunnel is active and able to serve traffic), or `down`
               (tunnel can not serve traffic as it has no connections to the Cloudflare Edge).
 
-          tun_types: The types of tunnels to filter separated by a comma.
+          tun_types: The types of tunnels to filter by, separated by commas.
 
           uuid: UUID of the tunnel.
 

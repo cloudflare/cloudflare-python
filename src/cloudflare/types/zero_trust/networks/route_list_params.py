@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing import List
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["RouteListParams"]
 
@@ -41,8 +42,8 @@ class RouteListParams(TypedDict, total=False):
     route_id: str
     """UUID of the route."""
 
-    tun_types: str
-    """The types of tunnels to filter separated by a comma."""
+    tun_types: List[Literal["cfd_tunnel", "warp_connector", "warp", "magic", "ip_sec", "gre", "cni"]]
+    """The types of tunnels to filter by, separated by commas."""
 
     tunnel_id: str
     """UUID of the tunnel."""

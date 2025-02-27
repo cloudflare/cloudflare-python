@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import List, Type, cast
+from typing_extensions import Literal
 
 import httpx
 
@@ -145,7 +146,8 @@ class RoutesResource(SyncAPIResource):
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         route_id: str | NotGiven = NOT_GIVEN,
-        tun_types: str | NotGiven = NOT_GIVEN,
+        tun_types: List[Literal["cfd_tunnel", "warp_connector", "warp", "magic", "ip_sec", "gre", "cni"]]
+        | NotGiven = NOT_GIVEN,
         tunnel_id: str | NotGiven = NOT_GIVEN,
         virtual_network_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -179,7 +181,7 @@ class RoutesResource(SyncAPIResource):
 
           route_id: UUID of the route.
 
-          tun_types: The types of tunnels to filter separated by a comma.
+          tun_types: The types of tunnels to filter by, separated by commas.
 
           tunnel_id: UUID of the tunnel.
 
@@ -479,7 +481,8 @@ class AsyncRoutesResource(AsyncAPIResource):
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         route_id: str | NotGiven = NOT_GIVEN,
-        tun_types: str | NotGiven = NOT_GIVEN,
+        tun_types: List[Literal["cfd_tunnel", "warp_connector", "warp", "magic", "ip_sec", "gre", "cni"]]
+        | NotGiven = NOT_GIVEN,
         tunnel_id: str | NotGiven = NOT_GIVEN,
         virtual_network_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -513,7 +516,7 @@ class AsyncRoutesResource(AsyncAPIResource):
 
           route_id: UUID of the route.
 
-          tun_types: The types of tunnels to filter separated by a comma.
+          tun_types: The types of tunnels to filter by, separated by commas.
 
           tunnel_id: UUID of the tunnel.
 

@@ -97,7 +97,7 @@ class TestRoutes:
             page=1,
             per_page=1,
             route_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
-            tun_types="cfd_tunnel,warp_connector",
+            tun_types=["cfd_tunnel"],
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             virtual_network_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
         )
@@ -370,7 +370,7 @@ class TestAsyncRoutes:
             page=1,
             per_page=1,
             route_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
-            tun_types="cfd_tunnel,warp_connector",
+            tun_types=["cfd_tunnel"],
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             virtual_network_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
         )
