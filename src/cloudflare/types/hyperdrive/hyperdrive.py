@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Union, Optional
+from datetime import datetime
 from typing_extensions import Literal, TypeAlias
 
 from ..._models import BaseModel
@@ -90,3 +91,9 @@ class Hyperdrive(BaseModel):
     origin: Origin
 
     caching: Optional[Caching] = None
+
+    created_on: Optional[datetime] = None
+    """When the Hyperdrive configuration was created."""
+
+    modified_on: Optional[datetime] = None
+    """When the Hyperdrive configuration was last modified."""
