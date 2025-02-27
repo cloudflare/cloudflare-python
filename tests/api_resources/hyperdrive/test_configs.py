@@ -10,13 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.hyperdrive import (
-    ConfigGetResponse,
-    ConfigEditResponse,
-    ConfigListResponse,
-    ConfigCreateResponse,
-    ConfigUpdateResponse,
-)
+from cloudflare.types.hyperdrive import Hyperdrive
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -39,7 +33,7 @@ class TestConfigs:
                 "user": "postgres",
             },
         )
-        assert_matches_type(ConfigCreateResponse, config, path=["response"])
+        assert_matches_type(Hyperdrive, config, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -57,7 +51,7 @@ class TestConfigs:
             },
             caching={"disabled": True},
         )
-        assert_matches_type(ConfigCreateResponse, config, path=["response"])
+        assert_matches_type(Hyperdrive, config, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -78,7 +72,7 @@ class TestConfigs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         config = response.parse()
-        assert_matches_type(ConfigCreateResponse, config, path=["response"])
+        assert_matches_type(Hyperdrive, config, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -99,7 +93,7 @@ class TestConfigs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             config = response.parse()
-            assert_matches_type(ConfigCreateResponse, config, path=["response"])
+            assert_matches_type(Hyperdrive, config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -136,7 +130,7 @@ class TestConfigs:
                 "user": "postgres",
             },
         )
-        assert_matches_type(ConfigUpdateResponse, config, path=["response"])
+        assert_matches_type(Hyperdrive, config, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -155,7 +149,7 @@ class TestConfigs:
             },
             caching={"disabled": True},
         )
-        assert_matches_type(ConfigUpdateResponse, config, path=["response"])
+        assert_matches_type(Hyperdrive, config, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -177,7 +171,7 @@ class TestConfigs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         config = response.parse()
-        assert_matches_type(ConfigUpdateResponse, config, path=["response"])
+        assert_matches_type(Hyperdrive, config, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -199,7 +193,7 @@ class TestConfigs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             config = response.parse()
-            assert_matches_type(ConfigUpdateResponse, config, path=["response"])
+            assert_matches_type(Hyperdrive, config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -241,7 +235,7 @@ class TestConfigs:
         config = client.hyperdrive.configs.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncSinglePage[ConfigListResponse], config, path=["response"])
+        assert_matches_type(SyncSinglePage[Hyperdrive], config, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -252,7 +246,7 @@ class TestConfigs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         config = response.parse()
-        assert_matches_type(SyncSinglePage[ConfigListResponse], config, path=["response"])
+        assert_matches_type(SyncSinglePage[Hyperdrive], config, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -263,7 +257,7 @@ class TestConfigs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             config = response.parse()
-            assert_matches_type(SyncSinglePage[ConfigListResponse], config, path=["response"])
+            assert_matches_type(SyncSinglePage[Hyperdrive], config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -329,7 +323,7 @@ class TestConfigs:
             hyperdrive_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ConfigEditResponse, config, path=["response"])
+        assert_matches_type(Hyperdrive, config, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -345,7 +339,7 @@ class TestConfigs:
                 "user": "postgres",
             },
         )
-        assert_matches_type(ConfigEditResponse, config, path=["response"])
+        assert_matches_type(Hyperdrive, config, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -358,7 +352,7 @@ class TestConfigs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         config = response.parse()
-        assert_matches_type(ConfigEditResponse, config, path=["response"])
+        assert_matches_type(Hyperdrive, config, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -371,7 +365,7 @@ class TestConfigs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             config = response.parse()
-            assert_matches_type(ConfigEditResponse, config, path=["response"])
+            assert_matches_type(Hyperdrive, config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -396,7 +390,7 @@ class TestConfigs:
             hyperdrive_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ConfigGetResponse, config, path=["response"])
+        assert_matches_type(Hyperdrive, config, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -408,7 +402,7 @@ class TestConfigs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         config = response.parse()
-        assert_matches_type(ConfigGetResponse, config, path=["response"])
+        assert_matches_type(Hyperdrive, config, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -420,7 +414,7 @@ class TestConfigs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             config = response.parse()
-            assert_matches_type(ConfigGetResponse, config, path=["response"])
+            assert_matches_type(Hyperdrive, config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -457,7 +451,7 @@ class TestAsyncConfigs:
                 "user": "postgres",
             },
         )
-        assert_matches_type(ConfigCreateResponse, config, path=["response"])
+        assert_matches_type(Hyperdrive, config, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -475,7 +469,7 @@ class TestAsyncConfigs:
             },
             caching={"disabled": True},
         )
-        assert_matches_type(ConfigCreateResponse, config, path=["response"])
+        assert_matches_type(Hyperdrive, config, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -496,7 +490,7 @@ class TestAsyncConfigs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         config = await response.parse()
-        assert_matches_type(ConfigCreateResponse, config, path=["response"])
+        assert_matches_type(Hyperdrive, config, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -517,7 +511,7 @@ class TestAsyncConfigs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             config = await response.parse()
-            assert_matches_type(ConfigCreateResponse, config, path=["response"])
+            assert_matches_type(Hyperdrive, config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -554,7 +548,7 @@ class TestAsyncConfigs:
                 "user": "postgres",
             },
         )
-        assert_matches_type(ConfigUpdateResponse, config, path=["response"])
+        assert_matches_type(Hyperdrive, config, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -573,7 +567,7 @@ class TestAsyncConfigs:
             },
             caching={"disabled": True},
         )
-        assert_matches_type(ConfigUpdateResponse, config, path=["response"])
+        assert_matches_type(Hyperdrive, config, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -595,7 +589,7 @@ class TestAsyncConfigs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         config = await response.parse()
-        assert_matches_type(ConfigUpdateResponse, config, path=["response"])
+        assert_matches_type(Hyperdrive, config, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -617,7 +611,7 @@ class TestAsyncConfigs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             config = await response.parse()
-            assert_matches_type(ConfigUpdateResponse, config, path=["response"])
+            assert_matches_type(Hyperdrive, config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -659,7 +653,7 @@ class TestAsyncConfigs:
         config = await async_client.hyperdrive.configs.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncSinglePage[ConfigListResponse], config, path=["response"])
+        assert_matches_type(AsyncSinglePage[Hyperdrive], config, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -670,7 +664,7 @@ class TestAsyncConfigs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         config = await response.parse()
-        assert_matches_type(AsyncSinglePage[ConfigListResponse], config, path=["response"])
+        assert_matches_type(AsyncSinglePage[Hyperdrive], config, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -681,7 +675,7 @@ class TestAsyncConfigs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             config = await response.parse()
-            assert_matches_type(AsyncSinglePage[ConfigListResponse], config, path=["response"])
+            assert_matches_type(AsyncSinglePage[Hyperdrive], config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -747,7 +741,7 @@ class TestAsyncConfigs:
             hyperdrive_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ConfigEditResponse, config, path=["response"])
+        assert_matches_type(Hyperdrive, config, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -763,7 +757,7 @@ class TestAsyncConfigs:
                 "user": "postgres",
             },
         )
-        assert_matches_type(ConfigEditResponse, config, path=["response"])
+        assert_matches_type(Hyperdrive, config, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -776,7 +770,7 @@ class TestAsyncConfigs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         config = await response.parse()
-        assert_matches_type(ConfigEditResponse, config, path=["response"])
+        assert_matches_type(Hyperdrive, config, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -789,7 +783,7 @@ class TestAsyncConfigs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             config = await response.parse()
-            assert_matches_type(ConfigEditResponse, config, path=["response"])
+            assert_matches_type(Hyperdrive, config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -814,7 +808,7 @@ class TestAsyncConfigs:
             hyperdrive_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ConfigGetResponse, config, path=["response"])
+        assert_matches_type(Hyperdrive, config, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -826,7 +820,7 @@ class TestAsyncConfigs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         config = await response.parse()
-        assert_matches_type(ConfigGetResponse, config, path=["response"])
+        assert_matches_type(Hyperdrive, config, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -838,7 +832,7 @@ class TestAsyncConfigs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             config = await response.parse()
-            assert_matches_type(ConfigGetResponse, config, path=["response"])
+            assert_matches_type(Hyperdrive, config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
