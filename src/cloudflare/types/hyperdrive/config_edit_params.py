@@ -12,8 +12,8 @@ __all__ = [
     "CachingHyperdriveHyperdriveCachingEnabled",
     "Origin",
     "OriginHyperdriveHyperdriveDatabase",
-    "OriginHyperdriveHyperdriveInternetOrigin",
-    "OriginHyperdriveHyperdriveOverAccessOrigin",
+    "OriginHyperdriveInternetOrigin",
+    "OriginHyperdriveOverAccessOrigin",
 ]
 
 
@@ -71,7 +71,7 @@ class OriginHyperdriveHyperdriveDatabase(TypedDict, total=False):
     """The user of your origin database."""
 
 
-class OriginHyperdriveHyperdriveInternetOrigin(TypedDict, total=False):
+class OriginHyperdriveInternetOrigin(TypedDict, total=False):
     host: Required[str]
     """The host (hostname or IP) of your origin database."""
 
@@ -79,7 +79,7 @@ class OriginHyperdriveHyperdriveInternetOrigin(TypedDict, total=False):
     """The port (default: 5432 for Postgres) of your origin database."""
 
 
-class OriginHyperdriveHyperdriveOverAccessOrigin(TypedDict, total=False):
+class OriginHyperdriveOverAccessOrigin(TypedDict, total=False):
     access_client_id: Required[str]
     """
     The Client ID of the Access token to use when connecting to the origin database.
@@ -96,7 +96,5 @@ class OriginHyperdriveHyperdriveOverAccessOrigin(TypedDict, total=False):
 
 
 Origin: TypeAlias = Union[
-    OriginHyperdriveHyperdriveDatabase,
-    OriginHyperdriveHyperdriveInternetOrigin,
-    OriginHyperdriveHyperdriveOverAccessOrigin,
+    OriginHyperdriveHyperdriveDatabase, OriginHyperdriveInternetOrigin, OriginHyperdriveOverAccessOrigin
 ]
