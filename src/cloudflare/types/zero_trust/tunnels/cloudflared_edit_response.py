@@ -87,7 +87,7 @@ class TunnelWARPConnectorTunnel(BaseModel):
     it has no connections to the Cloudflare Edge).
     """
 
-    tun_type: Optional[Literal["cfd_tunnel", "warp_connector", "ip_sec", "gre", "cni"]] = None
+    tun_type: Optional[Literal["cfd_tunnel", "warp_connector", "warp", "magic", "ip_sec", "gre", "cni"]] = None
     """The type of tunnel."""
 
 

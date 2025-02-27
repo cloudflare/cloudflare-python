@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union
+from typing import List, Union
 from datetime import datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
@@ -49,8 +49,8 @@ class TunnelListParams(TypedDict, total=False):
     it has no connections to the Cloudflare Edge).
     """
 
-    tun_types: str
-    """The types of tunnels to filter separated by a comma."""
+    tun_types: List[Literal["cfd_tunnel", "warp_connector", "warp", "magic", "ip_sec", "gre", "cni"]]
+    """The types of tunnels to filter by, separated by commas."""
 
     uuid: str
     """UUID of the tunnel."""
