@@ -285,7 +285,7 @@ class Cloudflare(SyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new synchronous cloudflare client instance.
+        """Construct a new synchronous Cloudflare client instance.
 
         This automatically infers the following arguments from their corresponding environment variables if they are not provided:
         - `api_token` from `CLOUDFLARE_API_TOKEN`
@@ -1074,7 +1074,7 @@ class AsyncCloudflare(AsyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new async cloudflare client instance.
+        """Construct a new async AsyncCloudflare client instance.
 
         This automatically infers the following arguments from their corresponding environment variables if they are not provided:
         - `api_token` from `CLOUDFLARE_API_TOKEN`
