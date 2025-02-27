@@ -1,12 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from __future__ import annotations
+
 from typing import List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, TypeAlias
 
+from ...._compat import PYDANTIC_V2
 from ...._models import BaseModel
-from .profiles.pattern import Pattern
-from .context_awareness import ContextAwareness
 
 __all__ = [
     "Profile",
@@ -426,3 +427,51 @@ class IntegrationProfile(BaseModel):
 
 
 Profile: TypeAlias = Union[CustomProfile, PredefinedProfile, IntegrationProfile]
+
+from .profiles.pattern import Pattern
+from .context_awareness import ContextAwareness
+
+if PYDANTIC_V2:
+    CustomProfile.model_rebuild()
+    CustomProfileEntryCustomEntry.model_rebuild()
+    CustomProfileEntryPredefinedEntry.model_rebuild()
+    CustomProfileEntryPredefinedEntryConfidence.model_rebuild()
+    CustomProfileEntryIntegrationEntry.model_rebuild()
+    CustomProfileEntryExactDataEntry.model_rebuild()
+    CustomProfileEntryWordListEntry.model_rebuild()
+    PredefinedProfile.model_rebuild()
+    PredefinedProfileEntryCustomEntry.model_rebuild()
+    PredefinedProfileEntryPredefinedEntry.model_rebuild()
+    PredefinedProfileEntryPredefinedEntryConfidence.model_rebuild()
+    PredefinedProfileEntryIntegrationEntry.model_rebuild()
+    PredefinedProfileEntryExactDataEntry.model_rebuild()
+    PredefinedProfileEntryWordListEntry.model_rebuild()
+    IntegrationProfile.model_rebuild()
+    IntegrationProfileEntryCustomEntry.model_rebuild()
+    IntegrationProfileEntryPredefinedEntry.model_rebuild()
+    IntegrationProfileEntryPredefinedEntryConfidence.model_rebuild()
+    IntegrationProfileEntryIntegrationEntry.model_rebuild()
+    IntegrationProfileEntryExactDataEntry.model_rebuild()
+    IntegrationProfileEntryWordListEntry.model_rebuild()
+else:
+    CustomProfile.update_forward_refs()  # type: ignore
+    CustomProfileEntryCustomEntry.update_forward_refs()  # type: ignore
+    CustomProfileEntryPredefinedEntry.update_forward_refs()  # type: ignore
+    CustomProfileEntryPredefinedEntryConfidence.update_forward_refs()  # type: ignore
+    CustomProfileEntryIntegrationEntry.update_forward_refs()  # type: ignore
+    CustomProfileEntryExactDataEntry.update_forward_refs()  # type: ignore
+    CustomProfileEntryWordListEntry.update_forward_refs()  # type: ignore
+    PredefinedProfile.update_forward_refs()  # type: ignore
+    PredefinedProfileEntryCustomEntry.update_forward_refs()  # type: ignore
+    PredefinedProfileEntryPredefinedEntry.update_forward_refs()  # type: ignore
+    PredefinedProfileEntryPredefinedEntryConfidence.update_forward_refs()  # type: ignore
+    PredefinedProfileEntryIntegrationEntry.update_forward_refs()  # type: ignore
+    PredefinedProfileEntryExactDataEntry.update_forward_refs()  # type: ignore
+    PredefinedProfileEntryWordListEntry.update_forward_refs()  # type: ignore
+    IntegrationProfile.update_forward_refs()  # type: ignore
+    IntegrationProfileEntryCustomEntry.update_forward_refs()  # type: ignore
+    IntegrationProfileEntryPredefinedEntry.update_forward_refs()  # type: ignore
+    IntegrationProfileEntryPredefinedEntryConfidence.update_forward_refs()  # type: ignore
+    IntegrationProfileEntryIntegrationEntry.update_forward_refs()  # type: ignore
+    IntegrationProfileEntryExactDataEntry.update_forward_refs()  # type: ignore
+    IntegrationProfileEntryWordListEntry.update_forward_refs()  # type: ignore
