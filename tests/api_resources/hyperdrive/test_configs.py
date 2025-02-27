@@ -335,7 +335,6 @@ class TestConfigs:
             name="example-hyperdrive",
             origin={
                 "database": "postgres",
-                "password": "password",
                 "scheme": "postgres",
                 "user": "postgres",
             },
@@ -754,7 +753,6 @@ class TestAsyncConfigs:
             name="example-hyperdrive",
             origin={
                 "database": "postgres",
-                "password": "password",
                 "scheme": "postgres",
                 "user": "postgres",
             },
