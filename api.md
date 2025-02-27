@@ -8913,3 +8913,59 @@ from cloudflare.types.security_center.insights import TypeGetResponse
 Methods:
 
 - <code title="get /{accounts_or_zones}/{account_or_zone_id}/security-center/insights/type">client.security_center.insights.type.<a href="./src/cloudflare/resources/security_center/insights/type.py">get</a>(\*, account_id, zone_id, \*\*<a href="src/cloudflare/types/security_center/insights/type_get_params.py">params</a>) -> <a href="./src/cloudflare/types/security_center/insights/type_get_response.py">Optional[TypeGetResponse]</a></code>
+
+# BrowsingRendering
+
+## Content
+
+Types:
+
+```python
+from cloudflare.types.browsing_rendering import ContentCreateResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{accountId}/browser-rendering/content">client.browsing_rendering.content.<a href="./src/cloudflare/resources/browsing_rendering/content.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/browsing_rendering/content_create_params.py">params</a>) -> <a href="./src/cloudflare/types/browsing_rendering/content_create_response.py">str</a></code>
+
+## Pdf
+
+Methods:
+
+- <code title="post /accounts/{accountId}/browser-rendering/pdf">client.browsing_rendering.pdf.<a href="./src/cloudflare/resources/browsing_rendering/pdf.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/browsing_rendering/pdf_create_params.py">params</a>) -> BinaryAPIResponse</code>
+
+## Scrape
+
+Types:
+
+```python
+from cloudflare.types.browsing_rendering import ScrapeCreateResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{accountId}/browser-rendering/scrape">client.browsing_rendering.scrape.<a href="./src/cloudflare/resources/browsing_rendering/scrape.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/browsing_rendering/scrape_create_params.py">params</a>) -> <a href="./src/cloudflare/types/browsing_rendering/scrape_create_response.py">ScrapeCreateResponse</a></code>
+
+## Screenshot
+
+Types:
+
+```python
+from cloudflare.types.browsing_rendering import ScreenshotCreateResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{accountId}/browser-rendering/screenshot">client.browsing_rendering.screenshot.<a href="./src/cloudflare/resources/browsing_rendering/screenshot.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/browsing_rendering/screenshot_create_params.py">params</a>) -> <a href="./src/cloudflare/types/browsing_rendering/screenshot_create_response.py">ScreenshotCreateResponse</a></code>
+
+## Snapshot
+
+Types:
+
+```python
+from cloudflare.types.browsing_rendering import SnapshotCreateResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{accountId}/browser-rendering/snapshot">client.browsing_rendering.snapshot.<a href="./src/cloudflare/resources/browsing_rendering/snapshot.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/browsing_rendering/snapshot_create_params.py">params</a>) -> <a href="./src/cloudflare/types/browsing_rendering/snapshot_create_response.py">Optional[SnapshotCreateResponse]</a></code>
