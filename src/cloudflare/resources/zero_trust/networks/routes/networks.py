@@ -116,7 +116,8 @@ class NetworksResource(SyncAPIResource):
         ip_network_encoded: str,
         *,
         account_id: str,
-        tun_type: Literal["cfd_tunnel", "warp_connector", "ip_sec", "gre", "cni"] | NotGiven = NOT_GIVEN,
+        tun_type: Literal["cfd_tunnel", "warp_connector", "warp", "magic", "ip_sec", "gre", "cni"]
+        | NotGiven = NOT_GIVEN,
         tunnel_id: str | NotGiven = NOT_GIVEN,
         virtual_network_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -314,7 +315,8 @@ class AsyncNetworksResource(AsyncAPIResource):
         ip_network_encoded: str,
         *,
         account_id: str,
-        tun_type: Literal["cfd_tunnel", "warp_connector", "ip_sec", "gre", "cni"] | NotGiven = NOT_GIVEN,
+        tun_type: Literal["cfd_tunnel", "warp_connector", "warp", "magic", "ip_sec", "gre", "cni"]
+        | NotGiven = NOT_GIVEN,
         tunnel_id: str | NotGiven = NOT_GIVEN,
         virtual_network_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
