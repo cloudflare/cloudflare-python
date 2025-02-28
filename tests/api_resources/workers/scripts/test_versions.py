@@ -47,7 +47,7 @@ class TestVersions:
                 "bindings": [
                     {
                         "name": "MY_ENV_VAR",
-                        "type": "plain_text",
+                        "type": "ai",
                     }
                 ],
                 "compatibility_date": "2021-01-01",
@@ -253,7 +253,7 @@ class TestAsyncVersions:
                 "bindings": [
                     {
                         "name": "MY_ENV_VAR",
-                        "type": "plain_text",
+                        "type": "ai",
                     }
                 ],
                 "compatibility_date": "2021-01-01",

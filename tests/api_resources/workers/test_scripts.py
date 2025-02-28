@@ -50,7 +50,7 @@ class TestScripts:
                 "bindings": [
                     {
                         "name": "MY_ENV_VAR",
-                        "type": "plain_text",
+                        "type": "ai",
                     }
                 ],
                 "body_part": "worker.js",
@@ -321,7 +321,7 @@ class TestAsyncScripts:
                 "bindings": [
                     {
                         "name": "MY_ENV_VAR",
-                        "type": "plain_text",
+                        "type": "ai",
                     }
                 ],
                 "body_part": "worker.js",
