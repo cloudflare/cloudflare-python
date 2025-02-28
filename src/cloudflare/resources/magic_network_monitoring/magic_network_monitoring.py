@@ -20,11 +20,23 @@ from .configs.configs import (
     ConfigsResourceWithStreamingResponse,
     AsyncConfigsResourceWithStreamingResponse,
 )
+from .vpc_flows.vpc_flows import (
+    VpcFlowsResource,
+    AsyncVpcFlowsResource,
+    VpcFlowsResourceWithRawResponse,
+    AsyncVpcFlowsResourceWithRawResponse,
+    VpcFlowsResourceWithStreamingResponse,
+    AsyncVpcFlowsResourceWithStreamingResponse,
+)
 
 __all__ = ["MagicNetworkMonitoringResource", "AsyncMagicNetworkMonitoringResource"]
 
 
 class MagicNetworkMonitoringResource(SyncAPIResource):
+    @cached_property
+    def vpc_flows(self) -> VpcFlowsResource:
+        return VpcFlowsResource(self._client)
+
     @cached_property
     def configs(self) -> ConfigsResource:
         return ConfigsResource(self._client)
@@ -54,6 +66,10 @@ class MagicNetworkMonitoringResource(SyncAPIResource):
 
 
 class AsyncMagicNetworkMonitoringResource(AsyncAPIResource):
+    @cached_property
+    def vpc_flows(self) -> AsyncVpcFlowsResource:
+        return AsyncVpcFlowsResource(self._client)
+
     @cached_property
     def configs(self) -> AsyncConfigsResource:
         return AsyncConfigsResource(self._client)
@@ -87,6 +103,10 @@ class MagicNetworkMonitoringResourceWithRawResponse:
         self._magic_network_monitoring = magic_network_monitoring
 
     @cached_property
+    def vpc_flows(self) -> VpcFlowsResourceWithRawResponse:
+        return VpcFlowsResourceWithRawResponse(self._magic_network_monitoring.vpc_flows)
+
+    @cached_property
     def configs(self) -> ConfigsResourceWithRawResponse:
         return ConfigsResourceWithRawResponse(self._magic_network_monitoring.configs)
 
@@ -98,6 +118,10 @@ class MagicNetworkMonitoringResourceWithRawResponse:
 class AsyncMagicNetworkMonitoringResourceWithRawResponse:
     def __init__(self, magic_network_monitoring: AsyncMagicNetworkMonitoringResource) -> None:
         self._magic_network_monitoring = magic_network_monitoring
+
+    @cached_property
+    def vpc_flows(self) -> AsyncVpcFlowsResourceWithRawResponse:
+        return AsyncVpcFlowsResourceWithRawResponse(self._magic_network_monitoring.vpc_flows)
 
     @cached_property
     def configs(self) -> AsyncConfigsResourceWithRawResponse:
@@ -113,6 +137,10 @@ class MagicNetworkMonitoringResourceWithStreamingResponse:
         self._magic_network_monitoring = magic_network_monitoring
 
     @cached_property
+    def vpc_flows(self) -> VpcFlowsResourceWithStreamingResponse:
+        return VpcFlowsResourceWithStreamingResponse(self._magic_network_monitoring.vpc_flows)
+
+    @cached_property
     def configs(self) -> ConfigsResourceWithStreamingResponse:
         return ConfigsResourceWithStreamingResponse(self._magic_network_monitoring.configs)
 
@@ -124,6 +152,10 @@ class MagicNetworkMonitoringResourceWithStreamingResponse:
 class AsyncMagicNetworkMonitoringResourceWithStreamingResponse:
     def __init__(self, magic_network_monitoring: AsyncMagicNetworkMonitoringResource) -> None:
         self._magic_network_monitoring = magic_network_monitoring
+
+    @cached_property
+    def vpc_flows(self) -> AsyncVpcFlowsResourceWithStreamingResponse:
+        return AsyncVpcFlowsResourceWithStreamingResponse(self._magic_network_monitoring.vpc_flows)
 
     @cached_property
     def configs(self) -> AsyncConfigsResourceWithStreamingResponse:
