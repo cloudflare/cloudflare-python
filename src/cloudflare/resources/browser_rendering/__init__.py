@@ -40,13 +40,13 @@ from .screenshot import (
     ScreenshotResourceWithStreamingResponse,
     AsyncScreenshotResourceWithStreamingResponse,
 )
-from .browsing_rendering import (
-    BrowsingRenderingResource,
-    AsyncBrowsingRenderingResource,
-    BrowsingRenderingResourceWithRawResponse,
-    AsyncBrowsingRenderingResourceWithRawResponse,
-    BrowsingRenderingResourceWithStreamingResponse,
-    AsyncBrowsingRenderingResourceWithStreamingResponse,
+from .browser_rendering import (
+    BrowserRenderingResource,
+    AsyncBrowserRenderingResource,
+    BrowserRenderingResourceWithRawResponse,
+    AsyncBrowserRenderingResourceWithRawResponse,
+    BrowserRenderingResourceWithStreamingResponse,
+    AsyncBrowserRenderingResourceWithStreamingResponse,
 )
 
 __all__ = [
@@ -80,10 +80,10 @@ __all__ = [
     "AsyncSnapshotResourceWithRawResponse",
     "SnapshotResourceWithStreamingResponse",
     "AsyncSnapshotResourceWithStreamingResponse",
-    "BrowsingRenderingResource",
-    "AsyncBrowsingRenderingResource",
-    "BrowsingRenderingResourceWithRawResponse",
-    "AsyncBrowsingRenderingResourceWithRawResponse",
-    "BrowsingRenderingResourceWithStreamingResponse",
-    "AsyncBrowsingRenderingResourceWithStreamingResponse",
+    "BrowserRenderingResource",
+    "AsyncBrowserRenderingResource",
+    "BrowserRenderingResourceWithRawResponse",
+    "AsyncBrowserRenderingResourceWithRawResponse",
+    "BrowserRenderingResourceWithStreamingResponse",
+    "AsyncBrowserRenderingResourceWithStreamingResponse",
 ]
