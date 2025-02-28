@@ -22,39 +22,39 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ..._base_client import make_request_options
-from ...types.browsing_rendering import content_create_params
-from ...types.browsing_rendering.content_create_response import ContentCreateResponse
+from ...types.browser_rendering import snapshot_create_params
+from ...types.browser_rendering.snapshot_create_response import SnapshotCreateResponse
 
-__all__ = ["ContentResource", "AsyncContentResource"]
+__all__ = ["SnapshotResource", "AsyncSnapshotResource"]
 
 
-class ContentResource(SyncAPIResource):
+class SnapshotResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ContentResourceWithRawResponse:
+    def with_raw_response(self) -> SnapshotResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return ContentResourceWithRawResponse(self)
+        return SnapshotResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ContentResourceWithStreamingResponse:
+    def with_streaming_response(self) -> SnapshotResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return ContentResourceWithStreamingResponse(self)
+        return SnapshotResourceWithStreamingResponse(self)
 
     def create(
         self,
         account_id: str,
         *,
         cache_ttl: float | NotGiven = NOT_GIVEN,
-        add_script_tag: Iterable[content_create_params.AddScriptTag] | NotGiven = NOT_GIVEN,
-        add_style_tag: Iterable[content_create_params.AddStyleTag] | NotGiven = NOT_GIVEN,
+        add_script_tag: Iterable[snapshot_create_params.AddScriptTag] | NotGiven = NOT_GIVEN,
+        add_style_tag: Iterable[snapshot_create_params.AddStyleTag] | NotGiven = NOT_GIVEN,
         allow_request_pattern: List[str] | NotGiven = NOT_GIVEN,
         allow_resource_types: List[
             Literal[
@@ -79,11 +79,11 @@ class ContentResource(SyncAPIResource):
             ]
         ]
         | NotGiven = NOT_GIVEN,
-        authenticate: content_create_params.Authenticate | NotGiven = NOT_GIVEN,
+        authenticate: snapshot_create_params.Authenticate | NotGiven = NOT_GIVEN,
         best_attempt: bool | NotGiven = NOT_GIVEN,
-        cookies: Iterable[content_create_params.Cookie] | NotGiven = NOT_GIVEN,
+        cookies: Iterable[snapshot_create_params.Cookie] | NotGiven = NOT_GIVEN,
         emulate_media_type: str | NotGiven = NOT_GIVEN,
-        goto_options: content_create_params.GotoOptions | NotGiven = NOT_GIVEN,
+        goto_options: snapshot_create_params.GotoOptions | NotGiven = NOT_GIVEN,
         html: str | NotGiven = NOT_GIVEN,
         reject_request_pattern: List[str] | NotGiven = NOT_GIVEN,
         reject_resource_types: List[
@@ -113,8 +113,8 @@ class ContentResource(SyncAPIResource):
         set_java_script_enabled: bool | NotGiven = NOT_GIVEN,
         url: str | NotGiven = NOT_GIVEN,
         user_agent: str | NotGiven = NOT_GIVEN,
-        viewport: content_create_params.Viewport | NotGiven = NOT_GIVEN,
-        wait_for_selector: content_create_params.WaitForSelector | NotGiven = NOT_GIVEN,
+        viewport: snapshot_create_params.Viewport | NotGiven = NOT_GIVEN,
+        wait_for_selector: snapshot_create_params.WaitForSelector | NotGiven = NOT_GIVEN,
         wait_for_timeout: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -122,11 +122,12 @@ class ContentResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> str:
-        """Fetches rendered HTML content from provided URL or HTML.
+    ) -> Optional[SnapshotCreateResponse]:
+        """Returns the page's HTML content and screenshot.
 
-        Check available options
-        like `goToOptions` and `waitFor*` to control page load behaviour.
+        Control page loading with
+        `goToOptions` and `waitFor*` options. Customize screenshots with `viewport`,
+        `fullPage`, `clip` and others.
 
         Args:
           account_id: Account ID.
@@ -180,7 +181,7 @@ class ContentResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/browser-rendering/content",
+            f"/accounts/{account_id}/browser-rendering/snapshot",
             body=maybe_transform(
                 {
                     "add_script_tag": add_script_tag,
@@ -203,47 +204,47 @@ class ContentResource(SyncAPIResource):
                     "wait_for_selector": wait_for_selector,
                     "wait_for_timeout": wait_for_timeout,
                 },
-                content_create_params.ContentCreateParams,
+                snapshot_create_params.SnapshotCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"cache_ttl": cache_ttl}, content_create_params.ContentCreateParams),
-                post_parser=ResultWrapper[Optional[ContentCreateResponse]]._unwrapper,
+                query=maybe_transform({"cache_ttl": cache_ttl}, snapshot_create_params.SnapshotCreateParams),
+                post_parser=ResultWrapper[Optional[SnapshotCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[str], ResultWrapper[str]),
+            cast_to=cast(Type[Optional[SnapshotCreateResponse]], ResultWrapper[SnapshotCreateResponse]),
         )
 
 
-class AsyncContentResource(AsyncAPIResource):
+class AsyncSnapshotResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncContentResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncSnapshotResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncContentResourceWithRawResponse(self)
+        return AsyncSnapshotResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncContentResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncSnapshotResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return AsyncContentResourceWithStreamingResponse(self)
+        return AsyncSnapshotResourceWithStreamingResponse(self)
 
     async def create(
         self,
         account_id: str,
         *,
         cache_ttl: float | NotGiven = NOT_GIVEN,
-        add_script_tag: Iterable[content_create_params.AddScriptTag] | NotGiven = NOT_GIVEN,
-        add_style_tag: Iterable[content_create_params.AddStyleTag] | NotGiven = NOT_GIVEN,
+        add_script_tag: Iterable[snapshot_create_params.AddScriptTag] | NotGiven = NOT_GIVEN,
+        add_style_tag: Iterable[snapshot_create_params.AddStyleTag] | NotGiven = NOT_GIVEN,
         allow_request_pattern: List[str] | NotGiven = NOT_GIVEN,
         allow_resource_types: List[
             Literal[
@@ -268,11 +269,11 @@ class AsyncContentResource(AsyncAPIResource):
             ]
         ]
         | NotGiven = NOT_GIVEN,
-        authenticate: content_create_params.Authenticate | NotGiven = NOT_GIVEN,
+        authenticate: snapshot_create_params.Authenticate | NotGiven = NOT_GIVEN,
         best_attempt: bool | NotGiven = NOT_GIVEN,
-        cookies: Iterable[content_create_params.Cookie] | NotGiven = NOT_GIVEN,
+        cookies: Iterable[snapshot_create_params.Cookie] | NotGiven = NOT_GIVEN,
         emulate_media_type: str | NotGiven = NOT_GIVEN,
-        goto_options: content_create_params.GotoOptions | NotGiven = NOT_GIVEN,
+        goto_options: snapshot_create_params.GotoOptions | NotGiven = NOT_GIVEN,
         html: str | NotGiven = NOT_GIVEN,
         reject_request_pattern: List[str] | NotGiven = NOT_GIVEN,
         reject_resource_types: List[
@@ -302,8 +303,8 @@ class AsyncContentResource(AsyncAPIResource):
         set_java_script_enabled: bool | NotGiven = NOT_GIVEN,
         url: str | NotGiven = NOT_GIVEN,
         user_agent: str | NotGiven = NOT_GIVEN,
-        viewport: content_create_params.Viewport | NotGiven = NOT_GIVEN,
-        wait_for_selector: content_create_params.WaitForSelector | NotGiven = NOT_GIVEN,
+        viewport: snapshot_create_params.Viewport | NotGiven = NOT_GIVEN,
+        wait_for_selector: snapshot_create_params.WaitForSelector | NotGiven = NOT_GIVEN,
         wait_for_timeout: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -311,11 +312,12 @@ class AsyncContentResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> str:
-        """Fetches rendered HTML content from provided URL or HTML.
+    ) -> Optional[SnapshotCreateResponse]:
+        """Returns the page's HTML content and screenshot.
 
-        Check available options
-        like `goToOptions` and `waitFor*` to control page load behaviour.
+        Control page loading with
+        `goToOptions` and `waitFor*` options. Customize screenshots with `viewport`,
+        `fullPage`, `clip` and others.
 
         Args:
           account_id: Account ID.
@@ -369,7 +371,7 @@ class AsyncContentResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/browser-rendering/content",
+            f"/accounts/{account_id}/browser-rendering/snapshot",
             body=await async_maybe_transform(
                 {
                     "add_script_tag": add_script_tag,
@@ -392,51 +394,53 @@ class AsyncContentResource(AsyncAPIResource):
                     "wait_for_selector": wait_for_selector,
                     "wait_for_timeout": wait_for_timeout,
                 },
-                content_create_params.ContentCreateParams,
+                snapshot_create_params.SnapshotCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"cache_ttl": cache_ttl}, content_create_params.ContentCreateParams),
-                post_parser=ResultWrapper[Optional[ContentCreateResponse]]._unwrapper,
+                query=await async_maybe_transform(
+                    {"cache_ttl": cache_ttl}, snapshot_create_params.SnapshotCreateParams
+                ),
+                post_parser=ResultWrapper[Optional[SnapshotCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[str], ResultWrapper[str]),
+            cast_to=cast(Type[Optional[SnapshotCreateResponse]], ResultWrapper[SnapshotCreateResponse]),
         )
 
 
-class ContentResourceWithRawResponse:
-    def __init__(self, content: ContentResource) -> None:
-        self._content = content
+class SnapshotResourceWithRawResponse:
+    def __init__(self, snapshot: SnapshotResource) -> None:
+        self._snapshot = snapshot
 
         self.create = to_raw_response_wrapper(
-            content.create,
+            snapshot.create,
         )
 
 
-class AsyncContentResourceWithRawResponse:
-    def __init__(self, content: AsyncContentResource) -> None:
-        self._content = content
+class AsyncSnapshotResourceWithRawResponse:
+    def __init__(self, snapshot: AsyncSnapshotResource) -> None:
+        self._snapshot = snapshot
 
         self.create = async_to_raw_response_wrapper(
-            content.create,
+            snapshot.create,
         )
 
 
-class ContentResourceWithStreamingResponse:
-    def __init__(self, content: ContentResource) -> None:
-        self._content = content
+class SnapshotResourceWithStreamingResponse:
+    def __init__(self, snapshot: SnapshotResource) -> None:
+        self._snapshot = snapshot
 
         self.create = to_streamed_response_wrapper(
-            content.create,
+            snapshot.create,
         )
 
 
-class AsyncContentResourceWithStreamingResponse:
-    def __init__(self, content: AsyncContentResource) -> None:
-        self._content = content
+class AsyncSnapshotResourceWithStreamingResponse:
+    def __init__(self, snapshot: AsyncSnapshotResource) -> None:
+        self._snapshot = snapshot
 
         self.create = async_to_streamed_response_wrapper(
-            content.create,
+            snapshot.create,
         )

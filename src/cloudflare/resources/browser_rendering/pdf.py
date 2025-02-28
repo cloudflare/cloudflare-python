@@ -15,45 +15,48 @@ from ..._utils import (
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
+    BinaryAPIResponse,
+    AsyncBinaryAPIResponse,
+    StreamedBinaryAPIResponse,
+    AsyncStreamedBinaryAPIResponse,
+    to_custom_raw_response_wrapper,
+    to_custom_streamed_response_wrapper,
+    async_to_custom_raw_response_wrapper,
+    async_to_custom_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from ...types.browsing_rendering import screenshot_create_params
-from ...types.browsing_rendering.screenshot_create_response import ScreenshotCreateResponse
+from ...types.browser_rendering import pdf_create_params
 
-__all__ = ["ScreenshotResource", "AsyncScreenshotResource"]
+__all__ = ["PDFResource", "AsyncPDFResource"]
 
 
-class ScreenshotResource(SyncAPIResource):
+class PDFResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ScreenshotResourceWithRawResponse:
+    def with_raw_response(self) -> PDFResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return ScreenshotResourceWithRawResponse(self)
+        return PDFResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ScreenshotResourceWithStreamingResponse:
+    def with_streaming_response(self) -> PDFResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return ScreenshotResourceWithStreamingResponse(self)
+        return PDFResourceWithStreamingResponse(self)
 
     def create(
         self,
         account_id: str,
         *,
         cache_ttl: float | NotGiven = NOT_GIVEN,
-        add_script_tag: Iterable[screenshot_create_params.AddScriptTag] | NotGiven = NOT_GIVEN,
-        add_style_tag: Iterable[screenshot_create_params.AddStyleTag] | NotGiven = NOT_GIVEN,
+        add_script_tag: Iterable[pdf_create_params.AddScriptTag] | NotGiven = NOT_GIVEN,
+        add_style_tag: Iterable[pdf_create_params.AddStyleTag] | NotGiven = NOT_GIVEN,
         allow_request_pattern: List[str] | NotGiven = NOT_GIVEN,
         allow_resource_types: List[
             Literal[
@@ -78,11 +81,11 @@ class ScreenshotResource(SyncAPIResource):
             ]
         ]
         | NotGiven = NOT_GIVEN,
-        authenticate: screenshot_create_params.Authenticate | NotGiven = NOT_GIVEN,
+        authenticate: pdf_create_params.Authenticate | NotGiven = NOT_GIVEN,
         best_attempt: bool | NotGiven = NOT_GIVEN,
-        cookies: Iterable[screenshot_create_params.Cookie] | NotGiven = NOT_GIVEN,
+        cookies: Iterable[pdf_create_params.Cookie] | NotGiven = NOT_GIVEN,
         emulate_media_type: str | NotGiven = NOT_GIVEN,
-        goto_options: screenshot_create_params.GotoOptions | NotGiven = NOT_GIVEN,
+        goto_options: pdf_create_params.GotoOptions | NotGiven = NOT_GIVEN,
         html: str | NotGiven = NOT_GIVEN,
         reject_request_pattern: List[str] | NotGiven = NOT_GIVEN,
         reject_resource_types: List[
@@ -108,15 +111,12 @@ class ScreenshotResource(SyncAPIResource):
             ]
         ]
         | NotGiven = NOT_GIVEN,
-        screenshot_options: screenshot_create_params.ScreenshotOptions | NotGiven = NOT_GIVEN,
-        scroll_page: bool | NotGiven = NOT_GIVEN,
-        selector: str | NotGiven = NOT_GIVEN,
         set_extra_http_headers: Dict[str, str] | NotGiven = NOT_GIVEN,
         set_java_script_enabled: bool | NotGiven = NOT_GIVEN,
         url: str | NotGiven = NOT_GIVEN,
         user_agent: str | NotGiven = NOT_GIVEN,
-        viewport: screenshot_create_params.Viewport | NotGiven = NOT_GIVEN,
-        wait_for_selector: screenshot_create_params.WaitForSelector | NotGiven = NOT_GIVEN,
+        viewport: pdf_create_params.Viewport | NotGiven = NOT_GIVEN,
+        wait_for_selector: pdf_create_params.WaitForSelector | NotGiven = NOT_GIVEN,
         wait_for_timeout: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -124,12 +124,11 @@ class ScreenshotResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ScreenshotCreateResponse:
-        """Takes a screenshot of a webpage from provided URL or HTML.
+    ) -> BinaryAPIResponse:
+        """Fetches rendered PDF from provided URL or HTML.
 
-        Control page loading
-        with `goToOptions` and `waitFor*` options. Customize screenshots with
-        `viewport`, `fullPage`, `clip` and others.
+        Check available options like
+        `goToOptions` and `waitFor*` to control page load behaviour.
 
         Args:
           account_id: Account ID.
@@ -163,8 +162,6 @@ class ScreenshotResource(SyncAPIResource):
           reject_resource_types: Block undesired requests that match the provided resource types, eg. 'image' or
               'script'.
 
-          screenshot_options: Check [options](https://pptr.dev/api/puppeteer.screenshotoptions).
-
           url: URL to navigate to, eg. `https://example.com`.
 
           viewport: Check [options](https://pptr.dev/api/puppeteer.page.setviewport).
@@ -184,8 +181,9 @@ class ScreenshotResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        extra_headers = {"Accept": "application/pdf", **(extra_headers or {})}
         return self._post(
-            f"/accounts/{account_id}/browser-rendering/screenshot",
+            f"/accounts/{account_id}/browser-rendering/pdf",
             body=maybe_transform(
                 {
                     "add_script_tag": add_script_tag,
@@ -200,9 +198,6 @@ class ScreenshotResource(SyncAPIResource):
                     "html": html,
                     "reject_request_pattern": reject_request_pattern,
                     "reject_resource_types": reject_resource_types,
-                    "screenshot_options": screenshot_options,
-                    "scroll_page": scroll_page,
-                    "selector": selector,
                     "set_extra_http_headers": set_extra_http_headers,
                     "set_java_script_enabled": set_java_script_enabled,
                     "url": url,
@@ -211,46 +206,46 @@ class ScreenshotResource(SyncAPIResource):
                     "wait_for_selector": wait_for_selector,
                     "wait_for_timeout": wait_for_timeout,
                 },
-                screenshot_create_params.ScreenshotCreateParams,
+                pdf_create_params.PDFCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"cache_ttl": cache_ttl}, screenshot_create_params.ScreenshotCreateParams),
+                query=maybe_transform({"cache_ttl": cache_ttl}, pdf_create_params.PDFCreateParams),
             ),
-            cast_to=ScreenshotCreateResponse,
+            cast_to=BinaryAPIResponse,
         )
 
 
-class AsyncScreenshotResource(AsyncAPIResource):
+class AsyncPDFResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncScreenshotResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncPDFResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncScreenshotResourceWithRawResponse(self)
+        return AsyncPDFResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncScreenshotResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncPDFResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return AsyncScreenshotResourceWithStreamingResponse(self)
+        return AsyncPDFResourceWithStreamingResponse(self)
 
     async def create(
         self,
         account_id: str,
         *,
         cache_ttl: float | NotGiven = NOT_GIVEN,
-        add_script_tag: Iterable[screenshot_create_params.AddScriptTag] | NotGiven = NOT_GIVEN,
-        add_style_tag: Iterable[screenshot_create_params.AddStyleTag] | NotGiven = NOT_GIVEN,
+        add_script_tag: Iterable[pdf_create_params.AddScriptTag] | NotGiven = NOT_GIVEN,
+        add_style_tag: Iterable[pdf_create_params.AddStyleTag] | NotGiven = NOT_GIVEN,
         allow_request_pattern: List[str] | NotGiven = NOT_GIVEN,
         allow_resource_types: List[
             Literal[
@@ -275,11 +270,11 @@ class AsyncScreenshotResource(AsyncAPIResource):
             ]
         ]
         | NotGiven = NOT_GIVEN,
-        authenticate: screenshot_create_params.Authenticate | NotGiven = NOT_GIVEN,
+        authenticate: pdf_create_params.Authenticate | NotGiven = NOT_GIVEN,
         best_attempt: bool | NotGiven = NOT_GIVEN,
-        cookies: Iterable[screenshot_create_params.Cookie] | NotGiven = NOT_GIVEN,
+        cookies: Iterable[pdf_create_params.Cookie] | NotGiven = NOT_GIVEN,
         emulate_media_type: str | NotGiven = NOT_GIVEN,
-        goto_options: screenshot_create_params.GotoOptions | NotGiven = NOT_GIVEN,
+        goto_options: pdf_create_params.GotoOptions | NotGiven = NOT_GIVEN,
         html: str | NotGiven = NOT_GIVEN,
         reject_request_pattern: List[str] | NotGiven = NOT_GIVEN,
         reject_resource_types: List[
@@ -305,15 +300,12 @@ class AsyncScreenshotResource(AsyncAPIResource):
             ]
         ]
         | NotGiven = NOT_GIVEN,
-        screenshot_options: screenshot_create_params.ScreenshotOptions | NotGiven = NOT_GIVEN,
-        scroll_page: bool | NotGiven = NOT_GIVEN,
-        selector: str | NotGiven = NOT_GIVEN,
         set_extra_http_headers: Dict[str, str] | NotGiven = NOT_GIVEN,
         set_java_script_enabled: bool | NotGiven = NOT_GIVEN,
         url: str | NotGiven = NOT_GIVEN,
         user_agent: str | NotGiven = NOT_GIVEN,
-        viewport: screenshot_create_params.Viewport | NotGiven = NOT_GIVEN,
-        wait_for_selector: screenshot_create_params.WaitForSelector | NotGiven = NOT_GIVEN,
+        viewport: pdf_create_params.Viewport | NotGiven = NOT_GIVEN,
+        wait_for_selector: pdf_create_params.WaitForSelector | NotGiven = NOT_GIVEN,
         wait_for_timeout: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -321,12 +313,11 @@ class AsyncScreenshotResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ScreenshotCreateResponse:
-        """Takes a screenshot of a webpage from provided URL or HTML.
+    ) -> AsyncBinaryAPIResponse:
+        """Fetches rendered PDF from provided URL or HTML.
 
-        Control page loading
-        with `goToOptions` and `waitFor*` options. Customize screenshots with
-        `viewport`, `fullPage`, `clip` and others.
+        Check available options like
+        `goToOptions` and `waitFor*` to control page load behaviour.
 
         Args:
           account_id: Account ID.
@@ -360,8 +351,6 @@ class AsyncScreenshotResource(AsyncAPIResource):
           reject_resource_types: Block undesired requests that match the provided resource types, eg. 'image' or
               'script'.
 
-          screenshot_options: Check [options](https://pptr.dev/api/puppeteer.screenshotoptions).
-
           url: URL to navigate to, eg. `https://example.com`.
 
           viewport: Check [options](https://pptr.dev/api/puppeteer.page.setviewport).
@@ -381,8 +370,9 @@ class AsyncScreenshotResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        extra_headers = {"Accept": "application/pdf", **(extra_headers or {})}
         return await self._post(
-            f"/accounts/{account_id}/browser-rendering/screenshot",
+            f"/accounts/{account_id}/browser-rendering/pdf",
             body=await async_maybe_transform(
                 {
                     "add_script_tag": add_script_tag,
@@ -397,9 +387,6 @@ class AsyncScreenshotResource(AsyncAPIResource):
                     "html": html,
                     "reject_request_pattern": reject_request_pattern,
                     "reject_resource_types": reject_resource_types,
-                    "screenshot_options": screenshot_options,
-                    "scroll_page": scroll_page,
-                    "selector": selector,
                     "set_extra_http_headers": set_extra_http_headers,
                     "set_java_script_enabled": set_java_script_enabled,
                     "url": url,
@@ -408,52 +395,54 @@ class AsyncScreenshotResource(AsyncAPIResource):
                     "wait_for_selector": wait_for_selector,
                     "wait_for_timeout": wait_for_timeout,
                 },
-                screenshot_create_params.ScreenshotCreateParams,
+                pdf_create_params.PDFCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
-                    {"cache_ttl": cache_ttl}, screenshot_create_params.ScreenshotCreateParams
-                ),
+                query=await async_maybe_transform({"cache_ttl": cache_ttl}, pdf_create_params.PDFCreateParams),
             ),
-            cast_to=ScreenshotCreateResponse,
+            cast_to=AsyncBinaryAPIResponse,
         )
 
 
-class ScreenshotResourceWithRawResponse:
-    def __init__(self, screenshot: ScreenshotResource) -> None:
-        self._screenshot = screenshot
+class PDFResourceWithRawResponse:
+    def __init__(self, pdf: PDFResource) -> None:
+        self._pdf = pdf
 
-        self.create = to_raw_response_wrapper(
-            screenshot.create,
+        self.create = to_custom_raw_response_wrapper(
+            pdf.create,
+            BinaryAPIResponse,
         )
 
 
-class AsyncScreenshotResourceWithRawResponse:
-    def __init__(self, screenshot: AsyncScreenshotResource) -> None:
-        self._screenshot = screenshot
+class AsyncPDFResourceWithRawResponse:
+    def __init__(self, pdf: AsyncPDFResource) -> None:
+        self._pdf = pdf
 
-        self.create = async_to_raw_response_wrapper(
-            screenshot.create,
+        self.create = async_to_custom_raw_response_wrapper(
+            pdf.create,
+            AsyncBinaryAPIResponse,
         )
 
 
-class ScreenshotResourceWithStreamingResponse:
-    def __init__(self, screenshot: ScreenshotResource) -> None:
-        self._screenshot = screenshot
+class PDFResourceWithStreamingResponse:
+    def __init__(self, pdf: PDFResource) -> None:
+        self._pdf = pdf
 
-        self.create = to_streamed_response_wrapper(
-            screenshot.create,
+        self.create = to_custom_streamed_response_wrapper(
+            pdf.create,
+            StreamedBinaryAPIResponse,
         )
 
 
-class AsyncScreenshotResourceWithStreamingResponse:
-    def __init__(self, screenshot: AsyncScreenshotResource) -> None:
-        self._screenshot = screenshot
+class AsyncPDFResourceWithStreamingResponse:
+    def __init__(self, pdf: AsyncPDFResource) -> None:
+        self._pdf = pdf
 
-        self.create = async_to_streamed_response_wrapper(
-            screenshot.create,
+        self.create = async_to_custom_streamed_response_wrapper(
+            pdf.create,
+            AsyncStreamedBinaryAPIResponse,
         )
