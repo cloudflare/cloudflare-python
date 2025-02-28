@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from .pdf_create_params import PdfCreateParams as PdfCreateParams
+from .pdf_create_params import PDFCreateParams as PDFCreateParams
 from .scrape_create_params import ScrapeCreateParams as ScrapeCreateParams
 from .content_create_params import ContentCreateParams as ContentCreateParams
 from .scrape_create_response import ScrapeCreateResponse as ScrapeCreateResponse
