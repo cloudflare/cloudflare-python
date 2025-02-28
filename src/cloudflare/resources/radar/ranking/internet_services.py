@@ -23,8 +23,13 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
-from ....types.radar.ranking import internet_service_top_params, internet_service_timeseries_groups_params
+from ....types.radar.ranking import (
+    internet_service_top_params,
+    internet_service_categories_params,
+    internet_service_timeseries_groups_params,
+)
 from ....types.radar.ranking.internet_service_top_response import InternetServiceTopResponse
+from ....types.radar.ranking.internet_service_categories_response import InternetServiceCategoriesResponse
 from ....types.radar.ranking.internet_service_timeseries_groups_response import InternetServiceTimeseriesGroupsResponse
 
 __all__ = ["InternetServicesResource", "AsyncInternetServicesResource"]
@@ -49,6 +54,61 @@ class InternetServicesResource(SyncAPIResource):
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
         return InternetServicesResourceWithStreamingResponse(self)
+
+    def categories(
+        self,
+        *,
+        date: List[Union[str, date]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        limit: int | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> InternetServiceCategoriesResponse:
+        """
+        Retrieves the list of Internet services categories.
+
+        Args:
+          date: Array of dates to filter the ranking.
+
+          format: Format in which results will be returned.
+
+          limit: Limits the number of objects returned in the response.
+
+          name: Array of names used to label the series in the response.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            "/radar/ranking/internet_services/categories",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "date": date,
+                        "format": format,
+                        "limit": limit,
+                        "name": name,
+                    },
+                    internet_service_categories_params.InternetServiceCategoriesParams,
+                ),
+                post_parser=ResultWrapper[InternetServiceCategoriesResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[InternetServiceCategoriesResponse], ResultWrapper[InternetServiceCategoriesResponse]),
+        )
 
     def timeseries_groups(
         self,
@@ -201,6 +261,61 @@ class AsyncInternetServicesResource(AsyncAPIResource):
         """
         return AsyncInternetServicesResourceWithStreamingResponse(self)
 
+    async def categories(
+        self,
+        *,
+        date: List[Union[str, date]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        limit: int | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> InternetServiceCategoriesResponse:
+        """
+        Retrieves the list of Internet services categories.
+
+        Args:
+          date: Array of dates to filter the ranking.
+
+          format: Format in which results will be returned.
+
+          limit: Limits the number of objects returned in the response.
+
+          name: Array of names used to label the series in the response.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            "/radar/ranking/internet_services/categories",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "date": date,
+                        "format": format,
+                        "limit": limit,
+                        "name": name,
+                    },
+                    internet_service_categories_params.InternetServiceCategoriesParams,
+                ),
+                post_parser=ResultWrapper[InternetServiceCategoriesResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[InternetServiceCategoriesResponse], ResultWrapper[InternetServiceCategoriesResponse]),
+        )
+
     async def timeseries_groups(
         self,
         *,
@@ -336,6 +451,9 @@ class InternetServicesResourceWithRawResponse:
     def __init__(self, internet_services: InternetServicesResource) -> None:
         self._internet_services = internet_services
 
+        self.categories = to_raw_response_wrapper(
+            internet_services.categories,
+        )
         self.timeseries_groups = to_raw_response_wrapper(
             internet_services.timeseries_groups,
         )
@@ -348,6 +466,9 @@ class AsyncInternetServicesResourceWithRawResponse:
     def __init__(self, internet_services: AsyncInternetServicesResource) -> None:
         self._internet_services = internet_services
 
+        self.categories = async_to_raw_response_wrapper(
+            internet_services.categories,
+        )
         self.timeseries_groups = async_to_raw_response_wrapper(
             internet_services.timeseries_groups,
         )
@@ -360,6 +481,9 @@ class InternetServicesResourceWithStreamingResponse:
     def __init__(self, internet_services: InternetServicesResource) -> None:
         self._internet_services = internet_services
 
+        self.categories = to_streamed_response_wrapper(
+            internet_services.categories,
+        )
         self.timeseries_groups = to_streamed_response_wrapper(
             internet_services.timeseries_groups,
         )
@@ -372,6 +496,9 @@ class AsyncInternetServicesResourceWithStreamingResponse:
     def __init__(self, internet_services: AsyncInternetServicesResource) -> None:
         self._internet_services = internet_services
 
+        self.categories = async_to_streamed_response_wrapper(
+            internet_services.categories,
+        )
         self.timeseries_groups = async_to_streamed_response_wrapper(
             internet_services.timeseries_groups,
         )
