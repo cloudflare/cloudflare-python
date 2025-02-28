@@ -9,12 +9,12 @@ from .tokens import (
     AsyncTokensResourceWithStreamingResponse,
 )
 from .vpc_flows import (
-    VpcFlowsResource,
-    AsyncVpcFlowsResource,
-    VpcFlowsResourceWithRawResponse,
-    AsyncVpcFlowsResourceWithRawResponse,
-    VpcFlowsResourceWithStreamingResponse,
-    AsyncVpcFlowsResourceWithStreamingResponse,
+    VPCFlowsResource,
+    AsyncVPCFlowsResource,
+    VPCFlowsResourceWithRawResponse,
+    AsyncVPCFlowsResourceWithRawResponse,
+    VPCFlowsResourceWithStreamingResponse,
+    AsyncVPCFlowsResourceWithStreamingResponse,
 )
 
 __all__ = [
@@ -24,10 +24,10 @@ __all__ = [
     "AsyncTokensResourceWithRawResponse",
     "TokensResourceWithStreamingResponse",
     "AsyncTokensResourceWithStreamingResponse",
-    "VpcFlowsResource",
-    "AsyncVpcFlowsResource",
-    "VpcFlowsResourceWithRawResponse",
-    "AsyncVpcFlowsResourceWithRawResponse",
-    "VpcFlowsResourceWithStreamingResponse",
-    "AsyncVpcFlowsResourceWithStreamingResponse",
+    "VPCFlowsResource",
+    "AsyncVPCFlowsResource",
+    "VPCFlowsResourceWithRawResponse",
+    "AsyncVPCFlowsResourceWithRawResponse",
+    "VPCFlowsResourceWithStreamingResponse",
+    "AsyncVPCFlowsResourceWithStreamingResponse",
 ]

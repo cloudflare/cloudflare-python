@@ -20,7 +20,7 @@ from cloudflare._response import (
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
-class TestPdf:
+class TestPDF:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
@@ -163,7 +163,7 @@ class TestPdf:
             )
 
 
-class TestAsyncPdf:
+class TestAsyncPDF:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize

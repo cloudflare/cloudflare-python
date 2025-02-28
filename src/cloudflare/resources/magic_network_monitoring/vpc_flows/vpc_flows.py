@@ -13,61 +13,61 @@ from .tokens import (
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 
-__all__ = ["VpcFlowsResource", "AsyncVpcFlowsResource"]
+__all__ = ["VPCFlowsResource", "AsyncVPCFlowsResource"]
 
 
-class VpcFlowsResource(SyncAPIResource):
+class VPCFlowsResource(SyncAPIResource):
     @cached_property
     def tokens(self) -> TokensResource:
         return TokensResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> VpcFlowsResourceWithRawResponse:
+    def with_raw_response(self) -> VPCFlowsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return VpcFlowsResourceWithRawResponse(self)
+        return VPCFlowsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> VpcFlowsResourceWithStreamingResponse:
+    def with_streaming_response(self) -> VPCFlowsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return VpcFlowsResourceWithStreamingResponse(self)
+        return VPCFlowsResourceWithStreamingResponse(self)
 
 
-class AsyncVpcFlowsResource(AsyncAPIResource):
+class AsyncVPCFlowsResource(AsyncAPIResource):
     @cached_property
     def tokens(self) -> AsyncTokensResource:
         return AsyncTokensResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncVpcFlowsResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncVPCFlowsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncVpcFlowsResourceWithRawResponse(self)
+        return AsyncVPCFlowsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncVpcFlowsResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncVPCFlowsResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return AsyncVpcFlowsResourceWithStreamingResponse(self)
+        return AsyncVPCFlowsResourceWithStreamingResponse(self)
 
 
-class VpcFlowsResourceWithRawResponse:
-    def __init__(self, vpc_flows: VpcFlowsResource) -> None:
+class VPCFlowsResourceWithRawResponse:
+    def __init__(self, vpc_flows: VPCFlowsResource) -> None:
         self._vpc_flows = vpc_flows
 
     @cached_property
@@ -75,8 +75,8 @@ class VpcFlowsResourceWithRawResponse:
         return TokensResourceWithRawResponse(self._vpc_flows.tokens)
 
 
-class AsyncVpcFlowsResourceWithRawResponse:
-    def __init__(self, vpc_flows: AsyncVpcFlowsResource) -> None:
+class AsyncVPCFlowsResourceWithRawResponse:
+    def __init__(self, vpc_flows: AsyncVPCFlowsResource) -> None:
         self._vpc_flows = vpc_flows
 
     @cached_property
@@ -84,8 +84,8 @@ class AsyncVpcFlowsResourceWithRawResponse:
         return AsyncTokensResourceWithRawResponse(self._vpc_flows.tokens)
 
 
-class VpcFlowsResourceWithStreamingResponse:
-    def __init__(self, vpc_flows: VpcFlowsResource) -> None:
+class VPCFlowsResourceWithStreamingResponse:
+    def __init__(self, vpc_flows: VPCFlowsResource) -> None:
         self._vpc_flows = vpc_flows
 
     @cached_property
@@ -93,8 +93,8 @@ class VpcFlowsResourceWithStreamingResponse:
         return TokensResourceWithStreamingResponse(self._vpc_flows.tokens)
 
 
-class AsyncVpcFlowsResourceWithStreamingResponse:
-    def __init__(self, vpc_flows: AsyncVpcFlowsResource) -> None:
+class AsyncVPCFlowsResourceWithStreamingResponse:
+    def __init__(self, vpc_flows: AsyncVPCFlowsResource) -> None:
         self._vpc_flows = vpc_flows
 
     @cached_property

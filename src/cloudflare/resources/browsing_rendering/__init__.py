@@ -1,12 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from .pdf import (
-    PdfResource,
-    AsyncPdfResource,
-    PdfResourceWithRawResponse,
-    AsyncPdfResourceWithRawResponse,
-    PdfResourceWithStreamingResponse,
-    AsyncPdfResourceWithStreamingResponse,
+    PDFResource,
+    AsyncPDFResource,
+    PDFResourceWithRawResponse,
+    AsyncPDFResourceWithRawResponse,
+    PDFResourceWithStreamingResponse,
+    AsyncPDFResourceWithStreamingResponse,
 )
 from .scrape import (
     ScrapeResource,
@@ -56,12 +56,12 @@ __all__ = [
     "AsyncContentResourceWithRawResponse",
     "ContentResourceWithStreamingResponse",
     "AsyncContentResourceWithStreamingResponse",
-    "PdfResource",
-    "AsyncPdfResource",
-    "PdfResourceWithRawResponse",
-    "AsyncPdfResourceWithRawResponse",
-    "PdfResourceWithStreamingResponse",
-    "AsyncPdfResourceWithStreamingResponse",
+    "PDFResource",
+    "AsyncPDFResource",
+    "PDFResourceWithRawResponse",
+    "AsyncPDFResourceWithRawResponse",
+    "PDFResourceWithStreamingResponse",
+    "AsyncPDFResourceWithStreamingResponse",
     "ScrapeResource",
     "AsyncScrapeResource",
     "ScrapeResourceWithRawResponse",

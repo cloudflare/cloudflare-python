@@ -3951,7 +3951,7 @@ Methods:
 
 # MagicNetworkMonitoring
 
-## VpcFlows
+## VPCFlows
 
 ### Tokens
 
@@ -8942,7 +8942,7 @@ Methods:
 
 - <code title="post /accounts/{accountId}/browser-rendering/content">client.browsing_rendering.content.<a href="./src/cloudflare/resources/browsing_rendering/content.py">create</a>(account_id, \*\*<a href="src/cloudflare/types/browsing_rendering/content_create_params.py">params</a>) -> <a href="./src/cloudflare/types/browsing_rendering/content_create_response.py">str</a></code>
 
-## Pdf
+## PDF
 
 Methods:
 
