@@ -27,28 +27,28 @@ from ..._response import (
 from ..._base_client import make_request_options
 from ...types.browsing_rendering import pdf_create_params
 
-__all__ = ["PdfResource", "AsyncPdfResource"]
+__all__ = ["PDFResource", "AsyncPDFResource"]
 
 
-class PdfResource(SyncAPIResource):
+class PDFResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> PdfResourceWithRawResponse:
+    def with_raw_response(self) -> PDFResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return PdfResourceWithRawResponse(self)
+        return PDFResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> PdfResourceWithStreamingResponse:
+    def with_streaming_response(self) -> PDFResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return PdfResourceWithStreamingResponse(self)
+        return PDFResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -206,38 +206,38 @@ class PdfResource(SyncAPIResource):
                     "wait_for_selector": wait_for_selector,
                     "wait_for_timeout": wait_for_timeout,
                 },
-                pdf_create_params.PdfCreateParams,
+                pdf_create_params.PDFCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"cache_ttl": cache_ttl}, pdf_create_params.PdfCreateParams),
+                query=maybe_transform({"cache_ttl": cache_ttl}, pdf_create_params.PDFCreateParams),
             ),
             cast_to=BinaryAPIResponse,
         )
 
 
-class AsyncPdfResource(AsyncAPIResource):
+class AsyncPDFResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncPdfResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncPDFResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncPdfResourceWithRawResponse(self)
+        return AsyncPDFResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncPdfResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncPDFResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return AsyncPdfResourceWithStreamingResponse(self)
+        return AsyncPDFResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -395,21 +395,21 @@ class AsyncPdfResource(AsyncAPIResource):
                     "wait_for_selector": wait_for_selector,
                     "wait_for_timeout": wait_for_timeout,
                 },
-                pdf_create_params.PdfCreateParams,
+                pdf_create_params.PDFCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"cache_ttl": cache_ttl}, pdf_create_params.PdfCreateParams),
+                query=await async_maybe_transform({"cache_ttl": cache_ttl}, pdf_create_params.PDFCreateParams),
             ),
             cast_to=AsyncBinaryAPIResponse,
         )
 
 
-class PdfResourceWithRawResponse:
-    def __init__(self, pdf: PdfResource) -> None:
+class PDFResourceWithRawResponse:
+    def __init__(self, pdf: PDFResource) -> None:
         self._pdf = pdf
 
         self.create = to_custom_raw_response_wrapper(
@@ -418,8 +418,8 @@ class PdfResourceWithRawResponse:
         )
 
 
-class AsyncPdfResourceWithRawResponse:
-    def __init__(self, pdf: AsyncPdfResource) -> None:
+class AsyncPDFResourceWithRawResponse:
+    def __init__(self, pdf: AsyncPDFResource) -> None:
         self._pdf = pdf
 
         self.create = async_to_custom_raw_response_wrapper(
@@ -428,8 +428,8 @@ class AsyncPdfResourceWithRawResponse:
         )
 
 
-class PdfResourceWithStreamingResponse:
-    def __init__(self, pdf: PdfResource) -> None:
+class PDFResourceWithStreamingResponse:
+    def __init__(self, pdf: PDFResource) -> None:
         self._pdf = pdf
 
         self.create = to_custom_streamed_response_wrapper(
@@ -438,8 +438,8 @@ class PdfResourceWithStreamingResponse:
         )
 
 
-class AsyncPdfResourceWithStreamingResponse:
-    def __init__(self, pdf: AsyncPdfResource) -> None:
+class AsyncPDFResourceWithStreamingResponse:
+    def __init__(self, pdf: AsyncPDFResource) -> None:
         self._pdf = pdf
 
         self.create = async_to_custom_streamed_response_wrapper(

@@ -8,7 +8,7 @@ from typing_extensions import Literal, Required, Annotated, TypedDict
 from ..._utils import PropertyInfo
 
 __all__ = [
-    "PdfCreateParams",
+    "PDFCreateParams",
     "AddScriptTag",
     "AddStyleTag",
     "Authenticate",
@@ -19,7 +19,7 @@ __all__ = [
 ]
 
 
-class PdfCreateParams(TypedDict, total=False):
+class PDFCreateParams(TypedDict, total=False):
     cache_ttl: Annotated[float, PropertyInfo(alias="cacheTTL")]
     """Cache TTL default is 5s. Set to 0 to disable."""
 

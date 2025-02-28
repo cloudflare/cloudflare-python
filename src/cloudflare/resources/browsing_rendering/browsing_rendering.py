@@ -3,12 +3,12 @@
 from __future__ import annotations
 
 from .pdf import (
-    PdfResource,
-    AsyncPdfResource,
-    PdfResourceWithRawResponse,
-    AsyncPdfResourceWithRawResponse,
-    PdfResourceWithStreamingResponse,
-    AsyncPdfResourceWithStreamingResponse,
+    PDFResource,
+    AsyncPDFResource,
+    PDFResourceWithRawResponse,
+    AsyncPDFResourceWithRawResponse,
+    PDFResourceWithStreamingResponse,
+    AsyncPDFResourceWithStreamingResponse,
 )
 from .scrape import (
     ScrapeResource,
@@ -54,8 +54,8 @@ class BrowsingRenderingResource(SyncAPIResource):
         return ContentResource(self._client)
 
     @cached_property
-    def pdf(self) -> PdfResource:
-        return PdfResource(self._client)
+    def pdf(self) -> PDFResource:
+        return PDFResource(self._client)
 
     @cached_property
     def scrape(self) -> ScrapeResource:
@@ -95,8 +95,8 @@ class AsyncBrowsingRenderingResource(AsyncAPIResource):
         return AsyncContentResource(self._client)
 
     @cached_property
-    def pdf(self) -> AsyncPdfResource:
-        return AsyncPdfResource(self._client)
+    def pdf(self) -> AsyncPDFResource:
+        return AsyncPDFResource(self._client)
 
     @cached_property
     def scrape(self) -> AsyncScrapeResource:
@@ -139,8 +139,8 @@ class BrowsingRenderingResourceWithRawResponse:
         return ContentResourceWithRawResponse(self._browsing_rendering.content)
 
     @cached_property
-    def pdf(self) -> PdfResourceWithRawResponse:
-        return PdfResourceWithRawResponse(self._browsing_rendering.pdf)
+    def pdf(self) -> PDFResourceWithRawResponse:
+        return PDFResourceWithRawResponse(self._browsing_rendering.pdf)
 
     @cached_property
     def scrape(self) -> ScrapeResourceWithRawResponse:
@@ -164,8 +164,8 @@ class AsyncBrowsingRenderingResourceWithRawResponse:
         return AsyncContentResourceWithRawResponse(self._browsing_rendering.content)
 
     @cached_property
-    def pdf(self) -> AsyncPdfResourceWithRawResponse:
-        return AsyncPdfResourceWithRawResponse(self._browsing_rendering.pdf)
+    def pdf(self) -> AsyncPDFResourceWithRawResponse:
+        return AsyncPDFResourceWithRawResponse(self._browsing_rendering.pdf)
 
     @cached_property
     def scrape(self) -> AsyncScrapeResourceWithRawResponse:
@@ -189,8 +189,8 @@ class BrowsingRenderingResourceWithStreamingResponse:
         return ContentResourceWithStreamingResponse(self._browsing_rendering.content)
 
     @cached_property
-    def pdf(self) -> PdfResourceWithStreamingResponse:
-        return PdfResourceWithStreamingResponse(self._browsing_rendering.pdf)
+    def pdf(self) -> PDFResourceWithStreamingResponse:
+        return PDFResourceWithStreamingResponse(self._browsing_rendering.pdf)
 
     @cached_property
     def scrape(self) -> ScrapeResourceWithStreamingResponse:
@@ -214,8 +214,8 @@ class AsyncBrowsingRenderingResourceWithStreamingResponse:
         return AsyncContentResourceWithStreamingResponse(self._browsing_rendering.content)
 
     @cached_property
-    def pdf(self) -> AsyncPdfResourceWithStreamingResponse:
-        return AsyncPdfResourceWithStreamingResponse(self._browsing_rendering.pdf)
+    def pdf(self) -> AsyncPDFResourceWithStreamingResponse:
+        return AsyncPDFResourceWithStreamingResponse(self._browsing_rendering.pdf)
 
     @cached_property
     def scrape(self) -> AsyncScrapeResourceWithStreamingResponse:
