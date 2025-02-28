@@ -6970,6 +6970,16 @@ Methods:
 
 ## DNS
 
+Types:
+
+```python
+from cloudflare.types.radar import DNSTimeseriesResponse
+```
+
+Methods:
+
+- <code title="get /radar/dns/timeseries">client.radar.dns.<a href="./src/cloudflare/resources/radar/dns/dns.py">timeseries</a>(\*\*<a href="src/cloudflare/types/radar/dns_timeseries_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns_timeseries_response.py">DNSTimeseriesResponse</a></code>
+
 ### Top
 
 Types:
@@ -6982,6 +6992,70 @@ Methods:
 
 - <code title="get /radar/dns/top/ases">client.radar.dns.top.<a href="./src/cloudflare/resources/radar/dns/top.py">ases</a>(\*\*<a href="src/cloudflare/types/radar/dns/top_ases_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/top_ases_response.py">TopAsesResponse</a></code>
 - <code title="get /radar/dns/top/locations">client.radar.dns.top.<a href="./src/cloudflare/resources/radar/dns/top.py">locations</a>(\*\*<a href="src/cloudflare/types/radar/dns/top_locations_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/top_locations_response.py">TopLocationsResponse</a></code>
+
+### Summary
+
+Types:
+
+```python
+from cloudflare.types.radar.dns import (
+    SummaryCacheHitResponse,
+    SummaryDNSSECResponse,
+    SummaryDNSSECAwareResponse,
+    SummaryDNSSECE2EResponse,
+    SummaryIPVersionResponse,
+    SummaryMatchingAnswerResponse,
+    SummaryProtocolResponse,
+    SummaryQueryTypeResponse,
+    SummaryResponseCodeResponse,
+    SummaryResponseTTLResponse,
+)
+```
+
+Methods:
+
+- <code title="get /radar/dns/summary/cache_hit">client.radar.dns.summary.<a href="./src/cloudflare/resources/radar/dns/summary.py">cache_hit</a>(\*\*<a href="src/cloudflare/types/radar/dns/summary_cache_hit_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/summary_cache_hit_response.py">SummaryCacheHitResponse</a></code>
+- <code title="get /radar/dns/summary/dnssec">client.radar.dns.summary.<a href="./src/cloudflare/resources/radar/dns/summary.py">dnssec</a>(\*\*<a href="src/cloudflare/types/radar/dns/summary_dnssec_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/summary_dnssec_response.py">SummaryDNSSECResponse</a></code>
+- <code title="get /radar/dns/summary/dnssec_aware">client.radar.dns.summary.<a href="./src/cloudflare/resources/radar/dns/summary.py">dnssec_aware</a>(\*\*<a href="src/cloudflare/types/radar/dns/summary_dnssec_aware_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/summary_dnssec_aware_response.py">SummaryDNSSECAwareResponse</a></code>
+- <code title="get /radar/dns/summary/dnssec_e2e">client.radar.dns.summary.<a href="./src/cloudflare/resources/radar/dns/summary.py">dnssec_e2e</a>(\*\*<a href="src/cloudflare/types/radar/dns/summary_dnssec_e2e_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/summary_dnssec_e2e_response.py">SummaryDNSSECE2EResponse</a></code>
+- <code title="get /radar/dns/summary/ip_version">client.radar.dns.summary.<a href="./src/cloudflare/resources/radar/dns/summary.py">ip_version</a>(\*\*<a href="src/cloudflare/types/radar/dns/summary_ip_version_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/summary_ip_version_response.py">SummaryIPVersionResponse</a></code>
+- <code title="get /radar/dns/summary/matching_answer">client.radar.dns.summary.<a href="./src/cloudflare/resources/radar/dns/summary.py">matching_answer</a>(\*\*<a href="src/cloudflare/types/radar/dns/summary_matching_answer_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/summary_matching_answer_response.py">SummaryMatchingAnswerResponse</a></code>
+- <code title="get /radar/dns/summary/protocol">client.radar.dns.summary.<a href="./src/cloudflare/resources/radar/dns/summary.py">protocol</a>(\*\*<a href="src/cloudflare/types/radar/dns/summary_protocol_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/summary_protocol_response.py">SummaryProtocolResponse</a></code>
+- <code title="get /radar/dns/summary/query_type">client.radar.dns.summary.<a href="./src/cloudflare/resources/radar/dns/summary.py">query_type</a>(\*\*<a href="src/cloudflare/types/radar/dns/summary_query_type_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/summary_query_type_response.py">SummaryQueryTypeResponse</a></code>
+- <code title="get /radar/dns/summary/response_code">client.radar.dns.summary.<a href="./src/cloudflare/resources/radar/dns/summary.py">response_code</a>(\*\*<a href="src/cloudflare/types/radar/dns/summary_response_code_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/summary_response_code_response.py">SummaryResponseCodeResponse</a></code>
+- <code title="get /radar/dns/summary/response_ttl">client.radar.dns.summary.<a href="./src/cloudflare/resources/radar/dns/summary.py">response_ttl</a>(\*\*<a href="src/cloudflare/types/radar/dns/summary_response_ttl_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/summary_response_ttl_response.py">SummaryResponseTTLResponse</a></code>
+
+### TimeseriesGroups
+
+Types:
+
+```python
+from cloudflare.types.radar.dns import (
+    TimeseriesGroupCacheHitResponse,
+    TimeseriesGroupDNSSECResponse,
+    TimeseriesGroupDNSSECAwareResponse,
+    TimeseriesGroupDNSSECE2EResponse,
+    TimeseriesGroupIPVersionResponse,
+    TimeseriesGroupMatchingAnswerResponse,
+    TimeseriesGroupProtocolResponse,
+    TimeseriesGroupQueryTypeResponse,
+    TimeseriesGroupResponseCodeResponse,
+    TimeseriesGroupResponseTTLResponse,
+)
+```
+
+Methods:
+
+- <code title="get /radar/dns/timeseries_groups/cache_hit">client.radar.dns.timeseries_groups.<a href="./src/cloudflare/resources/radar/dns/timeseries_groups.py">cache_hit</a>(\*\*<a href="src/cloudflare/types/radar/dns/timeseries_group_cache_hit_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/timeseries_group_cache_hit_response.py">TimeseriesGroupCacheHitResponse</a></code>
+- <code title="get /radar/dns/timeseries_groups/dnssec">client.radar.dns.timeseries_groups.<a href="./src/cloudflare/resources/radar/dns/timeseries_groups.py">dnssec</a>(\*\*<a href="src/cloudflare/types/radar/dns/timeseries_group_dnssec_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/timeseries_group_dnssec_response.py">TimeseriesGroupDNSSECResponse</a></code>
+- <code title="get /radar/dns/timeseries_groups/dnssec_aware">client.radar.dns.timeseries_groups.<a href="./src/cloudflare/resources/radar/dns/timeseries_groups.py">dnssec_aware</a>(\*\*<a href="src/cloudflare/types/radar/dns/timeseries_group_dnssec_aware_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/timeseries_group_dnssec_aware_response.py">TimeseriesGroupDNSSECAwareResponse</a></code>
+- <code title="get /radar/dns/timeseries_groups/dnssec_e2e">client.radar.dns.timeseries_groups.<a href="./src/cloudflare/resources/radar/dns/timeseries_groups.py">dnssec_e2e</a>(\*\*<a href="src/cloudflare/types/radar/dns/timeseries_group_dnssec_e2e_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/timeseries_group_dnssec_e2e_response.py">TimeseriesGroupDNSSECE2EResponse</a></code>
+- <code title="get /radar/dns/timeseries_groups/ip_version">client.radar.dns.timeseries_groups.<a href="./src/cloudflare/resources/radar/dns/timeseries_groups.py">ip_version</a>(\*\*<a href="src/cloudflare/types/radar/dns/timeseries_group_ip_version_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/timeseries_group_ip_version_response.py">TimeseriesGroupIPVersionResponse</a></code>
+- <code title="get /radar/dns/timeseries_groups/matching_answer">client.radar.dns.timeseries_groups.<a href="./src/cloudflare/resources/radar/dns/timeseries_groups.py">matching_answer</a>(\*\*<a href="src/cloudflare/types/radar/dns/timeseries_group_matching_answer_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/timeseries_group_matching_answer_response.py">TimeseriesGroupMatchingAnswerResponse</a></code>
+- <code title="get /radar/dns/timeseries_groups/protocol">client.radar.dns.timeseries_groups.<a href="./src/cloudflare/resources/radar/dns/timeseries_groups.py">protocol</a>(\*\*<a href="src/cloudflare/types/radar/dns/timeseries_group_protocol_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/timeseries_group_protocol_response.py">TimeseriesGroupProtocolResponse</a></code>
+- <code title="get /radar/dns/timeseries_groups/query_type">client.radar.dns.timeseries_groups.<a href="./src/cloudflare/resources/radar/dns/timeseries_groups.py">query_type</a>(\*\*<a href="src/cloudflare/types/radar/dns/timeseries_group_query_type_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/timeseries_group_query_type_response.py">TimeseriesGroupQueryTypeResponse</a></code>
+- <code title="get /radar/dns/timeseries_groups/response_code">client.radar.dns.timeseries_groups.<a href="./src/cloudflare/resources/radar/dns/timeseries_groups.py">response_code</a>(\*\*<a href="src/cloudflare/types/radar/dns/timeseries_group_response_code_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/timeseries_group_response_code_response.py">TimeseriesGroupResponseCodeResponse</a></code>
+- <code title="get /radar/dns/timeseries_groups/response_ttl">client.radar.dns.timeseries_groups.<a href="./src/cloudflare/resources/radar/dns/timeseries_groups.py">response_ttl</a>(\*\*<a href="src/cloudflare/types/radar/dns/timeseries_group_response_ttl_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/timeseries_group_response_ttl_response.py">TimeseriesGroupResponseTTLResponse</a></code>
 
 ## Netflows
 
@@ -7900,6 +7974,7 @@ Types:
 
 ```python
 from cloudflare.types.radar.ranking import (
+    InternetServiceCategoriesResponse,
     InternetServiceTimeseriesGroupsResponse,
     InternetServiceTopResponse,
 )
@@ -7907,6 +7982,7 @@ from cloudflare.types.radar.ranking import (
 
 Methods:
 
+- <code title="get /radar/ranking/internet_services/categories">client.radar.ranking.internet_services.<a href="./src/cloudflare/resources/radar/ranking/internet_services.py">categories</a>(\*\*<a href="src/cloudflare/types/radar/ranking/internet_service_categories_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ranking/internet_service_categories_response.py">InternetServiceCategoriesResponse</a></code>
 - <code title="get /radar/ranking/internet_services/timeseries_groups">client.radar.ranking.internet_services.<a href="./src/cloudflare/resources/radar/ranking/internet_services.py">timeseries_groups</a>(\*\*<a href="src/cloudflare/types/radar/ranking/internet_service_timeseries_groups_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ranking/internet_service_timeseries_groups_response.py">InternetServiceTimeseriesGroupsResponse</a></code>
 - <code title="get /radar/ranking/internet_services/top">client.radar.ranking.internet_services.<a href="./src/cloudflare/resources/radar/ranking/internet_services.py">top</a>(\*\*<a href="src/cloudflare/types/radar/ranking/internet_service_top_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ranking/internet_service_top_response.py">InternetServiceTopResponse</a></code>
 
