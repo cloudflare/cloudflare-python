@@ -45,10 +45,10 @@ from .screenshot import (
 )
 from ..._resource import SyncAPIResource, AsyncAPIResource
 
-__all__ = ["BrowsingRenderingResource", "AsyncBrowsingRenderingResource"]
+__all__ = ["BrowserRenderingResource", "AsyncBrowserRenderingResource"]
 
 
-class BrowsingRenderingResource(SyncAPIResource):
+class BrowserRenderingResource(SyncAPIResource):
     @cached_property
     def content(self) -> ContentResource:
         return ContentResource(self._client)
@@ -70,26 +70,26 @@ class BrowsingRenderingResource(SyncAPIResource):
         return SnapshotResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> BrowsingRenderingResourceWithRawResponse:
+    def with_raw_response(self) -> BrowserRenderingResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return BrowsingRenderingResourceWithRawResponse(self)
+        return BrowserRenderingResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> BrowsingRenderingResourceWithStreamingResponse:
+    def with_streaming_response(self) -> BrowserRenderingResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return BrowsingRenderingResourceWithStreamingResponse(self)
+        return BrowserRenderingResourceWithStreamingResponse(self)
 
 
-class AsyncBrowsingRenderingResource(AsyncAPIResource):
+class AsyncBrowserRenderingResource(AsyncAPIResource):
     @cached_property
     def content(self) -> AsyncContentResource:
         return AsyncContentResource(self._client)
@@ -111,120 +111,120 @@ class AsyncBrowsingRenderingResource(AsyncAPIResource):
         return AsyncSnapshotResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncBrowsingRenderingResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncBrowserRenderingResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncBrowsingRenderingResourceWithRawResponse(self)
+        return AsyncBrowserRenderingResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncBrowsingRenderingResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncBrowserRenderingResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return AsyncBrowsingRenderingResourceWithStreamingResponse(self)
+        return AsyncBrowserRenderingResourceWithStreamingResponse(self)
 
 
-class BrowsingRenderingResourceWithRawResponse:
-    def __init__(self, browsing_rendering: BrowsingRenderingResource) -> None:
-        self._browsing_rendering = browsing_rendering
+class BrowserRenderingResourceWithRawResponse:
+    def __init__(self, browser_rendering: BrowserRenderingResource) -> None:
+        self._browser_rendering = browser_rendering
 
     @cached_property
     def content(self) -> ContentResourceWithRawResponse:
-        return ContentResourceWithRawResponse(self._browsing_rendering.content)
+        return ContentResourceWithRawResponse(self._browser_rendering.content)
 
     @cached_property
     def pdf(self) -> PDFResourceWithRawResponse:
-        return PDFResourceWithRawResponse(self._browsing_rendering.pdf)
+        return PDFResourceWithRawResponse(self._browser_rendering.pdf)
 
     @cached_property
     def scrape(self) -> ScrapeResourceWithRawResponse:
-        return ScrapeResourceWithRawResponse(self._browsing_rendering.scrape)
+        return ScrapeResourceWithRawResponse(self._browser_rendering.scrape)
 
     @cached_property
     def screenshot(self) -> ScreenshotResourceWithRawResponse:
-        return ScreenshotResourceWithRawResponse(self._browsing_rendering.screenshot)
+        return ScreenshotResourceWithRawResponse(self._browser_rendering.screenshot)
 
     @cached_property
     def snapshot(self) -> SnapshotResourceWithRawResponse:
-        return SnapshotResourceWithRawResponse(self._browsing_rendering.snapshot)
+        return SnapshotResourceWithRawResponse(self._browser_rendering.snapshot)
 
 
-class AsyncBrowsingRenderingResourceWithRawResponse:
-    def __init__(self, browsing_rendering: AsyncBrowsingRenderingResource) -> None:
-        self._browsing_rendering = browsing_rendering
+class AsyncBrowserRenderingResourceWithRawResponse:
+    def __init__(self, browser_rendering: AsyncBrowserRenderingResource) -> None:
+        self._browser_rendering = browser_rendering
 
     @cached_property
     def content(self) -> AsyncContentResourceWithRawResponse:
-        return AsyncContentResourceWithRawResponse(self._browsing_rendering.content)
+        return AsyncContentResourceWithRawResponse(self._browser_rendering.content)
 
     @cached_property
     def pdf(self) -> AsyncPDFResourceWithRawResponse:
-        return AsyncPDFResourceWithRawResponse(self._browsing_rendering.pdf)
+        return AsyncPDFResourceWithRawResponse(self._browser_rendering.pdf)
 
     @cached_property
     def scrape(self) -> AsyncScrapeResourceWithRawResponse:
-        return AsyncScrapeResourceWithRawResponse(self._browsing_rendering.scrape)
+        return AsyncScrapeResourceWithRawResponse(self._browser_rendering.scrape)
 
     @cached_property
     def screenshot(self) -> AsyncScreenshotResourceWithRawResponse:
-        return AsyncScreenshotResourceWithRawResponse(self._browsing_rendering.screenshot)
+        return AsyncScreenshotResourceWithRawResponse(self._browser_rendering.screenshot)
 
     @cached_property
     def snapshot(self) -> AsyncSnapshotResourceWithRawResponse:
-        return AsyncSnapshotResourceWithRawResponse(self._browsing_rendering.snapshot)
+        return AsyncSnapshotResourceWithRawResponse(self._browser_rendering.snapshot)
 
 
-class BrowsingRenderingResourceWithStreamingResponse:
-    def __init__(self, browsing_rendering: BrowsingRenderingResource) -> None:
-        self._browsing_rendering = browsing_rendering
+class BrowserRenderingResourceWithStreamingResponse:
+    def __init__(self, browser_rendering: BrowserRenderingResource) -> None:
+        self._browser_rendering = browser_rendering
 
     @cached_property
     def content(self) -> ContentResourceWithStreamingResponse:
-        return ContentResourceWithStreamingResponse(self._browsing_rendering.content)
+        return ContentResourceWithStreamingResponse(self._browser_rendering.content)
 
     @cached_property
     def pdf(self) -> PDFResourceWithStreamingResponse:
-        return PDFResourceWithStreamingResponse(self._browsing_rendering.pdf)
+        return PDFResourceWithStreamingResponse(self._browser_rendering.pdf)
 
     @cached_property
     def scrape(self) -> ScrapeResourceWithStreamingResponse:
-        return ScrapeResourceWithStreamingResponse(self._browsing_rendering.scrape)
+        return ScrapeResourceWithStreamingResponse(self._browser_rendering.scrape)
 
     @cached_property
     def screenshot(self) -> ScreenshotResourceWithStreamingResponse:
-        return ScreenshotResourceWithStreamingResponse(self._browsing_rendering.screenshot)
+        return ScreenshotResourceWithStreamingResponse(self._browser_rendering.screenshot)
 
     @cached_property
     def snapshot(self) -> SnapshotResourceWithStreamingResponse:
-        return SnapshotResourceWithStreamingResponse(self._browsing_rendering.snapshot)
+        return SnapshotResourceWithStreamingResponse(self._browser_rendering.snapshot)
 
 
-class AsyncBrowsingRenderingResourceWithStreamingResponse:
-    def __init__(self, browsing_rendering: AsyncBrowsingRenderingResource) -> None:
-        self._browsing_rendering = browsing_rendering
+class AsyncBrowserRenderingResourceWithStreamingResponse:
+    def __init__(self, browser_rendering: AsyncBrowserRenderingResource) -> None:
+        self._browser_rendering = browser_rendering
 
     @cached_property
     def content(self) -> AsyncContentResourceWithStreamingResponse:
-        return AsyncContentResourceWithStreamingResponse(self._browsing_rendering.content)
+        return AsyncContentResourceWithStreamingResponse(self._browser_rendering.content)
 
     @cached_property
     def pdf(self) -> AsyncPDFResourceWithStreamingResponse:
-        return AsyncPDFResourceWithStreamingResponse(self._browsing_rendering.pdf)
+        return AsyncPDFResourceWithStreamingResponse(self._browser_rendering.pdf)
 
     @cached_property
     def scrape(self) -> AsyncScrapeResourceWithStreamingResponse:
-        return AsyncScrapeResourceWithStreamingResponse(self._browsing_rendering.scrape)
+        return AsyncScrapeResourceWithStreamingResponse(self._browser_rendering.scrape)
 
     @cached_property
     def screenshot(self) -> AsyncScreenshotResourceWithStreamingResponse:
-        return AsyncScreenshotResourceWithStreamingResponse(self._browsing_rendering.screenshot)
+        return AsyncScreenshotResourceWithStreamingResponse(self._browser_rendering.screenshot)
 
     @cached_property
     def snapshot(self) -> AsyncSnapshotResourceWithStreamingResponse:
-        return AsyncSnapshotResourceWithStreamingResponse(self._browsing_rendering.snapshot)
+        return AsyncSnapshotResourceWithStreamingResponse(self._browser_rendering.snapshot)

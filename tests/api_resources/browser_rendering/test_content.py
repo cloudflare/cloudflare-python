@@ -5,45 +5,27 @@ from __future__ import annotations
 import os
 from typing import Any, cast
 
-import httpx
 import pytest
-from respx import MockRouter
 
 from cloudflare import Cloudflare, AsyncCloudflare
-from cloudflare._response import (
-    BinaryAPIResponse,
-    AsyncBinaryAPIResponse,
-    StreamedBinaryAPIResponse,
-    AsyncStreamedBinaryAPIResponse,
-)
+from tests.utils import assert_matches_type
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
-class TestPDF:
+class TestContent:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    @pytest.mark.respx(base_url=base_url)
-    def test_method_create(self, client: Cloudflare, respx_mock: MockRouter) -> None:
-        respx_mock.post("/accounts/accountId/browser-rendering/pdf").mock(
-            return_value=httpx.Response(200, json={"foo": "bar"})
-        )
-        pdf = client.browsing_rendering.pdf.create(
+    def test_method_create(self, client: Cloudflare) -> None:
+        content = client.browser_rendering.content.create(
             account_id="accountId",
         )
-        assert pdf.is_closed
-        assert pdf.json() == {"foo": "bar"}
-        assert cast(Any, pdf.is_closed) is True
-        assert isinstance(pdf, BinaryAPIResponse)
+        assert_matches_type(str, content, path=["response"])
 
     @parametrize
-    @pytest.mark.respx(base_url=base_url)
-    def test_method_create_with_all_params(self, client: Cloudflare, respx_mock: MockRouter) -> None:
-        respx_mock.post("/accounts/accountId/browser-rendering/pdf").mock(
-            return_value=httpx.Response(200, json={"foo": "bar"})
-        )
-        pdf = client.browsing_rendering.pdf.create(
+    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
+        content = client.browser_rendering.content.create(
             account_id="accountId",
             cache_ttl=86400,
             add_script_tag=[
@@ -115,78 +97,53 @@ class TestPDF:
             },
             wait_for_timeout=60000,
         )
-        assert pdf.is_closed
-        assert pdf.json() == {"foo": "bar"}
-        assert cast(Any, pdf.is_closed) is True
-        assert isinstance(pdf, BinaryAPIResponse)
+        assert_matches_type(str, content, path=["response"])
 
     @parametrize
-    @pytest.mark.respx(base_url=base_url)
-    def test_raw_response_create(self, client: Cloudflare, respx_mock: MockRouter) -> None:
-        respx_mock.post("/accounts/accountId/browser-rendering/pdf").mock(
-            return_value=httpx.Response(200, json={"foo": "bar"})
-        )
-
-        pdf = client.browsing_rendering.pdf.with_raw_response.create(
+    def test_raw_response_create(self, client: Cloudflare) -> None:
+        response = client.browser_rendering.content.with_raw_response.create(
             account_id="accountId",
         )
 
-        assert pdf.is_closed is True
-        assert pdf.http_request.headers.get("X-Stainless-Lang") == "python"
-        assert pdf.json() == {"foo": "bar"}
-        assert isinstance(pdf, BinaryAPIResponse)
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        content = response.parse()
+        assert_matches_type(str, content, path=["response"])
 
     @parametrize
-    @pytest.mark.respx(base_url=base_url)
-    def test_streaming_response_create(self, client: Cloudflare, respx_mock: MockRouter) -> None:
-        respx_mock.post("/accounts/accountId/browser-rendering/pdf").mock(
-            return_value=httpx.Response(200, json={"foo": "bar"})
-        )
-        with client.browsing_rendering.pdf.with_streaming_response.create(
+    def test_streaming_response_create(self, client: Cloudflare) -> None:
+        with client.browser_rendering.content.with_streaming_response.create(
             account_id="accountId",
-        ) as pdf:
-            assert not pdf.is_closed
-            assert pdf.http_request.headers.get("X-Stainless-Lang") == "python"
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            assert pdf.json() == {"foo": "bar"}
-            assert cast(Any, pdf.is_closed) is True
-            assert isinstance(pdf, StreamedBinaryAPIResponse)
+            content = response.parse()
+            assert_matches_type(str, content, path=["response"])
 
-        assert cast(Any, pdf.is_closed) is True
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
-    @pytest.mark.respx(base_url=base_url)
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.browsing_rendering.pdf.with_raw_response.create(
+            client.browser_rendering.content.with_raw_response.create(
                 account_id="",
             )
 
 
-class TestAsyncPDF:
+class TestAsyncContent:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
-    @pytest.mark.respx(base_url=base_url)
-    async def test_method_create(self, async_client: AsyncCloudflare, respx_mock: MockRouter) -> None:
-        respx_mock.post("/accounts/accountId/browser-rendering/pdf").mock(
-            return_value=httpx.Response(200, json={"foo": "bar"})
-        )
-        pdf = await async_client.browsing_rendering.pdf.create(
+    async def test_method_create(self, async_client: AsyncCloudflare) -> None:
+        content = await async_client.browser_rendering.content.create(
             account_id="accountId",
         )
-        assert pdf.is_closed
-        assert await pdf.json() == {"foo": "bar"}
-        assert cast(Any, pdf.is_closed) is True
-        assert isinstance(pdf, AsyncBinaryAPIResponse)
+        assert_matches_type(str, content, path=["response"])
 
     @parametrize
-    @pytest.mark.respx(base_url=base_url)
-    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare, respx_mock: MockRouter) -> None:
-        respx_mock.post("/accounts/accountId/browser-rendering/pdf").mock(
-            return_value=httpx.Response(200, json={"foo": "bar"})
-        )
-        pdf = await async_client.browsing_rendering.pdf.create(
+    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        content = await async_client.browser_rendering.content.create(
             account_id="accountId",
             cache_ttl=86400,
             add_script_tag=[
@@ -258,49 +215,35 @@ class TestAsyncPDF:
             },
             wait_for_timeout=60000,
         )
-        assert pdf.is_closed
-        assert await pdf.json() == {"foo": "bar"}
-        assert cast(Any, pdf.is_closed) is True
-        assert isinstance(pdf, AsyncBinaryAPIResponse)
+        assert_matches_type(str, content, path=["response"])
 
     @parametrize
-    @pytest.mark.respx(base_url=base_url)
-    async def test_raw_response_create(self, async_client: AsyncCloudflare, respx_mock: MockRouter) -> None:
-        respx_mock.post("/accounts/accountId/browser-rendering/pdf").mock(
-            return_value=httpx.Response(200, json={"foo": "bar"})
-        )
-
-        pdf = await async_client.browsing_rendering.pdf.with_raw_response.create(
+    async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.browser_rendering.content.with_raw_response.create(
             account_id="accountId",
         )
 
-        assert pdf.is_closed is True
-        assert pdf.http_request.headers.get("X-Stainless-Lang") == "python"
-        assert await pdf.json() == {"foo": "bar"}
-        assert isinstance(pdf, AsyncBinaryAPIResponse)
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        content = await response.parse()
+        assert_matches_type(str, content, path=["response"])
 
     @parametrize
-    @pytest.mark.respx(base_url=base_url)
-    async def test_streaming_response_create(self, async_client: AsyncCloudflare, respx_mock: MockRouter) -> None:
-        respx_mock.post("/accounts/accountId/browser-rendering/pdf").mock(
-            return_value=httpx.Response(200, json={"foo": "bar"})
-        )
-        async with async_client.browsing_rendering.pdf.with_streaming_response.create(
+    async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.browser_rendering.content.with_streaming_response.create(
             account_id="accountId",
-        ) as pdf:
-            assert not pdf.is_closed
-            assert pdf.http_request.headers.get("X-Stainless-Lang") == "python"
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            assert await pdf.json() == {"foo": "bar"}
-            assert cast(Any, pdf.is_closed) is True
-            assert isinstance(pdf, AsyncStreamedBinaryAPIResponse)
+            content = await response.parse()
+            assert_matches_type(str, content, path=["response"])
 
-        assert cast(Any, pdf.is_closed) is True
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
-    @pytest.mark.respx(base_url=base_url)
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.browsing_rendering.pdf.with_raw_response.create(
+            await async_client.browser_rendering.content.with_raw_response.create(
                 account_id="",
             )

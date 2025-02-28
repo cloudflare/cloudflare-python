@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Type, Iterable, Optional, cast
+from typing import Dict, List, Type, Iterable, cast
 from typing_extensions import Literal
 
 import httpx
@@ -22,39 +22,40 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ..._base_client import make_request_options
-from ...types.browsing_rendering import snapshot_create_params
-from ...types.browsing_rendering.snapshot_create_response import SnapshotCreateResponse
+from ...types.browser_rendering import scrape_create_params
+from ...types.browser_rendering.scrape_create_response import ScrapeCreateResponse
 
-__all__ = ["SnapshotResource", "AsyncSnapshotResource"]
+__all__ = ["ScrapeResource", "AsyncScrapeResource"]
 
 
-class SnapshotResource(SyncAPIResource):
+class ScrapeResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> SnapshotResourceWithRawResponse:
+    def with_raw_response(self) -> ScrapeResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return SnapshotResourceWithRawResponse(self)
+        return ScrapeResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> SnapshotResourceWithStreamingResponse:
+    def with_streaming_response(self) -> ScrapeResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return SnapshotResourceWithStreamingResponse(self)
+        return ScrapeResourceWithStreamingResponse(self)
 
     def create(
         self,
         account_id: str,
         *,
+        elements: Iterable[scrape_create_params.Element],
         cache_ttl: float | NotGiven = NOT_GIVEN,
-        add_script_tag: Iterable[snapshot_create_params.AddScriptTag] | NotGiven = NOT_GIVEN,
-        add_style_tag: Iterable[snapshot_create_params.AddStyleTag] | NotGiven = NOT_GIVEN,
+        add_script_tag: Iterable[scrape_create_params.AddScriptTag] | NotGiven = NOT_GIVEN,
+        add_style_tag: Iterable[scrape_create_params.AddStyleTag] | NotGiven = NOT_GIVEN,
         allow_request_pattern: List[str] | NotGiven = NOT_GIVEN,
         allow_resource_types: List[
             Literal[
@@ -79,11 +80,11 @@ class SnapshotResource(SyncAPIResource):
             ]
         ]
         | NotGiven = NOT_GIVEN,
-        authenticate: snapshot_create_params.Authenticate | NotGiven = NOT_GIVEN,
+        authenticate: scrape_create_params.Authenticate | NotGiven = NOT_GIVEN,
         best_attempt: bool | NotGiven = NOT_GIVEN,
-        cookies: Iterable[snapshot_create_params.Cookie] | NotGiven = NOT_GIVEN,
+        cookies: Iterable[scrape_create_params.Cookie] | NotGiven = NOT_GIVEN,
         emulate_media_type: str | NotGiven = NOT_GIVEN,
-        goto_options: snapshot_create_params.GotoOptions | NotGiven = NOT_GIVEN,
+        goto_options: scrape_create_params.GotoOptions | NotGiven = NOT_GIVEN,
         html: str | NotGiven = NOT_GIVEN,
         reject_request_pattern: List[str] | NotGiven = NOT_GIVEN,
         reject_resource_types: List[
@@ -113,8 +114,8 @@ class SnapshotResource(SyncAPIResource):
         set_java_script_enabled: bool | NotGiven = NOT_GIVEN,
         url: str | NotGiven = NOT_GIVEN,
         user_agent: str | NotGiven = NOT_GIVEN,
-        viewport: snapshot_create_params.Viewport | NotGiven = NOT_GIVEN,
-        wait_for_selector: snapshot_create_params.WaitForSelector | NotGiven = NOT_GIVEN,
+        viewport: scrape_create_params.Viewport | NotGiven = NOT_GIVEN,
+        wait_for_selector: scrape_create_params.WaitForSelector | NotGiven = NOT_GIVEN,
         wait_for_timeout: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -122,12 +123,9 @@ class SnapshotResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SnapshotCreateResponse]:
-        """Returns the page's HTML content and screenshot.
-
-        Control page loading with
-        `goToOptions` and `waitFor*` options. Customize screenshots with `viewport`,
-        `fullPage`, `clip` and others.
+    ) -> ScrapeCreateResponse:
+        """
+        Get meta attributes like height, width, text and others of selected elements.
 
         Args:
           account_id: Account ID.
@@ -181,9 +179,10 @@ class SnapshotResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/browser-rendering/snapshot",
+            f"/accounts/{account_id}/browser-rendering/scrape",
             body=maybe_transform(
                 {
+                    "elements": elements,
                     "add_script_tag": add_script_tag,
                     "add_style_tag": add_style_tag,
                     "allow_request_pattern": allow_request_pattern,
@@ -204,47 +203,48 @@ class SnapshotResource(SyncAPIResource):
                     "wait_for_selector": wait_for_selector,
                     "wait_for_timeout": wait_for_timeout,
                 },
-                snapshot_create_params.SnapshotCreateParams,
+                scrape_create_params.ScrapeCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"cache_ttl": cache_ttl}, snapshot_create_params.SnapshotCreateParams),
-                post_parser=ResultWrapper[Optional[SnapshotCreateResponse]]._unwrapper,
+                query=maybe_transform({"cache_ttl": cache_ttl}, scrape_create_params.ScrapeCreateParams),
+                post_parser=ResultWrapper[ScrapeCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SnapshotCreateResponse]], ResultWrapper[SnapshotCreateResponse]),
+            cast_to=cast(Type[ScrapeCreateResponse], ResultWrapper[ScrapeCreateResponse]),
         )
 
 
-class AsyncSnapshotResource(AsyncAPIResource):
+class AsyncScrapeResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncSnapshotResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncScrapeResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncSnapshotResourceWithRawResponse(self)
+        return AsyncScrapeResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncSnapshotResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncScrapeResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return AsyncSnapshotResourceWithStreamingResponse(self)
+        return AsyncScrapeResourceWithStreamingResponse(self)
 
     async def create(
         self,
         account_id: str,
         *,
+        elements: Iterable[scrape_create_params.Element],
         cache_ttl: float | NotGiven = NOT_GIVEN,
-        add_script_tag: Iterable[snapshot_create_params.AddScriptTag] | NotGiven = NOT_GIVEN,
-        add_style_tag: Iterable[snapshot_create_params.AddStyleTag] | NotGiven = NOT_GIVEN,
+        add_script_tag: Iterable[scrape_create_params.AddScriptTag] | NotGiven = NOT_GIVEN,
+        add_style_tag: Iterable[scrape_create_params.AddStyleTag] | NotGiven = NOT_GIVEN,
         allow_request_pattern: List[str] | NotGiven = NOT_GIVEN,
         allow_resource_types: List[
             Literal[
@@ -269,11 +269,11 @@ class AsyncSnapshotResource(AsyncAPIResource):
             ]
         ]
         | NotGiven = NOT_GIVEN,
-        authenticate: snapshot_create_params.Authenticate | NotGiven = NOT_GIVEN,
+        authenticate: scrape_create_params.Authenticate | NotGiven = NOT_GIVEN,
         best_attempt: bool | NotGiven = NOT_GIVEN,
-        cookies: Iterable[snapshot_create_params.Cookie] | NotGiven = NOT_GIVEN,
+        cookies: Iterable[scrape_create_params.Cookie] | NotGiven = NOT_GIVEN,
         emulate_media_type: str | NotGiven = NOT_GIVEN,
-        goto_options: snapshot_create_params.GotoOptions | NotGiven = NOT_GIVEN,
+        goto_options: scrape_create_params.GotoOptions | NotGiven = NOT_GIVEN,
         html: str | NotGiven = NOT_GIVEN,
         reject_request_pattern: List[str] | NotGiven = NOT_GIVEN,
         reject_resource_types: List[
@@ -303,8 +303,8 @@ class AsyncSnapshotResource(AsyncAPIResource):
         set_java_script_enabled: bool | NotGiven = NOT_GIVEN,
         url: str | NotGiven = NOT_GIVEN,
         user_agent: str | NotGiven = NOT_GIVEN,
-        viewport: snapshot_create_params.Viewport | NotGiven = NOT_GIVEN,
-        wait_for_selector: snapshot_create_params.WaitForSelector | NotGiven = NOT_GIVEN,
+        viewport: scrape_create_params.Viewport | NotGiven = NOT_GIVEN,
+        wait_for_selector: scrape_create_params.WaitForSelector | NotGiven = NOT_GIVEN,
         wait_for_timeout: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -312,12 +312,9 @@ class AsyncSnapshotResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SnapshotCreateResponse]:
-        """Returns the page's HTML content and screenshot.
-
-        Control page loading with
-        `goToOptions` and `waitFor*` options. Customize screenshots with `viewport`,
-        `fullPage`, `clip` and others.
+    ) -> ScrapeCreateResponse:
+        """
+        Get meta attributes like height, width, text and others of selected elements.
 
         Args:
           account_id: Account ID.
@@ -371,9 +368,10 @@ class AsyncSnapshotResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/browser-rendering/snapshot",
+            f"/accounts/{account_id}/browser-rendering/scrape",
             body=await async_maybe_transform(
                 {
+                    "elements": elements,
                     "add_script_tag": add_script_tag,
                     "add_style_tag": add_style_tag,
                     "allow_request_pattern": allow_request_pattern,
@@ -394,53 +392,51 @@ class AsyncSnapshotResource(AsyncAPIResource):
                     "wait_for_selector": wait_for_selector,
                     "wait_for_timeout": wait_for_timeout,
                 },
-                snapshot_create_params.SnapshotCreateParams,
+                scrape_create_params.ScrapeCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
-                    {"cache_ttl": cache_ttl}, snapshot_create_params.SnapshotCreateParams
-                ),
-                post_parser=ResultWrapper[Optional[SnapshotCreateResponse]]._unwrapper,
+                query=await async_maybe_transform({"cache_ttl": cache_ttl}, scrape_create_params.ScrapeCreateParams),
+                post_parser=ResultWrapper[ScrapeCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SnapshotCreateResponse]], ResultWrapper[SnapshotCreateResponse]),
+            cast_to=cast(Type[ScrapeCreateResponse], ResultWrapper[ScrapeCreateResponse]),
         )
 
 
-class SnapshotResourceWithRawResponse:
-    def __init__(self, snapshot: SnapshotResource) -> None:
-        self._snapshot = snapshot
+class ScrapeResourceWithRawResponse:
+    def __init__(self, scrape: ScrapeResource) -> None:
+        self._scrape = scrape
 
         self.create = to_raw_response_wrapper(
-            snapshot.create,
+            scrape.create,
         )
 
 
-class AsyncSnapshotResourceWithRawResponse:
-    def __init__(self, snapshot: AsyncSnapshotResource) -> None:
-        self._snapshot = snapshot
+class AsyncScrapeResourceWithRawResponse:
+    def __init__(self, scrape: AsyncScrapeResource) -> None:
+        self._scrape = scrape
 
         self.create = async_to_raw_response_wrapper(
-            snapshot.create,
+            scrape.create,
         )
 
 
-class SnapshotResourceWithStreamingResponse:
-    def __init__(self, snapshot: SnapshotResource) -> None:
-        self._snapshot = snapshot
+class ScrapeResourceWithStreamingResponse:
+    def __init__(self, scrape: ScrapeResource) -> None:
+        self._scrape = scrape
 
         self.create = to_streamed_response_wrapper(
-            snapshot.create,
+            scrape.create,
         )
 
 
-class AsyncSnapshotResourceWithStreamingResponse:
-    def __init__(self, snapshot: AsyncSnapshotResource) -> None:
-        self._snapshot = snapshot
+class AsyncScrapeResourceWithStreamingResponse:
+    def __init__(self, scrape: AsyncScrapeResource) -> None:
+        self._scrape = scrape
 
         self.create = async_to_streamed_response_wrapper(
-            snapshot.create,
+            scrape.create,
         )
