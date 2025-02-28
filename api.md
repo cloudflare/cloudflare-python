@@ -3951,6 +3951,20 @@ Methods:
 
 # MagicNetworkMonitoring
 
+## VpcFlows
+
+### Tokens
+
+Types:
+
+```python
+from cloudflare.types.magic_network_monitoring.vpc_flows import TokenCreateResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/mnm/vpc-flows/token">client.magic_network_monitoring.vpc_flows.tokens.<a href="./src/cloudflare/resources/magic_network_monitoring/vpc_flows/tokens.py">create</a>(\*, account_id) -> <a href="./src/cloudflare/types/magic_network_monitoring/vpc_flows/token_create_response.py">str</a></code>
+
 ## Configs
 
 Types:
