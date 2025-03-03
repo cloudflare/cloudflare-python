@@ -4,7 +4,7 @@ from typing import List, Optional
 
 from ..._models import BaseModel
 
-__all__ = ["ScreenshotCreateResponse", "Error"]
+__all__ = ["BrowserRenderingScreenshotResponse", "Error"]
 
 
 class Error(BaseModel):
@@ -15,7 +15,7 @@ class Error(BaseModel):
     """Error Message"""
 
 
-class ScreenshotCreateResponse(BaseModel):
+class BrowserRenderingScreenshotResponse(BaseModel):
     status: bool
     """Response status"""
 
