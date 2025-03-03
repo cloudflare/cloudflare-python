@@ -8,7 +8,7 @@ from typing_extensions import Literal, Required, Annotated, TypedDict
 from ..._utils import PropertyInfo
 
 __all__ = [
-    "ScrapeCreateParams",
+    "BrowserRenderingScrapeParams",
     "Element",
     "AddScriptTag",
     "AddStyleTag",
@@ -20,7 +20,7 @@ __all__ = [
 ]
 
 
-class ScrapeCreateParams(TypedDict, total=False):
+class BrowserRenderingScrapeParams(TypedDict, total=False):
     elements: Required[Iterable[Element]]
 
     cache_ttl: Annotated[float, PropertyInfo(alias="cacheTTL")]
