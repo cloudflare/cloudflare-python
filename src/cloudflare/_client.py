@@ -168,7 +168,6 @@ if TYPE_CHECKING:
     from .resources.brand_protection import BrandProtectionResource, AsyncBrandProtectionResource
     from .resources.accounts.accounts import AccountsResource, AsyncAccountsResource
     from .resources.alerting.alerting import AlertingResource, AsyncAlertingResource
-    from .resources.browser_rendering import BrowserRenderingResource, AsyncBrowserRenderingResource
     from .resources.firewall.firewall import FirewallResource, AsyncFirewallResource
     from .resources.rulesets.rulesets import RulesetsResource, AsyncRulesetsResource
     from .resources.snippets.snippets import SnippetsResource, AsyncSnippetsResource
@@ -212,6 +211,7 @@ if TYPE_CHECKING:
     from .resources.content_scanning.content_scanning import ContentScanningResource, AsyncContentScanningResource
     from .resources.custom_hostnames.custom_hostnames import CustomHostnamesResource, AsyncCustomHostnamesResource
     from .resources.resource_sharing.resource_sharing import ResourceSharingResource, AsyncResourceSharingResource
+    from .resources.browser_rendering.browser_rendering import BrowserRenderingResource, AsyncBrowserRenderingResource
     from .resources.mtls_certificates.mtls_certificates import MTLSCertificatesResource, AsyncMTLSCertificatesResource
     from .resources.custom_certificates.custom_certificates import (
         CustomCertificatesResource,

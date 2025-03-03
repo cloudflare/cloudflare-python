@@ -3,10 +3,10 @@
 
 from ..._models import BaseModel
 
-__all__ = ["BrowserRenderingSnapshotResponse"]
+__all__ = ["SnapshotCreateResponse"]
 
 
-class BrowserRenderingSnapshotResponse(BaseModel):
+class SnapshotCreateResponse(BaseModel):
     content: str
     """HTML content"""
 
