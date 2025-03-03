@@ -56,29 +56,7 @@ class SettingsBindingWorkersBindingKindAI(TypedDict, total=False):
     name: Required[str]
     """A JavaScript variable name for the binding."""
 
-    type: Required[
-        Literal[
-            "ai",
-            "analytics_engine",
-            "assets",
-            "browser_rendering",
-            "d1",
-            "dispatch_namespace",
-            "durable_object_namespace",
-            "hyperdrive",
-            "json",
-            "kv_namespace",
-            "mtls_certificate",
-            "plain_text",
-            "queue",
-            "r2_bucket",
-            "secret_text",
-            "service",
-            "tail_consumer",
-            "vectorize",
-            "version_metadata",
-        ]
-    ]
+    type: Required[str]
     """The kind of resource that the binding provides."""
 
 
@@ -89,29 +67,7 @@ class SettingsBindingWorkersBindingKindAnalyticsEngine(TypedDict, total=False):
     name: Required[str]
     """A JavaScript variable name for the binding."""
 
-    type: Required[
-        Literal[
-            "ai",
-            "analytics_engine",
-            "assets",
-            "browser_rendering",
-            "d1",
-            "dispatch_namespace",
-            "durable_object_namespace",
-            "hyperdrive",
-            "json",
-            "kv_namespace",
-            "mtls_certificate",
-            "plain_text",
-            "queue",
-            "r2_bucket",
-            "secret_text",
-            "service",
-            "tail_consumer",
-            "vectorize",
-            "version_metadata",
-        ]
-    ]
+    type: Required[str]
     """The kind of resource that the binding provides."""
 
 
@@ -119,29 +75,7 @@ class SettingsBindingWorkersBindingKindAssets(TypedDict, total=False):
     name: Required[str]
     """A JavaScript variable name for the binding."""
 
-    type: Required[
-        Literal[
-            "ai",
-            "analytics_engine",
-            "assets",
-            "browser_rendering",
-            "d1",
-            "dispatch_namespace",
-            "durable_object_namespace",
-            "hyperdrive",
-            "json",
-            "kv_namespace",
-            "mtls_certificate",
-            "plain_text",
-            "queue",
-            "r2_bucket",
-            "secret_text",
-            "service",
-            "tail_consumer",
-            "vectorize",
-            "version_metadata",
-        ]
-    ]
+    type: Required[str]
     """The kind of resource that the binding provides."""
 
 
@@ -149,29 +83,7 @@ class SettingsBindingWorkersBindingKindBrowserRendering(TypedDict, total=False):
     name: Required[str]
     """A JavaScript variable name for the binding."""
 
-    type: Required[
-        Literal[
-            "ai",
-            "analytics_engine",
-            "assets",
-            "browser_rendering",
-            "d1",
-            "dispatch_namespace",
-            "durable_object_namespace",
-            "hyperdrive",
-            "json",
-            "kv_namespace",
-            "mtls_certificate",
-            "plain_text",
-            "queue",
-            "r2_bucket",
-            "secret_text",
-            "service",
-            "tail_consumer",
-            "vectorize",
-            "version_metadata",
-        ]
-    ]
+    type: Required[str]
     """The kind of resource that the binding provides."""
 
 
@@ -182,29 +94,7 @@ class SettingsBindingWorkersBindingKindD1(TypedDict, total=False):
     name: Required[str]
     """A JavaScript variable name for the binding."""
 
-    type: Required[
-        Literal[
-            "ai",
-            "analytics_engine",
-            "assets",
-            "browser_rendering",
-            "d1",
-            "dispatch_namespace",
-            "durable_object_namespace",
-            "hyperdrive",
-            "json",
-            "kv_namespace",
-            "mtls_certificate",
-            "plain_text",
-            "queue",
-            "r2_bucket",
-            "secret_text",
-            "service",
-            "tail_consumer",
-            "vectorize",
-            "version_metadata",
-        ]
-    ]
+    type: Required[str]
     """The kind of resource that the binding provides."""
 
 
@@ -234,29 +124,7 @@ class SettingsBindingWorkersBindingKindDispatchNamespace(TypedDict, total=False)
     namespace: Required[str]
     """Namespace to bind to."""
 
-    type: Required[
-        Literal[
-            "ai",
-            "analytics_engine",
-            "assets",
-            "browser_rendering",
-            "d1",
-            "dispatch_namespace",
-            "durable_object_namespace",
-            "hyperdrive",
-            "json",
-            "kv_namespace",
-            "mtls_certificate",
-            "plain_text",
-            "queue",
-            "r2_bucket",
-            "secret_text",
-            "service",
-            "tail_consumer",
-            "vectorize",
-            "version_metadata",
-        ]
-    ]
+    type: Required[str]
     """The kind of resource that the binding provides."""
 
     outbound: SettingsBindingWorkersBindingKindDispatchNamespaceOutbound
@@ -270,29 +138,7 @@ class SettingsBindingWorkersBindingKindDurableObjectNamespace(TypedDict, total=F
     name: Required[str]
     """A JavaScript variable name for the binding."""
 
-    type: Required[
-        Literal[
-            "ai",
-            "analytics_engine",
-            "assets",
-            "browser_rendering",
-            "d1",
-            "dispatch_namespace",
-            "durable_object_namespace",
-            "hyperdrive",
-            "json",
-            "kv_namespace",
-            "mtls_certificate",
-            "plain_text",
-            "queue",
-            "r2_bucket",
-            "secret_text",
-            "service",
-            "tail_consumer",
-            "vectorize",
-            "version_metadata",
-        ]
-    ]
+    type: Required[str]
     """The kind of resource that the binding provides."""
 
     environment: str
@@ -315,29 +161,7 @@ class SettingsBindingWorkersBindingKindHyperdrive(TypedDict, total=False):
     name: Required[str]
     """A JavaScript variable name for the binding."""
 
-    type: Required[
-        Literal[
-            "ai",
-            "analytics_engine",
-            "assets",
-            "browser_rendering",
-            "d1",
-            "dispatch_namespace",
-            "durable_object_namespace",
-            "hyperdrive",
-            "json",
-            "kv_namespace",
-            "mtls_certificate",
-            "plain_text",
-            "queue",
-            "r2_bucket",
-            "secret_text",
-            "service",
-            "tail_consumer",
-            "vectorize",
-            "version_metadata",
-        ]
-    ]
+    type: Required[str]
     """The kind of resource that the binding provides."""
 
 
@@ -348,29 +172,7 @@ class SettingsBindingWorkersBindingKindJson(TypedDict, total=False):
     name: Required[str]
     """A JavaScript variable name for the binding."""
 
-    type: Required[
-        Literal[
-            "ai",
-            "analytics_engine",
-            "assets",
-            "browser_rendering",
-            "d1",
-            "dispatch_namespace",
-            "durable_object_namespace",
-            "hyperdrive",
-            "json",
-            "kv_namespace",
-            "mtls_certificate",
-            "plain_text",
-            "queue",
-            "r2_bucket",
-            "secret_text",
-            "service",
-            "tail_consumer",
-            "vectorize",
-            "version_metadata",
-        ]
-    ]
+    type: Required[str]
     """The kind of resource that the binding provides."""
 
 
@@ -381,29 +183,7 @@ class SettingsBindingWorkersBindingKindKVNamespace(TypedDict, total=False):
     namespace_id: Required[str]
     """Namespace identifier tag."""
 
-    type: Required[
-        Literal[
-            "ai",
-            "analytics_engine",
-            "assets",
-            "browser_rendering",
-            "d1",
-            "dispatch_namespace",
-            "durable_object_namespace",
-            "hyperdrive",
-            "json",
-            "kv_namespace",
-            "mtls_certificate",
-            "plain_text",
-            "queue",
-            "r2_bucket",
-            "secret_text",
-            "service",
-            "tail_consumer",
-            "vectorize",
-            "version_metadata",
-        ]
-    ]
+    type: Required[str]
     """The kind of resource that the binding provides."""
 
 
@@ -414,29 +194,7 @@ class SettingsBindingWorkersBindingKindMTLSCertificate(TypedDict, total=False):
     name: Required[str]
     """A JavaScript variable name for the binding."""
 
-    type: Required[
-        Literal[
-            "ai",
-            "analytics_engine",
-            "assets",
-            "browser_rendering",
-            "d1",
-            "dispatch_namespace",
-            "durable_object_namespace",
-            "hyperdrive",
-            "json",
-            "kv_namespace",
-            "mtls_certificate",
-            "plain_text",
-            "queue",
-            "r2_bucket",
-            "secret_text",
-            "service",
-            "tail_consumer",
-            "vectorize",
-            "version_metadata",
-        ]
-    ]
+    type: Required[str]
     """The kind of resource that the binding provides."""
 
 
@@ -447,29 +205,7 @@ class SettingsBindingWorkersBindingKindPlainText(TypedDict, total=False):
     text: Required[str]
     """The text value to use."""
 
-    type: Required[
-        Literal[
-            "ai",
-            "analytics_engine",
-            "assets",
-            "browser_rendering",
-            "d1",
-            "dispatch_namespace",
-            "durable_object_namespace",
-            "hyperdrive",
-            "json",
-            "kv_namespace",
-            "mtls_certificate",
-            "plain_text",
-            "queue",
-            "r2_bucket",
-            "secret_text",
-            "service",
-            "tail_consumer",
-            "vectorize",
-            "version_metadata",
-        ]
-    ]
+    type: Required[str]
     """The kind of resource that the binding provides."""
 
 
@@ -480,29 +216,7 @@ class SettingsBindingWorkersBindingKindQueue(TypedDict, total=False):
     queue_name: Required[str]
     """Name of the Queue to bind to."""
 
-    type: Required[
-        Literal[
-            "ai",
-            "analytics_engine",
-            "assets",
-            "browser_rendering",
-            "d1",
-            "dispatch_namespace",
-            "durable_object_namespace",
-            "hyperdrive",
-            "json",
-            "kv_namespace",
-            "mtls_certificate",
-            "plain_text",
-            "queue",
-            "r2_bucket",
-            "secret_text",
-            "service",
-            "tail_consumer",
-            "vectorize",
-            "version_metadata",
-        ]
-    ]
+    type: Required[str]
     """The kind of resource that the binding provides."""
 
 
@@ -513,29 +227,7 @@ class SettingsBindingWorkersBindingKindR2Bucket(TypedDict, total=False):
     name: Required[str]
     """A JavaScript variable name for the binding."""
 
-    type: Required[
-        Literal[
-            "ai",
-            "analytics_engine",
-            "assets",
-            "browser_rendering",
-            "d1",
-            "dispatch_namespace",
-            "durable_object_namespace",
-            "hyperdrive",
-            "json",
-            "kv_namespace",
-            "mtls_certificate",
-            "plain_text",
-            "queue",
-            "r2_bucket",
-            "secret_text",
-            "service",
-            "tail_consumer",
-            "vectorize",
-            "version_metadata",
-        ]
-    ]
+    type: Required[str]
     """The kind of resource that the binding provides."""
 
 
@@ -546,29 +238,7 @@ class SettingsBindingWorkersBindingKindSecretText(TypedDict, total=False):
     text: Required[str]
     """The secret value to use."""
 
-    type: Required[
-        Literal[
-            "ai",
-            "analytics_engine",
-            "assets",
-            "browser_rendering",
-            "d1",
-            "dispatch_namespace",
-            "durable_object_namespace",
-            "hyperdrive",
-            "json",
-            "kv_namespace",
-            "mtls_certificate",
-            "plain_text",
-            "queue",
-            "r2_bucket",
-            "secret_text",
-            "service",
-            "tail_consumer",
-            "vectorize",
-            "version_metadata",
-        ]
-    ]
+    type: Required[str]
     """The kind of resource that the binding provides."""
 
 
@@ -582,29 +252,7 @@ class SettingsBindingWorkersBindingKindService(TypedDict, total=False):
     service: Required[str]
     """Name of Worker to bind to."""
 
-    type: Required[
-        Literal[
-            "ai",
-            "analytics_engine",
-            "assets",
-            "browser_rendering",
-            "d1",
-            "dispatch_namespace",
-            "durable_object_namespace",
-            "hyperdrive",
-            "json",
-            "kv_namespace",
-            "mtls_certificate",
-            "plain_text",
-            "queue",
-            "r2_bucket",
-            "secret_text",
-            "service",
-            "tail_consumer",
-            "vectorize",
-            "version_metadata",
-        ]
-    ]
+    type: Required[str]
     """The kind of resource that the binding provides."""
 
 
@@ -615,29 +263,7 @@ class SettingsBindingWorkersBindingKindTailConsumer(TypedDict, total=False):
     service: Required[str]
     """Name of Tail Worker to bind to."""
 
-    type: Required[
-        Literal[
-            "ai",
-            "analytics_engine",
-            "assets",
-            "browser_rendering",
-            "d1",
-            "dispatch_namespace",
-            "durable_object_namespace",
-            "hyperdrive",
-            "json",
-            "kv_namespace",
-            "mtls_certificate",
-            "plain_text",
-            "queue",
-            "r2_bucket",
-            "secret_text",
-            "service",
-            "tail_consumer",
-            "vectorize",
-            "version_metadata",
-        ]
-    ]
+    type: Required[str]
     """The kind of resource that the binding provides."""
 
 
@@ -648,29 +274,7 @@ class SettingsBindingWorkersBindingKindVectorize(TypedDict, total=False):
     name: Required[str]
     """A JavaScript variable name for the binding."""
 
-    type: Required[
-        Literal[
-            "ai",
-            "analytics_engine",
-            "assets",
-            "browser_rendering",
-            "d1",
-            "dispatch_namespace",
-            "durable_object_namespace",
-            "hyperdrive",
-            "json",
-            "kv_namespace",
-            "mtls_certificate",
-            "plain_text",
-            "queue",
-            "r2_bucket",
-            "secret_text",
-            "service",
-            "tail_consumer",
-            "vectorize",
-            "version_metadata",
-        ]
-    ]
+    type: Required[str]
     """The kind of resource that the binding provides."""
 
 
@@ -678,29 +282,7 @@ class SettingsBindingWorkersBindingKindVersionMetadata(TypedDict, total=False):
     name: Required[str]
     """A JavaScript variable name for the binding."""
 
-    type: Required[
-        Literal[
-            "ai",
-            "analytics_engine",
-            "assets",
-            "browser_rendering",
-            "d1",
-            "dispatch_namespace",
-            "durable_object_namespace",
-            "hyperdrive",
-            "json",
-            "kv_namespace",
-            "mtls_certificate",
-            "plain_text",
-            "queue",
-            "r2_bucket",
-            "secret_text",
-            "service",
-            "tail_consumer",
-            "vectorize",
-            "version_metadata",
-        ]
-    ]
+    type: Required[str]
     """The kind of resource that the binding provides."""
 
 
