@@ -8,20 +8,18 @@ from typing_extensions import Literal, Required, Annotated, TypedDict
 from ..._utils import PropertyInfo
 
 __all__ = [
-    "ScreenshotCreateParams",
+    "BrowserRenderingPDFParams",
     "AddScriptTag",
     "AddStyleTag",
     "Authenticate",
     "Cookie",
     "GotoOptions",
-    "ScreenshotOptions",
-    "ScreenshotOptionsClip",
     "Viewport",
     "WaitForSelector",
 ]
 
 
-class ScreenshotCreateParams(TypedDict, total=False):
+class BrowserRenderingPDFParams(TypedDict, total=False):
     cache_ttl: Annotated[float, PropertyInfo(alias="cacheTTL")]
     """Cache TTL default is 5s. Set to 0 to disable."""
 
@@ -123,13 +121,6 @@ class ScreenshotCreateParams(TypedDict, total=False):
     'image' or 'script'.
     """
 
-    screenshot_options: Annotated[ScreenshotOptions, PropertyInfo(alias="screenshotOptions")]
-    """Check [options](https://pptr.dev/api/puppeteer.screenshotoptions)."""
-
-    scroll_page: Annotated[bool, PropertyInfo(alias="scrollPage")]
-
-    selector: str
-
     set_extra_http_headers: Annotated[Dict[str, str], PropertyInfo(alias="setExtraHTTPHeaders")]
 
     set_java_script_enabled: Annotated[bool, PropertyInfo(alias="setJavaScriptEnabled")]
@@ -218,38 +209,6 @@ class GotoOptions(TypedDict, total=False):
         ],
         PropertyInfo(alias="waitUntil"),
     ]
-
-
-class ScreenshotOptionsClip(TypedDict, total=False):
-    height: Required[float]
-
-    width: Required[float]
-
-    x: Required[float]
-
-    y: Required[float]
-
-    scale: float
-
-
-class ScreenshotOptions(TypedDict, total=False):
-    capture_beyond_viewport: Annotated[bool, PropertyInfo(alias="captureBeyondViewport")]
-
-    clip: ScreenshotOptionsClip
-
-    encoding: Literal["binary", "base64"]
-
-    from_surface: Annotated[bool, PropertyInfo(alias="fromSurface")]
-
-    full_page: Annotated[bool, PropertyInfo(alias="fullPage")]
-
-    omit_background: Annotated[bool, PropertyInfo(alias="omitBackground")]
-
-    optimize_for_speed: Annotated[bool, PropertyInfo(alias="optimizeForSpeed")]
-
-    quality: float
-
-    type: Literal["png", "jpeg", "webp"]
 
 
 class Viewport(TypedDict, total=False):

@@ -2,6 +2,6 @@
 
 from typing_extensions import TypeAlias
 
-__all__ = ["ContentCreateResponse"]
+__all__ = ["BrowserRenderingContentResponse"]
 
-ContentCreateResponse: TypeAlias = str
+BrowserRenderingContentResponse: TypeAlias = str
