@@ -106,7 +106,6 @@ class DefaultResource(SyncAPIResource):
         auto_connect: float | NotGiven = NOT_GIVEN,
         captive_portal: float | NotGiven = NOT_GIVEN,
         disable_auto_fallback: bool | NotGiven = NOT_GIVEN,
-        doh_in_tunnel: bool | NotGiven = NOT_GIVEN,
         exclude_office_ips: bool | NotGiven = NOT_GIVEN,
         register_interface_ip_with_dns: bool | NotGiven = NOT_GIVEN,
         service_mode_v2: default_edit_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
@@ -139,10 +138,6 @@ class DefaultResource(SyncAPIResource):
               fall back to a best guess of the default/system DNS resolvers unless this policy
               option is set to `true`.
 
-          doh_in_tunnel: Determines how the WARP client sends DNS requests to Cloudflare Gateway. When
-              `true`, DNS traffic is sent over DoH inside the WARP tunnel. When `false`, the
-              DoH connection operates outside of the WARP tunnel.
-
           exclude_office_ips: Whether to add Microsoft IPs to Split Tunnel exclusions.
 
           register_interface_ip_with_dns: Determines if the operating system will register WARP's local interface IP with
@@ -174,7 +169,6 @@ class DefaultResource(SyncAPIResource):
                     "auto_connect": auto_connect,
                     "captive_portal": captive_portal,
                     "disable_auto_fallback": disable_auto_fallback,
-                    "doh_in_tunnel": doh_in_tunnel,
                     "exclude_office_ips": exclude_office_ips,
                     "register_interface_ip_with_dns": register_interface_ip_with_dns,
                     "service_mode_v2": service_mode_v2,
@@ -278,7 +272,6 @@ class AsyncDefaultResource(AsyncAPIResource):
         auto_connect: float | NotGiven = NOT_GIVEN,
         captive_portal: float | NotGiven = NOT_GIVEN,
         disable_auto_fallback: bool | NotGiven = NOT_GIVEN,
-        doh_in_tunnel: bool | NotGiven = NOT_GIVEN,
         exclude_office_ips: bool | NotGiven = NOT_GIVEN,
         register_interface_ip_with_dns: bool | NotGiven = NOT_GIVEN,
         service_mode_v2: default_edit_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
@@ -311,10 +304,6 @@ class AsyncDefaultResource(AsyncAPIResource):
               fall back to a best guess of the default/system DNS resolvers unless this policy
               option is set to `true`.
 
-          doh_in_tunnel: Determines how the WARP client sends DNS requests to Cloudflare Gateway. When
-              `true`, DNS traffic is sent over DoH inside the WARP tunnel. When `false`, the
-              DoH connection operates outside of the WARP tunnel.
-
           exclude_office_ips: Whether to add Microsoft IPs to Split Tunnel exclusions.
 
           register_interface_ip_with_dns: Determines if the operating system will register WARP's local interface IP with
@@ -346,7 +335,6 @@ class AsyncDefaultResource(AsyncAPIResource):
                     "auto_connect": auto_connect,
                     "captive_portal": captive_portal,
                     "disable_auto_fallback": disable_auto_fallback,
-                    "doh_in_tunnel": doh_in_tunnel,
                     "exclude_office_ips": exclude_office_ips,
                     "register_interface_ip_with_dns": register_interface_ip_with_dns,
                     "service_mode_v2": service_mode_v2,
