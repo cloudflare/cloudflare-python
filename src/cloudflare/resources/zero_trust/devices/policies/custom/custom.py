@@ -98,7 +98,6 @@ class CustomResource(SyncAPIResource):
         captive_portal: float | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         disable_auto_fallback: bool | NotGiven = NOT_GIVEN,
-        doh_in_tunnel: bool | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         exclude_office_ips: bool | NotGiven = NOT_GIVEN,
         lan_allow_minutes: float | NotGiven = NOT_GIVEN,
@@ -143,10 +142,6 @@ class CustomResource(SyncAPIResource):
           disable_auto_fallback: If the `dns_server` field of a fallback domain is not present, the client will
               fall back to a best guess of the default/system DNS resolvers unless this policy
               option is set to `true`.
-
-          doh_in_tunnel: Determines how the WARP client sends DNS requests to Cloudflare Gateway. When
-              `true`, DNS traffic is sent over DoH inside the WARP tunnel. When `false`, the
-              DoH connection operates outside of the WARP tunnel.
 
           enabled: Whether the policy will be applied to matching devices.
 
@@ -193,7 +188,6 @@ class CustomResource(SyncAPIResource):
                     "captive_portal": captive_portal,
                     "description": description,
                     "disable_auto_fallback": disable_auto_fallback,
-                    "doh_in_tunnel": doh_in_tunnel,
                     "enabled": enabled,
                     "exclude_office_ips": exclude_office_ips,
                     "lan_allow_minutes": lan_allow_minutes,
@@ -303,7 +297,6 @@ class CustomResource(SyncAPIResource):
         captive_portal: float | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         disable_auto_fallback: bool | NotGiven = NOT_GIVEN,
-        doh_in_tunnel: bool | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         exclude_office_ips: bool | NotGiven = NOT_GIVEN,
         match: str | NotGiven = NOT_GIVEN,
@@ -343,10 +336,6 @@ class CustomResource(SyncAPIResource):
           disable_auto_fallback: If the `dns_server` field of a fallback domain is not present, the client will
               fall back to a best guess of the default/system DNS resolvers unless this policy
               option is set to `true`.
-
-          doh_in_tunnel: Determines how the WARP client sends DNS requests to Cloudflare Gateway. When
-              `true`, DNS traffic is sent over DoH inside the WARP tunnel. When `false`, the
-              DoH connection operates outside of the WARP tunnel.
 
           enabled: Whether the policy will be applied to matching devices.
 
@@ -391,7 +380,6 @@ class CustomResource(SyncAPIResource):
                     "captive_portal": captive_portal,
                     "description": description,
                     "disable_auto_fallback": disable_auto_fallback,
-                    "doh_in_tunnel": doh_in_tunnel,
                     "enabled": enabled,
                     "exclude_office_ips": exclude_office_ips,
                     "match": match,
@@ -504,7 +492,6 @@ class AsyncCustomResource(AsyncAPIResource):
         captive_portal: float | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         disable_auto_fallback: bool | NotGiven = NOT_GIVEN,
-        doh_in_tunnel: bool | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         exclude_office_ips: bool | NotGiven = NOT_GIVEN,
         lan_allow_minutes: float | NotGiven = NOT_GIVEN,
@@ -549,10 +536,6 @@ class AsyncCustomResource(AsyncAPIResource):
           disable_auto_fallback: If the `dns_server` field of a fallback domain is not present, the client will
               fall back to a best guess of the default/system DNS resolvers unless this policy
               option is set to `true`.
-
-          doh_in_tunnel: Determines how the WARP client sends DNS requests to Cloudflare Gateway. When
-              `true`, DNS traffic is sent over DoH inside the WARP tunnel. When `false`, the
-              DoH connection operates outside of the WARP tunnel.
 
           enabled: Whether the policy will be applied to matching devices.
 
@@ -599,7 +582,6 @@ class AsyncCustomResource(AsyncAPIResource):
                     "captive_portal": captive_portal,
                     "description": description,
                     "disable_auto_fallback": disable_auto_fallback,
-                    "doh_in_tunnel": doh_in_tunnel,
                     "enabled": enabled,
                     "exclude_office_ips": exclude_office_ips,
                     "lan_allow_minutes": lan_allow_minutes,
@@ -709,7 +691,6 @@ class AsyncCustomResource(AsyncAPIResource):
         captive_portal: float | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         disable_auto_fallback: bool | NotGiven = NOT_GIVEN,
-        doh_in_tunnel: bool | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         exclude_office_ips: bool | NotGiven = NOT_GIVEN,
         match: str | NotGiven = NOT_GIVEN,
@@ -749,10 +730,6 @@ class AsyncCustomResource(AsyncAPIResource):
           disable_auto_fallback: If the `dns_server` field of a fallback domain is not present, the client will
               fall back to a best guess of the default/system DNS resolvers unless this policy
               option is set to `true`.
-
-          doh_in_tunnel: Determines how the WARP client sends DNS requests to Cloudflare Gateway. When
-              `true`, DNS traffic is sent over DoH inside the WARP tunnel. When `false`, the
-              DoH connection operates outside of the WARP tunnel.
 
           enabled: Whether the policy will be applied to matching devices.
 
@@ -797,7 +774,6 @@ class AsyncCustomResource(AsyncAPIResource):
                     "captive_portal": captive_portal,
                     "description": description,
                     "disable_auto_fallback": disable_auto_fallback,
-                    "doh_in_tunnel": doh_in_tunnel,
                     "enabled": enabled,
                     "exclude_office_ips": exclude_office_ips,
                     "match": match,

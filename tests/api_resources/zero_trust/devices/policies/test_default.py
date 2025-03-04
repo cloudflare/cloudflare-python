@@ -34,7 +34,6 @@ class TestDefault:
             auto_connect=0,
             captive_portal=180,
             disable_auto_fallback=True,
-            doh_in_tunnel=True,
             exclude_office_ips=True,
             register_interface_ip_with_dns=True,
             service_mode_v2={
@@ -137,7 +136,6 @@ class TestAsyncDefault:
             auto_connect=0,
             captive_portal=180,
             disable_auto_fallback=True,
-            doh_in_tunnel=True,
             exclude_office_ips=True,
             register_interface_ip_with_dns=True,
             service_mode_v2={
