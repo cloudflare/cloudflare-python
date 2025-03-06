@@ -38,6 +38,7 @@ class TestStream:
             body={},
             tus_resumable="1.0.0",
             upload_length=0,
+            direct_user=True,
             upload_creator="creator-id_abcde12345",
             upload_metadata="name aGVsbG8gd29ybGQ=, requiresignedurls, allowedorigins ZXhhbXBsZS5jb20sdGVzdC5jb20=",
         )
@@ -322,6 +323,7 @@ class TestAsyncStream:
             body={},
             tus_resumable="1.0.0",
             upload_length=0,
+            direct_user=True,
             upload_creator="creator-id_abcde12345",
             upload_metadata="name aGVsbG8gd29ybGQ=, requiresignedurls, allowedorigins ZXhhbXBsZS5jb20sdGVzdC5jb20=",
         )
