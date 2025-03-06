@@ -110,7 +110,6 @@ if TYPE_CHECKING:
         content_scanning,
         custom_hostnames,
         resource_sharing,
-        browser_rendering,
         mtls_certificates,
         url_normalization,
         custom_nameservers,
@@ -211,7 +210,6 @@ if TYPE_CHECKING:
     from .resources.content_scanning.content_scanning import ContentScanningResource, AsyncContentScanningResource
     from .resources.custom_hostnames.custom_hostnames import CustomHostnamesResource, AsyncCustomHostnamesResource
     from .resources.resource_sharing.resource_sharing import ResourceSharingResource, AsyncResourceSharingResource
-    from .resources.browser_rendering.browser_rendering import BrowserRenderingResource, AsyncBrowserRenderingResource
     from .resources.mtls_certificates.mtls_certificates import MTLSCertificatesResource, AsyncMTLSCertificatesResource
     from .resources.custom_certificates.custom_certificates import (
         CustomCertificatesResource,
@@ -860,12 +858,6 @@ class Cloudflare(SyncAPIClient):
         from .resources.security_center import SecurityCenterResource
 
         return SecurityCenterResource(self)
-
-    @cached_property
-    def browser_rendering(self) -> BrowserRenderingResource:
-        from .resources.browser_rendering import BrowserRenderingResource
-
-        return BrowserRenderingResource(self)
 
     @cached_property
     def with_raw_response(self) -> CloudflareWithRawResponse:
@@ -1657,12 +1649,6 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncSecurityCenterResource(self)
 
     @cached_property
-    def browser_rendering(self) -> AsyncBrowserRenderingResource:
-        from .resources.browser_rendering import AsyncBrowserRenderingResource
-
-        return AsyncBrowserRenderingResource(self)
-
-    @cached_property
     def with_raw_response(self) -> AsyncCloudflareWithRawResponse:
         return AsyncCloudflareWithRawResponse(self)
 
@@ -2386,12 +2372,6 @@ class CloudflareWithRawResponse:
 
         return SecurityCenterResourceWithRawResponse(self._client.security_center)
 
-    @cached_property
-    def browser_rendering(self) -> browser_rendering.BrowserRenderingResourceWithRawResponse:
-        from .resources.browser_rendering import BrowserRenderingResourceWithRawResponse
-
-        return BrowserRenderingResourceWithRawResponse(self._client.browser_rendering)
-
 
 class AsyncCloudflareWithRawResponse:
     _client: AsyncCloudflare
@@ -2935,12 +2915,6 @@ class AsyncCloudflareWithRawResponse:
 
         return AsyncSecurityCenterResourceWithRawResponse(self._client.security_center)
 
-    @cached_property
-    def browser_rendering(self) -> browser_rendering.AsyncBrowserRenderingResourceWithRawResponse:
-        from .resources.browser_rendering import AsyncBrowserRenderingResourceWithRawResponse
-
-        return AsyncBrowserRenderingResourceWithRawResponse(self._client.browser_rendering)
-
 
 class CloudflareWithStreamedResponse:
     _client: Cloudflare
@@ -3483,12 +3457,6 @@ class CloudflareWithStreamedResponse:
         from .resources.security_center import SecurityCenterResourceWithStreamingResponse
 
         return SecurityCenterResourceWithStreamingResponse(self._client.security_center)
-
-    @cached_property
-    def browser_rendering(self) -> browser_rendering.BrowserRenderingResourceWithStreamingResponse:
-        from .resources.browser_rendering import BrowserRenderingResourceWithStreamingResponse
-
-        return BrowserRenderingResourceWithStreamingResponse(self._client.browser_rendering)
 
 
 class AsyncCloudflareWithStreamedResponse:
@@ -4042,12 +4010,6 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.security_center import AsyncSecurityCenterResourceWithStreamingResponse
 
         return AsyncSecurityCenterResourceWithStreamingResponse(self._client.security_center)
-
-    @cached_property
-    def browser_rendering(self) -> browser_rendering.AsyncBrowserRenderingResourceWithStreamingResponse:
-        from .resources.browser_rendering import AsyncBrowserRenderingResourceWithStreamingResponse
-
-        return AsyncBrowserRenderingResourceWithStreamingResponse(self._client.browser_rendering)
 
 
 Client = Cloudflare
