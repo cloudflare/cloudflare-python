@@ -4693,22 +4693,13 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.r2.buckets.domains import (
-    CustomCreateResponse,
-    CustomUpdateResponse,
-    CustomListResponse,
-    CustomDeleteResponse,
-    CustomGetResponse,
-)
+from cloudflare.types.r2.buckets.domains import CustomCreateResponse, CustomListResponse
 ```
 
 Methods:
 
 - <code title="post /accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom">client.r2.buckets.domains.custom.<a href="./src/cloudflare/resources/r2/buckets/domains/custom.py">create</a>(bucket_name, \*, account_id, \*\*<a href="src/cloudflare/types/r2/buckets/domains/custom_create_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/buckets/domains/custom_create_response.py">CustomCreateResponse</a></code>
-- <code title="put /accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom/{domain_name}">client.r2.buckets.domains.custom.<a href="./src/cloudflare/resources/r2/buckets/domains/custom.py">update</a>(domain_name, \*, account_id, bucket_name, \*\*<a href="src/cloudflare/types/r2/buckets/domains/custom_update_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/buckets/domains/custom_update_response.py">CustomUpdateResponse</a></code>
 - <code title="get /accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom">client.r2.buckets.domains.custom.<a href="./src/cloudflare/resources/r2/buckets/domains/custom.py">list</a>(bucket_name, \*, account_id) -> <a href="./src/cloudflare/types/r2/buckets/domains/custom_list_response.py">CustomListResponse</a></code>
-- <code title="delete /accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom/{domain_name}">client.r2.buckets.domains.custom.<a href="./src/cloudflare/resources/r2/buckets/domains/custom.py">delete</a>(domain_name, \*, account_id, bucket_name) -> <a href="./src/cloudflare/types/r2/buckets/domains/custom_delete_response.py">CustomDeleteResponse</a></code>
-- <code title="get /accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom/{domain_name}">client.r2.buckets.domains.custom.<a href="./src/cloudflare/resources/r2/buckets/domains/custom.py">get</a>(domain_name, \*, account_id, bucket_name) -> <a href="./src/cloudflare/types/r2/buckets/domains/custom_get_response.py">CustomGetResponse</a></code>
 
 #### Managed
 
@@ -8354,6 +8345,38 @@ Methods:
 
 # CloudforceOne
 
+## Scans
+
+### Results
+
+Types:
+
+```python
+from cloudflare.types.cloudforce_one.scans import ScanResult, ResultListResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/cloudforce-one/scans/results">client.cloudforce_one.scans.results.<a href="./src/cloudflare/resources/cloudforce_one/scans/results.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/scans/result_list_response.py">ResultListResponse</a></code>
+
+### Config
+
+Types:
+
+```python
+from cloudflare.types.cloudforce_one.scans import (
+    ConfigCreateResponse,
+    ConfigListResponse,
+    ConfigDeleteResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/cloudforce-one/scans/config">client.cloudforce_one.scans.config.<a href="./src/cloudflare/resources/cloudforce_one/scans/config.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/scans/config_create_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/scans/config_create_response.py">Optional[ConfigCreateResponse]</a></code>
+- <code title="get /accounts/{account_id}/cloudforce-one/scans/config">client.cloudforce_one.scans.config.<a href="./src/cloudflare/resources/cloudforce_one/scans/config.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/scans/config_list_response.py">Optional[ConfigListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/cloudforce-one/scans/config">client.cloudforce_one.scans.config.<a href="./src/cloudflare/resources/cloudforce_one/scans/config.py">delete</a>(\*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/scans/config_delete_response.py">object</a></code>
+
 ## Requests
 
 Types:
@@ -9003,3 +9026,59 @@ from cloudflare.types.security_center.insights import TypeGetResponse
 Methods:
 
 - <code title="get /{accounts_or_zones}/{account_or_zone_id}/security-center/insights/type">client.security_center.insights.type.<a href="./src/cloudflare/resources/security_center/insights/type.py">get</a>(\*, account_id, zone_id, \*\*<a href="src/cloudflare/types/security_center/insights/type_get_params.py">params</a>) -> <a href="./src/cloudflare/types/security_center/insights/type_get_response.py">Optional[TypeGetResponse]</a></code>
+
+# BrowserRendering
+
+## Content
+
+Types:
+
+```python
+from cloudflare.types.browser_rendering import ContentCreateResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/browser-rendering/content">client.browser_rendering.content.<a href="./src/cloudflare/resources/browser_rendering/content.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/browser_rendering/content_create_params.py">params</a>) -> <a href="./src/cloudflare/types/browser_rendering/content_create_response.py">str</a></code>
+
+## PDF
+
+Methods:
+
+- <code title="post /accounts/{account_id}/browser-rendering/pdf">client.browser_rendering.pdf.<a href="./src/cloudflare/resources/browser_rendering/pdf.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/browser_rendering/pdf_create_params.py">params</a>) -> BinaryAPIResponse</code>
+
+## Scrape
+
+Types:
+
+```python
+from cloudflare.types.browser_rendering import ScrapeCreateResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/browser-rendering/scrape">client.browser_rendering.scrape.<a href="./src/cloudflare/resources/browser_rendering/scrape.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/browser_rendering/scrape_create_params.py">params</a>) -> <a href="./src/cloudflare/types/browser_rendering/scrape_create_response.py">ScrapeCreateResponse</a></code>
+
+## Screenshot
+
+Types:
+
+```python
+from cloudflare.types.browser_rendering import ScreenshotCreateResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/browser-rendering/screenshot">client.browser_rendering.screenshot.<a href="./src/cloudflare/resources/browser_rendering/screenshot.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/browser_rendering/screenshot_create_params.py">params</a>) -> <a href="./src/cloudflare/types/browser_rendering/screenshot_create_response.py">ScreenshotCreateResponse</a></code>
+
+## Snapshot
+
+Types:
+
+```python
+from cloudflare.types.browser_rendering import SnapshotCreateResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/browser-rendering/snapshot">client.browser_rendering.snapshot.<a href="./src/cloudflare/resources/browser_rendering/snapshot.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/browser_rendering/snapshot_create_params.py">params</a>) -> <a href="./src/cloudflare/types/browser_rendering/snapshot_create_response.py">Optional[SnapshotCreateResponse]</a></code>
