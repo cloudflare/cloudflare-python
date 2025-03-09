@@ -8,26 +8,26 @@ from .zone import (
     ZoneResourceWithStreamingResponse,
     AsyncZoneResourceWithStreamingResponse,
 )
-from .settings import (
-    SettingsResource,
-    AsyncSettingsResource,
-    SettingsResourceWithRawResponse,
-    AsyncSettingsResourceWithRawResponse,
-    SettingsResourceWithStreamingResponse,
-    AsyncSettingsResourceWithStreamingResponse,
+from .views import (
+    ViewsResource,
+    AsyncViewsResource,
+    ViewsResourceWithRawResponse,
+    AsyncViewsResourceWithRawResponse,
+    ViewsResourceWithStreamingResponse,
+    AsyncViewsResourceWithStreamingResponse,
 )
 
 __all__ = [
+    "ViewsResource",
+    "AsyncViewsResource",
+    "ViewsResourceWithRawResponse",
+    "AsyncViewsResourceWithRawResponse",
+    "ViewsResourceWithStreamingResponse",
+    "AsyncViewsResourceWithStreamingResponse",
     "ZoneResource",
     "AsyncZoneResource",
     "ZoneResourceWithRawResponse",
     "AsyncZoneResourceWithRawResponse",
     "ZoneResourceWithStreamingResponse",
     "AsyncZoneResourceWithStreamingResponse",
-    "SettingsResource",
-    "AsyncSettingsResource",
-    "SettingsResourceWithRawResponse",
-    "AsyncSettingsResourceWithRawResponse",
-    "SettingsResourceWithStreamingResponse",
-    "AsyncSettingsResourceWithStreamingResponse",
 ]

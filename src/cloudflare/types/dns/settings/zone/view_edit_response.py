@@ -3,7 +3,7 @@
 from typing import List
 from datetime import datetime
 
-from ...._models import BaseModel
+from ....._models import BaseModel
 
 __all__ = ["ViewEditResponse"]
 
