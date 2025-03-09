@@ -7,28 +7,28 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._utils import (
     maybe_transform,
     async_maybe_transform,
 )
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
+from ....._compat import cached_property
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from ....._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._wrappers import ResultWrapper
-from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ...._base_client import AsyncPaginator, make_request_options
-from ....types.dns.settings import view_edit_params, view_list_params, view_create_params
-from ....types.dns.settings.view_get_response import ViewGetResponse
-from ....types.dns.settings.view_edit_response import ViewEditResponse
-from ....types.dns.settings.view_list_response import ViewListResponse
-from ....types.dns.settings.view_create_response import ViewCreateResponse
-from ....types.dns.settings.view_delete_response import ViewDeleteResponse
+from ....._wrappers import ResultWrapper
+from .....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from ....._base_client import AsyncPaginator, make_request_options
+from .....types.dns.settings.zone import view_edit_params, view_list_params, view_create_params
+from .....types.dns.settings.zone.view_get_response import ViewGetResponse
+from .....types.dns.settings.zone.view_edit_response import ViewEditResponse
+from .....types.dns.settings.zone.view_list_response import ViewListResponse
+from .....types.dns.settings.zone.view_create_response import ViewCreateResponse
+from .....types.dns.settings.zone.view_delete_response import ViewDeleteResponse
 
 __all__ = ["ViewsResource", "AsyncViewsResource"]
 
