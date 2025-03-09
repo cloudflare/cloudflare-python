@@ -9,7 +9,13 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.r2.buckets.domains import CustomListResponse, CustomCreateResponse
+from cloudflare.types.r2.buckets.domains import (
+    CustomGetResponse,
+    CustomListResponse,
+    CustomCreateResponse,
+    CustomDeleteResponse,
+    CustomUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -100,6 +106,83 @@ class TestCustom:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
+    def test_method_update(self, client: Cloudflare) -> None:
+        custom = client.r2.buckets.domains.custom.update(
+            domain="example-domain/custom-domain.com",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            bucket_name="example-bucket",
+        )
+        assert_matches_type(CustomUpdateResponse, custom, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
+        custom = client.r2.buckets.domains.custom.update(
+            domain="example-domain/custom-domain.com",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            bucket_name="example-bucket",
+            enabled=True,
+            min_tls="1.0",
+            jurisdiction="default",
+        )
+        assert_matches_type(CustomUpdateResponse, custom, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_raw_response_update(self, client: Cloudflare) -> None:
+        response = client.r2.buckets.domains.custom.with_raw_response.update(
+            domain="example-domain/custom-domain.com",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            bucket_name="example-bucket",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        custom = response.parse()
+        assert_matches_type(CustomUpdateResponse, custom, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_streaming_response_update(self, client: Cloudflare) -> None:
+        with client.r2.buckets.domains.custom.with_streaming_response.update(
+            domain="example-domain/custom-domain.com",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            bucket_name="example-bucket",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            custom = response.parse()
+            assert_matches_type(CustomUpdateResponse, custom, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_path_params_update(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.r2.buckets.domains.custom.with_raw_response.update(
+                domain="example-domain/custom-domain.com",
+                account_id="",
+                bucket_name="example-bucket",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
+            client.r2.buckets.domains.custom.with_raw_response.update(
+                domain="example-domain/custom-domain.com",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                bucket_name="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `domain` but received ''"):
+            client.r2.buckets.domains.custom.with_raw_response.update(
+                domain="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                bucket_name="example-bucket",
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         custom = client.r2.buckets.domains.custom.list(
             bucket_name="example-bucket",
@@ -158,6 +241,156 @@ class TestCustom:
             client.r2.buckets.domains.custom.with_raw_response.list(
                 bucket_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_delete(self, client: Cloudflare) -> None:
+        custom = client.r2.buckets.domains.custom.delete(
+            domain="example-domain/custom-domain.com",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            bucket_name="example-bucket",
+        )
+        assert_matches_type(CustomDeleteResponse, custom, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
+        custom = client.r2.buckets.domains.custom.delete(
+            domain="example-domain/custom-domain.com",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            bucket_name="example-bucket",
+            jurisdiction="default",
+        )
+        assert_matches_type(CustomDeleteResponse, custom, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_raw_response_delete(self, client: Cloudflare) -> None:
+        response = client.r2.buckets.domains.custom.with_raw_response.delete(
+            domain="example-domain/custom-domain.com",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            bucket_name="example-bucket",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        custom = response.parse()
+        assert_matches_type(CustomDeleteResponse, custom, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_streaming_response_delete(self, client: Cloudflare) -> None:
+        with client.r2.buckets.domains.custom.with_streaming_response.delete(
+            domain="example-domain/custom-domain.com",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            bucket_name="example-bucket",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            custom = response.parse()
+            assert_matches_type(CustomDeleteResponse, custom, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_path_params_delete(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.r2.buckets.domains.custom.with_raw_response.delete(
+                domain="example-domain/custom-domain.com",
+                account_id="",
+                bucket_name="example-bucket",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
+            client.r2.buckets.domains.custom.with_raw_response.delete(
+                domain="example-domain/custom-domain.com",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                bucket_name="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `domain` but received ''"):
+            client.r2.buckets.domains.custom.with_raw_response.delete(
+                domain="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                bucket_name="example-bucket",
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_get(self, client: Cloudflare) -> None:
+        custom = client.r2.buckets.domains.custom.get(
+            domain="example-domain/custom-domain.com",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            bucket_name="example-bucket",
+        )
+        assert_matches_type(CustomGetResponse, custom, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_get_with_all_params(self, client: Cloudflare) -> None:
+        custom = client.r2.buckets.domains.custom.get(
+            domain="example-domain/custom-domain.com",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            bucket_name="example-bucket",
+            jurisdiction="default",
+        )
+        assert_matches_type(CustomGetResponse, custom, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_raw_response_get(self, client: Cloudflare) -> None:
+        response = client.r2.buckets.domains.custom.with_raw_response.get(
+            domain="example-domain/custom-domain.com",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            bucket_name="example-bucket",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        custom = response.parse()
+        assert_matches_type(CustomGetResponse, custom, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_streaming_response_get(self, client: Cloudflare) -> None:
+        with client.r2.buckets.domains.custom.with_streaming_response.get(
+            domain="example-domain/custom-domain.com",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            bucket_name="example-bucket",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            custom = response.parse()
+            assert_matches_type(CustomGetResponse, custom, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_path_params_get(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.r2.buckets.domains.custom.with_raw_response.get(
+                domain="example-domain/custom-domain.com",
+                account_id="",
+                bucket_name="example-bucket",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
+            client.r2.buckets.domains.custom.with_raw_response.get(
+                domain="example-domain/custom-domain.com",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                bucket_name="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `domain` but received ''"):
+            client.r2.buckets.domains.custom.with_raw_response.get(
+                domain="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                bucket_name="example-bucket",
             )
 
 
@@ -247,6 +480,83 @@ class TestAsyncCustom:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
+    async def test_method_update(self, async_client: AsyncCloudflare) -> None:
+        custom = await async_client.r2.buckets.domains.custom.update(
+            domain="example-domain/custom-domain.com",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            bucket_name="example-bucket",
+        )
+        assert_matches_type(CustomUpdateResponse, custom, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        custom = await async_client.r2.buckets.domains.custom.update(
+            domain="example-domain/custom-domain.com",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            bucket_name="example-bucket",
+            enabled=True,
+            min_tls="1.0",
+            jurisdiction="default",
+        )
+        assert_matches_type(CustomUpdateResponse, custom, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.r2.buckets.domains.custom.with_raw_response.update(
+            domain="example-domain/custom-domain.com",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            bucket_name="example-bucket",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        custom = await response.parse()
+        assert_matches_type(CustomUpdateResponse, custom, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.r2.buckets.domains.custom.with_streaming_response.update(
+            domain="example-domain/custom-domain.com",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            bucket_name="example-bucket",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            custom = await response.parse()
+            assert_matches_type(CustomUpdateResponse, custom, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.r2.buckets.domains.custom.with_raw_response.update(
+                domain="example-domain/custom-domain.com",
+                account_id="",
+                bucket_name="example-bucket",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
+            await async_client.r2.buckets.domains.custom.with_raw_response.update(
+                domain="example-domain/custom-domain.com",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                bucket_name="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `domain` but received ''"):
+            await async_client.r2.buckets.domains.custom.with_raw_response.update(
+                domain="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                bucket_name="example-bucket",
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         custom = await async_client.r2.buckets.domains.custom.list(
             bucket_name="example-bucket",
@@ -305,4 +615,154 @@ class TestAsyncCustom:
             await async_client.r2.buckets.domains.custom.with_raw_response.list(
                 bucket_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
+        custom = await async_client.r2.buckets.domains.custom.delete(
+            domain="example-domain/custom-domain.com",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            bucket_name="example-bucket",
+        )
+        assert_matches_type(CustomDeleteResponse, custom, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        custom = await async_client.r2.buckets.domains.custom.delete(
+            domain="example-domain/custom-domain.com",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            bucket_name="example-bucket",
+            jurisdiction="default",
+        )
+        assert_matches_type(CustomDeleteResponse, custom, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.r2.buckets.domains.custom.with_raw_response.delete(
+            domain="example-domain/custom-domain.com",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            bucket_name="example-bucket",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        custom = await response.parse()
+        assert_matches_type(CustomDeleteResponse, custom, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.r2.buckets.domains.custom.with_streaming_response.delete(
+            domain="example-domain/custom-domain.com",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            bucket_name="example-bucket",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            custom = await response.parse()
+            assert_matches_type(CustomDeleteResponse, custom, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.r2.buckets.domains.custom.with_raw_response.delete(
+                domain="example-domain/custom-domain.com",
+                account_id="",
+                bucket_name="example-bucket",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
+            await async_client.r2.buckets.domains.custom.with_raw_response.delete(
+                domain="example-domain/custom-domain.com",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                bucket_name="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `domain` but received ''"):
+            await async_client.r2.buckets.domains.custom.with_raw_response.delete(
+                domain="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                bucket_name="example-bucket",
+            )
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_get(self, async_client: AsyncCloudflare) -> None:
+        custom = await async_client.r2.buckets.domains.custom.get(
+            domain="example-domain/custom-domain.com",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            bucket_name="example-bucket",
+        )
+        assert_matches_type(CustomGetResponse, custom, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        custom = await async_client.r2.buckets.domains.custom.get(
+            domain="example-domain/custom-domain.com",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            bucket_name="example-bucket",
+            jurisdiction="default",
+        )
+        assert_matches_type(CustomGetResponse, custom, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.r2.buckets.domains.custom.with_raw_response.get(
+            domain="example-domain/custom-domain.com",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            bucket_name="example-bucket",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        custom = await response.parse()
+        assert_matches_type(CustomGetResponse, custom, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.r2.buckets.domains.custom.with_streaming_response.get(
+            domain="example-domain/custom-domain.com",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            bucket_name="example-bucket",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            custom = await response.parse()
+            assert_matches_type(CustomGetResponse, custom, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.r2.buckets.domains.custom.with_raw_response.get(
+                domain="example-domain/custom-domain.com",
+                account_id="",
+                bucket_name="example-bucket",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
+            await async_client.r2.buckets.domains.custom.with_raw_response.get(
+                domain="example-domain/custom-domain.com",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                bucket_name="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `domain` but received ''"):
+            await async_client.r2.buckets.domains.custom.with_raw_response.get(
+                domain="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                bucket_name="example-bucket",
             )
