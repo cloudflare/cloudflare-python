@@ -144,6 +144,23 @@ for account in first_page.result:
 # Remove `await` for non-async usage.
 ```
 
+## Nested params
+
+Nested parameters are dictionaries, typed using `TypedDict`, for example:
+
+```python
+from cloudflare import Cloudflare
+
+client = Cloudflare()
+
+account = client.accounts.create(
+    name="name",
+    type="standard",
+    unit={"id": "f267e341f3dd4697bd3b9f71dd96247f"},
+)
+print(account.unit)
+```
+
 ## File uploads
 
 Request parameters that correspond to file uploads can be passed as `bytes`, a [`PathLike`](https://docs.python.org/3/library/os.html#os.PathLike) instance or a tuple of `(filename, contents, media type)`.
