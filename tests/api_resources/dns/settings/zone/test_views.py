@@ -10,7 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.dns.settings import (
+from cloudflare.types.dns.settings.zone import (
     ViewGetResponse,
     ViewEditResponse,
     ViewListResponse,
@@ -26,7 +26,7 @@ class TestViews:
 
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
-        view = client.dns.settings.views.create(
+        view = client.dns.settings.zone.views.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="my view",
             zones=["372e67954025e0ba6aaa6d586b9e0b59"],
@@ -35,7 +35,7 @@ class TestViews:
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
-        response = client.dns.settings.views.with_raw_response.create(
+        response = client.dns.settings.zone.views.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="my view",
             zones=["372e67954025e0ba6aaa6d586b9e0b59"],
@@ -48,7 +48,7 @@ class TestViews:
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
-        with client.dns.settings.views.with_streaming_response.create(
+        with client.dns.settings.zone.views.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="my view",
             zones=["372e67954025e0ba6aaa6d586b9e0b59"],
@@ -64,7 +64,7 @@ class TestViews:
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.dns.settings.views.with_raw_response.create(
+            client.dns.settings.zone.views.with_raw_response.create(
                 account_id="",
                 name="my view",
                 zones=["372e67954025e0ba6aaa6d586b9e0b59"],
@@ -72,14 +72,14 @@ class TestViews:
 
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
-        view = client.dns.settings.views.list(
+        view = client.dns.settings.zone.views.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(SyncV4PagePaginationArray[ViewListResponse], view, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
-        view = client.dns.settings.views.list(
+        view = client.dns.settings.zone.views.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             direction="asc",
             match="any",
@@ -99,7 +99,7 @@ class TestViews:
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
-        response = client.dns.settings.views.with_raw_response.list(
+        response = client.dns.settings.zone.views.with_raw_response.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -110,7 +110,7 @@ class TestViews:
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
-        with client.dns.settings.views.with_streaming_response.list(
+        with client.dns.settings.zone.views.with_streaming_response.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -124,13 +124,13 @@ class TestViews:
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.dns.settings.views.with_raw_response.list(
+            client.dns.settings.zone.views.with_raw_response.list(
                 account_id="",
             )
 
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
-        view = client.dns.settings.views.delete(
+        view = client.dns.settings.zone.views.delete(
             view_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -138,7 +138,7 @@ class TestViews:
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
-        response = client.dns.settings.views.with_raw_response.delete(
+        response = client.dns.settings.zone.views.with_raw_response.delete(
             view_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -150,7 +150,7 @@ class TestViews:
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
-        with client.dns.settings.views.with_streaming_response.delete(
+        with client.dns.settings.zone.views.with_streaming_response.delete(
             view_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -165,20 +165,20 @@ class TestViews:
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.dns.settings.views.with_raw_response.delete(
+            client.dns.settings.zone.views.with_raw_response.delete(
                 view_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `view_id` but received ''"):
-            client.dns.settings.views.with_raw_response.delete(
+            client.dns.settings.zone.views.with_raw_response.delete(
                 view_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
-        view = client.dns.settings.views.edit(
+        view = client.dns.settings.zone.views.edit(
             view_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -186,7 +186,7 @@ class TestViews:
 
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
-        view = client.dns.settings.views.edit(
+        view = client.dns.settings.zone.views.edit(
             view_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="my view",
@@ -196,7 +196,7 @@ class TestViews:
 
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
-        response = client.dns.settings.views.with_raw_response.edit(
+        response = client.dns.settings.zone.views.with_raw_response.edit(
             view_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -208,7 +208,7 @@ class TestViews:
 
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
-        with client.dns.settings.views.with_streaming_response.edit(
+        with client.dns.settings.zone.views.with_streaming_response.edit(
             view_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -223,20 +223,20 @@ class TestViews:
     @parametrize
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.dns.settings.views.with_raw_response.edit(
+            client.dns.settings.zone.views.with_raw_response.edit(
                 view_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `view_id` but received ''"):
-            client.dns.settings.views.with_raw_response.edit(
+            client.dns.settings.zone.views.with_raw_response.edit(
                 view_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
-        view = client.dns.settings.views.get(
+        view = client.dns.settings.zone.views.get(
             view_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -244,7 +244,7 @@ class TestViews:
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
-        response = client.dns.settings.views.with_raw_response.get(
+        response = client.dns.settings.zone.views.with_raw_response.get(
             view_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -256,7 +256,7 @@ class TestViews:
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
-        with client.dns.settings.views.with_streaming_response.get(
+        with client.dns.settings.zone.views.with_streaming_response.get(
             view_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -271,13 +271,13 @@ class TestViews:
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.dns.settings.views.with_raw_response.get(
+            client.dns.settings.zone.views.with_raw_response.get(
                 view_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `view_id` but received ''"):
-            client.dns.settings.views.with_raw_response.get(
+            client.dns.settings.zone.views.with_raw_response.get(
                 view_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
@@ -288,7 +288,7 @@ class TestAsyncViews:
 
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
-        view = await async_client.dns.settings.views.create(
+        view = await async_client.dns.settings.zone.views.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="my view",
             zones=["372e67954025e0ba6aaa6d586b9e0b59"],
@@ -297,7 +297,7 @@ class TestAsyncViews:
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.dns.settings.views.with_raw_response.create(
+        response = await async_client.dns.settings.zone.views.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="my view",
             zones=["372e67954025e0ba6aaa6d586b9e0b59"],
@@ -310,7 +310,7 @@ class TestAsyncViews:
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.dns.settings.views.with_streaming_response.create(
+        async with async_client.dns.settings.zone.views.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="my view",
             zones=["372e67954025e0ba6aaa6d586b9e0b59"],
@@ -326,7 +326,7 @@ class TestAsyncViews:
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.dns.settings.views.with_raw_response.create(
+            await async_client.dns.settings.zone.views.with_raw_response.create(
                 account_id="",
                 name="my view",
                 zones=["372e67954025e0ba6aaa6d586b9e0b59"],
@@ -334,14 +334,14 @@ class TestAsyncViews:
 
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
-        view = await async_client.dns.settings.views.list(
+        view = await async_client.dns.settings.zone.views.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(AsyncV4PagePaginationArray[ViewListResponse], view, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        view = await async_client.dns.settings.views.list(
+        view = await async_client.dns.settings.zone.views.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             direction="asc",
             match="any",
@@ -361,7 +361,7 @@ class TestAsyncViews:
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.dns.settings.views.with_raw_response.list(
+        response = await async_client.dns.settings.zone.views.with_raw_response.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -372,7 +372,7 @@ class TestAsyncViews:
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.dns.settings.views.with_streaming_response.list(
+        async with async_client.dns.settings.zone.views.with_streaming_response.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -386,13 +386,13 @@ class TestAsyncViews:
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.dns.settings.views.with_raw_response.list(
+            await async_client.dns.settings.zone.views.with_raw_response.list(
                 account_id="",
             )
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
-        view = await async_client.dns.settings.views.delete(
+        view = await async_client.dns.settings.zone.views.delete(
             view_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -400,7 +400,7 @@ class TestAsyncViews:
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.dns.settings.views.with_raw_response.delete(
+        response = await async_client.dns.settings.zone.views.with_raw_response.delete(
             view_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -412,7 +412,7 @@ class TestAsyncViews:
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.dns.settings.views.with_streaming_response.delete(
+        async with async_client.dns.settings.zone.views.with_streaming_response.delete(
             view_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -427,20 +427,20 @@ class TestAsyncViews:
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.dns.settings.views.with_raw_response.delete(
+            await async_client.dns.settings.zone.views.with_raw_response.delete(
                 view_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `view_id` but received ''"):
-            await async_client.dns.settings.views.with_raw_response.delete(
+            await async_client.dns.settings.zone.views.with_raw_response.delete(
                 view_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
-        view = await async_client.dns.settings.views.edit(
+        view = await async_client.dns.settings.zone.views.edit(
             view_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -448,7 +448,7 @@ class TestAsyncViews:
 
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        view = await async_client.dns.settings.views.edit(
+        view = await async_client.dns.settings.zone.views.edit(
             view_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="my view",
@@ -458,7 +458,7 @@ class TestAsyncViews:
 
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.dns.settings.views.with_raw_response.edit(
+        response = await async_client.dns.settings.zone.views.with_raw_response.edit(
             view_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -470,7 +470,7 @@ class TestAsyncViews:
 
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.dns.settings.views.with_streaming_response.edit(
+        async with async_client.dns.settings.zone.views.with_streaming_response.edit(
             view_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -485,20 +485,20 @@ class TestAsyncViews:
     @parametrize
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.dns.settings.views.with_raw_response.edit(
+            await async_client.dns.settings.zone.views.with_raw_response.edit(
                 view_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `view_id` but received ''"):
-            await async_client.dns.settings.views.with_raw_response.edit(
+            await async_client.dns.settings.zone.views.with_raw_response.edit(
                 view_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
-        view = await async_client.dns.settings.views.get(
+        view = await async_client.dns.settings.zone.views.get(
             view_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -506,7 +506,7 @@ class TestAsyncViews:
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.dns.settings.views.with_raw_response.get(
+        response = await async_client.dns.settings.zone.views.with_raw_response.get(
             view_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -518,7 +518,7 @@ class TestAsyncViews:
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.dns.settings.views.with_streaming_response.get(
+        async with async_client.dns.settings.zone.views.with_streaming_response.get(
             view_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -533,13 +533,13 @@ class TestAsyncViews:
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.dns.settings.views.with_raw_response.get(
+            await async_client.dns.settings.zone.views.with_raw_response.get(
                 view_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `view_id` but received ''"):
-            await async_client.dns.settings.views.with_raw_response.get(
+            await async_client.dns.settings.zone.views.with_raw_response.get(
                 view_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

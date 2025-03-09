@@ -3,12 +3,12 @@
 from typing import List
 from datetime import datetime
 
-from ...._models import BaseModel
+from ....._models import BaseModel
 
-__all__ = ["ViewGetResponse"]
+__all__ = ["ViewCreateResponse"]
 
 
-class ViewGetResponse(BaseModel):
+class ViewCreateResponse(BaseModel):
     id: str
     """Identifier"""
 
