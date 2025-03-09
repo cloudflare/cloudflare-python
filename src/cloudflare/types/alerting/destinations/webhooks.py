@@ -35,13 +35,6 @@ class Webhooks(BaseModel):
     notification.
     """
 
-    secret: Optional[str] = None
-    """
-    Optional secret that will be passed in the `cf-webhook-auth` header when
-    dispatching generic webhook notifications or formatted for supported
-    destinations. Secrets are not returned in any API response body.
-    """
-
     type: Optional[Literal["slack", "generic", "gchat"]] = None
     """Type of webhook endpoint."""
 

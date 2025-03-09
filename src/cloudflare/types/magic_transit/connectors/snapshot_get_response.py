@@ -240,6 +240,15 @@ class SnapshotGetResponse(BaseModel):
 
     disks: Optional[List[Disk]] = None
 
+    ha_state: Optional[str] = None
+    """Name of high availability state"""
+
+    ha_value: Optional[float] = None
+    """
+    Numeric value associated with high availability state (0 = unknown, 1 = active,
+    2 = standby, 3 = disabled, 4 = fault)
+    """
+
     io_pressure_full_10s: Optional[float] = None
     """Percentage of time over a 10 second window that all tasks were stalled"""
 

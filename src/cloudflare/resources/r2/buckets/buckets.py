@@ -140,7 +140,7 @@ class BucketsResource(SyncAPIResource):
         *,
         account_id: str,
         name: str,
-        location_hint: Literal["apac", "eeur", "enam", "weur", "wnam"] | NotGiven = NOT_GIVEN,
+        location_hint: Literal["apac", "eeur", "enam", "weur", "wnam", "oc"] | NotGiven = NOT_GIVEN,
         storage_class: Literal["Standard", "InfrequentAccess"] | NotGiven = NOT_GIVEN,
         jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -431,7 +431,7 @@ class AsyncBucketsResource(AsyncAPIResource):
         *,
         account_id: str,
         name: str,
-        location_hint: Literal["apac", "eeur", "enam", "weur", "wnam"] | NotGiven = NOT_GIVEN,
+        location_hint: Literal["apac", "eeur", "enam", "weur", "wnam", "oc"] | NotGiven = NOT_GIVEN,
         storage_class: Literal["Standard", "InfrequentAccess"] | NotGiven = NOT_GIVEN,
         jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
