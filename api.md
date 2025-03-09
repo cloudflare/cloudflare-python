@@ -1134,30 +1134,6 @@ Types:
 from cloudflare.types.dns import DNSSetting
 ```
 
-### Zone
-
-#### Views
-
-Types:
-
-```python
-from cloudflare.types.dns.settings.zone import (
-    ViewCreateResponse,
-    ViewListResponse,
-    ViewDeleteResponse,
-    ViewEditResponse,
-    ViewGetResponse,
-)
-```
-
-Methods:
-
-- <code title="post /accounts/{account_id}/dns_settings/views">client.dns.settings.zone.views.<a href="./src/cloudflare/resources/dns/settings/zone/views.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/dns/settings/zone/view_create_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/settings/zone/view_create_response.py">Optional[ViewCreateResponse]</a></code>
-- <code title="get /accounts/{account_id}/dns_settings/views">client.dns.settings.zone.views.<a href="./src/cloudflare/resources/dns/settings/zone/views.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/dns/settings/zone/view_list_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/settings/zone/view_list_response.py">SyncV4PagePaginationArray[ViewListResponse]</a></code>
-- <code title="delete /accounts/{account_id}/dns_settings/views/{view_id}">client.dns.settings.zone.views.<a href="./src/cloudflare/resources/dns/settings/zone/views.py">delete</a>(view_id, \*, account_id) -> <a href="./src/cloudflare/types/dns/settings/zone/view_delete_response.py">Optional[ViewDeleteResponse]</a></code>
-- <code title="patch /accounts/{account_id}/dns_settings/views/{view_id}">client.dns.settings.zone.views.<a href="./src/cloudflare/resources/dns/settings/zone/views.py">edit</a>(view_id, \*, account_id, \*\*<a href="src/cloudflare/types/dns/settings/zone/view_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/settings/zone/view_edit_response.py">Optional[ViewEditResponse]</a></code>
-- <code title="get /accounts/{account_id}/dns_settings/views/{view_id}">client.dns.settings.zone.views.<a href="./src/cloudflare/resources/dns/settings/zone/views.py">get</a>(view_id, \*, account_id) -> <a href="./src/cloudflare/types/dns/settings/zone/view_get_response.py">Optional[ViewGetResponse]</a></code>
-
 ## Analytics
 
 ### Reports
