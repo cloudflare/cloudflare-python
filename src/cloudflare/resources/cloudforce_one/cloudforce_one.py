@@ -4,6 +4,14 @@ from __future__ import annotations
 
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
+from .scans.scans import (
+    ScansResource,
+    AsyncScansResource,
+    ScansResourceWithRawResponse,
+    AsyncScansResourceWithRawResponse,
+    ScansResourceWithStreamingResponse,
+    AsyncScansResourceWithStreamingResponse,
+)
 from .requests.requests import (
     RequestsResource,
     AsyncRequestsResource,
@@ -17,6 +25,10 @@ __all__ = ["CloudforceOneResource", "AsyncCloudforceOneResource"]
 
 
 class CloudforceOneResource(SyncAPIResource):
+    @cached_property
+    def scans(self) -> ScansResource:
+        return ScansResource(self._client)
+
     @cached_property
     def requests(self) -> RequestsResource:
         return RequestsResource(self._client)
@@ -42,6 +54,10 @@ class CloudforceOneResource(SyncAPIResource):
 
 
 class AsyncCloudforceOneResource(AsyncAPIResource):
+    @cached_property
+    def scans(self) -> AsyncScansResource:
+        return AsyncScansResource(self._client)
+
     @cached_property
     def requests(self) -> AsyncRequestsResource:
         return AsyncRequestsResource(self._client)
@@ -71,6 +87,10 @@ class CloudforceOneResourceWithRawResponse:
         self._cloudforce_one = cloudforce_one
 
     @cached_property
+    def scans(self) -> ScansResourceWithRawResponse:
+        return ScansResourceWithRawResponse(self._cloudforce_one.scans)
+
+    @cached_property
     def requests(self) -> RequestsResourceWithRawResponse:
         return RequestsResourceWithRawResponse(self._cloudforce_one.requests)
 
@@ -78,6 +98,10 @@ class CloudforceOneResourceWithRawResponse:
 class AsyncCloudforceOneResourceWithRawResponse:
     def __init__(self, cloudforce_one: AsyncCloudforceOneResource) -> None:
         self._cloudforce_one = cloudforce_one
+
+    @cached_property
+    def scans(self) -> AsyncScansResourceWithRawResponse:
+        return AsyncScansResourceWithRawResponse(self._cloudforce_one.scans)
 
     @cached_property
     def requests(self) -> AsyncRequestsResourceWithRawResponse:
@@ -89,6 +113,10 @@ class CloudforceOneResourceWithStreamingResponse:
         self._cloudforce_one = cloudforce_one
 
     @cached_property
+    def scans(self) -> ScansResourceWithStreamingResponse:
+        return ScansResourceWithStreamingResponse(self._cloudforce_one.scans)
+
+    @cached_property
     def requests(self) -> RequestsResourceWithStreamingResponse:
         return RequestsResourceWithStreamingResponse(self._cloudforce_one.requests)
 
@@ -96,6 +124,10 @@ class CloudforceOneResourceWithStreamingResponse:
 class AsyncCloudforceOneResourceWithStreamingResponse:
     def __init__(self, cloudforce_one: AsyncCloudforceOneResource) -> None:
         self._cloudforce_one = cloudforce_one
+
+    @cached_property
+    def scans(self) -> AsyncScansResourceWithStreamingResponse:
+        return AsyncScansResourceWithStreamingResponse(self._cloudforce_one.scans)
 
     @cached_property
     def requests(self) -> AsyncRequestsResourceWithStreamingResponse:
