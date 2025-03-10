@@ -20,6 +20,14 @@ from .records import (
 )
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
+from .settings.settings import (
+    SettingsResource,
+    AsyncSettingsResource,
+    SettingsResourceWithRawResponse,
+    AsyncSettingsResourceWithRawResponse,
+    SettingsResourceWithStreamingResponse,
+    AsyncSettingsResourceWithStreamingResponse,
+)
 from .analytics.analytics import (
     AnalyticsResource,
     AsyncAnalyticsResource,
@@ -48,6 +56,10 @@ class DNSResource(SyncAPIResource):
     @cached_property
     def records(self) -> RecordsResource:
         return RecordsResource(self._client)
+
+    @cached_property
+    def settings(self) -> SettingsResource:
+        return SettingsResource(self._client)
 
     @cached_property
     def analytics(self) -> AnalyticsResource:
@@ -85,6 +97,10 @@ class AsyncDNSResource(AsyncAPIResource):
     @cached_property
     def records(self) -> AsyncRecordsResource:
         return AsyncRecordsResource(self._client)
+
+    @cached_property
+    def settings(self) -> AsyncSettingsResource:
+        return AsyncSettingsResource(self._client)
 
     @cached_property
     def analytics(self) -> AsyncAnalyticsResource:
@@ -127,6 +143,10 @@ class DNSResourceWithRawResponse:
         return RecordsResourceWithRawResponse(self._dns.records)
 
     @cached_property
+    def settings(self) -> SettingsResourceWithRawResponse:
+        return SettingsResourceWithRawResponse(self._dns.settings)
+
+    @cached_property
     def analytics(self) -> AnalyticsResourceWithRawResponse:
         return AnalyticsResourceWithRawResponse(self._dns.analytics)
 
@@ -146,6 +166,10 @@ class AsyncDNSResourceWithRawResponse:
     @cached_property
     def records(self) -> AsyncRecordsResourceWithRawResponse:
         return AsyncRecordsResourceWithRawResponse(self._dns.records)
+
+    @cached_property
+    def settings(self) -> AsyncSettingsResourceWithRawResponse:
+        return AsyncSettingsResourceWithRawResponse(self._dns.settings)
 
     @cached_property
     def analytics(self) -> AsyncAnalyticsResourceWithRawResponse:
@@ -169,6 +193,10 @@ class DNSResourceWithStreamingResponse:
         return RecordsResourceWithStreamingResponse(self._dns.records)
 
     @cached_property
+    def settings(self) -> SettingsResourceWithStreamingResponse:
+        return SettingsResourceWithStreamingResponse(self._dns.settings)
+
+    @cached_property
     def analytics(self) -> AnalyticsResourceWithStreamingResponse:
         return AnalyticsResourceWithStreamingResponse(self._dns.analytics)
 
@@ -188,6 +216,10 @@ class AsyncDNSResourceWithStreamingResponse:
     @cached_property
     def records(self) -> AsyncRecordsResourceWithStreamingResponse:
         return AsyncRecordsResourceWithStreamingResponse(self._dns.records)
+
+    @cached_property
+    def settings(self) -> AsyncSettingsResourceWithStreamingResponse:
+        return AsyncSettingsResourceWithStreamingResponse(self._dns.settings)
 
     @cached_property
     def analytics(self) -> AsyncAnalyticsResourceWithStreamingResponse:

@@ -1134,6 +1134,32 @@ Types:
 from cloudflare.types.dns import DNSSetting
 ```
 
+### Zone
+
+Types:
+
+```python
+from cloudflare.types.dns.settings import ZoneEditResponse, ZoneGetResponse
+```
+
+Methods:
+
+- <code title="patch /zones/{zone_id}/dns_settings">client.dns.settings.zone.<a href="./src/cloudflare/resources/dns/settings/zone.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/dns/settings/zone_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/settings/zone_edit_response.py">Optional[ZoneEditResponse]</a></code>
+- <code title="get /zones/{zone_id}/dns_settings">client.dns.settings.zone.<a href="./src/cloudflare/resources/dns/settings/zone.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/dns/settings/zone_get_response.py">Optional[ZoneGetResponse]</a></code>
+
+### Account
+
+Types:
+
+```python
+from cloudflare.types.dns.settings import AccountEditResponse, AccountGetResponse
+```
+
+Methods:
+
+- <code title="patch /accounts/{account_id}/dns_settings">client.dns.settings.account.<a href="./src/cloudflare/resources/dns/settings/account.py">edit</a>(\*, account_id, \*\*<a href="src/cloudflare/types/dns/settings/account_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/settings/account_edit_response.py">Optional[AccountEditResponse]</a></code>
+- <code title="get /accounts/{account_id}/dns_settings">client.dns.settings.account.<a href="./src/cloudflare/resources/dns/settings/account.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/dns/settings/account_get_response.py">Optional[AccountGetResponse]</a></code>
+
 ## Analytics
 
 ### Reports
