@@ -24,6 +24,14 @@ from .records import (
     RecordsResourceWithStreamingResponse,
     AsyncRecordsResourceWithStreamingResponse,
 )
+from .settings import (
+    SettingsResource,
+    AsyncSettingsResource,
+    SettingsResourceWithRawResponse,
+    AsyncSettingsResourceWithRawResponse,
+    SettingsResourceWithStreamingResponse,
+    AsyncSettingsResourceWithStreamingResponse,
+)
 from .analytics import (
     AnalyticsResource,
     AsyncAnalyticsResource,
@@ -54,6 +62,12 @@ __all__ = [
     "AsyncRecordsResourceWithRawResponse",
     "RecordsResourceWithStreamingResponse",
     "AsyncRecordsResourceWithStreamingResponse",
+    "SettingsResource",
+    "AsyncSettingsResource",
+    "SettingsResourceWithRawResponse",
+    "AsyncSettingsResourceWithRawResponse",
+    "SettingsResourceWithStreamingResponse",
+    "AsyncSettingsResourceWithStreamingResponse",
     "AnalyticsResource",
     "AsyncAnalyticsResource",
     "AnalyticsResourceWithRawResponse",
