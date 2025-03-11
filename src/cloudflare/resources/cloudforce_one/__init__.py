@@ -16,6 +16,14 @@ from .requests import (
     RequestsResourceWithStreamingResponse,
     AsyncRequestsResourceWithStreamingResponse,
 )
+from .threat_events import (
+    ThreatEventsResource,
+    AsyncThreatEventsResource,
+    ThreatEventsResourceWithRawResponse,
+    AsyncThreatEventsResourceWithRawResponse,
+    ThreatEventsResourceWithStreamingResponse,
+    AsyncThreatEventsResourceWithStreamingResponse,
+)
 from .cloudforce_one import (
     CloudforceOneResource,
     AsyncCloudforceOneResource,
@@ -38,6 +46,12 @@ __all__ = [
     "AsyncRequestsResourceWithRawResponse",
     "RequestsResourceWithStreamingResponse",
     "AsyncRequestsResourceWithStreamingResponse",
+    "ThreatEventsResource",
+    "AsyncThreatEventsResource",
+    "ThreatEventsResourceWithRawResponse",
+    "AsyncThreatEventsResourceWithRawResponse",
+    "ThreatEventsResourceWithStreamingResponse",
+    "AsyncThreatEventsResourceWithStreamingResponse",
     "CloudforceOneResource",
     "AsyncCloudforceOneResource",
     "CloudforceOneResourceWithRawResponse",
