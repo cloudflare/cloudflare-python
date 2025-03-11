@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Union, cast
+from datetime import date
 from typing_extensions import Literal
 
 import httpx
@@ -53,6 +54,7 @@ class DatasetsResource(SyncAPIResource):
         self,
         *,
         dataset_type: Literal["RANKING_BUCKET", "REPORT"] | NotGiven = NOT_GIVEN,
+        date: Union[str, date] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
@@ -68,6 +70,8 @@ class DatasetsResource(SyncAPIResource):
 
         Args:
           dataset_type: Filters results by dataset type.
+
+          date: Filters results by the specified date.
 
           format: Format in which results will be returned.
 
@@ -93,6 +97,7 @@ class DatasetsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "dataset_type": dataset_type,
+                        "date": date,
                         "format": format,
                         "limit": limit,
                         "offset": offset,
@@ -208,6 +213,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         self,
         *,
         dataset_type: Literal["RANKING_BUCKET", "REPORT"] | NotGiven = NOT_GIVEN,
+        date: Union[str, date] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
@@ -223,6 +229,8 @@ class AsyncDatasetsResource(AsyncAPIResource):
 
         Args:
           dataset_type: Filters results by dataset type.
+
+          date: Filters results by the specified date.
 
           format: Format in which results will be returned.
 
@@ -248,6 +256,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "dataset_type": dataset_type,
+                        "date": date,
                         "format": format,
                         "limit": limit,
                         "offset": offset,

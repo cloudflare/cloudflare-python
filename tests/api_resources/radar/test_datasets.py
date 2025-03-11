@@ -9,6 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare._utils import parse_date
 from cloudflare.types.radar import (
     DatasetListResponse,
     DatasetDownloadResponse,
@@ -29,6 +30,7 @@ class TestDatasets:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         dataset = client.radar.datasets.list(
             dataset_type="RANKING_BUCKET",
+            date=parse_date("2024-09-19"),
             format="JSON",
             limit=5,
             offset=0,
@@ -145,6 +147,7 @@ class TestAsyncDatasets:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         dataset = await async_client.radar.datasets.list(
             dataset_type="RANKING_BUCKET",
+            date=parse_date("2024-09-19"),
             format="JSON",
             limit=5,
             offset=0,

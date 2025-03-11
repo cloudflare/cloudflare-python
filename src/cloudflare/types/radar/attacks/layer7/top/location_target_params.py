@@ -36,67 +36,6 @@ class LocationTargetParams(TypedDict, total=False):
     format: Literal["JSON", "CSV"]
     """Format in which results will be returned."""
 
-    http_method: Annotated[
-        List[
-            Literal[
-                "GET",
-                "POST",
-                "DELETE",
-                "PUT",
-                "HEAD",
-                "PURGE",
-                "OPTIONS",
-                "PROPFIND",
-                "MKCOL",
-                "PATCH",
-                "ACL",
-                "BCOPY",
-                "BDELETE",
-                "BMOVE",
-                "BPROPFIND",
-                "BPROPPATCH",
-                "CHECKIN",
-                "CHECKOUT",
-                "CONNECT",
-                "COPY",
-                "LABEL",
-                "LOCK",
-                "MERGE",
-                "MKACTIVITY",
-                "MKWORKSPACE",
-                "MOVE",
-                "NOTIFY",
-                "ORDERPATCH",
-                "POLL",
-                "PROPPATCH",
-                "REPORT",
-                "SEARCH",
-                "SUBSCRIBE",
-                "TRACE",
-                "UNCHECKOUT",
-                "UNLOCK",
-                "UNSUBSCRIBE",
-                "UPDATE",
-                "VERSIONCONTROL",
-                "BASELINECONTROL",
-                "XMSENUMATTS",
-                "RPC_OUT_DATA",
-                "RPC_IN_DATA",
-                "JSON",
-                "COOK",
-                "TRACK",
-            ]
-        ],
-        PropertyInfo(alias="httpMethod"),
-    ]
-    """Filters results by HTTP method."""
-
-    http_version: Annotated[List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]], PropertyInfo(alias="httpVersion")]
-    """Filters results by HTTP version."""
-
-    ip_version: Annotated[List[Literal["IPv4", "IPv6"]], PropertyInfo(alias="ipVersion")]
-    """Filters results by IP version (Ipv4 vs. IPv6)."""
-
     limit: int
     """Limits the number of objects returned in the response."""
 

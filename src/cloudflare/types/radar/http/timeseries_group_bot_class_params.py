@@ -26,6 +26,9 @@ class TimeseriesGroupBotClassParams(TypedDict, total=False):
     results from AS174, but includes results from AS3356.
     """
 
+    browser_family: Annotated[List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]], PropertyInfo(alias="browserFamily")]
+    """Filters results by browser family."""
+
     continent: List[str]
     """Comma-separated list of continents (alpha-2 continent codes).
 

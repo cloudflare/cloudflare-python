@@ -33,6 +33,9 @@ class TimeseriesGroupOSParams(TypedDict, total=False):
     [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
     """
 
+    browser_family: Annotated[List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]], PropertyInfo(alias="browserFamily")]
+    """Filters results by browser family."""
+
     continent: List[str]
     """Comma-separated list of continents (alpha-2 continent codes).
 

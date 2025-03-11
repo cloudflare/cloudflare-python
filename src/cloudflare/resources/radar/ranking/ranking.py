@@ -180,7 +180,7 @@ class RankingResource(SyncAPIResource):
         domains, see https://blog.cloudflare.com/radar-domain-rankings/.
 
         Args:
-          date: Array of dates to filter the ranking.
+          date: Array of dates to filter the results.
 
           domain_category: Filters results by domain category.
 
@@ -361,7 +361,7 @@ class AsyncRankingResource(AsyncAPIResource):
         domains, see https://blog.cloudflare.com/radar-domain-rankings/.
 
         Args:
-          date: Array of dates to filter the ranking.
+          date: Array of dates to filter the results.
 
           domain_category: Filters results by domain category.
 

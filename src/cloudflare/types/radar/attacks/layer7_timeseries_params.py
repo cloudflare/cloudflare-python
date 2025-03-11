@@ -26,11 +26,6 @@ class Layer7TimeseriesParams(TypedDict, total=False):
     results from AS174, but includes results from AS3356.
     """
 
-    attack: List[
-        Literal["DDOS", "WAF", "BOT_MANAGEMENT", "ACCESS_RULES", "IP_REPUTATION", "API_SHIELD", "DATA_LOSS_PREVENTION"]
-    ]
-    """This field is deprecated, please use the new `mitigationProduct`."""
-
     continent: List[str]
     """Comma-separated list of continents (alpha-2 continent codes).
 

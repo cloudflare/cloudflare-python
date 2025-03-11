@@ -13,7 +13,7 @@ __all__ = ["RankingTopParams"]
 
 class RankingTopParams(TypedDict, total=False):
     date: Annotated[List[Union[str, datetime.date]], PropertyInfo(format="iso8601")]
-    """Array of dates to filter the ranking."""
+    """Array of dates to filter the results."""
 
     domain_category: Annotated[List[str], PropertyInfo(alias="domainCategory")]
     """Filters results by domain category."""

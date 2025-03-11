@@ -209,59 +209,6 @@ class LocationsResource(SyncAPIResource):
         date_range: List[str] | NotGiven = NOT_GIVEN,
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        http_method: List[
-            Literal[
-                "GET",
-                "POST",
-                "DELETE",
-                "PUT",
-                "HEAD",
-                "PURGE",
-                "OPTIONS",
-                "PROPFIND",
-                "MKCOL",
-                "PATCH",
-                "ACL",
-                "BCOPY",
-                "BDELETE",
-                "BMOVE",
-                "BPROPFIND",
-                "BPROPPATCH",
-                "CHECKIN",
-                "CHECKOUT",
-                "CONNECT",
-                "COPY",
-                "LABEL",
-                "LOCK",
-                "MERGE",
-                "MKACTIVITY",
-                "MKWORKSPACE",
-                "MOVE",
-                "NOTIFY",
-                "ORDERPATCH",
-                "POLL",
-                "PROPPATCH",
-                "REPORT",
-                "SEARCH",
-                "SUBSCRIBE",
-                "TRACE",
-                "UNCHECKOUT",
-                "UNLOCK",
-                "UNSUBSCRIBE",
-                "UPDATE",
-                "VERSIONCONTROL",
-                "BASELINECONTROL",
-                "XMSENUMATTS",
-                "RPC_OUT_DATA",
-                "RPC_IN_DATA",
-                "JSON",
-                "COOK",
-                "TRACK",
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
-        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         mitigation_product: List[
             Literal[
@@ -298,12 +245,6 @@ class LocationsResource(SyncAPIResource):
 
           format: Format in which results will be returned.
 
-          http_method: Filters results by HTTP method.
-
-          http_version: Filters results by HTTP version.
-
-          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
-
           limit: Limits the number of objects returned in the response.
 
           mitigation_product: Array of L7 mitigation products.
@@ -332,9 +273,6 @@ class LocationsResource(SyncAPIResource):
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
-                        "http_method": http_method,
-                        "http_version": http_version,
-                        "ip_version": ip_version,
                         "limit": limit,
                         "mitigation_product": mitigation_product,
                         "name": name,
@@ -526,59 +464,6 @@ class AsyncLocationsResource(AsyncAPIResource):
         date_range: List[str] | NotGiven = NOT_GIVEN,
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        http_method: List[
-            Literal[
-                "GET",
-                "POST",
-                "DELETE",
-                "PUT",
-                "HEAD",
-                "PURGE",
-                "OPTIONS",
-                "PROPFIND",
-                "MKCOL",
-                "PATCH",
-                "ACL",
-                "BCOPY",
-                "BDELETE",
-                "BMOVE",
-                "BPROPFIND",
-                "BPROPPATCH",
-                "CHECKIN",
-                "CHECKOUT",
-                "CONNECT",
-                "COPY",
-                "LABEL",
-                "LOCK",
-                "MERGE",
-                "MKACTIVITY",
-                "MKWORKSPACE",
-                "MOVE",
-                "NOTIFY",
-                "ORDERPATCH",
-                "POLL",
-                "PROPPATCH",
-                "REPORT",
-                "SEARCH",
-                "SUBSCRIBE",
-                "TRACE",
-                "UNCHECKOUT",
-                "UNLOCK",
-                "UNSUBSCRIBE",
-                "UPDATE",
-                "VERSIONCONTROL",
-                "BASELINECONTROL",
-                "XMSENUMATTS",
-                "RPC_OUT_DATA",
-                "RPC_IN_DATA",
-                "JSON",
-                "COOK",
-                "TRACK",
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
-        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         mitigation_product: List[
             Literal[
@@ -615,12 +500,6 @@ class AsyncLocationsResource(AsyncAPIResource):
 
           format: Format in which results will be returned.
 
-          http_method: Filters results by HTTP method.
-
-          http_version: Filters results by HTTP version.
-
-          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
-
           limit: Limits the number of objects returned in the response.
 
           mitigation_product: Array of L7 mitigation products.
@@ -649,9 +528,6 @@ class AsyncLocationsResource(AsyncAPIResource):
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
-                        "http_method": http_method,
-                        "http_version": http_version,
-                        "ip_version": ip_version,
                         "limit": limit,
                         "mitigation_product": mitigation_product,
                         "name": name,
