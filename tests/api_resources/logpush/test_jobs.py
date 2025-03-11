@@ -45,7 +45,7 @@ class TestJobs:
             output_options={
                 "batch_prefix": "batch_prefix",
                 "batch_suffix": "batch_suffix",
-                "cve_2021_4428": True,
+                "cve_2021_44228": True,
                 "field_delimiter": "field_delimiter",
                 "field_names": ["ClientIP", "EdgeStartTimestamp", "RayID"],
                 "output_type": "ndjson",
@@ -130,7 +130,7 @@ class TestJobs:
             output_options={
                 "batch_prefix": "batch_prefix",
                 "batch_suffix": "batch_suffix",
-                "cve_2021_4428": True,
+                "cve_2021_44228": True,
                 "field_delimiter": "field_delimiter",
                 "field_names": ["ClientIP", "EdgeStartTimestamp", "RayID"],
                 "output_type": "ndjson",
@@ -396,7 +396,7 @@ class TestAsyncJobs:
             output_options={
                 "batch_prefix": "batch_prefix",
                 "batch_suffix": "batch_suffix",
-                "cve_2021_4428": True,
+                "cve_2021_44228": True,
                 "field_delimiter": "field_delimiter",
                 "field_names": ["ClientIP", "EdgeStartTimestamp", "RayID"],
                 "output_type": "ndjson",
@@ -481,7 +481,7 @@ class TestAsyncJobs:
             output_options={
                 "batch_prefix": "batch_prefix",
                 "batch_suffix": "batch_suffix",
-                "cve_2021_4428": True,
+                "cve_2021_44228": True,
                 "field_delimiter": "field_delimiter",
                 "field_names": ["ClientIP", "EdgeStartTimestamp", "RayID"],
                 "output_type": "ndjson",
