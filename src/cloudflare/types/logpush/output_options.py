@@ -17,7 +17,7 @@ class OutputOptions(BaseModel):
     batch_suffix: Optional[str] = None
     """String to be appended after each batch."""
 
-    cve_2021_4428: Optional[bool] = FieldInfo(alias="CVE-2021-4428", default=None)
+    cve_2021_44228: Optional[bool] = FieldInfo(alias="CVE-2021-44228", default=None)
     """
     If set to true, will cause all occurrences of `${` in the generated files to be
     replaced with `x{`.

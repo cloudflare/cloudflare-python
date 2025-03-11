@@ -17,7 +17,7 @@ class OutputOptionsParam(TypedDict, total=False):
     batch_suffix: Optional[str]
     """String to be appended after each batch."""
 
-    cve_2021_4428: Annotated[Optional[bool], PropertyInfo(alias="CVE-2021-4428")]
+    cve_2021_44228: Annotated[Optional[bool], PropertyInfo(alias="CVE-2021-44228")]
     """
     If set to true, will cause all occurrences of `${` in the generated files to be
     replaced with `x{`.
