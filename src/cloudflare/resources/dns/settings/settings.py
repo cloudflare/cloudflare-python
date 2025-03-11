@@ -10,7 +10,9 @@ from .zone import (
     ZoneResourceWithStreamingResponse,
     AsyncZoneResourceWithStreamingResponse,
 )
-from .account import (
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from .account.account import (
     AccountResource,
     AsyncAccountResource,
     AccountResourceWithRawResponse,
@@ -18,8 +20,6 @@ from .account import (
     AccountResourceWithStreamingResponse,
     AsyncAccountResourceWithStreamingResponse,
 )
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
 
 __all__ = ["SettingsResource", "AsyncSettingsResource"]
 

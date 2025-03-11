@@ -6,29 +6,41 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
+from .views import (
+    ViewsResource,
+    AsyncViewsResource,
+    ViewsResourceWithRawResponse,
+    AsyncViewsResourceWithRawResponse,
+    ViewsResourceWithStreamingResponse,
+    AsyncViewsResourceWithStreamingResponse,
+)
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._utils import (
     maybe_transform,
     async_maybe_transform,
 )
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
+from ....._compat import cached_property
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from ....._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._wrappers import ResultWrapper
-from ...._base_client import make_request_options
-from ....types.dns.settings import account_edit_params
-from ....types.dns.settings.account_get_response import AccountGetResponse
-from ....types.dns.settings.account_edit_response import AccountEditResponse
+from ....._wrappers import ResultWrapper
+from ....._base_client import make_request_options
+from .....types.dns.settings import account_edit_params
+from .....types.dns.settings.account_get_response import AccountGetResponse
+from .....types.dns.settings.account_edit_response import AccountEditResponse
 
 __all__ = ["AccountResource", "AsyncAccountResource"]
 
 
 class AccountResource(SyncAPIResource):
+    @cached_property
+    def views(self) -> ViewsResource:
+        return ViewsResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AccountResourceWithRawResponse:
         """
@@ -130,6 +142,10 @@ class AccountResource(SyncAPIResource):
 
 
 class AsyncAccountResource(AsyncAPIResource):
+    @cached_property
+    def views(self) -> AsyncViewsResource:
+        return AsyncViewsResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AsyncAccountResourceWithRawResponse:
         """
@@ -241,6 +257,10 @@ class AccountResourceWithRawResponse:
             account.get,
         )
 
+    @cached_property
+    def views(self) -> ViewsResourceWithRawResponse:
+        return ViewsResourceWithRawResponse(self._account.views)
+
 
 class AsyncAccountResourceWithRawResponse:
     def __init__(self, account: AsyncAccountResource) -> None:
@@ -252,6 +272,10 @@ class AsyncAccountResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             account.get,
         )
+
+    @cached_property
+    def views(self) -> AsyncViewsResourceWithRawResponse:
+        return AsyncViewsResourceWithRawResponse(self._account.views)
 
 
 class AccountResourceWithStreamingResponse:
@@ -265,6 +289,10 @@ class AccountResourceWithStreamingResponse:
             account.get,
         )
 
+    @cached_property
+    def views(self) -> ViewsResourceWithStreamingResponse:
+        return ViewsResourceWithStreamingResponse(self._account.views)
+
 
 class AsyncAccountResourceWithStreamingResponse:
     def __init__(self, account: AsyncAccountResource) -> None:
@@ -276,3 +304,7 @@ class AsyncAccountResourceWithStreamingResponse:
         self.get = async_to_streamed_response_wrapper(
             account.get,
         )
+
+    @cached_property
+    def views(self) -> AsyncViewsResourceWithStreamingResponse:
+        return AsyncViewsResourceWithStreamingResponse(self._account.views)
