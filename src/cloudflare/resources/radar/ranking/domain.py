@@ -76,7 +76,7 @@ class DomainResource(SyncAPIResource):
         Args:
           domain: Domain name.
 
-          date: Array of dates to filter the ranking.
+          date: Array of dates to filter the results.
 
           format: Format in which results will be returned.
 
@@ -169,7 +169,7 @@ class AsyncDomainResource(AsyncAPIResource):
         Args:
           domain: Domain name.
 
-          date: Array of dates to filter the ranking.
+          date: Array of dates to filter the results.
 
           format: Format in which results will be returned.
 

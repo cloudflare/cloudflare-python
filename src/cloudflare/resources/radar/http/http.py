@@ -115,6 +115,7 @@ class HTTPResource(SyncAPIResource):
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -151,6 +152,8 @@ class HTTPResource(SyncAPIResource):
 
           bot_class: Filters results by bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
+
+          browser_family: Filters results by browser family.
 
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
@@ -207,6 +210,7 @@ class HTTPResource(SyncAPIResource):
                         "agg_interval": agg_interval,
                         "asn": asn,
                         "bot_class": bot_class,
+                        "browser_family": browser_family,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -276,6 +280,7 @@ class AsyncHTTPResource(AsyncAPIResource):
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -312,6 +317,8 @@ class AsyncHTTPResource(AsyncAPIResource):
 
           bot_class: Filters results by bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
+
+          browser_family: Filters results by browser family.
 
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
@@ -368,6 +375,7 @@ class AsyncHTTPResource(AsyncAPIResource):
                         "agg_interval": agg_interval,
                         "asn": asn,
                         "bot_class": bot_class,
+                        "browser_family": browser_family,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,

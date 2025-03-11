@@ -84,59 +84,6 @@ class TopResource(SyncAPIResource):
         date_range: List[str] | NotGiven = NOT_GIVEN,
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        http_method: List[
-            Literal[
-                "GET",
-                "POST",
-                "DELETE",
-                "PUT",
-                "HEAD",
-                "PURGE",
-                "OPTIONS",
-                "PROPFIND",
-                "MKCOL",
-                "PATCH",
-                "ACL",
-                "BCOPY",
-                "BDELETE",
-                "BMOVE",
-                "BPROPFIND",
-                "BPROPPATCH",
-                "CHECKIN",
-                "CHECKOUT",
-                "CONNECT",
-                "COPY",
-                "LABEL",
-                "LOCK",
-                "MERGE",
-                "MKACTIVITY",
-                "MKWORKSPACE",
-                "MOVE",
-                "NOTIFY",
-                "ORDERPATCH",
-                "POLL",
-                "PROPPATCH",
-                "REPORT",
-                "SEARCH",
-                "SUBSCRIBE",
-                "TRACE",
-                "UNCHECKOUT",
-                "UNLOCK",
-                "UNSUBSCRIBE",
-                "UPDATE",
-                "VERSIONCONTROL",
-                "BASELINECONTROL",
-                "XMSENUMATTS",
-                "RPC_OUT_DATA",
-                "RPC_IN_DATA",
-                "JSON",
-                "COOK",
-                "TRACK",
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
-        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         limit_direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
         limit_per_location: int | NotGiven = NOT_GIVEN,
@@ -184,12 +131,6 @@ class TopResource(SyncAPIResource):
 
           format: Format in which results will be returned.
 
-          http_method: Filters results by HTTP method.
-
-          http_version: Filters results by HTTP version.
-
-          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
-
           limit: Limits the number of objects returned in the response.
 
           limit_direction: Array of attack origin/target location attack limits. Together with
@@ -203,8 +144,9 @@ class TopResource(SyncAPIResource):
               locations from results. For example, `-US,PT` excludes results from the US, but
               includes results from PT.
 
-          magnitude: Attack magnitude can be defined by total requests mitigated or by total zones
-              attacked.
+          magnitude: This parameter is deprecated. In the future, we will only support attack
+              magnitude defined by the total number of mitigated requests
+              (MITIGATED_REQUESTS).
 
           mitigation_product: Array of L7 mitigation products.
 
@@ -236,9 +178,6 @@ class TopResource(SyncAPIResource):
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
-                        "http_method": http_method,
-                        "http_version": http_version,
-                        "ip_version": ip_version,
                         "limit": limit,
                         "limit_direction": limit_direction,
                         "limit_per_location": limit_per_location,
@@ -601,59 +540,6 @@ class AsyncTopResource(AsyncAPIResource):
         date_range: List[str] | NotGiven = NOT_GIVEN,
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        http_method: List[
-            Literal[
-                "GET",
-                "POST",
-                "DELETE",
-                "PUT",
-                "HEAD",
-                "PURGE",
-                "OPTIONS",
-                "PROPFIND",
-                "MKCOL",
-                "PATCH",
-                "ACL",
-                "BCOPY",
-                "BDELETE",
-                "BMOVE",
-                "BPROPFIND",
-                "BPROPPATCH",
-                "CHECKIN",
-                "CHECKOUT",
-                "CONNECT",
-                "COPY",
-                "LABEL",
-                "LOCK",
-                "MERGE",
-                "MKACTIVITY",
-                "MKWORKSPACE",
-                "MOVE",
-                "NOTIFY",
-                "ORDERPATCH",
-                "POLL",
-                "PROPPATCH",
-                "REPORT",
-                "SEARCH",
-                "SUBSCRIBE",
-                "TRACE",
-                "UNCHECKOUT",
-                "UNLOCK",
-                "UNSUBSCRIBE",
-                "UPDATE",
-                "VERSIONCONTROL",
-                "BASELINECONTROL",
-                "XMSENUMATTS",
-                "RPC_OUT_DATA",
-                "RPC_IN_DATA",
-                "JSON",
-                "COOK",
-                "TRACK",
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
-        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
-        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         limit_direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
         limit_per_location: int | NotGiven = NOT_GIVEN,
@@ -701,12 +587,6 @@ class AsyncTopResource(AsyncAPIResource):
 
           format: Format in which results will be returned.
 
-          http_method: Filters results by HTTP method.
-
-          http_version: Filters results by HTTP version.
-
-          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
-
           limit: Limits the number of objects returned in the response.
 
           limit_direction: Array of attack origin/target location attack limits. Together with
@@ -720,8 +600,9 @@ class AsyncTopResource(AsyncAPIResource):
               locations from results. For example, `-US,PT` excludes results from the US, but
               includes results from PT.
 
-          magnitude: Attack magnitude can be defined by total requests mitigated or by total zones
-              attacked.
+          magnitude: This parameter is deprecated. In the future, we will only support attack
+              magnitude defined by the total number of mitigated requests
+              (MITIGATED_REQUESTS).
 
           mitigation_product: Array of L7 mitigation products.
 
@@ -753,9 +634,6 @@ class AsyncTopResource(AsyncAPIResource):
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
-                        "http_method": http_method,
-                        "http_version": http_version,
-                        "ip_version": ip_version,
                         "limit": limit,
                         "limit_direction": limit_direction,
                         "limit_per_location": limit_per_location,

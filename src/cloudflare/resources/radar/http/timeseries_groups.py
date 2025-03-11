@@ -74,6 +74,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -108,6 +109,8 @@ class TimeseriesGroupsResource(SyncAPIResource):
           asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
               exclude ASNs from results. For example, `-174, 3356` excludes results from
               AS174, but includes results from AS3356.
+
+          browser_family: Filters results by browser family.
 
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
@@ -160,6 +163,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
                     {
                         "agg_interval": agg_interval,
                         "asn": asn,
+                        "browser_family": browser_family,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -187,6 +191,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -223,6 +228,8 @@ class TimeseriesGroupsResource(SyncAPIResource):
 
           bot_class: Filters results by bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
+
+          browser_family: Filters results by browser family.
 
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
@@ -281,6 +288,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
                         "agg_interval": agg_interval,
                         "asn": asn,
                         "bot_class": bot_class,
+                        "browser_family": browser_family,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -433,6 +441,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -467,6 +476,8 @@ class TimeseriesGroupsResource(SyncAPIResource):
 
           bot_class: Filters results by bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
+
+          browser_family: Filters results by browser family.
 
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
@@ -518,6 +529,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
                         "agg_interval": agg_interval,
                         "asn": asn,
                         "bot_class": bot_class,
+                        "browser_family": browser_family,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -544,6 +556,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -580,6 +593,8 @@ class TimeseriesGroupsResource(SyncAPIResource):
 
           bot_class: Filters results by bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
+
+          browser_family: Filters results by browser family.
 
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
@@ -631,6 +646,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
                         "agg_interval": agg_interval,
                         "asn": asn,
                         "bot_class": bot_class,
+                        "browser_family": browser_family,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -657,6 +673,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -691,6 +708,8 @@ class TimeseriesGroupsResource(SyncAPIResource):
 
           bot_class: Filters results by bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
+
+          browser_family: Filters results by browser family.
 
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
@@ -742,6 +761,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
                         "agg_interval": agg_interval,
                         "asn": asn,
                         "bot_class": bot_class,
+                        "browser_family": browser_family,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -768,6 +788,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -802,6 +823,8 @@ class TimeseriesGroupsResource(SyncAPIResource):
 
           bot_class: Filters results by bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
+
+          browser_family: Filters results by browser family.
 
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
@@ -853,6 +876,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
                         "agg_interval": agg_interval,
                         "asn": asn,
                         "bot_class": bot_class,
+                        "browser_family": browser_family,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -879,6 +903,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -912,6 +937,8 @@ class TimeseriesGroupsResource(SyncAPIResource):
 
           bot_class: Filters results by bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
+
+          browser_family: Filters results by browser family.
 
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
@@ -963,6 +990,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
                         "agg_interval": agg_interval,
                         "asn": asn,
                         "bot_class": bot_class,
+                        "browser_family": browser_family,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -989,6 +1017,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -1024,6 +1053,8 @@ class TimeseriesGroupsResource(SyncAPIResource):
 
           bot_class: Filters results by bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
+
+          browser_family: Filters results by browser family.
 
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
@@ -1077,6 +1108,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
                         "agg_interval": agg_interval,
                         "asn": asn,
                         "bot_class": bot_class,
+                        "browser_family": browser_family,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -1104,6 +1136,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -1138,6 +1171,8 @@ class TimeseriesGroupsResource(SyncAPIResource):
 
           bot_class: Filters results by bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
+
+          browser_family: Filters results by browser family.
 
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
@@ -1189,6 +1224,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
                         "agg_interval": agg_interval,
                         "asn": asn,
                         "bot_class": bot_class,
+                        "browser_family": browser_family,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -1235,6 +1271,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -1269,6 +1306,8 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
           asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
               exclude ASNs from results. For example, `-174, 3356` excludes results from
               AS174, but includes results from AS3356.
+
+          browser_family: Filters results by browser family.
 
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
@@ -1321,6 +1360,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                     {
                         "agg_interval": agg_interval,
                         "asn": asn,
+                        "browser_family": browser_family,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -1348,6 +1388,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -1384,6 +1425,8 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
 
           bot_class: Filters results by bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
+
+          browser_family: Filters results by browser family.
 
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
@@ -1442,6 +1485,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                         "agg_interval": agg_interval,
                         "asn": asn,
                         "bot_class": bot_class,
+                        "browser_family": browser_family,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -1594,6 +1638,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -1628,6 +1673,8 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
 
           bot_class: Filters results by bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
+
+          browser_family: Filters results by browser family.
 
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
@@ -1679,6 +1726,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                         "agg_interval": agg_interval,
                         "asn": asn,
                         "bot_class": bot_class,
+                        "browser_family": browser_family,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -1705,6 +1753,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -1741,6 +1790,8 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
 
           bot_class: Filters results by bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
+
+          browser_family: Filters results by browser family.
 
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
@@ -1792,6 +1843,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                         "agg_interval": agg_interval,
                         "asn": asn,
                         "bot_class": bot_class,
+                        "browser_family": browser_family,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -1818,6 +1870,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -1852,6 +1905,8 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
 
           bot_class: Filters results by bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
+
+          browser_family: Filters results by browser family.
 
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
@@ -1903,6 +1958,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                         "agg_interval": agg_interval,
                         "asn": asn,
                         "bot_class": bot_class,
+                        "browser_family": browser_family,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -1929,6 +1985,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -1963,6 +2020,8 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
 
           bot_class: Filters results by bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
+
+          browser_family: Filters results by browser family.
 
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
@@ -2014,6 +2073,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                         "agg_interval": agg_interval,
                         "asn": asn,
                         "bot_class": bot_class,
+                        "browser_family": browser_family,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -2040,6 +2100,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -2073,6 +2134,8 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
 
           bot_class: Filters results by bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
+
+          browser_family: Filters results by browser family.
 
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
@@ -2124,6 +2187,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                         "agg_interval": agg_interval,
                         "asn": asn,
                         "bot_class": bot_class,
+                        "browser_family": browser_family,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -2150,6 +2214,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -2185,6 +2250,8 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
 
           bot_class: Filters results by bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
+
+          browser_family: Filters results by browser family.
 
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
@@ -2238,6 +2305,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                         "agg_interval": agg_interval,
                         "asn": asn,
                         "bot_class": bot_class,
+                        "browser_family": browser_family,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -2265,6 +2333,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -2299,6 +2368,8 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
 
           bot_class: Filters results by bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
+
+          browser_family: Filters results by browser family.
 
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
@@ -2350,6 +2421,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                         "agg_interval": agg_interval,
                         "asn": asn,
                         "bot_class": bot_class,
+                        "browser_family": browser_family,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,

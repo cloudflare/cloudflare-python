@@ -90,12 +90,6 @@ class Layer7Resource(SyncAPIResource):
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
-        attack: List[
-            Literal[
-                "DDOS", "WAF", "BOT_MANAGEMENT", "ACCESS_RULES", "IP_REPUTATION", "API_SHIELD", "DATA_LOSS_PREVENTION"
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -182,8 +176,6 @@ class Layer7Resource(SyncAPIResource):
               exclude ASNs from results. For example, `-174, 3356` excludes results from
               AS174, but includes results from AS3356.
 
-          attack: This field is deprecated, please use the new `mitigationProduct`.
-
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
               but includes results from NA.
@@ -234,7 +226,6 @@ class Layer7Resource(SyncAPIResource):
                     {
                         "agg_interval": agg_interval,
                         "asn": asn,
-                        "attack": attack,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -293,12 +284,6 @@ class AsyncLayer7Resource(AsyncAPIResource):
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
-        attack: List[
-            Literal[
-                "DDOS", "WAF", "BOT_MANAGEMENT", "ACCESS_RULES", "IP_REPUTATION", "API_SHIELD", "DATA_LOSS_PREVENTION"
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -385,8 +370,6 @@ class AsyncLayer7Resource(AsyncAPIResource):
               exclude ASNs from results. For example, `-174, 3356` excludes results from
               AS174, but includes results from AS3356.
 
-          attack: This field is deprecated, please use the new `mitigationProduct`.
-
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
               but includes results from NA.
@@ -437,7 +420,6 @@ class AsyncLayer7Resource(AsyncAPIResource):
                     {
                         "agg_interval": agg_interval,
                         "asn": asn,
-                        "attack": attack,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
