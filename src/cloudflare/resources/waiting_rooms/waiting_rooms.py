@@ -53,7 +53,6 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from .events.events import (
     EventsResource,
     AsyncEventsResource,
@@ -62,10 +61,9 @@ from .events.events import (
     EventsResourceWithStreamingResponse,
     AsyncEventsResourceWithStreamingResponse,
 )
-from ..._base_client import AsyncPaginator, make_request_options
+from ..._base_client import make_request_options
 from ...types.waiting_rooms import (
     waiting_room_edit_params,
-    waiting_room_list_params,
     waiting_room_create_params,
     waiting_room_update_params,
 )
@@ -912,58 +910,6 @@ class WaitingRoomsResource(SyncAPIResource):
                 post_parser=ResultWrapper[WaitingRoom]._unwrapper,
             ),
             cast_to=cast(Type[WaitingRoom], ResultWrapper[WaitingRoom]),
-        )
-
-    def list(
-        self,
-        *,
-        zone_id: str,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[WaitingRoom]:
-        """
-        Lists waiting rooms.
-
-        Args:
-          zone_id: Identifier
-
-          page: Page number of paginated results.
-
-          per_page: Maximum number of results per page. Must be a multiple of 5.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._get_api_list(
-            f"/zones/{zone_id}/waiting_rooms",
-            page=SyncV4PagePaginationArray[WaitingRoom],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "page": page,
-                        "per_page": per_page,
-                    },
-                    waiting_room_list_params.WaitingRoomListParams,
-                ),
-            ),
-            model=WaitingRoom,
         )
 
     def delete(
@@ -2288,58 +2234,6 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
             cast_to=cast(Type[WaitingRoom], ResultWrapper[WaitingRoom]),
         )
 
-    def list(
-        self,
-        *,
-        zone_id: str,
-        page: float | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[WaitingRoom, AsyncV4PagePaginationArray[WaitingRoom]]:
-        """
-        Lists waiting rooms.
-
-        Args:
-          zone_id: Identifier
-
-          page: Page number of paginated results.
-
-          per_page: Maximum number of results per page. Must be a multiple of 5.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._get_api_list(
-            f"/zones/{zone_id}/waiting_rooms",
-            page=AsyncV4PagePaginationArray[WaitingRoom],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "page": page,
-                        "per_page": per_page,
-                    },
-                    waiting_room_list_params.WaitingRoomListParams,
-                ),
-            ),
-            model=WaitingRoom,
-        )
-
     async def delete(
         self,
         waiting_room_id: str,
@@ -2835,9 +2729,6 @@ class WaitingRoomsResourceWithRawResponse:
         self.update = to_raw_response_wrapper(
             waiting_rooms.update,
         )
-        self.list = to_raw_response_wrapper(
-            waiting_rooms.list,
-        )
         self.delete = to_raw_response_wrapper(
             waiting_rooms.delete,
         )
@@ -2878,9 +2769,6 @@ class AsyncWaitingRoomsResourceWithRawResponse:
         )
         self.update = async_to_raw_response_wrapper(
             waiting_rooms.update,
-        )
-        self.list = async_to_raw_response_wrapper(
-            waiting_rooms.list,
         )
         self.delete = async_to_raw_response_wrapper(
             waiting_rooms.delete,
@@ -2923,9 +2811,6 @@ class WaitingRoomsResourceWithStreamingResponse:
         self.update = to_streamed_response_wrapper(
             waiting_rooms.update,
         )
-        self.list = to_streamed_response_wrapper(
-            waiting_rooms.list,
-        )
         self.delete = to_streamed_response_wrapper(
             waiting_rooms.delete,
         )
@@ -2966,9 +2851,6 @@ class AsyncWaitingRoomsResourceWithStreamingResponse:
         )
         self.update = async_to_streamed_response_wrapper(
             waiting_rooms.update,
-        )
-        self.list = async_to_streamed_response_wrapper(
-            waiting_rooms.list,
         )
         self.delete = async_to_streamed_response_wrapper(
             waiting_rooms.delete,
