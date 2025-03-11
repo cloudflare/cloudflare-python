@@ -1157,8 +1157,30 @@ from cloudflare.types.dns.settings import AccountEditResponse, AccountGetRespons
 
 Methods:
 
-- <code title="patch /accounts/{account_id}/dns_settings">client.dns.settings.account.<a href="./src/cloudflare/resources/dns/settings/account.py">edit</a>(\*, account_id, \*\*<a href="src/cloudflare/types/dns/settings/account_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/settings/account_edit_response.py">Optional[AccountEditResponse]</a></code>
-- <code title="get /accounts/{account_id}/dns_settings">client.dns.settings.account.<a href="./src/cloudflare/resources/dns/settings/account.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/dns/settings/account_get_response.py">Optional[AccountGetResponse]</a></code>
+- <code title="patch /accounts/{account_id}/dns_settings">client.dns.settings.account.<a href="./src/cloudflare/resources/dns/settings/account/account.py">edit</a>(\*, account_id, \*\*<a href="src/cloudflare/types/dns/settings/account_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/settings/account_edit_response.py">Optional[AccountEditResponse]</a></code>
+- <code title="get /accounts/{account_id}/dns_settings">client.dns.settings.account.<a href="./src/cloudflare/resources/dns/settings/account/account.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/dns/settings/account_get_response.py">Optional[AccountGetResponse]</a></code>
+
+#### Views
+
+Types:
+
+```python
+from cloudflare.types.dns.settings.account import (
+    ViewCreateResponse,
+    ViewListResponse,
+    ViewDeleteResponse,
+    ViewEditResponse,
+    ViewGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/dns_settings/views">client.dns.settings.account.views.<a href="./src/cloudflare/resources/dns/settings/account/views.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/dns/settings/account/view_create_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/settings/account/view_create_response.py">Optional[ViewCreateResponse]</a></code>
+- <code title="get /accounts/{account_id}/dns_settings/views">client.dns.settings.account.views.<a href="./src/cloudflare/resources/dns/settings/account/views.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/dns/settings/account/view_list_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/settings/account/view_list_response.py">SyncV4PagePaginationArray[ViewListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/dns_settings/views/{view_id}">client.dns.settings.account.views.<a href="./src/cloudflare/resources/dns/settings/account/views.py">delete</a>(view_id, \*, account_id) -> <a href="./src/cloudflare/types/dns/settings/account/view_delete_response.py">Optional[ViewDeleteResponse]</a></code>
+- <code title="patch /accounts/{account_id}/dns_settings/views/{view_id}">client.dns.settings.account.views.<a href="./src/cloudflare/resources/dns/settings/account/views.py">edit</a>(view_id, \*, account_id, \*\*<a href="src/cloudflare/types/dns/settings/account/view_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/settings/account/view_edit_response.py">Optional[ViewEditResponse]</a></code>
+- <code title="get /accounts/{account_id}/dns_settings/views/{view_id}">client.dns.settings.account.views.<a href="./src/cloudflare/resources/dns/settings/account/views.py">get</a>(view_id, \*, account_id) -> <a href="./src/cloudflare/types/dns/settings/account/view_get_response.py">Optional[ViewGetResponse]</a></code>
 
 ## Analytics
 
