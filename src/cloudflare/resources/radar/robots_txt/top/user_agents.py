@@ -70,7 +70,7 @@ class UserAgentsResource(SyncAPIResource):
         Retrieves the top user agents on robots.txt files.
 
         Args:
-          date: Array of dates to filter the ranking.
+          date: Array of dates to filter the results.
 
           directive: Filters results by robots.txt directive.
 
@@ -158,7 +158,7 @@ class AsyncUserAgentsResource(AsyncAPIResource):
         Retrieves the top user agents on robots.txt files.
 
         Args:
-          date: Array of dates to filter the ranking.
+          date: Array of dates to filter the results.
 
           directive: Filters results by robots.txt directive.
 

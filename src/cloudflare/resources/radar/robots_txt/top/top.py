@@ -80,7 +80,7 @@ class TopResource(SyncAPIResource):
         Retrieves the top domain categories by the number of robots.txt files parsed.
 
         Args:
-          date: Array of dates to filter the ranking.
+          date: Array of dates to filter the results.
 
           format: Format in which results will be returned.
 
@@ -164,7 +164,7 @@ class AsyncTopResource(AsyncAPIResource):
         Retrieves the top domain categories by the number of robots.txt files parsed.
 
         Args:
-          date: Array of dates to filter the ranking.
+          date: Array of dates to filter the results.
 
           format: Format in which results will be returned.
 

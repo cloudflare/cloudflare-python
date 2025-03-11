@@ -73,7 +73,7 @@ class InternetServicesResource(SyncAPIResource):
         Retrieves the list of Internet services categories.
 
         Args:
-          date: Array of dates to filter the ranking.
+          date: Array of dates to filter the results.
 
           format: Format in which results will be returned.
 
@@ -200,7 +200,7 @@ class InternetServicesResource(SyncAPIResource):
         Retrieves top Internet services based on their rank.
 
         Args:
-          date: Array of dates to filter the ranking.
+          date: Array of dates to filter the results.
 
           format: Format in which results will be returned.
 
@@ -279,7 +279,7 @@ class AsyncInternetServicesResource(AsyncAPIResource):
         Retrieves the list of Internet services categories.
 
         Args:
-          date: Array of dates to filter the ranking.
+          date: Array of dates to filter the results.
 
           format: Format in which results will be returned.
 
@@ -406,7 +406,7 @@ class AsyncInternetServicesResource(AsyncAPIResource):
         Retrieves top Internet services based on their rank.
 
         Args:
-          date: Array of dates to filter the ranking.
+          date: Array of dates to filter the results.
 
           format: Format in which results will be returned.
 

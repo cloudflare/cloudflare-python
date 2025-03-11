@@ -69,6 +69,7 @@ class SummaryResource(SyncAPIResource):
         self,
         *,
         asn: List[str] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -100,6 +101,8 @@ class SummaryResource(SyncAPIResource):
           asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
               exclude ASNs from results. For example, `-174, 3356` excludes results from
               AS174, but includes results from AS3356.
+
+          browser_family: Filters results by browser family.
 
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
@@ -151,6 +154,7 @@ class SummaryResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "asn": asn,
+                        "browser_family": browser_family,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -177,6 +181,7 @@ class SummaryResource(SyncAPIResource):
         *,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -208,6 +213,8 @@ class SummaryResource(SyncAPIResource):
 
           bot_class: Filters results by bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
+
+          browser_family: Filters results by browser family.
 
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
@@ -258,6 +265,7 @@ class SummaryResource(SyncAPIResource):
                     {
                         "asn": asn,
                         "bot_class": bot_class,
+                        "browser_family": browser_family,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -283,6 +291,7 @@ class SummaryResource(SyncAPIResource):
         *,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -314,6 +323,8 @@ class SummaryResource(SyncAPIResource):
 
           bot_class: Filters results by bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
+
+          browser_family: Filters results by browser family.
 
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
@@ -364,6 +375,7 @@ class SummaryResource(SyncAPIResource):
                     {
                         "asn": asn,
                         "bot_class": bot_class,
+                        "browser_family": browser_family,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -389,6 +401,7 @@ class SummaryResource(SyncAPIResource):
         *,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -419,6 +432,8 @@ class SummaryResource(SyncAPIResource):
 
           bot_class: Filters results by bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
+
+          browser_family: Filters results by browser family.
 
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
@@ -469,6 +484,7 @@ class SummaryResource(SyncAPIResource):
                     {
                         "asn": asn,
                         "bot_class": bot_class,
+                        "browser_family": browser_family,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -494,6 +510,7 @@ class SummaryResource(SyncAPIResource):
         *,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -524,6 +541,8 @@ class SummaryResource(SyncAPIResource):
 
           bot_class: Filters results by bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
+
+          browser_family: Filters results by browser family.
 
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
@@ -574,6 +593,7 @@ class SummaryResource(SyncAPIResource):
                     {
                         "asn": asn,
                         "bot_class": bot_class,
+                        "browser_family": browser_family,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -599,6 +619,7 @@ class SummaryResource(SyncAPIResource):
         *,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -629,6 +650,8 @@ class SummaryResource(SyncAPIResource):
 
           bot_class: Filters results by bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
+
+          browser_family: Filters results by browser family.
 
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
@@ -679,6 +702,7 @@ class SummaryResource(SyncAPIResource):
                     {
                         "asn": asn,
                         "bot_class": bot_class,
+                        "browser_family": browser_family,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -704,6 +728,7 @@ class SummaryResource(SyncAPIResource):
         *,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -735,6 +760,8 @@ class SummaryResource(SyncAPIResource):
 
           bot_class: Filters results by bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
+
+          browser_family: Filters results by browser family.
 
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
@@ -787,6 +814,7 @@ class SummaryResource(SyncAPIResource):
                     {
                         "asn": asn,
                         "bot_class": bot_class,
+                        "browser_family": browser_family,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -813,6 +841,7 @@ class SummaryResource(SyncAPIResource):
         *,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -843,6 +872,8 @@ class SummaryResource(SyncAPIResource):
 
           bot_class: Filters results by bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
+
+          browser_family: Filters results by browser family.
 
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
@@ -893,6 +924,7 @@ class SummaryResource(SyncAPIResource):
                     {
                         "asn": asn,
                         "bot_class": bot_class,
+                        "browser_family": browser_family,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -938,6 +970,7 @@ class AsyncSummaryResource(AsyncAPIResource):
         self,
         *,
         asn: List[str] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -969,6 +1002,8 @@ class AsyncSummaryResource(AsyncAPIResource):
           asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
               exclude ASNs from results. For example, `-174, 3356` excludes results from
               AS174, but includes results from AS3356.
+
+          browser_family: Filters results by browser family.
 
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
@@ -1020,6 +1055,7 @@ class AsyncSummaryResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "asn": asn,
+                        "browser_family": browser_family,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -1046,6 +1082,7 @@ class AsyncSummaryResource(AsyncAPIResource):
         *,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -1077,6 +1114,8 @@ class AsyncSummaryResource(AsyncAPIResource):
 
           bot_class: Filters results by bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
+
+          browser_family: Filters results by browser family.
 
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
@@ -1127,6 +1166,7 @@ class AsyncSummaryResource(AsyncAPIResource):
                     {
                         "asn": asn,
                         "bot_class": bot_class,
+                        "browser_family": browser_family,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -1152,6 +1192,7 @@ class AsyncSummaryResource(AsyncAPIResource):
         *,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -1183,6 +1224,8 @@ class AsyncSummaryResource(AsyncAPIResource):
 
           bot_class: Filters results by bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
+
+          browser_family: Filters results by browser family.
 
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
@@ -1233,6 +1276,7 @@ class AsyncSummaryResource(AsyncAPIResource):
                     {
                         "asn": asn,
                         "bot_class": bot_class,
+                        "browser_family": browser_family,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -1258,6 +1302,7 @@ class AsyncSummaryResource(AsyncAPIResource):
         *,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -1288,6 +1333,8 @@ class AsyncSummaryResource(AsyncAPIResource):
 
           bot_class: Filters results by bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
+
+          browser_family: Filters results by browser family.
 
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
@@ -1338,6 +1385,7 @@ class AsyncSummaryResource(AsyncAPIResource):
                     {
                         "asn": asn,
                         "bot_class": bot_class,
+                        "browser_family": browser_family,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -1363,6 +1411,7 @@ class AsyncSummaryResource(AsyncAPIResource):
         *,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -1393,6 +1442,8 @@ class AsyncSummaryResource(AsyncAPIResource):
 
           bot_class: Filters results by bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
+
+          browser_family: Filters results by browser family.
 
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
@@ -1443,6 +1494,7 @@ class AsyncSummaryResource(AsyncAPIResource):
                     {
                         "asn": asn,
                         "bot_class": bot_class,
+                        "browser_family": browser_family,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -1468,6 +1520,7 @@ class AsyncSummaryResource(AsyncAPIResource):
         *,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -1498,6 +1551,8 @@ class AsyncSummaryResource(AsyncAPIResource):
 
           bot_class: Filters results by bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
+
+          browser_family: Filters results by browser family.
 
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
@@ -1548,6 +1603,7 @@ class AsyncSummaryResource(AsyncAPIResource):
                     {
                         "asn": asn,
                         "bot_class": bot_class,
+                        "browser_family": browser_family,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -1573,6 +1629,7 @@ class AsyncSummaryResource(AsyncAPIResource):
         *,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -1604,6 +1661,8 @@ class AsyncSummaryResource(AsyncAPIResource):
 
           bot_class: Filters results by bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
+
+          browser_family: Filters results by browser family.
 
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
@@ -1656,6 +1715,7 @@ class AsyncSummaryResource(AsyncAPIResource):
                     {
                         "asn": asn,
                         "bot_class": bot_class,
+                        "browser_family": browser_family,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -1682,6 +1742,7 @@ class AsyncSummaryResource(AsyncAPIResource):
         *,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -1712,6 +1773,8 @@ class AsyncSummaryResource(AsyncAPIResource):
 
           bot_class: Filters results by bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
+
+          browser_family: Filters results by browser family.
 
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
@@ -1762,6 +1825,7 @@ class AsyncSummaryResource(AsyncAPIResource):
                     {
                         "asn": asn,
                         "bot_class": bot_class,
+                        "browser_family": browser_family,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
