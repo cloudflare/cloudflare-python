@@ -47,9 +47,10 @@ __all__ = [
     "TriggersLoadRuleZarazElementVisibilityRule",
     "TriggersLoadRuleZarazElementVisibilityRuleSettings",
     "Variables",
-    "VariablesUnionMember0",
-    "VariablesUnionMember1",
-    "VariablesUnionMember1Value",
+    "VariablesZarazStringVariable",
+    "VariablesZarazSecretVariable",
+    "VariablesZarazWorkerVariable",
+    "VariablesZarazWorkerVariableValue",
     "Analytics",
     "Consent",
     "ConsentPurposes",
@@ -512,29 +513,37 @@ class Triggers(TypedDict, total=False):
     system: Literal["pageload"]
 
 
-class VariablesUnionMember0(TypedDict, total=False):
+class VariablesZarazStringVariable(TypedDict, total=False):
     name: Required[str]
 
-    type: Required[Literal["string", "secret"]]
+    type: Required[Literal["string"]]
 
     value: Required[str]
 
 
-class VariablesUnionMember1Value(TypedDict, total=False):
+class VariablesZarazSecretVariable(TypedDict, total=False):
+    name: Required[str]
+
+    type: Required[Literal["secret"]]
+
+    value: Required[str]
+
+
+class VariablesZarazWorkerVariableValue(TypedDict, total=False):
     escaped_worker_name: Required[Annotated[str, PropertyInfo(alias="escapedWorkerName")]]
 
     worker_tag: Required[Annotated[str, PropertyInfo(alias="workerTag")]]
 
 
-class VariablesUnionMember1(TypedDict, total=False):
+class VariablesZarazWorkerVariable(TypedDict, total=False):
     name: Required[str]
 
     type: Required[Literal["worker"]]
 
-    value: Required[VariablesUnionMember1Value]
+    value: Required[VariablesZarazWorkerVariableValue]
 
 
-Variables: TypeAlias = Union[VariablesUnionMember0, VariablesUnionMember1]
+Variables: TypeAlias = Union[VariablesZarazStringVariable, VariablesZarazSecretVariable, VariablesZarazWorkerVariable]
 
 
 class Analytics(TypedDict, total=False):
