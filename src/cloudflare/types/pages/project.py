@@ -1,9 +1,10 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
+from typing import Dict, List, Union, Optional
 from datetime import datetime
-from typing_extensions import Literal
+from typing_extensions import Literal, Annotated, TypeAlias
 
+from ..._utils import PropertyInfo
 from ..._models import BaseModel
 from .deployment import Deployment
 
@@ -18,6 +19,8 @@ __all__ = [
     "DeploymentConfigsPreviewD1Databases",
     "DeploymentConfigsPreviewDurableObjectNamespaces",
     "DeploymentConfigsPreviewEnvVars",
+    "DeploymentConfigsPreviewEnvVarsPagesPlainTextEnvVar",
+    "DeploymentConfigsPreviewEnvVarsPagesSecretTextEnvVar",
     "DeploymentConfigsPreviewHyperdriveBindings",
     "DeploymentConfigsPreviewKVNamespaces",
     "DeploymentConfigsPreviewMTLSCertificates",
@@ -33,6 +36,8 @@ __all__ = [
     "DeploymentConfigsProductionD1Databases",
     "DeploymentConfigsProductionDurableObjectNamespaces",
     "DeploymentConfigsProductionEnvVars",
+    "DeploymentConfigsProductionEnvVarsPagesPlainTextEnvVar",
+    "DeploymentConfigsProductionEnvVarsPagesSecretTextEnvVar",
     "DeploymentConfigsProductionHyperdriveBindings",
     "DeploymentConfigsProductionKVNamespaces",
     "DeploymentConfigsProductionMTLSCertificates",
@@ -86,15 +91,30 @@ class DeploymentConfigsPreviewD1Databases(BaseModel):
 
 class DeploymentConfigsPreviewDurableObjectNamespaces(BaseModel):
     namespace_id: Optional[str] = None
-    """ID of the Durabble Object namespace."""
+    """ID of the Durable Object namespace."""
 
 
-class DeploymentConfigsPreviewEnvVars(BaseModel):
+class DeploymentConfigsPreviewEnvVarsPagesPlainTextEnvVar(BaseModel):
+    type: Literal["plain_text"]
+
     value: str
     """Environment variable value."""
 
-    type: Optional[Literal["plain_text", "secret_text"]] = None
-    """The type of environment variable."""
+
+class DeploymentConfigsPreviewEnvVarsPagesSecretTextEnvVar(BaseModel):
+    type: Literal["secret_text"]
+
+    value: str
+    """Secret value."""
+
+
+DeploymentConfigsPreviewEnvVars: TypeAlias = Annotated[
+    Union[
+        Optional[DeploymentConfigsPreviewEnvVarsPagesPlainTextEnvVar],
+        Optional[DeploymentConfigsPreviewEnvVarsPagesSecretTextEnvVar],
+    ],
+    PropertyInfo(discriminator="type"),
+]
 
 
 class DeploymentConfigsPreviewHyperdriveBindings(BaseModel):
@@ -163,10 +183,10 @@ class DeploymentConfigsPreview(BaseModel):
     """D1 databases used for Pages Functions."""
 
     durable_object_namespaces: Optional[Dict[str, Optional[DeploymentConfigsPreviewDurableObjectNamespaces]]] = None
-    """Durabble Object namespaces used for Pages Functions."""
+    """Durable Object namespaces used for Pages Functions."""
 
-    env_vars: Optional[Dict[str, Optional[DeploymentConfigsPreviewEnvVars]]] = None
-    """Environment variables for build configs."""
+    env_vars: Optional[Dict[str, DeploymentConfigsPreviewEnvVars]] = None
+    """Environment variables used for builds and Pages Functions."""
 
     hyperdrive_bindings: Optional[Dict[str, Optional[DeploymentConfigsPreviewHyperdriveBindings]]] = None
     """Hyperdrive bindings used for Pages Functions."""
@@ -213,15 +233,30 @@ class DeploymentConfigsProductionD1Databases(BaseModel):
 
 class DeploymentConfigsProductionDurableObjectNamespaces(BaseModel):
     namespace_id: Optional[str] = None
-    """ID of the Durabble Object namespace."""
+    """ID of the Durable Object namespace."""
 
 
-class DeploymentConfigsProductionEnvVars(BaseModel):
+class DeploymentConfigsProductionEnvVarsPagesPlainTextEnvVar(BaseModel):
+    type: Literal["plain_text"]
+
     value: str
     """Environment variable value."""
 
-    type: Optional[Literal["plain_text", "secret_text"]] = None
-    """The type of environment variable."""
+
+class DeploymentConfigsProductionEnvVarsPagesSecretTextEnvVar(BaseModel):
+    type: Literal["secret_text"]
+
+    value: str
+    """Secret value."""
+
+
+DeploymentConfigsProductionEnvVars: TypeAlias = Annotated[
+    Union[
+        Optional[DeploymentConfigsProductionEnvVarsPagesPlainTextEnvVar],
+        Optional[DeploymentConfigsProductionEnvVarsPagesSecretTextEnvVar],
+    ],
+    PropertyInfo(discriminator="type"),
+]
 
 
 class DeploymentConfigsProductionHyperdriveBindings(BaseModel):
@@ -290,10 +325,10 @@ class DeploymentConfigsProduction(BaseModel):
     """D1 databases used for Pages Functions."""
 
     durable_object_namespaces: Optional[Dict[str, Optional[DeploymentConfigsProductionDurableObjectNamespaces]]] = None
-    """Durabble Object namespaces used for Pages Functions."""
+    """Durable Object namespaces used for Pages Functions."""
 
-    env_vars: Optional[Dict[str, Optional[DeploymentConfigsProductionEnvVars]]] = None
-    """Environment variables for build configs."""
+    env_vars: Optional[Dict[str, DeploymentConfigsProductionEnvVars]] = None
+    """Environment variables used for builds and Pages Functions."""
 
     hyperdrive_bindings: Optional[Dict[str, Optional[DeploymentConfigsProductionHyperdriveBindings]]] = None
     """Hyperdrive bindings used for Pages Functions."""
