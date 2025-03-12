@@ -1,10 +1,11 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Dict, List, Union, Optional
-from typing_extensions import Literal, TypeAlias
+from typing_extensions import Literal, Annotated, TypeAlias
 
 from pydantic import Field as FieldInfo
 
+from ..._utils import PropertyInfo
 from ..._models import BaseModel
 from .neo_event import NeoEvent
 from .button_text_translation import ButtonTextTranslation
@@ -47,9 +48,10 @@ __all__ = [
     "TriggersLoadRuleZarazElementVisibilityRule",
     "TriggersLoadRuleZarazElementVisibilityRuleSettings",
     "Variables",
-    "VariablesUnionMember0",
-    "VariablesUnionMember1",
-    "VariablesUnionMember1Value",
+    "VariablesZarazStringVariable",
+    "VariablesZarazSecretVariable",
+    "VariablesZarazWorkerVariable",
+    "VariablesZarazWorkerVariableValue",
     "Analytics",
     "Consent",
     "ConsentPurposes",
@@ -463,29 +465,40 @@ class Triggers(BaseModel):
     system: Optional[Literal["pageload"]] = None
 
 
-class VariablesUnionMember0(BaseModel):
+class VariablesZarazStringVariable(BaseModel):
     name: str
 
-    type: Literal["string", "secret"]
+    type: Literal["string"]
 
     value: str
 
 
-class VariablesUnionMember1Value(BaseModel):
+class VariablesZarazSecretVariable(BaseModel):
+    name: str
+
+    type: Literal["secret"]
+
+    value: str
+
+
+class VariablesZarazWorkerVariableValue(BaseModel):
     escaped_worker_name: str = FieldInfo(alias="escapedWorkerName")
 
     worker_tag: str = FieldInfo(alias="workerTag")
 
 
-class VariablesUnionMember1(BaseModel):
+class VariablesZarazWorkerVariable(BaseModel):
     name: str
 
     type: Literal["worker"]
 
-    value: VariablesUnionMember1Value
+    value: VariablesZarazWorkerVariableValue
 
 
-Variables: TypeAlias = Union[VariablesUnionMember0, VariablesUnionMember1]
+Variables: TypeAlias = Annotated[
+    Union[VariablesZarazStringVariable, VariablesZarazSecretVariable, VariablesZarazWorkerVariable],
+    PropertyInfo(discriminator="type"),
+]
 
 
 class Analytics(BaseModel):
