@@ -48,8 +48,8 @@ class TestProjects:
                     "durable_object_namespaces": {"DO_BINDING": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
                     "env_vars": {
                         "foo": {
-                            "value": "hello world",
                             "type": "plain_text",
+                            "value": "hello world",
                         }
                     },
                     "hyperdrive_bindings": {"HYPERDRIVE": {"id": "a76a99bc342644deb02c38d66082262a"}},
@@ -82,8 +82,8 @@ class TestProjects:
                     "durable_object_namespaces": {"DO_BINDING": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
                     "env_vars": {
                         "foo": {
-                            "value": "hello world",
                             "type": "plain_text",
+                            "value": "hello world",
                         }
                     },
                     "hyperdrive_bindings": {"HYPERDRIVE": {"id": "a76a99bc342644deb02c38d66082262a"}},
@@ -261,8 +261,8 @@ class TestProjects:
                     "durable_object_namespaces": {"DO_BINDING": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
                     "env_vars": {
                         "foo": {
-                            "value": "hello world",
                             "type": "plain_text",
+                            "value": "hello world",
                         }
                     },
                     "hyperdrive_bindings": {"HYPERDRIVE": {"id": "a76a99bc342644deb02c38d66082262a"}},
@@ -294,18 +294,10 @@ class TestProjects:
                     "d1_databases": {"D1_BINDING": {"id": "445e2955-951a-43f8-a35b-a4d0c8138f63"}},
                     "durable_object_namespaces": {"DO_BINDING": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
                     "env_vars": {
-                        "BUILD_VERSION": {
-                            "value": "3.3",
+                        "foo": {
                             "type": "plain_text",
-                        },
-                        "delete_this_env_var": {
-                            "value": "value",
-                            "type": "plain_text",
-                        },
-                        "secret_var": {
-                            "value": "A_CMS_API_TOKEN",
-                            "type": "plain_text",
-                        },
+                            "value": "hello world",
+                        }
                     },
                     "hyperdrive_bindings": {"HYPERDRIVE": {"id": "a76a99bc342644deb02c38d66082262a"}},
                     "kv_namespaces": {"KV_BINDING": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
@@ -503,8 +495,8 @@ class TestAsyncProjects:
                     "durable_object_namespaces": {"DO_BINDING": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
                     "env_vars": {
                         "foo": {
-                            "value": "hello world",
                             "type": "plain_text",
+                            "value": "hello world",
                         }
                     },
                     "hyperdrive_bindings": {"HYPERDRIVE": {"id": "a76a99bc342644deb02c38d66082262a"}},
@@ -537,8 +529,8 @@ class TestAsyncProjects:
                     "durable_object_namespaces": {"DO_BINDING": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
                     "env_vars": {
                         "foo": {
-                            "value": "hello world",
                             "type": "plain_text",
+                            "value": "hello world",
                         }
                     },
                     "hyperdrive_bindings": {"HYPERDRIVE": {"id": "a76a99bc342644deb02c38d66082262a"}},
@@ -716,8 +708,8 @@ class TestAsyncProjects:
                     "durable_object_namespaces": {"DO_BINDING": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
                     "env_vars": {
                         "foo": {
-                            "value": "hello world",
                             "type": "plain_text",
+                            "value": "hello world",
                         }
                     },
                     "hyperdrive_bindings": {"HYPERDRIVE": {"id": "a76a99bc342644deb02c38d66082262a"}},
@@ -749,18 +741,10 @@ class TestAsyncProjects:
                     "d1_databases": {"D1_BINDING": {"id": "445e2955-951a-43f8-a35b-a4d0c8138f63"}},
                     "durable_object_namespaces": {"DO_BINDING": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
                     "env_vars": {
-                        "BUILD_VERSION": {
-                            "value": "3.3",
+                        "foo": {
                             "type": "plain_text",
-                        },
-                        "delete_this_env_var": {
-                            "value": "value",
-                            "type": "plain_text",
-                        },
-                        "secret_var": {
-                            "value": "A_CMS_API_TOKEN",
-                            "type": "plain_text",
-                        },
+                            "value": "hello world",
+                        }
                     },
                     "hyperdrive_bindings": {"HYPERDRIVE": {"id": "a76a99bc342644deb02c38d66082262a"}},
                     "kv_namespaces": {"KV_BINDING": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},

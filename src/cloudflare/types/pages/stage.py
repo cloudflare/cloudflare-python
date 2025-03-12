@@ -2,6 +2,7 @@
 
 from typing import Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from ..._models import BaseModel
 
@@ -12,11 +13,11 @@ class Stage(BaseModel):
     ended_on: Optional[datetime] = None
     """When the stage ended."""
 
-    name: Optional[str] = None
+    name: Optional[Literal["queued", "initialize", "clone_repo", "build", "deploy"]] = None
     """The current build stage."""
 
     started_on: Optional[datetime] = None
     """When the stage started."""
 
-    status: Optional[str] = None
+    status: Optional[Literal["success", "idle", "active", "failure", "canceled"]] = None
     """State of the current stage."""
