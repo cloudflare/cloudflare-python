@@ -1,10 +1,11 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, List, Optional
+from typing import Dict, List, Union, Optional
 from datetime import datetime
-from typing_extensions import Literal
+from typing_extensions import Literal, Annotated, TypeAlias
 
 from .stage import Stage
+from ..._utils import PropertyInfo
 from ..._models import BaseModel
 
 __all__ = [
@@ -13,6 +14,8 @@ __all__ = [
     "DeploymentTrigger",
     "DeploymentTriggerMetadata",
     "EnvVars",
+    "EnvVarsPagesPlainTextEnvVar",
+    "EnvVarsPagesSecretTextEnvVar",
     "Source",
     "SourceConfig",
 ]
@@ -53,16 +56,28 @@ class DeploymentTrigger(BaseModel):
     metadata: Optional[DeploymentTriggerMetadata] = None
     """Additional info about the trigger."""
 
-    type: Optional[str] = None
+    type: Optional[Literal["push", "ad_hoc"]] = None
     """What caused the deployment."""
 
 
-class EnvVars(BaseModel):
+class EnvVarsPagesPlainTextEnvVar(BaseModel):
+    type: Literal["plain_text"]
+
     value: str
     """Environment variable value."""
 
-    type: Optional[str] = None
-    """The type of environment variable."""
+
+class EnvVarsPagesSecretTextEnvVar(BaseModel):
+    type: Literal["secret_text"]
+
+    value: str
+    """Secret value."""
+
+
+EnvVars: TypeAlias = Annotated[
+    Union[Optional[EnvVarsPagesPlainTextEnvVar], Optional[EnvVarsPagesSecretTextEnvVar]],
+    PropertyInfo(discriminator="type"),
+]
 
 
 class SourceConfig(BaseModel):
@@ -111,10 +126,10 @@ class Deployment(BaseModel):
     deployment_trigger: Optional[DeploymentTrigger] = None
     """Info about what caused the deployment."""
 
-    env_vars: Optional[Dict[str, Optional[EnvVars]]] = None
-    """A dict of env variables to build this deploy."""
+    env_vars: Optional[Dict[str, EnvVars]] = None
+    """Environment variables used for builds and Pages Functions."""
 
-    environment: Optional[str] = None
+    environment: Optional[Literal["preview", "production"]] = None
     """Type of deploy."""
 
     is_skipped: Optional[bool] = None
