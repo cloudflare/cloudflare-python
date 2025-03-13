@@ -1,16 +1,15 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
-from typing_extensions import TypeAlias
 
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["ThreatEventCreateResponse", "ThreatEventCreateResponseItem"]
+__all__ = ["ThreatEventCreateResponse"]
 
 
-class ThreatEventCreateResponseItem(BaseModel):
+class ThreatEventCreateResponse(BaseModel):
     id: float
 
     account_id: float = FieldInfo(alias="accountId")
@@ -64,6 +63,3 @@ class ThreatEventCreateResponseItem(BaseModel):
     insight: Optional[str] = None
 
     releasability_id: Optional[str] = FieldInfo(alias="releasabilityId", default=None)
-
-
-ThreatEventCreateResponse: TypeAlias = List[ThreatEventCreateResponseItem]

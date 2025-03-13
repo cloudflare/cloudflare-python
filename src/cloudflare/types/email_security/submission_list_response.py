@@ -29,8 +29,6 @@ class SubmissionListResponse(BaseModel):
         ]
     ] = None
 
-    original_edf_hash: Optional[str] = None
-
     outcome: Optional[str] = None
 
     outcome_disposition: Optional[
