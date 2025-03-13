@@ -8635,12 +8635,28 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.cloudforce_one.threat_events import EventTagDeleteResponse
+from cloudflare.types.cloudforce_one.threat_events import (
+    EventTagCreateResponse,
+    EventTagDeleteResponse,
+)
 ```
 
 Methods:
 
+- <code title="post /accounts/{account_id}/cloudforce-one/events/event_tag/{event_id}/create">client.cloudforce_one.threat_events.event_tags.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/event_tags.py">create</a>(event_id, \*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/event_tag_create_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/event_tag_create_response.py">EventTagCreateResponse</a></code>
 - <code title="delete /accounts/{account_id}/cloudforce-one/events/event_tag/{event_id}">client.cloudforce_one.threat_events.event_tags.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/event_tags.py">delete</a>(event_id, \*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/event_tag_delete_response.py">EventTagDeleteResponse</a></code>
+
+### Tags
+
+Types:
+
+```python
+from cloudflare.types.cloudforce_one.threat_events import TagCreateResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/cloudforce-one/events/tags/create">client.cloudforce_one.threat_events.tags.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/tags.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/tag_create_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/tag_create_response.py">TagCreateResponse</a></code>
 
 ### TargetIndustries
 
