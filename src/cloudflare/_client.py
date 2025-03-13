@@ -90,6 +90,7 @@ if TYPE_CHECKING:
         page_shield,
         rate_limits,
         url_scanner,
+        custom_pages,
         dns_firewall,
         healthchecks,
         security_txt,
@@ -155,6 +156,7 @@ if TYPE_CHECKING:
     from .resources.speed.speed import SpeedResource, AsyncSpeedResource
     from .resources.zaraz.zaraz import ZarazResource, AsyncZarazResource
     from .resources.zones.zones import ZonesResource, AsyncZonesResource
+    from .resources.custom_pages import CustomPagesResource, AsyncCustomPagesResource
     from .resources.security_txt import SecurityTXTResource, AsyncSecurityTXTResource
     from .resources.abuse_reports import AbuseReportsResource, AsyncAbuseReportsResource
     from .resources.images.images import ImagesResource, AsyncImagesResource
@@ -866,6 +868,12 @@ class Cloudflare(SyncAPIClient):
         from .resources.browser_rendering import BrowserRenderingResource
 
         return BrowserRenderingResource(self)
+
+    @cached_property
+    def custom_pages(self) -> CustomPagesResource:
+        from .resources.custom_pages import CustomPagesResource
+
+        return CustomPagesResource(self)
 
     @cached_property
     def with_raw_response(self) -> CloudflareWithRawResponse:
@@ -1663,6 +1671,12 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncBrowserRenderingResource(self)
 
     @cached_property
+    def custom_pages(self) -> AsyncCustomPagesResource:
+        from .resources.custom_pages import AsyncCustomPagesResource
+
+        return AsyncCustomPagesResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncCloudflareWithRawResponse:
         return AsyncCloudflareWithRawResponse(self)
 
@@ -2392,6 +2406,12 @@ class CloudflareWithRawResponse:
 
         return BrowserRenderingResourceWithRawResponse(self._client.browser_rendering)
 
+    @cached_property
+    def custom_pages(self) -> custom_pages.CustomPagesResourceWithRawResponse:
+        from .resources.custom_pages import CustomPagesResourceWithRawResponse
+
+        return CustomPagesResourceWithRawResponse(self._client.custom_pages)
+
 
 class AsyncCloudflareWithRawResponse:
     _client: AsyncCloudflare
@@ -2941,6 +2961,12 @@ class AsyncCloudflareWithRawResponse:
 
         return AsyncBrowserRenderingResourceWithRawResponse(self._client.browser_rendering)
 
+    @cached_property
+    def custom_pages(self) -> custom_pages.AsyncCustomPagesResourceWithRawResponse:
+        from .resources.custom_pages import AsyncCustomPagesResourceWithRawResponse
+
+        return AsyncCustomPagesResourceWithRawResponse(self._client.custom_pages)
+
 
 class CloudflareWithStreamedResponse:
     _client: Cloudflare
@@ -3489,6 +3515,12 @@ class CloudflareWithStreamedResponse:
         from .resources.browser_rendering import BrowserRenderingResourceWithStreamingResponse
 
         return BrowserRenderingResourceWithStreamingResponse(self._client.browser_rendering)
+
+    @cached_property
+    def custom_pages(self) -> custom_pages.CustomPagesResourceWithStreamingResponse:
+        from .resources.custom_pages import CustomPagesResourceWithStreamingResponse
+
+        return CustomPagesResourceWithStreamingResponse(self._client.custom_pages)
 
 
 class AsyncCloudflareWithStreamedResponse:
@@ -4048,6 +4080,12 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.browser_rendering import AsyncBrowserRenderingResourceWithStreamingResponse
 
         return AsyncBrowserRenderingResourceWithStreamingResponse(self._client.browser_rendering)
+
+    @cached_property
+    def custom_pages(self) -> custom_pages.AsyncCustomPagesResourceWithStreamingResponse:
+        from .resources.custom_pages import AsyncCustomPagesResourceWithStreamingResponse
+
+        return AsyncCustomPagesResourceWithStreamingResponse(self._client.custom_pages)
 
 
 Client = Cloudflare
