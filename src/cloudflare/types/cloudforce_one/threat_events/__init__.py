@@ -5,10 +5,12 @@ from __future__ import annotations
 from .raw_edit_params import RawEditParams as RawEditParams
 from .raw_get_response import RawGetResponse as RawGetResponse
 from .raw_edit_response import RawEditResponse as RawEditResponse
+from .tag_create_params import TagCreateParams as TagCreateParams
 from .cron_edit_response import CronEditResponse as CronEditResponse
 from .cron_list_response import CronListResponse as CronListResponse
 from .dataset_edit_params import DatasetEditParams as DatasetEditParams
 from .insight_edit_params import InsightEditParams as InsightEditParams
+from .tag_create_response import TagCreateResponse as TagCreateResponse
 from .category_edit_params import CategoryEditParams as CategoryEditParams
 from .dataset_get_response import DatasetGetResponse as DatasetGetResponse
 from .dataset_raw_response import DatasetRawResponse as DatasetRawResponse
@@ -27,9 +29,11 @@ from .category_list_response import CategoryListResponse as CategoryListResponse
 from .insight_creat_response import InsightCreatResponse as InsightCreatResponse
 from .relate_delete_response import RelateDeleteResponse as RelateDeleteResponse
 from .dataset_create_response import DatasetCreateResponse as DatasetCreateResponse
+from .event_tag_create_params import EventTagCreateParams as EventTagCreateParams
 from .insight_delete_response import InsightDeleteResponse as InsightDeleteResponse
 from .category_create_response import CategoryCreateResponse as CategoryCreateResponse
 from .category_delete_response import CategoryDeleteResponse as CategoryDeleteResponse
+from .event_tag_create_response import EventTagCreateResponse as EventTagCreateResponse
 from .event_tag_delete_response import EventTagDeleteResponse as EventTagDeleteResponse
 from .indicator_type_list_response import IndicatorTypeListResponse as IndicatorTypeListResponse
 from .target_industry_list_response import TargetIndustryListResponse as TargetIndustryListResponse
