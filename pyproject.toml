@@ -38,7 +38,6 @@ Homepage = "https://github.com/cloudflare/cloudflare-python"
 Repository = "https://github.com/cloudflare/cloudflare-python"
 
 
-
 [tool.rye]
 managed = true
 # version pins are in requirements-dev.lock
