@@ -29,7 +29,7 @@ class InvestigateListParams(TypedDict, total=False):
     end: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """The end of the search date range. Defaults to `now`."""
 
-    final_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK"]
+    final_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"]
     """The dispositions the search filters by."""
 
     message_action: Literal["PREVIEW", "QUARANTINE_RELEASED", "MOVED"]
