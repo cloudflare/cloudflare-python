@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from typing import List, Union, Iterable
 from datetime import datetime
-from typing_extensions import Literal
 
 import httpx
 
@@ -203,13 +202,21 @@ class ThreatEventsResource(SyncAPIResource):
     def create(
         self,
         *,
-        account_id: float,
-        dataset_id: List[str] | NotGiven = NOT_GIVEN,
-        order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        order_by: str | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        page_size: float | NotGiven = NOT_GIVEN,
-        search: Iterable[threat_event_create_params.Search] | NotGiven = NOT_GIVEN,
+        path_account_id: float,
+        attacker: str,
+        attacker_country: str,
+        category: str,
+        date: Union[str, datetime],
+        event: str,
+        indicator_type: str,
+        raw: threat_event_create_params.Raw,
+        tlp: str,
+        body_account_id: float | NotGiven = NOT_GIVEN,
+        dataset_id: str | NotGiven = NOT_GIVEN,
+        indicator: str | NotGiven = NOT_GIVEN,
+        tags: List[str] | NotGiven = NOT_GIVEN,
+        target_country: str | NotGiven = NOT_GIVEN,
+        target_industry: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -218,10 +225,10 @@ class ThreatEventsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ThreatEventCreateResponse:
         """
-        Filter and list events
+        Creates a new event
 
         Args:
-          account_id: Account ID
+          path_account_id: Account ID
 
           extra_headers: Send extra headers
 
@@ -232,15 +239,23 @@ class ThreatEventsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._post(
-            f"/accounts/{account_id}/cloudforce-one/events",
+            f"/accounts/{path_account_id}/cloudforce-one/events/create",
             body=maybe_transform(
                 {
+                    "attacker": attacker,
+                    "attacker_country": attacker_country,
+                    "category": category,
+                    "date": date,
+                    "event": event,
+                    "indicator_type": indicator_type,
+                    "raw": raw,
+                    "tlp": tlp,
+                    "body_account_id": body_account_id,
                     "dataset_id": dataset_id,
-                    "order": order,
-                    "order_by": order_by,
-                    "page": page,
-                    "page_size": page_size,
-                    "search": search,
+                    "indicator": indicator,
+                    "tags": tags,
+                    "target_country": target_country,
+                    "target_industry": target_industry,
                 },
                 threat_event_create_params.ThreatEventCreateParams,
             ),
@@ -503,13 +518,21 @@ class AsyncThreatEventsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        account_id: float,
-        dataset_id: List[str] | NotGiven = NOT_GIVEN,
-        order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        order_by: str | NotGiven = NOT_GIVEN,
-        page: float | NotGiven = NOT_GIVEN,
-        page_size: float | NotGiven = NOT_GIVEN,
-        search: Iterable[threat_event_create_params.Search] | NotGiven = NOT_GIVEN,
+        path_account_id: float,
+        attacker: str,
+        attacker_country: str,
+        category: str,
+        date: Union[str, datetime],
+        event: str,
+        indicator_type: str,
+        raw: threat_event_create_params.Raw,
+        tlp: str,
+        body_account_id: float | NotGiven = NOT_GIVEN,
+        dataset_id: str | NotGiven = NOT_GIVEN,
+        indicator: str | NotGiven = NOT_GIVEN,
+        tags: List[str] | NotGiven = NOT_GIVEN,
+        target_country: str | NotGiven = NOT_GIVEN,
+        target_industry: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -518,10 +541,10 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ThreatEventCreateResponse:
         """
-        Filter and list events
+        Creates a new event
 
         Args:
-          account_id: Account ID
+          path_account_id: Account ID
 
           extra_headers: Send extra headers
 
@@ -532,15 +555,23 @@ class AsyncThreatEventsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._post(
-            f"/accounts/{account_id}/cloudforce-one/events",
+            f"/accounts/{path_account_id}/cloudforce-one/events/create",
             body=await async_maybe_transform(
                 {
+                    "attacker": attacker,
+                    "attacker_country": attacker_country,
+                    "category": category,
+                    "date": date,
+                    "event": event,
+                    "indicator_type": indicator_type,
+                    "raw": raw,
+                    "tlp": tlp,
+                    "body_account_id": body_account_id,
                     "dataset_id": dataset_id,
-                    "order": order,
-                    "order_by": order_by,
-                    "page": page,
-                    "page_size": page_size,
-                    "search": search,
+                    "indicator": indicator,
+                    "tags": tags,
+                    "target_country": target_country,
+                    "target_industry": target_industry,
                 },
                 threat_event_create_params.ThreatEventCreateParams,
             ),

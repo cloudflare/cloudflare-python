@@ -2,34 +2,51 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing import List, Union
+from datetime import datetime
+from typing_extensions import Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
-__all__ = ["ThreatEventCreateParams", "Search"]
+__all__ = ["ThreatEventCreateParams", "Raw"]
 
 
 class ThreatEventCreateParams(TypedDict, total=False):
-    account_id: Required[float]
+    path_account_id: Required[Annotated[float, PropertyInfo(alias="account_id")]]
     """Account ID"""
 
-    dataset_id: Annotated[List[str], PropertyInfo(alias="datasetId")]
+    attacker: Required[str]
 
-    order: Literal["asc", "desc"]
+    attacker_country: Required[Annotated[str, PropertyInfo(alias="attackerCountry")]]
 
-    order_by: Annotated[str, PropertyInfo(alias="orderBy")]
+    category: Required[str]
 
-    page: float
+    date: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
 
-    page_size: Annotated[float, PropertyInfo(alias="pageSize")]
+    event: Required[str]
 
-    search: Iterable[Search]
+    indicator_type: Required[Annotated[str, PropertyInfo(alias="indicatorType")]]
+
+    raw: Required[Raw]
+
+    tlp: Required[str]
+
+    body_account_id: Annotated[float, PropertyInfo(alias="accountId")]
+
+    dataset_id: Annotated[str, PropertyInfo(alias="datasetId")]
+
+    indicator: str
+
+    tags: List[str]
+
+    target_country: Annotated[str, PropertyInfo(alias="targetCountry")]
+
+    target_industry: Annotated[str, PropertyInfo(alias="targetIndustry")]
 
 
-class Search(TypedDict, total=False):
-    field: str
+class Raw(TypedDict, total=False):
+    data: object
 
-    op: str
+    source: str
 
-    value: Union[str, float, List[Union[str, float]]]
+    tlp: str

@@ -68,7 +68,7 @@ class SecretsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[SecretUpdateResponse]:
         """
-        Add a secret to a script uploaded to a Workers for Platforms namespace.
+        Put secrets to a script uploaded to a Workers for Platforms namespace.
 
         Args:
           account_id: Identifier
@@ -132,7 +132,7 @@ class SecretsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncSinglePage[SecretListResponse]:
         """
-        List secrets bound to a script uploaded to a Workers for Platforms namespace.
+        List secrets from a script uploaded to a Workers for Platforms namespace.
 
         Args:
           account_id: Identifier
@@ -179,8 +179,7 @@ class SecretsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[SecretGetResponse]:
         """
-        Get a given secret binding (value omitted) on a script uploaded to a Workers for
-        Platforms namespace.
+        Get secret from a script uploaded to a Workers for Platforms namespace.
 
         Args:
           account_id: Identifier
@@ -257,7 +256,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[SecretUpdateResponse]:
         """
-        Add a secret to a script uploaded to a Workers for Platforms namespace.
+        Put secrets to a script uploaded to a Workers for Platforms namespace.
 
         Args:
           account_id: Identifier
@@ -321,7 +320,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[SecretListResponse, AsyncSinglePage[SecretListResponse]]:
         """
-        List secrets bound to a script uploaded to a Workers for Platforms namespace.
+        List secrets from a script uploaded to a Workers for Platforms namespace.
 
         Args:
           account_id: Identifier
@@ -368,8 +367,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[SecretGetResponse]:
         """
-        Get a given secret binding (value omitted) on a script uploaded to a Workers for
-        Platforms namespace.
+        Get secret from a script uploaded to a Workers for Platforms namespace.
 
         Args:
           account_id: Identifier
