@@ -8,6 +8,14 @@ from .raw import (
     RawResourceWithStreamingResponse,
     AsyncRawResourceWithStreamingResponse,
 )
+from .tags import (
+    TagsResource,
+    AsyncTagsResource,
+    TagsResourceWithRawResponse,
+    AsyncTagsResourceWithRawResponse,
+    TagsResourceWithStreamingResponse,
+    AsyncTagsResourceWithStreamingResponse,
+)
 from .crons import (
     CronsResource,
     AsyncCronsResource,
@@ -152,6 +160,12 @@ __all__ = [
     "AsyncEventTagsResourceWithRawResponse",
     "EventTagsResourceWithStreamingResponse",
     "AsyncEventTagsResourceWithStreamingResponse",
+    "TagsResource",
+    "AsyncTagsResource",
+    "TagsResourceWithRawResponse",
+    "AsyncTagsResourceWithRawResponse",
+    "TagsResourceWithStreamingResponse",
+    "AsyncTagsResourceWithStreamingResponse",
     "TargetIndustriesResource",
     "AsyncTargetIndustriesResource",
     "TargetIndustriesResourceWithRawResponse",
