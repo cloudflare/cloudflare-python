@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, Iterable, Optional, cast
 
 import httpx
 
@@ -54,6 +54,7 @@ from .fallback_domains import (
 )
 from ......_base_client import make_request_options
 from ......types.zero_trust.devices.policies import default_edit_params
+from ......types.zero_trust.devices.split_tunnel_exclude_param import SplitTunnelExcludeParam
 from ......types.zero_trust.devices.policies.default_get_response import DefaultGetResponse
 from ......types.zero_trust.devices.policies.default_edit_response import DefaultEditResponse
 
@@ -106,7 +107,9 @@ class DefaultResource(SyncAPIResource):
         auto_connect: float | NotGiven = NOT_GIVEN,
         captive_portal: float | NotGiven = NOT_GIVEN,
         disable_auto_fallback: bool | NotGiven = NOT_GIVEN,
+        exclude: Iterable[SplitTunnelExcludeParam] | NotGiven = NOT_GIVEN,
         exclude_office_ips: bool | NotGiven = NOT_GIVEN,
+        include: Iterable[SplitTunnelExcludeParam] | NotGiven = NOT_GIVEN,
         register_interface_ip_with_dns: bool | NotGiven = NOT_GIVEN,
         service_mode_v2: default_edit_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
         support_url: str | NotGiven = NOT_GIVEN,
@@ -138,7 +141,13 @@ class DefaultResource(SyncAPIResource):
               fall back to a best guess of the default/system DNS resolvers unless this policy
               option is set to `true`.
 
+          exclude: List of routes excluded in the WARP client's tunnel. Both 'exclude' and
+              'include' cannot be set in the same request.
+
           exclude_office_ips: Whether to add Microsoft IPs to Split Tunnel exclusions.
+
+          include: List of routes included in the WARP client's tunnel. Both 'exclude' and
+              'include' cannot be set in the same request.
 
           register_interface_ip_with_dns: Determines if the operating system will register WARP's local interface IP with
               your on-premises DNS server.
@@ -169,7 +178,9 @@ class DefaultResource(SyncAPIResource):
                     "auto_connect": auto_connect,
                     "captive_portal": captive_portal,
                     "disable_auto_fallback": disable_auto_fallback,
+                    "exclude": exclude,
                     "exclude_office_ips": exclude_office_ips,
+                    "include": include,
                     "register_interface_ip_with_dns": register_interface_ip_with_dns,
                     "service_mode_v2": service_mode_v2,
                     "support_url": support_url,
@@ -272,7 +283,9 @@ class AsyncDefaultResource(AsyncAPIResource):
         auto_connect: float | NotGiven = NOT_GIVEN,
         captive_portal: float | NotGiven = NOT_GIVEN,
         disable_auto_fallback: bool | NotGiven = NOT_GIVEN,
+        exclude: Iterable[SplitTunnelExcludeParam] | NotGiven = NOT_GIVEN,
         exclude_office_ips: bool | NotGiven = NOT_GIVEN,
+        include: Iterable[SplitTunnelExcludeParam] | NotGiven = NOT_GIVEN,
         register_interface_ip_with_dns: bool | NotGiven = NOT_GIVEN,
         service_mode_v2: default_edit_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
         support_url: str | NotGiven = NOT_GIVEN,
@@ -304,7 +317,13 @@ class AsyncDefaultResource(AsyncAPIResource):
               fall back to a best guess of the default/system DNS resolvers unless this policy
               option is set to `true`.
 
+          exclude: List of routes excluded in the WARP client's tunnel. Both 'exclude' and
+              'include' cannot be set in the same request.
+
           exclude_office_ips: Whether to add Microsoft IPs to Split Tunnel exclusions.
+
+          include: List of routes included in the WARP client's tunnel. Both 'exclude' and
+              'include' cannot be set in the same request.
 
           register_interface_ip_with_dns: Determines if the operating system will register WARP's local interface IP with
               your on-premises DNS server.
@@ -335,7 +354,9 @@ class AsyncDefaultResource(AsyncAPIResource):
                     "auto_connect": auto_connect,
                     "captive_portal": captive_portal,
                     "disable_auto_fallback": disable_auto_fallback,
+                    "exclude": exclude,
                     "exclude_office_ips": exclude_office_ips,
+                    "include": include,
                     "register_interface_ip_with_dns": register_interface_ip_with_dns,
                     "service_mode_v2": service_mode_v2,
                     "support_url": support_url,
