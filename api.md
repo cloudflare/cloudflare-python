@@ -8377,35 +8377,18 @@ Methods:
 
 ## Scans
 
-### Results
-
-Types:
-
-```python
-from cloudflare.types.cloudforce_one.scans import ScanResult, ResultListResponse
-```
-
-Methods:
-
-- <code title="get /accounts/{account_id}/cloudforce-one/scans/results">client.cloudforce_one.scans.results.<a href="./src/cloudflare/resources/cloudforce_one/scans/results.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/scans/result_list_response.py">ResultListResponse</a></code>
-
 ### Config
 
 Types:
 
 ```python
-from cloudflare.types.cloudforce_one.scans import (
-    ConfigCreateResponse,
-    ConfigListResponse,
-    ConfigDeleteResponse,
-)
+from cloudflare.types.cloudforce_one.scans import ConfigCreateResponse, ConfigListResponse
 ```
 
 Methods:
 
 - <code title="post /accounts/{account_id}/cloudforce-one/scans/config">client.cloudforce_one.scans.config.<a href="./src/cloudflare/resources/cloudforce_one/scans/config.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/scans/config_create_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/scans/config_create_response.py">Optional[ConfigCreateResponse]</a></code>
-- <code title="get /accounts/{account_id}/cloudforce-one/scans/config">client.cloudforce_one.scans.config.<a href="./src/cloudflare/resources/cloudforce_one/scans/config.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/scans/config_list_response.py">Optional[ConfigListResponse]</a></code>
-- <code title="delete /accounts/{account_id}/cloudforce-one/scans/config">client.cloudforce_one.scans.config.<a href="./src/cloudflare/resources/cloudforce_one/scans/config.py">delete</a>(\*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/scans/config_delete_response.py">object</a></code>
+- <code title="get /accounts/{account_id}/cloudforce-one/scans/config">client.cloudforce_one.scans.config.<a href="./src/cloudflare/resources/cloudforce_one/scans/config.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/scans/config_list_response.py">SyncSinglePage[ConfigListResponse]</a></code>
 
 ## Requests
 
