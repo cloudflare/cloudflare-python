@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, Iterable, Optional, cast
 
 import httpx
 
@@ -48,6 +48,7 @@ from .fallback_domains import (
 from ......_base_client import AsyncPaginator, make_request_options
 from ......types.zero_trust.devices.policies import custom_edit_params, custom_create_params
 from ......types.zero_trust.devices.settings_policy import SettingsPolicy
+from ......types.zero_trust.devices.split_tunnel_exclude_param import SplitTunnelExcludeParam
 
 __all__ = ["CustomResource", "AsyncCustomResource"]
 
@@ -99,7 +100,9 @@ class CustomResource(SyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         disable_auto_fallback: bool | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
+        exclude: Iterable[SplitTunnelExcludeParam] | NotGiven = NOT_GIVEN,
         exclude_office_ips: bool | NotGiven = NOT_GIVEN,
+        include: Iterable[SplitTunnelExcludeParam] | NotGiven = NOT_GIVEN,
         lan_allow_minutes: float | NotGiven = NOT_GIVEN,
         lan_allow_subnet_size: float | NotGiven = NOT_GIVEN,
         register_interface_ip_with_dns: bool | NotGiven = NOT_GIVEN,
@@ -145,7 +148,13 @@ class CustomResource(SyncAPIResource):
 
           enabled: Whether the policy will be applied to matching devices.
 
+          exclude: List of routes excluded in the WARP client's tunnel. Both 'exclude' and
+              'include' cannot be set in the same request.
+
           exclude_office_ips: Whether to add Microsoft IPs to Split Tunnel exclusions.
+
+          include: List of routes included in the WARP client's tunnel. Both 'exclude' and
+              'include' cannot be set in the same request.
 
           lan_allow_minutes: The amount of time in minutes a user is allowed access to their LAN. A value of
               0 will allow LAN access until the next WARP reconnection, such as a reboot or a
@@ -189,7 +198,9 @@ class CustomResource(SyncAPIResource):
                     "description": description,
                     "disable_auto_fallback": disable_auto_fallback,
                     "enabled": enabled,
+                    "exclude": exclude,
                     "exclude_office_ips": exclude_office_ips,
+                    "include": include,
                     "lan_allow_minutes": lan_allow_minutes,
                     "lan_allow_subnet_size": lan_allow_subnet_size,
                     "register_interface_ip_with_dns": register_interface_ip_with_dns,
@@ -298,7 +309,9 @@ class CustomResource(SyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         disable_auto_fallback: bool | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
+        exclude: Iterable[SplitTunnelExcludeParam] | NotGiven = NOT_GIVEN,
         exclude_office_ips: bool | NotGiven = NOT_GIVEN,
+        include: Iterable[SplitTunnelExcludeParam] | NotGiven = NOT_GIVEN,
         match: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         precedence: float | NotGiven = NOT_GIVEN,
@@ -339,7 +352,13 @@ class CustomResource(SyncAPIResource):
 
           enabled: Whether the policy will be applied to matching devices.
 
+          exclude: List of routes excluded in the WARP client's tunnel. Both 'exclude' and
+              'include' cannot be set in the same request.
+
           exclude_office_ips: Whether to add Microsoft IPs to Split Tunnel exclusions.
+
+          include: List of routes included in the WARP client's tunnel. Both 'exclude' and
+              'include' cannot be set in the same request.
 
           match: The wirefilter expression to match devices.
 
@@ -381,7 +400,9 @@ class CustomResource(SyncAPIResource):
                     "description": description,
                     "disable_auto_fallback": disable_auto_fallback,
                     "enabled": enabled,
+                    "exclude": exclude,
                     "exclude_office_ips": exclude_office_ips,
+                    "include": include,
                     "match": match,
                     "name": name,
                     "precedence": precedence,
@@ -493,7 +514,9 @@ class AsyncCustomResource(AsyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         disable_auto_fallback: bool | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
+        exclude: Iterable[SplitTunnelExcludeParam] | NotGiven = NOT_GIVEN,
         exclude_office_ips: bool | NotGiven = NOT_GIVEN,
+        include: Iterable[SplitTunnelExcludeParam] | NotGiven = NOT_GIVEN,
         lan_allow_minutes: float | NotGiven = NOT_GIVEN,
         lan_allow_subnet_size: float | NotGiven = NOT_GIVEN,
         register_interface_ip_with_dns: bool | NotGiven = NOT_GIVEN,
@@ -539,7 +562,13 @@ class AsyncCustomResource(AsyncAPIResource):
 
           enabled: Whether the policy will be applied to matching devices.
 
+          exclude: List of routes excluded in the WARP client's tunnel. Both 'exclude' and
+              'include' cannot be set in the same request.
+
           exclude_office_ips: Whether to add Microsoft IPs to Split Tunnel exclusions.
+
+          include: List of routes included in the WARP client's tunnel. Both 'exclude' and
+              'include' cannot be set in the same request.
 
           lan_allow_minutes: The amount of time in minutes a user is allowed access to their LAN. A value of
               0 will allow LAN access until the next WARP reconnection, such as a reboot or a
@@ -583,7 +612,9 @@ class AsyncCustomResource(AsyncAPIResource):
                     "description": description,
                     "disable_auto_fallback": disable_auto_fallback,
                     "enabled": enabled,
+                    "exclude": exclude,
                     "exclude_office_ips": exclude_office_ips,
+                    "include": include,
                     "lan_allow_minutes": lan_allow_minutes,
                     "lan_allow_subnet_size": lan_allow_subnet_size,
                     "register_interface_ip_with_dns": register_interface_ip_with_dns,
@@ -692,7 +723,9 @@ class AsyncCustomResource(AsyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         disable_auto_fallback: bool | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
+        exclude: Iterable[SplitTunnelExcludeParam] | NotGiven = NOT_GIVEN,
         exclude_office_ips: bool | NotGiven = NOT_GIVEN,
+        include: Iterable[SplitTunnelExcludeParam] | NotGiven = NOT_GIVEN,
         match: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         precedence: float | NotGiven = NOT_GIVEN,
@@ -733,7 +766,13 @@ class AsyncCustomResource(AsyncAPIResource):
 
           enabled: Whether the policy will be applied to matching devices.
 
+          exclude: List of routes excluded in the WARP client's tunnel. Both 'exclude' and
+              'include' cannot be set in the same request.
+
           exclude_office_ips: Whether to add Microsoft IPs to Split Tunnel exclusions.
+
+          include: List of routes included in the WARP client's tunnel. Both 'exclude' and
+              'include' cannot be set in the same request.
 
           match: The wirefilter expression to match devices.
 
@@ -775,7 +814,9 @@ class AsyncCustomResource(AsyncAPIResource):
                     "description": description,
                     "disable_auto_fallback": disable_auto_fallback,
                     "enabled": enabled,
+                    "exclude": exclude,
                     "exclude_office_ips": exclude_office_ips,
+                    "include": include,
                     "match": match,
                     "name": name,
                     "precedence": precedence,

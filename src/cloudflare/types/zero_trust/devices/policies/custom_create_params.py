@@ -2,7 +2,10 @@
 
 from __future__ import annotations
 
+from typing import Iterable
 from typing_extensions import Required, TypedDict
+
+from ..split_tunnel_exclude_param import SplitTunnelExcludeParam
 
 __all__ = ["CustomCreateParams", "ServiceModeV2"]
 
@@ -54,8 +57,20 @@ class CustomCreateParams(TypedDict, total=False):
     enabled: bool
     """Whether the policy will be applied to matching devices."""
 
+    exclude: Iterable[SplitTunnelExcludeParam]
+    """List of routes excluded in the WARP client's tunnel.
+
+    Both 'exclude' and 'include' cannot be set in the same request.
+    """
+
     exclude_office_ips: bool
     """Whether to add Microsoft IPs to Split Tunnel exclusions."""
+
+    include: Iterable[SplitTunnelExcludeParam]
+    """List of routes included in the WARP client's tunnel.
+
+    Both 'exclude' and 'include' cannot be set in the same request.
+    """
 
     lan_allow_minutes: float
     """The amount of time in minutes a user is allowed access to their LAN.
