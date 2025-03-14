@@ -51,6 +51,7 @@ class DefaultEditResponse(BaseModel):
     """Whether the policy will be applied to matching devices."""
 
     exclude: Optional[List[SplitTunnelExclude]] = None
+    """List of routes excluded in the WARP client's tunnel."""
 
     exclude_office_ips: Optional[bool] = None
     """Whether to add Microsoft IPs to Split Tunnel exclusions."""
@@ -60,6 +61,7 @@ class DefaultEditResponse(BaseModel):
     gateway_unique_id: Optional[str] = None
 
     include: Optional[List[SplitTunnelInclude]] = None
+    """List of routes included in the WARP client's tunnel."""
 
     register_interface_ip_with_dns: Optional[bool] = None
     """

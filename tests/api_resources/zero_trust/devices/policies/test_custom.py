@@ -45,7 +45,21 @@ class TestCustom:
             description="Policy for test teams.",
             disable_auto_fallback=True,
             enabled=True,
+            exclude=[
+                {
+                    "address": "192.0.2.0/24",
+                    "description": "Exclude testing domains from the tunnel",
+                    "host": "*.example.com",
+                }
+            ],
             exclude_office_ips=True,
+            include=[
+                {
+                    "address": "192.0.2.0/24",
+                    "description": "Exclude testing domains from the tunnel",
+                    "host": "*.example.com",
+                }
+            ],
             lan_allow_minutes=30,
             lan_allow_subnet_size=24,
             register_interface_ip_with_dns=True,
@@ -211,7 +225,21 @@ class TestCustom:
             description="Policy for test teams.",
             disable_auto_fallback=True,
             enabled=True,
+            exclude=[
+                {
+                    "address": "192.0.2.0/24",
+                    "description": "Exclude testing domains from the tunnel",
+                    "host": "*.example.com",
+                }
+            ],
             exclude_office_ips=True,
+            include=[
+                {
+                    "address": "192.0.2.0/24",
+                    "description": "Exclude testing domains from the tunnel",
+                    "host": "*.example.com",
+                }
+            ],
             match='user.identity == "test@cloudflare.com"',
             name="Allow Developers",
             precedence=100,
@@ -352,7 +380,21 @@ class TestAsyncCustom:
             description="Policy for test teams.",
             disable_auto_fallback=True,
             enabled=True,
+            exclude=[
+                {
+                    "address": "192.0.2.0/24",
+                    "description": "Exclude testing domains from the tunnel",
+                    "host": "*.example.com",
+                }
+            ],
             exclude_office_ips=True,
+            include=[
+                {
+                    "address": "192.0.2.0/24",
+                    "description": "Exclude testing domains from the tunnel",
+                    "host": "*.example.com",
+                }
+            ],
             lan_allow_minutes=30,
             lan_allow_subnet_size=24,
             register_interface_ip_with_dns=True,
@@ -518,7 +560,21 @@ class TestAsyncCustom:
             description="Policy for test teams.",
             disable_auto_fallback=True,
             enabled=True,
+            exclude=[
+                {
+                    "address": "192.0.2.0/24",
+                    "description": "Exclude testing domains from the tunnel",
+                    "host": "*.example.com",
+                }
+            ],
             exclude_office_ips=True,
+            include=[
+                {
+                    "address": "192.0.2.0/24",
+                    "description": "Exclude testing domains from the tunnel",
+                    "host": "*.example.com",
+                }
+            ],
             match='user.identity == "test@cloudflare.com"',
             name="Allow Developers",
             precedence=100,
