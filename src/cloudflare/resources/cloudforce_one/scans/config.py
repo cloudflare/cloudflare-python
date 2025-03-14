@@ -120,7 +120,7 @@ class ConfigResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncSinglePage[ConfigListResponse]:
         """
-        Get the Scan Config for An Account
+        List Scan Configs
 
         Args:
           account_id: Account ID
@@ -236,7 +236,7 @@ class AsyncConfigResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[ConfigListResponse, AsyncSinglePage[ConfigListResponse]]:
         """
-        Get the Scan Config for An Account
+        List Scan Configs
 
         Args:
           account_id: Account ID
