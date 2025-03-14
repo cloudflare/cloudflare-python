@@ -20,7 +20,8 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ...._base_client import make_request_options
+from ....pagination import SyncSinglePage, AsyncSinglePage
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.cloudforce_one.scans import config_create_params
 from ....types.cloudforce_one.scans.config_list_response import ConfigListResponse
 from ....types.cloudforce_one.scans.config_create_response import ConfigCreateResponse
@@ -52,8 +53,9 @@ class ConfigResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        frequency: float,
         ips: List[str],
+        frequency: float | NotGiven = NOT_GIVEN,
+        ports: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -67,10 +69,14 @@ class ConfigResource(SyncAPIResource):
         Args:
           account_id: Account ID
 
-          frequency: The number of days between each scan (0 = no recurring scans)
-
           ips: A list of IP addresses or CIDR blocks to scan. The maximum number of total IP
               addresses allowed is 5000.
+
+          frequency: The number of days between each scan (0 = no recurring scans).
+
+          ports: A list of ports to scan. Allowed values:"default", "all", or a comma-separated
+              list of ports or range of ports (e.g. ["1-80", "443"]). Default will scan the
+              100 most commonly open ports.
 
           extra_headers: Send extra headers
 
@@ -86,8 +92,9 @@ class ConfigResource(SyncAPIResource):
             f"/accounts/{account_id}/cloudforce-one/scans/config",
             body=maybe_transform(
                 {
-                    "frequency": frequency,
                     "ips": ips,
+                    "frequency": frequency,
+                    "ports": ports,
                 },
                 config_create_params.ConfigCreateParams,
             ),
@@ -111,7 +118,7 @@ class ConfigResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ConfigListResponse]:
+    ) -> SyncSinglePage[ConfigListResponse]:
         """
         Get the Scan Config for An Account
 
@@ -128,55 +135,13 @@ class ConfigResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/cloudforce-one/scans/config",
+            page=SyncSinglePage[ConfigListResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ConfigListResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[ConfigListResponse]], ResultWrapper[ConfigListResponse]),
-        )
-
-    def delete(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Delete the Scan Config for an Account
-
-        Args:
-          account_id: Account ID
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._delete(
-            f"/accounts/{account_id}/cloudforce-one/scans/config",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[object]._unwrapper,
-            ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            model=ConfigListResponse,
         )
 
 
@@ -204,8 +169,9 @@ class AsyncConfigResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        frequency: float,
         ips: List[str],
+        frequency: float | NotGiven = NOT_GIVEN,
+        ports: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -219,10 +185,14 @@ class AsyncConfigResource(AsyncAPIResource):
         Args:
           account_id: Account ID
 
-          frequency: The number of days between each scan (0 = no recurring scans)
-
           ips: A list of IP addresses or CIDR blocks to scan. The maximum number of total IP
               addresses allowed is 5000.
+
+          frequency: The number of days between each scan (0 = no recurring scans).
+
+          ports: A list of ports to scan. Allowed values:"default", "all", or a comma-separated
+              list of ports or range of ports (e.g. ["1-80", "443"]). Default will scan the
+              100 most commonly open ports.
 
           extra_headers: Send extra headers
 
@@ -238,8 +208,9 @@ class AsyncConfigResource(AsyncAPIResource):
             f"/accounts/{account_id}/cloudforce-one/scans/config",
             body=await async_maybe_transform(
                 {
-                    "frequency": frequency,
                     "ips": ips,
+                    "frequency": frequency,
+                    "ports": ports,
                 },
                 config_create_params.ConfigCreateParams,
             ),
@@ -253,7 +224,7 @@ class AsyncConfigResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[ConfigCreateResponse]], ResultWrapper[ConfigCreateResponse]),
         )
 
-    async def list(
+    def list(
         self,
         *,
         account_id: str,
@@ -263,7 +234,7 @@ class AsyncConfigResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ConfigListResponse]:
+    ) -> AsyncPaginator[ConfigListResponse, AsyncSinglePage[ConfigListResponse]]:
         """
         Get the Scan Config for An Account
 
@@ -280,55 +251,13 @@ class AsyncConfigResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/cloudforce-one/scans/config",
+            page=AsyncSinglePage[ConfigListResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ConfigListResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[ConfigListResponse]], ResultWrapper[ConfigListResponse]),
-        )
-
-    async def delete(
-        self,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
-        """
-        Delete the Scan Config for an Account
-
-        Args:
-          account_id: Account ID
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._delete(
-            f"/accounts/{account_id}/cloudforce-one/scans/config",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[object]._unwrapper,
-            ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            model=ConfigListResponse,
         )
 
 
@@ -342,9 +271,6 @@ class ConfigResourceWithRawResponse:
         self.list = to_raw_response_wrapper(
             config.list,
         )
-        self.delete = to_raw_response_wrapper(
-            config.delete,
-        )
 
 
 class AsyncConfigResourceWithRawResponse:
@@ -356,9 +282,6 @@ class AsyncConfigResourceWithRawResponse:
         )
         self.list = async_to_raw_response_wrapper(
             config.list,
-        )
-        self.delete = async_to_raw_response_wrapper(
-            config.delete,
         )
 
 
@@ -372,9 +295,6 @@ class ConfigResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             config.list,
         )
-        self.delete = to_streamed_response_wrapper(
-            config.delete,
-        )
 
 
 class AsyncConfigResourceWithStreamingResponse:
@@ -386,7 +306,4 @@ class AsyncConfigResourceWithStreamingResponse:
         )
         self.list = async_to_streamed_response_wrapper(
             config.list,
-        )
-        self.delete = async_to_streamed_response_wrapper(
-            config.delete,
         )

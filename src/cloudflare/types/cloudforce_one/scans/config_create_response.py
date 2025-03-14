@@ -8,8 +8,12 @@ __all__ = ["ConfigCreateResponse"]
 
 
 class ConfigCreateResponse(BaseModel):
+    id: str
+
     account_id: str
 
     frequency: float
 
     ips: List[str]
+
+    ports: List[str]
