@@ -10,14 +10,6 @@ from .config import (
     ConfigResourceWithStreamingResponse,
     AsyncConfigResourceWithStreamingResponse,
 )
-from .results import (
-    ResultsResource,
-    AsyncResultsResource,
-    ResultsResourceWithRawResponse,
-    AsyncResultsResourceWithRawResponse,
-    ResultsResourceWithStreamingResponse,
-    AsyncResultsResourceWithStreamingResponse,
-)
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 
@@ -25,10 +17,6 @@ __all__ = ["ScansResource", "AsyncScansResource"]
 
 
 class ScansResource(SyncAPIResource):
-    @cached_property
-    def results(self) -> ResultsResource:
-        return ResultsResource(self._client)
-
     @cached_property
     def config(self) -> ConfigResource:
         return ConfigResource(self._client)
@@ -54,10 +42,6 @@ class ScansResource(SyncAPIResource):
 
 
 class AsyncScansResource(AsyncAPIResource):
-    @cached_property
-    def results(self) -> AsyncResultsResource:
-        return AsyncResultsResource(self._client)
-
     @cached_property
     def config(self) -> AsyncConfigResource:
         return AsyncConfigResource(self._client)
@@ -87,10 +71,6 @@ class ScansResourceWithRawResponse:
         self._scans = scans
 
     @cached_property
-    def results(self) -> ResultsResourceWithRawResponse:
-        return ResultsResourceWithRawResponse(self._scans.results)
-
-    @cached_property
     def config(self) -> ConfigResourceWithRawResponse:
         return ConfigResourceWithRawResponse(self._scans.config)
 
@@ -98,10 +78,6 @@ class ScansResourceWithRawResponse:
 class AsyncScansResourceWithRawResponse:
     def __init__(self, scans: AsyncScansResource) -> None:
         self._scans = scans
-
-    @cached_property
-    def results(self) -> AsyncResultsResourceWithRawResponse:
-        return AsyncResultsResourceWithRawResponse(self._scans.results)
 
     @cached_property
     def config(self) -> AsyncConfigResourceWithRawResponse:
@@ -113,10 +89,6 @@ class ScansResourceWithStreamingResponse:
         self._scans = scans
 
     @cached_property
-    def results(self) -> ResultsResourceWithStreamingResponse:
-        return ResultsResourceWithStreamingResponse(self._scans.results)
-
-    @cached_property
     def config(self) -> ConfigResourceWithStreamingResponse:
         return ConfigResourceWithStreamingResponse(self._scans.config)
 
@@ -124,10 +96,6 @@ class ScansResourceWithStreamingResponse:
 class AsyncScansResourceWithStreamingResponse:
     def __init__(self, scans: AsyncScansResource) -> None:
         self._scans = scans
-
-    @cached_property
-    def results(self) -> AsyncResultsResourceWithStreamingResponse:
-        return AsyncResultsResourceWithStreamingResponse(self._scans.results)
 
     @cached_property
     def config(self) -> AsyncConfigResourceWithStreamingResponse:
