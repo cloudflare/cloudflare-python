@@ -15,6 +15,14 @@ from .logs import (
     LogsResourceWithStreamingResponse,
     AsyncLogsResourceWithStreamingResponse,
 )
+from .urls import (
+    URLsResource,
+    AsyncURLsResource,
+    URLsResourceWithRawResponse,
+    AsyncURLsResourceWithRawResponse,
+    URLsResourceWithStreamingResponse,
+    AsyncURLsResourceWithStreamingResponse,
+)
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -81,6 +89,10 @@ class AIGatewayResource(SyncAPIResource):
     @cached_property
     def evaluations(self) -> EvaluationsResource:
         return EvaluationsResource(self._client)
+
+    @cached_property
+    def urls(self) -> URLsResource:
+        return URLsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AIGatewayResourceWithRawResponse:
@@ -389,6 +401,10 @@ class AsyncAIGatewayResource(AsyncAPIResource):
     @cached_property
     def evaluations(self) -> AsyncEvaluationsResource:
         return AsyncEvaluationsResource(self._client)
+
+    @cached_property
+    def urls(self) -> AsyncURLsResource:
+        return AsyncURLsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncAIGatewayResourceWithRawResponse:
@@ -717,6 +733,10 @@ class AIGatewayResourceWithRawResponse:
     def evaluations(self) -> EvaluationsResourceWithRawResponse:
         return EvaluationsResourceWithRawResponse(self._ai_gateway.evaluations)
 
+    @cached_property
+    def urls(self) -> URLsResourceWithRawResponse:
+        return URLsResourceWithRawResponse(self._ai_gateway.urls)
+
 
 class AsyncAIGatewayResourceWithRawResponse:
     def __init__(self, ai_gateway: AsyncAIGatewayResource) -> None:
@@ -753,6 +773,10 @@ class AsyncAIGatewayResourceWithRawResponse:
     @cached_property
     def evaluations(self) -> AsyncEvaluationsResourceWithRawResponse:
         return AsyncEvaluationsResourceWithRawResponse(self._ai_gateway.evaluations)
+
+    @cached_property
+    def urls(self) -> AsyncURLsResourceWithRawResponse:
+        return AsyncURLsResourceWithRawResponse(self._ai_gateway.urls)
 
 
 class AIGatewayResourceWithStreamingResponse:
@@ -791,6 +815,10 @@ class AIGatewayResourceWithStreamingResponse:
     def evaluations(self) -> EvaluationsResourceWithStreamingResponse:
         return EvaluationsResourceWithStreamingResponse(self._ai_gateway.evaluations)
 
+    @cached_property
+    def urls(self) -> URLsResourceWithStreamingResponse:
+        return URLsResourceWithStreamingResponse(self._ai_gateway.urls)
+
 
 class AsyncAIGatewayResourceWithStreamingResponse:
     def __init__(self, ai_gateway: AsyncAIGatewayResource) -> None:
@@ -827,3 +855,7 @@ class AsyncAIGatewayResourceWithStreamingResponse:
     @cached_property
     def evaluations(self) -> AsyncEvaluationsResourceWithStreamingResponse:
         return AsyncEvaluationsResourceWithStreamingResponse(self._ai_gateway.evaluations)
+
+    @cached_property
+    def urls(self) -> AsyncURLsResourceWithStreamingResponse:
+        return AsyncURLsResourceWithStreamingResponse(self._ai_gateway.urls)
