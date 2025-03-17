@@ -42,6 +42,9 @@ class TestTimeseriesGroups:
             format="JSON",
             location=["string"],
             name=["main_series"],
+            protocol="UDP",
+            query_type="A",
+            response_code="NOERROR",
         )
         assert_matches_type(TimeseriesGroupDNSSECResponse, timeseries_group, path=["response"])
 
@@ -82,6 +85,9 @@ class TestTimeseriesGroups:
             format="JSON",
             location=["string"],
             name=["main_series"],
+            protocol="UDP",
+            query_type="A",
+            response_code="NOERROR",
         )
         assert_matches_type(TimeseriesGroupEdnsResponse, timeseries_group, path=["response"])
 
@@ -122,6 +128,9 @@ class TestTimeseriesGroups:
             format="JSON",
             location=["string"],
             name=["main_series"],
+            protocol="UDP",
+            query_type="A",
+            response_code="NOERROR",
         )
         assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=["response"])
 
@@ -162,6 +171,8 @@ class TestTimeseriesGroups:
             format="JSON",
             location=["string"],
             name=["main_series"],
+            query_type="A",
+            response_code="NOERROR",
         )
         assert_matches_type(TimeseriesGroupProtocolResponse, timeseries_group, path=["response"])
 
@@ -203,6 +214,8 @@ class TestTimeseriesGroups:
             limit_per_group=10,
             location=["string"],
             name=["main_series"],
+            protocol="UDP",
+            response_code="NOERROR",
         )
         assert_matches_type(TimeseriesGroupQueryTypeResponse, timeseries_group, path=["response"])
 
@@ -244,6 +257,8 @@ class TestTimeseriesGroups:
             limit_per_group=10,
             location=["string"],
             name=["main_series"],
+            protocol="UDP",
+            query_type="A",
         )
         assert_matches_type(TimeseriesGroupResponseCodesResponse, timeseries_group, path=["response"])
 
@@ -288,6 +303,9 @@ class TestAsyncTimeseriesGroups:
             format="JSON",
             location=["string"],
             name=["main_series"],
+            protocol="UDP",
+            query_type="A",
+            response_code="NOERROR",
         )
         assert_matches_type(TimeseriesGroupDNSSECResponse, timeseries_group, path=["response"])
 
@@ -328,6 +346,9 @@ class TestAsyncTimeseriesGroups:
             format="JSON",
             location=["string"],
             name=["main_series"],
+            protocol="UDP",
+            query_type="A",
+            response_code="NOERROR",
         )
         assert_matches_type(TimeseriesGroupEdnsResponse, timeseries_group, path=["response"])
 
@@ -368,6 +389,9 @@ class TestAsyncTimeseriesGroups:
             format="JSON",
             location=["string"],
             name=["main_series"],
+            protocol="UDP",
+            query_type="A",
+            response_code="NOERROR",
         )
         assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=["response"])
 
@@ -408,6 +432,8 @@ class TestAsyncTimeseriesGroups:
             format="JSON",
             location=["string"],
             name=["main_series"],
+            query_type="A",
+            response_code="NOERROR",
         )
         assert_matches_type(TimeseriesGroupProtocolResponse, timeseries_group, path=["response"])
 
@@ -449,6 +475,8 @@ class TestAsyncTimeseriesGroups:
             limit_per_group=10,
             location=["string"],
             name=["main_series"],
+            protocol="UDP",
+            response_code="NOERROR",
         )
         assert_matches_type(TimeseriesGroupQueryTypeResponse, timeseries_group, path=["response"])
 
@@ -490,6 +518,8 @@ class TestAsyncTimeseriesGroups:
             limit_per_group=10,
             location=["string"],
             name=["main_series"],
+            protocol="UDP",
+            query_type="A",
         )
         assert_matches_type(TimeseriesGroupResponseCodesResponse, timeseries_group, path=["response"])
 

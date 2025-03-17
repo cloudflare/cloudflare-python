@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union
+from typing import List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, Annotated, TypedDict
 
@@ -67,3 +67,103 @@ class TimeseriesGroupResponseCodesParams(TypedDict, total=False):
 
     name: List[str]
     """Array of names used to label the series in the response."""
+
+    protocol: Literal["UDP", "TCP", "HTTPS", "TLS"]
+    """Filters results by DNS transport protocol."""
+
+    query_type: Annotated[
+        Optional[
+            Literal[
+                "A",
+                "AAAA",
+                "A6",
+                "AFSDB",
+                "ANY",
+                "APL",
+                "ATMA",
+                "AXFR",
+                "CAA",
+                "CDNSKEY",
+                "CDS",
+                "CERT",
+                "CNAME",
+                "CSYNC",
+                "DHCID",
+                "DLV",
+                "DNAME",
+                "DNSKEY",
+                "DOA",
+                "DS",
+                "EID",
+                "EUI48",
+                "EUI64",
+                "GPOS",
+                "GID",
+                "HINFO",
+                "HIP",
+                "HTTPS",
+                "IPSECKEY",
+                "ISDN",
+                "IXFR",
+                "KEY",
+                "KX",
+                "L32",
+                "L64",
+                "LOC",
+                "LP",
+                "MAILA",
+                "MAILB",
+                "MB",
+                "MD",
+                "MF",
+                "MG",
+                "MINFO",
+                "MR",
+                "MX",
+                "NAPTR",
+                "NB",
+                "NBSTAT",
+                "NID",
+                "NIMLOC",
+                "NINFO",
+                "NS",
+                "NSAP",
+                "NSEC",
+                "NSEC3",
+                "NSEC3PARAM",
+                "NULL",
+                "NXT",
+                "OPENPGPKEY",
+                "OPT",
+                "PTR",
+                "PX",
+                "RKEY",
+                "RP",
+                "RRSIG",
+                "RT",
+                "SIG",
+                "SINK",
+                "SMIMEA",
+                "SOA",
+                "SPF",
+                "SRV",
+                "SSHFP",
+                "SVCB",
+                "TA",
+                "TALINK",
+                "TKEY",
+                "TLSA",
+                "TSIG",
+                "TXT",
+                "UINFO",
+                "UID",
+                "UNSPEC",
+                "URI",
+                "WKS",
+                "X25",
+                "ZONEMD",
+            ]
+        ],
+        PropertyInfo(alias="queryType"),
+    ]
+    """Filters results by DNS query type."""

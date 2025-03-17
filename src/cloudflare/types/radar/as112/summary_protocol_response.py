@@ -58,9 +58,13 @@ class Meta(BaseModel):
 
 
 class Summary0(BaseModel):
-    tcp: str
+    https: str = FieldInfo(alias="HTTPS")
 
-    udp: str
+    tcp: str = FieldInfo(alias="TCP")
+
+    tls: str = FieldInfo(alias="TLS")
+
+    udp: str = FieldInfo(alias="UDP")
 
 
 class SummaryProtocolResponse(BaseModel):
