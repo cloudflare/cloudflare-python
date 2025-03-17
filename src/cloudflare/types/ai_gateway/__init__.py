@@ -5,6 +5,7 @@ from __future__ import annotations
 from .log_edit_params import LogEditParams as LogEditParams
 from .log_list_params import LogListParams as LogListParams
 from .log_get_response import LogGetResponse as LogGetResponse
+from .url_get_response import URLGetResponse as URLGetResponse
 from .log_delete_params import LogDeleteParams as LogDeleteParams
 from .log_list_response import LogListResponse as LogListResponse
 from .dataset_list_params import DatasetListParams as DatasetListParams
