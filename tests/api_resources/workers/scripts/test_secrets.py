@@ -10,7 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.workers_for_platforms.dispatch.namespaces.scripts import (
+from cloudflare.types.workers.scripts import (
     SecretGetResponse,
     SecretListResponse,
     SecretUpdateResponse,
@@ -24,19 +24,17 @@ class TestSecrets:
 
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
-        secret = client.workers_for_platforms.dispatch.namespaces.scripts.secrets.update(
+        secret = client.workers.scripts.secrets.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            dispatch_namespace="my-dispatch-namespace",
         )
         assert_matches_type(Optional[SecretUpdateResponse], secret, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
-        secret = client.workers_for_platforms.dispatch.namespaces.scripts.secrets.update(
+        secret = client.workers.scripts.secrets.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            dispatch_namespace="my-dispatch-namespace",
             name="MY_SECRET",
             text="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
             type="secret_text",
@@ -45,10 +43,9 @@ class TestSecrets:
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
-        response = client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_raw_response.update(
+        response = client.workers.scripts.secrets.with_raw_response.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            dispatch_namespace="my-dispatch-namespace",
         )
 
         assert response.is_closed is True
@@ -58,10 +55,9 @@ class TestSecrets:
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
-        with client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_streaming_response.update(
+        with client.workers.scripts.secrets.with_streaming_response.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            dispatch_namespace="my-dispatch-namespace",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -74,41 +70,30 @@ class TestSecrets:
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_raw_response.update(
+            client.workers.scripts.secrets.with_raw_response.update(
                 script_name="this-is_my_script-01",
                 account_id="",
-                dispatch_namespace="my-dispatch-namespace",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `dispatch_namespace` but received ''"):
-            client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_raw_response.update(
-                script_name="this-is_my_script-01",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                dispatch_namespace="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
-            client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_raw_response.update(
+            client.workers.scripts.secrets.with_raw_response.update(
                 script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                dispatch_namespace="my-dispatch-namespace",
             )
 
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
-        secret = client.workers_for_platforms.dispatch.namespaces.scripts.secrets.list(
+        secret = client.workers.scripts.secrets.list(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            dispatch_namespace="my-dispatch-namespace",
         )
         assert_matches_type(SyncSinglePage[SecretListResponse], secret, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
-        response = client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_raw_response.list(
+        response = client.workers.scripts.secrets.with_raw_response.list(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            dispatch_namespace="my-dispatch-namespace",
         )
 
         assert response.is_closed is True
@@ -118,10 +103,9 @@ class TestSecrets:
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
-        with client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_streaming_response.list(
+        with client.workers.scripts.secrets.with_streaming_response.list(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            dispatch_namespace="my-dispatch-namespace",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -134,42 +118,31 @@ class TestSecrets:
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_raw_response.list(
+            client.workers.scripts.secrets.with_raw_response.list(
                 script_name="this-is_my_script-01",
                 account_id="",
-                dispatch_namespace="my-dispatch-namespace",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `dispatch_namespace` but received ''"):
-            client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_raw_response.list(
-                script_name="this-is_my_script-01",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                dispatch_namespace="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
-            client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_raw_response.list(
+            client.workers.scripts.secrets.with_raw_response.list(
                 script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                dispatch_namespace="my-dispatch-namespace",
             )
 
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
-        secret = client.workers_for_platforms.dispatch.namespaces.scripts.secrets.delete(
+        secret = client.workers.scripts.secrets.delete(
             secret_name="mySecret",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            dispatch_namespace="my-dispatch-namespace",
             script_name="this-is_my_script-01",
         )
         assert_matches_type(object, secret, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
-        response = client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_raw_response.delete(
+        response = client.workers.scripts.secrets.with_raw_response.delete(
             secret_name="mySecret",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            dispatch_namespace="my-dispatch-namespace",
             script_name="this-is_my_script-01",
         )
 
@@ -180,10 +153,9 @@ class TestSecrets:
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
-        with client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_streaming_response.delete(
+        with client.workers.scripts.secrets.with_streaming_response.delete(
             secret_name="mySecret",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            dispatch_namespace="my-dispatch-namespace",
             script_name="this-is_my_script-01",
         ) as response:
             assert not response.is_closed
@@ -197,53 +169,40 @@ class TestSecrets:
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_raw_response.delete(
+            client.workers.scripts.secrets.with_raw_response.delete(
                 secret_name="mySecret",
                 account_id="",
-                dispatch_namespace="my-dispatch-namespace",
-                script_name="this-is_my_script-01",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `dispatch_namespace` but received ''"):
-            client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_raw_response.delete(
-                secret_name="mySecret",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                dispatch_namespace="",
                 script_name="this-is_my_script-01",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
-            client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_raw_response.delete(
+            client.workers.scripts.secrets.with_raw_response.delete(
                 secret_name="mySecret",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                dispatch_namespace="my-dispatch-namespace",
                 script_name="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `secret_name` but received ''"):
-            client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_raw_response.delete(
+            client.workers.scripts.secrets.with_raw_response.delete(
                 secret_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                dispatch_namespace="my-dispatch-namespace",
                 script_name="this-is_my_script-01",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
-        secret = client.workers_for_platforms.dispatch.namespaces.scripts.secrets.get(
+        secret = client.workers.scripts.secrets.get(
             secret_name="mySecret",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            dispatch_namespace="my-dispatch-namespace",
             script_name="this-is_my_script-01",
         )
         assert_matches_type(Optional[SecretGetResponse], secret, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
-        response = client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_raw_response.get(
+        response = client.workers.scripts.secrets.with_raw_response.get(
             secret_name="mySecret",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            dispatch_namespace="my-dispatch-namespace",
             script_name="this-is_my_script-01",
         )
 
@@ -254,10 +213,9 @@ class TestSecrets:
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
-        with client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_streaming_response.get(
+        with client.workers.scripts.secrets.with_streaming_response.get(
             secret_name="mySecret",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            dispatch_namespace="my-dispatch-namespace",
             script_name="this-is_my_script-01",
         ) as response:
             assert not response.is_closed
@@ -271,34 +229,23 @@ class TestSecrets:
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_raw_response.get(
+            client.workers.scripts.secrets.with_raw_response.get(
                 secret_name="mySecret",
                 account_id="",
-                dispatch_namespace="my-dispatch-namespace",
-                script_name="this-is_my_script-01",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `dispatch_namespace` but received ''"):
-            client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_raw_response.get(
-                secret_name="mySecret",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                dispatch_namespace="",
                 script_name="this-is_my_script-01",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
-            client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_raw_response.get(
+            client.workers.scripts.secrets.with_raw_response.get(
                 secret_name="mySecret",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                dispatch_namespace="my-dispatch-namespace",
                 script_name="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `secret_name` but received ''"):
-            client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_raw_response.get(
+            client.workers.scripts.secrets.with_raw_response.get(
                 secret_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                dispatch_namespace="my-dispatch-namespace",
                 script_name="this-is_my_script-01",
             )
 
@@ -308,19 +255,17 @@ class TestAsyncSecrets:
 
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
-        secret = await async_client.workers_for_platforms.dispatch.namespaces.scripts.secrets.update(
+        secret = await async_client.workers.scripts.secrets.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            dispatch_namespace="my-dispatch-namespace",
         )
         assert_matches_type(Optional[SecretUpdateResponse], secret, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        secret = await async_client.workers_for_platforms.dispatch.namespaces.scripts.secrets.update(
+        secret = await async_client.workers.scripts.secrets.update(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            dispatch_namespace="my-dispatch-namespace",
             name="MY_SECRET",
             text="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
             type="secret_text",
@@ -329,12 +274,9 @@ class TestAsyncSecrets:
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
-        response = (
-            await async_client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_raw_response.update(
-                script_name="this-is_my_script-01",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                dispatch_namespace="my-dispatch-namespace",
-            )
+        response = await async_client.workers.scripts.secrets.with_raw_response.update(
+            script_name="this-is_my_script-01",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -344,12 +286,9 @@ class TestAsyncSecrets:
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
-        async with (
-            async_client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_streaming_response.update(
-                script_name="this-is_my_script-01",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                dispatch_namespace="my-dispatch-namespace",
-            )
+        async with async_client.workers.scripts.secrets.with_streaming_response.update(
+            script_name="this-is_my_script-01",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -362,41 +301,30 @@ class TestAsyncSecrets:
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_raw_response.update(
+            await async_client.workers.scripts.secrets.with_raw_response.update(
                 script_name="this-is_my_script-01",
                 account_id="",
-                dispatch_namespace="my-dispatch-namespace",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `dispatch_namespace` but received ''"):
-            await async_client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_raw_response.update(
-                script_name="this-is_my_script-01",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                dispatch_namespace="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
-            await async_client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_raw_response.update(
+            await async_client.workers.scripts.secrets.with_raw_response.update(
                 script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                dispatch_namespace="my-dispatch-namespace",
             )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
-        secret = await async_client.workers_for_platforms.dispatch.namespaces.scripts.secrets.list(
+        secret = await async_client.workers.scripts.secrets.list(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            dispatch_namespace="my-dispatch-namespace",
         )
         assert_matches_type(AsyncSinglePage[SecretListResponse], secret, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_raw_response.list(
+        response = await async_client.workers.scripts.secrets.with_raw_response.list(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            dispatch_namespace="my-dispatch-namespace",
         )
 
         assert response.is_closed is True
@@ -406,10 +334,9 @@ class TestAsyncSecrets:
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_streaming_response.list(
+        async with async_client.workers.scripts.secrets.with_streaming_response.list(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            dispatch_namespace="my-dispatch-namespace",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -422,45 +349,32 @@ class TestAsyncSecrets:
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_raw_response.list(
+            await async_client.workers.scripts.secrets.with_raw_response.list(
                 script_name="this-is_my_script-01",
                 account_id="",
-                dispatch_namespace="my-dispatch-namespace",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `dispatch_namespace` but received ''"):
-            await async_client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_raw_response.list(
-                script_name="this-is_my_script-01",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                dispatch_namespace="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
-            await async_client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_raw_response.list(
+            await async_client.workers.scripts.secrets.with_raw_response.list(
                 script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                dispatch_namespace="my-dispatch-namespace",
             )
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
-        secret = await async_client.workers_for_platforms.dispatch.namespaces.scripts.secrets.delete(
+        secret = await async_client.workers.scripts.secrets.delete(
             secret_name="mySecret",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            dispatch_namespace="my-dispatch-namespace",
             script_name="this-is_my_script-01",
         )
         assert_matches_type(object, secret, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
-        response = (
-            await async_client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_raw_response.delete(
-                secret_name="mySecret",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                dispatch_namespace="my-dispatch-namespace",
-                script_name="this-is_my_script-01",
-            )
+        response = await async_client.workers.scripts.secrets.with_raw_response.delete(
+            secret_name="mySecret",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            script_name="this-is_my_script-01",
         )
 
         assert response.is_closed is True
@@ -470,13 +384,10 @@ class TestAsyncSecrets:
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
-        async with (
-            async_client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_streaming_response.delete(
-                secret_name="mySecret",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                dispatch_namespace="my-dispatch-namespace",
-                script_name="this-is_my_script-01",
-            )
+        async with async_client.workers.scripts.secrets.with_streaming_response.delete(
+            secret_name="mySecret",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            script_name="this-is_my_script-01",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -489,53 +400,40 @@ class TestAsyncSecrets:
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_raw_response.delete(
+            await async_client.workers.scripts.secrets.with_raw_response.delete(
                 secret_name="mySecret",
                 account_id="",
-                dispatch_namespace="my-dispatch-namespace",
-                script_name="this-is_my_script-01",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `dispatch_namespace` but received ''"):
-            await async_client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_raw_response.delete(
-                secret_name="mySecret",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                dispatch_namespace="",
                 script_name="this-is_my_script-01",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
-            await async_client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_raw_response.delete(
+            await async_client.workers.scripts.secrets.with_raw_response.delete(
                 secret_name="mySecret",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                dispatch_namespace="my-dispatch-namespace",
                 script_name="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `secret_name` but received ''"):
-            await async_client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_raw_response.delete(
+            await async_client.workers.scripts.secrets.with_raw_response.delete(
                 secret_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                dispatch_namespace="my-dispatch-namespace",
                 script_name="this-is_my_script-01",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
-        secret = await async_client.workers_for_platforms.dispatch.namespaces.scripts.secrets.get(
+        secret = await async_client.workers.scripts.secrets.get(
             secret_name="mySecret",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            dispatch_namespace="my-dispatch-namespace",
             script_name="this-is_my_script-01",
         )
         assert_matches_type(Optional[SecretGetResponse], secret, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_raw_response.get(
+        response = await async_client.workers.scripts.secrets.with_raw_response.get(
             secret_name="mySecret",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            dispatch_namespace="my-dispatch-namespace",
             script_name="this-is_my_script-01",
         )
 
@@ -546,10 +444,9 @@ class TestAsyncSecrets:
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_streaming_response.get(
+        async with async_client.workers.scripts.secrets.with_streaming_response.get(
             secret_name="mySecret",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            dispatch_namespace="my-dispatch-namespace",
             script_name="this-is_my_script-01",
         ) as response:
             assert not response.is_closed
@@ -563,33 +460,22 @@ class TestAsyncSecrets:
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_raw_response.get(
+            await async_client.workers.scripts.secrets.with_raw_response.get(
                 secret_name="mySecret",
                 account_id="",
-                dispatch_namespace="my-dispatch-namespace",
-                script_name="this-is_my_script-01",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `dispatch_namespace` but received ''"):
-            await async_client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_raw_response.get(
-                secret_name="mySecret",
-                account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                dispatch_namespace="",
                 script_name="this-is_my_script-01",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
-            await async_client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_raw_response.get(
+            await async_client.workers.scripts.secrets.with_raw_response.get(
                 secret_name="mySecret",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                dispatch_namespace="my-dispatch-namespace",
                 script_name="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `secret_name` but received ''"):
-            await async_client.workers_for_platforms.dispatch.namespaces.scripts.secrets.with_raw_response.get(
+            await async_client.workers.scripts.secrets.with_raw_response.get(
                 secret_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                dispatch_namespace="my-dispatch-namespace",
                 script_name="this-is_my_script-01",
             )

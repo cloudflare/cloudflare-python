@@ -32,6 +32,14 @@ from .scripts import (
     ScriptsResourceWithStreamingResponse,
     AsyncScriptsResourceWithStreamingResponse,
 )
+from .secrets import (
+    SecretsResource,
+    AsyncSecretsResource,
+    SecretsResourceWithRawResponse,
+    AsyncSecretsResourceWithRawResponse,
+    SecretsResourceWithStreamingResponse,
+    AsyncSecretsResourceWithStreamingResponse,
+)
 from .settings import (
     SettingsResource,
     AsyncSettingsResource,
@@ -122,6 +130,12 @@ __all__ = [
     "AsyncVersionsResourceWithRawResponse",
     "VersionsResourceWithStreamingResponse",
     "AsyncVersionsResourceWithStreamingResponse",
+    "SecretsResource",
+    "AsyncSecretsResource",
+    "SecretsResourceWithRawResponse",
+    "AsyncSecretsResourceWithRawResponse",
+    "SecretsResourceWithStreamingResponse",
+    "AsyncSecretsResourceWithStreamingResponse",
     "ScriptsResource",
     "AsyncScriptsResource",
     "ScriptsResourceWithRawResponse",

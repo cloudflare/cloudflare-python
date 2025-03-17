@@ -9,8 +9,11 @@ from .consumer_script import ConsumerScript as ConsumerScript
 from .deployment_param import DeploymentParam as DeploymentParam
 from .tail_get_response import TailGetResponse as TailGetResponse
 from .tail_create_params import TailCreateParams as TailCreateParams
+from .secret_get_response import SecretGetResponse as SecretGetResponse
 from .setting_edit_params import SettingEditParams as SettingEditParams
 from .version_list_params import VersionListParams as VersionListParams
+from .secret_list_response import SecretListResponse as SecretListResponse
+from .secret_update_params import SecretUpdateParams as SecretUpdateParams
 from .tail_create_response import TailCreateResponse as TailCreateResponse
 from .tail_delete_response import TailDeleteResponse as TailDeleteResponse
 from .version_get_response import VersionGetResponse as VersionGetResponse
@@ -20,6 +23,7 @@ from .schedule_get_response import ScheduleGetResponse as ScheduleGetResponse
 from .version_create_params import VersionCreateParams as VersionCreateParams
 from .version_list_response import VersionListResponse as VersionListResponse
 from .schedule_update_params import ScheduleUpdateParams as ScheduleUpdateParams
+from .secret_update_response import SecretUpdateResponse as SecretUpdateResponse
 from .subdomain_get_response import SubdomainGetResponse as SubdomainGetResponse
 from .deployment_get_response import DeploymentGetResponse as DeploymentGetResponse
 from .subdomain_create_params import SubdomainCreateParams as SubdomainCreateParams
