@@ -22,6 +22,14 @@ from .content import (
     ContentResourceWithStreamingResponse,
     AsyncContentResourceWithStreamingResponse,
 )
+from .secrets import (
+    SecretsResource,
+    AsyncSecretsResource,
+    SecretsResourceWithRawResponse,
+    AsyncSecretsResourceWithRawResponse,
+    SecretsResourceWithStreamingResponse,
+    AsyncSecretsResourceWithStreamingResponse,
+)
 from .settings import (
     SettingsResource,
     AsyncSettingsResource,
@@ -125,6 +133,10 @@ class ScriptsResource(SyncAPIResource):
     @cached_property
     def versions(self) -> VersionsResource:
         return VersionsResource(self._client)
+
+    @cached_property
+    def secrets(self) -> SecretsResource:
+        return SecretsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> ScriptsResourceWithRawResponse:
@@ -359,6 +371,10 @@ class AsyncScriptsResource(AsyncAPIResource):
     @cached_property
     def versions(self) -> AsyncVersionsResource:
         return AsyncVersionsResource(self._client)
+
+    @cached_property
+    def secrets(self) -> AsyncSecretsResource:
+        return AsyncSecretsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncScriptsResourceWithRawResponse:
@@ -610,6 +626,10 @@ class ScriptsResourceWithRawResponse:
     def versions(self) -> VersionsResourceWithRawResponse:
         return VersionsResourceWithRawResponse(self._scripts.versions)
 
+    @cached_property
+    def secrets(self) -> SecretsResourceWithRawResponse:
+        return SecretsResourceWithRawResponse(self._scripts.secrets)
+
 
 class AsyncScriptsResourceWithRawResponse:
     def __init__(self, scripts: AsyncScriptsResource) -> None:
@@ -659,6 +679,10 @@ class AsyncScriptsResourceWithRawResponse:
     @cached_property
     def versions(self) -> AsyncVersionsResourceWithRawResponse:
         return AsyncVersionsResourceWithRawResponse(self._scripts.versions)
+
+    @cached_property
+    def secrets(self) -> AsyncSecretsResourceWithRawResponse:
+        return AsyncSecretsResourceWithRawResponse(self._scripts.secrets)
 
 
 class ScriptsResourceWithStreamingResponse:
@@ -710,6 +734,10 @@ class ScriptsResourceWithStreamingResponse:
     def versions(self) -> VersionsResourceWithStreamingResponse:
         return VersionsResourceWithStreamingResponse(self._scripts.versions)
 
+    @cached_property
+    def secrets(self) -> SecretsResourceWithStreamingResponse:
+        return SecretsResourceWithStreamingResponse(self._scripts.secrets)
+
 
 class AsyncScriptsResourceWithStreamingResponse:
     def __init__(self, scripts: AsyncScriptsResource) -> None:
@@ -759,3 +787,7 @@ class AsyncScriptsResourceWithStreamingResponse:
     @cached_property
     def versions(self) -> AsyncVersionsResourceWithStreamingResponse:
         return AsyncVersionsResourceWithStreamingResponse(self._scripts.versions)
+
+    @cached_property
+    def secrets(self) -> AsyncSecretsResourceWithStreamingResponse:
+        return AsyncSecretsResourceWithStreamingResponse(self._scripts.secrets)
