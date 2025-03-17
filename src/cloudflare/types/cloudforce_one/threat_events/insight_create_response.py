@@ -3,10 +3,10 @@
 
 from ...._models import BaseModel
 
-__all__ = ["InsightCreatResponse"]
+__all__ = ["InsightCreateResponse"]
 
 
-class InsightCreatResponse(BaseModel):
+class InsightCreateResponse(BaseModel):
     content: str
 
     uuid: str

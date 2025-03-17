@@ -165,12 +165,12 @@ class ThreatEventsResource(SyncAPIResource):
         return RelateResource(self._client)
 
     @cached_property
-    def event_tags(self) -> EventTagsResource:
-        return EventTagsResource(self._client)
-
-    @cached_property
     def tags(self) -> TagsResource:
         return TagsResource(self._client)
+
+    @cached_property
+    def event_tags(self) -> EventTagsResource:
+        return EventTagsResource(self._client)
 
     @cached_property
     def target_industries(self) -> TargetIndustriesResource:
@@ -481,12 +481,12 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         return AsyncRelateResource(self._client)
 
     @cached_property
-    def event_tags(self) -> AsyncEventTagsResource:
-        return AsyncEventTagsResource(self._client)
-
-    @cached_property
     def tags(self) -> AsyncTagsResource:
         return AsyncTagsResource(self._client)
+
+    @cached_property
+    def event_tags(self) -> AsyncEventTagsResource:
+        return AsyncEventTagsResource(self._client)
 
     @cached_property
     def target_industries(self) -> AsyncTargetIndustriesResource:
@@ -816,12 +816,12 @@ class ThreatEventsResourceWithRawResponse:
         return RelateResourceWithRawResponse(self._threat_events.relate)
 
     @cached_property
-    def event_tags(self) -> EventTagsResourceWithRawResponse:
-        return EventTagsResourceWithRawResponse(self._threat_events.event_tags)
-
-    @cached_property
     def tags(self) -> TagsResourceWithRawResponse:
         return TagsResourceWithRawResponse(self._threat_events.tags)
+
+    @cached_property
+    def event_tags(self) -> EventTagsResourceWithRawResponse:
+        return EventTagsResourceWithRawResponse(self._threat_events.event_tags)
 
     @cached_property
     def target_industries(self) -> TargetIndustriesResourceWithRawResponse:
@@ -885,12 +885,12 @@ class AsyncThreatEventsResourceWithRawResponse:
         return AsyncRelateResourceWithRawResponse(self._threat_events.relate)
 
     @cached_property
-    def event_tags(self) -> AsyncEventTagsResourceWithRawResponse:
-        return AsyncEventTagsResourceWithRawResponse(self._threat_events.event_tags)
-
-    @cached_property
     def tags(self) -> AsyncTagsResourceWithRawResponse:
         return AsyncTagsResourceWithRawResponse(self._threat_events.tags)
+
+    @cached_property
+    def event_tags(self) -> AsyncEventTagsResourceWithRawResponse:
+        return AsyncEventTagsResourceWithRawResponse(self._threat_events.event_tags)
 
     @cached_property
     def target_industries(self) -> AsyncTargetIndustriesResourceWithRawResponse:
@@ -954,12 +954,12 @@ class ThreatEventsResourceWithStreamingResponse:
         return RelateResourceWithStreamingResponse(self._threat_events.relate)
 
     @cached_property
-    def event_tags(self) -> EventTagsResourceWithStreamingResponse:
-        return EventTagsResourceWithStreamingResponse(self._threat_events.event_tags)
-
-    @cached_property
     def tags(self) -> TagsResourceWithStreamingResponse:
         return TagsResourceWithStreamingResponse(self._threat_events.tags)
+
+    @cached_property
+    def event_tags(self) -> EventTagsResourceWithStreamingResponse:
+        return EventTagsResourceWithStreamingResponse(self._threat_events.event_tags)
 
     @cached_property
     def target_industries(self) -> TargetIndustriesResourceWithStreamingResponse:
@@ -1023,12 +1023,12 @@ class AsyncThreatEventsResourceWithStreamingResponse:
         return AsyncRelateResourceWithStreamingResponse(self._threat_events.relate)
 
     @cached_property
-    def event_tags(self) -> AsyncEventTagsResourceWithStreamingResponse:
-        return AsyncEventTagsResourceWithStreamingResponse(self._threat_events.event_tags)
-
-    @cached_property
     def tags(self) -> AsyncTagsResourceWithStreamingResponse:
         return AsyncTagsResourceWithStreamingResponse(self._threat_events.tags)
+
+    @cached_property
+    def event_tags(self) -> AsyncEventTagsResourceWithStreamingResponse:
+        return AsyncEventTagsResourceWithStreamingResponse(self._threat_events.event_tags)
 
     @cached_property
     def target_industries(self) -> AsyncTargetIndustriesResourceWithStreamingResponse:

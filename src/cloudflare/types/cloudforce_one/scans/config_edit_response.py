@@ -4,10 +4,10 @@ from typing import List
 
 from ...._models import BaseModel
 
-__all__ = ["ConfigCreateResponse"]
+__all__ = ["ConfigEditResponse"]
 
 
-class ConfigCreateResponse(BaseModel):
+class ConfigEditResponse(BaseModel):
     id: str
     """Config ID"""
 
