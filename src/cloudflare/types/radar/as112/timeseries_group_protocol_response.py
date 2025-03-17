@@ -2,15 +2,21 @@
 
 from typing import List
 
+from pydantic import Field as FieldInfo
+
 from ...._models import BaseModel
 
 __all__ = ["TimeseriesGroupProtocolResponse", "Serie0"]
 
 
 class Serie0(BaseModel):
-    tcp: List[str]
+    https: List[str] = FieldInfo(alias="HTTPS")
 
-    udp: List[str]
+    tcp: List[str] = FieldInfo(alias="TCP")
+
+    tls: List[str] = FieldInfo(alias="TLS")
+
+    udp: List[str] = FieldInfo(alias="UDP")
 
 
 class TimeseriesGroupProtocolResponse(BaseModel):
