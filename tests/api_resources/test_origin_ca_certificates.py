@@ -63,12 +63,6 @@ class TestOriginCACertificates:
     @pytest.mark.skip(reason="TODO: investigate auth errors on test suite")
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
-        origin_ca_certificate = client.origin_ca_certificates.list()
-        assert_matches_type(SyncSinglePage[OriginCACertificate], origin_ca_certificate, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate auth errors on test suite")
-    @parametrize
-    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         origin_ca_certificate = client.origin_ca_certificates.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -77,7 +71,9 @@ class TestOriginCACertificates:
     @pytest.mark.skip(reason="TODO: investigate auth errors on test suite")
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
-        response = client.origin_ca_certificates.with_raw_response.list()
+        response = client.origin_ca_certificates.with_raw_response.list(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -87,7 +83,9 @@ class TestOriginCACertificates:
     @pytest.mark.skip(reason="TODO: investigate auth errors on test suite")
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
-        with client.origin_ca_certificates.with_streaming_response.list() as response:
+        with client.origin_ca_certificates.with_streaming_response.list(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -226,12 +224,6 @@ class TestAsyncOriginCACertificates:
     @pytest.mark.skip(reason="TODO: investigate auth errors on test suite")
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
-        origin_ca_certificate = await async_client.origin_ca_certificates.list()
-        assert_matches_type(AsyncSinglePage[OriginCACertificate], origin_ca_certificate, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate auth errors on test suite")
-    @parametrize
-    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         origin_ca_certificate = await async_client.origin_ca_certificates.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -240,7 +232,9 @@ class TestAsyncOriginCACertificates:
     @pytest.mark.skip(reason="TODO: investigate auth errors on test suite")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.origin_ca_certificates.with_raw_response.list()
+        response = await async_client.origin_ca_certificates.with_raw_response.list(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -250,7 +244,9 @@ class TestAsyncOriginCACertificates:
     @pytest.mark.skip(reason="TODO: investigate auth errors on test suite")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.origin_ca_certificates.with_streaming_response.list() as response:
+        async with async_client.origin_ca_certificates.with_streaming_response.list(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
