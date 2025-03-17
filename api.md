@@ -8377,18 +8377,37 @@ Methods:
 
 ## Scans
 
+### Results
+
+Types:
+
+```python
+from cloudflare.types.cloudforce_one.scans import ScanResult, ResultGetResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/cloudforce-one/scans/results/{config_id}">client.cloudforce_one.scans.results.<a href="./src/cloudflare/resources/cloudforce_one/scans/results.py">get</a>(config_id, \*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/scans/result_get_response.py">ResultGetResponse</a></code>
+
 ### Config
 
 Types:
 
 ```python
-from cloudflare.types.cloudforce_one.scans import ConfigCreateResponse, ConfigListResponse
+from cloudflare.types.cloudforce_one.scans import (
+    ConfigCreateResponse,
+    ConfigListResponse,
+    ConfigDeleteResponse,
+    ConfigEditResponse,
+)
 ```
 
 Methods:
 
 - <code title="post /accounts/{account_id}/cloudforce-one/scans/config">client.cloudforce_one.scans.config.<a href="./src/cloudflare/resources/cloudforce_one/scans/config.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/scans/config_create_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/scans/config_create_response.py">Optional[ConfigCreateResponse]</a></code>
 - <code title="get /accounts/{account_id}/cloudforce-one/scans/config">client.cloudforce_one.scans.config.<a href="./src/cloudflare/resources/cloudforce_one/scans/config.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/scans/config_list_response.py">SyncSinglePage[ConfigListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/cloudforce-one/scans/config/{config_id}">client.cloudforce_one.scans.config.<a href="./src/cloudflare/resources/cloudforce_one/scans/config.py">delete</a>(config_id, \*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/scans/config_delete_response.py">object</a></code>
+- <code title="patch /accounts/{account_id}/cloudforce-one/scans/config/{config_id}">client.cloudforce_one.scans.config.<a href="./src/cloudflare/resources/cloudforce_one/scans/config.py">edit</a>(config_id, \*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/scans/config_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/scans/config_edit_response.py">Optional[ConfigEditResponse]</a></code>
 
 ## Requests
 
@@ -8613,6 +8632,18 @@ Methods:
 
 - <code title="delete /accounts/{account_id}/cloudforce-one/events/relate/{event_id}">client.cloudforce_one.threat_events.relate.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/relate.py">delete</a>(event_id, \*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/relate_delete_response.py">RelateDeleteResponse</a></code>
 
+### Tags
+
+Types:
+
+```python
+from cloudflare.types.cloudforce_one.threat_events import TagCreateResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/cloudforce-one/events/tags/create">client.cloudforce_one.threat_events.tags.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/tags.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/tag_create_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/tag_create_response.py">TagCreateResponse</a></code>
+
 ### EventTags
 
 Types:
@@ -8628,18 +8659,6 @@ Methods:
 
 - <code title="post /accounts/{account_id}/cloudforce-one/events/event_tag/{event_id}/create">client.cloudforce_one.threat_events.event_tags.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/event_tags.py">create</a>(event_id, \*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/event_tag_create_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/event_tag_create_response.py">EventTagCreateResponse</a></code>
 - <code title="delete /accounts/{account_id}/cloudforce-one/events/event_tag/{event_id}">client.cloudforce_one.threat_events.event_tags.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/event_tags.py">delete</a>(event_id, \*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/event_tag_delete_response.py">EventTagDeleteResponse</a></code>
-
-### Tags
-
-Types:
-
-```python
-from cloudflare.types.cloudforce_one.threat_events import TagCreateResponse
-```
-
-Methods:
-
-- <code title="post /accounts/{account_id}/cloudforce-one/events/tags/create">client.cloudforce_one.threat_events.tags.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/tags.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/tag_create_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/tag_create_response.py">TagCreateResponse</a></code>
 
 ### TargetIndustries
 
@@ -8659,8 +8678,8 @@ Types:
 
 ```python
 from cloudflare.types.cloudforce_one.threat_events import (
+    InsightCreateResponse,
     InsightDeleteResponse,
-    InsightCreatResponse,
     InsightEditResponse,
     InsightGetResponse,
 )
@@ -8668,8 +8687,8 @@ from cloudflare.types.cloudforce_one.threat_events import (
 
 Methods:
 
+- <code title="post /accounts/{account_id}/cloudforce-one/events/{event_id}/insight/create">client.cloudforce_one.threat_events.insights.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/insights.py">create</a>(event_id, \*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/insight_create_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/insight_create_response.py">InsightCreateResponse</a></code>
 - <code title="delete /accounts/{account_id}/cloudforce-one/events/{event_id}/insight/{insight_id}">client.cloudforce_one.threat_events.insights.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/insights.py">delete</a>(insight_id, \*, account_id, event_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/insight_delete_response.py">InsightDeleteResponse</a></code>
-- <code title="post /accounts/{account_id}/cloudforce-one/events/{event_id}/insight/create">client.cloudforce_one.threat_events.insights.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/insights.py">creat</a>(event_id, \*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/insight_creat_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/insight_creat_response.py">InsightCreatResponse</a></code>
 - <code title="patch /accounts/{account_id}/cloudforce-one/events/{event_id}/insight/{insight_id}">client.cloudforce_one.threat_events.insights.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/insights.py">edit</a>(insight_id, \*, account_id, event_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_events/insight_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/insight_edit_response.py">InsightEditResponse</a></code>
 - <code title="get /accounts/{account_id}/cloudforce-one/events/{event_id}/insight/{insight_id}">client.cloudforce_one.threat_events.insights.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/insights.py">get</a>(insight_id, \*, account_id, event_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_events/insight_get_response.py">InsightGetResponse</a></code>
 

@@ -1,17 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from __future__ import annotations
+
 from typing import List
+from typing_extensions import Required, TypedDict
 
-from ...._models import BaseModel
-
-__all__ = ["ConfigCreateResponse"]
+__all__ = ["ConfigEditParams"]
 
 
-class ConfigCreateResponse(BaseModel):
-    id: str
-    """Config ID"""
-
-    account_id: str
+class ConfigEditParams(TypedDict, total=False):
+    account_id: Required[str]
+    """Account ID"""
 
     frequency: float
     """The number of days between each scan (0 = no recurring scans)."""

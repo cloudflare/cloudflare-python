@@ -17,6 +17,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestIndicatorTypes:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         indicator_type = client.cloudforce_one.threat_events.indicator_types.list(
@@ -24,6 +25,7 @@ class TestIndicatorTypes:
         )
         assert_matches_type(IndicatorTypeListResponse, indicator_type, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.cloudforce_one.threat_events.indicator_types.with_raw_response.list(
@@ -35,6 +37,7 @@ class TestIndicatorTypes:
         indicator_type = response.parse()
         assert_matches_type(IndicatorTypeListResponse, indicator_type, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.cloudforce_one.threat_events.indicator_types.with_streaming_response.list(
@@ -52,6 +55,7 @@ class TestIndicatorTypes:
 class TestAsyncIndicatorTypes:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         indicator_type = await async_client.cloudforce_one.threat_events.indicator_types.list(
@@ -59,6 +63,7 @@ class TestAsyncIndicatorTypes:
         )
         assert_matches_type(IndicatorTypeListResponse, indicator_type, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cloudforce_one.threat_events.indicator_types.with_raw_response.list(
@@ -70,6 +75,7 @@ class TestAsyncIndicatorTypes:
         indicator_type = await response.parse()
         assert_matches_type(IndicatorTypeListResponse, indicator_type, path=["response"])
 
+    @pytest.mark.skip(reason="TODO: HTTP 401 from prism")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cloudforce_one.threat_events.indicator_types.with_streaming_response.list(

@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["InsightCreatParams"]
+__all__ = ["InsightCreateParams"]
 
 
-class InsightCreatParams(TypedDict, total=False):
+class InsightCreateParams(TypedDict, total=False):
     account_id: Required[float]
     """Account ID"""
 

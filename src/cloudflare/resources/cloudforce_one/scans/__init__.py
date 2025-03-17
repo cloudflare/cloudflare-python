@@ -16,8 +16,22 @@ from .config import (
     ConfigResourceWithStreamingResponse,
     AsyncConfigResourceWithStreamingResponse,
 )
+from .results import (
+    ResultsResource,
+    AsyncResultsResource,
+    ResultsResourceWithRawResponse,
+    AsyncResultsResourceWithRawResponse,
+    ResultsResourceWithStreamingResponse,
+    AsyncResultsResourceWithStreamingResponse,
+)
 
 __all__ = [
+    "ResultsResource",
+    "AsyncResultsResource",
+    "ResultsResourceWithRawResponse",
+    "AsyncResultsResourceWithRawResponse",
+    "ResultsResourceWithStreamingResponse",
+    "AsyncResultsResourceWithStreamingResponse",
     "ConfigResource",
     "AsyncConfigResource",
     "ConfigResourceWithRawResponse",
