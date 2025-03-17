@@ -96,8 +96,6 @@ class ConnectorsResource(SyncAPIResource):
         Replace Connector
 
         Args:
-          account_id: Account identifier
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -147,8 +145,6 @@ class ConnectorsResource(SyncAPIResource):
         List Connectors
 
         Args:
-          account_id: Account identifier
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -189,8 +185,6 @@ class ConnectorsResource(SyncAPIResource):
         Update Connector
 
         Args:
-          account_id: Account identifier
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -241,8 +235,6 @@ class ConnectorsResource(SyncAPIResource):
         Fetch Connector
 
         Args:
-          account_id: Account identifier
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -317,8 +309,6 @@ class AsyncConnectorsResource(AsyncAPIResource):
         Replace Connector
 
         Args:
-          account_id: Account identifier
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -368,8 +358,6 @@ class AsyncConnectorsResource(AsyncAPIResource):
         List Connectors
 
         Args:
-          account_id: Account identifier
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -410,8 +398,6 @@ class AsyncConnectorsResource(AsyncAPIResource):
         Update Connector
 
         Args:
-          account_id: Account identifier
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -462,8 +448,6 @@ class AsyncConnectorsResource(AsyncAPIResource):
         Fetch Connector
 
         Args:
-          account_id: Account identifier
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
