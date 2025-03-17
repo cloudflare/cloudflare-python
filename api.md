@@ -4926,7 +4926,6 @@ Types:
 
 ```python
 from cloudflare.types.workers_for_platforms.dispatch.namespaces.scripts import (
-    WorkersSecretModel,
     SecretUpdateResponse,
     SecretListResponse,
     SecretDeleteResponse,
