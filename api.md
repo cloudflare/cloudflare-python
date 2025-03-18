@@ -8230,6 +8230,40 @@ Methods:
 
 - <code title="get /radar/robots_txt/top/user_agents/directive">client.radar.robots_txt.top.user_agents.<a href="./src/cloudflare/resources/radar/robots_txt/top/user_agents.py">directive</a>(\*\*<a href="src/cloudflare/types/radar/robots_txt/top/user_agent_directive_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/robots_txt/top/user_agent_directive_response.py">UserAgentDirectiveResponse</a></code>
 
+## LeakedCredentials
+
+### Summary
+
+Types:
+
+```python
+from cloudflare.types.radar.leaked_credentials import (
+    SummaryBotClassResponse,
+    SummaryCompromisedResponse,
+)
+```
+
+Methods:
+
+- <code title="get /radar/leaked_credential_checks/summary/bot_class">client.radar.leaked_credentials.summary.<a href="./src/cloudflare/resources/radar/leaked_credentials/summary.py">bot_class</a>(\*\*<a href="src/cloudflare/types/radar/leaked_credentials/summary_bot_class_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/leaked_credentials/summary_bot_class_response.py">SummaryBotClassResponse</a></code>
+- <code title="get /radar/leaked_credential_checks/summary/compromised">client.radar.leaked_credentials.summary.<a href="./src/cloudflare/resources/radar/leaked_credentials/summary.py">compromised</a>(\*\*<a href="src/cloudflare/types/radar/leaked_credentials/summary_compromised_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/leaked_credentials/summary_compromised_response.py">SummaryCompromisedResponse</a></code>
+
+### TimeseriesGroups
+
+Types:
+
+```python
+from cloudflare.types.radar.leaked_credentials import (
+    TimeseriesGroupBotClassResponse,
+    TimeseriesGroupCompromisedResponse,
+)
+```
+
+Methods:
+
+- <code title="get /radar/leaked_credential_checks/timeseries_groups/bot_class">client.radar.leaked_credentials.timeseries_groups.<a href="./src/cloudflare/resources/radar/leaked_credentials/timeseries_groups.py">bot_class</a>(\*\*<a href="src/cloudflare/types/radar/leaked_credentials/timeseries_group_bot_class_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/leaked_credentials/timeseries_group_bot_class_response.py">TimeseriesGroupBotClassResponse</a></code>
+- <code title="get /radar/leaked_credential_checks/timeseries_groups/compromised">client.radar.leaked_credentials.timeseries_groups.<a href="./src/cloudflare/resources/radar/leaked_credentials/timeseries_groups.py">compromised</a>(\*\*<a href="src/cloudflare/types/radar/leaked_credentials/timeseries_group_compromised_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/leaked_credentials/timeseries_group_compromised_response.py">TimeseriesGroupCompromisedResponse</a></code>
+
 # BotManagement
 
 Types:
