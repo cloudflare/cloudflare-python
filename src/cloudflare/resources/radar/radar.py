@@ -148,6 +148,14 @@ from .traffic_anomalies.traffic_anomalies import (
     TrafficAnomaliesResourceWithStreamingResponse,
     AsyncTrafficAnomaliesResourceWithStreamingResponse,
 )
+from .leaked_credentials.leaked_credentials import (
+    LeakedCredentialsResource,
+    AsyncLeakedCredentialsResource,
+    LeakedCredentialsResourceWithRawResponse,
+    AsyncLeakedCredentialsResourceWithRawResponse,
+    LeakedCredentialsResourceWithStreamingResponse,
+    AsyncLeakedCredentialsResourceWithStreamingResponse,
+)
 
 __all__ = ["RadarResource", "AsyncRadarResource"]
 
@@ -224,6 +232,10 @@ class RadarResource(SyncAPIResource):
     @cached_property
     def robots_txt(self) -> RobotsTXTResource:
         return RobotsTXTResource(self._client)
+
+    @cached_property
+    def leaked_credentials(self) -> LeakedCredentialsResource:
+        return LeakedCredentialsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> RadarResourceWithRawResponse:
@@ -317,6 +329,10 @@ class AsyncRadarResource(AsyncAPIResource):
     @cached_property
     def robots_txt(self) -> AsyncRobotsTXTResource:
         return AsyncRobotsTXTResource(self._client)
+
+    @cached_property
+    def leaked_credentials(self) -> AsyncLeakedCredentialsResource:
+        return AsyncLeakedCredentialsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncRadarResourceWithRawResponse:
@@ -414,6 +430,10 @@ class RadarResourceWithRawResponse:
     def robots_txt(self) -> RobotsTXTResourceWithRawResponse:
         return RobotsTXTResourceWithRawResponse(self._radar.robots_txt)
 
+    @cached_property
+    def leaked_credentials(self) -> LeakedCredentialsResourceWithRawResponse:
+        return LeakedCredentialsResourceWithRawResponse(self._radar.leaked_credentials)
+
 
 class AsyncRadarResourceWithRawResponse:
     def __init__(self, radar: AsyncRadarResource) -> None:
@@ -490,6 +510,10 @@ class AsyncRadarResourceWithRawResponse:
     @cached_property
     def robots_txt(self) -> AsyncRobotsTXTResourceWithRawResponse:
         return AsyncRobotsTXTResourceWithRawResponse(self._radar.robots_txt)
+
+    @cached_property
+    def leaked_credentials(self) -> AsyncLeakedCredentialsResourceWithRawResponse:
+        return AsyncLeakedCredentialsResourceWithRawResponse(self._radar.leaked_credentials)
 
 
 class RadarResourceWithStreamingResponse:
@@ -568,6 +592,10 @@ class RadarResourceWithStreamingResponse:
     def robots_txt(self) -> RobotsTXTResourceWithStreamingResponse:
         return RobotsTXTResourceWithStreamingResponse(self._radar.robots_txt)
 
+    @cached_property
+    def leaked_credentials(self) -> LeakedCredentialsResourceWithStreamingResponse:
+        return LeakedCredentialsResourceWithStreamingResponse(self._radar.leaked_credentials)
+
 
 class AsyncRadarResourceWithStreamingResponse:
     def __init__(self, radar: AsyncRadarResource) -> None:
@@ -644,3 +672,7 @@ class AsyncRadarResourceWithStreamingResponse:
     @cached_property
     def robots_txt(self) -> AsyncRobotsTXTResourceWithStreamingResponse:
         return AsyncRobotsTXTResourceWithStreamingResponse(self._radar.robots_txt)
+
+    @cached_property
+    def leaked_credentials(self) -> AsyncLeakedCredentialsResourceWithStreamingResponse:
+        return AsyncLeakedCredentialsResourceWithStreamingResponse(self._radar.leaked_credentials)
