@@ -2,15 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, Optional, cast
+from typing import Iterable
 
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ..._utils import maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -19,7 +16,6 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.cloud_connector import rule_update_params
@@ -33,7 +29,7 @@ class RulesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> RulesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -53,14 +49,14 @@ class RulesResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        rules: Iterable[rule_update_params.Rule],
+        rules: Iterable[rule_update_params.Rule] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RuleUpdateResponse]:
+    ) -> SyncSinglePage[RuleUpdateResponse]:
         """
         Put Rules
 
@@ -79,17 +75,15 @@ class RulesResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._put(
+        return self._get_api_list(
             f"/zones/{zone_id}/cloud_connector/rules",
+            page=SyncSinglePage[RuleUpdateResponse],
             body=maybe_transform(rules, Iterable[rule_update_params.Rule]),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[RuleUpdateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[RuleUpdateResponse]], ResultWrapper[RuleUpdateResponse]),
+            model=RuleUpdateResponse,
+            method="put",
         )
 
     def list(
@@ -133,7 +127,7 @@ class AsyncRulesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncRulesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -149,18 +143,18 @@ class AsyncRulesResource(AsyncAPIResource):
         """
         return AsyncRulesResourceWithStreamingResponse(self)
 
-    async def update(
+    def update(
         self,
         *,
         zone_id: str,
-        rules: Iterable[rule_update_params.Rule],
+        rules: Iterable[rule_update_params.Rule] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RuleUpdateResponse]:
+    ) -> AsyncPaginator[RuleUpdateResponse, AsyncSinglePage[RuleUpdateResponse]]:
         """
         Put Rules
 
@@ -179,17 +173,15 @@ class AsyncRulesResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._put(
+        return self._get_api_list(
             f"/zones/{zone_id}/cloud_connector/rules",
-            body=await async_maybe_transform(rules, Iterable[rule_update_params.Rule]),
+            page=AsyncSinglePage[RuleUpdateResponse],
+            body=maybe_transform(rules, Iterable[rule_update_params.Rule]),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[RuleUpdateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[RuleUpdateResponse]], ResultWrapper[RuleUpdateResponse]),
+            model=RuleUpdateResponse,
+            method="put",
         )
 
     def list(

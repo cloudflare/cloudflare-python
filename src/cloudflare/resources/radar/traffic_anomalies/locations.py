@@ -33,7 +33,7 @@ class LocationsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> LocationsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -65,11 +65,11 @@ class LocationsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LocationGetResponse:
-        """Internet traffic anomalies are signals that might point to an outage.
+        """Retrieves the sum of Internet traffic anomalies, grouped by location.
 
         These
-        alerts are automatically detected by Radar and then manually verified by our
-        team. This endpoint returns the sum of alerts grouped by location.
+        anomalies are signals that might indicate an outage, automatically detected by
+        Radar and manually verified by our team.
 
         Args:
           date_end: End of the date range (inclusive).
@@ -79,9 +79,9 @@ class LocationsResource(SyncAPIResource):
 
           date_start: Start of the date range (inclusive).
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          limit: Limit the number of objects in the response.
+          limit: Limits the number of objects returned in the response.
 
           extra_headers: Send extra headers
 
@@ -119,7 +119,7 @@ class AsyncLocationsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncLocationsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -151,11 +151,11 @@ class AsyncLocationsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LocationGetResponse:
-        """Internet traffic anomalies are signals that might point to an outage.
+        """Retrieves the sum of Internet traffic anomalies, grouped by location.
 
         These
-        alerts are automatically detected by Radar and then manually verified by our
-        team. This endpoint returns the sum of alerts grouped by location.
+        anomalies are signals that might indicate an outage, automatically detected by
+        Radar and manually verified by our team.
 
         Args:
           date_end: End of the date range (inclusive).
@@ -165,9 +165,9 @@ class AsyncLocationsResource(AsyncAPIResource):
 
           date_start: Start of the date range (inclusive).
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          limit: Limit the number of objects in the response.
+          limit: Limits the number of objects returned in the response.
 
           extra_headers: Send extra headers
 

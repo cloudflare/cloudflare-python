@@ -30,7 +30,7 @@ class EventsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> EventsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -69,7 +69,7 @@ class EventsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncV4PagePagination[EventListResponse]:
         """
-        Get the BGP route leak events (Beta).
+        Retrieves the BGP route leak events.
 
         Args:
           date_end: End of the date range (inclusive).
@@ -79,23 +79,23 @@ class EventsResource(SyncAPIResource):
 
           date_start: Start of the date range (inclusive).
 
-          event_id: The unique identifier of a event
+          event_id: The unique identifier of a event.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          involved_asn: ASN that is causing or affected by a route leak event
+          involved_asn: ASN that is causing or affected by a route leak event.
 
-          involved_country: Country code of a involved ASN in a route leak event
+          involved_country: Country code of a involved ASN in a route leak event.
 
-          leak_asn: The leaking AS of a route leak event
+          leak_asn: The leaking AS of a route leak event.
 
-          page: Current page number, starting from 1
+          page: Current page number, starting from 1.
 
-          per_page: Number of entries per page
+          per_page: Number of entries per page.
 
-          sort_by: Sort events by field
+          sort_by: Sorts results by the specified field.
 
-          sort_order: Sort order
+          sort_order: Sort order.
 
           extra_headers: Send extra headers
 
@@ -139,7 +139,7 @@ class AsyncEventsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncEventsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -178,7 +178,7 @@ class AsyncEventsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[EventListResponse, AsyncV4PagePagination[EventListResponse]]:
         """
-        Get the BGP route leak events (Beta).
+        Retrieves the BGP route leak events.
 
         Args:
           date_end: End of the date range (inclusive).
@@ -188,23 +188,23 @@ class AsyncEventsResource(AsyncAPIResource):
 
           date_start: Start of the date range (inclusive).
 
-          event_id: The unique identifier of a event
+          event_id: The unique identifier of a event.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          involved_asn: ASN that is causing or affected by a route leak event
+          involved_asn: ASN that is causing or affected by a route leak event.
 
-          involved_country: Country code of a involved ASN in a route leak event
+          involved_country: Country code of a involved ASN in a route leak event.
 
-          leak_asn: The leaking AS of a route leak event
+          leak_asn: The leaking AS of a route leak event.
 
-          page: Current page number, starting from 1
+          page: Current page number, starting from 1.
 
-          per_page: Number of entries per page
+          per_page: Number of entries per page.
 
-          sort_by: Sort events by field
+          sort_by: Sorts results by the specified field.
 
-          sort_order: Sort order
+          sort_order: Sort order.
 
           extra_headers: Send extra headers
 

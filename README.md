@@ -142,6 +142,42 @@ for account in first_page.result:
 # Remove `await` for non-async usage.
 ```
 
+## Nested params
+
+Nested parameters are dictionaries, typed using `TypedDict`, for example:
+
+```python
+from cloudflare import Cloudflare
+
+client = Cloudflare()
+
+account = client.accounts.create(
+    name="name",
+    type="standard",
+    unit={"id": "f267e341f3dd4697bd3b9f71dd96247f"},
+)
+print(account.unit)
+```
+
+## File uploads
+
+Request parameters that correspond to file uploads can be passed as `bytes`, a [`PathLike`](https://docs.python.org/3/library/os.html#os.PathLike) instance or a tuple of `(filename, contents, media type)`.
+
+```python
+from pathlib import Path
+from cloudflare import Cloudflare
+
+client = Cloudflare()
+
+client.api_gateway.user_schemas.create(
+    zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+    file=Path("/path/to/file"),
+    kind="openapi_v3",
+)
+```
+
+The async client uses the exact same interface. If you pass a [`PathLike`](https://docs.python.org/3/library/os.html#os.PathLike) instance, the file contents will be read asynchronously automatically.
+
 ## Handling errors
 
 When the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `cloudflare.APIConnectionError` is raised.

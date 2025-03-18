@@ -12,7 +12,7 @@ class RuleUpdateParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    rules: Required[Iterable[Rule]]
+    rules: Iterable[Rule]
     """List of Cloud Connector rules"""
 
 

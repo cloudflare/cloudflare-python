@@ -20,11 +20,11 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ...._base_client import make_request_options
+from ....pagination import SyncSinglePage, AsyncSinglePage
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.zero_trust.gateway import proxy_endpoint_edit_params, proxy_endpoint_create_params
 from ....types.zero_trust.gateway.gateway_ips import GatewayIPs
 from ....types.zero_trust.gateway.proxy_endpoint import ProxyEndpoint
-from ....types.zero_trust.gateway.proxy_endpoint_get_response import ProxyEndpointGetResponse
 
 __all__ = ["ProxyEndpointsResource", "AsyncProxyEndpointsResource"]
 
@@ -33,7 +33,7 @@ class ProxyEndpointsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ProxyEndpointsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -240,7 +240,7 @@ class ProxyEndpointsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ProxyEndpointGetResponse]:
+    ) -> SyncSinglePage[ProxyEndpoint]:
         """
         Fetches a single Zero Trust Gateway proxy endpoint.
 
@@ -257,16 +257,13 @@ class ProxyEndpointsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not proxy_endpoint_id:
             raise ValueError(f"Expected a non-empty value for `proxy_endpoint_id` but received {proxy_endpoint_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/gateway/proxy_endpoints/{proxy_endpoint_id}",
+            page=SyncSinglePage[ProxyEndpoint],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ProxyEndpointGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[ProxyEndpointGetResponse]], ResultWrapper[ProxyEndpointGetResponse]),
+            model=ProxyEndpoint,
         )
 
 
@@ -274,7 +271,7 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncProxyEndpointsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -470,7 +467,7 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[ProxyEndpoint]], ResultWrapper[ProxyEndpoint]),
         )
 
-    async def get(
+    def get(
         self,
         proxy_endpoint_id: str,
         *,
@@ -481,7 +478,7 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ProxyEndpointGetResponse]:
+    ) -> AsyncPaginator[ProxyEndpoint, AsyncSinglePage[ProxyEndpoint]]:
         """
         Fetches a single Zero Trust Gateway proxy endpoint.
 
@@ -498,16 +495,13 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not proxy_endpoint_id:
             raise ValueError(f"Expected a non-empty value for `proxy_endpoint_id` but received {proxy_endpoint_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/gateway/proxy_endpoints/{proxy_endpoint_id}",
+            page=AsyncSinglePage[ProxyEndpoint],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ProxyEndpointGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[ProxyEndpointGetResponse]], ResultWrapper[ProxyEndpointGetResponse]),
+            model=ProxyEndpoint,
         )
 
 

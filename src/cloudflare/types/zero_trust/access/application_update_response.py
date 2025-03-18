@@ -6,7 +6,6 @@ from typing_extensions import Literal, TypeAlias
 
 from .decision import Decision
 from ...._models import BaseModel
-from ..access_rule import AccessRule
 from .allowed_idps import AllowedIdPs
 from .cors_headers import CORSHeaders
 from .oidc_saas_app import OIDCSaaSApp
@@ -15,6 +14,7 @@ from .application_type import ApplicationType
 from .application_policy import ApplicationPolicy
 from .scim_config_mapping import SCIMConfigMapping
 from .self_hosted_domains import SelfHostedDomains
+from .applications.access_rule import AccessRule
 from .scim_config_authentication_oauth2 import SCIMConfigAuthenticationOauth2
 from .scim_config_authentication_http_basic import SCIMConfigAuthenticationHTTPBasic
 from .scim_config_authentication_oauth_bearer_token import SCIMConfigAuthenticationOAuthBearerToken
@@ -23,6 +23,8 @@ __all__ = [
     "ApplicationUpdateResponse",
     "SelfHostedApplication",
     "SelfHostedApplicationDestination",
+    "SelfHostedApplicationDestinationPublicDestination",
+    "SelfHostedApplicationDestinationPrivateDestination",
     "SelfHostedApplicationPolicy",
     "SelfHostedApplicationSCIMConfig",
     "SelfHostedApplicationSCIMConfigAuthentication",
@@ -39,6 +41,8 @@ __all__ = [
     "SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
     "BrowserSSHApplication",
     "BrowserSSHApplicationDestination",
+    "BrowserSSHApplicationDestinationPublicDestination",
+    "BrowserSSHApplicationDestinationPrivateDestination",
     "BrowserSSHApplicationPolicy",
     "BrowserSSHApplicationSCIMConfig",
     "BrowserSSHApplicationSCIMConfigAuthentication",
@@ -47,6 +51,8 @@ __all__ = [
     "BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
     "BrowserVNCApplication",
     "BrowserVNCApplicationDestination",
+    "BrowserVNCApplicationDestinationPublicDestination",
+    "BrowserVNCApplicationDestinationPrivateDestination",
     "BrowserVNCApplicationPolicy",
     "BrowserVNCApplicationSCIMConfig",
     "BrowserVNCApplicationSCIMConfigAuthentication",
@@ -96,21 +102,59 @@ __all__ = [
     "InfrastructureApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
     "InfrastructureApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication",
     "InfrastructureApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
+    "BrowserRdpApplication",
+    "BrowserRdpApplicationTargetCriterion",
+    "BrowserRdpApplicationDestination",
+    "BrowserRdpApplicationDestinationPublicDestination",
+    "BrowserRdpApplicationDestinationPrivateDestination",
+    "BrowserRdpApplicationPolicy",
+    "BrowserRdpApplicationSCIMConfig",
+    "BrowserRdpApplicationSCIMConfigAuthentication",
+    "BrowserRdpApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
+    "BrowserRdpApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication",
+    "BrowserRdpApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken",
 ]
 
 
-class SelfHostedApplicationDestination(BaseModel):
-    type: Optional[Literal["public", "private"]] = None
+class SelfHostedApplicationDestinationPublicDestination(BaseModel):
+    type: Optional[Literal["public"]] = None
 
     uri: Optional[str] = None
     """The URI of the destination.
 
-    Public destinations can include a domain and path with
+    Public destinations' URIs can include a domain and path with
     [wildcards](https://developers.cloudflare.com/cloudflare-one/policies/access/app-paths/).
-    Private destinations are an early access feature and gated behind a feature
-    flag. Private destinations support private IPv4, IPv6, and Server Name
-    Indications (SNI) with optional port ranges.
     """
+
+
+class SelfHostedApplicationDestinationPrivateDestination(BaseModel):
+    cidr: Optional[str] = None
+    """The CIDR range of the destination. Single IPs will be computed as /32."""
+
+    hostname: Optional[str] = None
+    """The hostname of the destination. Matches a valid SNI served by an HTTPS origin."""
+
+    l4_protocol: Optional[Literal["tcp", "udp"]] = None
+    """The L4 protocol of the destination.
+
+    When omitted, both UDP and TCP traffic will match.
+    """
+
+    port_range: Optional[str] = None
+    """The port range of the destination.
+
+    Can be a single port or a range of ports. When omitted, all ports will match.
+    """
+
+    type: Optional[Literal["private"]] = None
+
+    vnet_id: Optional[str] = None
+    """The VNET ID to match the destination. When omitted, all VNETs will match."""
+
+
+SelfHostedApplicationDestination: TypeAlias = Union[
+    SelfHostedApplicationDestinationPublicDestination, SelfHostedApplicationDestinationPrivateDestination
+]
 
 
 class SelfHostedApplicationPolicy(ApplicationPolicy):
@@ -507,18 +551,45 @@ class SaaSApplication(BaseModel):
     updated_at: Optional[datetime] = None
 
 
-class BrowserSSHApplicationDestination(BaseModel):
-    type: Optional[Literal["public", "private"]] = None
+class BrowserSSHApplicationDestinationPublicDestination(BaseModel):
+    type: Optional[Literal["public"]] = None
 
     uri: Optional[str] = None
     """The URI of the destination.
 
-    Public destinations can include a domain and path with
+    Public destinations' URIs can include a domain and path with
     [wildcards](https://developers.cloudflare.com/cloudflare-one/policies/access/app-paths/).
-    Private destinations are an early access feature and gated behind a feature
-    flag. Private destinations support private IPv4, IPv6, and Server Name
-    Indications (SNI) with optional port ranges.
     """
+
+
+class BrowserSSHApplicationDestinationPrivateDestination(BaseModel):
+    cidr: Optional[str] = None
+    """The CIDR range of the destination. Single IPs will be computed as /32."""
+
+    hostname: Optional[str] = None
+    """The hostname of the destination. Matches a valid SNI served by an HTTPS origin."""
+
+    l4_protocol: Optional[Literal["tcp", "udp"]] = None
+    """The L4 protocol of the destination.
+
+    When omitted, both UDP and TCP traffic will match.
+    """
+
+    port_range: Optional[str] = None
+    """The port range of the destination.
+
+    Can be a single port or a range of ports. When omitted, all ports will match.
+    """
+
+    type: Optional[Literal["private"]] = None
+
+    vnet_id: Optional[str] = None
+    """The VNET ID to match the destination. When omitted, all VNETs will match."""
+
+
+BrowserSSHApplicationDestination: TypeAlias = Union[
+    BrowserSSHApplicationDestinationPublicDestination, BrowserSSHApplicationDestinationPrivateDestination
+]
 
 
 class BrowserSSHApplicationPolicy(ApplicationPolicy):
@@ -762,18 +833,45 @@ class BrowserSSHApplication(BaseModel):
     updated_at: Optional[datetime] = None
 
 
-class BrowserVNCApplicationDestination(BaseModel):
-    type: Optional[Literal["public", "private"]] = None
+class BrowserVNCApplicationDestinationPublicDestination(BaseModel):
+    type: Optional[Literal["public"]] = None
 
     uri: Optional[str] = None
     """The URI of the destination.
 
-    Public destinations can include a domain and path with
+    Public destinations' URIs can include a domain and path with
     [wildcards](https://developers.cloudflare.com/cloudflare-one/policies/access/app-paths/).
-    Private destinations are an early access feature and gated behind a feature
-    flag. Private destinations support private IPv4, IPv6, and Server Name
-    Indications (SNI) with optional port ranges.
     """
+
+
+class BrowserVNCApplicationDestinationPrivateDestination(BaseModel):
+    cidr: Optional[str] = None
+    """The CIDR range of the destination. Single IPs will be computed as /32."""
+
+    hostname: Optional[str] = None
+    """The hostname of the destination. Matches a valid SNI served by an HTTPS origin."""
+
+    l4_protocol: Optional[Literal["tcp", "udp"]] = None
+    """The L4 protocol of the destination.
+
+    When omitted, both UDP and TCP traffic will match.
+    """
+
+    port_range: Optional[str] = None
+    """The port range of the destination.
+
+    Can be a single port or a range of ports. When omitted, all ports will match.
+    """
+
+    type: Optional[Literal["private"]] = None
+
+    vnet_id: Optional[str] = None
+    """The VNET ID to match the destination. When omitted, all VNETs will match."""
+
+
+BrowserVNCApplicationDestination: TypeAlias = Union[
+    BrowserVNCApplicationDestinationPublicDestination, BrowserVNCApplicationDestinationPrivateDestination
+]
 
 
 class BrowserVNCApplicationPolicy(ApplicationPolicy):
@@ -1897,6 +1995,304 @@ class InfrastructureApplication(BaseModel):
     updated_at: Optional[datetime] = None
 
 
+class BrowserRdpApplicationTargetCriterion(BaseModel):
+    port: int
+    """The port that the targets use for the chosen communication protocol.
+
+    A port cannot be assigned to multiple protocols.
+    """
+
+    protocol: Literal["ssh"]
+    """The communication protocol your application secures."""
+
+    target_attributes: Dict[str, List[str]]
+    """Contains a map of target attribute keys to target attribute values."""
+
+
+class BrowserRdpApplicationDestinationPublicDestination(BaseModel):
+    type: Optional[Literal["public"]] = None
+
+    uri: Optional[str] = None
+    """The URI of the destination.
+
+    Public destinations' URIs can include a domain and path with
+    [wildcards](https://developers.cloudflare.com/cloudflare-one/policies/access/app-paths/).
+    """
+
+
+class BrowserRdpApplicationDestinationPrivateDestination(BaseModel):
+    cidr: Optional[str] = None
+    """The CIDR range of the destination. Single IPs will be computed as /32."""
+
+    hostname: Optional[str] = None
+    """The hostname of the destination. Matches a valid SNI served by an HTTPS origin."""
+
+    l4_protocol: Optional[Literal["tcp", "udp"]] = None
+    """The L4 protocol of the destination.
+
+    When omitted, both UDP and TCP traffic will match.
+    """
+
+    port_range: Optional[str] = None
+    """The port range of the destination.
+
+    Can be a single port or a range of ports. When omitted, all ports will match.
+    """
+
+    type: Optional[Literal["private"]] = None
+
+    vnet_id: Optional[str] = None
+    """The VNET ID to match the destination. When omitted, all VNETs will match."""
+
+
+BrowserRdpApplicationDestination: TypeAlias = Union[
+    BrowserRdpApplicationDestinationPublicDestination, BrowserRdpApplicationDestinationPrivateDestination
+]
+
+
+class BrowserRdpApplicationPolicy(ApplicationPolicy):
+    precedence: Optional[int] = None
+    """The order of execution for this policy.
+
+    Must be unique for each policy within an app.
+    """
+
+
+class BrowserRdpApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(BaseModel):
+    client_id: str
+    """
+    Client ID of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    client_secret: str
+    """
+    Client secret of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    scheme: Literal["access_service_token"]
+    """The authentication scheme to use when making SCIM requests to this application."""
+
+
+class BrowserRdpApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken(
+    BaseModel
+):
+    client_id: str
+    """
+    Client ID of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    client_secret: str
+    """
+    Client secret of the Access service token used to authenticate with the remote
+    service.
+    """
+
+    scheme: Literal["access_service_token"]
+    """The authentication scheme to use when making SCIM requests to this application."""
+
+
+BrowserRdpApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication: TypeAlias = Union[
+    SCIMConfigAuthenticationHTTPBasic,
+    SCIMConfigAuthenticationOAuthBearerToken,
+    SCIMConfigAuthenticationOauth2,
+    BrowserRdpApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
+]
+
+BrowserRdpApplicationSCIMConfigAuthentication: TypeAlias = Union[
+    SCIMConfigAuthenticationHTTPBasic,
+    SCIMConfigAuthenticationOAuthBearerToken,
+    SCIMConfigAuthenticationOauth2,
+    BrowserRdpApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationAccessServiceToken,
+    List[BrowserRdpApplicationSCIMConfigAuthenticationAccessSCIMConfigMultiAuthentication],
+]
+
+
+class BrowserRdpApplicationSCIMConfig(BaseModel):
+    idp_uid: str
+    """
+    The UID of the IdP to use as the source for SCIM resources to provision to this
+    application.
+    """
+
+    remote_uri: str
+    """The base URI for the application's SCIM-compatible API."""
+
+    authentication: Optional[BrowserRdpApplicationSCIMConfigAuthentication] = None
+    """
+    Attributes for configuring HTTP Basic authentication scheme for SCIM
+    provisioning to an application.
+    """
+
+    deactivate_on_delete: Optional[bool] = None
+    """
+    If false, propagates DELETE requests to the target application for SCIM
+    resources. If true, sets 'active' to false on the SCIM resource. Note: Some
+    targets do not support DELETE operations.
+    """
+
+    enabled: Optional[bool] = None
+    """Whether SCIM provisioning is turned on for this application."""
+
+    mappings: Optional[List[SCIMConfigMapping]] = None
+    """
+    A list of mappings to apply to SCIM resources before provisioning them in this
+    application. These can transform or filter the resources to be provisioned.
+    """
+
+
+class BrowserRdpApplication(BaseModel):
+    domain: str
+    """The primary hostname and path secured by Access.
+
+    This domain will be displayed if the app is visible in the App Launcher.
+    """
+
+    target_criteria: List[BrowserRdpApplicationTargetCriterion]
+
+    type: str
+    """The application type."""
+
+    id: Optional[str] = None
+    """UUID"""
+
+    allow_authenticate_via_warp: Optional[bool] = None
+    """
+    When set to true, users can authenticate to this application using their WARP
+    session. When set to false this application will always require direct IdP
+    authentication. This setting always overrides the organization setting for WARP
+    authentication.
+    """
+
+    allowed_idps: Optional[List[AllowedIdPs]] = None
+    """The identity providers your users can select when connecting to this
+    application.
+
+    Defaults to all IdPs configured in your account.
+    """
+
+    app_launcher_visible: Optional[bool] = None
+    """Displays the application in the App Launcher."""
+
+    aud: Optional[str] = None
+    """Audience tag."""
+
+    auto_redirect_to_identity: Optional[bool] = None
+    """When set to `true`, users skip the identity provider selection step during
+    login.
+
+    You must specify only one identity provider in allowed_idps.
+    """
+
+    cors_headers: Optional[CORSHeaders] = None
+
+    created_at: Optional[datetime] = None
+
+    custom_deny_message: Optional[str] = None
+    """
+    The custom error message shown to a user when they are denied access to the
+    application.
+    """
+
+    custom_deny_url: Optional[str] = None
+    """
+    The custom URL a user is redirected to when they are denied access to the
+    application when failing identity-based rules.
+    """
+
+    custom_non_identity_deny_url: Optional[str] = None
+    """
+    The custom URL a user is redirected to when they are denied access to the
+    application when failing non-identity rules.
+    """
+
+    custom_pages: Optional[List[str]] = None
+    """The custom pages that will be displayed when applicable for this application"""
+
+    destinations: Optional[List[BrowserRdpApplicationDestination]] = None
+    """List of destinations secured by Access.
+
+    This supersedes `self_hosted_domains` to allow for more flexibility in defining
+    different types of domains. If `destinations` are provided, then
+    `self_hosted_domains` will be ignored.
+    """
+
+    enable_binding_cookie: Optional[bool] = None
+    """
+    Enables the binding cookie, which increases security against compromised
+    authorization tokens and CSRF attacks.
+    """
+
+    http_only_cookie_attribute: Optional[bool] = None
+    """
+    Enables the HttpOnly cookie attribute, which increases security against XSS
+    attacks.
+    """
+
+    logo_url: Optional[str] = None
+    """The image URL for the logo shown in the App Launcher dashboard."""
+
+    name: Optional[str] = None
+    """The name of the application."""
+
+    options_preflight_bypass: Optional[bool] = None
+    """
+    Allows options preflight requests to bypass Access authentication and go
+    directly to the origin. Cannot turn on if cors_headers is set.
+    """
+
+    path_cookie_attribute: Optional[bool] = None
+    """Enables cookie paths to scope an application's JWT to the application path.
+
+    If disabled, the JWT will scope to the hostname by default
+    """
+
+    policies: Optional[List[BrowserRdpApplicationPolicy]] = None
+
+    same_site_cookie_attribute: Optional[str] = None
+    """
+    Sets the SameSite cookie setting, which provides increased security against CSRF
+    attacks.
+    """
+
+    scim_config: Optional[BrowserRdpApplicationSCIMConfig] = None
+    """Configuration for provisioning to this application via SCIM.
+
+    This is currently in closed beta.
+    """
+
+    self_hosted_domains: Optional[List[SelfHostedDomains]] = None
+    """List of public domains that Access will secure.
+
+    This field is deprecated in favor of `destinations` and will be supported until
+    **November 21, 2025.** If `destinations` are provided, then
+    `self_hosted_domains` will be ignored.
+    """
+
+    service_auth_401_redirect: Optional[bool] = None
+    """Returns a 401 status code when the request is blocked by a Service Auth policy."""
+
+    session_duration: Optional[str] = None
+    """The amount of time that tokens issued for this application will be valid.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
+    ms, s, m, h.
+    """
+
+    skip_interstitial: Optional[bool] = None
+    """Enables automatic authentication through cloudflared."""
+
+    tags: Optional[List[str]] = None
+    """The tags you want assigned to an application.
+
+    Tags are used to filter applications in the App Launcher dashboard.
+    """
+
+    updated_at: Optional[datetime] = None
+
+
 ApplicationUpdateResponse: TypeAlias = Union[
     SelfHostedApplication,
     SaaSApplication,
@@ -1907,4 +2303,5 @@ ApplicationUpdateResponse: TypeAlias = Union[
     BrowserIsolationPermissionsApplication,
     BookmarkApplication,
     InfrastructureApplication,
+    BrowserRdpApplication,
 ]

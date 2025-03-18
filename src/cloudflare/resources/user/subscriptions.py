@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Optional, cast
+from typing import Any, cast
 from typing_extensions import Literal
 
 import httpx
@@ -21,10 +21,11 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
+from ...pagination import SyncSinglePage, AsyncSinglePage
 from ...types.user import subscription_update_params
-from ..._base_client import make_request_options
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.shared.subscription import Subscription
 from ...types.shared_params.rate_plan import RatePlan
-from ...types.user.subscription_get_response import SubscriptionGetResponse
 from ...types.user.subscription_delete_response import SubscriptionDeleteResponse
 from ...types.user.subscription_update_response import SubscriptionUpdateResponse
 
@@ -35,7 +36,7 @@ class SubscriptionsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> SubscriptionsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -152,18 +153,15 @@ class SubscriptionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SubscriptionGetResponse]:
+    ) -> SyncSinglePage[Subscription]:
         """Lists all of a user's subscriptions."""
-        return self._get(
+        return self._get_api_list(
             "/user/subscriptions",
+            page=SyncSinglePage[Subscription],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[SubscriptionGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[SubscriptionGetResponse]], ResultWrapper[SubscriptionGetResponse]),
+            model=Subscription,
         )
 
 
@@ -171,7 +169,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncSubscriptionsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -279,7 +277,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
             cast_to=SubscriptionDeleteResponse,
         )
 
-    async def get(
+    def get(
         self,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -288,18 +286,15 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SubscriptionGetResponse]:
+    ) -> AsyncPaginator[Subscription, AsyncSinglePage[Subscription]]:
         """Lists all of a user's subscriptions."""
-        return await self._get(
+        return self._get_api_list(
             "/user/subscriptions",
+            page=AsyncSinglePage[Subscription],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[SubscriptionGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[SubscriptionGetResponse]], ResultWrapper[SubscriptionGetResponse]),
+            model=Subscription,
         )
 
 

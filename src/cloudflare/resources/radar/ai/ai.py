@@ -20,11 +20,23 @@ from .timeseries_groups import (
     TimeseriesGroupsResourceWithStreamingResponse,
     AsyncTimeseriesGroupsResourceWithStreamingResponse,
 )
+from .inference.inference import (
+    InferenceResource,
+    AsyncInferenceResource,
+    InferenceResourceWithRawResponse,
+    AsyncInferenceResourceWithRawResponse,
+    InferenceResourceWithStreamingResponse,
+    AsyncInferenceResourceWithStreamingResponse,
+)
 
 __all__ = ["AIResource", "AsyncAIResource"]
 
 
 class AIResource(SyncAPIResource):
+    @cached_property
+    def inference(self) -> InferenceResource:
+        return InferenceResource(self._client)
+
     @cached_property
     def bots(self) -> BotsResource:
         return BotsResource(self._client)
@@ -36,7 +48,7 @@ class AIResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AIResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -55,6 +67,10 @@ class AIResource(SyncAPIResource):
 
 class AsyncAIResource(AsyncAPIResource):
     @cached_property
+    def inference(self) -> AsyncInferenceResource:
+        return AsyncInferenceResource(self._client)
+
+    @cached_property
     def bots(self) -> AsyncBotsResource:
         return AsyncBotsResource(self._client)
 
@@ -65,7 +81,7 @@ class AsyncAIResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncAIResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -87,6 +103,10 @@ class AIResourceWithRawResponse:
         self._ai = ai
 
     @cached_property
+    def inference(self) -> InferenceResourceWithRawResponse:
+        return InferenceResourceWithRawResponse(self._ai.inference)
+
+    @cached_property
     def bots(self) -> BotsResourceWithRawResponse:
         return BotsResourceWithRawResponse(self._ai.bots)
 
@@ -98,6 +118,10 @@ class AIResourceWithRawResponse:
 class AsyncAIResourceWithRawResponse:
     def __init__(self, ai: AsyncAIResource) -> None:
         self._ai = ai
+
+    @cached_property
+    def inference(self) -> AsyncInferenceResourceWithRawResponse:
+        return AsyncInferenceResourceWithRawResponse(self._ai.inference)
 
     @cached_property
     def bots(self) -> AsyncBotsResourceWithRawResponse:
@@ -113,6 +137,10 @@ class AIResourceWithStreamingResponse:
         self._ai = ai
 
     @cached_property
+    def inference(self) -> InferenceResourceWithStreamingResponse:
+        return InferenceResourceWithStreamingResponse(self._ai.inference)
+
+    @cached_property
     def bots(self) -> BotsResourceWithStreamingResponse:
         return BotsResourceWithStreamingResponse(self._ai.bots)
 
@@ -124,6 +152,10 @@ class AIResourceWithStreamingResponse:
 class AsyncAIResourceWithStreamingResponse:
     def __init__(self, ai: AsyncAIResource) -> None:
         self._ai = ai
+
+    @cached_property
+    def inference(self) -> AsyncInferenceResourceWithStreamingResponse:
+        return AsyncInferenceResourceWithStreamingResponse(self._ai.inference)
 
     @cached_property
     def bots(self) -> AsyncBotsResourceWithStreamingResponse:

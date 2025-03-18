@@ -33,7 +33,7 @@ class HTTPProtocolResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> HTTPProtocolResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -62,6 +62,7 @@ class HTTPProtocolResource(SyncAPIResource):
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
         ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
@@ -77,50 +78,52 @@ class HTTPProtocolResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> HTTPProtocolGetResponse:
         """
-        Get the top autonomous systems (AS), by HTTP traffic, of the requested HTTP
-        protocol. Values are a percentage out of the total traffic.
+        Retrieves the top autonomous systems, by HTTP requests, of the requested HTTP
+        protocol.
 
         Args:
-          http_protocol: HTTP Protocol.
+          http_protocol: HTTP protocol (HTTP vs. HTTPS).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
+          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
+              exclude ASNs from results. For example, `-174, 3356` excludes results from
+              AS174, but includes results from AS3356.
 
-          bot_class: Filter for bot class. Refer to
+          bot_class: Filters results by bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
 
-          browser_family: Filter for browser family.
+          browser_family: Filters results by browser family.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
+          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
+              exclude continents from results. For example, `-EU,NA` excludes results from EU,
+              but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          device_type: Filter for device type.
+          device_type: Filters results by device type.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          ip_version: Filter for ip version.
+          http_version: Filters results by HTTP version.
 
-          limit: Limit the number of objects in the response.
+          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
+          limit: Limits the number of objects returned in the response.
 
-          name: Array of names that will be used to name the series in responses.
+          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
+              locations from results. For example, `-US,PT` excludes results from the US, but
+              includes results from PT.
 
-          os: Filter for os name.
+          name: Array of names used to label the series in the response.
 
-          tls_version: Filter for tls version.
+          os: Filters results by operating system.
+
+          tls_version: Filters results by TLS version.
 
           extra_headers: Send extra headers
 
@@ -150,6 +153,7 @@ class HTTPProtocolResource(SyncAPIResource):
                         "date_start": date_start,
                         "device_type": device_type,
                         "format": format,
+                        "http_version": http_version,
                         "ip_version": ip_version,
                         "limit": limit,
                         "location": location,
@@ -169,7 +173,7 @@ class AsyncHTTPProtocolResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncHTTPProtocolResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -198,6 +202,7 @@ class AsyncHTTPProtocolResource(AsyncAPIResource):
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         device_type: List[Literal["DESKTOP", "MOBILE", "OTHER"]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
         ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
@@ -213,50 +218,52 @@ class AsyncHTTPProtocolResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> HTTPProtocolGetResponse:
         """
-        Get the top autonomous systems (AS), by HTTP traffic, of the requested HTTP
-        protocol. Values are a percentage out of the total traffic.
+        Retrieves the top autonomous systems, by HTTP requests, of the requested HTTP
+        protocol.
 
         Args:
-          http_protocol: HTTP Protocol.
+          http_protocol: HTTP protocol (HTTP vs. HTTPS).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
+          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
+              exclude ASNs from results. For example, `-174, 3356` excludes results from
+              AS174, but includes results from AS3356.
 
-          bot_class: Filter for bot class. Refer to
+          bot_class: Filters results by bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
 
-          browser_family: Filter for browser family.
+          browser_family: Filters results by browser family.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
+          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
+              exclude continents from results. For example, `-EU,NA` excludes results from EU,
+              but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          device_type: Filter for device type.
+          device_type: Filters results by device type.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          ip_version: Filter for ip version.
+          http_version: Filters results by HTTP version.
 
-          limit: Limit the number of objects in the response.
+          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
+          limit: Limits the number of objects returned in the response.
 
-          name: Array of names that will be used to name the series in responses.
+          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
+              locations from results. For example, `-US,PT` excludes results from the US, but
+              includes results from PT.
 
-          os: Filter for os name.
+          name: Array of names used to label the series in the response.
 
-          tls_version: Filter for tls version.
+          os: Filters results by operating system.
+
+          tls_version: Filters results by TLS version.
 
           extra_headers: Send extra headers
 
@@ -286,6 +293,7 @@ class AsyncHTTPProtocolResource(AsyncAPIResource):
                         "date_start": date_start,
                         "device_type": device_type,
                         "format": format,
+                        "http_version": http_version,
                         "ip_version": ip_version,
                         "limit": limit,
                         "location": location,

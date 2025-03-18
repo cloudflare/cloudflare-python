@@ -32,7 +32,7 @@ class DefaultEditResponse(BaseModel):
     """Whether to allow devices to leave the organization."""
 
     auto_connect: Optional[float] = None
-    """The amount of time in minutes to reconnect after having been disabled."""
+    """The amount of time in seconds to reconnect after having been disabled."""
 
     captive_portal: Optional[float] = None
     """Turn on the captive portal after the specified amount of time."""
@@ -51,6 +51,7 @@ class DefaultEditResponse(BaseModel):
     """Whether the policy will be applied to matching devices."""
 
     exclude: Optional[List[SplitTunnelExclude]] = None
+    """List of routes excluded in the WARP client's tunnel."""
 
     exclude_office_ips: Optional[bool] = None
     """Whether to add Microsoft IPs to Split Tunnel exclusions."""
@@ -60,6 +61,13 @@ class DefaultEditResponse(BaseModel):
     gateway_unique_id: Optional[str] = None
 
     include: Optional[List[SplitTunnelInclude]] = None
+    """List of routes included in the WARP client's tunnel."""
+
+    register_interface_ip_with_dns: Optional[bool] = None
+    """
+    Determines if the operating system will register WARP's local interface IP with
+    your on-premises DNS server.
+    """
 
     service_mode_v2: Optional[ServiceModeV2] = None
 

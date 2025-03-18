@@ -42,7 +42,7 @@ class TestSummary:
             dkim=["PASS"],
             dmarc=["PASS"],
             format="JSON",
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
             tls_version=["TLSv1_0"],
         )
@@ -82,7 +82,7 @@ class TestSummary:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             dmarc=["PASS"],
             format="JSON",
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
             tls_version=["TLSv1_0"],
         )
@@ -122,7 +122,7 @@ class TestSummary:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             dkim=["PASS"],
             format="JSON",
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
             tls_version=["TLSv1_0"],
         )
@@ -163,7 +163,7 @@ class TestSummary:
             dkim=["PASS"],
             dmarc=["PASS"],
             format="JSON",
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
             tls_version=["TLSv1_0"],
         )
@@ -204,7 +204,7 @@ class TestSummary:
             dkim=["PASS"],
             dmarc=["PASS"],
             format="JSON",
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
             tls_version=["TLSv1_0"],
         )
@@ -245,7 +245,7 @@ class TestSummary:
             dkim=["PASS"],
             dmarc=["PASS"],
             format="JSON",
-            name=["string"],
+            name=["main_series"],
             tls_version=["TLSv1_0"],
         )
         assert_matches_type(SummarySPFResponse, summary, path=["response"])
@@ -285,7 +285,7 @@ class TestSummary:
             dkim=["PASS"],
             dmarc=["PASS"],
             format="JSON",
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
             tls_version=["TLSv1_0"],
         )
@@ -326,7 +326,7 @@ class TestSummary:
             dkim=["PASS"],
             dmarc=["PASS"],
             format="JSON",
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
             tls_version=["TLSv1_0"],
         )
@@ -367,7 +367,7 @@ class TestSummary:
             dkim=["PASS"],
             dmarc=["PASS"],
             format="JSON",
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
         )
         assert_matches_type(SummaryTLSVersionResponse, summary, path=["response"])
@@ -410,7 +410,7 @@ class TestAsyncSummary:
             dkim=["PASS"],
             dmarc=["PASS"],
             format="JSON",
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
             tls_version=["TLSv1_0"],
         )
@@ -450,7 +450,7 @@ class TestAsyncSummary:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             dmarc=["PASS"],
             format="JSON",
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
             tls_version=["TLSv1_0"],
         )
@@ -490,7 +490,7 @@ class TestAsyncSummary:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             dkim=["PASS"],
             format="JSON",
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
             tls_version=["TLSv1_0"],
         )
@@ -531,7 +531,7 @@ class TestAsyncSummary:
             dkim=["PASS"],
             dmarc=["PASS"],
             format="JSON",
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
             tls_version=["TLSv1_0"],
         )
@@ -572,7 +572,7 @@ class TestAsyncSummary:
             dkim=["PASS"],
             dmarc=["PASS"],
             format="JSON",
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
             tls_version=["TLSv1_0"],
         )
@@ -613,7 +613,7 @@ class TestAsyncSummary:
             dkim=["PASS"],
             dmarc=["PASS"],
             format="JSON",
-            name=["string"],
+            name=["main_series"],
             tls_version=["TLSv1_0"],
         )
         assert_matches_type(SummarySPFResponse, summary, path=["response"])
@@ -653,7 +653,7 @@ class TestAsyncSummary:
             dkim=["PASS"],
             dmarc=["PASS"],
             format="JSON",
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
             tls_version=["TLSv1_0"],
         )
@@ -694,7 +694,7 @@ class TestAsyncSummary:
             dkim=["PASS"],
             dmarc=["PASS"],
             format="JSON",
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
             tls_version=["TLSv1_0"],
         )
@@ -735,7 +735,7 @@ class TestAsyncSummary:
             dkim=["PASS"],
             dmarc=["PASS"],
             format="JSON",
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
         )
         assert_matches_type(SummaryTLSVersionResponse, summary, path=["response"])

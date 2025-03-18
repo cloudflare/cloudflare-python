@@ -43,7 +43,7 @@ class TestTop:
             ip_version=["IPv4"],
             limit=5,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -79,7 +79,6 @@ class TestTop:
         top = client.radar.http.top.browser_family(
             asn=["string"],
             bot_class=["LIKELY_AUTOMATED"],
-            browser_family=["CHROME"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
@@ -91,7 +90,7 @@ class TestTop:
             ip_version=["IPv4"],
             limit=5,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -143,7 +142,7 @@ class TestAsyncTop:
             ip_version=["IPv4"],
             limit=5,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -179,7 +178,6 @@ class TestAsyncTop:
         top = await async_client.radar.http.top.browser_family(
             asn=["string"],
             bot_class=["LIKELY_AUTOMATED"],
-            browser_family=["CHROME"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
@@ -191,7 +189,7 @@ class TestAsyncTop:
             ip_version=["IPv4"],
             limit=5,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )

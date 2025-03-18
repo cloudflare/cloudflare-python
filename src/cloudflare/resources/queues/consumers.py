@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Optional, cast
+from typing import Any, Optional, cast
 from typing_extensions import Literal, overload
 
 import httpx
@@ -22,10 +22,10 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ..._base_client import make_request_options
+from ...pagination import SyncSinglePage, AsyncSinglePage
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.queues import consumer_create_params, consumer_update_params
 from ...types.queues.consumer import Consumer
-from ...types.queues.consumer_get_response import ConsumerGetResponse
 from ...types.queues.consumer_delete_response import ConsumerDeleteResponse
 
 __all__ = ["ConsumersResource", "AsyncConsumersResource"]
@@ -35,7 +35,7 @@ class ConsumersResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ConsumersResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -356,7 +356,7 @@ class ConsumersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ConsumerGetResponse]:
+    ) -> SyncSinglePage[Consumer]:
         """
         Returns the consumers for a Queue
 
@@ -377,16 +377,13 @@ class ConsumersResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not queue_id:
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/queues/{queue_id}/consumers",
+            page=SyncSinglePage[Consumer],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ConsumerGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[ConsumerGetResponse]], ResultWrapper[ConsumerGetResponse]),
+            model=cast(Any, Consumer),  # Union types cannot be passed in as arguments in the type system
         )
 
 
@@ -394,7 +391,7 @@ class AsyncConsumersResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncConsumersResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -704,7 +701,7 @@ class AsyncConsumersResource(AsyncAPIResource):
             cast_to=ConsumerDeleteResponse,
         )
 
-    async def get(
+    def get(
         self,
         queue_id: str,
         *,
@@ -715,7 +712,7 @@ class AsyncConsumersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ConsumerGetResponse]:
+    ) -> AsyncPaginator[Consumer, AsyncSinglePage[Consumer]]:
         """
         Returns the consumers for a Queue
 
@@ -736,16 +733,13 @@ class AsyncConsumersResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not queue_id:
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/queues/{queue_id}/consumers",
+            page=AsyncSinglePage[Consumer],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ConsumerGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[ConsumerGetResponse]], ResultWrapper[ConsumerGetResponse]),
+            model=cast(Any, Consumer),  # Union types cannot be passed in as arguments in the type system
         )
 
 

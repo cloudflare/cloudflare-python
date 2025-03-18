@@ -97,13 +97,13 @@ class TestPolicies:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.applications.policies.with_raw_response.create(
                 app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.applications.policies.with_raw_response.create(
                 app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="account_id",
@@ -194,14 +194,14 @@ class TestPolicies:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.applications.policies.with_raw_response.update(
                 policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.applications.policies.with_raw_response.update(
                 policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -263,13 +263,13 @@ class TestPolicies:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.applications.policies.with_raw_response.list(
                 app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.applications.policies.with_raw_response.list(
                 app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="account_id",
@@ -342,14 +342,14 @@ class TestPolicies:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.applications.policies.with_raw_response.delete(
                 policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.applications.policies.with_raw_response.delete(
                 policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -423,14 +423,14 @@ class TestPolicies:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.applications.policies.with_raw_response.get(
                 policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.applications.policies.with_raw_response.get(
                 policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -514,13 +514,13 @@ class TestAsyncPolicies:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.applications.policies.with_raw_response.create(
                 app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.applications.policies.with_raw_response.create(
                 app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="account_id",
@@ -611,14 +611,14 @@ class TestAsyncPolicies:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.applications.policies.with_raw_response.update(
                 policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.applications.policies.with_raw_response.update(
                 policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -680,13 +680,13 @@ class TestAsyncPolicies:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.applications.policies.with_raw_response.list(
                 app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.applications.policies.with_raw_response.list(
                 app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="account_id",
@@ -759,14 +759,14 @@ class TestAsyncPolicies:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.applications.policies.with_raw_response.delete(
                 policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.applications.policies.with_raw_response.delete(
                 policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -840,14 +840,14 @@ class TestAsyncPolicies:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.applications.policies.with_raw_response.get(
                 policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.applications.policies.with_raw_response.get(
                 policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 app_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",

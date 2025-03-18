@@ -2,62 +2,61 @@
 
 from typing import List, Union, Optional
 from datetime import datetime
-from typing_extensions import Literal, TypeAlias
+from typing_extensions import Literal, Annotated, TypeAlias
 
-from . import (
-    a_record,
-    ds_record,
-    mx_record,
-    ns_record,
-    caa_record,
-    loc_record,
-    ptr_record,
-    srv_record,
-    txt_record,
-    uri_record,
-    aaaa_record,
-    cert_record,
-    svcb_record,
-    tlsa_record,
-    cname_record,
-    https_record,
-    naptr_record,
-    sshfp_record,
-    dnskey_record,
-    smimea_record,
-)
 from .ttl import TTL
+from ..._utils import PropertyInfo
+from .a_record import ARecord
 from ..._models import BaseModel
+from .ds_record import DSRecord
+from .mx_record import MXRecord
+from .ns_record import NSRecord
+from .caa_record import CAARecord
+from .loc_record import LOCRecord
+from .ptr_record import PTRRecord
+from .srv_record import SRVRecord
+from .txt_record import TXTRecord
+from .uri_record import URIRecord
+from .aaaa_record import AAAARecord
+from .cert_record import CERTRecord
 from .record_tags import RecordTags
+from .svcb_record import SVCBRecord
+from .tlsa_record import TLSARecord
+from .cname_record import CNAMERecord
+from .https_record import HTTPSRecord
+from .naptr_record import NAPTRRecord
+from .sshfp_record import SSHFPRecord
+from .dnskey_record import DNSKEYRecord
+from .smimea_record import SMIMEARecord
 
 __all__ = [
     "RecordResponse",
-    "ARecord",
-    "AAAARecord",
-    "CAARecord",
-    "CERTRecord",
-    "CNAMERecord",
-    "DNSKEYRecord",
-    "DSRecord",
-    "HTTPSRecord",
-    "LOCRecord",
-    "MXRecord",
-    "NAPTRRecord",
-    "NSRecord",
+    "A",
+    "AAAA",
+    "CAA",
+    "CERT",
+    "CNAME",
+    "DNSKEY",
+    "DS",
+    "HTTPS",
+    "LOC",
+    "MX",
+    "NAPTR",
+    "NS",
     "Openpgpkey",
     "OpenpgpkeySettings",
-    "PTRRecord",
-    "SMIMEARecord",
-    "SRVRecord",
-    "SSHFPRecord",
-    "SVCBRecord",
-    "TLSARecord",
-    "TXTRecord",
-    "URIRecord",
+    "PTR",
+    "SMIMEA",
+    "SRV",
+    "SSHFP",
+    "SVCB",
+    "TLSA",
+    "TXT",
+    "URI",
 ]
 
 
-class ARecord(a_record.ARecord):
+class A(ARecord):
     id: str
     """Identifier"""
 
@@ -80,7 +79,7 @@ class ARecord(a_record.ARecord):
     """When the record tags were last modified. Omitted if there are no tags."""
 
 
-class AAAARecord(aaaa_record.AAAARecord):
+class AAAA(AAAARecord):
     id: str
     """Identifier"""
 
@@ -103,7 +102,7 @@ class AAAARecord(aaaa_record.AAAARecord):
     """When the record tags were last modified. Omitted if there are no tags."""
 
 
-class CAARecord(caa_record.CAARecord):
+class CAA(CAARecord):
     id: str
     """Identifier"""
 
@@ -126,7 +125,7 @@ class CAARecord(caa_record.CAARecord):
     """When the record tags were last modified. Omitted if there are no tags."""
 
 
-class CERTRecord(cert_record.CERTRecord):
+class CERT(CERTRecord):
     id: str
     """Identifier"""
 
@@ -149,7 +148,7 @@ class CERTRecord(cert_record.CERTRecord):
     """When the record tags were last modified. Omitted if there are no tags."""
 
 
-class CNAMERecord(cname_record.CNAMERecord):
+class CNAME(CNAMERecord):
     id: str
     """Identifier"""
 
@@ -172,7 +171,7 @@ class CNAMERecord(cname_record.CNAMERecord):
     """When the record tags were last modified. Omitted if there are no tags."""
 
 
-class DNSKEYRecord(dnskey_record.DNSKEYRecord):
+class DNSKEY(DNSKEYRecord):
     id: str
     """Identifier"""
 
@@ -195,7 +194,7 @@ class DNSKEYRecord(dnskey_record.DNSKEYRecord):
     """When the record tags were last modified. Omitted if there are no tags."""
 
 
-class DSRecord(ds_record.DSRecord):
+class DS(DSRecord):
     id: str
     """Identifier"""
 
@@ -218,7 +217,7 @@ class DSRecord(ds_record.DSRecord):
     """When the record tags were last modified. Omitted if there are no tags."""
 
 
-class HTTPSRecord(https_record.HTTPSRecord):
+class HTTPS(HTTPSRecord):
     id: str
     """Identifier"""
 
@@ -241,7 +240,7 @@ class HTTPSRecord(https_record.HTTPSRecord):
     """When the record tags were last modified. Omitted if there are no tags."""
 
 
-class LOCRecord(loc_record.LOCRecord):
+class LOC(LOCRecord):
     id: str
     """Identifier"""
 
@@ -264,7 +263,7 @@ class LOCRecord(loc_record.LOCRecord):
     """When the record tags were last modified. Omitted if there are no tags."""
 
 
-class MXRecord(mx_record.MXRecord):
+class MX(MXRecord):
     id: str
     """Identifier"""
 
@@ -287,7 +286,7 @@ class MXRecord(mx_record.MXRecord):
     """When the record tags were last modified. Omitted if there are no tags."""
 
 
-class NAPTRRecord(naptr_record.NAPTRRecord):
+class NAPTR(NAPTRRecord):
     id: str
     """Identifier"""
 
@@ -310,7 +309,7 @@ class NAPTRRecord(naptr_record.NAPTRRecord):
     """When the record tags were last modified. Omitted if there are no tags."""
 
 
-class NSRecord(ns_record.NSRecord):
+class NS(NSRecord):
     id: str
     """Identifier"""
 
@@ -408,7 +407,7 @@ class Openpgpkey(BaseModel):
     """When the record tags were last modified. Omitted if there are no tags."""
 
 
-class PTRRecord(ptr_record.PTRRecord):
+class PTR(PTRRecord):
     id: str
     """Identifier"""
 
@@ -431,7 +430,7 @@ class PTRRecord(ptr_record.PTRRecord):
     """When the record tags were last modified. Omitted if there are no tags."""
 
 
-class SMIMEARecord(smimea_record.SMIMEARecord):
+class SMIMEA(SMIMEARecord):
     id: str
     """Identifier"""
 
@@ -454,7 +453,7 @@ class SMIMEARecord(smimea_record.SMIMEARecord):
     """When the record tags were last modified. Omitted if there are no tags."""
 
 
-class SRVRecord(srv_record.SRVRecord):
+class SRV(SRVRecord):
     id: str
     """Identifier"""
 
@@ -477,7 +476,7 @@ class SRVRecord(srv_record.SRVRecord):
     """When the record tags were last modified. Omitted if there are no tags."""
 
 
-class SSHFPRecord(sshfp_record.SSHFPRecord):
+class SSHFP(SSHFPRecord):
     id: str
     """Identifier"""
 
@@ -500,7 +499,7 @@ class SSHFPRecord(sshfp_record.SSHFPRecord):
     """When the record tags were last modified. Omitted if there are no tags."""
 
 
-class SVCBRecord(svcb_record.SVCBRecord):
+class SVCB(SVCBRecord):
     id: str
     """Identifier"""
 
@@ -523,7 +522,7 @@ class SVCBRecord(svcb_record.SVCBRecord):
     """When the record tags were last modified. Omitted if there are no tags."""
 
 
-class TLSARecord(tlsa_record.TLSARecord):
+class TLSA(TLSARecord):
     id: str
     """Identifier"""
 
@@ -546,7 +545,7 @@ class TLSARecord(tlsa_record.TLSARecord):
     """When the record tags were last modified. Omitted if there are no tags."""
 
 
-class TXTRecord(txt_record.TXTRecord):
+class TXT(TXTRecord):
     id: str
     """Identifier"""
 
@@ -569,7 +568,7 @@ class TXTRecord(txt_record.TXTRecord):
     """When the record tags were last modified. Omitted if there are no tags."""
 
 
-class URIRecord(uri_record.URIRecord):
+class URI(URIRecord):
     id: str
     """Identifier"""
 
@@ -592,26 +591,29 @@ class URIRecord(uri_record.URIRecord):
     """When the record tags were last modified. Omitted if there are no tags."""
 
 
-RecordResponse: TypeAlias = Union[
-    ARecord,
-    AAAARecord,
-    CAARecord,
-    CERTRecord,
-    CNAMERecord,
-    DNSKEYRecord,
-    DSRecord,
-    HTTPSRecord,
-    LOCRecord,
-    MXRecord,
-    NAPTRRecord,
-    NSRecord,
-    Openpgpkey,
-    PTRRecord,
-    SMIMEARecord,
-    SRVRecord,
-    SSHFPRecord,
-    SVCBRecord,
-    TLSARecord,
-    TXTRecord,
-    URIRecord,
+RecordResponse: TypeAlias = Annotated[
+    Union[
+        A,
+        AAAA,
+        CAA,
+        CERT,
+        CNAME,
+        DNSKEY,
+        DS,
+        HTTPS,
+        LOC,
+        MX,
+        NAPTR,
+        NS,
+        Openpgpkey,
+        PTR,
+        SMIMEA,
+        SRV,
+        SSHFP,
+        SVCB,
+        TLSA,
+        TXT,
+        URI,
+    ],
+    PropertyInfo(discriminator="type"),
 ]

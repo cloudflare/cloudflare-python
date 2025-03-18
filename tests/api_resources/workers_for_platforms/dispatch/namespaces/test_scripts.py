@@ -43,6 +43,7 @@ class TestScripts:
                     "config": {
                         "html_handling": "auto-trailing-slash",
                         "not_found_handling": "none",
+                        "run_worker_first": False,
                         "serve_directly": True,
                     },
                     "jwt": "jwt",
@@ -50,7 +51,7 @@ class TestScripts:
                 "bindings": [
                     {
                         "name": "MY_ENV_VAR",
-                        "type": "plain_text",
+                        "type": "ai",
                     }
                 ],
                 "body_part": "worker.js",
@@ -314,6 +315,7 @@ class TestAsyncScripts:
                     "config": {
                         "html_handling": "auto-trailing-slash",
                         "not_found_handling": "none",
+                        "run_worker_first": False,
                         "serve_directly": True,
                     },
                     "jwt": "jwt",
@@ -321,7 +323,7 @@ class TestAsyncScripts:
                 "bindings": [
                     {
                         "name": "MY_ENV_VAR",
-                        "type": "plain_text",
+                        "type": "ai",
                     }
                 ],
                 "body_part": "worker.js",

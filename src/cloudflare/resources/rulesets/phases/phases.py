@@ -45,7 +45,7 @@ class PhasesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> PhasesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -65,11 +65,11 @@ class PhasesResource(SyncAPIResource):
         self,
         ruleset_phase: Phase,
         *,
-        rules: Iterable[phase_update_params.Rule],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        rules: Iterable[phase_update_params.Rule] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -83,8 +83,6 @@ class PhasesResource(SyncAPIResource):
         Args:
           ruleset_phase: The phase of the ruleset.
 
-          rules: The list of rules in the ruleset.
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
@@ -92,6 +90,8 @@ class PhasesResource(SyncAPIResource):
           description: An informative description of the ruleset.
 
           name: The human-readable name of the ruleset.
+
+          rules: The list of rules in the ruleset.
 
           extra_headers: Send extra headers
 
@@ -119,9 +119,9 @@ class PhasesResource(SyncAPIResource):
             f"/{account_or_zone}/{account_or_zone_id}/rulesets/phases/{ruleset_phase}/entrypoint",
             body=maybe_transform(
                 {
-                    "rules": rules,
                     "description": description,
                     "name": name,
+                    "rules": rules,
                 },
                 phase_update_params.PhaseUpdateParams,
             ),
@@ -202,7 +202,7 @@ class AsyncPhasesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncPhasesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -222,11 +222,11 @@ class AsyncPhasesResource(AsyncAPIResource):
         self,
         ruleset_phase: Phase,
         *,
-        rules: Iterable[phase_update_params.Rule],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        rules: Iterable[phase_update_params.Rule] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -240,8 +240,6 @@ class AsyncPhasesResource(AsyncAPIResource):
         Args:
           ruleset_phase: The phase of the ruleset.
 
-          rules: The list of rules in the ruleset.
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
@@ -249,6 +247,8 @@ class AsyncPhasesResource(AsyncAPIResource):
           description: An informative description of the ruleset.
 
           name: The human-readable name of the ruleset.
+
+          rules: The list of rules in the ruleset.
 
           extra_headers: Send extra headers
 
@@ -276,9 +276,9 @@ class AsyncPhasesResource(AsyncAPIResource):
             f"/{account_or_zone}/{account_or_zone_id}/rulesets/phases/{ruleset_phase}/entrypoint",
             body=await async_maybe_transform(
                 {
-                    "rules": rules,
                     "description": description,
                     "name": name,
+                    "rules": rules,
                 },
                 phase_update_params.PhaseUpdateParams,
             ),

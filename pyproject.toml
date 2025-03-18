@@ -1,6 +1,6 @@
 [project]
 name = "cloudflare"
-version = "4.0.0"
+version = "4.1.0"
 description = "The official Python library for the cloudflare API"
 dynamic = ["readme"]
 license = "Apache-2.0"
@@ -38,7 +38,6 @@ Homepage = "https://github.com/cloudflare/cloudflare-python"
 Repository = "https://github.com/cloudflare/cloudflare-python"
 
 
-
 [tool.rye]
 managed = true
 # version pins are in requirements-dev.lock
@@ -54,6 +53,7 @@ dev-dependencies = [
     "dirty-equals>=0.6.0",
     "importlib-metadata>=6.7.0",
     "rich>=13.7.1",
+    "nest_asyncio==1.6.0",
 ]
 
 [tool.rye.scripts]
@@ -86,7 +86,7 @@ typecheck = { chain = [
 "typecheck:mypy" = "mypy ."
 
 [build-system]
-requires = ["hatchling", "hatch-fancy-pypi-readme"]
+requires = ["hatchling==1.26.3", "hatch-fancy-pypi-readme"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build]
@@ -128,6 +128,7 @@ testpaths = ["tests"]
 addopts = "--tb=short"
 xfail_strict = true
 asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "session"
 filterwarnings = [
   "error"
 ]
@@ -176,7 +177,7 @@ select = [
   "T201",
   "T203",
   # misuse of typing.TYPE_CHECKING
-  "TCH004",
+  "TC004",
   # import rules
   "TID251",
 ]

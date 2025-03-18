@@ -30,7 +30,7 @@ class TestDNSFirewall:
         dns_firewall = client.dns_firewall.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="My Awesome DNS Firewall cluster",
-            upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
+            upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
         )
         assert_matches_type(Optional[DNSFirewallCreateResponse], dns_firewall, path=["response"])
 
@@ -40,7 +40,7 @@ class TestDNSFirewall:
         dns_firewall = client.dns_firewall.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="My Awesome DNS Firewall cluster",
-            upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
+            upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
             attack_mitigation={
                 "enabled": True,
                 "only_when_upstream_unhealthy": False,
@@ -61,7 +61,7 @@ class TestDNSFirewall:
         response = client.dns_firewall.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="My Awesome DNS Firewall cluster",
-            upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
+            upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
         )
 
         assert response.is_closed is True
@@ -75,7 +75,7 @@ class TestDNSFirewall:
         with client.dns_firewall.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="My Awesome DNS Firewall cluster",
-            upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
+            upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -92,7 +92,7 @@ class TestDNSFirewall:
             client.dns_firewall.with_raw_response.create(
                 account_id="",
                 name="My Awesome DNS Firewall cluster",
-                upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
+                upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
             )
 
     @parametrize
@@ -217,7 +217,7 @@ class TestDNSFirewall:
             negative_cache_ttl=900,
             ratelimit=600,
             retries=2,
-            upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
+            upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
         )
         assert_matches_type(Optional[DNSFirewallEditResponse], dns_firewall, path=["response"])
 
@@ -322,7 +322,7 @@ class TestAsyncDNSFirewall:
         dns_firewall = await async_client.dns_firewall.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="My Awesome DNS Firewall cluster",
-            upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
+            upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
         )
         assert_matches_type(Optional[DNSFirewallCreateResponse], dns_firewall, path=["response"])
 
@@ -332,7 +332,7 @@ class TestAsyncDNSFirewall:
         dns_firewall = await async_client.dns_firewall.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="My Awesome DNS Firewall cluster",
-            upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
+            upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
             attack_mitigation={
                 "enabled": True,
                 "only_when_upstream_unhealthy": False,
@@ -353,7 +353,7 @@ class TestAsyncDNSFirewall:
         response = await async_client.dns_firewall.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="My Awesome DNS Firewall cluster",
-            upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
+            upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
         )
 
         assert response.is_closed is True
@@ -367,7 +367,7 @@ class TestAsyncDNSFirewall:
         async with async_client.dns_firewall.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="My Awesome DNS Firewall cluster",
-            upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
+            upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -384,7 +384,7 @@ class TestAsyncDNSFirewall:
             await async_client.dns_firewall.with_raw_response.create(
                 account_id="",
                 name="My Awesome DNS Firewall cluster",
-                upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
+                upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
             )
 
     @parametrize
@@ -509,7 +509,7 @@ class TestAsyncDNSFirewall:
             negative_cache_ttl=900,
             ratelimit=600,
             retries=2,
-            upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
+            upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
         )
         assert_matches_type(Optional[DNSFirewallEditResponse], dns_firewall, path=["response"])
 

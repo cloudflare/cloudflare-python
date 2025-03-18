@@ -5,6 +5,7 @@ from __future__ import annotations
 from .log_edit_params import LogEditParams as LogEditParams
 from .log_list_params import LogListParams as LogListParams
 from .log_get_response import LogGetResponse as LogGetResponse
+from .url_get_response import URLGetResponse as URLGetResponse
 from .log_delete_params import LogDeleteParams as LogDeleteParams
 from .log_list_response import LogListResponse as LogListResponse
 from .dataset_list_params import DatasetListParams as DatasetListParams
@@ -30,5 +31,5 @@ from .ai_gateway_delete_response import AIGatewayDeleteResponse as AIGatewayDele
 from .ai_gateway_update_response import AIGatewayUpdateResponse as AIGatewayUpdateResponse
 from .evaluation_create_response import EvaluationCreateResponse as EvaluationCreateResponse
 from .evaluation_delete_response import EvaluationDeleteResponse as EvaluationDeleteResponse
-from .evaluation_type_get_params import EvaluationTypeGetParams as EvaluationTypeGetParams
-from .evaluation_type_get_response import EvaluationTypeGetResponse as EvaluationTypeGetResponse
+from .evaluation_type_list_params import EvaluationTypeListParams as EvaluationTypeListParams
+from .evaluation_type_list_response import EvaluationTypeListResponse as EvaluationTypeListResponse

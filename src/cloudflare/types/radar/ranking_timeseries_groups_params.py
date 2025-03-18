@@ -16,29 +16,33 @@ class RankingTimeseriesGroupsParams(TypedDict, total=False):
     """End of the date range (inclusive)."""
 
     date_range: Annotated[List[str], PropertyInfo(alias="dateRange")]
-    """
-    For example, use `7d` and `7dControl` to compare this week with the previous
+    """Filters results by the specified date range.
+
+    For example, use `7d` and `7dcontrol` to compare this week with the previous
     week. Use this parameter or set specific start and end dates (`dateStart` and
     `dateEnd` parameters).
     """
 
     date_start: Annotated[List[Union[str, datetime]], PropertyInfo(alias="dateStart", format="iso8601")]
-    """Array of datetimes to filter the start of a series."""
+    """Start of the date range."""
+
+    domain_category: Annotated[List[str], PropertyInfo(alias="domainCategory")]
+    """Filters results by domain category."""
 
     domains: List[str]
-    """Array of comma separated list of domains names."""
+    """Comma-separated list of domain names."""
 
     format: Literal["JSON", "CSV"]
-    """Format results are returned in."""
+    """Format in which results will be returned."""
 
     limit: int
-    """Limit the number of objects in the response."""
+    """Limits the number of objects returned in the response."""
 
     location: List[str]
-    """Array of locations (alpha-2 country codes)."""
+    """Comma-separated list of locations (alpha-2 codes)."""
 
     name: List[str]
-    """Array of names that will be used to name the series in responses."""
+    """Array of names used to label the series in the response."""
 
     ranking_type: Annotated[Literal["POPULAR", "TRENDING_RISE", "TRENDING_STEADY"], PropertyInfo(alias="rankingType")]
-    """The ranking type."""
+    """Ranking type."""

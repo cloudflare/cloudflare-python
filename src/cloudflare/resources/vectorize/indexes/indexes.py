@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
     maybe_transform,
     async_maybe_transform,
@@ -58,7 +58,7 @@ class IndexesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> IndexesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -392,7 +392,7 @@ class IndexesResource(SyncAPIResource):
         index_name: str,
         *,
         account_id: str,
-        body: FileTypes,
+        body: str,
         unparsable_behavior: Literal["error", "discard"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -513,7 +513,7 @@ class IndexesResource(SyncAPIResource):
         index_name: str,
         *,
         account_id: str,
-        body: FileTypes,
+        body: str,
         unparsable_behavior: Literal["error", "discard"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -570,7 +570,7 @@ class AsyncIndexesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncIndexesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -904,7 +904,7 @@ class AsyncIndexesResource(AsyncAPIResource):
         index_name: str,
         *,
         account_id: str,
-        body: FileTypes,
+        body: str,
         unparsable_behavior: Literal["error", "discard"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1025,7 +1025,7 @@ class AsyncIndexesResource(AsyncAPIResource):
         index_name: str,
         *,
         account_id: str,
-        body: FileTypes,
+        body: str,
         unparsable_behavior: Literal["error", "discard"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

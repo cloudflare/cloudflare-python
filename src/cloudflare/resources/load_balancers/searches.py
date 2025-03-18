@@ -2,15 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
-
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ..._utils import maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -19,10 +14,10 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._wrappers import ResultWrapper
-from ..._base_client import make_request_options
-from ...types.load_balancers import search_get_params
-from ...types.load_balancers.search_get_response import SearchGetResponse
+from ...pagination import SyncV4PagePagination, AsyncV4PagePagination
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.load_balancers import search_list_params
+from ...types.load_balancers.search_list_response import SearchListResponse
 
 __all__ = ["SearchesResource", "AsyncSearchesResource"]
 
@@ -31,7 +26,7 @@ class SearchesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> SearchesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -47,20 +42,20 @@ class SearchesResource(SyncAPIResource):
         """
         return SearchesResourceWithStreamingResponse(self)
 
-    def get(
+    def list(
         self,
         *,
         account_id: str,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
-        search_params: search_get_params.SearchParams | NotGiven = NOT_GIVEN,
+        search_params: search_list_params.SearchParams | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SearchGetResponse:
+    ) -> SyncV4PagePagination[SearchListResponse]:
         """
         Search for Load Balancing resources.
 
@@ -77,8 +72,9 @@ class SearchesResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/load_balancers/search",
+            page=SyncV4PagePagination[SearchListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -90,11 +86,10 @@ class SearchesResource(SyncAPIResource):
                         "per_page": per_page,
                         "search_params": search_params,
                     },
-                    search_get_params.SearchGetParams,
+                    search_list_params.SearchListParams,
                 ),
-                post_parser=ResultWrapper[SearchGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[SearchGetResponse], ResultWrapper[SearchGetResponse]),
+            model=SearchListResponse,
         )
 
 
@@ -102,7 +97,7 @@ class AsyncSearchesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncSearchesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -118,20 +113,20 @@ class AsyncSearchesResource(AsyncAPIResource):
         """
         return AsyncSearchesResourceWithStreamingResponse(self)
 
-    async def get(
+    def list(
         self,
         *,
         account_id: str,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
-        search_params: search_get_params.SearchParams | NotGiven = NOT_GIVEN,
+        search_params: search_list_params.SearchParams | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SearchGetResponse:
+    ) -> AsyncPaginator[SearchListResponse, AsyncV4PagePagination[SearchListResponse]]:
         """
         Search for Load Balancing resources.
 
@@ -148,24 +143,24 @@ class AsyncSearchesResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/load_balancers/search",
+            page=AsyncV4PagePagination[SearchListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "page": page,
                         "per_page": per_page,
                         "search_params": search_params,
                     },
-                    search_get_params.SearchGetParams,
+                    search_list_params.SearchListParams,
                 ),
-                post_parser=ResultWrapper[SearchGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[SearchGetResponse], ResultWrapper[SearchGetResponse]),
+            model=SearchListResponse,
         )
 
 
@@ -173,8 +168,8 @@ class SearchesResourceWithRawResponse:
     def __init__(self, searches: SearchesResource) -> None:
         self._searches = searches
 
-        self.get = to_raw_response_wrapper(
-            searches.get,
+        self.list = to_raw_response_wrapper(
+            searches.list,
         )
 
 
@@ -182,8 +177,8 @@ class AsyncSearchesResourceWithRawResponse:
     def __init__(self, searches: AsyncSearchesResource) -> None:
         self._searches = searches
 
-        self.get = async_to_raw_response_wrapper(
-            searches.get,
+        self.list = async_to_raw_response_wrapper(
+            searches.list,
         )
 
 
@@ -191,8 +186,8 @@ class SearchesResourceWithStreamingResponse:
     def __init__(self, searches: SearchesResource) -> None:
         self._searches = searches
 
-        self.get = to_streamed_response_wrapper(
-            searches.get,
+        self.list = to_streamed_response_wrapper(
+            searches.list,
         )
 
 
@@ -200,6 +195,6 @@ class AsyncSearchesResourceWithStreamingResponse:
     def __init__(self, searches: AsyncSearchesResource) -> None:
         self._searches = searches
 
-        self.get = async_to_streamed_response_wrapper(
-            searches.get,
+        self.list = async_to_streamed_response_wrapper(
+            searches.list,
         )

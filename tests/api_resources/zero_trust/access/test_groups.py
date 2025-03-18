@@ -11,8 +11,11 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.zero_trust.access import (
-    ZeroTrustGroup,
+    GroupGetResponse,
+    GroupListResponse,
+    GroupCreateResponse,
     GroupDeleteResponse,
+    GroupUpdateResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -29,7 +32,7 @@ class TestGroups:
             name="Allow devs",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
+        assert_matches_type(Optional[GroupCreateResponse], group, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -42,7 +45,7 @@ class TestGroups:
             is_default=True,
             require=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
         )
-        assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
+        assert_matches_type(Optional[GroupCreateResponse], group, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -56,7 +59,7 @@ class TestGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         group = response.parse()
-        assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
+        assert_matches_type(Optional[GroupCreateResponse], group, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -70,21 +73,21 @@ class TestGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             group = response.parse()
-            assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
+            assert_matches_type(Optional[GroupCreateResponse], group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.groups.with_raw_response.create(
                 include=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
                 name="Allow devs",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.groups.with_raw_response.create(
                 include=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
                 name="Allow devs",
@@ -100,7 +103,7 @@ class TestGroups:
             name="Allow devs",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
+        assert_matches_type(Optional[GroupUpdateResponse], group, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -114,7 +117,7 @@ class TestGroups:
             is_default=True,
             require=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
         )
-        assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
+        assert_matches_type(Optional[GroupUpdateResponse], group, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -129,7 +132,7 @@ class TestGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         group = response.parse()
-        assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
+        assert_matches_type(Optional[GroupUpdateResponse], group, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -144,7 +147,7 @@ class TestGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             group = response.parse()
-            assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
+            assert_matches_type(Optional[GroupUpdateResponse], group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -159,7 +162,7 @@ class TestGroups:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.groups.with_raw_response.update(
                 group_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 include=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
@@ -167,7 +170,7 @@ class TestGroups:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.groups.with_raw_response.update(
                 group_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 include=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
@@ -181,7 +184,7 @@ class TestGroups:
         group = client.zero_trust.access.groups.list(
             account_id="account_id",
         )
-        assert_matches_type(SyncSinglePage[ZeroTrustGroup], group, path=["response"])
+        assert_matches_type(SyncSinglePage[GroupListResponse], group, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -191,7 +194,7 @@ class TestGroups:
             name="name",
             search="search",
         )
-        assert_matches_type(SyncSinglePage[ZeroTrustGroup], group, path=["response"])
+        assert_matches_type(SyncSinglePage[GroupListResponse], group, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -203,7 +206,7 @@ class TestGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         group = response.parse()
-        assert_matches_type(SyncSinglePage[ZeroTrustGroup], group, path=["response"])
+        assert_matches_type(SyncSinglePage[GroupListResponse], group, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -215,19 +218,19 @@ class TestGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             group = response.parse()
-            assert_matches_type(SyncSinglePage[ZeroTrustGroup], group, path=["response"])
+            assert_matches_type(SyncSinglePage[GroupListResponse], group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.groups.with_raw_response.list(
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.groups.with_raw_response.list(
                 account_id="account_id",
             )
@@ -287,13 +290,13 @@ class TestGroups:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.groups.with_raw_response.delete(
                 group_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.groups.with_raw_response.delete(
                 group_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="account_id",
@@ -306,7 +309,7 @@ class TestGroups:
             group_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
+        assert_matches_type(Optional[GroupGetResponse], group, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -315,7 +318,7 @@ class TestGroups:
             group_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
+        assert_matches_type(Optional[GroupGetResponse], group, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -328,7 +331,7 @@ class TestGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         group = response.parse()
-        assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
+        assert_matches_type(Optional[GroupGetResponse], group, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -341,7 +344,7 @@ class TestGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             group = response.parse()
-            assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
+            assert_matches_type(Optional[GroupGetResponse], group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -354,13 +357,13 @@ class TestGroups:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.groups.with_raw_response.get(
                 group_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.groups.with_raw_response.get(
                 group_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="account_id",
@@ -378,7 +381,7 @@ class TestAsyncGroups:
             name="Allow devs",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
+        assert_matches_type(Optional[GroupCreateResponse], group, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -391,7 +394,7 @@ class TestAsyncGroups:
             is_default=True,
             require=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
         )
-        assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
+        assert_matches_type(Optional[GroupCreateResponse], group, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -405,7 +408,7 @@ class TestAsyncGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         group = await response.parse()
-        assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
+        assert_matches_type(Optional[GroupCreateResponse], group, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -419,21 +422,21 @@ class TestAsyncGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             group = await response.parse()
-            assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
+            assert_matches_type(Optional[GroupCreateResponse], group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.groups.with_raw_response.create(
                 include=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
                 name="Allow devs",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.groups.with_raw_response.create(
                 include=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
                 name="Allow devs",
@@ -449,7 +452,7 @@ class TestAsyncGroups:
             name="Allow devs",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
+        assert_matches_type(Optional[GroupUpdateResponse], group, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -463,7 +466,7 @@ class TestAsyncGroups:
             is_default=True,
             require=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
         )
-        assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
+        assert_matches_type(Optional[GroupUpdateResponse], group, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -478,7 +481,7 @@ class TestAsyncGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         group = await response.parse()
-        assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
+        assert_matches_type(Optional[GroupUpdateResponse], group, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -493,7 +496,7 @@ class TestAsyncGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             group = await response.parse()
-            assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
+            assert_matches_type(Optional[GroupUpdateResponse], group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -508,7 +511,7 @@ class TestAsyncGroups:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.groups.with_raw_response.update(
                 group_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 include=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
@@ -516,7 +519,7 @@ class TestAsyncGroups:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.groups.with_raw_response.update(
                 group_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 include=[{"group": {"id": "aa0a4aab-672b-4bdb-bc33-a59f1130a11f"}}],
@@ -530,7 +533,7 @@ class TestAsyncGroups:
         group = await async_client.zero_trust.access.groups.list(
             account_id="account_id",
         )
-        assert_matches_type(AsyncSinglePage[ZeroTrustGroup], group, path=["response"])
+        assert_matches_type(AsyncSinglePage[GroupListResponse], group, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -540,7 +543,7 @@ class TestAsyncGroups:
             name="name",
             search="search",
         )
-        assert_matches_type(AsyncSinglePage[ZeroTrustGroup], group, path=["response"])
+        assert_matches_type(AsyncSinglePage[GroupListResponse], group, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -552,7 +555,7 @@ class TestAsyncGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         group = await response.parse()
-        assert_matches_type(AsyncSinglePage[ZeroTrustGroup], group, path=["response"])
+        assert_matches_type(AsyncSinglePage[GroupListResponse], group, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -564,19 +567,19 @@ class TestAsyncGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             group = await response.parse()
-            assert_matches_type(AsyncSinglePage[ZeroTrustGroup], group, path=["response"])
+            assert_matches_type(AsyncSinglePage[GroupListResponse], group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.groups.with_raw_response.list(
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.groups.with_raw_response.list(
                 account_id="account_id",
             )
@@ -636,13 +639,13 @@ class TestAsyncGroups:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.groups.with_raw_response.delete(
                 group_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.groups.with_raw_response.delete(
                 group_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="account_id",
@@ -655,7 +658,7 @@ class TestAsyncGroups:
             group_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
+        assert_matches_type(Optional[GroupGetResponse], group, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -664,7 +667,7 @@ class TestAsyncGroups:
             group_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
+        assert_matches_type(Optional[GroupGetResponse], group, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -677,7 +680,7 @@ class TestAsyncGroups:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         group = await response.parse()
-        assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
+        assert_matches_type(Optional[GroupGetResponse], group, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -690,7 +693,7 @@ class TestAsyncGroups:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             group = await response.parse()
-            assert_matches_type(Optional[ZeroTrustGroup], group, path=["response"])
+            assert_matches_type(Optional[GroupGetResponse], group, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -703,13 +706,13 @@ class TestAsyncGroups:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.groups.with_raw_response.get(
                 group_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.groups.with_raw_response.get(
                 group_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="account_id",

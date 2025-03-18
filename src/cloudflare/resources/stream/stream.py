@@ -192,7 +192,7 @@ class StreamResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> StreamResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -215,6 +215,7 @@ class StreamResource(SyncAPIResource):
         body: object,
         tus_resumable: Literal["1.0.0"],
         upload_length: int,
+        direct_user: bool | NotGiven = NOT_GIVEN,
         upload_creator: str | NotGiven = NOT_GIVEN,
         upload_metadata: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -239,6 +240,9 @@ class StreamResource(SyncAPIResource):
 
           upload_length: Indicates the size of the entire upload in bytes. The value must be a
               non-negative integer.
+
+          direct_user: Provisions a URL to let your end users upload videos directly to Cloudflare
+              Stream without exposing your API token to clients.
 
           upload_creator: A user-defined identifier for the media creator.
 
@@ -272,7 +276,11 @@ class StreamResource(SyncAPIResource):
             f"/accounts/{account_id}/stream",
             body=maybe_transform(body, stream_create_params.StreamCreateParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"direct_user": direct_user}, stream_create_params.StreamCreateParams),
             ),
             cast_to=NoneType,
         )
@@ -594,7 +602,7 @@ class AsyncStreamResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncStreamResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -617,6 +625,7 @@ class AsyncStreamResource(AsyncAPIResource):
         body: object,
         tus_resumable: Literal["1.0.0"],
         upload_length: int,
+        direct_user: bool | NotGiven = NOT_GIVEN,
         upload_creator: str | NotGiven = NOT_GIVEN,
         upload_metadata: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -641,6 +650,9 @@ class AsyncStreamResource(AsyncAPIResource):
 
           upload_length: Indicates the size of the entire upload in bytes. The value must be a
               non-negative integer.
+
+          direct_user: Provisions a URL to let your end users upload videos directly to Cloudflare
+              Stream without exposing your API token to clients.
 
           upload_creator: A user-defined identifier for the media creator.
 
@@ -674,7 +686,13 @@ class AsyncStreamResource(AsyncAPIResource):
             f"/accounts/{account_id}/stream",
             body=await async_maybe_transform(body, stream_create_params.StreamCreateParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"direct_user": direct_user}, stream_create_params.StreamCreateParams
+                ),
             ),
             cast_to=NoneType,
         )

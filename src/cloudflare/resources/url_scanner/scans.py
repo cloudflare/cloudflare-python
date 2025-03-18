@@ -44,7 +44,7 @@ class ScansResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ScansResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -144,15 +144,13 @@ class ScansResource(SyncAPIResource):
         """Use a subset of ElasticSearch Query syntax to filter scans.
 
         Some example
-        queries:<br/> <br/>- 'page.domain:microsoft AND verdicts.malicious:true AND NOT
+        queries:<br/> <br/>- 'path:"/bundles/jquery.js"': Searches for scans who
+        requested resources with the given path.<br/>- 'page.asn:AS24940 AND hash:xxx':
+        Websites hosted in AS24940 where a resource with the given hash was
+        downloaded.<br/>- 'page.domain:microsoft\\** AND verdicts.malicious:true AND NOT
         page.domain:microsoft.com': malicious scans whose hostname starts with
-        "microsoft".<br/>- 'apikey:me AND date:[2024-01 TO 2024-10]': my scans from 2024
-        January to 2024 October.<br/>- 'page.domain:(blogspot OR www.blogspot)':
-        Searches for scans whose main domain starts with "blogspot" or with
-        "www.blogspot"<br/>- 'date:>now-7d AND path:okta-sign-in.min.js: scans from the
-        last 7 days with any request path that ends with "okta-sign-in.min.js"<br/>-
-        'page.asn:AS24940 AND hash:xxx': Websites hosted in AS24940 where a resource
-        with the given hash was downloaded.
+        "microsoft".<br/>- 'apikey:me AND date:[2025-01 TO 2025-02]': my scans from 2025
+        January to 2025 February.
 
         Args:
           account_id: Account ID.
@@ -193,7 +191,7 @@ class ScansResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        body: Iterable[scan_bulk_create_params.Body],
+        body: Iterable[scan_bulk_create_params.Body] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -409,7 +407,7 @@ class AsyncScansResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncScansResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -509,15 +507,13 @@ class AsyncScansResource(AsyncAPIResource):
         """Use a subset of ElasticSearch Query syntax to filter scans.
 
         Some example
-        queries:<br/> <br/>- 'page.domain:microsoft AND verdicts.malicious:true AND NOT
+        queries:<br/> <br/>- 'path:"/bundles/jquery.js"': Searches for scans who
+        requested resources with the given path.<br/>- 'page.asn:AS24940 AND hash:xxx':
+        Websites hosted in AS24940 where a resource with the given hash was
+        downloaded.<br/>- 'page.domain:microsoft\\** AND verdicts.malicious:true AND NOT
         page.domain:microsoft.com': malicious scans whose hostname starts with
-        "microsoft".<br/>- 'apikey:me AND date:[2024-01 TO 2024-10]': my scans from 2024
-        January to 2024 October.<br/>- 'page.domain:(blogspot OR www.blogspot)':
-        Searches for scans whose main domain starts with "blogspot" or with
-        "www.blogspot"<br/>- 'date:>now-7d AND path:okta-sign-in.min.js: scans from the
-        last 7 days with any request path that ends with "okta-sign-in.min.js"<br/>-
-        'page.asn:AS24940 AND hash:xxx': Websites hosted in AS24940 where a resource
-        with the given hash was downloaded.
+        "microsoft".<br/>- 'apikey:me AND date:[2025-01 TO 2025-02]': my scans from 2025
+        January to 2025 February.
 
         Args:
           account_id: Account ID.
@@ -558,7 +554,7 @@ class AsyncScansResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        body: Iterable[scan_bulk_create_params.Body],
+        body: Iterable[scan_bulk_create_params.Body] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

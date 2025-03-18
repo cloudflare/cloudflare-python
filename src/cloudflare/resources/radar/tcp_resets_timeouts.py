@@ -34,7 +34,7 @@ class TCPResetsTimeoutsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> TCPResetsTimeoutsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -69,33 +69,33 @@ class TCPResetsTimeoutsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TCPResetsTimeoutSummaryResponse:
         """
-        Percentage distribution by connection stage of TCP connections terminated within
-        the first 10 packets by a reset or timeout, for a given time period.
+        Retrieves the distribution of connection stage by TCP connections terminated
+        within the first 10 packets by a reset or timeout.
 
         Args:
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
+          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
+              exclude ASNs from results. For example, `-174, 3356` excludes results from
+              AS174, but includes results from AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
+          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
+              exclude continents from results. For example, `-EU,NA` excludes results from EU,
+              but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
+          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
+              locations from results. For example, `-US,PT` excludes results from the US, but
+              includes results from PT.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
           extra_headers: Send extra headers
 
@@ -150,37 +150,37 @@ class TCPResetsTimeoutsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TCPResetsTimeoutTimeseriesGroupsResponse:
         """
-        Percentage distribution by connection stage of TCP connections terminated within
-        the first 10 packets by a reset or timeout, over time.
+        Retrieves the distribution of connection stage by TCP connections terminated
+        within the first 10 packets by a reset or timeout over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
+          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
+              exclude ASNs from results. For example, `-174, 3356` excludes results from
+              AS174, but includes results from AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
+          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
+              exclude continents from results. For example, `-EU,NA` excludes results from EU,
+              but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
+          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
+              locations from results. For example, `-US,PT` excludes results from the US, but
+              includes results from PT.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
           extra_headers: Send extra headers
 
@@ -223,7 +223,7 @@ class AsyncTCPResetsTimeoutsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncTCPResetsTimeoutsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -258,33 +258,33 @@ class AsyncTCPResetsTimeoutsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TCPResetsTimeoutSummaryResponse:
         """
-        Percentage distribution by connection stage of TCP connections terminated within
-        the first 10 packets by a reset or timeout, for a given time period.
+        Retrieves the distribution of connection stage by TCP connections terminated
+        within the first 10 packets by a reset or timeout.
 
         Args:
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
+          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
+              exclude ASNs from results. For example, `-174, 3356` excludes results from
+              AS174, but includes results from AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
+          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
+              exclude continents from results. For example, `-EU,NA` excludes results from EU,
+              but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
+          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
+              locations from results. For example, `-US,PT` excludes results from the US, but
+              includes results from PT.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
           extra_headers: Send extra headers
 
@@ -339,37 +339,37 @@ class AsyncTCPResetsTimeoutsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TCPResetsTimeoutTimeseriesGroupsResponse:
         """
-        Percentage distribution by connection stage of TCP connections terminated within
-        the first 10 packets by a reset or timeout, over time.
+        Retrieves the distribution of connection stage by TCP connections terminated
+        within the first 10 packets by a reset or timeout over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
+          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
+              exclude ASNs from results. For example, `-174, 3356` excludes results from
+              AS174, but includes results from AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
+          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
+              exclude continents from results. For example, `-EU,NA` excludes results from EU,
+              but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
+          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
+              locations from results. For example, `-US,PT` excludes results from the US, but
+              includes results from PT.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
           extra_headers: Send extra headers
 

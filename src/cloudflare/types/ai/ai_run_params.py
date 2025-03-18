@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Dict, List, Union, Iterable
-from typing_extensions import Required, TypeAlias, TypedDict
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 __all__ = [
     "AIRunParams",
@@ -15,9 +15,11 @@ __all__ = [
     "ImageClassification",
     "ObjectDetection",
     "Prompt",
+    "PromptResponseFormat",
     "Messages",
     "MessagesMessage",
     "MessagesFunction",
+    "MessagesResponseFormat",
     "MessagesTool",
     "MessagesToolUnionMember0",
     "MessagesToolUnionMember0Parameters",
@@ -177,6 +179,8 @@ class Prompt(TypedDict, total=False):
     repetition_penalty: float
     """Penalty for repeated tokens; higher values discourage repetition."""
 
+    response_format: PromptResponseFormat
+
     seed: int
     """Random seed for reproducibility of the generation."""
 
@@ -207,6 +211,12 @@ class Prompt(TypedDict, total=False):
     """
 
 
+class PromptResponseFormat(TypedDict, total=False):
+    json_schema: object
+
+    type: Literal["json_object", "json_schema"]
+
+
 class Messages(TypedDict, total=False):
     account_id: Required[str]
 
@@ -226,6 +236,8 @@ class Messages(TypedDict, total=False):
 
     repetition_penalty: float
     """Penalty for repeated tokens; higher values discourage repetition."""
+
+    response_format: MessagesResponseFormat
 
     seed: int
     """Random seed for reproducibility of the generation."""
@@ -269,6 +281,12 @@ class MessagesFunction(TypedDict, total=False):
     code: Required[str]
 
     name: Required[str]
+
+
+class MessagesResponseFormat(TypedDict, total=False):
+    json_schema: object
+
+    type: Literal["json_object", "json_schema"]
 
 
 class MessagesToolUnionMember0ParametersProperties(TypedDict, total=False):
@@ -377,8 +395,14 @@ class ImageToText(TypedDict, total=False):
     integer values
     """
 
+    frequency_penalty: float
+    """Decreases the likelihood of the model repeating the same lines verbatim."""
+
     max_tokens: int
     """The maximum number of tokens to generate in the response."""
+
+    presence_penalty: float
+    """Increases the likelihood of the model introducing new topics."""
 
     prompt: str
     """The input text prompt for the model to generate a response."""
@@ -389,10 +413,30 @@ class ImageToText(TypedDict, total=False):
     model's expected formatting.
     """
 
+    repetition_penalty: float
+    """Penalty for repeated tokens; higher values discourage repetition."""
+
+    seed: float
+    """Random seed for reproducibility of the generation."""
+
     temperature: float
     """
     Controls the randomness of the output; higher values produce more random
     results.
+    """
+
+    top_k: float
+    """Limits the AI to choose from the top 'k' most probable words.
+
+    Lower values make responses more focused; higher values introduce more variety
+    and potential surprises.
+    """
+
+    top_p: float
+    """
+    Controls the creativity of the AI's responses by adjusting how many possible
+    words it considers. Lower values make outputs more predictable; higher values
+    allow for more varied and creative responses.
     """
 
 

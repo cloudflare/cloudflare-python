@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, Iterable, Optional, cast
 
 import httpx
 
@@ -48,7 +48,7 @@ from .fallback_domains import (
 from ......_base_client import AsyncPaginator, make_request_options
 from ......types.zero_trust.devices.policies import custom_edit_params, custom_create_params
 from ......types.zero_trust.devices.settings_policy import SettingsPolicy
-from ......types.zero_trust.devices.policies.custom_delete_response import CustomDeleteResponse
+from ......types.zero_trust.devices.split_tunnel_exclude_param import SplitTunnelExcludeParam
 
 __all__ = ["CustomResource", "AsyncCustomResource"]
 
@@ -69,7 +69,7 @@ class CustomResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> CustomResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -100,9 +100,12 @@ class CustomResource(SyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         disable_auto_fallback: bool | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
+        exclude: Iterable[SplitTunnelExcludeParam] | NotGiven = NOT_GIVEN,
         exclude_office_ips: bool | NotGiven = NOT_GIVEN,
+        include: Iterable[SplitTunnelExcludeParam] | NotGiven = NOT_GIVEN,
         lan_allow_minutes: float | NotGiven = NOT_GIVEN,
         lan_allow_subnet_size: float | NotGiven = NOT_GIVEN,
+        register_interface_ip_with_dns: bool | NotGiven = NOT_GIVEN,
         service_mode_v2: custom_create_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
         support_url: str | NotGiven = NOT_GIVEN,
         switch_locked: bool | NotGiven = NOT_GIVEN,
@@ -133,7 +136,7 @@ class CustomResource(SyncAPIResource):
 
           allowed_to_leave: Whether to allow devices to leave the organization.
 
-          auto_connect: The amount of time in minutes to reconnect after having been disabled.
+          auto_connect: The amount of time in seconds to reconnect after having been disabled.
 
           captive_portal: Turn on the captive portal after the specified amount of time.
 
@@ -145,7 +148,13 @@ class CustomResource(SyncAPIResource):
 
           enabled: Whether the policy will be applied to matching devices.
 
+          exclude: List of routes excluded in the WARP client's tunnel. Both 'exclude' and
+              'include' cannot be set in the same request.
+
           exclude_office_ips: Whether to add Microsoft IPs to Split Tunnel exclusions.
+
+          include: List of routes included in the WARP client's tunnel. Both 'exclude' and
+              'include' cannot be set in the same request.
 
           lan_allow_minutes: The amount of time in minutes a user is allowed access to their LAN. A value of
               0 will allow LAN access until the next WARP reconnection, such as a reboot or a
@@ -154,6 +163,9 @@ class CustomResource(SyncAPIResource):
 
           lan_allow_subnet_size: The size of the subnet for the local access network. Note that this field is
               omitted from the response if null or unset.
+
+          register_interface_ip_with_dns: Determines if the operating system will register WARP's local interface IP with
+              your on-premises DNS server.
 
           support_url: The URL to launch when the Send Feedback button is clicked.
 
@@ -186,9 +198,12 @@ class CustomResource(SyncAPIResource):
                     "description": description,
                     "disable_auto_fallback": disable_auto_fallback,
                     "enabled": enabled,
+                    "exclude": exclude,
                     "exclude_office_ips": exclude_office_ips,
+                    "include": include,
                     "lan_allow_minutes": lan_allow_minutes,
                     "lan_allow_subnet_size": lan_allow_subnet_size,
+                    "register_interface_ip_with_dns": register_interface_ip_with_dns,
                     "service_mode_v2": service_mode_v2,
                     "support_url": support_url,
                     "switch_locked": switch_locked,
@@ -251,7 +266,7 @@ class CustomResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CustomDeleteResponse]:
+    ) -> SyncSinglePage[SettingsPolicy]:
         """
         Deletes a device settings profile and fetches a list of the remaining profiles
         for an account.
@@ -271,16 +286,14 @@ class CustomResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
-        return self._delete(
+        return self._get_api_list(
             f"/accounts/{account_id}/devices/policy/{policy_id}",
+            page=SyncSinglePage[SettingsPolicy],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[CustomDeleteResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[CustomDeleteResponse]], ResultWrapper[CustomDeleteResponse]),
+            model=SettingsPolicy,
+            method="delete",
         )
 
     def edit(
@@ -296,10 +309,13 @@ class CustomResource(SyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         disable_auto_fallback: bool | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
+        exclude: Iterable[SplitTunnelExcludeParam] | NotGiven = NOT_GIVEN,
         exclude_office_ips: bool | NotGiven = NOT_GIVEN,
+        include: Iterable[SplitTunnelExcludeParam] | NotGiven = NOT_GIVEN,
         match: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         precedence: float | NotGiven = NOT_GIVEN,
+        register_interface_ip_with_dns: bool | NotGiven = NOT_GIVEN,
         service_mode_v2: custom_edit_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
         support_url: str | NotGiven = NOT_GIVEN,
         switch_locked: bool | NotGiven = NOT_GIVEN,
@@ -324,7 +340,7 @@ class CustomResource(SyncAPIResource):
 
           allowed_to_leave: Whether to allow devices to leave the organization.
 
-          auto_connect: The amount of time in minutes to reconnect after having been disabled.
+          auto_connect: The amount of time in seconds to reconnect after having been disabled.
 
           captive_portal: Turn on the captive portal after the specified amount of time.
 
@@ -336,7 +352,13 @@ class CustomResource(SyncAPIResource):
 
           enabled: Whether the policy will be applied to matching devices.
 
+          exclude: List of routes excluded in the WARP client's tunnel. Both 'exclude' and
+              'include' cannot be set in the same request.
+
           exclude_office_ips: Whether to add Microsoft IPs to Split Tunnel exclusions.
+
+          include: List of routes included in the WARP client's tunnel. Both 'exclude' and
+              'include' cannot be set in the same request.
 
           match: The wirefilter expression to match devices.
 
@@ -344,6 +366,9 @@ class CustomResource(SyncAPIResource):
 
           precedence: The precedence of the policy. Lower values indicate higher precedence. Policies
               will be evaluated in ascending order of this field.
+
+          register_interface_ip_with_dns: Determines if the operating system will register WARP's local interface IP with
+              your on-premises DNS server.
 
           support_url: The URL to launch when the Send Feedback button is clicked.
 
@@ -375,10 +400,13 @@ class CustomResource(SyncAPIResource):
                     "description": description,
                     "disable_auto_fallback": disable_auto_fallback,
                     "enabled": enabled,
+                    "exclude": exclude,
                     "exclude_office_ips": exclude_office_ips,
+                    "include": include,
                     "match": match,
                     "name": name,
                     "precedence": precedence,
+                    "register_interface_ip_with_dns": register_interface_ip_with_dns,
                     "service_mode_v2": service_mode_v2,
                     "support_url": support_url,
                     "switch_locked": switch_locked,
@@ -455,7 +483,7 @@ class AsyncCustomResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncCustomResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -486,9 +514,12 @@ class AsyncCustomResource(AsyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         disable_auto_fallback: bool | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
+        exclude: Iterable[SplitTunnelExcludeParam] | NotGiven = NOT_GIVEN,
         exclude_office_ips: bool | NotGiven = NOT_GIVEN,
+        include: Iterable[SplitTunnelExcludeParam] | NotGiven = NOT_GIVEN,
         lan_allow_minutes: float | NotGiven = NOT_GIVEN,
         lan_allow_subnet_size: float | NotGiven = NOT_GIVEN,
+        register_interface_ip_with_dns: bool | NotGiven = NOT_GIVEN,
         service_mode_v2: custom_create_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
         support_url: str | NotGiven = NOT_GIVEN,
         switch_locked: bool | NotGiven = NOT_GIVEN,
@@ -519,7 +550,7 @@ class AsyncCustomResource(AsyncAPIResource):
 
           allowed_to_leave: Whether to allow devices to leave the organization.
 
-          auto_connect: The amount of time in minutes to reconnect after having been disabled.
+          auto_connect: The amount of time in seconds to reconnect after having been disabled.
 
           captive_portal: Turn on the captive portal after the specified amount of time.
 
@@ -531,7 +562,13 @@ class AsyncCustomResource(AsyncAPIResource):
 
           enabled: Whether the policy will be applied to matching devices.
 
+          exclude: List of routes excluded in the WARP client's tunnel. Both 'exclude' and
+              'include' cannot be set in the same request.
+
           exclude_office_ips: Whether to add Microsoft IPs to Split Tunnel exclusions.
+
+          include: List of routes included in the WARP client's tunnel. Both 'exclude' and
+              'include' cannot be set in the same request.
 
           lan_allow_minutes: The amount of time in minutes a user is allowed access to their LAN. A value of
               0 will allow LAN access until the next WARP reconnection, such as a reboot or a
@@ -540,6 +577,9 @@ class AsyncCustomResource(AsyncAPIResource):
 
           lan_allow_subnet_size: The size of the subnet for the local access network. Note that this field is
               omitted from the response if null or unset.
+
+          register_interface_ip_with_dns: Determines if the operating system will register WARP's local interface IP with
+              your on-premises DNS server.
 
           support_url: The URL to launch when the Send Feedback button is clicked.
 
@@ -572,9 +612,12 @@ class AsyncCustomResource(AsyncAPIResource):
                     "description": description,
                     "disable_auto_fallback": disable_auto_fallback,
                     "enabled": enabled,
+                    "exclude": exclude,
                     "exclude_office_ips": exclude_office_ips,
+                    "include": include,
                     "lan_allow_minutes": lan_allow_minutes,
                     "lan_allow_subnet_size": lan_allow_subnet_size,
+                    "register_interface_ip_with_dns": register_interface_ip_with_dns,
                     "service_mode_v2": service_mode_v2,
                     "support_url": support_url,
                     "switch_locked": switch_locked,
@@ -626,7 +669,7 @@ class AsyncCustomResource(AsyncAPIResource):
             model=SettingsPolicy,
         )
 
-    async def delete(
+    def delete(
         self,
         policy_id: str,
         *,
@@ -637,7 +680,7 @@ class AsyncCustomResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CustomDeleteResponse]:
+    ) -> AsyncPaginator[SettingsPolicy, AsyncSinglePage[SettingsPolicy]]:
         """
         Deletes a device settings profile and fetches a list of the remaining profiles
         for an account.
@@ -657,16 +700,14 @@ class AsyncCustomResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
-        return await self._delete(
+        return self._get_api_list(
             f"/accounts/{account_id}/devices/policy/{policy_id}",
+            page=AsyncSinglePage[SettingsPolicy],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[CustomDeleteResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[CustomDeleteResponse]], ResultWrapper[CustomDeleteResponse]),
+            model=SettingsPolicy,
+            method="delete",
         )
 
     async def edit(
@@ -682,10 +723,13 @@ class AsyncCustomResource(AsyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         disable_auto_fallback: bool | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
+        exclude: Iterable[SplitTunnelExcludeParam] | NotGiven = NOT_GIVEN,
         exclude_office_ips: bool | NotGiven = NOT_GIVEN,
+        include: Iterable[SplitTunnelExcludeParam] | NotGiven = NOT_GIVEN,
         match: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         precedence: float | NotGiven = NOT_GIVEN,
+        register_interface_ip_with_dns: bool | NotGiven = NOT_GIVEN,
         service_mode_v2: custom_edit_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
         support_url: str | NotGiven = NOT_GIVEN,
         switch_locked: bool | NotGiven = NOT_GIVEN,
@@ -710,7 +754,7 @@ class AsyncCustomResource(AsyncAPIResource):
 
           allowed_to_leave: Whether to allow devices to leave the organization.
 
-          auto_connect: The amount of time in minutes to reconnect after having been disabled.
+          auto_connect: The amount of time in seconds to reconnect after having been disabled.
 
           captive_portal: Turn on the captive portal after the specified amount of time.
 
@@ -722,7 +766,13 @@ class AsyncCustomResource(AsyncAPIResource):
 
           enabled: Whether the policy will be applied to matching devices.
 
+          exclude: List of routes excluded in the WARP client's tunnel. Both 'exclude' and
+              'include' cannot be set in the same request.
+
           exclude_office_ips: Whether to add Microsoft IPs to Split Tunnel exclusions.
+
+          include: List of routes included in the WARP client's tunnel. Both 'exclude' and
+              'include' cannot be set in the same request.
 
           match: The wirefilter expression to match devices.
 
@@ -730,6 +780,9 @@ class AsyncCustomResource(AsyncAPIResource):
 
           precedence: The precedence of the policy. Lower values indicate higher precedence. Policies
               will be evaluated in ascending order of this field.
+
+          register_interface_ip_with_dns: Determines if the operating system will register WARP's local interface IP with
+              your on-premises DNS server.
 
           support_url: The URL to launch when the Send Feedback button is clicked.
 
@@ -761,10 +814,13 @@ class AsyncCustomResource(AsyncAPIResource):
                     "description": description,
                     "disable_auto_fallback": disable_auto_fallback,
                     "enabled": enabled,
+                    "exclude": exclude,
                     "exclude_office_ips": exclude_office_ips,
+                    "include": include,
                     "match": match,
                     "name": name,
                     "precedence": precedence,
+                    "register_interface_ip_with_dns": register_interface_ip_with_dns,
                     "service_mode_v2": service_mode_v2,
                     "support_url": support_url,
                     "switch_locked": switch_locked,

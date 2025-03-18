@@ -9,6 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare._utils import parse_datetime
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.magic_transit import (
     PCAPGetResponse,
@@ -48,6 +49,7 @@ class TestPCAPs:
                 "source_address": "1.2.3.4",
                 "source_port": 123,
             },
+            offset_time=parse_datetime("2020-01-01T08:00:00Z"),
         )
         assert_matches_type(PCAPCreateResponse, pcap, path=["response"])
 
@@ -289,6 +291,7 @@ class TestAsyncPCAPs:
                 "source_address": "1.2.3.4",
                 "source_port": 123,
             },
+            offset_time=parse_datetime("2020-01-01T08:00:00Z"),
         )
         assert_matches_type(PCAPCreateResponse, pcap, path=["response"])
 

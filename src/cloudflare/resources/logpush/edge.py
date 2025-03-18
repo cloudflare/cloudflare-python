@@ -20,9 +20,9 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ..._base_client import make_request_options
+from ...pagination import SyncSinglePage, AsyncSinglePage
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.logpush import edge_create_params
-from ...types.logpush.edge_get_response import EdgeGetResponse
 from ...types.logpush.instant_logpush_job import InstantLogpushJob
 
 __all__ = ["EdgeResource", "AsyncEdgeResource"]
@@ -32,7 +32,7 @@ class EdgeResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> EdgeResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -116,7 +116,7 @@ class EdgeResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[EdgeGetResponse]:
+    ) -> SyncSinglePage[Optional[InstantLogpushJob]]:
         """
         Lists Instant Logs jobs for a zone.
 
@@ -133,16 +133,13 @@ class EdgeResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/zones/{zone_id}/logpush/edge",
+            page=SyncSinglePage[Optional[InstantLogpushJob]],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[EdgeGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[EdgeGetResponse]], ResultWrapper[EdgeGetResponse]),
+            model=InstantLogpushJob,
         )
 
 
@@ -150,7 +147,7 @@ class AsyncEdgeResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncEdgeResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -224,7 +221,7 @@ class AsyncEdgeResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[InstantLogpushJob]], ResultWrapper[InstantLogpushJob]),
         )
 
-    async def get(
+    def get(
         self,
         *,
         zone_id: str,
@@ -234,7 +231,7 @@ class AsyncEdgeResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[EdgeGetResponse]:
+    ) -> AsyncPaginator[Optional[InstantLogpushJob], AsyncSinglePage[Optional[InstantLogpushJob]]]:
         """
         Lists Instant Logs jobs for a zone.
 
@@ -251,16 +248,13 @@ class AsyncEdgeResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/zones/{zone_id}/logpush/edge",
+            page=AsyncSinglePage[Optional[InstantLogpushJob]],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[EdgeGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[EdgeGetResponse]], ResultWrapper[EdgeGetResponse]),
+            model=InstantLogpushJob,
         )
 
 

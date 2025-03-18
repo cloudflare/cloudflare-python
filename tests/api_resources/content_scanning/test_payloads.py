@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
@@ -28,7 +28,7 @@ class TestPayloads:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             body=[{"payload": 'lookup_json_string(http.request.body.raw, "file")'}],
         )
-        assert_matches_type(Optional[PayloadCreateResponse], payload, path=["response"])
+        assert_matches_type(SyncSinglePage[PayloadCreateResponse], payload, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
@@ -40,7 +40,7 @@ class TestPayloads:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         payload = response.parse()
-        assert_matches_type(Optional[PayloadCreateResponse], payload, path=["response"])
+        assert_matches_type(SyncSinglePage[PayloadCreateResponse], payload, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
@@ -52,7 +52,7 @@ class TestPayloads:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             payload = response.parse()
-            assert_matches_type(Optional[PayloadCreateResponse], payload, path=["response"])
+            assert_matches_type(SyncSinglePage[PayloadCreateResponse], payload, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -108,7 +108,7 @@ class TestPayloads:
             expression_id="a350a054caa840c9becd89c3b4f0195b",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[PayloadDeleteResponse], payload, path=["response"])
+        assert_matches_type(SyncSinglePage[PayloadDeleteResponse], payload, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -120,7 +120,7 @@ class TestPayloads:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         payload = response.parse()
-        assert_matches_type(Optional[PayloadDeleteResponse], payload, path=["response"])
+        assert_matches_type(SyncSinglePage[PayloadDeleteResponse], payload, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -132,7 +132,7 @@ class TestPayloads:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             payload = response.parse()
-            assert_matches_type(Optional[PayloadDeleteResponse], payload, path=["response"])
+            assert_matches_type(SyncSinglePage[PayloadDeleteResponse], payload, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -160,7 +160,7 @@ class TestAsyncPayloads:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             body=[{"payload": 'lookup_json_string(http.request.body.raw, "file")'}],
         )
-        assert_matches_type(Optional[PayloadCreateResponse], payload, path=["response"])
+        assert_matches_type(AsyncSinglePage[PayloadCreateResponse], payload, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -172,7 +172,7 @@ class TestAsyncPayloads:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         payload = await response.parse()
-        assert_matches_type(Optional[PayloadCreateResponse], payload, path=["response"])
+        assert_matches_type(AsyncSinglePage[PayloadCreateResponse], payload, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -184,7 +184,7 @@ class TestAsyncPayloads:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             payload = await response.parse()
-            assert_matches_type(Optional[PayloadCreateResponse], payload, path=["response"])
+            assert_matches_type(AsyncSinglePage[PayloadCreateResponse], payload, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -240,7 +240,7 @@ class TestAsyncPayloads:
             expression_id="a350a054caa840c9becd89c3b4f0195b",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[PayloadDeleteResponse], payload, path=["response"])
+        assert_matches_type(AsyncSinglePage[PayloadDeleteResponse], payload, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -252,7 +252,7 @@ class TestAsyncPayloads:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         payload = await response.parse()
-        assert_matches_type(Optional[PayloadDeleteResponse], payload, path=["response"])
+        assert_matches_type(AsyncSinglePage[PayloadDeleteResponse], payload, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -264,7 +264,7 @@ class TestAsyncPayloads:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             payload = await response.parse()
-            assert_matches_type(Optional[PayloadDeleteResponse], payload, path=["response"])
+            assert_matches_type(AsyncSinglePage[PayloadDeleteResponse], payload, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

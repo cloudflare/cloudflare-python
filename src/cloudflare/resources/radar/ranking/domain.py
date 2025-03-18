@@ -33,7 +33,7 @@ class DomainResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> DomainResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -66,25 +66,27 @@ class DomainResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> DomainGetResponse:
-        """Gets Domains Rank details.
+        """Retrieves domain rank details.
 
-        Cloudflare provides an ordered rank for the top 100
-        domains, but for the remainder it only provides ranking buckets like top 200
+        Cloudflare provides an ordered rank for the top
+        100 domains, but for the remainder it only provides ranking buckets like top 200
         thousand, top one million, etc.. These are available through Radar datasets
         endpoints.
 
         Args:
-          date: Array of dates to filter the ranking.
+          domain: Domain name.
 
-          format: Format results are returned in.
+          date: Array of dates to filter the results.
 
-          include_top_locations: Include top locations in the response.
+          format: Format in which results will be returned.
 
-          limit: Limit the number of objects in the response.
+          include_top_locations: Includes top locations in the response.
 
-          name: Array of names that will be used to name the series in responses.
+          limit: Limits the number of objects returned in the response.
 
-          ranking_type: The ranking type.
+          name: Array of names used to label the series in the response.
+
+          ranking_type: Ranking type.
 
           extra_headers: Send extra headers
 
@@ -124,7 +126,7 @@ class AsyncDomainResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncDomainResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -157,25 +159,27 @@ class AsyncDomainResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> DomainGetResponse:
-        """Gets Domains Rank details.
+        """Retrieves domain rank details.
 
-        Cloudflare provides an ordered rank for the top 100
-        domains, but for the remainder it only provides ranking buckets like top 200
+        Cloudflare provides an ordered rank for the top
+        100 domains, but for the remainder it only provides ranking buckets like top 200
         thousand, top one million, etc.. These are available through Radar datasets
         endpoints.
 
         Args:
-          date: Array of dates to filter the ranking.
+          domain: Domain name.
 
-          format: Format results are returned in.
+          date: Array of dates to filter the results.
 
-          include_top_locations: Include top locations in the response.
+          format: Format in which results will be returned.
 
-          limit: Limit the number of objects in the response.
+          include_top_locations: Includes top locations in the response.
 
-          name: Array of names that will be used to name the series in responses.
+          limit: Limits the number of objects returned in the response.
 
-          ranking_type: The ranking type.
+          name: Array of names used to label the series in the response.
+
+          ranking_type: Ranking type.
 
           extra_headers: Send extra headers
 

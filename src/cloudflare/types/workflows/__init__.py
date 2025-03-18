@@ -3,12 +3,14 @@
 from __future__ import annotations
 
 from .version_list_params import VersionListParams as VersionListParams
+from .instance_bulk_params import InstanceBulkParams as InstanceBulkParams
 from .instance_list_params import InstanceListParams as InstanceListParams
 from .version_get_response import VersionGetResponse as VersionGetResponse
 from .workflow_list_params import WorkflowListParams as WorkflowListParams
 from .instance_get_response import InstanceGetResponse as InstanceGetResponse
 from .version_list_response import VersionListResponse as VersionListResponse
 from .workflow_get_response import WorkflowGetResponse as WorkflowGetResponse
+from .instance_bulk_response import InstanceBulkResponse as InstanceBulkResponse
 from .instance_create_params import InstanceCreateParams as InstanceCreateParams
 from .instance_list_response import InstanceListResponse as InstanceListResponse
 from .workflow_list_response import WorkflowListResponse as WorkflowListResponse

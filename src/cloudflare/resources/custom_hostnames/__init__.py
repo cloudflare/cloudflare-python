@@ -8,6 +8,14 @@ from .fallback_origin import (
     FallbackOriginResourceWithStreamingResponse,
     AsyncFallbackOriginResourceWithStreamingResponse,
 )
+from .certificate_pack import (
+    CertificatePackResource,
+    AsyncCertificatePackResource,
+    CertificatePackResourceWithRawResponse,
+    AsyncCertificatePackResourceWithRawResponse,
+    CertificatePackResourceWithStreamingResponse,
+    AsyncCertificatePackResourceWithStreamingResponse,
+)
 from .custom_hostnames import (
     CustomHostnamesResource,
     AsyncCustomHostnamesResource,
@@ -24,6 +32,12 @@ __all__ = [
     "AsyncFallbackOriginResourceWithRawResponse",
     "FallbackOriginResourceWithStreamingResponse",
     "AsyncFallbackOriginResourceWithStreamingResponse",
+    "CertificatePackResource",
+    "AsyncCertificatePackResource",
+    "CertificatePackResourceWithRawResponse",
+    "AsyncCertificatePackResourceWithRawResponse",
+    "CertificatePackResourceWithStreamingResponse",
+    "AsyncCertificatePackResourceWithStreamingResponse",
     "CustomHostnamesResource",
     "AsyncCustomHostnamesResource",
     "CustomHostnamesResourceWithRawResponse",

@@ -2,7 +2,10 @@
 
 from __future__ import annotations
 
+from typing import Iterable
 from typing_extensions import Required, TypedDict
+
+from ..split_tunnel_exclude_param import SplitTunnelExcludeParam
 
 __all__ = ["CustomCreateParams", "ServiceModeV2"]
 
@@ -36,7 +39,7 @@ class CustomCreateParams(TypedDict, total=False):
     """Whether to allow devices to leave the organization."""
 
     auto_connect: float
-    """The amount of time in minutes to reconnect after having been disabled."""
+    """The amount of time in seconds to reconnect after having been disabled."""
 
     captive_portal: float
     """Turn on the captive portal after the specified amount of time."""
@@ -54,8 +57,20 @@ class CustomCreateParams(TypedDict, total=False):
     enabled: bool
     """Whether the policy will be applied to matching devices."""
 
+    exclude: Iterable[SplitTunnelExcludeParam]
+    """List of routes excluded in the WARP client's tunnel.
+
+    Both 'exclude' and 'include' cannot be set in the same request.
+    """
+
     exclude_office_ips: bool
     """Whether to add Microsoft IPs to Split Tunnel exclusions."""
+
+    include: Iterable[SplitTunnelExcludeParam]
+    """List of routes included in the WARP client's tunnel.
+
+    Both 'exclude' and 'include' cannot be set in the same request.
+    """
 
     lan_allow_minutes: float
     """The amount of time in minutes a user is allowed access to their LAN.
@@ -69,6 +84,12 @@ class CustomCreateParams(TypedDict, total=False):
     """The size of the subnet for the local access network.
 
     Note that this field is omitted from the response if null or unset.
+    """
+
+    register_interface_ip_with_dns: bool
+    """
+    Determines if the operating system will register WARP's local interface IP with
+    your on-premises DNS server.
     """
 
     service_mode_v2: ServiceModeV2

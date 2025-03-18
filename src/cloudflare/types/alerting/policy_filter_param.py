@@ -59,6 +59,9 @@ class PolicyFilterParam(TypedDict, total=False):
     input_id: List[str]
     """Used for configuring stream_live_notifications"""
 
+    insight_class: List[str]
+    """Used for configuring security_insights_alert"""
+
     limit: List[str]
     """Used for configuring billing_usage_alert"""
 
@@ -80,7 +83,7 @@ class PolicyFilterParam(TypedDict, total=False):
     pool_id: List[str]
     """Usage depends on specific alert type"""
 
-    pop_name: List[str]
+    pop_names: List[str]
     """Usage depends on specific alert type"""
 
     product: List[str]

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import List, Type, Optional, cast
+from typing_extensions import Literal
 
 import httpx
 
@@ -44,7 +45,7 @@ class RulesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> RulesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -64,7 +65,7 @@ class RulesResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        duration: str,
+        duration: Literal["1m", "5m", "10m", "15m", "20m", "30m", "45m", "60m"],
         name: str,
         automatic_advertisement: Optional[bool] | NotGiven = NOT_GIVEN,
         bandwidth: float | NotGiven = NOT_GIVEN,
@@ -85,9 +86,7 @@ class RulesResource(SyncAPIResource):
         Args:
           duration: The amount of time that the rule threshold must be exceeded to send an alert
               notification. The final value must be equivalent to one of the following 8
-              values ["1m","5m","10m","15m","20m","30m","45m","60m"]. The format is
-              AhBmCsDmsEusFns where A, B, C, D, E and F durations are optional; however at
-              least one unit must be provided.
+              values ["1m","5m","10m","15m","20m","30m","45m","60m"].
 
           name: The name of the rule. Must be unique. Supports characters A-Z, a-z, 0-9,
               underscore (\\__), dash (-), period (.), and tilde (~). You can’t have a space in
@@ -140,7 +139,7 @@ class RulesResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        duration: str,
+        duration: Literal["1m", "5m", "10m", "15m", "20m", "30m", "45m", "60m"],
         name: str,
         id: str | NotGiven = NOT_GIVEN,
         automatic_advertisement: Optional[bool] | NotGiven = NOT_GIVEN,
@@ -160,9 +159,7 @@ class RulesResource(SyncAPIResource):
         Args:
           duration: The amount of time that the rule threshold must be exceeded to send an alert
               notification. The final value must be equivalent to one of the following 8
-              values ["1m","5m","10m","15m","20m","30m","45m","60m"]. The format is
-              AhBmCsDmsEusFns where A, B, C, D, E and F durations are optional; however at
-              least one unit must be provided.
+              values ["1m","5m","10m","15m","20m","30m","45m","60m"].
 
           name: The name of the rule. Must be unique. Supports characters A-Z, a-z, 0-9,
               underscore (\\__), dash (-), period (.), and tilde (~). You can’t have a space in
@@ -297,7 +294,7 @@ class RulesResource(SyncAPIResource):
         account_id: str,
         automatic_advertisement: Optional[bool] | NotGiven = NOT_GIVEN,
         bandwidth: float | NotGiven = NOT_GIVEN,
-        duration: str | NotGiven = NOT_GIVEN,
+        duration: Literal["1m", "5m", "10m", "15m", "20m", "30m", "45m", "60m"] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         packet_threshold: float | NotGiven = NOT_GIVEN,
         prefixes: List[str] | NotGiven = NOT_GIVEN,
@@ -323,9 +320,7 @@ class RulesResource(SyncAPIResource):
 
           duration: The amount of time that the rule threshold must be exceeded to send an alert
               notification. The final value must be equivalent to one of the following 8
-              values ["1m","5m","10m","15m","20m","30m","45m","60m"]. The format is
-              AhBmCsDmsEusFns where A, B, C, D, E and F durations are optional; however at
-              least one unit must be provided.
+              values ["1m","5m","10m","15m","20m","30m","45m","60m"].
 
           name: The name of the rule. Must be unique. Supports characters A-Z, a-z, 0-9,
               underscore (\\__), dash (-), period (.), and tilde (~). You can’t have a space in
@@ -420,7 +415,7 @@ class AsyncRulesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncRulesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -440,7 +435,7 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        duration: str,
+        duration: Literal["1m", "5m", "10m", "15m", "20m", "30m", "45m", "60m"],
         name: str,
         automatic_advertisement: Optional[bool] | NotGiven = NOT_GIVEN,
         bandwidth: float | NotGiven = NOT_GIVEN,
@@ -461,9 +456,7 @@ class AsyncRulesResource(AsyncAPIResource):
         Args:
           duration: The amount of time that the rule threshold must be exceeded to send an alert
               notification. The final value must be equivalent to one of the following 8
-              values ["1m","5m","10m","15m","20m","30m","45m","60m"]. The format is
-              AhBmCsDmsEusFns where A, B, C, D, E and F durations are optional; however at
-              least one unit must be provided.
+              values ["1m","5m","10m","15m","20m","30m","45m","60m"].
 
           name: The name of the rule. Must be unique. Supports characters A-Z, a-z, 0-9,
               underscore (\\__), dash (-), period (.), and tilde (~). You can’t have a space in
@@ -516,7 +509,7 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        duration: str,
+        duration: Literal["1m", "5m", "10m", "15m", "20m", "30m", "45m", "60m"],
         name: str,
         id: str | NotGiven = NOT_GIVEN,
         automatic_advertisement: Optional[bool] | NotGiven = NOT_GIVEN,
@@ -536,9 +529,7 @@ class AsyncRulesResource(AsyncAPIResource):
         Args:
           duration: The amount of time that the rule threshold must be exceeded to send an alert
               notification. The final value must be equivalent to one of the following 8
-              values ["1m","5m","10m","15m","20m","30m","45m","60m"]. The format is
-              AhBmCsDmsEusFns where A, B, C, D, E and F durations are optional; however at
-              least one unit must be provided.
+              values ["1m","5m","10m","15m","20m","30m","45m","60m"].
 
           name: The name of the rule. Must be unique. Supports characters A-Z, a-z, 0-9,
               underscore (\\__), dash (-), period (.), and tilde (~). You can’t have a space in
@@ -673,7 +664,7 @@ class AsyncRulesResource(AsyncAPIResource):
         account_id: str,
         automatic_advertisement: Optional[bool] | NotGiven = NOT_GIVEN,
         bandwidth: float | NotGiven = NOT_GIVEN,
-        duration: str | NotGiven = NOT_GIVEN,
+        duration: Literal["1m", "5m", "10m", "15m", "20m", "30m", "45m", "60m"] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         packet_threshold: float | NotGiven = NOT_GIVEN,
         prefixes: List[str] | NotGiven = NOT_GIVEN,
@@ -699,9 +690,7 @@ class AsyncRulesResource(AsyncAPIResource):
 
           duration: The amount of time that the rule threshold must be exceeded to send an alert
               notification. The final value must be equivalent to one of the following 8
-              values ["1m","5m","10m","15m","20m","30m","45m","60m"]. The format is
-              AhBmCsDmsEusFns where A, B, C, D, E and F durations are optional; however at
-              least one unit must be provided.
+              values ["1m","5m","10m","15m","20m","30m","45m","60m"].
 
           name: The name of the rule. Must be unique. Supports characters A-Z, a-z, 0-9,
               underscore (\\__), dash (-), period (.), and tilde (~). You can’t have a space in

@@ -42,7 +42,7 @@ class TestTimeseriesGroups:
             encrypted=["ENCRYPTED"],
             format="JSON",
             ip_version=["IPv4"],
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
         )
         assert_matches_type(TimeseriesGroupARCResponse, timeseries_group, path=["response"])
@@ -84,7 +84,7 @@ class TestTimeseriesGroups:
             encrypted=["ENCRYPTED"],
             format="JSON",
             ip_version=["IPv4"],
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
         )
         assert_matches_type(TimeseriesGroupDKIMResponse, timeseries_group, path=["response"])
@@ -126,7 +126,7 @@ class TestTimeseriesGroups:
             encrypted=["ENCRYPTED"],
             format="JSON",
             ip_version=["IPv4"],
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
         )
         assert_matches_type(TimeseriesGroupDMARCResponse, timeseries_group, path=["response"])
@@ -168,7 +168,7 @@ class TestTimeseriesGroups:
             dmarc=["PASS"],
             format="JSON",
             ip_version=["IPv4"],
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
         )
         assert_matches_type(TimeseriesGroupEncryptedResponse, timeseries_group, path=["response"])
@@ -210,7 +210,7 @@ class TestTimeseriesGroups:
             dmarc=["PASS"],
             encrypted=["ENCRYPTED"],
             format="JSON",
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
         )
         assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=["response"])
@@ -253,7 +253,7 @@ class TestTimeseriesGroups:
             encrypted=["ENCRYPTED"],
             format="JSON",
             ip_version=["IPv4"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(TimeseriesGroupSPFResponse, timeseries_group, path=["response"])
 
@@ -298,7 +298,7 @@ class TestAsyncTimeseriesGroups:
             encrypted=["ENCRYPTED"],
             format="JSON",
             ip_version=["IPv4"],
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
         )
         assert_matches_type(TimeseriesGroupARCResponse, timeseries_group, path=["response"])
@@ -340,7 +340,7 @@ class TestAsyncTimeseriesGroups:
             encrypted=["ENCRYPTED"],
             format="JSON",
             ip_version=["IPv4"],
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
         )
         assert_matches_type(TimeseriesGroupDKIMResponse, timeseries_group, path=["response"])
@@ -382,7 +382,7 @@ class TestAsyncTimeseriesGroups:
             encrypted=["ENCRYPTED"],
             format="JSON",
             ip_version=["IPv4"],
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
         )
         assert_matches_type(TimeseriesGroupDMARCResponse, timeseries_group, path=["response"])
@@ -424,7 +424,7 @@ class TestAsyncTimeseriesGroups:
             dmarc=["PASS"],
             format="JSON",
             ip_version=["IPv4"],
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
         )
         assert_matches_type(TimeseriesGroupEncryptedResponse, timeseries_group, path=["response"])
@@ -466,7 +466,7 @@ class TestAsyncTimeseriesGroups:
             dmarc=["PASS"],
             encrypted=["ENCRYPTED"],
             format="JSON",
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
         )
         assert_matches_type(TimeseriesGroupIPVersionResponse, timeseries_group, path=["response"])
@@ -509,7 +509,7 @@ class TestAsyncTimeseriesGroups:
             encrypted=["ENCRYPTED"],
             format="JSON",
             ip_version=["IPv4"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(TimeseriesGroupSPFResponse, timeseries_group, path=["response"])
 

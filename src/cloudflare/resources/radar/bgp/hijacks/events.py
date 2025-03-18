@@ -30,7 +30,7 @@ class EventsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> EventsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -72,9 +72,8 @@ class EventsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncV4PagePagination[EventListResponse]:
-        """Get the BGP hijack events.
-
-        (Beta)
+        """
+        Retrieves the BGP hijack events.
 
         Args:
           date_end: End of the date range (inclusive).
@@ -84,31 +83,31 @@ class EventsResource(SyncAPIResource):
 
           date_start: Start of the date range (inclusive).
 
-          event_id: The unique identifier of a event
+          event_id: The unique identifier of a event.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          hijacker_asn: The potential hijacker AS of a BGP hijack event
+          hijacker_asn: The potential hijacker AS of a BGP hijack event.
 
-          involved_asn: The potential hijacker or victim AS of a BGP hijack event
+          involved_asn: The potential hijacker or victim AS of a BGP hijack event.
 
-          involved_country: The country code of the potential hijacker or victim AS of a BGP hijack event
+          involved_country: The country code of the potential hijacker or victim AS of a BGP hijack event.
 
-          max_confidence: The maximum confidence score to filter events (1-4 low, 5-7 mid, 8+ high)
+          max_confidence: The maximum confidence score to filter events (1-4 low, 5-7 mid, 8+ high).
 
-          min_confidence: The minimum confidence score to filter events (1-4 low, 5-7 mid, 8+ high)
+          min_confidence: The minimum confidence score to filter events (1-4 low, 5-7 mid, 8+ high).
 
-          page: Current page number, starting from 1
+          page: Current page number, starting from 1.
 
-          per_page: Number of entries per page
+          per_page: Number of entries per page.
 
           prefix: Network prefix, IPv4 or IPv6.
 
-          sort_by: Sort events by field
+          sort_by: Sorts results by the specified field.
 
-          sort_order: Sort order
+          sort_order: Sort order.
 
-          victim_asn: The potential victim AS of a BGP hijack event
+          victim_asn: The potential victim AS of a BGP hijack event.
 
           extra_headers: Send extra headers
 
@@ -156,7 +155,7 @@ class AsyncEventsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncEventsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -198,9 +197,8 @@ class AsyncEventsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[EventListResponse, AsyncV4PagePagination[EventListResponse]]:
-        """Get the BGP hijack events.
-
-        (Beta)
+        """
+        Retrieves the BGP hijack events.
 
         Args:
           date_end: End of the date range (inclusive).
@@ -210,31 +208,31 @@ class AsyncEventsResource(AsyncAPIResource):
 
           date_start: Start of the date range (inclusive).
 
-          event_id: The unique identifier of a event
+          event_id: The unique identifier of a event.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          hijacker_asn: The potential hijacker AS of a BGP hijack event
+          hijacker_asn: The potential hijacker AS of a BGP hijack event.
 
-          involved_asn: The potential hijacker or victim AS of a BGP hijack event
+          involved_asn: The potential hijacker or victim AS of a BGP hijack event.
 
-          involved_country: The country code of the potential hijacker or victim AS of a BGP hijack event
+          involved_country: The country code of the potential hijacker or victim AS of a BGP hijack event.
 
-          max_confidence: The maximum confidence score to filter events (1-4 low, 5-7 mid, 8+ high)
+          max_confidence: The maximum confidence score to filter events (1-4 low, 5-7 mid, 8+ high).
 
-          min_confidence: The minimum confidence score to filter events (1-4 low, 5-7 mid, 8+ high)
+          min_confidence: The minimum confidence score to filter events (1-4 low, 5-7 mid, 8+ high).
 
-          page: Current page number, starting from 1
+          page: Current page number, starting from 1.
 
-          per_page: Number of entries per page
+          per_page: Number of entries per page.
 
           prefix: Network prefix, IPv4 or IPv6.
 
-          sort_by: Sort events by field
+          sort_by: Sorts results by the specified field.
 
-          sort_order: Sort order
+          sort_order: Sort order.
 
-          victim_asn: The potential victim AS of a BGP hijack event
+          victim_asn: The potential victim AS of a BGP hijack event.
 
           extra_headers: Send extra headers
 

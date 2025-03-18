@@ -81,7 +81,7 @@ class AIResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AIResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -424,6 +424,7 @@ class AIResource(SyncAPIResource):
         presence_penalty: float | NotGiven = NOT_GIVEN,
         raw: bool | NotGiven = NOT_GIVEN,
         repetition_penalty: float | NotGiven = NOT_GIVEN,
+        response_format: ai_run_params.PromptResponseFormat | NotGiven = NOT_GIVEN,
         seed: int | NotGiven = NOT_GIVEN,
         stream: bool | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
@@ -501,6 +502,7 @@ class AIResource(SyncAPIResource):
         max_tokens: int | NotGiven = NOT_GIVEN,
         presence_penalty: float | NotGiven = NOT_GIVEN,
         repetition_penalty: float | NotGiven = NOT_GIVEN,
+        response_format: ai_run_params.MessagesResponseFormat | NotGiven = NOT_GIVEN,
         seed: int | NotGiven = NOT_GIVEN,
         stream: bool | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
@@ -656,10 +658,16 @@ class AIResource(SyncAPIResource):
         *,
         account_id: str,
         image: Iterable[float],
+        frequency_penalty: float | NotGiven = NOT_GIVEN,
         max_tokens: int | NotGiven = NOT_GIVEN,
+        presence_penalty: float | NotGiven = NOT_GIVEN,
         prompt: str | NotGiven = NOT_GIVEN,
         raw: bool | NotGiven = NOT_GIVEN,
+        repetition_penalty: float | NotGiven = NOT_GIVEN,
+        seed: float | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
+        top_k: float | NotGiven = NOT_GIVEN,
+        top_p: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -682,15 +690,31 @@ class AIResource(SyncAPIResource):
           image: An array of integers that represent the image data constrained to 8-bit unsigned
               integer values
 
+          frequency_penalty: Decreases the likelihood of the model repeating the same lines verbatim.
+
           max_tokens: The maximum number of tokens to generate in the response.
+
+          presence_penalty: Increases the likelihood of the model introducing new topics.
 
           prompt: The input text prompt for the model to generate a response.
 
           raw: If true, a chat template is not applied and you must adhere to the specific
               model's expected formatting.
 
+          repetition_penalty: Penalty for repeated tokens; higher values discourage repetition.
+
+          seed: Random seed for reproducibility of the generation.
+
           temperature: Controls the randomness of the output; higher values produce more random
               results.
+
+          top_k: Limits the AI to choose from the top 'k' most probable words. Lower values make
+              responses more focused; higher values introduce more variety and potential
+              surprises.
+
+          top_p: Controls the creativity of the AI's responses by adjusting how many possible
+              words it considers. Lower values make outputs more predictable; higher values
+              allow for more varied and creative responses.
 
           extra_headers: Send extra headers
 
@@ -726,7 +750,7 @@ class AIResource(SyncAPIResource):
         mask: Iterable[float] | NotGiven = NOT_GIVEN,
         negative_prompt: str | NotGiven = NOT_GIVEN,
         num_steps: int | NotGiven = NOT_GIVEN,
-        seed: int | NotGiven = NOT_GIVEN,
+        seed: int | float | NotGiven = NOT_GIVEN,
         strength: float | NotGiven = NOT_GIVEN,
         width: int | NotGiven = NOT_GIVEN,
         lang: str | NotGiven = NOT_GIVEN,
@@ -739,9 +763,10 @@ class AIResource(SyncAPIResource):
         presence_penalty: float | NotGiven = NOT_GIVEN,
         raw: bool | NotGiven = NOT_GIVEN,
         repetition_penalty: float | NotGiven = NOT_GIVEN,
+        response_format: ai_run_params.PromptResponseFormat | NotGiven = NOT_GIVEN,
         stream: bool | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
-        top_k: int | NotGiven = NOT_GIVEN,
+        top_k: int | float | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
         messages: Iterable[ai_run_params.MessagesMessage] | NotGiven = NOT_GIVEN,
         functions: Iterable[ai_run_params.MessagesFunction] | NotGiven = NOT_GIVEN,
@@ -787,6 +812,7 @@ class AIResource(SyncAPIResource):
                         "presence_penalty": presence_penalty,
                         "raw": raw,
                         "repetition_penalty": repetition_penalty,
+                        "response_format": response_format,
                         "stream": stream,
                         "temperature": temperature,
                         "top_k": top_k,
@@ -833,7 +859,7 @@ class AsyncAIResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncAIResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -1176,6 +1202,7 @@ class AsyncAIResource(AsyncAPIResource):
         presence_penalty: float | NotGiven = NOT_GIVEN,
         raw: bool | NotGiven = NOT_GIVEN,
         repetition_penalty: float | NotGiven = NOT_GIVEN,
+        response_format: ai_run_params.PromptResponseFormat | NotGiven = NOT_GIVEN,
         seed: int | NotGiven = NOT_GIVEN,
         stream: bool | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
@@ -1253,6 +1280,7 @@ class AsyncAIResource(AsyncAPIResource):
         max_tokens: int | NotGiven = NOT_GIVEN,
         presence_penalty: float | NotGiven = NOT_GIVEN,
         repetition_penalty: float | NotGiven = NOT_GIVEN,
+        response_format: ai_run_params.MessagesResponseFormat | NotGiven = NOT_GIVEN,
         seed: int | NotGiven = NOT_GIVEN,
         stream: bool | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
@@ -1408,10 +1436,16 @@ class AsyncAIResource(AsyncAPIResource):
         *,
         account_id: str,
         image: Iterable[float],
+        frequency_penalty: float | NotGiven = NOT_GIVEN,
         max_tokens: int | NotGiven = NOT_GIVEN,
+        presence_penalty: float | NotGiven = NOT_GIVEN,
         prompt: str | NotGiven = NOT_GIVEN,
         raw: bool | NotGiven = NOT_GIVEN,
+        repetition_penalty: float | NotGiven = NOT_GIVEN,
+        seed: float | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
+        top_k: float | NotGiven = NOT_GIVEN,
+        top_p: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1434,15 +1468,31 @@ class AsyncAIResource(AsyncAPIResource):
           image: An array of integers that represent the image data constrained to 8-bit unsigned
               integer values
 
+          frequency_penalty: Decreases the likelihood of the model repeating the same lines verbatim.
+
           max_tokens: The maximum number of tokens to generate in the response.
+
+          presence_penalty: Increases the likelihood of the model introducing new topics.
 
           prompt: The input text prompt for the model to generate a response.
 
           raw: If true, a chat template is not applied and you must adhere to the specific
               model's expected formatting.
 
+          repetition_penalty: Penalty for repeated tokens; higher values discourage repetition.
+
+          seed: Random seed for reproducibility of the generation.
+
           temperature: Controls the randomness of the output; higher values produce more random
               results.
+
+          top_k: Limits the AI to choose from the top 'k' most probable words. Lower values make
+              responses more focused; higher values introduce more variety and potential
+              surprises.
+
+          top_p: Controls the creativity of the AI's responses by adjusting how many possible
+              words it considers. Lower values make outputs more predictable; higher values
+              allow for more varied and creative responses.
 
           extra_headers: Send extra headers
 
@@ -1478,7 +1528,7 @@ class AsyncAIResource(AsyncAPIResource):
         mask: Iterable[float] | NotGiven = NOT_GIVEN,
         negative_prompt: str | NotGiven = NOT_GIVEN,
         num_steps: int | NotGiven = NOT_GIVEN,
-        seed: int | NotGiven = NOT_GIVEN,
+        seed: int | float | NotGiven = NOT_GIVEN,
         strength: float | NotGiven = NOT_GIVEN,
         width: int | NotGiven = NOT_GIVEN,
         lang: str | NotGiven = NOT_GIVEN,
@@ -1491,9 +1541,10 @@ class AsyncAIResource(AsyncAPIResource):
         presence_penalty: float | NotGiven = NOT_GIVEN,
         raw: bool | NotGiven = NOT_GIVEN,
         repetition_penalty: float | NotGiven = NOT_GIVEN,
+        response_format: ai_run_params.PromptResponseFormat | NotGiven = NOT_GIVEN,
         stream: bool | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
-        top_k: int | NotGiven = NOT_GIVEN,
+        top_k: int | float | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
         messages: Iterable[ai_run_params.MessagesMessage] | NotGiven = NOT_GIVEN,
         functions: Iterable[ai_run_params.MessagesFunction] | NotGiven = NOT_GIVEN,
@@ -1539,6 +1590,7 @@ class AsyncAIResource(AsyncAPIResource):
                         "presence_penalty": presence_penalty,
                         "raw": raw,
                         "repetition_penalty": repetition_penalty,
+                        "response_format": response_format,
                         "stream": stream,
                         "temperature": temperature,
                         "top_k": top_k,

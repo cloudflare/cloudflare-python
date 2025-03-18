@@ -12,7 +12,6 @@ from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.magic_transit.sites import (
     LAN,
-    LANCreateResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -29,7 +28,7 @@ class TestLANs:
             physport=1,
             vlan_tag=0,
         )
-        assert_matches_type(LANCreateResponse, lan, path=["response"])
+        assert_matches_type(SyncSinglePage[LAN], lan, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
@@ -55,6 +54,7 @@ class TestLANs:
                     "dhcp_pool_end": "192.0.2.1",
                     "dhcp_pool_start": "192.0.2.1",
                     "dns_server": "192.0.2.1",
+                    "dns_servers": ["192.0.2.1"],
                     "reservations": {
                         "00:11:22:33:44:55": "192.0.2.100",
                         "AA:BB:CC:DD:EE:FF": "192.168.1.101",
@@ -64,7 +64,7 @@ class TestLANs:
                 "virtual_address": "192.0.2.0/24",
             },
         )
-        assert_matches_type(LANCreateResponse, lan, path=["response"])
+        assert_matches_type(SyncSinglePage[LAN], lan, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
@@ -78,7 +78,7 @@ class TestLANs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         lan = response.parse()
-        assert_matches_type(LANCreateResponse, lan, path=["response"])
+        assert_matches_type(SyncSinglePage[LAN], lan, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
@@ -92,7 +92,7 @@ class TestLANs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             lan = response.parse()
-            assert_matches_type(LANCreateResponse, lan, path=["response"])
+            assert_matches_type(SyncSinglePage[LAN], lan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -146,6 +146,7 @@ class TestLANs:
                     "dhcp_pool_end": "192.0.2.1",
                     "dhcp_pool_start": "192.0.2.1",
                     "dns_server": "192.0.2.1",
+                    "dns_servers": ["192.0.2.1"],
                     "reservations": {
                         "00:11:22:33:44:55": "192.0.2.100",
                         "AA:BB:CC:DD:EE:FF": "192.168.1.101",
@@ -349,6 +350,7 @@ class TestLANs:
                     "dhcp_pool_end": "192.0.2.1",
                     "dhcp_pool_start": "192.0.2.1",
                     "dns_server": "192.0.2.1",
+                    "dns_servers": ["192.0.2.1"],
                     "reservations": {
                         "00:11:22:33:44:55": "192.0.2.100",
                         "AA:BB:CC:DD:EE:FF": "192.168.1.101",
@@ -484,7 +486,7 @@ class TestAsyncLANs:
             physport=1,
             vlan_tag=0,
         )
-        assert_matches_type(LANCreateResponse, lan, path=["response"])
+        assert_matches_type(AsyncSinglePage[LAN], lan, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -510,6 +512,7 @@ class TestAsyncLANs:
                     "dhcp_pool_end": "192.0.2.1",
                     "dhcp_pool_start": "192.0.2.1",
                     "dns_server": "192.0.2.1",
+                    "dns_servers": ["192.0.2.1"],
                     "reservations": {
                         "00:11:22:33:44:55": "192.0.2.100",
                         "AA:BB:CC:DD:EE:FF": "192.168.1.101",
@@ -519,7 +522,7 @@ class TestAsyncLANs:
                 "virtual_address": "192.0.2.0/24",
             },
         )
-        assert_matches_type(LANCreateResponse, lan, path=["response"])
+        assert_matches_type(AsyncSinglePage[LAN], lan, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -533,7 +536,7 @@ class TestAsyncLANs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         lan = await response.parse()
-        assert_matches_type(LANCreateResponse, lan, path=["response"])
+        assert_matches_type(AsyncSinglePage[LAN], lan, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -547,7 +550,7 @@ class TestAsyncLANs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             lan = await response.parse()
-            assert_matches_type(LANCreateResponse, lan, path=["response"])
+            assert_matches_type(AsyncSinglePage[LAN], lan, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -601,6 +604,7 @@ class TestAsyncLANs:
                     "dhcp_pool_end": "192.0.2.1",
                     "dhcp_pool_start": "192.0.2.1",
                     "dns_server": "192.0.2.1",
+                    "dns_servers": ["192.0.2.1"],
                     "reservations": {
                         "00:11:22:33:44:55": "192.0.2.100",
                         "AA:BB:CC:DD:EE:FF": "192.168.1.101",
@@ -804,6 +808,7 @@ class TestAsyncLANs:
                     "dhcp_pool_end": "192.0.2.1",
                     "dhcp_pool_start": "192.0.2.1",
                     "dns_server": "192.0.2.1",
+                    "dns_servers": ["192.0.2.1"],
                     "reservations": {
                         "00:11:22:33:44:55": "192.0.2.100",
                         "AA:BB:CC:DD:EE:FF": "192.168.1.101",

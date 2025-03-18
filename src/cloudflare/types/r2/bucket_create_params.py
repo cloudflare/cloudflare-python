@@ -16,7 +16,7 @@ class BucketCreateParams(TypedDict, total=False):
     name: Required[str]
     """Name of the bucket"""
 
-    location_hint: Annotated[Literal["apac", "eeur", "enam", "weur", "wnam"], PropertyInfo(alias="locationHint")]
+    location_hint: Annotated[Literal["apac", "eeur", "enam", "weur", "wnam", "oc"], PropertyInfo(alias="locationHint")]
     """Location of the bucket"""
 
     storage_class: Annotated[Literal["Standard", "InfrequentAccess"], PropertyInfo(alias="storageClass")]

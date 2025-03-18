@@ -115,3 +115,6 @@ class Zone(BaseModel):
 
     This is only available for Business and Enterprise plans.
     """
+
+    verification_key: Optional[str] = None
+    """Verification key for partial zone setup."""

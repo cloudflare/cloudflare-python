@@ -57,6 +57,7 @@ if TYPE_CHECKING:
         radar,
         rules,
         speed,
+        zaraz,
         zones,
         images,
         queues,
@@ -89,6 +90,7 @@ if TYPE_CHECKING:
         page_shield,
         rate_limits,
         url_scanner,
+        custom_pages,
         dns_firewall,
         healthchecks,
         security_txt,
@@ -104,10 +106,12 @@ if TYPE_CHECKING:
         cloud_connector,
         durable_objects,
         request_tracers,
+        security_center,
         brand_protection,
         content_scanning,
         custom_hostnames,
         resource_sharing,
+        browser_rendering,
         mtls_certificates,
         url_normalization,
         custom_nameservers,
@@ -115,7 +119,9 @@ if TYPE_CHECKING:
         client_certificates,
         custom_certificates,
         keyless_certificates,
+        network_interconnects,
         workers_for_platforms,
+        magic_cloud_networking,
         origin_ca_certificates,
         origin_tls_client_auth,
         certificate_authorities,
@@ -149,7 +155,9 @@ if TYPE_CHECKING:
     from .resources.rate_limits import RateLimitsResource, AsyncRateLimitsResource
     from .resources.rules.rules import RulesResource, AsyncRulesResource
     from .resources.speed.speed import SpeedResource, AsyncSpeedResource
+    from .resources.zaraz.zaraz import ZarazResource, AsyncZarazResource
     from .resources.zones.zones import ZonesResource, AsyncZonesResource
+    from .resources.custom_pages import CustomPagesResource, AsyncCustomPagesResource
     from .resources.security_txt import SecurityTXTResource, AsyncSecurityTXTResource
     from .resources.abuse_reports import AbuseReportsResource, AsyncAbuseReportsResource
     from .resources.images.images import ImagesResource, AsyncImagesResource
@@ -202,17 +210,27 @@ if TYPE_CHECKING:
     from .resources.cloud_connector.cloud_connector import CloudConnectorResource, AsyncCloudConnectorResource
     from .resources.durable_objects.durable_objects import DurableObjectsResource, AsyncDurableObjectsResource
     from .resources.request_tracers.request_tracers import RequestTracersResource, AsyncRequestTracersResource
+    from .resources.security_center.security_center import SecurityCenterResource, AsyncSecurityCenterResource
     from .resources.content_scanning.content_scanning import ContentScanningResource, AsyncContentScanningResource
     from .resources.custom_hostnames.custom_hostnames import CustomHostnamesResource, AsyncCustomHostnamesResource
     from .resources.resource_sharing.resource_sharing import ResourceSharingResource, AsyncResourceSharingResource
+    from .resources.browser_rendering.browser_rendering import BrowserRenderingResource, AsyncBrowserRenderingResource
     from .resources.mtls_certificates.mtls_certificates import MTLSCertificatesResource, AsyncMTLSCertificatesResource
     from .resources.custom_certificates.custom_certificates import (
         CustomCertificatesResource,
         AsyncCustomCertificatesResource,
     )
+    from .resources.network_interconnects.network_interconnects import (
+        NetworkInterconnectsResource,
+        AsyncNetworkInterconnectsResource,
+    )
     from .resources.workers_for_platforms.workers_for_platforms import (
         WorkersForPlatformsResource,
         AsyncWorkersForPlatformsResource,
+    )
+    from .resources.magic_cloud_networking.magic_cloud_networking import (
+        MagicCloudNetworkingResource,
+        AsyncMagicCloudNetworkingResource,
     )
     from .resources.origin_tls_client_auth.origin_tls_client_auth import (
         OriginTLSClientAuthResource,
@@ -276,7 +294,7 @@ class Cloudflare(SyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new synchronous cloudflare client instance.
+        """Construct a new synchronous Cloudflare client instance.
 
         This automatically infers the following arguments from their corresponding environment variables if they are not provided:
         - `api_token` from `CLOUDFLARE_API_TOKEN`
@@ -617,6 +635,18 @@ class Cloudflare(SyncAPIClient):
         return MagicNetworkMonitoringResource(self)
 
     @cached_property
+    def magic_cloud_networking(self) -> MagicCloudNetworkingResource:
+        from .resources.magic_cloud_networking import MagicCloudNetworkingResource
+
+        return MagicCloudNetworkingResource(self)
+
+    @cached_property
+    def network_interconnects(self) -> NetworkInterconnectsResource:
+        from .resources.network_interconnects import NetworkInterconnectsResource
+
+        return NetworkInterconnectsResource(self)
+
+    @cached_property
     def mtls_certificates(self) -> MTLSCertificatesResource:
         from .resources.mtls_certificates import MTLSCertificatesResource
 
@@ -731,6 +761,12 @@ class Cloudflare(SyncAPIClient):
         return OriginPostQuantumEncryptionResource(self)
 
     @cached_property
+    def zaraz(self) -> ZarazResource:
+        from .resources.zaraz import ZarazResource
+
+        return ZarazResource(self)
+
+    @cached_property
     def speed(self) -> SpeedResource:
         from .resources.speed import SpeedResource
 
@@ -831,6 +867,24 @@ class Cloudflare(SyncAPIClient):
         from .resources.ai import AIResource
 
         return AIResource(self)
+
+    @cached_property
+    def security_center(self) -> SecurityCenterResource:
+        from .resources.security_center import SecurityCenterResource
+
+        return SecurityCenterResource(self)
+
+    @cached_property
+    def browser_rendering(self) -> BrowserRenderingResource:
+        from .resources.browser_rendering import BrowserRenderingResource
+
+        return BrowserRenderingResource(self)
+
+    @cached_property
+    def custom_pages(self) -> CustomPagesResource:
+        from .resources.custom_pages import CustomPagesResource
+
+        return CustomPagesResource(self)
 
     @cached_property
     def with_raw_response(self) -> CloudflareWithRawResponse:
@@ -1047,7 +1101,7 @@ class AsyncCloudflare(AsyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new async cloudflare client instance.
+        """Construct a new async AsyncCloudflare client instance.
 
         This automatically infers the following arguments from their corresponding environment variables if they are not provided:
         - `api_token` from `CLOUDFLARE_API_TOKEN`
@@ -1388,6 +1442,18 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncMagicNetworkMonitoringResource(self)
 
     @cached_property
+    def magic_cloud_networking(self) -> AsyncMagicCloudNetworkingResource:
+        from .resources.magic_cloud_networking import AsyncMagicCloudNetworkingResource
+
+        return AsyncMagicCloudNetworkingResource(self)
+
+    @cached_property
+    def network_interconnects(self) -> AsyncNetworkInterconnectsResource:
+        from .resources.network_interconnects import AsyncNetworkInterconnectsResource
+
+        return AsyncNetworkInterconnectsResource(self)
+
+    @cached_property
     def mtls_certificates(self) -> AsyncMTLSCertificatesResource:
         from .resources.mtls_certificates import AsyncMTLSCertificatesResource
 
@@ -1502,6 +1568,12 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncOriginPostQuantumEncryptionResource(self)
 
     @cached_property
+    def zaraz(self) -> AsyncZarazResource:
+        from .resources.zaraz import AsyncZarazResource
+
+        return AsyncZarazResource(self)
+
+    @cached_property
     def speed(self) -> AsyncSpeedResource:
         from .resources.speed import AsyncSpeedResource
 
@@ -1602,6 +1674,24 @@ class AsyncCloudflare(AsyncAPIClient):
         from .resources.ai import AsyncAIResource
 
         return AsyncAIResource(self)
+
+    @cached_property
+    def security_center(self) -> AsyncSecurityCenterResource:
+        from .resources.security_center import AsyncSecurityCenterResource
+
+        return AsyncSecurityCenterResource(self)
+
+    @cached_property
+    def browser_rendering(self) -> AsyncBrowserRenderingResource:
+        from .resources.browser_rendering import AsyncBrowserRenderingResource
+
+        return AsyncBrowserRenderingResource(self)
+
+    @cached_property
+    def custom_pages(self) -> AsyncCustomPagesResource:
+        from .resources.custom_pages import AsyncCustomPagesResource
+
+        return AsyncCustomPagesResource(self)
 
     @cached_property
     def with_raw_response(self) -> AsyncCloudflareWithRawResponse:
@@ -2092,6 +2182,18 @@ class CloudflareWithRawResponse:
         return MagicNetworkMonitoringResourceWithRawResponse(self._client.magic_network_monitoring)
 
     @cached_property
+    def magic_cloud_networking(self) -> magic_cloud_networking.MagicCloudNetworkingResourceWithRawResponse:
+        from .resources.magic_cloud_networking import MagicCloudNetworkingResourceWithRawResponse
+
+        return MagicCloudNetworkingResourceWithRawResponse(self._client.magic_cloud_networking)
+
+    @cached_property
+    def network_interconnects(self) -> network_interconnects.NetworkInterconnectsResourceWithRawResponse:
+        from .resources.network_interconnects import NetworkInterconnectsResourceWithRawResponse
+
+        return NetworkInterconnectsResourceWithRawResponse(self._client.network_interconnects)
+
+    @cached_property
     def mtls_certificates(self) -> mtls_certificates.MTLSCertificatesResourceWithRawResponse:
         from .resources.mtls_certificates import MTLSCertificatesResourceWithRawResponse
 
@@ -2208,6 +2310,12 @@ class CloudflareWithRawResponse:
         return OriginPostQuantumEncryptionResourceWithRawResponse(self._client.origin_post_quantum_encryption)
 
     @cached_property
+    def zaraz(self) -> zaraz.ZarazResourceWithRawResponse:
+        from .resources.zaraz import ZarazResourceWithRawResponse
+
+        return ZarazResourceWithRawResponse(self._client.zaraz)
+
+    @cached_property
     def speed(self) -> speed.SpeedResourceWithRawResponse:
         from .resources.speed import SpeedResourceWithRawResponse
 
@@ -2308,6 +2416,24 @@ class CloudflareWithRawResponse:
         from .resources.ai import AIResourceWithRawResponse
 
         return AIResourceWithRawResponse(self._client.ai)
+
+    @cached_property
+    def security_center(self) -> security_center.SecurityCenterResourceWithRawResponse:
+        from .resources.security_center import SecurityCenterResourceWithRawResponse
+
+        return SecurityCenterResourceWithRawResponse(self._client.security_center)
+
+    @cached_property
+    def browser_rendering(self) -> browser_rendering.BrowserRenderingResourceWithRawResponse:
+        from .resources.browser_rendering import BrowserRenderingResourceWithRawResponse
+
+        return BrowserRenderingResourceWithRawResponse(self._client.browser_rendering)
+
+    @cached_property
+    def custom_pages(self) -> custom_pages.CustomPagesResourceWithRawResponse:
+        from .resources.custom_pages import CustomPagesResourceWithRawResponse
+
+        return CustomPagesResourceWithRawResponse(self._client.custom_pages)
 
 
 class AsyncCloudflareWithRawResponse:
@@ -2617,6 +2743,18 @@ class AsyncCloudflareWithRawResponse:
         return AsyncMagicNetworkMonitoringResourceWithRawResponse(self._client.magic_network_monitoring)
 
     @cached_property
+    def magic_cloud_networking(self) -> magic_cloud_networking.AsyncMagicCloudNetworkingResourceWithRawResponse:
+        from .resources.magic_cloud_networking import AsyncMagicCloudNetworkingResourceWithRawResponse
+
+        return AsyncMagicCloudNetworkingResourceWithRawResponse(self._client.magic_cloud_networking)
+
+    @cached_property
+    def network_interconnects(self) -> network_interconnects.AsyncNetworkInterconnectsResourceWithRawResponse:
+        from .resources.network_interconnects import AsyncNetworkInterconnectsResourceWithRawResponse
+
+        return AsyncNetworkInterconnectsResourceWithRawResponse(self._client.network_interconnects)
+
+    @cached_property
     def mtls_certificates(self) -> mtls_certificates.AsyncMTLSCertificatesResourceWithRawResponse:
         from .resources.mtls_certificates import AsyncMTLSCertificatesResourceWithRawResponse
 
@@ -2733,6 +2871,12 @@ class AsyncCloudflareWithRawResponse:
         return AsyncOriginPostQuantumEncryptionResourceWithRawResponse(self._client.origin_post_quantum_encryption)
 
     @cached_property
+    def zaraz(self) -> zaraz.AsyncZarazResourceWithRawResponse:
+        from .resources.zaraz import AsyncZarazResourceWithRawResponse
+
+        return AsyncZarazResourceWithRawResponse(self._client.zaraz)
+
+    @cached_property
     def speed(self) -> speed.AsyncSpeedResourceWithRawResponse:
         from .resources.speed import AsyncSpeedResourceWithRawResponse
 
@@ -2833,6 +2977,24 @@ class AsyncCloudflareWithRawResponse:
         from .resources.ai import AsyncAIResourceWithRawResponse
 
         return AsyncAIResourceWithRawResponse(self._client.ai)
+
+    @cached_property
+    def security_center(self) -> security_center.AsyncSecurityCenterResourceWithRawResponse:
+        from .resources.security_center import AsyncSecurityCenterResourceWithRawResponse
+
+        return AsyncSecurityCenterResourceWithRawResponse(self._client.security_center)
+
+    @cached_property
+    def browser_rendering(self) -> browser_rendering.AsyncBrowserRenderingResourceWithRawResponse:
+        from .resources.browser_rendering import AsyncBrowserRenderingResourceWithRawResponse
+
+        return AsyncBrowserRenderingResourceWithRawResponse(self._client.browser_rendering)
+
+    @cached_property
+    def custom_pages(self) -> custom_pages.AsyncCustomPagesResourceWithRawResponse:
+        from .resources.custom_pages import AsyncCustomPagesResourceWithRawResponse
+
+        return AsyncCustomPagesResourceWithRawResponse(self._client.custom_pages)
 
 
 class CloudflareWithStreamedResponse:
@@ -3142,6 +3304,18 @@ class CloudflareWithStreamedResponse:
         return MagicNetworkMonitoringResourceWithStreamingResponse(self._client.magic_network_monitoring)
 
     @cached_property
+    def magic_cloud_networking(self) -> magic_cloud_networking.MagicCloudNetworkingResourceWithStreamingResponse:
+        from .resources.magic_cloud_networking import MagicCloudNetworkingResourceWithStreamingResponse
+
+        return MagicCloudNetworkingResourceWithStreamingResponse(self._client.magic_cloud_networking)
+
+    @cached_property
+    def network_interconnects(self) -> network_interconnects.NetworkInterconnectsResourceWithStreamingResponse:
+        from .resources.network_interconnects import NetworkInterconnectsResourceWithStreamingResponse
+
+        return NetworkInterconnectsResourceWithStreamingResponse(self._client.network_interconnects)
+
+    @cached_property
     def mtls_certificates(self) -> mtls_certificates.MTLSCertificatesResourceWithStreamingResponse:
         from .resources.mtls_certificates import MTLSCertificatesResourceWithStreamingResponse
 
@@ -3258,6 +3432,12 @@ class CloudflareWithStreamedResponse:
         return OriginPostQuantumEncryptionResourceWithStreamingResponse(self._client.origin_post_quantum_encryption)
 
     @cached_property
+    def zaraz(self) -> zaraz.ZarazResourceWithStreamingResponse:
+        from .resources.zaraz import ZarazResourceWithStreamingResponse
+
+        return ZarazResourceWithStreamingResponse(self._client.zaraz)
+
+    @cached_property
     def speed(self) -> speed.SpeedResourceWithStreamingResponse:
         from .resources.speed import SpeedResourceWithStreamingResponse
 
@@ -3358,6 +3538,24 @@ class CloudflareWithStreamedResponse:
         from .resources.ai import AIResourceWithStreamingResponse
 
         return AIResourceWithStreamingResponse(self._client.ai)
+
+    @cached_property
+    def security_center(self) -> security_center.SecurityCenterResourceWithStreamingResponse:
+        from .resources.security_center import SecurityCenterResourceWithStreamingResponse
+
+        return SecurityCenterResourceWithStreamingResponse(self._client.security_center)
+
+    @cached_property
+    def browser_rendering(self) -> browser_rendering.BrowserRenderingResourceWithStreamingResponse:
+        from .resources.browser_rendering import BrowserRenderingResourceWithStreamingResponse
+
+        return BrowserRenderingResourceWithStreamingResponse(self._client.browser_rendering)
+
+    @cached_property
+    def custom_pages(self) -> custom_pages.CustomPagesResourceWithStreamingResponse:
+        from .resources.custom_pages import CustomPagesResourceWithStreamingResponse
+
+        return CustomPagesResourceWithStreamingResponse(self._client.custom_pages)
 
 
 class AsyncCloudflareWithStreamedResponse:
@@ -3671,6 +3869,18 @@ class AsyncCloudflareWithStreamedResponse:
         return AsyncMagicNetworkMonitoringResourceWithStreamingResponse(self._client.magic_network_monitoring)
 
     @cached_property
+    def magic_cloud_networking(self) -> magic_cloud_networking.AsyncMagicCloudNetworkingResourceWithStreamingResponse:
+        from .resources.magic_cloud_networking import AsyncMagicCloudNetworkingResourceWithStreamingResponse
+
+        return AsyncMagicCloudNetworkingResourceWithStreamingResponse(self._client.magic_cloud_networking)
+
+    @cached_property
+    def network_interconnects(self) -> network_interconnects.AsyncNetworkInterconnectsResourceWithStreamingResponse:
+        from .resources.network_interconnects import AsyncNetworkInterconnectsResourceWithStreamingResponse
+
+        return AsyncNetworkInterconnectsResourceWithStreamingResponse(self._client.network_interconnects)
+
+    @cached_property
     def mtls_certificates(self) -> mtls_certificates.AsyncMTLSCertificatesResourceWithStreamingResponse:
         from .resources.mtls_certificates import AsyncMTLSCertificatesResourceWithStreamingResponse
 
@@ -3791,6 +4001,12 @@ class AsyncCloudflareWithStreamedResponse:
         )
 
     @cached_property
+    def zaraz(self) -> zaraz.AsyncZarazResourceWithStreamingResponse:
+        from .resources.zaraz import AsyncZarazResourceWithStreamingResponse
+
+        return AsyncZarazResourceWithStreamingResponse(self._client.zaraz)
+
+    @cached_property
     def speed(self) -> speed.AsyncSpeedResourceWithStreamingResponse:
         from .resources.speed import AsyncSpeedResourceWithStreamingResponse
 
@@ -3893,6 +4109,24 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.ai import AsyncAIResourceWithStreamingResponse
 
         return AsyncAIResourceWithStreamingResponse(self._client.ai)
+
+    @cached_property
+    def security_center(self) -> security_center.AsyncSecurityCenterResourceWithStreamingResponse:
+        from .resources.security_center import AsyncSecurityCenterResourceWithStreamingResponse
+
+        return AsyncSecurityCenterResourceWithStreamingResponse(self._client.security_center)
+
+    @cached_property
+    def browser_rendering(self) -> browser_rendering.AsyncBrowserRenderingResourceWithStreamingResponse:
+        from .resources.browser_rendering import AsyncBrowserRenderingResourceWithStreamingResponse
+
+        return AsyncBrowserRenderingResourceWithStreamingResponse(self._client.browser_rendering)
+
+    @cached_property
+    def custom_pages(self) -> custom_pages.AsyncCustomPagesResourceWithStreamingResponse:
+        from .resources.custom_pages import AsyncCustomPagesResourceWithStreamingResponse
+
+        return AsyncCustomPagesResourceWithStreamingResponse(self._client.custom_pages)
 
 
 Client = Cloudflare

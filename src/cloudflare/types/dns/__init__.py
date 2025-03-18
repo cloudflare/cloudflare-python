@@ -55,15 +55,12 @@ from .sshfp_record_param import SSHFPRecordParam as SSHFPRecordParam
 from .dns_analytics_query import DNSAnalyticsQuery as DNSAnalyticsQuery
 from .dnskey_record_param import DNSKEYRecordParam as DNSKEYRecordParam
 from .record_batch_params import RecordBatchParams as RecordBatchParams
-from .setting_edit_params import SettingEditParams as SettingEditParams
 from .smimea_record_param import SMIMEARecordParam as SMIMEARecordParam
 from .record_create_params import RecordCreateParams as RecordCreateParams
 from .record_import_params import RecordImportParams as RecordImportParams
 from .record_scan_response import RecordScanResponse as RecordScanResponse
 from .record_update_params import RecordUpdateParams as RecordUpdateParams
-from .setting_get_response import SettingGetResponse as SettingGetResponse
 from .record_batch_response import RecordBatchResponse as RecordBatchResponse
-from .setting_edit_response import SettingEditResponse as SettingEditResponse
 from .dnssec_delete_response import DNSSECDeleteResponse as DNSSECDeleteResponse
 from .record_delete_response import RecordDeleteResponse as RecordDeleteResponse
 from .record_export_response import RecordExportResponse as RecordExportResponse

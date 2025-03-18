@@ -8,6 +8,14 @@ from .logs import (
     LogsResourceWithStreamingResponse,
     AsyncLogsResourceWithStreamingResponse,
 )
+from .urls import (
+    URLsResource,
+    AsyncURLsResource,
+    URLsResourceWithRawResponse,
+    AsyncURLsResourceWithRawResponse,
+    URLsResourceWithStreamingResponse,
+    AsyncURLsResourceWithStreamingResponse,
+)
 from .datasets import (
     DatasetsResource,
     AsyncDatasetsResource,
@@ -66,6 +74,12 @@ __all__ = [
     "AsyncEvaluationsResourceWithRawResponse",
     "EvaluationsResourceWithStreamingResponse",
     "AsyncEvaluationsResourceWithStreamingResponse",
+    "URLsResource",
+    "AsyncURLsResource",
+    "URLsResourceWithRawResponse",
+    "AsyncURLsResourceWithRawResponse",
+    "URLsResourceWithStreamingResponse",
+    "AsyncURLsResourceWithStreamingResponse",
     "AIGatewayResource",
     "AsyncAIGatewayResource",
     "AIGatewayResourceWithRawResponse",

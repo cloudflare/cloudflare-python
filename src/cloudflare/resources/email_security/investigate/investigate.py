@@ -116,7 +116,7 @@ class InvestigateResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> InvestigateResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -141,7 +141,7 @@ class InvestigateResource(SyncAPIResource):
         detections_only: bool | NotGiven = NOT_GIVEN,
         domain: str | NotGiven = NOT_GIVEN,
         end: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        final_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK"] | NotGiven = NOT_GIVEN,
+        final_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"] | NotGiven = NOT_GIVEN,
         message_action: Literal["PREVIEW", "QUARANTINE_RELEASED", "MOVED"] | NotGiven = NOT_GIVEN,
         message_id: str | NotGiven = NOT_GIVEN,
         metric: str | NotGiven = NOT_GIVEN,
@@ -326,7 +326,7 @@ class AsyncInvestigateResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncInvestigateResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -351,7 +351,7 @@ class AsyncInvestigateResource(AsyncAPIResource):
         detections_only: bool | NotGiven = NOT_GIVEN,
         domain: str | NotGiven = NOT_GIVEN,
         end: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        final_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK"] | NotGiven = NOT_GIVEN,
+        final_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK", "NONE"] | NotGiven = NOT_GIVEN,
         message_action: Literal["PREVIEW", "QUARANTINE_RELEASED", "MOVED"] | NotGiven = NOT_GIVEN,
         message_id: str | NotGiven = NOT_GIVEN,
         metric: str | NotGiven = NOT_GIVEN,

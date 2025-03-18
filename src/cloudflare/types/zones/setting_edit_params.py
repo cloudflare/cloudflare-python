@@ -11,6 +11,8 @@ __all__ = [
     "SettingEditParams",
     "ZeroRTT",
     "AdvancedDDoS",
+    "ZonesCacheRulesAegis",
+    "ZonesCacheRulesAegisValue",
     "AlwaysOnline",
     "ZonesSchemasAlwaysUseHTTPS",
     "ZonesSchemasAutomaticHTTPSRewrites",
@@ -41,8 +43,11 @@ __all__ = [
     "OpportunisticOnion",
     "OrangeToOrange",
     "ZonesSchemasOriginErrorPagePassThru",
+    "ZonesCacheRulesOriginH2MaxStreams",
+    "ZonesCacheRulesOriginMaxHTTPVersion",
     "ZonesSchemasPolish",
     "PrefetchPreload",
+    "ZonesPrivacyPass",
     "ProxyReadTimeout",
     "PseudoIPV4",
     "ZonesReplaceInsecureJS",
@@ -88,6 +93,28 @@ class AdvancedDDoS(TypedDict, total=False):
 
     value: Required[Literal["on", "off"]]
     """Current value of the zone setting."""
+
+
+class ZonesCacheRulesAegis(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
+    id: Required[Literal["aegis"]]
+    """ID of the zone setting."""
+
+    value: ZonesCacheRulesAegisValue
+    """Value of the zone setting."""
+
+
+class ZonesCacheRulesAegisValue(TypedDict, total=False):
+    enabled: bool
+    """Whether the feature is enabled or not."""
+
+    pool_id: str
+    """
+    Egress pool id which refers to a grouping of dedicated egress IPs through which
+    Cloudflare will connect to origin.
+    """
 
 
 class AlwaysOnline(TypedDict, total=False):
@@ -470,6 +497,28 @@ class ZonesSchemasOriginErrorPagePassThru(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
+class ZonesCacheRulesOriginH2MaxStreams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
+    id: Required[Literal["origin_h2_max_streams"]]
+    """Value of the zone setting."""
+
+    value: int
+    """Value of the Origin H2 Max Streams Setting."""
+
+
+class ZonesCacheRulesOriginMaxHTTPVersion(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
+    id: Required[Literal["origin_max_http_version"]]
+    """Value of the zone setting."""
+
+    value: Literal["2", "1"]
+    """Value of the Origin Max HTTP Version Setting."""
+
+
 class ZonesSchemasPolish(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -486,6 +535,17 @@ class PrefetchPreload(TypedDict, total=False):
     """Identifier"""
 
     id: Required[Literal["prefetch_preload"]]
+    """ID of the zone setting."""
+
+    value: Required[Literal["on", "off"]]
+    """Current value of the zone setting."""
+
+
+class ZonesPrivacyPass(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
+    id: Required[Literal["privacy_pass"]]
     """ID of the zone setting."""
 
     value: Required[Literal["on", "off"]]
@@ -737,6 +797,7 @@ class Websocket(TypedDict, total=False):
 SettingEditParams: TypeAlias = Union[
     ZeroRTT,
     AdvancedDDoS,
+    ZonesCacheRulesAegis,
     AlwaysOnline,
     ZonesSchemasAlwaysUseHTTPS,
     ZonesSchemasAutomaticHTTPSRewrites,
@@ -766,8 +827,11 @@ SettingEditParams: TypeAlias = Union[
     OpportunisticOnion,
     OrangeToOrange,
     ZonesSchemasOriginErrorPagePassThru,
+    ZonesCacheRulesOriginH2MaxStreams,
+    ZonesCacheRulesOriginMaxHTTPVersion,
     ZonesSchemasPolish,
     PrefetchPreload,
+    ZonesPrivacyPass,
     ProxyReadTimeout,
     PseudoIPV4,
     ZonesReplaceInsecureJS,

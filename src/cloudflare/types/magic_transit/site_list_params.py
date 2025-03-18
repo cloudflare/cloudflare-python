@@ -11,5 +11,5 @@ class SiteListParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
-    connector_identifier: str
+    connectorid: str
     """Identifier"""

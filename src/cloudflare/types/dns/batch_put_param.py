@@ -30,87 +30,87 @@ from .smimea_record_param import SMIMEARecordParam
 
 __all__ = [
     "BatchPutParam",
-    "ARecord",
-    "AAAARecord",
-    "CAARecord",
-    "CERTRecord",
-    "CNAMERecord",
-    "DNSKEYRecord",
-    "DSRecord",
-    "HTTPSRecord",
-    "LOCRecord",
-    "MXRecord",
-    "NAPTRRecord",
-    "NSRecord",
+    "A",
+    "AAAA",
+    "CAA",
+    "CERT",
+    "CNAME",
+    "DNSKEY",
+    "DS",
+    "HTTPS",
+    "LOC",
+    "MX",
+    "NAPTR",
+    "NS",
     "Openpgpkey",
     "OpenpgpkeySettings",
-    "PTRRecord",
-    "SMIMEARecord",
-    "SRVRecord",
-    "SSHFPRecord",
-    "SVCBRecord",
-    "TLSARecord",
-    "TXTRecord",
-    "URIRecord",
+    "PTR",
+    "SMIMEA",
+    "SRV",
+    "SSHFP",
+    "SVCB",
+    "TLSA",
+    "TXT",
+    "URI",
 ]
 
 
-class ARecord(ARecordParam):
+class A(ARecordParam):
     id: str
     """Identifier"""
 
 
-class AAAARecord(AAAARecordParam):
+class AAAA(AAAARecordParam):
     id: str
     """Identifier"""
 
 
-class CAARecord(CAARecordParam):
+class CAA(CAARecordParam):
     id: str
     """Identifier"""
 
 
-class CERTRecord(CERTRecordParam):
+class CERT(CERTRecordParam):
     id: str
     """Identifier"""
 
 
-class CNAMERecord(CNAMERecordParam):
+class CNAME(CNAMERecordParam):
     id: str
     """Identifier"""
 
 
-class DNSKEYRecord(DNSKEYRecordParam):
+class DNSKEY(DNSKEYRecordParam):
     id: str
     """Identifier"""
 
 
-class DSRecord(DSRecordParam):
+class DS(DSRecordParam):
     id: str
     """Identifier"""
 
 
-class HTTPSRecord(HTTPSRecordParam):
+class HTTPS(HTTPSRecordParam):
     id: str
     """Identifier"""
 
 
-class LOCRecord(LOCRecordParam):
+class LOC(LOCRecordParam):
     id: str
     """Identifier"""
 
 
-class MXRecord(MXRecordParam):
+class MX(MXRecordParam):
     id: str
     """Identifier"""
 
 
-class NAPTRRecord(NAPTRRecordParam):
+class NAPTR(NAPTRRecordParam):
     id: str
     """Identifier"""
 
 
-class NSRecord(NSRecordParam):
+class NS(NSRecordParam):
     id: str
     """Identifier"""
 
@@ -172,66 +172,66 @@ class Openpgpkey(TypedDict, total=False):
     """
 
 
-class PTRRecord(PTRRecordParam):
+class PTR(PTRRecordParam):
     id: str
     """Identifier"""
 
 
-class SMIMEARecord(SMIMEARecordParam):
+class SMIMEA(SMIMEARecordParam):
     id: str
     """Identifier"""
 
 
-class SRVRecord(SRVRecordParam):
+class SRV(SRVRecordParam):
     id: str
     """Identifier"""
 
 
-class SSHFPRecord(SSHFPRecordParam):
+class SSHFP(SSHFPRecordParam):
     id: str
     """Identifier"""
 
 
-class SVCBRecord(SVCBRecordParam):
+class SVCB(SVCBRecordParam):
     id: str
     """Identifier"""
 
 
-class TLSARecord(TLSARecordParam):
+class TLSA(TLSARecordParam):
     id: str
     """Identifier"""
 
 
-class TXTRecord(TXTRecordParam):
+class TXT(TXTRecordParam):
     id: str
     """Identifier"""
 
 
-class URIRecord(URIRecordParam):
+class URI(URIRecordParam):
     id: str
     """Identifier"""
 
 
 BatchPutParam: TypeAlias = Union[
-    ARecord,
-    AAAARecord,
-    CAARecord,
-    CERTRecord,
-    CNAMERecord,
-    DNSKEYRecord,
-    DSRecord,
-    HTTPSRecord,
-    LOCRecord,
-    MXRecord,
-    NAPTRRecord,
-    NSRecord,
+    A,
+    AAAA,
+    CAA,
+    CERT,
+    CNAME,
+    DNSKEY,
+    DS,
+    HTTPS,
+    LOC,
+    MX,
+    NAPTR,
+    NS,
     Openpgpkey,
-    PTRRecord,
-    SMIMEARecord,
-    SRVRecord,
-    SSHFPRecord,
-    SVCBRecord,
-    TLSARecord,
-    TXTRecord,
-    URIRecord,
+    PTR,
+    SMIMEA,
+    SRV,
+    SSHFP,
+    SVCB,
+    TLSA,
+    TXT,
+    URI,
 ]

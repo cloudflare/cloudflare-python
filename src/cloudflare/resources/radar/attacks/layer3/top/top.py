@@ -47,7 +47,7 @@ class TopResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> TopResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -76,6 +76,7 @@ class TopResource(SyncAPIResource):
         limit_direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
         limit_per_location: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
+        magnitude: Literal["MITIGATED_BYTES", "MITIGATED_ATTACKS"] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         normalization: Literal["PERCENTAGE", "MIN_MAX"] | NotGiven = NOT_GIVEN,
         protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
@@ -86,44 +87,47 @@ class TopResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TopAttacksResponse:
-        """Get the top attacks from origin to target location.
+        """Retrieves the top layer 3 attacks from origin to target location.
 
-        Values are a percentage out
-        of the total layer 3 attacks (with billing country). You can optionally limit
-        the number of attacks per origin/target location (useful if all the top attacks
-        are from or to the same location).
+        Values are a
+        percentage out of the total layer 3 attacks (with billing country). You can
+        optionally limit the number of attacks by origin/target location (useful if all
+        the top attacks are from or to the same location).
 
         Args:
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
+          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
+              exclude continents from results. For example, `-EU,NA` excludes results from EU,
+              but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          ip_version: Filter for ip version.
+          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
-          limit: Limit the number of objects in the response.
+          limit: Limits the number of objects returned in the response.
 
           limit_direction: Array of attack origin/target location attack limits. Together with
               `limitPerLocation`, limits how many objects will be fetched per origin/target
               location.
 
-          limit_per_location: Limit the number of attacks per origin/target (refer to `limitDirection`
+          limit_per_location: Limits the number of attacks per origin/target (refer to `limitDirection`
               parameter) location.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
+          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
+              locations from results. For example, `-US,PT` excludes results from the US, but
+              includes results from PT.
 
-          name: Array of names that will be used to name the series in responses.
+          magnitude: Attack magnitude can be defined by total mitigated bytes or by total mitigated
+              attacks.
+
+          name: Array of names used to label the series in the response.
 
           normalization: Normalization method applied. Refer to
               [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
@@ -157,6 +161,7 @@ class TopResource(SyncAPIResource):
                         "limit_direction": limit_direction,
                         "limit_per_location": limit_per_location,
                         "location": location,
+                        "magnitude": magnitude,
                         "name": name,
                         "normalization": normalization,
                         "protocol": protocol,
@@ -189,32 +194,32 @@ class TopResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TopIndustryResponse:
         """
-        Get the industries targeted by attacks.
+        Retrieves the top industries targeted by layer 3 attacks.
 
         Args:
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
+          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
+              exclude continents from results. For example, `-EU,NA` excludes results from EU,
+              but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          ip_version: Filter for ip version.
+          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
-          limit: Limit the number of objects in the response.
+          limit: Limits the number of objects returned in the response.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
+          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
+              locations from results. For example, `-US,PT` excludes results from the US, but
+              includes results from PT.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
           protocol: Array of L3/4 attack types.
 
@@ -274,32 +279,32 @@ class TopResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TopVerticalResponse:
         """
-        Get the verticals targeted by attacks.
+        Retrieves the top verticals targeted by layer 3 attacks.
 
         Args:
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
+          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
+              exclude continents from results. For example, `-EU,NA` excludes results from EU,
+              but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          ip_version: Filter for ip version.
+          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
-          limit: Limit the number of objects in the response.
+          limit: Limits the number of objects returned in the response.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
+          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
+              locations from results. For example, `-US,PT` excludes results from the US, but
+              includes results from PT.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
           protocol: Array of L3/4 attack types.
 
@@ -347,7 +352,7 @@ class AsyncTopResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncTopResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -376,6 +381,7 @@ class AsyncTopResource(AsyncAPIResource):
         limit_direction: Literal["ORIGIN", "TARGET"] | NotGiven = NOT_GIVEN,
         limit_per_location: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
+        magnitude: Literal["MITIGATED_BYTES", "MITIGATED_ATTACKS"] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         normalization: Literal["PERCENTAGE", "MIN_MAX"] | NotGiven = NOT_GIVEN,
         protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
@@ -386,44 +392,47 @@ class AsyncTopResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TopAttacksResponse:
-        """Get the top attacks from origin to target location.
+        """Retrieves the top layer 3 attacks from origin to target location.
 
-        Values are a percentage out
-        of the total layer 3 attacks (with billing country). You can optionally limit
-        the number of attacks per origin/target location (useful if all the top attacks
-        are from or to the same location).
+        Values are a
+        percentage out of the total layer 3 attacks (with billing country). You can
+        optionally limit the number of attacks by origin/target location (useful if all
+        the top attacks are from or to the same location).
 
         Args:
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
+          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
+              exclude continents from results. For example, `-EU,NA` excludes results from EU,
+              but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          ip_version: Filter for ip version.
+          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
-          limit: Limit the number of objects in the response.
+          limit: Limits the number of objects returned in the response.
 
           limit_direction: Array of attack origin/target location attack limits. Together with
               `limitPerLocation`, limits how many objects will be fetched per origin/target
               location.
 
-          limit_per_location: Limit the number of attacks per origin/target (refer to `limitDirection`
+          limit_per_location: Limits the number of attacks per origin/target (refer to `limitDirection`
               parameter) location.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
+          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
+              locations from results. For example, `-US,PT` excludes results from the US, but
+              includes results from PT.
 
-          name: Array of names that will be used to name the series in responses.
+          magnitude: Attack magnitude can be defined by total mitigated bytes or by total mitigated
+              attacks.
+
+          name: Array of names used to label the series in the response.
 
           normalization: Normalization method applied. Refer to
               [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
@@ -457,6 +466,7 @@ class AsyncTopResource(AsyncAPIResource):
                         "limit_direction": limit_direction,
                         "limit_per_location": limit_per_location,
                         "location": location,
+                        "magnitude": magnitude,
                         "name": name,
                         "normalization": normalization,
                         "protocol": protocol,
@@ -489,32 +499,32 @@ class AsyncTopResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TopIndustryResponse:
         """
-        Get the industries targeted by attacks.
+        Retrieves the top industries targeted by layer 3 attacks.
 
         Args:
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
+          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
+              exclude continents from results. For example, `-EU,NA` excludes results from EU,
+              but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          ip_version: Filter for ip version.
+          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
-          limit: Limit the number of objects in the response.
+          limit: Limits the number of objects returned in the response.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
+          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
+              locations from results. For example, `-US,PT` excludes results from the US, but
+              includes results from PT.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
           protocol: Array of L3/4 attack types.
 
@@ -574,32 +584,32 @@ class AsyncTopResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TopVerticalResponse:
         """
-        Get the verticals targeted by attacks.
+        Retrieves the top verticals targeted by layer 3 attacks.
 
         Args:
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
+          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
+              exclude continents from results. For example, `-EU,NA` excludes results from EU,
+              but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          ip_version: Filter for ip version.
+          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
-          limit: Limit the number of objects in the response.
+          limit: Limits the number of objects returned in the response.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
+          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
+              locations from results. For example, `-US,PT` excludes results from the US, but
+              includes results from PT.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
           protocol: Array of L3/4 attack types.
 

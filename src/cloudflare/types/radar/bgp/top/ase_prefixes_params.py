@@ -12,7 +12,7 @@ class AsePrefixesParams(TypedDict, total=False):
     """Alpha-2 country code."""
 
     format: Literal["JSON", "CSV"]
-    """Format results are returned in."""
+    """Format in which results will be returned."""
 
     limit: int
-    """Maximum number of ASes to return"""
+    """Maximum number of ASes to return."""

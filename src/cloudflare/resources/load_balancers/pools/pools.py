@@ -52,7 +52,6 @@ from ....types.load_balancers.origin_param import OriginParam
 from ....types.load_balancers.load_shedding_param import LoadSheddingParam
 from ....types.load_balancers.pool_delete_response import PoolDeleteResponse
 from ....types.load_balancers.origin_steering_param import OriginSteeringParam
-from ....types.load_balancers.pool_bulk_edit_response import PoolBulkEditResponse
 from ....types.load_balancers.notification_filter_param import NotificationFilterParam
 
 __all__ = ["PoolsResource", "AsyncPoolsResource"]
@@ -70,7 +69,7 @@ class PoolsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> PoolsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -405,7 +404,7 @@ class PoolsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PoolBulkEditResponse:
+    ) -> SyncSinglePage[Pool]:
         """Apply changes to a number of existing pools, overwriting the supplied
         properties.
 
@@ -430,17 +429,15 @@ class PoolsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._patch(
+        return self._get_api_list(
             f"/accounts/{account_id}/load_balancers/pools",
+            page=SyncSinglePage[Pool],
             body=maybe_transform({"notification_email": notification_email}, pool_bulk_edit_params.PoolBulkEditParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[PoolBulkEditResponse]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[PoolBulkEditResponse], ResultWrapper[PoolBulkEditResponse]),
+            model=Pool,
+            method="patch",
         )
 
     def edit(
@@ -613,7 +610,7 @@ class AsyncPoolsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncPoolsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -937,7 +934,7 @@ class AsyncPoolsResource(AsyncAPIResource):
             cast_to=cast(Type[PoolDeleteResponse], ResultWrapper[PoolDeleteResponse]),
         )
 
-    async def bulk_edit(
+    def bulk_edit(
         self,
         *,
         account_id: str,
@@ -948,7 +945,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PoolBulkEditResponse:
+    ) -> AsyncPaginator[Pool, AsyncSinglePage[Pool]]:
         """Apply changes to a number of existing pools, overwriting the supplied
         properties.
 
@@ -973,19 +970,15 @@ class AsyncPoolsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._patch(
+        return self._get_api_list(
             f"/accounts/{account_id}/load_balancers/pools",
-            body=await async_maybe_transform(
-                {"notification_email": notification_email}, pool_bulk_edit_params.PoolBulkEditParams
-            ),
+            page=AsyncSinglePage[Pool],
+            body=maybe_transform({"notification_email": notification_email}, pool_bulk_edit_params.PoolBulkEditParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[PoolBulkEditResponse]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[PoolBulkEditResponse], ResultWrapper[PoolBulkEditResponse]),
+            model=Pool,
+            method="patch",
         )
 
     async def edit(

@@ -28,6 +28,12 @@ class StreamCreateParams(TypedDict, total=False):
     The value must be a non-negative integer.
     """
 
+    direct_user: bool
+    """
+    Provisions a URL to let your end users upload videos directly to Cloudflare
+    Stream without exposing your API token to clients.
+    """
+
     upload_creator: Annotated[str, PropertyInfo(alias="Upload-Creator")]
     """A user-defined identifier for the media creator."""
 

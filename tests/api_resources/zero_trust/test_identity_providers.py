@@ -94,7 +94,7 @@ class TestIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_1(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -102,7 +102,7 @@ class TestIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -180,7 +180,7 @@ class TestIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_2(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -188,7 +188,7 @@ class TestIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -262,7 +262,7 @@ class TestIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_3(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -270,7 +270,7 @@ class TestIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -344,7 +344,7 @@ class TestIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_4(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -352,7 +352,7 @@ class TestIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -428,7 +428,7 @@ class TestIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_5(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -436,7 +436,7 @@ class TestIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -513,7 +513,7 @@ class TestIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_6(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -521,7 +521,7 @@ class TestIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -595,7 +595,7 @@ class TestIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_7(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -603,7 +603,7 @@ class TestIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -684,7 +684,7 @@ class TestIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_8(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -692,7 +692,7 @@ class TestIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -770,7 +770,7 @@ class TestIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_9(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -778,7 +778,7 @@ class TestIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -855,7 +855,7 @@ class TestIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_10(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -863,7 +863,7 @@ class TestIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -940,7 +940,7 @@ class TestIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_11(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -948,7 +948,7 @@ class TestIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -1032,7 +1032,7 @@ class TestIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_12(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -1040,7 +1040,7 @@ class TestIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -1114,7 +1114,7 @@ class TestIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_13(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -1122,7 +1122,7 @@ class TestIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -1193,7 +1193,7 @@ class TestIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_14(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -1201,7 +1201,7 @@ class TestIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -1294,7 +1294,7 @@ class TestIdentityProviders:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -1303,7 +1303,7 @@ class TestIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -1395,7 +1395,7 @@ class TestIdentityProviders:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -1404,7 +1404,7 @@ class TestIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -1492,7 +1492,7 @@ class TestIdentityProviders:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -1501,7 +1501,7 @@ class TestIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -1589,7 +1589,7 @@ class TestIdentityProviders:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -1598,7 +1598,7 @@ class TestIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -1688,7 +1688,7 @@ class TestIdentityProviders:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -1697,7 +1697,7 @@ class TestIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -1788,7 +1788,7 @@ class TestIdentityProviders:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -1797,7 +1797,7 @@ class TestIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -1885,7 +1885,7 @@ class TestIdentityProviders:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -1894,7 +1894,7 @@ class TestIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -1989,7 +1989,7 @@ class TestIdentityProviders:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -1998,7 +1998,7 @@ class TestIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -2090,7 +2090,7 @@ class TestIdentityProviders:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -2099,7 +2099,7 @@ class TestIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -2190,7 +2190,7 @@ class TestIdentityProviders:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -2199,7 +2199,7 @@ class TestIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -2290,7 +2290,7 @@ class TestIdentityProviders:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -2299,7 +2299,7 @@ class TestIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -2397,7 +2397,7 @@ class TestIdentityProviders:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -2406,7 +2406,7 @@ class TestIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -2494,7 +2494,7 @@ class TestIdentityProviders:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -2503,7 +2503,7 @@ class TestIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -2588,7 +2588,7 @@ class TestIdentityProviders:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -2597,7 +2597,7 @@ class TestIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -2652,12 +2652,12 @@ class TestIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.list(
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.list(
                 account_id="account_id",
             )
@@ -2717,13 +2717,13 @@ class TestIdentityProviders:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.delete(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.delete(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="account_id",
@@ -2784,13 +2784,13 @@ class TestIdentityProviders:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.get(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.identity_providers.with_raw_response.get(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="account_id",
@@ -2872,7 +2872,7 @@ class TestAsyncIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_1(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -2880,7 +2880,7 @@ class TestAsyncIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -2958,7 +2958,7 @@ class TestAsyncIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_2(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -2966,7 +2966,7 @@ class TestAsyncIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -3040,7 +3040,7 @@ class TestAsyncIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_3(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -3048,7 +3048,7 @@ class TestAsyncIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -3122,7 +3122,7 @@ class TestAsyncIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_4(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -3130,7 +3130,7 @@ class TestAsyncIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -3206,7 +3206,7 @@ class TestAsyncIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_5(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -3214,7 +3214,7 @@ class TestAsyncIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -3291,7 +3291,7 @@ class TestAsyncIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_6(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -3299,7 +3299,7 @@ class TestAsyncIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -3373,7 +3373,7 @@ class TestAsyncIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_7(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -3381,7 +3381,7 @@ class TestAsyncIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -3462,7 +3462,7 @@ class TestAsyncIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_8(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -3470,7 +3470,7 @@ class TestAsyncIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -3548,7 +3548,7 @@ class TestAsyncIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_9(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -3556,7 +3556,7 @@ class TestAsyncIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -3633,7 +3633,7 @@ class TestAsyncIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_10(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -3641,7 +3641,7 @@ class TestAsyncIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -3718,7 +3718,7 @@ class TestAsyncIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_11(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -3726,7 +3726,7 @@ class TestAsyncIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -3810,7 +3810,7 @@ class TestAsyncIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_12(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -3818,7 +3818,7 @@ class TestAsyncIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -3892,7 +3892,7 @@ class TestAsyncIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_13(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -3900,7 +3900,7 @@ class TestAsyncIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -3971,7 +3971,7 @@ class TestAsyncIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_14(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -3979,7 +3979,7 @@ class TestAsyncIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
@@ -4072,7 +4072,7 @@ class TestAsyncIdentityProviders:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -4081,7 +4081,7 @@ class TestAsyncIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -4173,7 +4173,7 @@ class TestAsyncIdentityProviders:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -4182,7 +4182,7 @@ class TestAsyncIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -4270,7 +4270,7 @@ class TestAsyncIdentityProviders:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -4279,7 +4279,7 @@ class TestAsyncIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -4367,7 +4367,7 @@ class TestAsyncIdentityProviders:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -4376,7 +4376,7 @@ class TestAsyncIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -4466,7 +4466,7 @@ class TestAsyncIdentityProviders:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -4475,7 +4475,7 @@ class TestAsyncIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -4566,7 +4566,7 @@ class TestAsyncIdentityProviders:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -4575,7 +4575,7 @@ class TestAsyncIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -4663,7 +4663,7 @@ class TestAsyncIdentityProviders:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -4672,7 +4672,7 @@ class TestAsyncIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -4767,7 +4767,7 @@ class TestAsyncIdentityProviders:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -4776,7 +4776,7 @@ class TestAsyncIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -4868,7 +4868,7 @@ class TestAsyncIdentityProviders:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -4877,7 +4877,7 @@ class TestAsyncIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -4968,7 +4968,7 @@ class TestAsyncIdentityProviders:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -4977,7 +4977,7 @@ class TestAsyncIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -5068,7 +5068,7 @@ class TestAsyncIdentityProviders:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -5077,7 +5077,7 @@ class TestAsyncIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -5175,7 +5175,7 @@ class TestAsyncIdentityProviders:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -5184,7 +5184,7 @@ class TestAsyncIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -5272,7 +5272,7 @@ class TestAsyncIdentityProviders:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -5281,7 +5281,7 @@ class TestAsyncIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -5366,7 +5366,7 @@ class TestAsyncIdentityProviders:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -5375,7 +5375,7 @@ class TestAsyncIdentityProviders:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
@@ -5430,12 +5430,12 @@ class TestAsyncIdentityProviders:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.list(
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.list(
                 account_id="account_id",
             )
@@ -5495,13 +5495,13 @@ class TestAsyncIdentityProviders:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.delete(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.delete(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="account_id",
@@ -5562,13 +5562,13 @@ class TestAsyncIdentityProviders:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.get(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.identity_providers.with_raw_response.get(
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="account_id",

@@ -33,7 +33,7 @@ class LocationsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> LocationsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -64,16 +64,16 @@ class LocationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LocationListResponse:
         """
-        Get a list of locations.
+        Retrieves a list of locations.
 
         Args:
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          limit: Limit the number of objects in the response.
+          limit: Limits the number of objects returned in the response.
 
-          location: Comma separated list of locations.
+          location: Comma-separated list of locations (alpha-2 location codes).
 
-          offset: Number of objects to skip before grabbing results.
+          offset: Skips the specified number of objects before fetching the results.
 
           extra_headers: Send extra headers
 
@@ -116,16 +116,16 @@ class LocationsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LocationGetResponse:
-        """Get the requested location information.
+        """Retrieves the requested location information.
 
-        (A confidence level below `5` indicates
-        a low level of confidence in the traffic data - normally this happens because
-        Cloudflare has a small amount of traffic from/to this location).
+        (A confidence level below `5`
+        indicates a low level of confidence in the traffic data - normally this happens
+        because Cloudflare has a small amount of traffic from/to this location).
 
         Args:
-          location: Alpha-2 country code.
+          location: Location alpha-2 code.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
           extra_headers: Send extra headers
 
@@ -155,7 +155,7 @@ class AsyncLocationsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncLocationsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -186,16 +186,16 @@ class AsyncLocationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LocationListResponse:
         """
-        Get a list of locations.
+        Retrieves a list of locations.
 
         Args:
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          limit: Limit the number of objects in the response.
+          limit: Limits the number of objects returned in the response.
 
-          location: Comma separated list of locations.
+          location: Comma-separated list of locations (alpha-2 location codes).
 
-          offset: Number of objects to skip before grabbing results.
+          offset: Skips the specified number of objects before fetching the results.
 
           extra_headers: Send extra headers
 
@@ -238,16 +238,16 @@ class AsyncLocationsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LocationGetResponse:
-        """Get the requested location information.
+        """Retrieves the requested location information.
 
-        (A confidence level below `5` indicates
-        a low level of confidence in the traffic data - normally this happens because
-        Cloudflare has a small amount of traffic from/to this location).
+        (A confidence level below `5`
+        indicates a low level of confidence in the traffic data - normally this happens
+        because Cloudflare has a small amount of traffic from/to this location).
 
         Args:
-          location: Alpha-2 country code.
+          location: Location alpha-2 code.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
           extra_headers: Send extra headers
 

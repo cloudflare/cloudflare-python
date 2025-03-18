@@ -2,15 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, Optional, cast
+from typing import Iterable
 
 import httpx
 
 from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ......_utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ......_utils import maybe_transform
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
 from ......_response import (
@@ -19,11 +16,10 @@ from ......_response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ......_wrappers import ResultWrapper
-from ......_base_client import make_request_options
+from ......pagination import SyncSinglePage, AsyncSinglePage
+from ......_base_client import AsyncPaginator, make_request_options
+from ......types.zero_trust.devices.fallback_domain import FallbackDomain
 from ......types.zero_trust.devices.fallback_domain_param import FallbackDomainParam
-from ......types.zero_trust.devices.policies.custom.fallback_domain_get_response import FallbackDomainGetResponse
-from ......types.zero_trust.devices.policies.custom.fallback_domain_update_response import FallbackDomainUpdateResponse
 
 __all__ = ["FallbackDomainsResource", "AsyncFallbackDomainsResource"]
 
@@ -32,7 +28,7 @@ class FallbackDomainsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> FallbackDomainsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -60,7 +56,7 @@ class FallbackDomainsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[FallbackDomainUpdateResponse]:
+    ) -> SyncSinglePage[FallbackDomain]:
         """Sets the list of domains to bypass Gateway DNS resolution.
 
         These domains will
@@ -82,17 +78,15 @@ class FallbackDomainsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
-        return self._put(
+        return self._get_api_list(
             f"/accounts/{account_id}/devices/policy/{policy_id}/fallback_domains",
+            page=SyncSinglePage[FallbackDomain],
             body=maybe_transform(domains, Iterable[FallbackDomainParam]),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[FallbackDomainUpdateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[FallbackDomainUpdateResponse]], ResultWrapper[FallbackDomainUpdateResponse]),
+            model=FallbackDomain,
+            method="put",
         )
 
     def get(
@@ -106,7 +100,7 @@ class FallbackDomainsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[FallbackDomainGetResponse]:
+    ) -> SyncSinglePage[FallbackDomain]:
         """
         Fetches the list of domains to bypass Gateway DNS resolution from a specified
         device settings profile. These domains will use the specified local DNS resolver
@@ -127,16 +121,13 @@ class FallbackDomainsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/devices/policy/{policy_id}/fallback_domains",
+            page=SyncSinglePage[FallbackDomain],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[FallbackDomainGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[FallbackDomainGetResponse]], ResultWrapper[FallbackDomainGetResponse]),
+            model=FallbackDomain,
         )
 
 
@@ -144,7 +135,7 @@ class AsyncFallbackDomainsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncFallbackDomainsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -160,7 +151,7 @@ class AsyncFallbackDomainsResource(AsyncAPIResource):
         """
         return AsyncFallbackDomainsResourceWithStreamingResponse(self)
 
-    async def update(
+    def update(
         self,
         policy_id: str,
         *,
@@ -172,7 +163,7 @@ class AsyncFallbackDomainsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[FallbackDomainUpdateResponse]:
+    ) -> AsyncPaginator[FallbackDomain, AsyncSinglePage[FallbackDomain]]:
         """Sets the list of domains to bypass Gateway DNS resolution.
 
         These domains will
@@ -194,20 +185,18 @@ class AsyncFallbackDomainsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
-        return await self._put(
+        return self._get_api_list(
             f"/accounts/{account_id}/devices/policy/{policy_id}/fallback_domains",
-            body=await async_maybe_transform(domains, Iterable[FallbackDomainParam]),
+            page=AsyncSinglePage[FallbackDomain],
+            body=maybe_transform(domains, Iterable[FallbackDomainParam]),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[FallbackDomainUpdateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[FallbackDomainUpdateResponse]], ResultWrapper[FallbackDomainUpdateResponse]),
+            model=FallbackDomain,
+            method="put",
         )
 
-    async def get(
+    def get(
         self,
         policy_id: str,
         *,
@@ -218,7 +207,7 @@ class AsyncFallbackDomainsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[FallbackDomainGetResponse]:
+    ) -> AsyncPaginator[FallbackDomain, AsyncSinglePage[FallbackDomain]]:
         """
         Fetches the list of domains to bypass Gateway DNS resolution from a specified
         device settings profile. These domains will use the specified local DNS resolver
@@ -239,16 +228,13 @@ class AsyncFallbackDomainsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/devices/policy/{policy_id}/fallback_domains",
+            page=AsyncSinglePage[FallbackDomain],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[FallbackDomainGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[FallbackDomainGetResponse]], ResultWrapper[FallbackDomainGetResponse]),
+            model=FallbackDomain,
         )
 
 

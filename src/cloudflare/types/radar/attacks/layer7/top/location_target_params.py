@@ -13,91 +13,31 @@ __all__ = ["LocationTargetParams"]
 
 class LocationTargetParams(TypedDict, total=False):
     continent: List[str]
-    """Array of comma separated list of continents (alpha-2 continent codes).
+    """Comma-separated list of continents (alpha-2 continent codes).
 
-    Start with `-` to exclude from results. For example, `-EU,NA` excludes results
-    from Europe, but includes results from North America.
+    Prefix with `-` to exclude continents from results. For example, `-EU,NA`
+    excludes results from EU, but includes results from NA.
     """
 
     date_end: Annotated[List[Union[str, datetime]], PropertyInfo(alias="dateEnd", format="iso8601")]
     """End of the date range (inclusive)."""
 
     date_range: Annotated[List[str], PropertyInfo(alias="dateRange")]
-    """
-    For example, use `7d` and `7dControl` to compare this week with the previous
+    """Filters results by the specified date range.
+
+    For example, use `7d` and `7dcontrol` to compare this week with the previous
     week. Use this parameter or set specific start and end dates (`dateStart` and
     `dateEnd` parameters).
     """
 
     date_start: Annotated[List[Union[str, datetime]], PropertyInfo(alias="dateStart", format="iso8601")]
-    """Array of datetimes to filter the start of a series."""
+    """Start of the date range."""
 
     format: Literal["JSON", "CSV"]
-    """Format results are returned in."""
-
-    http_method: Annotated[
-        List[
-            Literal[
-                "GET",
-                "POST",
-                "DELETE",
-                "PUT",
-                "HEAD",
-                "PURGE",
-                "OPTIONS",
-                "PROPFIND",
-                "MKCOL",
-                "PATCH",
-                "ACL",
-                "BCOPY",
-                "BDELETE",
-                "BMOVE",
-                "BPROPFIND",
-                "BPROPPATCH",
-                "CHECKIN",
-                "CHECKOUT",
-                "CONNECT",
-                "COPY",
-                "LABEL",
-                "LOCK",
-                "MERGE",
-                "MKACTIVITY",
-                "MKWORKSPACE",
-                "MOVE",
-                "NOTIFY",
-                "ORDERPATCH",
-                "POLL",
-                "PROPPATCH",
-                "REPORT",
-                "SEARCH",
-                "SUBSCRIBE",
-                "TRACE",
-                "UNCHECKOUT",
-                "UNLOCK",
-                "UNSUBSCRIBE",
-                "UPDATE",
-                "VERSIONCONTROL",
-                "BASELINECONTROL",
-                "XMSENUMATTS",
-                "RPC_OUT_DATA",
-                "RPC_IN_DATA",
-                "JSON",
-                "COOK",
-                "TRACK",
-            ]
-        ],
-        PropertyInfo(alias="httpMethod"),
-    ]
-    """Filter for http method."""
-
-    http_version: Annotated[List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]], PropertyInfo(alias="httpVersion")]
-    """Filter for http version."""
-
-    ip_version: Annotated[List[Literal["IPv4", "IPv6"]], PropertyInfo(alias="ipVersion")]
-    """Filter for ip version."""
+    """Format in which results will be returned."""
 
     limit: int
-    """Limit the number of objects in the response."""
+    """Limits the number of objects returned in the response."""
 
     mitigation_product: Annotated[
         List[
@@ -110,4 +50,4 @@ class LocationTargetParams(TypedDict, total=False):
     """Array of L7 mitigation products."""
 
     name: List[str]
-    """Array of names that will be used to name the series in responses."""
+    """Array of names used to label the series in the response."""

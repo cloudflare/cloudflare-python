@@ -32,7 +32,7 @@ class PredefinedResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> PredefinedResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -54,6 +54,7 @@ class PredefinedResource(SyncAPIResource):
         *,
         account_id: str,
         entries: Iterable[predefined_update_params.Entry],
+        ai_context_enabled: bool | NotGiven = NOT_GIVEN,
         allowed_match_count: Optional[int] | NotGiven = NOT_GIVEN,
         confidence_threshold: Optional[str] | NotGiven = NOT_GIVEN,
         context_awareness: ContextAwarenessParam | NotGiven = NOT_GIVEN,
@@ -92,6 +93,7 @@ class PredefinedResource(SyncAPIResource):
                 body=maybe_transform(
                     {
                         "entries": entries,
+                        "ai_context_enabled": ai_context_enabled,
                         "allowed_match_count": allowed_match_count,
                         "confidence_threshold": confidence_threshold,
                         "context_awareness": context_awareness,
@@ -162,7 +164,7 @@ class AsyncPredefinedResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncPredefinedResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -184,6 +186,7 @@ class AsyncPredefinedResource(AsyncAPIResource):
         *,
         account_id: str,
         entries: Iterable[predefined_update_params.Entry],
+        ai_context_enabled: bool | NotGiven = NOT_GIVEN,
         allowed_match_count: Optional[int] | NotGiven = NOT_GIVEN,
         confidence_threshold: Optional[str] | NotGiven = NOT_GIVEN,
         context_awareness: ContextAwarenessParam | NotGiven = NOT_GIVEN,
@@ -222,6 +225,7 @@ class AsyncPredefinedResource(AsyncAPIResource):
                 body=await async_maybe_transform(
                     {
                         "entries": entries,
+                        "ai_context_enabled": ai_context_enabled,
                         "allowed_match_count": allowed_match_count,
                         "confidence_threshold": confidence_threshold,
                         "context_awareness": context_awareness,

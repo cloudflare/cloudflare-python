@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Union, cast
+from typing import Type, Union, Iterable, cast
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -30,10 +30,11 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from ....pagination import SyncSinglePage, AsyncSinglePage, SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.workflows import instance_list_params, instance_create_params
+from ....types.workflows import instance_bulk_params, instance_list_params, instance_create_params
 from ....types.workflows.instance_get_response import InstanceGetResponse
+from ....types.workflows.instance_bulk_response import InstanceBulkResponse
 from ....types.workflows.instance_list_response import InstanceListResponse
 from ....types.workflows.instance_create_response import InstanceCreateResponse
 
@@ -48,7 +49,7 @@ class InstancesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> InstancesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -175,6 +176,46 @@ class InstancesResource(SyncAPIResource):
             model=InstanceListResponse,
         )
 
+    def bulk(
+        self,
+        workflow_name: str,
+        *,
+        account_id: str,
+        body: Iterable[instance_bulk_params.Body] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncSinglePage[InstanceBulkResponse]:
+        """
+        Batch create new Workflow instances
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not workflow_name:
+            raise ValueError(f"Expected a non-empty value for `workflow_name` but received {workflow_name!r}")
+        return self._get_api_list(
+            f"/accounts/{account_id}/workflows/{workflow_name}/instances/batch",
+            page=SyncSinglePage[InstanceBulkResponse],
+            body=maybe_transform(body, Iterable[instance_bulk_params.Body]),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            model=InstanceBulkResponse,
+            method="post",
+        )
+
     def get(
         self,
         instance_id: str,
@@ -227,7 +268,7 @@ class AsyncInstancesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncInstancesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -354,6 +395,46 @@ class AsyncInstancesResource(AsyncAPIResource):
             model=InstanceListResponse,
         )
 
+    def bulk(
+        self,
+        workflow_name: str,
+        *,
+        account_id: str,
+        body: Iterable[instance_bulk_params.Body] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[InstanceBulkResponse, AsyncSinglePage[InstanceBulkResponse]]:
+        """
+        Batch create new Workflow instances
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not workflow_name:
+            raise ValueError(f"Expected a non-empty value for `workflow_name` but received {workflow_name!r}")
+        return self._get_api_list(
+            f"/accounts/{account_id}/workflows/{workflow_name}/instances/batch",
+            page=AsyncSinglePage[InstanceBulkResponse],
+            body=maybe_transform(body, Iterable[instance_bulk_params.Body]),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            model=InstanceBulkResponse,
+            method="post",
+        )
+
     async def get(
         self,
         instance_id: str,
@@ -408,6 +489,9 @@ class InstancesResourceWithRawResponse:
         self.list = to_raw_response_wrapper(
             instances.list,
         )
+        self.bulk = to_raw_response_wrapper(
+            instances.bulk,
+        )
         self.get = to_raw_response_wrapper(
             instances.get,
         )
@@ -426,6 +510,9 @@ class AsyncInstancesResourceWithRawResponse:
         )
         self.list = async_to_raw_response_wrapper(
             instances.list,
+        )
+        self.bulk = async_to_raw_response_wrapper(
+            instances.bulk,
         )
         self.get = async_to_raw_response_wrapper(
             instances.get,
@@ -446,6 +533,9 @@ class InstancesResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             instances.list,
         )
+        self.bulk = to_streamed_response_wrapper(
+            instances.bulk,
+        )
         self.get = to_streamed_response_wrapper(
             instances.get,
         )
@@ -464,6 +554,9 @@ class AsyncInstancesResourceWithStreamingResponse:
         )
         self.list = async_to_streamed_response_wrapper(
             instances.list,
+        )
+        self.bulk = async_to_streamed_response_wrapper(
+            instances.bulk,
         )
         self.get = async_to_streamed_response_wrapper(
             instances.get,

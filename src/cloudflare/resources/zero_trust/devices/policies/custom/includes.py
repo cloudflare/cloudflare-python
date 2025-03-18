@@ -2,15 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, Optional, cast
+from typing import Iterable
 
 import httpx
 
 from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ......_utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ......_utils import maybe_transform
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
 from ......_response import (
@@ -19,11 +16,10 @@ from ......_response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ......_wrappers import ResultWrapper
-from ......_base_client import make_request_options
+from ......pagination import SyncSinglePage, AsyncSinglePage
+from ......_base_client import AsyncPaginator, make_request_options
+from ......types.zero_trust.devices.split_tunnel_include import SplitTunnelInclude
 from ......types.zero_trust.devices.split_tunnel_include_param import SplitTunnelIncludeParam
-from ......types.zero_trust.devices.policies.custom.include_get_response import IncludeGetResponse
-from ......types.zero_trust.devices.policies.custom.include_update_response import IncludeUpdateResponse
 
 __all__ = ["IncludesResource", "AsyncIncludesResource"]
 
@@ -32,7 +28,7 @@ class IncludesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> IncludesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -60,7 +56,7 @@ class IncludesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IncludeUpdateResponse]:
+    ) -> SyncSinglePage[SplitTunnelInclude]:
         """
         Sets the list of routes included in the WARP client's tunnel for a specific
         device settings profile.
@@ -80,17 +76,15 @@ class IncludesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
-        return self._put(
+        return self._get_api_list(
             f"/accounts/{account_id}/devices/policy/{policy_id}/include",
+            page=SyncSinglePage[SplitTunnelInclude],
             body=maybe_transform(body, Iterable[SplitTunnelIncludeParam]),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[IncludeUpdateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[IncludeUpdateResponse]], ResultWrapper[IncludeUpdateResponse]),
+            model=SplitTunnelInclude,
+            method="put",
         )
 
     def get(
@@ -104,7 +98,7 @@ class IncludesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IncludeGetResponse]:
+    ) -> SyncSinglePage[SplitTunnelInclude]:
         """
         Fetches the list of routes included in the WARP client's tunnel for a specific
         device settings profile.
@@ -124,16 +118,13 @@ class IncludesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/devices/policy/{policy_id}/include",
+            page=SyncSinglePage[SplitTunnelInclude],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[IncludeGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[IncludeGetResponse]], ResultWrapper[IncludeGetResponse]),
+            model=SplitTunnelInclude,
         )
 
 
@@ -141,7 +132,7 @@ class AsyncIncludesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncIncludesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -157,7 +148,7 @@ class AsyncIncludesResource(AsyncAPIResource):
         """
         return AsyncIncludesResourceWithStreamingResponse(self)
 
-    async def update(
+    def update(
         self,
         policy_id: str,
         *,
@@ -169,7 +160,7 @@ class AsyncIncludesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IncludeUpdateResponse]:
+    ) -> AsyncPaginator[SplitTunnelInclude, AsyncSinglePage[SplitTunnelInclude]]:
         """
         Sets the list of routes included in the WARP client's tunnel for a specific
         device settings profile.
@@ -189,20 +180,18 @@ class AsyncIncludesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
-        return await self._put(
+        return self._get_api_list(
             f"/accounts/{account_id}/devices/policy/{policy_id}/include",
-            body=await async_maybe_transform(body, Iterable[SplitTunnelIncludeParam]),
+            page=AsyncSinglePage[SplitTunnelInclude],
+            body=maybe_transform(body, Iterable[SplitTunnelIncludeParam]),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[IncludeUpdateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[IncludeUpdateResponse]], ResultWrapper[IncludeUpdateResponse]),
+            model=SplitTunnelInclude,
+            method="put",
         )
 
-    async def get(
+    def get(
         self,
         policy_id: str,
         *,
@@ -213,7 +202,7 @@ class AsyncIncludesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IncludeGetResponse]:
+    ) -> AsyncPaginator[SplitTunnelInclude, AsyncSinglePage[SplitTunnelInclude]]:
         """
         Fetches the list of routes included in the WARP client's tunnel for a specific
         device settings profile.
@@ -233,16 +222,13 @@ class AsyncIncludesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/devices/policy/{policy_id}/include",
+            page=AsyncSinglePage[SplitTunnelInclude],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[IncludeGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[IncludeGetResponse]], ResultWrapper[IncludeGetResponse]),
+            model=SplitTunnelInclude,
         )
 
 

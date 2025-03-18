@@ -1,11 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from __future__ import annotations
+
 from typing import List, Optional
 from datetime import datetime
 
 from .decision import Decision
 from ...._models import BaseModel
-from ..access_rule import AccessRule
 from .approval_group import ApprovalGroup
 
 __all__ = ["ApplicationPolicy"]
@@ -74,3 +75,5 @@ class ApplicationPolicy(BaseModel):
     """
 
     updated_at: Optional[datetime] = None
+
+from .applications.access_rule import AccessRule

@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import Required, TypedDict
 
 __all__ = ["OriginCACertificateListParams"]
 
 
 class OriginCACertificateListParams(TypedDict, total=False):
-    zone_id: str
+    zone_id: Required[str]
     """Identifier"""

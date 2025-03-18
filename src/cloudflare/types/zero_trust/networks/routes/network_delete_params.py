@@ -11,7 +11,7 @@ class NetworkDeleteParams(TypedDict, total=False):
     account_id: Required[str]
     """Cloudflare account ID"""
 
-    tun_type: Literal["cfd_tunnel", "warp_connector", "ip_sec", "gre", "cni"]
+    tun_type: Literal["cfd_tunnel", "warp_connector", "warp", "magic", "ip_sec", "gre", "cni"]
     """The type of tunnel."""
 
     tunnel_id: str

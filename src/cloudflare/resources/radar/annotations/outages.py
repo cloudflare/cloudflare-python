@@ -34,7 +34,7 @@ class OutagesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> OutagesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -69,10 +69,10 @@ class OutagesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> OutageGetResponse:
         """
-        Get latest Internet outages and anomalies.
+        Retrieves the latest Internet outages and anomalies.
 
         Args:
-          asn: Single ASN as integer.
+          asn: Single Autonomous System Number (ASN) as integer.
 
           date_end: End of the date range (inclusive).
 
@@ -81,13 +81,13 @@ class OutagesResource(SyncAPIResource):
 
           date_start: Start of the date range (inclusive).
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          limit: Limit the number of objects in the response.
+          limit: Limits the number of objects returned in the response.
 
-          location: Location Alpha2 code.
+          location: Location alpha-2 code.
 
-          offset: Number of objects to skip before grabbing results.
+          offset: Skips the specified number of objects before fetching the results.
 
           extra_headers: Send extra headers
 
@@ -138,7 +138,7 @@ class OutagesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> OutageLocationsResponse:
         """
-        Get the number of outages by location.
+        Retrieves the number of outages by location.
 
         Args:
           date_end: End of the date range (inclusive).
@@ -148,9 +148,9 @@ class OutagesResource(SyncAPIResource):
 
           date_start: Start of the date range (inclusive).
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          limit: Limit the number of objects in the response.
+          limit: Limits the number of objects returned in the response.
 
           extra_headers: Send extra headers
 
@@ -187,7 +187,7 @@ class AsyncOutagesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncOutagesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -222,10 +222,10 @@ class AsyncOutagesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> OutageGetResponse:
         """
-        Get latest Internet outages and anomalies.
+        Retrieves the latest Internet outages and anomalies.
 
         Args:
-          asn: Single ASN as integer.
+          asn: Single Autonomous System Number (ASN) as integer.
 
           date_end: End of the date range (inclusive).
 
@@ -234,13 +234,13 @@ class AsyncOutagesResource(AsyncAPIResource):
 
           date_start: Start of the date range (inclusive).
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          limit: Limit the number of objects in the response.
+          limit: Limits the number of objects returned in the response.
 
-          location: Location Alpha2 code.
+          location: Location alpha-2 code.
 
-          offset: Number of objects to skip before grabbing results.
+          offset: Skips the specified number of objects before fetching the results.
 
           extra_headers: Send extra headers
 
@@ -291,7 +291,7 @@ class AsyncOutagesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> OutageLocationsResponse:
         """
-        Get the number of outages by location.
+        Retrieves the number of outages by location.
 
         Args:
           date_end: End of the date range (inclusive).
@@ -301,9 +301,9 @@ class AsyncOutagesResource(AsyncAPIResource):
 
           date_start: Start of the date range (inclusive).
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          limit: Limit the number of objects in the response.
+          limit: Limits the number of objects returned in the response.
 
           extra_headers: Send extra headers
 

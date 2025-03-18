@@ -20,10 +20,10 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ..._base_client import make_request_options
+from ...pagination import SyncSinglePage, AsyncSinglePage
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.stream import audio_track_copy_params, audio_track_edit_params
 from ...types.stream.audio import Audio
-from ...types.stream.audio_track_get_response import AudioTrackGetResponse
 from ...types.stream.audio_track_delete_response import AudioTrackDeleteResponse
 
 __all__ = ["AudioTracksResource", "AsyncAudioTracksResource"]
@@ -33,7 +33,7 @@ class AudioTracksResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AudioTracksResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -237,7 +237,7 @@ class AudioTracksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AudioTrackGetResponse]:
+    ) -> SyncSinglePage[Audio]:
         """Lists additional audio tracks on a video.
 
         Note this API will not return
@@ -260,16 +260,13 @@ class AudioTracksResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/stream/{identifier}/audio",
+            page=SyncSinglePage[Audio],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[AudioTrackGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[AudioTrackGetResponse]], ResultWrapper[AudioTrackGetResponse]),
+            model=Audio,
         )
 
 
@@ -277,7 +274,7 @@ class AsyncAudioTracksResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncAudioTracksResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -470,7 +467,7 @@ class AsyncAudioTracksResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[Audio]], ResultWrapper[Audio]),
         )
 
-    async def get(
+    def get(
         self,
         identifier: str,
         *,
@@ -481,7 +478,7 @@ class AsyncAudioTracksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AudioTrackGetResponse]:
+    ) -> AsyncPaginator[Audio, AsyncSinglePage[Audio]]:
         """Lists additional audio tracks on a video.
 
         Note this API will not return
@@ -504,16 +501,13 @@ class AsyncAudioTracksResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/stream/{identifier}/audio",
+            page=AsyncSinglePage[Audio],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[AudioTrackGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[AudioTrackGetResponse]], ResultWrapper[AudioTrackGetResponse]),
+            model=Audio,
         )
 
 

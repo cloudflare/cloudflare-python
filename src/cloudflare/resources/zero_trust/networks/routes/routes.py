@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Type, Union, cast
-from datetime import datetime
+from typing import List, Type, cast
+from typing_extensions import Literal
 
 import httpx
 
@@ -58,7 +58,7 @@ class RoutesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> RoutesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -139,14 +139,15 @@ class RoutesResource(SyncAPIResource):
         *,
         account_id: str,
         comment: str | NotGiven = NOT_GIVEN,
-        existed_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        existed_at: str | NotGiven = NOT_GIVEN,
         is_deleted: bool | NotGiven = NOT_GIVEN,
         network_subset: str | NotGiven = NOT_GIVEN,
         network_superset: str | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         route_id: str | NotGiven = NOT_GIVEN,
-        tun_types: str | NotGiven = NOT_GIVEN,
+        tun_types: List[Literal["cfd_tunnel", "warp_connector", "warp", "magic", "ip_sec", "gre", "cni"]]
+        | NotGiven = NOT_GIVEN,
         tunnel_id: str | NotGiven = NOT_GIVEN,
         virtual_network_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -164,8 +165,8 @@ class RoutesResource(SyncAPIResource):
 
           comment: Optional remark describing the route.
 
-          existed_at: If provided, include only tunnels that were created (and not deleted) before
-              this time.
+          existed_at: If provided, include only resources that were created (and not deleted) before
+              this time. URL encoded.
 
           is_deleted: If `true`, only include deleted routes. If `false`, exclude deleted routes. If
               empty, all routes will be included.
@@ -180,7 +181,7 @@ class RoutesResource(SyncAPIResource):
 
           route_id: UUID of the route.
 
-          tun_types: The types of tunnels to filter separated by a comma.
+          tun_types: The types of tunnels to filter by, separated by commas.
 
           tunnel_id: UUID of the tunnel.
 
@@ -392,7 +393,7 @@ class AsyncRoutesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncRoutesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -473,14 +474,15 @@ class AsyncRoutesResource(AsyncAPIResource):
         *,
         account_id: str,
         comment: str | NotGiven = NOT_GIVEN,
-        existed_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        existed_at: str | NotGiven = NOT_GIVEN,
         is_deleted: bool | NotGiven = NOT_GIVEN,
         network_subset: str | NotGiven = NOT_GIVEN,
         network_superset: str | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         route_id: str | NotGiven = NOT_GIVEN,
-        tun_types: str | NotGiven = NOT_GIVEN,
+        tun_types: List[Literal["cfd_tunnel", "warp_connector", "warp", "magic", "ip_sec", "gre", "cni"]]
+        | NotGiven = NOT_GIVEN,
         tunnel_id: str | NotGiven = NOT_GIVEN,
         virtual_network_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -498,8 +500,8 @@ class AsyncRoutesResource(AsyncAPIResource):
 
           comment: Optional remark describing the route.
 
-          existed_at: If provided, include only tunnels that were created (and not deleted) before
-              this time.
+          existed_at: If provided, include only resources that were created (and not deleted) before
+              this time. URL encoded.
 
           is_deleted: If `true`, only include deleted routes. If `false`, exclude deleted routes. If
               empty, all routes will be included.
@@ -514,7 +516,7 @@ class AsyncRoutesResource(AsyncAPIResource):
 
           route_id: UUID of the route.
 
-          tun_types: The types of tunnels to filter separated by a comma.
+          tun_types: The types of tunnels to filter by, separated by commas.
 
           tunnel_id: UUID of the tunnel.
 

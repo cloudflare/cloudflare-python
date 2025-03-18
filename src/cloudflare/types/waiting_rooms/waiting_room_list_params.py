@@ -2,14 +2,17 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
 __all__ = ["WaitingRoomListParams"]
 
 
 class WaitingRoomListParams(TypedDict, total=False):
-    zone_id: Required[str]
-    """Identifier"""
+    account_id: str
+    """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
+
+    zone_id: str
+    """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
     page: float
     """Page number of paginated results."""

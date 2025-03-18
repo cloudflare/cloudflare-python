@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
@@ -15,8 +13,8 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._wrappers import ResultWrapper
-from ...._base_client import make_request_options
+from ....pagination import SyncSinglePage, AsyncSinglePage
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.intel.attack_surface_report.issue_type_get_response import IssueTypeGetResponse
 
 __all__ = ["IssueTypesResource", "AsyncIssueTypesResource"]
@@ -26,7 +24,7 @@ class IssueTypesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> IssueTypesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -52,7 +50,7 @@ class IssueTypesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IssueTypeGetResponse]:
+    ) -> SyncSinglePage[IssueTypeGetResponse]:
         """
         Get Security Center Issues Types
 
@@ -69,16 +67,13 @@ class IssueTypesResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/intel/attack-surface-report/issue-types",
+            page=SyncSinglePage[IssueTypeGetResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[IssueTypeGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[IssueTypeGetResponse]], ResultWrapper[IssueTypeGetResponse]),
+            model=str,
         )
 
 
@@ -86,7 +81,7 @@ class AsyncIssueTypesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncIssueTypesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -102,7 +97,7 @@ class AsyncIssueTypesResource(AsyncAPIResource):
         """
         return AsyncIssueTypesResourceWithStreamingResponse(self)
 
-    async def get(
+    def get(
         self,
         *,
         account_id: str,
@@ -112,7 +107,7 @@ class AsyncIssueTypesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IssueTypeGetResponse]:
+    ) -> AsyncPaginator[IssueTypeGetResponse, AsyncSinglePage[IssueTypeGetResponse]]:
         """
         Get Security Center Issues Types
 
@@ -129,16 +124,13 @@ class AsyncIssueTypesResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/intel/attack-surface-report/issue-types",
+            page=AsyncSinglePage[IssueTypeGetResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[IssueTypeGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[IssueTypeGetResponse]], ResultWrapper[IssueTypeGetResponse]),
+            model=str,
         )
 
 

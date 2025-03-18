@@ -2,15 +2,12 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Optional, cast
+from typing import List
 
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ..._utils import maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -19,10 +16,10 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._wrappers import ResultWrapper
-from ..._base_client import make_request_options
+from ...pagination import SyncSinglePage, AsyncSinglePage
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.diagnostics import traceroute_create_params
-from ...types.diagnostics.traceroute_create_response import TracerouteCreateResponse
+from ...types.diagnostics.traceroute import Traceroute
 
 __all__ = ["TraceroutesResource", "AsyncTraceroutesResource"]
 
@@ -31,7 +28,7 @@ class TraceroutesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> TraceroutesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -60,7 +57,7 @@ class TraceroutesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TracerouteCreateResponse]:
+    ) -> SyncSinglePage[Traceroute]:
         """
         Run traceroutes from Cloudflare colos.
 
@@ -80,8 +77,9 @@ class TraceroutesResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._post(
+        return self._get_api_list(
             f"/accounts/{account_id}/diagnostics/traceroute",
+            page=SyncSinglePage[Traceroute],
             body=maybe_transform(
                 {
                     "targets": targets,
@@ -91,13 +89,10 @@ class TraceroutesResource(SyncAPIResource):
                 traceroute_create_params.TracerouteCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[TracerouteCreateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[TracerouteCreateResponse]], ResultWrapper[TracerouteCreateResponse]),
+            model=Traceroute,
+            method="post",
         )
 
 
@@ -105,7 +100,7 @@ class AsyncTraceroutesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncTraceroutesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -121,7 +116,7 @@ class AsyncTraceroutesResource(AsyncAPIResource):
         """
         return AsyncTraceroutesResourceWithStreamingResponse(self)
 
-    async def create(
+    def create(
         self,
         *,
         account_id: str,
@@ -134,7 +129,7 @@ class AsyncTraceroutesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TracerouteCreateResponse]:
+    ) -> AsyncPaginator[Traceroute, AsyncSinglePage[Traceroute]]:
         """
         Run traceroutes from Cloudflare colos.
 
@@ -154,9 +149,10 @@ class AsyncTraceroutesResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._post(
+        return self._get_api_list(
             f"/accounts/{account_id}/diagnostics/traceroute",
-            body=await async_maybe_transform(
+            page=AsyncSinglePage[Traceroute],
+            body=maybe_transform(
                 {
                     "targets": targets,
                     "colos": colos,
@@ -165,13 +161,10 @@ class AsyncTraceroutesResource(AsyncAPIResource):
                 traceroute_create_params.TracerouteCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[TracerouteCreateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[TracerouteCreateResponse]], ResultWrapper[TracerouteCreateResponse]),
+            model=Traceroute,
+            method="post",
         )
 
 

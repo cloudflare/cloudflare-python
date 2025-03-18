@@ -2,11 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Union
-from datetime import datetime
-from typing_extensions import Required, Annotated, TypedDict
-
-from ...._utils import PropertyInfo
+from typing import List
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["RouteListParams"]
 
@@ -18,10 +15,10 @@ class RouteListParams(TypedDict, total=False):
     comment: str
     """Optional remark describing the route."""
 
-    existed_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    existed_at: str
     """
-    If provided, include only tunnels that were created (and not deleted) before
-    this time.
+    If provided, include only resources that were created (and not deleted) before
+    this time. URL encoded.
     """
 
     is_deleted: bool
@@ -45,8 +42,8 @@ class RouteListParams(TypedDict, total=False):
     route_id: str
     """UUID of the route."""
 
-    tun_types: str
-    """The types of tunnels to filter separated by a comma."""
+    tun_types: List[Literal["cfd_tunnel", "warp_connector", "warp", "magic", "ip_sec", "gre", "cni"]]
+    """The types of tunnels to filter by, separated by commas."""
 
     tunnel_id: str
     """UUID of the tunnel."""

@@ -1,16 +1,15 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Optional
 from datetime import datetime
-from typing_extensions import TypeAlias
 
 from ...._models import BaseModel
 from .setting_value import SettingValue
 
-__all__ = ["TLSGetResponse", "TLSGetResponseItem"]
+__all__ = ["TLSGetResponse"]
 
 
-class TLSGetResponseItem(BaseModel):
+class TLSGetResponse(BaseModel):
     created_at: Optional[datetime] = None
     """This is the time the tls setting was originally created for this hostname."""
 
@@ -25,6 +24,3 @@ class TLSGetResponseItem(BaseModel):
 
     value: Optional[SettingValue] = None
     """The tls setting value."""
-
-
-TLSGetResponse: TypeAlias = List[TLSGetResponseItem]

@@ -28,7 +28,6 @@ class TestLayer7:
         layer7 = client.radar.attacks.layer7.timeseries(
             agg_interval="15m",
             asn=["string"],
-            attack=["DDOS"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
@@ -39,7 +38,7 @@ class TestLayer7:
             ip_version=["IPv4"],
             location=["string"],
             mitigation_product=["DDOS"],
-            name=["string"],
+            name=["main_series"],
             normalization="PERCENTAGE_CHANGE",
         )
         assert_matches_type(Layer7TimeseriesResponse, layer7, path=["response"])
@@ -78,7 +77,6 @@ class TestAsyncLayer7:
         layer7 = await async_client.radar.attacks.layer7.timeseries(
             agg_interval="15m",
             asn=["string"],
-            attack=["DDOS"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
@@ -89,7 +87,7 @@ class TestAsyncLayer7:
             ip_version=["IPv4"],
             location=["string"],
             mitigation_product=["DDOS"],
-            name=["string"],
+            name=["main_series"],
             normalization="PERCENTAGE_CHANGE",
         )
         assert_matches_type(Layer7TimeseriesResponse, layer7, path=["response"])

@@ -39,6 +39,7 @@ class TestTimeseriesGroups:
         timeseries_group = client.radar.http.timeseries_groups.bot_class(
             agg_interval="15m",
             asn=["string"],
+            browser_family=["CHROME"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
@@ -49,7 +50,7 @@ class TestTimeseriesGroups:
             http_version=["HTTPv1"],
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -86,6 +87,7 @@ class TestTimeseriesGroups:
             agg_interval="15m",
             asn=["string"],
             bot_class=["LIKELY_AUTOMATED"],
+            browser_family=["CHROME"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
@@ -97,7 +99,7 @@ class TestTimeseriesGroups:
             ip_version=["IPv4"],
             limit_per_group=10,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -145,7 +147,7 @@ class TestTimeseriesGroups:
             ip_version=["IPv4"],
             limit_per_group=10,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -182,6 +184,7 @@ class TestTimeseriesGroups:
             agg_interval="15m",
             asn=["string"],
             bot_class=["LIKELY_AUTOMATED"],
+            browser_family=["CHROME"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
@@ -191,7 +194,7 @@ class TestTimeseriesGroups:
             http_version=["HTTPv1"],
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -228,6 +231,7 @@ class TestTimeseriesGroups:
             agg_interval="15m",
             asn=["string"],
             bot_class=["LIKELY_AUTOMATED"],
+            browser_family=["CHROME"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
@@ -237,7 +241,7 @@ class TestTimeseriesGroups:
             http_version=["HTTPv1"],
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -274,6 +278,7 @@ class TestTimeseriesGroups:
             agg_interval="15m",
             asn=["string"],
             bot_class=["LIKELY_AUTOMATED"],
+            browser_family=["CHROME"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
@@ -283,7 +288,7 @@ class TestTimeseriesGroups:
             http_protocol=["HTTP"],
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -320,6 +325,7 @@ class TestTimeseriesGroups:
             agg_interval="15m",
             asn=["string"],
             bot_class=["LIKELY_AUTOMATED"],
+            browser_family=["CHROME"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
@@ -329,7 +335,7 @@ class TestTimeseriesGroups:
             http_protocol=["HTTP"],
             http_version=["HTTPv1"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -366,6 +372,7 @@ class TestTimeseriesGroups:
             agg_interval="15m",
             asn=["string"],
             bot_class=["LIKELY_AUTOMATED"],
+            browser_family=["CHROME"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
@@ -376,7 +383,7 @@ class TestTimeseriesGroups:
             http_version=["HTTPv1"],
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             tls_version=["TLSv1_0"],
         )
         assert_matches_type(TimeseriesGroupOSResponse, timeseries_group, path=["response"])
@@ -412,6 +419,7 @@ class TestTimeseriesGroups:
             agg_interval="15m",
             asn=["string"],
             bot_class=["LIKELY_AUTOMATED"],
+            browser_family=["CHROME"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
@@ -422,7 +430,7 @@ class TestTimeseriesGroups:
             http_version=["HTTPv1"],
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -459,6 +467,7 @@ class TestTimeseriesGroups:
             agg_interval="15m",
             asn=["string"],
             bot_class=["LIKELY_AUTOMATED"],
+            browser_family=["CHROME"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
@@ -469,7 +478,7 @@ class TestTimeseriesGroups:
             http_version=["HTTPv1"],
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
         )
         assert_matches_type(TimeseriesGroupTLSVersionResponse, timeseries_group, path=["response"])
@@ -508,6 +517,7 @@ class TestAsyncTimeseriesGroups:
         timeseries_group = await async_client.radar.http.timeseries_groups.bot_class(
             agg_interval="15m",
             asn=["string"],
+            browser_family=["CHROME"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
@@ -518,7 +528,7 @@ class TestAsyncTimeseriesGroups:
             http_version=["HTTPv1"],
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -555,6 +565,7 @@ class TestAsyncTimeseriesGroups:
             agg_interval="15m",
             asn=["string"],
             bot_class=["LIKELY_AUTOMATED"],
+            browser_family=["CHROME"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
@@ -566,7 +577,7 @@ class TestAsyncTimeseriesGroups:
             ip_version=["IPv4"],
             limit_per_group=10,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -614,7 +625,7 @@ class TestAsyncTimeseriesGroups:
             ip_version=["IPv4"],
             limit_per_group=10,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -651,6 +662,7 @@ class TestAsyncTimeseriesGroups:
             agg_interval="15m",
             asn=["string"],
             bot_class=["LIKELY_AUTOMATED"],
+            browser_family=["CHROME"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
@@ -660,7 +672,7 @@ class TestAsyncTimeseriesGroups:
             http_version=["HTTPv1"],
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -697,6 +709,7 @@ class TestAsyncTimeseriesGroups:
             agg_interval="15m",
             asn=["string"],
             bot_class=["LIKELY_AUTOMATED"],
+            browser_family=["CHROME"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
@@ -706,7 +719,7 @@ class TestAsyncTimeseriesGroups:
             http_version=["HTTPv1"],
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -743,6 +756,7 @@ class TestAsyncTimeseriesGroups:
             agg_interval="15m",
             asn=["string"],
             bot_class=["LIKELY_AUTOMATED"],
+            browser_family=["CHROME"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
@@ -752,7 +766,7 @@ class TestAsyncTimeseriesGroups:
             http_protocol=["HTTP"],
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -789,6 +803,7 @@ class TestAsyncTimeseriesGroups:
             agg_interval="15m",
             asn=["string"],
             bot_class=["LIKELY_AUTOMATED"],
+            browser_family=["CHROME"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
@@ -798,7 +813,7 @@ class TestAsyncTimeseriesGroups:
             http_protocol=["HTTP"],
             http_version=["HTTPv1"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -835,6 +850,7 @@ class TestAsyncTimeseriesGroups:
             agg_interval="15m",
             asn=["string"],
             bot_class=["LIKELY_AUTOMATED"],
+            browser_family=["CHROME"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
@@ -845,7 +861,7 @@ class TestAsyncTimeseriesGroups:
             http_version=["HTTPv1"],
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             tls_version=["TLSv1_0"],
         )
         assert_matches_type(TimeseriesGroupOSResponse, timeseries_group, path=["response"])
@@ -881,6 +897,7 @@ class TestAsyncTimeseriesGroups:
             agg_interval="15m",
             asn=["string"],
             bot_class=["LIKELY_AUTOMATED"],
+            browser_family=["CHROME"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
@@ -891,7 +908,7 @@ class TestAsyncTimeseriesGroups:
             http_version=["HTTPv1"],
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -928,6 +945,7 @@ class TestAsyncTimeseriesGroups:
             agg_interval="15m",
             asn=["string"],
             bot_class=["LIKELY_AUTOMATED"],
+            browser_family=["CHROME"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
@@ -938,7 +956,7 @@ class TestAsyncTimeseriesGroups:
             http_version=["HTTPv1"],
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
         )
         assert_matches_type(TimeseriesGroupTLSVersionResponse, timeseries_group, path=["response"])

@@ -36,16 +36,13 @@ class TestTop:
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            http_method=["GET"],
-            http_version=["HTTPv1"],
-            ip_version=["IPv4"],
             limit=5,
             limit_direction="ORIGIN",
             limit_per_location=10,
             location=["string"],
             magnitude="AFFECTED_ZONES",
             mitigation_product=["DDOS"],
-            name=["string"],
+            name=["main_series"],
             normalization="PERCENTAGE",
         )
         assert_matches_type(TopAttacksResponse, top, path=["response"])
@@ -90,7 +87,7 @@ class TestTop:
             limit=5,
             location=["string"],
             mitigation_product=["DDOS"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(TopIndustryResponse, top, path=["response"])
 
@@ -134,7 +131,7 @@ class TestTop:
             limit=5,
             location=["string"],
             mitigation_product=["DDOS"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(TopVerticalResponse, top, path=["response"])
 
@@ -176,16 +173,13 @@ class TestAsyncTop:
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
-            http_method=["GET"],
-            http_version=["HTTPv1"],
-            ip_version=["IPv4"],
             limit=5,
             limit_direction="ORIGIN",
             limit_per_location=10,
             location=["string"],
             magnitude="AFFECTED_ZONES",
             mitigation_product=["DDOS"],
-            name=["string"],
+            name=["main_series"],
             normalization="PERCENTAGE",
         )
         assert_matches_type(TopAttacksResponse, top, path=["response"])
@@ -230,7 +224,7 @@ class TestAsyncTop:
             limit=5,
             location=["string"],
             mitigation_product=["DDOS"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(TopIndustryResponse, top, path=["response"])
 
@@ -274,7 +268,7 @@ class TestAsyncTop:
             limit=5,
             location=["string"],
             mitigation_product=["DDOS"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(TopVerticalResponse, top, path=["response"])
 

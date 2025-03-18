@@ -2,15 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+import typing_extensions
 
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ..._utils import maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -19,9 +16,9 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._wrappers import ResultWrapper
+from ...pagination import SyncSinglePage, AsyncSinglePage
 from ...types.zones import custom_nameserver_update_params
-from ..._base_client import make_request_options
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.zones.custom_nameserver_get_response import CustomNameserverGetResponse
 from ...types.zones.custom_nameserver_update_response import CustomNameserverUpdateResponse
 
@@ -32,7 +29,7 @@ class CustomNameserversResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> CustomNameserversResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -48,6 +45,9 @@ class CustomNameserversResource(SyncAPIResource):
         """
         return CustomNameserversResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Use [DNS settings API](https://developers.cloudflare.com/api/resources/dns/subresources/settings/methods/put/) instead."
+    )
     def update(
         self,
         *,
@@ -60,7 +60,7 @@ class CustomNameserversResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CustomNameserverUpdateResponse]:
+    ) -> SyncSinglePage[CustomNameserverUpdateResponse]:
         """
         Set metadata for account-level custom nameservers on a zone.
 
@@ -88,8 +88,9 @@ class CustomNameserversResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._put(
+        return self._get_api_list(
             f"/zones/{zone_id}/custom_ns",
+            page=SyncSinglePage[CustomNameserverUpdateResponse],
             body=maybe_transform(
                 {
                     "enabled": enabled,
@@ -98,15 +99,15 @@ class CustomNameserversResource(SyncAPIResource):
                 custom_nameserver_update_params.CustomNameserverUpdateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[CustomNameserverUpdateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[CustomNameserverUpdateResponse]], ResultWrapper[CustomNameserverUpdateResponse]),
+            model=str,
+            method="put",
         )
 
+    @typing_extensions.deprecated(
+        "Use [DNS settings API](https://developers.cloudflare.com/api/resources/dns/subresources/settings/methods/get/) instead."
+    )
     def get(
         self,
         *,
@@ -150,7 +151,7 @@ class AsyncCustomNameserversResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncCustomNameserversResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -166,7 +167,10 @@ class AsyncCustomNameserversResource(AsyncAPIResource):
         """
         return AsyncCustomNameserversResourceWithStreamingResponse(self)
 
-    async def update(
+    @typing_extensions.deprecated(
+        "Use [DNS settings API](https://developers.cloudflare.com/api/resources/dns/subresources/settings/methods/put/) instead."
+    )
+    def update(
         self,
         *,
         zone_id: str,
@@ -178,7 +182,7 @@ class AsyncCustomNameserversResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CustomNameserverUpdateResponse]:
+    ) -> AsyncPaginator[CustomNameserverUpdateResponse, AsyncSinglePage[CustomNameserverUpdateResponse]]:
         """
         Set metadata for account-level custom nameservers on a zone.
 
@@ -206,9 +210,10 @@ class AsyncCustomNameserversResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._put(
+        return self._get_api_list(
             f"/zones/{zone_id}/custom_ns",
-            body=await async_maybe_transform(
+            page=AsyncSinglePage[CustomNameserverUpdateResponse],
+            body=maybe_transform(
                 {
                     "enabled": enabled,
                     "ns_set": ns_set,
@@ -216,15 +221,15 @@ class AsyncCustomNameserversResource(AsyncAPIResource):
                 custom_nameserver_update_params.CustomNameserverUpdateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[CustomNameserverUpdateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[CustomNameserverUpdateResponse]], ResultWrapper[CustomNameserverUpdateResponse]),
+            model=str,
+            method="put",
         )
 
+    @typing_extensions.deprecated(
+        "Use [DNS settings API](https://developers.cloudflare.com/api/resources/dns/subresources/settings/methods/get/) instead."
+    )
     async def get(
         self,
         *,
@@ -268,11 +273,15 @@ class CustomNameserversResourceWithRawResponse:
     def __init__(self, custom_nameservers: CustomNameserversResource) -> None:
         self._custom_nameservers = custom_nameservers
 
-        self.update = to_raw_response_wrapper(
-            custom_nameservers.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                custom_nameservers.update  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_raw_response_wrapper(
-            custom_nameservers.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                custom_nameservers.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -280,11 +289,15 @@ class AsyncCustomNameserversResourceWithRawResponse:
     def __init__(self, custom_nameservers: AsyncCustomNameserversResource) -> None:
         self._custom_nameservers = custom_nameservers
 
-        self.update = async_to_raw_response_wrapper(
-            custom_nameservers.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                custom_nameservers.update  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_raw_response_wrapper(
-            custom_nameservers.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                custom_nameservers.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -292,11 +305,15 @@ class CustomNameserversResourceWithStreamingResponse:
     def __init__(self, custom_nameservers: CustomNameserversResource) -> None:
         self._custom_nameservers = custom_nameservers
 
-        self.update = to_streamed_response_wrapper(
-            custom_nameservers.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                custom_nameservers.update  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_streamed_response_wrapper(
-            custom_nameservers.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                custom_nameservers.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -304,9 +321,13 @@ class AsyncCustomNameserversResourceWithStreamingResponse:
     def __init__(self, custom_nameservers: AsyncCustomNameserversResource) -> None:
         self._custom_nameservers = custom_nameservers
 
-        self.update = async_to_streamed_response_wrapper(
-            custom_nameservers.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                custom_nameservers.update  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_streamed_response_wrapper(
-            custom_nameservers.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                custom_nameservers.get  # pyright: ignore[reportDeprecated],
+            )
         )

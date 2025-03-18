@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Union, cast
+from typing import List, Type, Union, Optional, cast
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -45,7 +45,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> TimeseriesGroupsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -73,6 +73,122 @@ class TimeseriesGroupsResource(SyncAPIResource):
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
+        protocol: Literal["UDP", "TCP", "HTTPS", "TLS"] | NotGiven = NOT_GIVEN,
+        query_type: Optional[
+            Literal[
+                "A",
+                "AAAA",
+                "A6",
+                "AFSDB",
+                "ANY",
+                "APL",
+                "ATMA",
+                "AXFR",
+                "CAA",
+                "CDNSKEY",
+                "CDS",
+                "CERT",
+                "CNAME",
+                "CSYNC",
+                "DHCID",
+                "DLV",
+                "DNAME",
+                "DNSKEY",
+                "DOA",
+                "DS",
+                "EID",
+                "EUI48",
+                "EUI64",
+                "GPOS",
+                "GID",
+                "HINFO",
+                "HIP",
+                "HTTPS",
+                "IPSECKEY",
+                "ISDN",
+                "IXFR",
+                "KEY",
+                "KX",
+                "L32",
+                "L64",
+                "LOC",
+                "LP",
+                "MAILA",
+                "MAILB",
+                "MB",
+                "MD",
+                "MF",
+                "MG",
+                "MINFO",
+                "MR",
+                "MX",
+                "NAPTR",
+                "NB",
+                "NBSTAT",
+                "NID",
+                "NIMLOC",
+                "NINFO",
+                "NS",
+                "NSAP",
+                "NSEC",
+                "NSEC3",
+                "NSEC3PARAM",
+                "NULL",
+                "NXT",
+                "OPENPGPKEY",
+                "OPT",
+                "PTR",
+                "PX",
+                "RKEY",
+                "RP",
+                "RRSIG",
+                "RT",
+                "SIG",
+                "SINK",
+                "SMIMEA",
+                "SOA",
+                "SPF",
+                "SRV",
+                "SSHFP",
+                "SVCB",
+                "TA",
+                "TALINK",
+                "TKEY",
+                "TLSA",
+                "TSIG",
+                "TXT",
+                "UINFO",
+                "UID",
+                "UNSPEC",
+                "URI",
+                "WKS",
+                "X25",
+                "ZONEMD",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        response_code: Literal[
+            "NOERROR",
+            "FORMERR",
+            "SERVFAIL",
+            "NXDOMAIN",
+            "NOTIMP",
+            "REFUSED",
+            "YXDOMAIN",
+            "YXRRSET",
+            "NXRRSET",
+            "NOTAUTH",
+            "NOTZONE",
+            "BADSIG",
+            "BADKEY",
+            "BADTIME",
+            "BADMODE",
+            "BADNAME",
+            "BADALG",
+            "BADTRUNC",
+            "BADCOOKIE",
+        ]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -81,36 +197,43 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupDNSSECResponse:
         """
-        Percentage distribution of AS112 DNS queries by DNSSEC support over time.
+        Retrieves the distribution of AS112 DNS queries by DNSSEC (DNS Security
+        Extensions) support over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
+          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
+              exclude ASNs from results. For example, `-174, 3356` excludes results from
+              AS174, but includes results from AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
+          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
+              exclude continents from results. For example, `-EU,NA` excludes results from EU,
+              but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
+          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
+              locations from results. For example, `-US,PT` excludes results from the US, but
+              includes results from PT.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
+
+          protocol: Filters results by DNS transport protocol.
+
+          query_type: Filters results by DNS query type.
+
+          response_code: Filters results by DNS response code.
 
           extra_headers: Send extra headers
 
@@ -138,6 +261,9 @@ class TimeseriesGroupsResource(SyncAPIResource):
                         "format": format,
                         "location": location,
                         "name": name,
+                        "protocol": protocol,
+                        "query_type": query_type,
+                        "response_code": response_code,
                     },
                     timeseries_group_dnssec_params.TimeseriesGroupDNSSECParams,
                 ),
@@ -158,6 +284,122 @@ class TimeseriesGroupsResource(SyncAPIResource):
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
+        protocol: Literal["UDP", "TCP", "HTTPS", "TLS"] | NotGiven = NOT_GIVEN,
+        query_type: Optional[
+            Literal[
+                "A",
+                "AAAA",
+                "A6",
+                "AFSDB",
+                "ANY",
+                "APL",
+                "ATMA",
+                "AXFR",
+                "CAA",
+                "CDNSKEY",
+                "CDS",
+                "CERT",
+                "CNAME",
+                "CSYNC",
+                "DHCID",
+                "DLV",
+                "DNAME",
+                "DNSKEY",
+                "DOA",
+                "DS",
+                "EID",
+                "EUI48",
+                "EUI64",
+                "GPOS",
+                "GID",
+                "HINFO",
+                "HIP",
+                "HTTPS",
+                "IPSECKEY",
+                "ISDN",
+                "IXFR",
+                "KEY",
+                "KX",
+                "L32",
+                "L64",
+                "LOC",
+                "LP",
+                "MAILA",
+                "MAILB",
+                "MB",
+                "MD",
+                "MF",
+                "MG",
+                "MINFO",
+                "MR",
+                "MX",
+                "NAPTR",
+                "NB",
+                "NBSTAT",
+                "NID",
+                "NIMLOC",
+                "NINFO",
+                "NS",
+                "NSAP",
+                "NSEC",
+                "NSEC3",
+                "NSEC3PARAM",
+                "NULL",
+                "NXT",
+                "OPENPGPKEY",
+                "OPT",
+                "PTR",
+                "PX",
+                "RKEY",
+                "RP",
+                "RRSIG",
+                "RT",
+                "SIG",
+                "SINK",
+                "SMIMEA",
+                "SOA",
+                "SPF",
+                "SRV",
+                "SSHFP",
+                "SVCB",
+                "TA",
+                "TALINK",
+                "TKEY",
+                "TLSA",
+                "TSIG",
+                "TXT",
+                "UINFO",
+                "UID",
+                "UNSPEC",
+                "URI",
+                "WKS",
+                "X25",
+                "ZONEMD",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        response_code: Literal[
+            "NOERROR",
+            "FORMERR",
+            "SERVFAIL",
+            "NXDOMAIN",
+            "NOTIMP",
+            "REFUSED",
+            "YXDOMAIN",
+            "YXRRSET",
+            "NXRRSET",
+            "NOTAUTH",
+            "NOTZONE",
+            "BADSIG",
+            "BADKEY",
+            "BADTIME",
+            "BADMODE",
+            "BADNAME",
+            "BADALG",
+            "BADTRUNC",
+            "BADCOOKIE",
+        ]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -166,36 +408,43 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupEdnsResponse:
         """
-        Percentage distribution of AS112 DNS queries by EDNS support over time.
+        Retrieves the distribution of AS112 DNS queries by EDNS (Extension Mechanisms
+        for DNS) support over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
+          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
+              exclude ASNs from results. For example, `-174, 3356` excludes results from
+              AS174, but includes results from AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
+          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
+              exclude continents from results. For example, `-EU,NA` excludes results from EU,
+              but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
+          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
+              locations from results. For example, `-US,PT` excludes results from the US, but
+              includes results from PT.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
+
+          protocol: Filters results by DNS transport protocol.
+
+          query_type: Filters results by DNS query type.
+
+          response_code: Filters results by DNS response code.
 
           extra_headers: Send extra headers
 
@@ -223,6 +472,9 @@ class TimeseriesGroupsResource(SyncAPIResource):
                         "format": format,
                         "location": location,
                         "name": name,
+                        "protocol": protocol,
+                        "query_type": query_type,
+                        "response_code": response_code,
                     },
                     timeseries_group_edns_params.TimeseriesGroupEdnsParams,
                 ),
@@ -243,6 +495,122 @@ class TimeseriesGroupsResource(SyncAPIResource):
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
+        protocol: Literal["UDP", "TCP", "HTTPS", "TLS"] | NotGiven = NOT_GIVEN,
+        query_type: Optional[
+            Literal[
+                "A",
+                "AAAA",
+                "A6",
+                "AFSDB",
+                "ANY",
+                "APL",
+                "ATMA",
+                "AXFR",
+                "CAA",
+                "CDNSKEY",
+                "CDS",
+                "CERT",
+                "CNAME",
+                "CSYNC",
+                "DHCID",
+                "DLV",
+                "DNAME",
+                "DNSKEY",
+                "DOA",
+                "DS",
+                "EID",
+                "EUI48",
+                "EUI64",
+                "GPOS",
+                "GID",
+                "HINFO",
+                "HIP",
+                "HTTPS",
+                "IPSECKEY",
+                "ISDN",
+                "IXFR",
+                "KEY",
+                "KX",
+                "L32",
+                "L64",
+                "LOC",
+                "LP",
+                "MAILA",
+                "MAILB",
+                "MB",
+                "MD",
+                "MF",
+                "MG",
+                "MINFO",
+                "MR",
+                "MX",
+                "NAPTR",
+                "NB",
+                "NBSTAT",
+                "NID",
+                "NIMLOC",
+                "NINFO",
+                "NS",
+                "NSAP",
+                "NSEC",
+                "NSEC3",
+                "NSEC3PARAM",
+                "NULL",
+                "NXT",
+                "OPENPGPKEY",
+                "OPT",
+                "PTR",
+                "PX",
+                "RKEY",
+                "RP",
+                "RRSIG",
+                "RT",
+                "SIG",
+                "SINK",
+                "SMIMEA",
+                "SOA",
+                "SPF",
+                "SRV",
+                "SSHFP",
+                "SVCB",
+                "TA",
+                "TALINK",
+                "TKEY",
+                "TLSA",
+                "TSIG",
+                "TXT",
+                "UINFO",
+                "UID",
+                "UNSPEC",
+                "URI",
+                "WKS",
+                "X25",
+                "ZONEMD",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        response_code: Literal[
+            "NOERROR",
+            "FORMERR",
+            "SERVFAIL",
+            "NXDOMAIN",
+            "NOTIMP",
+            "REFUSED",
+            "YXDOMAIN",
+            "YXRRSET",
+            "NXRRSET",
+            "NOTAUTH",
+            "NOTZONE",
+            "BADSIG",
+            "BADKEY",
+            "BADTIME",
+            "BADMODE",
+            "BADNAME",
+            "BADALG",
+            "BADTRUNC",
+            "BADCOOKIE",
+        ]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -251,36 +619,42 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupIPVersionResponse:
         """
-        Percentage distribution of AS112 DNS queries by IP version over time.
+        Retrieves the distribution of AS112 DNS queries by IP version over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
+          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
+              exclude ASNs from results. For example, `-174, 3356` excludes results from
+              AS174, but includes results from AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
+          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
+              exclude continents from results. For example, `-EU,NA` excludes results from EU,
+              but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
+          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
+              locations from results. For example, `-US,PT` excludes results from the US, but
+              includes results from PT.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
+
+          protocol: Filters results by DNS transport protocol.
+
+          query_type: Filters results by DNS query type.
+
+          response_code: Filters results by DNS response code.
 
           extra_headers: Send extra headers
 
@@ -308,6 +682,9 @@ class TimeseriesGroupsResource(SyncAPIResource):
                         "format": format,
                         "location": location,
                         "name": name,
+                        "protocol": protocol,
+                        "query_type": query_type,
+                        "response_code": response_code,
                     },
                     timeseries_group_ip_version_params.TimeseriesGroupIPVersionParams,
                 ),
@@ -328,6 +705,121 @@ class TimeseriesGroupsResource(SyncAPIResource):
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
+        query_type: Optional[
+            Literal[
+                "A",
+                "AAAA",
+                "A6",
+                "AFSDB",
+                "ANY",
+                "APL",
+                "ATMA",
+                "AXFR",
+                "CAA",
+                "CDNSKEY",
+                "CDS",
+                "CERT",
+                "CNAME",
+                "CSYNC",
+                "DHCID",
+                "DLV",
+                "DNAME",
+                "DNSKEY",
+                "DOA",
+                "DS",
+                "EID",
+                "EUI48",
+                "EUI64",
+                "GPOS",
+                "GID",
+                "HINFO",
+                "HIP",
+                "HTTPS",
+                "IPSECKEY",
+                "ISDN",
+                "IXFR",
+                "KEY",
+                "KX",
+                "L32",
+                "L64",
+                "LOC",
+                "LP",
+                "MAILA",
+                "MAILB",
+                "MB",
+                "MD",
+                "MF",
+                "MG",
+                "MINFO",
+                "MR",
+                "MX",
+                "NAPTR",
+                "NB",
+                "NBSTAT",
+                "NID",
+                "NIMLOC",
+                "NINFO",
+                "NS",
+                "NSAP",
+                "NSEC",
+                "NSEC3",
+                "NSEC3PARAM",
+                "NULL",
+                "NXT",
+                "OPENPGPKEY",
+                "OPT",
+                "PTR",
+                "PX",
+                "RKEY",
+                "RP",
+                "RRSIG",
+                "RT",
+                "SIG",
+                "SINK",
+                "SMIMEA",
+                "SOA",
+                "SPF",
+                "SRV",
+                "SSHFP",
+                "SVCB",
+                "TA",
+                "TALINK",
+                "TKEY",
+                "TLSA",
+                "TSIG",
+                "TXT",
+                "UINFO",
+                "UID",
+                "UNSPEC",
+                "URI",
+                "WKS",
+                "X25",
+                "ZONEMD",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        response_code: Literal[
+            "NOERROR",
+            "FORMERR",
+            "SERVFAIL",
+            "NXDOMAIN",
+            "NOTIMP",
+            "REFUSED",
+            "YXDOMAIN",
+            "YXRRSET",
+            "NXRRSET",
+            "NOTAUTH",
+            "NOTZONE",
+            "BADSIG",
+            "BADKEY",
+            "BADTIME",
+            "BADMODE",
+            "BADNAME",
+            "BADALG",
+            "BADTRUNC",
+            "BADCOOKIE",
+        ]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -336,36 +828,41 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupProtocolResponse:
         """
-        Percentage distribution of AS112 DNS requests classified by protocol over time.
+        Retrieves the distribution of AS112 DNS requests classified by protocol over
+        time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
+          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
+              exclude ASNs from results. For example, `-174, 3356` excludes results from
+              AS174, but includes results from AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
+          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
+              exclude continents from results. For example, `-EU,NA` excludes results from EU,
+              but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
+          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
+              locations from results. For example, `-US,PT` excludes results from the US, but
+              includes results from PT.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
+
+          query_type: Filters results by DNS query type.
+
+          response_code: Filters results by DNS response code.
 
           extra_headers: Send extra headers
 
@@ -393,6 +890,8 @@ class TimeseriesGroupsResource(SyncAPIResource):
                         "format": format,
                         "location": location,
                         "name": name,
+                        "query_type": query_type,
+                        "response_code": response_code,
                     },
                     timeseries_group_protocol_params.TimeseriesGroupProtocolParams,
                 ),
@@ -414,6 +913,29 @@ class TimeseriesGroupsResource(SyncAPIResource):
         limit_per_group: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
+        protocol: Literal["UDP", "TCP", "HTTPS", "TLS"] | NotGiven = NOT_GIVEN,
+        response_code: Literal[
+            "NOERROR",
+            "FORMERR",
+            "SERVFAIL",
+            "NXDOMAIN",
+            "NOTIMP",
+            "REFUSED",
+            "YXDOMAIN",
+            "YXRRSET",
+            "NXRRSET",
+            "NOTAUTH",
+            "NOTZONE",
+            "BADSIG",
+            "BADKEY",
+            "BADTIME",
+            "BADMODE",
+            "BADNAME",
+            "BADALG",
+            "BADTRUNC",
+            "BADCOOKIE",
+        ]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -422,39 +944,45 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupQueryTypeResponse:
         """
-        Percentage distribution of AS112 DNS queries by query type over time.
+        Retrieves the distribution of AS112 DNS queries by type over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
+          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
+              exclude ASNs from results. For example, `-174, 3356` excludes results from
+              AS174, but includes results from AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
+          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
+              exclude continents from results. For example, `-EU,NA` excludes results from EU,
+              but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
-              the time range.
+          limit_per_group: Limits the number of objects per group to the top items within the specified
+              time range. If there are more items than the limit, the response will include
+              the count of items, with any remaining items grouped together under an "other"
+              category.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
+          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
+              locations from results. For example, `-US,PT` excludes results from the US, but
+              includes results from PT.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
+
+          protocol: Filters results by DNS transport protocol.
+
+          response_code: Filters results by DNS response code.
 
           extra_headers: Send extra headers
 
@@ -483,6 +1011,8 @@ class TimeseriesGroupsResource(SyncAPIResource):
                         "limit_per_group": limit_per_group,
                         "location": location,
                         "name": name,
+                        "protocol": protocol,
+                        "response_code": response_code,
                     },
                     timeseries_group_query_type_params.TimeseriesGroupQueryTypeParams,
                 ),
@@ -504,6 +1034,100 @@ class TimeseriesGroupsResource(SyncAPIResource):
         limit_per_group: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
+        protocol: Literal["UDP", "TCP", "HTTPS", "TLS"] | NotGiven = NOT_GIVEN,
+        query_type: Optional[
+            Literal[
+                "A",
+                "AAAA",
+                "A6",
+                "AFSDB",
+                "ANY",
+                "APL",
+                "ATMA",
+                "AXFR",
+                "CAA",
+                "CDNSKEY",
+                "CDS",
+                "CERT",
+                "CNAME",
+                "CSYNC",
+                "DHCID",
+                "DLV",
+                "DNAME",
+                "DNSKEY",
+                "DOA",
+                "DS",
+                "EID",
+                "EUI48",
+                "EUI64",
+                "GPOS",
+                "GID",
+                "HINFO",
+                "HIP",
+                "HTTPS",
+                "IPSECKEY",
+                "ISDN",
+                "IXFR",
+                "KEY",
+                "KX",
+                "L32",
+                "L64",
+                "LOC",
+                "LP",
+                "MAILA",
+                "MAILB",
+                "MB",
+                "MD",
+                "MF",
+                "MG",
+                "MINFO",
+                "MR",
+                "MX",
+                "NAPTR",
+                "NB",
+                "NBSTAT",
+                "NID",
+                "NIMLOC",
+                "NINFO",
+                "NS",
+                "NSAP",
+                "NSEC",
+                "NSEC3",
+                "NSEC3PARAM",
+                "NULL",
+                "NXT",
+                "OPENPGPKEY",
+                "OPT",
+                "PTR",
+                "PX",
+                "RKEY",
+                "RP",
+                "RRSIG",
+                "RT",
+                "SIG",
+                "SINK",
+                "SMIMEA",
+                "SOA",
+                "SPF",
+                "SRV",
+                "SSHFP",
+                "SVCB",
+                "TA",
+                "TALINK",
+                "TKEY",
+                "TLSA",
+                "TSIG",
+                "TXT",
+                "UINFO",
+                "UID",
+                "UNSPEC",
+                "URI",
+                "WKS",
+                "X25",
+                "ZONEMD",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -512,40 +1136,46 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupResponseCodesResponse:
         """
-        Percentage distribution of AS112 DNS requests classified by response code over
-        time.
+        Retrieves the distribution of AS112 DNS requests classified by response code
+        over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
+          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
+              exclude ASNs from results. For example, `-174, 3356` excludes results from
+              AS174, but includes results from AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
+          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
+              exclude continents from results. For example, `-EU,NA` excludes results from EU,
+              but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
-              the time range.
+          limit_per_group: Limits the number of objects per group to the top items within the specified
+              time range. If there are more items than the limit, the response will include
+              the count of items, with any remaining items grouped together under an "other"
+              category.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
+          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
+              locations from results. For example, `-US,PT` excludes results from the US, but
+              includes results from PT.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
+
+          protocol: Filters results by DNS transport protocol.
+
+          query_type: Filters results by DNS query type.
 
           extra_headers: Send extra headers
 
@@ -574,6 +1204,8 @@ class TimeseriesGroupsResource(SyncAPIResource):
                         "limit_per_group": limit_per_group,
                         "location": location,
                         "name": name,
+                        "protocol": protocol,
+                        "query_type": query_type,
                     },
                     timeseries_group_response_codes_params.TimeseriesGroupResponseCodesParams,
                 ),
@@ -589,7 +1221,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncTimeseriesGroupsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -617,6 +1249,122 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
+        protocol: Literal["UDP", "TCP", "HTTPS", "TLS"] | NotGiven = NOT_GIVEN,
+        query_type: Optional[
+            Literal[
+                "A",
+                "AAAA",
+                "A6",
+                "AFSDB",
+                "ANY",
+                "APL",
+                "ATMA",
+                "AXFR",
+                "CAA",
+                "CDNSKEY",
+                "CDS",
+                "CERT",
+                "CNAME",
+                "CSYNC",
+                "DHCID",
+                "DLV",
+                "DNAME",
+                "DNSKEY",
+                "DOA",
+                "DS",
+                "EID",
+                "EUI48",
+                "EUI64",
+                "GPOS",
+                "GID",
+                "HINFO",
+                "HIP",
+                "HTTPS",
+                "IPSECKEY",
+                "ISDN",
+                "IXFR",
+                "KEY",
+                "KX",
+                "L32",
+                "L64",
+                "LOC",
+                "LP",
+                "MAILA",
+                "MAILB",
+                "MB",
+                "MD",
+                "MF",
+                "MG",
+                "MINFO",
+                "MR",
+                "MX",
+                "NAPTR",
+                "NB",
+                "NBSTAT",
+                "NID",
+                "NIMLOC",
+                "NINFO",
+                "NS",
+                "NSAP",
+                "NSEC",
+                "NSEC3",
+                "NSEC3PARAM",
+                "NULL",
+                "NXT",
+                "OPENPGPKEY",
+                "OPT",
+                "PTR",
+                "PX",
+                "RKEY",
+                "RP",
+                "RRSIG",
+                "RT",
+                "SIG",
+                "SINK",
+                "SMIMEA",
+                "SOA",
+                "SPF",
+                "SRV",
+                "SSHFP",
+                "SVCB",
+                "TA",
+                "TALINK",
+                "TKEY",
+                "TLSA",
+                "TSIG",
+                "TXT",
+                "UINFO",
+                "UID",
+                "UNSPEC",
+                "URI",
+                "WKS",
+                "X25",
+                "ZONEMD",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        response_code: Literal[
+            "NOERROR",
+            "FORMERR",
+            "SERVFAIL",
+            "NXDOMAIN",
+            "NOTIMP",
+            "REFUSED",
+            "YXDOMAIN",
+            "YXRRSET",
+            "NXRRSET",
+            "NOTAUTH",
+            "NOTZONE",
+            "BADSIG",
+            "BADKEY",
+            "BADTIME",
+            "BADMODE",
+            "BADNAME",
+            "BADALG",
+            "BADTRUNC",
+            "BADCOOKIE",
+        ]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -625,36 +1373,43 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupDNSSECResponse:
         """
-        Percentage distribution of AS112 DNS queries by DNSSEC support over time.
+        Retrieves the distribution of AS112 DNS queries by DNSSEC (DNS Security
+        Extensions) support over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
+          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
+              exclude ASNs from results. For example, `-174, 3356` excludes results from
+              AS174, but includes results from AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
+          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
+              exclude continents from results. For example, `-EU,NA` excludes results from EU,
+              but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
+          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
+              locations from results. For example, `-US,PT` excludes results from the US, but
+              includes results from PT.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
+
+          protocol: Filters results by DNS transport protocol.
+
+          query_type: Filters results by DNS query type.
+
+          response_code: Filters results by DNS response code.
 
           extra_headers: Send extra headers
 
@@ -682,6 +1437,9 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                         "format": format,
                         "location": location,
                         "name": name,
+                        "protocol": protocol,
+                        "query_type": query_type,
+                        "response_code": response_code,
                     },
                     timeseries_group_dnssec_params.TimeseriesGroupDNSSECParams,
                 ),
@@ -702,6 +1460,122 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
+        protocol: Literal["UDP", "TCP", "HTTPS", "TLS"] | NotGiven = NOT_GIVEN,
+        query_type: Optional[
+            Literal[
+                "A",
+                "AAAA",
+                "A6",
+                "AFSDB",
+                "ANY",
+                "APL",
+                "ATMA",
+                "AXFR",
+                "CAA",
+                "CDNSKEY",
+                "CDS",
+                "CERT",
+                "CNAME",
+                "CSYNC",
+                "DHCID",
+                "DLV",
+                "DNAME",
+                "DNSKEY",
+                "DOA",
+                "DS",
+                "EID",
+                "EUI48",
+                "EUI64",
+                "GPOS",
+                "GID",
+                "HINFO",
+                "HIP",
+                "HTTPS",
+                "IPSECKEY",
+                "ISDN",
+                "IXFR",
+                "KEY",
+                "KX",
+                "L32",
+                "L64",
+                "LOC",
+                "LP",
+                "MAILA",
+                "MAILB",
+                "MB",
+                "MD",
+                "MF",
+                "MG",
+                "MINFO",
+                "MR",
+                "MX",
+                "NAPTR",
+                "NB",
+                "NBSTAT",
+                "NID",
+                "NIMLOC",
+                "NINFO",
+                "NS",
+                "NSAP",
+                "NSEC",
+                "NSEC3",
+                "NSEC3PARAM",
+                "NULL",
+                "NXT",
+                "OPENPGPKEY",
+                "OPT",
+                "PTR",
+                "PX",
+                "RKEY",
+                "RP",
+                "RRSIG",
+                "RT",
+                "SIG",
+                "SINK",
+                "SMIMEA",
+                "SOA",
+                "SPF",
+                "SRV",
+                "SSHFP",
+                "SVCB",
+                "TA",
+                "TALINK",
+                "TKEY",
+                "TLSA",
+                "TSIG",
+                "TXT",
+                "UINFO",
+                "UID",
+                "UNSPEC",
+                "URI",
+                "WKS",
+                "X25",
+                "ZONEMD",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        response_code: Literal[
+            "NOERROR",
+            "FORMERR",
+            "SERVFAIL",
+            "NXDOMAIN",
+            "NOTIMP",
+            "REFUSED",
+            "YXDOMAIN",
+            "YXRRSET",
+            "NXRRSET",
+            "NOTAUTH",
+            "NOTZONE",
+            "BADSIG",
+            "BADKEY",
+            "BADTIME",
+            "BADMODE",
+            "BADNAME",
+            "BADALG",
+            "BADTRUNC",
+            "BADCOOKIE",
+        ]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -710,36 +1584,43 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupEdnsResponse:
         """
-        Percentage distribution of AS112 DNS queries by EDNS support over time.
+        Retrieves the distribution of AS112 DNS queries by EDNS (Extension Mechanisms
+        for DNS) support over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
+          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
+              exclude ASNs from results. For example, `-174, 3356` excludes results from
+              AS174, but includes results from AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
+          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
+              exclude continents from results. For example, `-EU,NA` excludes results from EU,
+              but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
+          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
+              locations from results. For example, `-US,PT` excludes results from the US, but
+              includes results from PT.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
+
+          protocol: Filters results by DNS transport protocol.
+
+          query_type: Filters results by DNS query type.
+
+          response_code: Filters results by DNS response code.
 
           extra_headers: Send extra headers
 
@@ -767,6 +1648,9 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                         "format": format,
                         "location": location,
                         "name": name,
+                        "protocol": protocol,
+                        "query_type": query_type,
+                        "response_code": response_code,
                     },
                     timeseries_group_edns_params.TimeseriesGroupEdnsParams,
                 ),
@@ -787,6 +1671,122 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
+        protocol: Literal["UDP", "TCP", "HTTPS", "TLS"] | NotGiven = NOT_GIVEN,
+        query_type: Optional[
+            Literal[
+                "A",
+                "AAAA",
+                "A6",
+                "AFSDB",
+                "ANY",
+                "APL",
+                "ATMA",
+                "AXFR",
+                "CAA",
+                "CDNSKEY",
+                "CDS",
+                "CERT",
+                "CNAME",
+                "CSYNC",
+                "DHCID",
+                "DLV",
+                "DNAME",
+                "DNSKEY",
+                "DOA",
+                "DS",
+                "EID",
+                "EUI48",
+                "EUI64",
+                "GPOS",
+                "GID",
+                "HINFO",
+                "HIP",
+                "HTTPS",
+                "IPSECKEY",
+                "ISDN",
+                "IXFR",
+                "KEY",
+                "KX",
+                "L32",
+                "L64",
+                "LOC",
+                "LP",
+                "MAILA",
+                "MAILB",
+                "MB",
+                "MD",
+                "MF",
+                "MG",
+                "MINFO",
+                "MR",
+                "MX",
+                "NAPTR",
+                "NB",
+                "NBSTAT",
+                "NID",
+                "NIMLOC",
+                "NINFO",
+                "NS",
+                "NSAP",
+                "NSEC",
+                "NSEC3",
+                "NSEC3PARAM",
+                "NULL",
+                "NXT",
+                "OPENPGPKEY",
+                "OPT",
+                "PTR",
+                "PX",
+                "RKEY",
+                "RP",
+                "RRSIG",
+                "RT",
+                "SIG",
+                "SINK",
+                "SMIMEA",
+                "SOA",
+                "SPF",
+                "SRV",
+                "SSHFP",
+                "SVCB",
+                "TA",
+                "TALINK",
+                "TKEY",
+                "TLSA",
+                "TSIG",
+                "TXT",
+                "UINFO",
+                "UID",
+                "UNSPEC",
+                "URI",
+                "WKS",
+                "X25",
+                "ZONEMD",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        response_code: Literal[
+            "NOERROR",
+            "FORMERR",
+            "SERVFAIL",
+            "NXDOMAIN",
+            "NOTIMP",
+            "REFUSED",
+            "YXDOMAIN",
+            "YXRRSET",
+            "NXRRSET",
+            "NOTAUTH",
+            "NOTZONE",
+            "BADSIG",
+            "BADKEY",
+            "BADTIME",
+            "BADMODE",
+            "BADNAME",
+            "BADALG",
+            "BADTRUNC",
+            "BADCOOKIE",
+        ]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -795,36 +1795,42 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupIPVersionResponse:
         """
-        Percentage distribution of AS112 DNS queries by IP version over time.
+        Retrieves the distribution of AS112 DNS queries by IP version over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
+          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
+              exclude ASNs from results. For example, `-174, 3356` excludes results from
+              AS174, but includes results from AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
+          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
+              exclude continents from results. For example, `-EU,NA` excludes results from EU,
+              but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
+          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
+              locations from results. For example, `-US,PT` excludes results from the US, but
+              includes results from PT.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
+
+          protocol: Filters results by DNS transport protocol.
+
+          query_type: Filters results by DNS query type.
+
+          response_code: Filters results by DNS response code.
 
           extra_headers: Send extra headers
 
@@ -852,6 +1858,9 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                         "format": format,
                         "location": location,
                         "name": name,
+                        "protocol": protocol,
+                        "query_type": query_type,
+                        "response_code": response_code,
                     },
                     timeseries_group_ip_version_params.TimeseriesGroupIPVersionParams,
                 ),
@@ -872,6 +1881,121 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
+        query_type: Optional[
+            Literal[
+                "A",
+                "AAAA",
+                "A6",
+                "AFSDB",
+                "ANY",
+                "APL",
+                "ATMA",
+                "AXFR",
+                "CAA",
+                "CDNSKEY",
+                "CDS",
+                "CERT",
+                "CNAME",
+                "CSYNC",
+                "DHCID",
+                "DLV",
+                "DNAME",
+                "DNSKEY",
+                "DOA",
+                "DS",
+                "EID",
+                "EUI48",
+                "EUI64",
+                "GPOS",
+                "GID",
+                "HINFO",
+                "HIP",
+                "HTTPS",
+                "IPSECKEY",
+                "ISDN",
+                "IXFR",
+                "KEY",
+                "KX",
+                "L32",
+                "L64",
+                "LOC",
+                "LP",
+                "MAILA",
+                "MAILB",
+                "MB",
+                "MD",
+                "MF",
+                "MG",
+                "MINFO",
+                "MR",
+                "MX",
+                "NAPTR",
+                "NB",
+                "NBSTAT",
+                "NID",
+                "NIMLOC",
+                "NINFO",
+                "NS",
+                "NSAP",
+                "NSEC",
+                "NSEC3",
+                "NSEC3PARAM",
+                "NULL",
+                "NXT",
+                "OPENPGPKEY",
+                "OPT",
+                "PTR",
+                "PX",
+                "RKEY",
+                "RP",
+                "RRSIG",
+                "RT",
+                "SIG",
+                "SINK",
+                "SMIMEA",
+                "SOA",
+                "SPF",
+                "SRV",
+                "SSHFP",
+                "SVCB",
+                "TA",
+                "TALINK",
+                "TKEY",
+                "TLSA",
+                "TSIG",
+                "TXT",
+                "UINFO",
+                "UID",
+                "UNSPEC",
+                "URI",
+                "WKS",
+                "X25",
+                "ZONEMD",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        response_code: Literal[
+            "NOERROR",
+            "FORMERR",
+            "SERVFAIL",
+            "NXDOMAIN",
+            "NOTIMP",
+            "REFUSED",
+            "YXDOMAIN",
+            "YXRRSET",
+            "NXRRSET",
+            "NOTAUTH",
+            "NOTZONE",
+            "BADSIG",
+            "BADKEY",
+            "BADTIME",
+            "BADMODE",
+            "BADNAME",
+            "BADALG",
+            "BADTRUNC",
+            "BADCOOKIE",
+        ]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -880,36 +2004,41 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupProtocolResponse:
         """
-        Percentage distribution of AS112 DNS requests classified by protocol over time.
+        Retrieves the distribution of AS112 DNS requests classified by protocol over
+        time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
+          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
+              exclude ASNs from results. For example, `-174, 3356` excludes results from
+              AS174, but includes results from AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
+          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
+              exclude continents from results. For example, `-EU,NA` excludes results from EU,
+              but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
+          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
+              locations from results. For example, `-US,PT` excludes results from the US, but
+              includes results from PT.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
+
+          query_type: Filters results by DNS query type.
+
+          response_code: Filters results by DNS response code.
 
           extra_headers: Send extra headers
 
@@ -937,6 +2066,8 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                         "format": format,
                         "location": location,
                         "name": name,
+                        "query_type": query_type,
+                        "response_code": response_code,
                     },
                     timeseries_group_protocol_params.TimeseriesGroupProtocolParams,
                 ),
@@ -958,6 +2089,29 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         limit_per_group: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
+        protocol: Literal["UDP", "TCP", "HTTPS", "TLS"] | NotGiven = NOT_GIVEN,
+        response_code: Literal[
+            "NOERROR",
+            "FORMERR",
+            "SERVFAIL",
+            "NXDOMAIN",
+            "NOTIMP",
+            "REFUSED",
+            "YXDOMAIN",
+            "YXRRSET",
+            "NXRRSET",
+            "NOTAUTH",
+            "NOTZONE",
+            "BADSIG",
+            "BADKEY",
+            "BADTIME",
+            "BADMODE",
+            "BADNAME",
+            "BADALG",
+            "BADTRUNC",
+            "BADCOOKIE",
+        ]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -966,39 +2120,45 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupQueryTypeResponse:
         """
-        Percentage distribution of AS112 DNS queries by query type over time.
+        Retrieves the distribution of AS112 DNS queries by type over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
+          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
+              exclude ASNs from results. For example, `-174, 3356` excludes results from
+              AS174, but includes results from AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
+          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
+              exclude continents from results. For example, `-EU,NA` excludes results from EU,
+              but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
-              the time range.
+          limit_per_group: Limits the number of objects per group to the top items within the specified
+              time range. If there are more items than the limit, the response will include
+              the count of items, with any remaining items grouped together under an "other"
+              category.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
+          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
+              locations from results. For example, `-US,PT` excludes results from the US, but
+              includes results from PT.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
+
+          protocol: Filters results by DNS transport protocol.
+
+          response_code: Filters results by DNS response code.
 
           extra_headers: Send extra headers
 
@@ -1027,6 +2187,8 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                         "limit_per_group": limit_per_group,
                         "location": location,
                         "name": name,
+                        "protocol": protocol,
+                        "response_code": response_code,
                     },
                     timeseries_group_query_type_params.TimeseriesGroupQueryTypeParams,
                 ),
@@ -1048,6 +2210,100 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         limit_per_group: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
+        protocol: Literal["UDP", "TCP", "HTTPS", "TLS"] | NotGiven = NOT_GIVEN,
+        query_type: Optional[
+            Literal[
+                "A",
+                "AAAA",
+                "A6",
+                "AFSDB",
+                "ANY",
+                "APL",
+                "ATMA",
+                "AXFR",
+                "CAA",
+                "CDNSKEY",
+                "CDS",
+                "CERT",
+                "CNAME",
+                "CSYNC",
+                "DHCID",
+                "DLV",
+                "DNAME",
+                "DNSKEY",
+                "DOA",
+                "DS",
+                "EID",
+                "EUI48",
+                "EUI64",
+                "GPOS",
+                "GID",
+                "HINFO",
+                "HIP",
+                "HTTPS",
+                "IPSECKEY",
+                "ISDN",
+                "IXFR",
+                "KEY",
+                "KX",
+                "L32",
+                "L64",
+                "LOC",
+                "LP",
+                "MAILA",
+                "MAILB",
+                "MB",
+                "MD",
+                "MF",
+                "MG",
+                "MINFO",
+                "MR",
+                "MX",
+                "NAPTR",
+                "NB",
+                "NBSTAT",
+                "NID",
+                "NIMLOC",
+                "NINFO",
+                "NS",
+                "NSAP",
+                "NSEC",
+                "NSEC3",
+                "NSEC3PARAM",
+                "NULL",
+                "NXT",
+                "OPENPGPKEY",
+                "OPT",
+                "PTR",
+                "PX",
+                "RKEY",
+                "RP",
+                "RRSIG",
+                "RT",
+                "SIG",
+                "SINK",
+                "SMIMEA",
+                "SOA",
+                "SPF",
+                "SRV",
+                "SSHFP",
+                "SVCB",
+                "TA",
+                "TALINK",
+                "TKEY",
+                "TLSA",
+                "TSIG",
+                "TXT",
+                "UINFO",
+                "UID",
+                "UNSPEC",
+                "URI",
+                "WKS",
+                "X25",
+                "ZONEMD",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1056,40 +2312,46 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupResponseCodesResponse:
         """
-        Percentage distribution of AS112 DNS requests classified by response code over
-        time.
+        Retrieves the distribution of AS112 DNS requests classified by response code
+        over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
+          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
+              exclude ASNs from results. For example, `-174, 3356` excludes results from
+              AS174, but includes results from AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
+          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
+              exclude continents from results. For example, `-EU,NA` excludes results from EU,
+              but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
-              the time range.
+          limit_per_group: Limits the number of objects per group to the top items within the specified
+              time range. If there are more items than the limit, the response will include
+              the count of items, with any remaining items grouped together under an "other"
+              category.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
+          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
+              locations from results. For example, `-US,PT` excludes results from the US, but
+              includes results from PT.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
+
+          protocol: Filters results by DNS transport protocol.
+
+          query_type: Filters results by DNS query type.
 
           extra_headers: Send extra headers
 
@@ -1118,6 +2380,8 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                         "limit_per_group": limit_per_group,
                         "location": location,
                         "name": name,
+                        "protocol": protocol,
+                        "query_type": query_type,
                     },
                     timeseries_group_response_codes_params.TimeseriesGroupResponseCodesParams,
                 ),

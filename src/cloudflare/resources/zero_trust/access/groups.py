@@ -23,9 +23,12 @@ from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.zero_trust.access import group_list_params, group_create_params, group_update_params
-from ....types.zero_trust.access_rule_param import AccessRuleParam
-from ....types.zero_trust.access.zero_trust_group import ZeroTrustGroup
+from ....types.zero_trust.access.group_get_response import GroupGetResponse
+from ....types.zero_trust.access.group_list_response import GroupListResponse
+from ....types.zero_trust.access.group_create_response import GroupCreateResponse
 from ....types.zero_trust.access.group_delete_response import GroupDeleteResponse
+from ....types.zero_trust.access.group_update_response import GroupUpdateResponse
+from ....types.zero_trust.access.applications.access_rule_param import AccessRuleParam
 
 __all__ = ["GroupsResource", "AsyncGroupsResource"]
 
@@ -34,7 +37,7 @@ class GroupsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> GroupsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -66,7 +69,7 @@ class GroupsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZeroTrustGroup]:
+    ) -> Optional[GroupCreateResponse]:
         """
         Creates a new Access group.
 
@@ -125,9 +128,9 @@ class GroupsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ZeroTrustGroup]]._unwrapper,
+                post_parser=ResultWrapper[Optional[GroupCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZeroTrustGroup]], ResultWrapper[ZeroTrustGroup]),
+            cast_to=cast(Type[Optional[GroupCreateResponse]], ResultWrapper[GroupCreateResponse]),
         )
 
     def update(
@@ -147,7 +150,7 @@ class GroupsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZeroTrustGroup]:
+    ) -> Optional[GroupUpdateResponse]:
         """
         Updates a configured Access group.
 
@@ -210,9 +213,9 @@ class GroupsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ZeroTrustGroup]]._unwrapper,
+                post_parser=ResultWrapper[Optional[GroupUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZeroTrustGroup]], ResultWrapper[ZeroTrustGroup]),
+            cast_to=cast(Type[Optional[GroupUpdateResponse]], ResultWrapper[GroupUpdateResponse]),
         )
 
     def list(
@@ -228,7 +231,7 @@ class GroupsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[ZeroTrustGroup]:
+    ) -> SyncSinglePage[GroupListResponse]:
         """
         Lists all Access groups.
 
@@ -263,7 +266,7 @@ class GroupsResource(SyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/groups",
-            page=SyncSinglePage[ZeroTrustGroup],
+            page=SyncSinglePage[GroupListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -277,7 +280,7 @@ class GroupsResource(SyncAPIResource):
                     group_list_params.GroupListParams,
                 ),
             ),
-            model=ZeroTrustGroup,
+            model=GroupListResponse,
         )
 
     def delete(
@@ -349,7 +352,7 @@ class GroupsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZeroTrustGroup]:
+    ) -> Optional[GroupGetResponse]:
         """
         Fetches a single Access group.
 
@@ -389,9 +392,9 @@ class GroupsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ZeroTrustGroup]]._unwrapper,
+                post_parser=ResultWrapper[Optional[GroupGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZeroTrustGroup]], ResultWrapper[ZeroTrustGroup]),
+            cast_to=cast(Type[Optional[GroupGetResponse]], ResultWrapper[GroupGetResponse]),
         )
 
 
@@ -399,7 +402,7 @@ class AsyncGroupsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncGroupsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -431,7 +434,7 @@ class AsyncGroupsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZeroTrustGroup]:
+    ) -> Optional[GroupCreateResponse]:
         """
         Creates a new Access group.
 
@@ -490,9 +493,9 @@ class AsyncGroupsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ZeroTrustGroup]]._unwrapper,
+                post_parser=ResultWrapper[Optional[GroupCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZeroTrustGroup]], ResultWrapper[ZeroTrustGroup]),
+            cast_to=cast(Type[Optional[GroupCreateResponse]], ResultWrapper[GroupCreateResponse]),
         )
 
     async def update(
@@ -512,7 +515,7 @@ class AsyncGroupsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZeroTrustGroup]:
+    ) -> Optional[GroupUpdateResponse]:
         """
         Updates a configured Access group.
 
@@ -575,9 +578,9 @@ class AsyncGroupsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ZeroTrustGroup]]._unwrapper,
+                post_parser=ResultWrapper[Optional[GroupUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZeroTrustGroup]], ResultWrapper[ZeroTrustGroup]),
+            cast_to=cast(Type[Optional[GroupUpdateResponse]], ResultWrapper[GroupUpdateResponse]),
         )
 
     def list(
@@ -593,7 +596,7 @@ class AsyncGroupsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[ZeroTrustGroup, AsyncSinglePage[ZeroTrustGroup]]:
+    ) -> AsyncPaginator[GroupListResponse, AsyncSinglePage[GroupListResponse]]:
         """
         Lists all Access groups.
 
@@ -628,7 +631,7 @@ class AsyncGroupsResource(AsyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/groups",
-            page=AsyncSinglePage[ZeroTrustGroup],
+            page=AsyncSinglePage[GroupListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -642,7 +645,7 @@ class AsyncGroupsResource(AsyncAPIResource):
                     group_list_params.GroupListParams,
                 ),
             ),
-            model=ZeroTrustGroup,
+            model=GroupListResponse,
         )
 
     async def delete(
@@ -714,7 +717,7 @@ class AsyncGroupsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZeroTrustGroup]:
+    ) -> Optional[GroupGetResponse]:
         """
         Fetches a single Access group.
 
@@ -754,9 +757,9 @@ class AsyncGroupsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ZeroTrustGroup]]._unwrapper,
+                post_parser=ResultWrapper[Optional[GroupGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZeroTrustGroup]], ResultWrapper[ZeroTrustGroup]),
+            cast_to=cast(Type[Optional[GroupGetResponse]], ResultWrapper[GroupGetResponse]),
         )
 
 

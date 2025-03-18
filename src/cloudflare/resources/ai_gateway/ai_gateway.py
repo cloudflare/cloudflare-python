@@ -15,6 +15,14 @@ from .logs import (
     LogsResourceWithStreamingResponse,
     AsyncLogsResourceWithStreamingResponse,
 )
+from .urls import (
+    URLsResource,
+    AsyncURLsResource,
+    URLsResourceWithRawResponse,
+    AsyncURLsResourceWithRawResponse,
+    URLsResourceWithStreamingResponse,
+    AsyncURLsResourceWithStreamingResponse,
+)
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -83,9 +91,13 @@ class AIGatewayResource(SyncAPIResource):
         return EvaluationsResource(self._client)
 
     @cached_property
+    def urls(self) -> URLsResource:
+        return URLsResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AIGatewayResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -112,6 +124,9 @@ class AIGatewayResource(SyncAPIResource):
         rate_limiting_interval: Optional[int],
         rate_limiting_limit: Optional[int],
         rate_limiting_technique: Literal["fixed", "sliding"],
+        authentication: bool | NotGiven = NOT_GIVEN,
+        log_management: Optional[int] | NotGiven = NOT_GIVEN,
+        log_management_strategy: Optional[Literal["STOP_INSERTING", "DELETE_OLDEST"]] | NotGiven = NOT_GIVEN,
         logpush: bool | NotGiven = NOT_GIVEN,
         logpush_public_key: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -148,6 +163,9 @@ class AIGatewayResource(SyncAPIResource):
                     "rate_limiting_interval": rate_limiting_interval,
                     "rate_limiting_limit": rate_limiting_limit,
                     "rate_limiting_technique": rate_limiting_technique,
+                    "authentication": authentication,
+                    "log_management": log_management,
+                    "log_management_strategy": log_management_strategy,
                     "logpush": logpush,
                     "logpush_public_key": logpush_public_key,
                 },
@@ -174,6 +192,9 @@ class AIGatewayResource(SyncAPIResource):
         rate_limiting_interval: Optional[int],
         rate_limiting_limit: Optional[int],
         rate_limiting_technique: Literal["fixed", "sliding"],
+        authentication: bool | NotGiven = NOT_GIVEN,
+        log_management: Optional[int] | NotGiven = NOT_GIVEN,
+        log_management_strategy: Optional[Literal["STOP_INSERTING", "DELETE_OLDEST"]] | NotGiven = NOT_GIVEN,
         logpush: bool | NotGiven = NOT_GIVEN,
         logpush_public_key: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -211,6 +232,9 @@ class AIGatewayResource(SyncAPIResource):
                     "rate_limiting_interval": rate_limiting_interval,
                     "rate_limiting_limit": rate_limiting_limit,
                     "rate_limiting_technique": rate_limiting_technique,
+                    "authentication": authentication,
+                    "log_management": log_management,
+                    "log_management_strategy": log_management_strategy,
                     "logpush": logpush,
                     "logpush_public_key": logpush_public_key,
                 },
@@ -379,9 +403,13 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         return AsyncEvaluationsResource(self._client)
 
     @cached_property
+    def urls(self) -> AsyncURLsResource:
+        return AsyncURLsResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AsyncAIGatewayResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -408,6 +436,9 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         rate_limiting_interval: Optional[int],
         rate_limiting_limit: Optional[int],
         rate_limiting_technique: Literal["fixed", "sliding"],
+        authentication: bool | NotGiven = NOT_GIVEN,
+        log_management: Optional[int] | NotGiven = NOT_GIVEN,
+        log_management_strategy: Optional[Literal["STOP_INSERTING", "DELETE_OLDEST"]] | NotGiven = NOT_GIVEN,
         logpush: bool | NotGiven = NOT_GIVEN,
         logpush_public_key: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -444,6 +475,9 @@ class AsyncAIGatewayResource(AsyncAPIResource):
                     "rate_limiting_interval": rate_limiting_interval,
                     "rate_limiting_limit": rate_limiting_limit,
                     "rate_limiting_technique": rate_limiting_technique,
+                    "authentication": authentication,
+                    "log_management": log_management,
+                    "log_management_strategy": log_management_strategy,
                     "logpush": logpush,
                     "logpush_public_key": logpush_public_key,
                 },
@@ -470,6 +504,9 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         rate_limiting_interval: Optional[int],
         rate_limiting_limit: Optional[int],
         rate_limiting_technique: Literal["fixed", "sliding"],
+        authentication: bool | NotGiven = NOT_GIVEN,
+        log_management: Optional[int] | NotGiven = NOT_GIVEN,
+        log_management_strategy: Optional[Literal["STOP_INSERTING", "DELETE_OLDEST"]] | NotGiven = NOT_GIVEN,
         logpush: bool | NotGiven = NOT_GIVEN,
         logpush_public_key: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -507,6 +544,9 @@ class AsyncAIGatewayResource(AsyncAPIResource):
                     "rate_limiting_interval": rate_limiting_interval,
                     "rate_limiting_limit": rate_limiting_limit,
                     "rate_limiting_technique": rate_limiting_technique,
+                    "authentication": authentication,
+                    "log_management": log_management,
+                    "log_management_strategy": log_management_strategy,
                     "logpush": logpush,
                     "logpush_public_key": logpush_public_key,
                 },
@@ -693,6 +733,10 @@ class AIGatewayResourceWithRawResponse:
     def evaluations(self) -> EvaluationsResourceWithRawResponse:
         return EvaluationsResourceWithRawResponse(self._ai_gateway.evaluations)
 
+    @cached_property
+    def urls(self) -> URLsResourceWithRawResponse:
+        return URLsResourceWithRawResponse(self._ai_gateway.urls)
+
 
 class AsyncAIGatewayResourceWithRawResponse:
     def __init__(self, ai_gateway: AsyncAIGatewayResource) -> None:
@@ -729,6 +773,10 @@ class AsyncAIGatewayResourceWithRawResponse:
     @cached_property
     def evaluations(self) -> AsyncEvaluationsResourceWithRawResponse:
         return AsyncEvaluationsResourceWithRawResponse(self._ai_gateway.evaluations)
+
+    @cached_property
+    def urls(self) -> AsyncURLsResourceWithRawResponse:
+        return AsyncURLsResourceWithRawResponse(self._ai_gateway.urls)
 
 
 class AIGatewayResourceWithStreamingResponse:
@@ -767,6 +815,10 @@ class AIGatewayResourceWithStreamingResponse:
     def evaluations(self) -> EvaluationsResourceWithStreamingResponse:
         return EvaluationsResourceWithStreamingResponse(self._ai_gateway.evaluations)
 
+    @cached_property
+    def urls(self) -> URLsResourceWithStreamingResponse:
+        return URLsResourceWithStreamingResponse(self._ai_gateway.urls)
+
 
 class AsyncAIGatewayResourceWithStreamingResponse:
     def __init__(self, ai_gateway: AsyncAIGatewayResource) -> None:
@@ -803,3 +855,7 @@ class AsyncAIGatewayResourceWithStreamingResponse:
     @cached_property
     def evaluations(self) -> AsyncEvaluationsResourceWithStreamingResponse:
         return AsyncEvaluationsResourceWithStreamingResponse(self._ai_gateway.evaluations)
+
+    @cached_property
+    def urls(self) -> AsyncURLsResourceWithStreamingResponse:
+        return AsyncURLsResourceWithStreamingResponse(self._ai_gateway.urls)

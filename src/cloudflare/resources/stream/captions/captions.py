@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
@@ -15,8 +13,8 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._wrappers import ResultWrapper
-from ...._base_client import make_request_options
+from ....pagination import SyncSinglePage, AsyncSinglePage
+from ...._base_client import AsyncPaginator, make_request_options
 from .language.language import (
     LanguageResource,
     AsyncLanguageResource,
@@ -25,7 +23,7 @@ from .language.language import (
     LanguageResourceWithStreamingResponse,
     AsyncLanguageResourceWithStreamingResponse,
 )
-from ....types.stream.caption_get_response import CaptionGetResponse
+from ....types.stream.caption import Caption
 
 __all__ = ["CaptionsResource", "AsyncCaptionsResource"]
 
@@ -38,7 +36,7 @@ class CaptionsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> CaptionsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -65,7 +63,7 @@ class CaptionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CaptionGetResponse]:
+    ) -> SyncSinglePage[Caption]:
         """
         Lists the available captions or subtitles for a specific video.
 
@@ -86,16 +84,13 @@ class CaptionsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/stream/{identifier}/captions",
+            page=SyncSinglePage[Caption],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[CaptionGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[CaptionGetResponse]], ResultWrapper[CaptionGetResponse]),
+            model=Caption,
         )
 
 
@@ -107,7 +102,7 @@ class AsyncCaptionsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncCaptionsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -123,7 +118,7 @@ class AsyncCaptionsResource(AsyncAPIResource):
         """
         return AsyncCaptionsResourceWithStreamingResponse(self)
 
-    async def get(
+    def get(
         self,
         identifier: str,
         *,
@@ -134,7 +129,7 @@ class AsyncCaptionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CaptionGetResponse]:
+    ) -> AsyncPaginator[Caption, AsyncSinglePage[Caption]]:
         """
         Lists the available captions or subtitles for a specific video.
 
@@ -155,16 +150,13 @@ class AsyncCaptionsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/stream/{identifier}/captions",
+            page=AsyncSinglePage[Caption],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[CaptionGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[CaptionGetResponse]], ResultWrapper[CaptionGetResponse]),
+            model=Caption,
         )
 
 

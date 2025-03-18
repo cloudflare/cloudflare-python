@@ -36,7 +36,7 @@ class TestTCPResetsTimeouts:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(TCPResetsTimeoutSummaryResponse, tcp_resets_timeout, path=["response"])
 
@@ -76,7 +76,7 @@ class TestTCPResetsTimeouts:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(TCPResetsTimeoutTimeseriesGroupsResponse, tcp_resets_timeout, path=["response"])
 
@@ -119,7 +119,7 @@ class TestAsyncTCPResetsTimeouts:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(TCPResetsTimeoutSummaryResponse, tcp_resets_timeout, path=["response"])
 
@@ -159,7 +159,7 @@ class TestAsyncTCPResetsTimeouts:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             format="JSON",
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(TCPResetsTimeoutTimeseriesGroupsResponse, tcp_resets_timeout, path=["response"])
 

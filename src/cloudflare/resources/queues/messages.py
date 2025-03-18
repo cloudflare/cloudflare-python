@@ -20,7 +20,8 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ..._base_client import make_request_options
+from ...pagination import SyncSinglePage, AsyncSinglePage
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.queues import message_ack_params, message_pull_params
 from ...types.queues.message_ack_response import MessageAckResponse
 from ...types.queues.message_pull_response import MessagePullResponse
@@ -32,7 +33,7 @@ class MessagesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> MessagesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -114,7 +115,7 @@ class MessagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MessagePullResponse]:
+    ) -> SyncSinglePage[MessagePullResponse]:
         """
         Pull a batch of messages from a Queue
 
@@ -140,8 +141,9 @@ class MessagesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not queue_id:
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
-        return self._post(
+        return self._get_api_list(
             f"/accounts/{account_id}/queues/{queue_id}/messages/pull",
+            page=SyncSinglePage[MessagePullResponse],
             body=maybe_transform(
                 {
                     "batch_size": batch_size,
@@ -150,13 +152,10 @@ class MessagesResource(SyncAPIResource):
                 message_pull_params.MessagePullParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[MessagePullResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[MessagePullResponse]], ResultWrapper[MessagePullResponse]),
+            model=MessagePullResponse,
+            method="post",
         )
 
 
@@ -164,7 +163,7 @@ class AsyncMessagesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncMessagesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -233,7 +232,7 @@ class AsyncMessagesResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[MessageAckResponse]], ResultWrapper[MessageAckResponse]),
         )
 
-    async def pull(
+    def pull(
         self,
         queue_id: str,
         *,
@@ -246,7 +245,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[MessagePullResponse]:
+    ) -> AsyncPaginator[MessagePullResponse, AsyncSinglePage[MessagePullResponse]]:
         """
         Pull a batch of messages from a Queue
 
@@ -272,9 +271,10 @@ class AsyncMessagesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not queue_id:
             raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
-        return await self._post(
+        return self._get_api_list(
             f"/accounts/{account_id}/queues/{queue_id}/messages/pull",
-            body=await async_maybe_transform(
+            page=AsyncSinglePage[MessagePullResponse],
+            body=maybe_transform(
                 {
                     "batch_size": batch_size,
                     "visibility_timeout_ms": visibility_timeout_ms,
@@ -282,13 +282,10 @@ class AsyncMessagesResource(AsyncAPIResource):
                 message_pull_params.MessagePullParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[MessagePullResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[MessagePullResponse]], ResultWrapper[MessagePullResponse]),
+            model=MessagePullResponse,
+            method="post",
         )
 
 

@@ -81,14 +81,14 @@ class TestAccessRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.firewall.access_rules.with_raw_response.create(
                 configuration={},
                 mode="block",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.firewall.access_rules.with_raw_response.create(
                 configuration={},
                 mode="block",
@@ -151,12 +151,12 @@ class TestAccessRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.firewall.access_rules.with_raw_response.list(
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.firewall.access_rules.with_raw_response.list(
                 account_id="account_id",
             )
@@ -216,13 +216,13 @@ class TestAccessRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.firewall.access_rules.with_raw_response.delete(
                 rule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.firewall.access_rules.with_raw_response.delete(
                 rule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="account_id",
@@ -297,7 +297,7 @@ class TestAccessRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.firewall.access_rules.with_raw_response.edit(
                 rule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 configuration={},
@@ -305,7 +305,7 @@ class TestAccessRules:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.firewall.access_rules.with_raw_response.edit(
                 rule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 configuration={},
@@ -368,13 +368,13 @@ class TestAccessRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.firewall.access_rules.with_raw_response.get(
                 rule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.firewall.access_rules.with_raw_response.get(
                 rule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="account_id",
@@ -441,14 +441,14 @@ class TestAsyncAccessRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.firewall.access_rules.with_raw_response.create(
                 configuration={},
                 mode="block",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.firewall.access_rules.with_raw_response.create(
                 configuration={},
                 mode="block",
@@ -511,12 +511,12 @@ class TestAsyncAccessRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.firewall.access_rules.with_raw_response.list(
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.firewall.access_rules.with_raw_response.list(
                 account_id="account_id",
             )
@@ -576,13 +576,13 @@ class TestAsyncAccessRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.firewall.access_rules.with_raw_response.delete(
                 rule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.firewall.access_rules.with_raw_response.delete(
                 rule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="account_id",
@@ -657,7 +657,7 @@ class TestAsyncAccessRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.firewall.access_rules.with_raw_response.edit(
                 rule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 configuration={},
@@ -665,7 +665,7 @@ class TestAsyncAccessRules:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.firewall.access_rules.with_raw_response.edit(
                 rule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 configuration={},
@@ -728,13 +728,13 @@ class TestAsyncAccessRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.firewall.access_rules.with_raw_response.get(
                 rule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.firewall.access_rules.with_raw_response.get(
                 rule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="account_id",

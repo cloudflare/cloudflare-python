@@ -9,6 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.zero_trust.access.applications.policy_tests import UserListResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -23,7 +24,16 @@ class TestUsers:
             policy_test_id="f1a8b3c9d4e5f6789a0b1c2d3e4f5678a9b0c1d2e3f4a5b67890c1d2e3f4b5a6",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(UserListResponse, user, path=["response"])
+        assert_matches_type(SyncSinglePage[UserListResponse], user, path=["response"])
+
+    @parametrize
+    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
+        user = client.zero_trust.access.applications.policy_tests.users.list(
+            policy_test_id="f1a8b3c9d4e5f6789a0b1c2d3e4f5678a9b0c1d2e3f4a5b67890c1d2e3f4b5a6",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            status="success",
+        )
+        assert_matches_type(SyncSinglePage[UserListResponse], user, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -35,7 +45,7 @@ class TestUsers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user = response.parse()
-        assert_matches_type(UserListResponse, user, path=["response"])
+        assert_matches_type(SyncSinglePage[UserListResponse], user, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -47,7 +57,7 @@ class TestUsers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user = response.parse()
-            assert_matches_type(UserListResponse, user, path=["response"])
+            assert_matches_type(SyncSinglePage[UserListResponse], user, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -75,7 +85,16 @@ class TestAsyncUsers:
             policy_test_id="f1a8b3c9d4e5f6789a0b1c2d3e4f5678a9b0c1d2e3f4a5b67890c1d2e3f4b5a6",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(UserListResponse, user, path=["response"])
+        assert_matches_type(AsyncSinglePage[UserListResponse], user, path=["response"])
+
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        user = await async_client.zero_trust.access.applications.policy_tests.users.list(
+            policy_test_id="f1a8b3c9d4e5f6789a0b1c2d3e4f5678a9b0c1d2e3f4a5b67890c1d2e3f4b5a6",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            status="success",
+        )
+        assert_matches_type(AsyncSinglePage[UserListResponse], user, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -87,7 +106,7 @@ class TestAsyncUsers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user = await response.parse()
-        assert_matches_type(UserListResponse, user, path=["response"])
+        assert_matches_type(AsyncSinglePage[UserListResponse], user, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -99,7 +118,7 @@ class TestAsyncUsers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user = await response.parse()
-            assert_matches_type(UserListResponse, user, path=["response"])
+            assert_matches_type(AsyncSinglePage[UserListResponse], user, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

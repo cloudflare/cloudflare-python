@@ -119,7 +119,7 @@ class ZonesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ZonesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -309,7 +309,7 @@ class ZonesResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        type: Literal["full", "partial", "secondary"] | NotGiven = NOT_GIVEN,
+        type: Literal["full", "partial", "secondary", "internal"] | NotGiven = NOT_GIVEN,
         vanity_name_servers: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -434,7 +434,7 @@ class AsyncZonesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncZonesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -624,7 +624,7 @@ class AsyncZonesResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        type: Literal["full", "partial", "secondary"] | NotGiven = NOT_GIVEN,
+        type: Literal["full", "partial", "secondary", "internal"] | NotGiven = NOT_GIVEN,
         vanity_name_servers: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

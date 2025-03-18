@@ -108,7 +108,7 @@ class TestCustom:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         custom = client.r2.buckets.domains.custom.update(
-            domain_name="example-domain/custom-domain.com",
+            domain="example-domain/custom-domain.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
         )
@@ -118,7 +118,7 @@ class TestCustom:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         custom = client.r2.buckets.domains.custom.update(
-            domain_name="example-domain/custom-domain.com",
+            domain="example-domain/custom-domain.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
             enabled=True,
@@ -131,7 +131,7 @@ class TestCustom:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.r2.buckets.domains.custom.with_raw_response.update(
-            domain_name="example-domain/custom-domain.com",
+            domain="example-domain/custom-domain.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
         )
@@ -145,7 +145,7 @@ class TestCustom:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.r2.buckets.domains.custom.with_streaming_response.update(
-            domain_name="example-domain/custom-domain.com",
+            domain="example-domain/custom-domain.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
         ) as response:
@@ -162,21 +162,21 @@ class TestCustom:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.r2.buckets.domains.custom.with_raw_response.update(
-                domain_name="example-domain/custom-domain.com",
+                domain="example-domain/custom-domain.com",
                 account_id="",
                 bucket_name="example-bucket",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
             client.r2.buckets.domains.custom.with_raw_response.update(
-                domain_name="example-domain/custom-domain.com",
+                domain="example-domain/custom-domain.com",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 bucket_name="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `domain_name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `domain` but received ''"):
             client.r2.buckets.domains.custom.with_raw_response.update(
-                domain_name="",
+                domain="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 bucket_name="example-bucket",
             )
@@ -247,7 +247,7 @@ class TestCustom:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         custom = client.r2.buckets.domains.custom.delete(
-            domain_name="example-domain/custom-domain.com",
+            domain="example-domain/custom-domain.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
         )
@@ -257,7 +257,7 @@ class TestCustom:
     @parametrize
     def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
         custom = client.r2.buckets.domains.custom.delete(
-            domain_name="example-domain/custom-domain.com",
+            domain="example-domain/custom-domain.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
             jurisdiction="default",
@@ -268,7 +268,7 @@ class TestCustom:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.r2.buckets.domains.custom.with_raw_response.delete(
-            domain_name="example-domain/custom-domain.com",
+            domain="example-domain/custom-domain.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
         )
@@ -282,7 +282,7 @@ class TestCustom:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.r2.buckets.domains.custom.with_streaming_response.delete(
-            domain_name="example-domain/custom-domain.com",
+            domain="example-domain/custom-domain.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
         ) as response:
@@ -299,21 +299,21 @@ class TestCustom:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.r2.buckets.domains.custom.with_raw_response.delete(
-                domain_name="example-domain/custom-domain.com",
+                domain="example-domain/custom-domain.com",
                 account_id="",
                 bucket_name="example-bucket",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
             client.r2.buckets.domains.custom.with_raw_response.delete(
-                domain_name="example-domain/custom-domain.com",
+                domain="example-domain/custom-domain.com",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 bucket_name="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `domain_name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `domain` but received ''"):
             client.r2.buckets.domains.custom.with_raw_response.delete(
-                domain_name="",
+                domain="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 bucket_name="example-bucket",
             )
@@ -322,7 +322,7 @@ class TestCustom:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         custom = client.r2.buckets.domains.custom.get(
-            domain_name="example-domain/custom-domain.com",
+            domain="example-domain/custom-domain.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
         )
@@ -332,7 +332,7 @@ class TestCustom:
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         custom = client.r2.buckets.domains.custom.get(
-            domain_name="example-domain/custom-domain.com",
+            domain="example-domain/custom-domain.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
             jurisdiction="default",
@@ -343,7 +343,7 @@ class TestCustom:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.r2.buckets.domains.custom.with_raw_response.get(
-            domain_name="example-domain/custom-domain.com",
+            domain="example-domain/custom-domain.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
         )
@@ -357,7 +357,7 @@ class TestCustom:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.r2.buckets.domains.custom.with_streaming_response.get(
-            domain_name="example-domain/custom-domain.com",
+            domain="example-domain/custom-domain.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
         ) as response:
@@ -374,21 +374,21 @@ class TestCustom:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.r2.buckets.domains.custom.with_raw_response.get(
-                domain_name="example-domain/custom-domain.com",
+                domain="example-domain/custom-domain.com",
                 account_id="",
                 bucket_name="example-bucket",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
             client.r2.buckets.domains.custom.with_raw_response.get(
-                domain_name="example-domain/custom-domain.com",
+                domain="example-domain/custom-domain.com",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 bucket_name="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `domain_name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `domain` but received ''"):
             client.r2.buckets.domains.custom.with_raw_response.get(
-                domain_name="",
+                domain="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 bucket_name="example-bucket",
             )
@@ -482,7 +482,7 @@ class TestAsyncCustom:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         custom = await async_client.r2.buckets.domains.custom.update(
-            domain_name="example-domain/custom-domain.com",
+            domain="example-domain/custom-domain.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
         )
@@ -492,7 +492,7 @@ class TestAsyncCustom:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         custom = await async_client.r2.buckets.domains.custom.update(
-            domain_name="example-domain/custom-domain.com",
+            domain="example-domain/custom-domain.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
             enabled=True,
@@ -505,7 +505,7 @@ class TestAsyncCustom:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.r2.buckets.domains.custom.with_raw_response.update(
-            domain_name="example-domain/custom-domain.com",
+            domain="example-domain/custom-domain.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
         )
@@ -519,7 +519,7 @@ class TestAsyncCustom:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.r2.buckets.domains.custom.with_streaming_response.update(
-            domain_name="example-domain/custom-domain.com",
+            domain="example-domain/custom-domain.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
         ) as response:
@@ -536,21 +536,21 @@ class TestAsyncCustom:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.r2.buckets.domains.custom.with_raw_response.update(
-                domain_name="example-domain/custom-domain.com",
+                domain="example-domain/custom-domain.com",
                 account_id="",
                 bucket_name="example-bucket",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
             await async_client.r2.buckets.domains.custom.with_raw_response.update(
-                domain_name="example-domain/custom-domain.com",
+                domain="example-domain/custom-domain.com",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 bucket_name="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `domain_name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `domain` but received ''"):
             await async_client.r2.buckets.domains.custom.with_raw_response.update(
-                domain_name="",
+                domain="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 bucket_name="example-bucket",
             )
@@ -621,7 +621,7 @@ class TestAsyncCustom:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         custom = await async_client.r2.buckets.domains.custom.delete(
-            domain_name="example-domain/custom-domain.com",
+            domain="example-domain/custom-domain.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
         )
@@ -631,7 +631,7 @@ class TestAsyncCustom:
     @parametrize
     async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
         custom = await async_client.r2.buckets.domains.custom.delete(
-            domain_name="example-domain/custom-domain.com",
+            domain="example-domain/custom-domain.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
             jurisdiction="default",
@@ -642,7 +642,7 @@ class TestAsyncCustom:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.r2.buckets.domains.custom.with_raw_response.delete(
-            domain_name="example-domain/custom-domain.com",
+            domain="example-domain/custom-domain.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
         )
@@ -656,7 +656,7 @@ class TestAsyncCustom:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.r2.buckets.domains.custom.with_streaming_response.delete(
-            domain_name="example-domain/custom-domain.com",
+            domain="example-domain/custom-domain.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
         ) as response:
@@ -673,21 +673,21 @@ class TestAsyncCustom:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.r2.buckets.domains.custom.with_raw_response.delete(
-                domain_name="example-domain/custom-domain.com",
+                domain="example-domain/custom-domain.com",
                 account_id="",
                 bucket_name="example-bucket",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
             await async_client.r2.buckets.domains.custom.with_raw_response.delete(
-                domain_name="example-domain/custom-domain.com",
+                domain="example-domain/custom-domain.com",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 bucket_name="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `domain_name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `domain` but received ''"):
             await async_client.r2.buckets.domains.custom.with_raw_response.delete(
-                domain_name="",
+                domain="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 bucket_name="example-bucket",
             )
@@ -696,7 +696,7 @@ class TestAsyncCustom:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         custom = await async_client.r2.buckets.domains.custom.get(
-            domain_name="example-domain/custom-domain.com",
+            domain="example-domain/custom-domain.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
         )
@@ -706,7 +706,7 @@ class TestAsyncCustom:
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         custom = await async_client.r2.buckets.domains.custom.get(
-            domain_name="example-domain/custom-domain.com",
+            domain="example-domain/custom-domain.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
             jurisdiction="default",
@@ -717,7 +717,7 @@ class TestAsyncCustom:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.r2.buckets.domains.custom.with_raw_response.get(
-            domain_name="example-domain/custom-domain.com",
+            domain="example-domain/custom-domain.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
         )
@@ -731,7 +731,7 @@ class TestAsyncCustom:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.r2.buckets.domains.custom.with_streaming_response.get(
-            domain_name="example-domain/custom-domain.com",
+            domain="example-domain/custom-domain.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
         ) as response:
@@ -748,21 +748,21 @@ class TestAsyncCustom:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.r2.buckets.domains.custom.with_raw_response.get(
-                domain_name="example-domain/custom-domain.com",
+                domain="example-domain/custom-domain.com",
                 account_id="",
                 bucket_name="example-bucket",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
             await async_client.r2.buckets.domains.custom.with_raw_response.get(
-                domain_name="example-domain/custom-domain.com",
+                domain="example-domain/custom-domain.com",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 bucket_name="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `domain_name` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `domain` but received ''"):
             await async_client.r2.buckets.domains.custom.with_raw_response.get(
-                domain_name="",
+                domain="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 bucket_name="example-bucket",
             )

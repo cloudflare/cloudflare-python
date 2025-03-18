@@ -42,7 +42,7 @@ class TestIPVersion:
             http_version=["HTTPv1"],
             limit=5,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -100,7 +100,7 @@ class TestAsyncIPVersion:
             http_version=["HTTPv1"],
             limit=5,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )

@@ -32,7 +32,7 @@ class NetworksResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> NetworksResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -116,7 +116,8 @@ class NetworksResource(SyncAPIResource):
         ip_network_encoded: str,
         *,
         account_id: str,
-        tun_type: Literal["cfd_tunnel", "warp_connector", "ip_sec", "gre", "cni"] | NotGiven = NOT_GIVEN,
+        tun_type: Literal["cfd_tunnel", "warp_connector", "warp", "magic", "ip_sec", "gre", "cni"]
+        | NotGiven = NOT_GIVEN,
         tunnel_id: str | NotGiven = NOT_GIVEN,
         virtual_network_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -230,7 +231,7 @@ class AsyncNetworksResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncNetworksResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -314,7 +315,8 @@ class AsyncNetworksResource(AsyncAPIResource):
         ip_network_encoded: str,
         *,
         account_id: str,
-        tun_type: Literal["cfd_tunnel", "warp_connector", "ip_sec", "gre", "cni"] | NotGiven = NOT_GIVEN,
+        tun_type: Literal["cfd_tunnel", "warp_connector", "warp", "magic", "ip_sec", "gre", "cni"]
+        | NotGiven = NOT_GIVEN,
         tunnel_id: str | NotGiven = NOT_GIVEN,
         virtual_network_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

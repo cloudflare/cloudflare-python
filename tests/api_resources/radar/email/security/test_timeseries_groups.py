@@ -43,7 +43,7 @@ class TestTimeseriesGroups:
             dkim=["PASS"],
             dmarc=["PASS"],
             format="JSON",
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
             tls_version=["TLSv1_0"],
         )
@@ -84,7 +84,7 @@ class TestTimeseriesGroups:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             dmarc=["PASS"],
             format="JSON",
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
             tls_version=["TLSv1_0"],
         )
@@ -125,7 +125,7 @@ class TestTimeseriesGroups:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             dkim=["PASS"],
             format="JSON",
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
             tls_version=["TLSv1_0"],
         )
@@ -167,7 +167,7 @@ class TestTimeseriesGroups:
             dkim=["PASS"],
             dmarc=["PASS"],
             format="JSON",
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
             tls_version=["TLSv1_0"],
         )
@@ -209,7 +209,7 @@ class TestTimeseriesGroups:
             dkim=["PASS"],
             dmarc=["PASS"],
             format="JSON",
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
             tls_version=["TLSv1_0"],
         )
@@ -251,7 +251,7 @@ class TestTimeseriesGroups:
             dkim=["PASS"],
             dmarc=["PASS"],
             format="JSON",
-            name=["string"],
+            name=["main_series"],
             tls_version=["TLSv1_0"],
         )
         assert_matches_type(TimeseriesGroupSPFResponse, timeseries_group, path=["response"])
@@ -292,7 +292,7 @@ class TestTimeseriesGroups:
             dkim=["PASS"],
             dmarc=["PASS"],
             format="JSON",
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
             tls_version=["TLSv1_0"],
         )
@@ -334,7 +334,7 @@ class TestTimeseriesGroups:
             dkim=["PASS"],
             dmarc=["PASS"],
             format="JSON",
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
             tls_version=["TLSv1_0"],
         )
@@ -376,7 +376,7 @@ class TestTimeseriesGroups:
             dkim=["PASS"],
             dmarc=["PASS"],
             format="JSON",
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
         )
         assert_matches_type(TimeseriesGroupTLSVersionResponse, timeseries_group, path=["response"])
@@ -420,7 +420,7 @@ class TestAsyncTimeseriesGroups:
             dkim=["PASS"],
             dmarc=["PASS"],
             format="JSON",
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
             tls_version=["TLSv1_0"],
         )
@@ -461,7 +461,7 @@ class TestAsyncTimeseriesGroups:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             dmarc=["PASS"],
             format="JSON",
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
             tls_version=["TLSv1_0"],
         )
@@ -502,7 +502,7 @@ class TestAsyncTimeseriesGroups:
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
             dkim=["PASS"],
             format="JSON",
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
             tls_version=["TLSv1_0"],
         )
@@ -544,7 +544,7 @@ class TestAsyncTimeseriesGroups:
             dkim=["PASS"],
             dmarc=["PASS"],
             format="JSON",
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
             tls_version=["TLSv1_0"],
         )
@@ -586,7 +586,7 @@ class TestAsyncTimeseriesGroups:
             dkim=["PASS"],
             dmarc=["PASS"],
             format="JSON",
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
             tls_version=["TLSv1_0"],
         )
@@ -628,7 +628,7 @@ class TestAsyncTimeseriesGroups:
             dkim=["PASS"],
             dmarc=["PASS"],
             format="JSON",
-            name=["string"],
+            name=["main_series"],
             tls_version=["TLSv1_0"],
         )
         assert_matches_type(TimeseriesGroupSPFResponse, timeseries_group, path=["response"])
@@ -669,7 +669,7 @@ class TestAsyncTimeseriesGroups:
             dkim=["PASS"],
             dmarc=["PASS"],
             format="JSON",
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
             tls_version=["TLSv1_0"],
         )
@@ -711,7 +711,7 @@ class TestAsyncTimeseriesGroups:
             dkim=["PASS"],
             dmarc=["PASS"],
             format="JSON",
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
             tls_version=["TLSv1_0"],
         )
@@ -728,7 +728,9 @@ class TestAsyncTimeseriesGroups:
 
     @parametrize
     async def test_streaming_response_threat_category(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.radar.email.security.timeseries_groups.with_streaming_response.threat_category() as response:
+        async with (
+            async_client.radar.email.security.timeseries_groups.with_streaming_response.threat_category()
+        ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -753,7 +755,7 @@ class TestAsyncTimeseriesGroups:
             dkim=["PASS"],
             dmarc=["PASS"],
             format="JSON",
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
         )
         assert_matches_type(TimeseriesGroupTLSVersionResponse, timeseries_group, path=["response"])
@@ -769,7 +771,9 @@ class TestAsyncTimeseriesGroups:
 
     @parametrize
     async def test_streaming_response_tls_version(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.radar.email.security.timeseries_groups.with_streaming_response.tls_version() as response:
+        async with (
+            async_client.radar.email.security.timeseries_groups.with_streaming_response.tls_version()
+        ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 

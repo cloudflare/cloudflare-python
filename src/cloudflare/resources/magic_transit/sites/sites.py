@@ -76,7 +76,7 @@ class SitesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> SitesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -230,7 +230,7 @@ class SitesResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        connector_identifier: str | NotGiven = NOT_GIVEN,
+        connectorid: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -240,14 +240,14 @@ class SitesResource(SyncAPIResource):
     ) -> SyncSinglePage[Site]:
         """Lists Sites associated with an account.
 
-        Use connector_identifier query param to
-        return sites where connector_identifier matches either site.ConnectorID or
+        Use connectorid query param to return
+        sites where connectorid matches either site.ConnectorID or
         site.SecondaryConnectorID.
 
         Args:
           account_id: Identifier
 
-          connector_identifier: Identifier
+          connectorid: Identifier
 
           extra_headers: Send extra headers
 
@@ -267,7 +267,7 @@ class SitesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"connector_identifier": connector_identifier}, site_list_params.SiteListParams),
+                query=maybe_transform({"connectorid": connectorid}, site_list_params.SiteListParams),
             ),
             model=Site,
         )
@@ -455,7 +455,7 @@ class AsyncSitesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncSitesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -609,7 +609,7 @@ class AsyncSitesResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        connector_identifier: str | NotGiven = NOT_GIVEN,
+        connectorid: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -619,14 +619,14 @@ class AsyncSitesResource(AsyncAPIResource):
     ) -> AsyncPaginator[Site, AsyncSinglePage[Site]]:
         """Lists Sites associated with an account.
 
-        Use connector_identifier query param to
-        return sites where connector_identifier matches either site.ConnectorID or
+        Use connectorid query param to return
+        sites where connectorid matches either site.ConnectorID or
         site.SecondaryConnectorID.
 
         Args:
           account_id: Identifier
 
-          connector_identifier: Identifier
+          connectorid: Identifier
 
           extra_headers: Send extra headers
 
@@ -646,7 +646,7 @@ class AsyncSitesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"connector_identifier": connector_identifier}, site_list_params.SiteListParams),
+                query=maybe_transform({"connectorid": connectorid}, site_list_params.SiteListParams),
             ),
             model=Site,
         )

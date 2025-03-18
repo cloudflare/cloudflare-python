@@ -32,7 +32,7 @@ class SearchResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> SearchResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -65,18 +65,18 @@ class SearchResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SearchGlobalResponse:
         """
-        Lets you search for locations, autonomous systems (ASes), and reports.
+        Searches for locations, autonomous systems, and reports.
 
         Args:
-          query: Search for locations, AS and reports.
+          query: Search for locations, autonomous systems and reports.
 
           exclude: Search types to be excluded from results.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
           include: Search types to be included in results.
 
-          limit: Limit the number of objects in the response.
+          limit: Limits the number of objects returned in the response.
 
           limit_per_group: Limit the number of objects per search category.
 
@@ -116,7 +116,7 @@ class AsyncSearchResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncSearchResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -149,18 +149,18 @@ class AsyncSearchResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SearchGlobalResponse:
         """
-        Lets you search for locations, autonomous systems (ASes), and reports.
+        Searches for locations, autonomous systems, and reports.
 
         Args:
-          query: Search for locations, AS and reports.
+          query: Search for locations, autonomous systems and reports.
 
           exclude: Search types to be excluded from results.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
           include: Search types to be included in results.
 
-          limit: Limit the number of objects in the response.
+          limit: Limits the number of objects returned in the response.
 
           limit_per_group: Limit the number of objects per search category.
 

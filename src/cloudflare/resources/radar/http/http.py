@@ -93,7 +93,7 @@ class HTTPResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> HTTPResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -115,6 +115,7 @@ class HTTPResource(SyncAPIResource):
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -138,54 +139,56 @@ class HTTPResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> HTTPTimeseriesResponse:
         """
-        Get HTTP requests over time.
+        Retrieves the HTTP requests over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
+          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
+              exclude ASNs from results. For example, `-174, 3356` excludes results from
+              AS174, but includes results from AS3356.
 
-          bot_class: Filter for bot class. Refer to
+          bot_class: Filters results by bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
+          browser_family: Filters results by browser family.
+
+          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
+              exclude continents from results. For example, `-EU,NA` excludes results from EU,
+              but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          device_type: Filter for device type.
+          device_type: Filters results by device type.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          http_protocol: Filter for http protocol.
+          http_protocol: Filters results by HTTP protocol (HTTP vs. HTTPS).
 
-          http_version: Filter for http version.
+          http_version: Filters results by HTTP version.
 
-          ip_version: Filter for ip version.
+          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
+          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
+              locations from results. For example, `-US,PT` excludes results from the US, but
+              includes results from PT.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
           normalization: Normalization method applied. Refer to
               [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
 
-          os: Filter for os name.
+          os: Filters results by operating system.
 
-          tls_version: Filter for tls version.
+          tls_version: Filters results by TLS version.
 
           extra_headers: Send extra headers
 
@@ -207,6 +210,7 @@ class HTTPResource(SyncAPIResource):
                         "agg_interval": agg_interval,
                         "asn": asn,
                         "bot_class": bot_class,
+                        "browser_family": browser_family,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -254,7 +258,7 @@ class AsyncHTTPResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncHTTPResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -276,6 +280,7 @@ class AsyncHTTPResource(AsyncAPIResource):
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -299,54 +304,56 @@ class AsyncHTTPResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> HTTPTimeseriesResponse:
         """
-        Get HTTP requests over time.
+        Retrieves the HTTP requests over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
+          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
+              exclude ASNs from results. For example, `-174, 3356` excludes results from
+              AS174, but includes results from AS3356.
 
-          bot_class: Filter for bot class. Refer to
+          bot_class: Filters results by bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
+          browser_family: Filters results by browser family.
+
+          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
+              exclude continents from results. For example, `-EU,NA` excludes results from EU,
+              but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          device_type: Filter for device type.
+          device_type: Filters results by device type.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          http_protocol: Filter for http protocol.
+          http_protocol: Filters results by HTTP protocol (HTTP vs. HTTPS).
 
-          http_version: Filter for http version.
+          http_version: Filters results by HTTP version.
 
-          ip_version: Filter for ip version.
+          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
+          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
+              locations from results. For example, `-US,PT` excludes results from the US, but
+              includes results from PT.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
           normalization: Normalization method applied. Refer to
               [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
 
-          os: Filter for os name.
+          os: Filters results by operating system.
 
-          tls_version: Filter for tls version.
+          tls_version: Filters results by TLS version.
 
           extra_headers: Send extra headers
 
@@ -368,6 +375,7 @@ class AsyncHTTPResource(AsyncAPIResource):
                         "agg_interval": agg_interval,
                         "asn": asn,
                         "bot_class": bot_class,
+                        "browser_family": browser_family,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,

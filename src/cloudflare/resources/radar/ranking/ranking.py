@@ -32,6 +32,14 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....types.radar import ranking_top_params, ranking_timeseries_groups_params
 from ...._base_client import make_request_options
+from .internet_services import (
+    InternetServicesResource,
+    AsyncInternetServicesResource,
+    InternetServicesResourceWithRawResponse,
+    AsyncInternetServicesResourceWithRawResponse,
+    InternetServicesResourceWithStreamingResponse,
+    AsyncInternetServicesResourceWithStreamingResponse,
+)
 from ....types.radar.ranking_top_response import RankingTopResponse
 from ....types.radar.ranking_timeseries_groups_response import RankingTimeseriesGroupsResponse
 
@@ -44,9 +52,13 @@ class RankingResource(SyncAPIResource):
         return DomainResource(self._client)
 
     @cached_property
+    def internet_services(self) -> InternetServicesResource:
+        return InternetServicesResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> RankingResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -68,6 +80,7 @@ class RankingResource(SyncAPIResource):
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        domain_category: List[str] | NotGiven = NOT_GIVEN,
         domains: List[str] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
@@ -81,30 +94,31 @@ class RankingResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RankingTimeseriesGroupsResponse:
-        """Gets Domains Rank updates change over time.
-
-        Raw values are returned.
+        """
+        Retrieves domains rank over time.
 
         Args:
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          domains: Array of comma separated list of domains names.
+          domain_category: Filters results by domain category.
 
-          format: Format results are returned in.
+          domains: Comma-separated list of domain names.
 
-          limit: Limit the number of objects in the response.
+          format: Format in which results will be returned.
 
-          location: Array of locations (alpha-2 country codes).
+          limit: Limits the number of objects returned in the response.
 
-          name: Array of names that will be used to name the series in responses.
+          location: Comma-separated list of locations (alpha-2 codes).
 
-          ranking_type: The ranking type.
+          name: Array of names used to label the series in the response.
+
+          ranking_type: Ranking type.
 
           extra_headers: Send extra headers
 
@@ -126,6 +140,7 @@ class RankingResource(SyncAPIResource):
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
+                        "domain_category": domain_category,
                         "domains": domains,
                         "format": format,
                         "limit": limit,
@@ -144,6 +159,7 @@ class RankingResource(SyncAPIResource):
         self,
         *,
         date: List[Union[str, date]] | NotGiven = NOT_GIVEN,
+        domain_category: List[str] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
@@ -156,25 +172,27 @@ class RankingResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RankingTopResponse:
-        """Get top or trending domains based on their rank.
+        """Retrieves the top or trending domains based on their rank.
 
-        Popular domains are domains of
-        broad appeal based on how people use the Internet. Trending domains are domains
-        that are generating a surge in interest. For more information on top domains,
-        see https://blog.cloudflare.com/radar-domain-rankings/.
+        Popular domains are
+        domains of broad appeal based on how people use the Internet. Trending domains
+        are domains that are generating a surge in interest. For more information on top
+        domains, see https://blog.cloudflare.com/radar-domain-rankings/.
 
         Args:
-          date: Array of dates to filter the ranking.
+          date: Array of dates to filter the results.
 
-          format: Format results are returned in.
+          domain_category: Filters results by domain category.
 
-          limit: Limit the number of objects in the response.
+          format: Format in which results will be returned.
 
-          location: Array of locations (alpha-2 country codes).
+          limit: Limits the number of objects returned in the response.
 
-          name: Array of names that will be used to name the series in responses.
+          location: Comma-separated list of locations (alpha-2 codes).
 
-          ranking_type: The ranking type.
+          name: Array of names used to label the series in the response.
+
+          ranking_type: Ranking type.
 
           extra_headers: Send extra headers
 
@@ -194,6 +212,7 @@ class RankingResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "date": date,
+                        "domain_category": domain_category,
                         "format": format,
                         "limit": limit,
                         "location": location,
@@ -214,9 +233,13 @@ class AsyncRankingResource(AsyncAPIResource):
         return AsyncDomainResource(self._client)
 
     @cached_property
+    def internet_services(self) -> AsyncInternetServicesResource:
+        return AsyncInternetServicesResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AsyncRankingResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -238,6 +261,7 @@ class AsyncRankingResource(AsyncAPIResource):
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        domain_category: List[str] | NotGiven = NOT_GIVEN,
         domains: List[str] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
@@ -251,30 +275,31 @@ class AsyncRankingResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RankingTimeseriesGroupsResponse:
-        """Gets Domains Rank updates change over time.
-
-        Raw values are returned.
+        """
+        Retrieves domains rank over time.
 
         Args:
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          domains: Array of comma separated list of domains names.
+          domain_category: Filters results by domain category.
 
-          format: Format results are returned in.
+          domains: Comma-separated list of domain names.
 
-          limit: Limit the number of objects in the response.
+          format: Format in which results will be returned.
 
-          location: Array of locations (alpha-2 country codes).
+          limit: Limits the number of objects returned in the response.
 
-          name: Array of names that will be used to name the series in responses.
+          location: Comma-separated list of locations (alpha-2 codes).
 
-          ranking_type: The ranking type.
+          name: Array of names used to label the series in the response.
+
+          ranking_type: Ranking type.
 
           extra_headers: Send extra headers
 
@@ -296,6 +321,7 @@ class AsyncRankingResource(AsyncAPIResource):
                         "date_end": date_end,
                         "date_range": date_range,
                         "date_start": date_start,
+                        "domain_category": domain_category,
                         "domains": domains,
                         "format": format,
                         "limit": limit,
@@ -314,6 +340,7 @@ class AsyncRankingResource(AsyncAPIResource):
         self,
         *,
         date: List[Union[str, date]] | NotGiven = NOT_GIVEN,
+        domain_category: List[str] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
@@ -326,25 +353,27 @@ class AsyncRankingResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RankingTopResponse:
-        """Get top or trending domains based on their rank.
+        """Retrieves the top or trending domains based on their rank.
 
-        Popular domains are domains of
-        broad appeal based on how people use the Internet. Trending domains are domains
-        that are generating a surge in interest. For more information on top domains,
-        see https://blog.cloudflare.com/radar-domain-rankings/.
+        Popular domains are
+        domains of broad appeal based on how people use the Internet. Trending domains
+        are domains that are generating a surge in interest. For more information on top
+        domains, see https://blog.cloudflare.com/radar-domain-rankings/.
 
         Args:
-          date: Array of dates to filter the ranking.
+          date: Array of dates to filter the results.
 
-          format: Format results are returned in.
+          domain_category: Filters results by domain category.
 
-          limit: Limit the number of objects in the response.
+          format: Format in which results will be returned.
 
-          location: Array of locations (alpha-2 country codes).
+          limit: Limits the number of objects returned in the response.
 
-          name: Array of names that will be used to name the series in responses.
+          location: Comma-separated list of locations (alpha-2 codes).
 
-          ranking_type: The ranking type.
+          name: Array of names used to label the series in the response.
+
+          ranking_type: Ranking type.
 
           extra_headers: Send extra headers
 
@@ -364,6 +393,7 @@ class AsyncRankingResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "date": date,
+                        "domain_category": domain_category,
                         "format": format,
                         "limit": limit,
                         "location": location,
@@ -393,6 +423,10 @@ class RankingResourceWithRawResponse:
     def domain(self) -> DomainResourceWithRawResponse:
         return DomainResourceWithRawResponse(self._ranking.domain)
 
+    @cached_property
+    def internet_services(self) -> InternetServicesResourceWithRawResponse:
+        return InternetServicesResourceWithRawResponse(self._ranking.internet_services)
+
 
 class AsyncRankingResourceWithRawResponse:
     def __init__(self, ranking: AsyncRankingResource) -> None:
@@ -408,6 +442,10 @@ class AsyncRankingResourceWithRawResponse:
     @cached_property
     def domain(self) -> AsyncDomainResourceWithRawResponse:
         return AsyncDomainResourceWithRawResponse(self._ranking.domain)
+
+    @cached_property
+    def internet_services(self) -> AsyncInternetServicesResourceWithRawResponse:
+        return AsyncInternetServicesResourceWithRawResponse(self._ranking.internet_services)
 
 
 class RankingResourceWithStreamingResponse:
@@ -425,6 +463,10 @@ class RankingResourceWithStreamingResponse:
     def domain(self) -> DomainResourceWithStreamingResponse:
         return DomainResourceWithStreamingResponse(self._ranking.domain)
 
+    @cached_property
+    def internet_services(self) -> InternetServicesResourceWithStreamingResponse:
+        return InternetServicesResourceWithStreamingResponse(self._ranking.internet_services)
+
 
 class AsyncRankingResourceWithStreamingResponse:
     def __init__(self, ranking: AsyncRankingResource) -> None:
@@ -440,3 +482,7 @@ class AsyncRankingResourceWithStreamingResponse:
     @cached_property
     def domain(self) -> AsyncDomainResourceWithStreamingResponse:
         return AsyncDomainResourceWithStreamingResponse(self._ranking.domain)
+
+    @cached_property
+    def internet_services(self) -> AsyncInternetServicesResourceWithStreamingResponse:
+        return AsyncInternetServicesResourceWithStreamingResponse(self._ranking.internet_services)

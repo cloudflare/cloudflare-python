@@ -20,7 +20,8 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ..._base_client import make_request_options
+from ...pagination import SyncSinglePage, AsyncSinglePage
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.stream import key_create_params
 from ...types.stream.keys import Keys
 from ...types.stream.key_get_response import KeyGetResponse
@@ -33,7 +34,7 @@ class KeysResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> KeysResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -147,7 +148,7 @@ class KeysResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[KeyGetResponse]:
+    ) -> SyncSinglePage[KeyGetResponse]:
         """
         Lists the video ID and creation date and time when a signing key was created.
 
@@ -164,16 +165,13 @@ class KeysResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/stream/keys",
+            page=SyncSinglePage[KeyGetResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[KeyGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[KeyGetResponse]], ResultWrapper[KeyGetResponse]),
+            model=KeyGetResponse,
         )
 
 
@@ -181,7 +179,7 @@ class AsyncKeysResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncKeysResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -285,7 +283,7 @@ class AsyncKeysResource(AsyncAPIResource):
             cast_to=cast(Type[str], ResultWrapper[str]),
         )
 
-    async def get(
+    def get(
         self,
         *,
         account_id: str,
@@ -295,7 +293,7 @@ class AsyncKeysResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[KeyGetResponse]:
+    ) -> AsyncPaginator[KeyGetResponse, AsyncSinglePage[KeyGetResponse]]:
         """
         Lists the video ID and creation date and time when a signing key was created.
 
@@ -312,16 +310,13 @@ class AsyncKeysResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/stream/keys",
+            page=AsyncSinglePage[KeyGetResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[KeyGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[KeyGetResponse]], ResultWrapper[KeyGetResponse]),
+            model=KeyGetResponse,
         )
 
 

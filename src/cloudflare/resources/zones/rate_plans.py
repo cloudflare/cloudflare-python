@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
@@ -15,8 +13,8 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._wrappers import ResultWrapper
-from ..._base_client import make_request_options
+from ...pagination import SyncSinglePage, AsyncSinglePage
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.zones.rate_plan_get_response import RatePlanGetResponse
 
 __all__ = ["RatePlansResource", "AsyncRatePlansResource"]
@@ -26,7 +24,7 @@ class RatePlansResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> RatePlansResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -52,7 +50,7 @@ class RatePlansResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RatePlanGetResponse]:
+    ) -> SyncSinglePage[RatePlanGetResponse]:
         """
         Lists all rate plans the zone can subscribe to.
 
@@ -69,16 +67,13 @@ class RatePlansResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/zones/{zone_id}/available_rate_plans",
+            page=SyncSinglePage[RatePlanGetResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[RatePlanGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[RatePlanGetResponse]], ResultWrapper[RatePlanGetResponse]),
+            model=RatePlanGetResponse,
         )
 
 
@@ -86,7 +81,7 @@ class AsyncRatePlansResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncRatePlansResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -102,7 +97,7 @@ class AsyncRatePlansResource(AsyncAPIResource):
         """
         return AsyncRatePlansResourceWithStreamingResponse(self)
 
-    async def get(
+    def get(
         self,
         *,
         zone_id: str,
@@ -112,7 +107,7 @@ class AsyncRatePlansResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RatePlanGetResponse]:
+    ) -> AsyncPaginator[RatePlanGetResponse, AsyncSinglePage[RatePlanGetResponse]]:
         """
         Lists all rate plans the zone can subscribe to.
 
@@ -129,16 +124,13 @@ class AsyncRatePlansResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/zones/{zone_id}/available_rate_plans",
+            page=AsyncSinglePage[RatePlanGetResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[RatePlanGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[RatePlanGetResponse]], ResultWrapper[RatePlanGetResponse]),
+            model=RatePlanGetResponse,
         )
 
 

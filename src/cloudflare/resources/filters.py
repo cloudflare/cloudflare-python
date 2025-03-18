@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import typing_extensions
-from typing import Type, Optional, cast
+from typing import Type, cast
 
 import httpx
 
@@ -21,13 +21,10 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._wrappers import ResultWrapper
-from ..pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from ..pagination import SyncSinglePage, AsyncSinglePage, SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.filters import filter_list_params, filter_create_params, filter_update_params
 from ..types.filters.firewall_filter import FirewallFilter
-from ..types.filters.filter_create_response import FilterCreateResponse
-from ..types.filters.filter_bulk_delete_response import FilterBulkDeleteResponse
-from ..types.filters.filter_bulk_update_response import FilterBulkUpdateResponse
 
 __all__ = ["FiltersResource", "AsyncFiltersResource"]
 
@@ -36,7 +33,7 @@ class FiltersResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> FiltersResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -66,7 +63,7 @@ class FiltersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[FilterCreateResponse]:
+    ) -> SyncSinglePage[FirewallFilter]:
         """
         Creates one or more filters.
 
@@ -86,17 +83,15 @@ class FiltersResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._post(
+        return self._get_api_list(
             f"/zones/{zone_id}/filters",
+            page=SyncSinglePage[FirewallFilter],
             body=maybe_transform({"expression": expression}, filter_create_params.FilterCreateParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[FilterCreateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[FilterCreateResponse]], ResultWrapper[FilterCreateResponse]),
+            model=FirewallFilter,
+            method="post",
         )
 
     @typing_extensions.deprecated(
@@ -285,7 +280,7 @@ class FiltersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[FilterBulkDeleteResponse]:
+    ) -> SyncSinglePage[FirewallFilter]:
         """
         Deletes one or more existing filters.
 
@@ -302,16 +297,14 @@ class FiltersResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._delete(
+        return self._get_api_list(
             f"/zones/{zone_id}/filters",
+            page=SyncSinglePage[FirewallFilter],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[FilterBulkDeleteResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[FilterBulkDeleteResponse]], ResultWrapper[FilterBulkDeleteResponse]),
+            model=FirewallFilter,
+            method="delete",
         )
 
     @typing_extensions.deprecated(
@@ -327,7 +320,7 @@ class FiltersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[FilterBulkUpdateResponse]:
+    ) -> SyncSinglePage[FirewallFilter]:
         """
         Updates one or more existing filters.
 
@@ -344,16 +337,14 @@ class FiltersResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._put(
+        return self._get_api_list(
             f"/zones/{zone_id}/filters",
+            page=SyncSinglePage[FirewallFilter],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[FilterBulkUpdateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[FilterBulkUpdateResponse]], ResultWrapper[FilterBulkUpdateResponse]),
+            model=FirewallFilter,
+            method="put",
         )
 
     @typing_extensions.deprecated(
@@ -408,7 +399,7 @@ class AsyncFiltersResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncFiltersResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -427,7 +418,7 @@ class AsyncFiltersResource(AsyncAPIResource):
     @typing_extensions.deprecated(
         "The Filters API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
     )
-    async def create(
+    def create(
         self,
         *,
         zone_id: str,
@@ -438,7 +429,7 @@ class AsyncFiltersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[FilterCreateResponse]:
+    ) -> AsyncPaginator[FirewallFilter, AsyncSinglePage[FirewallFilter]]:
         """
         Creates one or more filters.
 
@@ -458,17 +449,15 @@ class AsyncFiltersResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._post(
+        return self._get_api_list(
             f"/zones/{zone_id}/filters",
-            body=await async_maybe_transform({"expression": expression}, filter_create_params.FilterCreateParams),
+            page=AsyncSinglePage[FirewallFilter],
+            body=maybe_transform({"expression": expression}, filter_create_params.FilterCreateParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[FilterCreateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[FilterCreateResponse]], ResultWrapper[FilterCreateResponse]),
+            model=FirewallFilter,
+            method="post",
         )
 
     @typing_extensions.deprecated(
@@ -647,7 +636,7 @@ class AsyncFiltersResource(AsyncAPIResource):
     @typing_extensions.deprecated(
         "The Filters API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
     )
-    async def bulk_delete(
+    def bulk_delete(
         self,
         *,
         zone_id: str,
@@ -657,7 +646,7 @@ class AsyncFiltersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[FilterBulkDeleteResponse]:
+    ) -> AsyncPaginator[FirewallFilter, AsyncSinglePage[FirewallFilter]]:
         """
         Deletes one or more existing filters.
 
@@ -674,22 +663,20 @@ class AsyncFiltersResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._delete(
+        return self._get_api_list(
             f"/zones/{zone_id}/filters",
+            page=AsyncSinglePage[FirewallFilter],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[FilterBulkDeleteResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[FilterBulkDeleteResponse]], ResultWrapper[FilterBulkDeleteResponse]),
+            model=FirewallFilter,
+            method="delete",
         )
 
     @typing_extensions.deprecated(
         "The Filters API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
     )
-    async def bulk_update(
+    def bulk_update(
         self,
         *,
         zone_id: str,
@@ -699,7 +686,7 @@ class AsyncFiltersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[FilterBulkUpdateResponse]:
+    ) -> AsyncPaginator[FirewallFilter, AsyncSinglePage[FirewallFilter]]:
         """
         Updates one or more existing filters.
 
@@ -716,16 +703,14 @@ class AsyncFiltersResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._put(
+        return self._get_api_list(
             f"/zones/{zone_id}/filters",
+            page=AsyncSinglePage[FirewallFilter],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[FilterBulkUpdateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[FilterBulkUpdateResponse]], ResultWrapper[FilterBulkUpdateResponse]),
+            model=FirewallFilter,
+            method="put",
         )
 
     @typing_extensions.deprecated(

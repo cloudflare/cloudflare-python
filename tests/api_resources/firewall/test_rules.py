@@ -3,20 +3,15 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage, SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from cloudflare.types.firewall import (
     FirewallRule,
-    RuleEditResponse,
-    RuleCreateResponse,
-    RuleBulkEditResponse,
-    RuleBulkDeleteResponse,
-    RuleBulkUpdateResponse,
 )
 
 # pyright: reportDeprecated=false
@@ -37,7 +32,7 @@ class TestRules:
                 filter={},
             )
 
-        assert_matches_type(Optional[RuleCreateResponse], rule, path=["response"])
+        assert_matches_type(SyncSinglePage[FirewallRule], rule, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -61,7 +56,7 @@ class TestRules:
                 },
             )
 
-        assert_matches_type(Optional[RuleCreateResponse], rule, path=["response"])
+        assert_matches_type(SyncSinglePage[FirewallRule], rule, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -76,7 +71,7 @@ class TestRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = response.parse()
-        assert_matches_type(Optional[RuleCreateResponse], rule, path=["response"])
+        assert_matches_type(SyncSinglePage[FirewallRule], rule, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -91,7 +86,7 @@ class TestRules:
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
                 rule = response.parse()
-                assert_matches_type(Optional[RuleCreateResponse], rule, path=["response"])
+                assert_matches_type(SyncSinglePage[FirewallRule], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -317,7 +312,7 @@ class TestRules:
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-        assert_matches_type(Optional[RuleBulkDeleteResponse], rule, path=["response"])
+        assert_matches_type(SyncSinglePage[FirewallRule], rule, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -330,7 +325,7 @@ class TestRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = response.parse()
-        assert_matches_type(Optional[RuleBulkDeleteResponse], rule, path=["response"])
+        assert_matches_type(SyncSinglePage[FirewallRule], rule, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -343,7 +338,7 @@ class TestRules:
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
                 rule = response.parse()
-                assert_matches_type(Optional[RuleBulkDeleteResponse], rule, path=["response"])
+                assert_matches_type(SyncSinglePage[FirewallRule], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -365,7 +360,7 @@ class TestRules:
                 body={},
             )
 
-        assert_matches_type(Optional[RuleBulkEditResponse], rule, path=["response"])
+        assert_matches_type(SyncSinglePage[FirewallRule], rule, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -379,7 +374,7 @@ class TestRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = response.parse()
-        assert_matches_type(Optional[RuleBulkEditResponse], rule, path=["response"])
+        assert_matches_type(SyncSinglePage[FirewallRule], rule, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -393,7 +388,7 @@ class TestRules:
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
                 rule = response.parse()
-                assert_matches_type(Optional[RuleBulkEditResponse], rule, path=["response"])
+                assert_matches_type(SyncSinglePage[FirewallRule], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -416,7 +411,7 @@ class TestRules:
                 body={},
             )
 
-        assert_matches_type(Optional[RuleBulkUpdateResponse], rule, path=["response"])
+        assert_matches_type(SyncSinglePage[FirewallRule], rule, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -430,7 +425,7 @@ class TestRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = response.parse()
-        assert_matches_type(Optional[RuleBulkUpdateResponse], rule, path=["response"])
+        assert_matches_type(SyncSinglePage[FirewallRule], rule, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -444,7 +439,7 @@ class TestRules:
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
                 rule = response.parse()
-                assert_matches_type(Optional[RuleBulkUpdateResponse], rule, path=["response"])
+                assert_matches_type(SyncSinglePage[FirewallRule], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -467,7 +462,7 @@ class TestRules:
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-        assert_matches_type(Optional[RuleEditResponse], rule, path=["response"])
+        assert_matches_type(SyncSinglePage[FirewallRule], rule, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -481,7 +476,7 @@ class TestRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = response.parse()
-        assert_matches_type(Optional[RuleEditResponse], rule, path=["response"])
+        assert_matches_type(SyncSinglePage[FirewallRule], rule, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -495,7 +490,7 @@ class TestRules:
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
                 rule = response.parse()
-                assert_matches_type(Optional[RuleEditResponse], rule, path=["response"])
+                assert_matches_type(SyncSinglePage[FirewallRule], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -521,17 +516,6 @@ class TestRules:
             rule = client.firewall.rules.get(
                 rule_id="372e67954025e0ba6aaa6d586b9e0b60",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            )
-
-        assert_matches_type(FirewallRule, rule, path=["response"])
-
-    @parametrize
-    def test_method_get_with_all_params(self, client: Cloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            rule = client.firewall.rules.get(
-                rule_id="372e67954025e0ba6aaa6d586b9e0b60",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="372e67954025e0ba6aaa6d586b9e0b60",
             )
 
         assert_matches_type(FirewallRule, rule, path=["response"])
@@ -593,7 +577,7 @@ class TestAsyncRules:
                 filter={},
             )
 
-        assert_matches_type(Optional[RuleCreateResponse], rule, path=["response"])
+        assert_matches_type(AsyncSinglePage[FirewallRule], rule, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -617,7 +601,7 @@ class TestAsyncRules:
                 },
             )
 
-        assert_matches_type(Optional[RuleCreateResponse], rule, path=["response"])
+        assert_matches_type(AsyncSinglePage[FirewallRule], rule, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -632,7 +616,7 @@ class TestAsyncRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = await response.parse()
-        assert_matches_type(Optional[RuleCreateResponse], rule, path=["response"])
+        assert_matches_type(AsyncSinglePage[FirewallRule], rule, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -647,7 +631,7 @@ class TestAsyncRules:
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
                 rule = await response.parse()
-                assert_matches_type(Optional[RuleCreateResponse], rule, path=["response"])
+                assert_matches_type(AsyncSinglePage[FirewallRule], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -873,7 +857,7 @@ class TestAsyncRules:
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-        assert_matches_type(Optional[RuleBulkDeleteResponse], rule, path=["response"])
+        assert_matches_type(AsyncSinglePage[FirewallRule], rule, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -886,7 +870,7 @@ class TestAsyncRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = await response.parse()
-        assert_matches_type(Optional[RuleBulkDeleteResponse], rule, path=["response"])
+        assert_matches_type(AsyncSinglePage[FirewallRule], rule, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -899,7 +883,7 @@ class TestAsyncRules:
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
                 rule = await response.parse()
-                assert_matches_type(Optional[RuleBulkDeleteResponse], rule, path=["response"])
+                assert_matches_type(AsyncSinglePage[FirewallRule], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -921,7 +905,7 @@ class TestAsyncRules:
                 body={},
             )
 
-        assert_matches_type(Optional[RuleBulkEditResponse], rule, path=["response"])
+        assert_matches_type(AsyncSinglePage[FirewallRule], rule, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -935,7 +919,7 @@ class TestAsyncRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = await response.parse()
-        assert_matches_type(Optional[RuleBulkEditResponse], rule, path=["response"])
+        assert_matches_type(AsyncSinglePage[FirewallRule], rule, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -949,7 +933,7 @@ class TestAsyncRules:
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
                 rule = await response.parse()
-                assert_matches_type(Optional[RuleBulkEditResponse], rule, path=["response"])
+                assert_matches_type(AsyncSinglePage[FirewallRule], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -972,7 +956,7 @@ class TestAsyncRules:
                 body={},
             )
 
-        assert_matches_type(Optional[RuleBulkUpdateResponse], rule, path=["response"])
+        assert_matches_type(AsyncSinglePage[FirewallRule], rule, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -986,7 +970,7 @@ class TestAsyncRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = await response.parse()
-        assert_matches_type(Optional[RuleBulkUpdateResponse], rule, path=["response"])
+        assert_matches_type(AsyncSinglePage[FirewallRule], rule, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1000,7 +984,7 @@ class TestAsyncRules:
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
                 rule = await response.parse()
-                assert_matches_type(Optional[RuleBulkUpdateResponse], rule, path=["response"])
+                assert_matches_type(AsyncSinglePage[FirewallRule], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1023,7 +1007,7 @@ class TestAsyncRules:
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-        assert_matches_type(Optional[RuleEditResponse], rule, path=["response"])
+        assert_matches_type(AsyncSinglePage[FirewallRule], rule, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1037,7 +1021,7 @@ class TestAsyncRules:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = await response.parse()
-        assert_matches_type(Optional[RuleEditResponse], rule, path=["response"])
+        assert_matches_type(AsyncSinglePage[FirewallRule], rule, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1051,7 +1035,7 @@ class TestAsyncRules:
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
                 rule = await response.parse()
-                assert_matches_type(Optional[RuleEditResponse], rule, path=["response"])
+                assert_matches_type(AsyncSinglePage[FirewallRule], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1077,17 +1061,6 @@ class TestAsyncRules:
             rule = await async_client.firewall.rules.get(
                 rule_id="372e67954025e0ba6aaa6d586b9e0b60",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            )
-
-        assert_matches_type(FirewallRule, rule, path=["response"])
-
-    @parametrize
-    async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            rule = await async_client.firewall.rules.get(
-                rule_id="372e67954025e0ba6aaa6d586b9e0b60",
-                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                id="372e67954025e0ba6aaa6d586b9e0b60",
             )
 
         assert_matches_type(FirewallRule, rule, path=["response"])

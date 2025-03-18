@@ -31,7 +31,7 @@ class IPsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> IPsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -52,6 +52,7 @@ class IPsResource(SyncAPIResource):
         ip: str,
         *,
         account_id: str,
+        default_virtual_network_fallback: bool | NotGiven = NOT_GIVEN,
         virtual_network_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -65,6 +66,11 @@ class IPsResource(SyncAPIResource):
 
         Args:
           account_id: Cloudflare account ID
+
+          default_virtual_network_fallback: When the virtual_network_id parameter is not provided the request filter will
+              default search routes that are in the default virtual network for the account.
+              If this parameter is set to false, the search will include routes that do not
+              have a virtual network.
 
           virtual_network_id: UUID of the virtual network.
 
@@ -87,7 +93,13 @@ class IPsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"virtual_network_id": virtual_network_id}, ip_get_params.IPGetParams),
+                query=maybe_transform(
+                    {
+                        "default_virtual_network_fallback": default_virtual_network_fallback,
+                        "virtual_network_id": virtual_network_id,
+                    },
+                    ip_get_params.IPGetParams,
+                ),
                 post_parser=ResultWrapper[Teamnet]._unwrapper,
             ),
             cast_to=cast(Type[Teamnet], ResultWrapper[Teamnet]),
@@ -98,7 +110,7 @@ class AsyncIPsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncIPsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -119,6 +131,7 @@ class AsyncIPsResource(AsyncAPIResource):
         ip: str,
         *,
         account_id: str,
+        default_virtual_network_fallback: bool | NotGiven = NOT_GIVEN,
         virtual_network_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -132,6 +145,11 @@ class AsyncIPsResource(AsyncAPIResource):
 
         Args:
           account_id: Cloudflare account ID
+
+          default_virtual_network_fallback: When the virtual_network_id parameter is not provided the request filter will
+              default search routes that are in the default virtual network for the account.
+              If this parameter is set to false, the search will include routes that do not
+              have a virtual network.
 
           virtual_network_id: UUID of the virtual network.
 
@@ -155,7 +173,11 @@ class AsyncIPsResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {"virtual_network_id": virtual_network_id}, ip_get_params.IPGetParams
+                    {
+                        "default_virtual_network_fallback": default_virtual_network_fallback,
+                        "virtual_network_id": virtual_network_id,
+                    },
+                    ip_get_params.IPGetParams,
                 ),
                 post_parser=ResultWrapper[Teamnet]._unwrapper,
             ),

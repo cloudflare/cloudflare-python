@@ -35,7 +35,7 @@ class ASNsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ASNsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -68,20 +68,20 @@ class ASNsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ASNListResponse:
         """
-        Get a list of autonomous systems (ASes).
+        Retrieves a list of autonomous systems.
 
         Args:
-          asn: Comma separated list of ASNs.
+          asn: Comma-separated list of Autonomous System Numbers (ASNs).
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          limit: Limit the number of objects in the response.
+          limit: Limits the number of objects returned in the response.
 
-          location: Location Alpha2 to filter results.
+          location: Location alpha-2 code.
 
-          offset: Number of objects to skip before grabbing results.
+          offset: Skips the specified number of objects before fetching the results.
 
-          order_by: Order asn list.
+          order_by: Metric to order the ASNs by.
 
           extra_headers: Send extra headers
 
@@ -126,17 +126,17 @@ class ASNsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ASNGetResponse:
-        """Get the requested autonomous system information.
+        """Retrieves the requested autonomous system information.
 
-        (A confidence level below `5`
-        indicates a low level of confidence in the traffic data - normally this happens
-        because Cloudflare has a small amount of traffic from/to this AS). Population
-        estimates come from APNIC (refer to https://labs.apnic.net/?p=526).
+        (A confidence level below
+        `5` indicates a low level of confidence in the traffic data - normally this
+        happens because Cloudflare has a small amount of traffic from/to this AS).
+        Population estimates come from APNIC (refer to https://labs.apnic.net/?p=526).
 
         Args:
-          asn: Autonomous System Number (ASN).
+          asn: Single Autonomous System Number (ASN) as integer.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
           extra_headers: Send extra headers
 
@@ -171,15 +171,14 @@ class ASNsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ASNIPResponse:
-        """Get the requested autonomous system information based on IP address.
-
-        Population
-        estimates come from APNIC (refer to https://labs.apnic.net/?p=526).
+        """
+        Retrieves the requested autonomous system information based on IP address.
+        Population estimates come from APNIC (refer to https://labs.apnic.net/?p=526).
 
         Args:
           ip: IP address.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
           extra_headers: Send extra headers
 
@@ -222,14 +221,15 @@ class ASNsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ASNRelResponse:
         """
-        Get AS-level relationship for given networks.
+        Retrieves AS-level relationship for given networks.
 
         Args:
-          asn: Get all ASNs with provider-customer or peering relationships with the given ASN
+          asn: Retrieves all ASNs with provider-customer or peering relationships with the
+              given ASN.
 
-          asn2: Get the AS relationship of ASN2 with respect to the given ASN
+          asn2: Retrieves the AS relationship of ASN2 with respect to the given ASN.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
           extra_headers: Send extra headers
 
@@ -263,7 +263,7 @@ class AsyncASNsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncASNsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -296,20 +296,20 @@ class AsyncASNsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ASNListResponse:
         """
-        Get a list of autonomous systems (ASes).
+        Retrieves a list of autonomous systems.
 
         Args:
-          asn: Comma separated list of ASNs.
+          asn: Comma-separated list of Autonomous System Numbers (ASNs).
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          limit: Limit the number of objects in the response.
+          limit: Limits the number of objects returned in the response.
 
-          location: Location Alpha2 to filter results.
+          location: Location alpha-2 code.
 
-          offset: Number of objects to skip before grabbing results.
+          offset: Skips the specified number of objects before fetching the results.
 
-          order_by: Order asn list.
+          order_by: Metric to order the ASNs by.
 
           extra_headers: Send extra headers
 
@@ -354,17 +354,17 @@ class AsyncASNsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ASNGetResponse:
-        """Get the requested autonomous system information.
+        """Retrieves the requested autonomous system information.
 
-        (A confidence level below `5`
-        indicates a low level of confidence in the traffic data - normally this happens
-        because Cloudflare has a small amount of traffic from/to this AS). Population
-        estimates come from APNIC (refer to https://labs.apnic.net/?p=526).
+        (A confidence level below
+        `5` indicates a low level of confidence in the traffic data - normally this
+        happens because Cloudflare has a small amount of traffic from/to this AS).
+        Population estimates come from APNIC (refer to https://labs.apnic.net/?p=526).
 
         Args:
-          asn: Autonomous System Number (ASN).
+          asn: Single Autonomous System Number (ASN) as integer.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
           extra_headers: Send extra headers
 
@@ -399,15 +399,14 @@ class AsyncASNsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ASNIPResponse:
-        """Get the requested autonomous system information based on IP address.
-
-        Population
-        estimates come from APNIC (refer to https://labs.apnic.net/?p=526).
+        """
+        Retrieves the requested autonomous system information based on IP address.
+        Population estimates come from APNIC (refer to https://labs.apnic.net/?p=526).
 
         Args:
           ip: IP address.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
           extra_headers: Send extra headers
 
@@ -450,14 +449,15 @@ class AsyncASNsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ASNRelResponse:
         """
-        Get AS-level relationship for given networks.
+        Retrieves AS-level relationship for given networks.
 
         Args:
-          asn: Get all ASNs with provider-customer or peering relationships with the given ASN
+          asn: Retrieves all ASNs with provider-customer or peering relationships with the
+              given ASN.
 
-          asn2: Get the AS relationship of ASN2 with respect to the given ASN
+          asn2: Retrieves the AS relationship of ASN2 with respect to the given ASN.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
           extra_headers: Send extra headers
 

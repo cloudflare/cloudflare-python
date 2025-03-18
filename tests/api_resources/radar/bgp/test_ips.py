@@ -34,7 +34,7 @@ class TestIPs:
             include_delay=True,
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(IPTimeseriesResponse, ip, path=["response"])
 
@@ -78,7 +78,7 @@ class TestAsyncIPs:
             include_delay=True,
             ip_version=["IPv4"],
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(IPTimeseriesResponse, ip, path=["response"])
 

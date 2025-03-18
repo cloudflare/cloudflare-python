@@ -46,14 +46,14 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.cloudforce_one import request_list_params, request_create_params, request_update_params
 from ....types.cloudforce_one.item import Item
 from ....types.cloudforce_one.quota import Quota
 from ....types.cloudforce_one.list_item import ListItem
-from ....types.cloudforce_one.request_types import RequestTypes
 from ....types.cloudforce_one.request_constants import RequestConstants
+from ....types.cloudforce_one.request_types_response import RequestTypesResponse
 from ....types.cloudforce_one.request_delete_response import RequestDeleteResponse
 
 __all__ = ["RequestsResource", "AsyncRequestsResource"]
@@ -75,7 +75,7 @@ class RequestsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> RequestsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -249,7 +249,7 @@ class RequestsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[ListItem]:
+    ) -> SyncSinglePage[ListItem]:
         """
         List Requests
 
@@ -288,7 +288,7 @@ class RequestsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
         return self._get_api_list(
             f"/accounts/{account_identifier}/cloudforce-one/requests",
-            page=SyncV4PagePaginationArray[ListItem],
+            page=SyncSinglePage[ListItem],
             body=maybe_transform(
                 {
                     "page": page,
@@ -483,7 +483,7 @@ class RequestsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RequestTypes]:
+    ) -> SyncSinglePage[RequestTypesResponse]:
         """
         Get Request Types
 
@@ -500,16 +500,13 @@ class RequestsResource(SyncAPIResource):
         """
         if not account_identifier:
             raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_identifier}/cloudforce-one/requests/types",
+            page=SyncSinglePage[RequestTypesResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[RequestTypes]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[RequestTypes]], ResultWrapper[RequestTypes]),
+            model=str,
         )
 
 
@@ -529,7 +526,7 @@ class AsyncRequestsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncRequestsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -703,7 +700,7 @@ class AsyncRequestsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[ListItem, AsyncV4PagePaginationArray[ListItem]]:
+    ) -> AsyncPaginator[ListItem, AsyncSinglePage[ListItem]]:
         """
         List Requests
 
@@ -742,7 +739,7 @@ class AsyncRequestsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
         return self._get_api_list(
             f"/accounts/{account_identifier}/cloudforce-one/requests",
-            page=AsyncV4PagePaginationArray[ListItem],
+            page=AsyncSinglePage[ListItem],
             body=maybe_transform(
                 {
                     "page": page,
@@ -927,7 +924,7 @@ class AsyncRequestsResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[Quota]], ResultWrapper[Quota]),
         )
 
-    async def types(
+    def types(
         self,
         account_identifier: str,
         *,
@@ -937,7 +934,7 @@ class AsyncRequestsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RequestTypes]:
+    ) -> AsyncPaginator[RequestTypesResponse, AsyncSinglePage[RequestTypesResponse]]:
         """
         Get Request Types
 
@@ -954,16 +951,13 @@ class AsyncRequestsResource(AsyncAPIResource):
         """
         if not account_identifier:
             raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_identifier}/cloudforce-one/requests/types",
+            page=AsyncSinglePage[RequestTypesResponse],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[RequestTypes]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[RequestTypes]], ResultWrapper[RequestTypes]),
+            model=str,
         )
 
 

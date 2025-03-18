@@ -45,7 +45,7 @@ class TrafficAnomaliesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> TrafficAnomaliesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -80,14 +80,13 @@ class TrafficAnomaliesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TrafficAnomalyGetResponse:
-        """Internet traffic anomalies are signals that might point to an outage.
-
-        These
-        alerts are automatically detected by Radar and then manually verified by our
-        team. This endpoint returns the latest alerts.
+        """
+        Retrieves the latest Internet traffic anomalies, which are signals that might
+        indicate an outage. These alerts are automatically detected by Radar and
+        manually verified by our team.
 
         Args:
-          asn: Single ASN as integer.
+          asn: Single Autonomous System Number (ASN) as integer.
 
           date_end: End of the date range (inclusive).
 
@@ -96,13 +95,13 @@ class TrafficAnomaliesResource(SyncAPIResource):
 
           date_start: Start of the date range (inclusive).
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          limit: Limit the number of objects in the response.
+          limit: Limits the number of objects returned in the response.
 
-          location: Location Alpha2 code.
+          location: Location alpha-2 code.
 
-          offset: Number of objects to skip before grabbing results.
+          offset: Skips the specified number of objects before fetching the results.
 
           extra_headers: Send extra headers
 
@@ -147,7 +146,7 @@ class AsyncTrafficAnomaliesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncTrafficAnomaliesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -182,14 +181,13 @@ class AsyncTrafficAnomaliesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TrafficAnomalyGetResponse:
-        """Internet traffic anomalies are signals that might point to an outage.
-
-        These
-        alerts are automatically detected by Radar and then manually verified by our
-        team. This endpoint returns the latest alerts.
+        """
+        Retrieves the latest Internet traffic anomalies, which are signals that might
+        indicate an outage. These alerts are automatically detected by Radar and
+        manually verified by our team.
 
         Args:
-          asn: Single ASN as integer.
+          asn: Single Autonomous System Number (ASN) as integer.
 
           date_end: End of the date range (inclusive).
 
@@ -198,13 +196,13 @@ class AsyncTrafficAnomaliesResource(AsyncAPIResource):
 
           date_start: Start of the date range (inclusive).
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          limit: Limit the number of objects in the response.
+          limit: Limits the number of objects returned in the response.
 
-          location: Location Alpha2 code.
+          location: Location alpha-2 code.
 
-          offset: Number of objects to skip before grabbing results.
+          offset: Skips the specified number of objects before fetching the results.
 
           extra_headers: Send extra headers
 

@@ -2,15 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, Optional, cast
+from typing import Iterable
 
 import httpx
 
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ....._utils import maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -19,11 +16,10 @@ from ....._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....._wrappers import ResultWrapper
-from ....._base_client import make_request_options
+from .....pagination import SyncSinglePage, AsyncSinglePage
+from ....._base_client import AsyncPaginator, make_request_options
 from .....types.zero_trust.access.certificates import setting_update_params
-from .....types.zero_trust.access.certificates.setting_get_response import SettingGetResponse
-from .....types.zero_trust.access.certificates.setting_update_response import SettingUpdateResponse
+from .....types.zero_trust.access.certificates.certificate_settings import CertificateSettings
 from .....types.zero_trust.access.certificates.certificate_settings_param import CertificateSettingsParam
 
 __all__ = ["SettingsResource", "AsyncSettingsResource"]
@@ -33,7 +29,7 @@ class SettingsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> SettingsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -61,7 +57,7 @@ class SettingsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SettingUpdateResponse]:
+    ) -> SyncSinglePage[CertificateSettings]:
         """
         Updates an mTLS certificate's hostname settings.
 
@@ -90,17 +86,15 @@ class SettingsResource(SyncAPIResource):
 
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return self._put(
+        return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/certificates/settings",
+            page=SyncSinglePage[CertificateSettings],
             body=maybe_transform({"settings": settings}, setting_update_params.SettingUpdateParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[SettingUpdateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[SettingUpdateResponse]], ResultWrapper[SettingUpdateResponse]),
+            model=CertificateSettings,
+            method="put",
         )
 
     def get(
@@ -114,7 +108,7 @@ class SettingsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SettingGetResponse]:
+    ) -> SyncSinglePage[CertificateSettings]:
         """
         List all mTLS hostname settings for this account or zone.
 
@@ -143,16 +137,13 @@ class SettingsResource(SyncAPIResource):
 
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return self._get(
+        return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/certificates/settings",
+            page=SyncSinglePage[CertificateSettings],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[SettingGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[SettingGetResponse]], ResultWrapper[SettingGetResponse]),
+            model=CertificateSettings,
         )
 
 
@@ -160,7 +151,7 @@ class AsyncSettingsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncSettingsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -176,7 +167,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         """
         return AsyncSettingsResourceWithStreamingResponse(self)
 
-    async def update(
+    def update(
         self,
         *,
         settings: Iterable[CertificateSettingsParam],
@@ -188,7 +179,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SettingUpdateResponse]:
+    ) -> AsyncPaginator[CertificateSettings, AsyncSinglePage[CertificateSettings]]:
         """
         Updates an mTLS certificate's hostname settings.
 
@@ -217,20 +208,18 @@ class AsyncSettingsResource(AsyncAPIResource):
 
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return await self._put(
+        return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/certificates/settings",
-            body=await async_maybe_transform({"settings": settings}, setting_update_params.SettingUpdateParams),
+            page=AsyncSinglePage[CertificateSettings],
+            body=maybe_transform({"settings": settings}, setting_update_params.SettingUpdateParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[SettingUpdateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[SettingUpdateResponse]], ResultWrapper[SettingUpdateResponse]),
+            model=CertificateSettings,
+            method="put",
         )
 
-    async def get(
+    def get(
         self,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -241,7 +230,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SettingGetResponse]:
+    ) -> AsyncPaginator[CertificateSettings, AsyncSinglePage[CertificateSettings]]:
         """
         List all mTLS hostname settings for this account or zone.
 
@@ -270,16 +259,13 @@ class AsyncSettingsResource(AsyncAPIResource):
 
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return await self._get(
+        return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/certificates/settings",
+            page=AsyncSinglePage[CertificateSettings],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[SettingGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[SettingGetResponse]], ResultWrapper[SettingGetResponse]),
+            model=CertificateSettings,
         )
 
 

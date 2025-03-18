@@ -93,7 +93,7 @@ class BGPResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> BGPResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -128,32 +128,31 @@ class BGPResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BGPTimeseriesResponse:
-        """Get BGP updates change over time.
+        """Retrieves BGP updates over time.
 
-        Raw values are returned. When requesting
-        updates for an autonomous system (AS), only BGP updates of type announcement are
-        returned.
+        When requesting updates for an autonomous
+        system, only BGP updates of type announcement are returned.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
+          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
+              exclude ASNs from results. For example, `-174, 3356` excludes results from
+              AS174, but includes results from AS3356.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
           prefix: Array of BGP network prefixes.
 
@@ -218,7 +217,7 @@ class AsyncBGPResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncBGPResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -253,32 +252,31 @@ class AsyncBGPResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BGPTimeseriesResponse:
-        """Get BGP updates change over time.
+        """Retrieves BGP updates over time.
 
-        Raw values are returned. When requesting
-        updates for an autonomous system (AS), only BGP updates of type announcement are
-        returned.
+        When requesting updates for an autonomous
+        system, only BGP updates of type announcement are returned.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
+          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
+              exclude ASNs from results. For example, `-174, 3356` excludes results from
+              AS174, but includes results from AS3356.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
           prefix: Array of BGP network prefixes.
 

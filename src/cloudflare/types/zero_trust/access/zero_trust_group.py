@@ -3,43 +3,35 @@
 from typing import List, Optional
 from datetime import datetime
 
-from ...._models import BaseModel
-from ..access_rule import AccessRule
+from pydantic import Field as FieldInfo
 
-__all__ = ["ZeroTrustGroup"]
+from ...._models import BaseModel
+
+__all__ = ["ZeroTrustGroup", "Meta"]
+
+
+class Meta(BaseModel):
+    created: Optional[datetime] = None
+    """The timestamp of when the SCIM resource was created."""
+
+    last_modified: Optional[datetime] = FieldInfo(alias="lastModified", default=None)
+    """The timestamp of when the SCIM resource was last modified."""
 
 
 class ZeroTrustGroup(BaseModel):
     id: Optional[str] = None
-    """UUID"""
+    """The unique Cloudflare-generated Id of the SCIM resource."""
 
-    created_at: Optional[datetime] = None
+    display_name: Optional[str] = FieldInfo(alias="displayName", default=None)
+    """The display name of the SCIM Group resource."""
 
-    exclude: Optional[List[AccessRule]] = None
-    """Rules evaluated with a NOT logical operator.
+    external_id: Optional[str] = FieldInfo(alias="externalId", default=None)
+    """The IdP-generated Id of the SCIM resource."""
 
-    To match a policy, a user cannot meet any of the Exclude rules.
+    meta: Optional[Meta] = None
+    """The metadata of the SCIM resource."""
+
+    schemas: Optional[List[str]] = None
     """
-
-    include: Optional[List[AccessRule]] = None
-    """Rules evaluated with an OR logical operator.
-
-    A user needs to meet only one of the Include rules.
+    The list of URIs which indicate the attributes contained within a SCIM resource.
     """
-
-    is_default: Optional[List[AccessRule]] = None
-    """Rules evaluated with an AND logical operator.
-
-    To match a policy, a user must meet all of the Require rules.
-    """
-
-    name: Optional[str] = None
-    """The name of the Access group."""
-
-    require: Optional[List[AccessRule]] = None
-    """Rules evaluated with an AND logical operator.
-
-    To match a policy, a user must meet all of the Require rules.
-    """
-
-    updated_at: Optional[datetime] = None

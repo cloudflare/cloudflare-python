@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union
+from typing import List, Union
 from datetime import datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
@@ -17,10 +17,10 @@ class TunnelListParams(TypedDict, total=False):
 
     exclude_prefix: str
 
-    existed_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    existed_at: str
     """
-    If provided, include only tunnels that were created (and not deleted) before
-    this time.
+    If provided, include only resources that were created (and not deleted) before
+    this time. URL encoded.
     """
 
     include_prefix: str
@@ -32,7 +32,7 @@ class TunnelListParams(TypedDict, total=False):
     """
 
     name: str
-    """A user-friendly name for a tunnel."""
+    """A user-friendly name for the tunnel."""
 
     page: float
     """Page number of paginated results."""
@@ -48,6 +48,9 @@ class TunnelListParams(TypedDict, total=False):
     is active and able to serve traffic), or `down` (tunnel can not serve traffic as
     it has no connections to the Cloudflare Edge).
     """
+
+    tun_types: List[Literal["cfd_tunnel", "warp_connector", "warp", "magic", "ip_sec", "gre", "cni"]]
+    """The types of tunnels to filter by, separated by commas."""
 
     uuid: str
     """UUID of the tunnel."""

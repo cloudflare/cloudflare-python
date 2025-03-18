@@ -38,7 +38,7 @@ class CustomResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> CustomResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -130,7 +130,7 @@ class CustomResource(SyncAPIResource):
 
     def update(
         self,
-        domain_name: str,
+        domain: str,
         *,
         account_id: str,
         bucket_name: str,
@@ -152,7 +152,7 @@ class CustomResource(SyncAPIResource):
 
           bucket_name: Name of the bucket
 
-          domain_name: Name of the custom domain
+          domain: Name of the custom domain
 
           enabled: Whether to enable public bucket access at the specified custom domain
 
@@ -173,14 +173,14 @@ class CustomResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
-        if not domain_name:
-            raise ValueError(f"Expected a non-empty value for `domain_name` but received {domain_name!r}")
+        if not domain:
+            raise ValueError(f"Expected a non-empty value for `domain` but received {domain!r}")
         extra_headers = {
             **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else NOT_GIVEN}),
             **(extra_headers or {}),
         }
         return self._put(
-            f"/accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom/{domain_name}",
+            f"/accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom/{domain}",
             body=maybe_transform(
                 {
                     "enabled": enabled,
@@ -251,7 +251,7 @@ class CustomResource(SyncAPIResource):
 
     def delete(
         self,
-        domain_name: str,
+        domain: str,
         *,
         account_id: str,
         bucket_name: str,
@@ -271,7 +271,7 @@ class CustomResource(SyncAPIResource):
 
           bucket_name: Name of the bucket
 
-          domain_name: Name of the custom domain
+          domain: Name of the custom domain
 
           jurisdiction: The bucket jurisdiction
 
@@ -287,14 +287,14 @@ class CustomResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
-        if not domain_name:
-            raise ValueError(f"Expected a non-empty value for `domain_name` but received {domain_name!r}")
+        if not domain:
+            raise ValueError(f"Expected a non-empty value for `domain` but received {domain!r}")
         extra_headers = {
             **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else NOT_GIVEN}),
             **(extra_headers or {}),
         }
         return self._delete(
-            f"/accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom/{domain_name}",
+            f"/accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom/{domain}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -307,7 +307,7 @@ class CustomResource(SyncAPIResource):
 
     def get(
         self,
-        domain_name: str,
+        domain: str,
         *,
         account_id: str,
         bucket_name: str,
@@ -327,7 +327,7 @@ class CustomResource(SyncAPIResource):
 
           bucket_name: Name of the bucket
 
-          domain_name: Name of the custom domain
+          domain: Name of the custom domain
 
           jurisdiction: The bucket jurisdiction
 
@@ -343,14 +343,14 @@ class CustomResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
-        if not domain_name:
-            raise ValueError(f"Expected a non-empty value for `domain_name` but received {domain_name!r}")
+        if not domain:
+            raise ValueError(f"Expected a non-empty value for `domain` but received {domain!r}")
         extra_headers = {
             **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else NOT_GIVEN}),
             **(extra_headers or {}),
         }
         return self._get(
-            f"/accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom/{domain_name}",
+            f"/accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom/{domain}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -366,7 +366,7 @@ class AsyncCustomResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncCustomResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -458,7 +458,7 @@ class AsyncCustomResource(AsyncAPIResource):
 
     async def update(
         self,
-        domain_name: str,
+        domain: str,
         *,
         account_id: str,
         bucket_name: str,
@@ -480,7 +480,7 @@ class AsyncCustomResource(AsyncAPIResource):
 
           bucket_name: Name of the bucket
 
-          domain_name: Name of the custom domain
+          domain: Name of the custom domain
 
           enabled: Whether to enable public bucket access at the specified custom domain
 
@@ -501,14 +501,14 @@ class AsyncCustomResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
-        if not domain_name:
-            raise ValueError(f"Expected a non-empty value for `domain_name` but received {domain_name!r}")
+        if not domain:
+            raise ValueError(f"Expected a non-empty value for `domain` but received {domain!r}")
         extra_headers = {
             **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else NOT_GIVEN}),
             **(extra_headers or {}),
         }
         return await self._put(
-            f"/accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom/{domain_name}",
+            f"/accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom/{domain}",
             body=await async_maybe_transform(
                 {
                     "enabled": enabled,
@@ -579,7 +579,7 @@ class AsyncCustomResource(AsyncAPIResource):
 
     async def delete(
         self,
-        domain_name: str,
+        domain: str,
         *,
         account_id: str,
         bucket_name: str,
@@ -599,7 +599,7 @@ class AsyncCustomResource(AsyncAPIResource):
 
           bucket_name: Name of the bucket
 
-          domain_name: Name of the custom domain
+          domain: Name of the custom domain
 
           jurisdiction: The bucket jurisdiction
 
@@ -615,14 +615,14 @@ class AsyncCustomResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
-        if not domain_name:
-            raise ValueError(f"Expected a non-empty value for `domain_name` but received {domain_name!r}")
+        if not domain:
+            raise ValueError(f"Expected a non-empty value for `domain` but received {domain!r}")
         extra_headers = {
             **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else NOT_GIVEN}),
             **(extra_headers or {}),
         }
         return await self._delete(
-            f"/accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom/{domain_name}",
+            f"/accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom/{domain}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -635,7 +635,7 @@ class AsyncCustomResource(AsyncAPIResource):
 
     async def get(
         self,
-        domain_name: str,
+        domain: str,
         *,
         account_id: str,
         bucket_name: str,
@@ -655,7 +655,7 @@ class AsyncCustomResource(AsyncAPIResource):
 
           bucket_name: Name of the bucket
 
-          domain_name: Name of the custom domain
+          domain: Name of the custom domain
 
           jurisdiction: The bucket jurisdiction
 
@@ -671,14 +671,14 @@ class AsyncCustomResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
             raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
-        if not domain_name:
-            raise ValueError(f"Expected a non-empty value for `domain_name` but received {domain_name!r}")
+        if not domain:
+            raise ValueError(f"Expected a non-empty value for `domain` but received {domain!r}")
         extra_headers = {
             **strip_not_given({"cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else NOT_GIVEN}),
             **(extra_headers or {}),
         }
         return await self._get(
-            f"/accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom/{domain_name}",
+            f"/accounts/{account_id}/r2/buckets/{bucket_name}/domains/custom/{domain}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

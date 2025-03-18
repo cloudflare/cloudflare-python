@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.pagination import SyncCursorPagination, AsyncCursorPagination
 from cloudflare.types.rulesets import (
     RulesetGetResponse,
     RulesetListResponse,
@@ -30,7 +30,6 @@ class TestRulesets:
             kind="managed",
             name="My ruleset",
             phase="ddos_l4",
-            rules=[{}],
             account_id="account_id",
         )
         assert_matches_type(RulesetCreateResponse, ruleset, path=["response"])
@@ -42,6 +41,8 @@ class TestRulesets:
             kind="managed",
             name="My ruleset",
             phase="ddos_l4",
+            account_id="account_id",
+            description="My ruleset to execute managed rulesets",
             rules=[
                 {
                     "id": "3a03d665bac047339bb530ecb439a90d",
@@ -74,8 +75,6 @@ class TestRulesets:
                     "ref": "my_ref",
                 }
             ],
-            account_id="account_id",
-            description="My ruleset to execute managed rulesets",
         )
         assert_matches_type(RulesetCreateResponse, ruleset, path=["response"])
 
@@ -86,7 +85,6 @@ class TestRulesets:
             kind="managed",
             name="My ruleset",
             phase="ddos_l4",
-            rules=[{}],
             account_id="account_id",
         )
 
@@ -102,7 +100,6 @@ class TestRulesets:
             kind="managed",
             name="My ruleset",
             phase="ddos_l4",
-            rules=[{}],
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -116,21 +113,19 @@ class TestRulesets:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.with_raw_response.create(
                 kind="managed",
                 name="My ruleset",
                 phase="ddos_l4",
-                rules=[{}],
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.with_raw_response.create(
                 kind="managed",
                 name="My ruleset",
                 phase="ddos_l4",
-                rules=[{}],
                 account_id="account_id",
             )
 
@@ -139,7 +134,6 @@ class TestRulesets:
     def test_method_update(self, client: Cloudflare) -> None:
         ruleset = client.rulesets.update(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
-            rules=[{}],
             account_id="account_id",
         )
         assert_matches_type(RulesetUpdateResponse, ruleset, path=["response"])
@@ -149,6 +143,11 @@ class TestRulesets:
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         ruleset = client.rulesets.update(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+            description="My ruleset to execute managed rulesets",
+            kind="managed",
+            name="My ruleset",
+            phase="ddos_l4",
             rules=[
                 {
                     "id": "3a03d665bac047339bb530ecb439a90d",
@@ -181,11 +180,6 @@ class TestRulesets:
                     "ref": "my_ref",
                 }
             ],
-            account_id="account_id",
-            description="My ruleset to execute managed rulesets",
-            kind="managed",
-            name="My ruleset",
-            phase="ddos_l4",
         )
         assert_matches_type(RulesetUpdateResponse, ruleset, path=["response"])
 
@@ -194,7 +188,6 @@ class TestRulesets:
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.rulesets.with_raw_response.update(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
-            rules=[{}],
             account_id="account_id",
         )
 
@@ -208,7 +201,6 @@ class TestRulesets:
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.rulesets.with_streaming_response.update(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
-            rules=[{}],
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -225,21 +217,18 @@ class TestRulesets:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
             client.rulesets.with_raw_response.update(
                 ruleset_id="",
-                rules=[{}],
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.with_raw_response.update(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
-                rules=[{}],
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.with_raw_response.update(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
-                rules=[{}],
                 account_id="account_id",
             )
 
@@ -249,15 +238,17 @@ class TestRulesets:
         ruleset = client.rulesets.list(
             account_id="account_id",
         )
-        assert_matches_type(SyncSinglePage[RulesetListResponse], ruleset, path=["response"])
+        assert_matches_type(SyncCursorPagination[RulesetListResponse], ruleset, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         ruleset = client.rulesets.list(
             account_id="account_id",
+            cursor="dGhpc2lzYW5leGFtcGxlCg",
+            per_page=3,
         )
-        assert_matches_type(SyncSinglePage[RulesetListResponse], ruleset, path=["response"])
+        assert_matches_type(SyncCursorPagination[RulesetListResponse], ruleset, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -269,7 +260,7 @@ class TestRulesets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ruleset = response.parse()
-        assert_matches_type(SyncSinglePage[RulesetListResponse], ruleset, path=["response"])
+        assert_matches_type(SyncCursorPagination[RulesetListResponse], ruleset, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -281,19 +272,19 @@ class TestRulesets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ruleset = response.parse()
-            assert_matches_type(SyncSinglePage[RulesetListResponse], ruleset, path=["response"])
+            assert_matches_type(SyncCursorPagination[RulesetListResponse], ruleset, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.with_raw_response.list(
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.with_raw_response.list(
                 account_id="account_id",
             )
@@ -353,13 +344,13 @@ class TestRulesets:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.with_raw_response.delete(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.with_raw_response.delete(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -420,13 +411,13 @@ class TestRulesets:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.with_raw_response.get(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.with_raw_response.get(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -443,7 +434,6 @@ class TestAsyncRulesets:
             kind="managed",
             name="My ruleset",
             phase="ddos_l4",
-            rules=[{}],
             account_id="account_id",
         )
         assert_matches_type(RulesetCreateResponse, ruleset, path=["response"])
@@ -455,6 +445,8 @@ class TestAsyncRulesets:
             kind="managed",
             name="My ruleset",
             phase="ddos_l4",
+            account_id="account_id",
+            description="My ruleset to execute managed rulesets",
             rules=[
                 {
                     "id": "3a03d665bac047339bb530ecb439a90d",
@@ -487,8 +479,6 @@ class TestAsyncRulesets:
                     "ref": "my_ref",
                 }
             ],
-            account_id="account_id",
-            description="My ruleset to execute managed rulesets",
         )
         assert_matches_type(RulesetCreateResponse, ruleset, path=["response"])
 
@@ -499,7 +489,6 @@ class TestAsyncRulesets:
             kind="managed",
             name="My ruleset",
             phase="ddos_l4",
-            rules=[{}],
             account_id="account_id",
         )
 
@@ -515,7 +504,6 @@ class TestAsyncRulesets:
             kind="managed",
             name="My ruleset",
             phase="ddos_l4",
-            rules=[{}],
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -529,21 +517,19 @@ class TestAsyncRulesets:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.with_raw_response.create(
                 kind="managed",
                 name="My ruleset",
                 phase="ddos_l4",
-                rules=[{}],
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.with_raw_response.create(
                 kind="managed",
                 name="My ruleset",
                 phase="ddos_l4",
-                rules=[{}],
                 account_id="account_id",
             )
 
@@ -552,7 +538,6 @@ class TestAsyncRulesets:
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         ruleset = await async_client.rulesets.update(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
-            rules=[{}],
             account_id="account_id",
         )
         assert_matches_type(RulesetUpdateResponse, ruleset, path=["response"])
@@ -562,6 +547,11 @@ class TestAsyncRulesets:
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         ruleset = await async_client.rulesets.update(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
+            description="My ruleset to execute managed rulesets",
+            kind="managed",
+            name="My ruleset",
+            phase="ddos_l4",
             rules=[
                 {
                     "id": "3a03d665bac047339bb530ecb439a90d",
@@ -594,11 +584,6 @@ class TestAsyncRulesets:
                     "ref": "my_ref",
                 }
             ],
-            account_id="account_id",
-            description="My ruleset to execute managed rulesets",
-            kind="managed",
-            name="My ruleset",
-            phase="ddos_l4",
         )
         assert_matches_type(RulesetUpdateResponse, ruleset, path=["response"])
 
@@ -607,7 +592,6 @@ class TestAsyncRulesets:
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.rulesets.with_raw_response.update(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
-            rules=[{}],
             account_id="account_id",
         )
 
@@ -621,7 +605,6 @@ class TestAsyncRulesets:
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rulesets.with_streaming_response.update(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
-            rules=[{}],
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -638,21 +621,18 @@ class TestAsyncRulesets:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
             await async_client.rulesets.with_raw_response.update(
                 ruleset_id="",
-                rules=[{}],
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.with_raw_response.update(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
-                rules=[{}],
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.with_raw_response.update(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
-                rules=[{}],
                 account_id="account_id",
             )
 
@@ -662,15 +642,17 @@ class TestAsyncRulesets:
         ruleset = await async_client.rulesets.list(
             account_id="account_id",
         )
-        assert_matches_type(AsyncSinglePage[RulesetListResponse], ruleset, path=["response"])
+        assert_matches_type(AsyncCursorPagination[RulesetListResponse], ruleset, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         ruleset = await async_client.rulesets.list(
             account_id="account_id",
+            cursor="dGhpc2lzYW5leGFtcGxlCg",
+            per_page=3,
         )
-        assert_matches_type(AsyncSinglePage[RulesetListResponse], ruleset, path=["response"])
+        assert_matches_type(AsyncCursorPagination[RulesetListResponse], ruleset, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -682,7 +664,7 @@ class TestAsyncRulesets:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ruleset = await response.parse()
-        assert_matches_type(AsyncSinglePage[RulesetListResponse], ruleset, path=["response"])
+        assert_matches_type(AsyncCursorPagination[RulesetListResponse], ruleset, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -694,19 +676,19 @@ class TestAsyncRulesets:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ruleset = await response.parse()
-            assert_matches_type(AsyncSinglePage[RulesetListResponse], ruleset, path=["response"])
+            assert_matches_type(AsyncCursorPagination[RulesetListResponse], ruleset, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.with_raw_response.list(
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.with_raw_response.list(
                 account_id="account_id",
             )
@@ -766,13 +748,13 @@ class TestAsyncRulesets:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.with_raw_response.delete(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.with_raw_response.delete(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -833,13 +815,13 @@ class TestAsyncRulesets:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.with_raw_response.get(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.with_raw_response.get(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",

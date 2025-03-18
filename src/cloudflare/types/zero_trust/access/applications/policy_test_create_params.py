@@ -2,22 +2,38 @@
 
 from __future__ import annotations
 
-from typing import Iterable
-from typing_extensions import Required, TypedDict
+from typing import List, Union, Iterable
+from typing_extensions import Required, TypeAlias, TypedDict
 
 from ..decision import Decision
-from ...access_rule_param import AccessRuleParam
+from .access_rule_param import AccessRuleParam
 from ..approval_group_param import ApprovalGroupParam
 
-__all__ = ["PolicyTestCreateParams"]
+__all__ = ["PolicyTestCreateParams", "Policy", "PolicyUnionMember0"]
 
 
 class PolicyTestCreateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
-    id: str
-    """The UUID of the policy"""
+    policies: List[Policy]
+
+
+class PolicyUnionMember0(TypedDict, total=False):
+    decision: Required[Decision]
+    """The action Access will take if a user matches this policy.
+
+    Infrastructure application policies can only use the Allow action.
+    """
+
+    include: Required[Iterable[AccessRuleParam]]
+    """Rules evaluated with an OR logical operator.
+
+    A user needs to meet only one of the Include rules.
+    """
+
+    name: Required[str]
+    """The name of the Access policy."""
 
     approval_groups: Iterable[ApprovalGroupParam]
     """Administrators who can approve a temporary authentication request."""
@@ -28,22 +44,10 @@ class PolicyTestCreateParams(TypedDict, total=False):
     session.
     """
 
-    decision: Decision
-    """The action Access will take if a user matches this policy.
-
-    Infrastructure application policies can only use the Allow action.
-    """
-
     exclude: Iterable[AccessRuleParam]
     """Rules evaluated with a NOT logical operator.
 
     To match the policy, a user cannot meet any of the Exclude rules.
-    """
-
-    include: Iterable[AccessRuleParam]
-    """Rules evaluated with an OR logical operator.
-
-    A user needs to meet only one of the Include rules.
     """
 
     isolation_required: bool
@@ -52,9 +56,6 @@ class PolicyTestCreateParams(TypedDict, total=False):
     this policy. 'Client Web Isolation' must be on for the account in order to use
     this feature.
     """
-
-    name: str
-    """The name of the Access policy."""
 
     purpose_justification_prompt: str
     """A custom message that will appear on the purpose justification screen."""
@@ -74,3 +75,6 @@ class PolicyTestCreateParams(TypedDict, total=False):
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
     ms, s, m, h.
     """
+
+
+Policy: TypeAlias = Union[PolicyUnionMember0, str]

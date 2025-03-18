@@ -20,65 +20,69 @@ class TimeseriesGroupHTTPVersionParams(TypedDict, total=False):
     """
 
     asn: List[str]
-    """Array of comma separated list of ASNs, start with `-` to exclude from results.
+    """Comma-separated list of Autonomous System Numbers (ASNs).
 
-    For example, `-174, 3356` excludes results from AS174, but includes results from
-    AS3356.
+    Prefix with `-` to exclude ASNs from results. For example, `-174, 3356` excludes
+    results from AS174, but includes results from AS3356.
     """
 
     bot_class: Annotated[List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]], PropertyInfo(alias="botClass")]
-    """Filter for bot class.
+    """Filters results by bot class.
 
     Refer to
     [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
     """
 
-    continent: List[str]
-    """Array of comma separated list of continents (alpha-2 continent codes).
+    browser_family: Annotated[List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]], PropertyInfo(alias="browserFamily")]
+    """Filters results by browser family."""
 
-    Start with `-` to exclude from results. For example, `-EU,NA` excludes results
-    from Europe, but includes results from North America.
+    continent: List[str]
+    """Comma-separated list of continents (alpha-2 continent codes).
+
+    Prefix with `-` to exclude continents from results. For example, `-EU,NA`
+    excludes results from EU, but includes results from NA.
     """
 
     date_end: Annotated[List[Union[str, datetime]], PropertyInfo(alias="dateEnd", format="iso8601")]
     """End of the date range (inclusive)."""
 
     date_range: Annotated[List[str], PropertyInfo(alias="dateRange")]
-    """
-    For example, use `7d` and `7dControl` to compare this week with the previous
+    """Filters results by the specified date range.
+
+    For example, use `7d` and `7dcontrol` to compare this week with the previous
     week. Use this parameter or set specific start and end dates (`dateStart` and
     `dateEnd` parameters).
     """
 
     date_start: Annotated[List[Union[str, datetime]], PropertyInfo(alias="dateStart", format="iso8601")]
-    """Array of datetimes to filter the start of a series."""
+    """Start of the date range."""
 
     device_type: Annotated[List[Literal["DESKTOP", "MOBILE", "OTHER"]], PropertyInfo(alias="deviceType")]
-    """Filter for device type."""
+    """Filters results by device type."""
 
     format: Literal["JSON", "CSV"]
-    """Format results are returned in."""
+    """Format in which results will be returned."""
 
     http_protocol: Annotated[List[Literal["HTTP", "HTTPS"]], PropertyInfo(alias="httpProtocol")]
-    """Filter for http protocol."""
+    """Filters results by HTTP protocol (HTTP vs. HTTPS)."""
 
     ip_version: Annotated[List[Literal["IPv4", "IPv6"]], PropertyInfo(alias="ipVersion")]
-    """Filter for ip version."""
+    """Filters results by IP version (Ipv4 vs. IPv6)."""
 
     location: List[str]
-    """Array of comma separated list of locations (alpha-2 country codes).
+    """Comma-separated list of locations (alpha-2 codes).
 
-    Start with `-` to exclude from results. For example, `-US,PT` excludes results
-    from the US, but includes results from PT.
+    Prefix with `-` to exclude locations from results. For example, `-US,PT`
+    excludes results from the US, but includes results from PT.
     """
 
     name: List[str]
-    """Array of names that will be used to name the series in responses."""
+    """Array of names used to label the series in the response."""
 
     os: List[Literal["WINDOWS", "MACOSX", "IOS", "ANDROID", "CHROMEOS", "LINUX", "SMART_TV"]]
-    """Filter for os name."""
+    """Filters results by operating system."""
 
     tls_version: Annotated[
         List[Literal["TLSv1_0", "TLSv1_1", "TLSv1_2", "TLSv1_3", "TLSvQUIC"]], PropertyInfo(alias="tlsVersion")
     ]
-    """Filter for tls version."""
+    """Filters results by TLS version."""

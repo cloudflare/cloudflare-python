@@ -34,7 +34,7 @@ class AsesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -70,27 +70,26 @@ class AsesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AseGetResponse:
         """
-        Get the top autonomous systems (ASes) by BGP updates (announcements only).
-        Values are a percentage out of the total updates.
+        Retrieves the top autonomous systems by BGP updates (announcements only).
 
         Args:
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
+          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
+              exclude ASNs from results. For example, `-174, 3356` excludes results from
+              AS174, but includes results from AS3356.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          limit: Limit the number of objects in the response.
+          limit: Limits the number of objects returned in the response.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
           prefix: Array of BGP network prefixes.
 
@@ -144,16 +143,16 @@ class AsesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsePrefixesResponse:
         """
-        Get the full list of autonomous systems on the global routing table ordered by
-        announced prefixes count. The data comes from public BGP MRT data archives and
-        updates every 2 hours.
+        Retrieves the full list of autonomous systems on the global routing table
+        ordered by announced prefixes count. The data comes from public BGP MRT data
+        archives and updates every 2 hours.
 
         Args:
           country: Alpha-2 country code.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          limit: Maximum number of ASes to return
+          limit: Maximum number of ASes to return.
 
           extra_headers: Send extra headers
 
@@ -188,7 +187,7 @@ class AsyncAsesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncAsesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -224,27 +223,26 @@ class AsyncAsesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AseGetResponse:
         """
-        Get the top autonomous systems (ASes) by BGP updates (announcements only).
-        Values are a percentage out of the total updates.
+        Retrieves the top autonomous systems by BGP updates (announcements only).
 
         Args:
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
+          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
+              exclude ASNs from results. For example, `-174, 3356` excludes results from
+              AS174, but includes results from AS3356.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          limit: Limit the number of objects in the response.
+          limit: Limits the number of objects returned in the response.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
           prefix: Array of BGP network prefixes.
 
@@ -298,16 +296,16 @@ class AsyncAsesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsePrefixesResponse:
         """
-        Get the full list of autonomous systems on the global routing table ordered by
-        announced prefixes count. The data comes from public BGP MRT data archives and
-        updates every 2 hours.
+        Retrieves the full list of autonomous systems on the global routing table
+        ordered by announced prefixes count. The data comes from public BGP MRT data
+        archives and updates every 2 hours.
 
         Args:
           country: Alpha-2 country code.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          limit: Maximum number of ASes to return
+          limit: Maximum number of ASes to return.
 
           extra_headers: Send extra headers
 

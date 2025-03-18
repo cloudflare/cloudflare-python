@@ -16,6 +16,14 @@ from .configs import (
     ConfigsResourceWithStreamingResponse,
     AsyncConfigsResourceWithStreamingResponse,
 )
+from .vpc_flows import (
+    VPCFlowsResource,
+    AsyncVPCFlowsResource,
+    VPCFlowsResourceWithRawResponse,
+    AsyncVPCFlowsResourceWithRawResponse,
+    VPCFlowsResourceWithStreamingResponse,
+    AsyncVPCFlowsResourceWithStreamingResponse,
+)
 from .magic_network_monitoring import (
     MagicNetworkMonitoringResource,
     AsyncMagicNetworkMonitoringResource,
@@ -26,6 +34,12 @@ from .magic_network_monitoring import (
 )
 
 __all__ = [
+    "VPCFlowsResource",
+    "AsyncVPCFlowsResource",
+    "VPCFlowsResourceWithRawResponse",
+    "AsyncVPCFlowsResourceWithRawResponse",
+    "VPCFlowsResourceWithStreamingResponse",
+    "AsyncVPCFlowsResourceWithStreamingResponse",
     "ConfigsResource",
     "AsyncConfigsResource",
     "ConfigsResourceWithRawResponse",

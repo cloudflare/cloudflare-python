@@ -147,8 +147,14 @@ __all__ = [
     "SetCacheSettingsRuleActionParametersCacheKeyCustomKeyHeader",
     "SetCacheSettingsRuleActionParametersCacheKeyCustomKeyHost",
     "SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryString",
-    "SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringExclude",
-    "SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringInclude",
+    "SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringIncludedQueryStringParameters",
+    "SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringIncludedQueryStringParametersInclude",
+    "SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringIncludedQueryStringParametersIncludeSomeQueryStringParameters",
+    "SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringIncludedQueryStringParametersIncludeAllQueryStringParameters",
+    "SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringExcludedQueryStringParameters",
+    "SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringExcludedQueryStringParametersExclude",
+    "SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringExcludedQueryStringParametersExcludeSomeQueryStringParameters",
+    "SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringExcludedQueryStringParametersExcludeAllQueryStringParameters",
     "SetCacheSettingsRuleActionParametersCacheKeyCustomKeyUser",
     "SetCacheSettingsRuleActionParametersCacheReserve",
     "SetCacheSettingsRuleActionParametersEdgeTTL",
@@ -164,8 +170,10 @@ __all__ = [
     "LogCustomFieldRule",
     "LogCustomFieldRuleActionParameters",
     "LogCustomFieldRuleActionParametersCookieField",
+    "LogCustomFieldRuleActionParametersRawResponseField",
     "LogCustomFieldRuleActionParametersRequestField",
     "LogCustomFieldRuleActionParametersResponseField",
+    "LogCustomFieldRuleActionParametersTransformedRequestField",
     "LogCustomFieldRuleExposedCredentialCheck",
     "LogCustomFieldRulePosition",
     "LogCustomFieldRulePositionBeforePosition",
@@ -2276,11 +2284,55 @@ class SetCacheSettingsRuleActionParametersCacheKeyCustomKeyHost(TypedDict, total
     """
 
 
-class SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringExclude(TypedDict, total=False):
-    all: bool
-    """Exclude all query string parameters from use in building the cache key."""
-
+class SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringIncludedQueryStringParametersIncludeSomeQueryStringParameters(
+    TypedDict, total=False
+):
     list: List[str]
+
+
+class SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringIncludedQueryStringParametersIncludeAllQueryStringParameters(
+    TypedDict, total=False
+):
+    all: bool
+    """Determines whether to include all query string parameters in the cache key."""
+
+
+SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringIncludedQueryStringParametersInclude: TypeAlias = Union[
+    SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringIncludedQueryStringParametersIncludeSomeQueryStringParameters,
+    SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringIncludedQueryStringParametersIncludeAllQueryStringParameters,
+]
+
+
+class SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringIncludedQueryStringParameters(
+    TypedDict, total=False
+):
+    include: SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringIncludedQueryStringParametersInclude
+    """A list of query string parameters used to build the cache key."""
+
+
+class SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringExcludedQueryStringParametersExcludeSomeQueryStringParameters(
+    TypedDict, total=False
+):
+    list: List[str]
+
+
+class SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringExcludedQueryStringParametersExcludeAllQueryStringParameters(
+    TypedDict, total=False
+):
+    all: bool
+    """Determines whether to exclude all query string parameters from the cache key."""
+
+
+SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringExcludedQueryStringParametersExclude: TypeAlias = Union[
+    SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringExcludedQueryStringParametersExcludeSomeQueryStringParameters,
+    SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringExcludedQueryStringParametersExcludeAllQueryStringParameters,
+]
+
+
+class SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringExcludedQueryStringParameters(
+    TypedDict, total=False
+):
+    exclude: SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringExcludedQueryStringParametersExclude
     """A list of query string parameters NOT used to build the cache key.
 
     All parameters present in the request but missing in this list will be used to
@@ -2288,26 +2340,10 @@ class SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringExclude(Ty
     """
 
 
-class SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringInclude(TypedDict, total=False):
-    all: bool
-    """Use all query string parameters in the cache key."""
-
-    list: List[str]
-    """A list of query string parameters used to build the cache key."""
-
-
-class SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryString(TypedDict, total=False):
-    exclude: SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringExclude
-    """
-    build the cache key using all query string parameters EXCECPT these excluded
-    parameters
-    """
-
-    include: SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringInclude
-    """
-    build the cache key using a list of query string parameters that ARE in the
-    request.
-    """
+SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryString: TypeAlias = Union[
+    SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringIncludedQueryStringParameters,
+    SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringExcludedQueryStringParameters,
+]
 
 
 class SetCacheSettingsRuleActionParametersCacheKeyCustomKeyUser(TypedDict, total=False):
@@ -2332,10 +2368,7 @@ class SetCacheSettingsRuleActionParametersCacheKeyCustomKey(TypedDict, total=Fal
     """Whether to use the original host or the resolved host in the cache key."""
 
     query_string: SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryString
-    """
-    Use the presence or absence of parameters in the query string to build the cache
-    key.
-    """
+    """Use the presence of parameters in the query string to build the cache key."""
 
     user: SetCacheSettingsRuleActionParametersCacheKeyCustomKeyUser
     """Characteristics of the request user agent used in building the cache key."""
@@ -2622,6 +2655,14 @@ class LogCustomFieldRuleActionParametersCookieField(TypedDict, total=False):
     """The name of the field."""
 
 
+class LogCustomFieldRuleActionParametersRawResponseField(TypedDict, total=False):
+    name: Required[str]
+    """The name of the field."""
+
+    preserve_duplicates: bool
+    """Whether to log duplicate values of the same header."""
+
+
 class LogCustomFieldRuleActionParametersRequestField(TypedDict, total=False):
     name: Required[str]
     """The name of the field."""
@@ -2631,16 +2672,30 @@ class LogCustomFieldRuleActionParametersResponseField(TypedDict, total=False):
     name: Required[str]
     """The name of the field."""
 
+    preserve_duplicates: bool
+    """Whether to log duplicate values of the same header."""
+
+
+class LogCustomFieldRuleActionParametersTransformedRequestField(TypedDict, total=False):
+    name: Required[str]
+    """The name of the field."""
+
 
 class LogCustomFieldRuleActionParameters(TypedDict, total=False):
     cookie_fields: Iterable[LogCustomFieldRuleActionParametersCookieField]
     """The cookie fields to log."""
 
+    raw_response_fields: Iterable[LogCustomFieldRuleActionParametersRawResponseField]
+    """The raw response fields to log."""
+
     request_fields: Iterable[LogCustomFieldRuleActionParametersRequestField]
-    """The request fields to log."""
+    """The raw request fields to log."""
 
     response_fields: Iterable[LogCustomFieldRuleActionParametersResponseField]
-    """The response fields to log."""
+    """The transformed response fields to log."""
+
+    transformed_request_fields: Iterable[LogCustomFieldRuleActionParametersTransformedRequestField]
+    """The transformed request fields to log."""
 
 
 class LogCustomFieldRuleExposedCredentialCheck(TypedDict, total=False):

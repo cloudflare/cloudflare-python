@@ -101,7 +101,7 @@ class WaitingRoomsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> WaitingRoomsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -917,7 +917,8 @@ class WaitingRoomsResource(SyncAPIResource):
     def list(
         self,
         *,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -928,10 +929,12 @@ class WaitingRoomsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncV4PagePaginationArray[WaitingRoom]:
         """
-        Lists waiting rooms.
+        Lists waiting rooms for account or zone.
 
         Args:
-          zone_id: Identifier
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           page: Page number of paginated results.
 
@@ -945,10 +948,20 @@ class WaitingRoomsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._get_api_list(
-            f"/zones/{zone_id}/waiting_rooms",
+            f"/{account_or_zone}/{account_or_zone_id}/waiting_rooms",
             page=SyncV4PagePaginationArray[WaitingRoom],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -1475,7 +1488,7 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncWaitingRoomsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -2291,7 +2304,8 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        zone_id: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -2302,10 +2316,12 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[WaitingRoom, AsyncV4PagePaginationArray[WaitingRoom]]:
         """
-        Lists waiting rooms.
+        Lists waiting rooms for account or zone.
 
         Args:
-          zone_id: Identifier
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           page: Page number of paginated results.
 
@@ -2319,10 +2335,20 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._get_api_list(
-            f"/zones/{zone_id}/waiting_rooms",
+            f"/{account_or_zone}/{account_or_zone_id}/waiting_rooms",
             page=AsyncV4PagePaginationArray[WaitingRoom],
             options=make_request_options(
                 extra_headers=extra_headers,

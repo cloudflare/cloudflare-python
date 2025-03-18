@@ -22,7 +22,6 @@ class TestPhases:
     def test_method_update(self, client: Cloudflare) -> None:
         phase = client.rulesets.phases.update(
             ruleset_phase="ddos_l4",
-            rules=[{}],
             account_id="account_id",
         )
         assert_matches_type(PhaseUpdateResponse, phase, path=["response"])
@@ -32,6 +31,9 @@ class TestPhases:
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         phase = client.rulesets.phases.update(
             ruleset_phase="ddos_l4",
+            account_id="account_id",
+            description="My ruleset to execute managed rulesets",
+            name="My ruleset",
             rules=[
                 {
                     "id": "3a03d665bac047339bb530ecb439a90d",
@@ -64,9 +66,6 @@ class TestPhases:
                     "ref": "my_ref",
                 }
             ],
-            account_id="account_id",
-            description="My ruleset to execute managed rulesets",
-            name="My ruleset",
         )
         assert_matches_type(PhaseUpdateResponse, phase, path=["response"])
 
@@ -75,7 +74,6 @@ class TestPhases:
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.rulesets.phases.with_raw_response.update(
             ruleset_phase="ddos_l4",
-            rules=[{}],
             account_id="account_id",
         )
 
@@ -89,7 +87,6 @@ class TestPhases:
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.rulesets.phases.with_streaming_response.update(
             ruleset_phase="ddos_l4",
-            rules=[{}],
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -103,17 +100,15 @@ class TestPhases:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.phases.with_raw_response.update(
                 ruleset_phase="ddos_l4",
-                rules=[{}],
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.phases.with_raw_response.update(
                 ruleset_phase="ddos_l4",
-                rules=[{}],
                 account_id="account_id",
             )
 
@@ -166,13 +161,13 @@ class TestPhases:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.phases.with_raw_response.get(
                 ruleset_phase="ddos_l4",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.phases.with_raw_response.get(
                 ruleset_phase="ddos_l4",
                 account_id="account_id",
@@ -187,7 +182,6 @@ class TestAsyncPhases:
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         phase = await async_client.rulesets.phases.update(
             ruleset_phase="ddos_l4",
-            rules=[{}],
             account_id="account_id",
         )
         assert_matches_type(PhaseUpdateResponse, phase, path=["response"])
@@ -197,6 +191,9 @@ class TestAsyncPhases:
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         phase = await async_client.rulesets.phases.update(
             ruleset_phase="ddos_l4",
+            account_id="account_id",
+            description="My ruleset to execute managed rulesets",
+            name="My ruleset",
             rules=[
                 {
                     "id": "3a03d665bac047339bb530ecb439a90d",
@@ -229,9 +226,6 @@ class TestAsyncPhases:
                     "ref": "my_ref",
                 }
             ],
-            account_id="account_id",
-            description="My ruleset to execute managed rulesets",
-            name="My ruleset",
         )
         assert_matches_type(PhaseUpdateResponse, phase, path=["response"])
 
@@ -240,7 +234,6 @@ class TestAsyncPhases:
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.rulesets.phases.with_raw_response.update(
             ruleset_phase="ddos_l4",
-            rules=[{}],
             account_id="account_id",
         )
 
@@ -254,7 +247,6 @@ class TestAsyncPhases:
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rulesets.phases.with_streaming_response.update(
             ruleset_phase="ddos_l4",
-            rules=[{}],
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -268,17 +260,15 @@ class TestAsyncPhases:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.phases.with_raw_response.update(
                 ruleset_phase="ddos_l4",
-                rules=[{}],
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.phases.with_raw_response.update(
                 ruleset_phase="ddos_l4",
-                rules=[{}],
                 account_id="account_id",
             )
 
@@ -331,13 +321,13 @@ class TestAsyncPhases:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.phases.with_raw_response.get(
                 ruleset_phase="ddos_l4",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.phases.with_raw_response.get(
                 ruleset_phase="ddos_l4",
                 account_id="account_id",

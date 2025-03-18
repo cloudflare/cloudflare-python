@@ -102,6 +102,8 @@ class Variant0Profile(TypedDict, total=False):
 
     name: Required[str]
 
+    ai_context_enabled: bool
+
     allowed_match_count: int
     """Related DLP policies will trigger when the match count exceeds the number set."""
 
@@ -132,6 +134,8 @@ class DLPNewCustomProfile(TypedDict, total=False):
     entries: Required[Iterable[DLPNewCustomProfileEntry]]
 
     name: Required[str]
+
+    ai_context_enabled: bool
 
     allowed_match_count: int
     """Related DLP policies will trigger when the match count exceeds the number set."""

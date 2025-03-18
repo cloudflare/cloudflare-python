@@ -9,7 +9,6 @@ __all__ = ["ConnectorUpdateParams"]
 
 class ConnectorUpdateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Account identifier"""
 
     activated: bool
 

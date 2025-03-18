@@ -79,7 +79,7 @@ class TestWARPConnector:
         warp_connector = client.zero_trust.tunnels.warp_connector.list(
             account_id="699d98642c564d2e855e9661899b7252",
             exclude_prefix="vpc1-",
-            existed_at=parse_datetime("2019-10-12T07:20:50.52Z"),
+            existed_at="2019-10-12T07%3A20%3A50.52Z",
             include_prefix="vpc1-",
             is_deleted=True,
             name="blog",
@@ -277,54 +277,6 @@ class TestWARPConnector:
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
-    @parametrize
-    def test_method_token(self, client: Cloudflare) -> None:
-        warp_connector = client.zero_trust.tunnels.warp_connector.token(
-            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
-            account_id="699d98642c564d2e855e9661899b7252",
-        )
-        assert_matches_type(str, warp_connector, path=["response"])
-
-    @parametrize
-    def test_raw_response_token(self, client: Cloudflare) -> None:
-        response = client.zero_trust.tunnels.warp_connector.with_raw_response.token(
-            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
-            account_id="699d98642c564d2e855e9661899b7252",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        warp_connector = response.parse()
-        assert_matches_type(str, warp_connector, path=["response"])
-
-    @parametrize
-    def test_streaming_response_token(self, client: Cloudflare) -> None:
-        with client.zero_trust.tunnels.warp_connector.with_streaming_response.token(
-            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
-            account_id="699d98642c564d2e855e9661899b7252",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            warp_connector = response.parse()
-            assert_matches_type(str, warp_connector, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    def test_path_params_token(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.zero_trust.tunnels.warp_connector.with_raw_response.token(
-                tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
-                account_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_id` but received ''"):
-            client.zero_trust.tunnels.warp_connector.with_raw_response.token(
-                tunnel_id="",
-                account_id="699d98642c564d2e855e9661899b7252",
-            )
-
 
 class TestAsyncWARPConnector:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
@@ -383,7 +335,7 @@ class TestAsyncWARPConnector:
         warp_connector = await async_client.zero_trust.tunnels.warp_connector.list(
             account_id="699d98642c564d2e855e9661899b7252",
             exclude_prefix="vpc1-",
-            existed_at=parse_datetime("2019-10-12T07:20:50.52Z"),
+            existed_at="2019-10-12T07%3A20%3A50.52Z",
             include_prefix="vpc1-",
             is_deleted=True,
             name="blog",
@@ -579,54 +531,6 @@ class TestAsyncWARPConnector:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_id` but received ''"):
             await async_client.zero_trust.tunnels.warp_connector.with_raw_response.get(
-                tunnel_id="",
-                account_id="699d98642c564d2e855e9661899b7252",
-            )
-
-    @parametrize
-    async def test_method_token(self, async_client: AsyncCloudflare) -> None:
-        warp_connector = await async_client.zero_trust.tunnels.warp_connector.token(
-            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
-            account_id="699d98642c564d2e855e9661899b7252",
-        )
-        assert_matches_type(str, warp_connector, path=["response"])
-
-    @parametrize
-    async def test_raw_response_token(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.zero_trust.tunnels.warp_connector.with_raw_response.token(
-            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
-            account_id="699d98642c564d2e855e9661899b7252",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        warp_connector = await response.parse()
-        assert_matches_type(str, warp_connector, path=["response"])
-
-    @parametrize
-    async def test_streaming_response_token(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.zero_trust.tunnels.warp_connector.with_streaming_response.token(
-            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
-            account_id="699d98642c564d2e855e9661899b7252",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            warp_connector = await response.parse()
-            assert_matches_type(str, warp_connector, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    async def test_path_params_token(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.zero_trust.tunnels.warp_connector.with_raw_response.token(
-                tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
-                account_id="",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_id` but received ''"):
-            await async_client.zero_trust.tunnels.warp_connector.with_raw_response.token(
                 tunnel_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )

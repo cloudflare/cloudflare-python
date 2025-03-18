@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
+from typing import Any, Union, cast
+from datetime import datetime
 from typing_extensions import Literal, overload
 
 import httpx
@@ -61,7 +62,7 @@ class PCAPsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> PCAPsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -87,6 +88,7 @@ class PCAPsResource(SyncAPIResource):
         time_limit: float,
         type: Literal["simple", "full"],
         filter_v1: PCAPFilterParam | NotGiven = NOT_GIVEN,
+        offset_time: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -110,6 +112,9 @@ class PCAPsResource(SyncAPIResource):
               captures entire payloads and non-sampled packets.
 
           filter_v1: The packet capture filter. When this field is empty, all packets are captured.
+
+          offset_time: The RFC 3339 offset timestamp from which to query backwards for packets. Must be
+              within the last 24h. When this field is empty, defaults to time of request.
 
           extra_headers: Send extra headers
 
@@ -190,6 +195,7 @@ class PCAPsResource(SyncAPIResource):
         time_limit: float,
         type: Literal["simple", "full"],
         filter_v1: PCAPFilterParam | NotGiven = NOT_GIVEN,
+        offset_time: Union[str, datetime] | NotGiven = NOT_GIVEN,
         colo_name: str | NotGiven = NOT_GIVEN,
         destination_conf: str | NotGiven = NOT_GIVEN,
         byte_limit: float | NotGiven = NOT_GIVEN,
@@ -213,6 +219,7 @@ class PCAPsResource(SyncAPIResource):
                         "time_limit": time_limit,
                         "type": type,
                         "filter_v1": filter_v1,
+                        "offset_time": offset_time,
                         "colo_name": colo_name,
                         "destination_conf": destination_conf,
                         "byte_limit": byte_limit,
@@ -330,7 +337,7 @@ class AsyncPCAPsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncPCAPsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -356,6 +363,7 @@ class AsyncPCAPsResource(AsyncAPIResource):
         time_limit: float,
         type: Literal["simple", "full"],
         filter_v1: PCAPFilterParam | NotGiven = NOT_GIVEN,
+        offset_time: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -379,6 +387,9 @@ class AsyncPCAPsResource(AsyncAPIResource):
               captures entire payloads and non-sampled packets.
 
           filter_v1: The packet capture filter. When this field is empty, all packets are captured.
+
+          offset_time: The RFC 3339 offset timestamp from which to query backwards for packets. Must be
+              within the last 24h. When this field is empty, defaults to time of request.
 
           extra_headers: Send extra headers
 
@@ -459,6 +470,7 @@ class AsyncPCAPsResource(AsyncAPIResource):
         time_limit: float,
         type: Literal["simple", "full"],
         filter_v1: PCAPFilterParam | NotGiven = NOT_GIVEN,
+        offset_time: Union[str, datetime] | NotGiven = NOT_GIVEN,
         colo_name: str | NotGiven = NOT_GIVEN,
         destination_conf: str | NotGiven = NOT_GIVEN,
         byte_limit: float | NotGiven = NOT_GIVEN,
@@ -482,6 +494,7 @@ class AsyncPCAPsResource(AsyncAPIResource):
                         "time_limit": time_limit,
                         "type": type,
                         "filter_v1": filter_v1,
+                        "offset_time": offset_time,
                         "colo_name": colo_name,
                         "destination_conf": destination_conf,
                         "byte_limit": byte_limit,

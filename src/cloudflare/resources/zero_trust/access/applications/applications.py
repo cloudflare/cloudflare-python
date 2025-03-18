@@ -96,7 +96,7 @@ class ApplicationsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ApplicationsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -883,6 +883,138 @@ class ApplicationsResource(SyncAPIResource):
           name: The name of the application.
 
           policies: The policies that Access applies to the application.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        domain: str,
+        target_criteria: Iterable[application_create_params.BrowserRdpApplicationTargetCriterion],
+        type: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
+        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
+        custom_deny_message: str | NotGiven = NOT_GIVEN,
+        custom_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        destinations: Iterable[application_create_params.BrowserRdpApplicationDestination] | NotGiven = NOT_GIVEN,
+        enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
+        http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        logo_url: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
+        path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.BrowserRdpApplicationPolicy] | NotGiven = NOT_GIVEN,
+        same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.BrowserRdpApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
+        service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
+        session_duration: str | NotGiven = NOT_GIVEN,
+        skip_interstitial: bool | NotGiven = NOT_GIVEN,
+        tags: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationCreateResponse]:
+        """
+        Adds a new application to Access.
+
+        Args:
+          domain: The primary hostname and path secured by Access. This domain will be displayed
+              if the app is visible in the App Launcher.
+
+          type: The application type.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          allow_authenticate_via_warp: When set to true, users can authenticate to this application using their WARP
+              session. When set to false this application will always require direct IdP
+              authentication. This setting always overrides the organization setting for WARP
+              authentication.
+
+          allowed_idps: The identity providers your users can select when connecting to this
+              application. Defaults to all IdPs configured in your account.
+
+          app_launcher_visible: Displays the application in the App Launcher.
+
+          auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
+              login. You must specify only one identity provider in allowed_idps.
+
+          custom_deny_message: The custom error message shown to a user when they are denied access to the
+              application.
+
+          custom_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing identity-based rules.
+
+          custom_non_identity_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing non-identity rules.
+
+          custom_pages: The custom pages that will be displayed when applicable for this application
+
+          destinations: List of destinations secured by Access. This supersedes `self_hosted_domains` to
+              allow for more flexibility in defining different types of domains. If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
+
+          enable_binding_cookie: Enables the binding cookie, which increases security against compromised
+              authorization tokens and CSRF attacks.
+
+          http_only_cookie_attribute: Enables the HttpOnly cookie attribute, which increases security against XSS
+              attacks.
+
+          logo_url: The image URL for the logo shown in the App Launcher dashboard.
+
+          name: The name of the application.
+
+          options_preflight_bypass: Allows options preflight requests to bypass Access authentication and go
+              directly to the origin. Cannot turn on if cors_headers is set.
+
+          path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
+              disabled, the JWT will scope to the hostname by default
+
+          policies: The policies that Access applies to the application, in ascending order of
+              precedence. Items can reference existing policies or create new policies
+              exclusive to the application.
+
+          same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
+              attacks.
+
+          scim_config: Configuration for provisioning to this application via SCIM. This is currently
+              in closed beta.
+
+          self_hosted_domains: List of public domains that Access will secure. This field is deprecated in
+              favor of `destinations` and will be supported until **November 21, 2025.** If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
+
+          service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
+
+          session_duration: The amount of time that tokens issued for this application will be valid. Must
+              be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
+              s, m, h.
+
+          skip_interstitial: Enables automatic authentication through cloudflared.
+
+          tags: The tags you want assigned to an application. Tags are used to filter
+              applications in the App Launcher dashboard.
 
           extra_headers: Send extra headers
 
@@ -1820,6 +1952,141 @@ class ApplicationsResource(SyncAPIResource):
         """
         ...
 
+    @overload
+    def update(
+        self,
+        app_id: AppID,
+        *,
+        domain: str,
+        target_criteria: Iterable[application_update_params.BrowserRdpApplicationTargetCriterion],
+        type: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
+        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
+        custom_deny_message: str | NotGiven = NOT_GIVEN,
+        custom_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        destinations: Iterable[application_update_params.BrowserRdpApplicationDestination] | NotGiven = NOT_GIVEN,
+        enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
+        http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        logo_url: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
+        path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.BrowserRdpApplicationPolicy] | NotGiven = NOT_GIVEN,
+        same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.BrowserRdpApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
+        service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
+        session_duration: str | NotGiven = NOT_GIVEN,
+        skip_interstitial: bool | NotGiven = NOT_GIVEN,
+        tags: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationUpdateResponse]:
+        """
+        Updates an Access application.
+
+        Args:
+          app_id: Identifier
+
+          domain: The primary hostname and path secured by Access. This domain will be displayed
+              if the app is visible in the App Launcher.
+
+          type: The application type.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          allow_authenticate_via_warp: When set to true, users can authenticate to this application using their WARP
+              session. When set to false this application will always require direct IdP
+              authentication. This setting always overrides the organization setting for WARP
+              authentication.
+
+          allowed_idps: The identity providers your users can select when connecting to this
+              application. Defaults to all IdPs configured in your account.
+
+          app_launcher_visible: Displays the application in the App Launcher.
+
+          auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
+              login. You must specify only one identity provider in allowed_idps.
+
+          custom_deny_message: The custom error message shown to a user when they are denied access to the
+              application.
+
+          custom_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing identity-based rules.
+
+          custom_non_identity_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing non-identity rules.
+
+          custom_pages: The custom pages that will be displayed when applicable for this application
+
+          destinations: List of destinations secured by Access. This supersedes `self_hosted_domains` to
+              allow for more flexibility in defining different types of domains. If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
+
+          enable_binding_cookie: Enables the binding cookie, which increases security against compromised
+              authorization tokens and CSRF attacks.
+
+          http_only_cookie_attribute: Enables the HttpOnly cookie attribute, which increases security against XSS
+              attacks.
+
+          logo_url: The image URL for the logo shown in the App Launcher dashboard.
+
+          name: The name of the application.
+
+          options_preflight_bypass: Allows options preflight requests to bypass Access authentication and go
+              directly to the origin. Cannot turn on if cors_headers is set.
+
+          path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
+              disabled, the JWT will scope to the hostname by default
+
+          policies: The policies that Access applies to the application, in ascending order of
+              precedence. Items can reference existing policies or create new policies
+              exclusive to the application.
+
+          same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
+              attacks.
+
+          scim_config: Configuration for provisioning to this application via SCIM. This is currently
+              in closed beta.
+
+          self_hosted_domains: List of public domains that Access will secure. This field is deprecated in
+              favor of `destinations` and will be supported until **November 21, 2025.** If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
+
+          service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
+
+          session_duration: The amount of time that tokens issued for this application will be valid. Must
+              be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
+              s, m, h.
+
+          skip_interstitial: Enables automatic authentication through cloudflared.
+
+          tags: The tags you want assigned to an application. Tags are used to filter
+              applications in the App Launcher dashboard.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
     def update(
         self,
         app_id: AppID,
@@ -2210,7 +2477,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncApplicationsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -2997,6 +3264,138 @@ class AsyncApplicationsResource(AsyncAPIResource):
           name: The name of the application.
 
           policies: The policies that Access applies to the application.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        domain: str,
+        target_criteria: Iterable[application_create_params.BrowserRdpApplicationTargetCriterion],
+        type: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
+        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
+        custom_deny_message: str | NotGiven = NOT_GIVEN,
+        custom_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        destinations: Iterable[application_create_params.BrowserRdpApplicationDestination] | NotGiven = NOT_GIVEN,
+        enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
+        http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        logo_url: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
+        path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.BrowserRdpApplicationPolicy] | NotGiven = NOT_GIVEN,
+        same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.BrowserRdpApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
+        service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
+        session_duration: str | NotGiven = NOT_GIVEN,
+        skip_interstitial: bool | NotGiven = NOT_GIVEN,
+        tags: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationCreateResponse]:
+        """
+        Adds a new application to Access.
+
+        Args:
+          domain: The primary hostname and path secured by Access. This domain will be displayed
+              if the app is visible in the App Launcher.
+
+          type: The application type.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          allow_authenticate_via_warp: When set to true, users can authenticate to this application using their WARP
+              session. When set to false this application will always require direct IdP
+              authentication. This setting always overrides the organization setting for WARP
+              authentication.
+
+          allowed_idps: The identity providers your users can select when connecting to this
+              application. Defaults to all IdPs configured in your account.
+
+          app_launcher_visible: Displays the application in the App Launcher.
+
+          auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
+              login. You must specify only one identity provider in allowed_idps.
+
+          custom_deny_message: The custom error message shown to a user when they are denied access to the
+              application.
+
+          custom_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing identity-based rules.
+
+          custom_non_identity_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing non-identity rules.
+
+          custom_pages: The custom pages that will be displayed when applicable for this application
+
+          destinations: List of destinations secured by Access. This supersedes `self_hosted_domains` to
+              allow for more flexibility in defining different types of domains. If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
+
+          enable_binding_cookie: Enables the binding cookie, which increases security against compromised
+              authorization tokens and CSRF attacks.
+
+          http_only_cookie_attribute: Enables the HttpOnly cookie attribute, which increases security against XSS
+              attacks.
+
+          logo_url: The image URL for the logo shown in the App Launcher dashboard.
+
+          name: The name of the application.
+
+          options_preflight_bypass: Allows options preflight requests to bypass Access authentication and go
+              directly to the origin. Cannot turn on if cors_headers is set.
+
+          path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
+              disabled, the JWT will scope to the hostname by default
+
+          policies: The policies that Access applies to the application, in ascending order of
+              precedence. Items can reference existing policies or create new policies
+              exclusive to the application.
+
+          same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
+              attacks.
+
+          scim_config: Configuration for provisioning to this application via SCIM. This is currently
+              in closed beta.
+
+          self_hosted_domains: List of public domains that Access will secure. This field is deprecated in
+              favor of `destinations` and will be supported until **November 21, 2025.** If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
+
+          service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
+
+          session_duration: The amount of time that tokens issued for this application will be valid. Must
+              be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
+              s, m, h.
+
+          skip_interstitial: Enables automatic authentication through cloudflared.
+
+          tags: The tags you want assigned to an application. Tags are used to filter
+              applications in the App Launcher dashboard.
 
           extra_headers: Send extra headers
 
@@ -3923,6 +4322,141 @@ class AsyncApplicationsResource(AsyncAPIResource):
           name: The name of the application.
 
           policies: The policies that Access applies to the application.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def update(
+        self,
+        app_id: AppID,
+        *,
+        domain: str,
+        target_criteria: Iterable[application_update_params.BrowserRdpApplicationTargetCriterion],
+        type: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
+        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
+        custom_deny_message: str | NotGiven = NOT_GIVEN,
+        custom_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        destinations: Iterable[application_update_params.BrowserRdpApplicationDestination] | NotGiven = NOT_GIVEN,
+        enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
+        http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        logo_url: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
+        path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.BrowserRdpApplicationPolicy] | NotGiven = NOT_GIVEN,
+        same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.BrowserRdpApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
+        service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
+        session_duration: str | NotGiven = NOT_GIVEN,
+        skip_interstitial: bool | NotGiven = NOT_GIVEN,
+        tags: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationUpdateResponse]:
+        """
+        Updates an Access application.
+
+        Args:
+          app_id: Identifier
+
+          domain: The primary hostname and path secured by Access. This domain will be displayed
+              if the app is visible in the App Launcher.
+
+          type: The application type.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          allow_authenticate_via_warp: When set to true, users can authenticate to this application using their WARP
+              session. When set to false this application will always require direct IdP
+              authentication. This setting always overrides the organization setting for WARP
+              authentication.
+
+          allowed_idps: The identity providers your users can select when connecting to this
+              application. Defaults to all IdPs configured in your account.
+
+          app_launcher_visible: Displays the application in the App Launcher.
+
+          auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
+              login. You must specify only one identity provider in allowed_idps.
+
+          custom_deny_message: The custom error message shown to a user when they are denied access to the
+              application.
+
+          custom_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing identity-based rules.
+
+          custom_non_identity_deny_url: The custom URL a user is redirected to when they are denied access to the
+              application when failing non-identity rules.
+
+          custom_pages: The custom pages that will be displayed when applicable for this application
+
+          destinations: List of destinations secured by Access. This supersedes `self_hosted_domains` to
+              allow for more flexibility in defining different types of domains. If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
+
+          enable_binding_cookie: Enables the binding cookie, which increases security against compromised
+              authorization tokens and CSRF attacks.
+
+          http_only_cookie_attribute: Enables the HttpOnly cookie attribute, which increases security against XSS
+              attacks.
+
+          logo_url: The image URL for the logo shown in the App Launcher dashboard.
+
+          name: The name of the application.
+
+          options_preflight_bypass: Allows options preflight requests to bypass Access authentication and go
+              directly to the origin. Cannot turn on if cors_headers is set.
+
+          path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
+              disabled, the JWT will scope to the hostname by default
+
+          policies: The policies that Access applies to the application, in ascending order of
+              precedence. Items can reference existing policies or create new policies
+              exclusive to the application.
+
+          same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
+              attacks.
+
+          scim_config: Configuration for provisioning to this application via SCIM. This is currently
+              in closed beta.
+
+          self_hosted_domains: List of public domains that Access will secure. This field is deprecated in
+              favor of `destinations` and will be supported until **November 21, 2025.** If
+              `destinations` are provided, then `self_hosted_domains` will be ignored.
+
+          service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
+
+          session_duration: The amount of time that tokens issued for this application will be valid. Must
+              be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
+              s, m, h.
+
+          skip_interstitial: Enables automatic authentication through cloudflared.
+
+          tags: The tags you want assigned to an application. Tags are used to filter
+              applications in the App Launcher dashboard.
 
           extra_headers: Send extra headers
 

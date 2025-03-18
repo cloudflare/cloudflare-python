@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Union, cast
+from datetime import date
 from typing_extensions import Literal
 
 import httpx
@@ -33,7 +34,7 @@ class DatasetsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> DatasetsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -53,6 +54,7 @@ class DatasetsResource(SyncAPIResource):
         self,
         *,
         dataset_type: Literal["RANKING_BUCKET", "REPORT"] | NotGiven = NOT_GIVEN,
+        date: Union[str, date] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
@@ -64,16 +66,18 @@ class DatasetsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> DatasetListResponse:
         """
-        Get a list of datasets.
+        Retrieves a list of datasets.
 
         Args:
-          dataset_type: Dataset type.
+          dataset_type: Filters results by dataset type.
 
-          format: Format results are returned in.
+          date: Filters results by the specified date.
 
-          limit: Limit the number of objects in the response.
+          format: Format in which results will be returned.
 
-          offset: Number of objects to skip before grabbing results.
+          limit: Limits the number of objects returned in the response.
+
+          offset: Skips the specified number of objects before fetching the results.
 
           extra_headers: Send extra headers
 
@@ -93,6 +97,7 @@ class DatasetsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "dataset_type": dataset_type,
+                        "date": date,
                         "format": format,
                         "limit": limit,
                         "offset": offset,
@@ -117,10 +122,10 @@ class DatasetsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> DatasetDownloadResponse:
         """
-        Get a url to download a single dataset.
+        Retrieves an URL to download a single dataset.
 
         Args:
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
           extra_headers: Send extra headers
 
@@ -155,14 +160,14 @@ class DatasetsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> str:
-        """Get the CSV content of a given dataset by alias or ID.
+        """Retrieves the CSV content of a given dataset by alias or ID.
 
-        When getting the content
-        by alias the latest dataset is returned, optionally filtered by the latest
-        available at a given date.
+        When getting the
+        content by alias the latest dataset is returned, optionally filtered by the
+        latest available at a given date.
 
         Args:
-          alias: Dataset alias or id
+          alias: Dataset alias or ID.
 
           extra_headers: Send extra headers
 
@@ -188,7 +193,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncDatasetsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -208,6 +213,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         self,
         *,
         dataset_type: Literal["RANKING_BUCKET", "REPORT"] | NotGiven = NOT_GIVEN,
+        date: Union[str, date] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         offset: int | NotGiven = NOT_GIVEN,
@@ -219,16 +225,18 @@ class AsyncDatasetsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> DatasetListResponse:
         """
-        Get a list of datasets.
+        Retrieves a list of datasets.
 
         Args:
-          dataset_type: Dataset type.
+          dataset_type: Filters results by dataset type.
 
-          format: Format results are returned in.
+          date: Filters results by the specified date.
 
-          limit: Limit the number of objects in the response.
+          format: Format in which results will be returned.
 
-          offset: Number of objects to skip before grabbing results.
+          limit: Limits the number of objects returned in the response.
+
+          offset: Skips the specified number of objects before fetching the results.
 
           extra_headers: Send extra headers
 
@@ -248,6 +256,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "dataset_type": dataset_type,
+                        "date": date,
                         "format": format,
                         "limit": limit,
                         "offset": offset,
@@ -272,10 +281,10 @@ class AsyncDatasetsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> DatasetDownloadResponse:
         """
-        Get a url to download a single dataset.
+        Retrieves an URL to download a single dataset.
 
         Args:
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
           extra_headers: Send extra headers
 
@@ -310,14 +319,14 @@ class AsyncDatasetsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> str:
-        """Get the CSV content of a given dataset by alias or ID.
+        """Retrieves the CSV content of a given dataset by alias or ID.
 
-        When getting the content
-        by alias the latest dataset is returned, optionally filtered by the latest
-        available at a given date.
+        When getting the
+        content by alias the latest dataset is returned, optionally filtered by the
+        latest available at a given date.
 
         Args:
-          alias: Dataset alias or id
+          alias: Dataset alias or ID.
 
           extra_headers: Send extra headers
 

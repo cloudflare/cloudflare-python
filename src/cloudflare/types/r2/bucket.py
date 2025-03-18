@@ -12,7 +12,7 @@ class Bucket(BaseModel):
     creation_date: Optional[str] = None
     """Creation timestamp"""
 
-    location: Optional[Literal["apac", "eeur", "enam", "weur", "wnam"]] = None
+    location: Optional[Literal["apac", "eeur", "enam", "weur", "wnam", "oc"]] = None
     """Location of the bucket"""
 
     name: Optional[str] = None

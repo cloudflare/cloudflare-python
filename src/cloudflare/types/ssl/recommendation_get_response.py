@@ -11,7 +11,7 @@ __all__ = ["RecommendationGetResponse"]
 
 class RecommendationGetResponse(BaseModel):
     id: Optional[str] = None
-    """Identifier of a recommedation result."""
+    """Identifier of a recommendation result."""
 
     modified_on: Optional[datetime] = None
 

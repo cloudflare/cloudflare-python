@@ -3,12 +3,13 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.zero_trust.dlp.datasets import VersionCreateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -26,7 +27,7 @@ class TestVersions:
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             body=[{"entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"}],
         )
-        assert_matches_type(Optional[VersionCreateResponse], version, path=["response"])
+        assert_matches_type(SyncSinglePage[VersionCreateResponse], version, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -41,7 +42,7 @@ class TestVersions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         version = response.parse()
-        assert_matches_type(Optional[VersionCreateResponse], version, path=["response"])
+        assert_matches_type(SyncSinglePage[VersionCreateResponse], version, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -56,7 +57,7 @@ class TestVersions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             version = response.parse()
-            assert_matches_type(Optional[VersionCreateResponse], version, path=["response"])
+            assert_matches_type(SyncSinglePage[VersionCreateResponse], version, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -92,7 +93,7 @@ class TestAsyncVersions:
             dataset_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             body=[{"entry_id": "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"}],
         )
-        assert_matches_type(Optional[VersionCreateResponse], version, path=["response"])
+        assert_matches_type(AsyncSinglePage[VersionCreateResponse], version, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -107,7 +108,7 @@ class TestAsyncVersions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         version = await response.parse()
-        assert_matches_type(Optional[VersionCreateResponse], version, path=["response"])
+        assert_matches_type(AsyncSinglePage[VersionCreateResponse], version, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -122,7 +123,7 @@ class TestAsyncVersions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             version = await response.parse()
-            assert_matches_type(Optional[VersionCreateResponse], version, path=["response"])
+            assert_matches_type(AsyncSinglePage[VersionCreateResponse], version, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

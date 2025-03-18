@@ -45,7 +45,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> TimeseriesGroupsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -83,7 +83,8 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupARCResponse:
         """
-        Percentage distribution of emails classified by ARC validation over time.
+        Retrieves the distribution of emails by ARC (Authenticated Received Chain)
+        validation over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -92,25 +93,26 @@ class TimeseriesGroupsResource(SyncAPIResource):
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          dkim: Filter for dkim.
+          dkim: Filters results by DKIM (DomainKeys Identified Mail) validation status.
 
-          dmarc: Filter for dmarc.
+          dmarc: Filters results by DMARC (Domain-based Message Authentication, Reporting and
+              Conformance) validation status.
 
-          encrypted: Filter for encrypted emails.
+          encrypted: Filters results by encryption status (encrypted vs. not-encrypted).
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          ip_version: Filter for ip version.
+          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
-          spf: Filter for spf.
+          spf: Filters results by SPF (Sender Policy Framework) validation status.
 
           extra_headers: Send extra headers
 
@@ -170,34 +172,36 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupDKIMResponse:
         """
-        Percentage distribution of emails classified by DKIM validation over time.
+        Retrieves the distribution of emails by DKIM (DomainKeys Identified Mail)
+        validation over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          arc: Filter for arc (Authenticated Received Chain).
+          arc: Filters results by ARC (Authenticated Received Chain) validation.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          dmarc: Filter for dmarc.
+          dmarc: Filters results by DMARC (Domain-based Message Authentication, Reporting and
+              Conformance) validation status.
 
-          encrypted: Filter for encrypted emails.
+          encrypted: Filters results by encryption status (encrypted vs. not-encrypted).
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          ip_version: Filter for ip version.
+          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
-          spf: Filter for spf.
+          spf: Filters results by SPF (Sender Policy Framework) validation status.
 
           extra_headers: Send extra headers
 
@@ -257,34 +261,35 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupDMARCResponse:
         """
-        Percentage distribution of emails classified by DMARC validation over time.
+        Retrieves the distribution of emails by DMARC (Domain-based Message
+        Authentication, Reporting and Conformance) validation over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          arc: Filter for arc (Authenticated Received Chain).
+          arc: Filters results by ARC (Authenticated Received Chain) validation.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          dkim: Filter for dkim.
+          dkim: Filters results by DKIM (DomainKeys Identified Mail) validation status.
 
-          encrypted: Filter for encrypted emails.
+          encrypted: Filters results by encryption status (encrypted vs. not-encrypted).
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          ip_version: Filter for ip version.
+          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
-          spf: Filter for spf.
+          spf: Filters results by SPF (Sender Policy Framework) validation status.
 
           extra_headers: Send extra headers
 
@@ -344,34 +349,36 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupEncryptedResponse:
         """
-        Percentage distribution of emails by encryption status over time.
+        Retrieves the distribution of emails by encryption status (encrypted vs.
+        not-encrypted) over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          arc: Filter for arc (Authenticated Received Chain).
+          arc: Filters results by ARC (Authenticated Received Chain) validation.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          dkim: Filter for dkim.
+          dkim: Filters results by DKIM (DomainKeys Identified Mail) validation status.
 
-          dmarc: Filter for dmarc.
+          dmarc: Filters results by DMARC (Domain-based Message Authentication, Reporting and
+              Conformance) validation status.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          ip_version: Filter for ip version.
+          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
-          spf: Filter for spf.
+          spf: Filters results by SPF (Sender Policy Framework) validation status.
 
           extra_headers: Send extra headers
 
@@ -431,34 +438,35 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupIPVersionResponse:
         """
-        Percentage distribution of emails by IP version over time.
+        Retrieves the distribution of emails by IP version over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          arc: Filter for arc (Authenticated Received Chain).
+          arc: Filters results by ARC (Authenticated Received Chain) validation.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          dkim: Filter for dkim.
+          dkim: Filters results by DKIM (DomainKeys Identified Mail) validation status.
 
-          dmarc: Filter for dmarc.
+          dmarc: Filters results by DMARC (Domain-based Message Authentication, Reporting and
+              Conformance) validation status.
 
-          encrypted: Filter for encrypted emails.
+          encrypted: Filters results by encryption status (encrypted vs. not-encrypted).
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
-          spf: Filter for spf.
+          spf: Filters results by SPF (Sender Policy Framework) validation status.
 
           extra_headers: Send extra headers
 
@@ -518,34 +526,36 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupSPFResponse:
         """
-        Percentage distribution of emails classified by SPF validation over time.
+        Retrieves the distribution of emails by SPF (Sender Policy Framework) validation
+        over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          arc: Filter for arc (Authenticated Received Chain).
+          arc: Filters results by ARC (Authenticated Received Chain) validation.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          dkim: Filter for dkim.
+          dkim: Filters results by DKIM (DomainKeys Identified Mail) validation status.
 
-          dmarc: Filter for dmarc.
+          dmarc: Filters results by DMARC (Domain-based Message Authentication, Reporting and
+              Conformance) validation status.
 
-          encrypted: Filter for encrypted emails.
+          encrypted: Filters results by encryption status (encrypted vs. not-encrypted).
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          ip_version: Filter for ip version.
+          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
           extra_headers: Send extra headers
 
@@ -588,7 +598,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncTimeseriesGroupsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -626,7 +636,8 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupARCResponse:
         """
-        Percentage distribution of emails classified by ARC validation over time.
+        Retrieves the distribution of emails by ARC (Authenticated Received Chain)
+        validation over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
@@ -635,25 +646,26 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          dkim: Filter for dkim.
+          dkim: Filters results by DKIM (DomainKeys Identified Mail) validation status.
 
-          dmarc: Filter for dmarc.
+          dmarc: Filters results by DMARC (Domain-based Message Authentication, Reporting and
+              Conformance) validation status.
 
-          encrypted: Filter for encrypted emails.
+          encrypted: Filters results by encryption status (encrypted vs. not-encrypted).
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          ip_version: Filter for ip version.
+          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
-          spf: Filter for spf.
+          spf: Filters results by SPF (Sender Policy Framework) validation status.
 
           extra_headers: Send extra headers
 
@@ -713,34 +725,36 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupDKIMResponse:
         """
-        Percentage distribution of emails classified by DKIM validation over time.
+        Retrieves the distribution of emails by DKIM (DomainKeys Identified Mail)
+        validation over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          arc: Filter for arc (Authenticated Received Chain).
+          arc: Filters results by ARC (Authenticated Received Chain) validation.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          dmarc: Filter for dmarc.
+          dmarc: Filters results by DMARC (Domain-based Message Authentication, Reporting and
+              Conformance) validation status.
 
-          encrypted: Filter for encrypted emails.
+          encrypted: Filters results by encryption status (encrypted vs. not-encrypted).
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          ip_version: Filter for ip version.
+          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
-          spf: Filter for spf.
+          spf: Filters results by SPF (Sender Policy Framework) validation status.
 
           extra_headers: Send extra headers
 
@@ -800,34 +814,35 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupDMARCResponse:
         """
-        Percentage distribution of emails classified by DMARC validation over time.
+        Retrieves the distribution of emails by DMARC (Domain-based Message
+        Authentication, Reporting and Conformance) validation over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          arc: Filter for arc (Authenticated Received Chain).
+          arc: Filters results by ARC (Authenticated Received Chain) validation.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          dkim: Filter for dkim.
+          dkim: Filters results by DKIM (DomainKeys Identified Mail) validation status.
 
-          encrypted: Filter for encrypted emails.
+          encrypted: Filters results by encryption status (encrypted vs. not-encrypted).
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          ip_version: Filter for ip version.
+          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
-          spf: Filter for spf.
+          spf: Filters results by SPF (Sender Policy Framework) validation status.
 
           extra_headers: Send extra headers
 
@@ -887,34 +902,36 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupEncryptedResponse:
         """
-        Percentage distribution of emails by encryption status over time.
+        Retrieves the distribution of emails by encryption status (encrypted vs.
+        not-encrypted) over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          arc: Filter for arc (Authenticated Received Chain).
+          arc: Filters results by ARC (Authenticated Received Chain) validation.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          dkim: Filter for dkim.
+          dkim: Filters results by DKIM (DomainKeys Identified Mail) validation status.
 
-          dmarc: Filter for dmarc.
+          dmarc: Filters results by DMARC (Domain-based Message Authentication, Reporting and
+              Conformance) validation status.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          ip_version: Filter for ip version.
+          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
-          spf: Filter for spf.
+          spf: Filters results by SPF (Sender Policy Framework) validation status.
 
           extra_headers: Send extra headers
 
@@ -974,34 +991,35 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupIPVersionResponse:
         """
-        Percentage distribution of emails by IP version over time.
+        Retrieves the distribution of emails by IP version over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          arc: Filter for arc (Authenticated Received Chain).
+          arc: Filters results by ARC (Authenticated Received Chain) validation.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          dkim: Filter for dkim.
+          dkim: Filters results by DKIM (DomainKeys Identified Mail) validation status.
 
-          dmarc: Filter for dmarc.
+          dmarc: Filters results by DMARC (Domain-based Message Authentication, Reporting and
+              Conformance) validation status.
 
-          encrypted: Filter for encrypted emails.
+          encrypted: Filters results by encryption status (encrypted vs. not-encrypted).
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
-          spf: Filter for spf.
+          spf: Filters results by SPF (Sender Policy Framework) validation status.
 
           extra_headers: Send extra headers
 
@@ -1061,34 +1079,36 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupSPFResponse:
         """
-        Percentage distribution of emails classified by SPF validation over time.
+        Retrieves the distribution of emails by SPF (Sender Policy Framework) validation
+        over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          arc: Filter for arc (Authenticated Received Chain).
+          arc: Filters results by ARC (Authenticated Received Chain) validation.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          dkim: Filter for dkim.
+          dkim: Filters results by DKIM (DomainKeys Identified Mail) validation status.
 
-          dmarc: Filter for dmarc.
+          dmarc: Filters results by DMARC (Domain-based Message Authentication, Reporting and
+              Conformance) validation status.
 
-          encrypted: Filter for encrypted emails.
+          encrypted: Filters results by encryption status (encrypted vs. not-encrypted).
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          ip_version: Filter for ip version.
+          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
           extra_headers: Send extra headers
 

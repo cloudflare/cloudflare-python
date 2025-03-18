@@ -3,16 +3,14 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zero_trust.access.certificates import (
-    SettingGetResponse,
-    SettingUpdateResponse,
-)
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.types.zero_trust.access.certificates import CertificateSettings
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -33,7 +31,7 @@ class TestSettings:
             ],
             account_id="account_id",
         )
-        assert_matches_type(Optional[SettingUpdateResponse], setting, path=["response"])
+        assert_matches_type(SyncSinglePage[CertificateSettings], setting, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -48,7 +46,7 @@ class TestSettings:
             ],
             account_id="account_id",
         )
-        assert_matches_type(Optional[SettingUpdateResponse], setting, path=["response"])
+        assert_matches_type(SyncSinglePage[CertificateSettings], setting, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -67,7 +65,7 @@ class TestSettings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         setting = response.parse()
-        assert_matches_type(Optional[SettingUpdateResponse], setting, path=["response"])
+        assert_matches_type(SyncSinglePage[CertificateSettings], setting, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -86,14 +84,14 @@ class TestSettings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingUpdateResponse], setting, path=["response"])
+            assert_matches_type(SyncSinglePage[CertificateSettings], setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.certificates.settings.with_raw_response.update(
                 settings=[
                     {
@@ -105,7 +103,7 @@ class TestSettings:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.certificates.settings.with_raw_response.update(
                 settings=[
                     {
@@ -123,7 +121,7 @@ class TestSettings:
         setting = client.zero_trust.access.certificates.settings.get(
             account_id="account_id",
         )
-        assert_matches_type(Optional[SettingGetResponse], setting, path=["response"])
+        assert_matches_type(SyncSinglePage[CertificateSettings], setting, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -131,7 +129,7 @@ class TestSettings:
         setting = client.zero_trust.access.certificates.settings.get(
             account_id="account_id",
         )
-        assert_matches_type(Optional[SettingGetResponse], setting, path=["response"])
+        assert_matches_type(SyncSinglePage[CertificateSettings], setting, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -143,7 +141,7 @@ class TestSettings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         setting = response.parse()
-        assert_matches_type(Optional[SettingGetResponse], setting, path=["response"])
+        assert_matches_type(SyncSinglePage[CertificateSettings], setting, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -155,19 +153,19 @@ class TestSettings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             setting = response.parse()
-            assert_matches_type(Optional[SettingGetResponse], setting, path=["response"])
+            assert_matches_type(SyncSinglePage[CertificateSettings], setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.certificates.settings.with_raw_response.get(
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.zero_trust.access.certificates.settings.with_raw_response.get(
                 account_id="account_id",
             )
@@ -189,7 +187,7 @@ class TestAsyncSettings:
             ],
             account_id="account_id",
         )
-        assert_matches_type(Optional[SettingUpdateResponse], setting, path=["response"])
+        assert_matches_type(AsyncSinglePage[CertificateSettings], setting, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -204,7 +202,7 @@ class TestAsyncSettings:
             ],
             account_id="account_id",
         )
-        assert_matches_type(Optional[SettingUpdateResponse], setting, path=["response"])
+        assert_matches_type(AsyncSinglePage[CertificateSettings], setting, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -223,7 +221,7 @@ class TestAsyncSettings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         setting = await response.parse()
-        assert_matches_type(Optional[SettingUpdateResponse], setting, path=["response"])
+        assert_matches_type(AsyncSinglePage[CertificateSettings], setting, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -242,14 +240,14 @@ class TestAsyncSettings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingUpdateResponse], setting, path=["response"])
+            assert_matches_type(AsyncSinglePage[CertificateSettings], setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.certificates.settings.with_raw_response.update(
                 settings=[
                     {
@@ -261,7 +259,7 @@ class TestAsyncSettings:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.certificates.settings.with_raw_response.update(
                 settings=[
                     {
@@ -279,7 +277,7 @@ class TestAsyncSettings:
         setting = await async_client.zero_trust.access.certificates.settings.get(
             account_id="account_id",
         )
-        assert_matches_type(Optional[SettingGetResponse], setting, path=["response"])
+        assert_matches_type(AsyncSinglePage[CertificateSettings], setting, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -287,7 +285,7 @@ class TestAsyncSettings:
         setting = await async_client.zero_trust.access.certificates.settings.get(
             account_id="account_id",
         )
-        assert_matches_type(Optional[SettingGetResponse], setting, path=["response"])
+        assert_matches_type(AsyncSinglePage[CertificateSettings], setting, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -299,7 +297,7 @@ class TestAsyncSettings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         setting = await response.parse()
-        assert_matches_type(Optional[SettingGetResponse], setting, path=["response"])
+        assert_matches_type(AsyncSinglePage[CertificateSettings], setting, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -311,19 +309,19 @@ class TestAsyncSettings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             setting = await response.parse()
-            assert_matches_type(Optional[SettingGetResponse], setting, path=["response"])
+            assert_matches_type(AsyncSinglePage[CertificateSettings], setting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.certificates.settings.with_raw_response.get(
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.zero_trust.access.certificates.settings.with_raw_response.get(
                 account_id="account_id",
             )

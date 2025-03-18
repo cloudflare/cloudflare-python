@@ -45,7 +45,7 @@ class AnnotationsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AnnotationsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -80,10 +80,10 @@ class AnnotationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AnnotationListResponse:
         """
-        Get the latest annotations.
+        Retrieves the latest annotations.
 
         Args:
-          asn: Single ASN as integer.
+          asn: Single Autonomous System Number (ASN) as integer.
 
           date_end: End of the date range (inclusive).
 
@@ -92,13 +92,13 @@ class AnnotationsResource(SyncAPIResource):
 
           date_start: Start of the date range (inclusive).
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          limit: Limit the number of objects in the response.
+          limit: Limits the number of objects returned in the response.
 
-          location: Location Alpha2 code.
+          location: Location alpha-2 code.
 
-          offset: Number of objects to skip before grabbing results.
+          offset: Skips the specified number of objects before fetching the results.
 
           extra_headers: Send extra headers
 
@@ -142,7 +142,7 @@ class AsyncAnnotationsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncAnnotationsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -177,10 +177,10 @@ class AsyncAnnotationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AnnotationListResponse:
         """
-        Get the latest annotations.
+        Retrieves the latest annotations.
 
         Args:
-          asn: Single ASN as integer.
+          asn: Single Autonomous System Number (ASN) as integer.
 
           date_end: End of the date range (inclusive).
 
@@ -189,13 +189,13 @@ class AsyncAnnotationsResource(AsyncAPIResource):
 
           date_start: Start of the date range (inclusive).
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          limit: Limit the number of objects in the response.
+          limit: Limits the number of objects returned in the response.
 
-          location: Location Alpha2 code.
+          location: Location alpha-2 code.
 
-          offset: Number of objects to skip before grabbing results.
+          offset: Skips the specified number of objects before fetching the results.
 
           extra_headers: Send extra headers
 

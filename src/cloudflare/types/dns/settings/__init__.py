@@ -2,11 +2,9 @@
 
 from __future__ import annotations
 
-from .view_edit_params import ViewEditParams as ViewEditParams
-from .view_list_params import ViewListParams as ViewListParams
-from .view_get_response import ViewGetResponse as ViewGetResponse
-from .view_create_params import ViewCreateParams as ViewCreateParams
-from .view_edit_response import ViewEditResponse as ViewEditResponse
-from .view_list_response import ViewListResponse as ViewListResponse
-from .view_create_response import ViewCreateResponse as ViewCreateResponse
-from .view_delete_response import ViewDeleteResponse as ViewDeleteResponse
+from .zone_edit_params import ZoneEditParams as ZoneEditParams
+from .zone_get_response import ZoneGetResponse as ZoneGetResponse
+from .zone_edit_response import ZoneEditResponse as ZoneEditResponse
+from .account_edit_params import AccountEditParams as AccountEditParams
+from .account_get_response import AccountGetResponse as AccountGetResponse
+from .account_edit_response import AccountEditResponse as AccountEditResponse

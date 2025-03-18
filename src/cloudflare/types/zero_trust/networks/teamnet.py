@@ -28,7 +28,7 @@ class Teamnet(BaseModel):
     network: Optional[str] = None
     """The private IPv4 or IPv6 range connected by the route, in CIDR notation."""
 
-    tun_type: Optional[Literal["cfd_tunnel", "warp_connector", "ip_sec", "gre", "cni"]] = None
+    tun_type: Optional[Literal["cfd_tunnel", "warp_connector", "warp", "magic", "ip_sec", "gre", "cni"]] = None
     """The type of tunnel."""
 
     tunnel_id: Optional[str] = None

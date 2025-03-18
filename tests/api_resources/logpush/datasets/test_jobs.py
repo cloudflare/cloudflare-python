@@ -9,7 +9,8 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.logpush.datasets import JobGetResponse
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.types.logpush import LogpushJob
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,7 +25,7 @@ class TestJobs:
             dataset_id="gateway_dns",
             account_id="account_id",
         )
-        assert_matches_type(Optional[JobGetResponse], job, path=["response"])
+        assert_matches_type(SyncSinglePage[Optional[LogpushJob]], job, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -33,7 +34,7 @@ class TestJobs:
             dataset_id="gateway_dns",
             account_id="account_id",
         )
-        assert_matches_type(Optional[JobGetResponse], job, path=["response"])
+        assert_matches_type(SyncSinglePage[Optional[LogpushJob]], job, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -46,7 +47,7 @@ class TestJobs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         job = response.parse()
-        assert_matches_type(Optional[JobGetResponse], job, path=["response"])
+        assert_matches_type(SyncSinglePage[Optional[LogpushJob]], job, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -59,7 +60,7 @@ class TestJobs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             job = response.parse()
-            assert_matches_type(Optional[JobGetResponse], job, path=["response"])
+            assert_matches_type(SyncSinglePage[Optional[LogpushJob]], job, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -72,13 +73,13 @@ class TestJobs:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.logpush.datasets.jobs.with_raw_response.get(
                 dataset_id="gateway_dns",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.logpush.datasets.jobs.with_raw_response.get(
                 dataset_id="gateway_dns",
                 account_id="account_id",
@@ -95,7 +96,7 @@ class TestAsyncJobs:
             dataset_id="gateway_dns",
             account_id="account_id",
         )
-        assert_matches_type(Optional[JobGetResponse], job, path=["response"])
+        assert_matches_type(AsyncSinglePage[Optional[LogpushJob]], job, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -104,7 +105,7 @@ class TestAsyncJobs:
             dataset_id="gateway_dns",
             account_id="account_id",
         )
-        assert_matches_type(Optional[JobGetResponse], job, path=["response"])
+        assert_matches_type(AsyncSinglePage[Optional[LogpushJob]], job, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -117,7 +118,7 @@ class TestAsyncJobs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         job = await response.parse()
-        assert_matches_type(Optional[JobGetResponse], job, path=["response"])
+        assert_matches_type(AsyncSinglePage[Optional[LogpushJob]], job, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -130,7 +131,7 @@ class TestAsyncJobs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             job = await response.parse()
-            assert_matches_type(Optional[JobGetResponse], job, path=["response"])
+            assert_matches_type(AsyncSinglePage[Optional[LogpushJob]], job, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -143,13 +144,13 @@ class TestAsyncJobs:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.logpush.datasets.jobs.with_raw_response.get(
                 dataset_id="gateway_dns",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.logpush.datasets.jobs.with_raw_response.get(
                 dataset_id="gateway_dns",
                 account_id="account_id",

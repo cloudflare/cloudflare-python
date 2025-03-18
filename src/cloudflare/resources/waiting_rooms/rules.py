@@ -2,16 +2,13 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, Optional, cast
+from typing import Iterable
 from typing_extensions import Literal
 
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ..._utils import maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -20,14 +17,10 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._wrappers import ResultWrapper
-from ..._base_client import make_request_options
+from ...pagination import SyncSinglePage, AsyncSinglePage
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.waiting_rooms import rule_edit_params, rule_create_params, rule_update_params
-from ...types.waiting_rooms.rule_get_response import RuleGetResponse
-from ...types.waiting_rooms.rule_edit_response import RuleEditResponse
-from ...types.waiting_rooms.rule_create_response import RuleCreateResponse
-from ...types.waiting_rooms.rule_delete_response import RuleDeleteResponse
-from ...types.waiting_rooms.rule_update_response import RuleUpdateResponse
+from ...types.waiting_rooms.waiting_room_rule import WaitingRoomRule
 
 __all__ = ["RulesResource", "AsyncRulesResource"]
 
@@ -36,7 +29,7 @@ class RulesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> RulesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -64,7 +57,7 @@ class RulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RuleCreateResponse]:
+    ) -> SyncSinglePage[WaitingRoomRule]:
         """Only available for the Waiting Room Advanced subscription.
 
         Creates a rule for a
@@ -85,17 +78,15 @@ class RulesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
-        return self._post(
+        return self._get_api_list(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules",
+            page=SyncSinglePage[WaitingRoomRule],
             body=maybe_transform(rules, rule_create_params.RuleCreateParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[RuleCreateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[RuleCreateResponse]], ResultWrapper[RuleCreateResponse]),
+            model=WaitingRoomRule,
+            method="post",
         )
 
     def update(
@@ -110,7 +101,7 @@ class RulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RuleUpdateResponse]:
+    ) -> SyncSinglePage[WaitingRoomRule]:
         """Only available for the Waiting Room Advanced subscription.
 
         Replaces all rules
@@ -131,17 +122,15 @@ class RulesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
-        return self._put(
+        return self._get_api_list(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules",
+            page=SyncSinglePage[WaitingRoomRule],
             body=maybe_transform(rules, Iterable[rule_update_params.Rule]),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[RuleUpdateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[RuleUpdateResponse]], ResultWrapper[RuleUpdateResponse]),
+            model=WaitingRoomRule,
+            method="put",
         )
 
     def delete(
@@ -156,7 +145,7 @@ class RulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RuleDeleteResponse]:
+    ) -> SyncSinglePage[WaitingRoomRule]:
         """
         Deletes a rule for a waiting room.
 
@@ -179,16 +168,14 @@ class RulesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
-        return self._delete(
+        return self._get_api_list(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules/{rule_id}",
+            page=SyncSinglePage[WaitingRoomRule],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[RuleDeleteResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[RuleDeleteResponse]], ResultWrapper[RuleDeleteResponse]),
+            model=WaitingRoomRule,
+            method="delete",
         )
 
     def edit(
@@ -208,7 +195,7 @@ class RulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RuleEditResponse]:
+    ) -> SyncSinglePage[WaitingRoomRule]:
         """
         Patches a rule for a waiting room.
 
@@ -241,8 +228,9 @@ class RulesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
-        return self._patch(
+        return self._get_api_list(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules/{rule_id}",
+            page=SyncSinglePage[WaitingRoomRule],
             body=maybe_transform(
                 {
                     "action": action,
@@ -254,13 +242,10 @@ class RulesResource(SyncAPIResource):
                 rule_edit_params.RuleEditParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[RuleEditResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[RuleEditResponse]], ResultWrapper[RuleEditResponse]),
+            model=WaitingRoomRule,
+            method="patch",
         )
 
     def get(
@@ -274,7 +259,7 @@ class RulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RuleGetResponse]:
+    ) -> SyncSinglePage[WaitingRoomRule]:
         """
         Lists rules for a waiting room.
 
@@ -293,16 +278,13 @@ class RulesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules",
+            page=SyncSinglePage[WaitingRoomRule],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[RuleGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[RuleGetResponse]], ResultWrapper[RuleGetResponse]),
+            model=WaitingRoomRule,
         )
 
 
@@ -310,7 +292,7 @@ class AsyncRulesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncRulesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -326,7 +308,7 @@ class AsyncRulesResource(AsyncAPIResource):
         """
         return AsyncRulesResourceWithStreamingResponse(self)
 
-    async def create(
+    def create(
         self,
         waiting_room_id: str,
         *,
@@ -338,7 +320,7 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RuleCreateResponse]:
+    ) -> AsyncPaginator[WaitingRoomRule, AsyncSinglePage[WaitingRoomRule]]:
         """Only available for the Waiting Room Advanced subscription.
 
         Creates a rule for a
@@ -359,20 +341,18 @@ class AsyncRulesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
-        return await self._post(
+        return self._get_api_list(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules",
-            body=await async_maybe_transform(rules, rule_create_params.RuleCreateParams),
+            page=AsyncSinglePage[WaitingRoomRule],
+            body=maybe_transform(rules, rule_create_params.RuleCreateParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[RuleCreateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[RuleCreateResponse]], ResultWrapper[RuleCreateResponse]),
+            model=WaitingRoomRule,
+            method="post",
         )
 
-    async def update(
+    def update(
         self,
         waiting_room_id: str,
         *,
@@ -384,7 +364,7 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RuleUpdateResponse]:
+    ) -> AsyncPaginator[WaitingRoomRule, AsyncSinglePage[WaitingRoomRule]]:
         """Only available for the Waiting Room Advanced subscription.
 
         Replaces all rules
@@ -405,20 +385,18 @@ class AsyncRulesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
-        return await self._put(
+        return self._get_api_list(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules",
-            body=await async_maybe_transform(rules, Iterable[rule_update_params.Rule]),
+            page=AsyncSinglePage[WaitingRoomRule],
+            body=maybe_transform(rules, Iterable[rule_update_params.Rule]),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[RuleUpdateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[RuleUpdateResponse]], ResultWrapper[RuleUpdateResponse]),
+            model=WaitingRoomRule,
+            method="put",
         )
 
-    async def delete(
+    def delete(
         self,
         rule_id: str,
         *,
@@ -430,7 +408,7 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RuleDeleteResponse]:
+    ) -> AsyncPaginator[WaitingRoomRule, AsyncSinglePage[WaitingRoomRule]]:
         """
         Deletes a rule for a waiting room.
 
@@ -453,19 +431,17 @@ class AsyncRulesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
-        return await self._delete(
+        return self._get_api_list(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules/{rule_id}",
+            page=AsyncSinglePage[WaitingRoomRule],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[RuleDeleteResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[RuleDeleteResponse]], ResultWrapper[RuleDeleteResponse]),
+            model=WaitingRoomRule,
+            method="delete",
         )
 
-    async def edit(
+    def edit(
         self,
         rule_id: str,
         *,
@@ -482,7 +458,7 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RuleEditResponse]:
+    ) -> AsyncPaginator[WaitingRoomRule, AsyncSinglePage[WaitingRoomRule]]:
         """
         Patches a rule for a waiting room.
 
@@ -515,9 +491,10 @@ class AsyncRulesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         if not rule_id:
             raise ValueError(f"Expected a non-empty value for `rule_id` but received {rule_id!r}")
-        return await self._patch(
+        return self._get_api_list(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules/{rule_id}",
-            body=await async_maybe_transform(
+            page=AsyncSinglePage[WaitingRoomRule],
+            body=maybe_transform(
                 {
                     "action": action,
                     "expression": expression,
@@ -528,16 +505,13 @@ class AsyncRulesResource(AsyncAPIResource):
                 rule_edit_params.RuleEditParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[RuleEditResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[RuleEditResponse]], ResultWrapper[RuleEditResponse]),
+            model=WaitingRoomRule,
+            method="patch",
         )
 
-    async def get(
+    def get(
         self,
         waiting_room_id: str,
         *,
@@ -548,7 +522,7 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RuleGetResponse]:
+    ) -> AsyncPaginator[WaitingRoomRule, AsyncSinglePage[WaitingRoomRule]]:
         """
         Lists rules for a waiting room.
 
@@ -567,16 +541,13 @@ class AsyncRulesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules",
+            page=AsyncSinglePage[WaitingRoomRule],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[RuleGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[RuleGetResponse]], ResultWrapper[RuleGetResponse]),
+            model=WaitingRoomRule,
         )
 
 

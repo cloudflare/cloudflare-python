@@ -35,7 +35,7 @@ class CustomResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> CustomResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -85,6 +85,7 @@ class CustomResource(SyncAPIResource):
         account_id: str,
         entries: Iterable[custom_create_params.DLPNewCustomProfileEntry],
         name: str,
+        ai_context_enabled: bool | NotGiven = NOT_GIVEN,
         allowed_match_count: int | NotGiven = NOT_GIVEN,
         confidence_threshold: Optional[str] | NotGiven = NOT_GIVEN,
         context_awareness: ContextAwarenessParam | NotGiven = NOT_GIVEN,
@@ -130,6 +131,7 @@ class CustomResource(SyncAPIResource):
         profiles: Iterable[custom_create_params.Variant0Profile] | NotGiven = NOT_GIVEN,
         entries: Iterable[custom_create_params.DLPNewCustomProfileEntry] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        ai_context_enabled: bool | NotGiven = NOT_GIVEN,
         allowed_match_count: int | NotGiven = NOT_GIVEN,
         confidence_threshold: Optional[str] | NotGiven = NOT_GIVEN,
         context_awareness: ContextAwarenessParam | NotGiven = NOT_GIVEN,
@@ -154,6 +156,7 @@ class CustomResource(SyncAPIResource):
                         "profiles": profiles,
                         "entries": entries,
                         "name": name,
+                        "ai_context_enabled": ai_context_enabled,
                         "allowed_match_count": allowed_match_count,
                         "confidence_threshold": confidence_threshold,
                         "context_awareness": context_awareness,
@@ -182,6 +185,7 @@ class CustomResource(SyncAPIResource):
         *,
         account_id: str,
         name: str,
+        ai_context_enabled: bool | NotGiven = NOT_GIVEN,
         allowed_match_count: Optional[int] | NotGiven = NOT_GIVEN,
         confidence_threshold: Optional[str] | NotGiven = NOT_GIVEN,
         context_awareness: ContextAwarenessParam | NotGiven = NOT_GIVEN,
@@ -229,6 +233,7 @@ class CustomResource(SyncAPIResource):
                 body=maybe_transform(
                     {
                         "name": name,
+                        "ai_context_enabled": ai_context_enabled,
                         "allowed_match_count": allowed_match_count,
                         "confidence_threshold": confidence_threshold,
                         "context_awareness": context_awareness,
@@ -342,7 +347,7 @@ class AsyncCustomResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncCustomResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -392,6 +397,7 @@ class AsyncCustomResource(AsyncAPIResource):
         account_id: str,
         entries: Iterable[custom_create_params.DLPNewCustomProfileEntry],
         name: str,
+        ai_context_enabled: bool | NotGiven = NOT_GIVEN,
         allowed_match_count: int | NotGiven = NOT_GIVEN,
         confidence_threshold: Optional[str] | NotGiven = NOT_GIVEN,
         context_awareness: ContextAwarenessParam | NotGiven = NOT_GIVEN,
@@ -437,6 +443,7 @@ class AsyncCustomResource(AsyncAPIResource):
         profiles: Iterable[custom_create_params.Variant0Profile] | NotGiven = NOT_GIVEN,
         entries: Iterable[custom_create_params.DLPNewCustomProfileEntry] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        ai_context_enabled: bool | NotGiven = NOT_GIVEN,
         allowed_match_count: int | NotGiven = NOT_GIVEN,
         confidence_threshold: Optional[str] | NotGiven = NOT_GIVEN,
         context_awareness: ContextAwarenessParam | NotGiven = NOT_GIVEN,
@@ -461,6 +468,7 @@ class AsyncCustomResource(AsyncAPIResource):
                         "profiles": profiles,
                         "entries": entries,
                         "name": name,
+                        "ai_context_enabled": ai_context_enabled,
                         "allowed_match_count": allowed_match_count,
                         "confidence_threshold": confidence_threshold,
                         "context_awareness": context_awareness,
@@ -489,6 +497,7 @@ class AsyncCustomResource(AsyncAPIResource):
         *,
         account_id: str,
         name: str,
+        ai_context_enabled: bool | NotGiven = NOT_GIVEN,
         allowed_match_count: Optional[int] | NotGiven = NOT_GIVEN,
         confidence_threshold: Optional[str] | NotGiven = NOT_GIVEN,
         context_awareness: ContextAwarenessParam | NotGiven = NOT_GIVEN,
@@ -536,6 +545,7 @@ class AsyncCustomResource(AsyncAPIResource):
                 body=await async_maybe_transform(
                     {
                         "name": name,
+                        "ai_context_enabled": ai_context_enabled,
                         "allowed_match_count": allowed_match_count,
                         "confidence_threshold": confidence_threshold,
                         "context_awareness": context_awareness,

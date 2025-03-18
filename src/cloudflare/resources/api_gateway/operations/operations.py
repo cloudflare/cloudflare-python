@@ -21,7 +21,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from ....pagination import SyncSinglePage, AsyncSinglePage, SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import AsyncPaginator, make_request_options
 from .schema_validation import (
     SchemaValidationResource,
@@ -55,7 +55,7 @@ class OperationsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> OperationsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -265,7 +265,7 @@ class OperationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OperationBulkCreateResponse:
+    ) -> SyncSinglePage[OperationBulkCreateResponse]:
         """Add one or more operations to a zone.
 
         Endpoints can contain path variables.
@@ -287,17 +287,15 @@ class OperationsResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return self._post(
+        return self._get_api_list(
             f"/zones/{zone_id}/api_gateway/operations",
+            page=SyncSinglePage[OperationBulkCreateResponse],
             body=maybe_transform(body, Iterable[operation_bulk_create_params.Body]),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[OperationBulkCreateResponse]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[OperationBulkCreateResponse], ResultWrapper[OperationBulkCreateResponse]),
+            model=OperationBulkCreateResponse,
+            method="post",
         )
 
     def bulk_delete(
@@ -394,7 +392,7 @@ class AsyncOperationsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncOperationsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -593,7 +591,7 @@ class AsyncOperationsResource(AsyncAPIResource):
             cast_to=OperationDeleteResponse,
         )
 
-    async def bulk_create(
+    def bulk_create(
         self,
         *,
         zone_id: str,
@@ -604,7 +602,7 @@ class AsyncOperationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OperationBulkCreateResponse:
+    ) -> AsyncPaginator[OperationBulkCreateResponse, AsyncSinglePage[OperationBulkCreateResponse]]:
         """Add one or more operations to a zone.
 
         Endpoints can contain path variables.
@@ -626,17 +624,15 @@ class AsyncOperationsResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return await self._post(
+        return self._get_api_list(
             f"/zones/{zone_id}/api_gateway/operations",
-            body=await async_maybe_transform(body, Iterable[operation_bulk_create_params.Body]),
+            page=AsyncSinglePage[OperationBulkCreateResponse],
+            body=maybe_transform(body, Iterable[operation_bulk_create_params.Body]),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[OperationBulkCreateResponse]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[OperationBulkCreateResponse], ResultWrapper[OperationBulkCreateResponse]),
+            model=OperationBulkCreateResponse,
+            method="post",
         )
 
     async def bulk_delete(

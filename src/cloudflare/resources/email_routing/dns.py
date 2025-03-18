@@ -20,11 +20,12 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ..._base_client import make_request_options
+from ...pagination import SyncSinglePage, AsyncSinglePage
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.email_routing import dns_get_params, dns_edit_params, dns_create_params
 from ...types.email_routing.settings import Settings
+from ...types.email_routing.dns_record import DNSRecord
 from ...types.email_routing.dns_get_response import DNSGetResponse
-from ...types.email_routing.dns_delete_response import DNSDeleteResponse
 
 __all__ = ["DNSResource", "AsyncDNSResource"]
 
@@ -33,7 +34,7 @@ class DNSResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> DNSResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -103,7 +104,7 @@ class DNSResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DNSDeleteResponse:
+    ) -> SyncSinglePage[DNSRecord]:
         """Disable your Email Routing zone.
 
         Also removes additional MX records previously
@@ -122,15 +123,14 @@ class DNSResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            DNSDeleteResponse,
-            self._delete(
-                f"/zones/{zone_id}/email/routing/dns",
-                options=make_request_options(
-                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-                ),
-                cast_to=cast(Any, DNSDeleteResponse),  # Union types cannot be passed in as arguments in the type system
+        return self._get_api_list(
+            f"/zones/{zone_id}/email/routing/dns",
+            page=SyncSinglePage[DNSRecord],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
+            model=DNSRecord,
+            method="delete",
         )
 
     def edit(
@@ -226,7 +226,7 @@ class AsyncDNSResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncDNSResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -286,7 +286,7 @@ class AsyncDNSResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[Settings]], ResultWrapper[Settings]),
         )
 
-    async def delete(
+    def delete(
         self,
         *,
         zone_id: str,
@@ -296,7 +296,7 @@ class AsyncDNSResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DNSDeleteResponse:
+    ) -> AsyncPaginator[DNSRecord, AsyncSinglePage[DNSRecord]]:
         """Disable your Email Routing zone.
 
         Also removes additional MX records previously
@@ -315,15 +315,14 @@ class AsyncDNSResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            DNSDeleteResponse,
-            await self._delete(
-                f"/zones/{zone_id}/email/routing/dns",
-                options=make_request_options(
-                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-                ),
-                cast_to=cast(Any, DNSDeleteResponse),  # Union types cannot be passed in as arguments in the type system
+        return self._get_api_list(
+            f"/zones/{zone_id}/email/routing/dns",
+            page=AsyncSinglePage[DNSRecord],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
+            model=DNSRecord,
+            method="delete",
         )
 
     async def edit(

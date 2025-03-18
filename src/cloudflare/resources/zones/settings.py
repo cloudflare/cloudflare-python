@@ -35,7 +35,7 @@ class SettingsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> SettingsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -114,6 +114,43 @@ class SettingsResource(SyncAPIResource):
           id: ID of the zone setting.
 
           value: Current value of the zone setting.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def edit(
+        self,
+        setting_id: str,
+        *,
+        zone_id: str,
+        id: Literal["aegis"],
+        value: setting_edit_params.ZonesCacheRulesAegisValue | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[SettingEditResponse]:
+        """
+        Updates a single zone setting by the identifier
+
+        Args:
+          zone_id: Identifier
+
+          setting_id: Setting name
+
+          id: ID of the zone setting.
+
+          value: Value of the zone setting.
 
           extra_headers: Send extra headers
 
@@ -1255,6 +1292,80 @@ class SettingsResource(SyncAPIResource):
         setting_id: str,
         *,
         zone_id: str,
+        id: Literal["origin_h2_max_streams"],
+        value: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[SettingEditResponse]:
+        """
+        Updates a single zone setting by the identifier
+
+        Args:
+          zone_id: Identifier
+
+          setting_id: Setting name
+
+          id: Value of the zone setting.
+
+          value: Value of the Origin H2 Max Streams Setting.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def edit(
+        self,
+        setting_id: str,
+        *,
+        zone_id: str,
+        id: Literal["origin_max_http_version"],
+        value: Literal["2", "1"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[SettingEditResponse]:
+        """
+        Updates a single zone setting by the identifier
+
+        Args:
+          zone_id: Identifier
+
+          setting_id: Setting name
+
+          id: Value of the zone setting.
+
+          value: Value of the Origin Max HTTP Version Setting.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def edit(
+        self,
+        setting_id: str,
+        *,
+        zone_id: str,
         id: Literal["polish"],
         value: Literal["off", "lossless", "lossy"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1293,6 +1404,43 @@ class SettingsResource(SyncAPIResource):
         *,
         zone_id: str,
         id: Literal["prefetch_preload"],
+        value: Literal["on", "off"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[SettingEditResponse]:
+        """
+        Updates a single zone setting by the identifier
+
+        Args:
+          zone_id: Identifier
+
+          setting_id: Setting name
+
+          id: ID of the zone setting.
+
+          value: Current value of the zone setting.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def edit(
+        self,
+        setting_id: str,
+        *,
+        zone_id: str,
+        id: Literal["privacy_pass"],
         value: Literal["on", "off"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2063,7 +2211,7 @@ class SettingsResource(SyncAPIResource):
         """
         ...
 
-    @required_args(["zone_id", "id", "value"], ["zone_id"])
+    @required_args(["zone_id", "id", "value"], ["zone_id", "id"], ["zone_id"])
     def edit(
         self,
         setting_id: str,
@@ -2071,6 +2219,7 @@ class SettingsResource(SyncAPIResource):
         zone_id: str,
         id: Literal["0rtt"]
         | Literal["advanced_ddos"]
+        | Literal["aegis"]
         | Literal["always_online"]
         | Literal["always_use_https"]
         | Literal["automatic_https_rewrites"]
@@ -2100,8 +2249,11 @@ class SettingsResource(SyncAPIResource):
         | Literal["opportunistic_onion"]
         | Literal["orange_to_orange"]
         | Literal["origin_error_page_pass_thru"]
+        | Literal["origin_h2_max_streams"]
+        | Literal["origin_max_http_version"]
         | Literal["polish"]
         | Literal["prefetch_preload"]
+        | Literal["privacy_pass"]
         | Literal["proxy_read_timeout"]
         | Literal["pseudo_ipv4"]
         | Literal["replace_insecure_js"]
@@ -2124,6 +2276,7 @@ class SettingsResource(SyncAPIResource):
         | Literal["websockets"]
         | NotGiven = NOT_GIVEN,
         value: Literal["on", "off"]
+        | setting_edit_params.ZonesCacheRulesAegisValue
         | Literal[
             0,
             30,
@@ -2186,6 +2339,8 @@ class SettingsResource(SyncAPIResource):
         | Literal[100, 200, 500]
         | Literal["1.0", "1.1", "1.2", "1.3"]
         | setting_edit_params.NELValue
+        | int
+        | Literal["2", "1"]
         | Literal["off", "lossless", "lossy"]
         | float
         | Literal["off", "add_header", "overwrite_header"]
@@ -2286,7 +2441,7 @@ class AsyncSettingsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncSettingsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -2365,6 +2520,43 @@ class AsyncSettingsResource(AsyncAPIResource):
           id: ID of the zone setting.
 
           value: Current value of the zone setting.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def edit(
+        self,
+        setting_id: str,
+        *,
+        zone_id: str,
+        id: Literal["aegis"],
+        value: setting_edit_params.ZonesCacheRulesAegisValue | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[SettingEditResponse]:
+        """
+        Updates a single zone setting by the identifier
+
+        Args:
+          zone_id: Identifier
+
+          setting_id: Setting name
+
+          id: ID of the zone setting.
+
+          value: Value of the zone setting.
 
           extra_headers: Send extra headers
 
@@ -3506,6 +3698,80 @@ class AsyncSettingsResource(AsyncAPIResource):
         setting_id: str,
         *,
         zone_id: str,
+        id: Literal["origin_h2_max_streams"],
+        value: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[SettingEditResponse]:
+        """
+        Updates a single zone setting by the identifier
+
+        Args:
+          zone_id: Identifier
+
+          setting_id: Setting name
+
+          id: Value of the zone setting.
+
+          value: Value of the Origin H2 Max Streams Setting.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def edit(
+        self,
+        setting_id: str,
+        *,
+        zone_id: str,
+        id: Literal["origin_max_http_version"],
+        value: Literal["2", "1"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[SettingEditResponse]:
+        """
+        Updates a single zone setting by the identifier
+
+        Args:
+          zone_id: Identifier
+
+          setting_id: Setting name
+
+          id: Value of the zone setting.
+
+          value: Value of the Origin Max HTTP Version Setting.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def edit(
+        self,
+        setting_id: str,
+        *,
+        zone_id: str,
         id: Literal["polish"],
         value: Literal["off", "lossless", "lossy"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -3544,6 +3810,43 @@ class AsyncSettingsResource(AsyncAPIResource):
         *,
         zone_id: str,
         id: Literal["prefetch_preload"],
+        value: Literal["on", "off"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[SettingEditResponse]:
+        """
+        Updates a single zone setting by the identifier
+
+        Args:
+          zone_id: Identifier
+
+          setting_id: Setting name
+
+          id: ID of the zone setting.
+
+          value: Current value of the zone setting.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def edit(
+        self,
+        setting_id: str,
+        *,
+        zone_id: str,
+        id: Literal["privacy_pass"],
         value: Literal["on", "off"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -4314,7 +4617,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(["zone_id", "id", "value"], ["zone_id"])
+    @required_args(["zone_id", "id", "value"], ["zone_id", "id"], ["zone_id"])
     async def edit(
         self,
         setting_id: str,
@@ -4322,6 +4625,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         zone_id: str,
         id: Literal["0rtt"]
         | Literal["advanced_ddos"]
+        | Literal["aegis"]
         | Literal["always_online"]
         | Literal["always_use_https"]
         | Literal["automatic_https_rewrites"]
@@ -4351,8 +4655,11 @@ class AsyncSettingsResource(AsyncAPIResource):
         | Literal["opportunistic_onion"]
         | Literal["orange_to_orange"]
         | Literal["origin_error_page_pass_thru"]
+        | Literal["origin_h2_max_streams"]
+        | Literal["origin_max_http_version"]
         | Literal["polish"]
         | Literal["prefetch_preload"]
+        | Literal["privacy_pass"]
         | Literal["proxy_read_timeout"]
         | Literal["pseudo_ipv4"]
         | Literal["replace_insecure_js"]
@@ -4375,6 +4682,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         | Literal["websockets"]
         | NotGiven = NOT_GIVEN,
         value: Literal["on", "off"]
+        | setting_edit_params.ZonesCacheRulesAegisValue
         | Literal[
             0,
             30,
@@ -4437,6 +4745,8 @@ class AsyncSettingsResource(AsyncAPIResource):
         | Literal[100, 200, 500]
         | Literal["1.0", "1.1", "1.2", "1.3"]
         | setting_edit_params.NELValue
+        | int
+        | Literal["2", "1"]
         | Literal["off", "lossless", "lossy"]
         | float
         | Literal["off", "add_header", "overwrite_header"]

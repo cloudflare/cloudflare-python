@@ -2,15 +2,12 @@
 
 from __future__ import annotations
 
-from typing import List, Type, cast
+from typing import List
 
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -19,8 +16,8 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._wrappers import ResultWrapper
-from ...._base_client import make_request_options
+from ....pagination import SyncSinglePage, AsyncSinglePage
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.email_security.investigate.release_bulk_response import ReleaseBulkResponse
 
 __all__ = ["ReleaseResource", "AsyncReleaseResource"]
@@ -30,7 +27,7 @@ class ReleaseResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> ReleaseResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -57,7 +54,7 @@ class ReleaseResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ReleaseBulkResponse:
+    ) -> SyncSinglePage[ReleaseBulkResponse]:
         """
         Release messages from quarantine
 
@@ -76,17 +73,15 @@ class ReleaseResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._post(
+        return self._get_api_list(
             f"/accounts/{account_id}/email-security/investigate/release",
+            page=SyncSinglePage[ReleaseBulkResponse],
             body=maybe_transform(body, List[str]),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[ReleaseBulkResponse]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[ReleaseBulkResponse], ResultWrapper[ReleaseBulkResponse]),
+            model=ReleaseBulkResponse,
+            method="post",
         )
 
 
@@ -94,7 +89,7 @@ class AsyncReleaseResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncReleaseResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -110,7 +105,7 @@ class AsyncReleaseResource(AsyncAPIResource):
         """
         return AsyncReleaseResourceWithStreamingResponse(self)
 
-    async def bulk(
+    def bulk(
         self,
         *,
         account_id: str,
@@ -121,7 +116,7 @@ class AsyncReleaseResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ReleaseBulkResponse:
+    ) -> AsyncPaginator[ReleaseBulkResponse, AsyncSinglePage[ReleaseBulkResponse]]:
         """
         Release messages from quarantine
 
@@ -140,17 +135,15 @@ class AsyncReleaseResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._post(
+        return self._get_api_list(
             f"/accounts/{account_id}/email-security/investigate/release",
-            body=await async_maybe_transform(body, List[str]),
+            page=AsyncSinglePage[ReleaseBulkResponse],
+            body=maybe_transform(body, List[str]),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[ReleaseBulkResponse]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[ReleaseBulkResponse], ResultWrapper[ReleaseBulkResponse]),
+            model=ReleaseBulkResponse,
+            method="post",
         )
 
 

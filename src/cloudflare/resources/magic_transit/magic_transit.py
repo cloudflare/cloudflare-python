@@ -19,14 +19,6 @@ from .routes import (
     AsyncRoutesResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
-from .connectors import (
-    ConnectorsResource,
-    AsyncConnectorsResource,
-    ConnectorsResourceWithRawResponse,
-    AsyncConnectorsResourceWithRawResponse,
-    ConnectorsResourceWithStreamingResponse,
-    AsyncConnectorsResourceWithStreamingResponse,
-)
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from .gre_tunnels import (
     GRETunnelsResource,
@@ -68,6 +60,14 @@ from .cf_interconnects import (
     CfInterconnectsResourceWithStreamingResponse,
     AsyncCfInterconnectsResourceWithStreamingResponse,
 )
+from .connectors.connectors import (
+    ConnectorsResource,
+    AsyncConnectorsResource,
+    ConnectorsResourceWithRawResponse,
+    AsyncConnectorsResourceWithRawResponse,
+    ConnectorsResourceWithStreamingResponse,
+    AsyncConnectorsResourceWithStreamingResponse,
+)
 
 __all__ = ["MagicTransitResource", "AsyncMagicTransitResource"]
 
@@ -108,7 +108,7 @@ class MagicTransitResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> MagicTransitResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -161,7 +161,7 @@ class AsyncMagicTransitResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncMagicTransitResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers

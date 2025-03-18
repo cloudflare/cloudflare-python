@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Union, Optional
+from datetime import datetime
 from typing_extensions import Literal, TypeAlias
 
 from ..._models import BaseModel
@@ -35,7 +36,9 @@ class OriginPublicDatabase(BaseModel):
 
 class OriginAccessProtectedDatabaseBehindCloudflareTunnel(BaseModel):
     access_client_id: str
-    """The Client ID of the Access token to use when connecting to the origin database"""
+    """
+    The Client ID of the Access token to use when connecting to the origin database.
+    """
 
     database: str
     """The name of your origin database."""
@@ -88,3 +91,9 @@ class Hyperdrive(BaseModel):
     origin: Origin
 
     caching: Optional[Caching] = None
+
+    created_on: Optional[datetime] = None
+    """When the Hyperdrive configuration was created."""
+
+    modified_on: Optional[datetime] = None
+    """When the Hyperdrive configuration was last modified."""

@@ -35,7 +35,7 @@ class RoutesResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> RoutesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -59,7 +59,7 @@ class RoutesResource(SyncAPIResource):
         location: str | NotGiven = NOT_GIVEN,
         sort_by: Literal["cone", "pfxs", "ipv4", "ipv6", "rpki_valid", "rpki_invalid", "rpki_unknown"]
         | NotGiven = NOT_GIVEN,
-        sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        sort_order: Literal["ASC", "DESC"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -68,18 +68,18 @@ class RoutesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RouteAsesResponse:
         """
-        List all ASes in current global routing tables with routing statistics
+        Retrieves all ASes in the current global routing tables with routing statistics.
 
         Args:
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          limit: Limit the number of objects in the response.
+          limit: Limits the number of objects returned in the response.
 
-          location: Location Alpha2 code.
+          location: Location alpha-2 code.
 
-          sort_by: Return order results by given type
+          sort_by: Sorts results by the specified field.
 
-          sort_order: Sort by value ascending or descending
+          sort_order: Sort order.
 
           extra_headers: Send extra headers
 
@@ -126,14 +126,14 @@ class RoutesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RouteMoasResponse:
         """
-        List all Multi-Origin AS (MOAS) prefixes on the global routing tables.
+        Retrieves all Multi-Origin AS (MOAS) prefixes in the global routing tables.
 
         Args:
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          invalid_only: Lookup only RPKI invalid MOASes
+          invalid_only: Lookup only RPKI invalid MOASes.
 
-          origin: Lookup MOASes originated by the given ASN
+          origin: Lookup MOASes originated by the given ASN.
 
           prefix: Network prefix, IPv4 or IPv6.
 
@@ -182,19 +182,19 @@ class RoutesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RoutePfx2asResponse:
         """
-        Lookup prefix-to-ASN mapping on global routing tables.
+        Retrieves the prefix-to-ASN mapping from global routing tables.
 
         Args:
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
           longest_prefix_match: Return only results with the longest prefix match for the given prefix. For
               example, specify a /32 prefix to lookup the origin ASN for an IPv4 address.
 
-          origin: Lookup prefixes originated by the given ASN
+          origin: Lookup prefixes originated by the given ASN.
 
           prefix: Network prefix, IPv4 or IPv6.
 
-          rpki_status: Return only results with matching rpki status: valid, invalid or unknown
+          rpki_status: Return only results with matching rpki status: valid, invalid or unknown.
 
           extra_headers: Send extra headers
 
@@ -240,14 +240,14 @@ class RoutesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RouteStatsResponse:
         """
-        Get the BGP routing table stats (Beta).
+        Retrieves the BGP routing table stats.
 
         Args:
-          asn: Single ASN as integer.
+          asn: Single Autonomous System Number (ASN) as integer.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          location: Location Alpha2 code.
+          location: Location alpha-2 code.
 
           extra_headers: Send extra headers
 
@@ -282,7 +282,7 @@ class AsyncRoutesResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncRoutesResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -306,7 +306,7 @@ class AsyncRoutesResource(AsyncAPIResource):
         location: str | NotGiven = NOT_GIVEN,
         sort_by: Literal["cone", "pfxs", "ipv4", "ipv6", "rpki_valid", "rpki_invalid", "rpki_unknown"]
         | NotGiven = NOT_GIVEN,
-        sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        sort_order: Literal["ASC", "DESC"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -315,18 +315,18 @@ class AsyncRoutesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RouteAsesResponse:
         """
-        List all ASes in current global routing tables with routing statistics
+        Retrieves all ASes in the current global routing tables with routing statistics.
 
         Args:
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          limit: Limit the number of objects in the response.
+          limit: Limits the number of objects returned in the response.
 
-          location: Location Alpha2 code.
+          location: Location alpha-2 code.
 
-          sort_by: Return order results by given type
+          sort_by: Sorts results by the specified field.
 
-          sort_order: Sort by value ascending or descending
+          sort_order: Sort order.
 
           extra_headers: Send extra headers
 
@@ -373,14 +373,14 @@ class AsyncRoutesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RouteMoasResponse:
         """
-        List all Multi-Origin AS (MOAS) prefixes on the global routing tables.
+        Retrieves all Multi-Origin AS (MOAS) prefixes in the global routing tables.
 
         Args:
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          invalid_only: Lookup only RPKI invalid MOASes
+          invalid_only: Lookup only RPKI invalid MOASes.
 
-          origin: Lookup MOASes originated by the given ASN
+          origin: Lookup MOASes originated by the given ASN.
 
           prefix: Network prefix, IPv4 or IPv6.
 
@@ -429,19 +429,19 @@ class AsyncRoutesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RoutePfx2asResponse:
         """
-        Lookup prefix-to-ASN mapping on global routing tables.
+        Retrieves the prefix-to-ASN mapping from global routing tables.
 
         Args:
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
           longest_prefix_match: Return only results with the longest prefix match for the given prefix. For
               example, specify a /32 prefix to lookup the origin ASN for an IPv4 address.
 
-          origin: Lookup prefixes originated by the given ASN
+          origin: Lookup prefixes originated by the given ASN.
 
           prefix: Network prefix, IPv4 or IPv6.
 
-          rpki_status: Return only results with matching rpki status: valid, invalid or unknown
+          rpki_status: Return only results with matching rpki status: valid, invalid or unknown.
 
           extra_headers: Send extra headers
 
@@ -487,14 +487,14 @@ class AsyncRoutesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> RouteStatsResponse:
         """
-        Get the BGP routing table stats (Beta).
+        Retrieves the BGP routing table stats.
 
         Args:
-          asn: Single ASN as integer.
+          asn: Single Autonomous System Number (ASN) as integer.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          location: Location Alpha2 code.
+          location: Location alpha-2 code.
 
           extra_headers: Send extra headers
 

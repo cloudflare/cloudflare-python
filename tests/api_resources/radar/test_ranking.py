@@ -32,11 +32,12 @@ class TestRanking:
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            domain_category=["string"],
             domains=["string"],
             format="JSON",
             limit=5,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             ranking_type="POPULAR",
         )
         assert_matches_type(RankingTimeseriesGroupsResponse, ranking, path=["response"])
@@ -70,10 +71,11 @@ class TestRanking:
     def test_method_top_with_all_params(self, client: Cloudflare) -> None:
         ranking = client.radar.ranking.top(
             date=[parse_date("2019-12-27")],
+            domain_category=["string"],
             format="JSON",
             limit=5,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             ranking_type="POPULAR",
         )
         assert_matches_type(RankingTopResponse, ranking, path=["response"])
@@ -113,11 +115,12 @@ class TestAsyncRanking:
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
+            domain_category=["string"],
             domains=["string"],
             format="JSON",
             limit=5,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             ranking_type="POPULAR",
         )
         assert_matches_type(RankingTimeseriesGroupsResponse, ranking, path=["response"])
@@ -151,10 +154,11 @@ class TestAsyncRanking:
     async def test_method_top_with_all_params(self, async_client: AsyncCloudflare) -> None:
         ranking = await async_client.radar.ranking.top(
             date=[parse_date("2019-12-27")],
+            domain_category=["string"],
             format="JSON",
             limit=5,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
             ranking_type="POPULAR",
         )
         assert_matches_type(RankingTopResponse, ranking, path=["response"])

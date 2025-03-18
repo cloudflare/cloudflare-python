@@ -24,7 +24,6 @@ from ....._response import (
 from ....._wrappers import ResultWrapper
 from ....._base_client import make_request_options
 from .....types.radar.attacks.layer7 import (
-    timeseries_group_get_params,
     timeseries_group_industry_params,
     timeseries_group_vertical_params,
     timeseries_group_ip_version_params,
@@ -33,7 +32,6 @@ from .....types.radar.attacks.layer7 import (
     timeseries_group_managed_rules_params,
     timeseries_group_mitigation_product_params,
 )
-from .....types.radar.attacks.layer7.timeseries_group_get_response import TimeseriesGroupGetResponse
 from .....types.radar.attacks.layer7.timeseries_group_industry_response import TimeseriesGroupIndustryResponse
 from .....types.radar.attacks.layer7.timeseries_group_vertical_response import TimeseriesGroupVerticalResponse
 from .....types.radar.attacks.layer7.timeseries_group_ip_version_response import TimeseriesGroupIPVersionResponse
@@ -51,7 +49,7 @@ class TimeseriesGroupsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> TimeseriesGroupsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -66,91 +64,6 @@ class TimeseriesGroupsResource(SyncAPIResource):
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
         return TimeseriesGroupsResourceWithStreamingResponse(self)
-
-    def get(
-        self,
-        *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        asn: List[str] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TimeseriesGroupGetResponse:
-        """
-        Get a time series of the distribution of mitigation techniques over time.
-
-        Args:
-          agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
-              or 1 hour intervals). Refer to
-              [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
-
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
-
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
-          date_end: End of the date range (inclusive).
-
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
-
-          date_start: Array of datetimes to filter the start of a series.
-
-          format: Format results are returned in.
-
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
-
-          name: Array of names that will be used to name the series in responses.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._get(
-            "/radar/attacks/layer7/timeseries_groups",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "agg_interval": agg_interval,
-                        "asn": asn,
-                        "continent": continent,
-                        "date_end": date_end,
-                        "date_range": date_range,
-                        "date_start": date_start,
-                        "format": format,
-                        "location": location,
-                        "name": name,
-                    },
-                    timeseries_group_get_params.TimeseriesGroupGetParams,
-                ),
-                post_parser=ResultWrapper[TimeseriesGroupGetResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[TimeseriesGroupGetResponse], ResultWrapper[TimeseriesGroupGetResponse]),
-        )
 
     def http_method(
         self,
@@ -182,45 +95,47 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupHTTPMethodResponse:
         """
-        Percentage distribution of attacks by http method used over time.
+        Retrieves the distribution of layer 7 attacks by HTTP method over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
+          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
+              exclude ASNs from results. For example, `-174, 3356` excludes results from
+              AS174, but includes results from AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
+          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
+              exclude continents from results. For example, `-EU,NA` excludes results from EU,
+              but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          http_version: Filter for http version.
+          http_version: Filters results by HTTP version.
 
-          ip_version: Filter for ip version.
+          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
-          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
-              the time range.
+          limit_per_group: Limits the number of objects per group to the top items within the specified
+              time range. If there are more items than the limit, the response will include
+              the count of items, with any remaining items grouped together under an "other"
+              category.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
+          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
+              locations from results. For example, `-US,PT` excludes results from the US, but
+              includes results from PT.
 
           mitigation_product: Array of L7 mitigation products.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
           normalization: Normalization method applied. Refer to
               [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
@@ -343,42 +258,42 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupHTTPVersionResponse:
         """
-        Percentage distribution of attacks by http version used over time.
+        Retrieves the distribution of layer 7 attacks by HTTP version over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
+          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
+              exclude ASNs from results. For example, `-174, 3356` excludes results from
+              AS174, but includes results from AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
+          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
+              exclude continents from results. For example, `-EU,NA` excludes results from EU,
+              but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          http_method: Filter for http method.
+          http_method: Filters results by HTTP method.
 
-          ip_version: Filter for ip version.
+          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
+          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
+              locations from results. For example, `-US,PT` excludes results from the US, but
+              includes results from PT.
 
           mitigation_product: Array of L7 mitigation products.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
           normalization: Normalization method applied. Refer to
               [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
@@ -502,47 +417,49 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupIndustryResponse:
         """
-        Percentage distribution of attacks by targeted industry over time.
+        Retrieves the distribution of layer 7 attacks by targeted industry over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
+          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
+              exclude ASNs from results. For example, `-174, 3356` excludes results from
+              AS174, but includes results from AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
+          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
+              exclude continents from results. For example, `-EU,NA` excludes results from EU,
+              but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          http_method: Filter for http method.
+          http_method: Filters results by HTTP method.
 
-          http_version: Filter for http version.
+          http_version: Filters results by HTTP version.
 
-          ip_version: Filter for ip version.
+          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
-          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
-              the time range.
+          limit_per_group: Limits the number of objects per group to the top items within the specified
+              time range. If there are more items than the limit, the response will include
+              the count of items, with any remaining items grouped together under an "other"
+              category.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
+          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
+              locations from results. For example, `-US,PT` excludes results from the US, but
+              includes results from PT.
 
           mitigation_product: Array of L7 mitigation products.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
           normalization: Normalization method applied. Refer to
               [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
@@ -666,42 +583,42 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupIPVersionResponse:
         """
-        Percentage distribution of attacks by ip version used over time.
+        Retrieves the distribution of layer 7 attacks by IP version used over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
+          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
+              exclude ASNs from results. For example, `-174, 3356` excludes results from
+              AS174, but includes results from AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
+          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
+              exclude continents from results. For example, `-EU,NA` excludes results from EU,
+              but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          http_method: Filter for http method.
+          http_method: Filters results by HTTP method.
 
-          http_version: Filter for http version.
+          http_version: Filters results by HTTP version.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
+          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
+              locations from results. For example, `-US,PT` excludes results from the US, but
+              includes results from PT.
 
           mitigation_product: Array of L7 mitigation products.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
           normalization: Normalization method applied. Refer to
               [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
@@ -825,47 +742,49 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupManagedRulesResponse:
         """
-        Percentage distribution of attacks by managed rules used over time.
+        Retrieves the distribution of layer 7 attacks by managed rules over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
+          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
+              exclude ASNs from results. For example, `-174, 3356` excludes results from
+              AS174, but includes results from AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
+          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
+              exclude continents from results. For example, `-EU,NA` excludes results from EU,
+              but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          http_method: Filter for http method.
+          http_method: Filters results by HTTP method.
 
-          http_version: Filter for http version.
+          http_version: Filters results by HTTP version.
 
-          ip_version: Filter for ip version.
+          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
-          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
-              the time range.
+          limit_per_group: Limits the number of objects per group to the top items within the specified
+              time range. If there are more items than the limit, the response will include
+              the count of items, with any remaining items grouped together under an "other"
+              category.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
+          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
+              locations from results. For example, `-US,PT` excludes results from the US, but
+              includes results from PT.
 
           mitigation_product: Array of L7 mitigation products.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
           normalization: Normalization method applied. Refer to
               [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
@@ -985,45 +904,47 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupMitigationProductResponse:
         """
-        Percentage distribution of attacks by mitigation product used over time.
+        Retrieves the distribution of layer 7 attacks by mitigation product over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
+          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
+              exclude ASNs from results. For example, `-174, 3356` excludes results from
+              AS174, but includes results from AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
+          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
+              exclude continents from results. For example, `-EU,NA` excludes results from EU,
+              but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          http_method: Filter for http method.
+          http_method: Filters results by HTTP method.
 
-          http_version: Filter for http version.
+          http_version: Filters results by HTTP version.
 
-          ip_version: Filter for ip version.
+          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
-          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
-              the time range.
+          limit_per_group: Limits the number of objects per group to the top items within the specified
+              time range. If there are more items than the limit, the response will include
+              the count of items, with any remaining items grouped together under an "other"
+              category.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
+          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
+              locations from results. For example, `-US,PT` excludes results from the US, but
+              includes results from PT.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
           normalization: Normalization method applied. Refer to
               [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
@@ -1150,47 +1071,49 @@ class TimeseriesGroupsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupVerticalResponse:
         """
-        Percentage distribution of attacks by targeted vertical over time.
+        Retrieves the distribution of layer 7 attacks by targeted vertical over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
+          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
+              exclude ASNs from results. For example, `-174, 3356` excludes results from
+              AS174, but includes results from AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
+          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
+              exclude continents from results. For example, `-EU,NA` excludes results from EU,
+              but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          http_method: Filter for http method.
+          http_method: Filters results by HTTP method.
 
-          http_version: Filter for http version.
+          http_version: Filters results by HTTP version.
 
-          ip_version: Filter for ip version.
+          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
-          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
-              the time range.
+          limit_per_group: Limits the number of objects per group to the top items within the specified
+              time range. If there are more items than the limit, the response will include
+              the count of items, with any remaining items grouped together under an "other"
+              category.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
+          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
+              locations from results. For example, `-US,PT` excludes results from the US, but
+              includes results from PT.
 
           mitigation_product: Array of L7 mitigation products.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
           normalization: Normalization method applied. Refer to
               [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
@@ -1240,7 +1163,7 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncTimeseriesGroupsResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -1255,91 +1178,6 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
         return AsyncTimeseriesGroupsResourceWithStreamingResponse(self)
-
-    async def get(
-        self,
-        *,
-        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        asn: List[str] | NotGiven = NOT_GIVEN,
-        continent: List[str] | NotGiven = NOT_GIVEN,
-        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[str] | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        location: List[str] | NotGiven = NOT_GIVEN,
-        name: List[str] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TimeseriesGroupGetResponse:
-        """
-        Get a time series of the distribution of mitigation techniques over time.
-
-        Args:
-          agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
-              or 1 hour intervals). Refer to
-              [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
-
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
-
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
-
-          date_end: End of the date range (inclusive).
-
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
-
-          date_start: Array of datetimes to filter the start of a series.
-
-          format: Format results are returned in.
-
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
-
-          name: Array of names that will be used to name the series in responses.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._get(
-            "/radar/attacks/layer7/timeseries_groups",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "agg_interval": agg_interval,
-                        "asn": asn,
-                        "continent": continent,
-                        "date_end": date_end,
-                        "date_range": date_range,
-                        "date_start": date_start,
-                        "format": format,
-                        "location": location,
-                        "name": name,
-                    },
-                    timeseries_group_get_params.TimeseriesGroupGetParams,
-                ),
-                post_parser=ResultWrapper[TimeseriesGroupGetResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[TimeseriesGroupGetResponse], ResultWrapper[TimeseriesGroupGetResponse]),
-        )
 
     async def http_method(
         self,
@@ -1371,45 +1209,47 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupHTTPMethodResponse:
         """
-        Percentage distribution of attacks by http method used over time.
+        Retrieves the distribution of layer 7 attacks by HTTP method over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
+          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
+              exclude ASNs from results. For example, `-174, 3356` excludes results from
+              AS174, but includes results from AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
+          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
+              exclude continents from results. For example, `-EU,NA` excludes results from EU,
+              but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          http_version: Filter for http version.
+          http_version: Filters results by HTTP version.
 
-          ip_version: Filter for ip version.
+          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
-          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
-              the time range.
+          limit_per_group: Limits the number of objects per group to the top items within the specified
+              time range. If there are more items than the limit, the response will include
+              the count of items, with any remaining items grouped together under an "other"
+              category.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
+          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
+              locations from results. For example, `-US,PT` excludes results from the US, but
+              includes results from PT.
 
           mitigation_product: Array of L7 mitigation products.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
           normalization: Normalization method applied. Refer to
               [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
@@ -1532,42 +1372,42 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupHTTPVersionResponse:
         """
-        Percentage distribution of attacks by http version used over time.
+        Retrieves the distribution of layer 7 attacks by HTTP version over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
+          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
+              exclude ASNs from results. For example, `-174, 3356` excludes results from
+              AS174, but includes results from AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
+          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
+              exclude continents from results. For example, `-EU,NA` excludes results from EU,
+              but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          http_method: Filter for http method.
+          http_method: Filters results by HTTP method.
 
-          ip_version: Filter for ip version.
+          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
+          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
+              locations from results. For example, `-US,PT` excludes results from the US, but
+              includes results from PT.
 
           mitigation_product: Array of L7 mitigation products.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
           normalization: Normalization method applied. Refer to
               [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
@@ -1691,47 +1531,49 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupIndustryResponse:
         """
-        Percentage distribution of attacks by targeted industry over time.
+        Retrieves the distribution of layer 7 attacks by targeted industry over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
+          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
+              exclude ASNs from results. For example, `-174, 3356` excludes results from
+              AS174, but includes results from AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
+          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
+              exclude continents from results. For example, `-EU,NA` excludes results from EU,
+              but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          http_method: Filter for http method.
+          http_method: Filters results by HTTP method.
 
-          http_version: Filter for http version.
+          http_version: Filters results by HTTP version.
 
-          ip_version: Filter for ip version.
+          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
-          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
-              the time range.
+          limit_per_group: Limits the number of objects per group to the top items within the specified
+              time range. If there are more items than the limit, the response will include
+              the count of items, with any remaining items grouped together under an "other"
+              category.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
+          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
+              locations from results. For example, `-US,PT` excludes results from the US, but
+              includes results from PT.
 
           mitigation_product: Array of L7 mitigation products.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
           normalization: Normalization method applied. Refer to
               [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
@@ -1855,42 +1697,42 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupIPVersionResponse:
         """
-        Percentage distribution of attacks by ip version used over time.
+        Retrieves the distribution of layer 7 attacks by IP version used over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
+          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
+              exclude ASNs from results. For example, `-174, 3356` excludes results from
+              AS174, but includes results from AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
+          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
+              exclude continents from results. For example, `-EU,NA` excludes results from EU,
+              but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          http_method: Filter for http method.
+          http_method: Filters results by HTTP method.
 
-          http_version: Filter for http version.
+          http_version: Filters results by HTTP version.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
+          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
+              locations from results. For example, `-US,PT` excludes results from the US, but
+              includes results from PT.
 
           mitigation_product: Array of L7 mitigation products.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
           normalization: Normalization method applied. Refer to
               [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
@@ -2014,47 +1856,49 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupManagedRulesResponse:
         """
-        Percentage distribution of attacks by managed rules used over time.
+        Retrieves the distribution of layer 7 attacks by managed rules over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
+          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
+              exclude ASNs from results. For example, `-174, 3356` excludes results from
+              AS174, but includes results from AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
+          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
+              exclude continents from results. For example, `-EU,NA` excludes results from EU,
+              but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          http_method: Filter for http method.
+          http_method: Filters results by HTTP method.
 
-          http_version: Filter for http version.
+          http_version: Filters results by HTTP version.
 
-          ip_version: Filter for ip version.
+          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
-          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
-              the time range.
+          limit_per_group: Limits the number of objects per group to the top items within the specified
+              time range. If there are more items than the limit, the response will include
+              the count of items, with any remaining items grouped together under an "other"
+              category.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
+          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
+              locations from results. For example, `-US,PT` excludes results from the US, but
+              includes results from PT.
 
           mitigation_product: Array of L7 mitigation products.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
           normalization: Normalization method applied. Refer to
               [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
@@ -2174,45 +2018,47 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupMitigationProductResponse:
         """
-        Percentage distribution of attacks by mitigation product used over time.
+        Retrieves the distribution of layer 7 attacks by mitigation product over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
+          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
+              exclude ASNs from results. For example, `-174, 3356` excludes results from
+              AS174, but includes results from AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
+          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
+              exclude continents from results. For example, `-EU,NA` excludes results from EU,
+              but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          http_method: Filter for http method.
+          http_method: Filters results by HTTP method.
 
-          http_version: Filter for http version.
+          http_version: Filters results by HTTP version.
 
-          ip_version: Filter for ip version.
+          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
-          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
-              the time range.
+          limit_per_group: Limits the number of objects per group to the top items within the specified
+              time range. If there are more items than the limit, the response will include
+              the count of items, with any remaining items grouped together under an "other"
+              category.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
+          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
+              locations from results. For example, `-US,PT` excludes results from the US, but
+              includes results from PT.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
           normalization: Normalization method applied. Refer to
               [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
@@ -2339,47 +2185,49 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TimeseriesGroupVerticalResponse:
         """
-        Percentage distribution of attacks by targeted vertical over time.
+        Retrieves the distribution of layer 7 attacks by targeted vertical over time.
 
         Args:
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
-              For example, `-174, 3356` excludes results from AS174, but includes results from
-              AS3356.
+          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
+              exclude ASNs from results. For example, `-174, 3356` excludes results from
+              AS174, but includes results from AS3356.
 
-          continent: Array of comma separated list of continents (alpha-2 continent codes). Start
-              with `-` to exclude from results. For example, `-EU,NA` excludes results from
-              Europe, but includes results from North America.
+          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
+              exclude continents from results. For example, `-EU,NA` excludes results from EU,
+              but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: For example, use `7d` and `7dControl` to compare this week with the previous
-              week. Use this parameter or set specific start and end dates (`dateStart` and
-              `dateEnd` parameters).
+          date_range: Filters results by the specified date range. For example, use `7d` and
+              `7dcontrol` to compare this week with the previous week. Use this parameter or
+              set specific start and end dates (`dateStart` and `dateEnd` parameters).
 
-          date_start: Array of datetimes to filter the start of a series.
+          date_start: Start of the date range.
 
-          format: Format results are returned in.
+          format: Format in which results will be returned.
 
-          http_method: Filter for http method.
+          http_method: Filters results by HTTP method.
 
-          http_version: Filter for http version.
+          http_version: Filters results by HTTP version.
 
-          ip_version: Filter for ip version.
+          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
-          limit_per_group: Limit the number of objects (eg browsers, verticals, etc) to the top items over
-              the time range.
+          limit_per_group: Limits the number of objects per group to the top items within the specified
+              time range. If there are more items than the limit, the response will include
+              the count of items, with any remaining items grouped together under an "other"
+              category.
 
-          location: Array of comma separated list of locations (alpha-2 country codes). Start with
-              `-` to exclude from results. For example, `-US,PT` excludes results from the US,
-              but includes results from PT.
+          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
+              locations from results. For example, `-US,PT` excludes results from the US, but
+              includes results from PT.
 
           mitigation_product: Array of L7 mitigation products.
 
-          name: Array of names that will be used to name the series in responses.
+          name: Array of names used to label the series in the response.
 
           normalization: Normalization method applied. Refer to
               [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
@@ -2429,9 +2277,6 @@ class TimeseriesGroupsResourceWithRawResponse:
     def __init__(self, timeseries_groups: TimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
-        self.get = to_raw_response_wrapper(
-            timeseries_groups.get,
-        )
         self.http_method = to_raw_response_wrapper(
             timeseries_groups.http_method,
         )
@@ -2459,9 +2304,6 @@ class AsyncTimeseriesGroupsResourceWithRawResponse:
     def __init__(self, timeseries_groups: AsyncTimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
-        self.get = async_to_raw_response_wrapper(
-            timeseries_groups.get,
-        )
         self.http_method = async_to_raw_response_wrapper(
             timeseries_groups.http_method,
         )
@@ -2489,9 +2331,6 @@ class TimeseriesGroupsResourceWithStreamingResponse:
     def __init__(self, timeseries_groups: TimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
-        self.get = to_streamed_response_wrapper(
-            timeseries_groups.get,
-        )
         self.http_method = to_streamed_response_wrapper(
             timeseries_groups.http_method,
         )
@@ -2519,9 +2358,6 @@ class AsyncTimeseriesGroupsResourceWithStreamingResponse:
     def __init__(self, timeseries_groups: AsyncTimeseriesGroupsResource) -> None:
         self._timeseries_groups = timeseries_groups
 
-        self.get = async_to_streamed_response_wrapper(
-            timeseries_groups.get,
-        )
         self.http_method = async_to_streamed_response_wrapper(
             timeseries_groups.http_method,
         )

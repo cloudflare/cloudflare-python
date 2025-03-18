@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from .logpush_job import LogpushJob as LogpushJob
 from .output_options import OutputOptions as OutputOptions
-from .edge_get_response import EdgeGetResponse as EdgeGetResponse
 from .job_create_params import JobCreateParams as JobCreateParams
 from .job_update_params import JobUpdateParams as JobUpdateParams
 from .edge_create_params import EdgeCreateParams as EdgeCreateParams
@@ -19,3 +18,5 @@ from .ownership_create_response import OwnershipCreateResponse as OwnershipCreat
 from .ownership_validate_params import OwnershipValidateParams as OwnershipValidateParams
 from .validate_destination_params import ValidateDestinationParams as ValidateDestinationParams
 from .validate_destination_response import ValidateDestinationResponse as ValidateDestinationResponse
+from .validate_destination_exists_params import ValidateDestinationExistsParams as ValidateDestinationExistsParams
+from .validate_destination_exists_response import ValidateDestinationExistsResponse as ValidateDestinationExistsResponse

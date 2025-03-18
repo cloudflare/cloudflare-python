@@ -4,11 +4,15 @@ from __future__ import annotations
 
 import gc
 import os
+import sys
 import json
+import time
 import asyncio
 import inspect
+import subprocess
 import tracemalloc
 from typing import Any, Union, cast
+from textwrap import dedent
 from unittest import mock
 from typing_extensions import Literal
 
@@ -19,6 +23,7 @@ from pydantic import ValidationError
 
 from cloudflare import Cloudflare, AsyncCloudflare, APIResponseValidationError
 from cloudflare._types import Omit
+from cloudflare._utils import maybe_transform
 from cloudflare._models import BaseModel, FinalRequestOptions
 from cloudflare._constants import RAW_RESPONSE_HEADER
 from cloudflare._exceptions import APIStatusError, APITimeoutError, APIResponseValidationError
@@ -28,6 +33,7 @@ from cloudflare._base_client import (
     BaseClient,
     make_request_options,
 )
+from cloudflare.types.zones.zone_create_params import ZoneCreateParams
 
 from .utils import update_env
 
@@ -802,7 +808,11 @@ class TestCloudflare:
             self.client.post(
                 "/zones",
                 body=cast(
-                    object, dict(account={"id": "023e105f4ecef8ad9ca31a8372d0c353"}, name="example.com", type="full")
+                    object,
+                    maybe_transform(
+                        dict(account={"id": "023e105f4ecef8ad9ca31a8372d0c353"}, name="example.com", type="full"),
+                        ZoneCreateParams,
+                    ),
                 ),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
@@ -819,7 +829,11 @@ class TestCloudflare:
             self.client.post(
                 "/zones",
                 body=cast(
-                    object, dict(account={"id": "023e105f4ecef8ad9ca31a8372d0c353"}, name="example.com", type="full")
+                    object,
+                    maybe_transform(
+                        dict(account={"id": "023e105f4ecef8ad9ca31a8372d0c353"}, name="example.com", type="full"),
+                        ZoneCreateParams,
+                    ),
                 ),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
@@ -1673,7 +1687,11 @@ class TestAsyncCloudflare:
             await self.client.post(
                 "/zones",
                 body=cast(
-                    object, dict(account={"id": "023e105f4ecef8ad9ca31a8372d0c353"}, name="example.com", type="full")
+                    object,
+                    maybe_transform(
+                        dict(account={"id": "023e105f4ecef8ad9ca31a8372d0c353"}, name="example.com", type="full"),
+                        ZoneCreateParams,
+                    ),
                 ),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
@@ -1690,7 +1708,11 @@ class TestAsyncCloudflare:
             await self.client.post(
                 "/zones",
                 body=cast(
-                    object, dict(account={"id": "023e105f4ecef8ad9ca31a8372d0c353"}, name="example.com", type="full")
+                    object,
+                    maybe_transform(
+                        dict(account={"id": "023e105f4ecef8ad9ca31a8372d0c353"}, name="example.com", type="full"),
+                        ZoneCreateParams,
+                    ),
                 ),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
@@ -1781,3 +1803,48 @@ class TestAsyncCloudflare:
         )
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
+
+    def test_get_platform(self) -> None:
+        # A previous implementation of asyncify could leave threads unterminated when
+        # used with nest_asyncio.
+        #
+        # Since nest_asyncio.apply() is global and cannot be un-applied, this
+        # test is run in a separate process to avoid affecting other tests.
+        test_code = dedent("""
+        import asyncio
+        import nest_asyncio
+        import threading
+
+        from cloudflare._utils import asyncify
+        from cloudflare._base_client import get_platform 
+
+        async def test_main() -> None:
+            result = await asyncify(get_platform)()
+            print(result)
+            for thread in threading.enumerate():
+                print(thread.name)
+
+        nest_asyncio.apply()
+        asyncio.run(test_main())
+        """)
+        with subprocess.Popen(
+            [sys.executable, "-c", test_code],
+            text=True,
+        ) as process:
+            timeout = 10  # seconds
+
+            start_time = time.monotonic()
+            while True:
+                return_code = process.poll()
+                if return_code is not None:
+                    if return_code != 0:
+                        raise AssertionError("calling get_platform using asyncify resulted in a non-zero exit code")
+
+                    # success
+                    break
+
+                if time.monotonic() - start_time > timeout:
+                    process.kill()
+                    raise AssertionError("calling get_platform using asyncify resulted in a hung process")
+
+                time.sleep(0.1)

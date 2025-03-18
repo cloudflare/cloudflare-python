@@ -67,13 +67,13 @@ class TestVersions:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.phases.versions.with_raw_response.list(
                 ruleset_phase="ddos_l4",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.phases.versions.with_raw_response.list(
                 ruleset_phase="ddos_l4",
                 account_id="account_id",
@@ -139,14 +139,14 @@ class TestVersions:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.phases.versions.with_raw_response.get(
                 ruleset_version="1",
                 ruleset_phase="ddos_l4",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.phases.versions.with_raw_response.get(
                 ruleset_version="1",
                 ruleset_phase="ddos_l4",
@@ -206,13 +206,13 @@ class TestAsyncVersions:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.phases.versions.with_raw_response.list(
                 ruleset_phase="ddos_l4",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.phases.versions.with_raw_response.list(
                 ruleset_phase="ddos_l4",
                 account_id="account_id",
@@ -278,14 +278,14 @@ class TestAsyncVersions:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.phases.versions.with_raw_response.get(
                 ruleset_version="1",
                 ruleset_phase="ddos_l4",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.phases.versions.with_raw_response.get(
                 ruleset_version="1",
                 ruleset_phase="ddos_l4",

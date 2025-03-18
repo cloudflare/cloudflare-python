@@ -25,7 +25,6 @@ from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.zero_trust.devices import network_create_params, network_update_params
 from ....types.zero_trust.devices.device_network import DeviceNetwork
-from ....types.zero_trust.devices.network_delete_response import NetworkDeleteResponse
 
 __all__ = ["NetworksResource", "AsyncNetworksResource"]
 
@@ -34,7 +33,7 @@ class NetworksResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> NetworksResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -210,7 +209,7 @@ class NetworksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[NetworkDeleteResponse]:
+    ) -> SyncSinglePage[DeviceNetwork]:
         """
         Deletes a device managed network and fetches a list of the remaining device
         managed networks for an account.
@@ -230,16 +229,14 @@ class NetworksResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not network_id:
             raise ValueError(f"Expected a non-empty value for `network_id` but received {network_id!r}")
-        return self._delete(
+        return self._get_api_list(
             f"/accounts/{account_id}/devices/networks/{network_id}",
+            page=SyncSinglePage[DeviceNetwork],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[NetworkDeleteResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[NetworkDeleteResponse]], ResultWrapper[NetworkDeleteResponse]),
+            model=DeviceNetwork,
+            method="delete",
         )
 
     def get(
@@ -289,7 +286,7 @@ class AsyncNetworksResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncNetworksResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -454,7 +451,7 @@ class AsyncNetworksResource(AsyncAPIResource):
             model=DeviceNetwork,
         )
 
-    async def delete(
+    def delete(
         self,
         network_id: str,
         *,
@@ -465,7 +462,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[NetworkDeleteResponse]:
+    ) -> AsyncPaginator[DeviceNetwork, AsyncSinglePage[DeviceNetwork]]:
         """
         Deletes a device managed network and fetches a list of the remaining device
         managed networks for an account.
@@ -485,16 +482,14 @@ class AsyncNetworksResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not network_id:
             raise ValueError(f"Expected a non-empty value for `network_id` but received {network_id!r}")
-        return await self._delete(
+        return self._get_api_list(
             f"/accounts/{account_id}/devices/networks/{network_id}",
+            page=AsyncSinglePage[DeviceNetwork],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[NetworkDeleteResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[NetworkDeleteResponse]], ResultWrapper[NetworkDeleteResponse]),
+            model=DeviceNetwork,
+            method="delete",
         )
 
     async def get(

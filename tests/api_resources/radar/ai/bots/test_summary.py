@@ -34,7 +34,7 @@ class TestSummary:
             format="JSON",
             limit_per_group=10,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(SummaryUserAgentResponse, summary, path=["response"])
 
@@ -78,7 +78,7 @@ class TestAsyncSummary:
             format="JSON",
             limit_per_group=10,
             location=["string"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(SummaryUserAgentResponse, summary, path=["response"])
 

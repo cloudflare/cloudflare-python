@@ -2,9 +2,12 @@
 
 from __future__ import annotations
 
+from typing_extensions import Literal
+
 import httpx
 
 from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ......_utils import maybe_transform
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
 from ......_response import (
@@ -13,7 +16,9 @@ from ......_response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ......_base_client import make_request_options
+from ......pagination import SyncSinglePage, AsyncSinglePage
+from ......_base_client import AsyncPaginator, make_request_options
+from ......types.zero_trust.access.applications.policy_tests import user_list_params
 from ......types.zero_trust.access.applications.policy_tests.user_list_response import UserListResponse
 
 __all__ = ["UsersResource", "AsyncUsersResource"]
@@ -23,7 +28,7 @@ class UsersResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> UsersResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -44,13 +49,14 @@ class UsersResource(SyncAPIResource):
         policy_test_id: str,
         *,
         account_id: str,
+        status: Literal["success", "fail"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UserListResponse:
+    ) -> SyncSinglePage[UserListResponse]:
         """
         Fetches a single page of user results from an Access policy test.
 
@@ -58,6 +64,8 @@ class UsersResource(SyncAPIResource):
           account_id: Identifier
 
           policy_test_id: The UUID of the policy test.
+
+          status: Filter users by their policy evaluation status.
 
           extra_headers: Send extra headers
 
@@ -71,12 +79,17 @@ class UsersResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_test_id:
             raise ValueError(f"Expected a non-empty value for `policy_test_id` but received {policy_test_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/access/policy-tests/{policy_test_id}/users",
+            page=SyncSinglePage[UserListResponse],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"status": status}, user_list_params.UserListParams),
             ),
-            cast_to=UserListResponse,
+            model=UserListResponse,
         )
 
 
@@ -84,7 +97,7 @@ class AsyncUsersResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncUsersResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -100,18 +113,19 @@ class AsyncUsersResource(AsyncAPIResource):
         """
         return AsyncUsersResourceWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         policy_test_id: str,
         *,
         account_id: str,
+        status: Literal["success", "fail"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UserListResponse:
+    ) -> AsyncPaginator[UserListResponse, AsyncSinglePage[UserListResponse]]:
         """
         Fetches a single page of user results from an Access policy test.
 
@@ -119,6 +133,8 @@ class AsyncUsersResource(AsyncAPIResource):
           account_id: Identifier
 
           policy_test_id: The UUID of the policy test.
+
+          status: Filter users by their policy evaluation status.
 
           extra_headers: Send extra headers
 
@@ -132,12 +148,17 @@ class AsyncUsersResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_test_id:
             raise ValueError(f"Expected a non-empty value for `policy_test_id` but received {policy_test_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/access/policy-tests/{policy_test_id}/users",
+            page=AsyncSinglePage[UserListResponse],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"status": status}, user_list_params.UserListParams),
             ),
-            cast_to=UserListResponse,
+            model=UserListResponse,
         )
 
 

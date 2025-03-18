@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
@@ -22,33 +22,47 @@ class TestRules:
     def test_method_update(self, client: Cloudflare) -> None:
         rule = client.cloud_connector.rules.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            rules=[{}],
         )
-        assert_matches_type(Optional[RuleUpdateResponse], rule, path=["response"])
+        assert_matches_type(SyncSinglePage[RuleUpdateResponse], rule, path=["response"])
+
+    @parametrize
+    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
+        rule = client.cloud_connector.rules.update(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            rules=[
+                {
+                    "id": "95c365e17e1b46599cd99e5b231fac4e",
+                    "description": "Rule description",
+                    "enabled": True,
+                    "expression": 'http.cookie eq "a=b"',
+                    "parameters": {"host": "examplebucket.s3.eu-north-1.amazonaws.com"},
+                    "provider": "aws_s3",
+                }
+            ],
+        )
+        assert_matches_type(SyncSinglePage[RuleUpdateResponse], rule, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.cloud_connector.rules.with_raw_response.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            rules=[{}],
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = response.parse()
-        assert_matches_type(Optional[RuleUpdateResponse], rule, path=["response"])
+        assert_matches_type(SyncSinglePage[RuleUpdateResponse], rule, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.cloud_connector.rules.with_streaming_response.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            rules=[{}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = response.parse()
-            assert_matches_type(Optional[RuleUpdateResponse], rule, path=["response"])
+            assert_matches_type(SyncSinglePage[RuleUpdateResponse], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -57,7 +71,6 @@ class TestRules:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.cloud_connector.rules.with_raw_response.update(
                 zone_id="",
-                rules=[{}],
             )
 
     @parametrize
@@ -106,33 +119,47 @@ class TestAsyncRules:
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         rule = await async_client.cloud_connector.rules.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            rules=[{}],
         )
-        assert_matches_type(Optional[RuleUpdateResponse], rule, path=["response"])
+        assert_matches_type(AsyncSinglePage[RuleUpdateResponse], rule, path=["response"])
+
+    @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        rule = await async_client.cloud_connector.rules.update(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            rules=[
+                {
+                    "id": "95c365e17e1b46599cd99e5b231fac4e",
+                    "description": "Rule description",
+                    "enabled": True,
+                    "expression": 'http.cookie eq "a=b"',
+                    "parameters": {"host": "examplebucket.s3.eu-north-1.amazonaws.com"},
+                    "provider": "aws_s3",
+                }
+            ],
+        )
+        assert_matches_type(AsyncSinglePage[RuleUpdateResponse], rule, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cloud_connector.rules.with_raw_response.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            rules=[{}],
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         rule = await response.parse()
-        assert_matches_type(Optional[RuleUpdateResponse], rule, path=["response"])
+        assert_matches_type(AsyncSinglePage[RuleUpdateResponse], rule, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cloud_connector.rules.with_streaming_response.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            rules=[{}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             rule = await response.parse()
-            assert_matches_type(Optional[RuleUpdateResponse], rule, path=["response"])
+            assert_matches_type(AsyncSinglePage[RuleUpdateResponse], rule, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -141,7 +168,6 @@ class TestAsyncRules:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.cloud_connector.rules.with_raw_response.update(
                 zone_id="",
-                rules=[{}],
             )
 
     @parametrize

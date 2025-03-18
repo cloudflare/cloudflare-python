@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, cast
 
 import httpx
 
@@ -20,10 +20,10 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ...._base_client import make_request_options
+from ....pagination import SyncSinglePage, AsyncSinglePage
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.magic_transit.pcaps import ownership_create_params, ownership_validate_params
 from ....types.magic_transit.pcaps.ownership import Ownership
-from ....types.magic_transit.pcaps.ownership_get_response import OwnershipGetResponse
 
 __all__ = ["OwnershipResource", "AsyncOwnershipResource"]
 
@@ -32,7 +32,7 @@ class OwnershipResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> OwnershipResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -142,7 +142,7 @@ class OwnershipResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[OwnershipGetResponse]:
+    ) -> SyncSinglePage[Ownership]:
         """
         List all buckets configured for use with PCAPs API.
 
@@ -159,16 +159,13 @@ class OwnershipResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/pcaps/ownership",
+            page=SyncSinglePage[Ownership],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[OwnershipGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[OwnershipGetResponse]], ResultWrapper[OwnershipGetResponse]),
+            model=Ownership,
         )
 
     def validate(
@@ -228,7 +225,7 @@ class AsyncOwnershipResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncOwnershipResourceWithRawResponse:
         """
-        This property can be used as a prefix for any HTTP method call to return the
+        This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
@@ -330,7 +327,7 @@ class AsyncOwnershipResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
-    async def get(
+    def get(
         self,
         *,
         account_id: str,
@@ -340,7 +337,7 @@ class AsyncOwnershipResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[OwnershipGetResponse]:
+    ) -> AsyncPaginator[Ownership, AsyncSinglePage[Ownership]]:
         """
         List all buckets configured for use with PCAPs API.
 
@@ -357,16 +354,13 @@ class AsyncOwnershipResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/pcaps/ownership",
+            page=AsyncSinglePage[Ownership],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[OwnershipGetResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[OwnershipGetResponse]], ResultWrapper[OwnershipGetResponse]),
+            model=Ownership,
         )
 
     async def validate(

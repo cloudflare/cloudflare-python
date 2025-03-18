@@ -105,13 +105,13 @@ class TestRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -195,13 +195,13 @@ class TestRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -285,13 +285,13 @@ class TestRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -400,13 +400,13 @@ class TestRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -490,13 +490,13 @@ class TestRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -580,13 +580,13 @@ class TestRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -670,13 +670,13 @@ class TestRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -770,13 +770,13 @@ class TestRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -807,8 +807,8 @@ class TestRules:
                     }
                 },
                 "uri": {
-                    "path": {"expression": 'regex_replace(http.request.uri.path, "/bar$", "/baz")'},
-                    "query": {"expression": 'regex_replace(http.request.uri.query, "foo=bar", "")'},
+                    "path": {"value": "/images"},
+                    "query": {"value": "/images"},
                 },
             },
             description="Add a header when the IP address is not 1.1.1.1",
@@ -871,13 +871,13 @@ class TestRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -968,13 +968,13 @@ class TestRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -1058,13 +1058,13 @@ class TestRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -1152,13 +1152,13 @@ class TestRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -1264,13 +1264,13 @@ class TestRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -1360,13 +1360,13 @@ class TestRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -1411,16 +1411,7 @@ class TestRules:
                             "include": ["string"],
                         },
                         "host": {"resolved": True},
-                        "query_string": {
-                            "exclude": {
-                                "all": True,
-                                "list": ["string"],
-                            },
-                            "include": {
-                                "all": True,
-                                "list": ["string"],
-                            },
-                        },
+                        "query_string": {"include": {"list": ["foo", "bar"]}},
                         "user": {
                             "device_type": True,
                             "geo": True,
@@ -1513,13 +1504,13 @@ class TestRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -1544,8 +1535,20 @@ class TestRules:
             action="log_custom_field",
             action_parameters={
                 "cookie_fields": [{"name": "cookie_name_1"}],
+                "raw_response_fields": [
+                    {
+                        "name": "http_response_header_name_1_in_lower_case",
+                        "preserve_duplicates": True,
+                    }
+                ],
                 "request_fields": [{"name": "http_request_header_name_1_in_lower_case"}],
-                "response_fields": [{"name": "http_response_header_name_1_in_lower_case"}],
+                "response_fields": [
+                    {
+                        "name": "http_response_header_name_1_in_lower_case",
+                        "preserve_duplicates": True,
+                    }
+                ],
+                "transformed_request_fields": [{"name": "http_request_header_name_1_in_lower_case"}],
             },
             description="Log custom field when the IP address is not 1.1.1.1",
             enabled=True,
@@ -1607,13 +1610,13 @@ class TestRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -1697,13 +1700,13 @@ class TestRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -1787,13 +1790,13 @@ class TestRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -1866,14 +1869,14 @@ class TestRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.delete(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.delete(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -1976,14 +1979,14 @@ class TestRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -2080,14 +2083,14 @@ class TestRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -2184,14 +2187,14 @@ class TestRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -2313,14 +2316,14 @@ class TestRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -2417,14 +2420,14 @@ class TestRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -2521,14 +2524,14 @@ class TestRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -2625,14 +2628,14 @@ class TestRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -2739,14 +2742,14 @@ class TestRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -2780,8 +2783,8 @@ class TestRules:
                     }
                 },
                 "uri": {
-                    "path": {"expression": 'regex_replace(http.request.uri.path, "/bar$", "/baz")'},
-                    "query": {"expression": 'regex_replace(http.request.uri.query, "foo=bar", "")'},
+                    "path": {"value": "/images"},
+                    "query": {"value": "/images"},
                 },
             },
             description="Add a header when the IP address is not 1.1.1.1",
@@ -2854,14 +2857,14 @@ class TestRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -2965,14 +2968,14 @@ class TestRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -3069,14 +3072,14 @@ class TestRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -3177,14 +3180,14 @@ class TestRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -3303,14 +3306,14 @@ class TestRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -3413,14 +3416,14 @@ class TestRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -3468,16 +3471,7 @@ class TestRules:
                             "include": ["string"],
                         },
                         "host": {"resolved": True},
-                        "query_string": {
-                            "exclude": {
-                                "all": True,
-                                "list": ["string"],
-                            },
-                            "include": {
-                                "all": True,
-                                "list": ["string"],
-                            },
-                        },
+                        "query_string": {"include": {"list": ["foo", "bar"]}},
                         "user": {
                             "device_type": True,
                             "geo": True,
@@ -3580,14 +3574,14 @@ class TestRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -3615,8 +3609,20 @@ class TestRules:
             action="log_custom_field",
             action_parameters={
                 "cookie_fields": [{"name": "cookie_name_1"}],
+                "raw_response_fields": [
+                    {
+                        "name": "http_response_header_name_1_in_lower_case",
+                        "preserve_duplicates": True,
+                    }
+                ],
                 "request_fields": [{"name": "http_request_header_name_1_in_lower_case"}],
-                "response_fields": [{"name": "http_response_header_name_1_in_lower_case"}],
+                "response_fields": [
+                    {
+                        "name": "http_response_header_name_1_in_lower_case",
+                        "preserve_duplicates": True,
+                    }
+                ],
+                "transformed_request_fields": [{"name": "http_request_header_name_1_in_lower_case"}],
             },
             description="Log custom field when the IP address is not 1.1.1.1",
             enabled=True,
@@ -3688,14 +3694,14 @@ class TestRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -3792,14 +3798,14 @@ class TestRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -3896,14 +3902,14 @@ class TestRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -3998,13 +4004,13 @@ class TestAsyncRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -4088,13 +4094,13 @@ class TestAsyncRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -4178,13 +4184,13 @@ class TestAsyncRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -4293,13 +4299,13 @@ class TestAsyncRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -4383,13 +4389,13 @@ class TestAsyncRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -4473,13 +4479,13 @@ class TestAsyncRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -4563,13 +4569,13 @@ class TestAsyncRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -4663,13 +4669,13 @@ class TestAsyncRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -4700,8 +4706,8 @@ class TestAsyncRules:
                     }
                 },
                 "uri": {
-                    "path": {"expression": 'regex_replace(http.request.uri.path, "/bar$", "/baz")'},
-                    "query": {"expression": 'regex_replace(http.request.uri.query, "foo=bar", "")'},
+                    "path": {"value": "/images"},
+                    "query": {"value": "/images"},
                 },
             },
             description="Add a header when the IP address is not 1.1.1.1",
@@ -4764,13 +4770,13 @@ class TestAsyncRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -4861,13 +4867,13 @@ class TestAsyncRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -4951,13 +4957,13 @@ class TestAsyncRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -5045,13 +5051,13 @@ class TestAsyncRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -5157,13 +5163,13 @@ class TestAsyncRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -5253,13 +5259,13 @@ class TestAsyncRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -5304,16 +5310,7 @@ class TestAsyncRules:
                             "include": ["string"],
                         },
                         "host": {"resolved": True},
-                        "query_string": {
-                            "exclude": {
-                                "all": True,
-                                "list": ["string"],
-                            },
-                            "include": {
-                                "all": True,
-                                "list": ["string"],
-                            },
-                        },
+                        "query_string": {"include": {"list": ["foo", "bar"]}},
                         "user": {
                             "device_type": True,
                             "geo": True,
@@ -5406,13 +5403,13 @@ class TestAsyncRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -5437,8 +5434,20 @@ class TestAsyncRules:
             action="log_custom_field",
             action_parameters={
                 "cookie_fields": [{"name": "cookie_name_1"}],
+                "raw_response_fields": [
+                    {
+                        "name": "http_response_header_name_1_in_lower_case",
+                        "preserve_duplicates": True,
+                    }
+                ],
                 "request_fields": [{"name": "http_request_header_name_1_in_lower_case"}],
-                "response_fields": [{"name": "http_response_header_name_1_in_lower_case"}],
+                "response_fields": [
+                    {
+                        "name": "http_response_header_name_1_in_lower_case",
+                        "preserve_duplicates": True,
+                    }
+                ],
+                "transformed_request_fields": [{"name": "http_request_header_name_1_in_lower_case"}],
             },
             description="Log custom field when the IP address is not 1.1.1.1",
             enabled=True,
@@ -5500,13 +5509,13 @@ class TestAsyncRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -5590,13 +5599,13 @@ class TestAsyncRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -5680,13 +5689,13 @@ class TestAsyncRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.create(
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="account_id",
@@ -5759,14 +5768,14 @@ class TestAsyncRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.delete(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.delete(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -5869,14 +5878,14 @@ class TestAsyncRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -5973,14 +5982,14 @@ class TestAsyncRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -6077,14 +6086,14 @@ class TestAsyncRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -6206,14 +6215,14 @@ class TestAsyncRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -6310,14 +6319,14 @@ class TestAsyncRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -6414,14 +6423,14 @@ class TestAsyncRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -6518,14 +6527,14 @@ class TestAsyncRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -6632,14 +6641,14 @@ class TestAsyncRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -6673,8 +6682,8 @@ class TestAsyncRules:
                     }
                 },
                 "uri": {
-                    "path": {"expression": 'regex_replace(http.request.uri.path, "/bar$", "/baz")'},
-                    "query": {"expression": 'regex_replace(http.request.uri.query, "foo=bar", "")'},
+                    "path": {"value": "/images"},
+                    "query": {"value": "/images"},
                 },
             },
             description="Add a header when the IP address is not 1.1.1.1",
@@ -6747,14 +6756,14 @@ class TestAsyncRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -6858,14 +6867,14 @@ class TestAsyncRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -6962,14 +6971,14 @@ class TestAsyncRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -7070,14 +7079,14 @@ class TestAsyncRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -7196,14 +7205,14 @@ class TestAsyncRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -7306,14 +7315,14 @@ class TestAsyncRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -7361,16 +7370,7 @@ class TestAsyncRules:
                             "include": ["string"],
                         },
                         "host": {"resolved": True},
-                        "query_string": {
-                            "exclude": {
-                                "all": True,
-                                "list": ["string"],
-                            },
-                            "include": {
-                                "all": True,
-                                "list": ["string"],
-                            },
-                        },
+                        "query_string": {"include": {"list": ["foo", "bar"]}},
                         "user": {
                             "device_type": True,
                             "geo": True,
@@ -7473,14 +7473,14 @@ class TestAsyncRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -7508,8 +7508,20 @@ class TestAsyncRules:
             action="log_custom_field",
             action_parameters={
                 "cookie_fields": [{"name": "cookie_name_1"}],
+                "raw_response_fields": [
+                    {
+                        "name": "http_response_header_name_1_in_lower_case",
+                        "preserve_duplicates": True,
+                    }
+                ],
                 "request_fields": [{"name": "http_request_header_name_1_in_lower_case"}],
-                "response_fields": [{"name": "http_response_header_name_1_in_lower_case"}],
+                "response_fields": [
+                    {
+                        "name": "http_response_header_name_1_in_lower_case",
+                        "preserve_duplicates": True,
+                    }
+                ],
+                "transformed_request_fields": [{"name": "http_request_header_name_1_in_lower_case"}],
             },
             description="Log custom field when the IP address is not 1.1.1.1",
             enabled=True,
@@ -7581,14 +7593,14 @@ class TestAsyncRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -7685,14 +7697,14 @@ class TestAsyncRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
@@ -7789,14 +7801,14 @@ class TestAsyncRules:
                 account_id="account_id",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.rules.with_raw_response.edit(
                 rule_id="3a03d665bac047339bb530ecb439a90d",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",

@@ -41,7 +41,7 @@ class TestSummary:
             encrypted=["ENCRYPTED"],
             format="JSON",
             ip_version=["IPv4"],
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
         )
         assert_matches_type(SummaryARCResponse, summary, path=["response"])
@@ -82,7 +82,7 @@ class TestSummary:
             encrypted=["ENCRYPTED"],
             format="JSON",
             ip_version=["IPv4"],
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
         )
         assert_matches_type(SummaryDKIMResponse, summary, path=["response"])
@@ -123,7 +123,7 @@ class TestSummary:
             encrypted=["ENCRYPTED"],
             format="JSON",
             ip_version=["IPv4"],
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
         )
         assert_matches_type(SummaryDMARCResponse, summary, path=["response"])
@@ -164,7 +164,7 @@ class TestSummary:
             dmarc=["PASS"],
             format="JSON",
             ip_version=["IPv4"],
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
         )
         assert_matches_type(SummaryEncryptedResponse, summary, path=["response"])
@@ -205,7 +205,7 @@ class TestSummary:
             dmarc=["PASS"],
             encrypted=["ENCRYPTED"],
             format="JSON",
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
         )
         assert_matches_type(SummaryIPVersionResponse, summary, path=["response"])
@@ -247,7 +247,7 @@ class TestSummary:
             encrypted=["ENCRYPTED"],
             format="JSON",
             ip_version=["IPv4"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(SummarySPFResponse, summary, path=["response"])
 
@@ -291,7 +291,7 @@ class TestAsyncSummary:
             encrypted=["ENCRYPTED"],
             format="JSON",
             ip_version=["IPv4"],
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
         )
         assert_matches_type(SummaryARCResponse, summary, path=["response"])
@@ -332,7 +332,7 @@ class TestAsyncSummary:
             encrypted=["ENCRYPTED"],
             format="JSON",
             ip_version=["IPv4"],
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
         )
         assert_matches_type(SummaryDKIMResponse, summary, path=["response"])
@@ -373,7 +373,7 @@ class TestAsyncSummary:
             encrypted=["ENCRYPTED"],
             format="JSON",
             ip_version=["IPv4"],
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
         )
         assert_matches_type(SummaryDMARCResponse, summary, path=["response"])
@@ -414,7 +414,7 @@ class TestAsyncSummary:
             dmarc=["PASS"],
             format="JSON",
             ip_version=["IPv4"],
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
         )
         assert_matches_type(SummaryEncryptedResponse, summary, path=["response"])
@@ -455,7 +455,7 @@ class TestAsyncSummary:
             dmarc=["PASS"],
             encrypted=["ENCRYPTED"],
             format="JSON",
-            name=["string"],
+            name=["main_series"],
             spf=["PASS"],
         )
         assert_matches_type(SummaryIPVersionResponse, summary, path=["response"])
@@ -497,7 +497,7 @@ class TestAsyncSummary:
             encrypted=["ENCRYPTED"],
             format="JSON",
             ip_version=["IPv4"],
-            name=["string"],
+            name=["main_series"],
         )
         assert_matches_type(SummarySPFResponse, summary, path=["response"])
 
