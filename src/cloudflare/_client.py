@@ -121,6 +121,7 @@ if TYPE_CHECKING:
         keyless_certificates,
         network_interconnects,
         workers_for_platforms,
+        magic_cloud_networking,
         origin_ca_certificates,
         origin_tls_client_auth,
         certificate_authorities,
@@ -226,6 +227,10 @@ if TYPE_CHECKING:
     from .resources.workers_for_platforms.workers_for_platforms import (
         WorkersForPlatformsResource,
         AsyncWorkersForPlatformsResource,
+    )
+    from .resources.magic_cloud_networking.magic_cloud_networking import (
+        MagicCloudNetworkingResource,
+        AsyncMagicCloudNetworkingResource,
     )
     from .resources.origin_tls_client_auth.origin_tls_client_auth import (
         OriginTLSClientAuthResource,
@@ -628,6 +633,12 @@ class Cloudflare(SyncAPIClient):
         from .resources.magic_network_monitoring import MagicNetworkMonitoringResource
 
         return MagicNetworkMonitoringResource(self)
+
+    @cached_property
+    def magic_cloud_networking(self) -> MagicCloudNetworkingResource:
+        from .resources.magic_cloud_networking import MagicCloudNetworkingResource
+
+        return MagicCloudNetworkingResource(self)
 
     @cached_property
     def network_interconnects(self) -> NetworkInterconnectsResource:
@@ -1431,6 +1442,12 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncMagicNetworkMonitoringResource(self)
 
     @cached_property
+    def magic_cloud_networking(self) -> AsyncMagicCloudNetworkingResource:
+        from .resources.magic_cloud_networking import AsyncMagicCloudNetworkingResource
+
+        return AsyncMagicCloudNetworkingResource(self)
+
+    @cached_property
     def network_interconnects(self) -> AsyncNetworkInterconnectsResource:
         from .resources.network_interconnects import AsyncNetworkInterconnectsResource
 
@@ -2165,6 +2182,12 @@ class CloudflareWithRawResponse:
         return MagicNetworkMonitoringResourceWithRawResponse(self._client.magic_network_monitoring)
 
     @cached_property
+    def magic_cloud_networking(self) -> magic_cloud_networking.MagicCloudNetworkingResourceWithRawResponse:
+        from .resources.magic_cloud_networking import MagicCloudNetworkingResourceWithRawResponse
+
+        return MagicCloudNetworkingResourceWithRawResponse(self._client.magic_cloud_networking)
+
+    @cached_property
     def network_interconnects(self) -> network_interconnects.NetworkInterconnectsResourceWithRawResponse:
         from .resources.network_interconnects import NetworkInterconnectsResourceWithRawResponse
 
@@ -2720,6 +2743,12 @@ class AsyncCloudflareWithRawResponse:
         return AsyncMagicNetworkMonitoringResourceWithRawResponse(self._client.magic_network_monitoring)
 
     @cached_property
+    def magic_cloud_networking(self) -> magic_cloud_networking.AsyncMagicCloudNetworkingResourceWithRawResponse:
+        from .resources.magic_cloud_networking import AsyncMagicCloudNetworkingResourceWithRawResponse
+
+        return AsyncMagicCloudNetworkingResourceWithRawResponse(self._client.magic_cloud_networking)
+
+    @cached_property
     def network_interconnects(self) -> network_interconnects.AsyncNetworkInterconnectsResourceWithRawResponse:
         from .resources.network_interconnects import AsyncNetworkInterconnectsResourceWithRawResponse
 
@@ -3273,6 +3302,12 @@ class CloudflareWithStreamedResponse:
         from .resources.magic_network_monitoring import MagicNetworkMonitoringResourceWithStreamingResponse
 
         return MagicNetworkMonitoringResourceWithStreamingResponse(self._client.magic_network_monitoring)
+
+    @cached_property
+    def magic_cloud_networking(self) -> magic_cloud_networking.MagicCloudNetworkingResourceWithStreamingResponse:
+        from .resources.magic_cloud_networking import MagicCloudNetworkingResourceWithStreamingResponse
+
+        return MagicCloudNetworkingResourceWithStreamingResponse(self._client.magic_cloud_networking)
 
     @cached_property
     def network_interconnects(self) -> network_interconnects.NetworkInterconnectsResourceWithStreamingResponse:
@@ -3832,6 +3867,12 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.magic_network_monitoring import AsyncMagicNetworkMonitoringResourceWithStreamingResponse
 
         return AsyncMagicNetworkMonitoringResourceWithStreamingResponse(self._client.magic_network_monitoring)
+
+    @cached_property
+    def magic_cloud_networking(self) -> magic_cloud_networking.AsyncMagicCloudNetworkingResourceWithStreamingResponse:
+        from .resources.magic_cloud_networking import AsyncMagicCloudNetworkingResourceWithStreamingResponse
+
+        return AsyncMagicCloudNetworkingResourceWithStreamingResponse(self._client.magic_cloud_networking)
 
     @cached_property
     def network_interconnects(self) -> network_interconnects.AsyncNetworkInterconnectsResourceWithStreamingResponse:
