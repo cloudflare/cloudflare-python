@@ -31,6 +31,9 @@ __all__ = [
     "Translation",
     "Summarization",
     "ImageToText",
+    "Variant12",
+    "Variant13",
+    "Variant13Message",
 ]
 
 
@@ -97,7 +100,7 @@ class TextToSpeech(TypedDict, total=False):
     account_id: Required[str]
 
     prompt: Required[str]
-    """A text description of the image you want to generate"""
+    """A text description of the audio you want to generate"""
 
     lang: str
     """The speech language (e.g., 'en' for English, 'fr' for French).
@@ -234,6 +237,12 @@ class Messages(TypedDict, total=False):
     presence_penalty: float
     """Increases the likelihood of the model introducing new topics."""
 
+    raw: bool
+    """
+    If true, a chat template is not applied and you must adhere to the specific
+    model's expected formatting.
+    """
+
     repetition_penalty: float
     """Penalty for repeated tokens; higher values discourage repetition."""
 
@@ -243,7 +252,10 @@ class Messages(TypedDict, total=False):
     """Random seed for reproducibility of the generation."""
 
     stream: bool
-    """If true, the response will be streamed back incrementally."""
+    """
+    If true, the response will be streamed back incrementally using SSE, Server Sent
+    Events.
+    """
 
     temperature: float
     """
@@ -263,7 +275,7 @@ class Messages(TypedDict, total=False):
 
     top_p: float
     """
-    Controls the creativity of the AI's responses by adjusting how many possible
+    Adjusts the creativity of the AI's responses by controlling how many possible
     words it considers. Lower values make outputs more predictable; higher values
     allow for more varied and creative responses.
     """
@@ -440,6 +452,116 @@ class ImageToText(TypedDict, total=False):
     """
 
 
+class Variant12(TypedDict, total=False):
+    account_id: Required[str]
+
+    image: Required[str]
+    """Image in base64 encoded format."""
+
+    prompt: Required[str]
+    """The input text prompt for the model to generate a response."""
+
+    frequency_penalty: float
+    """Decreases the likelihood of the model repeating the same lines verbatim."""
+
+    ignore_eos: bool
+    """
+    Whether to ignore the EOS token and continue generating tokens after the EOS
+    token is generated.
+    """
+
+    max_tokens: int
+    """The maximum number of tokens to generate in the response."""
+
+    presence_penalty: float
+    """Increases the likelihood of the model introducing new topics."""
+
+    repetition_penalty: float
+    """Penalty for repeated tokens; higher values discourage repetition."""
+
+    seed: float
+    """Random seed for reproducibility of the generation."""
+
+    temperature: float
+    """
+    Controls the randomness of the output; higher values produce more random
+    results.
+    """
+
+    top_k: float
+    """Limits the AI to choose from the top 'k' most probable words.
+
+    Lower values make responses more focused; higher values introduce more variety
+    and potential surprises.
+    """
+
+    top_p: float
+    """
+    Controls the creativity of the AI's responses by adjusting how many possible
+    words it considers. Lower values make outputs more predictable; higher values
+    allow for more varied and creative responses.
+    """
+
+
+class Variant13(TypedDict, total=False):
+    account_id: Required[str]
+
+    image: Required[str]
+    """Image in base64 encoded format."""
+
+    messages: Required[Iterable[Variant13Message]]
+    """An array of message objects representing the conversation history."""
+
+    frequency_penalty: float
+    """Decreases the likelihood of the model repeating the same lines verbatim."""
+
+    ignore_eos: bool
+    """
+    Whether to ignore the EOS token and continue generating tokens after the EOS
+    token is generated.
+    """
+
+    max_tokens: int
+    """The maximum number of tokens to generate in the response."""
+
+    presence_penalty: float
+    """Increases the likelihood of the model introducing new topics."""
+
+    repetition_penalty: float
+    """Penalty for repeated tokens; higher values discourage repetition."""
+
+    seed: float
+    """Random seed for reproducibility of the generation."""
+
+    temperature: float
+    """
+    Controls the randomness of the output; higher values produce more random
+    results.
+    """
+
+    top_k: float
+    """Limits the AI to choose from the top 'k' most probable words.
+
+    Lower values make responses more focused; higher values introduce more variety
+    and potential surprises.
+    """
+
+    top_p: float
+    """
+    Controls the creativity of the AI's responses by adjusting how many possible
+    words it considers. Lower values make outputs more predictable; higher values
+    allow for more varied and creative responses.
+    """
+
+
+class Variant13Message(TypedDict, total=False):
+    content: Required[str]
+    """The content of the message as a string."""
+
+    role: Required[str]
+    """The role of the message sender (e.g., 'user', 'assistant', 'system', 'tool')."""
+
+
 AIRunParams: TypeAlias = Union[
     TextClassification,
     TextToImage,
@@ -453,4 +575,6 @@ AIRunParams: TypeAlias = Union[
     Translation,
     Summarization,
     ImageToText,
+    Variant12,
+    Variant13,
 ]
