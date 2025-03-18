@@ -48,8 +48,8 @@ class TestPolicies:
             enabled=True,
             mechanisms={
                 "email": [{"id": "test@example.com"}],
-                "pagerduty": [{}],
-                "webhooks": [{}],
+                "pagerduty": [{"id": "e8133a15-00a4-4d69-aec1-32f70c51f6e5"}],
+                "webhooks": [{"id": "14cc1190-5d2b-4b98-a696-c424cb2ad05f"}],
             },
             name="SSL Notification Event Policy",
             alert_interval="30m",
@@ -222,8 +222,8 @@ class TestPolicies:
             },
             mechanisms={
                 "email": [{"id": "test@example.com"}],
-                "pagerduty": [{}],
-                "webhooks": [{}],
+                "pagerduty": [{"id": "e8133a15-00a4-4d69-aec1-32f70c51f6e5"}],
+                "webhooks": [{"id": "14cc1190-5d2b-4b98-a696-c424cb2ad05f"}],
             },
             name="SSL Notification Event Policy",
         )
@@ -453,8 +453,8 @@ class TestAsyncPolicies:
             enabled=True,
             mechanisms={
                 "email": [{"id": "test@example.com"}],
-                "pagerduty": [{}],
-                "webhooks": [{}],
+                "pagerduty": [{"id": "e8133a15-00a4-4d69-aec1-32f70c51f6e5"}],
+                "webhooks": [{"id": "14cc1190-5d2b-4b98-a696-c424cb2ad05f"}],
             },
             name="SSL Notification Event Policy",
             alert_interval="30m",
@@ -627,8 +627,8 @@ class TestAsyncPolicies:
             },
             mechanisms={
                 "email": [{"id": "test@example.com"}],
-                "pagerduty": [{}],
-                "webhooks": [{}],
+                "pagerduty": [{"id": "e8133a15-00a4-4d69-aec1-32f70c51f6e5"}],
+                "webhooks": [{"id": "14cc1190-5d2b-4b98-a696-c424cb2ad05f"}],
             },
             name="SSL Notification Event Policy",
         )
