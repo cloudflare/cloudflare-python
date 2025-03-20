@@ -33,7 +33,7 @@ class OperationListParams(TypedDict, total=False):
     order: Literal["host", "method", "endpoint", "traffic_stats.requests", "traffic_stats.last_updated"]
     """Field to order by"""
 
-    origin: Literal["ML", "SessionIdentifier", "LabelDiscovery"]
+    origin: Literal["ML", "SessionIdentifier"]
     """
     Filter results to only include discovery results sourced from a particular
     discovery engine
