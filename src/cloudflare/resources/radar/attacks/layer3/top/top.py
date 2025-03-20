@@ -193,8 +193,10 @@ class TopResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TopIndustryResponse:
-        """
-        Retrieves the top industries targeted by layer 3 attacks.
+        """This endpoint is deprecated.
+
+        To continue getting this data, switch to the
+        summary by industry endpoint.
 
         Args:
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
@@ -278,8 +280,10 @@ class TopResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TopVerticalResponse:
-        """
-        Retrieves the top verticals targeted by layer 3 attacks.
+        """This endpoint is deprecated.
+
+        To continue getting this data, switch to the
+        summary by vertical endpoint.
 
         Args:
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
@@ -498,8 +502,10 @@ class AsyncTopResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TopIndustryResponse:
-        """
-        Retrieves the top industries targeted by layer 3 attacks.
+        """This endpoint is deprecated.
+
+        To continue getting this data, switch to the
+        summary by industry endpoint.
 
         Args:
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
@@ -583,8 +589,10 @@ class AsyncTopResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TopVerticalResponse:
-        """
-        Retrieves the top verticals targeted by layer 3 attacks.
+        """This endpoint is deprecated.
+
+        To continue getting this data, switch to the
+        summary by vertical endpoint.
 
         Args:
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
