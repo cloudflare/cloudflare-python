@@ -272,8 +272,10 @@ class TopResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TopIndustryResponse:
-        """
-        Retrieves the industries targeted by layer 7 attacks.
+        """This endpoint is deprecated.
+
+        To continue getting this data, switch to the
+        summary by industry endpoint.
 
         Args:
           asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
@@ -426,8 +428,10 @@ class TopResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TopVerticalResponse:
-        """
-        Retrieves the verticals targeted by layer 7 attacks.
+        """This endpoint is deprecated.
+
+        To continue getting this data, switch to the
+        summary by vertical endpoint.
 
         Args:
           asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
@@ -728,8 +732,10 @@ class AsyncTopResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TopIndustryResponse:
-        """
-        Retrieves the industries targeted by layer 7 attacks.
+        """This endpoint is deprecated.
+
+        To continue getting this data, switch to the
+        summary by industry endpoint.
 
         Args:
           asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
@@ -882,8 +888,10 @@ class AsyncTopResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> TopVerticalResponse:
-        """
-        Retrieves the verticals targeted by layer 7 attacks.
+        """This endpoint is deprecated.
+
+        To continue getting this data, switch to the
+        summary by vertical endpoint.
 
         Args:
           asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to

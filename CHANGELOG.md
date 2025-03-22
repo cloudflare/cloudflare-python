@@ -1,5 +1,24 @@
 # Changelog
 
+## 4.2.0 (2025-03-22)
+
+Full Changelog: [v4.1.0...v4.2.0](https://github.com/cloudflare/cloudflare-python/compare/v4.1.0...v4.2.0)
+
+### Features
+
+* **api:** api update ([#2554](https://github.com/cloudflare/cloudflare-python/issues/2554)) ([60bb69e](https://github.com/cloudflare/cloudflare-python/commit/60bb69eb45e2db49a9e3161b25e63e9ccbae92d0))
+* **api:** api update ([#2556](https://github.com/cloudflare/cloudflare-python/issues/2556)) ([3449f59](https://github.com/cloudflare/cloudflare-python/commit/3449f59c9b200b2774131ae969637e98ecd6e8b9))
+* **api:** api update ([#2557](https://github.com/cloudflare/cloudflare-python/issues/2557)) ([b413db0](https://github.com/cloudflare/cloudflare-python/commit/b413db05df0b3c6d239e5804380c155e1bb3a206))
+* **api:** api update ([#2558](https://github.com/cloudflare/cloudflare-python/issues/2558)) ([b1465fe](https://github.com/cloudflare/cloudflare-python/commit/b1465fe9bd6801853b186519373fc8d632e32b12))
+* **api:** api update ([#2559](https://github.com/cloudflare/cloudflare-python/issues/2559)) ([f7b276d](https://github.com/cloudflare/cloudflare-python/commit/f7b276d5979ae3bbd6dd1febcec4a6c330431afb))
+* **api:** api update ([#2560](https://github.com/cloudflare/cloudflare-python/issues/2560)) ([2f84425](https://github.com/cloudflare/cloudflare-python/commit/2f84425fec3c850680b3a36cb6dc35a0e4d6b7c0))
+* **api:** api update ([#2561](https://github.com/cloudflare/cloudflare-python/issues/2561)) ([a3845f3](https://github.com/cloudflare/cloudflare-python/commit/a3845f3741b73b8ee78926db4695c43cefe8be8b))
+* **api:** api update ([#2562](https://github.com/cloudflare/cloudflare-python/issues/2562)) ([5fb6766](https://github.com/cloudflare/cloudflare-python/commit/5fb676674f935635d47932d9164b116e117972d2))
+* **api:** api update ([#2563](https://github.com/cloudflare/cloudflare-python/issues/2563)) ([bfa0666](https://github.com/cloudflare/cloudflare-python/commit/bfa06661b94346d48b0b441ff163964cb80ed88b))
+* **api:** api update ([#2564](https://github.com/cloudflare/cloudflare-python/issues/2564)) ([1054e4b](https://github.com/cloudflare/cloudflare-python/commit/1054e4b3c0a630e25bc33a955f68613ac3ed7563))
+* **api:** api update ([#2565](https://github.com/cloudflare/cloudflare-python/issues/2565)) ([658f94a](https://github.com/cloudflare/cloudflare-python/commit/658f94a207a6a7f69476d5ec1002eeae930eab16))
+* **api:** api update ([#2566](https://github.com/cloudflare/cloudflare-python/issues/2566)) ([088b492](https://github.com/cloudflare/cloudflare-python/commit/088b492ba75e27d4774e139b5bbc7e28baf50c98))
+
 ## 4.1.0 (2025-03-18)
 
 Full Changelog: [v4.0.0...v4.1.0](https://github.com/cloudflare/cloudflare-python/compare/v4.0.0...v4.1.0)

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Dict, List, Iterable
-from typing_extensions import Literal, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 from .dns_resolver_settings_v4_param import DNSResolverSettingsV4Param
 from .dns_resolver_settings_v6_param import DNSResolverSettingsV6Param
@@ -19,6 +19,7 @@ __all__ = [
     "NotificationSettings",
     "PayloadLog",
     "Quarantine",
+    "Redirect",
     "ResolveDNSInternally",
     "UntrustedCERT",
 ]
@@ -152,6 +153,17 @@ class Quarantine(TypedDict, total=False):
     """Types of files to sandbox."""
 
 
+class Redirect(TypedDict, total=False):
+    target_uri: Required[str]
+    """URI to which the user will be redirected"""
+
+    preserve_path_and_query: bool
+    """
+    If true, the path and query parameters from the original request will be
+    appended to target_uri
+    """
+
+
 class ResolveDNSInternally(TypedDict, total=False):
     fallback: Literal["none", "public_dns"]
     """
@@ -260,6 +272,9 @@ class RuleSettingParam(TypedDict, total=False):
 
     quarantine: Quarantine
     """Settings that apply to quarantine rules"""
+
+    redirect: Redirect
+    """Settings that apply to redirect rules"""
 
     resolve_dns_internally: ResolveDNSInternally
     """
