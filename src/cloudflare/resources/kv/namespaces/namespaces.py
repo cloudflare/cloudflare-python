@@ -36,14 +36,6 @@ from ...._utils import (
     maybe_transform,
     async_maybe_transform,
 )
-from .analytics import (
-    AnalyticsResource,
-    AsyncAnalyticsResource,
-    AnalyticsResourceWithRawResponse,
-    AsyncAnalyticsResourceWithRawResponse,
-    AnalyticsResourceWithStreamingResponse,
-    AsyncAnalyticsResourceWithStreamingResponse,
-)
 from ...._compat import cached_property
 from ....types.kv import (
     namespace_list_params,
@@ -71,10 +63,6 @@ __all__ = ["NamespacesResource", "AsyncNamespacesResource"]
 
 
 class NamespacesResource(SyncAPIResource):
-    @cached_property
-    def analytics(self) -> AnalyticsResource:
-        return AnalyticsResource(self._client)
-
     @cached_property
     def keys(self) -> KeysResource:
         return KeysResource(self._client)
@@ -450,10 +438,6 @@ class NamespacesResource(SyncAPIResource):
 
 
 class AsyncNamespacesResource(AsyncAPIResource):
-    @cached_property
-    def analytics(self) -> AsyncAnalyticsResource:
-        return AsyncAnalyticsResource(self._client)
-
     @cached_property
     def keys(self) -> AsyncKeysResource:
         return AsyncKeysResource(self._client)
@@ -855,10 +839,6 @@ class NamespacesResourceWithRawResponse:
         )
 
     @cached_property
-    def analytics(self) -> AnalyticsResourceWithRawResponse:
-        return AnalyticsResourceWithRawResponse(self._namespaces.analytics)
-
-    @cached_property
     def keys(self) -> KeysResourceWithRawResponse:
         return KeysResourceWithRawResponse(self._namespaces.keys)
 
@@ -896,10 +876,6 @@ class AsyncNamespacesResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             namespaces.get,
         )
-
-    @cached_property
-    def analytics(self) -> AsyncAnalyticsResourceWithRawResponse:
-        return AsyncAnalyticsResourceWithRawResponse(self._namespaces.analytics)
 
     @cached_property
     def keys(self) -> AsyncKeysResourceWithRawResponse:
@@ -941,10 +917,6 @@ class NamespacesResourceWithStreamingResponse:
         )
 
     @cached_property
-    def analytics(self) -> AnalyticsResourceWithStreamingResponse:
-        return AnalyticsResourceWithStreamingResponse(self._namespaces.analytics)
-
-    @cached_property
     def keys(self) -> KeysResourceWithStreamingResponse:
         return KeysResourceWithStreamingResponse(self._namespaces.keys)
 
@@ -982,10 +954,6 @@ class AsyncNamespacesResourceWithStreamingResponse:
         self.get = async_to_streamed_response_wrapper(
             namespaces.get,
         )
-
-    @cached_property
-    def analytics(self) -> AsyncAnalyticsResourceWithStreamingResponse:
-        return AsyncAnalyticsResourceWithStreamingResponse(self._namespaces.analytics)
 
     @cached_property
     def keys(self) -> AsyncKeysResourceWithStreamingResponse:
