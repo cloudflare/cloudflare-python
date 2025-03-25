@@ -76,6 +76,7 @@ class TestQueues:
             queue_name="example-queue",
             settings={
                 "delivery_delay": 5,
+                "delivery_paused": True,
                 "message_retention_period": 345600,
             },
         )
@@ -317,6 +318,7 @@ class TestAsyncQueues:
             queue_name="example-queue",
             settings={
                 "delivery_delay": 5,
+                "delivery_paused": True,
                 "message_retention_period": 345600,
             },
         )
