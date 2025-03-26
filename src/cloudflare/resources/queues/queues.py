@@ -6,6 +6,14 @@ from typing import Type, Optional, cast
 
 import httpx
 
+from .purge import (
+    PurgeResource,
+    AsyncPurgeResource,
+    PurgeResourceWithRawResponse,
+    AsyncPurgeResourceWithRawResponse,
+    PurgeResourceWithStreamingResponse,
+    AsyncPurgeResourceWithStreamingResponse,
+)
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
@@ -38,7 +46,7 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.queues import queue_create_params, queue_update_params
+from ...types.queues import queue_edit_params, queue_create_params, queue_update_params
 from ...types.queues.queue import Queue
 from ...types.queues.queue_delete_response import QueueDeleteResponse
 
@@ -53,6 +61,10 @@ class QueuesResource(SyncAPIResource):
     @cached_property
     def messages(self) -> MessagesResource:
         return MessagesResource(self._client)
+
+    @cached_property
+    def purge(self) -> PurgeResource:
+        return PurgeResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> QueuesResourceWithRawResponse:
@@ -246,6 +258,59 @@ class QueuesResource(SyncAPIResource):
             cast_to=QueueDeleteResponse,
         )
 
+    def edit(
+        self,
+        queue_id: str,
+        *,
+        account_id: str,
+        queue_name: str | NotGiven = NOT_GIVEN,
+        settings: queue_edit_params.Settings | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[Queue]:
+        """
+        Updates a Queue.
+
+        Args:
+          account_id: A Resource identifier.
+
+          queue_id: A Resource identifier.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not queue_id:
+            raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
+        return self._patch(
+            f"/accounts/{account_id}/queues/{queue_id}",
+            body=maybe_transform(
+                {
+                    "queue_name": queue_name,
+                    "settings": settings,
+                },
+                queue_edit_params.QueueEditParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Queue]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[Queue]], ResultWrapper[Queue]),
+        )
+
     def get(
         self,
         queue_id: str,
@@ -299,6 +364,10 @@ class AsyncQueuesResource(AsyncAPIResource):
     @cached_property
     def messages(self) -> AsyncMessagesResource:
         return AsyncMessagesResource(self._client)
+
+    @cached_property
+    def purge(self) -> AsyncPurgeResource:
+        return AsyncPurgeResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncQueuesResourceWithRawResponse:
@@ -492,6 +561,59 @@ class AsyncQueuesResource(AsyncAPIResource):
             cast_to=QueueDeleteResponse,
         )
 
+    async def edit(
+        self,
+        queue_id: str,
+        *,
+        account_id: str,
+        queue_name: str | NotGiven = NOT_GIVEN,
+        settings: queue_edit_params.Settings | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[Queue]:
+        """
+        Updates a Queue.
+
+        Args:
+          account_id: A Resource identifier.
+
+          queue_id: A Resource identifier.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not queue_id:
+            raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
+        return await self._patch(
+            f"/accounts/{account_id}/queues/{queue_id}",
+            body=await async_maybe_transform(
+                {
+                    "queue_name": queue_name,
+                    "settings": settings,
+                },
+                queue_edit_params.QueueEditParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Queue]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[Queue]], ResultWrapper[Queue]),
+        )
+
     async def get(
         self,
         queue_id: str,
@@ -553,6 +675,9 @@ class QueuesResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             queues.delete,
         )
+        self.edit = to_raw_response_wrapper(
+            queues.edit,
+        )
         self.get = to_raw_response_wrapper(
             queues.get,
         )
@@ -564,6 +689,10 @@ class QueuesResourceWithRawResponse:
     @cached_property
     def messages(self) -> MessagesResourceWithRawResponse:
         return MessagesResourceWithRawResponse(self._queues.messages)
+
+    @cached_property
+    def purge(self) -> PurgeResourceWithRawResponse:
+        return PurgeResourceWithRawResponse(self._queues.purge)
 
 
 class AsyncQueuesResourceWithRawResponse:
@@ -582,6 +711,9 @@ class AsyncQueuesResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             queues.delete,
         )
+        self.edit = async_to_raw_response_wrapper(
+            queues.edit,
+        )
         self.get = async_to_raw_response_wrapper(
             queues.get,
         )
@@ -593,6 +725,10 @@ class AsyncQueuesResourceWithRawResponse:
     @cached_property
     def messages(self) -> AsyncMessagesResourceWithRawResponse:
         return AsyncMessagesResourceWithRawResponse(self._queues.messages)
+
+    @cached_property
+    def purge(self) -> AsyncPurgeResourceWithRawResponse:
+        return AsyncPurgeResourceWithRawResponse(self._queues.purge)
 
 
 class QueuesResourceWithStreamingResponse:
@@ -611,6 +747,9 @@ class QueuesResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             queues.delete,
         )
+        self.edit = to_streamed_response_wrapper(
+            queues.edit,
+        )
         self.get = to_streamed_response_wrapper(
             queues.get,
         )
@@ -622,6 +761,10 @@ class QueuesResourceWithStreamingResponse:
     @cached_property
     def messages(self) -> MessagesResourceWithStreamingResponse:
         return MessagesResourceWithStreamingResponse(self._queues.messages)
+
+    @cached_property
+    def purge(self) -> PurgeResourceWithStreamingResponse:
+        return PurgeResourceWithStreamingResponse(self._queues.purge)
 
 
 class AsyncQueuesResourceWithStreamingResponse:
@@ -640,6 +783,9 @@ class AsyncQueuesResourceWithStreamingResponse:
         self.delete = async_to_streamed_response_wrapper(
             queues.delete,
         )
+        self.edit = async_to_streamed_response_wrapper(
+            queues.edit,
+        )
         self.get = async_to_streamed_response_wrapper(
             queues.get,
         )
@@ -651,3 +797,7 @@ class AsyncQueuesResourceWithStreamingResponse:
     @cached_property
     def messages(self) -> AsyncMessagesResourceWithStreamingResponse:
         return AsyncMessagesResourceWithStreamingResponse(self._queues.messages)
+
+    @cached_property
+    def purge(self) -> AsyncPurgeResourceWithStreamingResponse:
+        return AsyncPurgeResourceWithStreamingResponse(self._queues.purge)
