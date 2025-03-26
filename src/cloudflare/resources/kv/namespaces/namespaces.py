@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Iterable, Optional, cast
+from typing import Any, List, Type, Iterable, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -41,6 +41,7 @@ from ....types.kv import (
     namespace_list_params,
     namespace_create_params,
     namespace_update_params,
+    namespace_bulk_get_params,
     namespace_bulk_update_params,
 )
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -56,6 +57,7 @@ from ...._base_client import AsyncPaginator, make_request_options
 from ....types.kv.namespace import Namespace
 from ....types.kv.namespace_delete_response import NamespaceDeleteResponse
 from ....types.kv.namespace_update_response import NamespaceUpdateResponse
+from ....types.kv.namespace_bulk_get_response import NamespaceBulkGetResponse
 from ....types.kv.namespace_bulk_delete_response import NamespaceBulkDeleteResponse
 from ....types.kv.namespace_bulk_update_response import NamespaceBulkUpdateResponse
 
@@ -338,6 +340,76 @@ class NamespacesResource(SyncAPIResource):
                 post_parser=ResultWrapper[Optional[NamespaceBulkDeleteResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[NamespaceBulkDeleteResponse]], ResultWrapper[NamespaceBulkDeleteResponse]),
+        )
+
+    def bulk_get(
+        self,
+        namespace_id: str,
+        *,
+        account_id: str,
+        keys: List[str],
+        type: Literal["text", "json"] | NotGiven = NOT_GIVEN,
+        with_metadata: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[NamespaceBulkGetResponse]:
+        """Get multiple KV pairs from the namespace.
+
+        Body should contain keys to retrieve
+        at most 100. Keys must contain text-based values. If value is json, it can be
+        requested to return in JSON, instead of string. Metadata can be return if
+        withMetadata is true.
+
+        Args:
+          account_id: Identifier
+
+          namespace_id: Namespace identifier tag.
+
+          keys: Array of keys to retrieve (maximum 100)
+
+          type: Whether to parse JSON values in the response
+
+          with_metadata: Whether to include metadata in the response
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not namespace_id:
+            raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
+        return cast(
+            Optional[NamespaceBulkGetResponse],
+            self._post(
+                f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk/get",
+                body=maybe_transform(
+                    {
+                        "keys": keys,
+                        "type": type,
+                        "with_metadata": with_metadata,
+                    },
+                    namespace_bulk_get_params.NamespaceBulkGetParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[NamespaceBulkGetResponse]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[NamespaceBulkGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
         )
 
     def bulk_update(
@@ -715,6 +787,76 @@ class AsyncNamespacesResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[NamespaceBulkDeleteResponse]], ResultWrapper[NamespaceBulkDeleteResponse]),
         )
 
+    async def bulk_get(
+        self,
+        namespace_id: str,
+        *,
+        account_id: str,
+        keys: List[str],
+        type: Literal["text", "json"] | NotGiven = NOT_GIVEN,
+        with_metadata: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[NamespaceBulkGetResponse]:
+        """Get multiple KV pairs from the namespace.
+
+        Body should contain keys to retrieve
+        at most 100. Keys must contain text-based values. If value is json, it can be
+        requested to return in JSON, instead of string. Metadata can be return if
+        withMetadata is true.
+
+        Args:
+          account_id: Identifier
+
+          namespace_id: Namespace identifier tag.
+
+          keys: Array of keys to retrieve (maximum 100)
+
+          type: Whether to parse JSON values in the response
+
+          with_metadata: Whether to include metadata in the response
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not namespace_id:
+            raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
+        return cast(
+            Optional[NamespaceBulkGetResponse],
+            await self._post(
+                f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk/get",
+                body=await async_maybe_transform(
+                    {
+                        "keys": keys,
+                        "type": type,
+                        "with_metadata": with_metadata,
+                    },
+                    namespace_bulk_get_params.NamespaceBulkGetParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[NamespaceBulkGetResponse]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[NamespaceBulkGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
+
     async def bulk_update(
         self,
         namespace_id: str,
@@ -831,6 +973,9 @@ class NamespacesResourceWithRawResponse:
         self.bulk_delete = to_raw_response_wrapper(
             namespaces.bulk_delete,
         )
+        self.bulk_get = to_raw_response_wrapper(
+            namespaces.bulk_get,
+        )
         self.bulk_update = to_raw_response_wrapper(
             namespaces.bulk_update,
         )
@@ -869,6 +1014,9 @@ class AsyncNamespacesResourceWithRawResponse:
         )
         self.bulk_delete = async_to_raw_response_wrapper(
             namespaces.bulk_delete,
+        )
+        self.bulk_get = async_to_raw_response_wrapper(
+            namespaces.bulk_get,
         )
         self.bulk_update = async_to_raw_response_wrapper(
             namespaces.bulk_update,
@@ -909,6 +1057,9 @@ class NamespacesResourceWithStreamingResponse:
         self.bulk_delete = to_streamed_response_wrapper(
             namespaces.bulk_delete,
         )
+        self.bulk_get = to_streamed_response_wrapper(
+            namespaces.bulk_get,
+        )
         self.bulk_update = to_streamed_response_wrapper(
             namespaces.bulk_update,
         )
@@ -947,6 +1098,9 @@ class AsyncNamespacesResourceWithStreamingResponse:
         )
         self.bulk_delete = async_to_streamed_response_wrapper(
             namespaces.bulk_delete,
+        )
+        self.bulk_get = async_to_streamed_response_wrapper(
+            namespaces.bulk_get,
         )
         self.bulk_update = async_to_streamed_response_wrapper(
             namespaces.bulk_update,
