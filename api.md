@@ -2527,6 +2527,7 @@ from cloudflare.types.kv import (
     NamespaceUpdateResponse,
     NamespaceDeleteResponse,
     NamespaceBulkDeleteResponse,
+    NamespaceBulkGetResponse,
     NamespaceBulkUpdateResponse,
 )
 ```
@@ -2538,6 +2539,7 @@ Methods:
 - <code title="get /accounts/{account_id}/storage/kv/namespaces">client.kv.namespaces.<a href="./src/cloudflare/resources/kv/namespaces/namespaces.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/kv/namespace_list_params.py">params</a>) -> <a href="./src/cloudflare/types/kv/namespace.py">SyncV4PagePaginationArray[Namespace]</a></code>
 - <code title="delete /accounts/{account_id}/storage/kv/namespaces/{namespace_id}">client.kv.namespaces.<a href="./src/cloudflare/resources/kv/namespaces/namespaces.py">delete</a>(namespace_id, \*, account_id) -> <a href="./src/cloudflare/types/kv/namespace_delete_response.py">Optional[NamespaceDeleteResponse]</a></code>
 - <code title="post /accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk/delete">client.kv.namespaces.<a href="./src/cloudflare/resources/kv/namespaces/namespaces.py">bulk_delete</a>(namespace_id, \*, account_id, \*\*<a href="src/cloudflare/types/kv/namespace_bulk_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/kv/namespace_bulk_delete_response.py">Optional[NamespaceBulkDeleteResponse]</a></code>
+- <code title="post /accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk/get">client.kv.namespaces.<a href="./src/cloudflare/resources/kv/namespaces/namespaces.py">bulk_get</a>(namespace_id, \*, account_id, \*\*<a href="src/cloudflare/types/kv/namespace_bulk_get_params.py">params</a>) -> <a href="./src/cloudflare/types/kv/namespace_bulk_get_response.py">Optional[NamespaceBulkGetResponse]</a></code>
 - <code title="put /accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk">client.kv.namespaces.<a href="./src/cloudflare/resources/kv/namespaces/namespaces.py">bulk_update</a>(namespace_id, \*, account_id, \*\*<a href="src/cloudflare/types/kv/namespace_bulk_update_params.py">params</a>) -> <a href="./src/cloudflare/types/kv/namespace_bulk_update_response.py">Optional[NamespaceBulkUpdateResponse]</a></code>
 - <code title="get /accounts/{account_id}/storage/kv/namespaces/{namespace_id}">client.kv.namespaces.<a href="./src/cloudflare/resources/kv/namespaces/namespaces.py">get</a>(namespace_id, \*, account_id) -> <a href="./src/cloudflare/types/kv/namespace.py">Optional[Namespace]</a></code>
 
