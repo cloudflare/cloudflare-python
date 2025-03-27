@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Required, TypedDict
 
-__all__ = ["NamespaceBulkDeleteParams"]
+__all__ = ["KeyBulkDeleteParams"]
 
 
-class NamespaceBulkDeleteParams(TypedDict, total=False):
+class KeyBulkDeleteParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
