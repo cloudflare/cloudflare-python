@@ -55,62 +55,62 @@ __all__ = [
 ]
 
 
-class A(ARecordParam):
+class A(ARecordParam, total=False):
     id: str
     """Identifier"""
 
 
-class AAAA(AAAARecordParam):
+class AAAA(AAAARecordParam, total=False):
     id: str
     """Identifier"""
 
 
-class CAA(CAARecordParam):
+class CAA(CAARecordParam, total=False):
     id: str
     """Identifier"""
 
 
-class CERT(CERTRecordParam):
+class CERT(CERTRecordParam, total=False):
     id: str
     """Identifier"""
 
 
-class CNAME(CNAMERecordParam):
+class CNAME(CNAMERecordParam, total=False):
     id: str
     """Identifier"""
 
 
-class DNSKEY(DNSKEYRecordParam):
+class DNSKEY(DNSKEYRecordParam, total=False):
     id: str
     """Identifier"""
 
 
-class DS(DSRecordParam):
+class DS(DSRecordParam, total=False):
     id: str
     """Identifier"""
 
 
-class HTTPS(HTTPSRecordParam):
+class HTTPS(HTTPSRecordParam, total=False):
     id: str
     """Identifier"""
 
 
-class LOC(LOCRecordParam):
+class LOC(LOCRecordParam, total=False):
     id: str
     """Identifier"""
 
 
-class MX(MXRecordParam):
+class MX(MXRecordParam, total=False):
     id: str
     """Identifier"""
 
 
-class NAPTR(NAPTRRecordParam):
+class NAPTR(NAPTRRecordParam, total=False):
     id: str
     """Identifier"""
 
 
-class NS(NSRecordParam):
+class NS(NSRecordParam, total=False):
     id: str
     """Identifier"""
 
@@ -172,42 +172,42 @@ class Openpgpkey(TypedDict, total=False):
     """
 
 
-class PTR(PTRRecordParam):
+class PTR(PTRRecordParam, total=False):
     id: str
     """Identifier"""
 
 
-class SMIMEA(SMIMEARecordParam):
+class SMIMEA(SMIMEARecordParam, total=False):
     id: str
     """Identifier"""
 
 
-class SRV(SRVRecordParam):
+class SRV(SRVRecordParam, total=False):
     id: str
     """Identifier"""
 
 
-class SSHFP(SSHFPRecordParam):
+class SSHFP(SSHFPRecordParam, total=False):
     id: str
     """Identifier"""
 
 
-class SVCB(SVCBRecordParam):
+class SVCB(SVCBRecordParam, total=False):
     id: str
     """Identifier"""
 
 
-class TLSA(TLSARecordParam):
+class TLSA(TLSARecordParam, total=False):
     id: str
     """Identifier"""
 
 
-class TXT(TXTRecordParam):
+class TXT(TXTRecordParam, total=False):
     id: str
     """Identifier"""
 
 
-class URI(URIRecordParam):
+class URI(URIRecordParam, total=False):
     id: str
     """Identifier"""
 
