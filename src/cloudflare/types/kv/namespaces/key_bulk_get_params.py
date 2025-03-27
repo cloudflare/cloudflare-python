@@ -5,12 +5,12 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
-from ..._utils import PropertyInfo
+from ...._utils import PropertyInfo
 
-__all__ = ["NamespaceBulkGetParams"]
+__all__ = ["KeyBulkGetParams"]
 
 
-class NamespaceBulkGetParams(TypedDict, total=False):
+class KeyBulkGetParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
