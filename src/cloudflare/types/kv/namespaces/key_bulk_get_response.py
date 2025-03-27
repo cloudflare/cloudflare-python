@@ -3,10 +3,10 @@
 from typing import Dict, Union, Optional
 from typing_extensions import TypeAlias
 
-from ..._models import BaseModel
+from ...._models import BaseModel
 
 __all__ = [
-    "NamespaceBulkGetResponse",
+    "KeyBulkGetResponse",
     "WorkersKVBulkGetResult",
     "WorkersKVBulkGetResultWithMetadata",
     "WorkersKVBulkGetResultWithMetadataValues",
@@ -37,4 +37,4 @@ class WorkersKVBulkGetResultWithMetadata(BaseModel):
     """Requested keys are paired with their values and metadata in an object"""
 
 
-NamespaceBulkGetResponse: TypeAlias = Union[WorkersKVBulkGetResult, WorkersKVBulkGetResultWithMetadata, None]
+KeyBulkGetResponse: TypeAlias = Union[WorkersKVBulkGetResult, WorkersKVBulkGetResultWithMetadata, None]
