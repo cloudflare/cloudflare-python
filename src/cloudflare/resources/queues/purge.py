@@ -6,67 +6,70 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
     maybe_transform,
     async_maybe_transform,
 )
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._wrappers import ResultWrapper
-from ...._base_client import make_request_options
-from ....types.kv.namespaces import analytics_list_params, analytics_stored_params
-from ....types.kv.namespaces.schema import Schema
-from ....types.kv.namespaces.components import Components
+from ..._wrappers import ResultWrapper
+from ..._base_client import make_request_options
+from ...types.queues import purge_start_params
+from ...types.queues.queue import Queue
+from ...types.queues.purge_status_response import PurgeStatusResponse
 
-__all__ = ["AnalyticsResource", "AsyncAnalyticsResource"]
+__all__ = ["PurgeResource", "AsyncPurgeResource"]
 
 
-class AnalyticsResource(SyncAPIResource):
+class PurgeResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AnalyticsResourceWithRawResponse:
+    def with_raw_response(self) -> PurgeResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return AnalyticsResourceWithRawResponse(self)
+        return PurgeResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AnalyticsResourceWithStreamingResponse:
+    def with_streaming_response(self) -> PurgeResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return AnalyticsResourceWithStreamingResponse(self)
+        return PurgeResourceWithStreamingResponse(self)
 
-    def list(
+    def start(
         self,
+        queue_id: str,
         *,
         account_id: str,
-        query: analytics_list_params.Query | NotGiven = NOT_GIVEN,
+        delete_messages_permanently: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Schema]:
+    ) -> Optional[Queue]:
         """
-        Retrieves Workers KV request metrics for the given account.
+        Deletes all messages from the Queue.
 
         Args:
-          account_id: Identifier
+          account_id: A Resource identifier.
 
-          query: For specifying result metrics.
+          queue_id: A Resource identifier.
+
+          delete_messages_permanently: Confimation that all messages will be deleted permanently.
 
           extra_headers: Send extra headers
 
@@ -78,38 +81,42 @@ class AnalyticsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
-            f"/accounts/{account_id}/storage/analytics",
+        if not queue_id:
+            raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
+        return self._post(
+            f"/accounts/{account_id}/queues/{queue_id}/purge",
+            body=maybe_transform(
+                {"delete_messages_permanently": delete_messages_permanently}, purge_start_params.PurgeStartParams
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"query": query}, analytics_list_params.AnalyticsListParams),
-                post_parser=ResultWrapper[Optional[Schema]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Queue]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Schema]], ResultWrapper[Schema]),
+            cast_to=cast(Type[Optional[Queue]], ResultWrapper[Queue]),
         )
 
-    def stored(
+    def status(
         self,
+        queue_id: str,
         *,
         account_id: str,
-        query: analytics_stored_params.Query | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Components]:
+    ) -> Optional[PurgeStatusResponse]:
         """
-        Retrieves Workers KV stored data metrics for the given account.
+        Get details about a Queue's purge status.
 
         Args:
-          account_id: Identifier
+          account_id: A Resource identifier.
 
-          query: For specifying result metrics.
+          queue_id: A Resource identifier.
 
           extra_headers: Send extra headers
 
@@ -121,59 +128,63 @@ class AnalyticsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not queue_id:
+            raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         return self._get(
-            f"/accounts/{account_id}/storage/analytics/stored",
+            f"/accounts/{account_id}/queues/{queue_id}/purge",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"query": query}, analytics_stored_params.AnalyticsStoredParams),
-                post_parser=ResultWrapper[Optional[Components]]._unwrapper,
+                post_parser=ResultWrapper[Optional[PurgeStatusResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Components]], ResultWrapper[Components]),
+            cast_to=cast(Type[Optional[PurgeStatusResponse]], ResultWrapper[PurgeStatusResponse]),
         )
 
 
-class AsyncAnalyticsResource(AsyncAPIResource):
+class AsyncPurgeResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncAnalyticsResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncPurgeResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncAnalyticsResourceWithRawResponse(self)
+        return AsyncPurgeResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncAnalyticsResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncPurgeResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/cloudflare/cloudflare-python#with_streaming_response
         """
-        return AsyncAnalyticsResourceWithStreamingResponse(self)
+        return AsyncPurgeResourceWithStreamingResponse(self)
 
-    async def list(
+    async def start(
         self,
+        queue_id: str,
         *,
         account_id: str,
-        query: analytics_list_params.Query | NotGiven = NOT_GIVEN,
+        delete_messages_permanently: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Schema]:
+    ) -> Optional[Queue]:
         """
-        Retrieves Workers KV request metrics for the given account.
+        Deletes all messages from the Queue.
 
         Args:
-          account_id: Identifier
+          account_id: A Resource identifier.
 
-          query: For specifying result metrics.
+          queue_id: A Resource identifier.
+
+          delete_messages_permanently: Confimation that all messages will be deleted permanently.
 
           extra_headers: Send extra headers
 
@@ -185,38 +196,42 @@ class AsyncAnalyticsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
-            f"/accounts/{account_id}/storage/analytics",
+        if not queue_id:
+            raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
+        return await self._post(
+            f"/accounts/{account_id}/queues/{queue_id}/purge",
+            body=await async_maybe_transform(
+                {"delete_messages_permanently": delete_messages_permanently}, purge_start_params.PurgeStartParams
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"query": query}, analytics_list_params.AnalyticsListParams),
-                post_parser=ResultWrapper[Optional[Schema]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Queue]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Schema]], ResultWrapper[Schema]),
+            cast_to=cast(Type[Optional[Queue]], ResultWrapper[Queue]),
         )
 
-    async def stored(
+    async def status(
         self,
+        queue_id: str,
         *,
         account_id: str,
-        query: analytics_stored_params.Query | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Components]:
+    ) -> Optional[PurgeStatusResponse]:
         """
-        Retrieves Workers KV stored data metrics for the given account.
+        Get details about a Queue's purge status.
 
         Args:
-          account_id: Identifier
+          account_id: A Resource identifier.
 
-          query: For specifying result metrics.
+          queue_id: A Resource identifier.
 
           extra_headers: Send extra headers
 
@@ -228,63 +243,64 @@ class AsyncAnalyticsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not queue_id:
+            raise ValueError(f"Expected a non-empty value for `queue_id` but received {queue_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/storage/analytics/stored",
+            f"/accounts/{account_id}/queues/{queue_id}/purge",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"query": query}, analytics_stored_params.AnalyticsStoredParams),
-                post_parser=ResultWrapper[Optional[Components]]._unwrapper,
+                post_parser=ResultWrapper[Optional[PurgeStatusResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Components]], ResultWrapper[Components]),
+            cast_to=cast(Type[Optional[PurgeStatusResponse]], ResultWrapper[PurgeStatusResponse]),
         )
 
 
-class AnalyticsResourceWithRawResponse:
-    def __init__(self, analytics: AnalyticsResource) -> None:
-        self._analytics = analytics
+class PurgeResourceWithRawResponse:
+    def __init__(self, purge: PurgeResource) -> None:
+        self._purge = purge
 
-        self.list = to_raw_response_wrapper(
-            analytics.list,
+        self.start = to_raw_response_wrapper(
+            purge.start,
         )
-        self.stored = to_raw_response_wrapper(
-            analytics.stored,
-        )
-
-
-class AsyncAnalyticsResourceWithRawResponse:
-    def __init__(self, analytics: AsyncAnalyticsResource) -> None:
-        self._analytics = analytics
-
-        self.list = async_to_raw_response_wrapper(
-            analytics.list,
-        )
-        self.stored = async_to_raw_response_wrapper(
-            analytics.stored,
+        self.status = to_raw_response_wrapper(
+            purge.status,
         )
 
 
-class AnalyticsResourceWithStreamingResponse:
-    def __init__(self, analytics: AnalyticsResource) -> None:
-        self._analytics = analytics
+class AsyncPurgeResourceWithRawResponse:
+    def __init__(self, purge: AsyncPurgeResource) -> None:
+        self._purge = purge
 
-        self.list = to_streamed_response_wrapper(
-            analytics.list,
+        self.start = async_to_raw_response_wrapper(
+            purge.start,
         )
-        self.stored = to_streamed_response_wrapper(
-            analytics.stored,
+        self.status = async_to_raw_response_wrapper(
+            purge.status,
         )
 
 
-class AsyncAnalyticsResourceWithStreamingResponse:
-    def __init__(self, analytics: AsyncAnalyticsResource) -> None:
-        self._analytics = analytics
+class PurgeResourceWithStreamingResponse:
+    def __init__(self, purge: PurgeResource) -> None:
+        self._purge = purge
 
-        self.list = async_to_streamed_response_wrapper(
-            analytics.list,
+        self.start = to_streamed_response_wrapper(
+            purge.start,
         )
-        self.stored = async_to_streamed_response_wrapper(
-            analytics.stored,
+        self.status = to_streamed_response_wrapper(
+            purge.status,
+        )
+
+
+class AsyncPurgeResourceWithStreamingResponse:
+    def __init__(self, purge: AsyncPurgeResource) -> None:
+        self._purge = purge
+
+        self.start = async_to_streamed_response_wrapper(
+            purge.start,
+        )
+        self.status = async_to_streamed_response_wrapper(
+            purge.status,
         )

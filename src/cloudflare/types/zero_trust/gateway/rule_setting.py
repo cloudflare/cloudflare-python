@@ -20,6 +20,7 @@ __all__ = [
     "NotificationSettings",
     "PayloadLog",
     "Quarantine",
+    "Redirect",
     "ResolveDNSInternally",
     "UntrustedCERT",
 ]
@@ -153,6 +154,17 @@ class Quarantine(BaseModel):
     """Types of files to sandbox."""
 
 
+class Redirect(BaseModel):
+    target_uri: str
+    """URI to which the user will be redirected"""
+
+    preserve_path_and_query: Optional[bool] = None
+    """
+    If true, the path and query parameters from the original request will be
+    appended to target_uri
+    """
+
+
 class ResolveDNSInternally(BaseModel):
     fallback: Optional[Literal["none", "public_dns"]] = None
     """
@@ -261,6 +273,9 @@ class RuleSetting(BaseModel):
 
     quarantine: Optional[Quarantine] = None
     """Settings that apply to quarantine rules"""
+
+    redirect: Optional[Redirect] = None
+    """Settings that apply to redirect rules"""
 
     resolve_dns_internally: Optional[ResolveDNSInternally] = None
     """

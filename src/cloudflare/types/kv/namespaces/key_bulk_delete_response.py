@@ -2,12 +2,12 @@
 
 from typing import List, Optional
 
-from ..._models import BaseModel
+from ...._models import BaseModel
 
-__all__ = ["NamespaceBulkDeleteResponse"]
+__all__ = ["KeyBulkDeleteResponse"]
 
 
-class NamespaceBulkDeleteResponse(BaseModel):
+class KeyBulkDeleteResponse(BaseModel):
     successful_key_count: Optional[float] = None
     """Number of keys successfully updated"""
 

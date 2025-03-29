@@ -112,6 +112,10 @@ class TestRules:
                 "override_ips": ["1.1.1.1", "2.2.2.2"],
                 "payload_log": {"enabled": True},
                 "quarantine": {"file_types": ["exe"]},
+                "redirect": {
+                    "target_uri": "https://example.com",
+                    "preserve_path_and_query": True,
+                },
                 "resolve_dns_internally": {
                     "fallback": "none",
                     "view_id": "view_id",
@@ -263,6 +267,10 @@ class TestRules:
                 "override_ips": ["1.1.1.1", "2.2.2.2"],
                 "payload_log": {"enabled": True},
                 "quarantine": {"file_types": ["exe"]},
+                "redirect": {
+                    "target_uri": "https://example.com",
+                    "preserve_path_and_query": True,
+                },
                 "resolve_dns_internally": {
                     "fallback": "none",
                     "view_id": "view_id",
@@ -609,6 +617,10 @@ class TestAsyncRules:
                 "override_ips": ["1.1.1.1", "2.2.2.2"],
                 "payload_log": {"enabled": True},
                 "quarantine": {"file_types": ["exe"]},
+                "redirect": {
+                    "target_uri": "https://example.com",
+                    "preserve_path_and_query": True,
+                },
                 "resolve_dns_internally": {
                     "fallback": "none",
                     "view_id": "view_id",
@@ -760,6 +772,10 @@ class TestAsyncRules:
                 "override_ips": ["1.1.1.1", "2.2.2.2"],
                 "payload_log": {"enabled": True},
                 "quarantine": {"file_types": ["exe"]},
+                "redirect": {
+                    "target_uri": "https://example.com",
+                    "preserve_path_and_query": True,
+                },
                 "resolve_dns_internally": {
                     "fallback": "none",
                     "view_id": "view_id",
