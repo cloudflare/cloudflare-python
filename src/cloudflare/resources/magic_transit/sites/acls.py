@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, cast
+from typing import List, Type, cast
 
 import httpx
 
@@ -24,6 +24,7 @@ from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.magic_transit.sites import acl_edit_params, acl_create_params, acl_update_params
 from ....types.magic_transit.sites.acl import ACL
+from ....types.magic_transit.sites.allowed_protocol import AllowedProtocol
 from ....types.magic_transit.sites.acl_configuration_param import ACLConfigurationParam
 
 __all__ = ["ACLsResource", "AsyncACLsResource"]
@@ -59,7 +60,7 @@ class ACLsResource(SyncAPIResource):
         name: str,
         description: str | NotGiven = NOT_GIVEN,
         forward_locally: bool | NotGiven = NOT_GIVEN,
-        protocols: Iterable[object] | NotGiven = NOT_GIVEN,
+        protocols: List[AllowedProtocol] | NotGiven = NOT_GIVEN,
         unidirectional: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -136,7 +137,7 @@ class ACLsResource(SyncAPIResource):
         lan_1: ACLConfigurationParam | NotGiven = NOT_GIVEN,
         lan_2: ACLConfigurationParam | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        protocols: Iterable[object] | NotGiven = NOT_GIVEN,
+        protocols: List[AllowedProtocol] | NotGiven = NOT_GIVEN,
         unidirectional: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -307,7 +308,7 @@ class ACLsResource(SyncAPIResource):
         lan_1: ACLConfigurationParam | NotGiven = NOT_GIVEN,
         lan_2: ACLConfigurationParam | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        protocols: Iterable[object] | NotGiven = NOT_GIVEN,
+        protocols: List[AllowedProtocol] | NotGiven = NOT_GIVEN,
         unidirectional: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -457,7 +458,7 @@ class AsyncACLsResource(AsyncAPIResource):
         name: str,
         description: str | NotGiven = NOT_GIVEN,
         forward_locally: bool | NotGiven = NOT_GIVEN,
-        protocols: Iterable[object] | NotGiven = NOT_GIVEN,
+        protocols: List[AllowedProtocol] | NotGiven = NOT_GIVEN,
         unidirectional: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -534,7 +535,7 @@ class AsyncACLsResource(AsyncAPIResource):
         lan_1: ACLConfigurationParam | NotGiven = NOT_GIVEN,
         lan_2: ACLConfigurationParam | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        protocols: Iterable[object] | NotGiven = NOT_GIVEN,
+        protocols: List[AllowedProtocol] | NotGiven = NOT_GIVEN,
         unidirectional: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -705,7 +706,7 @@ class AsyncACLsResource(AsyncAPIResource):
         lan_1: ACLConfigurationParam | NotGiven = NOT_GIVEN,
         lan_2: ACLConfigurationParam | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        protocols: Iterable[object] | NotGiven = NOT_GIVEN,
+        protocols: List[AllowedProtocol] | NotGiven = NOT_GIVEN,
         unidirectional: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

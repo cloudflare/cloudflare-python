@@ -52,7 +52,7 @@ class LoggingResource(SyncAPIResource):
         *,
         account_id: str,
         redact_pii: bool | NotGiven = NOT_GIVEN,
-        settings_by_rule_type: object | NotGiven = NOT_GIVEN,
+        settings_by_rule_type: logging_update_params.SettingsByRuleType | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -66,6 +66,8 @@ class LoggingResource(SyncAPIResource):
         Args:
           redact_pii: Redact personally identifiable information from activity logging (PII fields
               are: source IP, user email, user ID, device ID, URL, referrer, user agent).
+
+          settings_by_rule_type: Logging settings by rule type.
 
           extra_headers: Send extra headers
 
@@ -159,7 +161,7 @@ class AsyncLoggingResource(AsyncAPIResource):
         *,
         account_id: str,
         redact_pii: bool | NotGiven = NOT_GIVEN,
-        settings_by_rule_type: object | NotGiven = NOT_GIVEN,
+        settings_by_rule_type: logging_update_params.SettingsByRuleType | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -173,6 +175,8 @@ class AsyncLoggingResource(AsyncAPIResource):
         Args:
           redact_pii: Redact personally identifiable information from activity logging (PII fields
               are: source IP, user email, user ID, device ID, URL, referrer, user agent).
+
+          settings_by_rule_type: Logging settings by rule type.
 
           extra_headers: Send extra headers
 

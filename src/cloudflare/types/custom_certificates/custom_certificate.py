@@ -6,6 +6,7 @@ from typing_extensions import Literal
 
 from ..._models import BaseModel
 from .geo_restrictions import GeoRestrictions
+from ..custom_hostnames.bundle_method import BundleMethod
 from ..keyless_certificates.keyless_certificate import KeylessCertificate
 
 __all__ = ["CustomCertificate"]
@@ -15,7 +16,13 @@ class CustomCertificate(BaseModel):
     id: str
     """Identifier"""
 
-    bundle_method: object
+    bundle_method: BundleMethod
+    """
+    A ubiquitous bundle has the highest probability of being verified everywhere,
+    even by clients using outdated or unusual trust stores. An optimal bundle uses
+    the shortest chain and newest intermediates. And the force bundle verifies the
+    chain, but does not otherwise modify it.
+    """
 
     expires_on: datetime
     """When the certificate from the authority expires."""

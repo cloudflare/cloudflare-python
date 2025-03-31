@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing_extensions import Required, Annotated, TypedDict
 
 from ...._utils import PropertyInfo
+from ..worker_metadata_param import WorkerMetadataParam
 
 __all__ = ["ContentUpdateParams"]
 
@@ -13,7 +14,8 @@ class ContentUpdateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
-    metadata: Required[object]
+    metadata: Required[WorkerMetadataParam]
+    """JSON encoded metadata about the uploaded parts and Worker configuration."""
 
     cf_worker_body_part: Annotated[str, PropertyInfo(alias="CF-WORKER-BODY-PART")]
 

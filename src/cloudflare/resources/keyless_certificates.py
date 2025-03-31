@@ -22,7 +22,9 @@ from .._response import (
 from .._wrappers import ResultWrapper
 from ..pagination import SyncSinglePage, AsyncSinglePage
 from .._base_client import AsyncPaginator, make_request_options
+from ..types.custom_hostnames import BundleMethod
 from ..types.keyless_certificates import keyless_certificate_edit_params, keyless_certificate_create_params
+from ..types.custom_hostnames.bundle_method import BundleMethod
 from ..types.keyless_certificates.tunnel_param import TunnelParam
 from ..types.keyless_certificates.keyless_certificate import KeylessCertificate
 from ..types.keyless_certificates.keyless_certificate_delete_response import KeylessCertificateDeleteResponse
@@ -57,7 +59,7 @@ class KeylessCertificatesResource(SyncAPIResource):
         certificate: str,
         host: str,
         port: float,
-        bundle_method: object | NotGiven = NOT_GIVEN,
+        bundle_method: BundleMethod | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         tunnel: TunnelParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -79,6 +81,11 @@ class KeylessCertificatesResource(SyncAPIResource):
 
           port: The keyless SSL port used to communicate between Cloudflare and the client's
               Keyless SSL server.
+
+          bundle_method: A ubiquitous bundle has the highest probability of being verified everywhere,
+              even by clients using outdated or unusual trust stores. An optimal bundle uses
+              the shortest chain and newest intermediates. And the force bundle verifies the
+              chain, but does not otherwise modify it.
 
           name: The keyless SSL name.
 
@@ -349,7 +356,7 @@ class AsyncKeylessCertificatesResource(AsyncAPIResource):
         certificate: str,
         host: str,
         port: float,
-        bundle_method: object | NotGiven = NOT_GIVEN,
+        bundle_method: BundleMethod | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         tunnel: TunnelParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -371,6 +378,11 @@ class AsyncKeylessCertificatesResource(AsyncAPIResource):
 
           port: The keyless SSL port used to communicate between Cloudflare and the client's
               Keyless SSL server.
+
+          bundle_method: A ubiquitous bundle has the highest probability of being verified everywhere,
+              even by clients using outdated or unusual trust stores. An optimal bundle uses
+              the shortest chain and newest intermediates. And the force bundle verifies the
+              chain, but does not otherwise modify it.
 
           name: The keyless SSL name.
 

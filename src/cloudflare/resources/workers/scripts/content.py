@@ -32,6 +32,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
 from ....types.workers.script import Script
 from ....types.workers.scripts import content_update_params
+from ....types.workers.worker_metadata_param import WorkerMetadataParam
 
 __all__ = ["ContentResource", "AsyncContentResource"]
 
@@ -61,7 +62,7 @@ class ContentResource(SyncAPIResource):
         script_name: str,
         *,
         account_id: str,
-        metadata: object,
+        metadata: WorkerMetadataParam,
         cf_worker_body_part: str | NotGiven = NOT_GIVEN,
         cf_worker_main_module_part: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -78,6 +79,8 @@ class ContentResource(SyncAPIResource):
           account_id: Identifier
 
           script_name: Name of the script, used in URLs and route configuration.
+
+          metadata: JSON encoded metadata about the uploaded parts and Worker configuration.
 
           extra_headers: Send extra headers
 
@@ -184,7 +187,7 @@ class AsyncContentResource(AsyncAPIResource):
         script_name: str,
         *,
         account_id: str,
-        metadata: object,
+        metadata: WorkerMetadataParam,
         cf_worker_body_part: str | NotGiven = NOT_GIVEN,
         cf_worker_main_module_part: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -201,6 +204,8 @@ class AsyncContentResource(AsyncAPIResource):
           account_id: Identifier
 
           script_name: Name of the script, used in URLs and route configuration.
+
+          metadata: JSON encoded metadata about the uploaded parts and Worker configuration.
 
           extra_headers: Send extra headers
 

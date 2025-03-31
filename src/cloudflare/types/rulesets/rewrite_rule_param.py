@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Dict, List, Union
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
+from .logging_param import LoggingParam
 from .rewrite_uri_part_param import RewriteURIPartParam
 
 __all__ = [
@@ -133,7 +134,8 @@ class RewriteRuleParam(TypedDict, total=False):
     expression: str
     """The expression defining which traffic will match the rule."""
 
-    logging: object
+    logging: LoggingParam
+    """An object configuring the rule's logging behavior."""
 
     ratelimit: Ratelimit
     """An object configuring the rule's ratelimit behavior."""

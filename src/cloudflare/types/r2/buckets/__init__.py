@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from .sippy import Sippy as Sippy
+from .provider import Provider as Provider
 from .cors_get_response import CORSGetResponse as CORSGetResponse
 from .lock_get_response import LockGetResponse as LockGetResponse
 from .cors_update_params import CORSUpdateParams as CORSUpdateParams

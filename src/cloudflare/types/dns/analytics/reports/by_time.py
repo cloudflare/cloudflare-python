@@ -4,6 +4,8 @@ from typing import List
 from datetime import datetime
 
 from ....._models import BaseModel
+from ...dns_analytics_query import DNSAnalyticsQuery
+from ...dns_analytics_nominal_metric import DNSAnalyticsNominalMetric
 
 __all__ = ["ByTime", "Data"]
 
@@ -15,7 +17,7 @@ class Data(BaseModel):
     corresponding to this row.
     """
 
-    metrics: List[object]
+    metrics: List[DNSAnalyticsNominalMetric]
     """Array with one item per requested metric.
 
     Each item is an array of values, broken down by time interval.
@@ -44,7 +46,7 @@ class ByTime(BaseModel):
     Currently always an empty object.
     """
 
-    query: object
+    query: DNSAnalyticsQuery
 
     rows: float
     """Total number of rows in the result."""

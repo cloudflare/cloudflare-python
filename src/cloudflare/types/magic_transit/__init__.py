@@ -15,6 +15,8 @@ from .site_list_params import SiteListParams as SiteListParams
 from .app_create_params import AppCreateParams as AppCreateParams
 from .app_list_response import AppListResponse as AppListResponse
 from .app_update_params import AppUpdateParams as AppUpdateParams
+from .health_check_rate import HealthCheckRate as HealthCheckRate
+from .health_check_type import HealthCheckType as HealthCheckType
 from .pcap_filter_param import PCAPFilterParam as PCAPFilterParam
 from .pcap_get_response import PCAPGetResponse as PCAPGetResponse
 from .health_check_param import HealthCheckParam as HealthCheckParam

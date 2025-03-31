@@ -5,6 +5,8 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Literal, TypedDict
 
+from .saas_app_name_id_format import SaaSAppNameIDFormat
+
 __all__ = ["SAMLSaaSAppParam", "CustomAttribute", "CustomAttributeSource", "CustomAttributeSourceNameByIdP"]
 
 
@@ -69,7 +71,8 @@ class SAMLSaaSAppParam(TypedDict, total=False):
     idp_entity_id: str
     """The unique identifier for your SaaS application."""
 
-    name_id_format: object
+    name_id_format: SaaSAppNameIDFormat
+    """The format of the name identifier sent to the SaaS application."""
 
     name_id_transform_jsonata: str
     """

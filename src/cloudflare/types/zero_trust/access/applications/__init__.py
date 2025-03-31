@@ -34,6 +34,7 @@ from .policy_update_params import PolicyUpdateParams as PolicyUpdateParams
 from .email_list_rule_param import EmailListRuleParam as EmailListRuleParam
 from .okta_group_rule_param import OktaGroupRuleParam as OktaGroupRuleParam
 from .saml_group_rule_param import SAMLGroupRuleParam as SAMLGroupRuleParam
+from .user_policy_check_geo import UserPolicyCheckGeo as UserPolicyCheckGeo
 from .azure_group_rule_param import AzureGroupRuleParam as AzureGroupRuleParam
 from .certificate_rule_param import CertificateRuleParam as CertificateRuleParam
 from .policy_create_response import PolicyCreateResponse as PolicyCreateResponse

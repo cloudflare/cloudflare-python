@@ -5,6 +5,9 @@ from __future__ import annotations
 from typing import Union
 from typing_extensions import TypeAlias, TypedDict
 
+from .health_check_rate import HealthCheckRate
+from .health_check_type import HealthCheckType
+
 __all__ = ["HealthCheckParam", "Target", "TargetMagicHealthCheckTarget"]
 
 
@@ -24,7 +27,8 @@ class HealthCheckParam(TypedDict, total=False):
     enabled: bool
     """Determines whether to run healthchecks for a tunnel."""
 
-    rate: object
+    rate: HealthCheckRate
+    """How frequent the health check is run. The default value is `mid`."""
 
     target: Target
     """The destination address in a request type health check.
@@ -38,4 +42,5 @@ class HealthCheckParam(TypedDict, total=False):
     x-magic-new-hc-target is absent or set to false.
     """
 
-    type: object
+    type: HealthCheckType
+    """The type of healthcheck to run, reply or request. The default value is `reply`."""

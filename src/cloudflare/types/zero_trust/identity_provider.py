@@ -6,6 +6,8 @@ from typing_extensions import TypeAlias
 from .azure_ad import AzureAD
 from ..._models import BaseModel
 from .generic_oauth_config import GenericOAuthConfig
+from .identity_provider_type import IdentityProviderType
+from .identity_provider_scim_config import IdentityProviderSCIMConfig
 
 __all__ = [
     "IdentityProvider",
@@ -66,12 +68,21 @@ class AccessCentrify(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: object
+    type: IdentityProviderType
+    """The type of identity provider.
+
+    To determine the value for a specific provider, refer to our
+    [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
 
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[object] = None
+    scim_config: Optional[IdentityProviderSCIMConfig] = None
+    """
+    The configuration settings for enabling a System for Cross-Domain Identity
+    Management (SCIM) with the identity provider.
+    """
 
 
 class AccessFacebook(BaseModel):
@@ -85,12 +96,21 @@ class AccessFacebook(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: object
+    type: IdentityProviderType
+    """The type of identity provider.
+
+    To determine the value for a specific provider, refer to our
+    [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
 
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[object] = None
+    scim_config: Optional[IdentityProviderSCIMConfig] = None
+    """
+    The configuration settings for enabling a System for Cross-Domain Identity
+    Management (SCIM) with the identity provider.
+    """
 
 
 class AccessGitHub(BaseModel):
@@ -104,12 +124,21 @@ class AccessGitHub(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: object
+    type: IdentityProviderType
+    """The type of identity provider.
+
+    To determine the value for a specific provider, refer to our
+    [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
 
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[object] = None
+    scim_config: Optional[IdentityProviderSCIMConfig] = None
+    """
+    The configuration settings for enabling a System for Cross-Domain Identity
+    Management (SCIM) with the identity provider.
+    """
 
 
 class AccessGoogleConfig(BaseModel):
@@ -137,12 +166,21 @@ class AccessGoogle(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: object
+    type: IdentityProviderType
+    """The type of identity provider.
+
+    To determine the value for a specific provider, refer to our
+    [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
 
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[object] = None
+    scim_config: Optional[IdentityProviderSCIMConfig] = None
+    """
+    The configuration settings for enabling a System for Cross-Domain Identity
+    Management (SCIM) with the identity provider.
+    """
 
 
 class AccessGoogleAppsConfig(BaseModel):
@@ -173,12 +211,21 @@ class AccessGoogleApps(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: object
+    type: IdentityProviderType
+    """The type of identity provider.
+
+    To determine the value for a specific provider, refer to our
+    [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
 
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[object] = None
+    scim_config: Optional[IdentityProviderSCIMConfig] = None
+    """
+    The configuration settings for enabling a System for Cross-Domain Identity
+    Management (SCIM) with the identity provider.
+    """
 
 
 class AccessLinkedin(BaseModel):
@@ -192,12 +239,21 @@ class AccessLinkedin(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: object
+    type: IdentityProviderType
+    """The type of identity provider.
+
+    To determine the value for a specific provider, refer to our
+    [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
 
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[object] = None
+    scim_config: Optional[IdentityProviderSCIMConfig] = None
+    """
+    The configuration settings for enabling a System for Cross-Domain Identity
+    Management (SCIM) with the identity provider.
+    """
 
 
 class AccessOIDCConfig(BaseModel):
@@ -240,12 +296,21 @@ class AccessOIDC(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: object
+    type: IdentityProviderType
+    """The type of identity provider.
+
+    To determine the value for a specific provider, refer to our
+    [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
 
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[object] = None
+    scim_config: Optional[IdentityProviderSCIMConfig] = None
+    """
+    The configuration settings for enabling a System for Cross-Domain Identity
+    Management (SCIM) with the identity provider.
+    """
 
 
 class AccessOktaConfig(BaseModel):
@@ -279,12 +344,21 @@ class AccessOkta(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: object
+    type: IdentityProviderType
+    """The type of identity provider.
+
+    To determine the value for a specific provider, refer to our
+    [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
 
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[object] = None
+    scim_config: Optional[IdentityProviderSCIMConfig] = None
+    """
+    The configuration settings for enabling a System for Cross-Domain Identity
+    Management (SCIM) with the identity provider.
+    """
 
 
 class AccessOneloginConfig(BaseModel):
@@ -315,12 +389,21 @@ class AccessOnelogin(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: object
+    type: IdentityProviderType
+    """The type of identity provider.
+
+    To determine the value for a specific provider, refer to our
+    [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
 
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[object] = None
+    scim_config: Optional[IdentityProviderSCIMConfig] = None
+    """
+    The configuration settings for enabling a System for Cross-Domain Identity
+    Management (SCIM) with the identity provider.
+    """
 
 
 class AccessPingoneConfig(BaseModel):
@@ -351,12 +434,21 @@ class AccessPingone(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: object
+    type: IdentityProviderType
+    """The type of identity provider.
+
+    To determine the value for a specific provider, refer to our
+    [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
 
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[object] = None
+    scim_config: Optional[IdentityProviderSCIMConfig] = None
+    """
+    The configuration settings for enabling a System for Cross-Domain Identity
+    Management (SCIM) with the identity provider.
+    """
 
 
 class AccessSAMLConfigHeaderAttribute(BaseModel):
@@ -410,12 +502,21 @@ class AccessSAML(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: object
+    type: IdentityProviderType
+    """The type of identity provider.
+
+    To determine the value for a specific provider, refer to our
+    [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
 
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[object] = None
+    scim_config: Optional[IdentityProviderSCIMConfig] = None
+    """
+    The configuration settings for enabling a System for Cross-Domain Identity
+    Management (SCIM) with the identity provider.
+    """
 
 
 class AccessYandex(BaseModel):
@@ -429,12 +530,21 @@ class AccessYandex(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: object
+    type: IdentityProviderType
+    """The type of identity provider.
+
+    To determine the value for a specific provider, refer to our
+    [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
 
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[object] = None
+    scim_config: Optional[IdentityProviderSCIMConfig] = None
+    """
+    The configuration settings for enabling a System for Cross-Domain Identity
+    Management (SCIM) with the identity provider.
+    """
 
 
 class AccessOnetimepinConfig(BaseModel):
@@ -452,12 +562,21 @@ class AccessOnetimepin(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: object
+    type: IdentityProviderType
+    """The type of identity provider.
+
+    To determine the value for a specific provider, refer to our
+    [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
 
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[object] = None
+    scim_config: Optional[IdentityProviderSCIMConfig] = None
+    """
+    The configuration settings for enabling a System for Cross-Domain Identity
+    Management (SCIM) with the identity provider.
+    """
 
 
 IdentityProvider: TypeAlias = Union[

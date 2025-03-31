@@ -43,7 +43,10 @@ class TestContent:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
-            metadata={},
+            metadata={
+                "body_part": "worker.js",
+                "main_module": "worker.js",
+            },
             cf_worker_body_part="CF-WORKER-BODY-PART",
             cf_worker_main_module_part="CF-WORKER-MAIN-MODULE-PART",
         )
@@ -208,7 +211,10 @@ class TestAsyncContent:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
-            metadata={},
+            metadata={
+                "body_part": "worker.js",
+                "main_module": "worker.js",
+            },
             cf_worker_body_part="CF-WORKER-BODY-PART",
             cf_worker_main_module_part="CF-WORKER-MAIN-MODULE-PART",
         )

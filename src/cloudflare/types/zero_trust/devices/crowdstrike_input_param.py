@@ -16,7 +16,8 @@ class CrowdstrikeInputParam(TypedDict, total=False):
     last_seen: str
     """For more details on last seen, please refer to the Crowdstrike documentation."""
 
-    operator: object
+    operator: Literal["<", "<=", ">", ">=", "=="]
+    """operator"""
 
     os: str
     """Os Version"""

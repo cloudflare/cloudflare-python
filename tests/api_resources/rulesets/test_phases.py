@@ -52,7 +52,7 @@ class TestPhases:
                         "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
                     },
                     "expression": "ip.src ne 1.1.1.1",
-                    "logging": {},
+                    "logging": {"enabled": True},
                     "ratelimit": {
                         "characteristics": ["ip.src"],
                         "period": 10,
@@ -212,7 +212,7 @@ class TestAsyncPhases:
                         "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
                     },
                     "expression": "ip.src ne 1.1.1.1",
-                    "logging": {},
+                    "logging": {"enabled": True},
                     "ratelimit": {
                         "characteristics": ["ip.src"],
                         "period": 10,
