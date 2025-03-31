@@ -5,12 +5,14 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
+from .cache_reserve import CacheReserve
 
 __all__ = ["CacheReserveEditResponse"]
 
 
 class CacheReserveEditResponse(BaseModel):
-    id: object
+    id: CacheReserve
+    """ID of the zone setting."""
 
     editable: bool
     """Whether the setting is editable"""

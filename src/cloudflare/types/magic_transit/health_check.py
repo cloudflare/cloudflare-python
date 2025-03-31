@@ -4,6 +4,8 @@ from typing import Union, Optional
 from typing_extensions import TypeAlias
 
 from ..._models import BaseModel
+from .health_check_rate import HealthCheckRate
+from .health_check_type import HealthCheckType
 
 __all__ = ["HealthCheck", "Target", "TargetMagicHealthCheckTarget"]
 
@@ -31,7 +33,8 @@ class HealthCheck(BaseModel):
     enabled: Optional[bool] = None
     """Determines whether to run healthchecks for a tunnel."""
 
-    rate: Optional[object] = None
+    rate: Optional[HealthCheckRate] = None
+    """How frequent the health check is run. The default value is `mid`."""
 
     target: Optional[Target] = None
     """The destination address in a request type health check.
@@ -45,4 +48,5 @@ class HealthCheck(BaseModel):
     x-magic-new-hc-target is absent or set to false.
     """
 
-    type: Optional[object] = None
+    type: Optional[HealthCheckType] = None
+    """The type of healthcheck to run, reply or request. The default value is `reply`."""

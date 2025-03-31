@@ -1,16 +1,25 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import TYPE_CHECKING, List, Union
+from datetime import datetime
 
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["RankingTimeseriesGroupsResponse", "Meta", "Serie0"]
+__all__ = ["RankingTimeseriesGroupsResponse", "Meta", "MetaDateRange", "Serie0"]
+
+
+class MetaDateRange(BaseModel):
+    end_time: datetime = FieldInfo(alias="endTime")
+    """Adjusted end of date range."""
+
+    start_time: datetime = FieldInfo(alias="startTime")
+    """Adjusted start of date range."""
 
 
 class Meta(BaseModel):
-    date_range: List[object] = FieldInfo(alias="dateRange")
+    date_range: List[MetaDateRange] = FieldInfo(alias="dateRange")
 
 
 class Serie0(BaseModel):

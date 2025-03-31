@@ -5,12 +5,14 @@ from datetime import datetime
 
 from .state import State
 from ..._models import BaseModel
+from .cache_reserve_clear import CacheReserveClear
 
 __all__ = ["CacheReserveStatusResponse"]
 
 
 class CacheReserveStatusResponse(BaseModel):
-    id: object
+    id: CacheReserveClear
+    """ID of the zone setting."""
 
     start_ts: datetime
     """The time that the latest Cache Reserve Clear operation started."""

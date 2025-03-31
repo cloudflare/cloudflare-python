@@ -5,12 +5,14 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
+from .regional_tiered_cache import RegionalTieredCache
 
 __all__ = ["RegionalTieredCacheGetResponse"]
 
 
 class RegionalTieredCacheGetResponse(BaseModel):
-    id: object
+    id: RegionalTieredCache
+    """ID of the zone setting."""
 
     editable: bool
     """Whether the setting is editable"""

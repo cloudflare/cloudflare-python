@@ -5,24 +5,36 @@ from typing import List, Optional
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
+from .rule_match import RuleMatch
+from .scan_status import ScanStatus
+from .url_info_model_results import URLInfoModelResults
 
-__all__ = ["Info"]
+__all__ = ["Info", "Categorization"]
+
+
+class Categorization(BaseModel):
+    category: Optional[str] = None
+    """Name of the category applied."""
+
+    verification_status: Optional[str] = None
+    """Result of human review for this categorization."""
 
 
 class Info(BaseModel):
-    categorizations: Optional[List[object]] = None
+    categorizations: Optional[List[Categorization]] = None
     """List of categorizations applied to this submission."""
 
-    ai_model_results: Optional[List[object]] = FieldInfo(alias="model_results", default=None)
+    ai_model_results: Optional[List[URLInfoModelResults]] = FieldInfo(alias="model_results", default=None)
     """List of model results for completed scans."""
 
-    rule_matches: Optional[List[object]] = None
+    rule_matches: Optional[List[RuleMatch]] = None
     """
     List of signatures that matched against site content found when crawling the
     URL.
     """
 
-    scan_status: Optional[object] = None
+    scan_status: Optional[ScanStatus] = None
+    """Status of the most recent scan found."""
 
     screenshot_download_signature: Optional[str] = None
     """For internal use."""

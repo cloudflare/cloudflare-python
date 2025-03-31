@@ -2,6 +2,7 @@
 
 
 from ....._models import BaseModel
+from ...radar_email_series import RadarEmailSeries
 
 __all__ = ["TimeseriesGroupDKIMResponse"]
 
@@ -9,4 +10,4 @@ __all__ = ["TimeseriesGroupDKIMResponse"]
 class TimeseriesGroupDKIMResponse(BaseModel):
     meta: object
 
-    serie_0: object
+    serie_0: RadarEmailSeries

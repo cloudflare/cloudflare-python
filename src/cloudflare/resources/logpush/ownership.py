@@ -22,6 +22,7 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ..._base_client import make_request_options
 from ...types.logpush import ownership_create_params, ownership_validate_params
+from ...types.logpush.ownership_validation import OwnershipValidation
 from ...types.logpush.ownership_create_response import OwnershipCreateResponse
 
 __all__ = ["OwnershipResource", "AsyncOwnershipResource"]
@@ -118,7 +119,7 @@ class OwnershipResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[OwnershipValidation]:
         """
         Validates ownership challenge of the destination.
 
@@ -167,9 +168,9 @@ class OwnershipResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[OwnershipValidation]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[OwnershipValidation]], ResultWrapper[OwnershipValidation]),
         )
 
 
@@ -266,7 +267,7 @@ class AsyncOwnershipResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[OwnershipValidation]:
         """
         Validates ownership challenge of the destination.
 
@@ -315,9 +316,9 @@ class AsyncOwnershipResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[OwnershipValidation]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[OwnershipValidation]], ResultWrapper[OwnershipValidation]),
         )
 
 

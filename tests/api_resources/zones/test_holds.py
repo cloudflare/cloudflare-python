@@ -9,6 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.types.zones import ZoneHold
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -21,7 +22,7 @@ class TestHolds:
         hold = client.zones.holds.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(object, hold, path=["response"])
+        assert_matches_type(ZoneHold, hold, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
@@ -29,7 +30,7 @@ class TestHolds:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             include_subdomains=True,
         )
-        assert_matches_type(object, hold, path=["response"])
+        assert_matches_type(ZoneHold, hold, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
@@ -40,7 +41,7 @@ class TestHolds:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hold = response.parse()
-        assert_matches_type(object, hold, path=["response"])
+        assert_matches_type(ZoneHold, hold, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
@@ -51,7 +52,7 @@ class TestHolds:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hold = response.parse()
-            assert_matches_type(object, hold, path=["response"])
+            assert_matches_type(ZoneHold, hold, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -67,7 +68,7 @@ class TestHolds:
         hold = client.zones.holds.delete(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(object, hold, path=["response"])
+        assert_matches_type(ZoneHold, hold, path=["response"])
 
     @parametrize
     def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
@@ -75,7 +76,7 @@ class TestHolds:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             hold_after="hold_after",
         )
-        assert_matches_type(object, hold, path=["response"])
+        assert_matches_type(ZoneHold, hold, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -86,7 +87,7 @@ class TestHolds:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hold = response.parse()
-        assert_matches_type(object, hold, path=["response"])
+        assert_matches_type(ZoneHold, hold, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -97,7 +98,7 @@ class TestHolds:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hold = response.parse()
-            assert_matches_type(object, hold, path=["response"])
+            assert_matches_type(ZoneHold, hold, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -113,7 +114,7 @@ class TestHolds:
         hold = client.zones.holds.edit(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(object, hold, path=["response"])
+        assert_matches_type(ZoneHold, hold, path=["response"])
 
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
@@ -122,7 +123,7 @@ class TestHolds:
             hold_after="2023-01-31T15:56:36+00:00",
             include_subdomains=True,
         )
-        assert_matches_type(object, hold, path=["response"])
+        assert_matches_type(ZoneHold, hold, path=["response"])
 
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
@@ -133,7 +134,7 @@ class TestHolds:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hold = response.parse()
-        assert_matches_type(object, hold, path=["response"])
+        assert_matches_type(ZoneHold, hold, path=["response"])
 
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
@@ -144,7 +145,7 @@ class TestHolds:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hold = response.parse()
-            assert_matches_type(object, hold, path=["response"])
+            assert_matches_type(ZoneHold, hold, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -160,7 +161,7 @@ class TestHolds:
         hold = client.zones.holds.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(object, hold, path=["response"])
+        assert_matches_type(ZoneHold, hold, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -171,7 +172,7 @@ class TestHolds:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hold = response.parse()
-        assert_matches_type(object, hold, path=["response"])
+        assert_matches_type(ZoneHold, hold, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -182,7 +183,7 @@ class TestHolds:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hold = response.parse()
-            assert_matches_type(object, hold, path=["response"])
+            assert_matches_type(ZoneHold, hold, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -202,7 +203,7 @@ class TestAsyncHolds:
         hold = await async_client.zones.holds.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(object, hold, path=["response"])
+        assert_matches_type(ZoneHold, hold, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -210,7 +211,7 @@ class TestAsyncHolds:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             include_subdomains=True,
         )
-        assert_matches_type(object, hold, path=["response"])
+        assert_matches_type(ZoneHold, hold, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -221,7 +222,7 @@ class TestAsyncHolds:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hold = await response.parse()
-        assert_matches_type(object, hold, path=["response"])
+        assert_matches_type(ZoneHold, hold, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -232,7 +233,7 @@ class TestAsyncHolds:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hold = await response.parse()
-            assert_matches_type(object, hold, path=["response"])
+            assert_matches_type(ZoneHold, hold, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -248,7 +249,7 @@ class TestAsyncHolds:
         hold = await async_client.zones.holds.delete(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(object, hold, path=["response"])
+        assert_matches_type(ZoneHold, hold, path=["response"])
 
     @parametrize
     async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -256,7 +257,7 @@ class TestAsyncHolds:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             hold_after="hold_after",
         )
-        assert_matches_type(object, hold, path=["response"])
+        assert_matches_type(ZoneHold, hold, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -267,7 +268,7 @@ class TestAsyncHolds:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hold = await response.parse()
-        assert_matches_type(object, hold, path=["response"])
+        assert_matches_type(ZoneHold, hold, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -278,7 +279,7 @@ class TestAsyncHolds:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hold = await response.parse()
-            assert_matches_type(object, hold, path=["response"])
+            assert_matches_type(ZoneHold, hold, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -294,7 +295,7 @@ class TestAsyncHolds:
         hold = await async_client.zones.holds.edit(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(object, hold, path=["response"])
+        assert_matches_type(ZoneHold, hold, path=["response"])
 
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -303,7 +304,7 @@ class TestAsyncHolds:
             hold_after="2023-01-31T15:56:36+00:00",
             include_subdomains=True,
         )
-        assert_matches_type(object, hold, path=["response"])
+        assert_matches_type(ZoneHold, hold, path=["response"])
 
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -314,7 +315,7 @@ class TestAsyncHolds:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hold = await response.parse()
-        assert_matches_type(object, hold, path=["response"])
+        assert_matches_type(ZoneHold, hold, path=["response"])
 
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -325,7 +326,7 @@ class TestAsyncHolds:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hold = await response.parse()
-            assert_matches_type(object, hold, path=["response"])
+            assert_matches_type(ZoneHold, hold, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -341,7 +342,7 @@ class TestAsyncHolds:
         hold = await async_client.zones.holds.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(object, hold, path=["response"])
+        assert_matches_type(ZoneHold, hold, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -352,7 +353,7 @@ class TestAsyncHolds:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hold = await response.parse()
-        assert_matches_type(object, hold, path=["response"])
+        assert_matches_type(ZoneHold, hold, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -363,7 +364,7 @@ class TestAsyncHolds:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hold = await response.parse()
-            assert_matches_type(object, hold, path=["response"])
+            assert_matches_type(ZoneHold, hold, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

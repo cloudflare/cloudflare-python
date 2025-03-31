@@ -5,6 +5,8 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Literal, Required, TypedDict
 
+from .deployment_param import DeploymentParam
+
 __all__ = ["DeploymentCreateParams", "Version"]
 
 
@@ -22,7 +24,7 @@ class DeploymentCreateParams(TypedDict, total=False):
     something such rolling back to an older version when a secret has changed.
     """
 
-    annotations: object
+    annotations: DeploymentParam
 
 
 class Version(TypedDict, total=False):
