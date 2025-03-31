@@ -6,7 +6,6 @@ from typing_extensions import Literal, TypeAlias
 
 from pydantic import Field as FieldInfo
 
-from .logging import Logging
 from ..._models import BaseModel
 
 __all__ = [
@@ -407,8 +406,7 @@ class SetCacheSettingsRule(BaseModel):
     expression: Optional[str] = None
     """The expression defining which traffic will match the rule."""
 
-    logging: Optional[Logging] = None
-    """An object configuring the rule's logging behavior."""
+    logging: Optional[object] = None
 
     ratelimit: Optional[Ratelimit] = None
     """An object configuring the rule's ratelimit behavior."""

@@ -6,20 +6,7 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = [
-    "AnnotationListResponse",
-    "Annotation",
-    "AnnotationASNsDetail",
-    "AnnotationASNsDetailLocations",
-    "AnnotationLocationsDetail",
-    "AnnotationOutage",
-]
-
-
-class AnnotationASNsDetailLocations(BaseModel):
-    code: str
-
-    name: str
+__all__ = ["AnnotationListResponse", "Annotation", "AnnotationASNsDetail", "AnnotationOutage"]
 
 
 class AnnotationASNsDetail(BaseModel):
@@ -27,13 +14,7 @@ class AnnotationASNsDetail(BaseModel):
 
     name: str
 
-    locations: Optional[AnnotationASNsDetailLocations] = None
-
-
-class AnnotationLocationsDetail(BaseModel):
-    code: str
-
-    name: str
+    locations: Optional[object] = None
 
 
 class AnnotationOutage(BaseModel):
@@ -55,7 +36,7 @@ class Annotation(BaseModel):
 
     locations: List[str]
 
-    locations_details: List[AnnotationLocationsDetail] = FieldInfo(alias="locationsDetails")
+    locations_details: List[object] = FieldInfo(alias="locationsDetails")
 
     outage: AnnotationOutage
 

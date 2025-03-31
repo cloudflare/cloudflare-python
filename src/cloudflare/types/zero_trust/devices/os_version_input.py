@@ -12,8 +12,7 @@ class OSVersionInput(BaseModel):
     operating_system: Literal["windows"]
     """Operating System"""
 
-    operator: Literal["<", "<=", ">", ">=", "=="]
-    """operator"""
+    operator: object
 
     version: str
     """Version of OS"""

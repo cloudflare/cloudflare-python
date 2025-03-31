@@ -6,8 +6,6 @@ from typing import Union
 from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from ..._utils import PropertyInfo
-from .health_check_rate import HealthCheckRate
-from .health_check_type import HealthCheckType
 
 __all__ = ["IPSECTunnelCreateParams", "HealthCheck", "HealthCheckTarget", "HealthCheckTargetMagicHealthCheckTarget"]
 
@@ -76,8 +74,7 @@ class HealthCheck(TypedDict, total=False):
     enabled: bool
     """Determines whether to run healthchecks for a tunnel."""
 
-    rate: HealthCheckRate
-    """How frequent the health check is run. The default value is `mid`."""
+    rate: object
 
     target: HealthCheckTarget
     """The destination address in a request type health check.
@@ -91,5 +88,4 @@ class HealthCheck(TypedDict, total=False):
     x-magic-new-hc-target is absent or set to false.
     """
 
-    type: HealthCheckType
-    """The type of healthcheck to run, reply or request. The default value is `reply`."""
+    type: object

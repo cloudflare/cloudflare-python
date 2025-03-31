@@ -5,8 +5,6 @@ from datetime import datetime
 from typing_extensions import Literal, TypeAlias
 
 from ..._models import BaseModel
-from .health_check_rate import HealthCheckRate
-from .health_check_type import HealthCheckType
 
 __all__ = [
     "GRETunnelUpdateResponse",
@@ -48,8 +46,7 @@ class ModifiedGRETunnelHealthCheck(BaseModel):
     enabled: Optional[bool] = None
     """Determines whether to run healthchecks for a tunnel."""
 
-    rate: Optional[HealthCheckRate] = None
-    """How frequent the health check is run. The default value is `mid`."""
+    rate: Optional[object] = None
 
     target: Optional[ModifiedGRETunnelHealthCheckTarget] = None
     """The destination address in a request type health check.
@@ -63,8 +60,7 @@ class ModifiedGRETunnelHealthCheck(BaseModel):
     x-magic-new-hc-target is absent or set to false.
     """
 
-    type: Optional[HealthCheckType] = None
-    """The type of healthcheck to run, reply or request. The default value is `reply`."""
+    type: Optional[object] = None
 
 
 class ModifiedGRETunnel(BaseModel):

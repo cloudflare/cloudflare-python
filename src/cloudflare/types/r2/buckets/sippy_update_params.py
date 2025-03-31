@@ -5,7 +5,6 @@ from __future__ import annotations
 from typing import Union
 from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
-from .provider import Provider
 from ...._utils import PropertyInfo
 
 __all__ = [
@@ -44,7 +43,7 @@ class R2EnableSippyAwsDestination(TypedDict, total=False):
     this token to the bucket you're enabling Sippy for.
     """
 
-    provider: Provider
+    provider: object
 
     secret_access_key: Annotated[str, PropertyInfo(alias="secretAccessKey")]
     """
@@ -98,7 +97,7 @@ class R2EnableSippyGcsDestination(TypedDict, total=False):
     this token to the bucket you're enabling Sippy for.
     """
 
-    provider: Provider
+    provider: object
 
     secret_access_key: Annotated[str, PropertyInfo(alias="secretAccessKey")]
     """

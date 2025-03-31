@@ -33,17 +33,14 @@ from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.zero_trust import (
-    IdentityProviderType,
     identity_provider_list_params,
     identity_provider_create_params,
     identity_provider_update_params,
 )
 from ....types.zero_trust.identity_provider import IdentityProvider
-from ....types.zero_trust.identity_provider_type import IdentityProviderType
 from ....types.zero_trust.generic_oauth_config_param import GenericOAuthConfigParam
 from ....types.zero_trust.identity_provider_list_response import IdentityProviderListResponse
 from ....types.zero_trust.identity_provider_delete_response import IdentityProviderDeleteResponse
-from ....types.zero_trust.identity_provider_scim_config_param import IdentityProviderSCIMConfigParam
 
 __all__ = ["IdentityProvidersResource", "AsyncIdentityProvidersResource"]
 
@@ -78,10 +75,10 @@ class IdentityProvidersResource(SyncAPIResource):
         *,
         config: identity_provider_create_params.AzureADConfig,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -99,16 +96,9 @@ class IdentityProvidersResource(SyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -126,10 +116,10 @@ class IdentityProvidersResource(SyncAPIResource):
         *,
         config: identity_provider_create_params.AccessCentrifyConfig,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -147,16 +137,9 @@ class IdentityProvidersResource(SyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -174,10 +157,10 @@ class IdentityProvidersResource(SyncAPIResource):
         *,
         config: GenericOAuthConfigParam,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -195,16 +178,9 @@ class IdentityProvidersResource(SyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -222,10 +198,10 @@ class IdentityProvidersResource(SyncAPIResource):
         *,
         config: GenericOAuthConfigParam,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -243,16 +219,9 @@ class IdentityProvidersResource(SyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -270,10 +239,10 @@ class IdentityProvidersResource(SyncAPIResource):
         *,
         config: identity_provider_create_params.AccessGoogleConfig,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -291,16 +260,9 @@ class IdentityProvidersResource(SyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -318,10 +280,10 @@ class IdentityProvidersResource(SyncAPIResource):
         *,
         config: identity_provider_create_params.AccessGoogleAppsConfig,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -339,16 +301,9 @@ class IdentityProvidersResource(SyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -366,10 +321,10 @@ class IdentityProvidersResource(SyncAPIResource):
         *,
         config: GenericOAuthConfigParam,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -387,16 +342,9 @@ class IdentityProvidersResource(SyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -414,10 +362,10 @@ class IdentityProvidersResource(SyncAPIResource):
         *,
         config: identity_provider_create_params.AccessOIDCConfig,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -435,16 +383,9 @@ class IdentityProvidersResource(SyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -462,10 +403,10 @@ class IdentityProvidersResource(SyncAPIResource):
         *,
         config: identity_provider_create_params.AccessOktaConfig,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -483,16 +424,9 @@ class IdentityProvidersResource(SyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -510,10 +444,10 @@ class IdentityProvidersResource(SyncAPIResource):
         *,
         config: identity_provider_create_params.AccessOneloginConfig,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -531,16 +465,9 @@ class IdentityProvidersResource(SyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -558,10 +485,10 @@ class IdentityProvidersResource(SyncAPIResource):
         *,
         config: identity_provider_create_params.AccessPingoneConfig,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -579,16 +506,9 @@ class IdentityProvidersResource(SyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -606,10 +526,10 @@ class IdentityProvidersResource(SyncAPIResource):
         *,
         config: identity_provider_create_params.AccessSAMLConfig,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -627,16 +547,9 @@ class IdentityProvidersResource(SyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -654,10 +567,10 @@ class IdentityProvidersResource(SyncAPIResource):
         *,
         config: GenericOAuthConfigParam,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -675,16 +588,9 @@ class IdentityProvidersResource(SyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -702,10 +608,10 @@ class IdentityProvidersResource(SyncAPIResource):
         *,
         config: identity_provider_create_params.AccessOnetimepinConfig,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -723,16 +629,9 @@ class IdentityProvidersResource(SyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -760,10 +659,10 @@ class IdentityProvidersResource(SyncAPIResource):
         | identity_provider_create_params.AccessSAMLConfig
         | identity_provider_create_params.AccessOnetimepinConfig,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -816,10 +715,10 @@ class IdentityProvidersResource(SyncAPIResource):
         *,
         config: identity_provider_update_params.AzureADConfig,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -839,16 +738,9 @@ class IdentityProvidersResource(SyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -867,10 +759,10 @@ class IdentityProvidersResource(SyncAPIResource):
         *,
         config: identity_provider_update_params.AccessCentrifyConfig,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -890,16 +782,9 @@ class IdentityProvidersResource(SyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -918,10 +803,10 @@ class IdentityProvidersResource(SyncAPIResource):
         *,
         config: GenericOAuthConfigParam,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -941,16 +826,9 @@ class IdentityProvidersResource(SyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -969,10 +847,10 @@ class IdentityProvidersResource(SyncAPIResource):
         *,
         config: GenericOAuthConfigParam,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -992,16 +870,9 @@ class IdentityProvidersResource(SyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -1020,10 +891,10 @@ class IdentityProvidersResource(SyncAPIResource):
         *,
         config: identity_provider_update_params.AccessGoogleConfig,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1043,16 +914,9 @@ class IdentityProvidersResource(SyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -1071,10 +935,10 @@ class IdentityProvidersResource(SyncAPIResource):
         *,
         config: identity_provider_update_params.AccessGoogleAppsConfig,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1094,16 +958,9 @@ class IdentityProvidersResource(SyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -1122,10 +979,10 @@ class IdentityProvidersResource(SyncAPIResource):
         *,
         config: GenericOAuthConfigParam,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1145,16 +1002,9 @@ class IdentityProvidersResource(SyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -1173,10 +1023,10 @@ class IdentityProvidersResource(SyncAPIResource):
         *,
         config: identity_provider_update_params.AccessOIDCConfig,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1196,16 +1046,9 @@ class IdentityProvidersResource(SyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -1224,10 +1067,10 @@ class IdentityProvidersResource(SyncAPIResource):
         *,
         config: identity_provider_update_params.AccessOktaConfig,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1247,16 +1090,9 @@ class IdentityProvidersResource(SyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -1275,10 +1111,10 @@ class IdentityProvidersResource(SyncAPIResource):
         *,
         config: identity_provider_update_params.AccessOneloginConfig,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1298,16 +1134,9 @@ class IdentityProvidersResource(SyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -1326,10 +1155,10 @@ class IdentityProvidersResource(SyncAPIResource):
         *,
         config: identity_provider_update_params.AccessPingoneConfig,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1349,16 +1178,9 @@ class IdentityProvidersResource(SyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -1377,10 +1199,10 @@ class IdentityProvidersResource(SyncAPIResource):
         *,
         config: identity_provider_update_params.AccessSAMLConfig,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1400,16 +1222,9 @@ class IdentityProvidersResource(SyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -1428,10 +1243,10 @@ class IdentityProvidersResource(SyncAPIResource):
         *,
         config: GenericOAuthConfigParam,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1451,16 +1266,9 @@ class IdentityProvidersResource(SyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -1479,10 +1287,10 @@ class IdentityProvidersResource(SyncAPIResource):
         *,
         config: identity_provider_update_params.AccessOnetimepinConfig,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1502,16 +1310,9 @@ class IdentityProvidersResource(SyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -1540,10 +1341,10 @@ class IdentityProvidersResource(SyncAPIResource):
         | identity_provider_update_params.AccessSAMLConfig
         | identity_provider_update_params.AccessOnetimepinConfig,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1808,10 +1609,10 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         *,
         config: identity_provider_create_params.AzureADConfig,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1829,16 +1630,9 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -1856,10 +1650,10 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         *,
         config: identity_provider_create_params.AccessCentrifyConfig,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1877,16 +1671,9 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -1904,10 +1691,10 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         *,
         config: GenericOAuthConfigParam,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1925,16 +1712,9 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -1952,10 +1732,10 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         *,
         config: GenericOAuthConfigParam,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1973,16 +1753,9 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -2000,10 +1773,10 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         *,
         config: identity_provider_create_params.AccessGoogleConfig,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2021,16 +1794,9 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -2048,10 +1814,10 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         *,
         config: identity_provider_create_params.AccessGoogleAppsConfig,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2069,16 +1835,9 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -2096,10 +1855,10 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         *,
         config: GenericOAuthConfigParam,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2117,16 +1876,9 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -2144,10 +1896,10 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         *,
         config: identity_provider_create_params.AccessOIDCConfig,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2165,16 +1917,9 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -2192,10 +1937,10 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         *,
         config: identity_provider_create_params.AccessOktaConfig,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2213,16 +1958,9 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -2240,10 +1978,10 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         *,
         config: identity_provider_create_params.AccessOneloginConfig,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2261,16 +1999,9 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -2288,10 +2019,10 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         *,
         config: identity_provider_create_params.AccessPingoneConfig,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2309,16 +2040,9 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -2336,10 +2060,10 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         *,
         config: identity_provider_create_params.AccessSAMLConfig,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2357,16 +2081,9 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -2384,10 +2101,10 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         *,
         config: GenericOAuthConfigParam,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2405,16 +2122,9 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -2432,10 +2142,10 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         *,
         config: identity_provider_create_params.AccessOnetimepinConfig,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2453,16 +2163,9 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -2490,10 +2193,10 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         | identity_provider_create_params.AccessSAMLConfig
         | identity_provider_create_params.AccessOnetimepinConfig,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2546,10 +2249,10 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         *,
         config: identity_provider_update_params.AzureADConfig,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2569,16 +2272,9 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -2597,10 +2293,10 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         *,
         config: identity_provider_update_params.AccessCentrifyConfig,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2620,16 +2316,9 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -2648,10 +2337,10 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         *,
         config: GenericOAuthConfigParam,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2671,16 +2360,9 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -2699,10 +2381,10 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         *,
         config: GenericOAuthConfigParam,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2722,16 +2404,9 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -2750,10 +2425,10 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         *,
         config: identity_provider_update_params.AccessGoogleConfig,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2773,16 +2448,9 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -2801,10 +2469,10 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         *,
         config: identity_provider_update_params.AccessGoogleAppsConfig,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2824,16 +2492,9 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -2852,10 +2513,10 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         *,
         config: GenericOAuthConfigParam,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2875,16 +2536,9 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -2903,10 +2557,10 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         *,
         config: identity_provider_update_params.AccessOIDCConfig,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2926,16 +2580,9 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -2954,10 +2601,10 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         *,
         config: identity_provider_update_params.AccessOktaConfig,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2977,16 +2624,9 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -3005,10 +2645,10 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         *,
         config: identity_provider_update_params.AccessOneloginConfig,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3028,16 +2668,9 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -3056,10 +2689,10 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         *,
         config: identity_provider_update_params.AccessPingoneConfig,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3079,16 +2712,9 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -3107,10 +2733,10 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         *,
         config: identity_provider_update_params.AccessSAMLConfig,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3130,16 +2756,9 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -3158,10 +2777,10 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         *,
         config: GenericOAuthConfigParam,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3181,16 +2800,9 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -3209,10 +2821,10 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         *,
         config: identity_provider_update_params.AccessOnetimepinConfig,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3232,16 +2844,9 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
 
           name: The name of the identity provider, shown to users on the login page.
 
-          type: The type of identity provider. To determine the value for a specific provider,
-              refer to our
-              [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          scim_config: The configuration settings for enabling a System for Cross-Domain Identity
-              Management (SCIM) with the identity provider.
 
           extra_headers: Send extra headers
 
@@ -3270,10 +2875,10 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         | identity_provider_update_params.AccessSAMLConfig
         | identity_provider_update_params.AccessOnetimepinConfig,
         name: str,
-        type: IdentityProviderType,
+        type: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: IdentityProviderSCIMConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

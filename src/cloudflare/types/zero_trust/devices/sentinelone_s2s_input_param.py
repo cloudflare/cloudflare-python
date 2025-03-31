@@ -34,5 +34,4 @@ class SentineloneS2sInputParam(TypedDict, total=False):
     ]
     """Agent operational state."""
 
-    operator: Literal["<", "<=", ">", ">=", "=="]
-    """operator"""
+    operator: object

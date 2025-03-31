@@ -11,8 +11,7 @@ class OSVersionInputParam(TypedDict, total=False):
     operating_system: Required[Literal["windows"]]
     """Operating System"""
 
-    operator: Required[Literal["<", "<=", ">", ">=", "=="]]
-    """operator"""
+    operator: Required[object]
 
     version: Required[str]
     """Version of OS"""

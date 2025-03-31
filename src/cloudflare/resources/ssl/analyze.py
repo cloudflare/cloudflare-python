@@ -22,8 +22,6 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ...types.ssl import analyze_create_params
 from ..._base_client import make_request_options
-from ...types.custom_hostnames import BundleMethod
-from ...types.custom_hostnames.bundle_method import BundleMethod
 
 __all__ = ["AnalyzeResource", "AsyncAnalyzeResource"]
 
@@ -52,7 +50,7 @@ class AnalyzeResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        bundle_method: BundleMethod | NotGiven = NOT_GIVEN,
+        bundle_method: object | NotGiven = NOT_GIVEN,
         certificate: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -67,11 +65,6 @@ class AnalyzeResource(SyncAPIResource):
 
         Args:
           zone_id: Identifier
-
-          bundle_method: A ubiquitous bundle has the highest probability of being verified everywhere,
-              even by clients using outdated or unusual trust stores. An optimal bundle uses
-              the shortest chain and newest intermediates. And the force bundle verifies the
-              chain, but does not otherwise modify it.
 
           certificate: The zone's SSL certificate or certificate and the intermediate(s).
 
@@ -129,7 +122,7 @@ class AsyncAnalyzeResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        bundle_method: BundleMethod | NotGiven = NOT_GIVEN,
+        bundle_method: object | NotGiven = NOT_GIVEN,
         certificate: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -144,11 +137,6 @@ class AsyncAnalyzeResource(AsyncAPIResource):
 
         Args:
           zone_id: Identifier
-
-          bundle_method: A ubiquitous bundle has the highest probability of being verified everywhere,
-              even by clients using outdated or unusual trust stores. An optimal bundle uses
-              the shortest chain and newest intermediates. And the force bundle verifies the
-              chain, but does not otherwise modify it.
 
           certificate: The zone's SSL certificate or certificate and the intermediate(s).
 

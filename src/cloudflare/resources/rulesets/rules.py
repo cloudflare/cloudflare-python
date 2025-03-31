@@ -24,7 +24,6 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ..._base_client import make_request_options
 from ...types.rulesets import rule_edit_params, rule_create_params
-from ...types.rulesets.logging_param import LoggingParam
 from ...types.rulesets.rule_edit_response import RuleEditResponse
 from ...types.rulesets.rule_create_response import RuleCreateResponse
 from ...types.rulesets.rule_delete_response import RuleDeleteResponse
@@ -66,7 +65,7 @@ class RulesResource(SyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.BlockRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_create_params.BlockRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.BlockRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -103,8 +102,6 @@ class RulesResource(SyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -135,7 +132,7 @@ class RulesResource(SyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.ChallengeRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_create_params.ChallengeRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.ChallengeRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -172,8 +169,6 @@ class RulesResource(SyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -204,7 +199,7 @@ class RulesResource(SyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.CompressionRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_create_params.CompressionRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.CompressionRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -241,8 +236,6 @@ class RulesResource(SyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -273,7 +266,7 @@ class RulesResource(SyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.ExecuteRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_create_params.ExecuteRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.ExecuteRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -310,8 +303,6 @@ class RulesResource(SyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -343,7 +334,7 @@ class RulesResource(SyncAPIResource):
         exposed_credential_check: rule_create_params.JavascriptChallengeRuleExposedCredentialCheck
         | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_create_params.JavascriptChallengeRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.JavascriptChallengeRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -380,8 +371,6 @@ class RulesResource(SyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -412,7 +401,7 @@ class RulesResource(SyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.LogRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_create_params.LogRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.LogRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -449,8 +438,6 @@ class RulesResource(SyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -481,7 +468,7 @@ class RulesResource(SyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.ManagedChallengeRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_create_params.ManagedChallengeRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.ManagedChallengeRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -518,8 +505,6 @@ class RulesResource(SyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -550,7 +535,7 @@ class RulesResource(SyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.RedirectRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_create_params.RedirectRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.RedirectRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -587,8 +572,6 @@ class RulesResource(SyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -619,7 +602,7 @@ class RulesResource(SyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.RewriteRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_create_params.RewriteRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.RewriteRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -656,8 +639,6 @@ class RulesResource(SyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -688,7 +669,7 @@ class RulesResource(SyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.OriginRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_create_params.OriginRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.OriginRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -725,8 +706,6 @@ class RulesResource(SyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -757,7 +736,7 @@ class RulesResource(SyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.ScoreRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_create_params.ScoreRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.ScoreRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -794,8 +773,6 @@ class RulesResource(SyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -826,7 +803,7 @@ class RulesResource(SyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.ServeErrorRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_create_params.ServeErrorRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.ServeErrorRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -863,8 +840,6 @@ class RulesResource(SyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -895,7 +870,7 @@ class RulesResource(SyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.SetConfigRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_create_params.SetConfigRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.SetConfigRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -932,8 +907,6 @@ class RulesResource(SyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -964,7 +937,7 @@ class RulesResource(SyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.SkipRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_create_params.SkipRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.SkipRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -1001,8 +974,6 @@ class RulesResource(SyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -1033,7 +1004,7 @@ class RulesResource(SyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.SetCacheSettingsRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_create_params.SetCacheSettingsRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.SetCacheSettingsRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -1070,8 +1041,6 @@ class RulesResource(SyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -1102,7 +1071,7 @@ class RulesResource(SyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.LogCustomFieldRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_create_params.LogCustomFieldRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.LogCustomFieldRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -1139,8 +1108,6 @@ class RulesResource(SyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -1171,7 +1138,7 @@ class RulesResource(SyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.DDoSDynamicRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_create_params.DDoSDynamicRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.DDoSDynamicRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -1208,8 +1175,6 @@ class RulesResource(SyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -1241,7 +1206,7 @@ class RulesResource(SyncAPIResource):
         exposed_credential_check: rule_create_params.ForceConnectionCloseRuleExposedCredentialCheck
         | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_create_params.ForceConnectionCloseRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.ForceConnectionCloseRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -1277,8 +1242,6 @@ class RulesResource(SyncAPIResource):
           exposed_credential_check: Configure checks for exposed credentials.
 
           expression: The expression defining which traffic will match the rule.
-
-          logging: An object configuring the rule's logging behavior.
 
           position: An object configuring where the rule will be placed.
 
@@ -1340,7 +1303,7 @@ class RulesResource(SyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.BlockRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_create_params.BlockRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.BlockRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -1470,7 +1433,7 @@ class RulesResource(SyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.BlockRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_edit_params.BlockRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.BlockRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -1507,8 +1470,6 @@ class RulesResource(SyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -1540,7 +1501,7 @@ class RulesResource(SyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.ChallengeRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_edit_params.ChallengeRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.ChallengeRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -1577,8 +1538,6 @@ class RulesResource(SyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -1610,7 +1569,7 @@ class RulesResource(SyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.CompressionRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_edit_params.CompressionRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.CompressionRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -1647,8 +1606,6 @@ class RulesResource(SyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -1680,7 +1637,7 @@ class RulesResource(SyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.ExecuteRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_edit_params.ExecuteRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.ExecuteRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -1717,8 +1674,6 @@ class RulesResource(SyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -1750,7 +1705,7 @@ class RulesResource(SyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.JavascriptChallengeRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_edit_params.JavascriptChallengeRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.JavascriptChallengeRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -1787,8 +1742,6 @@ class RulesResource(SyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -1820,7 +1773,7 @@ class RulesResource(SyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.LogRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_edit_params.LogRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.LogRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -1857,8 +1810,6 @@ class RulesResource(SyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -1890,7 +1841,7 @@ class RulesResource(SyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.ManagedChallengeRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_edit_params.ManagedChallengeRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.ManagedChallengeRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -1927,8 +1878,6 @@ class RulesResource(SyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -1960,7 +1909,7 @@ class RulesResource(SyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.RedirectRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_edit_params.RedirectRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.RedirectRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -1997,8 +1946,6 @@ class RulesResource(SyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -2030,7 +1977,7 @@ class RulesResource(SyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.RewriteRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_edit_params.RewriteRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.RewriteRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -2067,8 +2014,6 @@ class RulesResource(SyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -2100,7 +2045,7 @@ class RulesResource(SyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.OriginRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_edit_params.OriginRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.OriginRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -2137,8 +2082,6 @@ class RulesResource(SyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -2170,7 +2113,7 @@ class RulesResource(SyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.ScoreRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_edit_params.ScoreRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.ScoreRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -2207,8 +2150,6 @@ class RulesResource(SyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -2240,7 +2181,7 @@ class RulesResource(SyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.ServeErrorRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_edit_params.ServeErrorRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.ServeErrorRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -2277,8 +2218,6 @@ class RulesResource(SyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -2310,7 +2249,7 @@ class RulesResource(SyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.SetConfigRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_edit_params.SetConfigRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.SetConfigRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -2347,8 +2286,6 @@ class RulesResource(SyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -2380,7 +2317,7 @@ class RulesResource(SyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.SkipRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_edit_params.SkipRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.SkipRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -2417,8 +2354,6 @@ class RulesResource(SyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -2450,7 +2385,7 @@ class RulesResource(SyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.SetCacheSettingsRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_edit_params.SetCacheSettingsRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.SetCacheSettingsRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -2487,8 +2422,6 @@ class RulesResource(SyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -2520,7 +2453,7 @@ class RulesResource(SyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.LogCustomFieldRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_edit_params.LogCustomFieldRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.LogCustomFieldRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -2557,8 +2490,6 @@ class RulesResource(SyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -2590,7 +2521,7 @@ class RulesResource(SyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.DDoSDynamicRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_edit_params.DDoSDynamicRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.DDoSDynamicRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -2627,8 +2558,6 @@ class RulesResource(SyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -2661,7 +2590,7 @@ class RulesResource(SyncAPIResource):
         exposed_credential_check: rule_edit_params.ForceConnectionCloseRuleExposedCredentialCheck
         | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_edit_params.ForceConnectionCloseRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.ForceConnectionCloseRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -2697,8 +2626,6 @@ class RulesResource(SyncAPIResource):
           exposed_credential_check: Configure checks for exposed credentials.
 
           expression: The expression defining which traffic will match the rule.
-
-          logging: An object configuring the rule's logging behavior.
 
           position: An object configuring where the rule will be placed.
 
@@ -2762,7 +2689,7 @@ class RulesResource(SyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.BlockRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_edit_params.BlockRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.BlockRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -2852,7 +2779,7 @@ class AsyncRulesResource(AsyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.BlockRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_create_params.BlockRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.BlockRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -2889,8 +2816,6 @@ class AsyncRulesResource(AsyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -2921,7 +2846,7 @@ class AsyncRulesResource(AsyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.ChallengeRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_create_params.ChallengeRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.ChallengeRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -2958,8 +2883,6 @@ class AsyncRulesResource(AsyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -2990,7 +2913,7 @@ class AsyncRulesResource(AsyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.CompressionRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_create_params.CompressionRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.CompressionRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -3027,8 +2950,6 @@ class AsyncRulesResource(AsyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -3059,7 +2980,7 @@ class AsyncRulesResource(AsyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.ExecuteRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_create_params.ExecuteRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.ExecuteRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -3096,8 +3017,6 @@ class AsyncRulesResource(AsyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -3129,7 +3048,7 @@ class AsyncRulesResource(AsyncAPIResource):
         exposed_credential_check: rule_create_params.JavascriptChallengeRuleExposedCredentialCheck
         | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_create_params.JavascriptChallengeRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.JavascriptChallengeRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -3166,8 +3085,6 @@ class AsyncRulesResource(AsyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -3198,7 +3115,7 @@ class AsyncRulesResource(AsyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.LogRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_create_params.LogRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.LogRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -3235,8 +3152,6 @@ class AsyncRulesResource(AsyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -3267,7 +3182,7 @@ class AsyncRulesResource(AsyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.ManagedChallengeRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_create_params.ManagedChallengeRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.ManagedChallengeRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -3304,8 +3219,6 @@ class AsyncRulesResource(AsyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -3336,7 +3249,7 @@ class AsyncRulesResource(AsyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.RedirectRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_create_params.RedirectRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.RedirectRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -3373,8 +3286,6 @@ class AsyncRulesResource(AsyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -3405,7 +3316,7 @@ class AsyncRulesResource(AsyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.RewriteRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_create_params.RewriteRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.RewriteRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -3442,8 +3353,6 @@ class AsyncRulesResource(AsyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -3474,7 +3383,7 @@ class AsyncRulesResource(AsyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.OriginRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_create_params.OriginRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.OriginRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -3511,8 +3420,6 @@ class AsyncRulesResource(AsyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -3543,7 +3450,7 @@ class AsyncRulesResource(AsyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.ScoreRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_create_params.ScoreRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.ScoreRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -3580,8 +3487,6 @@ class AsyncRulesResource(AsyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -3612,7 +3517,7 @@ class AsyncRulesResource(AsyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.ServeErrorRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_create_params.ServeErrorRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.ServeErrorRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -3649,8 +3554,6 @@ class AsyncRulesResource(AsyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -3681,7 +3584,7 @@ class AsyncRulesResource(AsyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.SetConfigRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_create_params.SetConfigRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.SetConfigRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -3718,8 +3621,6 @@ class AsyncRulesResource(AsyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -3750,7 +3651,7 @@ class AsyncRulesResource(AsyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.SkipRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_create_params.SkipRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.SkipRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -3787,8 +3688,6 @@ class AsyncRulesResource(AsyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -3819,7 +3718,7 @@ class AsyncRulesResource(AsyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.SetCacheSettingsRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_create_params.SetCacheSettingsRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.SetCacheSettingsRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -3856,8 +3755,6 @@ class AsyncRulesResource(AsyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -3888,7 +3785,7 @@ class AsyncRulesResource(AsyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.LogCustomFieldRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_create_params.LogCustomFieldRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.LogCustomFieldRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -3925,8 +3822,6 @@ class AsyncRulesResource(AsyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -3957,7 +3852,7 @@ class AsyncRulesResource(AsyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.DDoSDynamicRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_create_params.DDoSDynamicRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.DDoSDynamicRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -3994,8 +3889,6 @@ class AsyncRulesResource(AsyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -4027,7 +3920,7 @@ class AsyncRulesResource(AsyncAPIResource):
         exposed_credential_check: rule_create_params.ForceConnectionCloseRuleExposedCredentialCheck
         | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_create_params.ForceConnectionCloseRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.ForceConnectionCloseRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -4063,8 +3956,6 @@ class AsyncRulesResource(AsyncAPIResource):
           exposed_credential_check: Configure checks for exposed credentials.
 
           expression: The expression defining which traffic will match the rule.
-
-          logging: An object configuring the rule's logging behavior.
 
           position: An object configuring where the rule will be placed.
 
@@ -4126,7 +4017,7 @@ class AsyncRulesResource(AsyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_create_params.BlockRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_create_params.BlockRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_create_params.BlockRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -4256,7 +4147,7 @@ class AsyncRulesResource(AsyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.BlockRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_edit_params.BlockRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.BlockRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -4293,8 +4184,6 @@ class AsyncRulesResource(AsyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -4326,7 +4215,7 @@ class AsyncRulesResource(AsyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.ChallengeRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_edit_params.ChallengeRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.ChallengeRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -4363,8 +4252,6 @@ class AsyncRulesResource(AsyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -4396,7 +4283,7 @@ class AsyncRulesResource(AsyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.CompressionRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_edit_params.CompressionRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.CompressionRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -4433,8 +4320,6 @@ class AsyncRulesResource(AsyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -4466,7 +4351,7 @@ class AsyncRulesResource(AsyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.ExecuteRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_edit_params.ExecuteRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.ExecuteRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -4503,8 +4388,6 @@ class AsyncRulesResource(AsyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -4536,7 +4419,7 @@ class AsyncRulesResource(AsyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.JavascriptChallengeRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_edit_params.JavascriptChallengeRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.JavascriptChallengeRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -4573,8 +4456,6 @@ class AsyncRulesResource(AsyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -4606,7 +4487,7 @@ class AsyncRulesResource(AsyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.LogRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_edit_params.LogRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.LogRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -4643,8 +4524,6 @@ class AsyncRulesResource(AsyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -4676,7 +4555,7 @@ class AsyncRulesResource(AsyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.ManagedChallengeRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_edit_params.ManagedChallengeRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.ManagedChallengeRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -4713,8 +4592,6 @@ class AsyncRulesResource(AsyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -4746,7 +4623,7 @@ class AsyncRulesResource(AsyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.RedirectRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_edit_params.RedirectRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.RedirectRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -4783,8 +4660,6 @@ class AsyncRulesResource(AsyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -4816,7 +4691,7 @@ class AsyncRulesResource(AsyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.RewriteRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_edit_params.RewriteRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.RewriteRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -4853,8 +4728,6 @@ class AsyncRulesResource(AsyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -4886,7 +4759,7 @@ class AsyncRulesResource(AsyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.OriginRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_edit_params.OriginRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.OriginRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -4923,8 +4796,6 @@ class AsyncRulesResource(AsyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -4956,7 +4827,7 @@ class AsyncRulesResource(AsyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.ScoreRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_edit_params.ScoreRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.ScoreRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -4993,8 +4864,6 @@ class AsyncRulesResource(AsyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -5026,7 +4895,7 @@ class AsyncRulesResource(AsyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.ServeErrorRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_edit_params.ServeErrorRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.ServeErrorRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -5063,8 +4932,6 @@ class AsyncRulesResource(AsyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -5096,7 +4963,7 @@ class AsyncRulesResource(AsyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.SetConfigRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_edit_params.SetConfigRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.SetConfigRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -5133,8 +5000,6 @@ class AsyncRulesResource(AsyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -5166,7 +5031,7 @@ class AsyncRulesResource(AsyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.SkipRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_edit_params.SkipRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.SkipRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -5203,8 +5068,6 @@ class AsyncRulesResource(AsyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -5236,7 +5099,7 @@ class AsyncRulesResource(AsyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.SetCacheSettingsRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_edit_params.SetCacheSettingsRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.SetCacheSettingsRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -5273,8 +5136,6 @@ class AsyncRulesResource(AsyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -5306,7 +5167,7 @@ class AsyncRulesResource(AsyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.LogCustomFieldRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_edit_params.LogCustomFieldRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.LogCustomFieldRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -5343,8 +5204,6 @@ class AsyncRulesResource(AsyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -5376,7 +5235,7 @@ class AsyncRulesResource(AsyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.DDoSDynamicRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_edit_params.DDoSDynamicRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.DDoSDynamicRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -5413,8 +5272,6 @@ class AsyncRulesResource(AsyncAPIResource):
 
           expression: The expression defining which traffic will match the rule.
 
-          logging: An object configuring the rule's logging behavior.
-
           position: An object configuring where the rule will be placed.
 
           ratelimit: An object configuring the rule's ratelimit behavior.
@@ -5447,7 +5304,7 @@ class AsyncRulesResource(AsyncAPIResource):
         exposed_credential_check: rule_edit_params.ForceConnectionCloseRuleExposedCredentialCheck
         | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_edit_params.ForceConnectionCloseRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.ForceConnectionCloseRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,
@@ -5483,8 +5340,6 @@ class AsyncRulesResource(AsyncAPIResource):
           exposed_credential_check: Configure checks for exposed credentials.
 
           expression: The expression defining which traffic will match the rule.
-
-          logging: An object configuring the rule's logging behavior.
 
           position: An object configuring where the rule will be placed.
 
@@ -5548,7 +5403,7 @@ class AsyncRulesResource(AsyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exposed_credential_check: rule_edit_params.BlockRuleExposedCredentialCheck | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
-        logging: LoggingParam | NotGiven = NOT_GIVEN,
+        logging: object | NotGiven = NOT_GIVEN,
         position: rule_edit_params.BlockRulePosition | NotGiven = NOT_GIVEN,
         ratelimit: rule_edit_params.BlockRuleRatelimit | NotGiven = NOT_GIVEN,
         ref: str | NotGiven = NOT_GIVEN,

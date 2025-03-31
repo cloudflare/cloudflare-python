@@ -103,23 +103,9 @@ class TestConfig:
                     "permissions": ["string"],
                     "settings": {"foo": "string"},
                     "type": "component",
-                    "actions": {
-                        "foo": {
-                            "action_type": "actionType",
-                            "blocking_triggers": ["string"],
-                            "data": {},
-                            "firing_triggers": ["string"],
-                        }
-                    },
+                    "actions": {},
                     "default_purpose": "defaultPurpose",
-                    "neo_events": [
-                        {
-                            "action_type": "actionType",
-                            "blocking_triggers": ["string"],
-                            "data": {},
-                            "firing_triggers": ["string"],
-                        }
-                    ],
+                    "neo_events": [{}],
                     "vendor_name": "vendorName",
                     "vendor_policy_url": "vendorPolicyUrl",
                 }
@@ -162,11 +148,7 @@ class TestConfig:
             },
             consent={
                 "enabled": True,
-                "button_text_translations": {
-                    "accept_all": {"foo": "string"},
-                    "confirm_my_choices": {"foo": "string"},
-                    "reject_all": {"foo": "string"},
-                },
+                "button_text_translations": {},
                 "company_email": "companyEmail",
                 "company_name": "companyName",
                 "company_street_address": "companyStreetAddress",
@@ -487,23 +469,9 @@ class TestAsyncConfig:
                     "permissions": ["string"],
                     "settings": {"foo": "string"},
                     "type": "component",
-                    "actions": {
-                        "foo": {
-                            "action_type": "actionType",
-                            "blocking_triggers": ["string"],
-                            "data": {},
-                            "firing_triggers": ["string"],
-                        }
-                    },
+                    "actions": {},
                     "default_purpose": "defaultPurpose",
-                    "neo_events": [
-                        {
-                            "action_type": "actionType",
-                            "blocking_triggers": ["string"],
-                            "data": {},
-                            "firing_triggers": ["string"],
-                        }
-                    ],
+                    "neo_events": [{}],
                     "vendor_name": "vendorName",
                     "vendor_policy_url": "vendorPolicyUrl",
                 }
@@ -546,11 +514,7 @@ class TestAsyncConfig:
             },
             consent={
                 "enabled": True,
-                "button_text_translations": {
-                    "accept_all": {"foo": "string"},
-                    "confirm_my_choices": {"foo": "string"},
-                    "reject_all": {"foo": "string"},
-                },
+                "button_text_translations": {},
                 "company_email": "companyEmail",
                 "company_name": "companyName",
                 "company_street_address": "companyStreetAddress",

@@ -2,14 +2,13 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Required, TypedDict
 
 __all__ = ["FileInputParam"]
 
 
 class FileInputParam(TypedDict, total=False):
-    operating_system: Required[Literal["windows", "linux", "mac"]]
-    """Operating system"""
+    operating_system: Required[object]
 
     path: Required[str]
     """File path."""

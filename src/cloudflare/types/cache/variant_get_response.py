@@ -2,7 +2,6 @@
 
 from typing import Optional
 from datetime import datetime
-from typing_extensions import Literal
 
 from ..._models import BaseModel
 
@@ -10,8 +9,7 @@ __all__ = ["VariantGetResponse"]
 
 
 class VariantGetResponse(BaseModel):
-    id: Literal["variants"]
-    """ID of the zone setting."""
+    id: object
 
     editable: bool
     """Whether the setting is editable"""

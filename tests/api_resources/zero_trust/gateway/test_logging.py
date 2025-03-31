@@ -29,11 +29,7 @@ class TestLogging:
         logging = client.zero_trust.gateway.logging.update(
             account_id="699d98642c564d2e855e9661899b7252",
             redact_pii=True,
-            settings_by_rule_type={
-                "dns": {},
-                "http": {},
-                "l4": {},
-            },
+            settings_by_rule_type={},
         )
         assert_matches_type(Optional[LoggingSetting], logging, path=["response"])
 
@@ -122,11 +118,7 @@ class TestAsyncLogging:
         logging = await async_client.zero_trust.gateway.logging.update(
             account_id="699d98642c564d2e855e9661899b7252",
             redact_pii=True,
-            settings_by_rule_type={
-                "dns": {},
-                "http": {},
-                "l4": {},
-            },
+            settings_by_rule_type={},
         )
         assert_matches_type(Optional[LoggingSetting], logging, path=["response"])
 

@@ -4,13 +4,12 @@ from typing import List, Optional
 from typing_extensions import Literal
 
 from ..._models import BaseModel
-from ..shared.response_info import ResponseInfo
 
 __all__ = ["QueueDeleteResponse"]
 
 
 class QueueDeleteResponse(BaseModel):
-    errors: Optional[List[ResponseInfo]] = None
+    errors: Optional[List[object]] = None
 
     messages: Optional[List[str]] = None
 

@@ -4,15 +4,14 @@ from typing import List
 from typing_extensions import Literal
 
 from ...._models import BaseModel
-from ...shared.response_info import ResponseInfo
 
 __all__ = ["ServiceBindingDeleteResponse"]
 
 
 class ServiceBindingDeleteResponse(BaseModel):
-    errors: List[ResponseInfo]
+    errors: List[object]
 
-    messages: List[ResponseInfo]
+    messages: List[object]
 
     success: Literal[True]
     """Whether the API call was successful"""
