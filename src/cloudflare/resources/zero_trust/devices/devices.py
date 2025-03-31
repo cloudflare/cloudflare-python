@@ -90,6 +90,14 @@ from .policies.policies import (
     PoliciesResourceWithStreamingResponse,
     AsyncPoliciesResourceWithStreamingResponse,
 )
+from .resilience.resilience import (
+    ResilienceResource,
+    AsyncResilienceResource,
+    ResilienceResourceWithRawResponse,
+    AsyncResilienceResourceWithRawResponse,
+    ResilienceResourceWithStreamingResponse,
+    AsyncResilienceResourceWithStreamingResponse,
+)
 from ....types.zero_trust.device import Device
 from ....types.zero_trust.device_get_response import DeviceGetResponse
 
@@ -97,6 +105,10 @@ __all__ = ["DevicesResource", "AsyncDevicesResource"]
 
 
 class DevicesResource(SyncAPIResource):
+    @cached_property
+    def resilience(self) -> ResilienceResource:
+        return ResilienceResource(self._client)
+
     @cached_property
     def dex_tests(self) -> DEXTestsResource:
         return DEXTestsResource(self._client)
@@ -230,6 +242,10 @@ class DevicesResource(SyncAPIResource):
 
 
 class AsyncDevicesResource(AsyncAPIResource):
+    @cached_property
+    def resilience(self) -> AsyncResilienceResource:
+        return AsyncResilienceResource(self._client)
+
     @cached_property
     def dex_tests(self) -> AsyncDEXTestsResource:
         return AsyncDEXTestsResource(self._client)
@@ -374,6 +390,10 @@ class DevicesResourceWithRawResponse:
         )
 
     @cached_property
+    def resilience(self) -> ResilienceResourceWithRawResponse:
+        return ResilienceResourceWithRawResponse(self._devices.resilience)
+
+    @cached_property
     def dex_tests(self) -> DEXTestsResourceWithRawResponse:
         return DEXTestsResourceWithRawResponse(self._devices.dex_tests)
 
@@ -420,6 +440,10 @@ class AsyncDevicesResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             devices.get,
         )
+
+    @cached_property
+    def resilience(self) -> AsyncResilienceResourceWithRawResponse:
+        return AsyncResilienceResourceWithRawResponse(self._devices.resilience)
 
     @cached_property
     def dex_tests(self) -> AsyncDEXTestsResourceWithRawResponse:
@@ -470,6 +494,10 @@ class DevicesResourceWithStreamingResponse:
         )
 
     @cached_property
+    def resilience(self) -> ResilienceResourceWithStreamingResponse:
+        return ResilienceResourceWithStreamingResponse(self._devices.resilience)
+
+    @cached_property
     def dex_tests(self) -> DEXTestsResourceWithStreamingResponse:
         return DEXTestsResourceWithStreamingResponse(self._devices.dex_tests)
 
@@ -516,6 +544,10 @@ class AsyncDevicesResourceWithStreamingResponse:
         self.get = async_to_streamed_response_wrapper(
             devices.get,
         )
+
+    @cached_property
+    def resilience(self) -> AsyncResilienceResourceWithStreamingResponse:
+        return AsyncResilienceResourceWithStreamingResponse(self._devices.resilience)
 
     @cached_property
     def dex_tests(self) -> AsyncDEXTestsResourceWithStreamingResponse:
