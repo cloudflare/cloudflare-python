@@ -64,6 +64,14 @@ from .dex_tests import (
     DEXTestsResourceWithStreamingResponse,
     AsyncDEXTestsResourceWithStreamingResponse,
 )
+from .resilience import (
+    ResilienceResource,
+    AsyncResilienceResource,
+    ResilienceResourceWithRawResponse,
+    AsyncResilienceResourceWithRawResponse,
+    ResilienceResourceWithStreamingResponse,
+    AsyncResilienceResourceWithStreamingResponse,
+)
 from .fleet_status import (
     FleetStatusResource,
     AsyncFleetStatusResource,
@@ -82,6 +90,12 @@ from .override_codes import (
 )
 
 __all__ = [
+    "ResilienceResource",
+    "AsyncResilienceResource",
+    "ResilienceResourceWithRawResponse",
+    "AsyncResilienceResourceWithRawResponse",
+    "ResilienceResourceWithStreamingResponse",
+    "AsyncResilienceResourceWithStreamingResponse",
     "DEXTestsResource",
     "AsyncDEXTestsResource",
     "DEXTestsResourceWithRawResponse",
