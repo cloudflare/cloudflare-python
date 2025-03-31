@@ -5,7 +5,9 @@ from __future__ import annotations
 from typing import List, Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
+from .identity_provider_type import IdentityProviderType
 from .generic_oauth_config_param import GenericOAuthConfigParam
+from .identity_provider_scim_config_param import IdentityProviderSCIMConfigParam
 
 __all__ = [
     "IdentityProviderUpdateParams",
@@ -48,7 +50,12 @@ class AzureAD(TypedDict, total=False):
     name: Required[str]
     """The name of the identity provider, shown to users on the login page."""
 
-    type: Required[object]
+    type: Required[IdentityProviderType]
+    """The type of identity provider.
+
+    To determine the value for a specific provider, refer to our
+    [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
 
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
@@ -56,7 +63,11 @@ class AzureAD(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    scim_config: object
+    scim_config: IdentityProviderSCIMConfigParam
+    """
+    The configuration settings for enabling a System for Cross-Domain Identity
+    Management (SCIM) with the identity provider.
+    """
 
 
 class AzureADConfig(TypedDict, total=False):
@@ -106,7 +117,12 @@ class AccessCentrify(TypedDict, total=False):
     name: Required[str]
     """The name of the identity provider, shown to users on the login page."""
 
-    type: Required[object]
+    type: Required[IdentityProviderType]
+    """The type of identity provider.
+
+    To determine the value for a specific provider, refer to our
+    [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
 
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
@@ -114,7 +130,11 @@ class AccessCentrify(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    scim_config: object
+    scim_config: IdentityProviderSCIMConfigParam
+    """
+    The configuration settings for enabling a System for Cross-Domain Identity
+    Management (SCIM) with the identity provider.
+    """
 
 
 class AccessCentrifyConfig(TypedDict, total=False):
@@ -148,7 +168,12 @@ class AccessFacebook(TypedDict, total=False):
     name: Required[str]
     """The name of the identity provider, shown to users on the login page."""
 
-    type: Required[object]
+    type: Required[IdentityProviderType]
+    """The type of identity provider.
+
+    To determine the value for a specific provider, refer to our
+    [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
 
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
@@ -156,7 +181,11 @@ class AccessFacebook(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    scim_config: object
+    scim_config: IdentityProviderSCIMConfigParam
+    """
+    The configuration settings for enabling a System for Cross-Domain Identity
+    Management (SCIM) with the identity provider.
+    """
 
 
 class AccessGitHub(TypedDict, total=False):
@@ -170,7 +199,12 @@ class AccessGitHub(TypedDict, total=False):
     name: Required[str]
     """The name of the identity provider, shown to users on the login page."""
 
-    type: Required[object]
+    type: Required[IdentityProviderType]
+    """The type of identity provider.
+
+    To determine the value for a specific provider, refer to our
+    [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
 
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
@@ -178,7 +212,11 @@ class AccessGitHub(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    scim_config: object
+    scim_config: IdentityProviderSCIMConfigParam
+    """
+    The configuration settings for enabling a System for Cross-Domain Identity
+    Management (SCIM) with the identity provider.
+    """
 
 
 class AccessGoogle(TypedDict, total=False):
@@ -192,7 +230,12 @@ class AccessGoogle(TypedDict, total=False):
     name: Required[str]
     """The name of the identity provider, shown to users on the login page."""
 
-    type: Required[object]
+    type: Required[IdentityProviderType]
+    """The type of identity provider.
+
+    To determine the value for a specific provider, refer to our
+    [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
 
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
@@ -200,7 +243,11 @@ class AccessGoogle(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    scim_config: object
+    scim_config: IdentityProviderSCIMConfigParam
+    """
+    The configuration settings for enabling a System for Cross-Domain Identity
+    Management (SCIM) with the identity provider.
+    """
 
 
 class AccessGoogleConfig(TypedDict, total=False):
@@ -228,7 +275,12 @@ class AccessGoogleApps(TypedDict, total=False):
     name: Required[str]
     """The name of the identity provider, shown to users on the login page."""
 
-    type: Required[object]
+    type: Required[IdentityProviderType]
+    """The type of identity provider.
+
+    To determine the value for a specific provider, refer to our
+    [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
 
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
@@ -236,7 +288,11 @@ class AccessGoogleApps(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    scim_config: object
+    scim_config: IdentityProviderSCIMConfigParam
+    """
+    The configuration settings for enabling a System for Cross-Domain Identity
+    Management (SCIM) with the identity provider.
+    """
 
 
 class AccessGoogleAppsConfig(TypedDict, total=False):
@@ -267,7 +323,12 @@ class AccessLinkedin(TypedDict, total=False):
     name: Required[str]
     """The name of the identity provider, shown to users on the login page."""
 
-    type: Required[object]
+    type: Required[IdentityProviderType]
+    """The type of identity provider.
+
+    To determine the value for a specific provider, refer to our
+    [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
 
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
@@ -275,7 +336,11 @@ class AccessLinkedin(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    scim_config: object
+    scim_config: IdentityProviderSCIMConfigParam
+    """
+    The configuration settings for enabling a System for Cross-Domain Identity
+    Management (SCIM) with the identity provider.
+    """
 
 
 class AccessOIDC(TypedDict, total=False):
@@ -289,7 +354,12 @@ class AccessOIDC(TypedDict, total=False):
     name: Required[str]
     """The name of the identity provider, shown to users on the login page."""
 
-    type: Required[object]
+    type: Required[IdentityProviderType]
+    """The type of identity provider.
+
+    To determine the value for a specific provider, refer to our
+    [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
 
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
@@ -297,7 +367,11 @@ class AccessOIDC(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    scim_config: object
+    scim_config: IdentityProviderSCIMConfigParam
+    """
+    The configuration settings for enabling a System for Cross-Domain Identity
+    Management (SCIM) with the identity provider.
+    """
 
 
 class AccessOIDCConfig(TypedDict, total=False):
@@ -340,7 +414,12 @@ class AccessOkta(TypedDict, total=False):
     name: Required[str]
     """The name of the identity provider, shown to users on the login page."""
 
-    type: Required[object]
+    type: Required[IdentityProviderType]
+    """The type of identity provider.
+
+    To determine the value for a specific provider, refer to our
+    [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
 
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
@@ -348,7 +427,11 @@ class AccessOkta(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    scim_config: object
+    scim_config: IdentityProviderSCIMConfigParam
+    """
+    The configuration settings for enabling a System for Cross-Domain Identity
+    Management (SCIM) with the identity provider.
+    """
 
 
 class AccessOktaConfig(TypedDict, total=False):
@@ -382,7 +465,12 @@ class AccessOnelogin(TypedDict, total=False):
     name: Required[str]
     """The name of the identity provider, shown to users on the login page."""
 
-    type: Required[object]
+    type: Required[IdentityProviderType]
+    """The type of identity provider.
+
+    To determine the value for a specific provider, refer to our
+    [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
 
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
@@ -390,7 +478,11 @@ class AccessOnelogin(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    scim_config: object
+    scim_config: IdentityProviderSCIMConfigParam
+    """
+    The configuration settings for enabling a System for Cross-Domain Identity
+    Management (SCIM) with the identity provider.
+    """
 
 
 class AccessOneloginConfig(TypedDict, total=False):
@@ -421,7 +513,12 @@ class AccessPingone(TypedDict, total=False):
     name: Required[str]
     """The name of the identity provider, shown to users on the login page."""
 
-    type: Required[object]
+    type: Required[IdentityProviderType]
+    """The type of identity provider.
+
+    To determine the value for a specific provider, refer to our
+    [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
 
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
@@ -429,7 +526,11 @@ class AccessPingone(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    scim_config: object
+    scim_config: IdentityProviderSCIMConfigParam
+    """
+    The configuration settings for enabling a System for Cross-Domain Identity
+    Management (SCIM) with the identity provider.
+    """
 
 
 class AccessPingoneConfig(TypedDict, total=False):
@@ -460,7 +561,12 @@ class AccessSAML(TypedDict, total=False):
     name: Required[str]
     """The name of the identity provider, shown to users on the login page."""
 
-    type: Required[object]
+    type: Required[IdentityProviderType]
+    """The type of identity provider.
+
+    To determine the value for a specific provider, refer to our
+    [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
 
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
@@ -468,7 +574,11 @@ class AccessSAML(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    scim_config: object
+    scim_config: IdentityProviderSCIMConfigParam
+    """
+    The configuration settings for enabling a System for Cross-Domain Identity
+    Management (SCIM) with the identity provider.
+    """
 
 
 class AccessSAMLConfigHeaderAttribute(TypedDict, total=False):
@@ -522,7 +632,12 @@ class AccessYandex(TypedDict, total=False):
     name: Required[str]
     """The name of the identity provider, shown to users on the login page."""
 
-    type: Required[object]
+    type: Required[IdentityProviderType]
+    """The type of identity provider.
+
+    To determine the value for a specific provider, refer to our
+    [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
 
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
@@ -530,7 +645,11 @@ class AccessYandex(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    scim_config: object
+    scim_config: IdentityProviderSCIMConfigParam
+    """
+    The configuration settings for enabling a System for Cross-Domain Identity
+    Management (SCIM) with the identity provider.
+    """
 
 
 class AccessOnetimepin(TypedDict, total=False):
@@ -544,7 +663,12 @@ class AccessOnetimepin(TypedDict, total=False):
     name: Required[str]
     """The name of the identity provider, shown to users on the login page."""
 
-    type: Required[object]
+    type: Required[IdentityProviderType]
+    """The type of identity provider.
+
+    To determine the value for a specific provider, refer to our
+    [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
 
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
@@ -552,7 +676,11 @@ class AccessOnetimepin(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    scim_config: object
+    scim_config: IdentityProviderSCIMConfigParam
+    """
+    The configuration settings for enabling a System for Cross-Domain Identity
+    Management (SCIM) with the identity provider.
+    """
 
 
 class AccessOnetimepinConfig(TypedDict, total=False):

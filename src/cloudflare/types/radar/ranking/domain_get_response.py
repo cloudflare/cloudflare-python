@@ -1,12 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
+from datetime import datetime
 
 from pydantic import Field as FieldInfo
 
 from ...._models import BaseModel
 
-__all__ = ["DomainGetResponse", "Details0", "Details0Category", "Details0TopLocation", "Meta"]
+__all__ = ["DomainGetResponse", "Details0", "Details0Category", "Details0TopLocation", "Meta", "MetaDateRange"]
 
 
 class Details0Category(BaseModel):
@@ -36,8 +37,16 @@ class Details0(BaseModel):
     top_locations: Optional[List[Details0TopLocation]] = None
 
 
+class MetaDateRange(BaseModel):
+    end_time: datetime = FieldInfo(alias="endTime")
+    """Adjusted end of date range."""
+
+    start_time: datetime = FieldInfo(alias="startTime")
+    """Adjusted start of date range."""
+
+
 class Meta(BaseModel):
-    date_range: List[object] = FieldInfo(alias="dateRange")
+    date_range: List[MetaDateRange] = FieldInfo(alias="dateRange")
 
 
 class DomainGetResponse(BaseModel):

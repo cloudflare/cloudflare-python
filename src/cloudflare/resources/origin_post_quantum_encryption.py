@@ -23,6 +23,12 @@ from .._response import (
 from .._wrappers import ResultWrapper
 from .._base_client import make_request_options
 from ..types.origin_post_quantum_encryption import origin_post_quantum_encryption_update_params
+from ..types.origin_post_quantum_encryption.origin_post_quantum_encryption_get_response import (
+    OriginPostQuantumEncryptionGetResponse,
+)
+from ..types.origin_post_quantum_encryption.origin_post_quantum_encryption_update_response import (
+    OriginPostQuantumEncryptionUpdateResponse,
+)
 
 __all__ = ["OriginPostQuantumEncryptionResource", "AsyncOriginPostQuantumEncryptionResource"]
 
@@ -58,7 +64,7 @@ class OriginPostQuantumEncryptionResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[OriginPostQuantumEncryptionUpdateResponse]:
         """
         Instructs Cloudflare to use Post-Quantum (PQ) key agreement algorithms when
         connecting to your origin. Preferred instructs Cloudflare to opportunistically
@@ -92,9 +98,12 @@ class OriginPostQuantumEncryptionResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[OriginPostQuantumEncryptionUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(
+                Type[Optional[OriginPostQuantumEncryptionUpdateResponse]],
+                ResultWrapper[OriginPostQuantumEncryptionUpdateResponse],
+            ),
         )
 
     def get(
@@ -107,7 +116,7 @@ class OriginPostQuantumEncryptionResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[OriginPostQuantumEncryptionGetResponse]:
         """
         Instructs Cloudflare to use Post-Quantum (PQ) key agreement algorithms when
         connecting to your origin. Preferred instructs Cloudflare to opportunistically
@@ -136,9 +145,12 @@ class OriginPostQuantumEncryptionResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[OriginPostQuantumEncryptionGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(
+                Type[Optional[OriginPostQuantumEncryptionGetResponse]],
+                ResultWrapper[OriginPostQuantumEncryptionGetResponse],
+            ),
         )
 
 
@@ -173,7 +185,7 @@ class AsyncOriginPostQuantumEncryptionResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[OriginPostQuantumEncryptionUpdateResponse]:
         """
         Instructs Cloudflare to use Post-Quantum (PQ) key agreement algorithms when
         connecting to your origin. Preferred instructs Cloudflare to opportunistically
@@ -207,9 +219,12 @@ class AsyncOriginPostQuantumEncryptionResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[OriginPostQuantumEncryptionUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(
+                Type[Optional[OriginPostQuantumEncryptionUpdateResponse]],
+                ResultWrapper[OriginPostQuantumEncryptionUpdateResponse],
+            ),
         )
 
     async def get(
@@ -222,7 +237,7 @@ class AsyncOriginPostQuantumEncryptionResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[OriginPostQuantumEncryptionGetResponse]:
         """
         Instructs Cloudflare to use Post-Quantum (PQ) key agreement algorithms when
         connecting to your origin. Preferred instructs Cloudflare to opportunistically
@@ -251,9 +266,12 @@ class AsyncOriginPostQuantumEncryptionResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[OriginPostQuantumEncryptionGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(
+                Type[Optional[OriginPostQuantumEncryptionGetResponse]],
+                ResultWrapper[OriginPostQuantumEncryptionGetResponse],
+            ),
         )
 
 

@@ -4,6 +4,7 @@ from typing import List, Optional
 from typing_extensions import Literal
 
 from ...._models import BaseModel
+from ...shared.response_info import ResponseInfo
 
 __all__ = ["IPUpdateResponse", "ResultInfo"]
 
@@ -23,9 +24,9 @@ class ResultInfo(BaseModel):
 
 
 class IPUpdateResponse(BaseModel):
-    errors: List[object]
+    errors: List[ResponseInfo]
 
-    messages: List[object]
+    messages: List[ResponseInfo]
 
     success: Literal[True]
     """Whether the API call was successful"""

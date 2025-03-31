@@ -5,6 +5,9 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Literal, Required, TypedDict
 
+from .identity_provider_type import IdentityProviderType
+from .identity_provider_scim_config_param import IdentityProviderSCIMConfigParam
+
 __all__ = ["AzureADParam", "Config"]
 
 
@@ -55,6 +58,15 @@ class AzureADParam(TypedDict, total=False):
     name: Required[str]
     """The name of the identity provider, shown to users on the login page."""
 
-    type: Required[object]
+    type: Required[IdentityProviderType]
+    """The type of identity provider.
 
-    scim_config: object
+    To determine the value for a specific provider, refer to our
+    [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
+    """
+
+    scim_config: IdentityProviderSCIMConfigParam
+    """
+    The configuration settings for enabling a System for Cross-Domain Identity
+    Management (SCIM) with the identity provider.
+    """

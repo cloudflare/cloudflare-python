@@ -5,6 +5,7 @@ from typing import Dict, Optional
 from pydantic import Field as FieldInfo
 
 from ....._models import BaseModel
+from ..applications.user_policy_check_geo import UserPolicyCheckGeo
 
 __all__ = ["Identity", "DeviceSessions", "DevicePosture", "DevicePostureCheck", "IdP", "MTLSAuth"]
 
@@ -72,7 +73,7 @@ class Identity(BaseModel):
 
     email: Optional[str] = None
 
-    geo: Optional[object] = None
+    geo: Optional[UserPolicyCheckGeo] = None
 
     iat: Optional[float] = None
 

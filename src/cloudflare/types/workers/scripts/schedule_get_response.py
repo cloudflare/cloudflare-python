@@ -2,10 +2,11 @@
 
 from typing import List, Optional
 
+from .schedule import Schedule
 from ...._models import BaseModel
 
 __all__ = ["ScheduleGetResponse"]
 
 
 class ScheduleGetResponse(BaseModel):
-    schedules: Optional[List[object]] = None
+    schedules: Optional[List[Schedule]] = None

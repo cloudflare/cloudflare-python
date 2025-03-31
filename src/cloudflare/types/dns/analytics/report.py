@@ -5,7 +5,18 @@ from datetime import datetime
 
 from ...._models import BaseModel
 
-__all__ = ["Report", "Query"]
+__all__ = ["Report", "Data", "Query"]
+
+
+class Data(BaseModel):
+    dimensions: List[str]
+    """
+    Array of dimension values, representing the combination of dimension values
+    corresponding to this row.
+    """
+
+    metrics: List[float]
+    """Array with one item per requested metric. Each item is a single value."""
 
 
 class Query(BaseModel):
@@ -35,7 +46,7 @@ class Query(BaseModel):
 
 
 class Report(BaseModel):
-    data: List[object]
+    data: List[Data]
     """Array with one row per combination of dimension values."""
 
     data_lag: float

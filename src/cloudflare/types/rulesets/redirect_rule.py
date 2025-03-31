@@ -4,6 +4,7 @@ from typing import List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, TypeAlias
 
+from .logging import Logging
 from ..._models import BaseModel
 
 __all__ = [
@@ -144,7 +145,8 @@ class RedirectRule(BaseModel):
     expression: Optional[str] = None
     """The expression defining which traffic will match the rule."""
 
-    logging: Optional[object] = None
+    logging: Optional[Logging] = None
+    """An object configuring the rule's logging behavior."""
 
     ratelimit: Optional[Ratelimit] = None
     """An object configuring the rule's ratelimit behavior."""

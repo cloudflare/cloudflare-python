@@ -3,6 +3,7 @@
 from typing import List, Optional
 
 from ...._models import BaseModel
+from .allowed_protocol import AllowedProtocol
 from .acl_configuration import ACLConfiguration
 
 __all__ = ["ACL"]
@@ -30,7 +31,7 @@ class ACL(BaseModel):
     name: Optional[str] = None
     """The name of the ACL."""
 
-    protocols: Optional[List[object]] = None
+    protocols: Optional[List[AllowedProtocol]] = None
 
     unidirectional: Optional[bool] = None
     """The desired traffic direction for this ACL policy.

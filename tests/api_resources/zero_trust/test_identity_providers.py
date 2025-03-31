@@ -28,7 +28,7 @@ class TestIdentityProviders:
         identity_provider = client.zero_trust.identity_providers.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -48,9 +48,14 @@ class TestIdentityProviders:
                 "support_groups": True,
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -60,7 +65,7 @@ class TestIdentityProviders:
         response = client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -75,7 +80,7 @@ class TestIdentityProviders:
         with client.zero_trust.identity_providers.with_streaming_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -93,7 +98,7 @@ class TestIdentityProviders:
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -101,7 +106,7 @@ class TestIdentityProviders:
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -111,7 +116,7 @@ class TestIdentityProviders:
         identity_provider = client.zero_trust.identity_providers.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -129,9 +134,14 @@ class TestIdentityProviders:
                 "email_claim_name": "custom_claim_name",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -141,7 +151,7 @@ class TestIdentityProviders:
         response = client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -156,7 +166,7 @@ class TestIdentityProviders:
         with client.zero_trust.identity_providers.with_streaming_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -174,7 +184,7 @@ class TestIdentityProviders:
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -182,7 +192,7 @@ class TestIdentityProviders:
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -192,7 +202,7 @@ class TestIdentityProviders:
         identity_provider = client.zero_trust.identity_providers.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -206,9 +216,14 @@ class TestIdentityProviders:
                 "client_secret": "<your client secret>",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -218,7 +233,7 @@ class TestIdentityProviders:
         response = client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -233,7 +248,7 @@ class TestIdentityProviders:
         with client.zero_trust.identity_providers.with_streaming_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -251,7 +266,7 @@ class TestIdentityProviders:
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -259,7 +274,7 @@ class TestIdentityProviders:
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -269,7 +284,7 @@ class TestIdentityProviders:
         identity_provider = client.zero_trust.identity_providers.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -283,9 +298,14 @@ class TestIdentityProviders:
                 "client_secret": "<your client secret>",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -295,7 +315,7 @@ class TestIdentityProviders:
         response = client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -310,7 +330,7 @@ class TestIdentityProviders:
         with client.zero_trust.identity_providers.with_streaming_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -328,7 +348,7 @@ class TestIdentityProviders:
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -336,7 +356,7 @@ class TestIdentityProviders:
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -346,7 +366,7 @@ class TestIdentityProviders:
         identity_provider = client.zero_trust.identity_providers.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -362,9 +382,14 @@ class TestIdentityProviders:
                 "email_claim_name": "custom_claim_name",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -374,7 +399,7 @@ class TestIdentityProviders:
         response = client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -389,7 +414,7 @@ class TestIdentityProviders:
         with client.zero_trust.identity_providers.with_streaming_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -407,7 +432,7 @@ class TestIdentityProviders:
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -415,7 +440,7 @@ class TestIdentityProviders:
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -425,7 +450,7 @@ class TestIdentityProviders:
         identity_provider = client.zero_trust.identity_providers.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -442,9 +467,14 @@ class TestIdentityProviders:
                 "email_claim_name": "custom_claim_name",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -454,7 +484,7 @@ class TestIdentityProviders:
         response = client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -469,7 +499,7 @@ class TestIdentityProviders:
         with client.zero_trust.identity_providers.with_streaming_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -487,7 +517,7 @@ class TestIdentityProviders:
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -495,7 +525,7 @@ class TestIdentityProviders:
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -505,7 +535,7 @@ class TestIdentityProviders:
         identity_provider = client.zero_trust.identity_providers.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -519,9 +549,14 @@ class TestIdentityProviders:
                 "client_secret": "<your client secret>",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -531,7 +566,7 @@ class TestIdentityProviders:
         response = client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -546,7 +581,7 @@ class TestIdentityProviders:
         with client.zero_trust.identity_providers.with_streaming_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -564,7 +599,7 @@ class TestIdentityProviders:
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -572,7 +607,7 @@ class TestIdentityProviders:
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -582,7 +617,7 @@ class TestIdentityProviders:
         identity_provider = client.zero_trust.identity_providers.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -603,9 +638,14 @@ class TestIdentityProviders:
                 "token_url": "https://accounts.google.com/o/oauth2/token",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -615,7 +655,7 @@ class TestIdentityProviders:
         response = client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -630,7 +670,7 @@ class TestIdentityProviders:
         with client.zero_trust.identity_providers.with_streaming_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -648,7 +688,7 @@ class TestIdentityProviders:
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -656,7 +696,7 @@ class TestIdentityProviders:
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -666,7 +706,7 @@ class TestIdentityProviders:
         identity_provider = client.zero_trust.identity_providers.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -684,9 +724,14 @@ class TestIdentityProviders:
                 "okta_account": "https://dev-abc123.oktapreview.com",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -696,7 +741,7 @@ class TestIdentityProviders:
         response = client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -711,7 +756,7 @@ class TestIdentityProviders:
         with client.zero_trust.identity_providers.with_streaming_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -729,7 +774,7 @@ class TestIdentityProviders:
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -737,7 +782,7 @@ class TestIdentityProviders:
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -747,7 +792,7 @@ class TestIdentityProviders:
         identity_provider = client.zero_trust.identity_providers.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -764,9 +809,14 @@ class TestIdentityProviders:
                 "onelogin_account": "https://mycompany.onelogin.com",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -776,7 +826,7 @@ class TestIdentityProviders:
         response = client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -791,7 +841,7 @@ class TestIdentityProviders:
         with client.zero_trust.identity_providers.with_streaming_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -809,7 +859,7 @@ class TestIdentityProviders:
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -817,7 +867,7 @@ class TestIdentityProviders:
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -827,7 +877,7 @@ class TestIdentityProviders:
         identity_provider = client.zero_trust.identity_providers.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -844,9 +894,14 @@ class TestIdentityProviders:
                 "ping_env_id": "342b5660-0c32-4936-a5a4-ce21fae57b0a",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -856,7 +911,7 @@ class TestIdentityProviders:
         response = client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -871,7 +926,7 @@ class TestIdentityProviders:
         with client.zero_trust.identity_providers.with_streaming_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -889,7 +944,7 @@ class TestIdentityProviders:
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -897,7 +952,7 @@ class TestIdentityProviders:
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -907,7 +962,7 @@ class TestIdentityProviders:
         identity_provider = client.zero_trust.identity_providers.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -931,9 +986,14 @@ class TestIdentityProviders:
                 "sso_target_url": "https://edgeaccess.org/idp/saml/login",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -943,7 +1003,7 @@ class TestIdentityProviders:
         response = client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -958,7 +1018,7 @@ class TestIdentityProviders:
         with client.zero_trust.identity_providers.with_streaming_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -976,7 +1036,7 @@ class TestIdentityProviders:
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -984,7 +1044,7 @@ class TestIdentityProviders:
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -994,7 +1054,7 @@ class TestIdentityProviders:
         identity_provider = client.zero_trust.identity_providers.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -1008,9 +1068,14 @@ class TestIdentityProviders:
                 "client_secret": "<your client secret>",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -1020,7 +1085,7 @@ class TestIdentityProviders:
         response = client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -1035,7 +1100,7 @@ class TestIdentityProviders:
         with client.zero_trust.identity_providers.with_streaming_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -1053,7 +1118,7 @@ class TestIdentityProviders:
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -1061,7 +1126,7 @@ class TestIdentityProviders:
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -1071,7 +1136,7 @@ class TestIdentityProviders:
         identity_provider = client.zero_trust.identity_providers.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -1082,9 +1147,14 @@ class TestIdentityProviders:
         identity_provider = client.zero_trust.identity_providers.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -1094,7 +1164,7 @@ class TestIdentityProviders:
         response = client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -1109,7 +1179,7 @@ class TestIdentityProviders:
         with client.zero_trust.identity_providers.with_streaming_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -1127,7 +1197,7 @@ class TestIdentityProviders:
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -1135,7 +1205,7 @@ class TestIdentityProviders:
             client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -1146,7 +1216,7 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -1167,9 +1237,14 @@ class TestIdentityProviders:
                 "support_groups": True,
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -1180,7 +1255,7 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -1196,7 +1271,7 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -1215,7 +1290,7 @@ class TestIdentityProviders:
                 identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -1224,7 +1299,7 @@ class TestIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -1233,7 +1308,7 @@ class TestIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -1244,7 +1319,7 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -1263,9 +1338,14 @@ class TestIdentityProviders:
                 "email_claim_name": "custom_claim_name",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -1276,7 +1356,7 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -1292,7 +1372,7 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -1311,7 +1391,7 @@ class TestIdentityProviders:
                 identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -1320,7 +1400,7 @@ class TestIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -1329,7 +1409,7 @@ class TestIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -1340,7 +1420,7 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -1355,9 +1435,14 @@ class TestIdentityProviders:
                 "client_secret": "<your client secret>",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -1368,7 +1453,7 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -1384,7 +1469,7 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -1403,7 +1488,7 @@ class TestIdentityProviders:
                 identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -1412,7 +1497,7 @@ class TestIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -1421,7 +1506,7 @@ class TestIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -1432,7 +1517,7 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -1447,9 +1532,14 @@ class TestIdentityProviders:
                 "client_secret": "<your client secret>",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -1460,7 +1550,7 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -1476,7 +1566,7 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -1495,7 +1585,7 @@ class TestIdentityProviders:
                 identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -1504,7 +1594,7 @@ class TestIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -1513,7 +1603,7 @@ class TestIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -1524,7 +1614,7 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -1541,9 +1631,14 @@ class TestIdentityProviders:
                 "email_claim_name": "custom_claim_name",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -1554,7 +1649,7 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -1570,7 +1665,7 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -1589,7 +1684,7 @@ class TestIdentityProviders:
                 identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -1598,7 +1693,7 @@ class TestIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -1607,7 +1702,7 @@ class TestIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -1618,7 +1713,7 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -1636,9 +1731,14 @@ class TestIdentityProviders:
                 "email_claim_name": "custom_claim_name",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -1649,7 +1749,7 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -1665,7 +1765,7 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -1684,7 +1784,7 @@ class TestIdentityProviders:
                 identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -1693,7 +1793,7 @@ class TestIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -1702,7 +1802,7 @@ class TestIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -1713,7 +1813,7 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -1728,9 +1828,14 @@ class TestIdentityProviders:
                 "client_secret": "<your client secret>",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -1741,7 +1846,7 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -1757,7 +1862,7 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -1776,7 +1881,7 @@ class TestIdentityProviders:
                 identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -1785,7 +1890,7 @@ class TestIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -1794,7 +1899,7 @@ class TestIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -1805,7 +1910,7 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -1827,9 +1932,14 @@ class TestIdentityProviders:
                 "token_url": "https://accounts.google.com/o/oauth2/token",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -1840,7 +1950,7 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -1856,7 +1966,7 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -1875,7 +1985,7 @@ class TestIdentityProviders:
                 identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -1884,7 +1994,7 @@ class TestIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -1893,7 +2003,7 @@ class TestIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -1904,7 +2014,7 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -1923,9 +2033,14 @@ class TestIdentityProviders:
                 "okta_account": "https://dev-abc123.oktapreview.com",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -1936,7 +2051,7 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -1952,7 +2067,7 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -1971,7 +2086,7 @@ class TestIdentityProviders:
                 identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -1980,7 +2095,7 @@ class TestIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -1989,7 +2104,7 @@ class TestIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -2000,7 +2115,7 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -2018,9 +2133,14 @@ class TestIdentityProviders:
                 "onelogin_account": "https://mycompany.onelogin.com",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -2031,7 +2151,7 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -2047,7 +2167,7 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -2066,7 +2186,7 @@ class TestIdentityProviders:
                 identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -2075,7 +2195,7 @@ class TestIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -2084,7 +2204,7 @@ class TestIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -2095,7 +2215,7 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -2113,9 +2233,14 @@ class TestIdentityProviders:
                 "ping_env_id": "342b5660-0c32-4936-a5a4-ce21fae57b0a",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -2126,7 +2251,7 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -2142,7 +2267,7 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -2161,7 +2286,7 @@ class TestIdentityProviders:
                 identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -2170,7 +2295,7 @@ class TestIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -2179,7 +2304,7 @@ class TestIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -2190,7 +2315,7 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -2215,9 +2340,14 @@ class TestIdentityProviders:
                 "sso_target_url": "https://edgeaccess.org/idp/saml/login",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -2228,7 +2358,7 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -2244,7 +2374,7 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -2263,7 +2393,7 @@ class TestIdentityProviders:
                 identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -2272,7 +2402,7 @@ class TestIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -2281,7 +2411,7 @@ class TestIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -2292,7 +2422,7 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -2307,9 +2437,14 @@ class TestIdentityProviders:
                 "client_secret": "<your client secret>",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -2320,7 +2455,7 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -2336,7 +2471,7 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -2355,7 +2490,7 @@ class TestIdentityProviders:
                 identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -2364,7 +2499,7 @@ class TestIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -2373,7 +2508,7 @@ class TestIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -2384,7 +2519,7 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -2396,9 +2531,14 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -2409,7 +2549,7 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -2425,7 +2565,7 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -2444,7 +2584,7 @@ class TestIdentityProviders:
                 identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -2453,7 +2593,7 @@ class TestIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -2462,7 +2602,7 @@ class TestIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -2666,7 +2806,7 @@ class TestAsyncIdentityProviders:
         identity_provider = await async_client.zero_trust.identity_providers.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -2686,9 +2826,14 @@ class TestAsyncIdentityProviders:
                 "support_groups": True,
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -2698,7 +2843,7 @@ class TestAsyncIdentityProviders:
         response = await async_client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -2713,7 +2858,7 @@ class TestAsyncIdentityProviders:
         async with async_client.zero_trust.identity_providers.with_streaming_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -2731,7 +2876,7 @@ class TestAsyncIdentityProviders:
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -2739,7 +2884,7 @@ class TestAsyncIdentityProviders:
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -2749,7 +2894,7 @@ class TestAsyncIdentityProviders:
         identity_provider = await async_client.zero_trust.identity_providers.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -2767,9 +2912,14 @@ class TestAsyncIdentityProviders:
                 "email_claim_name": "custom_claim_name",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -2779,7 +2929,7 @@ class TestAsyncIdentityProviders:
         response = await async_client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -2794,7 +2944,7 @@ class TestAsyncIdentityProviders:
         async with async_client.zero_trust.identity_providers.with_streaming_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -2812,7 +2962,7 @@ class TestAsyncIdentityProviders:
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -2820,7 +2970,7 @@ class TestAsyncIdentityProviders:
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -2830,7 +2980,7 @@ class TestAsyncIdentityProviders:
         identity_provider = await async_client.zero_trust.identity_providers.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -2844,9 +2994,14 @@ class TestAsyncIdentityProviders:
                 "client_secret": "<your client secret>",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -2856,7 +3011,7 @@ class TestAsyncIdentityProviders:
         response = await async_client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -2871,7 +3026,7 @@ class TestAsyncIdentityProviders:
         async with async_client.zero_trust.identity_providers.with_streaming_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -2889,7 +3044,7 @@ class TestAsyncIdentityProviders:
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -2897,7 +3052,7 @@ class TestAsyncIdentityProviders:
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -2907,7 +3062,7 @@ class TestAsyncIdentityProviders:
         identity_provider = await async_client.zero_trust.identity_providers.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -2921,9 +3076,14 @@ class TestAsyncIdentityProviders:
                 "client_secret": "<your client secret>",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -2933,7 +3093,7 @@ class TestAsyncIdentityProviders:
         response = await async_client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -2948,7 +3108,7 @@ class TestAsyncIdentityProviders:
         async with async_client.zero_trust.identity_providers.with_streaming_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -2966,7 +3126,7 @@ class TestAsyncIdentityProviders:
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -2974,7 +3134,7 @@ class TestAsyncIdentityProviders:
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -2984,7 +3144,7 @@ class TestAsyncIdentityProviders:
         identity_provider = await async_client.zero_trust.identity_providers.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -3000,9 +3160,14 @@ class TestAsyncIdentityProviders:
                 "email_claim_name": "custom_claim_name",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -3012,7 +3177,7 @@ class TestAsyncIdentityProviders:
         response = await async_client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -3027,7 +3192,7 @@ class TestAsyncIdentityProviders:
         async with async_client.zero_trust.identity_providers.with_streaming_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -3045,7 +3210,7 @@ class TestAsyncIdentityProviders:
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -3053,7 +3218,7 @@ class TestAsyncIdentityProviders:
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -3063,7 +3228,7 @@ class TestAsyncIdentityProviders:
         identity_provider = await async_client.zero_trust.identity_providers.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -3080,9 +3245,14 @@ class TestAsyncIdentityProviders:
                 "email_claim_name": "custom_claim_name",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -3092,7 +3262,7 @@ class TestAsyncIdentityProviders:
         response = await async_client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -3107,7 +3277,7 @@ class TestAsyncIdentityProviders:
         async with async_client.zero_trust.identity_providers.with_streaming_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -3125,7 +3295,7 @@ class TestAsyncIdentityProviders:
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -3133,7 +3303,7 @@ class TestAsyncIdentityProviders:
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -3143,7 +3313,7 @@ class TestAsyncIdentityProviders:
         identity_provider = await async_client.zero_trust.identity_providers.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -3157,9 +3327,14 @@ class TestAsyncIdentityProviders:
                 "client_secret": "<your client secret>",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -3169,7 +3344,7 @@ class TestAsyncIdentityProviders:
         response = await async_client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -3184,7 +3359,7 @@ class TestAsyncIdentityProviders:
         async with async_client.zero_trust.identity_providers.with_streaming_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -3202,7 +3377,7 @@ class TestAsyncIdentityProviders:
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -3210,7 +3385,7 @@ class TestAsyncIdentityProviders:
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -3220,7 +3395,7 @@ class TestAsyncIdentityProviders:
         identity_provider = await async_client.zero_trust.identity_providers.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -3241,9 +3416,14 @@ class TestAsyncIdentityProviders:
                 "token_url": "https://accounts.google.com/o/oauth2/token",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -3253,7 +3433,7 @@ class TestAsyncIdentityProviders:
         response = await async_client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -3268,7 +3448,7 @@ class TestAsyncIdentityProviders:
         async with async_client.zero_trust.identity_providers.with_streaming_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -3286,7 +3466,7 @@ class TestAsyncIdentityProviders:
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -3294,7 +3474,7 @@ class TestAsyncIdentityProviders:
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -3304,7 +3484,7 @@ class TestAsyncIdentityProviders:
         identity_provider = await async_client.zero_trust.identity_providers.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -3322,9 +3502,14 @@ class TestAsyncIdentityProviders:
                 "okta_account": "https://dev-abc123.oktapreview.com",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -3334,7 +3519,7 @@ class TestAsyncIdentityProviders:
         response = await async_client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -3349,7 +3534,7 @@ class TestAsyncIdentityProviders:
         async with async_client.zero_trust.identity_providers.with_streaming_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -3367,7 +3552,7 @@ class TestAsyncIdentityProviders:
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -3375,7 +3560,7 @@ class TestAsyncIdentityProviders:
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -3385,7 +3570,7 @@ class TestAsyncIdentityProviders:
         identity_provider = await async_client.zero_trust.identity_providers.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -3402,9 +3587,14 @@ class TestAsyncIdentityProviders:
                 "onelogin_account": "https://mycompany.onelogin.com",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -3414,7 +3604,7 @@ class TestAsyncIdentityProviders:
         response = await async_client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -3429,7 +3619,7 @@ class TestAsyncIdentityProviders:
         async with async_client.zero_trust.identity_providers.with_streaming_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -3447,7 +3637,7 @@ class TestAsyncIdentityProviders:
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -3455,7 +3645,7 @@ class TestAsyncIdentityProviders:
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -3465,7 +3655,7 @@ class TestAsyncIdentityProviders:
         identity_provider = await async_client.zero_trust.identity_providers.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -3482,9 +3672,14 @@ class TestAsyncIdentityProviders:
                 "ping_env_id": "342b5660-0c32-4936-a5a4-ce21fae57b0a",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -3494,7 +3689,7 @@ class TestAsyncIdentityProviders:
         response = await async_client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -3509,7 +3704,7 @@ class TestAsyncIdentityProviders:
         async with async_client.zero_trust.identity_providers.with_streaming_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -3527,7 +3722,7 @@ class TestAsyncIdentityProviders:
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -3535,7 +3730,7 @@ class TestAsyncIdentityProviders:
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -3545,7 +3740,7 @@ class TestAsyncIdentityProviders:
         identity_provider = await async_client.zero_trust.identity_providers.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -3569,9 +3764,14 @@ class TestAsyncIdentityProviders:
                 "sso_target_url": "https://edgeaccess.org/idp/saml/login",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -3581,7 +3781,7 @@ class TestAsyncIdentityProviders:
         response = await async_client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -3596,7 +3796,7 @@ class TestAsyncIdentityProviders:
         async with async_client.zero_trust.identity_providers.with_streaming_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -3614,7 +3814,7 @@ class TestAsyncIdentityProviders:
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -3622,7 +3822,7 @@ class TestAsyncIdentityProviders:
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -3632,7 +3832,7 @@ class TestAsyncIdentityProviders:
         identity_provider = await async_client.zero_trust.identity_providers.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -3646,9 +3846,14 @@ class TestAsyncIdentityProviders:
                 "client_secret": "<your client secret>",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -3658,7 +3863,7 @@ class TestAsyncIdentityProviders:
         response = await async_client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -3673,7 +3878,7 @@ class TestAsyncIdentityProviders:
         async with async_client.zero_trust.identity_providers.with_streaming_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -3691,7 +3896,7 @@ class TestAsyncIdentityProviders:
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -3699,7 +3904,7 @@ class TestAsyncIdentityProviders:
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -3709,7 +3914,7 @@ class TestAsyncIdentityProviders:
         identity_provider = await async_client.zero_trust.identity_providers.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -3720,9 +3925,14 @@ class TestAsyncIdentityProviders:
         identity_provider = await async_client.zero_trust.identity_providers.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -3732,7 +3942,7 @@ class TestAsyncIdentityProviders:
         response = await async_client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -3747,7 +3957,7 @@ class TestAsyncIdentityProviders:
         async with async_client.zero_trust.identity_providers.with_streaming_response.create(
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -3765,7 +3975,7 @@ class TestAsyncIdentityProviders:
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -3773,7 +3983,7 @@ class TestAsyncIdentityProviders:
             await async_client.zero_trust.identity_providers.with_raw_response.create(
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -3784,7 +3994,7 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -3805,9 +4015,14 @@ class TestAsyncIdentityProviders:
                 "support_groups": True,
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -3818,7 +4033,7 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -3834,7 +4049,7 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -3853,7 +4068,7 @@ class TestAsyncIdentityProviders:
                 identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -3862,7 +4077,7 @@ class TestAsyncIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -3871,7 +4086,7 @@ class TestAsyncIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -3882,7 +4097,7 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -3901,9 +4116,14 @@ class TestAsyncIdentityProviders:
                 "email_claim_name": "custom_claim_name",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -3914,7 +4134,7 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -3930,7 +4150,7 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -3949,7 +4169,7 @@ class TestAsyncIdentityProviders:
                 identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -3958,7 +4178,7 @@ class TestAsyncIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -3967,7 +4187,7 @@ class TestAsyncIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -3978,7 +4198,7 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -3993,9 +4213,14 @@ class TestAsyncIdentityProviders:
                 "client_secret": "<your client secret>",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -4006,7 +4231,7 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -4022,7 +4247,7 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -4041,7 +4266,7 @@ class TestAsyncIdentityProviders:
                 identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -4050,7 +4275,7 @@ class TestAsyncIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -4059,7 +4284,7 @@ class TestAsyncIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -4070,7 +4295,7 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -4085,9 +4310,14 @@ class TestAsyncIdentityProviders:
                 "client_secret": "<your client secret>",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -4098,7 +4328,7 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -4114,7 +4344,7 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -4133,7 +4363,7 @@ class TestAsyncIdentityProviders:
                 identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -4142,7 +4372,7 @@ class TestAsyncIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -4151,7 +4381,7 @@ class TestAsyncIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -4162,7 +4392,7 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -4179,9 +4409,14 @@ class TestAsyncIdentityProviders:
                 "email_claim_name": "custom_claim_name",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -4192,7 +4427,7 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -4208,7 +4443,7 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -4227,7 +4462,7 @@ class TestAsyncIdentityProviders:
                 identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -4236,7 +4471,7 @@ class TestAsyncIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -4245,7 +4480,7 @@ class TestAsyncIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -4256,7 +4491,7 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -4274,9 +4509,14 @@ class TestAsyncIdentityProviders:
                 "email_claim_name": "custom_claim_name",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -4287,7 +4527,7 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -4303,7 +4543,7 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -4322,7 +4562,7 @@ class TestAsyncIdentityProviders:
                 identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -4331,7 +4571,7 @@ class TestAsyncIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -4340,7 +4580,7 @@ class TestAsyncIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -4351,7 +4591,7 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -4366,9 +4606,14 @@ class TestAsyncIdentityProviders:
                 "client_secret": "<your client secret>",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -4379,7 +4624,7 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -4395,7 +4640,7 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -4414,7 +4659,7 @@ class TestAsyncIdentityProviders:
                 identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -4423,7 +4668,7 @@ class TestAsyncIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -4432,7 +4677,7 @@ class TestAsyncIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -4443,7 +4688,7 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -4465,9 +4710,14 @@ class TestAsyncIdentityProviders:
                 "token_url": "https://accounts.google.com/o/oauth2/token",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -4478,7 +4728,7 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -4494,7 +4744,7 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -4513,7 +4763,7 @@ class TestAsyncIdentityProviders:
                 identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -4522,7 +4772,7 @@ class TestAsyncIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -4531,7 +4781,7 @@ class TestAsyncIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -4542,7 +4792,7 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -4561,9 +4811,14 @@ class TestAsyncIdentityProviders:
                 "okta_account": "https://dev-abc123.oktapreview.com",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -4574,7 +4829,7 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -4590,7 +4845,7 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -4609,7 +4864,7 @@ class TestAsyncIdentityProviders:
                 identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -4618,7 +4873,7 @@ class TestAsyncIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -4627,7 +4882,7 @@ class TestAsyncIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -4638,7 +4893,7 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -4656,9 +4911,14 @@ class TestAsyncIdentityProviders:
                 "onelogin_account": "https://mycompany.onelogin.com",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -4669,7 +4929,7 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -4685,7 +4945,7 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -4704,7 +4964,7 @@ class TestAsyncIdentityProviders:
                 identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -4713,7 +4973,7 @@ class TestAsyncIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -4722,7 +4982,7 @@ class TestAsyncIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -4733,7 +4993,7 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -4751,9 +5011,14 @@ class TestAsyncIdentityProviders:
                 "ping_env_id": "342b5660-0c32-4936-a5a4-ce21fae57b0a",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -4764,7 +5029,7 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -4780,7 +5045,7 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -4799,7 +5064,7 @@ class TestAsyncIdentityProviders:
                 identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -4808,7 +5073,7 @@ class TestAsyncIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -4817,7 +5082,7 @@ class TestAsyncIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -4828,7 +5093,7 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -4853,9 +5118,14 @@ class TestAsyncIdentityProviders:
                 "sso_target_url": "https://edgeaccess.org/idp/saml/login",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -4866,7 +5136,7 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -4882,7 +5152,7 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -4901,7 +5171,7 @@ class TestAsyncIdentityProviders:
                 identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -4910,7 +5180,7 @@ class TestAsyncIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -4919,7 +5189,7 @@ class TestAsyncIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -4930,7 +5200,7 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -4945,9 +5215,14 @@ class TestAsyncIdentityProviders:
                 "client_secret": "<your client secret>",
             },
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -4958,7 +5233,7 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -4974,7 +5249,7 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -4993,7 +5268,7 @@ class TestAsyncIdentityProviders:
                 identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -5002,7 +5277,7 @@ class TestAsyncIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -5011,7 +5286,7 @@ class TestAsyncIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -5022,7 +5297,7 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
@@ -5034,9 +5309,14 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
-            scim_config={},
+            scim_config={
+                "enabled": True,
+                "identity_update_behavior": "automatic",
+                "seat_deprovision": True,
+                "user_deprovision": True,
+            },
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -5047,7 +5327,7 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         )
 
@@ -5063,7 +5343,7 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
-            type={},
+            type="onetimepin",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -5082,7 +5362,7 @@ class TestAsyncIdentityProviders:
                 identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 
@@ -5091,7 +5371,7 @@ class TestAsyncIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="",
             )
 
@@ -5100,7 +5380,7 @@ class TestAsyncIdentityProviders:
                 identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
-                type={},
+                type="onetimepin",
                 account_id="account_id",
             )
 

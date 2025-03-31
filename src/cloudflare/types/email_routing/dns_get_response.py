@@ -5,6 +5,7 @@ from typing_extensions import Literal, TypeAlias
 
 from ..._models import BaseModel
 from .dns_record import DNSRecord
+from ..shared.response_info import ResponseInfo
 
 __all__ = [
     "DNSGetResponse",
@@ -45,9 +46,9 @@ class EmailEmailRoutingDNSQueryResponseResultInfo(BaseModel):
 
 
 class EmailEmailRoutingDNSQueryResponse(BaseModel):
-    errors: List[object]
+    errors: List[ResponseInfo]
 
-    messages: List[object]
+    messages: List[ResponseInfo]
 
     success: Literal[True]
     """Whether the API call was successful"""
@@ -72,9 +73,9 @@ class EmailDNSSettingsResponseCollectionResultInfo(BaseModel):
 
 
 class EmailDNSSettingsResponseCollection(BaseModel):
-    errors: List[object]
+    errors: List[ResponseInfo]
 
-    messages: List[object]
+    messages: List[ResponseInfo]
 
     success: Literal[True]
     """Whether the API call was successful"""

@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import List
 from typing_extensions import Required, TypedDict
 
+from .allowed_protocol import AllowedProtocol
 from .acl_configuration_param import ACLConfigurationParam
 
 __all__ = ["ACLEditParams"]
@@ -35,7 +36,7 @@ class ACLEditParams(TypedDict, total=False):
     name: str
     """The name of the ACL."""
 
-    protocols: Iterable[object]
+    protocols: List[AllowedProtocol]
 
     unidirectional: bool
     """The desired traffic direction for this ACL policy.

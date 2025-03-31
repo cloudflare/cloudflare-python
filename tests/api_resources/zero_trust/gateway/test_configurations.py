@@ -32,7 +32,51 @@ class TestConfigurations:
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         configuration = client.zero_trust.gateway.configurations.update(
             account_id="699d98642c564d2e855e9661899b7252",
-            settings={},
+            settings={
+                "activity_log": {"enabled": True},
+                "antivirus": {
+                    "enabled_download_phase": False,
+                    "enabled_upload_phase": False,
+                    "fail_closed": False,
+                    "notification_settings": {
+                        "enabled": True,
+                        "msg": "msg",
+                        "support_url": "support_url",
+                    },
+                },
+                "block_page": {
+                    "background_color": "background_color",
+                    "enabled": True,
+                    "footer_text": "--footer--",
+                    "header_text": "--header--",
+                    "include_context": True,
+                    "logo_path": "https://logos.com/a.png",
+                    "mailto_address": "admin@example.com",
+                    "mailto_subject": "Blocked User Inquiry",
+                    "mode": "customized_block_page",
+                    "name": "Cloudflare",
+                    "suppress_footer": False,
+                    "target_uri": "https://example.com",
+                },
+                "body_scanning": {"inspection_mode": "deep"},
+                "browser_isolation": {
+                    "non_identity_enabled": True,
+                    "url_browser_isolation_enabled": True,
+                },
+                "certificate": {"id": "d1b364c5-1311-466e-a194-f0e943e0799f"},
+                "custom_certificate": {
+                    "enabled": True,
+                    "id": "d1b364c5-1311-466e-a194-f0e943e0799f",
+                },
+                "extended_email_matching": {"enabled": True},
+                "fips": {"tls": True},
+                "protocol_detection": {"enabled": True},
+                "sandbox": {
+                    "enabled": True,
+                    "fallback_action": "allow",
+                },
+                "tls_decrypt": {"enabled": True},
+            },
         )
         assert_matches_type(Optional[ConfigurationUpdateResponse], configuration, path=["response"])
 
@@ -78,7 +122,51 @@ class TestConfigurations:
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         configuration = client.zero_trust.gateway.configurations.edit(
             account_id="699d98642c564d2e855e9661899b7252",
-            settings={},
+            settings={
+                "activity_log": {"enabled": True},
+                "antivirus": {
+                    "enabled_download_phase": False,
+                    "enabled_upload_phase": False,
+                    "fail_closed": False,
+                    "notification_settings": {
+                        "enabled": True,
+                        "msg": "msg",
+                        "support_url": "support_url",
+                    },
+                },
+                "block_page": {
+                    "background_color": "background_color",
+                    "enabled": True,
+                    "footer_text": "--footer--",
+                    "header_text": "--header--",
+                    "include_context": True,
+                    "logo_path": "https://logos.com/a.png",
+                    "mailto_address": "admin@example.com",
+                    "mailto_subject": "Blocked User Inquiry",
+                    "mode": "customized_block_page",
+                    "name": "Cloudflare",
+                    "suppress_footer": False,
+                    "target_uri": "https://example.com",
+                },
+                "body_scanning": {"inspection_mode": "deep"},
+                "browser_isolation": {
+                    "non_identity_enabled": True,
+                    "url_browser_isolation_enabled": True,
+                },
+                "certificate": {"id": "d1b364c5-1311-466e-a194-f0e943e0799f"},
+                "custom_certificate": {
+                    "enabled": True,
+                    "id": "d1b364c5-1311-466e-a194-f0e943e0799f",
+                },
+                "extended_email_matching": {"enabled": True},
+                "fips": {"tls": True},
+                "protocol_detection": {"enabled": True},
+                "sandbox": {
+                    "enabled": True,
+                    "fallback_action": "allow",
+                },
+                "tls_decrypt": {"enabled": True},
+            },
         )
         assert_matches_type(Optional[ConfigurationEditResponse], configuration, path=["response"])
 
@@ -166,7 +254,51 @@ class TestAsyncConfigurations:
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         configuration = await async_client.zero_trust.gateway.configurations.update(
             account_id="699d98642c564d2e855e9661899b7252",
-            settings={},
+            settings={
+                "activity_log": {"enabled": True},
+                "antivirus": {
+                    "enabled_download_phase": False,
+                    "enabled_upload_phase": False,
+                    "fail_closed": False,
+                    "notification_settings": {
+                        "enabled": True,
+                        "msg": "msg",
+                        "support_url": "support_url",
+                    },
+                },
+                "block_page": {
+                    "background_color": "background_color",
+                    "enabled": True,
+                    "footer_text": "--footer--",
+                    "header_text": "--header--",
+                    "include_context": True,
+                    "logo_path": "https://logos.com/a.png",
+                    "mailto_address": "admin@example.com",
+                    "mailto_subject": "Blocked User Inquiry",
+                    "mode": "customized_block_page",
+                    "name": "Cloudflare",
+                    "suppress_footer": False,
+                    "target_uri": "https://example.com",
+                },
+                "body_scanning": {"inspection_mode": "deep"},
+                "browser_isolation": {
+                    "non_identity_enabled": True,
+                    "url_browser_isolation_enabled": True,
+                },
+                "certificate": {"id": "d1b364c5-1311-466e-a194-f0e943e0799f"},
+                "custom_certificate": {
+                    "enabled": True,
+                    "id": "d1b364c5-1311-466e-a194-f0e943e0799f",
+                },
+                "extended_email_matching": {"enabled": True},
+                "fips": {"tls": True},
+                "protocol_detection": {"enabled": True},
+                "sandbox": {
+                    "enabled": True,
+                    "fallback_action": "allow",
+                },
+                "tls_decrypt": {"enabled": True},
+            },
         )
         assert_matches_type(Optional[ConfigurationUpdateResponse], configuration, path=["response"])
 
@@ -212,7 +344,51 @@ class TestAsyncConfigurations:
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         configuration = await async_client.zero_trust.gateway.configurations.edit(
             account_id="699d98642c564d2e855e9661899b7252",
-            settings={},
+            settings={
+                "activity_log": {"enabled": True},
+                "antivirus": {
+                    "enabled_download_phase": False,
+                    "enabled_upload_phase": False,
+                    "fail_closed": False,
+                    "notification_settings": {
+                        "enabled": True,
+                        "msg": "msg",
+                        "support_url": "support_url",
+                    },
+                },
+                "block_page": {
+                    "background_color": "background_color",
+                    "enabled": True,
+                    "footer_text": "--footer--",
+                    "header_text": "--header--",
+                    "include_context": True,
+                    "logo_path": "https://logos.com/a.png",
+                    "mailto_address": "admin@example.com",
+                    "mailto_subject": "Blocked User Inquiry",
+                    "mode": "customized_block_page",
+                    "name": "Cloudflare",
+                    "suppress_footer": False,
+                    "target_uri": "https://example.com",
+                },
+                "body_scanning": {"inspection_mode": "deep"},
+                "browser_isolation": {
+                    "non_identity_enabled": True,
+                    "url_browser_isolation_enabled": True,
+                },
+                "certificate": {"id": "d1b364c5-1311-466e-a194-f0e943e0799f"},
+                "custom_certificate": {
+                    "enabled": True,
+                    "id": "d1b364c5-1311-466e-a194-f0e943e0799f",
+                },
+                "extended_email_matching": {"enabled": True},
+                "fips": {"tls": True},
+                "protocol_detection": {"enabled": True},
+                "sandbox": {
+                    "enabled": True,
+                    "fallback_action": "allow",
+                },
+                "tls_decrypt": {"enabled": True},
+            },
         )
         assert_matches_type(Optional[ConfigurationEditResponse], configuration, path=["response"])
 

@@ -20,6 +20,7 @@ from .route_create_response import RouteCreateResponse as RouteCreateResponse
 from .route_delete_response import RouteDeleteResponse as RouteDeleteResponse
 from .route_update_response import RouteUpdateResponse as RouteUpdateResponse
 from .single_step_migration import SingleStepMigration as SingleStepMigration
+from .worker_metadata_param import WorkerMetadataParam as WorkerMetadataParam
 from .script_update_response import ScriptUpdateResponse as ScriptUpdateResponse
 from .subdomain_get_response import SubdomainGetResponse as SubdomainGetResponse
 from .subdomain_update_params import SubdomainUpdateParams as SubdomainUpdateParams

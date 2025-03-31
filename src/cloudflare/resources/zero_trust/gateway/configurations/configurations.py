@@ -29,10 +29,14 @@ from .custom_certificate import (
     CustomCertificateResourceWithStreamingResponse,
     AsyncCustomCertificateResourceWithStreamingResponse,
 )
-from .....types.zero_trust.gateway import configuration_edit_params, configuration_update_params
+from .....types.zero_trust.gateway import (
+    configuration_edit_params,
+    configuration_update_params,
+)
 from .....types.zero_trust.gateway.configuration_get_response import ConfigurationGetResponse
 from .....types.zero_trust.gateway.configuration_edit_response import ConfigurationEditResponse
 from .....types.zero_trust.gateway.configuration_update_response import ConfigurationUpdateResponse
+from .....types.zero_trust.gateway.gateway_configuration_settings_param import GatewayConfigurationSettingsParam
 
 __all__ = ["ConfigurationsResource", "AsyncConfigurationsResource"]
 
@@ -65,7 +69,7 @@ class ConfigurationsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        settings: object | NotGiven = NOT_GIVEN,
+        settings: GatewayConfigurationSettingsParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -77,6 +81,8 @@ class ConfigurationsResource(SyncAPIResource):
         Updates the current Zero Trust account configuration.
 
         Args:
+          settings: Account settings
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -104,7 +110,7 @@ class ConfigurationsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        settings: object | NotGiven = NOT_GIVEN,
+        settings: GatewayConfigurationSettingsParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -121,6 +127,8 @@ class ConfigurationsResource(SyncAPIResource):
         error if any collection of settings is not properly configured.
 
         Args:
+          settings: Account settings
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -210,7 +218,7 @@ class AsyncConfigurationsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        settings: object | NotGiven = NOT_GIVEN,
+        settings: GatewayConfigurationSettingsParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -222,6 +230,8 @@ class AsyncConfigurationsResource(AsyncAPIResource):
         Updates the current Zero Trust account configuration.
 
         Args:
+          settings: Account settings
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -251,7 +261,7 @@ class AsyncConfigurationsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        settings: object | NotGiven = NOT_GIVEN,
+        settings: GatewayConfigurationSettingsParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -268,6 +278,8 @@ class AsyncConfigurationsResource(AsyncAPIResource):
         error if any collection of settings is not properly configured.
 
         Args:
+          settings: Account settings
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

@@ -5,6 +5,8 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Literal, Required, TypedDict
 
+from .logging_param import LoggingParam
+
 __all__ = ["ServeErrorRuleParam", "ActionParameters", "ExposedCredentialCheck", "Ratelimit"]
 
 
@@ -93,7 +95,8 @@ class ServeErrorRuleParam(TypedDict, total=False):
     expression: str
     """The expression defining which traffic will match the rule."""
 
-    logging: object
+    logging: LoggingParam
+    """An object configuring the rule's logging behavior."""
 
     ratelimit: Ratelimit
     """An object configuring the rule's ratelimit behavior."""
