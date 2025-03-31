@@ -7,7 +7,6 @@ from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .kind import Kind
 from .phase import Phase
-from .logging_param import LoggingParam
 from .log_rule_param import LogRuleParam
 from .skip_rule_param import SkipRuleParam
 from .block_rule_param import BlockRuleParam
@@ -134,8 +133,7 @@ class RuleRulesetsChallengeRule(TypedDict, total=False):
     expression: str
     """The expression defining which traffic will match the rule."""
 
-    logging: LoggingParam
-    """An object configuring the rule's logging behavior."""
+    logging: object
 
     ratelimit: RuleRulesetsChallengeRuleRatelimit
     """An object configuring the rule's ratelimit behavior."""
@@ -218,8 +216,7 @@ class RuleRulesetsJSChallengeRule(TypedDict, total=False):
     expression: str
     """The expression defining which traffic will match the rule."""
 
-    logging: LoggingParam
-    """An object configuring the rule's logging behavior."""
+    logging: object
 
     ratelimit: RuleRulesetsJSChallengeRuleRatelimit
     """An object configuring the rule's ratelimit behavior."""

@@ -7,7 +7,6 @@ from .peer import Peer as Peer
 from .tsig import TSIG as TSIG
 from .force_axfr import ForceAXFR as ForceAXFR
 from .enable_transfer import EnableTransfer as EnableTransfer
-from .outgoing_status import OutgoingStatus as OutgoingStatus
 from .disable_transfer import DisableTransfer as DisableTransfer
 from .acl_create_params import ACLCreateParams as ACLCreateParams
 from .acl_update_params import ACLUpdateParams as ACLUpdateParams

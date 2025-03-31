@@ -5,7 +5,6 @@ from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
-from .provider import Provider
 from ...._models import BaseModel
 
 __all__ = ["Sippy", "Destination", "Source"]
@@ -20,7 +19,7 @@ class Destination(BaseModel):
     bucket: Optional[str] = None
     """Name of the bucket on the provider"""
 
-    provider: Optional[Provider] = None
+    provider: Optional[object] = None
 
 
 class Source(BaseModel):

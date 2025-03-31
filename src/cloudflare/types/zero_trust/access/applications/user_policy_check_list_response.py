@@ -3,7 +3,6 @@
 from typing import List, Optional
 
 from ....._models import BaseModel
-from .user_policy_check_geo import UserPolicyCheckGeo
 
 __all__ = ["UserPolicyCheckListResponse", "AppState", "UserIdentity"]
 
@@ -32,7 +31,7 @@ class UserIdentity(BaseModel):
 
     email: Optional[str] = None
 
-    geo: Optional[UserPolicyCheckGeo] = None
+    geo: Optional[object] = None
 
     iat: Optional[int] = None
 

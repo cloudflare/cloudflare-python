@@ -17,8 +17,7 @@ class CrowdstrikeInput(BaseModel):
     last_seen: Optional[str] = None
     """For more details on last seen, please refer to the Crowdstrike documentation."""
 
-    operator: Optional[Literal["<", "<=", ">", ">=", "=="]] = None
-    """operator"""
+    operator: Optional[object] = None
 
     os: Optional[str] = None
     """Os Version"""

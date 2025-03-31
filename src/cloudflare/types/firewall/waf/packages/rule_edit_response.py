@@ -4,7 +4,6 @@ from typing import List, Union
 from typing_extensions import Literal, TypeAlias
 
 from ....._models import BaseModel
-from .waf_rule_group import WAFRuleGroup
 from .allowed_modes_anomaly import AllowedModesAnomaly
 
 __all__ = [
@@ -28,8 +27,7 @@ class WAFManagedRulesAnomalyRule(BaseModel):
     description: str
     """The public description of the WAF rule."""
 
-    group: WAFRuleGroup
-    """The rule group to which the current WAF rule belongs."""
+    group: object
 
     mode: AllowedModesAnomaly
     """When set to `on`, the current WAF rule will be used when evaluating the request.
@@ -57,8 +55,7 @@ class WAFManagedRulesTraditionalDenyRule(BaseModel):
     description: str
     """The public description of the WAF rule."""
 
-    group: WAFRuleGroup
-    """The rule group to which the current WAF rule belongs."""
+    group: object
 
     mode: Literal["default", "disable", "simulate", "block", "challenge"]
     """The action that the current WAF rule will perform when triggered.
@@ -83,8 +80,7 @@ class WAFManagedRulesTraditionalAllowRule(BaseModel):
     description: str
     """The public description of the WAF rule."""
 
-    group: WAFRuleGroup
-    """The rule group to which the current WAF rule belongs."""
+    group: object
 
     mode: Literal["on", "off"]
     """When set to `on`, the current rule will be used when evaluating the request.

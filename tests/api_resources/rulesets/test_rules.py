@@ -52,7 +52,7 @@ class TestRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -142,7 +142,7 @@ class TestRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -232,7 +232,7 @@ class TestRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -347,7 +347,7 @@ class TestRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -437,7 +437,7 @@ class TestRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -527,7 +527,7 @@ class TestRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -617,7 +617,7 @@ class TestRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -717,7 +717,7 @@ class TestRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -818,7 +818,7 @@ class TestRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -915,7 +915,7 @@ class TestRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -1005,7 +1005,7 @@ class TestRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -1099,7 +1099,7 @@ class TestRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -1211,7 +1211,7 @@ class TestRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -1307,7 +1307,7 @@ class TestRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -1451,7 +1451,7 @@ class TestRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -1557,7 +1557,7 @@ class TestRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -1647,7 +1647,7 @@ class TestRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -1737,7 +1737,7 @@ class TestRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -1916,7 +1916,7 @@ class TestRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -2020,7 +2020,7 @@ class TestRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -2124,7 +2124,7 @@ class TestRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -2253,7 +2253,7 @@ class TestRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -2357,7 +2357,7 @@ class TestRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -2461,7 +2461,7 @@ class TestRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -2565,7 +2565,7 @@ class TestRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -2679,7 +2679,7 @@ class TestRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -2794,7 +2794,7 @@ class TestRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -2905,7 +2905,7 @@ class TestRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -3009,7 +3009,7 @@ class TestRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -3117,7 +3117,7 @@ class TestRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -3243,7 +3243,7 @@ class TestRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -3353,7 +3353,7 @@ class TestRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -3511,7 +3511,7 @@ class TestRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -3631,7 +3631,7 @@ class TestRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -3735,7 +3735,7 @@ class TestRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -3839,7 +3839,7 @@ class TestRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -3951,7 +3951,7 @@ class TestAsyncRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -4041,7 +4041,7 @@ class TestAsyncRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -4131,7 +4131,7 @@ class TestAsyncRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -4246,7 +4246,7 @@ class TestAsyncRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -4336,7 +4336,7 @@ class TestAsyncRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -4426,7 +4426,7 @@ class TestAsyncRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -4516,7 +4516,7 @@ class TestAsyncRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -4616,7 +4616,7 @@ class TestAsyncRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -4717,7 +4717,7 @@ class TestAsyncRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -4814,7 +4814,7 @@ class TestAsyncRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -4904,7 +4904,7 @@ class TestAsyncRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -4998,7 +4998,7 @@ class TestAsyncRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -5110,7 +5110,7 @@ class TestAsyncRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -5206,7 +5206,7 @@ class TestAsyncRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -5350,7 +5350,7 @@ class TestAsyncRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -5456,7 +5456,7 @@ class TestAsyncRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -5546,7 +5546,7 @@ class TestAsyncRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -5636,7 +5636,7 @@ class TestAsyncRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -5815,7 +5815,7 @@ class TestAsyncRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -5919,7 +5919,7 @@ class TestAsyncRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -6023,7 +6023,7 @@ class TestAsyncRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -6152,7 +6152,7 @@ class TestAsyncRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -6256,7 +6256,7 @@ class TestAsyncRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -6360,7 +6360,7 @@ class TestAsyncRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -6464,7 +6464,7 @@ class TestAsyncRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -6578,7 +6578,7 @@ class TestAsyncRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -6693,7 +6693,7 @@ class TestAsyncRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -6804,7 +6804,7 @@ class TestAsyncRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -6908,7 +6908,7 @@ class TestAsyncRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -7016,7 +7016,7 @@ class TestAsyncRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -7142,7 +7142,7 @@ class TestAsyncRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -7252,7 +7252,7 @@ class TestAsyncRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -7410,7 +7410,7 @@ class TestAsyncRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -7530,7 +7530,7 @@ class TestAsyncRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -7634,7 +7634,7 @@ class TestAsyncRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
@@ -7738,7 +7738,7 @@ class TestAsyncRules:
                 "username_expression": 'url_decode(http.request.body.form[\\"username\\"][0])',
             },
             expression="ip.src ne 1.1.1.1",
-            logging={"enabled": True},
+            logging={},
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],

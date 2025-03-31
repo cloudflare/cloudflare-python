@@ -6,7 +6,6 @@ from typing_extensions import Literal, Annotated, TypeAlias
 
 from .kind import Kind
 from .phase import Phase
-from .logging import Logging
 from ..._utils import PropertyInfo
 from .log_rule import LogRule
 from ..._models import BaseModel
@@ -121,8 +120,7 @@ class RuleRulesetsChallengeRule(BaseModel):
     expression: Optional[str] = None
     """The expression defining which traffic will match the rule."""
 
-    logging: Optional[Logging] = None
-    """An object configuring the rule's logging behavior."""
+    logging: Optional[object] = None
 
     ratelimit: Optional[RuleRulesetsChallengeRuleRatelimit] = None
     """An object configuring the rule's ratelimit behavior."""
@@ -214,8 +212,7 @@ class RuleRulesetsJSChallengeRule(BaseModel):
     expression: Optional[str] = None
     """The expression defining which traffic will match the rule."""
 
-    logging: Optional[Logging] = None
-    """An object configuring the rule's logging behavior."""
+    logging: Optional[object] = None
 
     ratelimit: Optional[RuleRulesetsJSChallengeRuleRatelimit] = None
     """An object configuring the rule's ratelimit behavior."""

@@ -31,8 +31,7 @@ __all__ = [
 
 
 class TeamsDevicesCarbonblackInputRequest(TypedDict, total=False):
-    operating_system: Required[Literal["windows", "linux", "mac"]]
-    """Operating system"""
+    operating_system: Required[object]
 
     path: Required[str]
     """File path."""
@@ -45,8 +44,7 @@ class TeamsDevicesCarbonblackInputRequest(TypedDict, total=False):
 
 
 class TeamsDevicesApplicationInputRequest(TypedDict, total=False):
-    operating_system: Required[Literal["windows", "linux", "mac"]]
-    """Operating system"""
+    operating_system: Required[object]
 
     path: Required[str]
     """Path for the application."""
@@ -77,8 +75,7 @@ class TeamsDevicesClientCertificateV2InputRequest(TypedDict, total=False):
     private key.
     """
 
-    operating_system: Required[Literal["windows", "linux", "mac"]]
-    """Operating system"""
+    operating_system: Required[object]
 
     cn: str
     """Common Name that is protected by the client certificate.
@@ -100,8 +97,7 @@ class TeamsDevicesCustomS2sInputRequest(TypedDict, total=False):
     connection_id: Required[str]
     """Posture Integration ID."""
 
-    operator: Required[Literal["<", "<=", ">", ">=", "=="]]
-    """operator"""
+    operator: Required[object]
 
     score: Required[float]
     """

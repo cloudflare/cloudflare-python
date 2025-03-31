@@ -2,10 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
+from typing import Iterable
 from typing_extensions import Required, TypedDict
 
-from .allowed_protocol import AllowedProtocol
 from .acl_configuration_param import ACLConfigurationParam
 
 __all__ = ["ACLCreateParams"]
@@ -33,7 +32,7 @@ class ACLCreateParams(TypedDict, total=False):
     included in request, will default to false.
     """
 
-    protocols: List[AllowedProtocol]
+    protocols: Iterable[object]
 
     unidirectional: bool
     """The desired traffic direction for this ACL policy.

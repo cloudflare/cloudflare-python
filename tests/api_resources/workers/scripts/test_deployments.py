@@ -9,10 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.workers.scripts import (
-    DeploymentGetResponse,
-    DeploymentCreateResponse,
-)
+from cloudflare.types.workers.scripts import DeploymentGetResponse, DeploymentCreateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -48,7 +45,7 @@ class TestDeployments:
                 }
             ],
             force=True,
-            annotations={"workers_message": "Deploy bug fix."},
+            annotations={},
         )
         assert_matches_type(Optional[DeploymentCreateResponse], deployment, path=["response"])
 
@@ -200,7 +197,7 @@ class TestAsyncDeployments:
                 }
             ],
             force=True,
-            annotations={"workers_message": "Deploy bug fix."},
+            annotations={},
         )
         assert_matches_type(Optional[DeploymentCreateResponse], deployment, path=["response"])
 
