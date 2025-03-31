@@ -4,7 +4,6 @@ from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from .logging import Logging
 from ..._models import BaseModel
 
 __all__ = ["BlockRule", "ActionParameters", "ActionParametersResponse", "ExposedCredentialCheck", "Ratelimit"]
@@ -109,8 +108,7 @@ class BlockRule(BaseModel):
     expression: Optional[str] = None
     """The expression defining which traffic will match the rule."""
 
-    logging: Optional[Logging] = None
-    """An object configuring the rule's logging behavior."""
+    logging: Optional[object] = None
 
     ratelimit: Optional[Ratelimit] = None
     """An object configuring the rule's ratelimit behavior."""

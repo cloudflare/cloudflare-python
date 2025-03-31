@@ -6,7 +6,6 @@ from typing import Dict, List
 from typing_extensions import Literal, Required, TypedDict
 
 from .phase import Phase
-from .logging_param import LoggingParam
 
 __all__ = ["SkipRuleParam", "ActionParameters", "ExposedCredentialCheck", "Ratelimit"]
 
@@ -114,8 +113,7 @@ class SkipRuleParam(TypedDict, total=False):
     expression: str
     """The expression defining which traffic will match the rule."""
 
-    logging: LoggingParam
-    """An object configuring the rule's logging behavior."""
+    logging: object
 
     ratelimit: Ratelimit
     """An object configuring the rule's ratelimit behavior."""

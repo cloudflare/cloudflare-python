@@ -52,7 +52,6 @@ from .record_edit_params import RecordEditParams as RecordEditParams
 from .record_list_params import RecordListParams as RecordListParams
 from .record_scan_params import RecordScanParams as RecordScanParams
 from .sshfp_record_param import SSHFPRecordParam as SSHFPRecordParam
-from .dns_analytics_query import DNSAnalyticsQuery as DNSAnalyticsQuery
 from .dnskey_record_param import DNSKEYRecordParam as DNSKEYRecordParam
 from .record_batch_params import RecordBatchParams as RecordBatchParams
 from .smimea_record_param import SMIMEARecordParam as SMIMEARecordParam
@@ -65,4 +64,3 @@ from .dnssec_delete_response import DNSSECDeleteResponse as DNSSECDeleteResponse
 from .record_delete_response import RecordDeleteResponse as RecordDeleteResponse
 from .record_export_response import RecordExportResponse as RecordExportResponse
 from .record_import_response import RecordImportResponse as RecordImportResponse
-from .dns_analytics_nominal_metric import DNSAnalyticsNominalMetric as DNSAnalyticsNominalMetric

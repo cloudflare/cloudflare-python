@@ -41,9 +41,9 @@ class TestCfInterconnects:
             gre={"cloudflare_endpoint": "203.0.113.1"},
             health_check={
                 "enabled": True,
-                "rate": "low",
+                "rate": {},
                 "target": {"saved": "203.0.113.1"},
-                "type": "reply",
+                "type": {},
             },
             interface_address="192.0.2.0/31",
             mtu=0,
@@ -276,9 +276,9 @@ class TestAsyncCfInterconnects:
             gre={"cloudflare_endpoint": "203.0.113.1"},
             health_check={
                 "enabled": True,
-                "rate": "low",
+                "rate": {},
                 "target": {"saved": "203.0.113.1"},
-                "type": "reply",
+                "type": {},
             },
             interface_address="192.0.2.0/31",
             mtu=0,

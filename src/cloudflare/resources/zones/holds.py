@@ -22,7 +22,6 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ...types.zones import hold_edit_params, hold_create_params, hold_delete_params
 from ..._base_client import make_request_options
-from ...types.zones.zone_hold import ZoneHold
 
 __all__ = ["HoldsResource", "AsyncHoldsResource"]
 
@@ -58,7 +57,7 @@ class HoldsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZoneHold:
+    ) -> object:
         """
         Enforce a zone hold on the zone, blocking the creation and activation of zones
         with this zone's hostname.
@@ -89,9 +88,9 @@ class HoldsResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"include_subdomains": include_subdomains}, hold_create_params.HoldCreateParams),
-                post_parser=ResultWrapper[ZoneHold]._unwrapper,
+                post_parser=ResultWrapper[object]._unwrapper,
             ),
-            cast_to=cast(Type[ZoneHold], ResultWrapper[ZoneHold]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def delete(
@@ -105,7 +104,7 @@ class HoldsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZoneHold:
+    ) -> object:
         """
         Stop enforcement of a zone hold on the zone, permanently or temporarily,
         allowing the creation and activation of zones with this zone's hostname.
@@ -135,9 +134,9 @@ class HoldsResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"hold_after": hold_after}, hold_delete_params.HoldDeleteParams),
-                post_parser=ResultWrapper[ZoneHold]._unwrapper,
+                post_parser=ResultWrapper[object]._unwrapper,
             ),
-            cast_to=cast(Type[ZoneHold], ResultWrapper[ZoneHold]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def edit(
@@ -152,7 +151,7 @@ class HoldsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZoneHold:
+    ) -> object:
         """
         Update the `hold_after` and/or `include_subdomains` values on an existing zone
         hold. The hold is enabled if the `hold_after` date-time value is in the past.
@@ -195,9 +194,9 @@ class HoldsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ZoneHold]._unwrapper,
+                post_parser=ResultWrapper[object]._unwrapper,
             ),
-            cast_to=cast(Type[ZoneHold], ResultWrapper[ZoneHold]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def get(
@@ -210,7 +209,7 @@ class HoldsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZoneHold:
+    ) -> object:
         """
         Retrieve whether the zone is subject to a zone hold, and metadata about the
         hold.
@@ -235,9 +234,9 @@ class HoldsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ZoneHold]._unwrapper,
+                post_parser=ResultWrapper[object]._unwrapper,
             ),
-            cast_to=cast(Type[ZoneHold], ResultWrapper[ZoneHold]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
 
@@ -272,7 +271,7 @@ class AsyncHoldsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZoneHold:
+    ) -> object:
         """
         Enforce a zone hold on the zone, blocking the creation and activation of zones
         with this zone's hostname.
@@ -305,9 +304,9 @@ class AsyncHoldsResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {"include_subdomains": include_subdomains}, hold_create_params.HoldCreateParams
                 ),
-                post_parser=ResultWrapper[ZoneHold]._unwrapper,
+                post_parser=ResultWrapper[object]._unwrapper,
             ),
-            cast_to=cast(Type[ZoneHold], ResultWrapper[ZoneHold]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     async def delete(
@@ -321,7 +320,7 @@ class AsyncHoldsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZoneHold:
+    ) -> object:
         """
         Stop enforcement of a zone hold on the zone, permanently or temporarily,
         allowing the creation and activation of zones with this zone's hostname.
@@ -351,9 +350,9 @@ class AsyncHoldsResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform({"hold_after": hold_after}, hold_delete_params.HoldDeleteParams),
-                post_parser=ResultWrapper[ZoneHold]._unwrapper,
+                post_parser=ResultWrapper[object]._unwrapper,
             ),
-            cast_to=cast(Type[ZoneHold], ResultWrapper[ZoneHold]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     async def edit(
@@ -368,7 +367,7 @@ class AsyncHoldsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZoneHold:
+    ) -> object:
         """
         Update the `hold_after` and/or `include_subdomains` values on an existing zone
         hold. The hold is enabled if the `hold_after` date-time value is in the past.
@@ -411,9 +410,9 @@ class AsyncHoldsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ZoneHold]._unwrapper,
+                post_parser=ResultWrapper[object]._unwrapper,
             ),
-            cast_to=cast(Type[ZoneHold], ResultWrapper[ZoneHold]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     async def get(
@@ -426,7 +425,7 @@ class AsyncHoldsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ZoneHold:
+    ) -> object:
         """
         Retrieve whether the zone is subject to a zone hold, and metadata about the
         hold.
@@ -451,9 +450,9 @@ class AsyncHoldsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ZoneHold]._unwrapper,
+                post_parser=ResultWrapper[object]._unwrapper,
             ),
-            cast_to=cast(Type[ZoneHold], ResultWrapper[ZoneHold]),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
 

@@ -31,7 +31,6 @@ from ......_response import (
 from ......_wrappers import ResultWrapper
 from ......_base_client import make_request_options
 from ......types.workers.script import Script
-from ......types.workers.worker_metadata_param import WorkerMetadataParam
 from ......types.workers_for_platforms.dispatch.namespaces.scripts import content_update_params
 
 __all__ = ["ContentResource", "AsyncContentResource"]
@@ -63,7 +62,7 @@ class ContentResource(SyncAPIResource):
         *,
         account_id: str,
         dispatch_namespace: str,
-        metadata: WorkerMetadataParam,
+        metadata: object,
         cf_worker_body_part: str | NotGiven = NOT_GIVEN,
         cf_worker_main_module_part: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -82,8 +81,6 @@ class ContentResource(SyncAPIResource):
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
           script_name: Name of the script, used in URLs and route configuration.
-
-          metadata: JSON encoded metadata about the uploaded parts and Worker configuration.
 
           extra_headers: Send extra headers
 
@@ -199,7 +196,7 @@ class AsyncContentResource(AsyncAPIResource):
         *,
         account_id: str,
         dispatch_namespace: str,
-        metadata: WorkerMetadataParam,
+        metadata: object,
         cf_worker_body_part: str | NotGiven = NOT_GIVEN,
         cf_worker_main_module_part: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -218,8 +215,6 @@ class AsyncContentResource(AsyncAPIResource):
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
           script_name: Name of the script, used in URLs and route configuration.
-
-          metadata: JSON encoded metadata about the uploaded parts and Worker configuration.
 
           extra_headers: Send extra headers
 

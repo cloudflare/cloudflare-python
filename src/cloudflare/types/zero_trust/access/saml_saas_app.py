@@ -5,7 +5,6 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from ...._models import BaseModel
-from .saas_app_name_id_format import SaaSAppNameIDFormat
 
 __all__ = ["SAMLSaaSApp", "CustomAttribute", "CustomAttributeSource", "CustomAttributeSourceNameByIdP"]
 
@@ -75,8 +74,7 @@ class SAMLSaaSApp(BaseModel):
     idp_entity_id: Optional[str] = None
     """The unique identifier for your SaaS application."""
 
-    name_id_format: Optional[SaaSAppNameIDFormat] = None
-    """The format of the name identifier sent to the SaaS application."""
+    name_id_format: Optional[object] = None
 
     name_id_transform_jsonata: Optional[str] = None
     """

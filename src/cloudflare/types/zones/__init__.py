@@ -21,7 +21,6 @@ from .nel_param import NELParam as NELParam
 from .ssl_param import SSLParam as SSLParam
 from .waf_param import WAFParam as WAFParam
 from .websocket import Websocket as Websocket
-from .zone_hold import ZoneHold as ZoneHold
 from .ipv6_param import IPV6Param as IPV6Param
 from .webp_param import WebPParam as WebPParam
 from .cache_level import CacheLevel as CacheLevel

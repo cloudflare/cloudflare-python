@@ -4,8 +4,6 @@ from typing import List, Optional
 from typing_extensions import Literal
 
 from ..._models import BaseModel
-from .identity_provider_type import IdentityProviderType
-from .identity_provider_scim_config import IdentityProviderSCIMConfig
 
 __all__ = ["AzureAD", "Config"]
 
@@ -57,18 +55,9 @@ class AzureAD(BaseModel):
     name: str
     """The name of the identity provider, shown to users on the login page."""
 
-    type: IdentityProviderType
-    """The type of identity provider.
-
-    To determine the value for a specific provider, refer to our
-    [developer documentation](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/).
-    """
+    type: object
 
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[IdentityProviderSCIMConfig] = None
-    """
-    The configuration settings for enabling a System for Cross-Domain Identity
-    Management (SCIM) with the identity provider.
-    """
+    scim_config: Optional[object] = None
