@@ -2110,7 +2110,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.rate_limits import Action, Methods, RateLimit, RateLimitDeleteResponse
+from cloudflare.types.rate_limits import Action, RateLimit, RateLimitDeleteResponse
 ```
 
 Methods:

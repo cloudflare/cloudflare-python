@@ -3,7 +3,6 @@
 from typing import List, Optional
 from typing_extensions import Literal
 
-from .methods import Methods
 from ..._models import BaseModel
 
 __all__ = ["RateLimit", "Action", "ActionResponse", "Bypass", "Match", "MatchHeader", "MatchRequest", "MatchResponse"]
@@ -65,7 +64,7 @@ class MatchHeader(BaseModel):
 
 
 class MatchRequest(BaseModel):
-    methods: Optional[List[Methods]] = None
+    methods: Optional[List[Literal["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD", "_ALL_"]]] = None
     """The HTTP methods to match.
 
     You can specify a subset (for example, `['POST','PUT']`) or all methods
