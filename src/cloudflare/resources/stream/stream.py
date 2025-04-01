@@ -248,7 +248,8 @@ class StreamResource(SyncAPIResource):
 
           upload_metadata: Comma-separated key-value pairs following the TUS protocol specification. Values
               are Base-64 encoded. Supported keys: `name`, `requiresignedurls`,
-              `allowedorigins`, `thumbnailtimestamppct`, `watermark`, `scheduleddeletion`.
+              `allowedorigins`, `thumbnailtimestamppct`, `watermark`, `scheduleddeletion`,
+              `maxdurationseconds`.
 
           extra_headers: Send extra headers
 
@@ -658,7 +659,8 @@ class AsyncStreamResource(AsyncAPIResource):
 
           upload_metadata: Comma-separated key-value pairs following the TUS protocol specification. Values
               are Base-64 encoded. Supported keys: `name`, `requiresignedurls`,
-              `allowedorigins`, `thumbnailtimestamppct`, `watermark`, `scheduleddeletion`.
+              `allowedorigins`, `thumbnailtimestamppct`, `watermark`, `scheduleddeletion`,
+              `maxdurationseconds`.
 
           extra_headers: Send extra headers
 

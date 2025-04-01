@@ -39,7 +39,6 @@ class TestCopy:
             thumbnail_timestamp_pct=0.529241,
             watermark={"uid": "ea95132c15732412d22c1476fa83f27a"},
             upload_creator="creator-id_abcde12345",
-            upload_metadata="name aGVsbG8gd29ybGQ=, requiresignedurls, allowedorigins ZXhhbXBsZS5jb20sdGVzdC5jb20=",
         )
         assert_matches_type(Optional[Video], copy, path=["response"])
 
@@ -102,7 +101,6 @@ class TestAsyncCopy:
             thumbnail_timestamp_pct=0.529241,
             watermark={"uid": "ea95132c15732412d22c1476fa83f27a"},
             upload_creator="creator-id_abcde12345",
-            upload_metadata="name aGVsbG8gd29ybGQ=, requiresignedurls, allowedorigins ZXhhbXBsZS5jb20sdGVzdC5jb20=",
         )
         assert_matches_type(Optional[Video], copy, path=["response"])
 
