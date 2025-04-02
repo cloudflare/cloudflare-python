@@ -80,6 +80,14 @@ from .deployments import (
     DeploymentsResourceWithStreamingResponse,
     AsyncDeploymentsResourceWithStreamingResponse,
 )
+from .script_and_version_settings import (
+    ScriptAndVersionSettingsResource,
+    AsyncScriptAndVersionSettingsResource,
+    ScriptAndVersionSettingsResourceWithRawResponse,
+    AsyncScriptAndVersionSettingsResourceWithRawResponse,
+    ScriptAndVersionSettingsResourceWithStreamingResponse,
+    AsyncScriptAndVersionSettingsResourceWithStreamingResponse,
+)
 
 __all__ = [
     "AssetsResource",
@@ -136,6 +144,12 @@ __all__ = [
     "AsyncSecretsResourceWithRawResponse",
     "SecretsResourceWithStreamingResponse",
     "AsyncSecretsResourceWithStreamingResponse",
+    "ScriptAndVersionSettingsResource",
+    "AsyncScriptAndVersionSettingsResource",
+    "ScriptAndVersionSettingsResourceWithRawResponse",
+    "AsyncScriptAndVersionSettingsResourceWithRawResponse",
+    "ScriptAndVersionSettingsResourceWithStreamingResponse",
+    "AsyncScriptAndVersionSettingsResourceWithStreamingResponse",
     "ScriptsResource",
     "AsyncScriptsResource",
     "ScriptsResourceWithRawResponse",
