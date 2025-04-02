@@ -155,6 +155,12 @@ class AbuseReportsDmcaReport(TypedDict, total=False):
     not have more than 30 unique ports and protocols.
     """
 
+    reported_country: str
+    """Text containing 2 characters"""
+
+    reported_user_agent: str
+    """Text not exceeding 255 characters"""
+
     source_ips: str
     """A list of IP addresses separated by ‘ ’ (new line character).
 
@@ -322,6 +328,12 @@ class AbuseReportsTrademarkReport(TypedDict, total=False):
     not have more than 30 unique ports and protocols.
     """
 
+    reported_country: str
+    """Text containing 2 characters"""
+
+    reported_user_agent: str
+    """Text not exceeding 255 characters"""
+
     signature: str
     """Required for DMCA reports, should be same as Name.
 
@@ -484,6 +496,12 @@ class AbuseReportsGeneralReport(TypedDict, total=False):
     Each individual port/protocol should not exceed 100 characters. The list should
     not have more than 30 unique ports and protocols.
     """
+
+    reported_country: str
+    """Text containing 2 characters"""
+
+    reported_user_agent: str
+    """Text not exceeding 255 characters"""
 
     signature: str
     """Required for DMCA reports, should be same as Name.
@@ -657,6 +675,12 @@ class AbuseReportsPhishingReport(TypedDict, total=False):
     not have more than 30 unique ports and protocols.
     """
 
+    reported_country: str
+    """Text containing 2 characters"""
+
+    reported_user_agent: str
+    """Text not exceeding 255 characters"""
+
     signature: str
     """Required for DMCA reports, should be same as Name.
 
@@ -828,6 +852,12 @@ class AbuseReportsChildrenAbuseReport(TypedDict, total=False):
     Each individual port/protocol should not exceed 100 characters. The list should
     not have more than 30 unique ports and protocols.
     """
+
+    reported_country: str
+    """Text containing 2 characters"""
+
+    reported_user_agent: str
+    """Text not exceeding 255 characters"""
 
     signature: str
     """Required for DMCA reports, should be same as Name.
@@ -1001,6 +1031,12 @@ class AbuseReportsThreatReport(TypedDict, total=False):
     not have more than 30 unique ports and protocols.
     """
 
+    reported_country: str
+    """Text containing 2 characters"""
+
+    reported_user_agent: str
+    """Text not exceeding 255 characters"""
+
     signature: str
     """Required for DMCA reports, should be same as Name.
 
@@ -1173,6 +1209,12 @@ class AbuseReportsRegistrarWhoisReport(TypedDict, total=False):
     not have more than 30 unique ports and protocols.
     """
 
+    reported_country: str
+    """Text containing 2 characters"""
+
+    reported_user_agent: str
+    """Text not exceeding 255 characters"""
+
     signature: str
     """Required for DMCA reports, should be same as Name.
 
@@ -1344,6 +1386,12 @@ class AbuseReportsNcseiReport(TypedDict, total=False):
     Each individual port/protocol should not exceed 100 characters. The list should
     not have more than 30 unique ports and protocols.
     """
+
+    reported_country: str
+    """Text containing 2 characters"""
+
+    reported_user_agent: str
+    """Text not exceeding 255 characters"""
 
     signature: str
     """Required for DMCA reports, should be same as Name.
