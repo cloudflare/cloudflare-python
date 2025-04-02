@@ -95,6 +95,8 @@ class AbuseReportsResource(SyncAPIResource):
         ncmec_notification: Literal["send", "send-anon", "none"] | NotGiven = NOT_GIVEN,
         ncsei_subject_representation: bool | NotGiven = NOT_GIVEN,
         ports_protocols: str | NotGiven = NOT_GIVEN,
+        reported_country: str | NotGiven = NOT_GIVEN,
+        reported_user_agent: str | NotGiven = NOT_GIVEN,
         source_ips: str | NotGiven = NOT_GIVEN,
         tele: str | NotGiven = NOT_GIVEN,
         title: str | NotGiven = NOT_GIVEN,
@@ -178,6 +180,10 @@ class AbuseReportsResource(SyncAPIResource):
               size of the field should not exceed 2000 characters. Each individual
               port/protocol should not exceed 100 characters. The list should not have more
               than 30 unique ports and protocols.
+
+          reported_country: Text containing 2 characters
+
+          reported_user_agent: Text not exceeding 255 characters
 
           source_ips: A list of IP addresses separated by ‘ ’ (new line character). The list of source
               IPs should not exceed 30 IP addresses. Each one of the IP addresses ought to be
@@ -256,6 +262,8 @@ class AbuseReportsResource(SyncAPIResource):
         ncsei_subject_representation: bool | NotGiven = NOT_GIVEN,
         original_work: str | NotGiven = NOT_GIVEN,
         ports_protocols: str | NotGiven = NOT_GIVEN,
+        reported_country: str | NotGiven = NOT_GIVEN,
+        reported_user_agent: str | NotGiven = NOT_GIVEN,
         signature: str | NotGiven = NOT_GIVEN,
         source_ips: str | NotGiven = NOT_GIVEN,
         state: str | NotGiven = NOT_GIVEN,
@@ -338,6 +346,10 @@ class AbuseReportsResource(SyncAPIResource):
               port/protocol should not exceed 100 characters. The list should not have more
               than 30 unique ports and protocols.
 
+          reported_country: Text containing 2 characters
+
+          reported_user_agent: Text not exceeding 255 characters
+
           signature: Required for DMCA reports, should be same as Name. An affirmation that all
               information in the report is true and accurate while agreeing to the policies of
               Cloudflare's abuse reports
@@ -413,6 +425,8 @@ class AbuseReportsResource(SyncAPIResource):
         ncsei_subject_representation: bool | NotGiven = NOT_GIVEN,
         original_work: str | NotGiven = NOT_GIVEN,
         ports_protocols: str | NotGiven = NOT_GIVEN,
+        reported_country: str | NotGiven = NOT_GIVEN,
+        reported_user_agent: str | NotGiven = NOT_GIVEN,
         signature: str | NotGiven = NOT_GIVEN,
         source_ips: str | NotGiven = NOT_GIVEN,
         state: str | NotGiven = NOT_GIVEN,
@@ -491,6 +505,10 @@ class AbuseReportsResource(SyncAPIResource):
               size of the field should not exceed 2000 characters. Each individual
               port/protocol should not exceed 100 characters. The list should not have more
               than 30 unique ports and protocols.
+
+          reported_country: Text containing 2 characters
+
+          reported_user_agent: Text not exceeding 255 characters
 
           signature: Required for DMCA reports, should be same as Name. An affirmation that all
               information in the report is true and accurate while agreeing to the policies of
@@ -573,6 +591,8 @@ class AbuseReportsResource(SyncAPIResource):
         ncsei_subject_representation: bool | NotGiven = NOT_GIVEN,
         original_work: str | NotGiven = NOT_GIVEN,
         ports_protocols: str | NotGiven = NOT_GIVEN,
+        reported_country: str | NotGiven = NOT_GIVEN,
+        reported_user_agent: str | NotGiven = NOT_GIVEN,
         signature: str | NotGiven = NOT_GIVEN,
         source_ips: str | NotGiven = NOT_GIVEN,
         state: str | NotGiven = NOT_GIVEN,
@@ -651,6 +671,10 @@ class AbuseReportsResource(SyncAPIResource):
               size of the field should not exceed 2000 characters. Each individual
               port/protocol should not exceed 100 characters. The list should not have more
               than 30 unique ports and protocols.
+
+          reported_country: Text containing 2 characters
+
+          reported_user_agent: Text not exceeding 255 characters
 
           signature: Required for DMCA reports, should be same as Name. An affirmation that all
               information in the report is true and accurate while agreeing to the policies of
@@ -733,6 +757,8 @@ class AbuseReportsResource(SyncAPIResource):
         ncsei_subject_representation: bool | NotGiven = NOT_GIVEN,
         original_work: str | NotGiven = NOT_GIVEN,
         ports_protocols: str | NotGiven = NOT_GIVEN,
+        reported_country: str | NotGiven = NOT_GIVEN,
+        reported_user_agent: str | NotGiven = NOT_GIVEN,
         signature: str | NotGiven = NOT_GIVEN,
         source_ips: str | NotGiven = NOT_GIVEN,
         state: str | NotGiven = NOT_GIVEN,
@@ -811,6 +837,10 @@ class AbuseReportsResource(SyncAPIResource):
               size of the field should not exceed 2000 characters. Each individual
               port/protocol should not exceed 100 characters. The list should not have more
               than 30 unique ports and protocols.
+
+          reported_country: Text containing 2 characters
+
+          reported_user_agent: Text not exceeding 255 characters
 
           signature: Required for DMCA reports, should be same as Name. An affirmation that all
               information in the report is true and accurate while agreeing to the policies of
@@ -893,6 +923,8 @@ class AbuseReportsResource(SyncAPIResource):
         ncsei_subject_representation: bool | NotGiven = NOT_GIVEN,
         original_work: str | NotGiven = NOT_GIVEN,
         ports_protocols: str | NotGiven = NOT_GIVEN,
+        reported_country: str | NotGiven = NOT_GIVEN,
+        reported_user_agent: str | NotGiven = NOT_GIVEN,
         signature: str | NotGiven = NOT_GIVEN,
         source_ips: str | NotGiven = NOT_GIVEN,
         state: str | NotGiven = NOT_GIVEN,
@@ -971,6 +1003,10 @@ class AbuseReportsResource(SyncAPIResource):
               size of the field should not exceed 2000 characters. Each individual
               port/protocol should not exceed 100 characters. The list should not have more
               than 30 unique ports and protocols.
+
+          reported_country: Text containing 2 characters
+
+          reported_user_agent: Text not exceeding 255 characters
 
           signature: Required for DMCA reports, should be same as Name. An affirmation that all
               information in the report is true and accurate while agreeing to the policies of
@@ -1053,6 +1089,8 @@ class AbuseReportsResource(SyncAPIResource):
         ncsei_subject_representation: bool | NotGiven = NOT_GIVEN,
         original_work: str | NotGiven = NOT_GIVEN,
         ports_protocols: str | NotGiven = NOT_GIVEN,
+        reported_country: str | NotGiven = NOT_GIVEN,
+        reported_user_agent: str | NotGiven = NOT_GIVEN,
         signature: str | NotGiven = NOT_GIVEN,
         source_ips: str | NotGiven = NOT_GIVEN,
         state: str | NotGiven = NOT_GIVEN,
@@ -1131,6 +1169,10 @@ class AbuseReportsResource(SyncAPIResource):
               size of the field should not exceed 2000 characters. Each individual
               port/protocol should not exceed 100 characters. The list should not have more
               than 30 unique ports and protocols.
+
+          reported_country: Text containing 2 characters
+
+          reported_user_agent: Text not exceeding 255 characters
 
           signature: Required for DMCA reports, should be same as Name. An affirmation that all
               information in the report is true and accurate while agreeing to the policies of
@@ -1213,6 +1255,8 @@ class AbuseReportsResource(SyncAPIResource):
         ncmec_notification: Literal["send", "send-anon", "none"] | NotGiven = NOT_GIVEN,
         original_work: str | NotGiven = NOT_GIVEN,
         ports_protocols: str | NotGiven = NOT_GIVEN,
+        reported_country: str | NotGiven = NOT_GIVEN,
+        reported_user_agent: str | NotGiven = NOT_GIVEN,
         signature: str | NotGiven = NOT_GIVEN,
         source_ips: str | NotGiven = NOT_GIVEN,
         state: str | NotGiven = NOT_GIVEN,
@@ -1291,6 +1335,10 @@ class AbuseReportsResource(SyncAPIResource):
               size of the field should not exceed 2000 characters. Each individual
               port/protocol should not exceed 100 characters. The list should not have more
               than 30 unique ports and protocols.
+
+          reported_country: Text containing 2 characters
+
+          reported_user_agent: Text not exceeding 255 characters
 
           signature: Required for DMCA reports, should be same as Name. An affirmation that all
               information in the report is true and accurate while agreeing to the policies of
@@ -1402,6 +1450,8 @@ class AbuseReportsResource(SyncAPIResource):
         ncmec_notification: Literal["send", "send-anon", "none"] | NotGiven = NOT_GIVEN,
         ncsei_subject_representation: bool | NotGiven = NOT_GIVEN,
         ports_protocols: str | NotGiven = NOT_GIVEN,
+        reported_country: str | NotGiven = NOT_GIVEN,
+        reported_user_agent: str | NotGiven = NOT_GIVEN,
         source_ips: str | NotGiven = NOT_GIVEN,
         tele: str | NotGiven = NOT_GIVEN,
         title: str | NotGiven = NOT_GIVEN,
@@ -1445,6 +1495,8 @@ class AbuseReportsResource(SyncAPIResource):
                     "ncmec_notification": ncmec_notification,
                     "ncsei_subject_representation": ncsei_subject_representation,
                     "ports_protocols": ports_protocols,
+                    "reported_country": reported_country,
+                    "reported_user_agent": reported_user_agent,
                     "source_ips": source_ips,
                     "tele": tele,
                     "title": title,
@@ -1532,6 +1584,8 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
         ncmec_notification: Literal["send", "send-anon", "none"] | NotGiven = NOT_GIVEN,
         ncsei_subject_representation: bool | NotGiven = NOT_GIVEN,
         ports_protocols: str | NotGiven = NOT_GIVEN,
+        reported_country: str | NotGiven = NOT_GIVEN,
+        reported_user_agent: str | NotGiven = NOT_GIVEN,
         source_ips: str | NotGiven = NOT_GIVEN,
         tele: str | NotGiven = NOT_GIVEN,
         title: str | NotGiven = NOT_GIVEN,
@@ -1615,6 +1669,10 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
               size of the field should not exceed 2000 characters. Each individual
               port/protocol should not exceed 100 characters. The list should not have more
               than 30 unique ports and protocols.
+
+          reported_country: Text containing 2 characters
+
+          reported_user_agent: Text not exceeding 255 characters
 
           source_ips: A list of IP addresses separated by ‘ ’ (new line character). The list of source
               IPs should not exceed 30 IP addresses. Each one of the IP addresses ought to be
@@ -1693,6 +1751,8 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
         ncsei_subject_representation: bool | NotGiven = NOT_GIVEN,
         original_work: str | NotGiven = NOT_GIVEN,
         ports_protocols: str | NotGiven = NOT_GIVEN,
+        reported_country: str | NotGiven = NOT_GIVEN,
+        reported_user_agent: str | NotGiven = NOT_GIVEN,
         signature: str | NotGiven = NOT_GIVEN,
         source_ips: str | NotGiven = NOT_GIVEN,
         state: str | NotGiven = NOT_GIVEN,
@@ -1775,6 +1835,10 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
               port/protocol should not exceed 100 characters. The list should not have more
               than 30 unique ports and protocols.
 
+          reported_country: Text containing 2 characters
+
+          reported_user_agent: Text not exceeding 255 characters
+
           signature: Required for DMCA reports, should be same as Name. An affirmation that all
               information in the report is true and accurate while agreeing to the policies of
               Cloudflare's abuse reports
@@ -1850,6 +1914,8 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
         ncsei_subject_representation: bool | NotGiven = NOT_GIVEN,
         original_work: str | NotGiven = NOT_GIVEN,
         ports_protocols: str | NotGiven = NOT_GIVEN,
+        reported_country: str | NotGiven = NOT_GIVEN,
+        reported_user_agent: str | NotGiven = NOT_GIVEN,
         signature: str | NotGiven = NOT_GIVEN,
         source_ips: str | NotGiven = NOT_GIVEN,
         state: str | NotGiven = NOT_GIVEN,
@@ -1928,6 +1994,10 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
               size of the field should not exceed 2000 characters. Each individual
               port/protocol should not exceed 100 characters. The list should not have more
               than 30 unique ports and protocols.
+
+          reported_country: Text containing 2 characters
+
+          reported_user_agent: Text not exceeding 255 characters
 
           signature: Required for DMCA reports, should be same as Name. An affirmation that all
               information in the report is true and accurate while agreeing to the policies of
@@ -2010,6 +2080,8 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
         ncsei_subject_representation: bool | NotGiven = NOT_GIVEN,
         original_work: str | NotGiven = NOT_GIVEN,
         ports_protocols: str | NotGiven = NOT_GIVEN,
+        reported_country: str | NotGiven = NOT_GIVEN,
+        reported_user_agent: str | NotGiven = NOT_GIVEN,
         signature: str | NotGiven = NOT_GIVEN,
         source_ips: str | NotGiven = NOT_GIVEN,
         state: str | NotGiven = NOT_GIVEN,
@@ -2088,6 +2160,10 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
               size of the field should not exceed 2000 characters. Each individual
               port/protocol should not exceed 100 characters. The list should not have more
               than 30 unique ports and protocols.
+
+          reported_country: Text containing 2 characters
+
+          reported_user_agent: Text not exceeding 255 characters
 
           signature: Required for DMCA reports, should be same as Name. An affirmation that all
               information in the report is true and accurate while agreeing to the policies of
@@ -2170,6 +2246,8 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
         ncsei_subject_representation: bool | NotGiven = NOT_GIVEN,
         original_work: str | NotGiven = NOT_GIVEN,
         ports_protocols: str | NotGiven = NOT_GIVEN,
+        reported_country: str | NotGiven = NOT_GIVEN,
+        reported_user_agent: str | NotGiven = NOT_GIVEN,
         signature: str | NotGiven = NOT_GIVEN,
         source_ips: str | NotGiven = NOT_GIVEN,
         state: str | NotGiven = NOT_GIVEN,
@@ -2248,6 +2326,10 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
               size of the field should not exceed 2000 characters. Each individual
               port/protocol should not exceed 100 characters. The list should not have more
               than 30 unique ports and protocols.
+
+          reported_country: Text containing 2 characters
+
+          reported_user_agent: Text not exceeding 255 characters
 
           signature: Required for DMCA reports, should be same as Name. An affirmation that all
               information in the report is true and accurate while agreeing to the policies of
@@ -2330,6 +2412,8 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
         ncsei_subject_representation: bool | NotGiven = NOT_GIVEN,
         original_work: str | NotGiven = NOT_GIVEN,
         ports_protocols: str | NotGiven = NOT_GIVEN,
+        reported_country: str | NotGiven = NOT_GIVEN,
+        reported_user_agent: str | NotGiven = NOT_GIVEN,
         signature: str | NotGiven = NOT_GIVEN,
         source_ips: str | NotGiven = NOT_GIVEN,
         state: str | NotGiven = NOT_GIVEN,
@@ -2408,6 +2492,10 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
               size of the field should not exceed 2000 characters. Each individual
               port/protocol should not exceed 100 characters. The list should not have more
               than 30 unique ports and protocols.
+
+          reported_country: Text containing 2 characters
+
+          reported_user_agent: Text not exceeding 255 characters
 
           signature: Required for DMCA reports, should be same as Name. An affirmation that all
               information in the report is true and accurate while agreeing to the policies of
@@ -2490,6 +2578,8 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
         ncsei_subject_representation: bool | NotGiven = NOT_GIVEN,
         original_work: str | NotGiven = NOT_GIVEN,
         ports_protocols: str | NotGiven = NOT_GIVEN,
+        reported_country: str | NotGiven = NOT_GIVEN,
+        reported_user_agent: str | NotGiven = NOT_GIVEN,
         signature: str | NotGiven = NOT_GIVEN,
         source_ips: str | NotGiven = NOT_GIVEN,
         state: str | NotGiven = NOT_GIVEN,
@@ -2568,6 +2658,10 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
               size of the field should not exceed 2000 characters. Each individual
               port/protocol should not exceed 100 characters. The list should not have more
               than 30 unique ports and protocols.
+
+          reported_country: Text containing 2 characters
+
+          reported_user_agent: Text not exceeding 255 characters
 
           signature: Required for DMCA reports, should be same as Name. An affirmation that all
               information in the report is true and accurate while agreeing to the policies of
@@ -2650,6 +2744,8 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
         ncmec_notification: Literal["send", "send-anon", "none"] | NotGiven = NOT_GIVEN,
         original_work: str | NotGiven = NOT_GIVEN,
         ports_protocols: str | NotGiven = NOT_GIVEN,
+        reported_country: str | NotGiven = NOT_GIVEN,
+        reported_user_agent: str | NotGiven = NOT_GIVEN,
         signature: str | NotGiven = NOT_GIVEN,
         source_ips: str | NotGiven = NOT_GIVEN,
         state: str | NotGiven = NOT_GIVEN,
@@ -2728,6 +2824,10 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
               size of the field should not exceed 2000 characters. Each individual
               port/protocol should not exceed 100 characters. The list should not have more
               than 30 unique ports and protocols.
+
+          reported_country: Text containing 2 characters
+
+          reported_user_agent: Text not exceeding 255 characters
 
           signature: Required for DMCA reports, should be same as Name. An affirmation that all
               information in the report is true and accurate while agreeing to the policies of
@@ -2839,6 +2939,8 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
         ncmec_notification: Literal["send", "send-anon", "none"] | NotGiven = NOT_GIVEN,
         ncsei_subject_representation: bool | NotGiven = NOT_GIVEN,
         ports_protocols: str | NotGiven = NOT_GIVEN,
+        reported_country: str | NotGiven = NOT_GIVEN,
+        reported_user_agent: str | NotGiven = NOT_GIVEN,
         source_ips: str | NotGiven = NOT_GIVEN,
         tele: str | NotGiven = NOT_GIVEN,
         title: str | NotGiven = NOT_GIVEN,
@@ -2882,6 +2984,8 @@ class AsyncAbuseReportsResource(AsyncAPIResource):
                     "ncmec_notification": ncmec_notification,
                     "ncsei_subject_representation": ncsei_subject_representation,
                     "ports_protocols": ports_protocols,
+                    "reported_country": reported_country,
+                    "reported_user_agent": reported_user_agent,
                     "source_ips": source_ips,
                     "tele": tele,
                     "title": title,
