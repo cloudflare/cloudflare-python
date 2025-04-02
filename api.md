@@ -4991,12 +4991,7 @@ Types:
 from cloudflare.types.r2.super_slurper import (
     JobCreateResponse,
     JobListResponse,
-    JobAbortResponse,
     JobAbortAllResponse,
-    JobGetResponse,
-    JobPauseResponse,
-    JobProgressResponse,
-    JobResumeResponse,
 )
 ```
 
@@ -5004,24 +4999,7 @@ Methods:
 
 - <code title="post /accounts/{account_id}/slurper/jobs">client.r2.super_slurper.jobs.<a href="./src/cloudflare/resources/r2/super_slurper/jobs/jobs.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/r2/super_slurper/job_create_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/super_slurper/job_create_response.py">Optional[JobCreateResponse]</a></code>
 - <code title="get /accounts/{account_id}/slurper/jobs">client.r2.super_slurper.jobs.<a href="./src/cloudflare/resources/r2/super_slurper/jobs/jobs.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/r2/super_slurper/job_list_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/super_slurper/job_list_response.py">SyncSinglePage[JobListResponse]</a></code>
-- <code title="put /accounts/{account_id}/slurper/jobs/{jobId}/abort">client.r2.super_slurper.jobs.<a href="./src/cloudflare/resources/r2/super_slurper/jobs/jobs.py">abort</a>(job_id, \*, account_id) -> <a href="./src/cloudflare/types/r2/super_slurper/job_abort_response.py">str</a></code>
 - <code title="put /accounts/{account_id}/slurper/jobs/abortAll">client.r2.super_slurper.jobs.<a href="./src/cloudflare/resources/r2/super_slurper/jobs/jobs.py">abort_all</a>(\*, account_id) -> <a href="./src/cloudflare/types/r2/super_slurper/job_abort_all_response.py">str</a></code>
-- <code title="get /accounts/{account_id}/slurper/jobs/{jobId}">client.r2.super_slurper.jobs.<a href="./src/cloudflare/resources/r2/super_slurper/jobs/jobs.py">get</a>(job_id, \*, account_id) -> <a href="./src/cloudflare/types/r2/super_slurper/job_get_response.py">Optional[JobGetResponse]</a></code>
-- <code title="put /accounts/{account_id}/slurper/jobs/{jobId}/pause">client.r2.super_slurper.jobs.<a href="./src/cloudflare/resources/r2/super_slurper/jobs/jobs.py">pause</a>(job_id, \*, account_id) -> <a href="./src/cloudflare/types/r2/super_slurper/job_pause_response.py">str</a></code>
-- <code title="get /accounts/{account_id}/slurper/jobs/{jobId}/progress">client.r2.super_slurper.jobs.<a href="./src/cloudflare/resources/r2/super_slurper/jobs/jobs.py">progress</a>(job_id, \*, account_id) -> <a href="./src/cloudflare/types/r2/super_slurper/job_progress_response.py">Optional[JobProgressResponse]</a></code>
-- <code title="put /accounts/{account_id}/slurper/jobs/{jobId}/resume">client.r2.super_slurper.jobs.<a href="./src/cloudflare/resources/r2/super_slurper/jobs/jobs.py">resume</a>(job_id, \*, account_id) -> <a href="./src/cloudflare/types/r2/super_slurper/job_resume_response.py">str</a></code>
-
-#### Logs
-
-Types:
-
-```python
-from cloudflare.types.r2.super_slurper.jobs import LogListResponse
-```
-
-Methods:
-
-- <code title="get /accounts/{account_id}/slurper/jobs/{jobId}/logs">client.r2.super_slurper.jobs.logs.<a href="./src/cloudflare/resources/r2/super_slurper/jobs/logs.py">list</a>(job_id, \*, account_id, \*\*<a href="src/cloudflare/types/r2/super_slurper/jobs/log_list_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/super_slurper/jobs/log_list_response.py">SyncSinglePage[LogListResponse]</a></code>
 
 ### ConnectivityPrecheck
 
