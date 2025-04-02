@@ -6,6 +6,14 @@ from typing import Type, Optional, cast
 
 import httpx
 
+from .logs import (
+    LogsResource,
+    AsyncLogsResource,
+    LogsResourceWithRawResponse,
+    AsyncLogsResourceWithRawResponse,
+    LogsResourceWithStreamingResponse,
+    AsyncLogsResourceWithStreamingResponse,
+)
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ....._utils import (
     maybe_transform,
@@ -23,14 +31,23 @@ from ....._wrappers import ResultWrapper
 from .....pagination import SyncSinglePage, AsyncSinglePage
 from ....._base_client import AsyncPaginator, make_request_options
 from .....types.r2.super_slurper import job_list_params, job_create_params
+from .....types.r2.super_slurper.job_get_response import JobGetResponse
 from .....types.r2.super_slurper.job_list_response import JobListResponse
+from .....types.r2.super_slurper.job_abort_response import JobAbortResponse
+from .....types.r2.super_slurper.job_pause_response import JobPauseResponse
 from .....types.r2.super_slurper.job_create_response import JobCreateResponse
+from .....types.r2.super_slurper.job_resume_response import JobResumeResponse
+from .....types.r2.super_slurper.job_progress_response import JobProgressResponse
 from .....types.r2.super_slurper.job_abort_all_response import JobAbortAllResponse
 
 __all__ = ["JobsResource", "AsyncJobsResource"]
 
 
 class JobsResource(SyncAPIResource):
+    @cached_property
+    def logs(self) -> LogsResource:
+        return LogsResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> JobsResourceWithRawResponse:
         """
@@ -144,6 +161,46 @@ class JobsResource(SyncAPIResource):
             model=JobListResponse,
         )
 
+    def abort(
+        self,
+        job_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> str:
+        """
+        Abort a job
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not job_id:
+            raise ValueError(f"Expected a non-empty value for `job_id` but received {job_id!r}")
+        return self._put(
+            f"/accounts/{account_id}/slurper/jobs/{job_id}/abort",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[JobAbortResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[str], ResultWrapper[str]),
+        )
+
     def abort_all(
         self,
         *,
@@ -181,8 +238,172 @@ class JobsResource(SyncAPIResource):
             cast_to=cast(Type[str], ResultWrapper[str]),
         )
 
+    def get(
+        self,
+        job_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[JobGetResponse]:
+        """
+        Get job details
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not job_id:
+            raise ValueError(f"Expected a non-empty value for `job_id` but received {job_id!r}")
+        return self._get(
+            f"/accounts/{account_id}/slurper/jobs/{job_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[JobGetResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[JobGetResponse]], ResultWrapper[JobGetResponse]),
+        )
+
+    def pause(
+        self,
+        job_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> str:
+        """
+        Pause a job
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not job_id:
+            raise ValueError(f"Expected a non-empty value for `job_id` but received {job_id!r}")
+        return self._put(
+            f"/accounts/{account_id}/slurper/jobs/{job_id}/pause",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[JobPauseResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[str], ResultWrapper[str]),
+        )
+
+    def progress(
+        self,
+        job_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[JobProgressResponse]:
+        """
+        Get job progress
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not job_id:
+            raise ValueError(f"Expected a non-empty value for `job_id` but received {job_id!r}")
+        return self._get(
+            f"/accounts/{account_id}/slurper/jobs/{job_id}/progress",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[JobProgressResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[JobProgressResponse]], ResultWrapper[JobProgressResponse]),
+        )
+
+    def resume(
+        self,
+        job_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> str:
+        """
+        Resume a job
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not job_id:
+            raise ValueError(f"Expected a non-empty value for `job_id` but received {job_id!r}")
+        return self._put(
+            f"/accounts/{account_id}/slurper/jobs/{job_id}/resume",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[JobResumeResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[str], ResultWrapper[str]),
+        )
+
 
 class AsyncJobsResource(AsyncAPIResource):
+    @cached_property
+    def logs(self) -> AsyncLogsResource:
+        return AsyncLogsResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AsyncJobsResourceWithRawResponse:
         """
@@ -296,6 +517,46 @@ class AsyncJobsResource(AsyncAPIResource):
             model=JobListResponse,
         )
 
+    async def abort(
+        self,
+        job_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> str:
+        """
+        Abort a job
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not job_id:
+            raise ValueError(f"Expected a non-empty value for `job_id` but received {job_id!r}")
+        return await self._put(
+            f"/accounts/{account_id}/slurper/jobs/{job_id}/abort",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[JobAbortResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[str], ResultWrapper[str]),
+        )
+
     async def abort_all(
         self,
         *,
@@ -333,6 +594,166 @@ class AsyncJobsResource(AsyncAPIResource):
             cast_to=cast(Type[str], ResultWrapper[str]),
         )
 
+    async def get(
+        self,
+        job_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[JobGetResponse]:
+        """
+        Get job details
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not job_id:
+            raise ValueError(f"Expected a non-empty value for `job_id` but received {job_id!r}")
+        return await self._get(
+            f"/accounts/{account_id}/slurper/jobs/{job_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[JobGetResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[JobGetResponse]], ResultWrapper[JobGetResponse]),
+        )
+
+    async def pause(
+        self,
+        job_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> str:
+        """
+        Pause a job
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not job_id:
+            raise ValueError(f"Expected a non-empty value for `job_id` but received {job_id!r}")
+        return await self._put(
+            f"/accounts/{account_id}/slurper/jobs/{job_id}/pause",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[JobPauseResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[str], ResultWrapper[str]),
+        )
+
+    async def progress(
+        self,
+        job_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[JobProgressResponse]:
+        """
+        Get job progress
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not job_id:
+            raise ValueError(f"Expected a non-empty value for `job_id` but received {job_id!r}")
+        return await self._get(
+            f"/accounts/{account_id}/slurper/jobs/{job_id}/progress",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[JobProgressResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[JobProgressResponse]], ResultWrapper[JobProgressResponse]),
+        )
+
+    async def resume(
+        self,
+        job_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> str:
+        """
+        Resume a job
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not job_id:
+            raise ValueError(f"Expected a non-empty value for `job_id` but received {job_id!r}")
+        return await self._put(
+            f"/accounts/{account_id}/slurper/jobs/{job_id}/resume",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[JobResumeResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[str], ResultWrapper[str]),
+        )
+
 
 class JobsResourceWithRawResponse:
     def __init__(self, jobs: JobsResource) -> None:
@@ -344,9 +765,28 @@ class JobsResourceWithRawResponse:
         self.list = to_raw_response_wrapper(
             jobs.list,
         )
+        self.abort = to_raw_response_wrapper(
+            jobs.abort,
+        )
         self.abort_all = to_raw_response_wrapper(
             jobs.abort_all,
         )
+        self.get = to_raw_response_wrapper(
+            jobs.get,
+        )
+        self.pause = to_raw_response_wrapper(
+            jobs.pause,
+        )
+        self.progress = to_raw_response_wrapper(
+            jobs.progress,
+        )
+        self.resume = to_raw_response_wrapper(
+            jobs.resume,
+        )
+
+    @cached_property
+    def logs(self) -> LogsResourceWithRawResponse:
+        return LogsResourceWithRawResponse(self._jobs.logs)
 
 
 class AsyncJobsResourceWithRawResponse:
@@ -359,9 +799,28 @@ class AsyncJobsResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             jobs.list,
         )
+        self.abort = async_to_raw_response_wrapper(
+            jobs.abort,
+        )
         self.abort_all = async_to_raw_response_wrapper(
             jobs.abort_all,
         )
+        self.get = async_to_raw_response_wrapper(
+            jobs.get,
+        )
+        self.pause = async_to_raw_response_wrapper(
+            jobs.pause,
+        )
+        self.progress = async_to_raw_response_wrapper(
+            jobs.progress,
+        )
+        self.resume = async_to_raw_response_wrapper(
+            jobs.resume,
+        )
+
+    @cached_property
+    def logs(self) -> AsyncLogsResourceWithRawResponse:
+        return AsyncLogsResourceWithRawResponse(self._jobs.logs)
 
 
 class JobsResourceWithStreamingResponse:
@@ -374,9 +833,28 @@ class JobsResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             jobs.list,
         )
+        self.abort = to_streamed_response_wrapper(
+            jobs.abort,
+        )
         self.abort_all = to_streamed_response_wrapper(
             jobs.abort_all,
         )
+        self.get = to_streamed_response_wrapper(
+            jobs.get,
+        )
+        self.pause = to_streamed_response_wrapper(
+            jobs.pause,
+        )
+        self.progress = to_streamed_response_wrapper(
+            jobs.progress,
+        )
+        self.resume = to_streamed_response_wrapper(
+            jobs.resume,
+        )
+
+    @cached_property
+    def logs(self) -> LogsResourceWithStreamingResponse:
+        return LogsResourceWithStreamingResponse(self._jobs.logs)
 
 
 class AsyncJobsResourceWithStreamingResponse:
@@ -389,6 +867,25 @@ class AsyncJobsResourceWithStreamingResponse:
         self.list = async_to_streamed_response_wrapper(
             jobs.list,
         )
+        self.abort = async_to_streamed_response_wrapper(
+            jobs.abort,
+        )
         self.abort_all = async_to_streamed_response_wrapper(
             jobs.abort_all,
         )
+        self.get = async_to_streamed_response_wrapper(
+            jobs.get,
+        )
+        self.pause = async_to_streamed_response_wrapper(
+            jobs.pause,
+        )
+        self.progress = async_to_streamed_response_wrapper(
+            jobs.progress,
+        )
+        self.resume = async_to_streamed_response_wrapper(
+            jobs.resume,
+        )
+
+    @cached_property
+    def logs(self) -> AsyncLogsResourceWithStreamingResponse:
+        return AsyncLogsResourceWithStreamingResponse(self._jobs.logs)
