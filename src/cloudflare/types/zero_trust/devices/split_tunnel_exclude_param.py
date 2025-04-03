@@ -2,23 +2,38 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing import Union
+from typing_extensions import Required, TypeAlias, TypedDict
 
-__all__ = ["SplitTunnelExcludeParam"]
+__all__ = [
+    "SplitTunnelExcludeParam",
+    "TeamsDevicesExcludeSplitTunnelWithAddress",
+    "TeamsDevicesExcludeSplitTunnelWithHost",
+]
 
 
-class SplitTunnelExcludeParam(TypedDict, total=False):
+class TeamsDevicesExcludeSplitTunnelWithAddress(TypedDict, total=False):
     address: Required[str]
     """The address in CIDR format to exclude from the tunnel.
 
     If `address` is present, `host` must not be present.
     """
 
-    description: Required[str]
+    description: str
     """A description of the Split Tunnel item, displayed in the client UI."""
 
-    host: str
+
+class TeamsDevicesExcludeSplitTunnelWithHost(TypedDict, total=False):
+    host: Required[str]
     """The domain name to exclude from the tunnel.
 
     If `host` is present, `address` must not be present.
     """
+
+    description: str
+    """A description of the Split Tunnel item, displayed in the client UI."""
+
+
+SplitTunnelExcludeParam: TypeAlias = Union[
+    TeamsDevicesExcludeSplitTunnelWithAddress, TeamsDevicesExcludeSplitTunnelWithHost
+]

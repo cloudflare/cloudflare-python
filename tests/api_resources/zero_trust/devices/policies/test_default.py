@@ -38,7 +38,6 @@ class TestDefault:
                 {
                     "address": "192.0.2.0/24",
                     "description": "Exclude testing domains from the tunnel",
-                    "host": "*.example.com",
                 }
             ],
             exclude_office_ips=True,
@@ -46,7 +45,6 @@ class TestDefault:
                 {
                     "address": "192.0.2.0/24",
                     "description": "Exclude testing domains from the tunnel",
-                    "host": "*.example.com",
                 }
             ],
             register_interface_ip_with_dns=True,
@@ -154,7 +152,6 @@ class TestAsyncDefault:
                 {
                     "address": "192.0.2.0/24",
                     "description": "Exclude testing domains from the tunnel",
-                    "host": "*.example.com",
                 }
             ],
             exclude_office_ips=True,
@@ -162,7 +159,6 @@ class TestAsyncDefault:
                 {
                     "address": "192.0.2.0/24",
                     "description": "Exclude testing domains from the tunnel",
-                    "host": "*.example.com",
                 }
             ],
             register_interface_ip_with_dns=True,

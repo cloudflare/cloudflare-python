@@ -23,7 +23,7 @@ class TestCustom:
     def test_method_create(self, client: Cloudflare) -> None:
         custom = client.zero_trust.devices.policies.custom.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            match='user.identity == "test@cloudflare.com"',
+            match='identity.email == "test@cloudflare.com"',
             name="Allow Developers",
             precedence=100,
         )
@@ -34,7 +34,7 @@ class TestCustom:
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         custom = client.zero_trust.devices.policies.custom.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            match='user.identity == "test@cloudflare.com"',
+            match='identity.email == "test@cloudflare.com"',
             name="Allow Developers",
             precedence=100,
             allow_mode_switch=True,
@@ -49,7 +49,6 @@ class TestCustom:
                 {
                     "address": "192.0.2.0/24",
                     "description": "Exclude testing domains from the tunnel",
-                    "host": "*.example.com",
                 }
             ],
             exclude_office_ips=True,
@@ -57,7 +56,6 @@ class TestCustom:
                 {
                     "address": "192.0.2.0/24",
                     "description": "Exclude testing domains from the tunnel",
-                    "host": "*.example.com",
                 }
             ],
             lan_allow_minutes=30,
@@ -78,7 +76,7 @@ class TestCustom:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.zero_trust.devices.policies.custom.with_raw_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            match='user.identity == "test@cloudflare.com"',
+            match='identity.email == "test@cloudflare.com"',
             name="Allow Developers",
             precedence=100,
         )
@@ -93,7 +91,7 @@ class TestCustom:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.zero_trust.devices.policies.custom.with_streaming_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            match='user.identity == "test@cloudflare.com"',
+            match='identity.email == "test@cloudflare.com"',
             name="Allow Developers",
             precedence=100,
         ) as response:
@@ -111,7 +109,7 @@ class TestCustom:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.devices.policies.custom.with_raw_response.create(
                 account_id="",
-                match='user.identity == "test@cloudflare.com"',
+                match='identity.email == "test@cloudflare.com"',
                 name="Allow Developers",
                 precedence=100,
             )
@@ -229,7 +227,6 @@ class TestCustom:
                 {
                     "address": "192.0.2.0/24",
                     "description": "Exclude testing domains from the tunnel",
-                    "host": "*.example.com",
                 }
             ],
             exclude_office_ips=True,
@@ -237,10 +234,9 @@ class TestCustom:
                 {
                     "address": "192.0.2.0/24",
                     "description": "Exclude testing domains from the tunnel",
-                    "host": "*.example.com",
                 }
             ],
-            match='user.identity == "test@cloudflare.com"',
+            match='identity.email == "test@cloudflare.com"',
             name="Allow Developers",
             precedence=100,
             register_interface_ip_with_dns=True,
@@ -358,7 +354,7 @@ class TestAsyncCustom:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         custom = await async_client.zero_trust.devices.policies.custom.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            match='user.identity == "test@cloudflare.com"',
+            match='identity.email == "test@cloudflare.com"',
             name="Allow Developers",
             precedence=100,
         )
@@ -369,7 +365,7 @@ class TestAsyncCustom:
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         custom = await async_client.zero_trust.devices.policies.custom.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            match='user.identity == "test@cloudflare.com"',
+            match='identity.email == "test@cloudflare.com"',
             name="Allow Developers",
             precedence=100,
             allow_mode_switch=True,
@@ -384,7 +380,6 @@ class TestAsyncCustom:
                 {
                     "address": "192.0.2.0/24",
                     "description": "Exclude testing domains from the tunnel",
-                    "host": "*.example.com",
                 }
             ],
             exclude_office_ips=True,
@@ -392,7 +387,6 @@ class TestAsyncCustom:
                 {
                     "address": "192.0.2.0/24",
                     "description": "Exclude testing domains from the tunnel",
-                    "host": "*.example.com",
                 }
             ],
             lan_allow_minutes=30,
@@ -413,7 +407,7 @@ class TestAsyncCustom:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.devices.policies.custom.with_raw_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            match='user.identity == "test@cloudflare.com"',
+            match='identity.email == "test@cloudflare.com"',
             name="Allow Developers",
             precedence=100,
         )
@@ -428,7 +422,7 @@ class TestAsyncCustom:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.devices.policies.custom.with_streaming_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
-            match='user.identity == "test@cloudflare.com"',
+            match='identity.email == "test@cloudflare.com"',
             name="Allow Developers",
             precedence=100,
         ) as response:
@@ -446,7 +440,7 @@ class TestAsyncCustom:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.devices.policies.custom.with_raw_response.create(
                 account_id="",
-                match='user.identity == "test@cloudflare.com"',
+                match='identity.email == "test@cloudflare.com"',
                 name="Allow Developers",
                 precedence=100,
             )
@@ -564,7 +558,6 @@ class TestAsyncCustom:
                 {
                     "address": "192.0.2.0/24",
                     "description": "Exclude testing domains from the tunnel",
-                    "host": "*.example.com",
                 }
             ],
             exclude_office_ips=True,
@@ -572,10 +565,9 @@ class TestAsyncCustom:
                 {
                     "address": "192.0.2.0/24",
                     "description": "Exclude testing domains from the tunnel",
-                    "host": "*.example.com",
                 }
             ],
-            match='user.identity == "test@cloudflare.com"',
+            match='identity.email == "test@cloudflare.com"',
             name="Allow Developers",
             precedence=100,
             register_interface_ip_with_dns=True,
