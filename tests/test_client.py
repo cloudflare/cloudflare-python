@@ -1816,7 +1816,7 @@ class TestAsyncCloudflare:
         import threading
 
         from cloudflare._utils import asyncify
-        from cloudflare._base_client import get_platform 
+        from cloudflare._base_client import get_platform
 
         async def test_main() -> None:
             result = await asyncify(get_platform)()
