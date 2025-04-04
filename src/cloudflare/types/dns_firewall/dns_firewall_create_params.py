@@ -13,7 +13,7 @@ __all__ = ["DNSFirewallCreateParams"]
 
 class DNSFirewallCreateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     name: Required[str]
     """DNS Firewall cluster name"""
