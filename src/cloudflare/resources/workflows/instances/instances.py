@@ -8,6 +8,14 @@ from typing_extensions import Literal
 
 import httpx
 
+from .events import (
+    EventsResource,
+    AsyncEventsResource,
+    EventsResourceWithRawResponse,
+    AsyncEventsResourceWithRawResponse,
+    EventsResourceWithStreamingResponse,
+    AsyncEventsResourceWithStreamingResponse,
+)
 from .status import (
     StatusResource,
     AsyncStatusResource,
@@ -45,6 +53,10 @@ class InstancesResource(SyncAPIResource):
     @cached_property
     def status(self) -> StatusResource:
         return StatusResource(self._client)
+
+    @cached_property
+    def events(self) -> EventsResource:
+        return EventsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> InstancesResourceWithRawResponse:
@@ -264,6 +276,10 @@ class AsyncInstancesResource(AsyncAPIResource):
     @cached_property
     def status(self) -> AsyncStatusResource:
         return AsyncStatusResource(self._client)
+
+    @cached_property
+    def events(self) -> AsyncEventsResource:
+        return AsyncEventsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncInstancesResourceWithRawResponse:
@@ -500,6 +516,10 @@ class InstancesResourceWithRawResponse:
     def status(self) -> StatusResourceWithRawResponse:
         return StatusResourceWithRawResponse(self._instances.status)
 
+    @cached_property
+    def events(self) -> EventsResourceWithRawResponse:
+        return EventsResourceWithRawResponse(self._instances.events)
+
 
 class AsyncInstancesResourceWithRawResponse:
     def __init__(self, instances: AsyncInstancesResource) -> None:
@@ -521,6 +541,10 @@ class AsyncInstancesResourceWithRawResponse:
     @cached_property
     def status(self) -> AsyncStatusResourceWithRawResponse:
         return AsyncStatusResourceWithRawResponse(self._instances.status)
+
+    @cached_property
+    def events(self) -> AsyncEventsResourceWithRawResponse:
+        return AsyncEventsResourceWithRawResponse(self._instances.events)
 
 
 class InstancesResourceWithStreamingResponse:
@@ -544,6 +568,10 @@ class InstancesResourceWithStreamingResponse:
     def status(self) -> StatusResourceWithStreamingResponse:
         return StatusResourceWithStreamingResponse(self._instances.status)
 
+    @cached_property
+    def events(self) -> EventsResourceWithStreamingResponse:
+        return EventsResourceWithStreamingResponse(self._instances.events)
+
 
 class AsyncInstancesResourceWithStreamingResponse:
     def __init__(self, instances: AsyncInstancesResource) -> None:
@@ -565,3 +593,7 @@ class AsyncInstancesResourceWithStreamingResponse:
     @cached_property
     def status(self) -> AsyncStatusResourceWithStreamingResponse:
         return AsyncStatusResourceWithStreamingResponse(self._instances.status)
+
+    @cached_property
+    def events(self) -> AsyncEventsResourceWithStreamingResponse:
+        return AsyncEventsResourceWithStreamingResponse(self._instances.events)
