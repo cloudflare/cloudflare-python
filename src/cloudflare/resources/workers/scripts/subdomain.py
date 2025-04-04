@@ -63,7 +63,7 @@ class SubdomainResource(SyncAPIResource):
         Enable or disable the Worker on the workers.dev subdomain.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -115,7 +115,7 @@ class SubdomainResource(SyncAPIResource):
         Get if the Worker is available on the workers.dev subdomain.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -178,7 +178,7 @@ class AsyncSubdomainResource(AsyncAPIResource):
         Enable or disable the Worker on the workers.dev subdomain.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -230,7 +230,7 @@ class AsyncSubdomainResource(AsyncAPIResource):
         Get if the Worker is available on the workers.dev subdomain.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           script_name: Name of the script, used in URLs and route configuration.
 
