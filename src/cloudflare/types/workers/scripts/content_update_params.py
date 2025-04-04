@@ -12,7 +12,7 @@ __all__ = ["ContentUpdateParams"]
 
 class ContentUpdateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     metadata: Required[WorkerMetadataParam]
     """JSON encoded metadata about the uploaded parts and Worker configuration."""

@@ -189,7 +189,7 @@ class ScriptsResource(SyncAPIResource):
         https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -235,7 +235,7 @@ class ScriptsResource(SyncAPIResource):
         Fetch a list of uploaded workers.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -274,7 +274,7 @@ class ScriptsResource(SyncAPIResource):
         This call has no response body on a successful delete.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -325,7 +325,7 @@ class ScriptsResource(SyncAPIResource):
         content, not JSON encoded.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -431,7 +431,7 @@ class AsyncScriptsResource(AsyncAPIResource):
         https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -477,7 +477,7 @@ class AsyncScriptsResource(AsyncAPIResource):
         Fetch a list of uploaded workers.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -516,7 +516,7 @@ class AsyncScriptsResource(AsyncAPIResource):
         This call has no response body on a successful delete.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -567,7 +567,7 @@ class AsyncScriptsResource(AsyncAPIResource):
         content, not JSON encoded.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 
