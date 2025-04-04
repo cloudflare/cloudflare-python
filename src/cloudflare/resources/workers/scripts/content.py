@@ -76,7 +76,7 @@ class ContentResource(SyncAPIResource):
         Put script content without touching config or metadata
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -136,7 +136,7 @@ class ContentResource(SyncAPIResource):
         Fetch script content only
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -201,7 +201,7 @@ class AsyncContentResource(AsyncAPIResource):
         Put script content without touching config or metadata
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -261,7 +261,7 @@ class AsyncContentResource(AsyncAPIResource):
         Fetch script content only
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           script_name: Name of the script, used in URLs and route configuration.
 

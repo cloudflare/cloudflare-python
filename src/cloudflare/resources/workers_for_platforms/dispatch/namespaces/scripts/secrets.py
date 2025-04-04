@@ -71,7 +71,7 @@ class SecretsResource(SyncAPIResource):
         Add a secret to a script uploaded to a Workers for Platforms namespace.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -135,7 +135,7 @@ class SecretsResource(SyncAPIResource):
         List secrets bound to a script uploaded to a Workers for Platforms namespace.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -182,7 +182,7 @@ class SecretsResource(SyncAPIResource):
         Remove a secret from a script uploaded to a Workers for Platforms namespace.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -237,7 +237,7 @@ class SecretsResource(SyncAPIResource):
         Platforms namespace.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -314,7 +314,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         Add a secret to a script uploaded to a Workers for Platforms namespace.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -378,7 +378,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         List secrets bound to a script uploaded to a Workers for Platforms namespace.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -425,7 +425,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         Remove a secret from a script uploaded to a Workers for Platforms namespace.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -480,7 +480,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         Platforms namespace.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 

@@ -77,7 +77,7 @@ class ContentResource(SyncAPIResource):
         Put script content for a script uploaded to a Workers for Platforms namespace.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -143,7 +143,7 @@ class ContentResource(SyncAPIResource):
         namespace.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -213,7 +213,7 @@ class AsyncContentResource(AsyncAPIResource):
         Put script content for a script uploaded to a Workers for Platforms namespace.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -279,7 +279,7 @@ class AsyncContentResource(AsyncAPIResource):
         namespace.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
