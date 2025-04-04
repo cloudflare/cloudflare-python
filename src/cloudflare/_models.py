@@ -31,6 +31,7 @@ from ._types import (
     Timeout,
     NotGiven,
     AnyMapping,
+    MultipartSyntax,
     HttpxRequestFiles,
 )
 from ._utils import (
@@ -738,6 +739,7 @@ class FinalRequestOptionsInput(TypedDict, total=False):
     idempotency_key: str
     json_data: Body
     extra_json: AnyMapping
+    multipart_syntax: MultipartSyntax
 
 
 @final
@@ -750,6 +752,7 @@ class FinalRequestOptions(pydantic.BaseModel):
     timeout: Union[float, Timeout, None, NotGiven] = NotGiven()
     files: Union[HttpxRequestFiles, None] = None
     idempotency_key: Union[str, None] = None
+    multipart_syntax: Union[MultipartSyntax, None] = None
     post_parser: Union[Callable[[Any], Any], NotGiven] = NotGiven()
 
     # It should be noted that we cannot use `json` here as that would override
