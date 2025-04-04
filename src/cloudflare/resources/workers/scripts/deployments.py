@@ -73,7 +73,7 @@ class DeploymentsResource(SyncAPIResource):
         Worker.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           script_name: Name of the script.
 
@@ -131,7 +131,7 @@ class DeploymentsResource(SyncAPIResource):
         deployment actively serving traffic.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           script_name: Name of the script.
 
@@ -203,7 +203,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         Worker.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           script_name: Name of the script.
 
@@ -261,7 +261,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         deployment actively serving traffic.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           script_name: Name of the script.
 

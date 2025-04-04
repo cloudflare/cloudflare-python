@@ -10,13 +10,13 @@ __all__ = ["NamespaceGetResponse"]
 
 class NamespaceGetResponse(BaseModel):
     created_by: Optional[str] = None
-    """Identifier."""
+    """Identifier"""
 
     created_on: Optional[datetime] = None
     """When the script was created."""
 
     modified_by: Optional[str] = None
-    """Identifier."""
+    """Identifier"""
 
     modified_on: Optional[datetime] = None
     """When the script was last modified."""
