@@ -70,7 +70,7 @@ class VersionsResource(SyncAPIResource):
         https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script.
 
@@ -125,7 +125,7 @@ class VersionsResource(SyncAPIResource):
         The first version in the list is the latest version.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script.
 
@@ -184,7 +184,7 @@ class VersionsResource(SyncAPIResource):
         Get Version Detail
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script.
 
@@ -255,7 +255,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script.
 
@@ -310,7 +310,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         The first version in the list is the latest version.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script.
 
@@ -369,7 +369,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         Get Version Detail
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script.
 

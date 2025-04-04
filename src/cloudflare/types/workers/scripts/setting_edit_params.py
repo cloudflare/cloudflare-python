@@ -12,7 +12,7 @@ __all__ = ["SettingEditParams", "Observability"]
 
 class SettingEditParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     logpush: bool
     """Whether Logpush is turned on for the Worker."""
