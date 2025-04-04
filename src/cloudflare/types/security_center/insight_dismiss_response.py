@@ -4,15 +4,26 @@ from typing import List
 from typing_extensions import Literal
 
 from ..._models import BaseModel
-from ..shared.response_info import ResponseInfo
 
-__all__ = ["InsightDismissResponse"]
+__all__ = ["InsightDismissResponse", "Error", "Message"]
+
+
+class Error(BaseModel):
+    code: int
+
+    message: str
+
+
+class Message(BaseModel):
+    code: int
+
+    message: str
 
 
 class InsightDismissResponse(BaseModel):
-    errors: List[ResponseInfo]
+    errors: List[Error]
 
-    messages: List[ResponseInfo]
+    messages: List[Message]
 
     success: Literal[True]
     """Whether the API call was successful"""

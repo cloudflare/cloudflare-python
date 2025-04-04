@@ -5,17 +5,32 @@ from typing_extensions import Literal, TypeAlias
 
 from ..._models import BaseModel
 from .dns_record import DNSRecord
-from ..shared.response_info import ResponseInfo
 
 __all__ = [
     "DNSGetResponse",
     "EmailEmailRoutingDNSQueryResponse",
+    "EmailEmailRoutingDNSQueryResponseError",
+    "EmailEmailRoutingDNSQueryResponseMessage",
     "EmailEmailRoutingDNSQueryResponseResult",
     "EmailEmailRoutingDNSQueryResponseResultError",
     "EmailEmailRoutingDNSQueryResponseResultInfo",
     "EmailDNSSettingsResponseCollection",
+    "EmailDNSSettingsResponseCollectionError",
+    "EmailDNSSettingsResponseCollectionMessage",
     "EmailDNSSettingsResponseCollectionResultInfo",
 ]
+
+
+class EmailEmailRoutingDNSQueryResponseError(BaseModel):
+    code: int
+
+    message: str
+
+
+class EmailEmailRoutingDNSQueryResponseMessage(BaseModel):
+    code: int
+
+    message: str
 
 
 class EmailEmailRoutingDNSQueryResponseResultError(BaseModel):
@@ -46,9 +61,9 @@ class EmailEmailRoutingDNSQueryResponseResultInfo(BaseModel):
 
 
 class EmailEmailRoutingDNSQueryResponse(BaseModel):
-    errors: List[ResponseInfo]
+    errors: List[EmailEmailRoutingDNSQueryResponseError]
 
-    messages: List[ResponseInfo]
+    messages: List[EmailEmailRoutingDNSQueryResponseMessage]
 
     success: Literal[True]
     """Whether the API call was successful"""
@@ -56,6 +71,18 @@ class EmailEmailRoutingDNSQueryResponse(BaseModel):
     result: Optional[EmailEmailRoutingDNSQueryResponseResult] = None
 
     result_info: Optional[EmailEmailRoutingDNSQueryResponseResultInfo] = None
+
+
+class EmailDNSSettingsResponseCollectionError(BaseModel):
+    code: int
+
+    message: str
+
+
+class EmailDNSSettingsResponseCollectionMessage(BaseModel):
+    code: int
+
+    message: str
 
 
 class EmailDNSSettingsResponseCollectionResultInfo(BaseModel):
@@ -73,9 +100,9 @@ class EmailDNSSettingsResponseCollectionResultInfo(BaseModel):
 
 
 class EmailDNSSettingsResponseCollection(BaseModel):
-    errors: List[ResponseInfo]
+    errors: List[EmailDNSSettingsResponseCollectionError]
 
-    messages: List[ResponseInfo]
+    messages: List[EmailDNSSettingsResponseCollectionMessage]
 
     success: Literal[True]
     """Whether the API call was successful"""
