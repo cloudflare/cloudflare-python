@@ -45,7 +45,7 @@ __all__ = [
 
 class ScriptUpdateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier."""
+    """Identifier"""
 
     metadata: Required[Metadata]
     """JSON encoded metadata about the uploaded parts and Worker configuration."""

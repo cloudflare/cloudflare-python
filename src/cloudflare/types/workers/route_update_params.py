@@ -9,7 +9,7 @@ __all__ = ["RouteUpdateParams"]
 
 class RouteUpdateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier."""
+    """Identifier"""
 
     pattern: Required[str]
 
