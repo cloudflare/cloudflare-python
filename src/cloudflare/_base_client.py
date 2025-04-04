@@ -54,11 +54,13 @@ from ._types import (
     PostParser,
     RequestFiles,
     HttpxSendArgs,
+    HttpxFileTypes,
     RequestOptions,
+    MultipartSyntax,
     HttpxRequestFiles,
     ModelBuilderProtocol,
 )
-from ._utils import is_dict, is_list, asyncify, is_given, lru_cache, is_mapping
+from ._utils import is_dict, is_list, asyncify, is_given, is_tuple, lru_cache, is_mapping, is_mapping_t, is_sequence_t
 from ._compat import PYDANTIC_V2, model_copy, model_dump
 from ._models import GenericModel, FinalRequestOptions, validate_type, construct_type
 from ._response import (
@@ -484,7 +486,24 @@ class BaseClient(Generic[_HttpxClientT, _DefaultStreamT]):
                     raise TypeError(
                         f"Expected query input to be a dictionary for multipart requests but got {type(json_data)} instead."
                     )
-                kwargs["data"] = self._serialize_multipartform(json_data)
+                    
+                if options.multipart_syntax == 'json':
+                    json_data = cast("Mapping[str, object]", json_data)
+                    if is_mapping_t(files):
+                        files = {
+                            **files,
+                            **self._serialize_multiapartform_json(json_data),
+                        }
+                    elif is_sequence_t(files):
+                        files = [
+                            *files,
+                            *self._serialize_multiapartform_json(json_data).items(),
+                        ]
+                    else:
+                        assert not files, "this case should only be hit when there are no files"
+                        files = self._serialize_multiapartform_json(json_data)
+                else:
+                    kwargs["data"] = self._serialize_multipartform(json_data)
 
             # httpx determines whether or not to send a "multipart/form-data"
             # request based on the truthiness of the "files" argument.
@@ -515,6 +534,22 @@ class BaseClient(Generic[_HttpxClientT, _DefaultStreamT]):
             files=files,
             **kwargs,
         )
+
+    def _serialize_multiapartform_json(self, data: Mapping[str, object]) -> dict[str, HttpxFileTypes]:
+        serialized: dict[str, HttpxFileTypes] = {}
+        for key, value in data.items():
+            if isinstance(value, Mapping) or is_list(value) or is_tuple(value):
+                serialized[key] = (None, json.dumps(value).encode("utf-8"), "application/json")
+            else:
+                serialized[key] = (
+                    None,
+                    self.qs._primitive_value_to_str(
+                        value  # type: ignore
+                    ).encode("utf-8"),
+                    "text/plain",
+                )
+
+        return serialized
 
     def _serialize_multipartform(self, data: Mapping[object, object]) -> dict[str, object]:
         items = self.qs.stringify_items(
@@ -1794,6 +1829,7 @@ def make_request_options(
     idempotency_key: str | None = None,
     timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     post_parser: PostParser | NotGiven = NOT_GIVEN,
+    multipart_syntax: MultipartSyntax | None = None,
 ) -> RequestOptions:
     """Create a dict of type RequestOptions without keys of NotGiven values."""
     options: RequestOptions = {}
@@ -1818,6 +1854,9 @@ def make_request_options(
     if is_given(post_parser):
         # internal
         options["post_parser"] = post_parser  # type: ignore
+
+    if multipart_syntax is not None:
+        options["multipart_syntax"] = multipart_syntax
 
     return options
 
