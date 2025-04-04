@@ -63,7 +63,7 @@ class TagsResource(SyncAPIResource):
         Put script tags for a script uploaded to a Workers for Platforms namespace.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -113,7 +113,7 @@ class TagsResource(SyncAPIResource):
         Fetch tags from a script uploaded to a Workers for Platforms namespace.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -160,7 +160,7 @@ class TagsResource(SyncAPIResource):
         Delete script tag for a script uploaded to a Workers for Platforms namespace.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -235,7 +235,7 @@ class AsyncTagsResource(AsyncAPIResource):
         Put script tags for a script uploaded to a Workers for Platforms namespace.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -285,7 +285,7 @@ class AsyncTagsResource(AsyncAPIResource):
         Fetch tags from a script uploaded to a Workers for Platforms namespace.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -332,7 +332,7 @@ class AsyncTagsResource(AsyncAPIResource):
         Delete script tag for a script uploaded to a Workers for Platforms namespace.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
