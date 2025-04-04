@@ -65,7 +65,7 @@ class ScriptAndVersionSettingsResource(SyncAPIResource):
         Patch metadata or config, such as bindings or usage model
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -118,7 +118,7 @@ class ScriptAndVersionSettingsResource(SyncAPIResource):
         Get metadata and config, such as bindings or usage model
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -186,7 +186,7 @@ class AsyncScriptAndVersionSettingsResource(AsyncAPIResource):
         Patch metadata or config, such as bindings or usage model
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -239,7 +239,7 @@ class AsyncScriptAndVersionSettingsResource(AsyncAPIResource):
         Get metadata and config, such as bindings or usage model
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           script_name: Name of the script, used in URLs and route configuration.
 

@@ -66,7 +66,7 @@ class SettingsResource(SyncAPIResource):
         Patch script metadata, such as bindings
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -120,7 +120,7 @@ class SettingsResource(SyncAPIResource):
         Get script settings from a script uploaded to a Workers for Platforms namespace.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -191,7 +191,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         Patch script metadata, such as bindings
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -245,7 +245,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         Get script settings from a script uploaded to a Workers for Platforms namespace.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 

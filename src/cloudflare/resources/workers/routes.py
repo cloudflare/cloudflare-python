@@ -69,7 +69,7 @@ class RoutesResource(SyncAPIResource):
         Creates a route that maps a URL pattern to a Worker.
 
         Args:
-          zone_id: Identifier.
+          zone_id: Identifier
 
           script: Name of the script, used in URLs and route configuration.
 
@@ -116,9 +116,9 @@ class RoutesResource(SyncAPIResource):
         Updates the URL pattern or Worker associated with a route.
 
         Args:
-          zone_id: Identifier.
+          zone_id: Identifier
 
-          route_id: Identifier.
+          route_id: Identifier
 
           script: Name of the script, used in URLs and route configuration.
 
@@ -168,7 +168,7 @@ class RoutesResource(SyncAPIResource):
         Returns routes for a zone.
 
         Args:
-          zone_id: Identifier.
+          zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -205,9 +205,9 @@ class RoutesResource(SyncAPIResource):
         Deletes a route.
 
         Args:
-          zone_id: Identifier.
+          zone_id: Identifier
 
-          route_id: Identifier.
+          route_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -245,9 +245,9 @@ class RoutesResource(SyncAPIResource):
         Returns information about a route, including URL pattern and Worker.
 
         Args:
-          zone_id: Identifier.
+          zone_id: Identifier
 
-          route_id: Identifier.
+          route_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -311,7 +311,7 @@ class AsyncRoutesResource(AsyncAPIResource):
         Creates a route that maps a URL pattern to a Worker.
 
         Args:
-          zone_id: Identifier.
+          zone_id: Identifier
 
           script: Name of the script, used in URLs and route configuration.
 
@@ -358,9 +358,9 @@ class AsyncRoutesResource(AsyncAPIResource):
         Updates the URL pattern or Worker associated with a route.
 
         Args:
-          zone_id: Identifier.
+          zone_id: Identifier
 
-          route_id: Identifier.
+          route_id: Identifier
 
           script: Name of the script, used in URLs and route configuration.
 
@@ -410,7 +410,7 @@ class AsyncRoutesResource(AsyncAPIResource):
         Returns routes for a zone.
 
         Args:
-          zone_id: Identifier.
+          zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -447,9 +447,9 @@ class AsyncRoutesResource(AsyncAPIResource):
         Deletes a route.
 
         Args:
-          zone_id: Identifier.
+          zone_id: Identifier
 
-          route_id: Identifier.
+          route_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -487,9 +487,9 @@ class AsyncRoutesResource(AsyncAPIResource):
         Returns information about a route, including URL pattern and Worker.
 
         Args:
-          zone_id: Identifier.
+          zone_id: Identifier
 
-          route_id: Identifier.
+          route_id: Identifier
 
           extra_headers: Send extra headers
 

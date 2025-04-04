@@ -10,7 +10,7 @@ __all__ = ["UploadCreateParams", "Manifest"]
 
 class UploadCreateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier."""
+    """Identifier"""
 
     manifest: Dict[str, Manifest]
     """A manifest ([path]: {hash, size}) map of files to upload.

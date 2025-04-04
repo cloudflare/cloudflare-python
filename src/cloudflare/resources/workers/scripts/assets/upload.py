@@ -67,7 +67,7 @@ class UploadResource(SyncAPIResource):
         https://developers.cloudflare.com/workers/static-assets/direct-upload/
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -140,7 +140,7 @@ class AsyncUploadResource(AsyncAPIResource):
         https://developers.cloudflare.com/workers/static-assets/direct-upload/
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           script_name: Name of the script, used in URLs and route configuration.
 
