@@ -9,7 +9,7 @@ __all__ = ["AccountSettingUpdateParams"]
 
 class AccountSettingUpdateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     default_usage_model: str
 

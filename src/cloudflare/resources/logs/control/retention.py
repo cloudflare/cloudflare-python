@@ -64,7 +64,7 @@ class RetentionResource(SyncAPIResource):
         Updates log retention flag for Logpull API.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           flag: The log retention flag for Logpull API.
 
@@ -106,7 +106,7 @@ class RetentionResource(SyncAPIResource):
         Gets log retention flag for Logpull API.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -167,7 +167,7 @@ class AsyncRetentionResource(AsyncAPIResource):
         Updates log retention flag for Logpull API.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           flag: The log retention flag for Logpull API.
 
@@ -209,7 +209,7 @@ class AsyncRetentionResource(AsyncAPIResource):
         Gets log retention flag for Logpull API.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 

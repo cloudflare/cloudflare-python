@@ -9,7 +9,7 @@ __all__ = ["SecretUpdateParams"]
 
 class SecretUpdateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     name: str
     """

@@ -55,62 +55,62 @@ __all__ = [
 ]
 
 
-class A(ARecordParam):
+class A(ARecordParam, total=False):
     id: Required[str]
     """Identifier"""
 
 
-class AAAA(AAAARecordParam):
+class AAAA(AAAARecordParam, total=False):
     id: Required[str]
     """Identifier"""
 
 
-class CAA(CAARecordParam):
+class CAA(CAARecordParam, total=False):
     id: Required[str]
     """Identifier"""
 
 
-class CERT(CERTRecordParam):
+class CERT(CERTRecordParam, total=False):
     id: Required[str]
     """Identifier"""
 
 
-class CNAME(CNAMERecordParam):
+class CNAME(CNAMERecordParam, total=False):
     id: Required[str]
     """Identifier"""
 
 
-class DNSKEY(DNSKEYRecordParam):
+class DNSKEY(DNSKEYRecordParam, total=False):
     id: Required[str]
     """Identifier"""
 
 
-class DS(DSRecordParam):
+class DS(DSRecordParam, total=False):
     id: Required[str]
     """Identifier"""
 
 
-class HTTPS(HTTPSRecordParam):
+class HTTPS(HTTPSRecordParam, total=False):
     id: Required[str]
     """Identifier"""
 
 
-class LOC(LOCRecordParam):
+class LOC(LOCRecordParam, total=False):
     id: Required[str]
     """Identifier"""
 
 
-class MX(MXRecordParam):
+class MX(MXRecordParam, total=False):
     id: Required[str]
     """Identifier"""
 
 
-class NAPTR(NAPTRRecordParam):
+class NAPTR(NAPTRRecordParam, total=False):
     id: Required[str]
     """Identifier"""
 
 
-class NS(NSRecordParam):
+class NS(NSRecordParam, total=False):
     id: Required[str]
     """Identifier"""
 
@@ -172,42 +172,42 @@ class Openpgpkey(TypedDict, total=False):
     """Record type."""
 
 
-class PTR(PTRRecordParam):
+class PTR(PTRRecordParam, total=False):
     id: Required[str]
     """Identifier"""
 
 
-class SMIMEA(SMIMEARecordParam):
+class SMIMEA(SMIMEARecordParam, total=False):
     id: Required[str]
     """Identifier"""
 
 
-class SRV(SRVRecordParam):
+class SRV(SRVRecordParam, total=False):
     id: Required[str]
     """Identifier"""
 
 
-class SSHFP(SSHFPRecordParam):
+class SSHFP(SSHFPRecordParam, total=False):
     id: Required[str]
     """Identifier"""
 
 
-class SVCB(SVCBRecordParam):
+class SVCB(SVCBRecordParam, total=False):
     id: Required[str]
     """Identifier"""
 
 
-class TLSA(TLSARecordParam):
+class TLSA(TLSARecordParam, total=False):
     id: Required[str]
     """Identifier"""
 
 
-class TXT(TXTRecordParam):
+class TXT(TXTRecordParam, total=False):
     id: Required[str]
     """Identifier"""
 
 
-class URI(URIRecordParam):
+class URI(URIRecordParam, total=False):
     id: Required[str]
     """Identifier"""
 

@@ -68,7 +68,7 @@ class UploadResource(SyncAPIResource):
         https://developers.cloudflare.com/workers/static-assets/direct-upload/
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           base64: Whether the file contents are base64-encoded. Must be `true`.
 
@@ -144,7 +144,7 @@ class AsyncUploadResource(AsyncAPIResource):
         https://developers.cloudflare.com/workers/static-assets/direct-upload/
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           base64: Whether the file contents are base64-encoded. Must be `true`.
 

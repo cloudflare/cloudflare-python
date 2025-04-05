@@ -13,7 +13,7 @@ __all__ = ["DNSFirewallGetResponse"]
 
 class DNSFirewallGetResponse(BaseModel):
     id: str
-    """Identifier"""
+    """Identifier."""
 
     deprecate_any_requests: bool
     """Whether to refuse to answer queries for the ANY type"""

@@ -66,7 +66,7 @@ class TailResource(SyncAPIResource):
         Starts a tail that receives logs and exception from a Worker.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -112,7 +112,7 @@ class TailResource(SyncAPIResource):
         Deletes a tail from a Worker.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -156,7 +156,7 @@ class TailResource(SyncAPIResource):
         Get list of tails currently deployed on a Worker.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -222,7 +222,7 @@ class AsyncTailResource(AsyncAPIResource):
         Starts a tail that receives logs and exception from a Worker.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -268,7 +268,7 @@ class AsyncTailResource(AsyncAPIResource):
         Deletes a tail from a Worker.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -312,7 +312,7 @@ class AsyncTailResource(AsyncAPIResource):
         Get list of tails currently deployed on a Worker.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 

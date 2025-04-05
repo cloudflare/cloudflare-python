@@ -30,9 +30,18 @@ class TestLogging:
             account_id="699d98642c564d2e855e9661899b7252",
             redact_pii=True,
             settings_by_rule_type={
-                "dns": {},
-                "http": {},
-                "l4": {},
+                "dns": {
+                    "log_all": False,
+                    "log_blocks": True,
+                },
+                "http": {
+                    "log_all": False,
+                    "log_blocks": True,
+                },
+                "l4": {
+                    "log_all": False,
+                    "log_blocks": True,
+                },
             },
         )
         assert_matches_type(Optional[LoggingSetting], logging, path=["response"])
@@ -123,9 +132,18 @@ class TestAsyncLogging:
             account_id="699d98642c564d2e855e9661899b7252",
             redact_pii=True,
             settings_by_rule_type={
-                "dns": {},
-                "http": {},
-                "l4": {},
+                "dns": {
+                    "log_all": False,
+                    "log_blocks": True,
+                },
+                "http": {
+                    "log_all": False,
+                    "log_blocks": True,
+                },
+                "l4": {
+                    "log_all": False,
+                    "log_blocks": True,
+                },
             },
         )
         assert_matches_type(Optional[LoggingSetting], logging, path=["response"])

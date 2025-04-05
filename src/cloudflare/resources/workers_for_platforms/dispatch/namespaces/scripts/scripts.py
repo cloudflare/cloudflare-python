@@ -141,7 +141,7 @@ class ScriptsResource(SyncAPIResource):
         https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -196,7 +196,7 @@ class ScriptsResource(SyncAPIResource):
         response body on a successful delete.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -250,7 +250,7 @@ class ScriptsResource(SyncAPIResource):
         Fetch information about a script uploaded to a Workers for Platforms namespace.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -348,7 +348,7 @@ class AsyncScriptsResource(AsyncAPIResource):
         https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -403,7 +403,7 @@ class AsyncScriptsResource(AsyncAPIResource):
         response body on a successful delete.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -457,7 +457,7 @@ class AsyncScriptsResource(AsyncAPIResource):
         Fetch information about a script uploaded to a Workers for Platforms namespace.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 

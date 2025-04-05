@@ -12,7 +12,7 @@ __all__ = ["UploadCreateParams"]
 
 class UploadCreateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     base64: Required[Literal[True]]
     """Whether the file contents are base64-encoded. Must be `true`."""

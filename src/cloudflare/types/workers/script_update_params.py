@@ -45,13 +45,25 @@ __all__ = [
 
 class ScriptUpdateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     metadata: Required[Metadata]
     """JSON encoded metadata about the uploaded parts and Worker configuration."""
 
 
 class MetadataAssetsConfig(TypedDict, total=False):
+    _headers: str
+    """
+    The contents of a \\__headers file (used to attach custom headers on asset
+    responses)
+    """
+
+    _redirects: str
+    """
+    The contents of a \\__redirects file (used to apply redirects or proxy paths ahead
+    of asset serving)
+    """
+
     html_handling: Literal["auto-trailing-slash", "force-trailing-slash", "drop-trailing-slash", "none"]
     """Determines the redirects and rewrites of requests for HTML content."""
 

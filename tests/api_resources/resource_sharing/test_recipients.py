@@ -73,7 +73,6 @@ class TestRecipients:
             client.resource_sharing.recipients.with_raw_response.create(
                 share_id="3fd85f74b32742f1bff64a85009dda07",
                 path_account_id="",
-                body_account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `share_id` but received ''"):
@@ -314,7 +313,6 @@ class TestAsyncRecipients:
             await async_client.resource_sharing.recipients.with_raw_response.create(
                 share_id="3fd85f74b32742f1bff64a85009dda07",
                 path_account_id="",
-                body_account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `share_id` but received ''"):

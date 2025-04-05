@@ -8,6 +8,22 @@ from .pdf import (
     PDFResourceWithStreamingResponse,
     AsyncPDFResourceWithStreamingResponse,
 )
+from .json import (
+    JsonResource,
+    AsyncJsonResource,
+    JsonResourceWithRawResponse,
+    AsyncJsonResourceWithRawResponse,
+    JsonResourceWithStreamingResponse,
+    AsyncJsonResourceWithStreamingResponse,
+)
+from .links import (
+    LinksResource,
+    AsyncLinksResource,
+    LinksResourceWithRawResponse,
+    AsyncLinksResourceWithRawResponse,
+    LinksResourceWithStreamingResponse,
+    AsyncLinksResourceWithStreamingResponse,
+)
 from .scrape import (
     ScrapeResource,
     AsyncScrapeResource,
@@ -23,6 +39,14 @@ from .content import (
     AsyncContentResourceWithRawResponse,
     ContentResourceWithStreamingResponse,
     AsyncContentResourceWithStreamingResponse,
+)
+from .markdown import (
+    MarkdownResource,
+    AsyncMarkdownResource,
+    MarkdownResourceWithRawResponse,
+    AsyncMarkdownResourceWithRawResponse,
+    MarkdownResourceWithStreamingResponse,
+    AsyncMarkdownResourceWithStreamingResponse,
 )
 from .snapshot import (
     SnapshotResource,
@@ -80,6 +104,24 @@ __all__ = [
     "AsyncSnapshotResourceWithRawResponse",
     "SnapshotResourceWithStreamingResponse",
     "AsyncSnapshotResourceWithStreamingResponse",
+    "JsonResource",
+    "AsyncJsonResource",
+    "JsonResourceWithRawResponse",
+    "AsyncJsonResourceWithRawResponse",
+    "JsonResourceWithStreamingResponse",
+    "AsyncJsonResourceWithStreamingResponse",
+    "LinksResource",
+    "AsyncLinksResource",
+    "LinksResourceWithRawResponse",
+    "AsyncLinksResourceWithRawResponse",
+    "LinksResourceWithStreamingResponse",
+    "AsyncLinksResourceWithStreamingResponse",
+    "MarkdownResource",
+    "AsyncMarkdownResource",
+    "MarkdownResourceWithRawResponse",
+    "AsyncMarkdownResourceWithRawResponse",
+    "MarkdownResourceWithStreamingResponse",
+    "AsyncMarkdownResourceWithStreamingResponse",
     "BrowserRenderingResource",
     "AsyncBrowserRenderingResource",
     "BrowserRenderingResourceWithRawResponse",

@@ -5,7 +5,6 @@ from typing import List, Optional
 from ....._models import BaseModel
 from ..fallback_domain import FallbackDomain
 from ..split_tunnel_exclude import SplitTunnelExclude
-from ..split_tunnel_include import SplitTunnelInclude
 
 __all__ = ["DefaultGetResponse", "ServiceModeV2"]
 
@@ -60,7 +59,7 @@ class DefaultGetResponse(BaseModel):
 
     gateway_unique_id: Optional[str] = None
 
-    include: Optional[List[SplitTunnelInclude]] = None
+    include: Optional[List[SplitTunnelExclude]] = None
     """List of routes included in the WARP client's tunnel."""
 
     register_interface_ip_with_dns: Optional[bool] = None

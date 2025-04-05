@@ -985,18 +985,13 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.custom_nameservers import (
-    CustomNameserver,
-    CustomNameserverDeleteResponse,
-    CustomNameserverAvailabiltyResponse,
-)
+from cloudflare.types.custom_nameservers import CustomNameserver, CustomNameserverDeleteResponse
 ```
 
 Methods:
 
 - <code title="post /accounts/{account_id}/custom_ns">client.custom_nameservers.<a href="./src/cloudflare/resources/custom_nameservers.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/custom_nameservers/custom_nameserver_create_params.py">params</a>) -> <a href="./src/cloudflare/types/custom_nameservers/custom_nameserver.py">Optional[CustomNameserver]</a></code>
 - <code title="delete /accounts/{account_id}/custom_ns/{custom_ns_id}">client.custom_nameservers.<a href="./src/cloudflare/resources/custom_nameservers.py">delete</a>(custom_ns_id, \*, account_id) -> <a href="./src/cloudflare/types/custom_nameservers/custom_nameserver_delete_response.py">SyncSinglePage[CustomNameserverDeleteResponse]</a></code>
-- <code title="get /accounts/{account_id}/custom_ns/availability">client.custom_nameservers.<a href="./src/cloudflare/resources/custom_nameservers.py">availabilty</a>(\*, account_id) -> <a href="./src/cloudflare/types/custom_nameservers/custom_nameserver_availabilty_response.py">SyncSinglePage[CustomNameserverAvailabiltyResponse]</a></code>
 - <code title="get /accounts/{account_id}/custom_ns">client.custom_nameservers.<a href="./src/cloudflare/resources/custom_nameservers.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/custom_nameservers/custom_nameserver.py">SyncSinglePage[CustomNameserver]</a></code>
 
 # DNSFirewall
@@ -2115,7 +2110,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.rate_limits import Action, Methods, RateLimit, RateLimitDeleteResponse
+from cloudflare.types.rate_limits import Action, RateLimit, RateLimitDeleteResponse
 ```
 
 Methods:
@@ -2479,6 +2474,22 @@ Methods:
 - <code title="delete /accounts/{account_id}/workers/scripts/{script_name}/secrets/{secret_name}">client.workers.scripts.secrets.<a href="./src/cloudflare/resources/workers/scripts/secrets.py">delete</a>(secret_name, \*, account_id, script_name) -> <a href="./src/cloudflare/types/workers/scripts/secret_delete_response.py">object</a></code>
 - <code title="get /accounts/{account_id}/workers/scripts/{script_name}/secrets/{secret_name}">client.workers.scripts.secrets.<a href="./src/cloudflare/resources/workers/scripts/secrets.py">get</a>(secret_name, \*, account_id, script_name) -> <a href="./src/cloudflare/types/workers/scripts/secret_get_response.py">Optional[SecretGetResponse]</a></code>
 
+### ScriptAndVersionSettings
+
+Types:
+
+```python
+from cloudflare.types.workers.scripts import (
+    ScriptAndVersionSettingEditResponse,
+    ScriptAndVersionSettingGetResponse,
+)
+```
+
+Methods:
+
+- <code title="patch /accounts/{account_id}/workers/scripts/{script_name}/settings">client.workers.scripts.script_and_version_settings.<a href="./src/cloudflare/resources/workers/scripts/script_and_version_settings.py">edit</a>(script_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/scripts/script_and_version_setting_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/scripts/script_and_version_setting_edit_response.py">Optional[ScriptAndVersionSettingEditResponse]</a></code>
+- <code title="get /accounts/{account_id}/workers/scripts/{script_name}/settings">client.workers.scripts.script_and_version_settings.<a href="./src/cloudflare/resources/workers/scripts/script_and_version_settings.py">get</a>(script_name, \*, account_id) -> <a href="./src/cloudflare/types/workers/scripts/script_and_version_setting_get_response.py">Optional[ScriptAndVersionSettingGetResponse]</a></code>
+
 ## AccountSettings
 
 Types:
@@ -2527,13 +2538,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.kv import (
-    Namespace,
-    NamespaceUpdateResponse,
-    NamespaceDeleteResponse,
-    NamespaceBulkDeleteResponse,
-    NamespaceBulkUpdateResponse,
-)
+from cloudflare.types.kv import Namespace, NamespaceUpdateResponse, NamespaceDeleteResponse
 ```
 
 Methods:
@@ -2542,34 +2547,27 @@ Methods:
 - <code title="put /accounts/{account_id}/storage/kv/namespaces/{namespace_id}">client.kv.namespaces.<a href="./src/cloudflare/resources/kv/namespaces/namespaces.py">update</a>(namespace_id, \*, account_id, \*\*<a href="src/cloudflare/types/kv/namespace_update_params.py">params</a>) -> <a href="./src/cloudflare/types/kv/namespace_update_response.py">Optional[NamespaceUpdateResponse]</a></code>
 - <code title="get /accounts/{account_id}/storage/kv/namespaces">client.kv.namespaces.<a href="./src/cloudflare/resources/kv/namespaces/namespaces.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/kv/namespace_list_params.py">params</a>) -> <a href="./src/cloudflare/types/kv/namespace.py">SyncV4PagePaginationArray[Namespace]</a></code>
 - <code title="delete /accounts/{account_id}/storage/kv/namespaces/{namespace_id}">client.kv.namespaces.<a href="./src/cloudflare/resources/kv/namespaces/namespaces.py">delete</a>(namespace_id, \*, account_id) -> <a href="./src/cloudflare/types/kv/namespace_delete_response.py">Optional[NamespaceDeleteResponse]</a></code>
-- <code title="post /accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk/delete">client.kv.namespaces.<a href="./src/cloudflare/resources/kv/namespaces/namespaces.py">bulk_delete</a>(namespace_id, \*, account_id, \*\*<a href="src/cloudflare/types/kv/namespace_bulk_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/kv/namespace_bulk_delete_response.py">Optional[NamespaceBulkDeleteResponse]</a></code>
-- <code title="put /accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk">client.kv.namespaces.<a href="./src/cloudflare/resources/kv/namespaces/namespaces.py">bulk_update</a>(namespace_id, \*, account_id, \*\*<a href="src/cloudflare/types/kv/namespace_bulk_update_params.py">params</a>) -> <a href="./src/cloudflare/types/kv/namespace_bulk_update_response.py">Optional[NamespaceBulkUpdateResponse]</a></code>
 - <code title="get /accounts/{account_id}/storage/kv/namespaces/{namespace_id}">client.kv.namespaces.<a href="./src/cloudflare/resources/kv/namespaces/namespaces.py">get</a>(namespace_id, \*, account_id) -> <a href="./src/cloudflare/types/kv/namespace.py">Optional[Namespace]</a></code>
-
-### Analytics
-
-Types:
-
-```python
-from cloudflare.types.kv.namespaces import Components, Schema
-```
-
-Methods:
-
-- <code title="get /accounts/{account_id}/storage/analytics">client.kv.namespaces.analytics.<a href="./src/cloudflare/resources/kv/namespaces/analytics.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/kv/namespaces/analytics_list_params.py">params</a>) -> <a href="./src/cloudflare/types/kv/namespaces/schema.py">Optional[Schema]</a></code>
-- <code title="get /accounts/{account_id}/storage/analytics/stored">client.kv.namespaces.analytics.<a href="./src/cloudflare/resources/kv/namespaces/analytics.py">stored</a>(\*, account_id, \*\*<a href="src/cloudflare/types/kv/namespaces/analytics_stored_params.py">params</a>) -> <a href="./src/cloudflare/types/kv/namespaces/components.py">Optional[Components]</a></code>
 
 ### Keys
 
 Types:
 
 ```python
-from cloudflare.types.kv.namespaces import Key
+from cloudflare.types.kv.namespaces import (
+    Key,
+    KeyBulkDeleteResponse,
+    KeyBulkGetResponse,
+    KeyBulkUpdateResponse,
+)
 ```
 
 Methods:
 
 - <code title="get /accounts/{account_id}/storage/kv/namespaces/{namespace_id}/keys">client.kv.namespaces.keys.<a href="./src/cloudflare/resources/kv/namespaces/keys.py">list</a>(namespace_id, \*, account_id, \*\*<a href="src/cloudflare/types/kv/namespaces/key_list_params.py">params</a>) -> <a href="./src/cloudflare/types/kv/namespaces/key.py">SyncCursorLimitPagination[Key]</a></code>
+- <code title="post /accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk/delete">client.kv.namespaces.keys.<a href="./src/cloudflare/resources/kv/namespaces/keys.py">bulk_delete</a>(namespace_id, \*, account_id, \*\*<a href="src/cloudflare/types/kv/namespaces/key_bulk_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/kv/namespaces/key_bulk_delete_response.py">Optional[KeyBulkDeleteResponse]</a></code>
+- <code title="post /accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk/get">client.kv.namespaces.keys.<a href="./src/cloudflare/resources/kv/namespaces/keys.py">bulk_get</a>(namespace_id, \*, account_id, \*\*<a href="src/cloudflare/types/kv/namespaces/key_bulk_get_params.py">params</a>) -> <a href="./src/cloudflare/types/kv/namespaces/key_bulk_get_response.py">Optional[KeyBulkGetResponse]</a></code>
+- <code title="put /accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk">client.kv.namespaces.keys.<a href="./src/cloudflare/resources/kv/namespaces/keys.py">bulk_update</a>(namespace_id, \*, account_id, \*\*<a href="src/cloudflare/types/kv/namespaces/key_bulk_update_params.py">params</a>) -> <a href="./src/cloudflare/types/kv/namespaces/key_bulk_update_response.py">Optional[KeyBulkUpdateResponse]</a></code>
 
 ### Metadata
 
@@ -2637,6 +2635,7 @@ Methods:
 - <code title="put /accounts/{account_id}/queues/{queue_id}">client.queues.<a href="./src/cloudflare/resources/queues/queues.py">update</a>(queue_id, \*, account_id, \*\*<a href="src/cloudflare/types/queues/queue_update_params.py">params</a>) -> <a href="./src/cloudflare/types/queues/queue.py">Optional[Queue]</a></code>
 - <code title="get /accounts/{account_id}/queues">client.queues.<a href="./src/cloudflare/resources/queues/queues.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/queues/queue.py">SyncSinglePage[Queue]</a></code>
 - <code title="delete /accounts/{account_id}/queues/{queue_id}">client.queues.<a href="./src/cloudflare/resources/queues/queues.py">delete</a>(queue_id, \*, account_id) -> <a href="./src/cloudflare/types/queues/queue_delete_response.py">QueueDeleteResponse</a></code>
+- <code title="patch /accounts/{account_id}/queues/{queue_id}">client.queues.<a href="./src/cloudflare/resources/queues/queues.py">edit</a>(queue_id, \*, account_id, \*\*<a href="src/cloudflare/types/queues/queue_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/queues/queue.py">Optional[Queue]</a></code>
 - <code title="get /accounts/{account_id}/queues/{queue_id}">client.queues.<a href="./src/cloudflare/resources/queues/queues.py">get</a>(queue_id, \*, account_id) -> <a href="./src/cloudflare/types/queues/queue.py">Optional[Queue]</a></code>
 
 ## Consumers
@@ -2666,6 +2665,19 @@ Methods:
 
 - <code title="post /accounts/{account_id}/queues/{queue_id}/messages/ack">client.queues.messages.<a href="./src/cloudflare/resources/queues/messages.py">ack</a>(queue_id, \*, account_id, \*\*<a href="src/cloudflare/types/queues/message_ack_params.py">params</a>) -> <a href="./src/cloudflare/types/queues/message_ack_response.py">Optional[MessageAckResponse]</a></code>
 - <code title="post /accounts/{account_id}/queues/{queue_id}/messages/pull">client.queues.messages.<a href="./src/cloudflare/resources/queues/messages.py">pull</a>(queue_id, \*, account_id, \*\*<a href="src/cloudflare/types/queues/message_pull_params.py">params</a>) -> <a href="./src/cloudflare/types/queues/message_pull_response.py">SyncSinglePage[MessagePullResponse]</a></code>
+
+## Purge
+
+Types:
+
+```python
+from cloudflare.types.queues import PurgeStatusResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/queues/{queue_id}/purge">client.queues.purge.<a href="./src/cloudflare/resources/queues/purge.py">start</a>(queue_id, \*, account_id, \*\*<a href="src/cloudflare/types/queues/purge_start_params.py">params</a>) -> <a href="./src/cloudflare/types/queues/queue.py">Optional[Queue]</a></code>
+- <code title="get /accounts/{account_id}/queues/{queue_id}/purge">client.queues.purge.<a href="./src/cloudflare/resources/queues/purge.py">status</a>(queue_id, \*, account_id) -> <a href="./src/cloudflare/types/queues/purge_status_response.py">Optional[PurgeStatusResponse]</a></code>
 
 # APIGateway
 
@@ -4969,6 +4981,64 @@ Methods:
 
 - <code title="post /accounts/{account_id}/r2/temp-access-credentials">client.r2.temporary_credentials.<a href="./src/cloudflare/resources/r2/temporary_credentials.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/r2/temporary_credential_create_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/temporary_credential_create_response.py">TemporaryCredentialCreateResponse</a></code>
 
+## SuperSlurper
+
+### Jobs
+
+Types:
+
+```python
+from cloudflare.types.r2.super_slurper import (
+    JobCreateResponse,
+    JobListResponse,
+    JobAbortResponse,
+    JobAbortAllResponse,
+    JobGetResponse,
+    JobPauseResponse,
+    JobProgressResponse,
+    JobResumeResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/slurper/jobs">client.r2.super_slurper.jobs.<a href="./src/cloudflare/resources/r2/super_slurper/jobs/jobs.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/r2/super_slurper/job_create_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/super_slurper/job_create_response.py">Optional[JobCreateResponse]</a></code>
+- <code title="get /accounts/{account_id}/slurper/jobs">client.r2.super_slurper.jobs.<a href="./src/cloudflare/resources/r2/super_slurper/jobs/jobs.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/r2/super_slurper/job_list_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/super_slurper/job_list_response.py">SyncSinglePage[JobListResponse]</a></code>
+- <code title="put /accounts/{account_id}/slurper/jobs/{job_id}/abort">client.r2.super_slurper.jobs.<a href="./src/cloudflare/resources/r2/super_slurper/jobs/jobs.py">abort</a>(job_id, \*, account_id) -> <a href="./src/cloudflare/types/r2/super_slurper/job_abort_response.py">str</a></code>
+- <code title="put /accounts/{account_id}/slurper/jobs/abortAll">client.r2.super_slurper.jobs.<a href="./src/cloudflare/resources/r2/super_slurper/jobs/jobs.py">abort_all</a>(\*, account_id) -> <a href="./src/cloudflare/types/r2/super_slurper/job_abort_all_response.py">str</a></code>
+- <code title="get /accounts/{account_id}/slurper/jobs/{job_id}">client.r2.super_slurper.jobs.<a href="./src/cloudflare/resources/r2/super_slurper/jobs/jobs.py">get</a>(job_id, \*, account_id) -> <a href="./src/cloudflare/types/r2/super_slurper/job_get_response.py">Optional[JobGetResponse]</a></code>
+- <code title="put /accounts/{account_id}/slurper/jobs/{job_id}/pause">client.r2.super_slurper.jobs.<a href="./src/cloudflare/resources/r2/super_slurper/jobs/jobs.py">pause</a>(job_id, \*, account_id) -> <a href="./src/cloudflare/types/r2/super_slurper/job_pause_response.py">str</a></code>
+- <code title="get /accounts/{account_id}/slurper/jobs/{job_id}/progress">client.r2.super_slurper.jobs.<a href="./src/cloudflare/resources/r2/super_slurper/jobs/jobs.py">progress</a>(job_id, \*, account_id) -> <a href="./src/cloudflare/types/r2/super_slurper/job_progress_response.py">Optional[JobProgressResponse]</a></code>
+- <code title="put /accounts/{account_id}/slurper/jobs/{job_id}/resume">client.r2.super_slurper.jobs.<a href="./src/cloudflare/resources/r2/super_slurper/jobs/jobs.py">resume</a>(job_id, \*, account_id) -> <a href="./src/cloudflare/types/r2/super_slurper/job_resume_response.py">str</a></code>
+
+#### Logs
+
+Types:
+
+```python
+from cloudflare.types.r2.super_slurper.jobs import LogListResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/slurper/jobs/{job_id}/logs">client.r2.super_slurper.jobs.logs.<a href="./src/cloudflare/resources/r2/super_slurper/jobs/logs.py">list</a>(job_id, \*, account_id, \*\*<a href="src/cloudflare/types/r2/super_slurper/jobs/log_list_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/super_slurper/jobs/log_list_response.py">SyncSinglePage[LogListResponse]</a></code>
+
+### ConnectivityPrecheck
+
+Types:
+
+```python
+from cloudflare.types.r2.super_slurper import (
+    ConnectivityPrecheckSourceResponse,
+    ConnectivityPrecheckTargetResponse,
+)
+```
+
+Methods:
+
+- <code title="put /accounts/{account_id}/slurper/source/connectivity-precheck">client.r2.super_slurper.connectivity_precheck.<a href="./src/cloudflare/resources/r2/super_slurper/connectivity_precheck.py">source</a>(\*, account_id, \*\*<a href="src/cloudflare/types/r2/super_slurper/connectivity_precheck_source_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/super_slurper/connectivity_precheck_source_response.py">Optional[ConnectivityPrecheckSourceResponse]</a></code>
+- <code title="put /accounts/{account_id}/slurper/target/connectivity-precheck">client.r2.super_slurper.connectivity_precheck.<a href="./src/cloudflare/resources/r2/super_slurper/connectivity_precheck.py">target</a>(\*, account_id, \*\*<a href="src/cloudflare/types/r2/super_slurper/connectivity_precheck_target_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/super_slurper/connectivity_precheck_target_response.py">Optional[ConnectivityPrecheckTargetResponse]</a></code>
+
 # WorkersForPlatforms
 
 ## Dispatch
@@ -5108,6 +5178,24 @@ Methods:
 
 - <code title="get /accounts/{account_id}/devices">client.zero_trust.devices.<a href="./src/cloudflare/resources/zero_trust/devices/devices.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/device.py">SyncSinglePage[Device]</a></code>
 - <code title="get /accounts/{account_id}/devices/{device_id}">client.zero_trust.devices.<a href="./src/cloudflare/resources/zero_trust/devices/devices.py">get</a>(device_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/device_get_response.py">Optional[DeviceGetResponse]</a></code>
+
+### Resilience
+
+#### GlobalWARPOverride
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.devices.resilience import (
+    GlobalWARPOverrideCreateResponse,
+    GlobalWARPOverrideGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/devices/resilience/disconnect">client.zero_trust.devices.resilience.global_warp_override.<a href="./src/cloudflare/resources/zero_trust/devices/resilience/global_warp_override.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/resilience/global_warp_override_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/resilience/global_warp_override_create_response.py">Optional[GlobalWARPOverrideCreateResponse]</a></code>
+- <code title="get /accounts/{account_id}/devices/resilience/disconnect">client.zero_trust.devices.resilience.global_warp_override.<a href="./src/cloudflare/resources/zero_trust/devices/resilience/global_warp_override.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/resilience/global_warp_override_get_response.py">Optional[GlobalWARPOverrideGetResponse]</a></code>
 
 ### DEXTests
 
@@ -6951,6 +7039,18 @@ Methods:
 
 ## AI
 
+### ToMarkdown
+
+Types:
+
+```python
+from cloudflare.types.radar.ai import ToMarkdownCreateResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/ai/tomarkdown">client.radar.ai.to_markdown.<a href="./src/cloudflare/resources/radar/ai/to_markdown.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/radar/ai/to_markdown_create_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ai/to_markdown_create_response.py">SyncSinglePage[ToMarkdownCreateResponse]</a></code>
+
 ### Inference
 
 #### Summary
@@ -7109,6 +7209,7 @@ from cloudflare.types.radar.bgp import (
     RouteAsesResponse,
     RouteMoasResponse,
     RoutePfx2asResponse,
+    RouteRealtimeResponse,
     RouteStatsResponse,
 )
 ```
@@ -7118,6 +7219,7 @@ Methods:
 - <code title="get /radar/bgp/routes/ases">client.radar.bgp.routes.<a href="./src/cloudflare/resources/radar/bgp/routes.py">ases</a>(\*\*<a href="src/cloudflare/types/radar/bgp/route_ases_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bgp/route_ases_response.py">RouteAsesResponse</a></code>
 - <code title="get /radar/bgp/routes/moas">client.radar.bgp.routes.<a href="./src/cloudflare/resources/radar/bgp/routes.py">moas</a>(\*\*<a href="src/cloudflare/types/radar/bgp/route_moas_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bgp/route_moas_response.py">RouteMoasResponse</a></code>
 - <code title="get /radar/bgp/routes/pfx2as">client.radar.bgp.routes.<a href="./src/cloudflare/resources/radar/bgp/routes.py">pfx2as</a>(\*\*<a href="src/cloudflare/types/radar/bgp/route_pfx2as_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bgp/route_pfx2as_response.py">RoutePfx2asResponse</a></code>
+- <code title="get /radar/bgp/routes/realtime">client.radar.bgp.routes.<a href="./src/cloudflare/resources/radar/bgp/routes.py">realtime</a>(\*\*<a href="src/cloudflare/types/radar/bgp/route_realtime_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bgp/route_realtime_response.py">RouteRealtimeResponse</a></code>
 - <code title="get /radar/bgp/routes/stats">client.radar.bgp.routes.<a href="./src/cloudflare/resources/radar/bgp/routes.py">stats</a>(\*\*<a href="src/cloudflare/types/radar/bgp/route_stats_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bgp/route_stats_response.py">RouteStatsResponse</a></code>
 
 ### IPs
@@ -7560,9 +7662,11 @@ Types:
 from cloudflare.types.radar.attacks.layer3 import (
     SummaryBitrateResponse,
     SummaryDurationResponse,
+    SummaryIndustryResponse,
     SummaryIPVersionResponse,
     SummaryProtocolResponse,
     SummaryVectorResponse,
+    SummaryVerticalResponse,
 )
 ```
 
@@ -7570,9 +7674,11 @@ Methods:
 
 - <code title="get /radar/attacks/layer3/summary/bitrate">client.radar.attacks.layer3.summary.<a href="./src/cloudflare/resources/radar/attacks/layer3/summary.py">bitrate</a>(\*\*<a href="src/cloudflare/types/radar/attacks/layer3/summary_bitrate_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/attacks/layer3/summary_bitrate_response.py">SummaryBitrateResponse</a></code>
 - <code title="get /radar/attacks/layer3/summary/duration">client.radar.attacks.layer3.summary.<a href="./src/cloudflare/resources/radar/attacks/layer3/summary.py">duration</a>(\*\*<a href="src/cloudflare/types/radar/attacks/layer3/summary_duration_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/attacks/layer3/summary_duration_response.py">SummaryDurationResponse</a></code>
+- <code title="get /radar/attacks/layer3/summary/industry">client.radar.attacks.layer3.summary.<a href="./src/cloudflare/resources/radar/attacks/layer3/summary.py">industry</a>(\*\*<a href="src/cloudflare/types/radar/attacks/layer3/summary_industry_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/attacks/layer3/summary_industry_response.py">SummaryIndustryResponse</a></code>
 - <code title="get /radar/attacks/layer3/summary/ip_version">client.radar.attacks.layer3.summary.<a href="./src/cloudflare/resources/radar/attacks/layer3/summary.py">ip_version</a>(\*\*<a href="src/cloudflare/types/radar/attacks/layer3/summary_ip_version_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/attacks/layer3/summary_ip_version_response.py">SummaryIPVersionResponse</a></code>
 - <code title="get /radar/attacks/layer3/summary/protocol">client.radar.attacks.layer3.summary.<a href="./src/cloudflare/resources/radar/attacks/layer3/summary.py">protocol</a>(\*\*<a href="src/cloudflare/types/radar/attacks/layer3/summary_protocol_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/attacks/layer3/summary_protocol_response.py">SummaryProtocolResponse</a></code>
 - <code title="get /radar/attacks/layer3/summary/vector">client.radar.attacks.layer3.summary.<a href="./src/cloudflare/resources/radar/attacks/layer3/summary.py">vector</a>(\*\*<a href="src/cloudflare/types/radar/attacks/layer3/summary_vector_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/attacks/layer3/summary_vector_response.py">SummaryVectorResponse</a></code>
+- <code title="get /radar/attacks/layer3/summary/vertical">client.radar.attacks.layer3.summary.<a href="./src/cloudflare/resources/radar/attacks/layer3/summary.py">vertical</a>(\*\*<a href="src/cloudflare/types/radar/attacks/layer3/summary_vertical_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/attacks/layer3/summary_vertical_response.py">SummaryVerticalResponse</a></code>
 
 #### TimeseriesGroups
 
@@ -7651,9 +7757,11 @@ Types:
 from cloudflare.types.radar.attacks.layer7 import (
     SummaryHTTPMethodResponse,
     SummaryHTTPVersionResponse,
+    SummaryIndustryResponse,
     SummaryIPVersionResponse,
     SummaryManagedRulesResponse,
     SummaryMitigationProductResponse,
+    SummaryVerticalResponse,
 )
 ```
 
@@ -7661,9 +7769,11 @@ Methods:
 
 - <code title="get /radar/attacks/layer7/summary/http_method">client.radar.attacks.layer7.summary.<a href="./src/cloudflare/resources/radar/attacks/layer7/summary.py">http_method</a>(\*\*<a href="src/cloudflare/types/radar/attacks/layer7/summary_http_method_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/attacks/layer7/summary_http_method_response.py">SummaryHTTPMethodResponse</a></code>
 - <code title="get /radar/attacks/layer7/summary/http_version">client.radar.attacks.layer7.summary.<a href="./src/cloudflare/resources/radar/attacks/layer7/summary.py">http_version</a>(\*\*<a href="src/cloudflare/types/radar/attacks/layer7/summary_http_version_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/attacks/layer7/summary_http_version_response.py">SummaryHTTPVersionResponse</a></code>
+- <code title="get /radar/attacks/layer7/summary/industry">client.radar.attacks.layer7.summary.<a href="./src/cloudflare/resources/radar/attacks/layer7/summary.py">industry</a>(\*\*<a href="src/cloudflare/types/radar/attacks/layer7/summary_industry_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/attacks/layer7/summary_industry_response.py">SummaryIndustryResponse</a></code>
 - <code title="get /radar/attacks/layer7/summary/ip_version">client.radar.attacks.layer7.summary.<a href="./src/cloudflare/resources/radar/attacks/layer7/summary.py">ip_version</a>(\*\*<a href="src/cloudflare/types/radar/attacks/layer7/summary_ip_version_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/attacks/layer7/summary_ip_version_response.py">SummaryIPVersionResponse</a></code>
 - <code title="get /radar/attacks/layer7/summary/managed_rules">client.radar.attacks.layer7.summary.<a href="./src/cloudflare/resources/radar/attacks/layer7/summary.py">managed_rules</a>(\*\*<a href="src/cloudflare/types/radar/attacks/layer7/summary_managed_rules_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/attacks/layer7/summary_managed_rules_response.py">SummaryManagedRulesResponse</a></code>
 - <code title="get /radar/attacks/layer7/summary/mitigation_product">client.radar.attacks.layer7.summary.<a href="./src/cloudflare/resources/radar/attacks/layer7/summary.py">mitigation_product</a>(\*\*<a href="src/cloudflare/types/radar/attacks/layer7/summary_mitigation_product_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/attacks/layer7/summary_mitigation_product_response.py">SummaryMitigationProductResponse</a></code>
+- <code title="get /radar/attacks/layer7/summary/vertical">client.radar.attacks.layer7.summary.<a href="./src/cloudflare/resources/radar/attacks/layer7/summary.py">vertical</a>(\*\*<a href="src/cloudflare/types/radar/attacks/layer7/summary_vertical_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/attacks/layer7/summary_vertical_response.py">SummaryVerticalResponse</a></code>
 
 #### TimeseriesGroups
 
@@ -9145,6 +9255,18 @@ Methods:
 
 - <code title="patch /accounts/{account_id}/workflows/{workflow_name}/instances/{instance_id}/status">client.workflows.instances.status.<a href="./src/cloudflare/resources/workflows/instances/status.py">edit</a>(instance_id, \*, account_id, workflow_name, \*\*<a href="src/cloudflare/types/workflows/instances/status_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/workflows/instances/status_edit_response.py">StatusEditResponse</a></code>
 
+### Events
+
+Types:
+
+```python
+from cloudflare.types.workflows.instances import EventCreateResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/workflows/{workflow_name}/instances/{instance_id}/events/{event_type}">client.workflows.instances.events.<a href="./src/cloudflare/resources/workflows/instances/events.py">create</a>(event_type, \*, account_id, workflow_name, instance_id, \*\*<a href="src/cloudflare/types/workflows/instances/event_create_params.py">params</a>) -> <a href="./src/cloudflare/types/workflows/instances/event_create_response.py">object</a></code>
+
 ## Versions
 
 Types:
@@ -9519,6 +9641,42 @@ from cloudflare.types.browser_rendering import SnapshotCreateResponse
 Methods:
 
 - <code title="post /accounts/{account_id}/browser-rendering/snapshot">client.browser_rendering.snapshot.<a href="./src/cloudflare/resources/browser_rendering/snapshot.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/browser_rendering/snapshot_create_params.py">params</a>) -> <a href="./src/cloudflare/types/browser_rendering/snapshot_create_response.py">Optional[SnapshotCreateResponse]</a></code>
+
+## Json
+
+Types:
+
+```python
+from cloudflare.types.browser_rendering import JsonCreateResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/browser-rendering/json">client.browser_rendering.json.<a href="./src/cloudflare/resources/browser_rendering/json.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/browser_rendering/json_create_params.py">params</a>) -> <a href="./src/cloudflare/types/browser_rendering/json_create_response.py">JsonCreateResponse</a></code>
+
+## Links
+
+Types:
+
+```python
+from cloudflare.types.browser_rendering import LinkCreateResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/browser-rendering/links">client.browser_rendering.links.<a href="./src/cloudflare/resources/browser_rendering/links.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/browser_rendering/link_create_params.py">params</a>) -> <a href="./src/cloudflare/types/browser_rendering/link_create_response.py">LinkCreateResponse</a></code>
+
+## Markdown
+
+Types:
+
+```python
+from cloudflare.types.browser_rendering import MarkdownCreateResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/browser-rendering/markdown">client.browser_rendering.markdown.<a href="./src/cloudflare/resources/browser_rendering/markdown.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/browser_rendering/markdown_create_params.py">params</a>) -> <a href="./src/cloudflare/types/browser_rendering/markdown_create_response.py">str</a></code>
 
 # CustomPages
 
