@@ -5,6 +5,7 @@ from typing import List, Optional
 from ...._models import BaseModel
 from .fallback_domain import FallbackDomain
 from .split_tunnel_exclude import SplitTunnelExclude
+from .split_tunnel_include import SplitTunnelInclude
 
 __all__ = ["SettingsPolicy", "ServiceModeV2", "TargetTest"]
 
@@ -70,7 +71,7 @@ class SettingsPolicy(BaseModel):
 
     gateway_unique_id: Optional[str] = None
 
-    include: Optional[List[SplitTunnelExclude]] = None
+    include: Optional[List[SplitTunnelInclude]] = None
     """List of routes included in the WARP client's tunnel."""
 
     lan_allow_minutes: Optional[float] = None
@@ -94,7 +95,6 @@ class SettingsPolicy(BaseModel):
     """The name of the device settings profile."""
 
     policy_id: Optional[str] = None
-    """Device ID."""
 
     precedence: Optional[float] = None
     """The precedence of the policy.

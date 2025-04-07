@@ -54,13 +54,18 @@ class OverrideCodesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[OverrideCodeListResponse]:
-        """Fetches a one-time use admin override code for a device.
+        """Fetches a one-time use admin override code for a registration.
 
-        This relies on the
-        **Admin Override** setting being enabled in your device configuration.
+        This relies on
+        the **Admin Override** setting being enabled in your device configuration.
+
+        **Deprecated:** please use GET
+        /accounts/{account_id}/devices/registrations/{registration_id}/override_codes
+        instead.
 
         Args:
-          device_id: Device ID.
+          device_id: Registration ID. Equal to Device ID except for accounts which enabled
+              [multi-user mode](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/deployment/mdm-deployment/windows-multiuser/).
 
           extra_headers: Send extra headers
 
@@ -119,13 +124,18 @@ class AsyncOverrideCodesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[OverrideCodeListResponse]:
-        """Fetches a one-time use admin override code for a device.
+        """Fetches a one-time use admin override code for a registration.
 
-        This relies on the
-        **Admin Override** setting being enabled in your device configuration.
+        This relies on
+        the **Admin Override** setting being enabled in your device configuration.
+
+        **Deprecated:** please use GET
+        /accounts/{account_id}/devices/registrations/{registration_id}/override_codes
+        instead.
 
         Args:
-          device_id: Device ID.
+          device_id: Registration ID. Equal to Device ID except for accounts which enabled
+              [multi-user mode](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/deployment/mdm-deployment/windows-multiuser/).
 
           extra_headers: Send extra headers
 
