@@ -20,7 +20,7 @@ __all__ = [
 
 class ConfigurationUpdateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     config: Config
     """The tunnel configuration and ingress rules."""
