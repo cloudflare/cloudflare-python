@@ -99,7 +99,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -162,7 +162,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -225,7 +225,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -288,7 +288,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -351,7 +351,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -414,7 +414,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -477,7 +477,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -540,7 +540,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -603,7 +603,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -667,7 +667,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -733,7 +733,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -796,7 +796,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -859,7 +859,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -922,7 +922,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -985,7 +985,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -1048,7 +1048,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -1111,7 +1111,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -1174,7 +1174,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -1237,7 +1237,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -1300,7 +1300,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -1369,7 +1369,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -1526,9 +1526,9 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -1592,9 +1592,9 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -1658,9 +1658,9 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -1724,9 +1724,9 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -1790,9 +1790,9 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -1856,9 +1856,9 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -1922,9 +1922,9 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -1988,9 +1988,9 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -2054,9 +2054,9 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -2121,9 +2121,9 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -2190,9 +2190,9 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -2256,9 +2256,9 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -2322,9 +2322,9 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -2388,9 +2388,9 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -2454,9 +2454,9 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -2520,9 +2520,9 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -2586,9 +2586,9 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -2652,9 +2652,9 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -2718,9 +2718,9 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -2784,9 +2784,9 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -2856,9 +2856,9 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -3037,7 +3037,7 @@ class RecordsResource(SyncAPIResource):
         List, search, sort, and filter a zones' DNS records.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           direction: Direction to order DNS records in.
 
@@ -3124,9 +3124,9 @@ class RecordsResource(SyncAPIResource):
         Delete DNS Record
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -3187,7 +3187,7 @@ class RecordsResource(SyncAPIResource):
           - Posts
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -3252,9 +3252,9 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -3318,9 +3318,9 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -3384,9 +3384,9 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -3450,9 +3450,9 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -3516,9 +3516,9 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -3582,9 +3582,9 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -3648,9 +3648,9 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -3714,9 +3714,9 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -3780,9 +3780,9 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -3847,9 +3847,9 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -3916,9 +3916,9 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -3982,9 +3982,9 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -4048,9 +4048,9 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -4114,9 +4114,9 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -4180,9 +4180,9 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -4246,9 +4246,9 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -4312,9 +4312,9 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -4378,9 +4378,9 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -4444,9 +4444,9 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -4510,9 +4510,9 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -4582,9 +4582,9 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -4731,7 +4731,7 @@ class RecordsResource(SyncAPIResource):
         for more information.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -4768,9 +4768,9 @@ class RecordsResource(SyncAPIResource):
         DNS Record Details
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -4825,7 +4825,7 @@ class RecordsResource(SyncAPIResource):
         for more information.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           file: BIND config to import.
 
@@ -4887,7 +4887,7 @@ class RecordsResource(SyncAPIResource):
         zone. Useful if you haven't updated your nameservers yet.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -4964,7 +4964,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -5027,7 +5027,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -5090,7 +5090,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -5153,7 +5153,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -5216,7 +5216,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -5279,7 +5279,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -5342,7 +5342,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -5405,7 +5405,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -5468,7 +5468,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -5532,7 +5532,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -5598,7 +5598,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -5661,7 +5661,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -5724,7 +5724,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -5787,7 +5787,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -5850,7 +5850,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -5913,7 +5913,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -5976,7 +5976,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -6039,7 +6039,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -6102,7 +6102,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -6165,7 +6165,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -6234,7 +6234,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -6391,9 +6391,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -6457,9 +6457,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -6523,9 +6523,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -6589,9 +6589,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -6655,9 +6655,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -6721,9 +6721,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -6787,9 +6787,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -6853,9 +6853,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -6919,9 +6919,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -6986,9 +6986,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -7055,9 +7055,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -7121,9 +7121,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -7187,9 +7187,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -7253,9 +7253,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -7319,9 +7319,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -7385,9 +7385,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -7451,9 +7451,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -7517,9 +7517,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -7583,9 +7583,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -7649,9 +7649,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -7721,9 +7721,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -7902,7 +7902,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         List, search, sort, and filter a zones' DNS records.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           direction: Direction to order DNS records in.
 
@@ -7989,9 +7989,9 @@ class AsyncRecordsResource(AsyncAPIResource):
         Delete DNS Record
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -8052,7 +8052,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           - Posts
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -8117,9 +8117,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -8183,9 +8183,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -8249,9 +8249,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -8315,9 +8315,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -8381,9 +8381,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -8447,9 +8447,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -8513,9 +8513,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -8579,9 +8579,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -8645,9 +8645,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -8712,9 +8712,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -8781,9 +8781,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -8847,9 +8847,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -8913,9 +8913,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -8979,9 +8979,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -9045,9 +9045,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -9111,9 +9111,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -9177,9 +9177,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -9243,9 +9243,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -9309,9 +9309,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -9375,9 +9375,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -9447,9 +9447,9 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -9596,7 +9596,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         for more information.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -9633,9 +9633,9 @@ class AsyncRecordsResource(AsyncAPIResource):
         DNS Record Details
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          dns_record_id: Identifier
+          dns_record_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -9690,7 +9690,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         for more information.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           file: BIND config to import.
 
@@ -9752,7 +9752,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         zone. Useful if you haven't updated your nameservers yet.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
