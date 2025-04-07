@@ -2531,6 +2531,46 @@ Methods:
 - <code title="put /accounts/{account_id}/workers/subdomain">client.workers.subdomains.<a href="./src/cloudflare/resources/workers/subdomains.py">update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/subdomain_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/subdomain_update_response.py">Optional[SubdomainUpdateResponse]</a></code>
 - <code title="get /accounts/{account_id}/workers/subdomain">client.workers.subdomains.<a href="./src/cloudflare/resources/workers/subdomains.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/workers/subdomain_get_response.py">Optional[SubdomainGetResponse]</a></code>
 
+## Observability
+
+### Telemetry
+
+#### Keys
+
+Types:
+
+```python
+from cloudflare.types.workers.observability.telemetry import KeyCreateResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/workers/observability/telemetry/keys">client.workers.observability.telemetry.keys.<a href="./src/cloudflare/resources/workers/observability/telemetry/keys.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/observability/telemetry/key_create_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/observability/telemetry/key_create_response.py">SyncSinglePage[KeyCreateResponse]</a></code>
+
+#### Query
+
+Types:
+
+```python
+from cloudflare.types.workers.observability.telemetry import QueryCreateResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/workers/observability/telemetry/query">client.workers.observability.telemetry.query.<a href="./src/cloudflare/resources/workers/observability/telemetry/query.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/observability/telemetry/query_create_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/observability/telemetry/query_create_response.py">QueryCreateResponse</a></code>
+
+#### Values
+
+Types:
+
+```python
+from cloudflare.types.workers.observability.telemetry import ValueCreateResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/workers/observability/telemetry/values">client.workers.observability.telemetry.values.<a href="./src/cloudflare/resources/workers/observability/telemetry/values.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/observability/telemetry/value_create_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/observability/telemetry/value_create_response.py">SyncSinglePage[ValueCreateResponse]</a></code>
+
 # KV
 
 ## Namespaces
