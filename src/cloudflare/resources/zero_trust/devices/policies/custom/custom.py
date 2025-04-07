@@ -49,6 +49,7 @@ from ......_base_client import AsyncPaginator, make_request_options
 from ......types.zero_trust.devices.policies import custom_edit_params, custom_create_params
 from ......types.zero_trust.devices.settings_policy import SettingsPolicy
 from ......types.zero_trust.devices.split_tunnel_exclude_param import SplitTunnelExcludeParam
+from ......types.zero_trust.devices.split_tunnel_include_param import SplitTunnelIncludeParam
 
 __all__ = ["CustomResource", "AsyncCustomResource"]
 
@@ -102,7 +103,7 @@ class CustomResource(SyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exclude: Iterable[SplitTunnelExcludeParam] | NotGiven = NOT_GIVEN,
         exclude_office_ips: bool | NotGiven = NOT_GIVEN,
-        include: Iterable[SplitTunnelExcludeParam] | NotGiven = NOT_GIVEN,
+        include: Iterable[SplitTunnelIncludeParam] | NotGiven = NOT_GIVEN,
         lan_allow_minutes: float | NotGiven = NOT_GIVEN,
         lan_allow_subnet_size: float | NotGiven = NOT_GIVEN,
         register_interface_ip_with_dns: bool | NotGiven = NOT_GIVEN,
@@ -272,8 +273,6 @@ class CustomResource(SyncAPIResource):
         for an account.
 
         Args:
-          policy_id: Device ID.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -311,7 +310,7 @@ class CustomResource(SyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exclude: Iterable[SplitTunnelExcludeParam] | NotGiven = NOT_GIVEN,
         exclude_office_ips: bool | NotGiven = NOT_GIVEN,
-        include: Iterable[SplitTunnelExcludeParam] | NotGiven = NOT_GIVEN,
+        include: Iterable[SplitTunnelIncludeParam] | NotGiven = NOT_GIVEN,
         match: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         precedence: float | NotGiven = NOT_GIVEN,
@@ -331,8 +330,6 @@ class CustomResource(SyncAPIResource):
         Updates a configured device settings profile.
 
         Args:
-          policy_id: Device ID.
-
           allow_mode_switch: Whether to allow the user to switch WARP between modes.
 
           allow_updates: Whether to receive update notifications when a new version of the client is
@@ -440,8 +437,6 @@ class CustomResource(SyncAPIResource):
         Fetches a device settings profile by ID.
 
         Args:
-          policy_id: Device ID.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -516,7 +511,7 @@ class AsyncCustomResource(AsyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exclude: Iterable[SplitTunnelExcludeParam] | NotGiven = NOT_GIVEN,
         exclude_office_ips: bool | NotGiven = NOT_GIVEN,
-        include: Iterable[SplitTunnelExcludeParam] | NotGiven = NOT_GIVEN,
+        include: Iterable[SplitTunnelIncludeParam] | NotGiven = NOT_GIVEN,
         lan_allow_minutes: float | NotGiven = NOT_GIVEN,
         lan_allow_subnet_size: float | NotGiven = NOT_GIVEN,
         register_interface_ip_with_dns: bool | NotGiven = NOT_GIVEN,
@@ -686,8 +681,6 @@ class AsyncCustomResource(AsyncAPIResource):
         for an account.
 
         Args:
-          policy_id: Device ID.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -725,7 +718,7 @@ class AsyncCustomResource(AsyncAPIResource):
         enabled: bool | NotGiven = NOT_GIVEN,
         exclude: Iterable[SplitTunnelExcludeParam] | NotGiven = NOT_GIVEN,
         exclude_office_ips: bool | NotGiven = NOT_GIVEN,
-        include: Iterable[SplitTunnelExcludeParam] | NotGiven = NOT_GIVEN,
+        include: Iterable[SplitTunnelIncludeParam] | NotGiven = NOT_GIVEN,
         match: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         precedence: float | NotGiven = NOT_GIVEN,
@@ -745,8 +738,6 @@ class AsyncCustomResource(AsyncAPIResource):
         Updates a configured device settings profile.
 
         Args:
-          policy_id: Device ID.
-
           allow_mode_switch: Whether to allow the user to switch WARP between modes.
 
           allow_updates: Whether to receive update notifications when a new version of the client is
@@ -854,8 +845,6 @@ class AsyncCustomResource(AsyncAPIResource):
         Fetches a device settings profile by ID.
 
         Args:
-          policy_id: Device ID.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

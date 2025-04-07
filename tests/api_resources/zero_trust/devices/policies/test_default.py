@@ -44,7 +44,7 @@ class TestDefault:
             include=[
                 {
                     "address": "192.0.2.0/24",
-                    "description": "Exclude testing domains from the tunnel",
+                    "description": "Include testing domains in the tunnel",
                 }
             ],
             register_interface_ip_with_dns=True,
@@ -158,7 +158,7 @@ class TestAsyncDefault:
             include=[
                 {
                     "address": "192.0.2.0/24",
-                    "description": "Exclude testing domains from the tunnel",
+                    "description": "Include testing domains in the tunnel",
                 }
             ],
             register_interface_ip_with_dns=True,

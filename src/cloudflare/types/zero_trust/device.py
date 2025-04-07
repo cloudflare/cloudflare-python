@@ -22,7 +22,11 @@ class User(BaseModel):
 
 class Device(BaseModel):
     id: Optional[str] = None
-    """Device ID."""
+    """Registration ID.
+
+    Equal to Device ID except for accounts which enabled
+    [multi-user mode](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/deployment/mdm-deployment/windows-multiuser/).
+    """
 
     created: Optional[datetime] = None
     """When the device was created."""

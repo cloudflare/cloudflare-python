@@ -55,7 +55,7 @@ class TestCustom:
             include=[
                 {
                     "address": "192.0.2.0/24",
-                    "description": "Exclude testing domains from the tunnel",
+                    "description": "Include testing domains in the tunnel",
                 }
             ],
             lan_allow_minutes=30,
@@ -233,7 +233,7 @@ class TestCustom:
             include=[
                 {
                     "address": "192.0.2.0/24",
-                    "description": "Exclude testing domains from the tunnel",
+                    "description": "Include testing domains in the tunnel",
                 }
             ],
             match='identity.email == "test@cloudflare.com"',
@@ -386,7 +386,7 @@ class TestAsyncCustom:
             include=[
                 {
                     "address": "192.0.2.0/24",
-                    "description": "Exclude testing domains from the tunnel",
+                    "description": "Include testing domains in the tunnel",
                 }
             ],
             lan_allow_minutes=30,
@@ -564,7 +564,7 @@ class TestAsyncCustom:
             include=[
                 {
                     "address": "192.0.2.0/24",
-                    "description": "Exclude testing domains from the tunnel",
+                    "description": "Include testing domains in the tunnel",
                 }
             ],
             match='identity.email == "test@cloudflare.com"',
