@@ -9,7 +9,7 @@ __all__ = ["LanguageUpdateParams"]
 
 class LanguageUpdateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     identifier: Required[str]
     """A Cloudflare-generated unique identifier for a media item."""

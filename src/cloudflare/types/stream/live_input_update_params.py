@@ -12,7 +12,7 @@ __all__ = ["LiveInputUpdateParams", "Recording"]
 
 class LiveInputUpdateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     default_creator: Annotated[str, PropertyInfo(alias="defaultCreator")]
     """Sets the creator ID asssociated with this live input."""
