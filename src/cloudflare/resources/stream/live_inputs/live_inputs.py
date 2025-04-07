@@ -80,7 +80,7 @@ class LiveInputsResource(SyncAPIResource):
         stream live video to Cloudflare Stream.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           default_creator: Sets the creator ID asssociated with this live input.
 
@@ -148,7 +148,7 @@ class LiveInputsResource(SyncAPIResource):
         Updates a specified live input.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           live_input_identifier: A unique identifier for a live input.
 
@@ -220,7 +220,7 @@ class LiveInputsResource(SyncAPIResource):
         stream to a specific live input, request a single live input.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           include_counts: Includes the total number of videos associated with the submitted query
               parameters.
@@ -265,7 +265,7 @@ class LiveInputsResource(SyncAPIResource):
         inaccessible to any future API calls.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           live_input_identifier: A unique identifier for a live input.
 
@@ -308,7 +308,7 @@ class LiveInputsResource(SyncAPIResource):
         Retrieves details of an existing live input.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           live_input_identifier: A unique identifier for a live input.
 
@@ -383,7 +383,7 @@ class AsyncLiveInputsResource(AsyncAPIResource):
         stream live video to Cloudflare Stream.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           default_creator: Sets the creator ID asssociated with this live input.
 
@@ -451,7 +451,7 @@ class AsyncLiveInputsResource(AsyncAPIResource):
         Updates a specified live input.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           live_input_identifier: A unique identifier for a live input.
 
@@ -523,7 +523,7 @@ class AsyncLiveInputsResource(AsyncAPIResource):
         stream to a specific live input, request a single live input.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           include_counts: Includes the total number of videos associated with the submitted query
               parameters.
@@ -570,7 +570,7 @@ class AsyncLiveInputsResource(AsyncAPIResource):
         inaccessible to any future API calls.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           live_input_identifier: A unique identifier for a live input.
 
@@ -613,7 +613,7 @@ class AsyncLiveInputsResource(AsyncAPIResource):
         Retrieves details of an existing live input.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           live_input_identifier: A unique identifier for a live input.
 
