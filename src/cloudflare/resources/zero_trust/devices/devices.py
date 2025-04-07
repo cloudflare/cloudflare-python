@@ -176,7 +176,12 @@ class DevicesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncSinglePage[Device]:
         """
-        Fetches a list of enrolled devices.
+        List WARP registrations.
+
+        **Deprecated**: please use one of the following endpoints instead:
+
+        - GET /accounts/{account_id}/devices/physical-devices
+        - GET /accounts/{account_id}/devices/registrations
 
         Args:
           extra_headers: Send extra headers
@@ -211,10 +216,16 @@ class DevicesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[DeviceGetResponse]:
         """
-        Fetches details for a single device.
+        Fetches a single WARP registration.
+
+        **Deprecated**: please use one of the following endpoints instead:
+
+        - GET /accounts/{account_id}/devices/physical-devices/{device_id}
+        - GET /accounts/{account_id}/devices/registrations/{registration_id}
 
         Args:
-          device_id: Device ID.
+          device_id: Registration ID. Equal to Device ID except for accounts which enabled
+              [multi-user mode](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/deployment/mdm-deployment/windows-multiuser/).
 
           extra_headers: Send extra headers
 
@@ -313,7 +324,12 @@ class AsyncDevicesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[Device, AsyncSinglePage[Device]]:
         """
-        Fetches a list of enrolled devices.
+        List WARP registrations.
+
+        **Deprecated**: please use one of the following endpoints instead:
+
+        - GET /accounts/{account_id}/devices/physical-devices
+        - GET /accounts/{account_id}/devices/registrations
 
         Args:
           extra_headers: Send extra headers
@@ -348,10 +364,16 @@ class AsyncDevicesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[DeviceGetResponse]:
         """
-        Fetches details for a single device.
+        Fetches a single WARP registration.
+
+        **Deprecated**: please use one of the following endpoints instead:
+
+        - GET /accounts/{account_id}/devices/physical-devices/{device_id}
+        - GET /accounts/{account_id}/devices/registrations/{registration_id}
 
         Args:
-          device_id: Device ID.
+          device_id: Registration ID. Equal to Device ID except for accounts which enabled
+              [multi-user mode](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/deployment/mdm-deployment/windows-multiuser/).
 
           extra_headers: Send extra headers
 

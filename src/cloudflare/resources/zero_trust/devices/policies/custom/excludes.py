@@ -62,8 +62,6 @@ class ExcludesResource(SyncAPIResource):
         device settings profile.
 
         Args:
-          policy_id: Device ID.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -104,8 +102,6 @@ class ExcludesResource(SyncAPIResource):
         device settings profile.
 
         Args:
-          policy_id: Device ID.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -166,8 +162,6 @@ class AsyncExcludesResource(AsyncAPIResource):
         device settings profile.
 
         Args:
-          policy_id: Device ID.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -208,8 +202,6 @@ class AsyncExcludesResource(AsyncAPIResource):
         device settings profile.
 
         Args:
-          policy_id: Device ID.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
