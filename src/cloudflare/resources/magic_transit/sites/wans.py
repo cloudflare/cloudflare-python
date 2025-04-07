@@ -55,10 +55,10 @@ class WANsResource(SyncAPIResource):
         *,
         account_id: str,
         physport: int,
-        vlan_tag: int,
         name: str | NotGiven = NOT_GIVEN,
         priority: int | NotGiven = NOT_GIVEN,
         static_addressing: WANStaticAddressingParam | NotGiven = NOT_GIVEN,
+        vlan_tag: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -74,10 +74,10 @@ class WANsResource(SyncAPIResource):
 
           site_id: Identifier
 
-          vlan_tag: VLAN port number.
-
           static_addressing: (optional) if omitted, use DHCP. Submit secondary_address when site is in high
               availability mode.
+
+          vlan_tag: VLAN ID. Use zero for untagged.
 
           extra_headers: Send extra headers
 
@@ -97,10 +97,10 @@ class WANsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "physport": physport,
-                    "vlan_tag": vlan_tag,
                     "name": name,
                     "priority": priority,
                     "static_addressing": static_addressing,
+                    "vlan_tag": vlan_tag,
                 },
                 wan_create_params.WANCreateParams,
             ),
@@ -142,7 +142,7 @@ class WANsResource(SyncAPIResource):
           static_addressing: (optional) if omitted, use DHCP. Submit secondary_address when site is in high
               availability mode.
 
-          vlan_tag: VLAN port number.
+          vlan_tag: VLAN ID. Use zero for untagged.
 
           extra_headers: Send extra headers
 
@@ -301,7 +301,7 @@ class WANsResource(SyncAPIResource):
           static_addressing: (optional) if omitted, use DHCP. Submit secondary_address when site is in high
               availability mode.
 
-          vlan_tag: VLAN port number.
+          vlan_tag: VLAN ID. Use zero for untagged.
 
           extra_headers: Send extra headers
 
@@ -415,10 +415,10 @@ class AsyncWANsResource(AsyncAPIResource):
         *,
         account_id: str,
         physport: int,
-        vlan_tag: int,
         name: str | NotGiven = NOT_GIVEN,
         priority: int | NotGiven = NOT_GIVEN,
         static_addressing: WANStaticAddressingParam | NotGiven = NOT_GIVEN,
+        vlan_tag: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -434,10 +434,10 @@ class AsyncWANsResource(AsyncAPIResource):
 
           site_id: Identifier
 
-          vlan_tag: VLAN port number.
-
           static_addressing: (optional) if omitted, use DHCP. Submit secondary_address when site is in high
               availability mode.
+
+          vlan_tag: VLAN ID. Use zero for untagged.
 
           extra_headers: Send extra headers
 
@@ -457,10 +457,10 @@ class AsyncWANsResource(AsyncAPIResource):
             body=maybe_transform(
                 {
                     "physport": physport,
-                    "vlan_tag": vlan_tag,
                     "name": name,
                     "priority": priority,
                     "static_addressing": static_addressing,
+                    "vlan_tag": vlan_tag,
                 },
                 wan_create_params.WANCreateParams,
             ),
@@ -502,7 +502,7 @@ class AsyncWANsResource(AsyncAPIResource):
           static_addressing: (optional) if omitted, use DHCP. Submit secondary_address when site is in high
               availability mode.
 
-          vlan_tag: VLAN port number.
+          vlan_tag: VLAN ID. Use zero for untagged.
 
           extra_headers: Send extra headers
 
@@ -661,7 +661,7 @@ class AsyncWANsResource(AsyncAPIResource):
           static_addressing: (optional) if omitted, use DHCP. Submit secondary_address when site is in high
               availability mode.
 
-          vlan_tag: VLAN port number.
+          vlan_tag: VLAN ID. Use zero for untagged.
 
           extra_headers: Send extra headers
 
