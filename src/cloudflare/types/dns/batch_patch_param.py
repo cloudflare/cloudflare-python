@@ -57,62 +57,62 @@ __all__ = [
 
 class A(ARecordParam, total=False):
     id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
 
 class AAAA(AAAARecordParam, total=False):
     id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
 
 class CAA(CAARecordParam, total=False):
     id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
 
 class CERT(CERTRecordParam, total=False):
     id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
 
 class CNAME(CNAMERecordParam, total=False):
     id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
 
 class DNSKEY(DNSKEYRecordParam, total=False):
     id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
 
 class DS(DSRecordParam, total=False):
     id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
 
 class HTTPS(HTTPSRecordParam, total=False):
     id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
 
 class LOC(LOCRecordParam, total=False):
     id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
 
 class MX(MXRecordParam, total=False):
     id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
 
 class NAPTR(NAPTRRecordParam, total=False):
     id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
 
 class NS(NSRecordParam, total=False):
     id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
 
 class OpenpgpkeySettings(TypedDict, total=False):
@@ -135,7 +135,7 @@ class OpenpgpkeySettings(TypedDict, total=False):
 
 class Openpgpkey(TypedDict, total=False):
     id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     comment: str
     """Comments or notes about the DNS record.
@@ -174,42 +174,42 @@ class Openpgpkey(TypedDict, total=False):
 
 class PTR(PTRRecordParam, total=False):
     id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
 
 class SMIMEA(SMIMEARecordParam, total=False):
     id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
 
 class SRV(SRVRecordParam, total=False):
     id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
 
 class SSHFP(SSHFPRecordParam, total=False):
     id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
 
 class SVCB(SVCBRecordParam, total=False):
     id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
 
 class TLSA(TLSARecordParam, total=False):
     id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
 
 class TXT(TXTRecordParam, total=False):
     id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
 
 class URI(URIRecordParam, total=False):
     id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
 
 BatchPatchParam: TypeAlias = Union[
