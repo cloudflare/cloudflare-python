@@ -3,8 +3,15 @@
 from typing import List
 from typing_extensions import TypeAlias
 
-from ..shared.response_info import ResponseInfo
+from ..._models import BaseModel
 
-__all__ = ["Message"]
+__all__ = ["Message", "MessageItem"]
 
-Message: TypeAlias = List[ResponseInfo]
+
+class MessageItem(BaseModel):
+    code: int
+
+    message: str
+
+
+Message: TypeAlias = List[MessageItem]
