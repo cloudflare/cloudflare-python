@@ -348,7 +348,7 @@ class TestTokens:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         token = client.accounts.tokens.list(
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
-            direction="asc",
+            direction="desc",
             page=1,
             per_page=5,
         )
@@ -862,7 +862,7 @@ class TestAsyncTokens:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         token = await async_client.accounts.tokens.list(
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
-            direction="asc",
+            direction="desc",
             page=1,
             per_page=5,
         )

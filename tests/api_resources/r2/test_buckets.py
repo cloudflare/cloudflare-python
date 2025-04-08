@@ -89,7 +89,7 @@ class TestBuckets:
         bucket = client.r2.buckets.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             cursor="cursor",
-            direction="asc",
+            direction="desc",
             name_contains="my-bucket",
             order="name",
             per_page=1,
@@ -332,7 +332,7 @@ class TestAsyncBuckets:
         bucket = await async_client.r2.buckets.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             cursor="cursor",
-            direction="asc",
+            direction="desc",
             name_contains="my-bucket",
             order="name",
             per_page=1,

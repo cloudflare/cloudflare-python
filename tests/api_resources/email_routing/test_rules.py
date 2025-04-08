@@ -24,7 +24,7 @@ class TestRules:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[
                 {
-                    "type": "drop",
+                    "type": "forward",
                     "value": ["destinationaddress@example.net"],
                 }
             ],
@@ -44,7 +44,7 @@ class TestRules:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[
                 {
-                    "type": "drop",
+                    "type": "forward",
                     "value": ["destinationaddress@example.net"],
                 }
             ],
@@ -67,7 +67,7 @@ class TestRules:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[
                 {
-                    "type": "drop",
+                    "type": "forward",
                     "value": ["destinationaddress@example.net"],
                 }
             ],
@@ -91,7 +91,7 @@ class TestRules:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[
                 {
-                    "type": "drop",
+                    "type": "forward",
                     "value": ["destinationaddress@example.net"],
                 }
             ],
@@ -118,7 +118,7 @@ class TestRules:
                 zone_id="",
                 actions=[
                     {
-                        "type": "drop",
+                        "type": "forward",
                         "value": ["destinationaddress@example.net"],
                     }
                 ],
@@ -138,7 +138,7 @@ class TestRules:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[
                 {
-                    "type": "drop",
+                    "type": "forward",
                     "value": ["destinationaddress@example.net"],
                 }
             ],
@@ -159,7 +159,7 @@ class TestRules:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[
                 {
-                    "type": "drop",
+                    "type": "forward",
                     "value": ["destinationaddress@example.net"],
                 }
             ],
@@ -183,7 +183,7 @@ class TestRules:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[
                 {
-                    "type": "drop",
+                    "type": "forward",
                     "value": ["destinationaddress@example.net"],
                 }
             ],
@@ -208,7 +208,7 @@ class TestRules:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[
                 {
-                    "type": "drop",
+                    "type": "forward",
                     "value": ["destinationaddress@example.net"],
                 }
             ],
@@ -236,7 +236,7 @@ class TestRules:
                 zone_id="",
                 actions=[
                     {
-                        "type": "drop",
+                        "type": "forward",
                         "value": ["destinationaddress@example.net"],
                     }
                 ],
@@ -255,7 +255,7 @@ class TestRules:
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 actions=[
                     {
-                        "type": "drop",
+                        "type": "forward",
                         "value": ["destinationaddress@example.net"],
                     }
                 ],
@@ -422,7 +422,7 @@ class TestAsyncRules:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[
                 {
-                    "type": "drop",
+                    "type": "forward",
                     "value": ["destinationaddress@example.net"],
                 }
             ],
@@ -442,7 +442,7 @@ class TestAsyncRules:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[
                 {
-                    "type": "drop",
+                    "type": "forward",
                     "value": ["destinationaddress@example.net"],
                 }
             ],
@@ -465,7 +465,7 @@ class TestAsyncRules:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[
                 {
-                    "type": "drop",
+                    "type": "forward",
                     "value": ["destinationaddress@example.net"],
                 }
             ],
@@ -489,7 +489,7 @@ class TestAsyncRules:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[
                 {
-                    "type": "drop",
+                    "type": "forward",
                     "value": ["destinationaddress@example.net"],
                 }
             ],
@@ -516,7 +516,7 @@ class TestAsyncRules:
                 zone_id="",
                 actions=[
                     {
-                        "type": "drop",
+                        "type": "forward",
                         "value": ["destinationaddress@example.net"],
                     }
                 ],
@@ -536,7 +536,7 @@ class TestAsyncRules:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[
                 {
-                    "type": "drop",
+                    "type": "forward",
                     "value": ["destinationaddress@example.net"],
                 }
             ],
@@ -557,7 +557,7 @@ class TestAsyncRules:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[
                 {
-                    "type": "drop",
+                    "type": "forward",
                     "value": ["destinationaddress@example.net"],
                 }
             ],
@@ -581,7 +581,7 @@ class TestAsyncRules:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[
                 {
-                    "type": "drop",
+                    "type": "forward",
                     "value": ["destinationaddress@example.net"],
                 }
             ],
@@ -606,7 +606,7 @@ class TestAsyncRules:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[
                 {
-                    "type": "drop",
+                    "type": "forward",
                     "value": ["destinationaddress@example.net"],
                 }
             ],
@@ -634,7 +634,7 @@ class TestAsyncRules:
                 zone_id="",
                 actions=[
                     {
-                        "type": "drop",
+                        "type": "forward",
                         "value": ["destinationaddress@example.net"],
                     }
                 ],
@@ -653,7 +653,7 @@ class TestAsyncRules:
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 actions=[
                     {
-                        "type": "drop",
+                        "type": "forward",
                         "value": ["destinationaddress@example.net"],
                     }
                 ],

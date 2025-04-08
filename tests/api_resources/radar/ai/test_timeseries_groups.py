@@ -26,7 +26,7 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_user_agent_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.ai.timeseries_groups.user_agent(
-            agg_interval="15m",
+            agg_interval="1h",
             asn=["string"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
@@ -71,7 +71,7 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_user_agent_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.ai.timeseries_groups.user_agent(
-            agg_interval="15m",
+            agg_interval="1h",
             asn=["string"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],

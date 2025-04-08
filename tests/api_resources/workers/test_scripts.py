@@ -43,7 +43,7 @@ class TestScripts:
                         "_headers": "/dashboard/*\nX-Frame-Options: DENY\n\n/static/*\nAccess-Control-Allow-Origin: *",
                         "_redirects": "/foo /bar 301\n/news/* /blog/:splat",
                         "html_handling": "auto-trailing-slash",
-                        "not_found_handling": "none",
+                        "not_found_handling": "404-page",
                         "run_worker_first": False,
                         "serve_directly": True,
                     },
@@ -52,7 +52,7 @@ class TestScripts:
                 "bindings": [
                     {
                         "name": "MY_ENV_VAR",
-                        "type": "ai",
+                        "type": "plain_text",
                     }
                 ],
                 "body_part": "worker.js",
@@ -316,7 +316,7 @@ class TestAsyncScripts:
                         "_headers": "/dashboard/*\nX-Frame-Options: DENY\n\n/static/*\nAccess-Control-Allow-Origin: *",
                         "_redirects": "/foo /bar 301\n/news/* /blog/:splat",
                         "html_handling": "auto-trailing-slash",
-                        "not_found_handling": "none",
+                        "not_found_handling": "404-page",
                         "run_worker_first": False,
                         "serve_directly": True,
                     },
@@ -325,7 +325,7 @@ class TestAsyncScripts:
                 "bindings": [
                     {
                         "name": "MY_ENV_VAR",
-                        "type": "ai",
+                        "type": "plain_text",
                     }
                 ],
                 "body_part": "worker.js",
