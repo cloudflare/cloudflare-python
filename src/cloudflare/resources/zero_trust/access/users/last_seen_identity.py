@@ -58,9 +58,9 @@ class LastSeenIdentityResource(SyncAPIResource):
         Get last seen identity for a single user.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          user_id: UUID
+          user_id: UUID.
 
           extra_headers: Send extra headers
 
@@ -123,9 +123,9 @@ class AsyncLastSeenIdentityResource(AsyncAPIResource):
         Get last seen identity for a single user.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          user_id: UUID
+          user_id: UUID.
 
           extra_headers: Send extra headers
 

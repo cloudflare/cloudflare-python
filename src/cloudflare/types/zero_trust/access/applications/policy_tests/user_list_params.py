@@ -9,7 +9,7 @@ __all__ = ["UserListParams"]
 
 class UserListParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     status: Literal["success", "fail"]
     """Filter users by their policy evaluation status."""

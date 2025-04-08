@@ -155,7 +155,7 @@ class GroupsResource(SyncAPIResource):
         Updates a configured Access group.
 
         Args:
-          group_id: UUID
+          group_id: UUID.
 
           include: Rules evaluated with an OR logical operator. A user needs to meet only one of
               the Include rules.
@@ -300,7 +300,7 @@ class GroupsResource(SyncAPIResource):
         Deletes an Access group.
 
         Args:
-          group_id: UUID
+          group_id: UUID.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -357,7 +357,7 @@ class GroupsResource(SyncAPIResource):
         Fetches a single Access group.
 
         Args:
-          group_id: UUID
+          group_id: UUID.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -520,7 +520,7 @@ class AsyncGroupsResource(AsyncAPIResource):
         Updates a configured Access group.
 
         Args:
-          group_id: UUID
+          group_id: UUID.
 
           include: Rules evaluated with an OR logical operator. A user needs to meet only one of
               the Include rules.
@@ -665,7 +665,7 @@ class AsyncGroupsResource(AsyncAPIResource):
         Deletes an Access group.
 
         Args:
-          group_id: UUID
+          group_id: UUID.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -722,7 +722,7 @@ class AsyncGroupsResource(AsyncAPIResource):
         Fetches a single Access group.
 
         Args:
-          group_id: UUID
+          group_id: UUID.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 

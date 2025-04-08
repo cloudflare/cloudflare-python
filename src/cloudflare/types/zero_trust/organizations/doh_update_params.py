@@ -9,7 +9,7 @@ __all__ = ["DOHUpdateParams"]
 
 class DOHUpdateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     doh_jwt_duration: str
     """The duration the DoH JWT is valid for.

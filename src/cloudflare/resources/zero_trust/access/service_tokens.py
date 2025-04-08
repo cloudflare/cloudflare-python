@@ -143,7 +143,7 @@ class ServiceTokensResource(SyncAPIResource):
         Updates a configured service token.
 
         Args:
-          service_token_id: UUID
+          service_token_id: UUID.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -278,7 +278,7 @@ class ServiceTokensResource(SyncAPIResource):
         Deletes a service token.
 
         Args:
-          service_token_id: UUID
+          service_token_id: UUID.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -335,7 +335,7 @@ class ServiceTokensResource(SyncAPIResource):
         Fetches a single service token.
 
         Args:
-          service_token_id: UUID
+          service_token_id: UUID.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -391,9 +391,9 @@ class ServiceTokensResource(SyncAPIResource):
         Refreshes the expiration of a service token.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          service_token_id: UUID
+          service_token_id: UUID.
 
           extra_headers: Send extra headers
 
@@ -435,9 +435,9 @@ class ServiceTokensResource(SyncAPIResource):
         Generates a new Client Secret for a service token and revokes the old one.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          service_token_id: UUID
+          service_token_id: UUID.
 
           extra_headers: Send extra headers
 
@@ -573,7 +573,7 @@ class AsyncServiceTokensResource(AsyncAPIResource):
         Updates a configured service token.
 
         Args:
-          service_token_id: UUID
+          service_token_id: UUID.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -708,7 +708,7 @@ class AsyncServiceTokensResource(AsyncAPIResource):
         Deletes a service token.
 
         Args:
-          service_token_id: UUID
+          service_token_id: UUID.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -765,7 +765,7 @@ class AsyncServiceTokensResource(AsyncAPIResource):
         Fetches a single service token.
 
         Args:
-          service_token_id: UUID
+          service_token_id: UUID.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -821,9 +821,9 @@ class AsyncServiceTokensResource(AsyncAPIResource):
         Refreshes the expiration of a service token.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          service_token_id: UUID
+          service_token_id: UUID.
 
           extra_headers: Send extra headers
 
@@ -865,9 +865,9 @@ class AsyncServiceTokensResource(AsyncAPIResource):
         Generates a new Client Secret for a service token and revokes the old one.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          service_token_id: UUID
+          service_token_id: UUID.
 
           extra_headers: Send extra headers
 

@@ -10,7 +10,7 @@ __all__ = ["UserListResponse"]
 
 class UserListResponse(BaseModel):
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     email: Optional[str] = None
     """The email of the user."""

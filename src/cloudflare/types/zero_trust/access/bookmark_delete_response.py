@@ -9,4 +9,4 @@ __all__ = ["BookmarkDeleteResponse"]
 
 class BookmarkDeleteResponse(BaseModel):
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""

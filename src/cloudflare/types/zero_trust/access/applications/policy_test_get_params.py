@@ -9,6 +9,6 @@ __all__ = ["PolicyTestGetParams"]
 
 class PolicyTestGetParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     page: int
