@@ -73,6 +73,7 @@ if TYPE_CHECKING:
         snippets,
         spectrum,
         hostnames,
+        pipelines,
         registrar,
         turnstile,
         vectorize,
@@ -143,6 +144,7 @@ if TYPE_CHECKING:
     from .resources.ssl.ssl import SSLResource, AsyncSSLResource
     from .resources.argo.argo import ArgoResource, AsyncArgoResource
     from .resources.logs.logs import LogsResource, AsyncLogsResource
+    from .resources.pipelines import PipelinesResource, AsyncPipelinesResource
     from .resources.user.user import UserResource, AsyncUserResource
     from .resources.web3.web3 import Web3Resource, AsyncWeb3Resource
     from .resources.audit_logs import AuditLogsResource, AsyncAuditLogsResource
@@ -893,6 +895,12 @@ class Cloudflare(SyncAPIClient):
         from .resources.secrets_store import SecretsStoreResource
 
         return SecretsStoreResource(self)
+
+    @cached_property
+    def pipelines(self) -> PipelinesResource:
+        from .resources.pipelines import PipelinesResource
+
+        return PipelinesResource(self)
 
     @cached_property
     def with_raw_response(self) -> CloudflareWithRawResponse:
@@ -1700,6 +1708,12 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncSecretsStoreResource(self)
 
     @cached_property
+    def pipelines(self) -> AsyncPipelinesResource:
+        from .resources.pipelines import AsyncPipelinesResource
+
+        return AsyncPipelinesResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncCloudflareWithRawResponse:
         return AsyncCloudflareWithRawResponse(self)
 
@@ -2439,6 +2453,12 @@ class CloudflareWithRawResponse:
 
         return SecretsStoreResourceWithRawResponse(self._client.secrets_store)
 
+    @cached_property
+    def pipelines(self) -> pipelines.PipelinesResourceWithRawResponse:
+        from .resources.pipelines import PipelinesResourceWithRawResponse
+
+        return PipelinesResourceWithRawResponse(self._client.pipelines)
+
 
 class AsyncCloudflareWithRawResponse:
     _client: AsyncCloudflare
@@ -3006,6 +3026,12 @@ class AsyncCloudflareWithRawResponse:
 
         return AsyncSecretsStoreResourceWithRawResponse(self._client.secrets_store)
 
+    @cached_property
+    def pipelines(self) -> pipelines.AsyncPipelinesResourceWithRawResponse:
+        from .resources.pipelines import AsyncPipelinesResourceWithRawResponse
+
+        return AsyncPipelinesResourceWithRawResponse(self._client.pipelines)
+
 
 class CloudflareWithStreamedResponse:
     _client: Cloudflare
@@ -3572,6 +3598,12 @@ class CloudflareWithStreamedResponse:
         from .resources.secrets_store import SecretsStoreResourceWithStreamingResponse
 
         return SecretsStoreResourceWithStreamingResponse(self._client.secrets_store)
+
+    @cached_property
+    def pipelines(self) -> pipelines.PipelinesResourceWithStreamingResponse:
+        from .resources.pipelines import PipelinesResourceWithStreamingResponse
+
+        return PipelinesResourceWithStreamingResponse(self._client.pipelines)
 
 
 class AsyncCloudflareWithStreamedResponse:
@@ -4149,6 +4181,12 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.secrets_store import AsyncSecretsStoreResourceWithStreamingResponse
 
         return AsyncSecretsStoreResourceWithStreamingResponse(self._client.secrets_store)
+
+    @cached_property
+    def pipelines(self) -> pipelines.AsyncPipelinesResourceWithStreamingResponse:
+        from .resources.pipelines import AsyncPipelinesResourceWithStreamingResponse
+
+        return AsyncPipelinesResourceWithStreamingResponse(self._client.pipelines)
 
 
 Client = Cloudflare
