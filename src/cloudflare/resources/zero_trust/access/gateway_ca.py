@@ -60,7 +60,7 @@ class GatewayCAResource(SyncAPIResource):
         Adds a new SSH Certificate Authority (CA).
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -99,7 +99,7 @@ class GatewayCAResource(SyncAPIResource):
         Lists SSH Certificate Authorities (CA).
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -136,9 +136,9 @@ class GatewayCAResource(SyncAPIResource):
         Deletes an SSH Certificate Authority.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          certificate_id: UUID
+          certificate_id: UUID.
 
           extra_headers: Send extra headers
 
@@ -200,7 +200,7 @@ class AsyncGatewayCAResource(AsyncAPIResource):
         Adds a new SSH Certificate Authority (CA).
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -239,7 +239,7 @@ class AsyncGatewayCAResource(AsyncAPIResource):
         Lists SSH Certificate Authorities (CA).
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -276,9 +276,9 @@ class AsyncGatewayCAResource(AsyncAPIResource):
         Deletes an SSH Certificate Authority.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          certificate_id: UUID
+          certificate_id: UUID.
 
           extra_headers: Send extra headers
 

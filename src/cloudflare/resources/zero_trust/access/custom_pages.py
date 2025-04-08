@@ -70,7 +70,7 @@ class CustomPagesResource(SyncAPIResource):
         Create a custom page
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           custom_html: Custom page HTML.
 
@@ -131,9 +131,9 @@ class CustomPagesResource(SyncAPIResource):
         Update a custom page
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          custom_page_id: UUID
+          custom_page_id: UUID.
 
           custom_html: Custom page HTML.
 
@@ -191,7 +191,7 @@ class CustomPagesResource(SyncAPIResource):
         List custom pages
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -228,9 +228,9 @@ class CustomPagesResource(SyncAPIResource):
         Delete a custom page
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          custom_page_id: UUID
+          custom_page_id: UUID.
 
           extra_headers: Send extra headers
 
@@ -272,9 +272,9 @@ class CustomPagesResource(SyncAPIResource):
         Fetches a custom page and also returns its HTML.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          custom_page_id: UUID
+          custom_page_id: UUID.
 
           extra_headers: Send extra headers
 
@@ -340,7 +340,7 @@ class AsyncCustomPagesResource(AsyncAPIResource):
         Create a custom page
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           custom_html: Custom page HTML.
 
@@ -401,9 +401,9 @@ class AsyncCustomPagesResource(AsyncAPIResource):
         Update a custom page
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          custom_page_id: UUID
+          custom_page_id: UUID.
 
           custom_html: Custom page HTML.
 
@@ -461,7 +461,7 @@ class AsyncCustomPagesResource(AsyncAPIResource):
         List custom pages
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -498,9 +498,9 @@ class AsyncCustomPagesResource(AsyncAPIResource):
         Delete a custom page
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          custom_page_id: UUID
+          custom_page_id: UUID.
 
           extra_headers: Send extra headers
 
@@ -542,9 +542,9 @@ class AsyncCustomPagesResource(AsyncAPIResource):
         Fetches a custom page and also returns its HTML.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          custom_page_id: UUID
+          custom_page_id: UUID.
 
           extra_headers: Send extra headers
 

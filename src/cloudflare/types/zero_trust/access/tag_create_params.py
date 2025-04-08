@@ -9,7 +9,7 @@ __all__ = ["TagCreateParams"]
 
 class TagCreateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     name: str
     """The name of the tag"""

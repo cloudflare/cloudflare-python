@@ -105,6 +105,7 @@ class TestApplications:
                     "precedence": 0,
                 }
             ],
+            read_service_tokens_from_header="Authorization",
             same_site_cookie_attribute="strict",
             scim_config={
                 "idp_uid": "idp_uid",
@@ -390,6 +391,7 @@ class TestApplications:
                     "precedence": 0,
                 }
             ],
+            read_service_tokens_from_header="Authorization",
             same_site_cookie_attribute="strict",
             scim_config={
                 "idp_uid": "idp_uid",
@@ -552,6 +554,7 @@ class TestApplications:
                     "precedence": 0,
                 }
             ],
+            read_service_tokens_from_header="Authorization",
             same_site_cookie_attribute="strict",
             scim_config={
                 "idp_uid": "idp_uid",
@@ -1269,6 +1272,7 @@ class TestApplications:
                     "precedence": 0,
                 }
             ],
+            read_service_tokens_from_header="Authorization",
             same_site_cookie_attribute="strict",
             scim_config={
                 "idp_uid": "idp_uid",
@@ -1461,6 +1465,7 @@ class TestApplications:
                     "precedence": 0,
                 }
             ],
+            read_service_tokens_from_header="Authorization",
             same_site_cookie_attribute="strict",
             scim_config={
                 "idp_uid": "idp_uid",
@@ -1772,6 +1777,7 @@ class TestApplications:
                     "precedence": 0,
                 }
             ],
+            read_service_tokens_from_header="Authorization",
             same_site_cookie_attribute="strict",
             scim_config={
                 "idp_uid": "idp_uid",
@@ -1948,6 +1954,7 @@ class TestApplications:
                     "precedence": 0,
                 }
             ],
+            read_service_tokens_from_header="Authorization",
             same_site_cookie_attribute="strict",
             scim_config={
                 "idp_uid": "idp_uid",
@@ -2750,6 +2757,7 @@ class TestApplications:
                     "precedence": 0,
                 }
             ],
+            read_service_tokens_from_header="Authorization",
             same_site_cookie_attribute="strict",
             scim_config={
                 "idp_uid": "idp_uid",
@@ -3223,6 +3231,7 @@ class TestAsyncApplications:
                     "precedence": 0,
                 }
             ],
+            read_service_tokens_from_header="Authorization",
             same_site_cookie_attribute="strict",
             scim_config={
                 "idp_uid": "idp_uid",
@@ -3508,6 +3517,7 @@ class TestAsyncApplications:
                     "precedence": 0,
                 }
             ],
+            read_service_tokens_from_header="Authorization",
             same_site_cookie_attribute="strict",
             scim_config={
                 "idp_uid": "idp_uid",
@@ -3670,6 +3680,7 @@ class TestAsyncApplications:
                     "precedence": 0,
                 }
             ],
+            read_service_tokens_from_header="Authorization",
             same_site_cookie_attribute="strict",
             scim_config={
                 "idp_uid": "idp_uid",
@@ -4387,6 +4398,7 @@ class TestAsyncApplications:
                     "precedence": 0,
                 }
             ],
+            read_service_tokens_from_header="Authorization",
             same_site_cookie_attribute="strict",
             scim_config={
                 "idp_uid": "idp_uid",
@@ -4579,6 +4591,7 @@ class TestAsyncApplications:
                     "precedence": 0,
                 }
             ],
+            read_service_tokens_from_header="Authorization",
             same_site_cookie_attribute="strict",
             scim_config={
                 "idp_uid": "idp_uid",
@@ -4890,6 +4903,7 @@ class TestAsyncApplications:
                     "precedence": 0,
                 }
             ],
+            read_service_tokens_from_header="Authorization",
             same_site_cookie_attribute="strict",
             scim_config={
                 "idp_uid": "idp_uid",
@@ -5066,6 +5080,7 @@ class TestAsyncApplications:
                     "precedence": 0,
                 }
             ],
+            read_service_tokens_from_header="Authorization",
             same_site_cookie_attribute="strict",
             scim_config={
                 "idp_uid": "idp_uid",
@@ -5868,6 +5883,7 @@ class TestAsyncApplications:
                     "precedence": 0,
                 }
             ],
+            read_service_tokens_from_header="Authorization",
             same_site_cookie_attribute="strict",
             scim_config={
                 "idp_uid": "idp_uid",
