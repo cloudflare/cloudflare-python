@@ -158,6 +158,9 @@ class Redirect(BaseModel):
     target_uri: str
     """URI to which the user will be redirected"""
 
+    include_context: Optional[bool] = None
+    """If true, context information will be passed as query parameters"""
+
     preserve_path_and_query: Optional[bool] = None
     """
     If true, the path and query parameters from the original request will be
