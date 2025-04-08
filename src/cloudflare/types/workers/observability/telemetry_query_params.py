@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import List, Union, Iterable
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
-from ....._utils import PropertyInfo
+from ...._utils import PropertyInfo
 
 __all__ = [
-    "QueryCreateParams",
+    "TelemetryQueryParams",
     "Timeframe",
     "Parameters",
     "ParametersCalculation",
@@ -20,7 +20,7 @@ __all__ = [
 ]
 
 
-class QueryCreateParams(TypedDict, total=False):
+class TelemetryQueryParams(TypedDict, total=False):
     account_id: Required[str]
 
     query_id: Required[Annotated[str, PropertyInfo(alias="queryId")]]

@@ -3,12 +3,12 @@
 from typing import Union
 from typing_extensions import Literal
 
-from ....._models import BaseModel
+from ...._models import BaseModel
 
-__all__ = ["ValueCreateResponse"]
+__all__ = ["TelemetryValuesResponse"]
 
 
-class ValueCreateResponse(BaseModel):
+class TelemetryValuesResponse(BaseModel):
     dataset: str
 
     key: str

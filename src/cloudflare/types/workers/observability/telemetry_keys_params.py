@@ -5,12 +5,12 @@ from __future__ import annotations
 from typing import List, Union, Iterable
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
-from ....._utils import PropertyInfo
+from ...._utils import PropertyInfo
 
-__all__ = ["KeyCreateParams", "Filter", "KeyNeedle", "Needle", "Timeframe"]
+__all__ = ["TelemetryKeysParams", "Filter", "KeyNeedle", "Needle", "Timeframe"]
 
 
-class KeyCreateParams(TypedDict, total=False):
+class TelemetryKeysParams(TypedDict, total=False):
     account_id: Required[str]
 
     datasets: List[str]
