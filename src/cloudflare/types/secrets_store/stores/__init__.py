@@ -11,7 +11,5 @@ from .secret_list_response import SecretListResponse as SecretListResponse
 from .secret_create_response import SecretCreateResponse as SecretCreateResponse
 from .secret_delete_response import SecretDeleteResponse as SecretDeleteResponse
 from .secret_duplicate_params import SecretDuplicateParams as SecretDuplicateParams
-from .secret_bulkd_edit_params import SecretBulkdEditParams as SecretBulkdEditParams
 from .secret_duplicate_response import SecretDuplicateResponse as SecretDuplicateResponse
-from .secret_bulkd_edit_response import SecretBulkdEditResponse as SecretBulkdEditResponse
 from .secret_bulk_delete_response import SecretBulkDeleteResponse as SecretBulkDeleteResponse
