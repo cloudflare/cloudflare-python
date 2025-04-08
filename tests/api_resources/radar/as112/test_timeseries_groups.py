@@ -33,7 +33,7 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_dnssec_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.as112.timeseries_groups.dnssec(
-            agg_interval="15m",
+            agg_interval="1h",
             asn=["string"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
@@ -76,7 +76,7 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_edns_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.as112.timeseries_groups.edns(
-            agg_interval="15m",
+            agg_interval="1h",
             asn=["string"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
@@ -119,7 +119,7 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_ip_version_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.as112.timeseries_groups.ip_version(
-            agg_interval="15m",
+            agg_interval="1h",
             asn=["string"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
@@ -162,7 +162,7 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_protocol_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.as112.timeseries_groups.protocol(
-            agg_interval="15m",
+            agg_interval="1h",
             asn=["string"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
@@ -204,7 +204,7 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_query_type_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.as112.timeseries_groups.query_type(
-            agg_interval="15m",
+            agg_interval="1h",
             asn=["string"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
@@ -247,7 +247,7 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_response_codes_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.as112.timeseries_groups.response_codes(
-            agg_interval="15m",
+            agg_interval="1h",
             asn=["string"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
@@ -294,7 +294,7 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_dnssec_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.as112.timeseries_groups.dnssec(
-            agg_interval="15m",
+            agg_interval="1h",
             asn=["string"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
@@ -337,7 +337,7 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_edns_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.as112.timeseries_groups.edns(
-            agg_interval="15m",
+            agg_interval="1h",
             asn=["string"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
@@ -380,7 +380,7 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_ip_version_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.as112.timeseries_groups.ip_version(
-            agg_interval="15m",
+            agg_interval="1h",
             asn=["string"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
@@ -423,7 +423,7 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_protocol_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.as112.timeseries_groups.protocol(
-            agg_interval="15m",
+            agg_interval="1h",
             asn=["string"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
@@ -465,7 +465,7 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_query_type_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.as112.timeseries_groups.query_type(
-            agg_interval="15m",
+            agg_interval="1h",
             asn=["string"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
@@ -508,7 +508,7 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_response_codes_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.as112.timeseries_groups.response_codes(
-            agg_interval="15m",
+            agg_interval="1h",
             asn=["string"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],

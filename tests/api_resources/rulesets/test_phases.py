@@ -21,7 +21,7 @@ class TestPhases:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         phase = client.rulesets.phases.update(
-            ruleset_phase="ddos_l4",
+            ruleset_phase="http_request_firewall_custom",
             account_id="account_id",
         )
         assert_matches_type(PhaseUpdateResponse, phase, path=["response"])
@@ -30,7 +30,7 @@ class TestPhases:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         phase = client.rulesets.phases.update(
-            ruleset_phase="ddos_l4",
+            ruleset_phase="http_request_firewall_custom",
             account_id="account_id",
             description="My ruleset to execute managed rulesets",
             name="My ruleset",
@@ -55,7 +55,7 @@ class TestPhases:
                     "logging": {"enabled": True},
                     "ratelimit": {
                         "characteristics": ["ip.src"],
-                        "period": 10,
+                        "period": 60,
                         "counting_expression": 'http.request.body.raw eq "abcd"',
                         "mitigation_timeout": 600,
                         "requests_per_period": 1000,
@@ -73,7 +73,7 @@ class TestPhases:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.rulesets.phases.with_raw_response.update(
-            ruleset_phase="ddos_l4",
+            ruleset_phase="http_request_firewall_custom",
             account_id="account_id",
         )
 
@@ -86,7 +86,7 @@ class TestPhases:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.rulesets.phases.with_streaming_response.update(
-            ruleset_phase="ddos_l4",
+            ruleset_phase="http_request_firewall_custom",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -102,13 +102,13 @@ class TestPhases:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.phases.with_raw_response.update(
-                ruleset_phase="ddos_l4",
+                ruleset_phase="http_request_firewall_custom",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.phases.with_raw_response.update(
-                ruleset_phase="ddos_l4",
+                ruleset_phase="http_request_firewall_custom",
                 account_id="account_id",
             )
 
@@ -116,7 +116,7 @@ class TestPhases:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         phase = client.rulesets.phases.get(
-            ruleset_phase="ddos_l4",
+            ruleset_phase="http_request_firewall_custom",
             account_id="account_id",
         )
         assert_matches_type(PhaseGetResponse, phase, path=["response"])
@@ -125,7 +125,7 @@ class TestPhases:
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         phase = client.rulesets.phases.get(
-            ruleset_phase="ddos_l4",
+            ruleset_phase="http_request_firewall_custom",
             account_id="account_id",
         )
         assert_matches_type(PhaseGetResponse, phase, path=["response"])
@@ -134,7 +134,7 @@ class TestPhases:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.rulesets.phases.with_raw_response.get(
-            ruleset_phase="ddos_l4",
+            ruleset_phase="http_request_firewall_custom",
             account_id="account_id",
         )
 
@@ -147,7 +147,7 @@ class TestPhases:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.rulesets.phases.with_streaming_response.get(
-            ruleset_phase="ddos_l4",
+            ruleset_phase="http_request_firewall_custom",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -163,13 +163,13 @@ class TestPhases:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.phases.with_raw_response.get(
-                ruleset_phase="ddos_l4",
+                ruleset_phase="http_request_firewall_custom",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             client.rulesets.phases.with_raw_response.get(
-                ruleset_phase="ddos_l4",
+                ruleset_phase="http_request_firewall_custom",
                 account_id="account_id",
             )
 
@@ -181,7 +181,7 @@ class TestAsyncPhases:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         phase = await async_client.rulesets.phases.update(
-            ruleset_phase="ddos_l4",
+            ruleset_phase="http_request_firewall_custom",
             account_id="account_id",
         )
         assert_matches_type(PhaseUpdateResponse, phase, path=["response"])
@@ -190,7 +190,7 @@ class TestAsyncPhases:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         phase = await async_client.rulesets.phases.update(
-            ruleset_phase="ddos_l4",
+            ruleset_phase="http_request_firewall_custom",
             account_id="account_id",
             description="My ruleset to execute managed rulesets",
             name="My ruleset",
@@ -215,7 +215,7 @@ class TestAsyncPhases:
                     "logging": {"enabled": True},
                     "ratelimit": {
                         "characteristics": ["ip.src"],
-                        "period": 10,
+                        "period": 60,
                         "counting_expression": 'http.request.body.raw eq "abcd"',
                         "mitigation_timeout": 600,
                         "requests_per_period": 1000,
@@ -233,7 +233,7 @@ class TestAsyncPhases:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.rulesets.phases.with_raw_response.update(
-            ruleset_phase="ddos_l4",
+            ruleset_phase="http_request_firewall_custom",
             account_id="account_id",
         )
 
@@ -246,7 +246,7 @@ class TestAsyncPhases:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rulesets.phases.with_streaming_response.update(
-            ruleset_phase="ddos_l4",
+            ruleset_phase="http_request_firewall_custom",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -262,13 +262,13 @@ class TestAsyncPhases:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.phases.with_raw_response.update(
-                ruleset_phase="ddos_l4",
+                ruleset_phase="http_request_firewall_custom",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.phases.with_raw_response.update(
-                ruleset_phase="ddos_l4",
+                ruleset_phase="http_request_firewall_custom",
                 account_id="account_id",
             )
 
@@ -276,7 +276,7 @@ class TestAsyncPhases:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         phase = await async_client.rulesets.phases.get(
-            ruleset_phase="ddos_l4",
+            ruleset_phase="http_request_firewall_custom",
             account_id="account_id",
         )
         assert_matches_type(PhaseGetResponse, phase, path=["response"])
@@ -285,7 +285,7 @@ class TestAsyncPhases:
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         phase = await async_client.rulesets.phases.get(
-            ruleset_phase="ddos_l4",
+            ruleset_phase="http_request_firewall_custom",
             account_id="account_id",
         )
         assert_matches_type(PhaseGetResponse, phase, path=["response"])
@@ -294,7 +294,7 @@ class TestAsyncPhases:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.rulesets.phases.with_raw_response.get(
-            ruleset_phase="ddos_l4",
+            ruleset_phase="http_request_firewall_custom",
             account_id="account_id",
         )
 
@@ -307,7 +307,7 @@ class TestAsyncPhases:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rulesets.phases.with_streaming_response.get(
-            ruleset_phase="ddos_l4",
+            ruleset_phase="http_request_firewall_custom",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -323,12 +323,12 @@ class TestAsyncPhases:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.phases.with_raw_response.get(
-                ruleset_phase="ddos_l4",
+                ruleset_phase="http_request_firewall_custom",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"You must provide either account_id or zone_id"):
             await async_client.rulesets.phases.with_raw_response.get(
-                ruleset_phase="ddos_l4",
+                ruleset_phase="http_request_firewall_custom",
                 account_id="account_id",
             )
