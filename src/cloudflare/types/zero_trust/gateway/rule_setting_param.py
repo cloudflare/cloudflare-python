@@ -157,6 +157,9 @@ class Redirect(TypedDict, total=False):
     target_uri: Required[str]
     """URI to which the user will be redirected"""
 
+    include_context: bool
+    """If true, context information will be passed as query parameters"""
+
     preserve_path_and_query: bool
     """
     If true, the path and query parameters from the original request will be
