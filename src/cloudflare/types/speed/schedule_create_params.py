@@ -9,7 +9,7 @@ __all__ = ["ScheduleCreateParams"]
 
 class ScheduleCreateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     region: Literal[
         "asia-east1",
