@@ -29,7 +29,7 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_bot_class_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.leaked_credentials.timeseries_groups.bot_class(
-            agg_interval="15m",
+            agg_interval="1h",
             compromised=["CLEAN"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
@@ -67,7 +67,7 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_compromised_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.leaked_credentials.timeseries_groups.compromised(
-            agg_interval="15m",
+            agg_interval="1h",
             bot_class=["LIKELY_AUTOMATED"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
@@ -109,7 +109,7 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_bot_class_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.leaked_credentials.timeseries_groups.bot_class(
-            agg_interval="15m",
+            agg_interval="1h",
             compromised=["CLEAN"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
@@ -149,7 +149,7 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_compromised_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.leaked_credentials.timeseries_groups.compromised(
-            agg_interval="15m",
+            agg_interval="1h",
             bot_class=["LIKELY_AUTOMATED"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],

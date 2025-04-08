@@ -39,7 +39,7 @@ class TestPosture:
             description="The rule for admin serial numbers",
             expiration="1h",
             input={
-                "operating_system": "windows",
+                "operating_system": "linux",
                 "path": "/bin/cat",
                 "exists": True,
                 "sha256": "https://api.us-2.crowdstrike.com",
@@ -107,7 +107,7 @@ class TestPosture:
             description="The rule for admin serial numbers",
             expiration="1h",
             input={
-                "operating_system": "windows",
+                "operating_system": "linux",
                 "path": "/bin/cat",
                 "exists": True,
                 "sha256": "https://api.us-2.crowdstrike.com",
@@ -322,7 +322,7 @@ class TestAsyncPosture:
             description="The rule for admin serial numbers",
             expiration="1h",
             input={
-                "operating_system": "windows",
+                "operating_system": "linux",
                 "path": "/bin/cat",
                 "exists": True,
                 "sha256": "https://api.us-2.crowdstrike.com",
@@ -390,7 +390,7 @@ class TestAsyncPosture:
             description="The rule for admin serial numbers",
             expiration="1h",
             input={
-                "operating_system": "windows",
+                "operating_system": "linux",
                 "path": "/bin/cat",
                 "exists": True,
                 "sha256": "https://api.us-2.crowdstrike.com",
