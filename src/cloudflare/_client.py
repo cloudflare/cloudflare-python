@@ -97,6 +97,7 @@ if TYPE_CHECKING:
         abuse_reports,
         email_routing,
         magic_transit,
+        secrets_store,
         waiting_rooms,
         bot_management,
         cloudforce_one,
@@ -199,6 +200,7 @@ if TYPE_CHECKING:
     from .resources.healthchecks.healthchecks import HealthchecksResource, AsyncHealthchecksResource
     from .resources.email_routing.email_routing import EmailRoutingResource, AsyncEmailRoutingResource
     from .resources.magic_transit.magic_transit import MagicTransitResource, AsyncMagicTransitResource
+    from .resources.secrets_store.secrets_store import SecretsStoreResource, AsyncSecretsStoreResource
     from .resources.waiting_rooms.waiting_rooms import WaitingRoomsResource, AsyncWaitingRoomsResource
     from .resources.cloudforce_one.cloudforce_one import CloudforceOneResource, AsyncCloudforceOneResource
     from .resources.email_security.email_security import EmailSecurityResource, AsyncEmailSecurityResource
@@ -885,6 +887,12 @@ class Cloudflare(SyncAPIClient):
         from .resources.custom_pages import CustomPagesResource
 
         return CustomPagesResource(self)
+
+    @cached_property
+    def secrets_store(self) -> SecretsStoreResource:
+        from .resources.secrets_store import SecretsStoreResource
+
+        return SecretsStoreResource(self)
 
     @cached_property
     def with_raw_response(self) -> CloudflareWithRawResponse:
@@ -1686,6 +1694,12 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncCustomPagesResource(self)
 
     @cached_property
+    def secrets_store(self) -> AsyncSecretsStoreResource:
+        from .resources.secrets_store import AsyncSecretsStoreResource
+
+        return AsyncSecretsStoreResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncCloudflareWithRawResponse:
         return AsyncCloudflareWithRawResponse(self)
 
@@ -2419,6 +2433,12 @@ class CloudflareWithRawResponse:
 
         return CustomPagesResourceWithRawResponse(self._client.custom_pages)
 
+    @cached_property
+    def secrets_store(self) -> secrets_store.SecretsStoreResourceWithRawResponse:
+        from .resources.secrets_store import SecretsStoreResourceWithRawResponse
+
+        return SecretsStoreResourceWithRawResponse(self._client.secrets_store)
+
 
 class AsyncCloudflareWithRawResponse:
     _client: AsyncCloudflare
@@ -2980,6 +3000,12 @@ class AsyncCloudflareWithRawResponse:
 
         return AsyncCustomPagesResourceWithRawResponse(self._client.custom_pages)
 
+    @cached_property
+    def secrets_store(self) -> secrets_store.AsyncSecretsStoreResourceWithRawResponse:
+        from .resources.secrets_store import AsyncSecretsStoreResourceWithRawResponse
+
+        return AsyncSecretsStoreResourceWithRawResponse(self._client.secrets_store)
+
 
 class CloudflareWithStreamedResponse:
     _client: Cloudflare
@@ -3540,6 +3566,12 @@ class CloudflareWithStreamedResponse:
         from .resources.custom_pages import CustomPagesResourceWithStreamingResponse
 
         return CustomPagesResourceWithStreamingResponse(self._client.custom_pages)
+
+    @cached_property
+    def secrets_store(self) -> secrets_store.SecretsStoreResourceWithStreamingResponse:
+        from .resources.secrets_store import SecretsStoreResourceWithStreamingResponse
+
+        return SecretsStoreResourceWithStreamingResponse(self._client.secrets_store)
 
 
 class AsyncCloudflareWithStreamedResponse:
@@ -4111,6 +4143,12 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.custom_pages import AsyncCustomPagesResourceWithStreamingResponse
 
         return AsyncCustomPagesResourceWithStreamingResponse(self._client.custom_pages)
+
+    @cached_property
+    def secrets_store(self) -> secrets_store.AsyncSecretsStoreResourceWithStreamingResponse:
+        from .resources.secrets_store import AsyncSecretsStoreResourceWithStreamingResponse
+
+        return AsyncSecretsStoreResourceWithStreamingResponse(self._client.secrets_store)
 
 
 Client = Cloudflare
