@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import List, Iterable
 from typing_extensions import Required, TypedDict
 
 __all__ = ["SecretCreateParams", "Body"]
@@ -18,6 +18,9 @@ class SecretCreateParams(TypedDict, total=False):
 class Body(TypedDict, total=False):
     name: Required[str]
     """The name of the secret"""
+
+    scopes: Required[List[str]]
+    """The list of services that can use this secret."""
 
     value: Required[str]
     """The value of the secret.

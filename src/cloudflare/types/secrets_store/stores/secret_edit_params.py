@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import List
 from typing_extensions import Required, TypedDict
 
 __all__ = ["SecretEditParams"]
@@ -16,6 +17,9 @@ class SecretEditParams(TypedDict, total=False):
 
     name: Required[str]
     """The name of the secret"""
+
+    scopes: List[str]
+    """The list of services that can use this secret."""
 
     value: str
     """The value of the secret.
