@@ -5237,6 +5237,30 @@ Methods:
 - <code title="post /accounts/{account_id}/devices/resilience/disconnect">client.zero_trust.devices.resilience.global_warp_override.<a href="./src/cloudflare/resources/zero_trust/devices/resilience/global_warp_override.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/resilience/global_warp_override_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/resilience/global_warp_override_create_response.py">Optional[GlobalWARPOverrideCreateResponse]</a></code>
 - <code title="get /accounts/{account_id}/devices/resilience/disconnect">client.zero_trust.devices.resilience.global_warp_override.<a href="./src/cloudflare/resources/zero_trust/devices/resilience/global_warp_override.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/resilience/global_warp_override_get_response.py">Optional[GlobalWARPOverrideGetResponse]</a></code>
 
+### Registrations
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.devices import (
+    RegistrationListResponse,
+    RegistrationDeleteResponse,
+    RegistrationBulkDeleteResponse,
+    RegistrationGetResponse,
+    RegistrationRevokeResponse,
+    RegistrationUnrevokeResponse,
+)
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/devices/registrations">client.zero_trust.devices.registrations.<a href="./src/cloudflare/resources/zero_trust/devices/registrations.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/registration_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/registration_list_response.py">SyncCursorPagination[RegistrationListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/devices/registrations/{registration_id}">client.zero_trust.devices.registrations.<a href="./src/cloudflare/resources/zero_trust/devices/registrations.py">delete</a>(registration_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/registration_delete_response.py">object</a></code>
+- <code title="delete /accounts/{account_id}/devices/registrations">client.zero_trust.devices.registrations.<a href="./src/cloudflare/resources/zero_trust/devices/registrations.py">bulk_delete</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/registration_bulk_delete_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/registration_bulk_delete_response.py">object</a></code>
+- <code title="get /accounts/{account_id}/devices/registrations/{registration_id}">client.zero_trust.devices.registrations.<a href="./src/cloudflare/resources/zero_trust/devices/registrations.py">get</a>(registration_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/registration_get_response.py">RegistrationGetResponse</a></code>
+- <code title="post /accounts/{account_id}/devices/registrations/revoke">client.zero_trust.devices.registrations.<a href="./src/cloudflare/resources/zero_trust/devices/registrations.py">revoke</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/registration_revoke_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/registration_revoke_response.py">object</a></code>
+- <code title="post /accounts/{account_id}/devices/registrations/unrevoke">client.zero_trust.devices.registrations.<a href="./src/cloudflare/resources/zero_trust/devices/registrations.py">unrevoke</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/registration_unrevoke_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/registration_unrevoke_response.py">object</a></code>
+
 ### DEXTests
 
 Types:
@@ -5477,12 +5501,13 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.devices import OverrideCodeListResponse
+from cloudflare.types.zero_trust.devices import OverrideCodeListResponse, OverrideCodeGetResponse
 ```
 
 Methods:
 
 - <code title="get /accounts/{account_id}/devices/{device_id}/override_codes">client.zero_trust.devices.override_codes.<a href="./src/cloudflare/resources/zero_trust/devices/override_codes.py">list</a>(device_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/override_code_list_response.py">Optional[OverrideCodeListResponse]</a></code>
+- <code title="get /accounts/{account_id}/devices/registrations/{registration_id}/override_codes">client.zero_trust.devices.override_codes.<a href="./src/cloudflare/resources/zero_trust/devices/override_codes.py">get</a>(registration_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/override_code_get_response.py">OverrideCodeGetResponse</a></code>
 
 ## IdentityProviders
 
