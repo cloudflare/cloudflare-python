@@ -13,7 +13,7 @@ __all__ = ["UpdateListParams"]
 
 class UpdateListParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     idp_id: Required[List[str]]
     """The unique Id of the IdP that has SCIM enabled."""

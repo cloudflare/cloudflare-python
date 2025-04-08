@@ -9,7 +9,7 @@ __all__ = ["UserListParams"]
 
 class UserListParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     email: str
     """The email of the user."""

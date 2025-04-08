@@ -61,7 +61,7 @@ class UsersResource(SyncAPIResource):
         Fetches a single page of user results from an Access policy test.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           policy_test_id: The UUID of the policy test.
 
@@ -130,7 +130,7 @@ class AsyncUsersResource(AsyncAPIResource):
         Fetches a single page of user results from an Access policy test.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           policy_test_id: The UUID of the policy test.
 

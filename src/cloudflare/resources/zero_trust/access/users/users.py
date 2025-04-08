@@ -96,7 +96,7 @@ class UsersResource(SyncAPIResource):
         Gets a list of users for an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           email: The email of the user.
 
@@ -185,7 +185,7 @@ class AsyncUsersResource(AsyncAPIResource):
         Gets a list of users for an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           email: The email of the user.
 

@@ -76,7 +76,7 @@ class PolicyTestsResource(SyncAPIResource):
         Starts an Access policy test.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -118,7 +118,7 @@ class PolicyTestsResource(SyncAPIResource):
         Fetches the current status of a given Access policy test.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           policy_test_id: The UUID of the policy test.
 
@@ -188,7 +188,7 @@ class AsyncPolicyTestsResource(AsyncAPIResource):
         Starts an Access policy test.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -230,7 +230,7 @@ class AsyncPolicyTestsResource(AsyncAPIResource):
         Fetches the current status of a given Access policy test.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           policy_test_id: The UUID of the policy test.
 

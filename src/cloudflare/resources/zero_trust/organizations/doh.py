@@ -65,7 +65,7 @@ class DOHResource(SyncAPIResource):
         Updates the DoH settings for your Zero Trust organization.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           doh_jwt_duration: The duration the DoH JWT is valid for. Must be in the format `300ms` or `2h45m`.
               Valid time units are: ns, us (or µs), ms, s, m, h. Note that the maximum
@@ -118,7 +118,7 @@ class DOHResource(SyncAPIResource):
         Returns the DoH settings for your Zero Trust organization.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -180,7 +180,7 @@ class AsyncDOHResource(AsyncAPIResource):
         Updates the DoH settings for your Zero Trust organization.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           doh_jwt_duration: The duration the DoH JWT is valid for. Must be in the format `300ms` or `2h45m`.
               Valid time units are: ns, us (or µs), ms, s, m, h. Note that the maximum
@@ -233,7 +233,7 @@ class AsyncDOHResource(AsyncAPIResource):
         Returns the DoH settings for your Zero Trust organization.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 

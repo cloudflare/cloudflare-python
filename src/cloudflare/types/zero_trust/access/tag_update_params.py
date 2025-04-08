@@ -9,7 +9,7 @@ __all__ = ["TagUpdateParams"]
 
 class TagUpdateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     name: Required[str]
     """The name of the tag"""
