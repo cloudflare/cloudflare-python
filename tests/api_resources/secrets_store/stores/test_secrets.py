@@ -34,6 +34,7 @@ class TestSecrets:
             body=[
                 {
                     "name": "MY_API_KEY",
+                    "scopes": ["workers"],
                     "value": "api-token-secret-123",
                 }
             ],
@@ -48,6 +49,7 @@ class TestSecrets:
             body=[
                 {
                     "name": "MY_API_KEY",
+                    "scopes": ["workers"],
                     "value": "api-token-secret-123",
                 }
             ],
@@ -66,6 +68,7 @@ class TestSecrets:
             body=[
                 {
                     "name": "MY_API_KEY",
+                    "scopes": ["workers"],
                     "value": "api-token-secret-123",
                 }
             ],
@@ -87,6 +90,7 @@ class TestSecrets:
                 body=[
                     {
                         "name": "MY_API_KEY",
+                        "scopes": ["workers"],
                         "value": "api-token-secret-123",
                     }
                 ],
@@ -99,6 +103,7 @@ class TestSecrets:
                 body=[
                     {
                         "name": "MY_API_KEY",
+                        "scopes": ["workers"],
                         "value": "api-token-secret-123",
                     }
                 ],
@@ -356,6 +361,7 @@ class TestSecrets:
             account_id="985e105f4ecef8ad9ca31a8372d0c353",
             store_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="MY_API_KEY",
+            scopes=["workers"],
             value="api-token-secret-123",
         )
         assert_matches_type(Optional[SecretEditResponse], secret, path=["response"])
@@ -488,6 +494,7 @@ class TestAsyncSecrets:
             body=[
                 {
                     "name": "MY_API_KEY",
+                    "scopes": ["workers"],
                     "value": "api-token-secret-123",
                 }
             ],
@@ -502,6 +509,7 @@ class TestAsyncSecrets:
             body=[
                 {
                     "name": "MY_API_KEY",
+                    "scopes": ["workers"],
                     "value": "api-token-secret-123",
                 }
             ],
@@ -520,6 +528,7 @@ class TestAsyncSecrets:
             body=[
                 {
                     "name": "MY_API_KEY",
+                    "scopes": ["workers"],
                     "value": "api-token-secret-123",
                 }
             ],
@@ -541,6 +550,7 @@ class TestAsyncSecrets:
                 body=[
                     {
                         "name": "MY_API_KEY",
+                        "scopes": ["workers"],
                         "value": "api-token-secret-123",
                     }
                 ],
@@ -553,6 +563,7 @@ class TestAsyncSecrets:
                 body=[
                     {
                         "name": "MY_API_KEY",
+                        "scopes": ["workers"],
                         "value": "api-token-secret-123",
                     }
                 ],
@@ -810,6 +821,7 @@ class TestAsyncSecrets:
             account_id="985e105f4ecef8ad9ca31a8372d0c353",
             store_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="MY_API_KEY",
+            scopes=["workers"],
             value="api-token-secret-123",
         )
         assert_matches_type(Optional[SecretEditResponse], secret, path=["response"])

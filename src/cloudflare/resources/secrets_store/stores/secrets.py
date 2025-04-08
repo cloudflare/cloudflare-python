@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, Optional, cast
+from typing import List, Type, Iterable, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -324,6 +324,7 @@ class SecretsResource(SyncAPIResource):
         account_id: str,
         store_id: str,
         name: str,
+        scopes: List[str] | NotGiven = NOT_GIVEN,
         value: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -343,6 +344,8 @@ class SecretsResource(SyncAPIResource):
           secret_id: Secret identifier tag.
 
           name: The name of the secret
+
+          scopes: The list of services that can use this secret.
 
           value: The value of the secret. Note that this is 'write only' - no API reponse will
               provide this value, it is only used to create/modify secrets.
@@ -366,6 +369,7 @@ class SecretsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "name": name,
+                    "scopes": scopes,
                     "value": value,
                 },
                 secret_edit_params.SecretEditParams,
@@ -714,6 +718,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         account_id: str,
         store_id: str,
         name: str,
+        scopes: List[str] | NotGiven = NOT_GIVEN,
         value: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -733,6 +738,8 @@ class AsyncSecretsResource(AsyncAPIResource):
           secret_id: Secret identifier tag.
 
           name: The name of the secret
+
+          scopes: The list of services that can use this secret.
 
           value: The value of the secret. Note that this is 'write only' - no API reponse will
               provide this value, it is only used to create/modify secrets.
@@ -756,6 +763,7 @@ class AsyncSecretsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "name": name,
+                    "scopes": scopes,
                     "value": value,
                 },
                 secret_edit_params.SecretEditParams,
