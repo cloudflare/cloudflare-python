@@ -28,7 +28,6 @@ from ....types.secrets_store.stores import (
     secret_list_params,
     secret_create_params,
     secret_duplicate_params,
-    secret_bulkd_edit_params,
 )
 from ....types.secrets_store.stores.secret_get_response import SecretGetResponse
 from ....types.secrets_store.stores.secret_edit_response import SecretEditResponse
@@ -36,7 +35,6 @@ from ....types.secrets_store.stores.secret_list_response import SecretListRespon
 from ....types.secrets_store.stores.secret_create_response import SecretCreateResponse
 from ....types.secrets_store.stores.secret_delete_response import SecretDeleteResponse
 from ....types.secrets_store.stores.secret_duplicate_response import SecretDuplicateResponse
-from ....types.secrets_store.stores.secret_bulkd_edit_response import SecretBulkdEditResponse
 from ....types.secrets_store.stores.secret_bulk_delete_response import SecretBulkDeleteResponse
 
 __all__ = ["SecretsResource", "AsyncSecretsResource"]
@@ -264,50 +262,6 @@ class SecretsResource(SyncAPIResource):
             ),
             model=SecretBulkDeleteResponse,
             method="delete",
-        )
-
-    def bulkd_edit(
-        self,
-        store_id: str,
-        *,
-        account_id: str,
-        body: Iterable[secret_bulkd_edit_params.Body],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[SecretBulkdEditResponse]:
-        """
-        Updates one or more secrets
-
-        Args:
-          account_id: Account Identifier
-
-          store_id: Store Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not store_id:
-            raise ValueError(f"Expected a non-empty value for `store_id` but received {store_id!r}")
-        return self._get_api_list(
-            f"/accounts/{account_id}/secrets_store/stores/{store_id}/secrets",
-            page=SyncSinglePage[SecretBulkdEditResponse],
-            body=maybe_transform(body, Iterable[secret_bulkd_edit_params.Body]),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            model=SecretBulkdEditResponse,
-            method="patch",
         )
 
     def duplicate(
@@ -700,50 +654,6 @@ class AsyncSecretsResource(AsyncAPIResource):
             method="delete",
         )
 
-    def bulkd_edit(
-        self,
-        store_id: str,
-        *,
-        account_id: str,
-        body: Iterable[secret_bulkd_edit_params.Body],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[SecretBulkdEditResponse, AsyncSinglePage[SecretBulkdEditResponse]]:
-        """
-        Updates one or more secrets
-
-        Args:
-          account_id: Account Identifier
-
-          store_id: Store Identifier
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not store_id:
-            raise ValueError(f"Expected a non-empty value for `store_id` but received {store_id!r}")
-        return self._get_api_list(
-            f"/accounts/{account_id}/secrets_store/stores/{store_id}/secrets",
-            page=AsyncSinglePage[SecretBulkdEditResponse],
-            body=maybe_transform(body, Iterable[secret_bulkd_edit_params.Body]),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            model=SecretBulkdEditResponse,
-            method="patch",
-        )
-
     async def duplicate(
         self,
         secret_id: str,
@@ -926,9 +836,6 @@ class SecretsResourceWithRawResponse:
         self.bulk_delete = to_raw_response_wrapper(
             secrets.bulk_delete,
         )
-        self.bulkd_edit = to_raw_response_wrapper(
-            secrets.bulkd_edit,
-        )
         self.duplicate = to_raw_response_wrapper(
             secrets.duplicate,
         )
@@ -955,9 +862,6 @@ class AsyncSecretsResourceWithRawResponse:
         )
         self.bulk_delete = async_to_raw_response_wrapper(
             secrets.bulk_delete,
-        )
-        self.bulkd_edit = async_to_raw_response_wrapper(
-            secrets.bulkd_edit,
         )
         self.duplicate = async_to_raw_response_wrapper(
             secrets.duplicate,
@@ -986,9 +890,6 @@ class SecretsResourceWithStreamingResponse:
         self.bulk_delete = to_streamed_response_wrapper(
             secrets.bulk_delete,
         )
-        self.bulkd_edit = to_streamed_response_wrapper(
-            secrets.bulkd_edit,
-        )
         self.duplicate = to_streamed_response_wrapper(
             secrets.duplicate,
         )
@@ -1015,9 +916,6 @@ class AsyncSecretsResourceWithStreamingResponse:
         )
         self.bulk_delete = async_to_streamed_response_wrapper(
             secrets.bulk_delete,
-        )
-        self.bulkd_edit = async_to_streamed_response_wrapper(
-            secrets.bulkd_edit,
         )
         self.duplicate = async_to_streamed_response_wrapper(
             secrets.duplicate,
