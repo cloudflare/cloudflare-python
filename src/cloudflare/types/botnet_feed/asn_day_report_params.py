@@ -13,6 +13,6 @@ __all__ = ["ASNDayReportParams"]
 
 class ASNDayReportParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     date: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
