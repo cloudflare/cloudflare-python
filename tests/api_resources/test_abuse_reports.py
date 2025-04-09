@@ -22,16 +22,11 @@ class TestAbuseReports:
         abuse_report = client.abuse_reports.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            address1="x",
-            agent_name="x",
-            agree=0,
-            city="x",
-            country="x",
-            host_notification="send",
-            original_work="x",
-            owner_notification="send",
-            signature="signature",
-            state="x",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         )
         assert_matches_type(str, abuse_report, path=["response"])
 
@@ -41,36 +36,36 @@ class TestAbuseReports:
         abuse_report = client.abuse_reports.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
             address1="x",
             agent_name="x",
             agree=0,
             city="x",
-            country="x",
-            host_notification="send",
-            original_work="x",
-            owner_notification="send",
-            signature="signature",
-            state="x",
-            act="abuse_general",
             comments="x",
             company="x",
+            country="x",
             destination_ips="destination_ips",
-            email="email",
-            email2="email2",
+            host_notification="send",
             justification="x",
-            name="x",
             ncmec_notification="send",
             ncsei_subject_representation=True,
+            original_work="x",
+            owner_notification="send",
             ports_protocols="ports_protocols",
             reported_country="xx",
             reported_user_agent="x",
+            signature="signature",
             source_ips="source_ips",
+            state="x",
             tele="x",
             title="x",
             trademark_number="x",
             trademark_office="x",
             trademark_symbol="x",
-            urls="urls",
         )
         assert_matches_type(str, abuse_report, path=["response"])
 
@@ -80,16 +75,11 @@ class TestAbuseReports:
         response = client.abuse_reports.with_raw_response.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            address1="x",
-            agent_name="x",
-            agree=0,
-            city="x",
-            country="x",
-            host_notification="send",
-            original_work="x",
-            owner_notification="send",
-            signature="signature",
-            state="x",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         )
 
         assert response.is_closed is True
@@ -103,16 +93,11 @@ class TestAbuseReports:
         with client.abuse_reports.with_streaming_response.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            address1="x",
-            agent_name="x",
-            agree=0,
-            city="x",
-            country="x",
-            host_notification="send",
-            original_work="x",
-            owner_notification="send",
-            signature="signature",
-            state="x",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -129,16 +114,11 @@ class TestAbuseReports:
             client.abuse_reports.with_raw_response.create(
                 report_type="abuse_general",
                 account_id="",
-                address1="x",
-                agent_name="x",
-                agree=0,
-                city="x",
-                country="x",
-                host_notification="send",
-                original_work="x",
-                owner_notification="send",
-                signature="signature",
-                state="x",
+                act="abuse_general",
+                email="email",
+                email2="email2",
+                name="x",
+                urls="urls",
             )
 
     @pytest.mark.skip(reason="TODO: investigate unauthorized HTTP response")
@@ -147,12 +127,11 @@ class TestAbuseReports:
         abuse_report = client.abuse_reports.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            justification="x",
-            owner_notification="send",
-            trademark_number="x",
-            trademark_office="x",
-            trademark_symbol="x",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         )
         assert_matches_type(str, abuse_report, path=["response"])
 
@@ -162,13 +141,11 @@ class TestAbuseReports:
         abuse_report = client.abuse_reports.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            justification="x",
-            owner_notification="send",
-            trademark_number="x",
-            trademark_office="x",
-            trademark_symbol="x",
             act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
             address1="x",
             agent_name="x",
             agree=0,
@@ -177,12 +154,12 @@ class TestAbuseReports:
             company="x",
             country="x",
             destination_ips="destination_ips",
-            email="email",
-            email2="email2",
-            name="x",
+            host_notification="send",
+            justification="x",
             ncmec_notification="send",
             ncsei_subject_representation=True,
             original_work="x",
+            owner_notification="send",
             ports_protocols="ports_protocols",
             reported_country="xx",
             reported_user_agent="x",
@@ -191,7 +168,9 @@ class TestAbuseReports:
             state="x",
             tele="x",
             title="x",
-            urls="urls",
+            trademark_number="x",
+            trademark_office="x",
+            trademark_symbol="x",
         )
         assert_matches_type(str, abuse_report, path=["response"])
 
@@ -201,12 +180,11 @@ class TestAbuseReports:
         response = client.abuse_reports.with_raw_response.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            justification="x",
-            owner_notification="send",
-            trademark_number="x",
-            trademark_office="x",
-            trademark_symbol="x",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         )
 
         assert response.is_closed is True
@@ -220,12 +198,11 @@ class TestAbuseReports:
         with client.abuse_reports.with_streaming_response.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            justification="x",
-            owner_notification="send",
-            trademark_number="x",
-            trademark_office="x",
-            trademark_symbol="x",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -242,12 +219,11 @@ class TestAbuseReports:
             client.abuse_reports.with_raw_response.create(
                 report_type="abuse_general",
                 account_id="",
-                host_notification="send",
-                justification="x",
-                owner_notification="send",
-                trademark_number="x",
-                trademark_office="x",
-                trademark_symbol="x",
+                act="abuse_general",
+                email="email",
+                email2="email2",
+                name="x",
+                urls="urls",
             )
 
     @pytest.mark.skip(reason="TODO: investigate unauthorized HTTP response")
@@ -256,9 +232,11 @@ class TestAbuseReports:
         abuse_report = client.abuse_reports.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            justification="x",
-            owner_notification="send",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         )
         assert_matches_type(str, abuse_report, path=["response"])
 
@@ -268,10 +246,11 @@ class TestAbuseReports:
         abuse_report = client.abuse_reports.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            justification="x",
-            owner_notification="send",
             act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
             address1="x",
             agent_name="x",
             agree=0,
@@ -280,12 +259,12 @@ class TestAbuseReports:
             company="x",
             country="x",
             destination_ips="destination_ips",
-            email="email",
-            email2="email2",
-            name="x",
+            host_notification="send",
+            justification="x",
             ncmec_notification="send",
             ncsei_subject_representation=True,
             original_work="x",
+            owner_notification="send",
             ports_protocols="ports_protocols",
             reported_country="xx",
             reported_user_agent="x",
@@ -297,7 +276,6 @@ class TestAbuseReports:
             trademark_number="x",
             trademark_office="x",
             trademark_symbol="x",
-            urls="urls",
         )
         assert_matches_type(str, abuse_report, path=["response"])
 
@@ -307,9 +285,11 @@ class TestAbuseReports:
         response = client.abuse_reports.with_raw_response.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            justification="x",
-            owner_notification="send",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         )
 
         assert response.is_closed is True
@@ -323,9 +303,11 @@ class TestAbuseReports:
         with client.abuse_reports.with_streaming_response.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            justification="x",
-            owner_notification="send",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -342,9 +324,11 @@ class TestAbuseReports:
             client.abuse_reports.with_raw_response.create(
                 report_type="abuse_general",
                 account_id="",
-                host_notification="send",
-                justification="x",
-                owner_notification="send",
+                act="abuse_general",
+                email="email",
+                email2="email2",
+                name="x",
+                urls="urls",
             )
 
     @pytest.mark.skip(reason="TODO: investigate unauthorized HTTP response")
@@ -353,9 +337,11 @@ class TestAbuseReports:
         abuse_report = client.abuse_reports.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            justification="x",
-            owner_notification="send",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         )
         assert_matches_type(str, abuse_report, path=["response"])
 
@@ -365,10 +351,11 @@ class TestAbuseReports:
         abuse_report = client.abuse_reports.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            justification="x",
-            owner_notification="send",
             act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
             address1="x",
             agent_name="x",
             agree=0,
@@ -377,12 +364,12 @@ class TestAbuseReports:
             company="x",
             country="x",
             destination_ips="destination_ips",
-            email="email",
-            email2="email2",
-            name="x",
+            host_notification="send",
+            justification="x",
             ncmec_notification="send",
             ncsei_subject_representation=True,
             original_work="x",
+            owner_notification="send",
             ports_protocols="ports_protocols",
             reported_country="xx",
             reported_user_agent="x",
@@ -394,7 +381,6 @@ class TestAbuseReports:
             trademark_number="x",
             trademark_office="x",
             trademark_symbol="x",
-            urls="urls",
         )
         assert_matches_type(str, abuse_report, path=["response"])
 
@@ -404,9 +390,11 @@ class TestAbuseReports:
         response = client.abuse_reports.with_raw_response.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            justification="x",
-            owner_notification="send",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         )
 
         assert response.is_closed is True
@@ -420,9 +408,11 @@ class TestAbuseReports:
         with client.abuse_reports.with_streaming_response.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            justification="x",
-            owner_notification="send",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -439,9 +429,11 @@ class TestAbuseReports:
             client.abuse_reports.with_raw_response.create(
                 report_type="abuse_general",
                 account_id="",
-                host_notification="send",
-                justification="x",
-                owner_notification="send",
+                act="abuse_general",
+                email="email",
+                email2="email2",
+                name="x",
+                urls="urls",
             )
 
     @pytest.mark.skip(reason="TODO: investigate unauthorized HTTP response")
@@ -450,10 +442,11 @@ class TestAbuseReports:
         abuse_report = client.abuse_reports.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            justification="x",
-            ncmec_notification="send",
-            owner_notification="send",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         )
         assert_matches_type(str, abuse_report, path=["response"])
 
@@ -463,11 +456,11 @@ class TestAbuseReports:
         abuse_report = client.abuse_reports.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            justification="x",
-            ncmec_notification="send",
-            owner_notification="send",
             act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
             address1="x",
             agent_name="x",
             agree=0,
@@ -476,11 +469,12 @@ class TestAbuseReports:
             company="x",
             country="x",
             destination_ips="destination_ips",
-            email="email",
-            email2="email2",
-            name="x",
+            host_notification="send",
+            justification="x",
+            ncmec_notification="send",
             ncsei_subject_representation=True,
             original_work="x",
+            owner_notification="send",
             ports_protocols="ports_protocols",
             reported_country="xx",
             reported_user_agent="x",
@@ -492,7 +486,6 @@ class TestAbuseReports:
             trademark_number="x",
             trademark_office="x",
             trademark_symbol="x",
-            urls="urls",
         )
         assert_matches_type(str, abuse_report, path=["response"])
 
@@ -502,10 +495,11 @@ class TestAbuseReports:
         response = client.abuse_reports.with_raw_response.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            justification="x",
-            ncmec_notification="send",
-            owner_notification="send",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         )
 
         assert response.is_closed is True
@@ -519,10 +513,11 @@ class TestAbuseReports:
         with client.abuse_reports.with_streaming_response.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            justification="x",
-            ncmec_notification="send",
-            owner_notification="send",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -539,10 +534,11 @@ class TestAbuseReports:
             client.abuse_reports.with_raw_response.create(
                 report_type="abuse_general",
                 account_id="",
-                host_notification="send",
-                justification="x",
-                ncmec_notification="send",
-                owner_notification="send",
+                act="abuse_general",
+                email="email",
+                email2="email2",
+                name="x",
+                urls="urls",
             )
 
     @pytest.mark.skip(reason="TODO: investigate unauthorized HTTP response")
@@ -551,9 +547,11 @@ class TestAbuseReports:
         abuse_report = client.abuse_reports.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            justification="x",
-            owner_notification="send",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         )
         assert_matches_type(str, abuse_report, path=["response"])
 
@@ -563,10 +561,11 @@ class TestAbuseReports:
         abuse_report = client.abuse_reports.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            justification="x",
-            owner_notification="send",
             act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
             address1="x",
             agent_name="x",
             agree=0,
@@ -575,12 +574,12 @@ class TestAbuseReports:
             company="x",
             country="x",
             destination_ips="destination_ips",
-            email="email",
-            email2="email2",
-            name="x",
+            host_notification="send",
+            justification="x",
             ncmec_notification="send",
             ncsei_subject_representation=True,
             original_work="x",
+            owner_notification="send",
             ports_protocols="ports_protocols",
             reported_country="xx",
             reported_user_agent="x",
@@ -592,7 +591,6 @@ class TestAbuseReports:
             trademark_number="x",
             trademark_office="x",
             trademark_symbol="x",
-            urls="urls",
         )
         assert_matches_type(str, abuse_report, path=["response"])
 
@@ -602,9 +600,11 @@ class TestAbuseReports:
         response = client.abuse_reports.with_raw_response.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            justification="x",
-            owner_notification="send",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         )
 
         assert response.is_closed is True
@@ -618,9 +618,11 @@ class TestAbuseReports:
         with client.abuse_reports.with_streaming_response.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            justification="x",
-            owner_notification="send",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -637,9 +639,11 @@ class TestAbuseReports:
             client.abuse_reports.with_raw_response.create(
                 report_type="abuse_general",
                 account_id="",
-                host_notification="send",
-                justification="x",
-                owner_notification="send",
+                act="abuse_general",
+                email="email",
+                email2="email2",
+                name="x",
+                urls="urls",
             )
 
     @pytest.mark.skip(reason="TODO: investigate unauthorized HTTP response")
@@ -648,7 +652,11 @@ class TestAbuseReports:
         abuse_report = client.abuse_reports.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            owner_notification="send",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         )
         assert_matches_type(str, abuse_report, path=["response"])
 
@@ -658,8 +666,11 @@ class TestAbuseReports:
         abuse_report = client.abuse_reports.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            owner_notification="send",
             act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
             address1="x",
             agent_name="x",
             agree=0,
@@ -668,14 +679,12 @@ class TestAbuseReports:
             company="x",
             country="x",
             destination_ips="destination_ips",
-            email="email",
-            email2="email2",
             host_notification="send",
             justification="x",
-            name="x",
             ncmec_notification="send",
             ncsei_subject_representation=True,
             original_work="x",
+            owner_notification="send",
             ports_protocols="ports_protocols",
             reported_country="xx",
             reported_user_agent="x",
@@ -687,7 +696,6 @@ class TestAbuseReports:
             trademark_number="x",
             trademark_office="x",
             trademark_symbol="x",
-            urls="urls",
         )
         assert_matches_type(str, abuse_report, path=["response"])
 
@@ -697,7 +705,11 @@ class TestAbuseReports:
         response = client.abuse_reports.with_raw_response.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            owner_notification="send",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         )
 
         assert response.is_closed is True
@@ -711,7 +723,11 @@ class TestAbuseReports:
         with client.abuse_reports.with_streaming_response.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            owner_notification="send",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -728,7 +744,11 @@ class TestAbuseReports:
             client.abuse_reports.with_raw_response.create(
                 report_type="abuse_general",
                 account_id="",
-                owner_notification="send",
+                act="abuse_general",
+                email="email",
+                email2="email2",
+                name="x",
+                urls="urls",
             )
 
     @pytest.mark.skip(reason="TODO: investigate unauthorized HTTP response")
@@ -737,9 +757,11 @@ class TestAbuseReports:
         abuse_report = client.abuse_reports.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            ncsei_subject_representation=True,
-            owner_notification="send",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         )
         assert_matches_type(str, abuse_report, path=["response"])
 
@@ -749,10 +771,11 @@ class TestAbuseReports:
         abuse_report = client.abuse_reports.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            ncsei_subject_representation=True,
-            owner_notification="send",
             act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
             address1="x",
             agent_name="x",
             agree=0,
@@ -761,12 +784,12 @@ class TestAbuseReports:
             company="x",
             country="x",
             destination_ips="destination_ips",
-            email="email",
-            email2="email2",
+            host_notification="send",
             justification="x",
-            name="x",
             ncmec_notification="send",
+            ncsei_subject_representation=True,
             original_work="x",
+            owner_notification="send",
             ports_protocols="ports_protocols",
             reported_country="xx",
             reported_user_agent="x",
@@ -778,7 +801,6 @@ class TestAbuseReports:
             trademark_number="x",
             trademark_office="x",
             trademark_symbol="x",
-            urls="urls",
         )
         assert_matches_type(str, abuse_report, path=["response"])
 
@@ -788,9 +810,11 @@ class TestAbuseReports:
         response = client.abuse_reports.with_raw_response.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            ncsei_subject_representation=True,
-            owner_notification="send",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         )
 
         assert response.is_closed is True
@@ -804,9 +828,11 @@ class TestAbuseReports:
         with client.abuse_reports.with_streaming_response.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            ncsei_subject_representation=True,
-            owner_notification="send",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -823,9 +849,11 @@ class TestAbuseReports:
             client.abuse_reports.with_raw_response.create(
                 report_type="abuse_general",
                 account_id="",
-                host_notification="send",
-                ncsei_subject_representation=True,
-                owner_notification="send",
+                act="abuse_general",
+                email="email",
+                email2="email2",
+                name="x",
+                urls="urls",
             )
 
 
@@ -838,16 +866,11 @@ class TestAsyncAbuseReports:
         abuse_report = await async_client.abuse_reports.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            address1="x",
-            agent_name="x",
-            agree=0,
-            city="x",
-            country="x",
-            host_notification="send",
-            original_work="x",
-            owner_notification="send",
-            signature="signature",
-            state="x",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         )
         assert_matches_type(str, abuse_report, path=["response"])
 
@@ -857,36 +880,36 @@ class TestAsyncAbuseReports:
         abuse_report = await async_client.abuse_reports.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
             address1="x",
             agent_name="x",
             agree=0,
             city="x",
-            country="x",
-            host_notification="send",
-            original_work="x",
-            owner_notification="send",
-            signature="signature",
-            state="x",
-            act="abuse_general",
             comments="x",
             company="x",
+            country="x",
             destination_ips="destination_ips",
-            email="email",
-            email2="email2",
+            host_notification="send",
             justification="x",
-            name="x",
             ncmec_notification="send",
             ncsei_subject_representation=True,
+            original_work="x",
+            owner_notification="send",
             ports_protocols="ports_protocols",
             reported_country="xx",
             reported_user_agent="x",
+            signature="signature",
             source_ips="source_ips",
+            state="x",
             tele="x",
             title="x",
             trademark_number="x",
             trademark_office="x",
             trademark_symbol="x",
-            urls="urls",
         )
         assert_matches_type(str, abuse_report, path=["response"])
 
@@ -896,16 +919,11 @@ class TestAsyncAbuseReports:
         response = await async_client.abuse_reports.with_raw_response.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            address1="x",
-            agent_name="x",
-            agree=0,
-            city="x",
-            country="x",
-            host_notification="send",
-            original_work="x",
-            owner_notification="send",
-            signature="signature",
-            state="x",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         )
 
         assert response.is_closed is True
@@ -919,16 +937,11 @@ class TestAsyncAbuseReports:
         async with async_client.abuse_reports.with_streaming_response.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            address1="x",
-            agent_name="x",
-            agree=0,
-            city="x",
-            country="x",
-            host_notification="send",
-            original_work="x",
-            owner_notification="send",
-            signature="signature",
-            state="x",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -945,16 +958,11 @@ class TestAsyncAbuseReports:
             await async_client.abuse_reports.with_raw_response.create(
                 report_type="abuse_general",
                 account_id="",
-                address1="x",
-                agent_name="x",
-                agree=0,
-                city="x",
-                country="x",
-                host_notification="send",
-                original_work="x",
-                owner_notification="send",
-                signature="signature",
-                state="x",
+                act="abuse_general",
+                email="email",
+                email2="email2",
+                name="x",
+                urls="urls",
             )
 
     @pytest.mark.skip(reason="TODO: investigate unauthorized HTTP response")
@@ -963,12 +971,11 @@ class TestAsyncAbuseReports:
         abuse_report = await async_client.abuse_reports.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            justification="x",
-            owner_notification="send",
-            trademark_number="x",
-            trademark_office="x",
-            trademark_symbol="x",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         )
         assert_matches_type(str, abuse_report, path=["response"])
 
@@ -978,13 +985,11 @@ class TestAsyncAbuseReports:
         abuse_report = await async_client.abuse_reports.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            justification="x",
-            owner_notification="send",
-            trademark_number="x",
-            trademark_office="x",
-            trademark_symbol="x",
             act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
             address1="x",
             agent_name="x",
             agree=0,
@@ -993,12 +998,12 @@ class TestAsyncAbuseReports:
             company="x",
             country="x",
             destination_ips="destination_ips",
-            email="email",
-            email2="email2",
-            name="x",
+            host_notification="send",
+            justification="x",
             ncmec_notification="send",
             ncsei_subject_representation=True,
             original_work="x",
+            owner_notification="send",
             ports_protocols="ports_protocols",
             reported_country="xx",
             reported_user_agent="x",
@@ -1007,7 +1012,9 @@ class TestAsyncAbuseReports:
             state="x",
             tele="x",
             title="x",
-            urls="urls",
+            trademark_number="x",
+            trademark_office="x",
+            trademark_symbol="x",
         )
         assert_matches_type(str, abuse_report, path=["response"])
 
@@ -1017,12 +1024,11 @@ class TestAsyncAbuseReports:
         response = await async_client.abuse_reports.with_raw_response.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            justification="x",
-            owner_notification="send",
-            trademark_number="x",
-            trademark_office="x",
-            trademark_symbol="x",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         )
 
         assert response.is_closed is True
@@ -1036,12 +1042,11 @@ class TestAsyncAbuseReports:
         async with async_client.abuse_reports.with_streaming_response.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            justification="x",
-            owner_notification="send",
-            trademark_number="x",
-            trademark_office="x",
-            trademark_symbol="x",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1058,12 +1063,11 @@ class TestAsyncAbuseReports:
             await async_client.abuse_reports.with_raw_response.create(
                 report_type="abuse_general",
                 account_id="",
-                host_notification="send",
-                justification="x",
-                owner_notification="send",
-                trademark_number="x",
-                trademark_office="x",
-                trademark_symbol="x",
+                act="abuse_general",
+                email="email",
+                email2="email2",
+                name="x",
+                urls="urls",
             )
 
     @pytest.mark.skip(reason="TODO: investigate unauthorized HTTP response")
@@ -1072,9 +1076,11 @@ class TestAsyncAbuseReports:
         abuse_report = await async_client.abuse_reports.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            justification="x",
-            owner_notification="send",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         )
         assert_matches_type(str, abuse_report, path=["response"])
 
@@ -1084,10 +1090,11 @@ class TestAsyncAbuseReports:
         abuse_report = await async_client.abuse_reports.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            justification="x",
-            owner_notification="send",
             act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
             address1="x",
             agent_name="x",
             agree=0,
@@ -1096,12 +1103,12 @@ class TestAsyncAbuseReports:
             company="x",
             country="x",
             destination_ips="destination_ips",
-            email="email",
-            email2="email2",
-            name="x",
+            host_notification="send",
+            justification="x",
             ncmec_notification="send",
             ncsei_subject_representation=True,
             original_work="x",
+            owner_notification="send",
             ports_protocols="ports_protocols",
             reported_country="xx",
             reported_user_agent="x",
@@ -1113,7 +1120,6 @@ class TestAsyncAbuseReports:
             trademark_number="x",
             trademark_office="x",
             trademark_symbol="x",
-            urls="urls",
         )
         assert_matches_type(str, abuse_report, path=["response"])
 
@@ -1123,9 +1129,11 @@ class TestAsyncAbuseReports:
         response = await async_client.abuse_reports.with_raw_response.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            justification="x",
-            owner_notification="send",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         )
 
         assert response.is_closed is True
@@ -1139,9 +1147,11 @@ class TestAsyncAbuseReports:
         async with async_client.abuse_reports.with_streaming_response.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            justification="x",
-            owner_notification="send",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1158,9 +1168,11 @@ class TestAsyncAbuseReports:
             await async_client.abuse_reports.with_raw_response.create(
                 report_type="abuse_general",
                 account_id="",
-                host_notification="send",
-                justification="x",
-                owner_notification="send",
+                act="abuse_general",
+                email="email",
+                email2="email2",
+                name="x",
+                urls="urls",
             )
 
     @pytest.mark.skip(reason="TODO: investigate unauthorized HTTP response")
@@ -1169,9 +1181,11 @@ class TestAsyncAbuseReports:
         abuse_report = await async_client.abuse_reports.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            justification="x",
-            owner_notification="send",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         )
         assert_matches_type(str, abuse_report, path=["response"])
 
@@ -1181,10 +1195,11 @@ class TestAsyncAbuseReports:
         abuse_report = await async_client.abuse_reports.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            justification="x",
-            owner_notification="send",
             act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
             address1="x",
             agent_name="x",
             agree=0,
@@ -1193,12 +1208,12 @@ class TestAsyncAbuseReports:
             company="x",
             country="x",
             destination_ips="destination_ips",
-            email="email",
-            email2="email2",
-            name="x",
+            host_notification="send",
+            justification="x",
             ncmec_notification="send",
             ncsei_subject_representation=True,
             original_work="x",
+            owner_notification="send",
             ports_protocols="ports_protocols",
             reported_country="xx",
             reported_user_agent="x",
@@ -1210,7 +1225,6 @@ class TestAsyncAbuseReports:
             trademark_number="x",
             trademark_office="x",
             trademark_symbol="x",
-            urls="urls",
         )
         assert_matches_type(str, abuse_report, path=["response"])
 
@@ -1220,9 +1234,11 @@ class TestAsyncAbuseReports:
         response = await async_client.abuse_reports.with_raw_response.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            justification="x",
-            owner_notification="send",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         )
 
         assert response.is_closed is True
@@ -1236,9 +1252,11 @@ class TestAsyncAbuseReports:
         async with async_client.abuse_reports.with_streaming_response.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            justification="x",
-            owner_notification="send",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1255,9 +1273,11 @@ class TestAsyncAbuseReports:
             await async_client.abuse_reports.with_raw_response.create(
                 report_type="abuse_general",
                 account_id="",
-                host_notification="send",
-                justification="x",
-                owner_notification="send",
+                act="abuse_general",
+                email="email",
+                email2="email2",
+                name="x",
+                urls="urls",
             )
 
     @pytest.mark.skip(reason="TODO: investigate unauthorized HTTP response")
@@ -1266,10 +1286,11 @@ class TestAsyncAbuseReports:
         abuse_report = await async_client.abuse_reports.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            justification="x",
-            ncmec_notification="send",
-            owner_notification="send",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         )
         assert_matches_type(str, abuse_report, path=["response"])
 
@@ -1279,11 +1300,11 @@ class TestAsyncAbuseReports:
         abuse_report = await async_client.abuse_reports.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            justification="x",
-            ncmec_notification="send",
-            owner_notification="send",
             act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
             address1="x",
             agent_name="x",
             agree=0,
@@ -1292,11 +1313,12 @@ class TestAsyncAbuseReports:
             company="x",
             country="x",
             destination_ips="destination_ips",
-            email="email",
-            email2="email2",
-            name="x",
+            host_notification="send",
+            justification="x",
+            ncmec_notification="send",
             ncsei_subject_representation=True,
             original_work="x",
+            owner_notification="send",
             ports_protocols="ports_protocols",
             reported_country="xx",
             reported_user_agent="x",
@@ -1308,7 +1330,6 @@ class TestAsyncAbuseReports:
             trademark_number="x",
             trademark_office="x",
             trademark_symbol="x",
-            urls="urls",
         )
         assert_matches_type(str, abuse_report, path=["response"])
 
@@ -1318,10 +1339,11 @@ class TestAsyncAbuseReports:
         response = await async_client.abuse_reports.with_raw_response.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            justification="x",
-            ncmec_notification="send",
-            owner_notification="send",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         )
 
         assert response.is_closed is True
@@ -1335,10 +1357,11 @@ class TestAsyncAbuseReports:
         async with async_client.abuse_reports.with_streaming_response.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            justification="x",
-            ncmec_notification="send",
-            owner_notification="send",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1355,10 +1378,11 @@ class TestAsyncAbuseReports:
             await async_client.abuse_reports.with_raw_response.create(
                 report_type="abuse_general",
                 account_id="",
-                host_notification="send",
-                justification="x",
-                ncmec_notification="send",
-                owner_notification="send",
+                act="abuse_general",
+                email="email",
+                email2="email2",
+                name="x",
+                urls="urls",
             )
 
     @pytest.mark.skip(reason="TODO: investigate unauthorized HTTP response")
@@ -1367,9 +1391,11 @@ class TestAsyncAbuseReports:
         abuse_report = await async_client.abuse_reports.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            justification="x",
-            owner_notification="send",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         )
         assert_matches_type(str, abuse_report, path=["response"])
 
@@ -1379,10 +1405,11 @@ class TestAsyncAbuseReports:
         abuse_report = await async_client.abuse_reports.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            justification="x",
-            owner_notification="send",
             act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
             address1="x",
             agent_name="x",
             agree=0,
@@ -1391,12 +1418,12 @@ class TestAsyncAbuseReports:
             company="x",
             country="x",
             destination_ips="destination_ips",
-            email="email",
-            email2="email2",
-            name="x",
+            host_notification="send",
+            justification="x",
             ncmec_notification="send",
             ncsei_subject_representation=True,
             original_work="x",
+            owner_notification="send",
             ports_protocols="ports_protocols",
             reported_country="xx",
             reported_user_agent="x",
@@ -1408,7 +1435,6 @@ class TestAsyncAbuseReports:
             trademark_number="x",
             trademark_office="x",
             trademark_symbol="x",
-            urls="urls",
         )
         assert_matches_type(str, abuse_report, path=["response"])
 
@@ -1418,9 +1444,11 @@ class TestAsyncAbuseReports:
         response = await async_client.abuse_reports.with_raw_response.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            justification="x",
-            owner_notification="send",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         )
 
         assert response.is_closed is True
@@ -1434,9 +1462,11 @@ class TestAsyncAbuseReports:
         async with async_client.abuse_reports.with_streaming_response.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            justification="x",
-            owner_notification="send",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1453,9 +1483,11 @@ class TestAsyncAbuseReports:
             await async_client.abuse_reports.with_raw_response.create(
                 report_type="abuse_general",
                 account_id="",
-                host_notification="send",
-                justification="x",
-                owner_notification="send",
+                act="abuse_general",
+                email="email",
+                email2="email2",
+                name="x",
+                urls="urls",
             )
 
     @pytest.mark.skip(reason="TODO: investigate unauthorized HTTP response")
@@ -1464,7 +1496,11 @@ class TestAsyncAbuseReports:
         abuse_report = await async_client.abuse_reports.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            owner_notification="send",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         )
         assert_matches_type(str, abuse_report, path=["response"])
 
@@ -1474,8 +1510,11 @@ class TestAsyncAbuseReports:
         abuse_report = await async_client.abuse_reports.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            owner_notification="send",
             act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
             address1="x",
             agent_name="x",
             agree=0,
@@ -1484,14 +1523,12 @@ class TestAsyncAbuseReports:
             company="x",
             country="x",
             destination_ips="destination_ips",
-            email="email",
-            email2="email2",
             host_notification="send",
             justification="x",
-            name="x",
             ncmec_notification="send",
             ncsei_subject_representation=True,
             original_work="x",
+            owner_notification="send",
             ports_protocols="ports_protocols",
             reported_country="xx",
             reported_user_agent="x",
@@ -1503,7 +1540,6 @@ class TestAsyncAbuseReports:
             trademark_number="x",
             trademark_office="x",
             trademark_symbol="x",
-            urls="urls",
         )
         assert_matches_type(str, abuse_report, path=["response"])
 
@@ -1513,7 +1549,11 @@ class TestAsyncAbuseReports:
         response = await async_client.abuse_reports.with_raw_response.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            owner_notification="send",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         )
 
         assert response.is_closed is True
@@ -1527,7 +1567,11 @@ class TestAsyncAbuseReports:
         async with async_client.abuse_reports.with_streaming_response.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            owner_notification="send",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1544,7 +1588,11 @@ class TestAsyncAbuseReports:
             await async_client.abuse_reports.with_raw_response.create(
                 report_type="abuse_general",
                 account_id="",
-                owner_notification="send",
+                act="abuse_general",
+                email="email",
+                email2="email2",
+                name="x",
+                urls="urls",
             )
 
     @pytest.mark.skip(reason="TODO: investigate unauthorized HTTP response")
@@ -1553,9 +1601,11 @@ class TestAsyncAbuseReports:
         abuse_report = await async_client.abuse_reports.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            ncsei_subject_representation=True,
-            owner_notification="send",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         )
         assert_matches_type(str, abuse_report, path=["response"])
 
@@ -1565,10 +1615,11 @@ class TestAsyncAbuseReports:
         abuse_report = await async_client.abuse_reports.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            ncsei_subject_representation=True,
-            owner_notification="send",
             act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
             address1="x",
             agent_name="x",
             agree=0,
@@ -1577,12 +1628,12 @@ class TestAsyncAbuseReports:
             company="x",
             country="x",
             destination_ips="destination_ips",
-            email="email",
-            email2="email2",
+            host_notification="send",
             justification="x",
-            name="x",
             ncmec_notification="send",
+            ncsei_subject_representation=True,
             original_work="x",
+            owner_notification="send",
             ports_protocols="ports_protocols",
             reported_country="xx",
             reported_user_agent="x",
@@ -1594,7 +1645,6 @@ class TestAsyncAbuseReports:
             trademark_number="x",
             trademark_office="x",
             trademark_symbol="x",
-            urls="urls",
         )
         assert_matches_type(str, abuse_report, path=["response"])
 
@@ -1604,9 +1654,11 @@ class TestAsyncAbuseReports:
         response = await async_client.abuse_reports.with_raw_response.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            ncsei_subject_representation=True,
-            owner_notification="send",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         )
 
         assert response.is_closed is True
@@ -1620,9 +1672,11 @@ class TestAsyncAbuseReports:
         async with async_client.abuse_reports.with_streaming_response.create(
             report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            host_notification="send",
-            ncsei_subject_representation=True,
-            owner_notification="send",
+            act="abuse_general",
+            email="email",
+            email2="email2",
+            name="x",
+            urls="urls",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1639,7 +1693,9 @@ class TestAsyncAbuseReports:
             await async_client.abuse_reports.with_raw_response.create(
                 report_type="abuse_general",
                 account_id="",
-                host_notification="send",
-                ncsei_subject_representation=True,
-                owner_notification="send",
+                act="abuse_general",
+                email="email",
+                email2="email2",
+                name="x",
+                urls="urls",
             )
