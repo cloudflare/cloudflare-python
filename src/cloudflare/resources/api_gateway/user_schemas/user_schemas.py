@@ -101,7 +101,7 @@ class UserSchemasResource(SyncAPIResource):
         Upload a schema to a zone
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           file: Schema file bytes
 
@@ -167,7 +167,7 @@ class UserSchemasResource(SyncAPIResource):
         Retrieve information about all schemas on a zone
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           omit_source: Omit the source-files of schemas and only retrieve their meta-data.
 
@@ -224,7 +224,7 @@ class UserSchemasResource(SyncAPIResource):
         Delete a schema
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -263,7 +263,7 @@ class UserSchemasResource(SyncAPIResource):
         Enable validation for a schema
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           validation_enabled: Flag whether schema is enabled for validation.
 
@@ -311,7 +311,7 @@ class UserSchemasResource(SyncAPIResource):
         Retrieve information about a specific schema on a zone
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           omit_source: Omit the source-files of schemas and only retrieve their meta-data.
 
@@ -388,7 +388,7 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         Upload a schema to a zone
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           file: Schema file bytes
 
@@ -454,7 +454,7 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         Retrieve information about all schemas on a zone
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           omit_source: Omit the source-files of schemas and only retrieve their meta-data.
 
@@ -511,7 +511,7 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         Delete a schema
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -550,7 +550,7 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         Enable validation for a schema
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           validation_enabled: Flag whether schema is enabled for validation.
 
@@ -598,7 +598,7 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         Retrieve information about a specific schema on a zone
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           omit_source: Omit the source-files of schemas and only retrieve their meta-data.
 
