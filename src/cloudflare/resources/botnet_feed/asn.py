@@ -68,7 +68,7 @@ class ASNResource(SyncAPIResource):
         previous day.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -110,7 +110,7 @@ class ASNResource(SyncAPIResource):
         registered to user account.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -174,7 +174,7 @@ class AsyncASNResource(AsyncAPIResource):
         previous day.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -216,7 +216,7 @@ class AsyncASNResource(AsyncAPIResource):
         registered to user account.
 
         Args:
-          account_id: Identifier.
+          account_id: Identifier
 
           extra_headers: Send extra headers
 
