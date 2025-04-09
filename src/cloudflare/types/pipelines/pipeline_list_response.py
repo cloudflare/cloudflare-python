@@ -14,9 +14,9 @@ __all__ = [
     "ResultDestinationCompression",
     "ResultDestinationPath",
     "ResultSource",
-    "ResultSourceWorkersPipelinesWorkersPipelinesHTTPSource",
-    "ResultSourceWorkersPipelinesWorkersPipelinesHTTPSourceCORS",
-    "ResultSourceWorkersPipelinesWorkersPipelinesBindingSource",
+    "ResultSourceCloudflarePipelinesWorkersPipelinesHTTPSource",
+    "ResultSourceCloudflarePipelinesWorkersPipelinesHTTPSourceCORS",
+    "ResultSourceCloudflarePipelinesWorkersPipelinesBindingSource",
 ]
 
 
@@ -78,24 +78,24 @@ class ResultDestination(BaseModel):
     """Specifies the type of destination."""
 
 
-class ResultSourceWorkersPipelinesWorkersPipelinesHTTPSourceCORS(BaseModel):
+class ResultSourceCloudflarePipelinesWorkersPipelinesHTTPSourceCORS(BaseModel):
     origins: Optional[List[str]] = None
     """Specifies allowed origins to allow Cross Origin HTTP Requests."""
 
 
-class ResultSourceWorkersPipelinesWorkersPipelinesHTTPSource(BaseModel):
+class ResultSourceCloudflarePipelinesWorkersPipelinesHTTPSource(BaseModel):
     format: Literal["json"]
     """Specifies the format of source data."""
 
     type: str
 
     authentication: Optional[bool] = None
-    """Specifies authentication is required to send to this Pipeline."""
+    """Specifies whether authentication is required to send to this pipeline via HTTP."""
 
-    cors: Optional[ResultSourceWorkersPipelinesWorkersPipelinesHTTPSourceCORS] = None
+    cors: Optional[ResultSourceCloudflarePipelinesWorkersPipelinesHTTPSourceCORS] = None
 
 
-class ResultSourceWorkersPipelinesWorkersPipelinesBindingSource(BaseModel):
+class ResultSourceCloudflarePipelinesWorkersPipelinesBindingSource(BaseModel):
     format: Literal["json"]
     """Specifies the format of source data."""
 
@@ -103,13 +103,14 @@ class ResultSourceWorkersPipelinesWorkersPipelinesBindingSource(BaseModel):
 
 
 ResultSource: TypeAlias = Union[
-    ResultSourceWorkersPipelinesWorkersPipelinesHTTPSource, ResultSourceWorkersPipelinesWorkersPipelinesBindingSource
+    ResultSourceCloudflarePipelinesWorkersPipelinesHTTPSource,
+    ResultSourceCloudflarePipelinesWorkersPipelinesBindingSource,
 ]
 
 
 class Result(BaseModel):
     id: str
-    """Specifies the Pipeline identifier."""
+    """Specifies the pipeline identifier."""
 
     destination: ResultDestination
 
@@ -117,7 +118,7 @@ class Result(BaseModel):
     """Indicates the endpoint URL to send traffic."""
 
     name: str
-    """Defines the name of Pipeline."""
+    """Defines the name of the pipeline."""
 
     source: List[ResultSource]
 
