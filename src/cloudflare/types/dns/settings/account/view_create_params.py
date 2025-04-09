@@ -10,7 +10,7 @@ __all__ = ["ViewCreateParams"]
 
 class ViewCreateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     name: Required[str]
     """The name of the view."""
