@@ -61,6 +61,7 @@ jobs:
   examples:
     name: examples
     runs-on: ubuntu-latest
+    if: github.repository == 'cloudflare/cloudflare-python'
     timeout-minutes: 5
 
     steps:
