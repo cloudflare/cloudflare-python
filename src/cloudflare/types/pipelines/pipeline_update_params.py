@@ -13,9 +13,9 @@ __all__ = [
     "DestinationPath",
     "DestinationCredentials",
     "Source",
-    "SourceWorkersPipelinesWorkersPipelinesHTTPSource",
-    "SourceWorkersPipelinesWorkersPipelinesHTTPSourceCORS",
-    "SourceWorkersPipelinesWorkersPipelinesBindingSource",
+    "SourceCloudflarePipelinesWorkersPipelinesHTTPSource",
+    "SourceCloudflarePipelinesWorkersPipelinesHTTPSourceCORS",
+    "SourceCloudflarePipelinesWorkersPipelinesBindingSource",
 ]
 
 
@@ -26,7 +26,7 @@ class PipelineUpdateParams(TypedDict, total=False):
     destination: Required[Destination]
 
     name: Required[str]
-    """Defines the name of Pipeline."""
+    """Defines the name of the pipeline."""
 
     source: Required[Iterable[Source]]
 
@@ -88,24 +88,24 @@ class Destination(TypedDict, total=False):
     credentials: DestinationCredentials
 
 
-class SourceWorkersPipelinesWorkersPipelinesHTTPSourceCORS(TypedDict, total=False):
+class SourceCloudflarePipelinesWorkersPipelinesHTTPSourceCORS(TypedDict, total=False):
     origins: List[str]
     """Specifies allowed origins to allow Cross Origin HTTP Requests."""
 
 
-class SourceWorkersPipelinesWorkersPipelinesHTTPSource(TypedDict, total=False):
+class SourceCloudflarePipelinesWorkersPipelinesHTTPSource(TypedDict, total=False):
     format: Required[Literal["json"]]
     """Specifies the format of source data."""
 
     type: Required[str]
 
     authentication: bool
-    """Specifies authentication is required to send to this Pipeline."""
+    """Specifies whether authentication is required to send to this pipeline via HTTP."""
 
-    cors: SourceWorkersPipelinesWorkersPipelinesHTTPSourceCORS
+    cors: SourceCloudflarePipelinesWorkersPipelinesHTTPSourceCORS
 
 
-class SourceWorkersPipelinesWorkersPipelinesBindingSource(TypedDict, total=False):
+class SourceCloudflarePipelinesWorkersPipelinesBindingSource(TypedDict, total=False):
     format: Required[Literal["json"]]
     """Specifies the format of source data."""
 
@@ -113,5 +113,5 @@ class SourceWorkersPipelinesWorkersPipelinesBindingSource(TypedDict, total=False
 
 
 Source: TypeAlias = Union[
-    SourceWorkersPipelinesWorkersPipelinesHTTPSource, SourceWorkersPipelinesWorkersPipelinesBindingSource
+    SourceCloudflarePipelinesWorkersPipelinesHTTPSource, SourceCloudflarePipelinesWorkersPipelinesBindingSource
 ]

@@ -65,12 +65,12 @@ class PipelinesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> PipelineCreateResponse:
         """
-        Create a new Pipeline.
+        Create a new pipeline.
 
         Args:
           account_id: Specifies the public ID of the account.
 
-          name: Defines the name of Pipeline.
+          name: Defines the name of the pipeline.
 
           extra_headers: Send extra headers
 
@@ -118,14 +118,14 @@ class PipelinesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> PipelineUpdateResponse:
         """
-        Update an existing Pipeline.
+        Update an existing pipeline.
 
         Args:
           account_id: Specifies the public ID of the account.
 
-          pipeline_name: Defines the name of Pipeline.
+          pipeline_name: Defines the name of the pipeline.
 
-          name: Defines the name of Pipeline.
+          name: Defines the name of the pipeline.
 
           extra_headers: Send extra headers
 
@@ -174,16 +174,16 @@ class PipelinesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> PipelineListResponse:
         """
-        List, filter, and paginate Pipelines in an account.
+        List, filter, and paginate pipelines in an account.
 
         Args:
           account_id: Specifies the public ID of the account.
 
           page: Specifies which page to retrieve.
 
-          per_page: Specifies the number of Pipelines per page.
+          per_page: Specifies the number of pipelines per page.
 
-          search: Specifies the prefix of Pipeline name to search.
+          search: Specifies the prefix of pipeline name to search.
 
           extra_headers: Send extra headers
 
@@ -227,12 +227,12 @@ class PipelinesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
         """
-        Delete a Pipeline.
+        Delete a pipeline.
 
         Args:
           account_id: Specifies the public ID of the account.
 
-          pipeline_name: Defines the name of Pipeline.
+          pipeline_name: Defines the name of the pipeline.
 
           extra_headers: Send extra headers
 
@@ -268,12 +268,12 @@ class PipelinesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> PipelineGetResponse:
         """
-        Get configuration details of a Pipeline.
+        Get configuration of a pipeline.
 
         Args:
           account_id: Specifies the public ID of the account.
 
-          pipeline_name: Defines the name of Pipeline.
+          pipeline_name: Defines the name of the pipeline.
 
           extra_headers: Send extra headers
 
@@ -335,12 +335,12 @@ class AsyncPipelinesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> PipelineCreateResponse:
         """
-        Create a new Pipeline.
+        Create a new pipeline.
 
         Args:
           account_id: Specifies the public ID of the account.
 
-          name: Defines the name of Pipeline.
+          name: Defines the name of the pipeline.
 
           extra_headers: Send extra headers
 
@@ -388,14 +388,14 @@ class AsyncPipelinesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> PipelineUpdateResponse:
         """
-        Update an existing Pipeline.
+        Update an existing pipeline.
 
         Args:
           account_id: Specifies the public ID of the account.
 
-          pipeline_name: Defines the name of Pipeline.
+          pipeline_name: Defines the name of the pipeline.
 
-          name: Defines the name of Pipeline.
+          name: Defines the name of the pipeline.
 
           extra_headers: Send extra headers
 
@@ -444,16 +444,16 @@ class AsyncPipelinesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> PipelineListResponse:
         """
-        List, filter, and paginate Pipelines in an account.
+        List, filter, and paginate pipelines in an account.
 
         Args:
           account_id: Specifies the public ID of the account.
 
           page: Specifies which page to retrieve.
 
-          per_page: Specifies the number of Pipelines per page.
+          per_page: Specifies the number of pipelines per page.
 
-          search: Specifies the prefix of Pipeline name to search.
+          search: Specifies the prefix of pipeline name to search.
 
           extra_headers: Send extra headers
 
@@ -497,12 +497,12 @@ class AsyncPipelinesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> None:
         """
-        Delete a Pipeline.
+        Delete a pipeline.
 
         Args:
           account_id: Specifies the public ID of the account.
 
-          pipeline_name: Defines the name of Pipeline.
+          pipeline_name: Defines the name of the pipeline.
 
           extra_headers: Send extra headers
 
@@ -538,12 +538,12 @@ class AsyncPipelinesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> PipelineGetResponse:
         """
-        Get configuration details of a Pipeline.
+        Get configuration of a pipeline.
 
         Args:
           account_id: Specifies the public ID of the account.
 
-          pipeline_name: Defines the name of Pipeline.
+          pipeline_name: Defines the name of the pipeline.
 
           extra_headers: Send extra headers
 
