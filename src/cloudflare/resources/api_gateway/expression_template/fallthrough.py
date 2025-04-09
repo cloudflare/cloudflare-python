@@ -63,7 +63,7 @@ class FallthroughResource(SyncAPIResource):
         Generate fallthrough WAF expression template from a set of API hosts
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           hosts: List of hosts to be targeted in the expression
 
@@ -127,7 +127,7 @@ class AsyncFallthroughResource(AsyncAPIResource):
         Generate fallthrough WAF expression template from a set of API hosts
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           hosts: List of hosts to be targeted in the expression
 
