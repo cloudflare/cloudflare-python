@@ -89,7 +89,6 @@ class AS112Resource(SyncAPIResource):
         self,
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -228,10 +227,6 @@ class AS112Resource(SyncAPIResource):
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
-
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
               but includes results from NA.
@@ -276,7 +271,6 @@ class AS112Resource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "agg_interval": agg_interval,
-                        "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -332,7 +326,6 @@ class AsyncAS112Resource(AsyncAPIResource):
         self,
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -471,10 +464,6 @@ class AsyncAS112Resource(AsyncAPIResource):
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
-
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
               but includes results from NA.
@@ -519,7 +508,6 @@ class AsyncAS112Resource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "agg_interval": agg_interval,
-                        "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
