@@ -8,4 +8,4 @@ __all__ = ["AppDeleteResponse"]
 
 class AppDeleteResponse(BaseModel):
     id: str
-    """Identifier"""
+    """Identifier."""
