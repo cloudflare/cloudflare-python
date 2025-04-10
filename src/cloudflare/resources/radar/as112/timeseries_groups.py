@@ -65,7 +65,6 @@ class TimeseriesGroupsResource(SyncAPIResource):
         self,
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -205,10 +204,6 @@ class TimeseriesGroupsResource(SyncAPIResource):
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
-
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
               but includes results from NA.
@@ -253,7 +248,6 @@ class TimeseriesGroupsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "agg_interval": agg_interval,
-                        "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -276,7 +270,6 @@ class TimeseriesGroupsResource(SyncAPIResource):
         self,
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -416,10 +409,6 @@ class TimeseriesGroupsResource(SyncAPIResource):
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
-
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
               but includes results from NA.
@@ -464,7 +453,6 @@ class TimeseriesGroupsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "agg_interval": agg_interval,
-                        "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -487,7 +475,6 @@ class TimeseriesGroupsResource(SyncAPIResource):
         self,
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -626,10 +613,6 @@ class TimeseriesGroupsResource(SyncAPIResource):
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
-
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
               but includes results from NA.
@@ -674,7 +657,6 @@ class TimeseriesGroupsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "agg_interval": agg_interval,
-                        "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -697,7 +679,6 @@ class TimeseriesGroupsResource(SyncAPIResource):
         self,
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -836,10 +817,6 @@ class TimeseriesGroupsResource(SyncAPIResource):
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
-
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
               but includes results from NA.
@@ -882,7 +859,6 @@ class TimeseriesGroupsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "agg_interval": agg_interval,
-                        "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -904,7 +880,6 @@ class TimeseriesGroupsResource(SyncAPIResource):
         self,
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -950,10 +925,6 @@ class TimeseriesGroupsResource(SyncAPIResource):
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
-
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
 
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
@@ -1002,7 +973,6 @@ class TimeseriesGroupsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "agg_interval": agg_interval,
-                        "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -1025,7 +995,6 @@ class TimeseriesGroupsResource(SyncAPIResource):
         self,
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -1144,10 +1113,6 @@ class TimeseriesGroupsResource(SyncAPIResource):
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
-
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
               but includes results from NA.
@@ -1195,7 +1160,6 @@ class TimeseriesGroupsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "agg_interval": agg_interval,
-                        "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -1241,7 +1205,6 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         self,
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -1381,10 +1344,6 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
-
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
               but includes results from NA.
@@ -1429,7 +1388,6 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "agg_interval": agg_interval,
-                        "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -1452,7 +1410,6 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         self,
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -1592,10 +1549,6 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
-
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
               but includes results from NA.
@@ -1640,7 +1593,6 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "agg_interval": agg_interval,
-                        "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -1663,7 +1615,6 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         self,
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -1802,10 +1753,6 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
-
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
               but includes results from NA.
@@ -1850,7 +1797,6 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "agg_interval": agg_interval,
-                        "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -1873,7 +1819,6 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         self,
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -2012,10 +1957,6 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
-
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
               but includes results from NA.
@@ -2058,7 +1999,6 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "agg_interval": agg_interval,
-                        "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -2080,7 +2020,6 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         self,
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -2126,10 +2065,6 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
           agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
-
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
 
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
@@ -2178,7 +2113,6 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "agg_interval": agg_interval,
-                        "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -2201,7 +2135,6 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         self,
         *,
         agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -2320,10 +2253,6 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
               or 1 hour intervals). Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
-
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
               but includes results from NA.
@@ -2371,7 +2300,6 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "agg_interval": agg_interval,
-                        "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
