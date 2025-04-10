@@ -39,6 +39,7 @@ class TestScriptAndVersionSettings:
                 "bindings": [
                     {
                         "name": "MY_ENV_VAR",
+                        "text": "my_data",
                         "type": "plain_text",
                     }
                 ],
@@ -203,6 +204,7 @@ class TestAsyncScriptAndVersionSettings:
                 "bindings": [
                     {
                         "name": "MY_ENV_VAR",
+                        "text": "my_data",
                         "type": "plain_text",
                     }
                 ],
