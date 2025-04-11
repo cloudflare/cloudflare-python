@@ -14,7 +14,7 @@ __all__ = ["SummaryGetParams"]
 
 class SummaryGetParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     dimensions: List[Dimension]
     """Can be used to break down the data by given attributes. Options are:
