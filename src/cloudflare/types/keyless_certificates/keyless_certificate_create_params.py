@@ -12,7 +12,7 @@ __all__ = ["KeylessCertificateCreateParams"]
 
 class KeylessCertificateCreateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     certificate: Required[str]
     """The zone's SSL certificate or SSL certificate and intermediate(s)."""

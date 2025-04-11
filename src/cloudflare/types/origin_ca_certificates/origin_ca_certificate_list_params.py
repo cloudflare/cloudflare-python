@@ -9,4 +9,16 @@ __all__ = ["OriginCACertificateListParams"]
 
 class OriginCACertificateListParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
+
+    limit: int
+    """Limit to the number of records returned."""
+
+    offset: int
+    """Offset the results"""
+
+    page: float
+    """Page number of paginated results."""
+
+    per_page: float
+    """Number of records per page."""

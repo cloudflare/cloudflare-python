@@ -11,7 +11,7 @@ __all__ = ["KeylessCertificateEditParams"]
 
 class KeylessCertificateEditParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     enabled: bool
     """Whether or not the Keyless SSL is on or off."""

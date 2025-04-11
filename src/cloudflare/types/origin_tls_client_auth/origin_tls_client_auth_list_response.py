@@ -9,7 +9,7 @@ __all__ = ["OriginTLSClientAuthListResponse"]
 
 class OriginTLSClientAuthListResponse(ZoneAuthenticatedOriginPull):
     id: Optional[str] = None  # type: ignore
-    """Identifier"""
+    """Identifier."""
 
     certificate: Optional[str] = None  # type: ignore
     """The zone's leaf certificate."""
