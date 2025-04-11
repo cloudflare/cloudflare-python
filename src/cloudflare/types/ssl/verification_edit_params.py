@@ -9,7 +9,7 @@ __all__ = ["VerificationEditParams"]
 
 class VerificationEditParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     validation_method: Required[Literal["http", "cname", "txt", "email"]]
     """Desired validation method."""

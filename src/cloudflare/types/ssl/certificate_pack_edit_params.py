@@ -9,7 +9,7 @@ __all__ = ["CertificatePackEditParams"]
 
 class CertificatePackEditParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     cloudflare_branding: bool
     """Whether or not to add Cloudflare Branding for the order.
