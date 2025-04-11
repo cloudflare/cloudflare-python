@@ -62,9 +62,8 @@ class IPsResource(SyncAPIResource):
     ) -> Optional[IPGetResponse]:
         """
         Gets the geolocation, ASN, infrastructure type of the ASN, and any security
-        threat categories of an IP address. This is an alternative to the
-        `/intel/ip/{ipv_type}/{ip_address}` endpoint. Must provide query parameters
-        containing `IPv4` or `IPv6` and the IP address.
+        threat categories of an IP address. **Must provide ip query parameters.** For
+        example, `/intel/ip?ipv4=1.1.1.1` or `/intel/ip?ipv6=2001:db8::1`
 
         Args:
           account_id: Identifier
@@ -134,9 +133,8 @@ class AsyncIPsResource(AsyncAPIResource):
     ) -> Optional[IPGetResponse]:
         """
         Gets the geolocation, ASN, infrastructure type of the ASN, and any security
-        threat categories of an IP address. This is an alternative to the
-        `/intel/ip/{ipv_type}/{ip_address}` endpoint. Must provide query parameters
-        containing `IPv4` or `IPv6` and the IP address.
+        threat categories of an IP address. **Must provide ip query parameters.** For
+        example, `/intel/ip?ipv4=1.1.1.1` or `/intel/ip?ipv6=2001:db8::1`
 
         Args:
           account_id: Identifier
