@@ -13,6 +13,7 @@ __all__ = [
     "RuleSetting",
     "AuditSSH",
     "BISOAdminControls",
+    "BlockPage",
     "CheckSession",
     "DNSResolvers",
     "Egress",
@@ -91,6 +92,14 @@ class BISOAdminControls(BaseModel):
     """Indicates which version of the browser isolation controls should apply."""
 
 
+class BlockPage(BaseModel):
+    target_uri: str
+    """URI to which the user will be redirected"""
+
+    include_context: Optional[bool] = None
+    """If true, context information will be passed as query parameters"""
+
+
 class CheckSession(BaseModel):
     duration: Optional[str] = None
     """Configure how fresh the session needs to be to be considered valid."""
@@ -131,6 +140,9 @@ class L4override(BaseModel):
 class NotificationSettings(BaseModel):
     enabled: Optional[bool] = None
     """Set notification on"""
+
+    include_context: Optional[bool] = None
+    """If true, context information will be passed as query parameters"""
 
     msg: Optional[str] = None
     """Customize the message shown in the notification."""
@@ -203,6 +215,12 @@ class RuleSetting(BaseModel):
 
     biso_admin_controls: Optional[BISOAdminControls] = None
     """Configure how browser isolation behaves."""
+
+    block_page: Optional[BlockPage] = None
+    """Custom block page settings.
+
+    If missing/null, blocking will use the the account settings.
+    """
 
     block_page_enabled: Optional[bool] = None
     """Enable the custom block page."""
