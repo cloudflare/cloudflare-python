@@ -22,14 +22,17 @@ from .crowdstrike_input import CrowdstrikeInput as CrowdstrikeInput
 from .schema_data_param import SchemaDataParam as SchemaDataParam
 from .sentinelone_input import SentineloneInput as SentineloneInput
 from .device_input_param import DeviceInputParam as DeviceInputParam
+from .device_list_params import DeviceListParams as DeviceListParams
 from .device_match_param import DeviceMatchParam as DeviceMatchParam
 from .intune_input_param import IntuneInputParam as IntuneInputParam
 from .kolide_input_param import KolideInputParam as KolideInputParam
 from .tanium_input_param import TaniumInputParam as TaniumInputParam
+from .device_get_response import DeviceGetResponse as DeviceGetResponse
 from .device_posture_rule import DevicePostureRule as DevicePostureRule
 from .domain_joined_input import DomainJoinedInput as DomainJoinedInput
 from .setting_edit_params import SettingEditParams as SettingEditParams
 from .workspace_one_input import WorkspaceOneInput as WorkspaceOneInput
+from .device_list_response import DeviceListResponse as DeviceListResponse
 from .firewall_input_param import FirewallInputParam as FirewallInputParam
 from .revoke_create_params import RevokeCreateParams as RevokeCreateParams
 from .split_tunnel_exclude import SplitTunnelExclude as SplitTunnelExclude
