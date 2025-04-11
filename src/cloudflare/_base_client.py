@@ -333,6 +333,7 @@ class BaseClient(Generic[_HttpxClientT, _DefaultStreamT]):
     _client: _HttpxClientT
     _version: str
     _base_url: URL
+    _api_version: str
     max_retries: int
     timeout: Union[float, Timeout, None]
     _strict_response_validation: bool
@@ -344,6 +345,7 @@ class BaseClient(Generic[_HttpxClientT, _DefaultStreamT]):
         *,
         version: str,
         base_url: str | URL,
+        api_version: str,
         _strict_response_validation: bool,
         max_retries: int = DEFAULT_MAX_RETRIES,
         timeout: float | Timeout | None = DEFAULT_TIMEOUT,
@@ -352,6 +354,7 @@ class BaseClient(Generic[_HttpxClientT, _DefaultStreamT]):
     ) -> None:
         self._version = version
         self._base_url = self._enforce_trailing_slash(URL(base_url))
+        self.api_version = api_version
         self.max_retries = max_retries
         self.timeout = timeout
         self._custom_headers = custom_headers or {}
@@ -425,6 +428,8 @@ class BaseClient(Generic[_HttpxClientT, _DefaultStreamT]):
             if timeout is not None:
                 headers["x-stainless-read-timeout"] = str(timeout)
 
+        headers["api-version"] = self.api_version
+
         return headers
 
     def _prepare_url(self, url: str) -> URL:
@@ -486,7 +491,7 @@ class BaseClient(Generic[_HttpxClientT, _DefaultStreamT]):
                     raise TypeError(
                         f"Expected query input to be a dictionary for multipart requests but got {type(json_data)} instead."
                     )
-                    
+
                 if options.multipart_syntax == 'json':
                     json_data = cast("Mapping[str, object]", json_data)
                     if is_mapping_t(files):
@@ -820,6 +825,7 @@ class SyncAPIClient(BaseClient[httpx.Client, Stream[Any]]):
         *,
         version: str,
         base_url: str | URL,
+        api_version: str,
         max_retries: int = DEFAULT_MAX_RETRIES,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
         http_client: httpx.Client | None = None,
@@ -850,6 +856,7 @@ class SyncAPIClient(BaseClient[httpx.Client, Stream[Any]]):
             # cast to a valid type because mypy doesn't understand our type narrowing
             timeout=cast(Timeout, timeout),
             base_url=base_url,
+            api_version=api_version,
             max_retries=max_retries,
             custom_query=custom_query,
             custom_headers=custom_headers,
@@ -1350,6 +1357,7 @@ class AsyncAPIClient(BaseClient[httpx.AsyncClient, AsyncStream[Any]]):
         *,
         version: str,
         base_url: str | URL,
+        api_version: str,
         _strict_response_validation: bool,
         max_retries: int = DEFAULT_MAX_RETRIES,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
@@ -1378,6 +1386,7 @@ class AsyncAPIClient(BaseClient[httpx.AsyncClient, AsyncStream[Any]]):
         super().__init__(
             version=version,
             base_url=base_url,
+            api_version=api_version,
             # cast to a valid type because mypy doesn't understand our type narrowing
             timeout=cast(Timeout, timeout),
             max_retries=max_retries,

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import os
 from typing import TYPE_CHECKING, Any, Union, Mapping
+from datetime import datetime
 from typing_extensions import Self, override
 
 import httpx
@@ -280,6 +281,7 @@ class Cloudflare(SyncAPIClient):
         api_email: str | None = None,
         user_service_key: str | None = None,
         base_url: str | httpx.URL | None = None,
+        api_version: str | None = None,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
         default_headers: Mapping[str, str] | None = None,
@@ -327,9 +329,13 @@ class Cloudflare(SyncAPIClient):
         if base_url is None:
             base_url = f"https://api.cloudflare.com/client/v4"
 
+        if api_version is None:
+            api_version = datetime.today().strftime('%Y-%m-%d')
+
         super().__init__(
             version=__version__,
             base_url=base_url,
+            api_version=api_version,
             max_retries=max_retries,
             timeout=timeout,
             http_client=http_client,
@@ -1001,6 +1007,7 @@ class Cloudflare(SyncAPIClient):
         api_email: str | None = None,
         user_service_key: str | None = None,
         base_url: str | httpx.URL | None = None,
+        api_version: str | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
         http_client: httpx.Client | None = None,
         max_retries: int | NotGiven = NOT_GIVEN,
@@ -1038,6 +1045,7 @@ class Cloudflare(SyncAPIClient):
             api_email=api_email or self.api_email,
             user_service_key=user_service_key or self.user_service_key,
             base_url=base_url or self.base_url,
+            api_version=api_version or self.api_version,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
             max_retries=max_retries if is_given(max_retries) else self.max_retries,
@@ -1099,6 +1107,7 @@ class AsyncCloudflare(AsyncAPIClient):
         api_email: str | None = None,
         user_service_key: str | None = None,
         base_url: str | httpx.URL | None = None,
+        api_version: str | None = None,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
         default_headers: Mapping[str, str] | None = None,
@@ -1146,9 +1155,13 @@ class AsyncCloudflare(AsyncAPIClient):
         if base_url is None:
             base_url = f"https://api.cloudflare.com/client/v4"
 
+        if api_version is None:
+            api_version = datetime.today().strftime('%Y-%m-%d')
+
         super().__init__(
             version=__version__,
             base_url=base_url,
+            api_version=api_version,
             max_retries=max_retries,
             timeout=timeout,
             http_client=http_client,
@@ -1820,6 +1833,7 @@ class AsyncCloudflare(AsyncAPIClient):
         api_email: str | None = None,
         user_service_key: str | None = None,
         base_url: str | httpx.URL | None = None,
+        api_version: str | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
         http_client: httpx.AsyncClient | None = None,
         max_retries: int | NotGiven = NOT_GIVEN,
@@ -1857,6 +1871,7 @@ class AsyncCloudflare(AsyncAPIClient):
             api_email=api_email or self.api_email,
             user_service_key=user_service_key or self.user_service_key,
             base_url=base_url or self.base_url,
+            api_version=api_version or self.api_version,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
             max_retries=max_retries if is_given(max_retries) else self.max_retries,
