@@ -16,7 +16,6 @@ from cloudflare.types.secrets_store.stores import (
     SecretListResponse,
     SecretCreateResponse,
     SecretDeleteResponse,
-    SecretDuplicateResponse,
     SecretBulkDeleteResponse,
 )
 
@@ -276,72 +275,6 @@ class TestSecrets:
             client.secrets_store.stores.secrets.with_raw_response.bulk_delete(
                 store_id="",
                 account_id="985e105f4ecef8ad9ca31a8372d0c353",
-            )
-
-    @parametrize
-    def test_method_duplicate(self, client: Cloudflare) -> None:
-        secret = client.secrets_store.stores.secrets.duplicate(
-            secret_id="3fd85f74b32742f1bff64a85009dda07",
-            account_id="985e105f4ecef8ad9ca31a8372d0c353",
-            store_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name="MY_API_KEY",
-        )
-        assert_matches_type(Optional[SecretDuplicateResponse], secret, path=["response"])
-
-    @parametrize
-    def test_raw_response_duplicate(self, client: Cloudflare) -> None:
-        response = client.secrets_store.stores.secrets.with_raw_response.duplicate(
-            secret_id="3fd85f74b32742f1bff64a85009dda07",
-            account_id="985e105f4ecef8ad9ca31a8372d0c353",
-            store_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name="MY_API_KEY",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        secret = response.parse()
-        assert_matches_type(Optional[SecretDuplicateResponse], secret, path=["response"])
-
-    @parametrize
-    def test_streaming_response_duplicate(self, client: Cloudflare) -> None:
-        with client.secrets_store.stores.secrets.with_streaming_response.duplicate(
-            secret_id="3fd85f74b32742f1bff64a85009dda07",
-            account_id="985e105f4ecef8ad9ca31a8372d0c353",
-            store_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name="MY_API_KEY",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            secret = response.parse()
-            assert_matches_type(Optional[SecretDuplicateResponse], secret, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    def test_path_params_duplicate(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.secrets_store.stores.secrets.with_raw_response.duplicate(
-                secret_id="3fd85f74b32742f1bff64a85009dda07",
-                account_id="",
-                store_id="023e105f4ecef8ad9ca31a8372d0c353",
-                name="MY_API_KEY",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `store_id` but received ''"):
-            client.secrets_store.stores.secrets.with_raw_response.duplicate(
-                secret_id="3fd85f74b32742f1bff64a85009dda07",
-                account_id="985e105f4ecef8ad9ca31a8372d0c353",
-                store_id="",
-                name="MY_API_KEY",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `secret_id` but received ''"):
-            client.secrets_store.stores.secrets.with_raw_response.duplicate(
-                secret_id="",
-                account_id="985e105f4ecef8ad9ca31a8372d0c353",
-                store_id="023e105f4ecef8ad9ca31a8372d0c353",
-                name="MY_API_KEY",
             )
 
     @parametrize
@@ -736,72 +669,6 @@ class TestAsyncSecrets:
             await async_client.secrets_store.stores.secrets.with_raw_response.bulk_delete(
                 store_id="",
                 account_id="985e105f4ecef8ad9ca31a8372d0c353",
-            )
-
-    @parametrize
-    async def test_method_duplicate(self, async_client: AsyncCloudflare) -> None:
-        secret = await async_client.secrets_store.stores.secrets.duplicate(
-            secret_id="3fd85f74b32742f1bff64a85009dda07",
-            account_id="985e105f4ecef8ad9ca31a8372d0c353",
-            store_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name="MY_API_KEY",
-        )
-        assert_matches_type(Optional[SecretDuplicateResponse], secret, path=["response"])
-
-    @parametrize
-    async def test_raw_response_duplicate(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.secrets_store.stores.secrets.with_raw_response.duplicate(
-            secret_id="3fd85f74b32742f1bff64a85009dda07",
-            account_id="985e105f4ecef8ad9ca31a8372d0c353",
-            store_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name="MY_API_KEY",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        secret = await response.parse()
-        assert_matches_type(Optional[SecretDuplicateResponse], secret, path=["response"])
-
-    @parametrize
-    async def test_streaming_response_duplicate(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.secrets_store.stores.secrets.with_streaming_response.duplicate(
-            secret_id="3fd85f74b32742f1bff64a85009dda07",
-            account_id="985e105f4ecef8ad9ca31a8372d0c353",
-            store_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name="MY_API_KEY",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            secret = await response.parse()
-            assert_matches_type(Optional[SecretDuplicateResponse], secret, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    async def test_path_params_duplicate(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.secrets_store.stores.secrets.with_raw_response.duplicate(
-                secret_id="3fd85f74b32742f1bff64a85009dda07",
-                account_id="",
-                store_id="023e105f4ecef8ad9ca31a8372d0c353",
-                name="MY_API_KEY",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `store_id` but received ''"):
-            await async_client.secrets_store.stores.secrets.with_raw_response.duplicate(
-                secret_id="3fd85f74b32742f1bff64a85009dda07",
-                account_id="985e105f4ecef8ad9ca31a8372d0c353",
-                store_id="",
-                name="MY_API_KEY",
-            )
-
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `secret_id` but received ''"):
-            await async_client.secrets_store.stores.secrets.with_raw_response.duplicate(
-                secret_id="",
-                account_id="985e105f4ecef8ad9ca31a8372d0c353",
-                store_id="023e105f4ecef8ad9ca31a8372d0c353",
-                name="MY_API_KEY",
             )
 
     @parametrize
