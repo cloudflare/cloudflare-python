@@ -5201,6 +5201,26 @@ Methods:
 - <code title="get /accounts/{account_id}/devices">client.zero_trust.devices.<a href="./src/cloudflare/resources/zero_trust/devices/devices.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/device.py">SyncSinglePage[Device]</a></code>
 - <code title="get /accounts/{account_id}/devices/{device_id}">client.zero_trust.devices.<a href="./src/cloudflare/resources/zero_trust/devices/devices.py">get</a>(device_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/device_get_response.py">Optional[DeviceGetResponse]</a></code>
 
+### Devices
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.devices import (
+    DeviceListResponse,
+    DeviceDeleteResponse,
+    DeviceGetResponse,
+    DeviceRevokeResponse,
+)
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/devices/physical-devices">client.zero_trust.devices.devices.<a href="./src/cloudflare/resources/zero_trust/devices/devices.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/device_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/device_list_response.py">SyncCursorPagination[DeviceListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/devices/physical-devices/{device_id}">client.zero_trust.devices.devices.<a href="./src/cloudflare/resources/zero_trust/devices/devices.py">delete</a>(device_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/device_delete_response.py">object</a></code>
+- <code title="get /accounts/{account_id}/devices/physical-devices/{device_id}">client.zero_trust.devices.devices.<a href="./src/cloudflare/resources/zero_trust/devices/devices.py">get</a>(device_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/device_get_response.py">DeviceGetResponse</a></code>
+- <code title="post /accounts/{account_id}/devices/physical-devices/{device_id}/revoke">client.zero_trust.devices.devices.<a href="./src/cloudflare/resources/zero_trust/devices/devices.py">revoke</a>(device_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/device_revoke_response.py">object</a></code>
+
 ### Resilience
 
 #### GlobalWARPOverride
