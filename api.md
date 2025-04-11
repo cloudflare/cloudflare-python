@@ -7106,18 +7106,6 @@ Methods:
 
 ## AI
 
-### ToMarkdown
-
-Types:
-
-```python
-from cloudflare.types.radar.ai import ToMarkdownCreateResponse
-```
-
-Methods:
-
-- <code title="post /accounts/{account_id}/ai/tomarkdown">client.radar.ai.to_markdown.<a href="./src/cloudflare/resources/radar/ai/to_markdown.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/radar/ai/to_markdown_create_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ai/to_markdown_create_response.py">SyncSinglePage[ToMarkdownCreateResponse]</a></code>
-
 ### Inference
 
 #### Summary
@@ -9793,7 +9781,6 @@ from cloudflare.types.secrets_store.stores import (
     SecretListResponse,
     SecretDeleteResponse,
     SecretBulkDeleteResponse,
-    SecretDuplicateResponse,
     SecretEditResponse,
     SecretGetResponse,
 )
@@ -9805,7 +9792,6 @@ Methods:
 - <code title="get /accounts/{account_id}/secrets_store/stores/{store_id}/secrets">client.secrets_store.stores.secrets.<a href="./src/cloudflare/resources/secrets_store/stores/secrets.py">list</a>(store_id, \*, account_id, \*\*<a href="src/cloudflare/types/secrets_store/stores/secret_list_params.py">params</a>) -> <a href="./src/cloudflare/types/secrets_store/stores/secret_list_response.py">SyncV4PagePaginationArray[SecretListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}">client.secrets_store.stores.secrets.<a href="./src/cloudflare/resources/secrets_store/stores/secrets.py">delete</a>(secret_id, \*, account_id, store_id) -> <a href="./src/cloudflare/types/secrets_store/stores/secret_delete_response.py">Optional[SecretDeleteResponse]</a></code>
 - <code title="delete /accounts/{account_id}/secrets_store/stores/{store_id}/secrets">client.secrets_store.stores.secrets.<a href="./src/cloudflare/resources/secrets_store/stores/secrets.py">bulk_delete</a>(store_id, \*, account_id) -> <a href="./src/cloudflare/types/secrets_store/stores/secret_bulk_delete_response.py">SyncSinglePage[SecretBulkDeleteResponse]</a></code>
-- <code title="post /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate">client.secrets_store.stores.secrets.<a href="./src/cloudflare/resources/secrets_store/stores/secrets.py">duplicate</a>(secret_id, \*, account_id, store_id, \*\*<a href="src/cloudflare/types/secrets_store/stores/secret_duplicate_params.py">params</a>) -> <a href="./src/cloudflare/types/secrets_store/stores/secret_duplicate_response.py">Optional[SecretDuplicateResponse]</a></code>
 - <code title="patch /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}">client.secrets_store.stores.secrets.<a href="./src/cloudflare/resources/secrets_store/stores/secrets.py">edit</a>(secret_id, \*, account_id, store_id, \*\*<a href="src/cloudflare/types/secrets_store/stores/secret_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/secrets_store/stores/secret_edit_response.py">Optional[SecretEditResponse]</a></code>
 - <code title="get /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}">client.secrets_store.stores.secrets.<a href="./src/cloudflare/resources/secrets_store/stores/secrets.py">get</a>(secret_id, \*, account_id, store_id) -> <a href="./src/cloudflare/types/secrets_store/stores/secret_get_response.py">Optional[SecretGetResponse]</a></code>
 

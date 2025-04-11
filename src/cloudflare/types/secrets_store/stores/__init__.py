@@ -10,6 +10,4 @@ from .secret_edit_response import SecretEditResponse as SecretEditResponse
 from .secret_list_response import SecretListResponse as SecretListResponse
 from .secret_create_response import SecretCreateResponse as SecretCreateResponse
 from .secret_delete_response import SecretDeleteResponse as SecretDeleteResponse
-from .secret_duplicate_params import SecretDuplicateParams as SecretDuplicateParams
-from .secret_duplicate_response import SecretDuplicateResponse as SecretDuplicateResponse
 from .secret_bulk_delete_response import SecretBulkDeleteResponse as SecretBulkDeleteResponse
