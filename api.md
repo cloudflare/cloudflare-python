@@ -5764,7 +5764,7 @@ from cloudflare.types.zero_trust.access.applications import (
 Methods:
 
 - <code title="post /accounts/{account_id}/access/policy-tests">client.zero_trust.access.applications.policy_tests.<a href="./src/cloudflare/resources/zero_trust/access/applications/policy_tests/policy_tests.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/access/applications/policy_test_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/applications/policy_test_create_response.py">Optional[PolicyTestCreateResponse]</a></code>
-- <code title="get /accounts/{account_id}/access/policy-tests/{policy_test_id}">client.zero_trust.access.applications.policy_tests.<a href="./src/cloudflare/resources/zero_trust/access/applications/policy_tests/policy_tests.py">get</a>(policy_test_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/access/applications/policy_test_get_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/applications/policy_test_get_response.py">Optional[PolicyTestGetResponse]</a></code>
+- <code title="get /accounts/{account_id}/access/policy-tests/{policy_test_id}">client.zero_trust.access.applications.policy_tests.<a href="./src/cloudflare/resources/zero_trust/access/applications/policy_tests/policy_tests.py">get</a>(policy_test_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/access/applications/policy_test_get_response.py">Optional[PolicyTestGetResponse]</a></code>
 
 ##### Users
 
@@ -5776,7 +5776,7 @@ from cloudflare.types.zero_trust.access.applications.policy_tests import UserLis
 
 Methods:
 
-- <code title="get /accounts/{account_id}/access/policy-tests/{policy_test_id}/users">client.zero_trust.access.applications.policy_tests.users.<a href="./src/cloudflare/resources/zero_trust/access/applications/policy_tests/users.py">list</a>(policy_test_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/access/applications/policy_tests/user_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/applications/policy_tests/user_list_response.py">SyncSinglePage[UserListResponse]</a></code>
+- <code title="get /accounts/{account_id}/access/policy-tests/{policy_test_id}/users">client.zero_trust.access.applications.policy_tests.users.<a href="./src/cloudflare/resources/zero_trust/access/applications/policy_tests/users.py">list</a>(policy_test_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/access/applications/policy_tests/user_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/applications/policy_tests/user_list_response.py">SyncV4PagePaginationArray[UserListResponse]</a></code>
 
 ### Certificates
 

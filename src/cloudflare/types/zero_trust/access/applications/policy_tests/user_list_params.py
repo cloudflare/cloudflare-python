@@ -11,5 +11,9 @@ class UserListParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier."""
 
-    status: Literal["success", "fail"]
+    page: int
+
+    per_page: int
+
+    status: Literal["success", "fail", "error"]
     """Filter users by their policy evaluation status."""
