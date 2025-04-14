@@ -13,6 +13,12 @@ class DatasetCreateParams(TypedDict, total=False):
 
     name: Required[str]
 
+    case_sensitive: bool
+    """
+    Only applies to custom word lists. Determines if the words should be matched in
+    a case-sensitive manner Cannot be set to false if `secret` is true or undefined
+    """
+
     description: Optional[str]
     """The description of the dataset"""
 
