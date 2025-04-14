@@ -9,23 +9,23 @@ __all__ = ["ConfigEditResponse"]
 
 class ConfigEditResponse(BaseModel):
     id: str
-    """Config ID"""
+    """Defines the Config ID."""
 
     account_id: str
 
     frequency: float
-    """The number of days between each scan (0 = no recurring scans)."""
+    """Defines the number of days between each scan (0 = One-off scan)."""
 
     ips: List[str]
-    """A list of IP addresses or CIDR blocks to scan.
+    """Defines a list of IP addresses or CIDR blocks to scan.
 
     The maximum number of total IP addresses allowed is 5000.
     """
 
     ports: List[str]
-    """A list of ports to scan.
+    """Defines a list of ports to scan.
 
-    Allowed values:"default", "all", or a comma-separated list of ports or range of
-    ports (e.g. ["1-80", "443"]). Default will scan the 100 most commonly open
+    Valid values are:"default", "all", or a comma-separated list of ports or range
+    of ports (e.g. ["1-80", "443"]). "default" scans the 100 most commonly open
     ports.
     """
