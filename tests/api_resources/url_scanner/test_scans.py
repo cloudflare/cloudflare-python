@@ -43,6 +43,7 @@ class TestScans:
         scan = client.url_scanner.scans.create(
             account_id="account_id",
             url="https://www.example.com",
+            country="AF",
             customagent="customagent",
             custom_headers={"foo": "string"},
             referer="referer",
@@ -434,6 +435,7 @@ class TestAsyncScans:
         scan = await async_client.url_scanner.scans.create(
             account_id="account_id",
             url="https://www.example.com",
+            country="AF",
             customagent="customagent",
             custom_headers={"foo": "string"},
             referer="referer",
