@@ -327,7 +327,7 @@ class EntriesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[EntryGetResponse]:
         """
-        Fetches a DLP entry by ID
+        Fetches a DLP entry by ID.
 
         Args:
           extra_headers: Send extra headers
@@ -653,7 +653,7 @@ class AsyncEntriesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[EntryGetResponse]:
         """
-        Fetches a DLP entry by ID
+        Fetches a DLP entry by ID.
 
         Args:
           extra_headers: Send extra headers

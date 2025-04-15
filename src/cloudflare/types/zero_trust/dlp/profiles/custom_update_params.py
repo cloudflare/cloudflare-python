@@ -38,7 +38,7 @@ class CustomUpdateParams(TypedDict, total=False):
     """
 
     description: Optional[str]
-    """The description of the profile"""
+    """The description of the profile."""
 
     entries: Optional[Iterable[Entry]]
     """

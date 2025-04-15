@@ -55,4 +55,4 @@ class Dataset(BaseModel):
     case_sensitive: Optional[bool] = None
 
     description: Optional[str] = None
-    """The description of the dataset"""
+    """The description of the dataset."""
