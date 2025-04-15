@@ -78,8 +78,7 @@ class EventsResource(SyncAPIResource):
         Args:
           date_end: End of the date range (inclusive).
 
-          date_range: Shorthand date ranges for the last X days - use when you don't need specific
-              start and end dates.
+          date_range: Filters results by date range.
 
           date_start: Start of the date range (inclusive).
 
@@ -93,9 +92,9 @@ class EventsResource(SyncAPIResource):
 
           involved_country: The country code of the potential hijacker or victim AS of a BGP hijack event.
 
-          max_confidence: The maximum confidence score to filter events (1-4 low, 5-7 mid, 8+ high).
+          max_confidence: Filters events by maximum confidence score (1-4 low, 5-7 mid, 8+ high).
 
-          min_confidence: The minimum confidence score to filter events (1-4 low, 5-7 mid, 8+ high).
+          min_confidence: Filters events by minimum confidence score (1-4 low, 5-7 mid, 8+ high).
 
           page: Current page number, starting from 1.
 
@@ -203,8 +202,7 @@ class AsyncEventsResource(AsyncAPIResource):
         Args:
           date_end: End of the date range (inclusive).
 
-          date_range: Shorthand date ranges for the last X days - use when you don't need specific
-              start and end dates.
+          date_range: Filters results by date range.
 
           date_start: Start of the date range (inclusive).
 
@@ -218,9 +216,9 @@ class AsyncEventsResource(AsyncAPIResource):
 
           involved_country: The country code of the potential hijacker or victim AS of a BGP hijack event.
 
-          max_confidence: The maximum confidence score to filter events (1-4 low, 5-7 mid, 8+ high).
+          max_confidence: Filters events by maximum confidence score (1-4 low, 5-7 mid, 8+ high).
 
-          min_confidence: The minimum confidence score to filter events (1-4 low, 5-7 mid, 8+ high).
+          min_confidence: Filters events by minimum confidence score (1-4 low, 5-7 mid, 8+ high).
 
           page: Current page number, starting from 1.
 

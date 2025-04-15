@@ -70,15 +70,15 @@ class SearchResource(SyncAPIResource):
         Args:
           query: Search for locations, autonomous systems and reports.
 
-          exclude: Search types to be excluded from results.
+          exclude: Search types excluded from results.
 
           format: Format in which results will be returned.
 
-          include: Search types to be included in results.
+          include: Search types included in results.
 
           limit: Limits the number of objects returned in the response.
 
-          limit_per_group: Limit the number of objects per search category.
+          limit_per_group: Limits the number of objects per search category.
 
           extra_headers: Send extra headers
 
@@ -154,15 +154,15 @@ class AsyncSearchResource(AsyncAPIResource):
         Args:
           query: Search for locations, autonomous systems and reports.
 
-          exclude: Search types to be excluded from results.
+          exclude: Search types excluded from results.
 
           format: Format in which results will be returned.
 
-          include: Search types to be included in results.
+          include: Search types included in results.
 
           limit: Limits the number of objects returned in the response.
 
-          limit_per_group: Limit the number of objects per search category.
+          limit_per_group: Limits the number of objects per search category.
 
           extra_headers: Send extra headers
 
