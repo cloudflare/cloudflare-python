@@ -8,4 +8,4 @@ __all__ = ["PageRuleDeleteResponse"]
 
 class PageRuleDeleteResponse(BaseModel):
     id: str
-    """Identifier"""
+    """Identifier."""

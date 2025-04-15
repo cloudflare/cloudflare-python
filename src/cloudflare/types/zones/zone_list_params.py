@@ -31,7 +31,7 @@ class ZoneListParams(TypedDict, total=False):
     - `contains_case_sensitive`
     """
 
-    order: Literal["name", "status", "account.id", "account.name"]
+    order: Literal["name", "status", "account.id", "account.name", "plan.id"]
     """Field to order zones by."""
 
     page: float
