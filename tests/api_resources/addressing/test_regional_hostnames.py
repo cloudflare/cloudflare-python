@@ -34,6 +34,16 @@ class TestRegionalHostnames:
         assert_matches_type(Optional[RegionalHostnameCreateResponse], regional_hostname, path=["response"])
 
     @parametrize
+    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
+        regional_hostname = client.addressing.regional_hostnames.create(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            hostname="foo.example.com",
+            region_key="ca",
+            routing="routing",
+        )
+        assert_matches_type(Optional[RegionalHostnameCreateResponse], regional_hostname, path=["response"])
+
+    @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.addressing.regional_hostnames.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -267,6 +277,16 @@ class TestAsyncRegionalHostnames:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             hostname="foo.example.com",
             region_key="ca",
+        )
+        assert_matches_type(Optional[RegionalHostnameCreateResponse], regional_hostname, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        regional_hostname = await async_client.addressing.regional_hostnames.create(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            hostname="foo.example.com",
+            region_key="ca",
+            routing="routing",
         )
         assert_matches_type(Optional[RegionalHostnameCreateResponse], regional_hostname, path=["response"])
 
