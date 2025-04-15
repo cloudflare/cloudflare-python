@@ -11,22 +11,22 @@ __all__ = ["EntryListResponse", "Entry"]
 
 class Entry(BaseModel):
     id: Optional[str] = None
-    """Identifier"""
+    """Specify the identifier of the hostname."""
 
     content: Optional[str] = None
-    """CID or content path of content to block."""
+    """Specify the CID or content path of content to block."""
 
     created_on: Optional[datetime] = None
 
     description: Optional[str] = None
-    """An optional description of the content list entry."""
+    """Specify an optional description of the content list entry."""
 
     modified_on: Optional[datetime] = None
 
     type: Optional[Literal["cid", "content_path"]] = None
-    """Type of content list entry to block."""
+    """Specify the type of content list entry to block."""
 
 
 class EntryListResponse(BaseModel):
     entries: Optional[List[Entry]] = None
-    """Content list entries."""
+    """Provides content list entries."""

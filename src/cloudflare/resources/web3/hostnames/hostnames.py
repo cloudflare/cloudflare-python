@@ -81,15 +81,15 @@ class HostnamesResource(SyncAPIResource):
         Create Web3 Hostname
 
         Args:
-          zone_id: Identifier
+          zone_id: Specify the identifier of the hostname.
 
-          name: The hostname that will point to the target gateway via CNAME.
+          name: Specify the hostname that points to the target gateway via CNAME.
 
-          target: Target gateway of the hostname.
+          target: Specify the target gateway of the hostname.
 
-          description: An optional description of the hostname.
+          description: Specify an optional description of the hostname.
 
-          dnslink: DNSLink value used if the target is ipfs.
+          dnslink: Specify the DNSLink value used if the target is ipfs.
 
           extra_headers: Send extra headers
 
@@ -137,7 +137,7 @@ class HostnamesResource(SyncAPIResource):
         List Web3 Hostnames
 
         Args:
-          zone_id: Identifier
+          zone_id: Specify the identifier of the hostname.
 
           extra_headers: Send extra headers
 
@@ -174,9 +174,9 @@ class HostnamesResource(SyncAPIResource):
         Delete Web3 Hostname
 
         Args:
-          zone_id: Identifier
+          zone_id: Specify the identifier of the hostname.
 
-          identifier: Identifier
+          identifier: Specify the identifier of the hostname.
 
           extra_headers: Send extra headers
 
@@ -220,13 +220,13 @@ class HostnamesResource(SyncAPIResource):
         Edit Web3 Hostname
 
         Args:
-          zone_id: Identifier
+          zone_id: Specify the identifier of the hostname.
 
-          identifier: Identifier
+          identifier: Specify the identifier of the hostname.
 
-          description: An optional description of the hostname.
+          description: Specify an optional description of the hostname.
 
-          dnslink: DNSLink value used if the target is ipfs.
+          dnslink: Specify the DNSLink value used if the target is ipfs.
 
           extra_headers: Send extra headers
 
@@ -275,9 +275,9 @@ class HostnamesResource(SyncAPIResource):
         Web3 Hostname Details
 
         Args:
-          zone_id: Identifier
+          zone_id: Specify the identifier of the hostname.
 
-          identifier: Identifier
+          identifier: Specify the identifier of the hostname.
 
           extra_headers: Send extra headers
 
@@ -347,15 +347,15 @@ class AsyncHostnamesResource(AsyncAPIResource):
         Create Web3 Hostname
 
         Args:
-          zone_id: Identifier
+          zone_id: Specify the identifier of the hostname.
 
-          name: The hostname that will point to the target gateway via CNAME.
+          name: Specify the hostname that points to the target gateway via CNAME.
 
-          target: Target gateway of the hostname.
+          target: Specify the target gateway of the hostname.
 
-          description: An optional description of the hostname.
+          description: Specify an optional description of the hostname.
 
-          dnslink: DNSLink value used if the target is ipfs.
+          dnslink: Specify the DNSLink value used if the target is ipfs.
 
           extra_headers: Send extra headers
 
@@ -403,7 +403,7 @@ class AsyncHostnamesResource(AsyncAPIResource):
         List Web3 Hostnames
 
         Args:
-          zone_id: Identifier
+          zone_id: Specify the identifier of the hostname.
 
           extra_headers: Send extra headers
 
@@ -440,9 +440,9 @@ class AsyncHostnamesResource(AsyncAPIResource):
         Delete Web3 Hostname
 
         Args:
-          zone_id: Identifier
+          zone_id: Specify the identifier of the hostname.
 
-          identifier: Identifier
+          identifier: Specify the identifier of the hostname.
 
           extra_headers: Send extra headers
 
@@ -486,13 +486,13 @@ class AsyncHostnamesResource(AsyncAPIResource):
         Edit Web3 Hostname
 
         Args:
-          zone_id: Identifier
+          zone_id: Specify the identifier of the hostname.
 
-          identifier: Identifier
+          identifier: Specify the identifier of the hostname.
 
-          description: An optional description of the hostname.
+          description: Specify an optional description of the hostname.
 
-          dnslink: DNSLink value used if the target is ipfs.
+          dnslink: Specify the DNSLink value used if the target is ipfs.
 
           extra_headers: Send extra headers
 
@@ -541,9 +541,9 @@ class AsyncHostnamesResource(AsyncAPIResource):
         Web3 Hostname Details
 
         Args:
-          zone_id: Identifier
+          zone_id: Specify the identifier of the hostname.
 
-          identifier: Identifier
+          identifier: Specify the identifier of the hostname.
 
           extra_headers: Send extra headers
 

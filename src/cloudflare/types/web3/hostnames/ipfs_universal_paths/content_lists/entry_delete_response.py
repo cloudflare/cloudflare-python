@@ -8,4 +8,4 @@ __all__ = ["EntryDeleteResponse"]
 
 class EntryDeleteResponse(BaseModel):
     id: str
-    """Identifier"""
+    """Specify the identifier of the hostname."""
