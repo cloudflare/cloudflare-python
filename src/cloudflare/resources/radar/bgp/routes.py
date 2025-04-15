@@ -82,7 +82,7 @@ class RoutesResource(SyncAPIResource):
 
           limit: Limits the number of objects returned in the response.
 
-          location: Location alpha-2 code.
+          location: Filters results by location. Specify an alpha-2 location code.
 
           sort_by: Sorts results by the specified field.
 
@@ -298,11 +298,12 @@ class RoutesResource(SyncAPIResource):
         Retrieves the BGP routing table stats.
 
         Args:
-          asn: Single Autonomous System Number (ASN) as integer.
+          asn: Filters results by Autonomous System. Specify a single Autonomous System Number
+              (ASN) as integer.
 
           format: Format in which results will be returned.
 
-          location: Location alpha-2 code.
+          location: Filters results by location. Specify an alpha-2 location code.
 
           extra_headers: Send extra headers
 
@@ -377,7 +378,7 @@ class AsyncRoutesResource(AsyncAPIResource):
 
           limit: Limits the number of objects returned in the response.
 
-          location: Location alpha-2 code.
+          location: Filters results by location. Specify an alpha-2 location code.
 
           sort_by: Sorts results by the specified field.
 
@@ -593,11 +594,12 @@ class AsyncRoutesResource(AsyncAPIResource):
         Retrieves the BGP routing table stats.
 
         Args:
-          asn: Single Autonomous System Number (ASN) as integer.
+          asn: Filters results by Autonomous System. Specify a single Autonomous System Number
+              (ASN) as integer.
 
           format: Format in which results will be returned.
 
-          location: Location alpha-2 code.
+          location: Filters results by location. Specify an alpha-2 location code.
 
           extra_headers: Send extra headers
 

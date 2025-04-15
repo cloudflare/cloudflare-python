@@ -72,17 +72,17 @@ class TimeseriesGroupsResource(SyncAPIResource):
         time.
 
         Args:
-          agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
-              or 1 hour intervals). Refer to
+          agg_interval: Aggregation interval of the results (e.g., in 15 minutes or 1 hour intervals).
+              Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
           compromised: Filters results by compromised credential status (clean vs. compromised).
 
           date_end: End of the date range (inclusive).
 
-          date_range: Filters results by the specified date range. For example, use `7d` and
-              `7dcontrol` to compare this week with the previous week. Use this parameter or
-              set specific start and end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
 
           date_start: Start of the date range.
 
@@ -144,8 +144,8 @@ class TimeseriesGroupsResource(SyncAPIResource):
         credential status over time.
 
         Args:
-          agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
-              or 1 hour intervals). Refer to
+          agg_interval: Aggregation interval of the results (e.g., in 15 minutes or 1 hour intervals).
+              Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
           bot_class: Filters results by bot class. Refer to
@@ -153,9 +153,9 @@ class TimeseriesGroupsResource(SyncAPIResource):
 
           date_end: End of the date range (inclusive).
 
-          date_range: Filters results by the specified date range. For example, use `7d` and
-              `7dcontrol` to compare this week with the previous week. Use this parameter or
-              set specific start and end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
 
           date_start: Start of the date range.
 
@@ -238,17 +238,17 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         time.
 
         Args:
-          agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
-              or 1 hour intervals). Refer to
+          agg_interval: Aggregation interval of the results (e.g., in 15 minutes or 1 hour intervals).
+              Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
           compromised: Filters results by compromised credential status (clean vs. compromised).
 
           date_end: End of the date range (inclusive).
 
-          date_range: Filters results by the specified date range. For example, use `7d` and
-              `7dcontrol` to compare this week with the previous week. Use this parameter or
-              set specific start and end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
 
           date_start: Start of the date range.
 
@@ -310,8 +310,8 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
         credential status over time.
 
         Args:
-          agg_interval: Aggregation interval results should be returned in (for example, in 15 minutes
-              or 1 hour intervals). Refer to
+          agg_interval: Aggregation interval of the results (e.g., in 15 minutes or 1 hour intervals).
+              Refer to
               [Aggregation intervals](https://developers.cloudflare.com/radar/concepts/aggregation-intervals/).
 
           bot_class: Filters results by bot class. Refer to
@@ -319,9 +319,9 @@ class AsyncTimeseriesGroupsResource(AsyncAPIResource):
 
           date_end: End of the date range (inclusive).
 
-          date_range: Filters results by the specified date range. For example, use `7d` and
-              `7dcontrol` to compare this week with the previous week. Use this parameter or
-              set specific start and end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
 
           date_start: Start of the date range.
 
