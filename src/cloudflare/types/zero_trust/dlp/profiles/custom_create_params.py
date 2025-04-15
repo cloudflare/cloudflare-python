@@ -116,7 +116,7 @@ class Variant0Profile(TypedDict, total=False):
     """
 
     description: Optional[str]
-    """The description of the profile"""
+    """The description of the profile."""
 
     ocr_enabled: bool
 
@@ -149,7 +149,7 @@ class DLPNewCustomProfile(TypedDict, total=False):
     """
 
     description: Optional[str]
-    """The description of the profile"""
+    """The description of the profile."""
 
     ocr_enabled: bool
 

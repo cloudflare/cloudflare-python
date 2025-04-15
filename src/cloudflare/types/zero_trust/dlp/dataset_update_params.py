@@ -18,7 +18,7 @@ class DatasetUpdateParams(TypedDict, total=False):
     """
 
     description: Optional[str]
-    """The description of the dataset"""
+    """The description of the dataset."""
 
     name: Optional[str]
-    """The name of the dataset, must be unique"""
+    """The name of the dataset, must be unique."""

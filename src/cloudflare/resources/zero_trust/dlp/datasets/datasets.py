@@ -97,7 +97,7 @@ class DatasetsResource(SyncAPIResource):
         Determines if the words should be matched in
               a case-sensitive manner Cannot be set to false if `secret` is true or undefined
 
-          description: The description of the dataset
+          description: The description of the dataset.
 
           encoding_version: Dataset encoding version
 
@@ -166,9 +166,9 @@ class DatasetsResource(SyncAPIResource):
 
               Only required for custom word lists.
 
-          description: The description of the dataset
+          description: The description of the dataset.
 
-          name: The name of the dataset, must be unique
+          name: The name of the dataset, must be unique.
 
           extra_headers: Send extra headers
 
@@ -366,7 +366,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         Determines if the words should be matched in
               a case-sensitive manner Cannot be set to false if `secret` is true or undefined
 
-          description: The description of the dataset
+          description: The description of the dataset.
 
           encoding_version: Dataset encoding version
 
@@ -435,9 +435,9 @@ class AsyncDatasetsResource(AsyncAPIResource):
 
               Only required for custom word lists.
 
-          description: The description of the dataset
+          description: The description of the dataset.
 
-          name: The name of the dataset, must be unique
+          name: The name of the dataset, must be unique.
 
           extra_headers: Send extra headers
 
