@@ -50,6 +50,11 @@ class TestConfigs:
                 "user": "postgres",
             },
             caching={"disabled": True},
+            mtls={
+                "ca_certificate_id": "00000000-0000-0000-0000-0000000000",
+                "mtls_certificate_id": "00000000-0000-0000-0000-0000000000",
+                "sslmode": "verify-full",
+            },
         )
         assert_matches_type(Hyperdrive, config, path=["response"])
 
@@ -148,6 +153,11 @@ class TestConfigs:
                 "user": "postgres",
             },
             caching={"disabled": True},
+            mtls={
+                "ca_certificate_id": "00000000-0000-0000-0000-0000000000",
+                "mtls_certificate_id": "00000000-0000-0000-0000-0000000000",
+                "sslmode": "verify-full",
+            },
         )
         assert_matches_type(Hyperdrive, config, path=["response"])
 
@@ -332,6 +342,11 @@ class TestConfigs:
             hyperdrive_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             caching={"disabled": True},
+            mtls={
+                "ca_certificate_id": "00000000-0000-0000-0000-0000000000",
+                "mtls_certificate_id": "00000000-0000-0000-0000-0000000000",
+                "sslmode": "verify-full",
+            },
             name="example-hyperdrive",
             origin={
                 "database": "postgres",
@@ -469,6 +484,11 @@ class TestAsyncConfigs:
                 "user": "postgres",
             },
             caching={"disabled": True},
+            mtls={
+                "ca_certificate_id": "00000000-0000-0000-0000-0000000000",
+                "mtls_certificate_id": "00000000-0000-0000-0000-0000000000",
+                "sslmode": "verify-full",
+            },
         )
         assert_matches_type(Hyperdrive, config, path=["response"])
 
@@ -567,6 +587,11 @@ class TestAsyncConfigs:
                 "user": "postgres",
             },
             caching={"disabled": True},
+            mtls={
+                "ca_certificate_id": "00000000-0000-0000-0000-0000000000",
+                "mtls_certificate_id": "00000000-0000-0000-0000-0000000000",
+                "sslmode": "verify-full",
+            },
         )
         assert_matches_type(Hyperdrive, config, path=["response"])
 
@@ -751,6 +776,11 @@ class TestAsyncConfigs:
             hyperdrive_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             caching={"disabled": True},
+            mtls={
+                "ca_certificate_id": "00000000-0000-0000-0000-0000000000",
+                "mtls_certificate_id": "00000000-0000-0000-0000-0000000000",
+                "sslmode": "verify-full",
+            },
             name="example-hyperdrive",
             origin={
                 "database": "postgres",
