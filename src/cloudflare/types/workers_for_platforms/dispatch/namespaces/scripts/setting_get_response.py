@@ -28,6 +28,7 @@ __all__ = [
     "BindingWorkersBindingKindKVNamespace",
     "BindingWorkersBindingKindMTLSCertificate",
     "BindingWorkersBindingKindPlainText",
+    "BindingWorkersBindingKindPipelines",
     "BindingWorkersBindingKindQueue",
     "BindingWorkersBindingKindR2Bucket",
     "BindingWorkersBindingKindSecretText",
@@ -202,6 +203,17 @@ class BindingWorkersBindingKindPlainText(BaseModel):
     """The kind of resource that the binding provides."""
 
 
+class BindingWorkersBindingKindPipelines(BaseModel):
+    name: str
+    """A JavaScript variable name for the binding."""
+
+    pipeline: str
+    """Name of the Pipeline to bind to."""
+
+    type: Literal["pipelines"]
+    """The kind of resource that the binding provides."""
+
+
 class BindingWorkersBindingKindQueue(BaseModel):
     name: str
     """A JavaScript variable name for the binding."""
@@ -330,6 +342,7 @@ Binding: TypeAlias = Annotated[
         BindingWorkersBindingKindKVNamespace,
         BindingWorkersBindingKindMTLSCertificate,
         BindingWorkersBindingKindPlainText,
+        BindingWorkersBindingKindPipelines,
         BindingWorkersBindingKindQueue,
         BindingWorkersBindingKindR2Bucket,
         BindingWorkersBindingKindSecretText,

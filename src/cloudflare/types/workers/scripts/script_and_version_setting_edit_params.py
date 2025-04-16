@@ -27,6 +27,7 @@ __all__ = [
     "SettingsBindingWorkersBindingKindKVNamespace",
     "SettingsBindingWorkersBindingKindMTLSCertificate",
     "SettingsBindingWorkersBindingKindPlainText",
+    "SettingsBindingWorkersBindingKindPipelines",
     "SettingsBindingWorkersBindingKindQueue",
     "SettingsBindingWorkersBindingKindR2Bucket",
     "SettingsBindingWorkersBindingKindSecretText",
@@ -208,6 +209,17 @@ class SettingsBindingWorkersBindingKindPlainText(TypedDict, total=False):
     """The kind of resource that the binding provides."""
 
 
+class SettingsBindingWorkersBindingKindPipelines(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    pipeline: Required[str]
+    """Name of the Pipeline to bind to."""
+
+    type: Required[Literal["pipelines"]]
+    """The kind of resource that the binding provides."""
+
+
 class SettingsBindingWorkersBindingKindQueue(TypedDict, total=False):
     name: Required[str]
     """A JavaScript variable name for the binding."""
@@ -350,6 +362,7 @@ SettingsBinding: TypeAlias = Union[
     SettingsBindingWorkersBindingKindKVNamespace,
     SettingsBindingWorkersBindingKindMTLSCertificate,
     SettingsBindingWorkersBindingKindPlainText,
+    SettingsBindingWorkersBindingKindPipelines,
     SettingsBindingWorkersBindingKindQueue,
     SettingsBindingWorkersBindingKindR2Bucket,
     SettingsBindingWorkersBindingKindSecretText,
