@@ -15,7 +15,7 @@ class ActionParameters(BaseModel):
     phases: Optional[List[Phase]] = None
     """A list of phases to skip the execution of.
 
-    This option is incompatible with the rulesets options.
+    This option is incompatible with the ruleset and rulesets options.
     """
 
     products: Optional[List[Literal["bic", "hot", "rateLimit", "securityLevel", "uaBlock", "waf", "zoneLockdown"]]] = (
@@ -32,8 +32,7 @@ class ActionParameters(BaseModel):
     ruleset: Optional[Literal["current"]] = None
     """A ruleset to skip the execution of.
 
-    This option is incompatible with the rulesets, rules. It can be incompatible
-    with phases options base on the phase of the ruleset.
+    This option is incompatible with the rulesets, rules and phases options.
     """
 
     rulesets: Optional[List[str]] = None
