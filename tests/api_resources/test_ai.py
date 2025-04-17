@@ -447,10 +447,10 @@ class TestAI:
             model_name="model_name",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prompt="x",
-            frequency_penalty=0,
+            frequency_penalty=-2,
             lora="lora",
             max_tokens=0,
-            presence_penalty=0,
+            presence_penalty=-2,
             raw=True,
             repetition_penalty=0,
             response_format={
@@ -461,7 +461,7 @@ class TestAI:
             stream=True,
             temperature=0,
             top_k=1,
-            top_p=0,
+            top_p=0.001,
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -534,7 +534,7 @@ class TestAI:
                     "role": "role",
                 }
             ],
-            frequency_penalty=0,
+            frequency_penalty=-2,
             functions=[
                 {
                     "code": "code",
@@ -542,7 +542,7 @@ class TestAI:
                 }
             ],
             max_tokens=0,
-            presence_penalty=0,
+            presence_penalty=-2,
             raw=True,
             repetition_penalty=0,
             response_format={
@@ -569,7 +569,7 @@ class TestAI:
                 }
             ],
             top_k=1,
-            top_p=0,
+            top_p=0.001,
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -1459,10 +1459,10 @@ class TestAsyncAI:
             model_name="model_name",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prompt="x",
-            frequency_penalty=0,
+            frequency_penalty=-2,
             lora="lora",
             max_tokens=0,
-            presence_penalty=0,
+            presence_penalty=-2,
             raw=True,
             repetition_penalty=0,
             response_format={
@@ -1473,7 +1473,7 @@ class TestAsyncAI:
             stream=True,
             temperature=0,
             top_k=1,
-            top_p=0,
+            top_p=0.001,
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -1546,7 +1546,7 @@ class TestAsyncAI:
                     "role": "role",
                 }
             ],
-            frequency_penalty=0,
+            frequency_penalty=-2,
             functions=[
                 {
                     "code": "code",
@@ -1554,7 +1554,7 @@ class TestAsyncAI:
                 }
             ],
             max_tokens=0,
-            presence_penalty=0,
+            presence_penalty=-2,
             raw=True,
             repetition_penalty=0,
             response_format={
@@ -1581,7 +1581,7 @@ class TestAsyncAI:
                 }
             ],
             top_k=1,
-            top_p=0,
+            top_p=0.001,
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
