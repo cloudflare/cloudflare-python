@@ -8,4 +8,4 @@ __all__ = ["CachePurgeResponse"]
 
 class CachePurgeResponse(BaseModel):
     id: str
-    """Identifier"""
+    """Identifier."""

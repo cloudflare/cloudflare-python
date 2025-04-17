@@ -21,7 +21,7 @@ from .._response import (
 )
 from .._wrappers import ResultWrapper
 from ..types.ssl import RequestValidity
-from ..pagination import SyncSinglePage, AsyncSinglePage
+from ..pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.ssl.request_validity import RequestValidity
 from ..types.origin_ca_certificates import origin_ca_certificate_list_params, origin_ca_certificate_create_params
@@ -115,13 +115,17 @@ class OriginCACertificatesResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        limit: int | NotGiven = NOT_GIVEN,
+        offset: int | NotGiven = NOT_GIVEN,
+        page: float | NotGiven = NOT_GIVEN,
+        per_page: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[OriginCACertificate]:
+    ) -> SyncV4PagePaginationArray[OriginCACertificate]:
         """List all existing Origin CA certificates for a given zone.
 
         You can use an Origin
@@ -129,7 +133,15 @@ class OriginCACertificatesResource(SyncAPIResource):
         ([see above](#requests)).
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
+
+          limit: Limit to the number of records returned.
+
+          offset: Offset the results
+
+          page: Page number of paginated results.
+
+          per_page: Number of records per page.
 
           extra_headers: Send extra headers
 
@@ -141,14 +153,21 @@ class OriginCACertificatesResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/certificates",
-            page=SyncSinglePage[OriginCACertificate],
+            page=SyncV4PagePaginationArray[OriginCACertificate],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform(
-                    {"zone_id": zone_id}, origin_ca_certificate_list_params.OriginCACertificateListParams
+                    {
+                        "zone_id": zone_id,
+                        "limit": limit,
+                        "offset": offset,
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    origin_ca_certificate_list_params.OriginCACertificateListParams,
                 ),
             ),
             model=OriginCACertificate,
@@ -172,7 +191,7 @@ class OriginCACertificatesResource(SyncAPIResource):
         endpoint ([see above](#requests)).
 
         Args:
-          certificate_id: Identifier
+          certificate_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -216,7 +235,7 @@ class OriginCACertificatesResource(SyncAPIResource):
         endpoint ([see above](#requests)).
 
         Args:
-          certificate_id: Identifier
+          certificate_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -324,13 +343,17 @@ class AsyncOriginCACertificatesResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        limit: int | NotGiven = NOT_GIVEN,
+        offset: int | NotGiven = NOT_GIVEN,
+        page: float | NotGiven = NOT_GIVEN,
+        per_page: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[OriginCACertificate, AsyncSinglePage[OriginCACertificate]]:
+    ) -> AsyncPaginator[OriginCACertificate, AsyncV4PagePaginationArray[OriginCACertificate]]:
         """List all existing Origin CA certificates for a given zone.
 
         You can use an Origin
@@ -338,7 +361,15 @@ class AsyncOriginCACertificatesResource(AsyncAPIResource):
         ([see above](#requests)).
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
+
+          limit: Limit to the number of records returned.
+
+          offset: Offset the results
+
+          page: Page number of paginated results.
+
+          per_page: Number of records per page.
 
           extra_headers: Send extra headers
 
@@ -350,14 +381,21 @@ class AsyncOriginCACertificatesResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/certificates",
-            page=AsyncSinglePage[OriginCACertificate],
+            page=AsyncV4PagePaginationArray[OriginCACertificate],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform(
-                    {"zone_id": zone_id}, origin_ca_certificate_list_params.OriginCACertificateListParams
+                    {
+                        "zone_id": zone_id,
+                        "limit": limit,
+                        "offset": offset,
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    origin_ca_certificate_list_params.OriginCACertificateListParams,
                 ),
             ),
             model=OriginCACertificate,
@@ -381,7 +419,7 @@ class AsyncOriginCACertificatesResource(AsyncAPIResource):
         endpoint ([see above](#requests)).
 
         Args:
-          certificate_id: Identifier
+          certificate_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -425,7 +463,7 @@ class AsyncOriginCACertificatesResource(AsyncAPIResource):
         endpoint ([see above](#requests)).
 
         Args:
-          certificate_id: Identifier
+          certificate_id: Identifier.
 
           extra_headers: Send extra headers
 

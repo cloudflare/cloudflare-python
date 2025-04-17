@@ -10,7 +10,7 @@ __all__ = ["UserListResponse"]
 
 class UserListResponse(BaseModel):
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     access_seat: Optional[bool] = None
     """True if the user has authenticated with Cloudflare Access."""

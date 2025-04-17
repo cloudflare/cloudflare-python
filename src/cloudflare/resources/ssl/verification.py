@@ -70,7 +70,7 @@ class VerificationResource(SyncAPIResource):
         using that method.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           certificate_pack_id: Certificate Pack UUID.
 
@@ -121,7 +121,7 @@ class VerificationResource(SyncAPIResource):
         Get SSL Verification Info for a Zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           retry: Immediately retry SSL Verification.
 
@@ -190,7 +190,7 @@ class AsyncVerificationResource(AsyncAPIResource):
         using that method.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           certificate_pack_id: Certificate Pack UUID.
 
@@ -241,7 +241,7 @@ class AsyncVerificationResource(AsyncAPIResource):
         Get SSL Verification Info for a Zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           retry: Immediately retry SSL Verification.
 

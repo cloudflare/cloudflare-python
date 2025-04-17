@@ -12,7 +12,7 @@ __all__ = ["CustomCertificateCreateParams"]
 
 class CustomCertificateCreateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     certificate: Required[str]
     """The zone's SSL certificate or certificate and the intermediate(s)."""

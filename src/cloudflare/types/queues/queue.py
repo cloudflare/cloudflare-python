@@ -28,6 +28,9 @@ class Settings(BaseModel):
     delivery_delay: Optional[float] = None
     """Number of seconds to delay delivery of all messages to consumers."""
 
+    delivery_paused: Optional[bool] = None
+    """Indicates if message delivery to consumers is currently paused."""
+
     message_retention_period: Optional[float] = None
     """Number of seconds after which an unconsumed message will be delayed."""
 

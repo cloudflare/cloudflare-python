@@ -72,18 +72,17 @@ class SummaryResource(SyncAPIResource):
         Args:
           date_end: End of the date range (inclusive).
 
-          date_range: Filters results by the specified date range. For example, use `7d` and
-              `7dcontrol` to compare this week with the previous week. Use this parameter or
-              set specific start and end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
 
           date_start: Start of the date range.
 
           format: Format in which results will be returned.
 
           limit_per_group: Limits the number of objects per group to the top items within the specified
-              time range. If there are more items than the limit, the response will include
-              the count of items, with any remaining items grouped together under an "other"
-              category.
+              time range. When item count exceeds the limit, extra items appear grouped under
+              an "other" category.
 
           name: Array of names used to label the series in the response.
 
@@ -140,18 +139,17 @@ class SummaryResource(SyncAPIResource):
         Args:
           date_end: End of the date range (inclusive).
 
-          date_range: Filters results by the specified date range. For example, use `7d` and
-              `7dcontrol` to compare this week with the previous week. Use this parameter or
-              set specific start and end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
 
           date_start: Start of the date range.
 
           format: Format in which results will be returned.
 
           limit_per_group: Limits the number of objects per group to the top items within the specified
-              time range. If there are more items than the limit, the response will include
-              the count of items, with any remaining items grouped together under an "other"
-              category.
+              time range. When item count exceeds the limit, extra items appear grouped under
+              an "other" category.
 
           name: Array of names used to label the series in the response.
 
@@ -229,18 +227,17 @@ class AsyncSummaryResource(AsyncAPIResource):
         Args:
           date_end: End of the date range (inclusive).
 
-          date_range: Filters results by the specified date range. For example, use `7d` and
-              `7dcontrol` to compare this week with the previous week. Use this parameter or
-              set specific start and end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
 
           date_start: Start of the date range.
 
           format: Format in which results will be returned.
 
           limit_per_group: Limits the number of objects per group to the top items within the specified
-              time range. If there are more items than the limit, the response will include
-              the count of items, with any remaining items grouped together under an "other"
-              category.
+              time range. When item count exceeds the limit, extra items appear grouped under
+              an "other" category.
 
           name: Array of names used to label the series in the response.
 
@@ -297,18 +294,17 @@ class AsyncSummaryResource(AsyncAPIResource):
         Args:
           date_end: End of the date range (inclusive).
 
-          date_range: Filters results by the specified date range. For example, use `7d` and
-              `7dcontrol` to compare this week with the previous week. Use this parameter or
-              set specific start and end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
 
           date_start: Start of the date range.
 
           format: Format in which results will be returned.
 
           limit_per_group: Limits the number of objects per group to the top items within the specified
-              time range. If there are more items than the limit, the response will include
-              the count of items, with any remaining items grouped together under an "other"
-              category.
+              time range. When item count exceeds the limit, extra items appear grouped under
+              an "other" category.
 
           name: Array of names used to label the series in the response.
 

@@ -78,7 +78,7 @@ class HostnamesResource(SyncAPIResource):
         invalidate the association.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -117,7 +117,7 @@ class HostnamesResource(SyncAPIResource):
         Get the Hostname Status for Client Authentication
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           hostname: The hostname on the origin for which the client certificate uploaded will be
               used.
@@ -191,7 +191,7 @@ class AsyncHostnamesResource(AsyncAPIResource):
         invalidate the association.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -230,7 +230,7 @@ class AsyncHostnamesResource(AsyncAPIResource):
         Get the Hostname Status for Client Authentication
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           hostname: The hostname on the origin for which the client certificate uploaded will be
               used.

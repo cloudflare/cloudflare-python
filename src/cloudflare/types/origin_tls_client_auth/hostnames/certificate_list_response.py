@@ -9,10 +9,10 @@ __all__ = ["CertificateListResponse"]
 
 class CertificateListResponse(AuthenticatedOriginPull):
     id: Optional[str] = None
-    """Identifier"""
+    """Identifier."""
 
     cert_id: Optional[str] = None  # type: ignore
-    """Identifier"""
+    """Identifier."""
 
     certificate: Optional[str] = None  # type: ignore
     """The hostname certificate."""

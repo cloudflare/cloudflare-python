@@ -65,9 +65,9 @@ class ReverseDNSResource(SyncAPIResource):
         Update reverse DNS configuration (PTR records) for a DNS Firewall cluster
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          dns_firewall_id: Identifier
+          dns_firewall_id: Identifier.
 
           ptr: Map of cluster IP addresses to PTR record contents
 
@@ -112,9 +112,9 @@ class ReverseDNSResource(SyncAPIResource):
         Show reverse DNS configuration (PTR records) for a DNS Firewall cluster
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          dns_firewall_id: Identifier
+          dns_firewall_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -178,9 +178,9 @@ class AsyncReverseDNSResource(AsyncAPIResource):
         Update reverse DNS configuration (PTR records) for a DNS Firewall cluster
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          dns_firewall_id: Identifier
+          dns_firewall_id: Identifier.
 
           ptr: Map of cluster IP addresses to PTR record contents
 
@@ -225,9 +225,9 @@ class AsyncReverseDNSResource(AsyncAPIResource):
         Show reverse DNS configuration (PTR records) for a DNS Firewall cluster
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          dns_firewall_id: Identifier
+          dns_firewall_id: Identifier.
 
           extra_headers: Send extra headers
 

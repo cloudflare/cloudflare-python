@@ -10,7 +10,7 @@ __all__ = ["UserListResponse"]
 
 class UserListResponse(BaseModel):
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     email: Optional[str] = None
     """The email of the user."""
@@ -18,5 +18,5 @@ class UserListResponse(BaseModel):
     name: Optional[str] = None
     """The name of the user."""
 
-    status: Optional[Literal["approved", "blocked"]] = None
+    status: Optional[Literal["approved", "blocked", "error"]] = None
     """Policy evaluation result for an individual user."""

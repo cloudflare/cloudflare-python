@@ -17,6 +17,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
+from ....types.zero_trust.devices.override_code_get_response import OverrideCodeGetResponse
 from ....types.zero_trust.devices.override_code_list_response import OverrideCodeListResponse
 
 __all__ = ["OverrideCodesResource", "AsyncOverrideCodesResource"]
@@ -54,13 +55,18 @@ class OverrideCodesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[OverrideCodeListResponse]:
-        """Fetches a one-time use admin override code for a device.
+        """Fetches a one-time use admin override code for a registration.
 
-        This relies on the
-        **Admin Override** setting being enabled in your device configuration.
+        This relies on
+        the **Admin Override** setting being enabled in your device configuration.
+
+        **Deprecated:** please use GET
+        /accounts/{account_id}/devices/registrations/{registration_id}/override_codes
+        instead.
 
         Args:
-          device_id: Device ID.
+          device_id: Registration ID. Equal to Device ID except for accounts which enabled
+              [multi-user mode](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/deployment/mdm-deployment/windows-multiuser/).
 
           extra_headers: Send extra headers
 
@@ -84,6 +90,48 @@ class OverrideCodesResource(SyncAPIResource):
                 post_parser=ResultWrapper[Optional[OverrideCodeListResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[OverrideCodeListResponse]], ResultWrapper[OverrideCodeListResponse]),
+        )
+
+    def get(
+        self,
+        registration_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> OverrideCodeGetResponse:
+        """Fetches one-time use admin override codes for a registration.
+
+        This relies on the
+        **Admin Override** setting being enabled in your device configuration.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not registration_id:
+            raise ValueError(f"Expected a non-empty value for `registration_id` but received {registration_id!r}")
+        return self._get(
+            f"/accounts/{account_id}/devices/registrations/{registration_id}/override_codes",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[OverrideCodeGetResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[OverrideCodeGetResponse], ResultWrapper[OverrideCodeGetResponse]),
         )
 
 
@@ -119,13 +167,18 @@ class AsyncOverrideCodesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[OverrideCodeListResponse]:
-        """Fetches a one-time use admin override code for a device.
+        """Fetches a one-time use admin override code for a registration.
 
-        This relies on the
-        **Admin Override** setting being enabled in your device configuration.
+        This relies on
+        the **Admin Override** setting being enabled in your device configuration.
+
+        **Deprecated:** please use GET
+        /accounts/{account_id}/devices/registrations/{registration_id}/override_codes
+        instead.
 
         Args:
-          device_id: Device ID.
+          device_id: Registration ID. Equal to Device ID except for accounts which enabled
+              [multi-user mode](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/deployment/mdm-deployment/windows-multiuser/).
 
           extra_headers: Send extra headers
 
@@ -151,6 +204,48 @@ class AsyncOverrideCodesResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[OverrideCodeListResponse]], ResultWrapper[OverrideCodeListResponse]),
         )
 
+    async def get(
+        self,
+        registration_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> OverrideCodeGetResponse:
+        """Fetches one-time use admin override codes for a registration.
+
+        This relies on the
+        **Admin Override** setting being enabled in your device configuration.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not registration_id:
+            raise ValueError(f"Expected a non-empty value for `registration_id` but received {registration_id!r}")
+        return await self._get(
+            f"/accounts/{account_id}/devices/registrations/{registration_id}/override_codes",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[OverrideCodeGetResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[OverrideCodeGetResponse], ResultWrapper[OverrideCodeGetResponse]),
+        )
+
 
 class OverrideCodesResourceWithRawResponse:
     def __init__(self, override_codes: OverrideCodesResource) -> None:
@@ -158,6 +253,9 @@ class OverrideCodesResourceWithRawResponse:
 
         self.list = to_raw_response_wrapper(
             override_codes.list,
+        )
+        self.get = to_raw_response_wrapper(
+            override_codes.get,
         )
 
 
@@ -168,6 +266,9 @@ class AsyncOverrideCodesResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             override_codes.list,
         )
+        self.get = async_to_raw_response_wrapper(
+            override_codes.get,
+        )
 
 
 class OverrideCodesResourceWithStreamingResponse:
@@ -177,6 +278,9 @@ class OverrideCodesResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             override_codes.list,
         )
+        self.get = to_streamed_response_wrapper(
+            override_codes.get,
+        )
 
 
 class AsyncOverrideCodesResourceWithStreamingResponse:
@@ -185,4 +289,7 @@ class AsyncOverrideCodesResourceWithStreamingResponse:
 
         self.list = async_to_streamed_response_wrapper(
             override_codes.list,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            override_codes.get,
         )

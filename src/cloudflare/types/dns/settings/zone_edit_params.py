@@ -9,7 +9,7 @@ __all__ = ["ZoneEditParams", "InternalDNS", "Nameservers", "SOA"]
 
 class ZoneEditParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     flatten_all_cnames: bool
     """Whether to flatten all CNAME records in the zone.

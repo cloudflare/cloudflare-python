@@ -9,4 +9,4 @@ __all__ = ["IdentityProviderDeleteResponse"]
 
 class IdentityProviderDeleteResponse(BaseModel):
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""

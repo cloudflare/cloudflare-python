@@ -9,13 +9,13 @@ __all__ = ["CertificateUpdateParams"]
 
 class CertificateUpdateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     custom_hostname_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     certificate_pack_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     custom_certificate: Required[str]
     """If a custom uploaded certificate is used."""

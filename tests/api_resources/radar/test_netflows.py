@@ -68,7 +68,7 @@ class TestNetflows:
     @parametrize
     def test_method_timeseries_with_all_params(self, client: Cloudflare) -> None:
         netflow = client.radar.netflows.timeseries(
-            agg_interval="15m",
+            agg_interval="1h",
             asn=["string"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
@@ -77,7 +77,7 @@ class TestNetflows:
             format="JSON",
             location=["string"],
             name=["main_series"],
-            normalization="PERCENTAGE_CHANGE",
+            normalization="MIN0_MAX",
             product=["HTTP"],
         )
         assert_matches_type(NetflowTimeseriesResponse, netflow, path=["response"])
@@ -153,7 +153,7 @@ class TestAsyncNetflows:
     @parametrize
     async def test_method_timeseries_with_all_params(self, async_client: AsyncCloudflare) -> None:
         netflow = await async_client.radar.netflows.timeseries(
-            agg_interval="15m",
+            agg_interval="1h",
             asn=["string"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
@@ -162,7 +162,7 @@ class TestAsyncNetflows:
             format="JSON",
             location=["string"],
             name=["main_series"],
-            normalization="PERCENTAGE_CHANGE",
+            normalization="MIN0_MAX",
             product=["HTTP"],
         )
         assert_matches_type(NetflowTimeseriesResponse, netflow, path=["response"])

@@ -70,7 +70,7 @@ class TLSResource(SyncAPIResource):
         Update the tls setting value for the hostname.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           setting_id: The TLS Setting name.
 
@@ -122,7 +122,7 @@ class TLSResource(SyncAPIResource):
         Delete the tls setting value for the hostname.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           setting_id: The TLS Setting name.
 
@@ -170,7 +170,7 @@ class TLSResource(SyncAPIResource):
         List the requested TLS setting for the hostnames under this zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           setting_id: The TLS Setting name.
 
@@ -234,7 +234,7 @@ class AsyncTLSResource(AsyncAPIResource):
         Update the tls setting value for the hostname.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           setting_id: The TLS Setting name.
 
@@ -286,7 +286,7 @@ class AsyncTLSResource(AsyncAPIResource):
         Delete the tls setting value for the hostname.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           setting_id: The TLS Setting name.
 
@@ -334,7 +334,7 @@ class AsyncTLSResource(AsyncAPIResource):
         List the requested TLS setting for the hostnames under this zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           setting_id: The TLS Setting name.
 

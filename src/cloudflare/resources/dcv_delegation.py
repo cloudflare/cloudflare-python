@@ -58,7 +58,7 @@ class DCVDelegationResource(SyncAPIResource):
         CNAME target for DCV Delegation.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -119,7 +119,7 @@ class AsyncDCVDelegationResource(AsyncAPIResource):
         CNAME target for DCV Delegation.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 

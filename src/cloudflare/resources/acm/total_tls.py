@@ -66,7 +66,7 @@ class TotalTLSResource(SyncAPIResource):
         Set Total TLS Settings or disable the feature for a Zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           enabled: If enabled, Total TLS will order a hostname specific TLS certificate for any
               proxied A, AAAA, or CNAME record in your zone.
@@ -117,7 +117,7 @@ class TotalTLSResource(SyncAPIResource):
         Get Total TLS Settings for a Zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -179,7 +179,7 @@ class AsyncTotalTLSResource(AsyncAPIResource):
         Set Total TLS Settings or disable the feature for a Zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           enabled: If enabled, Total TLS will order a hostname specific TLS certificate for any
               proxied A, AAAA, or CNAME record in your zone.
@@ -230,7 +230,7 @@ class AsyncTotalTLSResource(AsyncAPIResource):
         Get Total TLS Settings for a Zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 

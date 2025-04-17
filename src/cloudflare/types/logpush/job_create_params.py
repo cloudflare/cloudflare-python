@@ -24,7 +24,34 @@ class JobCreateParams(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    dataset: Optional[str]
+    dataset: Optional[
+        Literal[
+            "access_requests",
+            "audit_logs",
+            "biso_user_actions",
+            "casb_findings",
+            "device_posture_results",
+            "dlp_forensic_copies",
+            "dns_firewall_logs",
+            "dns_logs",
+            "email_security_alerts",
+            "firewall_events",
+            "gateway_dns",
+            "gateway_http",
+            "gateway_network",
+            "http_requests",
+            "magic_ids_detections",
+            "nel_reports",
+            "network_analytics_logs",
+            "page_shield_events",
+            "sinkhole_http_logs",
+            "spectrum_events",
+            "ssh_logs",
+            "workers_trace_events",
+            "zaraz_events",
+            "zero_trust_network_sessions",
+        ]
+    ]
     """Name of the dataset.
 
     A list of supported datasets can be found on the

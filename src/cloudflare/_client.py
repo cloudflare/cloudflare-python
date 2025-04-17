@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import os
 from typing import TYPE_CHECKING, Any, Union, Mapping
+from datetime import datetime
 from typing_extensions import Self, override
 
 import httpx
@@ -73,6 +74,7 @@ if TYPE_CHECKING:
         snippets,
         spectrum,
         hostnames,
+        pipelines,
         registrar,
         turnstile,
         vectorize,
@@ -97,6 +99,7 @@ if TYPE_CHECKING:
         abuse_reports,
         email_routing,
         magic_transit,
+        secrets_store,
         waiting_rooms,
         bot_management,
         cloudforce_one,
@@ -142,6 +145,7 @@ if TYPE_CHECKING:
     from .resources.ssl.ssl import SSLResource, AsyncSSLResource
     from .resources.argo.argo import ArgoResource, AsyncArgoResource
     from .resources.logs.logs import LogsResource, AsyncLogsResource
+    from .resources.pipelines import PipelinesResource, AsyncPipelinesResource
     from .resources.user.user import UserResource, AsyncUserResource
     from .resources.web3.web3 import Web3Resource, AsyncWeb3Resource
     from .resources.audit_logs import AuditLogsResource, AsyncAuditLogsResource
@@ -199,6 +203,7 @@ if TYPE_CHECKING:
     from .resources.healthchecks.healthchecks import HealthchecksResource, AsyncHealthchecksResource
     from .resources.email_routing.email_routing import EmailRoutingResource, AsyncEmailRoutingResource
     from .resources.magic_transit.magic_transit import MagicTransitResource, AsyncMagicTransitResource
+    from .resources.secrets_store.secrets_store import SecretsStoreResource, AsyncSecretsStoreResource
     from .resources.waiting_rooms.waiting_rooms import WaitingRoomsResource, AsyncWaitingRoomsResource
     from .resources.cloudforce_one.cloudforce_one import CloudforceOneResource, AsyncCloudforceOneResource
     from .resources.email_security.email_security import EmailSecurityResource, AsyncEmailSecurityResource
@@ -276,6 +281,7 @@ class Cloudflare(SyncAPIClient):
         api_email: str | None = None,
         user_service_key: str | None = None,
         base_url: str | httpx.URL | None = None,
+        api_version: str | None = None,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
         default_headers: Mapping[str, str] | None = None,
@@ -323,9 +329,13 @@ class Cloudflare(SyncAPIClient):
         if base_url is None:
             base_url = f"https://api.cloudflare.com/client/v4"
 
+        if api_version is None:
+            api_version = datetime.today().strftime('%Y-%m-%d')
+
         super().__init__(
             version=__version__,
             base_url=base_url,
+            api_version=api_version,
             max_retries=max_retries,
             timeout=timeout,
             http_client=http_client,
@@ -887,6 +897,18 @@ class Cloudflare(SyncAPIClient):
         return CustomPagesResource(self)
 
     @cached_property
+    def secrets_store(self) -> SecretsStoreResource:
+        from .resources.secrets_store import SecretsStoreResource
+
+        return SecretsStoreResource(self)
+
+    @cached_property
+    def pipelines(self) -> PipelinesResource:
+        from .resources.pipelines import PipelinesResource
+
+        return PipelinesResource(self)
+
+    @cached_property
     def with_raw_response(self) -> CloudflareWithRawResponse:
         return CloudflareWithRawResponse(self)
 
@@ -985,6 +1007,7 @@ class Cloudflare(SyncAPIClient):
         api_email: str | None = None,
         user_service_key: str | None = None,
         base_url: str | httpx.URL | None = None,
+        api_version: str | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
         http_client: httpx.Client | None = None,
         max_retries: int | NotGiven = NOT_GIVEN,
@@ -1022,6 +1045,7 @@ class Cloudflare(SyncAPIClient):
             api_email=api_email or self.api_email,
             user_service_key=user_service_key or self.user_service_key,
             base_url=base_url or self.base_url,
+            api_version=api_version or self.api_version,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
             max_retries=max_retries if is_given(max_retries) else self.max_retries,
@@ -1083,6 +1107,7 @@ class AsyncCloudflare(AsyncAPIClient):
         api_email: str | None = None,
         user_service_key: str | None = None,
         base_url: str | httpx.URL | None = None,
+        api_version: str | None = None,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
         default_headers: Mapping[str, str] | None = None,
@@ -1130,9 +1155,13 @@ class AsyncCloudflare(AsyncAPIClient):
         if base_url is None:
             base_url = f"https://api.cloudflare.com/client/v4"
 
+        if api_version is None:
+            api_version = datetime.today().strftime('%Y-%m-%d')
+
         super().__init__(
             version=__version__,
             base_url=base_url,
+            api_version=api_version,
             max_retries=max_retries,
             timeout=timeout,
             http_client=http_client,
@@ -1694,6 +1723,18 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncCustomPagesResource(self)
 
     @cached_property
+    def secrets_store(self) -> AsyncSecretsStoreResource:
+        from .resources.secrets_store import AsyncSecretsStoreResource
+
+        return AsyncSecretsStoreResource(self)
+
+    @cached_property
+    def pipelines(self) -> AsyncPipelinesResource:
+        from .resources.pipelines import AsyncPipelinesResource
+
+        return AsyncPipelinesResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncCloudflareWithRawResponse:
         return AsyncCloudflareWithRawResponse(self)
 
@@ -1792,6 +1833,7 @@ class AsyncCloudflare(AsyncAPIClient):
         api_email: str | None = None,
         user_service_key: str | None = None,
         base_url: str | httpx.URL | None = None,
+        api_version: str | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
         http_client: httpx.AsyncClient | None = None,
         max_retries: int | NotGiven = NOT_GIVEN,
@@ -1829,6 +1871,7 @@ class AsyncCloudflare(AsyncAPIClient):
             api_email=api_email or self.api_email,
             user_service_key=user_service_key or self.user_service_key,
             base_url=base_url or self.base_url,
+            api_version=api_version or self.api_version,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
             max_retries=max_retries if is_given(max_retries) else self.max_retries,
@@ -2435,6 +2478,18 @@ class CloudflareWithRawResponse:
 
         return CustomPagesResourceWithRawResponse(self._client.custom_pages)
 
+    @cached_property
+    def secrets_store(self) -> secrets_store.SecretsStoreResourceWithRawResponse:
+        from .resources.secrets_store import SecretsStoreResourceWithRawResponse
+
+        return SecretsStoreResourceWithRawResponse(self._client.secrets_store)
+
+    @cached_property
+    def pipelines(self) -> pipelines.PipelinesResourceWithRawResponse:
+        from .resources.pipelines import PipelinesResourceWithRawResponse
+
+        return PipelinesResourceWithRawResponse(self._client.pipelines)
+
 
 class AsyncCloudflareWithRawResponse:
     _client: AsyncCloudflare
@@ -2996,6 +3051,18 @@ class AsyncCloudflareWithRawResponse:
 
         return AsyncCustomPagesResourceWithRawResponse(self._client.custom_pages)
 
+    @cached_property
+    def secrets_store(self) -> secrets_store.AsyncSecretsStoreResourceWithRawResponse:
+        from .resources.secrets_store import AsyncSecretsStoreResourceWithRawResponse
+
+        return AsyncSecretsStoreResourceWithRawResponse(self._client.secrets_store)
+
+    @cached_property
+    def pipelines(self) -> pipelines.AsyncPipelinesResourceWithRawResponse:
+        from .resources.pipelines import AsyncPipelinesResourceWithRawResponse
+
+        return AsyncPipelinesResourceWithRawResponse(self._client.pipelines)
+
 
 class CloudflareWithStreamedResponse:
     _client: Cloudflare
@@ -3556,6 +3623,18 @@ class CloudflareWithStreamedResponse:
         from .resources.custom_pages import CustomPagesResourceWithStreamingResponse
 
         return CustomPagesResourceWithStreamingResponse(self._client.custom_pages)
+
+    @cached_property
+    def secrets_store(self) -> secrets_store.SecretsStoreResourceWithStreamingResponse:
+        from .resources.secrets_store import SecretsStoreResourceWithStreamingResponse
+
+        return SecretsStoreResourceWithStreamingResponse(self._client.secrets_store)
+
+    @cached_property
+    def pipelines(self) -> pipelines.PipelinesResourceWithStreamingResponse:
+        from .resources.pipelines import PipelinesResourceWithStreamingResponse
+
+        return PipelinesResourceWithStreamingResponse(self._client.pipelines)
 
 
 class AsyncCloudflareWithStreamedResponse:
@@ -4127,6 +4206,18 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.custom_pages import AsyncCustomPagesResourceWithStreamingResponse
 
         return AsyncCustomPagesResourceWithStreamingResponse(self._client.custom_pages)
+
+    @cached_property
+    def secrets_store(self) -> secrets_store.AsyncSecretsStoreResourceWithStreamingResponse:
+        from .resources.secrets_store import AsyncSecretsStoreResourceWithStreamingResponse
+
+        return AsyncSecretsStoreResourceWithStreamingResponse(self._client.secrets_store)
+
+    @cached_property
+    def pipelines(self) -> pipelines.AsyncPipelinesResourceWithStreamingResponse:
+        from .resources.pipelines import AsyncPipelinesResourceWithStreamingResponse
+
+        return AsyncPipelinesResourceWithStreamingResponse(self._client.pipelines)
 
 
 Client = Cloudflare

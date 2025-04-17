@@ -9,7 +9,7 @@ __all__ = ["HoldCreateParams"]
 
 class HoldCreateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     include_subdomains: bool
     """

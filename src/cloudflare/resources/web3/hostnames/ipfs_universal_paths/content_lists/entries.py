@@ -71,15 +71,15 @@ class EntriesResource(SyncAPIResource):
         Create IPFS Universal Path Gateway Content List Entry
 
         Args:
-          zone_id: Identifier
+          zone_id: Specify the identifier of the hostname.
 
-          identifier: Identifier
+          identifier: Specify the identifier of the hostname.
 
-          content: CID or content path of content to block.
+          content: Specify the CID or content path of content to block.
 
-          type: Type of content list entry to block.
+          type: Specify the type of content list entry to block.
 
-          description: An optional description of the content list entry.
+          description: Specify an optional description of the content list entry.
 
           extra_headers: Send extra headers
 
@@ -133,17 +133,17 @@ class EntriesResource(SyncAPIResource):
         Edit IPFS Universal Path Gateway Content List Entry
 
         Args:
-          zone_id: Identifier
+          zone_id: Specify the identifier of the hostname.
 
-          identifier: Identifier
+          identifier: Specify the identifier of the hostname.
 
-          content_list_entry_identifier: Identifier
+          content_list_entry_identifier: Specify the identifier of the hostname.
 
-          content: CID or content path of content to block.
+          content: Specify the CID or content path of content to block.
 
-          type: Type of content list entry to block.
+          type: Specify the type of content list entry to block.
 
-          description: An optional description of the content list entry.
+          description: Specify an optional description of the content list entry.
 
           extra_headers: Send extra headers
 
@@ -197,9 +197,9 @@ class EntriesResource(SyncAPIResource):
         List IPFS Universal Path Gateway Content List Entries
 
         Args:
-          zone_id: Identifier
+          zone_id: Specify the identifier of the hostname.
 
-          identifier: Identifier
+          identifier: Specify the identifier of the hostname.
 
           extra_headers: Send extra headers
 
@@ -242,11 +242,11 @@ class EntriesResource(SyncAPIResource):
         Delete IPFS Universal Path Gateway Content List Entry
 
         Args:
-          zone_id: Identifier
+          zone_id: Specify the identifier of the hostname.
 
-          identifier: Identifier
+          identifier: Specify the identifier of the hostname.
 
-          content_list_entry_identifier: Identifier
+          content_list_entry_identifier: Specify the identifier of the hostname.
 
           extra_headers: Send extra headers
 
@@ -293,11 +293,11 @@ class EntriesResource(SyncAPIResource):
         IPFS Universal Path Gateway Content List Entry Details
 
         Args:
-          zone_id: Identifier
+          zone_id: Specify the identifier of the hostname.
 
-          identifier: Identifier
+          identifier: Specify the identifier of the hostname.
 
-          content_list_entry_identifier: Identifier
+          content_list_entry_identifier: Specify the identifier of the hostname.
 
           extra_headers: Send extra headers
 
@@ -367,15 +367,15 @@ class AsyncEntriesResource(AsyncAPIResource):
         Create IPFS Universal Path Gateway Content List Entry
 
         Args:
-          zone_id: Identifier
+          zone_id: Specify the identifier of the hostname.
 
-          identifier: Identifier
+          identifier: Specify the identifier of the hostname.
 
-          content: CID or content path of content to block.
+          content: Specify the CID or content path of content to block.
 
-          type: Type of content list entry to block.
+          type: Specify the type of content list entry to block.
 
-          description: An optional description of the content list entry.
+          description: Specify an optional description of the content list entry.
 
           extra_headers: Send extra headers
 
@@ -429,17 +429,17 @@ class AsyncEntriesResource(AsyncAPIResource):
         Edit IPFS Universal Path Gateway Content List Entry
 
         Args:
-          zone_id: Identifier
+          zone_id: Specify the identifier of the hostname.
 
-          identifier: Identifier
+          identifier: Specify the identifier of the hostname.
 
-          content_list_entry_identifier: Identifier
+          content_list_entry_identifier: Specify the identifier of the hostname.
 
-          content: CID or content path of content to block.
+          content: Specify the CID or content path of content to block.
 
-          type: Type of content list entry to block.
+          type: Specify the type of content list entry to block.
 
-          description: An optional description of the content list entry.
+          description: Specify an optional description of the content list entry.
 
           extra_headers: Send extra headers
 
@@ -493,9 +493,9 @@ class AsyncEntriesResource(AsyncAPIResource):
         List IPFS Universal Path Gateway Content List Entries
 
         Args:
-          zone_id: Identifier
+          zone_id: Specify the identifier of the hostname.
 
-          identifier: Identifier
+          identifier: Specify the identifier of the hostname.
 
           extra_headers: Send extra headers
 
@@ -538,11 +538,11 @@ class AsyncEntriesResource(AsyncAPIResource):
         Delete IPFS Universal Path Gateway Content List Entry
 
         Args:
-          zone_id: Identifier
+          zone_id: Specify the identifier of the hostname.
 
-          identifier: Identifier
+          identifier: Specify the identifier of the hostname.
 
-          content_list_entry_identifier: Identifier
+          content_list_entry_identifier: Specify the identifier of the hostname.
 
           extra_headers: Send extra headers
 
@@ -589,11 +589,11 @@ class AsyncEntriesResource(AsyncAPIResource):
         IPFS Universal Path Gateway Content List Entry Details
 
         Args:
-          zone_id: Identifier
+          zone_id: Specify the identifier of the hostname.
 
-          identifier: Identifier
+          identifier: Specify the identifier of the hostname.
 
-          content_list_entry_identifier: Identifier
+          content_list_entry_identifier: Specify the identifier of the hostname.
 
           extra_headers: Send extra headers
 

@@ -14,6 +14,7 @@ from cloudflare.types.radar.bgp import (
     RouteMoasResponse,
     RouteStatsResponse,
     RoutePfx2asResponse,
+    RouteRealtimeResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -33,7 +34,7 @@ class TestRoutes:
             format="JSON",
             limit=5,
             location="US",
-            sort_by="cone",
+            sort_by="ipv4",
             sort_order="ASC",
         )
         assert_matches_type(RouteAsesResponse, route, path=["response"])
@@ -105,7 +106,7 @@ class TestRoutes:
             longest_prefix_match=True,
             origin=0,
             prefix="1.1.1.0/24",
-            rpki_status="VALID",
+            rpki_status="INVALID",
         )
         assert_matches_type(RoutePfx2asResponse, route, path=["response"])
 
@@ -126,6 +127,39 @@ class TestRoutes:
 
             route = response.parse()
             assert_matches_type(RoutePfx2asResponse, route, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_realtime(self, client: Cloudflare) -> None:
+        route = client.radar.bgp.routes.realtime()
+        assert_matches_type(RouteRealtimeResponse, route, path=["response"])
+
+    @parametrize
+    def test_method_realtime_with_all_params(self, client: Cloudflare) -> None:
+        route = client.radar.bgp.routes.realtime(
+            format="JSON",
+            prefix="1.1.1.0/24",
+        )
+        assert_matches_type(RouteRealtimeResponse, route, path=["response"])
+
+    @parametrize
+    def test_raw_response_realtime(self, client: Cloudflare) -> None:
+        response = client.radar.bgp.routes.with_raw_response.realtime()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        route = response.parse()
+        assert_matches_type(RouteRealtimeResponse, route, path=["response"])
+
+    @parametrize
+    def test_streaming_response_realtime(self, client: Cloudflare) -> None:
+        with client.radar.bgp.routes.with_streaming_response.realtime() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            route = response.parse()
+            assert_matches_type(RouteRealtimeResponse, route, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -178,7 +212,7 @@ class TestAsyncRoutes:
             format="JSON",
             limit=5,
             location="US",
-            sort_by="cone",
+            sort_by="ipv4",
             sort_order="ASC",
         )
         assert_matches_type(RouteAsesResponse, route, path=["response"])
@@ -250,7 +284,7 @@ class TestAsyncRoutes:
             longest_prefix_match=True,
             origin=0,
             prefix="1.1.1.0/24",
-            rpki_status="VALID",
+            rpki_status="INVALID",
         )
         assert_matches_type(RoutePfx2asResponse, route, path=["response"])
 
@@ -271,6 +305,39 @@ class TestAsyncRoutes:
 
             route = await response.parse()
             assert_matches_type(RoutePfx2asResponse, route, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_realtime(self, async_client: AsyncCloudflare) -> None:
+        route = await async_client.radar.bgp.routes.realtime()
+        assert_matches_type(RouteRealtimeResponse, route, path=["response"])
+
+    @parametrize
+    async def test_method_realtime_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        route = await async_client.radar.bgp.routes.realtime(
+            format="JSON",
+            prefix="1.1.1.0/24",
+        )
+        assert_matches_type(RouteRealtimeResponse, route, path=["response"])
+
+    @parametrize
+    async def test_raw_response_realtime(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.radar.bgp.routes.with_raw_response.realtime()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        route = await response.parse()
+        assert_matches_type(RouteRealtimeResponse, route, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_realtime(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.radar.bgp.routes.with_streaming_response.realtime() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            route = await response.parse()
+            assert_matches_type(RouteRealtimeResponse, route, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

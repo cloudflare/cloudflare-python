@@ -6,6 +6,7 @@ from typing import Iterable
 from typing_extensions import Required, TypedDict
 
 from ..split_tunnel_exclude_param import SplitTunnelExcludeParam
+from ..split_tunnel_include_param import SplitTunnelIncludeParam
 
 __all__ = ["DefaultEditParams", "ServiceModeV2"]
 
@@ -47,7 +48,7 @@ class DefaultEditParams(TypedDict, total=False):
     exclude_office_ips: bool
     """Whether to add Microsoft IPs to Split Tunnel exclusions."""
 
-    include: Iterable[SplitTunnelExcludeParam]
+    include: Iterable[SplitTunnelIncludeParam]
     """List of routes included in the WARP client's tunnel.
 
     Both 'exclude' and 'include' cannot be set in the same request.

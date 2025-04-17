@@ -76,7 +76,7 @@ class AccountResource(SyncAPIResource):
         Update DNS settings for an account
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -116,7 +116,7 @@ class AccountResource(SyncAPIResource):
         Show DNS settings for an account
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -181,7 +181,7 @@ class AsyncAccountResource(AsyncAPIResource):
         Update DNS settings for an account
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -221,7 +221,7 @@ class AsyncAccountResource(AsyncAPIResource):
         Show DNS settings for an account
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 

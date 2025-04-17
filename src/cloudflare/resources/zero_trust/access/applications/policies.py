@@ -80,7 +80,7 @@ class PoliciesResource(SyncAPIResource):
         array.
 
         Args:
-          app_id: UUID
+          app_id: UUID.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -179,9 +179,9 @@ class PoliciesResource(SyncAPIResource):
         policy, use the /account or zones/{account or zone_id}/policies/{uid} endpoint.
 
         Args:
-          app_id: UUID
+          app_id: UUID.
 
-          policy_id: UUID
+          policy_id: UUID.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -274,7 +274,7 @@ class PoliciesResource(SyncAPIResource):
         scoped and reusable policies used by the application.
 
         Args:
-          app_id: UUID
+          app_id: UUID.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -331,9 +331,9 @@ class PoliciesResource(SyncAPIResource):
         policy, use the /account or zones/{account or zone_id}/policies/{uid} endpoint.
 
         Args:
-          app_id: UUID
+          app_id: UUID.
 
-          policy_id: UUID
+          policy_id: UUID.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -395,9 +395,9 @@ class PoliciesResource(SyncAPIResource):
         exclusively owned and reusable policies used by the application.
 
         Args:
-          app_id: UUID
+          app_id: UUID.
 
-          policy_id: UUID
+          policy_id: UUID.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -487,7 +487,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         array.
 
         Args:
-          app_id: UUID
+          app_id: UUID.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -586,9 +586,9 @@ class AsyncPoliciesResource(AsyncAPIResource):
         policy, use the /account or zones/{account or zone_id}/policies/{uid} endpoint.
 
         Args:
-          app_id: UUID
+          app_id: UUID.
 
-          policy_id: UUID
+          policy_id: UUID.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -681,7 +681,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         scoped and reusable policies used by the application.
 
         Args:
-          app_id: UUID
+          app_id: UUID.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -738,9 +738,9 @@ class AsyncPoliciesResource(AsyncAPIResource):
         policy, use the /account or zones/{account or zone_id}/policies/{uid} endpoint.
 
         Args:
-          app_id: UUID
+          app_id: UUID.
 
-          policy_id: UUID
+          policy_id: UUID.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -802,9 +802,9 @@ class AsyncPoliciesResource(AsyncAPIResource):
         exclusively owned and reusable policies used by the application.
 
         Args:
-          app_id: UUID
+          app_id: UUID.
 
-          policy_id: UUID
+          policy_id: UUID.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 

@@ -27,7 +27,7 @@ class RuleBulkEditResponse(BaseModel):
     action: Action
 
     conditions: List[Condition]
-    """Rule is triggered if all conditions match"""
+    """Rule is triggered if all conditions match."""
 
     created_at: datetime
 

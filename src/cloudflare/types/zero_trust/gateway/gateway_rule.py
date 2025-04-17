@@ -56,6 +56,7 @@ class GatewayRule(BaseModel):
             "egress",
             "resolve",
             "quarantine",
+            "redirect",
         ]
     ] = None
     """

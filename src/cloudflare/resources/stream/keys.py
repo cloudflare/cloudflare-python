@@ -69,7 +69,7 @@ class KeysResource(SyncAPIResource):
         videos, and every key can sign any video.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -110,9 +110,9 @@ class KeysResource(SyncAPIResource):
         Deletes signing keys and revokes all signed URLs generated with the key.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          identifier: Identifier
+          identifier: Identifier.
 
           extra_headers: Send extra headers
 
@@ -153,7 +153,7 @@ class KeysResource(SyncAPIResource):
         Lists the video ID and creation date and time when a signing key was created.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -214,7 +214,7 @@ class AsyncKeysResource(AsyncAPIResource):
         videos, and every key can sign any video.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -255,9 +255,9 @@ class AsyncKeysResource(AsyncAPIResource):
         Deletes signing keys and revokes all signed URLs generated with the key.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          identifier: Identifier
+          identifier: Identifier.
 
           extra_headers: Send extra headers
 
@@ -298,7 +298,7 @@ class AsyncKeysResource(AsyncAPIResource):
         Lists the video ID and creation date and time when a signing key was created.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 

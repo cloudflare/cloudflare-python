@@ -78,7 +78,7 @@ class TestIQI:
     def test_method_timeseries_groups_with_all_params(self, client: Cloudflare) -> None:
         iqi = client.radar.quality.iqi.timeseries_groups(
             metric="BANDWIDTH",
-            agg_interval="15m",
+            agg_interval="1h",
             asn=["string"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
@@ -176,7 +176,7 @@ class TestAsyncIQI:
     async def test_method_timeseries_groups_with_all_params(self, async_client: AsyncCloudflare) -> None:
         iqi = await async_client.radar.quality.iqi.timeseries_groups(
             metric="BANDWIDTH",
-            agg_interval="15m",
+            agg_interval="1h",
             asn=["string"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],

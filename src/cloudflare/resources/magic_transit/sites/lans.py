@@ -61,12 +61,12 @@ class LANsResource(SyncAPIResource):
         *,
         account_id: str,
         physport: int,
-        vlan_tag: int,
         ha_link: bool | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         nat: NatParam | NotGiven = NOT_GIVEN,
         routed_subnets: Iterable[RoutedSubnetParam] | NotGiven = NOT_GIVEN,
         static_addressing: LANStaticAddressingParam | NotGiven = NOT_GIVEN,
+        vlan_tag: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -84,14 +84,14 @@ class LANsResource(SyncAPIResource):
 
           site_id: Identifier
 
-          vlan_tag: VLAN port number.
-
           ha_link: mark true to use this LAN for HA probing. only works for site with HA turned on.
               only one LAN can be set as the ha_link.
 
           static_addressing: If the site is not configured in high availability mode, this configuration is
               optional (if omitted, use DHCP). However, if in high availability mode,
               static_address is required along with secondary and virtual address.
+
+          vlan_tag: VLAN ID. Use zero for untagged.
 
           extra_headers: Send extra headers
 
@@ -111,12 +111,12 @@ class LANsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "physport": physport,
-                    "vlan_tag": vlan_tag,
                     "ha_link": ha_link,
                     "name": name,
                     "nat": nat,
                     "routed_subnets": routed_subnets,
                     "static_addressing": static_addressing,
+                    "vlan_tag": vlan_tag,
                 },
                 lan_create_params.LANCreateParams,
             ),
@@ -160,7 +160,7 @@ class LANsResource(SyncAPIResource):
               optional (if omitted, use DHCP). However, if in high availability mode,
               static_address is required along with secondary and virtual address.
 
-          vlan_tag: VLAN port number.
+          vlan_tag: VLAN ID. Use zero for untagged.
 
           extra_headers: Send extra headers
 
@@ -322,7 +322,7 @@ class LANsResource(SyncAPIResource):
               optional (if omitted, use DHCP). However, if in high availability mode,
               static_address is required along with secondary and virtual address.
 
-          vlan_tag: VLAN port number.
+          vlan_tag: VLAN ID. Use zero for untagged.
 
           extra_headers: Send extra headers
 
@@ -437,12 +437,12 @@ class AsyncLANsResource(AsyncAPIResource):
         *,
         account_id: str,
         physport: int,
-        vlan_tag: int,
         ha_link: bool | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         nat: NatParam | NotGiven = NOT_GIVEN,
         routed_subnets: Iterable[RoutedSubnetParam] | NotGiven = NOT_GIVEN,
         static_addressing: LANStaticAddressingParam | NotGiven = NOT_GIVEN,
+        vlan_tag: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -460,14 +460,14 @@ class AsyncLANsResource(AsyncAPIResource):
 
           site_id: Identifier
 
-          vlan_tag: VLAN port number.
-
           ha_link: mark true to use this LAN for HA probing. only works for site with HA turned on.
               only one LAN can be set as the ha_link.
 
           static_addressing: If the site is not configured in high availability mode, this configuration is
               optional (if omitted, use DHCP). However, if in high availability mode,
               static_address is required along with secondary and virtual address.
+
+          vlan_tag: VLAN ID. Use zero for untagged.
 
           extra_headers: Send extra headers
 
@@ -487,12 +487,12 @@ class AsyncLANsResource(AsyncAPIResource):
             body=maybe_transform(
                 {
                     "physport": physport,
-                    "vlan_tag": vlan_tag,
                     "ha_link": ha_link,
                     "name": name,
                     "nat": nat,
                     "routed_subnets": routed_subnets,
                     "static_addressing": static_addressing,
+                    "vlan_tag": vlan_tag,
                 },
                 lan_create_params.LANCreateParams,
             ),
@@ -536,7 +536,7 @@ class AsyncLANsResource(AsyncAPIResource):
               optional (if omitted, use DHCP). However, if in high availability mode,
               static_address is required along with secondary and virtual address.
 
-          vlan_tag: VLAN port number.
+          vlan_tag: VLAN ID. Use zero for untagged.
 
           extra_headers: Send extra headers
 
@@ -698,7 +698,7 @@ class AsyncLANsResource(AsyncAPIResource):
               optional (if omitted, use DHCP). However, if in high availability mode,
               static_address is required along with secondary and virtual address.
 
-          vlan_tag: VLAN port number.
+          vlan_tag: VLAN ID. Use zero for untagged.
 
           extra_headers: Send extra headers
 

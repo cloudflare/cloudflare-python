@@ -5,8 +5,6 @@ from __future__ import annotations
 from typing import List, Iterable
 from typing_extensions import Literal, Required, TypedDict
 
-from .methods import Methods
-
 __all__ = ["RateLimitEditParams", "Action", "ActionResponse", "Match", "MatchHeader", "MatchRequest", "MatchResponse"]
 
 
@@ -87,7 +85,7 @@ class MatchHeader(TypedDict, total=False):
 
 
 class MatchRequest(TypedDict, total=False):
-    methods: List[Methods]
+    methods: List[Literal["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD", "_ALL_"]]
     """The HTTP methods to match.
 
     You can specify a subset (for example, `['POST','PUT']`) or all methods

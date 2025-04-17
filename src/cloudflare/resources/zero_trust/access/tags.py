@@ -65,7 +65,7 @@ class TagsResource(SyncAPIResource):
         Create a tag
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           name: The name of the tag
 
@@ -109,7 +109,7 @@ class TagsResource(SyncAPIResource):
         Update a tag
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           tag_name: The name of the tag
 
@@ -155,7 +155,7 @@ class TagsResource(SyncAPIResource):
         List tags
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -192,7 +192,7 @@ class TagsResource(SyncAPIResource):
         Delete a tag
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           tag_name: The name of the tag
 
@@ -236,7 +236,7 @@ class TagsResource(SyncAPIResource):
         Get a tag
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           tag_name: The name of the tag
 
@@ -301,7 +301,7 @@ class AsyncTagsResource(AsyncAPIResource):
         Create a tag
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           name: The name of the tag
 
@@ -345,7 +345,7 @@ class AsyncTagsResource(AsyncAPIResource):
         Update a tag
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           tag_name: The name of the tag
 
@@ -391,7 +391,7 @@ class AsyncTagsResource(AsyncAPIResource):
         List tags
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -428,7 +428,7 @@ class AsyncTagsResource(AsyncAPIResource):
         Delete a tag
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           tag_name: The name of the tag
 
@@ -472,7 +472,7 @@ class AsyncTagsResource(AsyncAPIResource):
         Get a tag
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           tag_name: The name of the tag
 

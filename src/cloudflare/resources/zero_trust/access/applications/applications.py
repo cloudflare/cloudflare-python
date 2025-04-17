@@ -137,6 +137,7 @@ class ApplicationsResource(SyncAPIResource):
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
+        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -211,6 +212,14 @@ class ApplicationsResource(SyncAPIResource):
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
+
+          read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
+              name. This works as an alternative to the (CF-Access-Client-Id,
+              CF-Access-Client-Secret) pair of headers. The header value will be interpreted
+              as a json object similar to: { "cf-access-client-id":
+              "88bf3b6d86161464f6509f7219099e57.access.example.com",
+              "cf-access-client-secret":
+              "bdd31cbc4dec990953e39163fbbb194c93313ca9f0a6e420346af9d326b1d2a5" }
 
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
@@ -336,6 +345,7 @@ class ApplicationsResource(SyncAPIResource):
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.BrowserSSHApplicationPolicy] | NotGiven = NOT_GIVEN,
+        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.BrowserSSHApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -411,6 +421,14 @@ class ApplicationsResource(SyncAPIResource):
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
+          read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
+              name. This works as an alternative to the (CF-Access-Client-Id,
+              CF-Access-Client-Secret) pair of headers. The header value will be interpreted
+              as a json object similar to: { "cf-access-client-id":
+              "88bf3b6d86161464f6509f7219099e57.access.example.com",
+              "cf-access-client-secret":
+              "bdd31cbc4dec990953e39163fbbb194c93313ca9f0a6e420346af9d326b1d2a5" }
+
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
 
@@ -467,6 +485,7 @@ class ApplicationsResource(SyncAPIResource):
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.BrowserVNCApplicationPolicy] | NotGiven = NOT_GIVEN,
+        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.BrowserVNCApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -541,6 +560,14 @@ class ApplicationsResource(SyncAPIResource):
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
+
+          read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
+              name. This works as an alternative to the (CF-Access-Client-Id,
+              CF-Access-Client-Secret) pair of headers. The header value will be interpreted
+              as a json object similar to: { "cf-access-client-id":
+              "88bf3b6d86161464f6509f7219099e57.access.example.com",
+              "cf-access-client-secret":
+              "bdd31cbc4dec990953e39163fbbb194c93313ca9f0a6e420346af9d326b1d2a5" }
 
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
@@ -920,6 +947,7 @@ class ApplicationsResource(SyncAPIResource):
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.BrowserRdpApplicationPolicy] | NotGiven = NOT_GIVEN,
+        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.BrowserRdpApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -995,6 +1023,14 @@ class ApplicationsResource(SyncAPIResource):
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
+          read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
+              name. This works as an alternative to the (CF-Access-Client-Id,
+              CF-Access-Client-Secret) pair of headers. The header value will be interpreted
+              as a json object similar to: { "cf-access-client-id":
+              "88bf3b6d86161464f6509f7219099e57.access.example.com",
+              "cf-access-client-secret":
+              "bdd31cbc4dec990953e39163fbbb194c93313ca9f0a6e420346af9d326b1d2a5" }
+
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
 
@@ -1052,6 +1088,7 @@ class ApplicationsResource(SyncAPIResource):
         policies: List[application_create_params.SelfHostedApplicationPolicy]
         | Iterable[application_create_params.InfrastructureApplicationPolicy]
         | NotGiven = NOT_GIVEN,
+        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -1112,6 +1149,7 @@ class ApplicationsResource(SyncAPIResource):
                         "options_preflight_bypass": options_preflight_bypass,
                         "path_cookie_attribute": path_cookie_attribute,
                         "policies": policies,
+                        "read_service_tokens_from_header": read_service_tokens_from_header,
                         "same_site_cookie_attribute": same_site_cookie_attribute,
                         "scim_config": scim_config,
                         "self_hosted_domains": self_hosted_domains,
@@ -1169,6 +1207,7 @@ class ApplicationsResource(SyncAPIResource):
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
+        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -1187,7 +1226,7 @@ class ApplicationsResource(SyncAPIResource):
         Updates an Access application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           domain: The primary hostname and path secured by Access. This domain will be displayed
               if the app is visible in the App Launcher.
@@ -1245,6 +1284,14 @@ class ApplicationsResource(SyncAPIResource):
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
+
+          read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
+              name. This works as an alternative to the (CF-Access-Client-Id,
+              CF-Access-Client-Secret) pair of headers. The header value will be interpreted
+              as a json object similar to: { "cf-access-client-id":
+              "88bf3b6d86161464f6509f7219099e57.access.example.com",
+              "cf-access-client-secret":
+              "bdd31cbc4dec990953e39163fbbb194c93313ca9f0a6e420346af9d326b1d2a5" }
 
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
@@ -1306,7 +1353,7 @@ class ApplicationsResource(SyncAPIResource):
         Updates an Access application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -1374,6 +1421,7 @@ class ApplicationsResource(SyncAPIResource):
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.BrowserSSHApplicationPolicy] | NotGiven = NOT_GIVEN,
+        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.BrowserSSHApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -1392,7 +1440,7 @@ class ApplicationsResource(SyncAPIResource):
         Updates an Access application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           domain: The primary hostname and path secured by Access. This domain will be displayed
               if the app is visible in the App Launcher.
@@ -1450,6 +1498,14 @@ class ApplicationsResource(SyncAPIResource):
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
+
+          read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
+              name. This works as an alternative to the (CF-Access-Client-Id,
+              CF-Access-Client-Secret) pair of headers. The header value will be interpreted
+              as a json object similar to: { "cf-access-client-id":
+              "88bf3b6d86161464f6509f7219099e57.access.example.com",
+              "cf-access-client-secret":
+              "bdd31cbc4dec990953e39163fbbb194c93313ca9f0a6e420346af9d326b1d2a5" }
 
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
@@ -1508,6 +1564,7 @@ class ApplicationsResource(SyncAPIResource):
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.BrowserVNCApplicationPolicy] | NotGiven = NOT_GIVEN,
+        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.BrowserVNCApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -1526,7 +1583,7 @@ class ApplicationsResource(SyncAPIResource):
         Updates an Access application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           domain: The primary hostname and path secured by Access. This domain will be displayed
               if the app is visible in the App Launcher.
@@ -1584,6 +1641,14 @@ class ApplicationsResource(SyncAPIResource):
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
+
+          read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
+              name. This works as an alternative to the (CF-Access-Client-Id,
+              CF-Access-Client-Secret) pair of headers. The header value will be interpreted
+              as a json object similar to: { "cf-access-client-id":
+              "88bf3b6d86161464f6509f7219099e57.access.example.com",
+              "cf-access-client-secret":
+              "bdd31cbc4dec990953e39163fbbb194c93313ca9f0a6e420346af9d326b1d2a5" }
 
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
@@ -1646,7 +1711,7 @@ class ApplicationsResource(SyncAPIResource):
         Updates an Access application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           type: The application type.
 
@@ -1725,7 +1790,7 @@ class ApplicationsResource(SyncAPIResource):
         Updates an Access application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           type: The application type.
 
@@ -1804,7 +1869,7 @@ class ApplicationsResource(SyncAPIResource):
         Updates an Access application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           type: The application type.
 
@@ -1876,7 +1941,7 @@ class ApplicationsResource(SyncAPIResource):
         Updates an Access application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -1930,7 +1995,7 @@ class ApplicationsResource(SyncAPIResource):
         Updates an Access application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           type: The application type.
 
@@ -1979,6 +2044,7 @@ class ApplicationsResource(SyncAPIResource):
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.BrowserRdpApplicationPolicy] | NotGiven = NOT_GIVEN,
+        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.BrowserRdpApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -1997,7 +2063,7 @@ class ApplicationsResource(SyncAPIResource):
         Updates an Access application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           domain: The primary hostname and path secured by Access. This domain will be displayed
               if the app is visible in the App Launcher.
@@ -2055,6 +2121,14 @@ class ApplicationsResource(SyncAPIResource):
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
+
+          read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
+              name. This works as an alternative to the (CF-Access-Client-Id,
+              CF-Access-Client-Secret) pair of headers. The header value will be interpreted
+              as a json object similar to: { "cf-access-client-id":
+              "88bf3b6d86161464f6509f7219099e57.access.example.com",
+              "cf-access-client-secret":
+              "bdd31cbc4dec990953e39163fbbb194c93313ca9f0a6e420346af9d326b1d2a5" }
 
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
@@ -2114,6 +2188,7 @@ class ApplicationsResource(SyncAPIResource):
         policies: List[application_update_params.SelfHostedApplicationPolicy]
         | Iterable[application_update_params.InfrastructureApplicationPolicy]
         | NotGiven = NOT_GIVEN,
+        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -2176,6 +2251,7 @@ class ApplicationsResource(SyncAPIResource):
                         "options_preflight_bypass": options_preflight_bypass,
                         "path_cookie_attribute": path_cookie_attribute,
                         "policies": policies,
+                        "read_service_tokens_from_header": read_service_tokens_from_header,
                         "same_site_cookie_attribute": same_site_cookie_attribute,
                         "scim_config": scim_config,
                         "self_hosted_domains": self_hosted_domains,
@@ -2297,7 +2373,7 @@ class ApplicationsResource(SyncAPIResource):
         Deletes an application from Access.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -2354,7 +2430,7 @@ class ApplicationsResource(SyncAPIResource):
         Fetches information about an Access application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -2416,7 +2492,7 @@ class ApplicationsResource(SyncAPIResource):
         Revokes all tokens issued for an application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -2518,6 +2594,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
+        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -2592,6 +2669,14 @@ class AsyncApplicationsResource(AsyncAPIResource):
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
+
+          read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
+              name. This works as an alternative to the (CF-Access-Client-Id,
+              CF-Access-Client-Secret) pair of headers. The header value will be interpreted
+              as a json object similar to: { "cf-access-client-id":
+              "88bf3b6d86161464f6509f7219099e57.access.example.com",
+              "cf-access-client-secret":
+              "bdd31cbc4dec990953e39163fbbb194c93313ca9f0a6e420346af9d326b1d2a5" }
 
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
@@ -2717,6 +2802,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.BrowserSSHApplicationPolicy] | NotGiven = NOT_GIVEN,
+        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.BrowserSSHApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -2792,6 +2878,14 @@ class AsyncApplicationsResource(AsyncAPIResource):
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
+          read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
+              name. This works as an alternative to the (CF-Access-Client-Id,
+              CF-Access-Client-Secret) pair of headers. The header value will be interpreted
+              as a json object similar to: { "cf-access-client-id":
+              "88bf3b6d86161464f6509f7219099e57.access.example.com",
+              "cf-access-client-secret":
+              "bdd31cbc4dec990953e39163fbbb194c93313ca9f0a6e420346af9d326b1d2a5" }
+
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
 
@@ -2848,6 +2942,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.BrowserVNCApplicationPolicy] | NotGiven = NOT_GIVEN,
+        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.BrowserVNCApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -2922,6 +3017,14 @@ class AsyncApplicationsResource(AsyncAPIResource):
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
+
+          read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
+              name. This works as an alternative to the (CF-Access-Client-Id,
+              CF-Access-Client-Secret) pair of headers. The header value will be interpreted
+              as a json object similar to: { "cf-access-client-id":
+              "88bf3b6d86161464f6509f7219099e57.access.example.com",
+              "cf-access-client-secret":
+              "bdd31cbc4dec990953e39163fbbb194c93313ca9f0a6e420346af9d326b1d2a5" }
 
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
@@ -3301,6 +3404,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.BrowserRdpApplicationPolicy] | NotGiven = NOT_GIVEN,
+        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.BrowserRdpApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -3376,6 +3480,14 @@ class AsyncApplicationsResource(AsyncAPIResource):
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
+          read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
+              name. This works as an alternative to the (CF-Access-Client-Id,
+              CF-Access-Client-Secret) pair of headers. The header value will be interpreted
+              as a json object similar to: { "cf-access-client-id":
+              "88bf3b6d86161464f6509f7219099e57.access.example.com",
+              "cf-access-client-secret":
+              "bdd31cbc4dec990953e39163fbbb194c93313ca9f0a6e420346af9d326b1d2a5" }
+
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
 
@@ -3433,6 +3545,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         policies: List[application_create_params.SelfHostedApplicationPolicy]
         | Iterable[application_create_params.InfrastructureApplicationPolicy]
         | NotGiven = NOT_GIVEN,
+        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -3493,6 +3606,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
                         "options_preflight_bypass": options_preflight_bypass,
                         "path_cookie_attribute": path_cookie_attribute,
                         "policies": policies,
+                        "read_service_tokens_from_header": read_service_tokens_from_header,
                         "same_site_cookie_attribute": same_site_cookie_attribute,
                         "scim_config": scim_config,
                         "self_hosted_domains": self_hosted_domains,
@@ -3550,6 +3664,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
+        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -3568,7 +3683,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         Updates an Access application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           domain: The primary hostname and path secured by Access. This domain will be displayed
               if the app is visible in the App Launcher.
@@ -3626,6 +3741,14 @@ class AsyncApplicationsResource(AsyncAPIResource):
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
+
+          read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
+              name. This works as an alternative to the (CF-Access-Client-Id,
+              CF-Access-Client-Secret) pair of headers. The header value will be interpreted
+              as a json object similar to: { "cf-access-client-id":
+              "88bf3b6d86161464f6509f7219099e57.access.example.com",
+              "cf-access-client-secret":
+              "bdd31cbc4dec990953e39163fbbb194c93313ca9f0a6e420346af9d326b1d2a5" }
 
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
@@ -3687,7 +3810,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         Updates an Access application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -3755,6 +3878,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.BrowserSSHApplicationPolicy] | NotGiven = NOT_GIVEN,
+        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.BrowserSSHApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -3773,7 +3897,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         Updates an Access application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           domain: The primary hostname and path secured by Access. This domain will be displayed
               if the app is visible in the App Launcher.
@@ -3831,6 +3955,14 @@ class AsyncApplicationsResource(AsyncAPIResource):
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
+
+          read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
+              name. This works as an alternative to the (CF-Access-Client-Id,
+              CF-Access-Client-Secret) pair of headers. The header value will be interpreted
+              as a json object similar to: { "cf-access-client-id":
+              "88bf3b6d86161464f6509f7219099e57.access.example.com",
+              "cf-access-client-secret":
+              "bdd31cbc4dec990953e39163fbbb194c93313ca9f0a6e420346af9d326b1d2a5" }
 
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
@@ -3889,6 +4021,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.BrowserVNCApplicationPolicy] | NotGiven = NOT_GIVEN,
+        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.BrowserVNCApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -3907,7 +4040,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         Updates an Access application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           domain: The primary hostname and path secured by Access. This domain will be displayed
               if the app is visible in the App Launcher.
@@ -3965,6 +4098,14 @@ class AsyncApplicationsResource(AsyncAPIResource):
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
+
+          read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
+              name. This works as an alternative to the (CF-Access-Client-Id,
+              CF-Access-Client-Secret) pair of headers. The header value will be interpreted
+              as a json object similar to: { "cf-access-client-id":
+              "88bf3b6d86161464f6509f7219099e57.access.example.com",
+              "cf-access-client-secret":
+              "bdd31cbc4dec990953e39163fbbb194c93313ca9f0a6e420346af9d326b1d2a5" }
 
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
@@ -4027,7 +4168,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         Updates an Access application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           type: The application type.
 
@@ -4106,7 +4247,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         Updates an Access application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           type: The application type.
 
@@ -4185,7 +4326,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         Updates an Access application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           type: The application type.
 
@@ -4257,7 +4398,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         Updates an Access application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -4311,7 +4452,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         Updates an Access application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           type: The application type.
 
@@ -4360,6 +4501,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.BrowserRdpApplicationPolicy] | NotGiven = NOT_GIVEN,
+        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.BrowserRdpApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -4378,7 +4520,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         Updates an Access application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           domain: The primary hostname and path secured by Access. This domain will be displayed
               if the app is visible in the App Launcher.
@@ -4436,6 +4578,14 @@ class AsyncApplicationsResource(AsyncAPIResource):
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
+
+          read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
+              name. This works as an alternative to the (CF-Access-Client-Id,
+              CF-Access-Client-Secret) pair of headers. The header value will be interpreted
+              as a json object similar to: { "cf-access-client-id":
+              "88bf3b6d86161464f6509f7219099e57.access.example.com",
+              "cf-access-client-secret":
+              "bdd31cbc4dec990953e39163fbbb194c93313ca9f0a6e420346af9d326b1d2a5" }
 
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
@@ -4495,6 +4645,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         policies: List[application_update_params.SelfHostedApplicationPolicy]
         | Iterable[application_update_params.InfrastructureApplicationPolicy]
         | NotGiven = NOT_GIVEN,
+        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -4557,6 +4708,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
                         "options_preflight_bypass": options_preflight_bypass,
                         "path_cookie_attribute": path_cookie_attribute,
                         "policies": policies,
+                        "read_service_tokens_from_header": read_service_tokens_from_header,
                         "same_site_cookie_attribute": same_site_cookie_attribute,
                         "scim_config": scim_config,
                         "self_hosted_domains": self_hosted_domains,
@@ -4678,7 +4830,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         Deletes an application from Access.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -4735,7 +4887,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         Fetches information about an Access application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -4797,7 +4949,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         Revokes all tokens issued for an application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 

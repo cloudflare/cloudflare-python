@@ -78,13 +78,13 @@ class ContentListsResource(SyncAPIResource):
         Update IPFS Universal Path Gateway Content List
 
         Args:
-          zone_id: Identifier
+          zone_id: Specify the identifier of the hostname.
 
-          identifier: Identifier
+          identifier: Specify the identifier of the hostname.
 
           action: Behavior of the content list.
 
-          entries: Content list entries.
+          entries: Provides content list entries.
 
           extra_headers: Send extra headers
 
@@ -133,9 +133,9 @@ class ContentListsResource(SyncAPIResource):
         IPFS Universal Path Gateway Content List Details
 
         Args:
-          zone_id: Identifier
+          zone_id: Specify the identifier of the hostname.
 
-          identifier: Identifier
+          identifier: Specify the identifier of the hostname.
 
           extra_headers: Send extra headers
 
@@ -204,13 +204,13 @@ class AsyncContentListsResource(AsyncAPIResource):
         Update IPFS Universal Path Gateway Content List
 
         Args:
-          zone_id: Identifier
+          zone_id: Specify the identifier of the hostname.
 
-          identifier: Identifier
+          identifier: Specify the identifier of the hostname.
 
           action: Behavior of the content list.
 
-          entries: Content list entries.
+          entries: Provides content list entries.
 
           extra_headers: Send extra headers
 
@@ -259,9 +259,9 @@ class AsyncContentListsResource(AsyncAPIResource):
         IPFS Universal Path Gateway Content List Details
 
         Args:
-          zone_id: Identifier
+          zone_id: Specify the identifier of the hostname.
 
-          identifier: Identifier
+          identifier: Specify the identifier of the hostname.
 
           extra_headers: Send extra headers
 

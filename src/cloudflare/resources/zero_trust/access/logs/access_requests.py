@@ -68,7 +68,7 @@ class AccessRequestsResource(SyncAPIResource):
         Gets a list of Access authentication audit logs for an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           direction: The chronological sorting order for the logs.
 
@@ -149,7 +149,7 @@ class AsyncAccessRequestsResource(AsyncAPIResource):
         Gets a list of Access authentication audit logs for an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           direction: The chronological sorting order for the logs.
 

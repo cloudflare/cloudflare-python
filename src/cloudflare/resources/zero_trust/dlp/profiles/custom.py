@@ -108,7 +108,7 @@ class CustomResource(SyncAPIResource):
           context_awareness: Scan the context of predefined entries to only return matches surrounded by
               keywords.
 
-          description: The description of the profile
+          description: The description of the profile.
 
           shared_entries: Entries from other profiles (e.g. pre-defined Cloudflare profiles, or your
               Microsoft Information Protection profiles).
@@ -207,7 +207,7 @@ class CustomResource(SyncAPIResource):
           context_awareness: Scan the context of predefined entries to only return matches surrounded by
               keywords.
 
-          description: The description of the profile
+          description: The description of the profile.
 
           entries: Custom entries from this profile. If this field is omitted, entries owned by
               this profile will not be changed.
@@ -420,7 +420,7 @@ class AsyncCustomResource(AsyncAPIResource):
           context_awareness: Scan the context of predefined entries to only return matches surrounded by
               keywords.
 
-          description: The description of the profile
+          description: The description of the profile.
 
           shared_entries: Entries from other profiles (e.g. pre-defined Cloudflare profiles, or your
               Microsoft Information Protection profiles).
@@ -519,7 +519,7 @@ class AsyncCustomResource(AsyncAPIResource):
           context_awareness: Scan the context of predefined entries to only return matches surrounded by
               keywords.
 
-          description: The description of the profile
+          description: The description of the profile.
 
           entries: Custom entries from this profile. If this field is omitted, entries owned by
               this profile will not be changed.

@@ -831,7 +831,7 @@ class IdentityProvidersResource(SyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          identity_provider_id: UUID
+          identity_provider_id: UUID.
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -882,7 +882,7 @@ class IdentityProvidersResource(SyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          identity_provider_id: UUID
+          identity_provider_id: UUID.
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -933,7 +933,7 @@ class IdentityProvidersResource(SyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          identity_provider_id: UUID
+          identity_provider_id: UUID.
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -984,7 +984,7 @@ class IdentityProvidersResource(SyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          identity_provider_id: UUID
+          identity_provider_id: UUID.
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -1035,7 +1035,7 @@ class IdentityProvidersResource(SyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          identity_provider_id: UUID
+          identity_provider_id: UUID.
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -1086,7 +1086,7 @@ class IdentityProvidersResource(SyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          identity_provider_id: UUID
+          identity_provider_id: UUID.
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -1137,7 +1137,7 @@ class IdentityProvidersResource(SyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          identity_provider_id: UUID
+          identity_provider_id: UUID.
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -1188,7 +1188,7 @@ class IdentityProvidersResource(SyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          identity_provider_id: UUID
+          identity_provider_id: UUID.
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -1239,7 +1239,7 @@ class IdentityProvidersResource(SyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          identity_provider_id: UUID
+          identity_provider_id: UUID.
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -1290,7 +1290,7 @@ class IdentityProvidersResource(SyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          identity_provider_id: UUID
+          identity_provider_id: UUID.
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -1341,7 +1341,7 @@ class IdentityProvidersResource(SyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          identity_provider_id: UUID
+          identity_provider_id: UUID.
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -1392,7 +1392,7 @@ class IdentityProvidersResource(SyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          identity_provider_id: UUID
+          identity_provider_id: UUID.
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -1443,7 +1443,7 @@ class IdentityProvidersResource(SyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          identity_provider_id: UUID
+          identity_provider_id: UUID.
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -1494,7 +1494,7 @@ class IdentityProvidersResource(SyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          identity_provider_id: UUID
+          identity_provider_id: UUID.
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -1671,7 +1671,7 @@ class IdentityProvidersResource(SyncAPIResource):
         Deletes an identity provider from Access.
 
         Args:
-          identity_provider_id: UUID
+          identity_provider_id: UUID.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -1730,7 +1730,7 @@ class IdentityProvidersResource(SyncAPIResource):
         Fetches a configured identity provider.
 
         Args:
-          identity_provider_id: UUID
+          identity_provider_id: UUID.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -2561,7 +2561,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          identity_provider_id: UUID
+          identity_provider_id: UUID.
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -2612,7 +2612,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          identity_provider_id: UUID
+          identity_provider_id: UUID.
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -2663,7 +2663,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          identity_provider_id: UUID
+          identity_provider_id: UUID.
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -2714,7 +2714,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          identity_provider_id: UUID
+          identity_provider_id: UUID.
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -2765,7 +2765,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          identity_provider_id: UUID
+          identity_provider_id: UUID.
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -2816,7 +2816,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          identity_provider_id: UUID
+          identity_provider_id: UUID.
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -2867,7 +2867,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          identity_provider_id: UUID
+          identity_provider_id: UUID.
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -2918,7 +2918,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          identity_provider_id: UUID
+          identity_provider_id: UUID.
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -2969,7 +2969,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          identity_provider_id: UUID
+          identity_provider_id: UUID.
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -3020,7 +3020,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          identity_provider_id: UUID
+          identity_provider_id: UUID.
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -3071,7 +3071,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          identity_provider_id: UUID
+          identity_provider_id: UUID.
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -3122,7 +3122,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          identity_provider_id: UUID
+          identity_provider_id: UUID.
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -3173,7 +3173,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          identity_provider_id: UUID
+          identity_provider_id: UUID.
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -3224,7 +3224,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          identity_provider_id: UUID
+          identity_provider_id: UUID.
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -3401,7 +3401,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         Deletes an identity provider from Access.
 
         Args:
-          identity_provider_id: UUID
+          identity_provider_id: UUID.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -3460,7 +3460,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         Fetches a configured identity provider.
 
         Args:
-          identity_provider_id: UUID
+          identity_provider_id: UUID.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 

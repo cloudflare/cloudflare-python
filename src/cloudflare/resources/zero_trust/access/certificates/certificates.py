@@ -150,7 +150,7 @@ class CertificatesResource(SyncAPIResource):
         Updates a configured mTLS certificate.
 
         Args:
-          certificate_id: UUID
+          certificate_id: UUID.
 
           associated_hostnames: The hostnames of the applications that will use this certificate.
 
@@ -267,7 +267,7 @@ class CertificatesResource(SyncAPIResource):
         Deletes an mTLS certificate.
 
         Args:
-          certificate_id: UUID
+          certificate_id: UUID.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -324,7 +324,7 @@ class CertificatesResource(SyncAPIResource):
         Fetches a single mTLS certificate.
 
         Args:
-          certificate_id: UUID
+          certificate_id: UUID.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -477,7 +477,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
         Updates a configured mTLS certificate.
 
         Args:
-          certificate_id: UUID
+          certificate_id: UUID.
 
           associated_hostnames: The hostnames of the applications that will use this certificate.
 
@@ -594,7 +594,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
         Deletes an mTLS certificate.
 
         Args:
-          certificate_id: UUID
+          certificate_id: UUID.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -651,7 +651,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
         Fetches a single mTLS certificate.
 
         Args:
-          certificate_id: UUID
+          certificate_id: UUID.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 

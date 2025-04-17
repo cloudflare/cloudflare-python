@@ -65,7 +65,7 @@ class KeysResource(SyncAPIResource):
         Updates the Access key rotation settings for an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           key_rotation_interval_days: The number of days between key rotations.
 
@@ -109,7 +109,7 @@ class KeysResource(SyncAPIResource):
         Gets the Access key rotation settings for an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -148,7 +148,7 @@ class KeysResource(SyncAPIResource):
         Perfoms a key rotation for an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -209,7 +209,7 @@ class AsyncKeysResource(AsyncAPIResource):
         Updates the Access key rotation settings for an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           key_rotation_interval_days: The number of days between key rotations.
 
@@ -253,7 +253,7 @@ class AsyncKeysResource(AsyncAPIResource):
         Gets the Access key rotation settings for an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -292,7 +292,7 @@ class AsyncKeysResource(AsyncAPIResource):
         Perfoms a key rotation for an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 

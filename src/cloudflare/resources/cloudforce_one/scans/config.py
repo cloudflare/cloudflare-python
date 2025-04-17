@@ -68,16 +68,16 @@ class ConfigResource(SyncAPIResource):
         Create a new Scan Config
 
         Args:
-          account_id: Account ID
+          account_id: Defines the Account ID.
 
-          ips: A list of IP addresses or CIDR blocks to scan. The maximum number of total IP
-              addresses allowed is 5000.
+          ips: Defines a list of IP addresses or CIDR blocks to scan. The maximum number of
+              total IP addresses allowed is 5000.
 
-          frequency: The number of days between each scan (0 = no recurring scans).
+          frequency: Defines the number of days between each scan (0 = One-off scan).
 
-          ports: A list of ports to scan. Allowed values:"default", "all", or a comma-separated
-              list of ports or range of ports (e.g. ["1-80", "443"]). Default will scan the
-              100 most commonly open ports.
+          ports: Defines a list of ports to scan. Valid values are:"default", "all", or a
+              comma-separated list of ports or range of ports (e.g. ["1-80", "443"]).
+              "default" scans the 100 most commonly open ports.
 
           extra_headers: Send extra headers
 
@@ -124,7 +124,7 @@ class ConfigResource(SyncAPIResource):
         List Scan Configs
 
         Args:
-          account_id: Account ID
+          account_id: Defines the Account ID.
 
           extra_headers: Send extra headers
 
@@ -161,9 +161,9 @@ class ConfigResource(SyncAPIResource):
         Delete a Scan Config
 
         Args:
-          account_id: Account ID
+          account_id: Defines the Account ID.
 
-          config_id: Config ID
+          config_id: Defines the Config ID.
 
           extra_headers: Send extra headers
 
@@ -208,18 +208,18 @@ class ConfigResource(SyncAPIResource):
         Update an existing Scan Config
 
         Args:
-          account_id: Account ID
+          account_id: Defines the Account ID.
 
-          config_id: Config ID
+          config_id: Defines the Config ID.
 
-          frequency: The number of days between each scan (0 = no recurring scans).
+          frequency: Defines the number of days between each scan (0 = One-off scan).
 
-          ips: A list of IP addresses or CIDR blocks to scan. The maximum number of total IP
-              addresses allowed is 5000.
+          ips: Defines a list of IP addresses or CIDR blocks to scan. The maximum number of
+              total IP addresses allowed is 5000.
 
-          ports: A list of ports to scan. Allowed values:"default", "all", or a comma-separated
-              list of ports or range of ports (e.g. ["1-80", "443"]). Default will scan the
-              100 most commonly open ports.
+          ports: Defines a list of ports to scan. Valid values are:"default", "all", or a
+              comma-separated list of ports or range of ports (e.g. ["1-80", "443"]).
+              "default" scans the 100 most commonly open ports.
 
           extra_headers: Send extra headers
 
@@ -292,16 +292,16 @@ class AsyncConfigResource(AsyncAPIResource):
         Create a new Scan Config
 
         Args:
-          account_id: Account ID
+          account_id: Defines the Account ID.
 
-          ips: A list of IP addresses or CIDR blocks to scan. The maximum number of total IP
-              addresses allowed is 5000.
+          ips: Defines a list of IP addresses or CIDR blocks to scan. The maximum number of
+              total IP addresses allowed is 5000.
 
-          frequency: The number of days between each scan (0 = no recurring scans).
+          frequency: Defines the number of days between each scan (0 = One-off scan).
 
-          ports: A list of ports to scan. Allowed values:"default", "all", or a comma-separated
-              list of ports or range of ports (e.g. ["1-80", "443"]). Default will scan the
-              100 most commonly open ports.
+          ports: Defines a list of ports to scan. Valid values are:"default", "all", or a
+              comma-separated list of ports or range of ports (e.g. ["1-80", "443"]).
+              "default" scans the 100 most commonly open ports.
 
           extra_headers: Send extra headers
 
@@ -348,7 +348,7 @@ class AsyncConfigResource(AsyncAPIResource):
         List Scan Configs
 
         Args:
-          account_id: Account ID
+          account_id: Defines the Account ID.
 
           extra_headers: Send extra headers
 
@@ -385,9 +385,9 @@ class AsyncConfigResource(AsyncAPIResource):
         Delete a Scan Config
 
         Args:
-          account_id: Account ID
+          account_id: Defines the Account ID.
 
-          config_id: Config ID
+          config_id: Defines the Config ID.
 
           extra_headers: Send extra headers
 
@@ -432,18 +432,18 @@ class AsyncConfigResource(AsyncAPIResource):
         Update an existing Scan Config
 
         Args:
-          account_id: Account ID
+          account_id: Defines the Account ID.
 
-          config_id: Config ID
+          config_id: Defines the Config ID.
 
-          frequency: The number of days between each scan (0 = no recurring scans).
+          frequency: Defines the number of days between each scan (0 = One-off scan).
 
-          ips: A list of IP addresses or CIDR blocks to scan. The maximum number of total IP
-              addresses allowed is 5000.
+          ips: Defines a list of IP addresses or CIDR blocks to scan. The maximum number of
+              total IP addresses allowed is 5000.
 
-          ports: A list of ports to scan. Allowed values:"default", "all", or a comma-separated
-              list of ports or range of ports (e.g. ["1-80", "443"]). Default will scan the
-              100 most commonly open ports.
+          ports: Defines a list of ports to scan. Valid values are:"default", "all", or a
+              comma-separated list of ports or range of ports (e.g. ["1-80", "443"]).
+              "default" scans the 100 most commonly open ports.
 
           extra_headers: Send extra headers
 

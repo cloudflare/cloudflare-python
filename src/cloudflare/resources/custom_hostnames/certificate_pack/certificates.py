@@ -71,13 +71,13 @@ class CertificatesResource(SyncAPIResource):
         certificate with another ECDSA certificate.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          custom_hostname_id: Identifier
+          custom_hostname_id: Identifier.
 
-          certificate_pack_id: Identifier
+          certificate_pack_id: Identifier.
 
-          certificate_id: Identifier
+          certificate_id: Identifier.
 
           custom_certificate: If a custom uploaded certificate is used.
 
@@ -141,13 +141,13 @@ class CertificatesResource(SyncAPIResource):
         At least one certificate must remain in the pack.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          custom_hostname_id: Identifier
+          custom_hostname_id: Identifier.
 
-          certificate_pack_id: Identifier
+          certificate_pack_id: Identifier.
 
-          certificate_id: Identifier
+          certificate_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -219,13 +219,13 @@ class AsyncCertificatesResource(AsyncAPIResource):
         certificate with another ECDSA certificate.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          custom_hostname_id: Identifier
+          custom_hostname_id: Identifier.
 
-          certificate_pack_id: Identifier
+          certificate_pack_id: Identifier.
 
-          certificate_id: Identifier
+          certificate_id: Identifier.
 
           custom_certificate: If a custom uploaded certificate is used.
 
@@ -289,13 +289,13 @@ class AsyncCertificatesResource(AsyncAPIResource):
         At least one certificate must remain in the pack.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          custom_hostname_id: Identifier
+          custom_hostname_id: Identifier.
 
-          certificate_pack_id: Identifier
+          certificate_pack_id: Identifier.
 
-          certificate_id: Identifier
+          certificate_id: Identifier.
 
           extra_headers: Send extra headers
 

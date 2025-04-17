@@ -107,7 +107,7 @@ class DNSFirewallResource(SyncAPIResource):
         Create a DNS Firewall cluster
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           name: DNS Firewall cluster name
 
@@ -188,7 +188,7 @@ class DNSFirewallResource(SyncAPIResource):
         List DNS Firewall clusters for an account
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           page: Page number of paginated results
 
@@ -239,9 +239,9 @@ class DNSFirewallResource(SyncAPIResource):
         Delete a DNS Firewall cluster
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          dns_firewall_id: Identifier
+          dns_firewall_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -293,9 +293,9 @@ class DNSFirewallResource(SyncAPIResource):
         Modify the configuration of a DNS Firewall cluster
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          dns_firewall_id: Identifier
+          dns_firewall_id: Identifier.
 
           attack_mitigation: Attack mitigation settings
 
@@ -377,9 +377,9 @@ class DNSFirewallResource(SyncAPIResource):
         Show a single DNS Firewall cluster for an account
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          dns_firewall_id: Identifier
+          dns_firewall_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -459,7 +459,7 @@ class AsyncDNSFirewallResource(AsyncAPIResource):
         Create a DNS Firewall cluster
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           name: DNS Firewall cluster name
 
@@ -540,7 +540,7 @@ class AsyncDNSFirewallResource(AsyncAPIResource):
         List DNS Firewall clusters for an account
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           page: Page number of paginated results
 
@@ -591,9 +591,9 @@ class AsyncDNSFirewallResource(AsyncAPIResource):
         Delete a DNS Firewall cluster
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          dns_firewall_id: Identifier
+          dns_firewall_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -645,9 +645,9 @@ class AsyncDNSFirewallResource(AsyncAPIResource):
         Modify the configuration of a DNS Firewall cluster
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          dns_firewall_id: Identifier
+          dns_firewall_id: Identifier.
 
           attack_mitigation: Attack mitigation settings
 
@@ -729,9 +729,9 @@ class AsyncDNSFirewallResource(AsyncAPIResource):
         Show a single DNS Firewall cluster for an account
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          dns_firewall_id: Identifier
+          dns_firewall_id: Identifier.
 
           extra_headers: Send extra headers
 

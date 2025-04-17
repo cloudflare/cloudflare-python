@@ -36,6 +36,8 @@ __all__ = [
     "MetadataBindingWorkersBindingKindTailConsumer",
     "MetadataBindingWorkersBindingKindVectorize",
     "MetadataBindingWorkersBindingKindVersionMetadata",
+    "MetadataBindingWorkersBindingKindSecretsStoreSecret",
+    "MetadataBindingWorkersBindingKindSecretKey",
     "MetadataMigrations",
     "MetadataMigrationsWorkersMultipleStepMigrations",
     "MetadataObservability",
@@ -45,13 +47,25 @@ __all__ = [
 
 class ScriptUpdateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     metadata: Required[Metadata]
     """JSON encoded metadata about the uploaded parts and Worker configuration."""
 
 
 class MetadataAssetsConfig(TypedDict, total=False):
+    _headers: str
+    """
+    The contents of a \\__headers file (used to attach custom headers on asset
+    responses)
+    """
+
+    _redirects: str
+    """
+    The contents of a \\__redirects file (used to apply redirects or proxy paths ahead
+    of asset serving)
+    """
+
     html_handling: Literal["auto-trailing-slash", "force-trailing-slash", "drop-trailing-slash", "none"]
     """Determines the redirects and rewrites of requests for HTML content."""
 
@@ -88,29 +102,7 @@ class MetadataBindingWorkersBindingKindAI(TypedDict, total=False):
     name: Required[str]
     """A JavaScript variable name for the binding."""
 
-    type: Required[
-        Literal[
-            "ai",
-            "analytics_engine",
-            "assets",
-            "browser_rendering",
-            "d1",
-            "dispatch_namespace",
-            "durable_object_namespace",
-            "hyperdrive",
-            "json",
-            "kv_namespace",
-            "mtls_certificate",
-            "plain_text",
-            "queue",
-            "r2_bucket",
-            "secret_text",
-            "service",
-            "tail_consumer",
-            "vectorize",
-            "version_metadata",
-        ]
-    ]
+    type: Required[Literal["ai"]]
     """The kind of resource that the binding provides."""
 
 
@@ -121,29 +113,7 @@ class MetadataBindingWorkersBindingKindAnalyticsEngine(TypedDict, total=False):
     name: Required[str]
     """A JavaScript variable name for the binding."""
 
-    type: Required[
-        Literal[
-            "ai",
-            "analytics_engine",
-            "assets",
-            "browser_rendering",
-            "d1",
-            "dispatch_namespace",
-            "durable_object_namespace",
-            "hyperdrive",
-            "json",
-            "kv_namespace",
-            "mtls_certificate",
-            "plain_text",
-            "queue",
-            "r2_bucket",
-            "secret_text",
-            "service",
-            "tail_consumer",
-            "vectorize",
-            "version_metadata",
-        ]
-    ]
+    type: Required[Literal["analytics_engine"]]
     """The kind of resource that the binding provides."""
 
 
@@ -151,29 +121,7 @@ class MetadataBindingWorkersBindingKindAssets(TypedDict, total=False):
     name: Required[str]
     """A JavaScript variable name for the binding."""
 
-    type: Required[
-        Literal[
-            "ai",
-            "analytics_engine",
-            "assets",
-            "browser_rendering",
-            "d1",
-            "dispatch_namespace",
-            "durable_object_namespace",
-            "hyperdrive",
-            "json",
-            "kv_namespace",
-            "mtls_certificate",
-            "plain_text",
-            "queue",
-            "r2_bucket",
-            "secret_text",
-            "service",
-            "tail_consumer",
-            "vectorize",
-            "version_metadata",
-        ]
-    ]
+    type: Required[Literal["assets"]]
     """The kind of resource that the binding provides."""
 
 
@@ -181,29 +129,7 @@ class MetadataBindingWorkersBindingKindBrowserRendering(TypedDict, total=False):
     name: Required[str]
     """A JavaScript variable name for the binding."""
 
-    type: Required[
-        Literal[
-            "ai",
-            "analytics_engine",
-            "assets",
-            "browser_rendering",
-            "d1",
-            "dispatch_namespace",
-            "durable_object_namespace",
-            "hyperdrive",
-            "json",
-            "kv_namespace",
-            "mtls_certificate",
-            "plain_text",
-            "queue",
-            "r2_bucket",
-            "secret_text",
-            "service",
-            "tail_consumer",
-            "vectorize",
-            "version_metadata",
-        ]
-    ]
+    type: Required[Literal["browser_rendering"]]
     """The kind of resource that the binding provides."""
 
 
@@ -214,29 +140,7 @@ class MetadataBindingWorkersBindingKindD1(TypedDict, total=False):
     name: Required[str]
     """A JavaScript variable name for the binding."""
 
-    type: Required[
-        Literal[
-            "ai",
-            "analytics_engine",
-            "assets",
-            "browser_rendering",
-            "d1",
-            "dispatch_namespace",
-            "durable_object_namespace",
-            "hyperdrive",
-            "json",
-            "kv_namespace",
-            "mtls_certificate",
-            "plain_text",
-            "queue",
-            "r2_bucket",
-            "secret_text",
-            "service",
-            "tail_consumer",
-            "vectorize",
-            "version_metadata",
-        ]
-    ]
+    type: Required[Literal["d1"]]
     """The kind of resource that the binding provides."""
 
 
@@ -266,29 +170,7 @@ class MetadataBindingWorkersBindingKindDispatchNamespace(TypedDict, total=False)
     namespace: Required[str]
     """Namespace to bind to."""
 
-    type: Required[
-        Literal[
-            "ai",
-            "analytics_engine",
-            "assets",
-            "browser_rendering",
-            "d1",
-            "dispatch_namespace",
-            "durable_object_namespace",
-            "hyperdrive",
-            "json",
-            "kv_namespace",
-            "mtls_certificate",
-            "plain_text",
-            "queue",
-            "r2_bucket",
-            "secret_text",
-            "service",
-            "tail_consumer",
-            "vectorize",
-            "version_metadata",
-        ]
-    ]
+    type: Required[Literal["dispatch_namespace"]]
     """The kind of resource that the binding provides."""
 
     outbound: MetadataBindingWorkersBindingKindDispatchNamespaceOutbound
@@ -302,29 +184,7 @@ class MetadataBindingWorkersBindingKindDurableObjectNamespace(TypedDict, total=F
     name: Required[str]
     """A JavaScript variable name for the binding."""
 
-    type: Required[
-        Literal[
-            "ai",
-            "analytics_engine",
-            "assets",
-            "browser_rendering",
-            "d1",
-            "dispatch_namespace",
-            "durable_object_namespace",
-            "hyperdrive",
-            "json",
-            "kv_namespace",
-            "mtls_certificate",
-            "plain_text",
-            "queue",
-            "r2_bucket",
-            "secret_text",
-            "service",
-            "tail_consumer",
-            "vectorize",
-            "version_metadata",
-        ]
-    ]
+    type: Required[Literal["durable_object_namespace"]]
     """The kind of resource that the binding provides."""
 
     environment: str
@@ -347,29 +207,7 @@ class MetadataBindingWorkersBindingKindHyperdrive(TypedDict, total=False):
     name: Required[str]
     """A JavaScript variable name for the binding."""
 
-    type: Required[
-        Literal[
-            "ai",
-            "analytics_engine",
-            "assets",
-            "browser_rendering",
-            "d1",
-            "dispatch_namespace",
-            "durable_object_namespace",
-            "hyperdrive",
-            "json",
-            "kv_namespace",
-            "mtls_certificate",
-            "plain_text",
-            "queue",
-            "r2_bucket",
-            "secret_text",
-            "service",
-            "tail_consumer",
-            "vectorize",
-            "version_metadata",
-        ]
-    ]
+    type: Required[Literal["hyperdrive"]]
     """The kind of resource that the binding provides."""
 
 
@@ -380,29 +218,7 @@ class MetadataBindingWorkersBindingKindJson(TypedDict, total=False):
     name: Required[str]
     """A JavaScript variable name for the binding."""
 
-    type: Required[
-        Literal[
-            "ai",
-            "analytics_engine",
-            "assets",
-            "browser_rendering",
-            "d1",
-            "dispatch_namespace",
-            "durable_object_namespace",
-            "hyperdrive",
-            "json",
-            "kv_namespace",
-            "mtls_certificate",
-            "plain_text",
-            "queue",
-            "r2_bucket",
-            "secret_text",
-            "service",
-            "tail_consumer",
-            "vectorize",
-            "version_metadata",
-        ]
-    ]
+    type: Required[Literal["json"]]
     """The kind of resource that the binding provides."""
 
 
@@ -413,29 +229,7 @@ class MetadataBindingWorkersBindingKindKVNamespace(TypedDict, total=False):
     namespace_id: Required[str]
     """Namespace identifier tag."""
 
-    type: Required[
-        Literal[
-            "ai",
-            "analytics_engine",
-            "assets",
-            "browser_rendering",
-            "d1",
-            "dispatch_namespace",
-            "durable_object_namespace",
-            "hyperdrive",
-            "json",
-            "kv_namespace",
-            "mtls_certificate",
-            "plain_text",
-            "queue",
-            "r2_bucket",
-            "secret_text",
-            "service",
-            "tail_consumer",
-            "vectorize",
-            "version_metadata",
-        ]
-    ]
+    type: Required[Literal["kv_namespace"]]
     """The kind of resource that the binding provides."""
 
 
@@ -446,29 +240,7 @@ class MetadataBindingWorkersBindingKindMTLSCertificate(TypedDict, total=False):
     name: Required[str]
     """A JavaScript variable name for the binding."""
 
-    type: Required[
-        Literal[
-            "ai",
-            "analytics_engine",
-            "assets",
-            "browser_rendering",
-            "d1",
-            "dispatch_namespace",
-            "durable_object_namespace",
-            "hyperdrive",
-            "json",
-            "kv_namespace",
-            "mtls_certificate",
-            "plain_text",
-            "queue",
-            "r2_bucket",
-            "secret_text",
-            "service",
-            "tail_consumer",
-            "vectorize",
-            "version_metadata",
-        ]
-    ]
+    type: Required[Literal["mtls_certificate"]]
     """The kind of resource that the binding provides."""
 
 
@@ -479,29 +251,7 @@ class MetadataBindingWorkersBindingKindPlainText(TypedDict, total=False):
     text: Required[str]
     """The text value to use."""
 
-    type: Required[
-        Literal[
-            "ai",
-            "analytics_engine",
-            "assets",
-            "browser_rendering",
-            "d1",
-            "dispatch_namespace",
-            "durable_object_namespace",
-            "hyperdrive",
-            "json",
-            "kv_namespace",
-            "mtls_certificate",
-            "plain_text",
-            "queue",
-            "r2_bucket",
-            "secret_text",
-            "service",
-            "tail_consumer",
-            "vectorize",
-            "version_metadata",
-        ]
-    ]
+    type: Required[Literal["plain_text"]]
     """The kind of resource that the binding provides."""
 
 
@@ -512,29 +262,7 @@ class MetadataBindingWorkersBindingKindQueue(TypedDict, total=False):
     queue_name: Required[str]
     """Name of the Queue to bind to."""
 
-    type: Required[
-        Literal[
-            "ai",
-            "analytics_engine",
-            "assets",
-            "browser_rendering",
-            "d1",
-            "dispatch_namespace",
-            "durable_object_namespace",
-            "hyperdrive",
-            "json",
-            "kv_namespace",
-            "mtls_certificate",
-            "plain_text",
-            "queue",
-            "r2_bucket",
-            "secret_text",
-            "service",
-            "tail_consumer",
-            "vectorize",
-            "version_metadata",
-        ]
-    ]
+    type: Required[Literal["queue"]]
     """The kind of resource that the binding provides."""
 
 
@@ -545,29 +273,7 @@ class MetadataBindingWorkersBindingKindR2Bucket(TypedDict, total=False):
     name: Required[str]
     """A JavaScript variable name for the binding."""
 
-    type: Required[
-        Literal[
-            "ai",
-            "analytics_engine",
-            "assets",
-            "browser_rendering",
-            "d1",
-            "dispatch_namespace",
-            "durable_object_namespace",
-            "hyperdrive",
-            "json",
-            "kv_namespace",
-            "mtls_certificate",
-            "plain_text",
-            "queue",
-            "r2_bucket",
-            "secret_text",
-            "service",
-            "tail_consumer",
-            "vectorize",
-            "version_metadata",
-        ]
-    ]
+    type: Required[Literal["r2_bucket"]]
     """The kind of resource that the binding provides."""
 
 
@@ -578,29 +284,7 @@ class MetadataBindingWorkersBindingKindSecretText(TypedDict, total=False):
     text: Required[str]
     """The secret value to use."""
 
-    type: Required[
-        Literal[
-            "ai",
-            "analytics_engine",
-            "assets",
-            "browser_rendering",
-            "d1",
-            "dispatch_namespace",
-            "durable_object_namespace",
-            "hyperdrive",
-            "json",
-            "kv_namespace",
-            "mtls_certificate",
-            "plain_text",
-            "queue",
-            "r2_bucket",
-            "secret_text",
-            "service",
-            "tail_consumer",
-            "vectorize",
-            "version_metadata",
-        ]
-    ]
+    type: Required[Literal["secret_text"]]
     """The kind of resource that the binding provides."""
 
 
@@ -614,29 +298,7 @@ class MetadataBindingWorkersBindingKindService(TypedDict, total=False):
     service: Required[str]
     """Name of Worker to bind to."""
 
-    type: Required[
-        Literal[
-            "ai",
-            "analytics_engine",
-            "assets",
-            "browser_rendering",
-            "d1",
-            "dispatch_namespace",
-            "durable_object_namespace",
-            "hyperdrive",
-            "json",
-            "kv_namespace",
-            "mtls_certificate",
-            "plain_text",
-            "queue",
-            "r2_bucket",
-            "secret_text",
-            "service",
-            "tail_consumer",
-            "vectorize",
-            "version_metadata",
-        ]
-    ]
+    type: Required[Literal["service"]]
     """The kind of resource that the binding provides."""
 
 
@@ -647,29 +309,7 @@ class MetadataBindingWorkersBindingKindTailConsumer(TypedDict, total=False):
     service: Required[str]
     """Name of Tail Worker to bind to."""
 
-    type: Required[
-        Literal[
-            "ai",
-            "analytics_engine",
-            "assets",
-            "browser_rendering",
-            "d1",
-            "dispatch_namespace",
-            "durable_object_namespace",
-            "hyperdrive",
-            "json",
-            "kv_namespace",
-            "mtls_certificate",
-            "plain_text",
-            "queue",
-            "r2_bucket",
-            "secret_text",
-            "service",
-            "tail_consumer",
-            "vectorize",
-            "version_metadata",
-        ]
-    ]
+    type: Required[Literal["tail_consumer"]]
     """The kind of resource that the binding provides."""
 
 
@@ -680,29 +320,7 @@ class MetadataBindingWorkersBindingKindVectorize(TypedDict, total=False):
     name: Required[str]
     """A JavaScript variable name for the binding."""
 
-    type: Required[
-        Literal[
-            "ai",
-            "analytics_engine",
-            "assets",
-            "browser_rendering",
-            "d1",
-            "dispatch_namespace",
-            "durable_object_namespace",
-            "hyperdrive",
-            "json",
-            "kv_namespace",
-            "mtls_certificate",
-            "plain_text",
-            "queue",
-            "r2_bucket",
-            "secret_text",
-            "service",
-            "tail_consumer",
-            "vectorize",
-            "version_metadata",
-        ]
-    ]
+    type: Required[Literal["vectorize"]]
     """The kind of resource that the binding provides."""
 
 
@@ -710,30 +328,60 @@ class MetadataBindingWorkersBindingKindVersionMetadata(TypedDict, total=False):
     name: Required[str]
     """A JavaScript variable name for the binding."""
 
-    type: Required[
-        Literal[
-            "ai",
-            "analytics_engine",
-            "assets",
-            "browser_rendering",
-            "d1",
-            "dispatch_namespace",
-            "durable_object_namespace",
-            "hyperdrive",
-            "json",
-            "kv_namespace",
-            "mtls_certificate",
-            "plain_text",
-            "queue",
-            "r2_bucket",
-            "secret_text",
-            "service",
-            "tail_consumer",
-            "vectorize",
-            "version_metadata",
-        ]
-    ]
+    type: Required[Literal["version_metadata"]]
     """The kind of resource that the binding provides."""
+
+
+class MetadataBindingWorkersBindingKindSecretsStoreSecret(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    secret_name: Required[str]
+    """Name of the secret in the store."""
+
+    store_id: Required[str]
+    """ID of the store containing the secret."""
+
+    type: Required[Literal["secrets_store_secret"]]
+    """The kind of resource that the binding provides."""
+
+
+class MetadataBindingWorkersBindingKindSecretKey(TypedDict, total=False):
+    algorithm: Required[object]
+    """
+    Algorithm-specific key parameters
+    ([learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#algorithm)).
+    """
+
+    format: Required[Literal["raw", "pkcs8", "spki", "jwk"]]
+    """
+    Data format of the key
+    ([learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#format)).
+    """
+
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    type: Required[Literal["secret_key"]]
+    """The kind of resource that the binding provides."""
+
+    usages: Required[
+        List[Literal["encrypt", "decrypt", "sign", "verify", "deriveKey", "deriveBits", "wrapKey", "unwrapKey"]]
+    ]
+    """
+    Allowed operations with the key
+    ([learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#keyUsages)).
+    """
+
+    key_base64: str
+    """Base64-encoded key data. Required if `format` is "raw", "pkcs8", or "spki"."""
+
+    key_jwk: object
+    """
+    Key data in
+    [JSON Web Key](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#json_web_key)
+    format. Required if `format` is "jwk".
+    """
 
 
 MetadataBinding: TypeAlias = Union[
@@ -756,6 +404,8 @@ MetadataBinding: TypeAlias = Union[
     MetadataBindingWorkersBindingKindTailConsumer,
     MetadataBindingWorkersBindingKindVectorize,
     MetadataBindingWorkersBindingKindVersionMetadata,
+    MetadataBindingWorkersBindingKindSecretsStoreSecret,
+    MetadataBindingWorkersBindingKindSecretKey,
 ]
 
 

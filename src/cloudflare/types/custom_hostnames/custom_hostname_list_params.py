@@ -9,7 +9,7 @@ __all__ = ["CustomHostnameListParams"]
 
 class CustomHostnameListParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     id: str
     """Hostname ID to match against.

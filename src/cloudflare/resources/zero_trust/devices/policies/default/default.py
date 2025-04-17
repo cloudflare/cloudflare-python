@@ -55,6 +55,7 @@ from .fallback_domains import (
 from ......_base_client import make_request_options
 from ......types.zero_trust.devices.policies import default_edit_params
 from ......types.zero_trust.devices.split_tunnel_exclude_param import SplitTunnelExcludeParam
+from ......types.zero_trust.devices.split_tunnel_include_param import SplitTunnelIncludeParam
 from ......types.zero_trust.devices.policies.default_get_response import DefaultGetResponse
 from ......types.zero_trust.devices.policies.default_edit_response import DefaultEditResponse
 
@@ -109,7 +110,7 @@ class DefaultResource(SyncAPIResource):
         disable_auto_fallback: bool | NotGiven = NOT_GIVEN,
         exclude: Iterable[SplitTunnelExcludeParam] | NotGiven = NOT_GIVEN,
         exclude_office_ips: bool | NotGiven = NOT_GIVEN,
-        include: Iterable[SplitTunnelExcludeParam] | NotGiven = NOT_GIVEN,
+        include: Iterable[SplitTunnelIncludeParam] | NotGiven = NOT_GIVEN,
         register_interface_ip_with_dns: bool | NotGiven = NOT_GIVEN,
         service_mode_v2: default_edit_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
         support_url: str | NotGiven = NOT_GIVEN,
@@ -285,7 +286,7 @@ class AsyncDefaultResource(AsyncAPIResource):
         disable_auto_fallback: bool | NotGiven = NOT_GIVEN,
         exclude: Iterable[SplitTunnelExcludeParam] | NotGiven = NOT_GIVEN,
         exclude_office_ips: bool | NotGiven = NOT_GIVEN,
-        include: Iterable[SplitTunnelExcludeParam] | NotGiven = NOT_GIVEN,
+        include: Iterable[SplitTunnelIncludeParam] | NotGiven = NOT_GIVEN,
         register_interface_ip_with_dns: bool | NotGiven = NOT_GIVEN,
         service_mode_v2: default_edit_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
         support_url: str | NotGiven = NOT_GIVEN,

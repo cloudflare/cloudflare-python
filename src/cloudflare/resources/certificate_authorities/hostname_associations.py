@@ -66,7 +66,7 @@ class HostnameAssociationsResource(SyncAPIResource):
         Replace Hostname Associations
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           mtls_certificate_id: The UUID for a certificate that was uploaded to the mTLS Certificate Management
               endpoint. If no mtls_certificate_id is given, the hostnames will be associated
@@ -119,7 +119,7 @@ class HostnameAssociationsResource(SyncAPIResource):
         List Hostname Associations
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           mtls_certificate_id: The UUID to match against for a certificate that was uploaded to the mTLS
               Certificate Management endpoint. If no mtls_certificate_id is given, the results
@@ -189,7 +189,7 @@ class AsyncHostnameAssociationsResource(AsyncAPIResource):
         Replace Hostname Associations
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           mtls_certificate_id: The UUID for a certificate that was uploaded to the mTLS Certificate Management
               endpoint. If no mtls_certificate_id is given, the hostnames will be associated
@@ -242,7 +242,7 @@ class AsyncHostnameAssociationsResource(AsyncAPIResource):
         List Hostname Associations
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           mtls_certificate_id: The UUID to match against for a certificate that was uploaded to the mTLS
               Certificate Management endpoint. If no mtls_certificate_id is given, the results

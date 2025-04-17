@@ -39,7 +39,6 @@ from .azure_group_rule_param import AzureGroupRuleParam as AzureGroupRuleParam
 from .certificate_rule_param import CertificateRuleParam as CertificateRuleParam
 from .policy_create_response import PolicyCreateResponse as PolicyCreateResponse
 from .policy_delete_response import PolicyDeleteResponse as PolicyDeleteResponse
-from .policy_test_get_params import PolicyTestGetParams as PolicyTestGetParams
 from .policy_update_response import PolicyUpdateResponse as PolicyUpdateResponse
 from .gsuite_group_rule_param import GSuiteGroupRuleParam as GSuiteGroupRuleParam
 from .external_evaluation_rule import ExternalEvaluationRule as ExternalEvaluationRule

@@ -70,6 +70,7 @@ class RegionalHostnamesResource(SyncAPIResource):
         zone_id: str,
         hostname: str,
         region_key: str,
+        routing: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -85,12 +86,14 @@ class RegionalHostnamesResource(SyncAPIResource):
         [Regional Services](https://developers.cloudflare.com/data-localization/regional-services/get-started/).
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           hostname: DNS hostname to be regionalized, must be a subdomain of the zone. Wildcards are
               supported for one level, e.g `*.example.com`
 
           region_key: Identifying key for the region
+
+          routing: Configure which routing method to use for the regional hostname
 
           extra_headers: Send extra headers
 
@@ -108,6 +111,7 @@ class RegionalHostnamesResource(SyncAPIResource):
                 {
                     "hostname": hostname,
                     "region_key": region_key,
+                    "routing": routing,
                 },
                 regional_hostname_create_params.RegionalHostnameCreateParams,
             ),
@@ -136,7 +140,7 @@ class RegionalHostnamesResource(SyncAPIResource):
         List all Regional Hostnames within a zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -173,7 +177,7 @@ class RegionalHostnamesResource(SyncAPIResource):
         Delete the region configuration for a specific Regional Hostname.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           hostname: DNS hostname to be regionalized, must be a subdomain of the zone. Wildcards are
               supported for one level, e.g `*.example.com`
@@ -217,7 +221,7 @@ class RegionalHostnamesResource(SyncAPIResource):
         of a hostname is mutable.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           hostname: DNS hostname to be regionalized, must be a subdomain of the zone. Wildcards are
               supported for one level, e.g `*.example.com`
@@ -265,7 +269,7 @@ class RegionalHostnamesResource(SyncAPIResource):
         Fetch the configuration for a specific Regional Hostname, within a zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           hostname: DNS hostname to be regionalized, must be a subdomain of the zone. Wildcards are
               supported for one level, e.g `*.example.com`
@@ -325,6 +329,7 @@ class AsyncRegionalHostnamesResource(AsyncAPIResource):
         zone_id: str,
         hostname: str,
         region_key: str,
+        routing: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -340,12 +345,14 @@ class AsyncRegionalHostnamesResource(AsyncAPIResource):
         [Regional Services](https://developers.cloudflare.com/data-localization/regional-services/get-started/).
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           hostname: DNS hostname to be regionalized, must be a subdomain of the zone. Wildcards are
               supported for one level, e.g `*.example.com`
 
           region_key: Identifying key for the region
+
+          routing: Configure which routing method to use for the regional hostname
 
           extra_headers: Send extra headers
 
@@ -363,6 +370,7 @@ class AsyncRegionalHostnamesResource(AsyncAPIResource):
                 {
                     "hostname": hostname,
                     "region_key": region_key,
+                    "routing": routing,
                 },
                 regional_hostname_create_params.RegionalHostnameCreateParams,
             ),
@@ -391,7 +399,7 @@ class AsyncRegionalHostnamesResource(AsyncAPIResource):
         List all Regional Hostnames within a zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -428,7 +436,7 @@ class AsyncRegionalHostnamesResource(AsyncAPIResource):
         Delete the region configuration for a specific Regional Hostname.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           hostname: DNS hostname to be regionalized, must be a subdomain of the zone. Wildcards are
               supported for one level, e.g `*.example.com`
@@ -472,7 +480,7 @@ class AsyncRegionalHostnamesResource(AsyncAPIResource):
         of a hostname is mutable.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           hostname: DNS hostname to be regionalized, must be a subdomain of the zone. Wildcards are
               supported for one level, e.g `*.example.com`
@@ -522,7 +530,7 @@ class AsyncRegionalHostnamesResource(AsyncAPIResource):
         Fetch the configuration for a specific Regional Hostname, within a zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           hostname: DNS hostname to be regionalized, must be a subdomain of the zone. Wildcards are
               supported for one level, e.g `*.example.com`

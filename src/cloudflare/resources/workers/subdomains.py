@@ -64,7 +64,7 @@ class SubdomainsResource(SyncAPIResource):
         Creates a Workers subdomain for an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -104,7 +104,7 @@ class SubdomainsResource(SyncAPIResource):
         Returns a Workers subdomain for an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -165,7 +165,7 @@ class AsyncSubdomainsResource(AsyncAPIResource):
         Creates a Workers subdomain for an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -205,7 +205,7 @@ class AsyncSubdomainsResource(AsyncAPIResource):
         Returns a Workers subdomain for an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 

@@ -26,7 +26,7 @@ class TestHTTP:
     @parametrize
     def test_method_timeseries_with_all_params(self, client: Cloudflare) -> None:
         http = client.radar.http.timeseries(
-            agg_interval="15m",
+            agg_interval="1h",
             asn=["string"],
             bot_class=["LIKELY_AUTOMATED"],
             browser_family=["CHROME"],
@@ -41,7 +41,7 @@ class TestHTTP:
             ip_version=["IPv4"],
             location=["string"],
             name=["main_series"],
-            normalization="PERCENTAGE_CHANGE",
+            normalization="MIN0_MAX",
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )
@@ -79,7 +79,7 @@ class TestAsyncHTTP:
     @parametrize
     async def test_method_timeseries_with_all_params(self, async_client: AsyncCloudflare) -> None:
         http = await async_client.radar.http.timeseries(
-            agg_interval="15m",
+            agg_interval="1h",
             asn=["string"],
             bot_class=["LIKELY_AUTOMATED"],
             browser_family=["CHROME"],
@@ -94,7 +94,7 @@ class TestAsyncHTTP:
             ip_version=["IPv4"],
             location=["string"],
             name=["main_series"],
-            normalization="PERCENTAGE_CHANGE",
+            normalization="MIN0_MAX",
             os=["WINDOWS"],
             tls_version=["TLSv1_0"],
         )

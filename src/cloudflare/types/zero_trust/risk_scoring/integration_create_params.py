@@ -14,7 +14,7 @@ class IntegrationCreateParams(TypedDict, total=False):
     integration_type: Required[Literal["Okta"]]
 
     tenant_url: Required[str]
-    """The base url of the tenant, e.g. "https://tenant.okta.com" """
+    """The base url of the tenant, e.g. "https://tenant.okta.com"."""
 
     reference_id: Optional[str]
     """A reference id that can be supplied by the client.

@@ -65,7 +65,7 @@ class SchemasResource(SyncAPIResource):
         Retrieve operations and features as OpenAPI schemas
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           feature: Add feature(s) to the results. The feature name that is given here corresponds
               to the resulting feature object. Have a look at the top-level object description
@@ -140,7 +140,7 @@ class AsyncSchemasResource(AsyncAPIResource):
         Retrieve operations and features as OpenAPI schemas
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           feature: Add feature(s) to the results. The feature name that is given here corresponds
               to the resulting feature object. Have a look at the top-level object description

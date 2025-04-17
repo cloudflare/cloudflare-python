@@ -12,7 +12,7 @@ __all__ = ["PolicyUpdateParams"]
 
 class PolicyUpdateParams(TypedDict, total=False):
     app_id: Required[str]
-    """UUID"""
+    """UUID."""
 
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""

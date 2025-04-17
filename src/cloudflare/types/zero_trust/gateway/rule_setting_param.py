@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Dict, List, Iterable
-from typing_extensions import Literal, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 from .dns_resolver_settings_v4_param import DNSResolverSettingsV4Param
 from .dns_resolver_settings_v6_param import DNSResolverSettingsV6Param
@@ -12,6 +12,7 @@ __all__ = [
     "RuleSettingParam",
     "AuditSSH",
     "BISOAdminControls",
+    "BlockPage",
     "CheckSession",
     "DNSResolvers",
     "Egress",
@@ -19,6 +20,7 @@ __all__ = [
     "NotificationSettings",
     "PayloadLog",
     "Quarantine",
+    "Redirect",
     "ResolveDNSInternally",
     "UntrustedCERT",
 ]
@@ -89,6 +91,14 @@ class BISOAdminControls(TypedDict, total=False):
     """Indicates which version of the browser isolation controls should apply."""
 
 
+class BlockPage(TypedDict, total=False):
+    target_uri: Required[str]
+    """URI to which the user will be redirected"""
+
+    include_context: bool
+    """If true, context information will be passed as query parameters"""
+
+
 class CheckSession(TypedDict, total=False):
     duration: str
     """Configure how fresh the session needs to be to be considered valid."""
@@ -130,6 +140,9 @@ class NotificationSettings(TypedDict, total=False):
     enabled: bool
     """Set notification on"""
 
+    include_context: bool
+    """If true, context information will be passed as query parameters"""
+
     msg: str
     """Customize the message shown in the notification."""
 
@@ -150,6 +163,20 @@ class Quarantine(TypedDict, total=False):
         Literal["exe", "pdf", "doc", "docm", "docx", "rtf", "ppt", "pptx", "xls", "xlsm", "xlsx", "zip", "rar"]
     ]
     """Types of files to sandbox."""
+
+
+class Redirect(TypedDict, total=False):
+    target_uri: Required[str]
+    """URI to which the user will be redirected"""
+
+    include_context: bool
+    """If true, context information will be passed as query parameters"""
+
+    preserve_path_and_query: bool
+    """
+    If true, the path and query parameters from the original request will be
+    appended to target_uri
+    """
 
 
 class ResolveDNSInternally(TypedDict, total=False):
@@ -187,6 +214,12 @@ class RuleSettingParam(TypedDict, total=False):
 
     biso_admin_controls: BISOAdminControls
     """Configure how browser isolation behaves."""
+
+    block_page: BlockPage
+    """Custom block page settings.
+
+    If missing/null, blocking will use the the account settings.
+    """
 
     block_page_enabled: bool
     """Enable the custom block page."""
@@ -260,6 +293,9 @@ class RuleSettingParam(TypedDict, total=False):
 
     quarantine: Quarantine
     """Settings that apply to quarantine rules"""
+
+    redirect: Redirect
+    """Settings that apply to redirect rules"""
 
     resolve_dns_internally: ResolveDNSInternally
     """

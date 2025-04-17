@@ -9,7 +9,7 @@ __all__ = ["RecordImportParams"]
 
 class RecordImportParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     file: Required[str]
     """BIND config to import.

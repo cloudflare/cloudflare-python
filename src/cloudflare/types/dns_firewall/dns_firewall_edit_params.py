@@ -13,7 +13,7 @@ __all__ = ["DNSFirewallEditParams"]
 
 class DNSFirewallEditParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     attack_mitigation: Optional[AttackMitigationParam]
     """Attack mitigation settings"""

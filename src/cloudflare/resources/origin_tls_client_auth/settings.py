@@ -67,7 +67,7 @@ class SettingsResource(SyncAPIResource):
         use.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           enabled: Indicates whether zone-level authenticated origin pulls is enabled.
 
@@ -111,7 +111,7 @@ class SettingsResource(SyncAPIResource):
         by default.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -175,7 +175,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         use.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           enabled: Indicates whether zone-level authenticated origin pulls is enabled.
 
@@ -219,7 +219,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         by default.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 

@@ -9,7 +9,7 @@ __all__ = ["MTLSCertificateCreateParams"]
 
 class MTLSCertificateCreateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     ca: Required[bool]
     """Indicates whether the certificate is a CA or leaf certificate."""

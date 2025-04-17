@@ -65,7 +65,7 @@ class AccountSettingsResource(SyncAPIResource):
         Creates Worker account settings for an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -111,7 +111,7 @@ class AccountSettingsResource(SyncAPIResource):
         Fetches Worker account settings for an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -173,7 +173,7 @@ class AsyncAccountSettingsResource(AsyncAPIResource):
         Creates Worker account settings for an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -219,7 +219,7 @@ class AsyncAccountSettingsResource(AsyncAPIResource):
         Fetches Worker account settings for an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 

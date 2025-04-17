@@ -59,7 +59,7 @@ class ASNResource(SyncAPIResource):
         Delete an ASN from botnet threat feed for a given user.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -98,7 +98,7 @@ class ASNResource(SyncAPIResource):
         Gets a list of all ASNs registered for a user for the DDoS Botnet Feed API.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -159,7 +159,7 @@ class AsyncASNResource(AsyncAPIResource):
         Delete an ASN from botnet threat feed for a given user.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -198,7 +198,7 @@ class AsyncASNResource(AsyncAPIResource):
         Gets a list of all ASNs registered for a user for the DDoS Botnet Feed API.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 

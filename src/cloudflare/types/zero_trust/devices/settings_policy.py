@@ -95,7 +95,6 @@ class SettingsPolicy(BaseModel):
     """The name of the device settings profile."""
 
     policy_id: Optional[str] = None
-    """Device ID."""
 
     precedence: Optional[float] = None
     """The precedence of the policy.

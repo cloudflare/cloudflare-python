@@ -64,6 +64,14 @@ from .dex_tests import (
     DEXTestsResourceWithStreamingResponse,
     AsyncDEXTestsResourceWithStreamingResponse,
 )
+from .resilience import (
+    ResilienceResource,
+    AsyncResilienceResource,
+    ResilienceResourceWithRawResponse,
+    AsyncResilienceResourceWithRawResponse,
+    ResilienceResourceWithStreamingResponse,
+    AsyncResilienceResourceWithStreamingResponse,
+)
 from .fleet_status import (
     FleetStatusResource,
     AsyncFleetStatusResource,
@@ -71,6 +79,14 @@ from .fleet_status import (
     AsyncFleetStatusResourceWithRawResponse,
     FleetStatusResourceWithStreamingResponse,
     AsyncFleetStatusResourceWithStreamingResponse,
+)
+from .registrations import (
+    RegistrationsResource,
+    AsyncRegistrationsResource,
+    RegistrationsResourceWithRawResponse,
+    AsyncRegistrationsResourceWithRawResponse,
+    RegistrationsResourceWithStreamingResponse,
+    AsyncRegistrationsResourceWithStreamingResponse,
 )
 from .override_codes import (
     OverrideCodesResource,
@@ -82,6 +98,24 @@ from .override_codes import (
 )
 
 __all__ = [
+    "DevicesResource",
+    "AsyncDevicesResource",
+    "DevicesResourceWithRawResponse",
+    "AsyncDevicesResourceWithRawResponse",
+    "DevicesResourceWithStreamingResponse",
+    "AsyncDevicesResourceWithStreamingResponse",
+    "ResilienceResource",
+    "AsyncResilienceResource",
+    "ResilienceResourceWithRawResponse",
+    "AsyncResilienceResourceWithRawResponse",
+    "ResilienceResourceWithStreamingResponse",
+    "AsyncResilienceResourceWithStreamingResponse",
+    "RegistrationsResource",
+    "AsyncRegistrationsResource",
+    "RegistrationsResourceWithRawResponse",
+    "AsyncRegistrationsResourceWithRawResponse",
+    "RegistrationsResourceWithStreamingResponse",
+    "AsyncRegistrationsResourceWithStreamingResponse",
     "DEXTestsResource",
     "AsyncDEXTestsResource",
     "DEXTestsResourceWithRawResponse",
@@ -136,10 +170,4 @@ __all__ = [
     "AsyncOverrideCodesResourceWithRawResponse",
     "OverrideCodesResourceWithStreamingResponse",
     "AsyncOverrideCodesResourceWithStreamingResponse",
-    "DevicesResource",
-    "AsyncDevicesResource",
-    "DevicesResourceWithRawResponse",
-    "AsyncDevicesResourceWithRawResponse",
-    "DevicesResourceWithStreamingResponse",
-    "AsyncDevicesResourceWithStreamingResponse",
 ]

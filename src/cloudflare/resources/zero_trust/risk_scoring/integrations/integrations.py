@@ -82,7 +82,7 @@ class IntegrationsResource(SyncAPIResource):
         Create new risk score integration.
 
         Args:
-          tenant_url: The base url of the tenant, e.g. "https://tenant.okta.com"
+          tenant_url: The base url of the tenant, e.g. "https://tenant.okta.com".
 
           reference_id: A reference id that can be supplied by the client. Currently this should be set
               to the Access-Okta IDP ID (a UUIDv4).
@@ -134,13 +134,14 @@ class IntegrationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[IntegrationUpdateResponse]:
         """
-        Overwrite the reference_id, tenant_url, and active values with the ones provided
+        Overwrite the reference_id, tenant_url, and active values with the ones
+        provided.
 
         Args:
           active: Whether this integration is enabled. If disabled, no risk changes will be
               exported to the third-party.
 
-          tenant_url: The base url of the tenant, e.g. "https://tenant.okta.com"
+          tenant_url: The base url of the tenant, e.g. "https://tenant.okta.com".
 
           reference_id: A reference id that can be supplied by the client. Currently this should be set
               to the Access-Okta IDP ID (a UUIDv4).
@@ -335,7 +336,7 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         Create new risk score integration.
 
         Args:
-          tenant_url: The base url of the tenant, e.g. "https://tenant.okta.com"
+          tenant_url: The base url of the tenant, e.g. "https://tenant.okta.com".
 
           reference_id: A reference id that can be supplied by the client. Currently this should be set
               to the Access-Okta IDP ID (a UUIDv4).
@@ -387,13 +388,14 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[IntegrationUpdateResponse]:
         """
-        Overwrite the reference_id, tenant_url, and active values with the ones provided
+        Overwrite the reference_id, tenant_url, and active values with the ones
+        provided.
 
         Args:
           active: Whether this integration is enabled. If disabled, no risk changes will be
               exported to the third-party.
 
-          tenant_url: The base url of the tenant, e.g. "https://tenant.okta.com"
+          tenant_url: The base url of the tenant, e.g. "https://tenant.okta.com".
 
           reference_id: A reference id that can be supplied by the client. Currently this should be set
               to the Access-Okta IDP ID (a UUIDv4).

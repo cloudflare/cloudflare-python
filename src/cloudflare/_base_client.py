@@ -54,11 +54,13 @@ from ._types import (
     PostParser,
     RequestFiles,
     HttpxSendArgs,
+    HttpxFileTypes,
     RequestOptions,
+    MultipartSyntax,
     HttpxRequestFiles,
     ModelBuilderProtocol,
 )
-from ._utils import is_dict, is_list, asyncify, is_given, lru_cache, is_mapping
+from ._utils import is_dict, is_list, asyncify, is_given, is_tuple, lru_cache, is_mapping, is_mapping_t, is_sequence_t
 from ._compat import PYDANTIC_V2, model_copy, model_dump
 from ._models import GenericModel, FinalRequestOptions, validate_type, construct_type
 from ._response import (
@@ -98,7 +100,11 @@ _StreamT = TypeVar("_StreamT", bound=Stream[Any])
 _AsyncStreamT = TypeVar("_AsyncStreamT", bound=AsyncStream[Any])
 
 if TYPE_CHECKING:
-    from httpx._config import DEFAULT_TIMEOUT_CONFIG as HTTPX_DEFAULT_TIMEOUT
+    from httpx._config import (
+        DEFAULT_TIMEOUT_CONFIG,  # pyright: ignore[reportPrivateImportUsage]
+    )
+
+    HTTPX_DEFAULT_TIMEOUT = DEFAULT_TIMEOUT_CONFIG
 else:
     try:
         from httpx._config import DEFAULT_TIMEOUT_CONFIG as HTTPX_DEFAULT_TIMEOUT
@@ -115,6 +121,7 @@ class PageInfo:
 
     url: URL | NotGiven
     params: Query | NotGiven
+    json: Body | NotGiven
 
     @overload
     def __init__(
@@ -130,19 +137,30 @@ class PageInfo:
         params: Query,
     ) -> None: ...
 
+    @overload
+    def __init__(
+        self,
+        *,
+        json: Body,
+    ) -> None: ...
+
     def __init__(
         self,
         *,
         url: URL | NotGiven = NOT_GIVEN,
+        json: Body | NotGiven = NOT_GIVEN,
         params: Query | NotGiven = NOT_GIVEN,
     ) -> None:
         self.url = url
+        self.json = json
         self.params = params
 
     @override
     def __repr__(self) -> str:
         if self.url:
             return f"{self.__class__.__name__}(url={self.url})"
+        if self.json:
+            return f"{self.__class__.__name__}(json={self.json})"
         return f"{self.__class__.__name__}(params={self.params})"
 
 
@@ -189,6 +207,19 @@ class BasePage(GenericModel, Generic[_T]):
             url = info.url.copy_with(params=params)
             options.params = dict(url.params)
             options.url = str(url)
+            return options
+
+        if not isinstance(info.json, NotGiven):
+            if not is_mapping(info.json):
+                raise TypeError("Pagination is only supported with mappings")
+
+            if not options.json_data:
+                options.json_data = {**info.json}
+            else:
+                if not is_mapping(options.json_data):
+                    raise TypeError("Pagination is only supported with mappings")
+
+                options.json_data = {**options.json_data, **info.json}
             return options
 
         raise ValueError("Unexpected PageInfo state")
@@ -331,6 +362,7 @@ class BaseClient(Generic[_HttpxClientT, _DefaultStreamT]):
     _client: _HttpxClientT
     _version: str
     _base_url: URL
+    _api_version: str
     max_retries: int
     timeout: Union[float, Timeout, None]
     _strict_response_validation: bool
@@ -342,6 +374,7 @@ class BaseClient(Generic[_HttpxClientT, _DefaultStreamT]):
         *,
         version: str,
         base_url: str | URL,
+        api_version: str,
         _strict_response_validation: bool,
         max_retries: int = DEFAULT_MAX_RETRIES,
         timeout: float | Timeout | None = DEFAULT_TIMEOUT,
@@ -350,6 +383,7 @@ class BaseClient(Generic[_HttpxClientT, _DefaultStreamT]):
     ) -> None:
         self._version = version
         self._base_url = self._enforce_trailing_slash(URL(base_url))
+        self.api_version = api_version
         self.max_retries = max_retries
         self.timeout = timeout
         self._custom_headers = custom_headers or {}
@@ -409,7 +443,8 @@ class BaseClient(Generic[_HttpxClientT, _DefaultStreamT]):
 
         idempotency_header = self._idempotency_header
         if idempotency_header and options.method.lower() != "get" and idempotency_header not in headers:
-            headers[idempotency_header] = options.idempotency_key or self._idempotency_key()
+            options.idempotency_key = options.idempotency_key or self._idempotency_key()
+            headers[idempotency_header] = options.idempotency_key
 
         # Don't set these headers if they were already set or removed by the caller. We check
         # `custom_headers`, which can contain `Omit()`, instead of `headers` to account for the removal case.
@@ -422,6 +457,8 @@ class BaseClient(Generic[_HttpxClientT, _DefaultStreamT]):
                 timeout = timeout.read
             if timeout is not None:
                 headers["x-stainless-read-timeout"] = str(timeout)
+
+        headers["api-version"] = self.api_version
 
         return headers
 
@@ -484,7 +521,24 @@ class BaseClient(Generic[_HttpxClientT, _DefaultStreamT]):
                     raise TypeError(
                         f"Expected query input to be a dictionary for multipart requests but got {type(json_data)} instead."
                     )
-                kwargs["data"] = self._serialize_multipartform(json_data)
+
+                if options.multipart_syntax == 'json':
+                    json_data = cast("Mapping[str, object]", json_data)
+                    if is_mapping_t(files):
+                        files = {
+                            **files,
+                            **self._serialize_multiapartform_json(json_data),
+                        }
+                    elif is_sequence_t(files):
+                        files = [
+                            *files,
+                            *self._serialize_multiapartform_json(json_data).items(),
+                        ]
+                    else:
+                        assert not files, "this case should only be hit when there are no files"
+                        files = self._serialize_multiapartform_json(json_data)
+                else:
+                    kwargs["data"] = self._serialize_multipartform(json_data)
 
             # httpx determines whether or not to send a "multipart/form-data"
             # request based on the truthiness of the "files" argument.
@@ -515,6 +569,22 @@ class BaseClient(Generic[_HttpxClientT, _DefaultStreamT]):
             files=files,
             **kwargs,
         )
+
+    def _serialize_multiapartform_json(self, data: Mapping[str, object]) -> dict[str, HttpxFileTypes]:
+        serialized: dict[str, HttpxFileTypes] = {}
+        for key, value in data.items():
+            if isinstance(value, Mapping) or is_list(value) or is_tuple(value):
+                serialized[key] = (None, json.dumps(value).encode("utf-8"), "application/json")
+            else:
+                serialized[key] = (
+                    None,
+                    self.qs._primitive_value_to_str(
+                        value  # type: ignore
+                    ).encode("utf-8"),
+                    "text/plain",
+                )
+
+        return serialized
 
     def _serialize_multipartform(self, data: Mapping[object, object]) -> dict[str, object]:
         items = self.qs.stringify_items(
@@ -785,6 +855,7 @@ class SyncAPIClient(BaseClient[httpx.Client, Stream[Any]]):
         *,
         version: str,
         base_url: str | URL,
+        api_version: str,
         max_retries: int = DEFAULT_MAX_RETRIES,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
         http_client: httpx.Client | None = None,
@@ -815,6 +886,7 @@ class SyncAPIClient(BaseClient[httpx.Client, Stream[Any]]):
             # cast to a valid type because mypy doesn't understand our type narrowing
             timeout=cast(Timeout, timeout),
             base_url=base_url,
+            api_version=api_version,
             max_retries=max_retries,
             custom_query=custom_query,
             custom_headers=custom_headers,
@@ -942,6 +1014,10 @@ class SyncAPIClient(BaseClient[httpx.Client, Stream[Any]]):
         remaining_retries = options.get_max_retries(self.max_retries) - retries_taken
         request = self._build_request(options, retries_taken=retries_taken)
         self._prepare_request(request)
+
+        if options.idempotency_key:
+            # ensure the idempotency key is reused between requests
+            input_options.idempotency_key = options.idempotency_key
 
         kwargs: HttpxSendArgs = {}
         if self.custom_auth is not None:
@@ -1315,6 +1391,7 @@ class AsyncAPIClient(BaseClient[httpx.AsyncClient, AsyncStream[Any]]):
         *,
         version: str,
         base_url: str | URL,
+        api_version: str,
         _strict_response_validation: bool,
         max_retries: int = DEFAULT_MAX_RETRIES,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
@@ -1343,6 +1420,7 @@ class AsyncAPIClient(BaseClient[httpx.AsyncClient, AsyncStream[Any]]):
         super().__init__(
             version=version,
             base_url=base_url,
+            api_version=api_version,
             # cast to a valid type because mypy doesn't understand our type narrowing
             timeout=cast(Timeout, timeout),
             max_retries=max_retries,
@@ -1474,6 +1552,10 @@ class AsyncAPIClient(BaseClient[httpx.AsyncClient, AsyncStream[Any]]):
         remaining_retries = options.get_max_retries(self.max_retries) - retries_taken
         request = self._build_request(options, retries_taken=retries_taken)
         await self._prepare_request(request)
+
+        if options.idempotency_key:
+            # ensure the idempotency key is reused between requests
+            input_options.idempotency_key = options.idempotency_key
 
         kwargs: HttpxSendArgs = {}
         if self.custom_auth is not None:
@@ -1794,6 +1876,7 @@ def make_request_options(
     idempotency_key: str | None = None,
     timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     post_parser: PostParser | NotGiven = NOT_GIVEN,
+    multipart_syntax: MultipartSyntax | None = None,
 ) -> RequestOptions:
     """Create a dict of type RequestOptions without keys of NotGiven values."""
     options: RequestOptions = {}
@@ -1818,6 +1901,9 @@ def make_request_options(
     if is_given(post_parser):
         # internal
         options["post_parser"] = post_parser  # type: ignore
+
+    if multipart_syntax is not None:
+        options["multipart_syntax"] = multipart_syntax
 
     return options
 

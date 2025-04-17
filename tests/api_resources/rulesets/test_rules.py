@@ -56,7 +56,7 @@ class TestRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -146,7 +146,7 @@ class TestRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -236,7 +236,7 @@ class TestRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -351,7 +351,7 @@ class TestRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -441,7 +441,7 @@ class TestRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -531,7 +531,7 @@ class TestRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -621,7 +621,7 @@ class TestRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -721,7 +721,7 @@ class TestRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -822,7 +822,7 @@ class TestRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -919,7 +919,7 @@ class TestRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -1009,7 +1009,7 @@ class TestRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -1103,7 +1103,7 @@ class TestRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -1215,7 +1215,7 @@ class TestRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -1294,7 +1294,7 @@ class TestRules:
             id="3a03d665bac047339bb530ecb439a90d",
             action="skip",
             action_parameters={
-                "phases": ["ddos_l4"],
+                "phases": ["http_request_firewall_custom"],
                 "products": ["bic"],
                 "rules": {"4814384a9e5d4991b9815dcfc25d2f1f": ["8ac8bc2a661e475d940980f9317f28e1"]},
                 "ruleset": "current",
@@ -1311,7 +1311,7 @@ class TestRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -1455,7 +1455,7 @@ class TestRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -1561,7 +1561,7 @@ class TestRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -1651,7 +1651,7 @@ class TestRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -1741,7 +1741,7 @@ class TestRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -1920,7 +1920,7 @@ class TestRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -2024,7 +2024,7 @@ class TestRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -2128,7 +2128,7 @@ class TestRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -2257,7 +2257,7 @@ class TestRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -2361,7 +2361,7 @@ class TestRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -2465,7 +2465,7 @@ class TestRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -2569,7 +2569,7 @@ class TestRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -2683,7 +2683,7 @@ class TestRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -2798,7 +2798,7 @@ class TestRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -2909,7 +2909,7 @@ class TestRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -3013,7 +3013,7 @@ class TestRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -3121,7 +3121,7 @@ class TestRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -3247,7 +3247,7 @@ class TestRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -3340,7 +3340,7 @@ class TestRules:
             id="3a03d665bac047339bb530ecb439a90d",
             action="skip",
             action_parameters={
-                "phases": ["ddos_l4"],
+                "phases": ["http_request_firewall_custom"],
                 "products": ["bic"],
                 "rules": {"4814384a9e5d4991b9815dcfc25d2f1f": ["8ac8bc2a661e475d940980f9317f28e1"]},
                 "ruleset": "current",
@@ -3357,7 +3357,7 @@ class TestRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -3515,7 +3515,7 @@ class TestRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -3635,7 +3635,7 @@ class TestRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -3739,7 +3739,7 @@ class TestRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -3843,7 +3843,7 @@ class TestRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -3955,7 +3955,7 @@ class TestAsyncRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -4045,7 +4045,7 @@ class TestAsyncRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -4135,7 +4135,7 @@ class TestAsyncRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -4250,7 +4250,7 @@ class TestAsyncRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -4340,7 +4340,7 @@ class TestAsyncRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -4430,7 +4430,7 @@ class TestAsyncRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -4520,7 +4520,7 @@ class TestAsyncRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -4620,7 +4620,7 @@ class TestAsyncRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -4721,7 +4721,7 @@ class TestAsyncRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -4818,7 +4818,7 @@ class TestAsyncRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -4908,7 +4908,7 @@ class TestAsyncRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -5002,7 +5002,7 @@ class TestAsyncRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -5114,7 +5114,7 @@ class TestAsyncRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -5193,7 +5193,7 @@ class TestAsyncRules:
             id="3a03d665bac047339bb530ecb439a90d",
             action="skip",
             action_parameters={
-                "phases": ["ddos_l4"],
+                "phases": ["http_request_firewall_custom"],
                 "products": ["bic"],
                 "rules": {"4814384a9e5d4991b9815dcfc25d2f1f": ["8ac8bc2a661e475d940980f9317f28e1"]},
                 "ruleset": "current",
@@ -5210,7 +5210,7 @@ class TestAsyncRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -5354,7 +5354,7 @@ class TestAsyncRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -5460,7 +5460,7 @@ class TestAsyncRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -5550,7 +5550,7 @@ class TestAsyncRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -5640,7 +5640,7 @@ class TestAsyncRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -5819,7 +5819,7 @@ class TestAsyncRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -5923,7 +5923,7 @@ class TestAsyncRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -6027,7 +6027,7 @@ class TestAsyncRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -6156,7 +6156,7 @@ class TestAsyncRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -6260,7 +6260,7 @@ class TestAsyncRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -6364,7 +6364,7 @@ class TestAsyncRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -6468,7 +6468,7 @@ class TestAsyncRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -6582,7 +6582,7 @@ class TestAsyncRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -6697,7 +6697,7 @@ class TestAsyncRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -6808,7 +6808,7 @@ class TestAsyncRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -6912,7 +6912,7 @@ class TestAsyncRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -7020,7 +7020,7 @@ class TestAsyncRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -7146,7 +7146,7 @@ class TestAsyncRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -7239,7 +7239,7 @@ class TestAsyncRules:
             id="3a03d665bac047339bb530ecb439a90d",
             action="skip",
             action_parameters={
-                "phases": ["ddos_l4"],
+                "phases": ["http_request_firewall_custom"],
                 "products": ["bic"],
                 "rules": {"4814384a9e5d4991b9815dcfc25d2f1f": ["8ac8bc2a661e475d940980f9317f28e1"]},
                 "ruleset": "current",
@@ -7256,7 +7256,7 @@ class TestAsyncRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -7414,7 +7414,7 @@ class TestAsyncRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -7534,7 +7534,7 @@ class TestAsyncRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -7638,7 +7638,7 @@ class TestAsyncRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,
@@ -7742,7 +7742,7 @@ class TestAsyncRules:
             position={"before": "da5e8e506c8e7877fe06cdf4c41add54"},
             ratelimit={
                 "characteristics": ["ip.src"],
-                "period": 10,
+                "period": 60,
                 "counting_expression": 'http.request.body.raw eq "abcd"',
                 "mitigation_timeout": 600,
                 "requests_per_period": 1000,

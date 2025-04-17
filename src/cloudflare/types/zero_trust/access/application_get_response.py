@@ -261,7 +261,7 @@ class SelfHostedApplication(BaseModel):
     """The application type."""
 
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     allow_authenticate_via_warp: Optional[bool] = None
     """
@@ -355,6 +355,17 @@ class SelfHostedApplication(BaseModel):
     """
 
     policies: Optional[List[SelfHostedApplicationPolicy]] = None
+
+    read_service_tokens_from_header: Optional[str] = None
+    """
+    Allows matching Access Service Tokens passed HTTP in a single header with this
+    name. This works as an alternative to the (CF-Access-Client-Id,
+    CF-Access-Client-Secret) pair of headers. The header value will be interpreted
+    as a json object similar to: { "cf-access-client-id":
+    "88bf3b6d86161464f6509f7219099e57.access.example.com",
+    "cf-access-client-secret":
+    "bdd31cbc4dec990953e39163fbbb194c93313ca9f0a6e420346af9d326b1d2a5" }
+    """
 
     same_site_cookie_attribute: Optional[str] = None
     """
@@ -496,7 +507,7 @@ class SaaSApplicationSCIMConfig(BaseModel):
 
 class SaaSApplication(BaseModel):
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     allowed_idps: Optional[List[AllowedIdPs]] = None
     """The identity providers your users can select when connecting to this
@@ -696,7 +707,7 @@ class BrowserSSHApplication(BaseModel):
     """The application type."""
 
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     allow_authenticate_via_warp: Optional[bool] = None
     """
@@ -790,6 +801,17 @@ class BrowserSSHApplication(BaseModel):
     """
 
     policies: Optional[List[BrowserSSHApplicationPolicy]] = None
+
+    read_service_tokens_from_header: Optional[str] = None
+    """
+    Allows matching Access Service Tokens passed HTTP in a single header with this
+    name. This works as an alternative to the (CF-Access-Client-Id,
+    CF-Access-Client-Secret) pair of headers. The header value will be interpreted
+    as a json object similar to: { "cf-access-client-id":
+    "88bf3b6d86161464f6509f7219099e57.access.example.com",
+    "cf-access-client-secret":
+    "bdd31cbc4dec990953e39163fbbb194c93313ca9f0a6e420346af9d326b1d2a5" }
+    """
 
     same_site_cookie_attribute: Optional[str] = None
     """
@@ -978,7 +1000,7 @@ class BrowserVNCApplication(BaseModel):
     """The application type."""
 
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     allow_authenticate_via_warp: Optional[bool] = None
     """
@@ -1072,6 +1094,17 @@ class BrowserVNCApplication(BaseModel):
     """
 
     policies: Optional[List[BrowserVNCApplicationPolicy]] = None
+
+    read_service_tokens_from_header: Optional[str] = None
+    """
+    Allows matching Access Service Tokens passed HTTP in a single header with this
+    name. This works as an alternative to the (CF-Access-Client-Id,
+    CF-Access-Client-Secret) pair of headers. The header value will be interpreted
+    as a json object similar to: { "cf-access-client-id":
+    "88bf3b6d86161464f6509f7219099e57.access.example.com",
+    "cf-access-client-secret":
+    "bdd31cbc4dec990953e39163fbbb194c93313ca9f0a6e420346af9d326b1d2a5" }
+    """
 
     same_site_cookie_attribute: Optional[str] = None
     """
@@ -1238,7 +1271,7 @@ class AppLauncherApplication(BaseModel):
     """The application type."""
 
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     allowed_idps: Optional[List[AllowedIdPs]] = None
     """The identity providers your users can select when connecting to this
@@ -1429,7 +1462,7 @@ class DeviceEnrollmentPermissionsApplication(BaseModel):
     """The application type."""
 
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     allowed_idps: Optional[List[AllowedIdPs]] = None
     """The identity providers your users can select when connecting to this
@@ -1620,7 +1653,7 @@ class BrowserIsolationPermissionsApplication(BaseModel):
     """The application type."""
 
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     allowed_idps: Optional[List[AllowedIdPs]] = None
     """The identity providers your users can select when connecting to this
@@ -1773,7 +1806,7 @@ class BookmarkApplicationSCIMConfig(BaseModel):
 
 class BookmarkApplication(BaseModel):
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     app_launcher_visible: Optional[bool] = None
     """Displays the application in the App Launcher."""
@@ -1974,7 +2007,7 @@ class InfrastructureApplication(BaseModel):
     """The application type."""
 
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     aud: Optional[str] = None
     """Audience tag."""
@@ -2156,7 +2189,7 @@ class BrowserRdpApplication(BaseModel):
     """The application type."""
 
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     allow_authenticate_via_warp: Optional[bool] = None
     """
@@ -2250,6 +2283,17 @@ class BrowserRdpApplication(BaseModel):
     """
 
     policies: Optional[List[BrowserRdpApplicationPolicy]] = None
+
+    read_service_tokens_from_header: Optional[str] = None
+    """
+    Allows matching Access Service Tokens passed HTTP in a single header with this
+    name. This works as an alternative to the (CF-Access-Client-Id,
+    CF-Access-Client-Secret) pair of headers. The header value will be interpreted
+    as a json object similar to: { "cf-access-client-id":
+    "88bf3b6d86161464f6509f7219099e57.access.example.com",
+    "cf-access-client-secret":
+    "bdd31cbc4dec990953e39163fbbb194c93313ca9f0a6e420346af9d326b1d2a5" }
+    """
 
     same_site_cookie_attribute: Optional[str] = None
     """

@@ -65,7 +65,7 @@ class FallbackOriginResource(SyncAPIResource):
         Update Fallback Origin for Custom Hostnames
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           origin: Your origin hostname that requests to your custom hostnames will be sent to.
 
@@ -107,7 +107,7 @@ class FallbackOriginResource(SyncAPIResource):
         Delete Fallback Origin for Custom Hostnames
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -146,7 +146,7 @@ class FallbackOriginResource(SyncAPIResource):
         Get Fallback Origin for Custom Hostnames
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -207,7 +207,7 @@ class AsyncFallbackOriginResource(AsyncAPIResource):
         Update Fallback Origin for Custom Hostnames
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           origin: Your origin hostname that requests to your custom hostnames will be sent to.
 
@@ -251,7 +251,7 @@ class AsyncFallbackOriginResource(AsyncAPIResource):
         Delete Fallback Origin for Custom Hostnames
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -290,7 +290,7 @@ class AsyncFallbackOriginResource(AsyncAPIResource):
         Get Fallback Origin for Custom Hostnames
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 

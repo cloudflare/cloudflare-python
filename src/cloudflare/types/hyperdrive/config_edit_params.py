@@ -10,6 +10,7 @@ __all__ = [
     "Caching",
     "CachingHyperdriveHyperdriveCachingCommon",
     "CachingHyperdriveHyperdriveCachingEnabled",
+    "MTLS",
     "Origin",
     "OriginHyperdriveHyperdriveDatabase",
     "OriginHyperdriveInternetOrigin",
@@ -22,6 +23,8 @@ class ConfigEditParams(TypedDict, total=False):
     """Identifier"""
 
     caching: Caching
+
+    mtls: MTLS
 
     name: str
 
@@ -54,6 +57,20 @@ class CachingHyperdriveHyperdriveCachingEnabled(TypedDict, total=False):
 Caching: TypeAlias = Union[CachingHyperdriveHyperdriveCachingCommon, CachingHyperdriveHyperdriveCachingEnabled]
 
 
+class MTLS(TypedDict, total=False):
+    ca_certificate_id: str
+    """CA certificate ID"""
+
+    mtls_certificate_id: str
+    """mTLS certificate ID"""
+
+    sslmode: str
+    """SSL mode used for CA verification.
+
+    Must be 'require', 'verify-ca', or 'verify-full'
+    """
+
+
 class OriginHyperdriveHyperdriveDatabase(TypedDict, total=False):
     database: str
     """The name of your origin database."""
@@ -64,7 +81,7 @@ class OriginHyperdriveHyperdriveDatabase(TypedDict, total=False):
     This value is write-only and never returned by the API.
     """
 
-    scheme: Literal["postgres", "postgresql"]
+    scheme: Literal["postgres", "postgresql", "mysql"]
     """Specifies the URL scheme used to connect to your origin database."""
 
     user: str

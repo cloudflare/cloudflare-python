@@ -547,6 +547,96 @@ class TestCloudflare:
             b"",
         ]
 
+    def test_multipart_json_syntax_no_files(self, client: Cloudflare) -> None:
+        request = client._build_request(
+            FinalRequestOptions.construct(
+                method="post",
+                url="/foo",
+                headers={"Content-Type": "multipart/form-data; boundary=6b7ba517decee4a450543ea6ae821c82"},
+                json_data={"name": "test", "nested": {"key": "value", 'bool': True, 'none': None, 'int': 8}},
+                multipart_syntax="json",
+            )
+        )
+
+        assert request.read().split(b"\r\n") == [
+            b"--6b7ba517decee4a450543ea6ae821c82",
+            b'Content-Disposition: form-data; name="name"',
+            b"Content-Type: text/plain",
+            b"",
+            b"test",
+            b"--6b7ba517decee4a450543ea6ae821c82",
+            b'Content-Disposition: form-data; name="nested"',
+            b"Content-Type: application/json",
+            b"",
+            b'{"key": "value", "bool": true, "none": null, "int": 8}',
+            b"--6b7ba517decee4a450543ea6ae821c82--",
+            b"",
+        ]
+
+    def test_multipart_json_syntax_with_mapping_files(self, client: Cloudflare) -> None:
+        request = client._build_request(
+            FinalRequestOptions.construct(
+                method="post",
+                url="/foo",
+                headers={"Content-Type": "multipart/form-data; boundary=6b7ba517decee4a450543ea6ae821c82"},
+                json_data=({"name": "test", "nested": {"key": "value"}}),
+                files={"file1": ("file1.txt", b"content1")},
+                multipart_syntax="json",
+            )
+        )
+
+        assert request.read().split(b"\r\n") == [
+            b"--6b7ba517decee4a450543ea6ae821c82",
+            b'Content-Disposition: form-data; name="file1"; filename="file1.txt"',
+            b"Content-Type: text/plain",
+            b"",
+            b"content1",
+            b"--6b7ba517decee4a450543ea6ae821c82",
+            b'Content-Disposition: form-data; name="name"',
+            b"Content-Type: text/plain",
+            b"",
+            b"test",
+            b"--6b7ba517decee4a450543ea6ae821c82",
+            b'Content-Disposition: form-data; name="nested"',
+            b"Content-Type: application/json",
+            b"",
+            b'{"key": "value"}',
+            b"--6b7ba517decee4a450543ea6ae821c82--",
+            b"",
+        ]
+
+    def test_multipart_json_syntax_with_sequence_files(self, client: Cloudflare) -> None:
+        request = client._build_request(
+            FinalRequestOptions.construct(
+                method="post",
+                url="/foo",
+                headers={"Content-Type": "multipart/form-data; boundary=6b7ba517decee4a450543ea6ae821c82"},
+                json_data={"name": "test", "nested": {"key": "value"}},
+                files=[("file1", ("file1.txt", b"content1"))],
+                multipart_syntax="json",
+            )
+        )
+
+        assert request.read().split(b"\r\n") == [
+            b"--6b7ba517decee4a450543ea6ae821c82",
+            b'Content-Disposition: form-data; name="file1"; filename="file1.txt"',
+            b"Content-Type: text/plain",
+            b"",
+            b"content1",
+            b"--6b7ba517decee4a450543ea6ae821c82",
+            b'Content-Disposition: form-data; name="name"',
+            b"Content-Type: text/plain",
+            b"",
+            b"test",
+            b"--6b7ba517decee4a450543ea6ae821c82",
+            b'Content-Disposition: form-data; name="nested"',
+            b"Content-Type: application/json",
+            b"",
+            b'{"key": "value"}',
+            b"--6b7ba517decee4a450543ea6ae821c82--",
+            b"",
+        ]
+
     @pytest.mark.respx(base_url=base_url)
     def test_basic_union_response(self, respx_mock: MockRouter) -> None:
         class Model1(BaseModel):
@@ -1816,7 +1906,7 @@ class TestAsyncCloudflare:
         import threading
 
         from cloudflare._utils import asyncify
-        from cloudflare._base_client import get_platform 
+        from cloudflare._base_client import get_platform
 
         async def test_main() -> None:
             result = await asyncify(get_platform)()
