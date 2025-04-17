@@ -1,6 +1,6 @@
 [project]
 name = "cloudflare"
-version = "4.1.0"
+version = "4.2.0"
 description = "The official Python library for the cloudflare API"
 dynamic = ["readme"]
 license = "Apache-2.0"
