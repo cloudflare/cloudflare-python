@@ -56,22 +56,28 @@ class RoutesResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
+        id: str,
         pattern: str,
-        script: str | NotGiven = NOT_GIVEN,
+        script: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RouteCreateResponse:
+    ) -> Optional[RouteCreateResponse]:
         """
         Creates a route that maps a URL pattern to a Worker.
 
         Args:
           zone_id: Identifier.
 
-          script: Name of the script, used in URLs and route configuration.
+          id: Identifier.
+
+          pattern: Pattern to match incoming requests against.
+              [Learn more](https://developers.cloudflare.com/workers/configuration/routing/routes/#matching-behavior).
+
+          script: Name of the script to run if the route matches.
 
           extra_headers: Send extra headers
 
@@ -87,15 +93,20 @@ class RoutesResource(SyncAPIResource):
             f"/zones/{zone_id}/workers/routes",
             body=maybe_transform(
                 {
+                    "id": id,
                     "pattern": pattern,
                     "script": script,
                 },
                 route_create_params.RouteCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[RouteCreateResponse]]._unwrapper,
             ),
-            cast_to=RouteCreateResponse,
+            cast_to=cast(Type[Optional[RouteCreateResponse]], ResultWrapper[RouteCreateResponse]),
         )
 
     def update(
@@ -103,8 +114,9 @@ class RoutesResource(SyncAPIResource):
         route_id: str,
         *,
         zone_id: str,
+        id: str,
         pattern: str,
-        script: str | NotGiven = NOT_GIVEN,
+        script: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -120,7 +132,12 @@ class RoutesResource(SyncAPIResource):
 
           route_id: Identifier.
 
-          script: Name of the script, used in URLs and route configuration.
+          id: Identifier.
+
+          pattern: Pattern to match incoming requests against.
+              [Learn more](https://developers.cloudflare.com/workers/configuration/routing/routes/#matching-behavior).
+
+          script: Name of the script to run if the route matches.
 
           extra_headers: Send extra headers
 
@@ -138,6 +155,7 @@ class RoutesResource(SyncAPIResource):
             f"/zones/{zone_id}/workers/routes/{route_id}",
             body=maybe_transform(
                 {
+                    "id": id,
                     "pattern": pattern,
                     "script": script,
                 },
@@ -200,7 +218,7 @@ class RoutesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RouteDeleteResponse:
+    ) -> Optional[RouteDeleteResponse]:
         """
         Deletes a route.
 
@@ -224,9 +242,13 @@ class RoutesResource(SyncAPIResource):
         return self._delete(
             f"/zones/{zone_id}/workers/routes/{route_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[RouteDeleteResponse]]._unwrapper,
             ),
-            cast_to=RouteDeleteResponse,
+            cast_to=cast(Type[Optional[RouteDeleteResponse]], ResultWrapper[RouteDeleteResponse]),
         )
 
     def get(
@@ -298,22 +320,28 @@ class AsyncRoutesResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
+        id: str,
         pattern: str,
-        script: str | NotGiven = NOT_GIVEN,
+        script: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RouteCreateResponse:
+    ) -> Optional[RouteCreateResponse]:
         """
         Creates a route that maps a URL pattern to a Worker.
 
         Args:
           zone_id: Identifier.
 
-          script: Name of the script, used in URLs and route configuration.
+          id: Identifier.
+
+          pattern: Pattern to match incoming requests against.
+              [Learn more](https://developers.cloudflare.com/workers/configuration/routing/routes/#matching-behavior).
+
+          script: Name of the script to run if the route matches.
 
           extra_headers: Send extra headers
 
@@ -329,15 +357,20 @@ class AsyncRoutesResource(AsyncAPIResource):
             f"/zones/{zone_id}/workers/routes",
             body=await async_maybe_transform(
                 {
+                    "id": id,
                     "pattern": pattern,
                     "script": script,
                 },
                 route_create_params.RouteCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[RouteCreateResponse]]._unwrapper,
             ),
-            cast_to=RouteCreateResponse,
+            cast_to=cast(Type[Optional[RouteCreateResponse]], ResultWrapper[RouteCreateResponse]),
         )
 
     async def update(
@@ -345,8 +378,9 @@ class AsyncRoutesResource(AsyncAPIResource):
         route_id: str,
         *,
         zone_id: str,
+        id: str,
         pattern: str,
-        script: str | NotGiven = NOT_GIVEN,
+        script: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -362,7 +396,12 @@ class AsyncRoutesResource(AsyncAPIResource):
 
           route_id: Identifier.
 
-          script: Name of the script, used in URLs and route configuration.
+          id: Identifier.
+
+          pattern: Pattern to match incoming requests against.
+              [Learn more](https://developers.cloudflare.com/workers/configuration/routing/routes/#matching-behavior).
+
+          script: Name of the script to run if the route matches.
 
           extra_headers: Send extra headers
 
@@ -380,6 +419,7 @@ class AsyncRoutesResource(AsyncAPIResource):
             f"/zones/{zone_id}/workers/routes/{route_id}",
             body=await async_maybe_transform(
                 {
+                    "id": id,
                     "pattern": pattern,
                     "script": script,
                 },
@@ -442,7 +482,7 @@ class AsyncRoutesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RouteDeleteResponse:
+    ) -> Optional[RouteDeleteResponse]:
         """
         Deletes a route.
 
@@ -466,9 +506,13 @@ class AsyncRoutesResource(AsyncAPIResource):
         return await self._delete(
             f"/zones/{zone_id}/workers/routes/{route_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[RouteDeleteResponse]]._unwrapper,
             ),
-            cast_to=RouteDeleteResponse,
+            cast_to=cast(Type[Optional[RouteDeleteResponse]], ResultWrapper[RouteDeleteResponse]),
         )
 
     async def get(

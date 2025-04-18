@@ -122,18 +122,18 @@ class SecretsResource(SyncAPIResource):
 
           script_name: Name of the script, used in URLs and route configuration.
 
-          algorithm: Algorithm-specific key parameters
-              ([learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#algorithm)).
+          algorithm: Algorithm-specific key parameters.
+              [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#algorithm).
 
-          format: Data format of the key
-              ([learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#format)).
+          format: Data format of the key.
+              [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#format).
 
           name: A JavaScript variable name for the binding.
 
           type: The kind of resource that the binding provides.
 
-          usages: Allowed operations with the key
-              ([learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#keyUsages)).
+          usages: Allowed operations with the key.
+              [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#keyUsages).
 
           key_base64: Base64-encoded key data. Required if `format` is "raw", "pkcs8", or "spki".
 
@@ -444,18 +444,18 @@ class AsyncSecretsResource(AsyncAPIResource):
 
           script_name: Name of the script, used in URLs and route configuration.
 
-          algorithm: Algorithm-specific key parameters
-              ([learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#algorithm)).
+          algorithm: Algorithm-specific key parameters.
+              [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#algorithm).
 
-          format: Data format of the key
-              ([learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#format)).
+          format: Data format of the key.
+              [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#format).
 
           name: A JavaScript variable name for the binding.
 
           type: The kind of resource that the binding provides.
 
-          usages: Allowed operations with the key
-              ([learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#keyUsages)).
+          usages: Allowed operations with the key.
+              [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#keyUsages).
 
           key_base64: Base64-encoded key data. Required if `format` is "raw", "pkcs8", or "spki".
 
