@@ -4,7 +4,7 @@ from typing import List
 
 from ...._models import BaseModel
 
-__all__ = ["RouteRealtimeResponse", "Meta", "MetaASNInfo", "MetaCollector", "MetaRPKI", "MetaVisibility", "Route"]
+__all__ = ["RouteRealtimeResponse", "Meta", "MetaASNInfo", "MetaCollector", "MetaPrefixOrigin", "Route"]
 
 
 class MetaASNInfo(BaseModel):
@@ -47,15 +47,16 @@ class MetaCollector(BaseModel):
     """Total number of collector peers used from this collector for IPv6 prefixes."""
 
 
-class MetaRPKI(BaseModel):
+class MetaPrefixOrigin(BaseModel):
     origin: int
     """Origin ASN."""
 
+    prefix: str
+    """IP prefix of this query."""
+
     rpki_validation: str
-    """Validation status: valid, invalid, or unknown."""
+    """Prefix-origin RPKI validation: valid, invalid, unknown."""
 
-
-class MetaVisibility(BaseModel):
     total_peers: int
     """Total number of peers."""
 
@@ -71,9 +72,13 @@ class Meta(BaseModel):
 
     collectors: List[MetaCollector]
 
-    rpki: List[MetaRPKI]
+    data_time: str
+    """The most recent data timestamp for from the real-time sources."""
 
-    visibility: MetaVisibility
+    prefix_origins: List[MetaPrefixOrigin]
+
+    query_time: str
+    """The timestamp of this query."""
 
 
 class Route(BaseModel):
