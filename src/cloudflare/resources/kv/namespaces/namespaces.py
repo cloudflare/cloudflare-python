@@ -32,10 +32,7 @@ from .metadata import (
     AsyncMetadataResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ....types.kv import namespace_list_params, namespace_create_params, namespace_update_params
 from ...._resource import SyncAPIResource, AsyncAPIResource

@@ -47,10 +47,7 @@ from .settings import (
     AsyncSettingsResourceWithStreamingResponse,
 )
 from ......_types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, FileTypes
-from ......_utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ......_utils import maybe_transform, async_maybe_transform
 from ......_compat import cached_property
 from .asset_upload import (
     AssetUploadResource,
