@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
+from typing import Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, TypeAlias
 
@@ -9,16 +9,10 @@ from .psk_metadata import PSKMetadata
 from .health_check_rate import HealthCheckRate
 from .health_check_type import HealthCheckType
 
-__all__ = [
-    "IPSECTunnelCreateResponse",
-    "IPSECTunnel",
-    "IPSECTunnelHealthCheck",
-    "IPSECTunnelHealthCheckTarget",
-    "IPSECTunnelHealthCheckTargetMagicHealthCheckTarget",
-]
+__all__ = ["IPSECTunnelCreateResponse", "HealthCheck", "HealthCheckTarget", "HealthCheckTargetMagicHealthCheckTarget"]
 
 
-class IPSECTunnelHealthCheckTargetMagicHealthCheckTarget(BaseModel):
+class HealthCheckTargetMagicHealthCheckTarget(BaseModel):
     effective: Optional[str] = None
     """The effective health check target.
 
@@ -34,10 +28,10 @@ class IPSECTunnelHealthCheckTargetMagicHealthCheckTarget(BaseModel):
     """
 
 
-IPSECTunnelHealthCheckTarget: TypeAlias = Union[IPSECTunnelHealthCheckTargetMagicHealthCheckTarget, str]
+HealthCheckTarget: TypeAlias = Union[HealthCheckTargetMagicHealthCheckTarget, str]
 
 
-class IPSECTunnelHealthCheck(BaseModel):
+class HealthCheck(BaseModel):
     direction: Optional[Literal["unidirectional", "bidirectional"]] = None
     """The direction of the flow of the healthcheck.
 
@@ -52,7 +46,7 @@ class IPSECTunnelHealthCheck(BaseModel):
     rate: Optional[HealthCheckRate] = None
     """How frequent the health check is run. The default value is `mid`."""
 
-    target: Optional[IPSECTunnelHealthCheckTarget] = None
+    target: Optional[HealthCheckTarget] = None
     """The destination address in a request type health check.
 
     After the healthcheck is decapsulated at the customer end of the tunnel, the
@@ -68,7 +62,10 @@ class IPSECTunnelHealthCheck(BaseModel):
     """The type of healthcheck to run, reply or request. The default value is `reply`."""
 
 
-class IPSECTunnel(BaseModel):
+class IPSECTunnelCreateResponse(BaseModel):
+    id: str
+    """Identifier"""
+
     cloudflare_endpoint: str
     """The IP address assigned to the Cloudflare side of the IPsec tunnel."""
 
@@ -81,9 +78,6 @@ class IPSECTunnel(BaseModel):
 
     name: str
     """The name of the IPsec tunnel. The name cannot share a name with other tunnels."""
-
-    id: Optional[str] = None
-    """Tunnel identifier tag."""
 
     allow_null_cipher: Optional[bool] = None
     """
@@ -103,7 +97,7 @@ class IPSECTunnel(BaseModel):
     description: Optional[str] = None
     """An optional description forthe IPsec tunnel."""
 
-    health_check: Optional[IPSECTunnelHealthCheck] = None
+    health_check: Optional[HealthCheck] = None
 
     modified_on: Optional[datetime] = None
     """The date and time the tunnel was last modified."""
@@ -116,7 +110,3 @@ class IPSECTunnel(BaseModel):
     If `true`, then IPsec replay protection will be supported in the
     Cloudflare-to-customer direction.
     """
-
-
-class IPSECTunnelCreateResponse(BaseModel):
-    ipsec_tunnels: Optional[List[IPSECTunnel]] = None

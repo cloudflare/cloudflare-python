@@ -75,7 +75,7 @@ class IPSECTunnelsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> IPSECTunnelCreateResponse:
-        """Creates new IPsec tunnels associated with an account.
+        """Creates a new IPsec tunnel associated with an account.
 
         Use `?validate_only=true`
         as an optional query parameter to only run validation without persisting
@@ -552,7 +552,7 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> IPSECTunnelCreateResponse:
-        """Creates new IPsec tunnels associated with an account.
+        """Creates a new IPsec tunnel associated with an account.
 
         Use `?validate_only=true`
         as an optional query parameter to only run validation without persisting
