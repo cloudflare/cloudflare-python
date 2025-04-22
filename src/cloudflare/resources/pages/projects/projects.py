@@ -81,6 +81,7 @@ class ProjectsResource(SyncAPIResource):
         deployment_configs: project_create_params.DeploymentConfigs | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         production_branch: str | NotGiven = NOT_GIVEN,
+        source: project_create_params.Source | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -120,6 +121,7 @@ class ProjectsResource(SyncAPIResource):
                     "deployment_configs": deployment_configs,
                     "name": name,
                     "production_branch": production_branch,
+                    "source": source,
                 },
                 project_create_params.ProjectCreateParams,
             ),
@@ -222,6 +224,7 @@ class ProjectsResource(SyncAPIResource):
         deployment_configs: project_edit_params.DeploymentConfigs | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         production_branch: str | NotGiven = NOT_GIVEN,
+        source: project_edit_params.Source | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -267,6 +270,7 @@ class ProjectsResource(SyncAPIResource):
                     "deployment_configs": deployment_configs,
                     "name": name,
                     "production_branch": production_branch,
+                    "source": source,
                 },
                 project_edit_params.ProjectEditParams,
             ),
@@ -405,6 +409,7 @@ class AsyncProjectsResource(AsyncAPIResource):
         deployment_configs: project_create_params.DeploymentConfigs | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         production_branch: str | NotGiven = NOT_GIVEN,
+        source: project_create_params.Source | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -444,6 +449,7 @@ class AsyncProjectsResource(AsyncAPIResource):
                     "deployment_configs": deployment_configs,
                     "name": name,
                     "production_branch": production_branch,
+                    "source": source,
                 },
                 project_create_params.ProjectCreateParams,
             ),
@@ -546,6 +552,7 @@ class AsyncProjectsResource(AsyncAPIResource):
         deployment_configs: project_edit_params.DeploymentConfigs | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         production_branch: str | NotGiven = NOT_GIVEN,
+        source: project_edit_params.Source | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -591,6 +598,7 @@ class AsyncProjectsResource(AsyncAPIResource):
                     "deployment_configs": deployment_configs,
                     "name": name,
                     "production_branch": production_branch,
+                    "source": source,
                 },
                 project_edit_params.ProjectEditParams,
             ),
