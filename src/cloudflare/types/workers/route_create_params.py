@@ -11,9 +11,6 @@ class RouteCreateParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier."""
 
-    id: Required[str]
-    """Identifier."""
-
     pattern: Required[str]
     """Pattern to match incoming requests against.
 
