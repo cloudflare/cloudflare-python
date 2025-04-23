@@ -85,7 +85,7 @@ class IssuesResource(SyncAPIResource):
         Get Security Center Issues
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           page: Current page within paginated list of results
 
@@ -157,7 +157,7 @@ class IssuesResource(SyncAPIResource):
         Get Security Center Issue Counts by Class
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -214,7 +214,7 @@ class IssuesResource(SyncAPIResource):
         Archive Security Center Insight
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -263,7 +263,7 @@ class IssuesResource(SyncAPIResource):
         Get Security Center Issue Counts by Severity
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -329,7 +329,7 @@ class IssuesResource(SyncAPIResource):
         Get Security Center Issue Counts by Type
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -418,7 +418,7 @@ class AsyncIssuesResource(AsyncAPIResource):
         Get Security Center Issues
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           page: Current page within paginated list of results
 
@@ -490,7 +490,7 @@ class AsyncIssuesResource(AsyncAPIResource):
         Get Security Center Issue Counts by Class
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -547,7 +547,7 @@ class AsyncIssuesResource(AsyncAPIResource):
         Archive Security Center Insight
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -596,7 +596,7 @@ class AsyncIssuesResource(AsyncAPIResource):
         Get Security Center Issue Counts by Severity
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -662,7 +662,7 @@ class AsyncIssuesResource(AsyncAPIResource):
         Get Security Center Issue Counts by Type
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
