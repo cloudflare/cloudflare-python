@@ -65,7 +65,7 @@ class FiltersResource(SyncAPIResource):
         Creates one or more filters.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           expression: The filter expression. For more information, refer to
               [Expressions](https://developers.cloudflare.com/ruleset-engine/rules-language/expressions/).
@@ -111,7 +111,7 @@ class FiltersResource(SyncAPIResource):
         Updates an existing filter.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           filter_id: The unique identifier of the filter.
 
@@ -167,7 +167,7 @@ class FiltersResource(SyncAPIResource):
         parameters.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           id: The unique identifier of the filter.
 
@@ -236,7 +236,7 @@ class FiltersResource(SyncAPIResource):
         Deletes an existing filter.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           filter_id: The unique identifier of the filter.
 
@@ -282,7 +282,7 @@ class FiltersResource(SyncAPIResource):
         Deletes one or more existing filters.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           extra_headers: Send extra headers
 
@@ -322,7 +322,7 @@ class FiltersResource(SyncAPIResource):
         Updates one or more existing filters.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           extra_headers: Send extra headers
 
@@ -363,7 +363,7 @@ class FiltersResource(SyncAPIResource):
         Fetches the details of a filter.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           filter_id: The unique identifier of the filter.
 
@@ -431,7 +431,7 @@ class AsyncFiltersResource(AsyncAPIResource):
         Creates one or more filters.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           expression: The filter expression. For more information, refer to
               [Expressions](https://developers.cloudflare.com/ruleset-engine/rules-language/expressions/).
@@ -477,7 +477,7 @@ class AsyncFiltersResource(AsyncAPIResource):
         Updates an existing filter.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           filter_id: The unique identifier of the filter.
 
@@ -533,7 +533,7 @@ class AsyncFiltersResource(AsyncAPIResource):
         parameters.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           id: The unique identifier of the filter.
 
@@ -602,7 +602,7 @@ class AsyncFiltersResource(AsyncAPIResource):
         Deletes an existing filter.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           filter_id: The unique identifier of the filter.
 
@@ -648,7 +648,7 @@ class AsyncFiltersResource(AsyncAPIResource):
         Deletes one or more existing filters.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           extra_headers: Send extra headers
 
@@ -688,7 +688,7 @@ class AsyncFiltersResource(AsyncAPIResource):
         Updates one or more existing filters.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           extra_headers: Send extra headers
 
@@ -729,7 +729,7 @@ class AsyncFiltersResource(AsyncAPIResource):
         Fetches the details of a filter.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           filter_id: The unique identifier of the filter.
 

@@ -20,13 +20,13 @@ Configuration: TypeAlias = Union[
 
 class Scope(BaseModel):
     id: Optional[str] = None
-    """Identifier"""
+    """Defines an identifier."""
 
     email: Optional[str] = None
     """The contact email address of the user."""
 
     type: Optional[Literal["user", "organization"]] = None
-    """The scope of the rule."""
+    """Defines the scope of the rule."""
 
 
 class AccessRuleCreateResponse(BaseModel):

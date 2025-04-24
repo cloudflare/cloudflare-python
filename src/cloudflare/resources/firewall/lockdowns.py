@@ -66,7 +66,7 @@ class LockdownsResource(SyncAPIResource):
         Creates a new Zone Lockdown rule.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           configurations: A list of IP addresses or CIDR ranges that will be allowed to access the URLs
               specified in the Zone Lockdown rule. You can include any number of `ip` or
@@ -123,7 +123,7 @@ class LockdownsResource(SyncAPIResource):
         Updates an existing Zone Lockdown rule.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           lock_downs_id: The unique identifier of the Zone Lockdown rule.
 
@@ -194,7 +194,7 @@ class LockdownsResource(SyncAPIResource):
         parameters.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           created_on: The timestamp of when the rule was created.
 
@@ -275,7 +275,7 @@ class LockdownsResource(SyncAPIResource):
         Deletes an existing Zone Lockdown rule.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           lock_downs_id: The unique identifier of the Zone Lockdown rule.
 
@@ -319,7 +319,7 @@ class LockdownsResource(SyncAPIResource):
         Fetches the details of a Zone Lockdown rule.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           lock_downs_id: The unique identifier of the Zone Lockdown rule.
 
@@ -385,7 +385,7 @@ class AsyncLockdownsResource(AsyncAPIResource):
         Creates a new Zone Lockdown rule.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           configurations: A list of IP addresses or CIDR ranges that will be allowed to access the URLs
               specified in the Zone Lockdown rule. You can include any number of `ip` or
@@ -442,7 +442,7 @@ class AsyncLockdownsResource(AsyncAPIResource):
         Updates an existing Zone Lockdown rule.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           lock_downs_id: The unique identifier of the Zone Lockdown rule.
 
@@ -513,7 +513,7 @@ class AsyncLockdownsResource(AsyncAPIResource):
         parameters.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           created_on: The timestamp of when the rule was created.
 
@@ -594,7 +594,7 @@ class AsyncLockdownsResource(AsyncAPIResource):
         Deletes an existing Zone Lockdown rule.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           lock_downs_id: The unique identifier of the Zone Lockdown rule.
 
@@ -638,7 +638,7 @@ class AsyncLockdownsResource(AsyncAPIResource):
         Fetches the details of a Zone Lockdown rule.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           lock_downs_id: The unique identifier of the Zone Lockdown rule.
 

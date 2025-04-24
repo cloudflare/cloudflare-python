@@ -72,7 +72,7 @@ class OverridesResource(SyncAPIResource):
         [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           urls: The URLs to include in the current WAF override. You can use wildcards. Each
               entered URL will be escaped before use, which means you can only use simple
@@ -124,11 +124,11 @@ class OverridesResource(SyncAPIResource):
         [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           overrides_id: The unique identifier of the WAF override.
 
-          id: Identifier
+          id: Defines an identifier.
 
           rewrite_action: Specifies that, when a WAF rule matches, its configured action will be replaced
               by the action configured in this object.
@@ -196,7 +196,7 @@ class OverridesResource(SyncAPIResource):
         [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           page: The page number of paginated results.
 
@@ -250,7 +250,7 @@ class OverridesResource(SyncAPIResource):
         [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           overrides_id: The unique identifier of the WAF override.
 
@@ -297,7 +297,7 @@ class OverridesResource(SyncAPIResource):
         [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           overrides_id: The unique identifier of the WAF override.
 
@@ -365,7 +365,7 @@ class AsyncOverridesResource(AsyncAPIResource):
         [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           urls: The URLs to include in the current WAF override. You can use wildcards. Each
               entered URL will be escaped before use, which means you can only use simple
@@ -417,11 +417,11 @@ class AsyncOverridesResource(AsyncAPIResource):
         [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           overrides_id: The unique identifier of the WAF override.
 
-          id: Identifier
+          id: Defines an identifier.
 
           rewrite_action: Specifies that, when a WAF rule matches, its configured action will be replaced
               by the action configured in this object.
@@ -489,7 +489,7 @@ class AsyncOverridesResource(AsyncAPIResource):
         [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           page: The page number of paginated results.
 
@@ -543,7 +543,7 @@ class AsyncOverridesResource(AsyncAPIResource):
         [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           overrides_id: The unique identifier of the WAF override.
 
@@ -590,7 +590,7 @@ class AsyncOverridesResource(AsyncAPIResource):
         [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           overrides_id: The unique identifier of the WAF override.
 

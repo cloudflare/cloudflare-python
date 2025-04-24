@@ -9,13 +9,13 @@ __all__ = ["RateLimitListParams"]
 
 class RateLimitListParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Defines an identifier."""
 
     page: float
-    """The page number of paginated results."""
+    """Defines the page number of paginated results."""
 
     per_page: float
-    """The maximum number of results per page.
+    """Defines the maximum number of results per page.
 
     You can only set the value to `1` or to a multiple of 5 such as `5`, `10`, `15`,
     or `20`.
