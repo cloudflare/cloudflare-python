@@ -108,6 +108,8 @@ class DefaultResource(SyncAPIResource):
         exclude: Iterable[SplitTunnelExcludeParam] | NotGiven = NOT_GIVEN,
         exclude_office_ips: bool | NotGiven = NOT_GIVEN,
         include: Iterable[SplitTunnelIncludeParam] | NotGiven = NOT_GIVEN,
+        lan_allow_minutes: float | NotGiven = NOT_GIVEN,
+        lan_allow_subnet_size: float | NotGiven = NOT_GIVEN,
         register_interface_ip_with_dns: bool | NotGiven = NOT_GIVEN,
         service_mode_v2: default_edit_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
         support_url: str | NotGiven = NOT_GIVEN,
@@ -147,6 +149,14 @@ class DefaultResource(SyncAPIResource):
           include: List of routes included in the WARP client's tunnel. Both 'exclude' and
               'include' cannot be set in the same request.
 
+          lan_allow_minutes: The amount of time in minutes a user is allowed access to their LAN. A value of
+              0 will allow LAN access until the next WARP reconnection, such as a reboot or a
+              laptop waking from sleep. Note that this field is omitted from the response if
+              null or unset.
+
+          lan_allow_subnet_size: The size of the subnet for the local access network. Note that this field is
+              omitted from the response if null or unset.
+
           register_interface_ip_with_dns: Determines if the operating system will register WARP's local interface IP with
               your on-premises DNS server.
 
@@ -179,6 +189,8 @@ class DefaultResource(SyncAPIResource):
                     "exclude": exclude,
                     "exclude_office_ips": exclude_office_ips,
                     "include": include,
+                    "lan_allow_minutes": lan_allow_minutes,
+                    "lan_allow_subnet_size": lan_allow_subnet_size,
                     "register_interface_ip_with_dns": register_interface_ip_with_dns,
                     "service_mode_v2": service_mode_v2,
                     "support_url": support_url,
@@ -284,6 +296,8 @@ class AsyncDefaultResource(AsyncAPIResource):
         exclude: Iterable[SplitTunnelExcludeParam] | NotGiven = NOT_GIVEN,
         exclude_office_ips: bool | NotGiven = NOT_GIVEN,
         include: Iterable[SplitTunnelIncludeParam] | NotGiven = NOT_GIVEN,
+        lan_allow_minutes: float | NotGiven = NOT_GIVEN,
+        lan_allow_subnet_size: float | NotGiven = NOT_GIVEN,
         register_interface_ip_with_dns: bool | NotGiven = NOT_GIVEN,
         service_mode_v2: default_edit_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
         support_url: str | NotGiven = NOT_GIVEN,
@@ -323,6 +337,14 @@ class AsyncDefaultResource(AsyncAPIResource):
           include: List of routes included in the WARP client's tunnel. Both 'exclude' and
               'include' cannot be set in the same request.
 
+          lan_allow_minutes: The amount of time in minutes a user is allowed access to their LAN. A value of
+              0 will allow LAN access until the next WARP reconnection, such as a reboot or a
+              laptop waking from sleep. Note that this field is omitted from the response if
+              null or unset.
+
+          lan_allow_subnet_size: The size of the subnet for the local access network. Note that this field is
+              omitted from the response if null or unset.
+
           register_interface_ip_with_dns: Determines if the operating system will register WARP's local interface IP with
               your on-premises DNS server.
 
@@ -355,6 +377,8 @@ class AsyncDefaultResource(AsyncAPIResource):
                     "exclude": exclude,
                     "exclude_office_ips": exclude_office_ips,
                     "include": include,
+                    "lan_allow_minutes": lan_allow_minutes,
+                    "lan_allow_subnet_size": lan_allow_subnet_size,
                     "register_interface_ip_with_dns": register_interface_ip_with_dns,
                     "service_mode_v2": service_mode_v2,
                     "support_url": support_url,

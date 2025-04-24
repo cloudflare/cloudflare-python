@@ -236,6 +236,8 @@ class TestCustom:
                     "description": "Include testing domains in the tunnel",
                 }
             ],
+            lan_allow_minutes=30,
+            lan_allow_subnet_size=24,
             match='identity.email == "test@cloudflare.com"',
             name="Allow Developers",
             precedence=100,
@@ -567,6 +569,8 @@ class TestAsyncCustom:
                     "description": "Include testing domains in the tunnel",
                 }
             ],
+            lan_allow_minutes=30,
+            lan_allow_subnet_size=24,
             match='identity.email == "test@cloudflare.com"',
             name="Allow Developers",
             precedence=100,

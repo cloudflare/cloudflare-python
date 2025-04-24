@@ -34,7 +34,7 @@ class Device(BaseModel):
     deleted: Optional[bool] = None
     """True if the device was deleted."""
 
-    device_type: Optional[Literal["windows", "mac", "linux", "android", "ios"]] = None
+    device_type: Optional[Literal["windows", "mac", "linux", "android", "ios", "chromeos"]] = None
 
     ip: Optional[str] = None
     """IPv4 or IPv6 address."""
