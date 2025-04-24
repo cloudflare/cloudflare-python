@@ -54,10 +54,10 @@ class SettingsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SettingGetResponse:
         """
-        Retrieve the current status of Content Scanning
+        Retrieve the current status of Content Scanning.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           extra_headers: Send extra headers
 
@@ -114,10 +114,10 @@ class AsyncSettingsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SettingGetResponse:
         """
-        Retrieve the current status of Content Scanning
+        Retrieve the current status of Content Scanning.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           extra_headers: Send extra headers
 
