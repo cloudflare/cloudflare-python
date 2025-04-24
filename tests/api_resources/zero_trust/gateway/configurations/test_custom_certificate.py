@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -22,7 +22,7 @@ class TestCustomCertificate:
         custom_certificate = client.zero_trust.gateway.configurations.custom_certificate.get(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(CustomCertificateSettings, custom_certificate, path=["response"])
+        assert_matches_type(Optional[CustomCertificateSettings], custom_certificate, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -33,7 +33,7 @@ class TestCustomCertificate:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_certificate = response.parse()
-        assert_matches_type(CustomCertificateSettings, custom_certificate, path=["response"])
+        assert_matches_type(Optional[CustomCertificateSettings], custom_certificate, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -44,7 +44,7 @@ class TestCustomCertificate:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_certificate = response.parse()
-            assert_matches_type(CustomCertificateSettings, custom_certificate, path=["response"])
+            assert_matches_type(Optional[CustomCertificateSettings], custom_certificate, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -64,7 +64,7 @@ class TestAsyncCustomCertificate:
         custom_certificate = await async_client.zero_trust.gateway.configurations.custom_certificate.get(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(CustomCertificateSettings, custom_certificate, path=["response"])
+        assert_matches_type(Optional[CustomCertificateSettings], custom_certificate, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -75,7 +75,7 @@ class TestAsyncCustomCertificate:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_certificate = await response.parse()
-        assert_matches_type(CustomCertificateSettings, custom_certificate, path=["response"])
+        assert_matches_type(Optional[CustomCertificateSettings], custom_certificate, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -86,7 +86,7 @@ class TestAsyncCustomCertificate:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_certificate = await response.parse()
-            assert_matches_type(CustomCertificateSettings, custom_certificate, path=["response"])
+            assert_matches_type(Optional[CustomCertificateSettings], custom_certificate, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
