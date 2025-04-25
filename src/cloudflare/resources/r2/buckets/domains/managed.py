@@ -64,13 +64,13 @@ class ManagedResource(SyncAPIResource):
         Updates state of public access over the bucket's R2-managed (r2.dev) domain.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          enabled: Whether to enable public bucket access at the r2.dev domain
+          enabled: Whether to enable public bucket access at the r2.dev domain.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: The bucket jurisdiction.
 
           extra_headers: Send extra headers
 
@@ -118,11 +118,11 @@ class ManagedResource(SyncAPIResource):
         Gets state of public access over the bucket's R2-managed (r2.dev) domain.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: The bucket jurisdiction.
 
           extra_headers: Send extra headers
 
@@ -191,13 +191,13 @@ class AsyncManagedResource(AsyncAPIResource):
         Updates state of public access over the bucket's R2-managed (r2.dev) domain.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          enabled: Whether to enable public bucket access at the r2.dev domain
+          enabled: Whether to enable public bucket access at the r2.dev domain.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: The bucket jurisdiction.
 
           extra_headers: Send extra headers
 
@@ -245,11 +245,11 @@ class AsyncManagedResource(AsyncAPIResource):
         Gets state of public access over the bucket's R2-managed (r2.dev) domain.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: The bucket jurisdiction.
 
           extra_headers: Send extra headers
 

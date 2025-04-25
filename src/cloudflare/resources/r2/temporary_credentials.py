@@ -67,19 +67,19 @@ class TemporaryCredentialsResource(SyncAPIResource):
         to prefixes or objects.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket: Name of the R2 bucket
+          bucket: Name of the R2 bucket.
 
-          parent_access_key_id: The parent access key id to use for signing
+          parent_access_key_id: The parent access key id to use for signing.
 
-          permission: Permissions allowed on the credentials
+          permission: Permissions allowed on the credentials.
 
-          ttl_seconds: How long the credentials will live for in seconds
+          ttl_seconds: How long the credentials will live for in seconds.
 
-          objects: Optional object paths to scope the credentials to
+          objects: Optional object paths to scope the credentials to.
 
-          prefixes: Optional prefix paths to scope the credentials to
+          prefixes: Optional prefix paths to scope the credentials to.
 
           extra_headers: Send extra headers
 
@@ -157,19 +157,19 @@ class AsyncTemporaryCredentialsResource(AsyncAPIResource):
         to prefixes or objects.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket: Name of the R2 bucket
+          bucket: Name of the R2 bucket.
 
-          parent_access_key_id: The parent access key id to use for signing
+          parent_access_key_id: The parent access key id to use for signing.
 
-          permission: Permissions allowed on the credentials
+          permission: Permissions allowed on the credentials.
 
-          ttl_seconds: How long the credentials will live for in seconds
+          ttl_seconds: How long the credentials will live for in seconds.
 
-          objects: Optional object paths to scope the credentials to
+          objects: Optional object paths to scope the credentials to.
 
-          prefixes: Optional prefix paths to scope the credentials to
+          prefixes: Optional prefix paths to scope the credentials to.
 
           extra_headers: Send extra headers
 

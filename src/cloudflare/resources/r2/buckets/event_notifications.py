@@ -64,15 +64,15 @@ class EventNotificationsResource(SyncAPIResource):
         Create event notification rule.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          queue_id: Queue ID
+          queue_id: Queue ID.
 
-          rules: Array of rules to drive notifications
+          rules: Array of rules to drive notifications.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: The bucket jurisdiction.
 
           extra_headers: Send extra headers
 
@@ -125,13 +125,13 @@ class EventNotificationsResource(SyncAPIResource):
         specified queue will be deleted**.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          queue_id: Queue ID
+          queue_id: Queue ID.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: The bucket jurisdiction.
 
           extra_headers: Send extra headers
 
@@ -180,11 +180,11 @@ class EventNotificationsResource(SyncAPIResource):
         List all event notification rules for a bucket.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: The bucket jurisdiction.
 
           extra_headers: Send extra headers
 
@@ -254,15 +254,15 @@ class AsyncEventNotificationsResource(AsyncAPIResource):
         Create event notification rule.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          queue_id: Queue ID
+          queue_id: Queue ID.
 
-          rules: Array of rules to drive notifications
+          rules: Array of rules to drive notifications.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: The bucket jurisdiction.
 
           extra_headers: Send extra headers
 
@@ -317,13 +317,13 @@ class AsyncEventNotificationsResource(AsyncAPIResource):
         specified queue will be deleted**.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          queue_id: Queue ID
+          queue_id: Queue ID.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: The bucket jurisdiction.
 
           extra_headers: Send extra headers
 
@@ -372,11 +372,11 @@ class AsyncEventNotificationsResource(AsyncAPIResource):
         List all event notification rules for a bucket.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: The bucket jurisdiction.
 
           extra_headers: Send extra headers
 
