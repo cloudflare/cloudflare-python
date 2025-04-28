@@ -13,7 +13,7 @@ __all__ = [
     "WorkersBindingKindAI",
     "WorkersBindingKindAnalyticsEngine",
     "WorkersBindingKindAssets",
-    "WorkersBindingKindBrowserRendering",
+    "WorkersBindingKindBrowser",
     "WorkersBindingKindD1",
     "WorkersBindingKindDispatchNamespace",
     "WorkersBindingKindDispatchNamespaceOutbound",
@@ -64,11 +64,11 @@ class WorkersBindingKindAssets(BaseModel):
     """The kind of resource that the binding provides."""
 
 
-class WorkersBindingKindBrowserRendering(BaseModel):
+class WorkersBindingKindBrowser(BaseModel):
     name: str
     """A JavaScript variable name for the binding."""
 
-    type: Literal["browser_rendering"]
+    type: Literal["browser"]
     """The kind of resource that the binding provides."""
 
 
@@ -324,7 +324,7 @@ BindingGetResponse: TypeAlias = Annotated[
         WorkersBindingKindAI,
         WorkersBindingKindAnalyticsEngine,
         WorkersBindingKindAssets,
-        WorkersBindingKindBrowserRendering,
+        WorkersBindingKindBrowser,
         WorkersBindingKindD1,
         WorkersBindingKindDispatchNamespace,
         WorkersBindingKindDurableObjectNamespace,

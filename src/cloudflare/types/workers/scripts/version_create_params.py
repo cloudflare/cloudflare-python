@@ -15,7 +15,7 @@ __all__ = [
     "MetadataBindingWorkersBindingKindAI",
     "MetadataBindingWorkersBindingKindAnalyticsEngine",
     "MetadataBindingWorkersBindingKindAssets",
-    "MetadataBindingWorkersBindingKindBrowserRendering",
+    "MetadataBindingWorkersBindingKindBrowser",
     "MetadataBindingWorkersBindingKindD1",
     "MetadataBindingWorkersBindingKindDispatchNamespace",
     "MetadataBindingWorkersBindingKindDispatchNamespaceOutbound",
@@ -82,11 +82,11 @@ class MetadataBindingWorkersBindingKindAssets(TypedDict, total=False):
     """The kind of resource that the binding provides."""
 
 
-class MetadataBindingWorkersBindingKindBrowserRendering(TypedDict, total=False):
+class MetadataBindingWorkersBindingKindBrowser(TypedDict, total=False):
     name: Required[str]
     """A JavaScript variable name for the binding."""
 
-    type: Required[Literal["browser_rendering"]]
+    type: Required[Literal["browser"]]
     """The kind of resource that the binding provides."""
 
 
@@ -356,7 +356,7 @@ MetadataBinding: TypeAlias = Union[
     MetadataBindingWorkersBindingKindAI,
     MetadataBindingWorkersBindingKindAnalyticsEngine,
     MetadataBindingWorkersBindingKindAssets,
-    MetadataBindingWorkersBindingKindBrowserRendering,
+    MetadataBindingWorkersBindingKindBrowser,
     MetadataBindingWorkersBindingKindD1,
     MetadataBindingWorkersBindingKindDispatchNamespace,
     MetadataBindingWorkersBindingKindDurableObjectNamespace,
