@@ -9,7 +9,7 @@ __all__ = ["ItemListParams"]
 
 class ItemListParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Defines an identifier."""
 
     cursor: str
     """The pagination cursor.
