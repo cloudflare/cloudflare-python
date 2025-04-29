@@ -10,10 +10,9 @@ __all__ = ["RuleUpdateParams", "Rule", "RuleParameters"]
 
 class RuleUpdateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     rules: Iterable[Rule]
-    """List of Cloud Connector rules"""
 
 
 class RuleParameters(TypedDict, total=False):
