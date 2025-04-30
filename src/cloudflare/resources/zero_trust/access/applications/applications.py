@@ -118,6 +118,7 @@ class ApplicationsResource(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allow_iframe: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
@@ -166,6 +167,8 @@ class ApplicationsResource(SyncAPIResource):
               session. When set to false this application will always require direct IdP
               authentication. This setting always overrides the organization setting for WARP
               authentication.
+
+          allow_iframe: Enables loading application content in an iFrame.
 
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
@@ -326,6 +329,7 @@ class ApplicationsResource(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allow_iframe: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
@@ -374,6 +378,8 @@ class ApplicationsResource(SyncAPIResource):
               session. When set to false this application will always require direct IdP
               authentication. This setting always overrides the organization setting for WARP
               authentication.
+
+          allow_iframe: Enables loading application content in an iFrame.
 
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
@@ -466,6 +472,7 @@ class ApplicationsResource(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allow_iframe: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
@@ -514,6 +521,8 @@ class ApplicationsResource(SyncAPIResource):
               session. When set to false this application will always require direct IdP
               authentication. This setting always overrides the organization setting for WARP
               authentication.
+
+          allow_iframe: Enables loading application content in an iFrame.
 
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
@@ -928,6 +937,7 @@ class ApplicationsResource(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allow_iframe: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
@@ -976,6 +986,8 @@ class ApplicationsResource(SyncAPIResource):
               session. When set to false this application will always require direct IdP
               authentication. This setting always overrides the organization setting for WARP
               authentication.
+
+          allow_iframe: Enables loading application content in an iFrame.
 
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
@@ -1067,6 +1079,7 @@ class ApplicationsResource(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allow_iframe: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
@@ -1130,6 +1143,7 @@ class ApplicationsResource(SyncAPIResource):
                         "domain": domain,
                         "type": type,
                         "allow_authenticate_via_warp": allow_authenticate_via_warp,
+                        "allow_iframe": allow_iframe,
                         "allowed_idps": allowed_idps,
                         "app_launcher_visible": app_launcher_visible,
                         "auto_redirect_to_identity": auto_redirect_to_identity,
@@ -1188,6 +1202,7 @@ class ApplicationsResource(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allow_iframe: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
@@ -1238,6 +1253,8 @@ class ApplicationsResource(SyncAPIResource):
               session. When set to false this application will always require direct IdP
               authentication. This setting always overrides the organization setting for WARP
               authentication.
+
+          allow_iframe: Enables loading application content in an iFrame.
 
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
@@ -1402,6 +1419,7 @@ class ApplicationsResource(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allow_iframe: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
@@ -1452,6 +1470,8 @@ class ApplicationsResource(SyncAPIResource):
               session. When set to false this application will always require direct IdP
               authentication. This setting always overrides the organization setting for WARP
               authentication.
+
+          allow_iframe: Enables loading application content in an iFrame.
 
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
@@ -1545,6 +1565,7 @@ class ApplicationsResource(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allow_iframe: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
@@ -1595,6 +1616,8 @@ class ApplicationsResource(SyncAPIResource):
               session. When set to false this application will always require direct IdP
               authentication. This setting always overrides the organization setting for WARP
               authentication.
+
+          allow_iframe: Enables loading application content in an iFrame.
 
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
@@ -2025,6 +2048,7 @@ class ApplicationsResource(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allow_iframe: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
@@ -2075,6 +2099,8 @@ class ApplicationsResource(SyncAPIResource):
               session. When set to false this application will always require direct IdP
               authentication. This setting always overrides the organization setting for WARP
               authentication.
+
+          allow_iframe: Enables loading application content in an iFrame.
 
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
@@ -2167,6 +2193,7 @@ class ApplicationsResource(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allow_iframe: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
@@ -2232,6 +2259,7 @@ class ApplicationsResource(SyncAPIResource):
                         "domain": domain,
                         "type": type,
                         "allow_authenticate_via_warp": allow_authenticate_via_warp,
+                        "allow_iframe": allow_iframe,
                         "allowed_idps": allowed_idps,
                         "app_launcher_visible": app_launcher_visible,
                         "auto_redirect_to_identity": auto_redirect_to_identity,
@@ -2575,6 +2603,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allow_iframe: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
@@ -2623,6 +2652,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
               session. When set to false this application will always require direct IdP
               authentication. This setting always overrides the organization setting for WARP
               authentication.
+
+          allow_iframe: Enables loading application content in an iFrame.
 
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
@@ -2783,6 +2814,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allow_iframe: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
@@ -2831,6 +2863,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
               session. When set to false this application will always require direct IdP
               authentication. This setting always overrides the organization setting for WARP
               authentication.
+
+          allow_iframe: Enables loading application content in an iFrame.
 
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
@@ -2923,6 +2957,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allow_iframe: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
@@ -2971,6 +3006,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
               session. When set to false this application will always require direct IdP
               authentication. This setting always overrides the organization setting for WARP
               authentication.
+
+          allow_iframe: Enables loading application content in an iFrame.
 
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
@@ -3385,6 +3422,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allow_iframe: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
@@ -3433,6 +3471,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
               session. When set to false this application will always require direct IdP
               authentication. This setting always overrides the organization setting for WARP
               authentication.
+
+          allow_iframe: Enables loading application content in an iFrame.
 
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
@@ -3524,6 +3564,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allow_iframe: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
@@ -3587,6 +3628,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
                         "domain": domain,
                         "type": type,
                         "allow_authenticate_via_warp": allow_authenticate_via_warp,
+                        "allow_iframe": allow_iframe,
                         "allowed_idps": allowed_idps,
                         "app_launcher_visible": app_launcher_visible,
                         "auto_redirect_to_identity": auto_redirect_to_identity,
@@ -3645,6 +3687,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allow_iframe: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
@@ -3695,6 +3738,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
               session. When set to false this application will always require direct IdP
               authentication. This setting always overrides the organization setting for WARP
               authentication.
+
+          allow_iframe: Enables loading application content in an iFrame.
 
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
@@ -3859,6 +3904,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allow_iframe: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
@@ -3909,6 +3955,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
               session. When set to false this application will always require direct IdP
               authentication. This setting always overrides the organization setting for WARP
               authentication.
+
+          allow_iframe: Enables loading application content in an iFrame.
 
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
@@ -4002,6 +4050,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allow_iframe: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
@@ -4052,6 +4101,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
               session. When set to false this application will always require direct IdP
               authentication. This setting always overrides the organization setting for WARP
               authentication.
+
+          allow_iframe: Enables loading application content in an iFrame.
 
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
@@ -4482,6 +4533,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allow_iframe: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
@@ -4532,6 +4584,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
               session. When set to false this application will always require direct IdP
               authentication. This setting always overrides the organization setting for WARP
               authentication.
+
+          allow_iframe: Enables loading application content in an iFrame.
 
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
@@ -4624,6 +4678,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allow_iframe: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
@@ -4689,6 +4744,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
                         "domain": domain,
                         "type": type,
                         "allow_authenticate_via_warp": allow_authenticate_via_warp,
+                        "allow_iframe": allow_iframe,
                         "allowed_idps": allowed_idps,
                         "app_launcher_visible": app_launcher_visible,
                         "auto_redirect_to_identity": auto_redirect_to_identity,

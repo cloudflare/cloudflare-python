@@ -334,6 +334,9 @@ class SelfHostedApplication(BaseModel):
     authentication.
     """
 
+    allow_iframe: Optional[bool] = None
+    """Enables loading application content in an iFrame."""
+
     allowed_idps: Optional[List[AllowedIdPs]] = None
     """The identity providers your users can select when connecting to this
     application.
@@ -906,6 +909,9 @@ class BrowserSSHApplication(BaseModel):
     authentication.
     """
 
+    allow_iframe: Optional[bool] = None
+    """Enables loading application content in an iFrame."""
+
     allowed_idps: Optional[List[AllowedIdPs]] = None
     """The identity providers your users can select when connecting to this
     application.
@@ -1261,6 +1267,9 @@ class BrowserVNCApplication(BaseModel):
     authentication. This setting always overrides the organization setting for WARP
     authentication.
     """
+
+    allow_iframe: Optional[bool] = None
+    """Enables loading application content in an iFrame."""
 
     allowed_idps: Optional[List[AllowedIdPs]] = None
     """The identity providers your users can select when connecting to this
@@ -2702,6 +2711,9 @@ class BrowserRdpApplication(BaseModel):
     authentication. This setting always overrides the organization setting for WARP
     authentication.
     """
+
+    allow_iframe: Optional[bool] = None
+    """Enables loading application content in an iFrame."""
 
     allowed_idps: Optional[List[AllowedIdPs]] = None
     """The identity providers your users can select when connecting to this
