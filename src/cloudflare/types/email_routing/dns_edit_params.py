@@ -9,7 +9,7 @@ __all__ = ["DNSEditParams"]
 
 class DNSEditParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     name: Required[str]
     """Domain of your zone."""

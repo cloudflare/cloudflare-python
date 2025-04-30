@@ -64,7 +64,7 @@ class DNSResource(SyncAPIResource):
         Add and lock the necessary MX and SPF records.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           name: Domain of your zone.
 
@@ -108,7 +108,7 @@ class DNSResource(SyncAPIResource):
         required for Email Routing to work.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -146,7 +146,7 @@ class DNSResource(SyncAPIResource):
         Unlock MX Records previously locked by Email Routing.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           name: Domain of your zone.
 
@@ -189,7 +189,7 @@ class DNSResource(SyncAPIResource):
         Show the DNS records needed to configure your Email Routing zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           subdomain: Domain of your zone.
 
@@ -256,7 +256,7 @@ class AsyncDNSResource(AsyncAPIResource):
         Add and lock the necessary MX and SPF records.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           name: Domain of your zone.
 
@@ -300,7 +300,7 @@ class AsyncDNSResource(AsyncAPIResource):
         required for Email Routing to work.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -338,7 +338,7 @@ class AsyncDNSResource(AsyncAPIResource):
         Unlock MX Records previously locked by Email Routing.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           name: Domain of your zone.
 
@@ -381,7 +381,7 @@ class AsyncDNSResource(AsyncAPIResource):
         Show the DNS records needed to configure your Email Routing zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           subdomain: Domain of your zone.
 

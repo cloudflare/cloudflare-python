@@ -9,7 +9,7 @@ __all__ = ["RuleListParams"]
 
 class RuleListParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     enabled: Literal[True, False]
     """Filter by enabled routing rules."""

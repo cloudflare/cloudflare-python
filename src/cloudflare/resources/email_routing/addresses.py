@@ -64,7 +64,7 @@ class AddressesResource(SyncAPIResource):
         need to be verified before they can be used.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           email: The contact email address of the user.
 
@@ -110,7 +110,7 @@ class AddressesResource(SyncAPIResource):
         Lists existing destination addresses.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           direction: Sorts results in an ascending or descending order.
 
@@ -167,7 +167,7 @@ class AddressesResource(SyncAPIResource):
         Deletes a specific destination address.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           destination_address_identifier: Destination address identifier.
 
@@ -213,7 +213,7 @@ class AddressesResource(SyncAPIResource):
         Gets information for a specific destination email already created.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           destination_address_identifier: Destination address identifier.
 
@@ -282,7 +282,7 @@ class AsyncAddressesResource(AsyncAPIResource):
         need to be verified before they can be used.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           email: The contact email address of the user.
 
@@ -328,7 +328,7 @@ class AsyncAddressesResource(AsyncAPIResource):
         Lists existing destination addresses.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           direction: Sorts results in an ascending or descending order.
 
@@ -385,7 +385,7 @@ class AsyncAddressesResource(AsyncAPIResource):
         Deletes a specific destination address.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           destination_address_identifier: Destination address identifier.
 
@@ -431,7 +431,7 @@ class AsyncAddressesResource(AsyncAPIResource):
         Gets information for a specific destination email already created.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           destination_address_identifier: Destination address identifier.
 
