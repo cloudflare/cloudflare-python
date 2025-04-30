@@ -3752,6 +3752,7 @@ from cloudflare.types.magic_transit import (
     AppUpdateResponse,
     AppListResponse,
     AppDeleteResponse,
+    AppEditResponse,
 )
 ```
 
@@ -3761,6 +3762,7 @@ Methods:
 - <code title="put /accounts/{account_id}/magic/apps/{account_app_id}">client.magic_transit.apps.<a href="./src/cloudflare/resources/magic_transit/apps.py">update</a>(account_app_id, \*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/app_update_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/app_update_response.py">Optional[AppUpdateResponse]</a></code>
 - <code title="get /accounts/{account_id}/magic/apps">client.magic_transit.apps.<a href="./src/cloudflare/resources/magic_transit/apps.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/magic_transit/app_list_response.py">SyncSinglePage[AppListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/magic/apps/{account_app_id}">client.magic_transit.apps.<a href="./src/cloudflare/resources/magic_transit/apps.py">delete</a>(account_app_id, \*, account_id) -> <a href="./src/cloudflare/types/magic_transit/app_delete_response.py">Optional[AppDeleteResponse]</a></code>
+- <code title="patch /accounts/{account_id}/magic/apps/{account_app_id}">client.magic_transit.apps.<a href="./src/cloudflare/resources/magic_transit/apps.py">edit</a>(account_app_id, \*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/app_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/app_edit_response.py">Optional[AppEditResponse]</a></code>
 
 ## CfInterconnects
 
@@ -4458,6 +4460,18 @@ Methods:
 - <code title="delete /accounts/{account_id}/rules/lists/{list_id}">client.rules.lists.<a href="./src/cloudflare/resources/rules/lists/lists.py">delete</a>(list_id, \*, account_id) -> <a href="./src/cloudflare/types/rules/list_delete_response.py">ListDeleteResponse</a></code>
 - <code title="get /accounts/{account_id}/rules/lists/{list_id}">client.rules.lists.<a href="./src/cloudflare/resources/rules/lists/lists.py">get</a>(list_id, \*, account_id) -> <a href="./src/cloudflare/types/rules/list_get_response.py">ListGetResponse</a></code>
 
+### BulkOperations
+
+Types:
+
+```python
+from cloudflare.types.rules.lists import BulkOperationGetResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/rules/lists/bulk_operations/{operation_id}">client.rules.lists.bulk_operations.<a href="./src/cloudflare/resources/rules/lists/bulk_operations.py">get</a>(operation_id, \*, account_id) -> <a href="./src/cloudflare/types/rules/lists/bulk_operation_get_response.py">BulkOperationGetResponse</a></code>
+
 ### Items
 
 Types:
@@ -4470,6 +4484,7 @@ from cloudflare.types.rules.lists import (
     ItemUpdateResponse,
     ItemListResponse,
     ItemDeleteResponse,
+    ItemGetResponse,
 )
 ```
 
@@ -4479,6 +4494,7 @@ Methods:
 - <code title="put /accounts/{account_id}/rules/lists/{list_id}/items">client.rules.lists.items.<a href="./src/cloudflare/resources/rules/lists/items.py">update</a>(list_id, \*, account_id, \*\*<a href="src/cloudflare/types/rules/lists/item_update_params.py">params</a>) -> <a href="./src/cloudflare/types/rules/lists/item_update_response.py">ItemUpdateResponse</a></code>
 - <code title="get /accounts/{account_id}/rules/lists/{list_id}/items">client.rules.lists.items.<a href="./src/cloudflare/resources/rules/lists/items.py">list</a>(list_id, \*, account_id, \*\*<a href="src/cloudflare/types/rules/lists/item_list_params.py">params</a>) -> <a href="./src/cloudflare/types/rules/lists/item_list_response.py">ItemListResponse</a></code>
 - <code title="delete /accounts/{account_id}/rules/lists/{list_id}/items">client.rules.lists.items.<a href="./src/cloudflare/resources/rules/lists/items.py">delete</a>(list_id, \*, account_id) -> <a href="./src/cloudflare/types/rules/lists/item_delete_response.py">ItemDeleteResponse</a></code>
+- <code title="get /accounts/{account_id}/rules/lists/{list_id}/items/{item_id}">client.rules.lists.items.<a href="./src/cloudflare/resources/rules/lists/items.py">get</a>(item_id, \*, account_id, list_id) -> <a href="./src/cloudflare/types/rules/lists/item_get_response.py">ItemGetResponse</a></code>
 
 # Stream
 
@@ -4863,6 +4879,7 @@ Methods:
 - <code title="post /accounts/{account_id}/r2/buckets">client.r2.buckets.<a href="./src/cloudflare/resources/r2/buckets/buckets.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/r2/bucket_create_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/bucket.py">Bucket</a></code>
 - <code title="get /accounts/{account_id}/r2/buckets">client.r2.buckets.<a href="./src/cloudflare/resources/r2/buckets/buckets.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/r2/bucket_list_params.py">params</a>) -> <a href="./src/cloudflare/types/r2/bucket_list_response.py">BucketListResponse</a></code>
 - <code title="delete /accounts/{account_id}/r2/buckets/{bucket_name}">client.r2.buckets.<a href="./src/cloudflare/resources/r2/buckets/buckets.py">delete</a>(bucket_name, \*, account_id) -> <a href="./src/cloudflare/types/r2/bucket_delete_response.py">object</a></code>
+- <code title="patch /accounts/{account_id}/r2/buckets/{bucket_name}">client.r2.buckets.<a href="./src/cloudflare/resources/r2/buckets/buckets.py">edit</a>(bucket_name, \*, account_id) -> <a href="./src/cloudflare/types/r2/bucket.py">Bucket</a></code>
 - <code title="get /accounts/{account_id}/r2/buckets/{bucket_name}">client.r2.buckets.<a href="./src/cloudflare/resources/r2/buckets/buckets.py">get</a>(bucket_name, \*, account_id) -> <a href="./src/cloudflare/types/r2/bucket.py">Bucket</a></code>
 
 ### Lifecycle
@@ -7088,6 +7105,18 @@ Methods:
 
 ## AI
 
+### ToMarkdown
+
+Types:
+
+```python
+from cloudflare.types.radar.ai import ToMarkdownCreateResponse
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/ai/tomarkdown">client.radar.ai.to_markdown.<a href="./src/cloudflare/resources/radar/ai/to_markdown.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/radar/ai/to_markdown_create_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/ai/to_markdown_create_response.py">SyncSinglePage[ToMarkdownCreateResponse]</a></code>
+
 ### Inference
 
 #### Summary
@@ -9250,6 +9279,7 @@ Types:
 from cloudflare.types.workflows import (
     WorkflowUpdateResponse,
     WorkflowListResponse,
+    WorkflowDeleteResponse,
     WorkflowGetResponse,
 )
 ```
@@ -9258,6 +9288,7 @@ Methods:
 
 - <code title="put /accounts/{account_id}/workflows/{workflow_name}">client.workflows.<a href="./src/cloudflare/resources/workflows/workflows.py">update</a>(workflow_name, \*, account_id, \*\*<a href="src/cloudflare/types/workflows/workflow_update_params.py">params</a>) -> <a href="./src/cloudflare/types/workflows/workflow_update_response.py">WorkflowUpdateResponse</a></code>
 - <code title="get /accounts/{account_id}/workflows">client.workflows.<a href="./src/cloudflare/resources/workflows/workflows.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workflows/workflow_list_params.py">params</a>) -> <a href="./src/cloudflare/types/workflows/workflow_list_response.py">SyncV4PagePaginationArray[WorkflowListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/workflows/{workflow_name}">client.workflows.<a href="./src/cloudflare/resources/workflows/workflows.py">delete</a>(workflow_name, \*, account_id) -> <a href="./src/cloudflare/types/workflows/workflow_delete_response.py">WorkflowDeleteResponse</a></code>
 - <code title="get /accounts/{account_id}/workflows/{workflow_name}">client.workflows.<a href="./src/cloudflare/resources/workflows/workflows.py">get</a>(workflow_name, \*, account_id) -> <a href="./src/cloudflare/types/workflows/workflow_get_response.py">WorkflowGetResponse</a></code>
 
 ## Instances
@@ -9763,6 +9794,7 @@ from cloudflare.types.secrets_store.stores import (
     SecretListResponse,
     SecretDeleteResponse,
     SecretBulkDeleteResponse,
+    SecretDuplicateResponse,
     SecretEditResponse,
     SecretGetResponse,
 )
@@ -9774,6 +9806,7 @@ Methods:
 - <code title="get /accounts/{account_id}/secrets_store/stores/{store_id}/secrets">client.secrets_store.stores.secrets.<a href="./src/cloudflare/resources/secrets_store/stores/secrets.py">list</a>(store_id, \*, account_id, \*\*<a href="src/cloudflare/types/secrets_store/stores/secret_list_params.py">params</a>) -> <a href="./src/cloudflare/types/secrets_store/stores/secret_list_response.py">SyncV4PagePaginationArray[SecretListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}">client.secrets_store.stores.secrets.<a href="./src/cloudflare/resources/secrets_store/stores/secrets.py">delete</a>(secret_id, \*, account_id, store_id) -> <a href="./src/cloudflare/types/secrets_store/stores/secret_delete_response.py">Optional[SecretDeleteResponse]</a></code>
 - <code title="delete /accounts/{account_id}/secrets_store/stores/{store_id}/secrets">client.secrets_store.stores.secrets.<a href="./src/cloudflare/resources/secrets_store/stores/secrets.py">bulk_delete</a>(store_id, \*, account_id) -> <a href="./src/cloudflare/types/secrets_store/stores/secret_bulk_delete_response.py">SyncSinglePage[SecretBulkDeleteResponse]</a></code>
+- <code title="post /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}/duplicate">client.secrets_store.stores.secrets.<a href="./src/cloudflare/resources/secrets_store/stores/secrets.py">duplicate</a>(secret_id, \*, account_id, store_id, \*\*<a href="src/cloudflare/types/secrets_store/stores/secret_duplicate_params.py">params</a>) -> <a href="./src/cloudflare/types/secrets_store/stores/secret_duplicate_response.py">Optional[SecretDuplicateResponse]</a></code>
 - <code title="patch /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}">client.secrets_store.stores.secrets.<a href="./src/cloudflare/resources/secrets_store/stores/secrets.py">edit</a>(secret_id, \*, account_id, store_id, \*\*<a href="src/cloudflare/types/secrets_store/stores/secret_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/secrets_store/stores/secret_edit_response.py">Optional[SecretEditResponse]</a></code>
 - <code title="get /accounts/{account_id}/secrets_store/stores/{store_id}/secrets/{secret_id}">client.secrets_store.stores.secrets.<a href="./src/cloudflare/resources/secrets_store/stores/secrets.py">get</a>(secret_id, \*, account_id, store_id) -> <a href="./src/cloudflare/types/secrets_store/stores/secret_get_response.py">Optional[SecretGetResponse]</a></code>
 

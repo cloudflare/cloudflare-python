@@ -28,6 +28,14 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....types.rules import list_create_params, list_update_params
 from ...._base_client import make_request_options
+from .bulk_operations import (
+    BulkOperationsResource,
+    AsyncBulkOperationsResource,
+    BulkOperationsResourceWithRawResponse,
+    AsyncBulkOperationsResourceWithRawResponse,
+    BulkOperationsResourceWithStreamingResponse,
+    AsyncBulkOperationsResourceWithStreamingResponse,
+)
 from ....types.rules.list_get_response import ListGetResponse
 from ....types.rules.list_list_response import ListListResponse
 from ....types.rules.list_create_response import ListCreateResponse
@@ -38,6 +46,10 @@ __all__ = ["ListsResource", "AsyncListsResource"]
 
 
 class ListsResource(SyncAPIResource):
+    @cached_property
+    def bulk_operations(self) -> BulkOperationsResource:
+        return BulkOperationsResource(self._client)
+
     @cached_property
     def items(self) -> ItemsResource:
         return ItemsResource(self._client)
@@ -320,6 +332,10 @@ class ListsResource(SyncAPIResource):
 
 
 class AsyncListsResource(AsyncAPIResource):
+    @cached_property
+    def bulk_operations(self) -> AsyncBulkOperationsResource:
+        return AsyncBulkOperationsResource(self._client)
+
     @cached_property
     def items(self) -> AsyncItemsResource:
         return AsyncItemsResource(self._client)
@@ -622,6 +638,10 @@ class ListsResourceWithRawResponse:
         )
 
     @cached_property
+    def bulk_operations(self) -> BulkOperationsResourceWithRawResponse:
+        return BulkOperationsResourceWithRawResponse(self._lists.bulk_operations)
+
+    @cached_property
     def items(self) -> ItemsResourceWithRawResponse:
         return ItemsResourceWithRawResponse(self._lists.items)
 
@@ -645,6 +665,10 @@ class AsyncListsResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             lists.get,
         )
+
+    @cached_property
+    def bulk_operations(self) -> AsyncBulkOperationsResourceWithRawResponse:
+        return AsyncBulkOperationsResourceWithRawResponse(self._lists.bulk_operations)
 
     @cached_property
     def items(self) -> AsyncItemsResourceWithRawResponse:
@@ -672,6 +696,10 @@ class ListsResourceWithStreamingResponse:
         )
 
     @cached_property
+    def bulk_operations(self) -> BulkOperationsResourceWithStreamingResponse:
+        return BulkOperationsResourceWithStreamingResponse(self._lists.bulk_operations)
+
+    @cached_property
     def items(self) -> ItemsResourceWithStreamingResponse:
         return ItemsResourceWithStreamingResponse(self._lists.items)
 
@@ -695,6 +723,10 @@ class AsyncListsResourceWithStreamingResponse:
         self.get = async_to_streamed_response_wrapper(
             lists.get,
         )
+
+    @cached_property
+    def bulk_operations(self) -> AsyncBulkOperationsResourceWithStreamingResponse:
+        return AsyncBulkOperationsResourceWithStreamingResponse(self._lists.bulk_operations)
 
     @cached_property
     def items(self) -> AsyncItemsResourceWithStreamingResponse:
