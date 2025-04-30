@@ -9,7 +9,7 @@ __all__ = ["WAFRuleGroup"]
 
 class WAFRuleGroup(BaseModel):
     id: Optional[str] = None
-    """The unique identifier of the rule group."""
+    """Defines the unique identifier of the rule group."""
 
     name: Optional[str] = None
-    """The name of the rule group."""
+    """Defines the name of the rule group."""
