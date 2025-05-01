@@ -71,6 +71,7 @@ class TestConfigurations:
                 },
                 "extended_email_matching": {"enabled": True},
                 "fips": {"tls": True},
+                "host_selector": {"enabled": False},
                 "protocol_detection": {"enabled": True},
                 "sandbox": {
                     "enabled": True,
@@ -162,6 +163,7 @@ class TestConfigurations:
                 },
                 "extended_email_matching": {"enabled": True},
                 "fips": {"tls": True},
+                "host_selector": {"enabled": False},
                 "protocol_detection": {"enabled": True},
                 "sandbox": {
                     "enabled": True,
@@ -295,6 +297,7 @@ class TestAsyncConfigurations:
                 },
                 "extended_email_matching": {"enabled": True},
                 "fips": {"tls": True},
+                "host_selector": {"enabled": False},
                 "protocol_detection": {"enabled": True},
                 "sandbox": {
                     "enabled": True,
@@ -386,6 +389,7 @@ class TestAsyncConfigurations:
                 },
                 "extended_email_matching": {"enabled": True},
                 "fips": {"tls": True},
+                "host_selector": {"enabled": False},
                 "protocol_detection": {"enabled": True},
                 "sandbox": {
                     "enabled": True,
