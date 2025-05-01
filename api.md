@@ -5777,6 +5777,22 @@ Methods:
 
 - <code title="get /accounts/{account_id}/access/policy-tests/{policy_test_id}/users">client.zero_trust.access.applications.policy_tests.users.<a href="./src/cloudflare/resources/zero_trust/access/applications/policy_tests/users.py">list</a>(policy_test_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/access/applications/policy_tests/user_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/applications/policy_tests/user_list_response.py">SyncV4PagePaginationArray[UserListResponse]</a></code>
 
+#### Settings
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.access.applications import (
+    SettingUpdateResponse,
+    SettingEditResponse,
+)
+```
+
+Methods:
+
+- <code title="put /{accounts_or_zones}/{account_or_zone_id}/access/apps/{app_id}/settings">client.zero_trust.access.applications.settings.<a href="./src/cloudflare/resources/zero_trust/access/applications/settings.py">update</a>(app_id, \*, account_id, zone_id, \*\*<a href="src/cloudflare/types/zero_trust/access/applications/setting_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/applications/setting_update_response.py">Optional[SettingUpdateResponse]</a></code>
+- <code title="patch /{accounts_or_zones}/{account_or_zone_id}/access/apps/{app_id}/settings">client.zero_trust.access.applications.settings.<a href="./src/cloudflare/resources/zero_trust/access/applications/settings.py">edit</a>(app_id, \*, account_id, zone_id, \*\*<a href="src/cloudflare/types/zero_trust/access/applications/setting_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/applications/setting_edit_response.py">Optional[SettingEditResponse]</a></code>
+
 ### Certificates
 
 Types:

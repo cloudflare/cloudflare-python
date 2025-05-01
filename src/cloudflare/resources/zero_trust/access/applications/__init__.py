@@ -16,6 +16,14 @@ from .policies import (
     PoliciesResourceWithStreamingResponse,
     AsyncPoliciesResourceWithStreamingResponse,
 )
+from .settings import (
+    SettingsResource,
+    AsyncSettingsResource,
+    SettingsResourceWithRawResponse,
+    AsyncSettingsResourceWithRawResponse,
+    SettingsResourceWithStreamingResponse,
+    AsyncSettingsResourceWithStreamingResponse,
+)
 from .applications import (
     ApplicationsResource,
     AsyncApplicationsResource,
@@ -66,6 +74,12 @@ __all__ = [
     "AsyncPolicyTestsResourceWithRawResponse",
     "PolicyTestsResourceWithStreamingResponse",
     "AsyncPolicyTestsResourceWithStreamingResponse",
+    "SettingsResource",
+    "AsyncSettingsResource",
+    "SettingsResourceWithRawResponse",
+    "AsyncSettingsResourceWithRawResponse",
+    "SettingsResourceWithStreamingResponse",
+    "AsyncSettingsResourceWithStreamingResponse",
     "ApplicationsResource",
     "AsyncApplicationsResource",
     "ApplicationsResourceWithRawResponse",
