@@ -11,7 +11,7 @@ class IntuneInputParam(TypedDict, total=False):
     compliance_status: Required[
         Literal["compliant", "noncompliant", "unknown", "notapplicable", "ingraceperiod", "error"]
     ]
-    """Compliance Status"""
+    """Compliance Status."""
 
     connection_id: Required[str]
     """Posture Integration ID."""

@@ -9,7 +9,7 @@ __all__ = ["IntuneInput"]
 
 class IntuneInput(BaseModel):
     compliance_status: Literal["compliant", "noncompliant", "unknown", "notapplicable", "ingraceperiod", "error"]
-    """Compliance Status"""
+    """Compliance Status."""
 
     connection_id: str
     """Posture Integration ID."""

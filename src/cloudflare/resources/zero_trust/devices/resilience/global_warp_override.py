@@ -112,7 +112,7 @@ class GlobalWARPOverrideResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[GlobalWARPOverrideGetResponse]:
         """
-        Fetch the Global WARP override state
+        Fetch the Global WARP override state.
 
         Args:
           extra_headers: Send extra headers
@@ -223,7 +223,7 @@ class AsyncGlobalWARPOverrideResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[GlobalWARPOverrideGetResponse]:
         """
-        Fetch the Global WARP override state
+        Fetch the Global WARP override state.
 
         Args:
           extra_headers: Send extra headers

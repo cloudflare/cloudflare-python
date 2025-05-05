@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, cast
 
 import httpx
 
@@ -16,9 +16,9 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ...._base_client import make_request_options
+from ....pagination import SyncSinglePage, AsyncSinglePage
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.zero_trust.devices.override_code_get_response import OverrideCodeGetResponse
-from ....types.zero_trust.devices.override_code_list_response import OverrideCodeListResponse
 
 __all__ = ["OverrideCodesResource", "AsyncOverrideCodesResource"]
 
@@ -54,7 +54,7 @@ class OverrideCodesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[OverrideCodeListResponse]:
+    ) -> SyncSinglePage[object]:
         """Fetches a one-time use admin override code for a registration.
 
         This relies on
@@ -80,16 +80,13 @@ class OverrideCodesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not device_id:
             raise ValueError(f"Expected a non-empty value for `device_id` but received {device_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/devices/{device_id}/override_codes",
+            page=SyncSinglePage[object],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[OverrideCodeListResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[OverrideCodeListResponse]], ResultWrapper[OverrideCodeListResponse]),
+            model=object,
         )
 
     def get(
@@ -155,7 +152,7 @@ class AsyncOverrideCodesResource(AsyncAPIResource):
         """
         return AsyncOverrideCodesResourceWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         device_id: str,
         *,
@@ -166,7 +163,7 @@ class AsyncOverrideCodesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[OverrideCodeListResponse]:
+    ) -> AsyncPaginator[object, AsyncSinglePage[object]]:
         """Fetches a one-time use admin override code for a registration.
 
         This relies on
@@ -192,16 +189,13 @@ class AsyncOverrideCodesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not device_id:
             raise ValueError(f"Expected a non-empty value for `device_id` but received {device_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/devices/{device_id}/override_codes",
+            page=AsyncSinglePage[object],
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[OverrideCodeListResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[OverrideCodeListResponse]], ResultWrapper[OverrideCodeListResponse]),
+            model=object,
         )
 
     async def get(

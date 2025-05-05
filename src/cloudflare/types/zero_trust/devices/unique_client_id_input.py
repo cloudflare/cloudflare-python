@@ -12,4 +12,4 @@ class UniqueClientIDInput(BaseModel):
     """List ID."""
 
     operating_system: Literal["android", "ios", "chromeos"]
-    """Operating System"""
+    """Operating System."""

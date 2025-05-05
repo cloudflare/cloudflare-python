@@ -123,7 +123,7 @@ class CustomResource(SyncAPIResource):
           match: The wirefilter expression to match devices. Available values: "identity.email",
               "identity.groups.id", "identity.groups.name", "identity.groups.email",
               "identity.service_token_uuid", "identity.saml_attributes", "network", "os.name",
-              "os.version"
+              "os.version".
 
           name: The name of the device settings profile.
 
@@ -370,7 +370,7 @@ class CustomResource(SyncAPIResource):
           match: The wirefilter expression to match devices. Available values: "identity.email",
               "identity.groups.id", "identity.groups.name", "identity.groups.email",
               "identity.service_token_uuid", "identity.saml_attributes", "network", "os.name",
-              "os.version"
+              "os.version".
 
           name: The name of the device settings profile.
 
@@ -549,7 +549,7 @@ class AsyncCustomResource(AsyncAPIResource):
           match: The wirefilter expression to match devices. Available values: "identity.email",
               "identity.groups.id", "identity.groups.name", "identity.groups.email",
               "identity.service_token_uuid", "identity.saml_attributes", "network", "os.name",
-              "os.version"
+              "os.version".
 
           name: The name of the device settings profile.
 
@@ -796,7 +796,7 @@ class AsyncCustomResource(AsyncAPIResource):
           match: The wirefilter expression to match devices. Available values: "identity.email",
               "identity.groups.id", "identity.groups.name", "identity.groups.email",
               "identity.service_token_uuid", "identity.saml_attributes", "network", "os.name",
-              "os.version"
+              "os.version".
 
           name: The name of the device settings profile.
 
