@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Type, cast
+
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
@@ -14,6 +16,7 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
 from ....types.workers.scripts import subdomain_create_params
 from ....types.workers.scripts.subdomain_get_response import SubdomainGetResponse
@@ -91,9 +94,13 @@ class SubdomainResource(SyncAPIResource):
                 subdomain_create_params.SubdomainCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[SubdomainCreateResponse]._unwrapper,
             ),
-            cast_to=SubdomainCreateResponse,
+            cast_to=cast(Type[SubdomainCreateResponse], ResultWrapper[SubdomainCreateResponse]),
         )
 
     def get(
@@ -131,9 +138,13 @@ class SubdomainResource(SyncAPIResource):
         return self._get(
             f"/accounts/{account_id}/workers/scripts/{script_name}/subdomain",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[SubdomainGetResponse]._unwrapper,
             ),
-            cast_to=SubdomainGetResponse,
+            cast_to=cast(Type[SubdomainGetResponse], ResultWrapper[SubdomainGetResponse]),
         )
 
 
@@ -206,9 +217,13 @@ class AsyncSubdomainResource(AsyncAPIResource):
                 subdomain_create_params.SubdomainCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[SubdomainCreateResponse]._unwrapper,
             ),
-            cast_to=SubdomainCreateResponse,
+            cast_to=cast(Type[SubdomainCreateResponse], ResultWrapper[SubdomainCreateResponse]),
         )
 
     async def get(
@@ -246,9 +261,13 @@ class AsyncSubdomainResource(AsyncAPIResource):
         return await self._get(
             f"/accounts/{account_id}/workers/scripts/{script_name}/subdomain",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[SubdomainGetResponse]._unwrapper,
             ),
-            cast_to=SubdomainGetResponse,
+            cast_to=cast(Type[SubdomainGetResponse], ResultWrapper[SubdomainGetResponse]),
         )
 
 
