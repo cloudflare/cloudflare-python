@@ -8876,6 +8876,7 @@ Types:
 ```python
 from cloudflare.types.cloudforce_one import (
     ThreatEventCreateResponse,
+    ThreatEventListResponse,
     ThreatEventDeleteResponse,
     ThreatEventBulkCreateResponse,
     ThreatEventEditResponse,
@@ -8886,6 +8887,7 @@ from cloudflare.types.cloudforce_one import (
 Methods:
 
 - <code title="post /accounts/{account_id}/cloudforce-one/events/create">client.cloudforce_one.threat_events.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/threat_events.py">create</a>(\*, path_account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_event_create_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_event_create_response.py">ThreatEventCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/cloudforce-one/events">client.cloudforce_one.threat_events.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/threat_events.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_event_list_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_event_list_response.py">ThreatEventListResponse</a></code>
 - <code title="delete /accounts/{account_id}/cloudforce-one/events/{event_id}">client.cloudforce_one.threat_events.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/threat_events.py">delete</a>(event_id, \*, account_id) -> <a href="./src/cloudflare/types/cloudforce_one/threat_event_delete_response.py">ThreatEventDeleteResponse</a></code>
 - <code title="post /accounts/{account_id}/cloudforce-one/events/create/bulk">client.cloudforce_one.threat_events.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/threat_events.py">bulk_create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_event_bulk_create_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_event_bulk_create_response.py">ThreatEventBulkCreateResponse</a></code>
 - <code title="patch /accounts/{account_id}/cloudforce-one/events/{event_id}">client.cloudforce_one.threat_events.<a href="./src/cloudflare/resources/cloudforce_one/threat_events/threat_events.py">edit</a>(event_id, \*, account_id, \*\*<a href="src/cloudflare/types/cloudforce_one/threat_event_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/threat_event_edit_response.py">ThreatEventEditResponse</a></code>
