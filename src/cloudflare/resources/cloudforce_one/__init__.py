@@ -8,14 +8,6 @@ from .scans import (
     ScansResourceWithStreamingResponse,
     AsyncScansResourceWithStreamingResponse,
 )
-from .requests import (
-    RequestsResource,
-    AsyncRequestsResource,
-    RequestsResourceWithRawResponse,
-    AsyncRequestsResourceWithRawResponse,
-    RequestsResourceWithStreamingResponse,
-    AsyncRequestsResourceWithStreamingResponse,
-)
 from .threat_events import (
     ThreatEventsResource,
     AsyncThreatEventsResource,
@@ -40,12 +32,6 @@ __all__ = [
     "AsyncScansResourceWithRawResponse",
     "ScansResourceWithStreamingResponse",
     "AsyncScansResourceWithStreamingResponse",
-    "RequestsResource",
-    "AsyncRequestsResource",
-    "RequestsResourceWithRawResponse",
-    "AsyncRequestsResourceWithRawResponse",
-    "RequestsResourceWithStreamingResponse",
-    "AsyncRequestsResourceWithStreamingResponse",
     "ThreatEventsResource",
     "AsyncThreatEventsResource",
     "ThreatEventsResourceWithRawResponse",
