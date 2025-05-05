@@ -97,7 +97,7 @@ class EventsResource(SyncAPIResource):
         with each other, so only one event can be active at a time.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           event_end_time: An ISO 8601 timestamp that marks the end of the event.
 
@@ -227,7 +227,7 @@ class EventsResource(SyncAPIResource):
         Updates a configured event for a waiting room.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           event_end_time: An ISO 8601 timestamp that marks the end of the event.
 
@@ -344,7 +344,7 @@ class EventsResource(SyncAPIResource):
         Lists events for a waiting room.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           page: Page number of paginated results.
 
@@ -398,7 +398,7 @@ class EventsResource(SyncAPIResource):
         Deletes an event for a waiting room.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -459,7 +459,7 @@ class EventsResource(SyncAPIResource):
         Patches a configured event for a waiting room.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           event_end_time: An ISO 8601 timestamp that marks the end of the event.
 
@@ -575,7 +575,7 @@ class EventsResource(SyncAPIResource):
         Fetches a single configured event for a waiting room.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -666,7 +666,7 @@ class AsyncEventsResource(AsyncAPIResource):
         with each other, so only one event can be active at a time.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           event_end_time: An ISO 8601 timestamp that marks the end of the event.
 
@@ -796,7 +796,7 @@ class AsyncEventsResource(AsyncAPIResource):
         Updates a configured event for a waiting room.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           event_end_time: An ISO 8601 timestamp that marks the end of the event.
 
@@ -913,7 +913,7 @@ class AsyncEventsResource(AsyncAPIResource):
         Lists events for a waiting room.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           page: Page number of paginated results.
 
@@ -967,7 +967,7 @@ class AsyncEventsResource(AsyncAPIResource):
         Deletes an event for a waiting room.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -1028,7 +1028,7 @@ class AsyncEventsResource(AsyncAPIResource):
         Patches a configured event for a waiting room.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           event_end_time: An ISO 8601 timestamp that marks the end of the event.
 
@@ -1144,7 +1144,7 @@ class AsyncEventsResource(AsyncAPIResource):
         Fetches a single configured event for a waiting room.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 

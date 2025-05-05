@@ -74,7 +74,7 @@ class PageResource(SyncAPIResource):
              waiting room page will only be displayed if `force_queue=true` or
              `event=prequeueing` — for other cases the request will pass through to the
              origin. For our preview, this will be a fake origin website returning
-             "Welcome".
+             \"Welcome\".
            - **reject** indicates a Reject queue.
         4. `event`: Used to preview a waiting room event.
            - **none** indicates no event is occurring.
@@ -96,7 +96,7 @@ class PageResource(SyncAPIResource):
         wait time as 50 minutes.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           custom_html: Only available for the Waiting Room Advanced subscription. This is a template
               html file that will be rendered at the edge. If no custom_page_html is provided,
@@ -194,7 +194,7 @@ class AsyncPageResource(AsyncAPIResource):
              waiting room page will only be displayed if `force_queue=true` or
              `event=prequeueing` — for other cases the request will pass through to the
              origin. For our preview, this will be a fake origin website returning
-             "Welcome".
+             \"Welcome\".
            - **reject** indicates a Reject queue.
         4. `event`: Used to preview a waiting room event.
            - **none** indicates no event is occurring.
@@ -216,7 +216,7 @@ class AsyncPageResource(AsyncAPIResource):
         wait time as 50 minutes.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           custom_html: Only available for the Waiting Room Advanced subscription. This is a template
               html file that will be rendered at the edge. If no custom_page_html is provided,
