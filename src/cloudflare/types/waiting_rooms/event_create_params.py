@@ -10,7 +10,7 @@ __all__ = ["EventCreateParams"]
 
 class EventCreateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     event_end_time: Required[str]
     """An ISO 8601 timestamp that marks the end of the event."""
