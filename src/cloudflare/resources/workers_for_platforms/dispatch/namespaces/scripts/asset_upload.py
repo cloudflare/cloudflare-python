@@ -70,7 +70,7 @@ class AssetUploadResource(SyncAPIResource):
         https://developers.cloudflare.com/workers/static-assets/direct-upload/
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -148,7 +148,7 @@ class AsyncAssetUploadResource(AsyncAPIResource):
         https://developers.cloudflare.com/workers/static-assets/direct-upload/
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
