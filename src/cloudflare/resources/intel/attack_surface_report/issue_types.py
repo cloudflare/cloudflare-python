@@ -55,7 +55,7 @@ class IssueTypesResource(SyncAPIResource):
         Get Security Center Issues Types
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -112,7 +112,7 @@ class AsyncIssueTypesResource(AsyncAPIResource):
         Get Security Center Issues Types
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
