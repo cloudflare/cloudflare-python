@@ -26,7 +26,7 @@ class TestLayer7:
     @parametrize
     def test_method_timeseries_with_all_params(self, client: Cloudflare) -> None:
         layer7 = client.radar.attacks.layer7.timeseries(
-            agg_interval="15m",
+            agg_interval="1h",
             asn=["string"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
@@ -39,7 +39,7 @@ class TestLayer7:
             location=["string"],
             mitigation_product=["DDOS"],
             name=["main_series"],
-            normalization="PERCENTAGE_CHANGE",
+            normalization="MIN0_MAX",
         )
         assert_matches_type(Layer7TimeseriesResponse, layer7, path=["response"])
 
@@ -75,7 +75,7 @@ class TestAsyncLayer7:
     @parametrize
     async def test_method_timeseries_with_all_params(self, async_client: AsyncCloudflare) -> None:
         layer7 = await async_client.radar.attacks.layer7.timeseries(
-            agg_interval="15m",
+            agg_interval="1h",
             asn=["string"],
             continent=["string"],
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
@@ -88,7 +88,7 @@ class TestAsyncLayer7:
             location=["string"],
             mitigation_product=["DDOS"],
             name=["main_series"],
-            normalization="PERCENTAGE_CHANGE",
+            normalization="MIN0_MAX",
         )
         assert_matches_type(Layer7TimeseriesResponse, layer7, path=["response"])
 

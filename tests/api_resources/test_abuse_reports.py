@@ -20,7 +20,7 @@ class TestAbuseReports:
     @parametrize
     def test_method_create_overload_1(self, client: Cloudflare) -> None:
         abuse_report = client.abuse_reports.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             address1="x",
             agent_name="x",
@@ -39,7 +39,7 @@ class TestAbuseReports:
     @parametrize
     def test_method_create_with_all_params_overload_1(self, client: Cloudflare) -> None:
         abuse_report = client.abuse_reports.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             address1="x",
             agent_name="x",
@@ -51,7 +51,7 @@ class TestAbuseReports:
             owner_notification="send",
             signature="signature",
             state="x",
-            act="abuse_dmca",
+            act="abuse_general",
             comments="x",
             company="x",
             destination_ips="destination_ips",
@@ -78,7 +78,7 @@ class TestAbuseReports:
     @parametrize
     def test_raw_response_create_overload_1(self, client: Cloudflare) -> None:
         response = client.abuse_reports.with_raw_response.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             address1="x",
             agent_name="x",
@@ -101,7 +101,7 @@ class TestAbuseReports:
     @parametrize
     def test_streaming_response_create_overload_1(self, client: Cloudflare) -> None:
         with client.abuse_reports.with_streaming_response.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             address1="x",
             agent_name="x",
@@ -127,7 +127,7 @@ class TestAbuseReports:
     def test_path_params_create_overload_1(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.abuse_reports.with_raw_response.create(
-                report_type="abuse_dmca",
+                report_type="abuse_general",
                 account_id="",
                 address1="x",
                 agent_name="x",
@@ -145,7 +145,7 @@ class TestAbuseReports:
     @parametrize
     def test_method_create_overload_2(self, client: Cloudflare) -> None:
         abuse_report = client.abuse_reports.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             justification="x",
@@ -160,7 +160,7 @@ class TestAbuseReports:
     @parametrize
     def test_method_create_with_all_params_overload_2(self, client: Cloudflare) -> None:
         abuse_report = client.abuse_reports.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             justification="x",
@@ -168,7 +168,7 @@ class TestAbuseReports:
             trademark_number="x",
             trademark_office="x",
             trademark_symbol="x",
-            act="abuse_dmca",
+            act="abuse_general",
             address1="x",
             agent_name="x",
             agree=0,
@@ -199,7 +199,7 @@ class TestAbuseReports:
     @parametrize
     def test_raw_response_create_overload_2(self, client: Cloudflare) -> None:
         response = client.abuse_reports.with_raw_response.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             justification="x",
@@ -218,7 +218,7 @@ class TestAbuseReports:
     @parametrize
     def test_streaming_response_create_overload_2(self, client: Cloudflare) -> None:
         with client.abuse_reports.with_streaming_response.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             justification="x",
@@ -240,7 +240,7 @@ class TestAbuseReports:
     def test_path_params_create_overload_2(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.abuse_reports.with_raw_response.create(
-                report_type="abuse_dmca",
+                report_type="abuse_general",
                 account_id="",
                 host_notification="send",
                 justification="x",
@@ -254,7 +254,7 @@ class TestAbuseReports:
     @parametrize
     def test_method_create_overload_3(self, client: Cloudflare) -> None:
         abuse_report = client.abuse_reports.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             justification="x",
@@ -266,12 +266,12 @@ class TestAbuseReports:
     @parametrize
     def test_method_create_with_all_params_overload_3(self, client: Cloudflare) -> None:
         abuse_report = client.abuse_reports.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             justification="x",
             owner_notification="send",
-            act="abuse_dmca",
+            act="abuse_general",
             address1="x",
             agent_name="x",
             agree=0,
@@ -305,7 +305,7 @@ class TestAbuseReports:
     @parametrize
     def test_raw_response_create_overload_3(self, client: Cloudflare) -> None:
         response = client.abuse_reports.with_raw_response.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             justification="x",
@@ -321,7 +321,7 @@ class TestAbuseReports:
     @parametrize
     def test_streaming_response_create_overload_3(self, client: Cloudflare) -> None:
         with client.abuse_reports.with_streaming_response.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             justification="x",
@@ -340,7 +340,7 @@ class TestAbuseReports:
     def test_path_params_create_overload_3(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.abuse_reports.with_raw_response.create(
-                report_type="abuse_dmca",
+                report_type="abuse_general",
                 account_id="",
                 host_notification="send",
                 justification="x",
@@ -351,7 +351,7 @@ class TestAbuseReports:
     @parametrize
     def test_method_create_overload_4(self, client: Cloudflare) -> None:
         abuse_report = client.abuse_reports.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             justification="x",
@@ -363,12 +363,12 @@ class TestAbuseReports:
     @parametrize
     def test_method_create_with_all_params_overload_4(self, client: Cloudflare) -> None:
         abuse_report = client.abuse_reports.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             justification="x",
             owner_notification="send",
-            act="abuse_dmca",
+            act="abuse_general",
             address1="x",
             agent_name="x",
             agree=0,
@@ -402,7 +402,7 @@ class TestAbuseReports:
     @parametrize
     def test_raw_response_create_overload_4(self, client: Cloudflare) -> None:
         response = client.abuse_reports.with_raw_response.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             justification="x",
@@ -418,7 +418,7 @@ class TestAbuseReports:
     @parametrize
     def test_streaming_response_create_overload_4(self, client: Cloudflare) -> None:
         with client.abuse_reports.with_streaming_response.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             justification="x",
@@ -437,7 +437,7 @@ class TestAbuseReports:
     def test_path_params_create_overload_4(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.abuse_reports.with_raw_response.create(
-                report_type="abuse_dmca",
+                report_type="abuse_general",
                 account_id="",
                 host_notification="send",
                 justification="x",
@@ -448,7 +448,7 @@ class TestAbuseReports:
     @parametrize
     def test_method_create_overload_5(self, client: Cloudflare) -> None:
         abuse_report = client.abuse_reports.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             justification="x",
@@ -461,13 +461,13 @@ class TestAbuseReports:
     @parametrize
     def test_method_create_with_all_params_overload_5(self, client: Cloudflare) -> None:
         abuse_report = client.abuse_reports.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             justification="x",
             ncmec_notification="send",
             owner_notification="send",
-            act="abuse_dmca",
+            act="abuse_general",
             address1="x",
             agent_name="x",
             agree=0,
@@ -500,7 +500,7 @@ class TestAbuseReports:
     @parametrize
     def test_raw_response_create_overload_5(self, client: Cloudflare) -> None:
         response = client.abuse_reports.with_raw_response.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             justification="x",
@@ -517,7 +517,7 @@ class TestAbuseReports:
     @parametrize
     def test_streaming_response_create_overload_5(self, client: Cloudflare) -> None:
         with client.abuse_reports.with_streaming_response.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             justification="x",
@@ -537,7 +537,7 @@ class TestAbuseReports:
     def test_path_params_create_overload_5(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.abuse_reports.with_raw_response.create(
-                report_type="abuse_dmca",
+                report_type="abuse_general",
                 account_id="",
                 host_notification="send",
                 justification="x",
@@ -549,7 +549,7 @@ class TestAbuseReports:
     @parametrize
     def test_method_create_overload_6(self, client: Cloudflare) -> None:
         abuse_report = client.abuse_reports.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             justification="x",
@@ -561,12 +561,12 @@ class TestAbuseReports:
     @parametrize
     def test_method_create_with_all_params_overload_6(self, client: Cloudflare) -> None:
         abuse_report = client.abuse_reports.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             justification="x",
             owner_notification="send",
-            act="abuse_dmca",
+            act="abuse_general",
             address1="x",
             agent_name="x",
             agree=0,
@@ -600,7 +600,7 @@ class TestAbuseReports:
     @parametrize
     def test_raw_response_create_overload_6(self, client: Cloudflare) -> None:
         response = client.abuse_reports.with_raw_response.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             justification="x",
@@ -616,7 +616,7 @@ class TestAbuseReports:
     @parametrize
     def test_streaming_response_create_overload_6(self, client: Cloudflare) -> None:
         with client.abuse_reports.with_streaming_response.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             justification="x",
@@ -635,7 +635,7 @@ class TestAbuseReports:
     def test_path_params_create_overload_6(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.abuse_reports.with_raw_response.create(
-                report_type="abuse_dmca",
+                report_type="abuse_general",
                 account_id="",
                 host_notification="send",
                 justification="x",
@@ -646,7 +646,7 @@ class TestAbuseReports:
     @parametrize
     def test_method_create_overload_7(self, client: Cloudflare) -> None:
         abuse_report = client.abuse_reports.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             owner_notification="send",
         )
@@ -656,10 +656,10 @@ class TestAbuseReports:
     @parametrize
     def test_method_create_with_all_params_overload_7(self, client: Cloudflare) -> None:
         abuse_report = client.abuse_reports.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             owner_notification="send",
-            act="abuse_dmca",
+            act="abuse_general",
             address1="x",
             agent_name="x",
             agree=0,
@@ -695,7 +695,7 @@ class TestAbuseReports:
     @parametrize
     def test_raw_response_create_overload_7(self, client: Cloudflare) -> None:
         response = client.abuse_reports.with_raw_response.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             owner_notification="send",
         )
@@ -709,7 +709,7 @@ class TestAbuseReports:
     @parametrize
     def test_streaming_response_create_overload_7(self, client: Cloudflare) -> None:
         with client.abuse_reports.with_streaming_response.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             owner_notification="send",
         ) as response:
@@ -726,7 +726,7 @@ class TestAbuseReports:
     def test_path_params_create_overload_7(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.abuse_reports.with_raw_response.create(
-                report_type="abuse_dmca",
+                report_type="abuse_general",
                 account_id="",
                 owner_notification="send",
             )
@@ -735,7 +735,7 @@ class TestAbuseReports:
     @parametrize
     def test_method_create_overload_8(self, client: Cloudflare) -> None:
         abuse_report = client.abuse_reports.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             ncsei_subject_representation=True,
@@ -747,12 +747,12 @@ class TestAbuseReports:
     @parametrize
     def test_method_create_with_all_params_overload_8(self, client: Cloudflare) -> None:
         abuse_report = client.abuse_reports.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             ncsei_subject_representation=True,
             owner_notification="send",
-            act="abuse_dmca",
+            act="abuse_general",
             address1="x",
             agent_name="x",
             agree=0,
@@ -786,7 +786,7 @@ class TestAbuseReports:
     @parametrize
     def test_raw_response_create_overload_8(self, client: Cloudflare) -> None:
         response = client.abuse_reports.with_raw_response.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             ncsei_subject_representation=True,
@@ -802,7 +802,7 @@ class TestAbuseReports:
     @parametrize
     def test_streaming_response_create_overload_8(self, client: Cloudflare) -> None:
         with client.abuse_reports.with_streaming_response.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             ncsei_subject_representation=True,
@@ -821,7 +821,7 @@ class TestAbuseReports:
     def test_path_params_create_overload_8(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.abuse_reports.with_raw_response.create(
-                report_type="abuse_dmca",
+                report_type="abuse_general",
                 account_id="",
                 host_notification="send",
                 ncsei_subject_representation=True,
@@ -836,7 +836,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_method_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         abuse_report = await async_client.abuse_reports.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             address1="x",
             agent_name="x",
@@ -855,7 +855,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_method_create_with_all_params_overload_1(self, async_client: AsyncCloudflare) -> None:
         abuse_report = await async_client.abuse_reports.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             address1="x",
             agent_name="x",
@@ -867,7 +867,7 @@ class TestAsyncAbuseReports:
             owner_notification="send",
             signature="signature",
             state="x",
-            act="abuse_dmca",
+            act="abuse_general",
             comments="x",
             company="x",
             destination_ips="destination_ips",
@@ -894,7 +894,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_raw_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.abuse_reports.with_raw_response.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             address1="x",
             agent_name="x",
@@ -917,7 +917,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_streaming_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         async with async_client.abuse_reports.with_streaming_response.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             address1="x",
             agent_name="x",
@@ -943,7 +943,7 @@ class TestAsyncAbuseReports:
     async def test_path_params_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.abuse_reports.with_raw_response.create(
-                report_type="abuse_dmca",
+                report_type="abuse_general",
                 account_id="",
                 address1="x",
                 agent_name="x",
@@ -961,7 +961,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_method_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         abuse_report = await async_client.abuse_reports.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             justification="x",
@@ -976,7 +976,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_method_create_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
         abuse_report = await async_client.abuse_reports.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             justification="x",
@@ -984,7 +984,7 @@ class TestAsyncAbuseReports:
             trademark_number="x",
             trademark_office="x",
             trademark_symbol="x",
-            act="abuse_dmca",
+            act="abuse_general",
             address1="x",
             agent_name="x",
             agree=0,
@@ -1015,7 +1015,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_raw_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.abuse_reports.with_raw_response.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             justification="x",
@@ -1034,7 +1034,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_streaming_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         async with async_client.abuse_reports.with_streaming_response.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             justification="x",
@@ -1056,7 +1056,7 @@ class TestAsyncAbuseReports:
     async def test_path_params_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.abuse_reports.with_raw_response.create(
-                report_type="abuse_dmca",
+                report_type="abuse_general",
                 account_id="",
                 host_notification="send",
                 justification="x",
@@ -1070,7 +1070,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_method_create_overload_3(self, async_client: AsyncCloudflare) -> None:
         abuse_report = await async_client.abuse_reports.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             justification="x",
@@ -1082,12 +1082,12 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_method_create_with_all_params_overload_3(self, async_client: AsyncCloudflare) -> None:
         abuse_report = await async_client.abuse_reports.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             justification="x",
             owner_notification="send",
-            act="abuse_dmca",
+            act="abuse_general",
             address1="x",
             agent_name="x",
             agree=0,
@@ -1121,7 +1121,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_raw_response_create_overload_3(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.abuse_reports.with_raw_response.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             justification="x",
@@ -1137,7 +1137,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_streaming_response_create_overload_3(self, async_client: AsyncCloudflare) -> None:
         async with async_client.abuse_reports.with_streaming_response.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             justification="x",
@@ -1156,7 +1156,7 @@ class TestAsyncAbuseReports:
     async def test_path_params_create_overload_3(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.abuse_reports.with_raw_response.create(
-                report_type="abuse_dmca",
+                report_type="abuse_general",
                 account_id="",
                 host_notification="send",
                 justification="x",
@@ -1167,7 +1167,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_method_create_overload_4(self, async_client: AsyncCloudflare) -> None:
         abuse_report = await async_client.abuse_reports.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             justification="x",
@@ -1179,12 +1179,12 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_method_create_with_all_params_overload_4(self, async_client: AsyncCloudflare) -> None:
         abuse_report = await async_client.abuse_reports.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             justification="x",
             owner_notification="send",
-            act="abuse_dmca",
+            act="abuse_general",
             address1="x",
             agent_name="x",
             agree=0,
@@ -1218,7 +1218,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_raw_response_create_overload_4(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.abuse_reports.with_raw_response.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             justification="x",
@@ -1234,7 +1234,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_streaming_response_create_overload_4(self, async_client: AsyncCloudflare) -> None:
         async with async_client.abuse_reports.with_streaming_response.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             justification="x",
@@ -1253,7 +1253,7 @@ class TestAsyncAbuseReports:
     async def test_path_params_create_overload_4(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.abuse_reports.with_raw_response.create(
-                report_type="abuse_dmca",
+                report_type="abuse_general",
                 account_id="",
                 host_notification="send",
                 justification="x",
@@ -1264,7 +1264,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_method_create_overload_5(self, async_client: AsyncCloudflare) -> None:
         abuse_report = await async_client.abuse_reports.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             justification="x",
@@ -1277,13 +1277,13 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_method_create_with_all_params_overload_5(self, async_client: AsyncCloudflare) -> None:
         abuse_report = await async_client.abuse_reports.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             justification="x",
             ncmec_notification="send",
             owner_notification="send",
-            act="abuse_dmca",
+            act="abuse_general",
             address1="x",
             agent_name="x",
             agree=0,
@@ -1316,7 +1316,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_raw_response_create_overload_5(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.abuse_reports.with_raw_response.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             justification="x",
@@ -1333,7 +1333,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_streaming_response_create_overload_5(self, async_client: AsyncCloudflare) -> None:
         async with async_client.abuse_reports.with_streaming_response.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             justification="x",
@@ -1353,7 +1353,7 @@ class TestAsyncAbuseReports:
     async def test_path_params_create_overload_5(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.abuse_reports.with_raw_response.create(
-                report_type="abuse_dmca",
+                report_type="abuse_general",
                 account_id="",
                 host_notification="send",
                 justification="x",
@@ -1365,7 +1365,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_method_create_overload_6(self, async_client: AsyncCloudflare) -> None:
         abuse_report = await async_client.abuse_reports.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             justification="x",
@@ -1377,12 +1377,12 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_method_create_with_all_params_overload_6(self, async_client: AsyncCloudflare) -> None:
         abuse_report = await async_client.abuse_reports.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             justification="x",
             owner_notification="send",
-            act="abuse_dmca",
+            act="abuse_general",
             address1="x",
             agent_name="x",
             agree=0,
@@ -1416,7 +1416,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_raw_response_create_overload_6(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.abuse_reports.with_raw_response.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             justification="x",
@@ -1432,7 +1432,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_streaming_response_create_overload_6(self, async_client: AsyncCloudflare) -> None:
         async with async_client.abuse_reports.with_streaming_response.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             justification="x",
@@ -1451,7 +1451,7 @@ class TestAsyncAbuseReports:
     async def test_path_params_create_overload_6(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.abuse_reports.with_raw_response.create(
-                report_type="abuse_dmca",
+                report_type="abuse_general",
                 account_id="",
                 host_notification="send",
                 justification="x",
@@ -1462,7 +1462,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_method_create_overload_7(self, async_client: AsyncCloudflare) -> None:
         abuse_report = await async_client.abuse_reports.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             owner_notification="send",
         )
@@ -1472,10 +1472,10 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_method_create_with_all_params_overload_7(self, async_client: AsyncCloudflare) -> None:
         abuse_report = await async_client.abuse_reports.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             owner_notification="send",
-            act="abuse_dmca",
+            act="abuse_general",
             address1="x",
             agent_name="x",
             agree=0,
@@ -1511,7 +1511,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_raw_response_create_overload_7(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.abuse_reports.with_raw_response.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             owner_notification="send",
         )
@@ -1525,7 +1525,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_streaming_response_create_overload_7(self, async_client: AsyncCloudflare) -> None:
         async with async_client.abuse_reports.with_streaming_response.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             owner_notification="send",
         ) as response:
@@ -1542,7 +1542,7 @@ class TestAsyncAbuseReports:
     async def test_path_params_create_overload_7(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.abuse_reports.with_raw_response.create(
-                report_type="abuse_dmca",
+                report_type="abuse_general",
                 account_id="",
                 owner_notification="send",
             )
@@ -1551,7 +1551,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_method_create_overload_8(self, async_client: AsyncCloudflare) -> None:
         abuse_report = await async_client.abuse_reports.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             ncsei_subject_representation=True,
@@ -1563,12 +1563,12 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_method_create_with_all_params_overload_8(self, async_client: AsyncCloudflare) -> None:
         abuse_report = await async_client.abuse_reports.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             ncsei_subject_representation=True,
             owner_notification="send",
-            act="abuse_dmca",
+            act="abuse_general",
             address1="x",
             agent_name="x",
             agree=0,
@@ -1602,7 +1602,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_raw_response_create_overload_8(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.abuse_reports.with_raw_response.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             ncsei_subject_representation=True,
@@ -1618,7 +1618,7 @@ class TestAsyncAbuseReports:
     @parametrize
     async def test_streaming_response_create_overload_8(self, async_client: AsyncCloudflare) -> None:
         async with async_client.abuse_reports.with_streaming_response.create(
-            report_type="abuse_dmca",
+            report_type="abuse_general",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             host_notification="send",
             ncsei_subject_representation=True,
@@ -1637,7 +1637,7 @@ class TestAsyncAbuseReports:
     async def test_path_params_create_overload_8(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.abuse_reports.with_raw_response.create(
-                report_type="abuse_dmca",
+                report_type="abuse_general",
                 account_id="",
                 host_notification="send",
                 ncsei_subject_representation=True,
