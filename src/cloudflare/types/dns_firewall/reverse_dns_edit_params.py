@@ -10,7 +10,7 @@ __all__ = ["ReverseDNSEditParams"]
 
 class ReverseDNSEditParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     ptr: Dict[str, str]
     """Map of cluster IP addresses to PTR record contents"""
