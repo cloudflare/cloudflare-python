@@ -14,6 +14,7 @@ __all__ = [
     "Caching",
     "CachingHyperdriveHyperdriveCachingCommon",
     "CachingHyperdriveHyperdriveCachingEnabled",
+    "MTLS",
 ]
 
 
@@ -27,7 +28,7 @@ class OriginPublicDatabase(BaseModel):
     port: int
     """The port (default: 5432 for Postgres) of your origin database."""
 
-    scheme: Literal["postgres", "postgresql"]
+    scheme: Literal["postgres", "postgresql", "mysql"]
     """Specifies the URL scheme used to connect to your origin database."""
 
     user: str
@@ -46,7 +47,7 @@ class OriginAccessProtectedDatabaseBehindCloudflareTunnel(BaseModel):
     host: str
     """The host (hostname or IP) of your origin database."""
 
-    scheme: Literal["postgres", "postgresql"]
+    scheme: Literal["postgres", "postgresql", "mysql"]
     """Specifies the URL scheme used to connect to your origin database."""
 
     user: str
@@ -82,6 +83,20 @@ class CachingHyperdriveHyperdriveCachingEnabled(BaseModel):
 Caching: TypeAlias = Union[CachingHyperdriveHyperdriveCachingCommon, CachingHyperdriveHyperdriveCachingEnabled]
 
 
+class MTLS(BaseModel):
+    ca_certificate_id: Optional[str] = None
+    """CA certificate ID"""
+
+    mtls_certificate_id: Optional[str] = None
+    """mTLS certificate ID"""
+
+    sslmode: Optional[str] = None
+    """SSL mode used for CA verification.
+
+    Must be 'require', 'verify-ca', or 'verify-full'
+    """
+
+
 class Hyperdrive(BaseModel):
     id: str
     """Identifier"""
@@ -97,3 +112,5 @@ class Hyperdrive(BaseModel):
 
     modified_on: Optional[datetime] = None
     """When the Hyperdrive configuration was last modified."""
+
+    mtls: Optional[MTLS] = None

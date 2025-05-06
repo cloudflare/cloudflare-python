@@ -13,6 +13,7 @@ __all__ = [
     "Caching",
     "CachingHyperdriveHyperdriveCachingCommon",
     "CachingHyperdriveHyperdriveCachingEnabled",
+    "MTLS",
 ]
 
 
@@ -25,6 +26,8 @@ class ConfigCreateParams(TypedDict, total=False):
     origin: Required[Origin]
 
     caching: Caching
+
+    mtls: MTLS
 
 
 class OriginPublicDatabase(TypedDict, total=False):
@@ -43,7 +46,7 @@ class OriginPublicDatabase(TypedDict, total=False):
     port: Required[int]
     """The port (default: 5432 for Postgres) of your origin database."""
 
-    scheme: Required[Literal["postgres", "postgresql"]]
+    scheme: Required[Literal["postgres", "postgresql", "mysql"]]
     """Specifies the URL scheme used to connect to your origin database."""
 
     user: Required[str]
@@ -74,7 +77,7 @@ class OriginAccessProtectedDatabaseBehindCloudflareTunnel(TypedDict, total=False
     This value is write-only and never returned by the API.
     """
 
-    scheme: Required[Literal["postgres", "postgresql"]]
+    scheme: Required[Literal["postgres", "postgresql", "mysql"]]
     """Specifies the URL scheme used to connect to your origin database."""
 
     user: Required[str]
@@ -108,3 +111,17 @@ class CachingHyperdriveHyperdriveCachingEnabled(TypedDict, total=False):
 
 
 Caching: TypeAlias = Union[CachingHyperdriveHyperdriveCachingCommon, CachingHyperdriveHyperdriveCachingEnabled]
+
+
+class MTLS(TypedDict, total=False):
+    ca_certificate_id: str
+    """CA certificate ID"""
+
+    mtls_certificate_id: str
+    """mTLS certificate ID"""
+
+    sslmode: str
+    """SSL mode used for CA verification.
+
+    Must be 'require', 'verify-ca', or 'verify-full'
+    """
