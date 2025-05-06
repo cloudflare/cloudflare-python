@@ -9,6 +9,6 @@ __all__ = ["WhoisGetParams"]
 
 class WhoisGetParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Use to uniquely identify or reference the resource."""
 
     domain: str

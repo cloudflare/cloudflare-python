@@ -60,7 +60,7 @@ class WhoisResource(SyncAPIResource):
         Get WHOIS Record
 
         Args:
-          account_id: Identifier
+          account_id: Use to uniquely identify or reference the resource.
 
           extra_headers: Send extra headers
 
@@ -122,7 +122,7 @@ class AsyncWhoisResource(AsyncAPIResource):
         Get WHOIS Record
 
         Args:
-          account_id: Identifier
+          account_id: Use to uniquely identify or reference the resource.
 
           extra_headers: Send extra headers
 
