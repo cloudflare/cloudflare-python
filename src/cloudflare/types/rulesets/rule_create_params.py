@@ -297,7 +297,7 @@ class BlockRuleRatelimit(TypedDict, total=False):
     incremented.
     """
 
-    period: Required[Literal[10, 60, 600, 3600]]
+    period: Required[int]
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str
@@ -416,7 +416,7 @@ class ChallengeRuleRatelimit(TypedDict, total=False):
     incremented.
     """
 
-    period: Required[Literal[10, 60, 600, 3600]]
+    period: Required[int]
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str
@@ -545,7 +545,7 @@ class CompressionRuleRatelimit(TypedDict, total=False):
     incremented.
     """
 
-    period: Required[Literal[10, 60, 600, 3600]]
+    period: Required[int]
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str
@@ -741,7 +741,7 @@ class ExecuteRuleRatelimit(TypedDict, total=False):
     incremented.
     """
 
-    period: Required[Literal[10, 60, 600, 3600]]
+    period: Required[int]
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str
@@ -862,7 +862,7 @@ class JavascriptChallengeRuleRatelimit(TypedDict, total=False):
     incremented.
     """
 
-    period: Required[Literal[10, 60, 600, 3600]]
+    period: Required[int]
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str
@@ -981,7 +981,7 @@ class LogRuleRatelimit(TypedDict, total=False):
     incremented.
     """
 
-    period: Required[Literal[10, 60, 600, 3600]]
+    period: Required[int]
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str
@@ -1102,7 +1102,7 @@ class ManagedChallengeRuleRatelimit(TypedDict, total=False):
     incremented.
     """
 
-    period: Required[Literal[10, 60, 600, 3600]]
+    period: Required[int]
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str
@@ -1264,7 +1264,7 @@ class RedirectRuleRatelimit(TypedDict, total=False):
     incremented.
     """
 
-    period: Required[Literal[10, 60, 600, 3600]]
+    period: Required[int]
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str
@@ -1440,7 +1440,7 @@ class RewriteRuleRatelimit(TypedDict, total=False):
     incremented.
     """
 
-    period: Required[Literal[10, 60, 600, 3600]]
+    period: Required[int]
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str
@@ -1583,7 +1583,7 @@ class OriginRuleRatelimit(TypedDict, total=False):
     incremented.
     """
 
-    period: Required[Literal[10, 60, 600, 3600]]
+    period: Required[int]
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str
@@ -1710,7 +1710,7 @@ class ScoreRuleRatelimit(TypedDict, total=False):
     incremented.
     """
 
-    period: Required[Literal[10, 60, 600, 3600]]
+    period: Required[int]
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str
@@ -1840,7 +1840,7 @@ class ServeErrorRuleRatelimit(TypedDict, total=False):
     incremented.
     """
 
-    period: Required[Literal[10, 60, 600, 3600]]
+    period: Required[int]
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str
@@ -2023,7 +2023,7 @@ class SetConfigRuleRatelimit(TypedDict, total=False):
     incremented.
     """
 
-    period: Required[Literal[10, 60, 600, 3600]]
+    period: Required[int]
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str
@@ -2172,7 +2172,7 @@ class SkipRuleRatelimit(TypedDict, total=False):
     incremented.
     """
 
-    period: Required[Literal[10, 60, 600, 3600]]
+    period: Required[int]
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str
@@ -2591,7 +2591,7 @@ class SetCacheSettingsRuleRatelimit(TypedDict, total=False):
     incremented.
     """
 
-    period: Required[Literal[10, 60, 600, 3600]]
+    period: Required[int]
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str
@@ -2760,7 +2760,7 @@ class LogCustomFieldRuleRatelimit(TypedDict, total=False):
     incremented.
     """
 
-    period: Required[Literal[10, 60, 600, 3600]]
+    period: Required[int]
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str
@@ -2879,7 +2879,7 @@ class DDoSDynamicRuleRatelimit(TypedDict, total=False):
     incremented.
     """
 
-    period: Required[Literal[10, 60, 600, 3600]]
+    period: Required[int]
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str
@@ -3000,7 +3000,7 @@ class ForceConnectionCloseRuleRatelimit(TypedDict, total=False):
     incremented.
     """
 
-    period: Required[Literal[10, 60, 600, 3600]]
+    period: Required[int]
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: str
