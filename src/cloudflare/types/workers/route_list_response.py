@@ -11,6 +11,10 @@ class RouteListResponse(BaseModel):
     """Identifier."""
 
     pattern: str
+    """Pattern to match incoming requests against.
+
+    [Learn more](https://developers.cloudflare.com/workers/configuration/routing/routes/#matching-behavior).
+    """
 
     script: str
-    """Name of the script, used in URLs and route configuration."""
+    """Name of the script to run if the route matches."""

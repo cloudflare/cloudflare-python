@@ -11,7 +11,14 @@ class RouteUpdateParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier."""
 
-    pattern: Required[str]
+    id: Required[str]
+    """Identifier."""
 
-    script: str
-    """Name of the script, used in URLs and route configuration."""
+    pattern: Required[str]
+    """Pattern to match incoming requests against.
+
+    [Learn more](https://developers.cloudflare.com/workers/configuration/routing/routes/#matching-behavior).
+    """
+
+    script: Required[str]
+    """Name of the script to run if the route matches."""

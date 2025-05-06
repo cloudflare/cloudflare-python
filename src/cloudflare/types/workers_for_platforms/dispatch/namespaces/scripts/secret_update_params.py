@@ -33,15 +33,15 @@ class WorkersBindingKindSecretKey(TypedDict, total=False):
     """Name of the Workers for Platforms dispatch namespace."""
 
     algorithm: Required[object]
-    """
-    Algorithm-specific key parameters
-    ([learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#algorithm)).
+    """Algorithm-specific key parameters.
+
+    [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#algorithm).
     """
 
     format: Required[Literal["raw", "pkcs8", "spki", "jwk"]]
-    """
-    Data format of the key
-    ([learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#format)).
+    """Data format of the key.
+
+    [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#format).
     """
 
     name: Required[str]
@@ -53,9 +53,9 @@ class WorkersBindingKindSecretKey(TypedDict, total=False):
     usages: Required[
         List[Literal["encrypt", "decrypt", "sign", "verify", "deriveKey", "deriveBits", "wrapKey", "unwrapKey"]]
     ]
-    """
-    Allowed operations with the key
-    ([learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#keyUsages)).
+    """Allowed operations with the key.
+
+    [Learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#keyUsages).
     """
 
     key_base64: str
