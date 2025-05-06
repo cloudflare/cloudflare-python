@@ -21,8 +21,6 @@ __all__ = [
     "StepUnionMember1Error",
     "StepUnionMember2",
     "StepUnionMember2Trigger",
-    "StepUnionMember3",
-    "StepUnionMember3Error",
     "Trigger",
 ]
 
@@ -111,29 +109,7 @@ class StepUnionMember2(BaseModel):
     type: Literal["termination"]
 
 
-class StepUnionMember3Error(BaseModel):
-    message: str
-
-    name: str
-
-
-class StepUnionMember3(BaseModel):
-    end: datetime
-
-    error: Optional[StepUnionMember3Error] = None
-
-    finished: bool
-
-    name: str
-
-    output: Union[str, float, bool, object]
-
-    start: datetime
-
-    type: Literal["waitForEvent"]
-
-
-Step: TypeAlias = Union[StepUnionMember0, StepUnionMember1, StepUnionMember2, StepUnionMember3]
+Step: TypeAlias = Union[StepUnionMember0, StepUnionMember1, StepUnionMember2]
 
 
 class Trigger(BaseModel):
