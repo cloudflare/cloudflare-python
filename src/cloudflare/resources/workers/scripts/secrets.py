@@ -70,7 +70,7 @@ class SecretsResource(SyncAPIResource):
         Add a secret to a script.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -129,7 +129,7 @@ class SecretsResource(SyncAPIResource):
         List secrets bound to a script.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -171,7 +171,7 @@ class SecretsResource(SyncAPIResource):
         Remove a secret from a script.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -220,7 +220,7 @@ class SecretsResource(SyncAPIResource):
         Get a given secret binding (value omitted) on a script.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -292,7 +292,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         Add a secret to a script.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -351,7 +351,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         List secrets bound to a script.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -393,7 +393,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         Remove a secret from a script.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -442,7 +442,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         Get a given secret binding (value omitted) on a script.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 

@@ -60,7 +60,7 @@ class BindingsResource(SyncAPIResource):
         namespace.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -128,7 +128,7 @@ class AsyncBindingsResource(AsyncAPIResource):
         namespace.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
