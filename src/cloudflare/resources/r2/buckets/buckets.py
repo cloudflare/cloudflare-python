@@ -321,6 +321,65 @@ class BucketsResource(SyncAPIResource):
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
+    def edit(
+        self,
+        bucket_name: str,
+        *,
+        account_id: str,
+        storage_class: Literal["Standard", "InfrequentAccess"],
+        jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Bucket:
+        """
+        Updates properties of an existing R2 bucket.
+
+        Args:
+          account_id: Account ID.
+
+          bucket_name: Name of the bucket.
+
+          storage_class: Storage class for newly uploaded objects, unless specified otherwise.
+
+          jurisdiction: The bucket jurisdiction.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not bucket_name:
+            raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "cf-r2-storage-class": str(storage_class),
+                    "cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else NOT_GIVEN,
+                }
+            ),
+            **(extra_headers or {}),
+        }
+        return self._patch(
+            f"/accounts/{account_id}/r2/buckets/{bucket_name}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Bucket]._unwrapper,
+            ),
+            cast_to=cast(Type[Bucket], ResultWrapper[Bucket]),
+        )
+
     def get(
         self,
         bucket_name: str,
@@ -612,6 +671,65 @@ class AsyncBucketsResource(AsyncAPIResource):
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
+    async def edit(
+        self,
+        bucket_name: str,
+        *,
+        account_id: str,
+        storage_class: Literal["Standard", "InfrequentAccess"],
+        jurisdiction: Literal["default", "eu", "fedramp"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Bucket:
+        """
+        Updates properties of an existing R2 bucket.
+
+        Args:
+          account_id: Account ID.
+
+          bucket_name: Name of the bucket.
+
+          storage_class: Storage class for newly uploaded objects, unless specified otherwise.
+
+          jurisdiction: The bucket jurisdiction.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not bucket_name:
+            raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "cf-r2-storage-class": str(storage_class),
+                    "cf-r2-jurisdiction": str(jurisdiction) if is_given(jurisdiction) else NOT_GIVEN,
+                }
+            ),
+            **(extra_headers or {}),
+        }
+        return await self._patch(
+            f"/accounts/{account_id}/r2/buckets/{bucket_name}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Bucket]._unwrapper,
+            ),
+            cast_to=cast(Type[Bucket], ResultWrapper[Bucket]),
+        )
+
     async def get(
         self,
         bucket_name: str,
@@ -677,6 +795,9 @@ class BucketsResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             buckets.delete,
         )
+        self.edit = to_raw_response_wrapper(
+            buckets.edit,
+        )
         self.get = to_raw_response_wrapper(
             buckets.get,
         )
@@ -722,6 +843,9 @@ class AsyncBucketsResourceWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             buckets.delete,
+        )
+        self.edit = async_to_raw_response_wrapper(
+            buckets.edit,
         )
         self.get = async_to_raw_response_wrapper(
             buckets.get,
@@ -769,6 +893,9 @@ class BucketsResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             buckets.delete,
         )
+        self.edit = to_streamed_response_wrapper(
+            buckets.edit,
+        )
         self.get = to_streamed_response_wrapper(
             buckets.get,
         )
@@ -814,6 +941,9 @@ class AsyncBucketsResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             buckets.delete,
+        )
+        self.edit = async_to_streamed_response_wrapper(
+            buckets.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             buckets.get,

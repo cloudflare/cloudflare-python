@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from .hostname import Hostname as Hostname
+from .redirect import Redirect as Redirect
 from .hostname_param import HostnameParam as HostnameParam
 from .redirect_param import RedirectParam as RedirectParam
 from .list_get_response import ListGetResponse as ListGetResponse
