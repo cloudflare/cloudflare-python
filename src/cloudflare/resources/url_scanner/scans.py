@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Type, Iterable, cast
+from typing import Dict, List, Iterable
 from typing_extensions import Literal
 
 import httpx
@@ -25,7 +25,6 @@ from ..._response import (
     async_to_custom_raw_response_wrapper,
     async_to_custom_streamed_response_wrapper,
 )
-from ..._wrappers import ResultWrapper
 from ..._base_client import make_request_options
 from ...types.url_scanner import scan_list_params, scan_create_params, scan_screenshot_params, scan_bulk_create_params
 from ...types.url_scanner.scan_get_response import ScanGetResponse
@@ -271,7 +270,7 @@ class ScansResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> str:
+    ) -> ScanCreateResponse:
         """Submit a URL to scan.
 
         Check limits at
@@ -315,13 +314,9 @@ class ScansResource(SyncAPIResource):
                 scan_create_params.ScanCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[ScanCreateResponse]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[str], ResultWrapper[str]),
+            cast_to=ScanCreateResponse,
         )
 
     def list(
@@ -833,7 +828,7 @@ class AsyncScansResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> str:
+    ) -> ScanCreateResponse:
         """Submit a URL to scan.
 
         Check limits at
@@ -877,13 +872,9 @@ class AsyncScansResource(AsyncAPIResource):
                 scan_create_params.ScanCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[ScanCreateResponse]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[str], ResultWrapper[str]),
+            cast_to=ScanCreateResponse,
         )
 
     async def list(
