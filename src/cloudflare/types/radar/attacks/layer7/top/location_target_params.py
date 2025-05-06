@@ -13,17 +13,18 @@ __all__ = ["LocationTargetParams"]
 
 class LocationTargetParams(TypedDict, total=False):
     continent: List[str]
-    """Comma-separated list of continents (alpha-2 continent codes).
+    """Filters results by continent.
 
-    Prefix with `-` to exclude continents from results. For example, `-EU,NA`
-    excludes results from EU, but includes results from NA.
+    Specify a comma-separated list of alpha-2 codes. Prefix with `-` to exclude
+    continents from results. For example, `-EU,NA` excludes results from EU, but
+    includes results from NA.
     """
 
     date_end: Annotated[List[Union[str, datetime]], PropertyInfo(alias="dateEnd", format="iso8601")]
     """End of the date range (inclusive)."""
 
     date_range: Annotated[List[str], PropertyInfo(alias="dateRange")]
-    """Filters results by the specified date range.
+    """Filters results by date range.
 
     For example, use `7d` and `7dcontrol` to compare this week with the previous
     week. Use this parameter or set specific start and end dates (`dateStart` and
@@ -47,7 +48,7 @@ class LocationTargetParams(TypedDict, total=False):
         ],
         PropertyInfo(alias="mitigationProduct"),
     ]
-    """Array of L7 mitigation products."""
+    """Filters the results by layer 7 mitigation product."""
 
     name: List[str]
     """Array of names used to label the series in the response."""
