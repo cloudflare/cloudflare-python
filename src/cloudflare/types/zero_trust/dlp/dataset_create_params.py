@@ -20,7 +20,7 @@ class DatasetCreateParams(TypedDict, total=False):
     """
 
     description: Optional[str]
-    """The description of the dataset"""
+    """The description of the dataset."""
 
     encoding_version: int
     """Dataset encoding version

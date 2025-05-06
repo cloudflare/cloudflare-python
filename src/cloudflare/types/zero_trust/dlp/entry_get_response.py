@@ -38,12 +38,12 @@ class CustomEntry(BaseModel):
 
 class PredefinedEntryConfidence(BaseModel):
     ai_context_available: bool
-    """Indicates whether this entry has AI remote service validation"""
+    """Indicates whether this entry has AI remote service validation."""
 
     available: bool
     """
     Indicates whether this entry has any form of validation that is not an AI remote
-    service
+    service.
     """
 
 
