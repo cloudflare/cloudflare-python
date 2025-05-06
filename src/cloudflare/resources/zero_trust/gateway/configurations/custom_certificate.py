@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Optional
+
 import httpx
 
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
@@ -49,7 +51,7 @@ class CustomCertificateResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomCertificateSettings:
+    ) -> Optional[CustomCertificateSettings]:
         """
         Fetches the current Zero Trust certificate configuration.
 
@@ -103,7 +105,7 @@ class AsyncCustomCertificateResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomCertificateSettings:
+    ) -> Optional[CustomCertificateSettings]:
         """
         Fetches the current Zero Trust certificate configuration.
 

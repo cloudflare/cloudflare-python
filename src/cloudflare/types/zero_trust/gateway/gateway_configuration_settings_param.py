@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Optional
 from typing_extensions import Literal, Required, TypedDict
 
 from .tls_settings_param import TLSSettingsParam
@@ -36,28 +37,28 @@ class Sandbox(TypedDict, total=False):
 
 
 class GatewayConfigurationSettingsParam(TypedDict, total=False):
-    activity_log: ActivityLogSettingsParam
+    activity_log: Optional[ActivityLogSettingsParam]
     """Activity log settings."""
 
     antivirus: AntiVirusSettingsParam
     """Anti-virus settings."""
 
-    block_page: BlockPageSettingsParam
+    block_page: Optional[BlockPageSettingsParam]
     """Block page layout settings."""
 
-    body_scanning: BodyScanningSettingsParam
+    body_scanning: Optional[BodyScanningSettingsParam]
     """DLP body scanning settings."""
 
-    browser_isolation: BrowserIsolationSettingsParam
+    browser_isolation: Optional[BrowserIsolationSettingsParam]
     """Browser isolation settings."""
 
-    certificate: Certificate
+    certificate: Optional[Certificate]
     """Certificate settings for Gateway TLS interception.
 
     If not specified, the Cloudflare Root CA will be used.
     """
 
-    custom_certificate: CustomCertificateSettingsParam
+    custom_certificate: Optional[CustomCertificateSettingsParam]
     """Custom certificate settings for BYO-PKI.
 
     (deprecated and replaced by `certificate`)
@@ -66,14 +67,14 @@ class GatewayConfigurationSettingsParam(TypedDict, total=False):
     extended_email_matching: ExtendedEmailMatchingParam
     """Extended e-mail matching settings."""
 
-    fips: FipsSettingsParam
+    fips: Optional[FipsSettingsParam]
     """FIPS settings."""
 
-    protocol_detection: ProtocolDetectionParam
+    protocol_detection: Optional[ProtocolDetectionParam]
     """Protocol Detection settings."""
 
-    sandbox: Sandbox
+    sandbox: Optional[Sandbox]
     """Sandbox settings."""
 
-    tls_decrypt: TLSSettingsParam
+    tls_decrypt: Optional[TLSSettingsParam]
     """TLS interception settings."""

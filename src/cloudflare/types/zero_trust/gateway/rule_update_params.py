@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union
+from typing import List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
@@ -54,7 +54,7 @@ class RuleUpdateParams(TypedDict, total=False):
     enabled: bool
     """True if the rule is enabled."""
 
-    expiration: Expiration
+    expiration: Optional[Expiration]
     """The expiration time stamp and default duration of a DNS policy.
 
     Takes precedence over the policy's `schedule` configuration, if any.
@@ -81,7 +81,7 @@ class RuleUpdateParams(TypedDict, total=False):
     rule_settings: RuleSettingParam
     """Additional settings that modify the rule's action."""
 
-    schedule: ScheduleParam
+    schedule: Optional[ScheduleParam]
     """The schedule for activating DNS policies.
 
     This does not apply to HTTP or network policies.
