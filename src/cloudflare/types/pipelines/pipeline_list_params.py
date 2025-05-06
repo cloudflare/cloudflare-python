@@ -15,7 +15,7 @@ class PipelineListParams(TypedDict, total=False):
     """Specifies which page to retrieve."""
 
     per_page: str
-    """Specifies the number of Pipelines per page."""
+    """Specifies the number of pipelines per page."""
 
     search: str
-    """Specifies the prefix of Pipeline name to search."""
+    """Specifies the prefix of pipeline name to search."""

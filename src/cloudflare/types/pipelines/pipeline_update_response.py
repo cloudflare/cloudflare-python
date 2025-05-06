@@ -12,9 +12,9 @@ __all__ = [
     "DestinationCompression",
     "DestinationPath",
     "Source",
-    "SourceWorkersPipelinesWorkersPipelinesHTTPSource",
-    "SourceWorkersPipelinesWorkersPipelinesHTTPSourceCORS",
-    "SourceWorkersPipelinesWorkersPipelinesBindingSource",
+    "SourceCloudflarePipelinesWorkersPipelinesHTTPSource",
+    "SourceCloudflarePipelinesWorkersPipelinesHTTPSourceCORS",
+    "SourceCloudflarePipelinesWorkersPipelinesBindingSource",
 ]
 
 
@@ -62,24 +62,24 @@ class Destination(BaseModel):
     """Specifies the type of destination."""
 
 
-class SourceWorkersPipelinesWorkersPipelinesHTTPSourceCORS(BaseModel):
+class SourceCloudflarePipelinesWorkersPipelinesHTTPSourceCORS(BaseModel):
     origins: Optional[List[str]] = None
     """Specifies allowed origins to allow Cross Origin HTTP Requests."""
 
 
-class SourceWorkersPipelinesWorkersPipelinesHTTPSource(BaseModel):
+class SourceCloudflarePipelinesWorkersPipelinesHTTPSource(BaseModel):
     format: Literal["json"]
     """Specifies the format of source data."""
 
     type: str
 
     authentication: Optional[bool] = None
-    """Specifies authentication is required to send to this Pipeline."""
+    """Specifies whether authentication is required to send to this pipeline via HTTP."""
 
-    cors: Optional[SourceWorkersPipelinesWorkersPipelinesHTTPSourceCORS] = None
+    cors: Optional[SourceCloudflarePipelinesWorkersPipelinesHTTPSourceCORS] = None
 
 
-class SourceWorkersPipelinesWorkersPipelinesBindingSource(BaseModel):
+class SourceCloudflarePipelinesWorkersPipelinesBindingSource(BaseModel):
     format: Literal["json"]
     """Specifies the format of source data."""
 
@@ -87,13 +87,13 @@ class SourceWorkersPipelinesWorkersPipelinesBindingSource(BaseModel):
 
 
 Source: TypeAlias = Union[
-    SourceWorkersPipelinesWorkersPipelinesHTTPSource, SourceWorkersPipelinesWorkersPipelinesBindingSource
+    SourceCloudflarePipelinesWorkersPipelinesHTTPSource, SourceCloudflarePipelinesWorkersPipelinesBindingSource
 ]
 
 
 class PipelineUpdateResponse(BaseModel):
     id: str
-    """Specifies the Pipeline identifier."""
+    """Specifies the pipeline identifier."""
 
     destination: Destination
 
@@ -101,7 +101,7 @@ class PipelineUpdateResponse(BaseModel):
     """Indicates the endpoint URL to send traffic."""
 
     name: str
-    """Defines the name of Pipeline."""
+    """Defines the name of the pipeline."""
 
     source: List[Source]
 
