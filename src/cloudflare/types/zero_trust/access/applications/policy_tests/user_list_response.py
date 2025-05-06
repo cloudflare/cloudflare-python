@@ -18,5 +18,5 @@ class UserListResponse(BaseModel):
     name: Optional[str] = None
     """The name of the user."""
 
-    status: Optional[Literal["approved", "blocked"]] = None
+    status: Optional[Literal["approved", "blocked", "error"]] = None
     """Policy evaluation result for an individual user."""

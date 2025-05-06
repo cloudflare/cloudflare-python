@@ -29,7 +29,7 @@ from ......_response import (
 )
 from ......_wrappers import ResultWrapper
 from ......_base_client import make_request_options
-from ......types.zero_trust.access.applications import policy_test_get_params, policy_test_create_params
+from ......types.zero_trust.access.applications import policy_test_create_params
 from ......types.zero_trust.access.applications.policy_test_get_response import PolicyTestGetResponse
 from ......types.zero_trust.access.applications.policy_test_create_response import PolicyTestCreateResponse
 
@@ -106,7 +106,6 @@ class PolicyTestsResource(SyncAPIResource):
         policy_test_id: str,
         *,
         account_id: str,
-        page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -141,7 +140,6 @@ class PolicyTestsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"page": page}, policy_test_get_params.PolicyTestGetParams),
                 post_parser=ResultWrapper[Optional[PolicyTestGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[PolicyTestGetResponse]], ResultWrapper[PolicyTestGetResponse]),
@@ -218,7 +216,6 @@ class AsyncPolicyTestsResource(AsyncAPIResource):
         policy_test_id: str,
         *,
         account_id: str,
-        page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -253,7 +250,6 @@ class AsyncPolicyTestsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"page": page}, policy_test_get_params.PolicyTestGetParams),
                 post_parser=ResultWrapper[Optional[PolicyTestGetResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[PolicyTestGetResponse]], ResultWrapper[PolicyTestGetResponse]),
