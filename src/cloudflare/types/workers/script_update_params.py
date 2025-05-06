@@ -29,6 +29,7 @@ __all__ = [
     "MetadataBindingWorkersBindingKindKVNamespace",
     "MetadataBindingWorkersBindingKindMTLSCertificate",
     "MetadataBindingWorkersBindingKindPlainText",
+    "MetadataBindingWorkersBindingKindPipelines",
     "MetadataBindingWorkersBindingKindQueue",
     "MetadataBindingWorkersBindingKindR2Bucket",
     "MetadataBindingWorkersBindingKindSecretText",
@@ -255,6 +256,17 @@ class MetadataBindingWorkersBindingKindPlainText(TypedDict, total=False):
     """The kind of resource that the binding provides."""
 
 
+class MetadataBindingWorkersBindingKindPipelines(TypedDict, total=False):
+    name: Required[str]
+    """A JavaScript variable name for the binding."""
+
+    pipeline: Required[str]
+    """Name of the Pipeline to bind to."""
+
+    type: Required[Literal["pipelines"]]
+    """The kind of resource that the binding provides."""
+
+
 class MetadataBindingWorkersBindingKindQueue(TypedDict, total=False):
     name: Required[str]
     """A JavaScript variable name for the binding."""
@@ -397,6 +409,7 @@ MetadataBinding: TypeAlias = Union[
     MetadataBindingWorkersBindingKindKVNamespace,
     MetadataBindingWorkersBindingKindMTLSCertificate,
     MetadataBindingWorkersBindingKindPlainText,
+    MetadataBindingWorkersBindingKindPipelines,
     MetadataBindingWorkersBindingKindQueue,
     MetadataBindingWorkersBindingKindR2Bucket,
     MetadataBindingWorkersBindingKindSecretText,
