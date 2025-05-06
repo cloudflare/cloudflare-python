@@ -151,6 +151,9 @@ class SelfHostedApplication(TypedDict, total=False):
     authentication.
     """
 
+    allow_iframe: bool
+    """Enables loading application content in an iFrame."""
+
     allowed_idps: List[AllowedIdPs]
     """The identity providers your users can select when connecting to this
     application.
@@ -696,6 +699,9 @@ class BrowserSSHApplication(TypedDict, total=False):
     authentication.
     """
 
+    allow_iframe: bool
+    """Enables loading application content in an iFrame."""
+
     allowed_idps: List[AllowedIdPs]
     """The identity providers your users can select when connecting to this
     application.
@@ -1039,6 +1045,9 @@ class BrowserVNCApplication(TypedDict, total=False):
     authentication. This setting always overrides the organization setting for WARP
     authentication.
     """
+
+    allow_iframe: bool
+    """Enables loading application content in an iFrame."""
 
     allowed_idps: List[AllowedIdPs]
     """The identity providers your users can select when connecting to this
@@ -2288,6 +2297,9 @@ class BrowserRdpApplication(TypedDict, total=False):
     authentication. This setting always overrides the organization setting for WARP
     authentication.
     """
+
+    allow_iframe: bool
+    """Enables loading application content in an iFrame."""
 
     allowed_idps: List[AllowedIdPs]
     """The identity providers your users can select when connecting to this
