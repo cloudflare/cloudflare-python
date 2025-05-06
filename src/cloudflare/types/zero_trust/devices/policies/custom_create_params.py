@@ -15,7 +15,12 @@ class CustomCreateParams(TypedDict, total=False):
     account_id: Required[str]
 
     match: Required[str]
-    """The wirefilter expression to match devices."""
+    """The wirefilter expression to match devices.
+
+    Available values: "identity.email", "identity.groups.id",
+    "identity.groups.name", "identity.groups.email", "identity.service_token_uuid",
+    "identity.saml_attributes", "network", "os.name", "os.version"
+    """
 
     name: Required[str]
     """The name of the device settings profile."""

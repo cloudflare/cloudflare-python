@@ -120,7 +120,10 @@ class CustomResource(SyncAPIResource):
         criteria.
 
         Args:
-          match: The wirefilter expression to match devices.
+          match: The wirefilter expression to match devices. Available values: "identity.email",
+              "identity.groups.id", "identity.groups.name", "identity.groups.email",
+              "identity.service_token_uuid", "identity.saml_attributes", "network", "os.name",
+              "os.version"
 
           name: The name of the device settings profile.
 
@@ -354,7 +357,10 @@ class CustomResource(SyncAPIResource):
           include: List of routes included in the WARP client's tunnel. Both 'exclude' and
               'include' cannot be set in the same request.
 
-          match: The wirefilter expression to match devices.
+          match: The wirefilter expression to match devices. Available values: "identity.email",
+              "identity.groups.id", "identity.groups.name", "identity.groups.email",
+              "identity.service_token_uuid", "identity.saml_attributes", "network", "os.name",
+              "os.version"
 
           name: The name of the device settings profile.
 
@@ -528,7 +534,10 @@ class AsyncCustomResource(AsyncAPIResource):
         criteria.
 
         Args:
-          match: The wirefilter expression to match devices.
+          match: The wirefilter expression to match devices. Available values: "identity.email",
+              "identity.groups.id", "identity.groups.name", "identity.groups.email",
+              "identity.service_token_uuid", "identity.saml_attributes", "network", "os.name",
+              "os.version"
 
           name: The name of the device settings profile.
 
@@ -762,7 +771,10 @@ class AsyncCustomResource(AsyncAPIResource):
           include: List of routes included in the WARP client's tunnel. Both 'exclude' and
               'include' cannot be set in the same request.
 
-          match: The wirefilter expression to match devices.
+          match: The wirefilter expression to match devices. Available values: "identity.email",
+              "identity.groups.id", "identity.groups.name", "identity.groups.email",
+              "identity.service_token_uuid", "identity.saml_attributes", "network", "os.name",
+              "os.version"
 
           name: The name of the device settings profile.
 
