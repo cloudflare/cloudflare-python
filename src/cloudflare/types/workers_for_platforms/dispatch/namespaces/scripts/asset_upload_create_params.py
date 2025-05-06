@@ -15,7 +15,7 @@ class AssetUploadCreateParams(TypedDict, total=False):
     dispatch_namespace: Required[str]
     """Name of the Workers for Platforms dispatch namespace."""
 
-    manifest: Dict[str, Manifest]
+    manifest: Required[Dict[str, Manifest]]
     """A manifest ([path]: {hash, size}) map of files to upload.
 
     As an example, `/blog/hello-world.html` would be a valid path key.
@@ -23,8 +23,8 @@ class AssetUploadCreateParams(TypedDict, total=False):
 
 
 class Manifest(TypedDict, total=False):
-    hash: str
+    hash: Required[str]
     """The hash of the file."""
 
-    size: int
+    size: Required[int]
     """The size of the file in bytes."""
