@@ -64,7 +64,7 @@ class HoldsResource(SyncAPIResource):
         with this zone's hostname.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           include_subdomains: If provided, the zone hold will extend to block any subdomain of the given zone,
               as well as SSL4SaaS Custom Hostnames. For example, a zone hold on a zone with
@@ -111,7 +111,7 @@ class HoldsResource(SyncAPIResource):
         allowing the creation and activation of zones with this zone's hostname.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           hold_after: If `hold_after` is provided, the hold will be temporarily disabled, then
               automatically re-enabled by the system at the time specified in this
@@ -158,7 +158,7 @@ class HoldsResource(SyncAPIResource):
         hold. The hold is enabled if the `hold_after` date-time value is in the past.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           hold_after: If `hold_after` is provided and future-dated, the hold will be temporarily
               disabled, then automatically re-enabled by the system at the time specified in
@@ -216,7 +216,7 @@ class HoldsResource(SyncAPIResource):
         hold.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -278,7 +278,7 @@ class AsyncHoldsResource(AsyncAPIResource):
         with this zone's hostname.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           include_subdomains: If provided, the zone hold will extend to block any subdomain of the given zone,
               as well as SSL4SaaS Custom Hostnames. For example, a zone hold on a zone with
@@ -327,7 +327,7 @@ class AsyncHoldsResource(AsyncAPIResource):
         allowing the creation and activation of zones with this zone's hostname.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           hold_after: If `hold_after` is provided, the hold will be temporarily disabled, then
               automatically re-enabled by the system at the time specified in this
@@ -374,7 +374,7 @@ class AsyncHoldsResource(AsyncAPIResource):
         hold. The hold is enabled if the `hold_after` date-time value is in the past.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           hold_after: If `hold_after` is provided and future-dated, the hold will be temporarily
               disabled, then automatically re-enabled by the system at the time specified in
@@ -432,7 +432,7 @@ class AsyncHoldsResource(AsyncAPIResource):
         hold.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
