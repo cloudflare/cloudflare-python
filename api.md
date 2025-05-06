@@ -2541,19 +2541,6 @@ Methods:
 - <code title="put /accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk">client.kv.namespaces.<a href="./src/cloudflare/resources/kv/namespaces/namespaces.py">bulk_update</a>(namespace_id, \*, account_id, \*\*<a href="src/cloudflare/types/kv/namespace_bulk_update_params.py">params</a>) -> <a href="./src/cloudflare/types/kv/namespace_bulk_update_response.py">Optional[NamespaceBulkUpdateResponse]</a></code>
 - <code title="get /accounts/{account_id}/storage/kv/namespaces/{namespace_id}">client.kv.namespaces.<a href="./src/cloudflare/resources/kv/namespaces/namespaces.py">get</a>(namespace_id, \*, account_id) -> <a href="./src/cloudflare/types/kv/namespace.py">Optional[Namespace]</a></code>
 
-### Analytics
-
-Types:
-
-```python
-from cloudflare.types.kv.namespaces import Components, Schema
-```
-
-Methods:
-
-- <code title="get /accounts/{account_id}/storage/analytics">client.kv.namespaces.analytics.<a href="./src/cloudflare/resources/kv/namespaces/analytics.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/kv/namespaces/analytics_list_params.py">params</a>) -> <a href="./src/cloudflare/types/kv/namespaces/schema.py">Optional[Schema]</a></code>
-- <code title="get /accounts/{account_id}/storage/analytics/stored">client.kv.namespaces.analytics.<a href="./src/cloudflare/resources/kv/namespaces/analytics.py">stored</a>(\*, account_id, \*\*<a href="src/cloudflare/types/kv/namespaces/analytics_stored_params.py">params</a>) -> <a href="./src/cloudflare/types/kv/namespaces/components.py">Optional[Components]</a></code>
-
 ### Keys
 
 Types:
