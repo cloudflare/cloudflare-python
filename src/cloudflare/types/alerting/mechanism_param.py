@@ -14,11 +14,13 @@ class Email(TypedDict, total=False):
 
 
 class Pagerduty(TypedDict, total=False):
-    pass
+    id: str
+    """UUID"""
 
 
 class Webhook(TypedDict, total=False):
-    pass
+    id: str
+    """UUID"""
 
 
 class MechanismParam(TypedDict, total=False):
