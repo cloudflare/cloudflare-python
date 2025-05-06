@@ -100,6 +100,12 @@ class CustomProfileEntryIntegrationEntry(BaseModel):
 class CustomProfileEntryExactDataEntry(BaseModel):
     id: str
 
+    case_sensitive: bool
+    """
+    Only applies to custom word lists. Determines if the words should be matched in
+    a case-sensitive manner Cannot be set to false if secret is true
+    """
+
     created_at: datetime
 
     enabled: bool
@@ -238,6 +244,12 @@ class PredefinedProfileEntryIntegrationEntry(BaseModel):
 class PredefinedProfileEntryExactDataEntry(BaseModel):
     id: str
 
+    case_sensitive: bool
+    """
+    Only applies to custom word lists. Determines if the words should be matched in
+    a case-sensitive manner Cannot be set to false if secret is true
+    """
+
     created_at: datetime
 
     enabled: bool
@@ -368,6 +380,12 @@ class IntegrationProfileEntryIntegrationEntry(BaseModel):
 
 class IntegrationProfileEntryExactDataEntry(BaseModel):
     id: str
+
+    case_sensitive: bool
+    """
+    Only applies to custom word lists. Determines if the words should be matched in
+    a case-sensitive manner Cannot be set to false if secret is true
+    """
 
     created_at: datetime
 

@@ -25,6 +25,8 @@ class NewVersion(BaseModel):
 
     version: int
 
+    case_sensitive: Optional[bool] = None
+
     columns: Optional[List[Column]] = None
 
     secret: Optional[str] = None
