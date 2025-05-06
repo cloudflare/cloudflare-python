@@ -53,8 +53,8 @@ class ResourceGroupsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
+        name: str,
         scope: resource_group_create_params.Scope,
-        meta: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -68,9 +68,9 @@ class ResourceGroupsResource(SyncAPIResource):
         Args:
           account_id: Account identifier tag.
 
-          scope: A scope is a combination of scope objects which provides additional context.
+          name: Name of the resource group
 
-          meta: Attributes associated to the resource group.
+          scope: A scope is a combination of scope objects which provides additional context.
 
           extra_headers: Send extra headers
 
@@ -86,8 +86,8 @@ class ResourceGroupsResource(SyncAPIResource):
             f"/accounts/{account_id}/iam/resource_groups",
             body=maybe_transform(
                 {
+                    "name": name,
                     "scope": scope,
-                    "meta": meta,
                 },
                 resource_group_create_params.ResourceGroupCreateParams,
             ),
@@ -102,8 +102,8 @@ class ResourceGroupsResource(SyncAPIResource):
         resource_group_id: str,
         *,
         account_id: str,
-        scope: resource_group_update_params.Scope,
-        meta: object | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        scope: resource_group_update_params.Scope | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -119,9 +119,9 @@ class ResourceGroupsResource(SyncAPIResource):
 
           resource_group_id: Resource Group identifier tag.
 
-          scope: A scope is a combination of scope objects which provides additional context.
+          name: Name of the resource group
 
-          meta: Attributes associated to the resource group.
+          scope: A scope is a combination of scope objects which provides additional context.
 
           extra_headers: Send extra headers
 
@@ -139,8 +139,8 @@ class ResourceGroupsResource(SyncAPIResource):
             f"/accounts/{account_id}/iam/resource_groups/{resource_group_id}",
             body=maybe_transform(
                 {
+                    "name": name,
                     "scope": scope,
-                    "meta": meta,
                 },
                 resource_group_update_params.ResourceGroupUpdateParams,
             ),
@@ -319,8 +319,8 @@ class AsyncResourceGroupsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        name: str,
         scope: resource_group_create_params.Scope,
-        meta: object | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -334,9 +334,9 @@ class AsyncResourceGroupsResource(AsyncAPIResource):
         Args:
           account_id: Account identifier tag.
 
-          scope: A scope is a combination of scope objects which provides additional context.
+          name: Name of the resource group
 
-          meta: Attributes associated to the resource group.
+          scope: A scope is a combination of scope objects which provides additional context.
 
           extra_headers: Send extra headers
 
@@ -352,8 +352,8 @@ class AsyncResourceGroupsResource(AsyncAPIResource):
             f"/accounts/{account_id}/iam/resource_groups",
             body=await async_maybe_transform(
                 {
+                    "name": name,
                     "scope": scope,
-                    "meta": meta,
                 },
                 resource_group_create_params.ResourceGroupCreateParams,
             ),
@@ -368,8 +368,8 @@ class AsyncResourceGroupsResource(AsyncAPIResource):
         resource_group_id: str,
         *,
         account_id: str,
-        scope: resource_group_update_params.Scope,
-        meta: object | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        scope: resource_group_update_params.Scope | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -385,9 +385,9 @@ class AsyncResourceGroupsResource(AsyncAPIResource):
 
           resource_group_id: Resource Group identifier tag.
 
-          scope: A scope is a combination of scope objects which provides additional context.
+          name: Name of the resource group
 
-          meta: Attributes associated to the resource group.
+          scope: A scope is a combination of scope objects which provides additional context.
 
           extra_headers: Send extra headers
 
@@ -405,8 +405,8 @@ class AsyncResourceGroupsResource(AsyncAPIResource):
             f"/accounts/{account_id}/iam/resource_groups/{resource_group_id}",
             body=await async_maybe_transform(
                 {
+                    "name": name,
                     "scope": scope,
-                    "meta": meta,
                 },
                 resource_group_update_params.ResourceGroupUpdateParams,
             ),
