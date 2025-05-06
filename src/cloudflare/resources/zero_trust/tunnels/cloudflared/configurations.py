@@ -65,7 +65,7 @@ class ConfigurationsResource(SyncAPIResource):
         Adds or updates the configuration for a remotely-managed tunnel.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           tunnel_id: UUID of the tunnel.
 
@@ -112,7 +112,7 @@ class ConfigurationsResource(SyncAPIResource):
         Gets the configuration for a remotely-managed tunnel
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           tunnel_id: UUID of the tunnel.
 
@@ -178,7 +178,7 @@ class AsyncConfigurationsResource(AsyncAPIResource):
         Adds or updates the configuration for a remotely-managed tunnel.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           tunnel_id: UUID of the tunnel.
 
@@ -225,7 +225,7 @@ class AsyncConfigurationsResource(AsyncAPIResource):
         Gets the configuration for a remotely-managed tunnel
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           tunnel_id: UUID of the tunnel.
 
