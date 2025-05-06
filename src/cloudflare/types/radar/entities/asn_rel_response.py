@@ -4,7 +4,15 @@ from typing import List
 
 from ...._models import BaseModel
 
-__all__ = ["ASNRelResponse", "Rel"]
+__all__ = ["ASNRelResponse", "Meta", "Rel"]
+
+
+class Meta(BaseModel):
+    data_time: str
+
+    query_time: str
+
+    total_peers: int
 
 
 class Rel(BaseModel):
@@ -24,6 +32,6 @@ class Rel(BaseModel):
 
 
 class ASNRelResponse(BaseModel):
-    meta: object
+    meta: Meta
 
     rels: List[Rel]

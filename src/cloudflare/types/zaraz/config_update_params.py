@@ -6,6 +6,8 @@ from typing import Dict, List, Union, Iterable
 from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from ..._utils import PropertyInfo
+from .neo_event_param import NeoEventParam
+from .button_text_translation_param import ButtonTextTranslationParam
 
 __all__ = [
     "ConfigUpdateParams",
@@ -175,13 +177,13 @@ class ToolsZarazManagedComponent(TypedDict, total=False):
 
     type: Required[Literal["component"]]
 
-    actions: object
+    actions: Dict[str, NeoEventParam]
     """Actions configured on a tool. Either this or neoEvents field is required."""
 
     default_purpose: Annotated[str, PropertyInfo(alias="defaultPurpose")]
     """Default consent purpose ID"""
 
-    neo_events: Annotated[Iterable[object], PropertyInfo(alias="neoEvents")]
+    neo_events: Annotated[Iterable[NeoEventParam], PropertyInfo(alias="neoEvents")]
     """DEPRECATED - List of actions configured on a tool.
 
     Either this or actions field is required. If both are present, actions field
@@ -234,13 +236,13 @@ class ToolsWorker(TypedDict, total=False):
     worker: Required[ToolsWorkerWorker]
     """Cloudflare worker that acts as a managed component"""
 
-    actions: object
+    actions: Dict[str, NeoEventParam]
     """Actions configured on a tool. Either this or neoEvents field is required."""
 
     default_purpose: Annotated[str, PropertyInfo(alias="defaultPurpose")]
     """Default consent purpose ID"""
 
-    neo_events: Annotated[Iterable[object], PropertyInfo(alias="neoEvents")]
+    neo_events: Annotated[Iterable[NeoEventParam], PropertyInfo(alias="neoEvents")]
     """DEPRECATED - List of actions configured on a tool.
 
     Either this or actions field is required. If both are present, actions field
@@ -574,7 +576,7 @@ class ConsentPurposesWithTranslations(TypedDict, total=False):
 class Consent(TypedDict, total=False):
     enabled: Required[bool]
 
-    button_text_translations: Annotated[object, PropertyInfo(alias="buttonTextTranslations")]
+    button_text_translations: Annotated[ButtonTextTranslationParam, PropertyInfo(alias="buttonTextTranslations")]
 
     company_email: Annotated[str, PropertyInfo(alias="companyEmail")]
 

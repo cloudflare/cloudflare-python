@@ -5,7 +5,10 @@ from __future__ import annotations
 from typing import Dict, List, Iterable
 from typing_extensions import Literal, Required, TypedDict
 
+from .dcv_method import DCVMethod
+from .bundle_method import BundleMethod
 from ..shared.certificate_ca import CertificateCA
+from .domain_validation_type import DomainValidationType
 
 __all__ = ["CustomHostnameEditParams", "SSL", "SSLCustomCERTBundle", "SSLSettings"]
 
@@ -68,7 +71,13 @@ class SSLSettings(TypedDict, total=False):
 
 
 class SSL(TypedDict, total=False):
-    bundle_method: object
+    bundle_method: BundleMethod
+    """
+    A ubiquitous bundle has the highest probability of being verified everywhere,
+    even by clients using outdated or unusual trust stores. An optimal bundle uses
+    the shortest chain and newest intermediates. And the force bundle verifies the
+    chain, but does not otherwise modify it.
+    """
 
     certificate_authority: CertificateCA
     """The Certificate Authority that will issue the certificate"""
@@ -89,12 +98,17 @@ class SSL(TypedDict, total=False):
     custom_key: str
     """The key for a custom uploaded certificate."""
 
-    method: object
+    method: DCVMethod
+    """Domain control validation (DCV) method used for this hostname."""
 
     settings: SSLSettings
     """SSL specific settings."""
 
-    type: object
+    type: DomainValidationType
+    """Level of validation to be used for this hostname.
+
+    Domain validation (dv) must be used.
+    """
 
     wildcard: bool
     """Indicates whether the certificate covers a wildcard."""

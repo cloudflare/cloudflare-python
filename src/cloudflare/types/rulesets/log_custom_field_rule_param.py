@@ -5,6 +5,8 @@ from __future__ import annotations
 from typing import List, Iterable
 from typing_extensions import Literal, Required, TypedDict
 
+from .logging_param import LoggingParam
+
 __all__ = [
     "LogCustomFieldRuleParam",
     "ActionParameters",
@@ -140,7 +142,8 @@ class LogCustomFieldRuleParam(TypedDict, total=False):
     expression: str
     """The expression defining which traffic will match the rule."""
 
-    logging: object
+    logging: LoggingParam
+    """An object configuring the rule's logging behavior."""
 
     ratelimit: Ratelimit
     """An object configuring the rule's ratelimit behavior."""

@@ -107,9 +107,9 @@ class TestGRETunnels:
             health_check={
                 "direction": "unidirectional",
                 "enabled": True,
-                "rate": {},
+                "rate": "low",
                 "target": {"saved": "203.0.113.1"},
-                "type": {},
+                "type": "reply",
             },
             mtu=0,
             ttl=0,
@@ -479,9 +479,9 @@ class TestAsyncGRETunnels:
             health_check={
                 "direction": "unidirectional",
                 "enabled": True,
-                "rate": {},
+                "rate": "low",
                 "target": {"saved": "203.0.113.1"},
-                "type": {},
+                "type": "reply",
             },
             mtu=0,
             ttl=0,

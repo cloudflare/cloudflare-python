@@ -4,7 +4,15 @@ from typing import List
 
 from ...._models import BaseModel
 
-__all__ = ["RouteMoasResponse", "Moa", "MoaOrigin"]
+__all__ = ["RouteMoasResponse", "Meta", "Moa", "MoaOrigin"]
+
+
+class Meta(BaseModel):
+    data_time: str
+
+    query_time: str
+
+    total_peers: int
 
 
 class MoaOrigin(BaseModel):
@@ -22,6 +30,6 @@ class Moa(BaseModel):
 
 
 class RouteMoasResponse(BaseModel):
-    meta: object
+    meta: Meta
 
     moas: List[Moa]

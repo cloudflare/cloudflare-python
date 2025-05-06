@@ -5,7 +5,10 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from ..._models import BaseModel
+from .dcv_method import DCVMethod
+from .bundle_method import BundleMethod
 from ..shared.certificate_ca import CertificateCA
+from .domain_validation_type import DomainValidationType
 
 __all__ = [
     "CustomHostnameGetResponse",
@@ -76,7 +79,13 @@ class SSL(BaseModel):
     id: Optional[str] = None
     """Custom hostname SSL identifier tag."""
 
-    bundle_method: Optional[object] = None
+    bundle_method: Optional[BundleMethod] = None
+    """
+    A ubiquitous bundle has the highest probability of being verified everywhere,
+    even by clients using outdated or unusual trust stores. An optimal bundle uses
+    the shortest chain and newest intermediates. And the force bundle verifies the
+    chain, but does not otherwise modify it.
+    """
 
     certificate_authority: Optional[CertificateCA] = None
     """The Certificate Authority that will issue the certificate"""
@@ -99,7 +108,8 @@ class SSL(BaseModel):
     issuer: Optional[str] = None
     """The issuer on a custom uploaded certificate."""
 
-    method: Optional[object] = None
+    method: Optional[DCVMethod] = None
+    """Domain control validation (DCV) method used for this hostname."""
 
     serial_number: Optional[str] = None
     """The serial number on a custom uploaded certificate."""
@@ -136,7 +146,11 @@ class SSL(BaseModel):
     ] = None
     """Status of the hostname's SSL certificates."""
 
-    type: Optional[object] = None
+    type: Optional[DomainValidationType] = None
+    """Level of validation to be used for this hostname.
+
+    Domain validation (dv) must be used.
+    """
 
     uploaded_on: Optional[datetime] = None
     """The time the custom certificate was uploaded."""

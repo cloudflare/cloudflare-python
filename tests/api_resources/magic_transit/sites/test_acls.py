@@ -53,7 +53,7 @@ class TestACLs:
             name="PIN Pad - Cash Register",
             description="Allows local traffic between PIN pads and cash register.",
             forward_locally=True,
-            protocols=[{}],
+            protocols=["tcp"],
             unidirectional=True,
         )
         assert_matches_type(ACL, acl, path=["response"])
@@ -142,7 +142,7 @@ class TestACLs:
                 "subnets": ["192.0.2.1"],
             },
             name="PIN Pad - Cash Register",
-            protocols=[{}],
+            protocols=["tcp"],
             unidirectional=True,
         )
         assert_matches_type(ACL, acl, path=["response"])
@@ -338,7 +338,7 @@ class TestACLs:
                 "subnets": ["192.0.2.1"],
             },
             name="PIN Pad - Cash Register",
-            protocols=[{}],
+            protocols=["tcp"],
             unidirectional=True,
         )
         assert_matches_type(ACL, acl, path=["response"])
@@ -491,7 +491,7 @@ class TestAsyncACLs:
             name="PIN Pad - Cash Register",
             description="Allows local traffic between PIN pads and cash register.",
             forward_locally=True,
-            protocols=[{}],
+            protocols=["tcp"],
             unidirectional=True,
         )
         assert_matches_type(ACL, acl, path=["response"])
@@ -580,7 +580,7 @@ class TestAsyncACLs:
                 "subnets": ["192.0.2.1"],
             },
             name="PIN Pad - Cash Register",
-            protocols=[{}],
+            protocols=["tcp"],
             unidirectional=True,
         )
         assert_matches_type(ACL, acl, path=["response"])
@@ -776,7 +776,7 @@ class TestAsyncACLs:
                 "subnets": ["192.0.2.1"],
             },
             name="PIN Pad - Cash Register",
-            protocols=[{}],
+            protocols=["tcp"],
             unidirectional=True,
         )
         assert_matches_type(ACL, acl, path=["response"])

@@ -2,6 +2,7 @@
 
 
 from ....._models import BaseModel
+from ...radar_email_series import RadarEmailSeries
 
 __all__ = ["TimeseriesGroupDMARCResponse"]
 
@@ -9,4 +10,4 @@ __all__ = ["TimeseriesGroupDMARCResponse"]
 class TimeseriesGroupDMARCResponse(BaseModel):
     meta: object
 
-    serie_0: object
+    serie_0: RadarEmailSeries

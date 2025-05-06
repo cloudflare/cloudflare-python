@@ -31,11 +31,13 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
+from ...types.custom_hostnames import BundleMethod
 from ...types.custom_certificates import (
     custom_certificate_edit_params,
     custom_certificate_list_params,
     custom_certificate_create_params,
 )
+from ...types.custom_hostnames.bundle_method import BundleMethod
 from ...types.custom_certificates.custom_certificate import CustomCertificate
 from ...types.custom_certificates.geo_restrictions_param import GeoRestrictionsParam
 from ...types.custom_certificates.custom_certificate_delete_response import CustomCertificateDeleteResponse
@@ -73,7 +75,7 @@ class CustomCertificatesResource(SyncAPIResource):
         zone_id: str,
         certificate: str,
         private_key: str,
-        bundle_method: object | NotGiven = NOT_GIVEN,
+        bundle_method: BundleMethod | NotGiven = NOT_GIVEN,
         geo_restrictions: GeoRestrictionsParam | NotGiven = NOT_GIVEN,
         policy: str | NotGiven = NOT_GIVEN,
         type: Literal["legacy_custom", "sni_custom"] | NotGiven = NOT_GIVEN,
@@ -93,6 +95,11 @@ class CustomCertificatesResource(SyncAPIResource):
           certificate: The zone's SSL certificate or certificate and the intermediate(s).
 
           private_key: The zone's private key.
+
+          bundle_method: A ubiquitous bundle has the highest probability of being verified everywhere,
+              even by clients using outdated or unusual trust stores. An optimal bundle uses
+              the shortest chain and newest intermediates. And the force bundle verifies the
+              chain, but does not otherwise modify it.
 
           geo_restrictions: Specify the region where your private key can be held locally for optimal TLS
               performance. HTTPS connections to any excluded data center will still be fully
@@ -264,7 +271,7 @@ class CustomCertificatesResource(SyncAPIResource):
         custom_certificate_id: str,
         *,
         zone_id: str,
-        bundle_method: object | NotGiven = NOT_GIVEN,
+        bundle_method: BundleMethod | NotGiven = NOT_GIVEN,
         certificate: str | NotGiven = NOT_GIVEN,
         geo_restrictions: GeoRestrictionsParam | NotGiven = NOT_GIVEN,
         policy: str | NotGiven = NOT_GIVEN,
@@ -286,6 +293,11 @@ class CustomCertificatesResource(SyncAPIResource):
           zone_id: Identifier
 
           custom_certificate_id: Identifier
+
+          bundle_method: A ubiquitous bundle has the highest probability of being verified everywhere,
+              even by clients using outdated or unusual trust stores. An optimal bundle uses
+              the shortest chain and newest intermediates. And the force bundle verifies the
+              chain, but does not otherwise modify it.
 
           certificate: The zone's SSL certificate or certificate and the intermediate(s).
 
@@ -422,7 +434,7 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
         zone_id: str,
         certificate: str,
         private_key: str,
-        bundle_method: object | NotGiven = NOT_GIVEN,
+        bundle_method: BundleMethod | NotGiven = NOT_GIVEN,
         geo_restrictions: GeoRestrictionsParam | NotGiven = NOT_GIVEN,
         policy: str | NotGiven = NOT_GIVEN,
         type: Literal["legacy_custom", "sni_custom"] | NotGiven = NOT_GIVEN,
@@ -442,6 +454,11 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
           certificate: The zone's SSL certificate or certificate and the intermediate(s).
 
           private_key: The zone's private key.
+
+          bundle_method: A ubiquitous bundle has the highest probability of being verified everywhere,
+              even by clients using outdated or unusual trust stores. An optimal bundle uses
+              the shortest chain and newest intermediates. And the force bundle verifies the
+              chain, but does not otherwise modify it.
 
           geo_restrictions: Specify the region where your private key can be held locally for optimal TLS
               performance. HTTPS connections to any excluded data center will still be fully
@@ -613,7 +630,7 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
         custom_certificate_id: str,
         *,
         zone_id: str,
-        bundle_method: object | NotGiven = NOT_GIVEN,
+        bundle_method: BundleMethod | NotGiven = NOT_GIVEN,
         certificate: str | NotGiven = NOT_GIVEN,
         geo_restrictions: GeoRestrictionsParam | NotGiven = NOT_GIVEN,
         policy: str | NotGiven = NOT_GIVEN,
@@ -635,6 +652,11 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
           zone_id: Identifier
 
           custom_certificate_id: Identifier
+
+          bundle_method: A ubiquitous bundle has the highest probability of being verified everywhere,
+              even by clients using outdated or unusual trust stores. An optimal bundle uses
+              the shortest chain and newest intermediates. And the force bundle verifies the
+              chain, but does not otherwise modify it.
 
           certificate: The zone's SSL certificate or certificate and the intermediate(s).
 
