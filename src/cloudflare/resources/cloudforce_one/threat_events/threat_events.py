@@ -225,7 +225,10 @@ class ThreatEventsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ThreatEventCreateResponse:
         """
-        Creates a new event
+        Events must be created in a client-specific dataset, which means the `datasetId`
+        parameter must be defined. To create a dataset, see the
+        [`Create Dataset`](https://developers.cloudflare.com/api/resources/cloudforce_one/subresources/threat_events/subresources/datasets/methods/create/)
+        endpoint.
 
         Args:
           path_account_id: Account ID
@@ -277,8 +280,12 @@ class ThreatEventsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ThreatEventDeleteResponse:
-        """
-        Deletes an event
+        """The `datasetId` parameter must be defined.
+
+        To list existing datasets (and their
+        IDs) in your account, use the
+        [`List Datasets`](https://developers.cloudflare.com/api/resources/cloudforce_one/subresources/threat_events/subresources/datasets/methods/list)
+        endpoint.
 
         Args:
           account_id: Account ID
@@ -316,8 +323,12 @@ class ThreatEventsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ThreatEventBulkCreateResponse:
-        """
-        Creates bulk events
+        """The `datasetId` parameter must be defined.
+
+        To list existing datasets (and their
+        IDs) in your account, use the
+        [`List Datasets`](https://developers.cloudflare.com/api/resources/cloudforce_one/subresources/threat_events/subresources/datasets/methods/list)
+        endpoint.
 
         Args:
           account_id: Account ID
@@ -541,7 +552,10 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ThreatEventCreateResponse:
         """
-        Creates a new event
+        Events must be created in a client-specific dataset, which means the `datasetId`
+        parameter must be defined. To create a dataset, see the
+        [`Create Dataset`](https://developers.cloudflare.com/api/resources/cloudforce_one/subresources/threat_events/subresources/datasets/methods/create/)
+        endpoint.
 
         Args:
           path_account_id: Account ID
@@ -593,8 +607,12 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ThreatEventDeleteResponse:
-        """
-        Deletes an event
+        """The `datasetId` parameter must be defined.
+
+        To list existing datasets (and their
+        IDs) in your account, use the
+        [`List Datasets`](https://developers.cloudflare.com/api/resources/cloudforce_one/subresources/threat_events/subresources/datasets/methods/list)
+        endpoint.
 
         Args:
           account_id: Account ID
@@ -632,8 +650,12 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ThreatEventBulkCreateResponse:
-        """
-        Creates bulk events
+        """The `datasetId` parameter must be defined.
+
+        To list existing datasets (and their
+        IDs) in your account, use the
+        [`List Datasets`](https://developers.cloudflare.com/api/resources/cloudforce_one/subresources/threat_events/subresources/datasets/methods/list)
+        endpoint.
 
         Args:
           account_id: Account ID
