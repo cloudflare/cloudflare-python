@@ -902,15 +902,7 @@ class Cloudflare(SyncAPIClient):
     @property
     @override
     def auth_headers(self) -> dict[str, str]:
-        if self._api_email:
-            return self._api_email
-        if self._api_key:
-            return self._api_key
-        if self._api_token:
-            return self._api_token
-        if self._user_service_key:
-            return self._user_service_key
-        return {}
+        return {**self._api_email, **self._api_key, **self._api_token, **self._user_service_key}
 
     @property
     def _api_email(self) -> dict[str, str]:
@@ -1709,15 +1701,7 @@ class AsyncCloudflare(AsyncAPIClient):
     @property
     @override
     def auth_headers(self) -> dict[str, str]:
-        if self._api_email:
-            return self._api_email
-        if self._api_key:
-            return self._api_key
-        if self._api_token:
-            return self._api_token
-        if self._user_service_key:
-            return self._user_service_key
-        return {}
+        return {**self._api_email, **self._api_key, **self._api_token, **self._user_service_key}
 
     @property
     def _api_email(self) -> dict[str, str]:
