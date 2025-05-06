@@ -9,7 +9,7 @@ __all__ = ["AddressListParams"]
 
 class AddressListParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     direction: Literal["asc", "desc"]
     """Sorts results in an ascending or descending order."""

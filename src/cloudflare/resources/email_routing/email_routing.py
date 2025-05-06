@@ -98,7 +98,7 @@ class EmailRoutingResource(SyncAPIResource):
         required for Email Routing to work.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -140,7 +140,7 @@ class EmailRoutingResource(SyncAPIResource):
         Add and lock the necessary MX and SPF records.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -180,7 +180,7 @@ class EmailRoutingResource(SyncAPIResource):
         Get information about the settings for your Email Routing zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -255,7 +255,7 @@ class AsyncEmailRoutingResource(AsyncAPIResource):
         required for Email Routing to work.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -297,7 +297,7 @@ class AsyncEmailRoutingResource(AsyncAPIResource):
         Add and lock the necessary MX and SPF records.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -337,7 +337,7 @@ class AsyncEmailRoutingResource(AsyncAPIResource):
         Get information about the settings for your Email Routing zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
