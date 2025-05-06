@@ -109,6 +109,3 @@ class Expiration(TypedDict, total=False):
 
     Must be set in order to use the `reset_expiration` endpoint on this rule.
     """
-
-    expired: bool
-    """Whether the policy has expired."""
