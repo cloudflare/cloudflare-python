@@ -17,7 +17,7 @@ __all__ = [
 
 
 class ActionParametersAlgorithm(TypedDict, total=False):
-    name: Literal["none", "auto", "default", "gzip", "brotli"]
+    name: Literal["none", "auto", "default", "gzip", "brotli", "zstd"]
     """Name of compression algorithm to enable."""
 
 

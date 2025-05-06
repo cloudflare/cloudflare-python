@@ -17,7 +17,7 @@ __all__ = [
 
 
 class ActionParametersAlgorithm(BaseModel):
-    name: Optional[Literal["none", "auto", "default", "gzip", "brotli"]] = None
+    name: Optional[Literal["none", "auto", "default", "gzip", "brotli", "zstd"]] = None
     """Name of compression algorithm to enable."""
 
 

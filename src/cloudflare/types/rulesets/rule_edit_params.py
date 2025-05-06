@@ -86,8 +86,10 @@ __all__ = [
     "RewriteRuleActionParameters",
     "RewriteRuleActionParametersHeaders",
     "RewriteRuleActionParametersHeadersRemoveHeader",
-    "RewriteRuleActionParametersHeadersStaticHeader",
-    "RewriteRuleActionParametersHeadersDynamicHeader",
+    "RewriteRuleActionParametersHeadersAddStaticHeader",
+    "RewriteRuleActionParametersHeadersSetStaticHeader",
+    "RewriteRuleActionParametersHeadersAddDynamicHeader",
+    "RewriteRuleActionParametersHeadersSetDynamicHeader",
     "RewriteRuleActionParametersURI",
     "RewriteRuleExposedCredentialCheck",
     "RewriteRulePosition",
@@ -502,7 +504,7 @@ class CompressionRule(TypedDict, total=False):
 
 
 class CompressionRuleActionParametersAlgorithm(TypedDict, total=False):
-    name: Literal["none", "auto", "default", "gzip", "brotli"]
+    name: Literal["none", "auto", "default", "gzip", "brotli", "zstd"]
     """Name of compression algorithm to enable."""
 
 
@@ -1371,14 +1373,28 @@ class RewriteRuleActionParametersHeadersRemoveHeader(TypedDict, total=False):
     operation: Required[Literal["remove"]]
 
 
-class RewriteRuleActionParametersHeadersStaticHeader(TypedDict, total=False):
+class RewriteRuleActionParametersHeadersAddStaticHeader(TypedDict, total=False):
+    operation: Required[Literal["add"]]
+
+    value: Required[str]
+    """Static value for the header."""
+
+
+class RewriteRuleActionParametersHeadersSetStaticHeader(TypedDict, total=False):
     operation: Required[Literal["set"]]
 
     value: Required[str]
     """Static value for the header."""
 
 
-class RewriteRuleActionParametersHeadersDynamicHeader(TypedDict, total=False):
+class RewriteRuleActionParametersHeadersAddDynamicHeader(TypedDict, total=False):
+    expression: Required[str]
+    """Expression for the header value."""
+
+    operation: Required[Literal["add"]]
+
+
+class RewriteRuleActionParametersHeadersSetDynamicHeader(TypedDict, total=False):
     expression: Required[str]
     """Expression for the header value."""
 
@@ -1387,8 +1403,10 @@ class RewriteRuleActionParametersHeadersDynamicHeader(TypedDict, total=False):
 
 RewriteRuleActionParametersHeaders: TypeAlias = Union[
     RewriteRuleActionParametersHeadersRemoveHeader,
-    RewriteRuleActionParametersHeadersStaticHeader,
-    RewriteRuleActionParametersHeadersDynamicHeader,
+    RewriteRuleActionParametersHeadersAddStaticHeader,
+    RewriteRuleActionParametersHeadersSetStaticHeader,
+    RewriteRuleActionParametersHeadersAddDynamicHeader,
+    RewriteRuleActionParametersHeadersSetDynamicHeader,
 ]
 
 
