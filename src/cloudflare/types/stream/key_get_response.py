@@ -10,7 +10,7 @@ __all__ = ["KeyGetResponse"]
 
 class KeyGetResponse(BaseModel):
     id: Optional[str] = None
-    """Identifier"""
+    """Identifier."""
 
     created: Optional[datetime] = None
     """The date and time a signing key was created."""
