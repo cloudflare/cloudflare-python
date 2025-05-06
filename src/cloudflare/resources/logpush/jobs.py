@@ -84,6 +84,7 @@ class JobsResource(SyncAPIResource):
         ]
         | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
+        filter: Optional[str] | NotGiven = NOT_GIVEN,
         frequency: Optional[Literal["high", "low"]] | NotGiven = NOT_GIVEN,
         kind: Optional[Literal["edge"]] | NotGiven = NOT_GIVEN,
         logpull_options: Optional[str] | NotGiven = NOT_GIVEN,
@@ -116,6 +117,10 @@ class JobsResource(SyncAPIResource):
               [Developer Docs](https://developers.cloudflare.com/logs/reference/log-fields/).
 
           enabled: Flag that indicates if the job is enabled.
+
+          filter: The filters to select the events to include and/or remove from your logs. For
+              more information, refer to
+              [Filters](https://developers.cloudflare.com/logs/reference/filters/).
 
           frequency: This field is deprecated. Please use `max_upload_*` parameters instead. The
               frequency at which Cloudflare sends batches of logs to your destination. Setting
@@ -185,6 +190,7 @@ class JobsResource(SyncAPIResource):
                     "destination_conf": destination_conf,
                     "dataset": dataset,
                     "enabled": enabled,
+                    "filter": filter,
                     "frequency": frequency,
                     "kind": kind,
                     "logpull_options": logpull_options,
@@ -215,6 +221,7 @@ class JobsResource(SyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         destination_conf: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
+        filter: Optional[str] | NotGiven = NOT_GIVEN,
         frequency: Optional[Literal["high", "low"]] | NotGiven = NOT_GIVEN,
         kind: Optional[Literal["edge"]] | NotGiven = NOT_GIVEN,
         logpull_options: Optional[str] | NotGiven = NOT_GIVEN,
@@ -246,6 +253,10 @@ class JobsResource(SyncAPIResource):
               included.
 
           enabled: Flag that indicates if the job is enabled.
+
+          filter: The filters to select the events to include and/or remove from your logs. For
+              more information, refer to
+              [Filters](https://developers.cloudflare.com/logs/reference/filters/).
 
           frequency: This field is deprecated. Please use `max_upload_*` parameters instead. The
               frequency at which Cloudflare sends batches of logs to your destination. Setting
@@ -314,6 +325,7 @@ class JobsResource(SyncAPIResource):
                 {
                     "destination_conf": destination_conf,
                     "enabled": enabled,
+                    "filter": filter,
                     "frequency": frequency,
                     "kind": kind,
                     "logpull_options": logpull_options,
@@ -552,6 +564,7 @@ class AsyncJobsResource(AsyncAPIResource):
         ]
         | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
+        filter: Optional[str] | NotGiven = NOT_GIVEN,
         frequency: Optional[Literal["high", "low"]] | NotGiven = NOT_GIVEN,
         kind: Optional[Literal["edge"]] | NotGiven = NOT_GIVEN,
         logpull_options: Optional[str] | NotGiven = NOT_GIVEN,
@@ -584,6 +597,10 @@ class AsyncJobsResource(AsyncAPIResource):
               [Developer Docs](https://developers.cloudflare.com/logs/reference/log-fields/).
 
           enabled: Flag that indicates if the job is enabled.
+
+          filter: The filters to select the events to include and/or remove from your logs. For
+              more information, refer to
+              [Filters](https://developers.cloudflare.com/logs/reference/filters/).
 
           frequency: This field is deprecated. Please use `max_upload_*` parameters instead. The
               frequency at which Cloudflare sends batches of logs to your destination. Setting
@@ -653,6 +670,7 @@ class AsyncJobsResource(AsyncAPIResource):
                     "destination_conf": destination_conf,
                     "dataset": dataset,
                     "enabled": enabled,
+                    "filter": filter,
                     "frequency": frequency,
                     "kind": kind,
                     "logpull_options": logpull_options,
@@ -683,6 +701,7 @@ class AsyncJobsResource(AsyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         destination_conf: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
+        filter: Optional[str] | NotGiven = NOT_GIVEN,
         frequency: Optional[Literal["high", "low"]] | NotGiven = NOT_GIVEN,
         kind: Optional[Literal["edge"]] | NotGiven = NOT_GIVEN,
         logpull_options: Optional[str] | NotGiven = NOT_GIVEN,
@@ -714,6 +733,10 @@ class AsyncJobsResource(AsyncAPIResource):
               included.
 
           enabled: Flag that indicates if the job is enabled.
+
+          filter: The filters to select the events to include and/or remove from your logs. For
+              more information, refer to
+              [Filters](https://developers.cloudflare.com/logs/reference/filters/).
 
           frequency: This field is deprecated. Please use `max_upload_*` parameters instead. The
               frequency at which Cloudflare sends batches of logs to your destination. Setting
@@ -782,6 +805,7 @@ class AsyncJobsResource(AsyncAPIResource):
                 {
                     "destination_conf": destination_conf,
                     "enabled": enabled,
+                    "filter": filter,
                     "frequency": frequency,
                     "kind": kind,
                     "logpull_options": logpull_options,

@@ -61,6 +61,13 @@ class JobCreateParams(TypedDict, total=False):
     enabled: bool
     """Flag that indicates if the job is enabled."""
 
+    filter: Optional[str]
+    """The filters to select the events to include and/or remove from your logs.
+
+    For more information, refer to
+    [Filters](https://developers.cloudflare.com/logs/reference/filters/).
+    """
+
     frequency: Optional[Literal["high", "low"]]
     """This field is deprecated.
 
