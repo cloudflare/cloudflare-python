@@ -1,19 +1,48 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
-from typing_extensions import Literal
+from typing import List, Union
+from typing_extensions import Literal, Annotated, TypeAlias
 
+from ...._utils import PropertyInfo
 from ...._models import BaseModel
 
-__all__ = ["SecretGetResponse"]
+__all__ = ["SecretGetResponse", "WorkersBindingKindSecretText", "WorkersBindingKindSecretKey"]
 
 
-class SecretGetResponse(BaseModel):
-    name: Optional[str] = None
+class WorkersBindingKindSecretText(BaseModel):
+    name: str
+    """A JavaScript variable name for the binding."""
+
+    type: Literal["secret_text"]
+    """The kind of resource that the binding provides."""
+
+
+class WorkersBindingKindSecretKey(BaseModel):
+    algorithm: object
     """
-    The name of this secret, this is what will be used to access it inside the
-    Worker.
+    Algorithm-specific key parameters
+    ([learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#algorithm)).
     """
 
-    type: Optional[Literal["secret_text"]] = None
-    """The type of secret."""
+    format: Literal["raw", "pkcs8", "spki", "jwk"]
+    """
+    Data format of the key
+    ([learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#format)).
+    """
+
+    name: str
+    """A JavaScript variable name for the binding."""
+
+    type: Literal["secret_key"]
+    """The kind of resource that the binding provides."""
+
+    usages: List[Literal["encrypt", "decrypt", "sign", "verify", "deriveKey", "deriveBits", "wrapKey", "unwrapKey"]]
+    """
+    Allowed operations with the key
+    ([learn more](https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/importKey#keyUsages)).
+    """
+
+
+SecretGetResponse: TypeAlias = Annotated[
+    Union[WorkersBindingKindSecretText, WorkersBindingKindSecretKey], PropertyInfo(discriminator="type")
+]
