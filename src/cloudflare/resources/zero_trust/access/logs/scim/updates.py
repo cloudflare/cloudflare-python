@@ -75,7 +75,7 @@ class UpdatesResource(SyncAPIResource):
         Management (SCIM).
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           idp_id: The unique Id of the IdP that has SCIM enabled.
 
@@ -190,7 +190,7 @@ class AsyncUpdatesResource(AsyncAPIResource):
         Management (SCIM).
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           idp_id: The unique Id of the IdP that has SCIM enabled.
 

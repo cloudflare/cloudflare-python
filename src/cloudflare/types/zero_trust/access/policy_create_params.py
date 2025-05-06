@@ -14,7 +14,7 @@ __all__ = ["PolicyCreateParams"]
 
 class PolicyCreateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     decision: Required[Decision]
     """The action Access will take if a user matches this policy.
