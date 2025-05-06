@@ -16,7 +16,7 @@ __all__ = [
     "SettingsBindingWorkersBindingKindAI",
     "SettingsBindingWorkersBindingKindAnalyticsEngine",
     "SettingsBindingWorkersBindingKindAssets",
-    "SettingsBindingWorkersBindingKindBrowserRendering",
+    "SettingsBindingWorkersBindingKindBrowser",
     "SettingsBindingWorkersBindingKindD1",
     "SettingsBindingWorkersBindingKindDispatchNamespace",
     "SettingsBindingWorkersBindingKindDispatchNamespaceOutbound",
@@ -79,11 +79,11 @@ class SettingsBindingWorkersBindingKindAssets(TypedDict, total=False):
     """The kind of resource that the binding provides."""
 
 
-class SettingsBindingWorkersBindingKindBrowserRendering(TypedDict, total=False):
+class SettingsBindingWorkersBindingKindBrowser(TypedDict, total=False):
     name: Required[str]
     """A JavaScript variable name for the binding."""
 
-    type: Required[Literal["browser_rendering"]]
+    type: Required[Literal["browser"]]
     """The kind of resource that the binding provides."""
 
 
@@ -353,7 +353,7 @@ SettingsBinding: TypeAlias = Union[
     SettingsBindingWorkersBindingKindAI,
     SettingsBindingWorkersBindingKindAnalyticsEngine,
     SettingsBindingWorkersBindingKindAssets,
-    SettingsBindingWorkersBindingKindBrowserRendering,
+    SettingsBindingWorkersBindingKindBrowser,
     SettingsBindingWorkersBindingKindD1,
     SettingsBindingWorkersBindingKindDispatchNamespace,
     SettingsBindingWorkersBindingKindDurableObjectNamespace,
