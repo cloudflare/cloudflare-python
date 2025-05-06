@@ -112,6 +112,7 @@ if TYPE_CHECKING:
         resource_sharing,
         browser_rendering,
         mtls_certificates,
+        schema_validation,
         url_normalization,
         custom_nameservers,
         managed_transforms,
@@ -217,6 +218,7 @@ if TYPE_CHECKING:
     from .resources.resource_sharing.resource_sharing import ResourceSharingResource, AsyncResourceSharingResource
     from .resources.browser_rendering.browser_rendering import BrowserRenderingResource, AsyncBrowserRenderingResource
     from .resources.mtls_certificates.mtls_certificates import MTLSCertificatesResource, AsyncMTLSCertificatesResource
+    from .resources.schema_validation.schema_validation import SchemaValidationResource, AsyncSchemaValidationResource
     from .resources.custom_certificates.custom_certificates import (
         CustomCertificatesResource,
         AsyncCustomCertificatesResource,
@@ -898,6 +900,12 @@ class Cloudflare(SyncAPIClient):
         from .resources.pipelines import PipelinesResource
 
         return PipelinesResource(self)
+
+    @cached_property
+    def schema_validation(self) -> SchemaValidationResource:
+        from .resources.schema_validation import SchemaValidationResource
+
+        return SchemaValidationResource(self)
 
     @cached_property
     def with_raw_response(self) -> CloudflareWithRawResponse:
@@ -1711,6 +1719,12 @@ class AsyncCloudflare(AsyncAPIClient):
         return AsyncPipelinesResource(self)
 
     @cached_property
+    def schema_validation(self) -> AsyncSchemaValidationResource:
+        from .resources.schema_validation import AsyncSchemaValidationResource
+
+        return AsyncSchemaValidationResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncCloudflareWithRawResponse:
         return AsyncCloudflareWithRawResponse(self)
 
@@ -2456,6 +2470,12 @@ class CloudflareWithRawResponse:
 
         return PipelinesResourceWithRawResponse(self._client.pipelines)
 
+    @cached_property
+    def schema_validation(self) -> schema_validation.SchemaValidationResourceWithRawResponse:
+        from .resources.schema_validation import SchemaValidationResourceWithRawResponse
+
+        return SchemaValidationResourceWithRawResponse(self._client.schema_validation)
+
 
 class AsyncCloudflareWithRawResponse:
     _client: AsyncCloudflare
@@ -3029,6 +3049,12 @@ class AsyncCloudflareWithRawResponse:
 
         return AsyncPipelinesResourceWithRawResponse(self._client.pipelines)
 
+    @cached_property
+    def schema_validation(self) -> schema_validation.AsyncSchemaValidationResourceWithRawResponse:
+        from .resources.schema_validation import AsyncSchemaValidationResourceWithRawResponse
+
+        return AsyncSchemaValidationResourceWithRawResponse(self._client.schema_validation)
+
 
 class CloudflareWithStreamedResponse:
     _client: Cloudflare
@@ -3601,6 +3627,12 @@ class CloudflareWithStreamedResponse:
         from .resources.pipelines import PipelinesResourceWithStreamingResponse
 
         return PipelinesResourceWithStreamingResponse(self._client.pipelines)
+
+    @cached_property
+    def schema_validation(self) -> schema_validation.SchemaValidationResourceWithStreamingResponse:
+        from .resources.schema_validation import SchemaValidationResourceWithStreamingResponse
+
+        return SchemaValidationResourceWithStreamingResponse(self._client.schema_validation)
 
 
 class AsyncCloudflareWithStreamedResponse:
@@ -4184,6 +4216,12 @@ class AsyncCloudflareWithStreamedResponse:
         from .resources.pipelines import AsyncPipelinesResourceWithStreamingResponse
 
         return AsyncPipelinesResourceWithStreamingResponse(self._client.pipelines)
+
+    @cached_property
+    def schema_validation(self) -> schema_validation.AsyncSchemaValidationResourceWithStreamingResponse:
+        from .resources.schema_validation import AsyncSchemaValidationResourceWithStreamingResponse
+
+        return AsyncSchemaValidationResourceWithStreamingResponse(self._client.schema_validation)
 
 
 Client = Cloudflare
