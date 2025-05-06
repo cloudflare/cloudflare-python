@@ -7,4 +7,4 @@ __all__ = ["CustomDeleteResponse"]
 
 class CustomDeleteResponse(BaseModel):
     domain: str
-    """Name of the removed custom domain"""
+    """Name of the removed custom domain."""

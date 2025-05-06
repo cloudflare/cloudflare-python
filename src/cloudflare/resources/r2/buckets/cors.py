@@ -60,14 +60,14 @@ class CORSResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        Set the CORS policy for a bucket
+        Set the CORS policy for a bucket.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: The bucket jurisdiction.
 
           extra_headers: Send extra headers
 
@@ -112,14 +112,14 @@ class CORSResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        Delete the CORS policy for a bucket
+        Delete the CORS policy for a bucket.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: The bucket jurisdiction.
 
           extra_headers: Send extra headers
 
@@ -163,14 +163,14 @@ class CORSResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CORSGetResponse:
         """
-        Get the CORS policy for a bucket
+        Get the CORS policy for a bucket.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: The bucket jurisdiction.
 
           extra_headers: Send extra headers
 
@@ -236,14 +236,14 @@ class AsyncCORSResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        Set the CORS policy for a bucket
+        Set the CORS policy for a bucket.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: The bucket jurisdiction.
 
           extra_headers: Send extra headers
 
@@ -288,14 +288,14 @@ class AsyncCORSResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        Delete the CORS policy for a bucket
+        Delete the CORS policy for a bucket.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: The bucket jurisdiction.
 
           extra_headers: Send extra headers
 
@@ -339,14 +339,14 @@ class AsyncCORSResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> CORSGetResponse:
         """
-        Get the CORS policy for a bucket
+        Get the CORS policy for a bucket.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: The bucket jurisdiction.
 
           extra_headers: Send extra headers
 

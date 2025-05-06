@@ -149,15 +149,15 @@ class BucketsResource(SyncAPIResource):
         Creates a new R2 bucket.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          name: Name of the bucket
+          name: Name of the bucket.
 
-          location_hint: Location of the bucket
+          location_hint: Location of the bucket.
 
           storage_class: Storage class for newly uploaded objects, unless specified otherwise.
 
-          jurisdiction: Creates the bucket in the provided jurisdiction
+          jurisdiction: Creates the bucket in the provided jurisdiction.
 
           extra_headers: Send extra headers
 
@@ -212,26 +212,26 @@ class BucketsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BucketListResponse:
         """
-        Lists all R2 buckets on your account
+        Lists all R2 buckets on your account.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
           cursor: Pagination cursor received during the last List Buckets call. R2 buckets are
               paginated using cursors instead of page numbers.
 
-          direction: Direction to order buckets
+          direction: Direction to order buckets.
 
           name_contains: Bucket names to filter by. Only buckets with this phrase in their name will be
               returned.
 
-          order: Field to order buckets by
+          order: Field to order buckets by.
 
-          per_page: Maximum number of buckets to return in a single call
+          per_page: Maximum number of buckets to return in a single call.
 
           start_after: Bucket name to start searching after. Buckets are ordered lexicographically.
 
-          jurisdiction: Lists buckets in the provided jurisdiction
+          jurisdiction: Lists buckets in the provided jurisdiction.
 
           extra_headers: Send extra headers
 
@@ -287,11 +287,11 @@ class BucketsResource(SyncAPIResource):
         Deletes an existing R2 bucket.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: The bucket jurisdiction.
 
           extra_headers: Send extra headers
 
@@ -335,14 +335,14 @@ class BucketsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Bucket:
         """
-        Gets metadata for an existing R2 bucket.
+        Gets properties of an existing R2 bucket.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: The bucket jurisdiction.
 
           extra_headers: Send extra headers
 
@@ -440,15 +440,15 @@ class AsyncBucketsResource(AsyncAPIResource):
         Creates a new R2 bucket.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          name: Name of the bucket
+          name: Name of the bucket.
 
-          location_hint: Location of the bucket
+          location_hint: Location of the bucket.
 
           storage_class: Storage class for newly uploaded objects, unless specified otherwise.
 
-          jurisdiction: Creates the bucket in the provided jurisdiction
+          jurisdiction: Creates the bucket in the provided jurisdiction.
 
           extra_headers: Send extra headers
 
@@ -503,26 +503,26 @@ class AsyncBucketsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> BucketListResponse:
         """
-        Lists all R2 buckets on your account
+        Lists all R2 buckets on your account.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
           cursor: Pagination cursor received during the last List Buckets call. R2 buckets are
               paginated using cursors instead of page numbers.
 
-          direction: Direction to order buckets
+          direction: Direction to order buckets.
 
           name_contains: Bucket names to filter by. Only buckets with this phrase in their name will be
               returned.
 
-          order: Field to order buckets by
+          order: Field to order buckets by.
 
-          per_page: Maximum number of buckets to return in a single call
+          per_page: Maximum number of buckets to return in a single call.
 
           start_after: Bucket name to start searching after. Buckets are ordered lexicographically.
 
-          jurisdiction: Lists buckets in the provided jurisdiction
+          jurisdiction: Lists buckets in the provided jurisdiction.
 
           extra_headers: Send extra headers
 
@@ -578,11 +578,11 @@ class AsyncBucketsResource(AsyncAPIResource):
         Deletes an existing R2 bucket.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: The bucket jurisdiction.
 
           extra_headers: Send extra headers
 
@@ -626,14 +626,14 @@ class AsyncBucketsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Bucket:
         """
-        Gets metadata for an existing R2 bucket.
+        Gets properties of an existing R2 bucket.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: The bucket jurisdiction.
 
           extra_headers: Send extra headers
 

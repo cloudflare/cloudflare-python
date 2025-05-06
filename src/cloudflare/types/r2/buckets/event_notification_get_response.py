@@ -12,33 +12,33 @@ __all__ = ["EventNotificationGetResponse", "Queue", "QueueRule"]
 
 class QueueRule(BaseModel):
     actions: List[Literal["PutObject", "CopyObject", "DeleteObject", "CompleteMultipartUpload", "LifecycleDeletion"]]
-    """Array of R2 object actions that will trigger notifications"""
+    """Array of R2 object actions that will trigger notifications."""
 
     created_at: Optional[str] = FieldInfo(alias="createdAt", default=None)
-    """Timestamp when the rule was created"""
+    """Timestamp when the rule was created."""
 
     description: Optional[str] = None
     """
     A description that can be used to identify the event notification rule after
-    creation
+    creation.
     """
 
     prefix: Optional[str] = None
-    """Notifications will be sent only for objects with this prefix"""
+    """Notifications will be sent only for objects with this prefix."""
 
     rule_id: Optional[str] = FieldInfo(alias="ruleId", default=None)
-    """Rule ID"""
+    """Rule ID."""
 
     suffix: Optional[str] = None
-    """Notifications will be sent only for objects with this suffix"""
+    """Notifications will be sent only for objects with this suffix."""
 
 
 class Queue(BaseModel):
     queue_id: Optional[str] = FieldInfo(alias="queueId", default=None)
-    """Queue ID"""
+    """Queue ID."""
 
     queue_name: Optional[str] = FieldInfo(alias="queueName", default=None)
-    """Name of the queue"""
+    """Name of the queue."""
 
     rules: Optional[List[QueueRule]] = None
 

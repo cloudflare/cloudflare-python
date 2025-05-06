@@ -60,14 +60,14 @@ class LocksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        Set lock rules for a bucket
+        Set lock rules for a bucket.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: The bucket jurisdiction.
 
           extra_headers: Send extra headers
 
@@ -112,14 +112,14 @@ class LocksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LockGetResponse:
         """
-        Get lock rules for a bucket
+        Get lock rules for a bucket.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: The bucket jurisdiction.
 
           extra_headers: Send extra headers
 
@@ -185,14 +185,14 @@ class AsyncLocksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        Set lock rules for a bucket
+        Set lock rules for a bucket.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: The bucket jurisdiction.
 
           extra_headers: Send extra headers
 
@@ -237,14 +237,14 @@ class AsyncLocksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LockGetResponse:
         """
-        Get lock rules for a bucket
+        Get lock rules for a bucket.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: The bucket jurisdiction.
 
           extra_headers: Send extra headers
 

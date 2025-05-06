@@ -66,15 +66,15 @@ class SippyResource(SyncAPIResource):
         Sets configuration for Sippy for an existing R2 bucket.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          destination: R2 bucket to copy objects to
+          destination: R2 bucket to copy objects to.
 
-          source: AWS S3 bucket to copy objects from
+          source: AWS S3 bucket to copy objects from.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: The bucket jurisdiction.
 
           extra_headers: Send extra headers
 
@@ -106,15 +106,15 @@ class SippyResource(SyncAPIResource):
         Sets configuration for Sippy for an existing R2 bucket.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          destination: R2 bucket to copy objects to
+          destination: R2 bucket to copy objects to.
 
-          source: GCS bucket to copy objects from
+          source: GCS bucket to copy objects from.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: The bucket jurisdiction.
 
           extra_headers: Send extra headers
 
@@ -185,14 +185,14 @@ class SippyResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SippyDeleteResponse:
         """
-        Disables Sippy on this bucket
+        Disables Sippy on this bucket.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: The bucket jurisdiction.
 
           extra_headers: Send extra headers
 
@@ -239,11 +239,11 @@ class SippyResource(SyncAPIResource):
         Gets configuration for Sippy for an existing R2 bucket.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: The bucket jurisdiction.
 
           extra_headers: Send extra headers
 
@@ -314,15 +314,15 @@ class AsyncSippyResource(AsyncAPIResource):
         Sets configuration for Sippy for an existing R2 bucket.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          destination: R2 bucket to copy objects to
+          destination: R2 bucket to copy objects to.
 
-          source: AWS S3 bucket to copy objects from
+          source: AWS S3 bucket to copy objects from.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: The bucket jurisdiction.
 
           extra_headers: Send extra headers
 
@@ -354,15 +354,15 @@ class AsyncSippyResource(AsyncAPIResource):
         Sets configuration for Sippy for an existing R2 bucket.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          destination: R2 bucket to copy objects to
+          destination: R2 bucket to copy objects to.
 
-          source: GCS bucket to copy objects from
+          source: GCS bucket to copy objects from.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: The bucket jurisdiction.
 
           extra_headers: Send extra headers
 
@@ -433,14 +433,14 @@ class AsyncSippyResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SippyDeleteResponse:
         """
-        Disables Sippy on this bucket
+        Disables Sippy on this bucket.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: The bucket jurisdiction.
 
           extra_headers: Send extra headers
 
@@ -487,11 +487,11 @@ class AsyncSippyResource(AsyncAPIResource):
         Gets configuration for Sippy for an existing R2 bucket.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket_name: Name of the bucket
+          bucket_name: Name of the bucket.
 
-          jurisdiction: The bucket jurisdiction
+          jurisdiction: The bucket jurisdiction.
 
           extra_headers: Send extra headers
 
