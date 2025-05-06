@@ -16,22 +16,8 @@ from .lists import (
     ListsResourceWithStreamingResponse,
     AsyncListsResourceWithStreamingResponse,
 )
-from .bulk_operations import (
-    BulkOperationsResource,
-    AsyncBulkOperationsResource,
-    BulkOperationsResourceWithRawResponse,
-    AsyncBulkOperationsResourceWithRawResponse,
-    BulkOperationsResourceWithStreamingResponse,
-    AsyncBulkOperationsResourceWithStreamingResponse,
-)
 
 __all__ = [
-    "BulkOperationsResource",
-    "AsyncBulkOperationsResource",
-    "BulkOperationsResourceWithRawResponse",
-    "AsyncBulkOperationsResourceWithRawResponse",
-    "BulkOperationsResourceWithStreamingResponse",
-    "AsyncBulkOperationsResourceWithStreamingResponse",
     "ItemsResource",
     "AsyncItemsResource",
     "ItemsResourceWithRawResponse",

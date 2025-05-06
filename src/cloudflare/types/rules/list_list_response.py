@@ -3,6 +3,6 @@
 from typing import List, Union
 from typing_extensions import TypeAlias
 
-__all__ = ["ItemListResponse"]
+__all__ = ["ListListResponse"]
 
-ItemListResponse: TypeAlias = Union[List[object], object]
+ListListResponse: TypeAlias = Union[List[object], object]

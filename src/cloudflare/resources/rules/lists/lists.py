@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Any, cast
 from typing_extensions import Literal
 
 import httpx
@@ -26,28 +26,18 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ....pagination import SyncSinglePage, AsyncSinglePage
 from ....types.rules import list_create_params, list_update_params
-from ...._base_client import AsyncPaginator, make_request_options
-from .bulk_operations import (
-    BulkOperationsResource,
-    AsyncBulkOperationsResource,
-    BulkOperationsResourceWithRawResponse,
-    AsyncBulkOperationsResourceWithRawResponse,
-    BulkOperationsResourceWithStreamingResponse,
-    AsyncBulkOperationsResourceWithStreamingResponse,
-)
-from ....types.rules.lists_list import ListsList
+from ...._base_client import make_request_options
+from ....types.rules.list_get_response import ListGetResponse
+from ....types.rules.list_list_response import ListListResponse
+from ....types.rules.list_create_response import ListCreateResponse
 from ....types.rules.list_delete_response import ListDeleteResponse
+from ....types.rules.list_update_response import ListUpdateResponse
 
 __all__ = ["ListsResource", "AsyncListsResource"]
 
 
 class ListsResource(SyncAPIResource):
-    @cached_property
-    def bulk_operations(self) -> BulkOperationsResource:
-        return BulkOperationsResource(self._client)
-
     @cached_property
     def items(self) -> ItemsResource:
         return ItemsResource(self._client)
@@ -84,12 +74,12 @@ class ListsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ListsList:
+    ) -> ListCreateResponse:
         """
         Creates a new list of the specified type.
 
         Args:
-          account_id: Identifier
+          account_id: Defines an identifier.
 
           kind: The type of the list. Each type supports specific list items (IP addresses,
               ASNs, hostnames or redirects).
@@ -108,24 +98,29 @@ class ListsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._post(
-            f"/accounts/{account_id}/rules/lists",
-            body=maybe_transform(
-                {
-                    "kind": kind,
-                    "name": name,
-                    "description": description,
-                },
-                list_create_params.ListCreateParams,
+        return cast(
+            ListCreateResponse,
+            self._post(
+                f"/accounts/{account_id}/rules/lists",
+                body=maybe_transform(
+                    {
+                        "kind": kind,
+                        "name": name,
+                        "description": description,
+                    },
+                    list_create_params.ListCreateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[ListCreateResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[ListCreateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[ListsList]._unwrapper,
-            ),
-            cast_to=cast(Type[ListsList], ResultWrapper[ListsList]),
         )
 
     def update(
@@ -140,12 +135,12 @@ class ListsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ListsList:
+    ) -> ListUpdateResponse:
         """
         Updates the description of a list.
 
         Args:
-          account_id: Identifier
+          account_id: Defines an identifier.
 
           list_id: The unique ID of the list.
 
@@ -163,17 +158,22 @@ class ListsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not list_id:
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
-        return self._put(
-            f"/accounts/{account_id}/rules/lists/{list_id}",
-            body=maybe_transform({"description": description}, list_update_params.ListUpdateParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[ListsList]._unwrapper,
+        return cast(
+            ListUpdateResponse,
+            self._put(
+                f"/accounts/{account_id}/rules/lists/{list_id}",
+                body=maybe_transform({"description": description}, list_update_params.ListUpdateParams),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[ListUpdateResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[ListUpdateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[ListsList], ResultWrapper[ListsList]),
         )
 
     def list(
@@ -186,12 +186,12 @@ class ListsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[ListsList]:
+    ) -> ListListResponse:
         """
         Fetches all lists in the account.
 
         Args:
-          account_id: Identifier
+          account_id: Defines an identifier.
 
           extra_headers: Send extra headers
 
@@ -203,13 +203,21 @@ class ListsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get_api_list(
-            f"/accounts/{account_id}/rules/lists",
-            page=SyncSinglePage[ListsList],
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+        return cast(
+            ListListResponse,
+            self._get(
+                f"/accounts/{account_id}/rules/lists",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[ListListResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[ListListResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            model=ListsList,
         )
 
     def delete(
@@ -228,7 +236,7 @@ class ListsResource(SyncAPIResource):
         Deletes a specific list and all its items.
 
         Args:
-          account_id: Identifier
+          account_id: Defines an identifier.
 
           list_id: The unique ID of the list.
 
@@ -244,16 +252,21 @@ class ListsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not list_id:
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
-        return self._delete(
-            f"/accounts/{account_id}/rules/lists/{list_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[ListDeleteResponse]._unwrapper,
+        return cast(
+            ListDeleteResponse,
+            self._delete(
+                f"/accounts/{account_id}/rules/lists/{list_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[ListDeleteResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[ListDeleteResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[ListDeleteResponse], ResultWrapper[ListDeleteResponse]),
         )
 
     def get(
@@ -267,12 +280,12 @@ class ListsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ListsList:
+    ) -> ListGetResponse:
         """
         Fetches the details of a list.
 
         Args:
-          account_id: Identifier
+          account_id: Defines an identifier.
 
           list_id: The unique ID of the list.
 
@@ -288,24 +301,25 @@ class ListsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not list_id:
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
-        return self._get(
-            f"/accounts/{account_id}/rules/lists/{list_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[ListsList]._unwrapper,
+        return cast(
+            ListGetResponse,
+            self._get(
+                f"/accounts/{account_id}/rules/lists/{list_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[ListGetResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[ListGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[ListsList], ResultWrapper[ListsList]),
         )
 
 
 class AsyncListsResource(AsyncAPIResource):
-    @cached_property
-    def bulk_operations(self) -> AsyncBulkOperationsResource:
-        return AsyncBulkOperationsResource(self._client)
-
     @cached_property
     def items(self) -> AsyncItemsResource:
         return AsyncItemsResource(self._client)
@@ -342,12 +356,12 @@ class AsyncListsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ListsList:
+    ) -> ListCreateResponse:
         """
         Creates a new list of the specified type.
 
         Args:
-          account_id: Identifier
+          account_id: Defines an identifier.
 
           kind: The type of the list. Each type supports specific list items (IP addresses,
               ASNs, hostnames or redirects).
@@ -366,24 +380,29 @@ class AsyncListsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._post(
-            f"/accounts/{account_id}/rules/lists",
-            body=await async_maybe_transform(
-                {
-                    "kind": kind,
-                    "name": name,
-                    "description": description,
-                },
-                list_create_params.ListCreateParams,
+        return cast(
+            ListCreateResponse,
+            await self._post(
+                f"/accounts/{account_id}/rules/lists",
+                body=await async_maybe_transform(
+                    {
+                        "kind": kind,
+                        "name": name,
+                        "description": description,
+                    },
+                    list_create_params.ListCreateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[ListCreateResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[ListCreateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[ListsList]._unwrapper,
-            ),
-            cast_to=cast(Type[ListsList], ResultWrapper[ListsList]),
         )
 
     async def update(
@@ -398,12 +417,12 @@ class AsyncListsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ListsList:
+    ) -> ListUpdateResponse:
         """
         Updates the description of a list.
 
         Args:
-          account_id: Identifier
+          account_id: Defines an identifier.
 
           list_id: The unique ID of the list.
 
@@ -421,20 +440,25 @@ class AsyncListsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not list_id:
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
-        return await self._put(
-            f"/accounts/{account_id}/rules/lists/{list_id}",
-            body=await async_maybe_transform({"description": description}, list_update_params.ListUpdateParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[ListsList]._unwrapper,
+        return cast(
+            ListUpdateResponse,
+            await self._put(
+                f"/accounts/{account_id}/rules/lists/{list_id}",
+                body=await async_maybe_transform({"description": description}, list_update_params.ListUpdateParams),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[ListUpdateResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[ListUpdateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[ListsList], ResultWrapper[ListsList]),
         )
 
-    def list(
+    async def list(
         self,
         *,
         account_id: str,
@@ -444,12 +468,12 @@ class AsyncListsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[ListsList, AsyncSinglePage[ListsList]]:
+    ) -> ListListResponse:
         """
         Fetches all lists in the account.
 
         Args:
-          account_id: Identifier
+          account_id: Defines an identifier.
 
           extra_headers: Send extra headers
 
@@ -461,13 +485,21 @@ class AsyncListsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get_api_list(
-            f"/accounts/{account_id}/rules/lists",
-            page=AsyncSinglePage[ListsList],
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+        return cast(
+            ListListResponse,
+            await self._get(
+                f"/accounts/{account_id}/rules/lists",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[ListListResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[ListListResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            model=ListsList,
         )
 
     async def delete(
@@ -486,7 +518,7 @@ class AsyncListsResource(AsyncAPIResource):
         Deletes a specific list and all its items.
 
         Args:
-          account_id: Identifier
+          account_id: Defines an identifier.
 
           list_id: The unique ID of the list.
 
@@ -502,16 +534,21 @@ class AsyncListsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not list_id:
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
-        return await self._delete(
-            f"/accounts/{account_id}/rules/lists/{list_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[ListDeleteResponse]._unwrapper,
+        return cast(
+            ListDeleteResponse,
+            await self._delete(
+                f"/accounts/{account_id}/rules/lists/{list_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[ListDeleteResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[ListDeleteResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[ListDeleteResponse], ResultWrapper[ListDeleteResponse]),
         )
 
     async def get(
@@ -525,12 +562,12 @@ class AsyncListsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ListsList:
+    ) -> ListGetResponse:
         """
         Fetches the details of a list.
 
         Args:
-          account_id: Identifier
+          account_id: Defines an identifier.
 
           list_id: The unique ID of the list.
 
@@ -546,16 +583,21 @@ class AsyncListsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not list_id:
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
-        return await self._get(
-            f"/accounts/{account_id}/rules/lists/{list_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[ListsList]._unwrapper,
+        return cast(
+            ListGetResponse,
+            await self._get(
+                f"/accounts/{account_id}/rules/lists/{list_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[ListGetResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[ListGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[ListsList], ResultWrapper[ListsList]),
         )
 
 
@@ -578,10 +620,6 @@ class ListsResourceWithRawResponse:
         self.get = to_raw_response_wrapper(
             lists.get,
         )
-
-    @cached_property
-    def bulk_operations(self) -> BulkOperationsResourceWithRawResponse:
-        return BulkOperationsResourceWithRawResponse(self._lists.bulk_operations)
 
     @cached_property
     def items(self) -> ItemsResourceWithRawResponse:
@@ -609,10 +647,6 @@ class AsyncListsResourceWithRawResponse:
         )
 
     @cached_property
-    def bulk_operations(self) -> AsyncBulkOperationsResourceWithRawResponse:
-        return AsyncBulkOperationsResourceWithRawResponse(self._lists.bulk_operations)
-
-    @cached_property
     def items(self) -> AsyncItemsResourceWithRawResponse:
         return AsyncItemsResourceWithRawResponse(self._lists.items)
 
@@ -638,10 +672,6 @@ class ListsResourceWithStreamingResponse:
         )
 
     @cached_property
-    def bulk_operations(self) -> BulkOperationsResourceWithStreamingResponse:
-        return BulkOperationsResourceWithStreamingResponse(self._lists.bulk_operations)
-
-    @cached_property
     def items(self) -> ItemsResourceWithStreamingResponse:
         return ItemsResourceWithStreamingResponse(self._lists.items)
 
@@ -665,10 +695,6 @@ class AsyncListsResourceWithStreamingResponse:
         self.get = async_to_streamed_response_wrapper(
             lists.get,
         )
-
-    @cached_property
-    def bulk_operations(self) -> AsyncBulkOperationsResourceWithStreamingResponse:
-        return AsyncBulkOperationsResourceWithStreamingResponse(self._lists.bulk_operations)
 
     @cached_property
     def items(self) -> AsyncItemsResourceWithStreamingResponse:
