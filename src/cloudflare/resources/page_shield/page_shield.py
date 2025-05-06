@@ -23,10 +23,7 @@ from .scripts import (
     AsyncScriptsResourceWithStreamingResponse,
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ..._utils import maybe_transform, async_maybe_transform
 from .policies import (
     PoliciesResource,
     AsyncPoliciesResource,
