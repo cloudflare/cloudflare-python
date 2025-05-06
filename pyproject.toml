@@ -147,11 +147,10 @@ exclude = [
 ]
 
 reportImplicitOverride = true
+reportOverlappingOverload = false
 
 reportImportCycles = false
 reportPrivateUsage = false
-reportOverlappingOverload = false
-
 
 [tool.ruff]
 line-length = 120
