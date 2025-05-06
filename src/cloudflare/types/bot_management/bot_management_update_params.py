@@ -16,7 +16,7 @@ __all__ = [
 
 class BotFightModeConfiguration(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     ai_bots_protection: Literal["block", "disabled"]
     """Enable rule to block AI Scrapers and Crawlers."""
@@ -36,7 +36,7 @@ class BotFightModeConfiguration(TypedDict, total=False):
 
 class SuperBotFightModeDefinitelyConfiguration(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     ai_bots_protection: Literal["block", "disabled"]
     """Enable rule to block AI Scrapers and Crawlers."""
@@ -69,7 +69,7 @@ class SuperBotFightModeDefinitelyConfiguration(TypedDict, total=False):
 
 class SuperBotFightModeLikelyConfiguration(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     ai_bots_protection: Literal["block", "disabled"]
     """Enable rule to block AI Scrapers and Crawlers."""
@@ -105,7 +105,7 @@ class SuperBotFightModeLikelyConfiguration(TypedDict, total=False):
 
 class SubscriptionConfiguration(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     ai_bots_protection: Literal["block", "disabled"]
     """Enable rule to block AI Scrapers and Crawlers."""

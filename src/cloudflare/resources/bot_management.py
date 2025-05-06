@@ -126,7 +126,7 @@ class BotManagementResource(SyncAPIResource):
         ```
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           ai_bots_protection: Enable rule to block AI Scrapers and Crawlers.
 
@@ -230,7 +230,7 @@ class BotManagementResource(SyncAPIResource):
         ```
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           ai_bots_protection: Enable rule to block AI Scrapers and Crawlers.
 
@@ -343,7 +343,7 @@ class BotManagementResource(SyncAPIResource):
         ```
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           ai_bots_protection: Enable rule to block AI Scrapers and Crawlers.
 
@@ -455,7 +455,7 @@ class BotManagementResource(SyncAPIResource):
         ```
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           ai_bots_protection: Enable rule to block AI Scrapers and Crawlers.
 
@@ -554,7 +554,7 @@ class BotManagementResource(SyncAPIResource):
         Retrieve a zone's Bot Management Config
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -684,7 +684,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
         ```
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           ai_bots_protection: Enable rule to block AI Scrapers and Crawlers.
 
@@ -788,7 +788,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
         ```
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           ai_bots_protection: Enable rule to block AI Scrapers and Crawlers.
 
@@ -901,7 +901,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
         ```
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           ai_bots_protection: Enable rule to block AI Scrapers and Crawlers.
 
@@ -1013,7 +1013,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
         ```
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           ai_bots_protection: Enable rule to block AI Scrapers and Crawlers.
 
@@ -1112,7 +1112,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
         Retrieve a zone's Bot Management Config
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
