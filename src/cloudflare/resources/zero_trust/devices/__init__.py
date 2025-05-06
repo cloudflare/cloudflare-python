@@ -80,6 +80,14 @@ from .fleet_status import (
     FleetStatusResourceWithStreamingResponse,
     AsyncFleetStatusResourceWithStreamingResponse,
 )
+from .registrations import (
+    RegistrationsResource,
+    AsyncRegistrationsResource,
+    RegistrationsResourceWithRawResponse,
+    AsyncRegistrationsResourceWithRawResponse,
+    RegistrationsResourceWithStreamingResponse,
+    AsyncRegistrationsResourceWithStreamingResponse,
+)
 from .override_codes import (
     OverrideCodesResource,
     AsyncOverrideCodesResource,
@@ -96,6 +104,12 @@ __all__ = [
     "AsyncResilienceResourceWithRawResponse",
     "ResilienceResourceWithStreamingResponse",
     "AsyncResilienceResourceWithStreamingResponse",
+    "RegistrationsResource",
+    "AsyncRegistrationsResource",
+    "RegistrationsResourceWithRawResponse",
+    "AsyncRegistrationsResourceWithRawResponse",
+    "RegistrationsResourceWithStreamingResponse",
+    "AsyncRegistrationsResourceWithStreamingResponse",
     "DEXTestsResource",
     "AsyncDEXTestsResource",
     "DEXTestsResourceWithRawResponse",
