@@ -28,22 +28,11 @@ class TestResourceGroups:
     def test_method_create(self, client: Cloudflare) -> None:
         resource_group = client.iam.resource_groups.create(
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            name="NewResourceGroup",
             scope={
                 "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
                 "objects": [{"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"}],
             },
-        )
-        assert_matches_type(ResourceGroupCreateResponse, resource_group, path=["response"])
-
-    @parametrize
-    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
-        resource_group = client.iam.resource_groups.create(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
-            scope={
-                "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
-                "objects": [{"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"}],
-            },
-            meta={"editable": "false"},
         )
         assert_matches_type(ResourceGroupCreateResponse, resource_group, path=["response"])
 
@@ -51,6 +40,7 @@ class TestResourceGroups:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.iam.resource_groups.with_raw_response.create(
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            name="NewResourceGroup",
             scope={
                 "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
                 "objects": [{"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"}],
@@ -66,6 +56,7 @@ class TestResourceGroups:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.iam.resource_groups.with_streaming_response.create(
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            name="NewResourceGroup",
             scope={
                 "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
                 "objects": [{"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"}],
@@ -84,6 +75,7 @@ class TestResourceGroups:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.iam.resource_groups.with_raw_response.create(
                 account_id="",
+                name="NewResourceGroup",
                 scope={
                     "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
                     "objects": [{"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"}],
@@ -95,10 +87,6 @@ class TestResourceGroups:
         resource_group = client.iam.resource_groups.update(
             resource_group_id="6d7f2f5f5b1d4a0e9081fdc98d432fd1",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
-            scope={
-                "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
-                "objects": [{"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"}],
-            },
         )
         assert_matches_type(ResourceGroupUpdateResponse, resource_group, path=["response"])
 
@@ -107,11 +95,11 @@ class TestResourceGroups:
         resource_group = client.iam.resource_groups.update(
             resource_group_id="6d7f2f5f5b1d4a0e9081fdc98d432fd1",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            name="UpdatedResourceGroup",
             scope={
                 "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
                 "objects": [{"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"}],
             },
-            meta={"editable": "false"},
         )
         assert_matches_type(ResourceGroupUpdateResponse, resource_group, path=["response"])
 
@@ -120,10 +108,6 @@ class TestResourceGroups:
         response = client.iam.resource_groups.with_raw_response.update(
             resource_group_id="6d7f2f5f5b1d4a0e9081fdc98d432fd1",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
-            scope={
-                "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
-                "objects": [{"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"}],
-            },
         )
 
         assert response.is_closed is True
@@ -136,10 +120,6 @@ class TestResourceGroups:
         with client.iam.resource_groups.with_streaming_response.update(
             resource_group_id="6d7f2f5f5b1d4a0e9081fdc98d432fd1",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
-            scope={
-                "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
-                "objects": [{"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"}],
-            },
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -155,20 +135,12 @@ class TestResourceGroups:
             client.iam.resource_groups.with_raw_response.update(
                 resource_group_id="6d7f2f5f5b1d4a0e9081fdc98d432fd1",
                 account_id="",
-                scope={
-                    "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
-                    "objects": [{"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"}],
-                },
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `resource_group_id` but received ''"):
             client.iam.resource_groups.with_raw_response.update(
                 resource_group_id="",
                 account_id="eb78d65290b24279ba6f44721b3ea3c4",
-                scope={
-                    "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
-                    "objects": [{"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"}],
-                },
             )
 
     @parametrize
@@ -324,22 +296,11 @@ class TestAsyncResourceGroups:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         resource_group = await async_client.iam.resource_groups.create(
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            name="NewResourceGroup",
             scope={
                 "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
                 "objects": [{"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"}],
             },
-        )
-        assert_matches_type(ResourceGroupCreateResponse, resource_group, path=["response"])
-
-    @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        resource_group = await async_client.iam.resource_groups.create(
-            account_id="eb78d65290b24279ba6f44721b3ea3c4",
-            scope={
-                "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
-                "objects": [{"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"}],
-            },
-            meta={"editable": "false"},
         )
         assert_matches_type(ResourceGroupCreateResponse, resource_group, path=["response"])
 
@@ -347,6 +308,7 @@ class TestAsyncResourceGroups:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.iam.resource_groups.with_raw_response.create(
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            name="NewResourceGroup",
             scope={
                 "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
                 "objects": [{"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"}],
@@ -362,6 +324,7 @@ class TestAsyncResourceGroups:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.iam.resource_groups.with_streaming_response.create(
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            name="NewResourceGroup",
             scope={
                 "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
                 "objects": [{"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"}],
@@ -380,6 +343,7 @@ class TestAsyncResourceGroups:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.iam.resource_groups.with_raw_response.create(
                 account_id="",
+                name="NewResourceGroup",
                 scope={
                     "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
                     "objects": [{"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"}],
@@ -391,10 +355,6 @@ class TestAsyncResourceGroups:
         resource_group = await async_client.iam.resource_groups.update(
             resource_group_id="6d7f2f5f5b1d4a0e9081fdc98d432fd1",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
-            scope={
-                "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
-                "objects": [{"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"}],
-            },
         )
         assert_matches_type(ResourceGroupUpdateResponse, resource_group, path=["response"])
 
@@ -403,11 +363,11 @@ class TestAsyncResourceGroups:
         resource_group = await async_client.iam.resource_groups.update(
             resource_group_id="6d7f2f5f5b1d4a0e9081fdc98d432fd1",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
+            name="UpdatedResourceGroup",
             scope={
                 "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
                 "objects": [{"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"}],
             },
-            meta={"editable": "false"},
         )
         assert_matches_type(ResourceGroupUpdateResponse, resource_group, path=["response"])
 
@@ -416,10 +376,6 @@ class TestAsyncResourceGroups:
         response = await async_client.iam.resource_groups.with_raw_response.update(
             resource_group_id="6d7f2f5f5b1d4a0e9081fdc98d432fd1",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
-            scope={
-                "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
-                "objects": [{"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"}],
-            },
         )
 
         assert response.is_closed is True
@@ -432,10 +388,6 @@ class TestAsyncResourceGroups:
         async with async_client.iam.resource_groups.with_streaming_response.update(
             resource_group_id="6d7f2f5f5b1d4a0e9081fdc98d432fd1",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
-            scope={
-                "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
-                "objects": [{"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"}],
-            },
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -451,20 +403,12 @@ class TestAsyncResourceGroups:
             await async_client.iam.resource_groups.with_raw_response.update(
                 resource_group_id="6d7f2f5f5b1d4a0e9081fdc98d432fd1",
                 account_id="",
-                scope={
-                    "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
-                    "objects": [{"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"}],
-                },
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `resource_group_id` but received ''"):
             await async_client.iam.resource_groups.with_raw_response.update(
                 resource_group_id="",
                 account_id="eb78d65290b24279ba6f44721b3ea3c4",
-                scope={
-                    "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
-                    "objects": [{"key": "com.cloudflare.api.account.zone.23f8d65290b24279ba6f44721b3eaad5"}],
-                },
             )
 
     @parametrize
