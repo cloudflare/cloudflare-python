@@ -40,6 +40,7 @@ class TestConfigurations:
                     "fail_closed": False,
                     "notification_settings": {
                         "enabled": True,
+                        "include_context": True,
                         "msg": "msg",
                         "support_url": "support_url",
                     },
@@ -130,6 +131,7 @@ class TestConfigurations:
                     "fail_closed": False,
                     "notification_settings": {
                         "enabled": True,
+                        "include_context": True,
                         "msg": "msg",
                         "support_url": "support_url",
                     },
@@ -262,6 +264,7 @@ class TestAsyncConfigurations:
                     "fail_closed": False,
                     "notification_settings": {
                         "enabled": True,
+                        "include_context": True,
                         "msg": "msg",
                         "support_url": "support_url",
                     },
@@ -352,6 +355,7 @@ class TestAsyncConfigurations:
                     "fail_closed": False,
                     "notification_settings": {
                         "enabled": True,
+                        "include_context": True,
                         "msg": "msg",
                         "support_url": "support_url",
                     },

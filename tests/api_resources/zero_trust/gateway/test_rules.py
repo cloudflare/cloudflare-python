@@ -65,6 +65,10 @@ class TestRules:
                     "upload": "enabled",
                     "version": "v1",
                 },
+                "block_page": {
+                    "target_uri": "https://example.com",
+                    "include_context": True,
+                },
                 "block_page_enabled": True,
                 "block_reason": "This website is a security risk",
                 "bypass_parent_rule": False,
@@ -105,6 +109,7 @@ class TestRules:
                 },
                 "notification_settings": {
                     "enabled": True,
+                    "include_context": True,
                     "msg": "msg",
                     "support_url": "support_url",
                 },
@@ -221,6 +226,10 @@ class TestRules:
                     "upload": "enabled",
                     "version": "v1",
                 },
+                "block_page": {
+                    "target_uri": "https://example.com",
+                    "include_context": True,
+                },
                 "block_page_enabled": True,
                 "block_reason": "This website is a security risk",
                 "bypass_parent_rule": False,
@@ -261,6 +270,7 @@ class TestRules:
                 },
                 "notification_settings": {
                     "enabled": True,
+                    "include_context": True,
                     "msg": "msg",
                     "support_url": "support_url",
                 },
@@ -572,6 +582,10 @@ class TestAsyncRules:
                     "upload": "enabled",
                     "version": "v1",
                 },
+                "block_page": {
+                    "target_uri": "https://example.com",
+                    "include_context": True,
+                },
                 "block_page_enabled": True,
                 "block_reason": "This website is a security risk",
                 "bypass_parent_rule": False,
@@ -612,6 +626,7 @@ class TestAsyncRules:
                 },
                 "notification_settings": {
                     "enabled": True,
+                    "include_context": True,
                     "msg": "msg",
                     "support_url": "support_url",
                 },
@@ -728,6 +743,10 @@ class TestAsyncRules:
                     "upload": "enabled",
                     "version": "v1",
                 },
+                "block_page": {
+                    "target_uri": "https://example.com",
+                    "include_context": True,
+                },
                 "block_page_enabled": True,
                 "block_reason": "This website is a security risk",
                 "bypass_parent_rule": False,
@@ -768,6 +787,7 @@ class TestAsyncRules:
                 },
                 "notification_settings": {
                     "enabled": True,
+                    "include_context": True,
                     "msg": "msg",
                     "support_url": "support_url",
                 },
