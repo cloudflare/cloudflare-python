@@ -50,6 +50,8 @@ class TestEvents:
             shuffle_at_event_start=True,
             suspended=True,
             total_active_users=200,
+            turnstile_action="log",
+            turnstile_mode="off",
         )
         assert_matches_type(Event, event, path=["response"])
 
@@ -136,6 +138,8 @@ class TestEvents:
             shuffle_at_event_start=True,
             suspended=True,
             total_active_users=200,
+            turnstile_action="log",
+            turnstile_mode="off",
         )
         assert_matches_type(Event, event, path=["response"])
 
@@ -354,6 +358,8 @@ class TestEvents:
             shuffle_at_event_start=True,
             suspended=True,
             total_active_users=200,
+            turnstile_action="log",
+            turnstile_mode="off",
         )
         assert_matches_type(Event, event, path=["response"])
 
@@ -516,6 +522,8 @@ class TestAsyncEvents:
             shuffle_at_event_start=True,
             suspended=True,
             total_active_users=200,
+            turnstile_action="log",
+            turnstile_mode="off",
         )
         assert_matches_type(Event, event, path=["response"])
 
@@ -602,6 +610,8 @@ class TestAsyncEvents:
             shuffle_at_event_start=True,
             suspended=True,
             total_active_users=200,
+            turnstile_action="log",
+            turnstile_mode="off",
         )
         assert_matches_type(Event, event, path=["response"])
 
@@ -820,6 +830,8 @@ class TestAsyncEvents:
             shuffle_at_event_start=True,
             suspended=True,
             total_active_users=200,
+            turnstile_action="log",
+            turnstile_mode="off",
         )
         assert_matches_type(Event, event, path=["response"])
 
