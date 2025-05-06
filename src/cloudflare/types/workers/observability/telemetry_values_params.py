@@ -5,12 +5,12 @@ from __future__ import annotations
 from typing import List, Union, Iterable
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
-from ....._utils import PropertyInfo
+from ...._utils import PropertyInfo
 
-__all__ = ["ValueCreateParams", "Timeframe", "Filter", "Needle"]
+__all__ = ["TelemetryValuesParams", "Timeframe", "Filter", "Needle"]
 
 
-class ValueCreateParams(TypedDict, total=False):
+class TelemetryValuesParams(TypedDict, total=False):
     account_id: Required[str]
 
     datasets: Required[List[str]]

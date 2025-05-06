@@ -2,9 +2,7 @@
 
 from __future__ import annotations
 
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from .telemetry.telemetry import (
+from .telemetry import (
     TelemetryResource,
     AsyncTelemetryResource,
     TelemetryResourceWithRawResponse,
@@ -12,6 +10,8 @@ from .telemetry.telemetry import (
     TelemetryResourceWithStreamingResponse,
     AsyncTelemetryResourceWithStreamingResponse,
 )
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
 
 __all__ = ["ObservabilityResource", "AsyncObservabilityResource"]
 
