@@ -284,7 +284,7 @@ class ThreatEventsResource(SyncAPIResource):
 
         To list existing datasets (and their
         IDs) in your account, use the
-        [`List Datasets`](https://developers.cloudflare.com/api/resources/cloudforce_one/subresources/threat_events/subresources/datasets/methods/list)
+        [`List Datasets`](https://developers.cloudflare.com/api/resources/cloudforce_one/subresources/threat_events/subresources/datasets/methods/list/)
         endpoint.
 
         Args:
@@ -327,7 +327,7 @@ class ThreatEventsResource(SyncAPIResource):
 
         To list existing datasets (and their
         IDs) in your account, use the
-        [`List Datasets`](https://developers.cloudflare.com/api/resources/cloudforce_one/subresources/threat_events/subresources/datasets/methods/list)
+        [`List Datasets`](https://developers.cloudflare.com/api/resources/cloudforce_one/subresources/threat_events/subresources/datasets/methods/list/)
         endpoint.
 
         Args:
@@ -611,7 +611,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
 
         To list existing datasets (and their
         IDs) in your account, use the
-        [`List Datasets`](https://developers.cloudflare.com/api/resources/cloudforce_one/subresources/threat_events/subresources/datasets/methods/list)
+        [`List Datasets`](https://developers.cloudflare.com/api/resources/cloudforce_one/subresources/threat_events/subresources/datasets/methods/list/)
         endpoint.
 
         Args:
@@ -654,7 +654,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
 
         To list existing datasets (and their
         IDs) in your account, use the
-        [`List Datasets`](https://developers.cloudflare.com/api/resources/cloudforce_one/subresources/threat_events/subresources/datasets/methods/list)
+        [`List Datasets`](https://developers.cloudflare.com/api/resources/cloudforce_one/subresources/threat_events/subresources/datasets/methods/list/)
         endpoint.
 
         Args:
