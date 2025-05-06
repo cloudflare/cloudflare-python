@@ -62,7 +62,7 @@ class OperationsResource(SyncAPIResource):
         method: List[str] | NotGiven = NOT_GIVEN,
         order: Literal["host", "method", "endpoint", "traffic_stats.requests", "traffic_stats.last_updated"]
         | NotGiven = NOT_GIVEN,
-        origin: Literal["ML", "SessionIdentifier", "LabelDiscovery"] | NotGiven = NOT_GIVEN,
+        origin: Literal["ML", "SessionIdentifier"] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         state: Literal["review", "saved", "ignored"] | NotGiven = NOT_GIVEN,
@@ -273,7 +273,7 @@ class AsyncOperationsResource(AsyncAPIResource):
         method: List[str] | NotGiven = NOT_GIVEN,
         order: Literal["host", "method", "endpoint", "traffic_stats.requests", "traffic_stats.last_updated"]
         | NotGiven = NOT_GIVEN,
-        origin: Literal["ML", "SessionIdentifier", "LabelDiscovery"] | NotGiven = NOT_GIVEN,
+        origin: Literal["ML", "SessionIdentifier"] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         state: Literal["review", "saved", "ignored"] | NotGiven = NOT_GIVEN,
