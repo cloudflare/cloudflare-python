@@ -155,22 +155,22 @@ class AccessRulesResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
-          direction: The direction used to sort returned rules.
+          direction: Defines the direction used to sort returned rules.
 
-          match: When set to `all`, all the search requirements must match. When set to `any`,
-              only one of the search requirements has to match.
+          match: Defines the search requirements. When set to `all`, all the search requirements
+              must match. When set to `any`, only one of the search requirements has to match.
 
           mode: The action to apply to a matched request.
 
-          notes: The string to search for in the notes of existing IP Access rules. Notes: For
-              example, the string 'attack' would match IP Access rules with notes 'Attack
-              26/02' and 'Attack 27/02'. The search is case insensitive.
+          notes: Defines the string to search for in the notes of existing IP Access rules.
+              Notes: For example, the string 'attack' would match IP Access rules with notes
+              'Attack 26/02' and 'Attack 27/02'. The search is case insensitive.
 
-          order: The field used to sort returned rules.
+          order: Defines the field used to sort returned rules.
 
-          page: Requested page within paginated list of results.
+          page: Defines the requested page within paginated list of results.
 
-          per_page: Maximum number of results requested.
+          per_page: Defines the maximum number of results requested.
 
           extra_headers: Send extra headers
 
@@ -236,7 +236,7 @@ class AccessRulesResource(SyncAPIResource):
         Note: This operation will affect all zones in the account or zone.
 
         Args:
-          rule_id: Unique identifier for a rule
+          rule_id: Unique identifier for a rule.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -298,7 +298,7 @@ class AccessRulesResource(SyncAPIResource):
         Note: This operation will affect all zones in the account or zone.
 
         Args:
-          rule_id: Unique identifier for a rule
+          rule_id: Unique identifier for a rule.
 
           configuration: The rule configuration.
 
@@ -369,7 +369,7 @@ class AccessRulesResource(SyncAPIResource):
         Fetches the details of an IP Access rule defined.
 
         Args:
-          rule_id: Unique identifier for a rule
+          rule_id: Unique identifier for a rule.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -535,22 +535,22 @@ class AsyncAccessRulesResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
-          direction: The direction used to sort returned rules.
+          direction: Defines the direction used to sort returned rules.
 
-          match: When set to `all`, all the search requirements must match. When set to `any`,
-              only one of the search requirements has to match.
+          match: Defines the search requirements. When set to `all`, all the search requirements
+              must match. When set to `any`, only one of the search requirements has to match.
 
           mode: The action to apply to a matched request.
 
-          notes: The string to search for in the notes of existing IP Access rules. Notes: For
-              example, the string 'attack' would match IP Access rules with notes 'Attack
-              26/02' and 'Attack 27/02'. The search is case insensitive.
+          notes: Defines the string to search for in the notes of existing IP Access rules.
+              Notes: For example, the string 'attack' would match IP Access rules with notes
+              'Attack 26/02' and 'Attack 27/02'. The search is case insensitive.
 
-          order: The field used to sort returned rules.
+          order: Defines the field used to sort returned rules.
 
-          page: Requested page within paginated list of results.
+          page: Defines the requested page within paginated list of results.
 
-          per_page: Maximum number of results requested.
+          per_page: Defines the maximum number of results requested.
 
           extra_headers: Send extra headers
 
@@ -616,7 +616,7 @@ class AsyncAccessRulesResource(AsyncAPIResource):
         Note: This operation will affect all zones in the account or zone.
 
         Args:
-          rule_id: Unique identifier for a rule
+          rule_id: Unique identifier for a rule.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -678,7 +678,7 @@ class AsyncAccessRulesResource(AsyncAPIResource):
         Note: This operation will affect all zones in the account or zone.
 
         Args:
-          rule_id: Unique identifier for a rule
+          rule_id: Unique identifier for a rule.
 
           configuration: The rule configuration.
 
@@ -749,7 +749,7 @@ class AsyncAccessRulesResource(AsyncAPIResource):
         Fetches the details of an IP Access rule defined.
 
         Args:
-          rule_id: Unique identifier for a rule
+          rule_id: Unique identifier for a rule.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 

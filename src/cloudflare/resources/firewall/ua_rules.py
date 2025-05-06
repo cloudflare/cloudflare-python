@@ -67,7 +67,7 @@ class UARulesResource(SyncAPIResource):
         Creates a new User Agent Blocking rule in a zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           configuration: The rule configuration.
 
@@ -125,7 +125,7 @@ class UARulesResource(SyncAPIResource):
         Updates an existing User Agent Blocking rule.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           ua_rule_id: The unique identifier of the User Agent Blocking rule.
 
@@ -191,7 +191,7 @@ class UARulesResource(SyncAPIResource):
         several optional parameters.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           description: A string to search for in the description of existing rules.
 
@@ -252,7 +252,7 @@ class UARulesResource(SyncAPIResource):
         Deletes an existing User Agent Blocking rule.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           ua_rule_id: The unique identifier of the User Agent Blocking rule.
 
@@ -296,7 +296,7 @@ class UARulesResource(SyncAPIResource):
         Fetches the details of a User Agent Blocking rule.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           ua_rule_id: The unique identifier of the User Agent Blocking rule.
 
@@ -367,7 +367,7 @@ class AsyncUARulesResource(AsyncAPIResource):
         Creates a new User Agent Blocking rule in a zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           configuration: The rule configuration.
 
@@ -425,7 +425,7 @@ class AsyncUARulesResource(AsyncAPIResource):
         Updates an existing User Agent Blocking rule.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           ua_rule_id: The unique identifier of the User Agent Blocking rule.
 
@@ -491,7 +491,7 @@ class AsyncUARulesResource(AsyncAPIResource):
         several optional parameters.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           description: A string to search for in the description of existing rules.
 
@@ -552,7 +552,7 @@ class AsyncUARulesResource(AsyncAPIResource):
         Deletes an existing User Agent Blocking rule.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           ua_rule_id: The unique identifier of the User Agent Blocking rule.
 
@@ -596,7 +596,7 @@ class AsyncUARulesResource(AsyncAPIResource):
         Fetches the details of a User Agent Blocking rule.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           ua_rule_id: The unique identifier of the User Agent Blocking rule.
 

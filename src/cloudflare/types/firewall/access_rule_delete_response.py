@@ -7,4 +7,4 @@ __all__ = ["AccessRuleDeleteResponse"]
 
 class AccessRuleDeleteResponse(BaseModel):
     id: str
-    """Identifier"""
+    """Defines an identifier."""

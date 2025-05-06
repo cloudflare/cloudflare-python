@@ -9,7 +9,7 @@ __all__ = ["PackageListParams"]
 
 class PackageListParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Defines an identifier."""
 
     direction: Literal["asc", "desc"]
     """The direction used to sort returned packages."""

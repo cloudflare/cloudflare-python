@@ -71,7 +71,7 @@ class RateLimitsResource(SyncAPIResource):
         of required attributes.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           action: The action to perform when the threshold of matched traffic within the
               configured period is exceeded.
@@ -136,12 +136,12 @@ class RateLimitsResource(SyncAPIResource):
         Fetches the rate limits for a zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
-          page: The page number of paginated results.
+          page: Defines the page number of paginated results.
 
-          per_page: The maximum number of results per page. You can only set the value to `1` or to
-              a multiple of 5 such as `5`, `10`, `15`, or `20`.
+          per_page: Defines the maximum number of results per page. You can only set the value to
+              `1` or to a multiple of 5 such as `5`, `10`, `15`, or `20`.
 
           extra_headers: Send extra headers
 
@@ -191,9 +191,9 @@ class RateLimitsResource(SyncAPIResource):
         Deletes an existing rate limit.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
-          rate_limit_id: The unique identifier of the rate limit.
+          rate_limit_id: Defines the unique identifier of the rate limit.
 
           extra_headers: Send extra headers
 
@@ -242,9 +242,9 @@ class RateLimitsResource(SyncAPIResource):
         Updates an existing rate limit.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
-          rate_limit_id: The unique identifier of the rate limit.
+          rate_limit_id: Defines the unique identifier of the rate limit.
 
           action: The action to perform when the threshold of matched traffic within the
               configured period is exceeded.
@@ -310,9 +310,9 @@ class RateLimitsResource(SyncAPIResource):
         Fetches the details of a rate limit.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
-          rate_limit_id: The unique identifier of the rate limit.
+          rate_limit_id: Defines the unique identifier of the rate limit.
 
           extra_headers: Send extra headers
 
@@ -383,7 +383,7 @@ class AsyncRateLimitsResource(AsyncAPIResource):
         of required attributes.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           action: The action to perform when the threshold of matched traffic within the
               configured period is exceeded.
@@ -448,12 +448,12 @@ class AsyncRateLimitsResource(AsyncAPIResource):
         Fetches the rate limits for a zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
-          page: The page number of paginated results.
+          page: Defines the page number of paginated results.
 
-          per_page: The maximum number of results per page. You can only set the value to `1` or to
-              a multiple of 5 such as `5`, `10`, `15`, or `20`.
+          per_page: Defines the maximum number of results per page. You can only set the value to
+              `1` or to a multiple of 5 such as `5`, `10`, `15`, or `20`.
 
           extra_headers: Send extra headers
 
@@ -503,9 +503,9 @@ class AsyncRateLimitsResource(AsyncAPIResource):
         Deletes an existing rate limit.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
-          rate_limit_id: The unique identifier of the rate limit.
+          rate_limit_id: Defines the unique identifier of the rate limit.
 
           extra_headers: Send extra headers
 
@@ -554,9 +554,9 @@ class AsyncRateLimitsResource(AsyncAPIResource):
         Updates an existing rate limit.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
-          rate_limit_id: The unique identifier of the rate limit.
+          rate_limit_id: Defines the unique identifier of the rate limit.
 
           action: The action to perform when the threshold of matched traffic within the
               configured period is exceeded.
@@ -622,9 +622,9 @@ class AsyncRateLimitsResource(AsyncAPIResource):
         Fetches the details of a rate limit.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
-          rate_limit_id: The unique identifier of the rate limit.
+          rate_limit_id: Defines the unique identifier of the rate limit.
 
           extra_headers: Send extra headers
 
