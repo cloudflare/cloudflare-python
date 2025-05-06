@@ -10,7 +10,7 @@ __all__ = ["RuleBulkCreateParams", "Rule"]
 
 class RuleBulkCreateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     delete_rules: List[str]
     """A list of rule identifiers to delete."""
