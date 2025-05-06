@@ -56,7 +56,6 @@ class TopResource(SyncAPIResource):
         self,
         dnssec: Literal["SUPPORTED", "NOT_SUPPORTED"],
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -78,10 +77,6 @@ class TopResource(SyncAPIResource):
 
         Args:
           dnssec: DNSSEC (DNS Security Extensions) status.
-
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
 
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
@@ -124,7 +119,6 @@ class TopResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -145,7 +139,6 @@ class TopResource(SyncAPIResource):
         self,
         edns: Literal["SUPPORTED", "NOT_SUPPORTED"],
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -167,10 +160,6 @@ class TopResource(SyncAPIResource):
 
         Args:
           edns: EDNS (Extension Mechanisms for DNS) status.
-
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
 
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
@@ -213,7 +202,6 @@ class TopResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -234,7 +222,6 @@ class TopResource(SyncAPIResource):
         self,
         ip_version: Literal["IPv4", "IPv6"],
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -255,10 +242,6 @@ class TopResource(SyncAPIResource):
 
         Args:
           ip_version: IP version.
-
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
 
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
@@ -301,7 +284,6 @@ class TopResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -321,7 +303,6 @@ class TopResource(SyncAPIResource):
     def locations(
         self,
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -341,10 +322,6 @@ class TopResource(SyncAPIResource):
         Retrieves the top locations by AS112 DNS queries.
 
         Args:
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
-
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
               but includes results from NA.
@@ -384,7 +361,6 @@ class TopResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -426,7 +402,6 @@ class AsyncTopResource(AsyncAPIResource):
         self,
         dnssec: Literal["SUPPORTED", "NOT_SUPPORTED"],
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -448,10 +423,6 @@ class AsyncTopResource(AsyncAPIResource):
 
         Args:
           dnssec: DNSSEC (DNS Security Extensions) status.
-
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
 
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
@@ -494,7 +465,6 @@ class AsyncTopResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -515,7 +485,6 @@ class AsyncTopResource(AsyncAPIResource):
         self,
         edns: Literal["SUPPORTED", "NOT_SUPPORTED"],
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -537,10 +506,6 @@ class AsyncTopResource(AsyncAPIResource):
 
         Args:
           edns: EDNS (Extension Mechanisms for DNS) status.
-
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
 
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
@@ -583,7 +548,6 @@ class AsyncTopResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -604,7 +568,6 @@ class AsyncTopResource(AsyncAPIResource):
         self,
         ip_version: Literal["IPv4", "IPv6"],
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -625,10 +588,6 @@ class AsyncTopResource(AsyncAPIResource):
 
         Args:
           ip_version: IP version.
-
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
 
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
@@ -671,7 +630,6 @@ class AsyncTopResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -691,7 +649,6 @@ class AsyncTopResource(AsyncAPIResource):
     async def locations(
         self,
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -711,10 +668,6 @@ class AsyncTopResource(AsyncAPIResource):
         Retrieves the top locations by AS112 DNS queries.
 
         Args:
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
-
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
               but includes results from NA.
@@ -754,7 +707,6 @@ class AsyncTopResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,

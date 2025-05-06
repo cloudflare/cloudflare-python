@@ -12,13 +12,6 @@ __all__ = ["SummaryProtocolParams"]
 
 
 class SummaryProtocolParams(TypedDict, total=False):
-    asn: List[str]
-    """Comma-separated list of Autonomous System Numbers (ASNs).
-
-    Prefix with `-` to exclude ASNs from results. For example, `-174, 3356` excludes
-    results from AS174, but includes results from AS3356.
-    """
-
     continent: List[str]
     """Comma-separated list of continents (alpha-2 continent codes).
 

@@ -64,7 +64,6 @@ class SummaryResource(SyncAPIResource):
     def dnssec(
         self,
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -200,10 +199,6 @@ class SummaryResource(SyncAPIResource):
         Extensions) support.
 
         Args:
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
-
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
               but includes results from NA.
@@ -247,7 +242,6 @@ class SummaryResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -269,7 +263,6 @@ class SummaryResource(SyncAPIResource):
     def edns(
         self,
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -405,10 +398,6 @@ class SummaryResource(SyncAPIResource):
         for DNS) support.
 
         Args:
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
-
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
               but includes results from NA.
@@ -452,7 +441,6 @@ class SummaryResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -474,7 +462,6 @@ class SummaryResource(SyncAPIResource):
     def ip_version(
         self,
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -609,10 +596,6 @@ class SummaryResource(SyncAPIResource):
         Retrieves the distribution of DNS queries to AS112 by IP version.
 
         Args:
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
-
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
               but includes results from NA.
@@ -656,7 +639,6 @@ class SummaryResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -678,7 +660,6 @@ class SummaryResource(SyncAPIResource):
     def protocol(
         self,
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -812,10 +793,6 @@ class SummaryResource(SyncAPIResource):
         Retrieves the distribution of DNS queries to AS112 by protocol.
 
         Args:
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
-
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
               but includes results from NA.
@@ -857,7 +834,6 @@ class SummaryResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -878,7 +854,6 @@ class SummaryResource(SyncAPIResource):
     def query_type(
         self,
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -921,10 +896,6 @@ class SummaryResource(SyncAPIResource):
         Retrieves the distribution of DNS queries to AS112 by type.
 
         Args:
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
-
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
               but includes results from NA.
@@ -971,7 +942,6 @@ class SummaryResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -993,7 +963,6 @@ class SummaryResource(SyncAPIResource):
     def response_codes(
         self,
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -1107,10 +1076,6 @@ class SummaryResource(SyncAPIResource):
         Retrieves the distribution of AS112 DNS requests classified by response code.
 
         Args:
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
-
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
               but includes results from NA.
@@ -1157,7 +1122,6 @@ class SummaryResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -1200,7 +1164,6 @@ class AsyncSummaryResource(AsyncAPIResource):
     async def dnssec(
         self,
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -1336,10 +1299,6 @@ class AsyncSummaryResource(AsyncAPIResource):
         Extensions) support.
 
         Args:
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
-
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
               but includes results from NA.
@@ -1383,7 +1342,6 @@ class AsyncSummaryResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -1405,7 +1363,6 @@ class AsyncSummaryResource(AsyncAPIResource):
     async def edns(
         self,
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -1541,10 +1498,6 @@ class AsyncSummaryResource(AsyncAPIResource):
         for DNS) support.
 
         Args:
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
-
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
               but includes results from NA.
@@ -1588,7 +1541,6 @@ class AsyncSummaryResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -1610,7 +1562,6 @@ class AsyncSummaryResource(AsyncAPIResource):
     async def ip_version(
         self,
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -1745,10 +1696,6 @@ class AsyncSummaryResource(AsyncAPIResource):
         Retrieves the distribution of DNS queries to AS112 by IP version.
 
         Args:
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
-
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
               but includes results from NA.
@@ -1792,7 +1739,6 @@ class AsyncSummaryResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -1814,7 +1760,6 @@ class AsyncSummaryResource(AsyncAPIResource):
     async def protocol(
         self,
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -1948,10 +1893,6 @@ class AsyncSummaryResource(AsyncAPIResource):
         Retrieves the distribution of DNS queries to AS112 by protocol.
 
         Args:
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
-
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
               but includes results from NA.
@@ -1993,7 +1934,6 @@ class AsyncSummaryResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -2014,7 +1954,6 @@ class AsyncSummaryResource(AsyncAPIResource):
     async def query_type(
         self,
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -2057,10 +1996,6 @@ class AsyncSummaryResource(AsyncAPIResource):
         Retrieves the distribution of DNS queries to AS112 by type.
 
         Args:
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
-
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
               but includes results from NA.
@@ -2107,7 +2042,6 @@ class AsyncSummaryResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -2129,7 +2063,6 @@ class AsyncSummaryResource(AsyncAPIResource):
     async def response_codes(
         self,
         *,
-        asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[str] | NotGiven = NOT_GIVEN,
@@ -2243,10 +2176,6 @@ class AsyncSummaryResource(AsyncAPIResource):
         Retrieves the distribution of AS112 DNS requests classified by response code.
 
         Args:
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
-
           continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
               exclude continents from results. For example, `-EU,NA` excludes results from EU,
               but includes results from NA.
@@ -2293,7 +2222,6 @@ class AsyncSummaryResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "asn": asn,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
