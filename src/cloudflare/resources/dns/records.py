@@ -1410,7 +1410,7 @@ class RecordsResource(SyncAPIResource):
         *,
         zone_id: str,
         comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
+        content: str | str | str | str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.ARecordSettings
@@ -2900,7 +2900,7 @@ class RecordsResource(SyncAPIResource):
         *,
         zone_id: str,
         comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
+        content: str | str | str | str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.ARecordSettings
@@ -4626,7 +4626,7 @@ class RecordsResource(SyncAPIResource):
         *,
         zone_id: str,
         comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
+        content: str | str | str | str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.ARecordSettings | record_edit_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
@@ -6275,7 +6275,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         *,
         zone_id: str,
         comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
+        content: str | str | str | str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_create_params.ARecordSettings
@@ -7765,7 +7765,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         *,
         zone_id: str,
         comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
+        content: str | str | str | str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_update_params.ARecordSettings
@@ -9491,7 +9491,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         *,
         zone_id: str,
         comment: str | NotGiven = NOT_GIVEN,
-        content: str | NotGiven = NOT_GIVEN,
+        content: str | str | str | str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         settings: record_edit_params.ARecordSettings | record_edit_params.CNAMERecordSettings | NotGiven = NOT_GIVEN,
