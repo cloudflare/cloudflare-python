@@ -6,7 +6,6 @@ from typing import Dict, List, Union, Iterable
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .phase import Phase
-from .logging_param import LoggingParam
 from .rewrite_uri_part_param import RewriteURIPartParam
 
 __all__ = [
@@ -225,8 +224,7 @@ class BlockRule(TypedDict, total=False):
     expression: str
     """The expression defining which traffic will match the rule."""
 
-    logging: LoggingParam
-    """An object configuring the rule's logging behavior."""
+    logging: object
 
     position: BlockRulePosition
     """An object configuring where the rule will be placed."""
@@ -360,8 +358,7 @@ class ChallengeRule(TypedDict, total=False):
     expression: str
     """The expression defining which traffic will match the rule."""
 
-    logging: LoggingParam
-    """An object configuring the rule's logging behavior."""
+    logging: object
 
     position: ChallengeRulePosition
     """An object configuring where the rule will be placed."""
@@ -479,8 +476,7 @@ class CompressionRule(TypedDict, total=False):
     expression: str
     """The expression defining which traffic will match the rule."""
 
-    logging: LoggingParam
-    """An object configuring the rule's logging behavior."""
+    logging: object
 
     position: CompressionRulePosition
     """An object configuring where the rule will be placed."""
@@ -608,8 +604,7 @@ class ExecuteRule(TypedDict, total=False):
     expression: str
     """The expression defining which traffic will match the rule."""
 
-    logging: LoggingParam
-    """An object configuring the rule's logging behavior."""
+    logging: object
 
     position: ExecuteRulePosition
     """An object configuring where the rule will be placed."""
@@ -804,8 +799,7 @@ class JavascriptChallengeRule(TypedDict, total=False):
     expression: str
     """The expression defining which traffic will match the rule."""
 
-    logging: LoggingParam
-    """An object configuring the rule's logging behavior."""
+    logging: object
 
     position: JavascriptChallengeRulePosition
     """An object configuring where the rule will be placed."""
@@ -925,8 +919,7 @@ class LogRule(TypedDict, total=False):
     expression: str
     """The expression defining which traffic will match the rule."""
 
-    logging: LoggingParam
-    """An object configuring the rule's logging behavior."""
+    logging: object
 
     position: LogRulePosition
     """An object configuring where the rule will be placed."""
@@ -1044,8 +1037,7 @@ class ManagedChallengeRule(TypedDict, total=False):
     expression: str
     """The expression defining which traffic will match the rule."""
 
-    logging: LoggingParam
-    """An object configuring the rule's logging behavior."""
+    logging: object
 
     position: ManagedChallengeRulePosition
     """An object configuring where the rule will be placed."""
@@ -1165,8 +1157,7 @@ class RedirectRule(TypedDict, total=False):
     expression: str
     """The expression defining which traffic will match the rule."""
 
-    logging: LoggingParam
-    """An object configuring the rule's logging behavior."""
+    logging: object
 
     position: RedirectRulePosition
     """An object configuring where the rule will be placed."""
@@ -1327,8 +1318,7 @@ class RewriteRule(TypedDict, total=False):
     expression: str
     """The expression defining which traffic will match the rule."""
 
-    logging: LoggingParam
-    """An object configuring the rule's logging behavior."""
+    logging: object
 
     position: RewriteRulePosition
     """An object configuring where the rule will be placed."""
@@ -1487,8 +1477,7 @@ class OriginRule(TypedDict, total=False):
     expression: str
     """The expression defining which traffic will match the rule."""
 
-    logging: LoggingParam
-    """An object configuring the rule's logging behavior."""
+    logging: object
 
     position: OriginRulePosition
     """An object configuring where the rule will be placed."""
@@ -1630,8 +1619,7 @@ class ScoreRule(TypedDict, total=False):
     expression: str
     """The expression defining which traffic will match the rule."""
 
-    logging: LoggingParam
-    """An object configuring the rule's logging behavior."""
+    logging: object
 
     position: ScoreRulePosition
     """An object configuring where the rule will be placed."""
@@ -1757,8 +1745,7 @@ class ServeErrorRule(TypedDict, total=False):
     expression: str
     """The expression defining which traffic will match the rule."""
 
-    logging: LoggingParam
-    """An object configuring the rule's logging behavior."""
+    logging: object
 
     position: ServeErrorRulePosition
     """An object configuring where the rule will be placed."""
@@ -1887,8 +1874,7 @@ class SetConfigRule(TypedDict, total=False):
     expression: str
     """The expression defining which traffic will match the rule."""
 
-    logging: LoggingParam
-    """An object configuring the rule's logging behavior."""
+    logging: object
 
     position: SetConfigRulePosition
     """An object configuring where the rule will be placed."""
@@ -2070,8 +2056,7 @@ class SkipRule(TypedDict, total=False):
     expression: str
     """The expression defining which traffic will match the rule."""
 
-    logging: LoggingParam
-    """An object configuring the rule's logging behavior."""
+    logging: object
 
     position: SkipRulePosition
     """An object configuring where the rule will be placed."""
@@ -2218,8 +2203,7 @@ class SetCacheSettingsRule(TypedDict, total=False):
     expression: str
     """The expression defining which traffic will match the rule."""
 
-    logging: LoggingParam
-    """An object configuring the rule's logging behavior."""
+    logging: object
 
     position: SetCacheSettingsRulePosition
     """An object configuring where the rule will be placed."""
@@ -2637,8 +2621,7 @@ class LogCustomFieldRule(TypedDict, total=False):
     expression: str
     """The expression defining which traffic will match the rule."""
 
-    logging: LoggingParam
-    """An object configuring the rule's logging behavior."""
+    logging: object
 
     position: LogCustomFieldRulePosition
     """An object configuring where the rule will be placed."""
@@ -2806,8 +2789,7 @@ class DDoSDynamicRule(TypedDict, total=False):
     expression: str
     """The expression defining which traffic will match the rule."""
 
-    logging: LoggingParam
-    """An object configuring the rule's logging behavior."""
+    logging: object
 
     position: DDoSDynamicRulePosition
     """An object configuring where the rule will be placed."""
@@ -2925,8 +2907,7 @@ class ForceConnectionCloseRule(TypedDict, total=False):
     expression: str
     """The expression defining which traffic will match the rule."""
 
-    logging: LoggingParam
-    """An object configuring the rule's logging behavior."""
+    logging: object
 
     position: ForceConnectionCloseRulePosition
     """An object configuring where the rule will be placed."""

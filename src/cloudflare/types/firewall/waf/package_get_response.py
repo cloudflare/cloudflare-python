@@ -4,15 +4,14 @@ from typing import List, Union, Optional
 from typing_extensions import Literal, TypeAlias
 
 from ...._models import BaseModel
-from ...shared.response_info import ResponseInfo
 
 __all__ = ["PackageGetResponse", "FirewallAPIResponseSingle", "Result"]
 
 
 class FirewallAPIResponseSingle(BaseModel):
-    errors: List[ResponseInfo]
+    errors: List[object]
 
-    messages: List[ResponseInfo]
+    messages: List[object]
 
     result: Union[Optional[str], Optional[object]]
 

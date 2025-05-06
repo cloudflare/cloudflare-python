@@ -34,7 +34,7 @@ class TestSippy:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             destination={
                 "access_key_id": "accessKeyId",
-                "provider": "r2",
+                "provider": {},
                 "secret_access_key": "secretAccessKey",
             },
             source={
@@ -108,7 +108,7 @@ class TestSippy:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             destination={
                 "access_key_id": "accessKeyId",
-                "provider": "r2",
+                "provider": {},
                 "secret_access_key": "secretAccessKey",
             },
             source={
@@ -309,7 +309,7 @@ class TestAsyncSippy:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             destination={
                 "access_key_id": "accessKeyId",
-                "provider": "r2",
+                "provider": {},
                 "secret_access_key": "secretAccessKey",
             },
             source={
@@ -383,7 +383,7 @@ class TestAsyncSippy:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             destination={
                 "access_key_id": "accessKeyId",
-                "provider": "r2",
+                "provider": {},
                 "secret_access_key": "secretAccessKey",
             },
             source={

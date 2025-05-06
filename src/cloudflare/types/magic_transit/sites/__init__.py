@@ -14,7 +14,6 @@ from .routed_subnet import RoutedSubnet as RoutedSubnet
 from .acl_edit_params import ACLEditParams as ACLEditParams
 from .lan_edit_params import LANEditParams as LANEditParams
 from .wan_edit_params import WANEditParams as WANEditParams
-from .allowed_protocol import AllowedProtocol as AllowedProtocol
 from .dhcp_relay_param import DHCPRelayParam as DHCPRelayParam
 from .acl_configuration import ACLConfiguration as ACLConfiguration
 from .acl_create_params import ACLCreateParams as ACLCreateParams

@@ -4,15 +4,7 @@ from typing import List
 
 from ...._models import BaseModel
 
-__all__ = ["RoutePfx2asResponse", "Meta", "PrefixOrigin"]
-
-
-class Meta(BaseModel):
-    data_time: str
-
-    query_time: str
-
-    total_peers: int
+__all__ = ["RoutePfx2asResponse", "PrefixOrigin"]
 
 
 class PrefixOrigin(BaseModel):
@@ -26,6 +18,6 @@ class PrefixOrigin(BaseModel):
 
 
 class RoutePfx2asResponse(BaseModel):
-    meta: Meta
+    meta: object
 
     prefix_origins: List[PrefixOrigin]

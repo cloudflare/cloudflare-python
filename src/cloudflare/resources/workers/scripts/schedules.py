@@ -21,7 +21,6 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
-from ....types.workers.scripts.schedule_param import ScheduleParam
 from ....types.workers.scripts.schedule_get_response import ScheduleGetResponse
 from ....types.workers.scripts.schedule_update_response import ScheduleUpdateResponse
 
@@ -53,7 +52,7 @@ class SchedulesResource(SyncAPIResource):
         script_name: str,
         *,
         account_id: str,
-        body: Iterable[ScheduleParam],
+        body: Iterable[object],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -83,7 +82,7 @@ class SchedulesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return self._put(
             f"/accounts/{account_id}/workers/scripts/{script_name}/schedules",
-            body=maybe_transform(body, Iterable[ScheduleParam]),
+            body=maybe_transform(body, Iterable[object]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -164,7 +163,7 @@ class AsyncSchedulesResource(AsyncAPIResource):
         script_name: str,
         *,
         account_id: str,
-        body: Iterable[ScheduleParam],
+        body: Iterable[object],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -194,7 +193,7 @@ class AsyncSchedulesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return await self._put(
             f"/accounts/{account_id}/workers/scripts/{script_name}/schedules",
-            body=await async_maybe_transform(body, Iterable[ScheduleParam]),
+            body=await async_maybe_transform(body, Iterable[object]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

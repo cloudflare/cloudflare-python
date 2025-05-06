@@ -3,15 +3,7 @@
 
 from ...._models import BaseModel
 
-__all__ = ["RouteStatsResponse", "Meta", "Stats"]
-
-
-class Meta(BaseModel):
-    data_time: str
-
-    query_time: str
-
-    total_peers: int
+__all__ = ["RouteStatsResponse", "Stats"]
 
 
 class Stats(BaseModel):
@@ -53,6 +45,6 @@ class Stats(BaseModel):
 
 
 class RouteStatsResponse(BaseModel):
-    meta: Meta
+    meta: object
 
     stats: Stats

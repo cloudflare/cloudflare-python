@@ -3,7 +3,6 @@
 from typing import List, Optional
 from typing_extensions import Literal
 
-from . import deployment
 from ...._models import BaseModel
 
 __all__ = ["DeploymentGetResponse", "Deployment", "DeploymentVersion"]
@@ -22,7 +21,7 @@ class Deployment(BaseModel):
 
     id: Optional[str] = None
 
-    annotations: Optional[deployment.Deployment] = None
+    annotations: Optional[object] = None
 
     author_email: Optional[str] = None
 

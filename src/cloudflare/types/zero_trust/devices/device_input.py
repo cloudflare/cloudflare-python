@@ -30,8 +30,7 @@ __all__ = [
 
 
 class TeamsDevicesCarbonblackInputRequest(BaseModel):
-    operating_system: Literal["windows", "linux", "mac"]
-    """Operating system"""
+    operating_system: object
 
     path: str
     """File path."""
@@ -44,8 +43,7 @@ class TeamsDevicesCarbonblackInputRequest(BaseModel):
 
 
 class TeamsDevicesApplicationInputRequest(BaseModel):
-    operating_system: Literal["windows", "linux", "mac"]
-    """Operating system"""
+    operating_system: object
 
     path: str
     """Path for the application."""
@@ -76,8 +74,7 @@ class TeamsDevicesClientCertificateV2InputRequest(BaseModel):
     private key.
     """
 
-    operating_system: Literal["windows", "linux", "mac"]
-    """Operating system"""
+    operating_system: object
 
     cn: Optional[str] = None
     """Common Name that is protected by the client certificate.
@@ -99,8 +96,7 @@ class TeamsDevicesCustomS2sInputRequest(BaseModel):
     connection_id: str
     """Posture Integration ID."""
 
-    operator: Literal["<", "<=", ">", ">=", "=="]
-    """operator"""
+    operator: object
 
     score: float
     """

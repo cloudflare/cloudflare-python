@@ -4,7 +4,6 @@ from typing import Optional
 from datetime import datetime
 
 from ...._models import BaseModel
-from .gateway_configuration_settings import GatewayConfigurationSettings
 
 __all__ = ["ConfigurationUpdateResponse"]
 
@@ -12,7 +11,6 @@ __all__ = ["ConfigurationUpdateResponse"]
 class ConfigurationUpdateResponse(BaseModel):
     created_at: Optional[datetime] = None
 
-    settings: Optional[GatewayConfigurationSettings] = None
-    """Account settings"""
+    settings: Optional[object] = None
 
     updated_at: Optional[datetime] = None

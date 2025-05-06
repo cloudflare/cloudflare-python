@@ -7,8 +7,6 @@ from pydantic import Field as FieldInfo
 
 from ..._utils import PropertyInfo
 from ..._models import BaseModel
-from .neo_event import NeoEvent
-from .button_text_translation import ButtonTextTranslation
 
 __all__ = [
     "Configuration",
@@ -133,13 +131,13 @@ class ToolsZarazManagedComponent(BaseModel):
 
     type: Literal["component"]
 
-    actions: Optional[Dict[str, NeoEvent]] = None
+    actions: Optional[object] = None
     """Actions configured on a tool. Either this or neoEvents field is required."""
 
     default_purpose: Optional[str] = FieldInfo(alias="defaultPurpose", default=None)
     """Default consent purpose ID"""
 
-    neo_events: Optional[List[NeoEvent]] = FieldInfo(alias="neoEvents", default=None)
+    neo_events: Optional[List[object]] = FieldInfo(alias="neoEvents", default=None)
     """DEPRECATED - List of actions configured on a tool.
 
     Either this or actions field is required. If both are present, actions field
@@ -192,13 +190,13 @@ class ToolsWorker(BaseModel):
     worker: ToolsWorkerWorker
     """Cloudflare worker that acts as a managed component"""
 
-    actions: Optional[Dict[str, NeoEvent]] = None
+    actions: Optional[object] = None
     """Actions configured on a tool. Either this or neoEvents field is required."""
 
     default_purpose: Optional[str] = FieldInfo(alias="defaultPurpose", default=None)
     """Default consent purpose ID"""
 
-    neo_events: Optional[List[NeoEvent]] = FieldInfo(alias="neoEvents", default=None)
+    neo_events: Optional[List[object]] = FieldInfo(alias="neoEvents", default=None)
     """DEPRECATED - List of actions configured on a tool.
 
     Either this or actions field is required. If both are present, actions field
@@ -531,7 +529,7 @@ class ConsentPurposesWithTranslations(BaseModel):
 class Consent(BaseModel):
     enabled: bool
 
-    button_text_translations: Optional[ButtonTextTranslation] = FieldInfo(alias="buttonTextTranslations", default=None)
+    button_text_translations: Optional[object] = FieldInfo(alias="buttonTextTranslations", default=None)
 
     company_email: Optional[str] = FieldInfo(alias="companyEmail", default=None)
 

@@ -4,7 +4,6 @@ from typing import List, Optional
 from typing_extensions import Literal
 
 from ...._models import BaseModel
-from .deployment import Deployment
 
 __all__ = ["DeploymentCreateResponse", "Version"]
 
@@ -22,7 +21,7 @@ class DeploymentCreateResponse(BaseModel):
 
     id: Optional[str] = None
 
-    annotations: Optional[Deployment] = None
+    annotations: Optional[object] = None
 
     author_email: Optional[str] = None
 
