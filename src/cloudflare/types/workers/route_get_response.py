@@ -8,7 +8,7 @@ __all__ = ["RouteGetResponse"]
 
 class RouteGetResponse(BaseModel):
     id: str
-    """Identifier."""
+    """Identifier"""
 
     pattern: str
 

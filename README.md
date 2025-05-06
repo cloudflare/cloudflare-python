@@ -151,12 +151,11 @@ from cloudflare import Cloudflare
 
 client = Cloudflare()
 
-account = client.accounts.create(
-    name="name",
-    type="standard",
-    unit={"id": "f267e341f3dd4697bd3b9f71dd96247f"},
+zone = client.zones.create(
+    account={"id": "023e105f4ecef8ad9ca31a8372d0c353"},
+    name="example.com",
 )
-print(account.unit)
+print(zone.account)
 ```
 
 ## File uploads
