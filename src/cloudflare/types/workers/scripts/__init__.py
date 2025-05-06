@@ -31,6 +31,7 @@ from .version_create_response import VersionCreateResponse as VersionCreateRespo
 from .deployment_create_params import DeploymentCreateParams as DeploymentCreateParams
 from .schedule_update_response import ScheduleUpdateResponse as ScheduleUpdateResponse
 from .subdomain_create_response import SubdomainCreateResponse as SubdomainCreateResponse
+from .subdomain_delete_response import SubdomainDeleteResponse as SubdomainDeleteResponse
 from .deployment_create_response import DeploymentCreateResponse as DeploymentCreateResponse
 from .script_and_version_setting_edit_params import (
     ScriptAndVersionSettingEditParams as ScriptAndVersionSettingEditParams,
