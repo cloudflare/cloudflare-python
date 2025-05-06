@@ -18,4 +18,4 @@ class HostListResponse(BaseModel):
     """Name of the schema"""
 
     schema_id: str
-    """UUID"""
+    """UUID."""

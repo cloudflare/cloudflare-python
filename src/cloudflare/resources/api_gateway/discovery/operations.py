@@ -77,7 +77,7 @@ class OperationsResource(SyncAPIResource):
         Retrieve the most up to date view of discovered operations
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           diff: When `true`, only return API Discovery results that are not saved into API
               Shield Endpoint Management
@@ -165,7 +165,7 @@ class OperationsResource(SyncAPIResource):
         Update the `state` on one or more discovered operations
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -207,9 +207,9 @@ class OperationsResource(SyncAPIResource):
         Update the `state` on a discovered operation
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          operation_id: UUID
+          operation_id: UUID.
 
           state: Mark state of operation in API Discovery
 
@@ -288,7 +288,7 @@ class AsyncOperationsResource(AsyncAPIResource):
         Retrieve the most up to date view of discovered operations
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           diff: When `true`, only return API Discovery results that are not saved into API
               Shield Endpoint Management
@@ -376,7 +376,7 @@ class AsyncOperationsResource(AsyncAPIResource):
         Update the `state` on one or more discovered operations
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -418,9 +418,9 @@ class AsyncOperationsResource(AsyncAPIResource):
         Update the `state` on a discovered operation
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          operation_id: UUID
+          operation_id: UUID.
 
           state: Mark state of operation in API Discovery
 
