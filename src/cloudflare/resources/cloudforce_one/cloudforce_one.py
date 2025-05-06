@@ -12,6 +12,14 @@ from .scans.scans import (
     ScansResourceWithStreamingResponse,
     AsyncScansResourceWithStreamingResponse,
 )
+from .requests.requests import (
+    RequestsResource,
+    AsyncRequestsResource,
+    RequestsResourceWithRawResponse,
+    AsyncRequestsResourceWithRawResponse,
+    RequestsResourceWithStreamingResponse,
+    AsyncRequestsResourceWithStreamingResponse,
+)
 from .threat_events.threat_events import (
     ThreatEventsResource,
     AsyncThreatEventsResource,
@@ -28,6 +36,10 @@ class CloudforceOneResource(SyncAPIResource):
     @cached_property
     def scans(self) -> ScansResource:
         return ScansResource(self._client)
+
+    @cached_property
+    def requests(self) -> RequestsResource:
+        return RequestsResource(self._client)
 
     @cached_property
     def threat_events(self) -> ThreatEventsResource:
@@ -57,6 +69,10 @@ class AsyncCloudforceOneResource(AsyncAPIResource):
     @cached_property
     def scans(self) -> AsyncScansResource:
         return AsyncScansResource(self._client)
+
+    @cached_property
+    def requests(self) -> AsyncRequestsResource:
+        return AsyncRequestsResource(self._client)
 
     @cached_property
     def threat_events(self) -> AsyncThreatEventsResource:
@@ -91,6 +107,10 @@ class CloudforceOneResourceWithRawResponse:
         return ScansResourceWithRawResponse(self._cloudforce_one.scans)
 
     @cached_property
+    def requests(self) -> RequestsResourceWithRawResponse:
+        return RequestsResourceWithRawResponse(self._cloudforce_one.requests)
+
+    @cached_property
     def threat_events(self) -> ThreatEventsResourceWithRawResponse:
         return ThreatEventsResourceWithRawResponse(self._cloudforce_one.threat_events)
 
@@ -102,6 +122,10 @@ class AsyncCloudforceOneResourceWithRawResponse:
     @cached_property
     def scans(self) -> AsyncScansResourceWithRawResponse:
         return AsyncScansResourceWithRawResponse(self._cloudforce_one.scans)
+
+    @cached_property
+    def requests(self) -> AsyncRequestsResourceWithRawResponse:
+        return AsyncRequestsResourceWithRawResponse(self._cloudforce_one.requests)
 
     @cached_property
     def threat_events(self) -> AsyncThreatEventsResourceWithRawResponse:
@@ -117,6 +141,10 @@ class CloudforceOneResourceWithStreamingResponse:
         return ScansResourceWithStreamingResponse(self._cloudforce_one.scans)
 
     @cached_property
+    def requests(self) -> RequestsResourceWithStreamingResponse:
+        return RequestsResourceWithStreamingResponse(self._cloudforce_one.requests)
+
+    @cached_property
     def threat_events(self) -> ThreatEventsResourceWithStreamingResponse:
         return ThreatEventsResourceWithStreamingResponse(self._cloudforce_one.threat_events)
 
@@ -128,6 +156,10 @@ class AsyncCloudforceOneResourceWithStreamingResponse:
     @cached_property
     def scans(self) -> AsyncScansResourceWithStreamingResponse:
         return AsyncScansResourceWithStreamingResponse(self._cloudforce_one.scans)
+
+    @cached_property
+    def requests(self) -> AsyncRequestsResourceWithStreamingResponse:
+        return AsyncRequestsResourceWithStreamingResponse(self._cloudforce_one.requests)
 
     @cached_property
     def threat_events(self) -> AsyncThreatEventsResourceWithStreamingResponse:
