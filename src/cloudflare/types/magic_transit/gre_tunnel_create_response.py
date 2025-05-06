@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
+from typing import Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, TypeAlias
 
@@ -8,16 +8,10 @@ from ..._models import BaseModel
 from .health_check_rate import HealthCheckRate
 from .health_check_type import HealthCheckType
 
-__all__ = [
-    "GRETunnelCreateResponse",
-    "GRETunnel",
-    "GRETunnelHealthCheck",
-    "GRETunnelHealthCheckTarget",
-    "GRETunnelHealthCheckTargetMagicHealthCheckTarget",
-]
+__all__ = ["GRETunnelCreateResponse", "HealthCheck", "HealthCheckTarget", "HealthCheckTargetMagicHealthCheckTarget"]
 
 
-class GRETunnelHealthCheckTargetMagicHealthCheckTarget(BaseModel):
+class HealthCheckTargetMagicHealthCheckTarget(BaseModel):
     effective: Optional[str] = None
     """The effective health check target.
 
@@ -33,10 +27,10 @@ class GRETunnelHealthCheckTargetMagicHealthCheckTarget(BaseModel):
     """
 
 
-GRETunnelHealthCheckTarget: TypeAlias = Union[GRETunnelHealthCheckTargetMagicHealthCheckTarget, str]
+HealthCheckTarget: TypeAlias = Union[HealthCheckTargetMagicHealthCheckTarget, str]
 
 
-class GRETunnelHealthCheck(BaseModel):
+class HealthCheck(BaseModel):
     direction: Optional[Literal["unidirectional", "bidirectional"]] = None
     """The direction of the flow of the healthcheck.
 
@@ -51,7 +45,7 @@ class GRETunnelHealthCheck(BaseModel):
     rate: Optional[HealthCheckRate] = None
     """How frequent the health check is run. The default value is `mid`."""
 
-    target: Optional[GRETunnelHealthCheckTarget] = None
+    target: Optional[HealthCheckTarget] = None
     """The destination address in a request type health check.
 
     After the healthcheck is decapsulated at the customer end of the tunnel, the
@@ -67,7 +61,10 @@ class GRETunnelHealthCheck(BaseModel):
     """The type of healthcheck to run, reply or request. The default value is `reply`."""
 
 
-class GRETunnel(BaseModel):
+class GRETunnelCreateResponse(BaseModel):
+    id: str
+    """Identifier"""
+
     cloudflare_gre_endpoint: str
     """The IP address assigned to the Cloudflare side of the GRE tunnel."""
 
@@ -88,16 +85,13 @@ class GRETunnel(BaseModel):
     less, and cannot share a name with another GRE tunnel.
     """
 
-    id: Optional[str] = None
-    """Tunnel identifier tag."""
-
     created_on: Optional[datetime] = None
     """The date and time the tunnel was created."""
 
     description: Optional[str] = None
     """An optional description of the GRE tunnel."""
 
-    health_check: Optional[GRETunnelHealthCheck] = None
+    health_check: Optional[HealthCheck] = None
 
     modified_on: Optional[datetime] = None
     """The date and time the tunnel was last modified."""
@@ -110,7 +104,3 @@ class GRETunnel(BaseModel):
 
     ttl: Optional[int] = None
     """Time To Live (TTL) in number of hops of the GRE tunnel."""
-
-
-class GRETunnelCreateResponse(BaseModel):
-    gre_tunnels: Optional[List[GRETunnel]] = None
