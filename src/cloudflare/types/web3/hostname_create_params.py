@@ -9,16 +9,16 @@ __all__ = ["HostnameCreateParams"]
 
 class HostnameCreateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Specify the identifier of the hostname."""
 
     name: Required[str]
-    """The hostname that will point to the target gateway via CNAME."""
+    """Specify the hostname that points to the target gateway via CNAME."""
 
     target: Required[Literal["ethereum", "ipfs", "ipfs_universal_path"]]
-    """Target gateway of the hostname."""
+    """Specify the target gateway of the hostname."""
 
     description: str
-    """An optional description of the hostname."""
+    """Specify an optional description of the hostname."""
 
     dnslink: str
-    """DNSLink value used if the target is ipfs."""
+    """Specify the DNSLink value used if the target is ipfs."""

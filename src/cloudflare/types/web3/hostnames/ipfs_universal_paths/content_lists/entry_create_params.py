@@ -9,13 +9,13 @@ __all__ = ["EntryCreateParams"]
 
 class EntryCreateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Specify the identifier of the hostname."""
 
     content: Required[str]
-    """CID or content path of content to block."""
+    """Specify the CID or content path of content to block."""
 
     type: Required[Literal["cid", "content_path"]]
-    """Type of content list entry to block."""
+    """Specify the type of content list entry to block."""
 
     description: str
-    """An optional description of the content list entry."""
+    """Specify an optional description of the content list entry."""
