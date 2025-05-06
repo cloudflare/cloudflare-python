@@ -8,8 +8,22 @@ from .jobs import (
     JobsResourceWithStreamingResponse,
     AsyncJobsResourceWithStreamingResponse,
 )
+from .logs import (
+    LogsResource,
+    AsyncLogsResource,
+    LogsResourceWithRawResponse,
+    AsyncLogsResourceWithRawResponse,
+    LogsResourceWithStreamingResponse,
+    AsyncLogsResourceWithStreamingResponse,
+)
 
 __all__ = [
+    "LogsResource",
+    "AsyncLogsResource",
+    "LogsResourceWithRawResponse",
+    "AsyncLogsResourceWithRawResponse",
+    "LogsResourceWithStreamingResponse",
+    "AsyncLogsResourceWithStreamingResponse",
     "JobsResource",
     "AsyncJobsResource",
     "JobsResourceWithRawResponse",
