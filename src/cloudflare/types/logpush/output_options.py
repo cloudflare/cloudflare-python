@@ -52,10 +52,10 @@ class OutputOptions(BaseModel):
 
     record_template: Optional[str] = None
     """
-    String to use as template for each record instead of the default comma-separated
-    list. All fields used in the template must be present in `field_names` as well,
-    otherwise they will end up as null. Format as a Go `text/template` without any
-    standard functions, like conditionals, loops, sub-templates, etc.
+    String to use as template for each record instead of the default json key value
+    mapping. All fields used in the template must be present in `field_names` as
+    well, otherwise they will end up as null. Format as a Go `text/template` without
+    any standard functions, like conditionals, loops, sub-templates, etc.
     """
 
     sample_rate: Optional[float] = None
