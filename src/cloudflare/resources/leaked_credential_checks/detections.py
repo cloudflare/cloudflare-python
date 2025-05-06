@@ -61,14 +61,14 @@ class DetectionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> DetectionCreateResponse:
         """
-        Create user-defined detection pattern for Leaked Credential Checks
+        Create user-defined detection pattern for Leaked Credential Checks.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
-          password: The ruleset expression to use in matching the password in a request
+          password: Defines ehe ruleset expression to use in matching the password in a request.
 
-          username: The ruleset expression to use in matching the username in a request
+          username: Defines the ruleset expression to use in matching the username in a request.
 
           extra_headers: Send extra headers
 
@@ -114,16 +114,16 @@ class DetectionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> DetectionUpdateResponse:
         """
-        Update user-defined detection pattern for Leaked Credential Checks
+        Update user-defined detection pattern for Leaked Credential Checks.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
-          detection_id: The unique ID for this custom detection
+          detection_id: Defines the unique ID for this custom detection.
 
-          password: The ruleset expression to use in matching the password in a request
+          password: Defines ehe ruleset expression to use in matching the password in a request.
 
-          username: The ruleset expression to use in matching the username in a request
+          username: Defines the ruleset expression to use in matching the username in a request.
 
           extra_headers: Send extra headers
 
@@ -168,10 +168,10 @@ class DetectionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncSinglePage[DetectionListResponse]:
         """
-        List user-defined detection patterns for Leaked Credential Checks
+        List user-defined detection patterns for Leaked Credential Checks.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           extra_headers: Send extra headers
 
@@ -205,12 +205,12 @@ class DetectionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        Remove user-defined detection pattern for Leaked Credential Checks
+        Remove user-defined detection pattern for Leaked Credential Checks.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
-          detection_id: The unique ID for this custom detection
+          detection_id: Defines the unique ID for this custom detection.
 
           extra_headers: Send extra headers
 
@@ -271,14 +271,14 @@ class AsyncDetectionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> DetectionCreateResponse:
         """
-        Create user-defined detection pattern for Leaked Credential Checks
+        Create user-defined detection pattern for Leaked Credential Checks.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
-          password: The ruleset expression to use in matching the password in a request
+          password: Defines ehe ruleset expression to use in matching the password in a request.
 
-          username: The ruleset expression to use in matching the username in a request
+          username: Defines the ruleset expression to use in matching the username in a request.
 
           extra_headers: Send extra headers
 
@@ -324,16 +324,16 @@ class AsyncDetectionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> DetectionUpdateResponse:
         """
-        Update user-defined detection pattern for Leaked Credential Checks
+        Update user-defined detection pattern for Leaked Credential Checks.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
-          detection_id: The unique ID for this custom detection
+          detection_id: Defines the unique ID for this custom detection.
 
-          password: The ruleset expression to use in matching the password in a request
+          password: Defines ehe ruleset expression to use in matching the password in a request.
 
-          username: The ruleset expression to use in matching the username in a request
+          username: Defines the ruleset expression to use in matching the username in a request.
 
           extra_headers: Send extra headers
 
@@ -378,10 +378,10 @@ class AsyncDetectionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[DetectionListResponse, AsyncSinglePage[DetectionListResponse]]:
         """
-        List user-defined detection patterns for Leaked Credential Checks
+        List user-defined detection patterns for Leaked Credential Checks.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           extra_headers: Send extra headers
 
@@ -415,12 +415,12 @@ class AsyncDetectionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> object:
         """
-        Remove user-defined detection pattern for Leaked Credential Checks
+        Remove user-defined detection pattern for Leaked Credential Checks.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
-          detection_id: The unique ID for this custom detection
+          detection_id: Defines the unique ID for this custom detection.
 
           extra_headers: Send extra headers
 

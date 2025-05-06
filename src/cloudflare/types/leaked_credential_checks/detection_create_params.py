@@ -9,10 +9,10 @@ __all__ = ["DetectionCreateParams"]
 
 class DetectionCreateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Defines an identifier."""
 
     password: str
-    """The ruleset expression to use in matching the password in a request"""
+    """Defines ehe ruleset expression to use in matching the password in a request."""
 
     username: str
-    """The ruleset expression to use in matching the username in a request"""
+    """Defines the ruleset expression to use in matching the username in a request."""

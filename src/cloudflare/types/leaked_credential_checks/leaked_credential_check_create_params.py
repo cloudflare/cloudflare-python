@@ -9,7 +9,7 @@ __all__ = ["LeakedCredentialCheckCreateParams"]
 
 class LeakedCredentialCheckCreateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Defines an identifier."""
 
     enabled: bool
-    """Whether or not Leaked Credential Checks are enabled"""
+    """Determines whether or not Leaked Credential Checks are enabled."""
