@@ -4,13 +4,18 @@ from typing import List, Optional
 from typing_extensions import Literal
 
 from ..._models import BaseModel
-from ..shared.response_info import ResponseInfo
 
-__all__ = ["ConsumerDeleteResponse"]
+__all__ = ["ConsumerDeleteResponse", "Error"]
+
+
+class Error(BaseModel):
+    code: int
+
+    message: str
 
 
 class ConsumerDeleteResponse(BaseModel):
-    errors: Optional[List[ResponseInfo]] = None
+    errors: Optional[List[Error]] = None
 
     messages: Optional[List[str]] = None
 
