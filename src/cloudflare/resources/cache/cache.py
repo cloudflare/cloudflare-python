@@ -134,10 +134,6 @@ class CacheResource(SyncAPIResource):
         **hostname**. The port number can be omitted if it is the default port (80 for
         http, 443 for https), but must be included otherwise.
 
-        **NB:** For Zones on Free/Pro/Business plan, you may purge up to 30 URLs in one
-        API call. For Zones on Enterprise plan, you may purge up to 500 URLs in one API
-        call.
-
         Single file purge example with files:
 
         ```
@@ -164,13 +160,7 @@ class CacheResource(SyncAPIResource):
         ### Purge Cached Content by Tag, Host or Prefix
 
         Granularly removes one or more files from Cloudflare's cache either by
-        specifying the host, the associated Cache-Tag, or a Prefix. Only Enterprise
-        customers are permitted to purge by Tag, Host or Prefix.
-
-        **NB:** Cache-Tag, host, and prefix purging each have a rate limit of 30,000
-        purge API calls in every 24 hour period. You may purge up to 30 tags, hosts, or
-        prefixes in one API call. This rate limit can be raised for customers who need
-        to purge at higher volume.
+        specifying the host, the associated Cache-Tag, or a Prefix.
 
         Flex purge with tags:
 
@@ -190,9 +180,14 @@ class CacheResource(SyncAPIResource):
         {"prefixes": ["www.example.com/foo", "images.example.com/bar/baz"]}
         ```
 
+        ### Availability and limits
+
+        please refer to
+        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+
         Args:
           tags: For more information on cache tags and purging by tags, please refer to
-              [purge by cache-tags documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-tags/#purge-cache-by-cache-tags-enterprise-only).
+              [purge by cache-tags documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-tags/).
 
           extra_headers: Send extra headers
 
@@ -241,10 +236,6 @@ class CacheResource(SyncAPIResource):
         **hostname**. The port number can be omitted if it is the default port (80 for
         http, 443 for https), but must be included otherwise.
 
-        **NB:** For Zones on Free/Pro/Business plan, you may purge up to 30 URLs in one
-        API call. For Zones on Enterprise plan, you may purge up to 500 URLs in one API
-        call.
-
         Single file purge example with files:
 
         ```
@@ -271,13 +262,7 @@ class CacheResource(SyncAPIResource):
         ### Purge Cached Content by Tag, Host or Prefix
 
         Granularly removes one or more files from Cloudflare's cache either by
-        specifying the host, the associated Cache-Tag, or a Prefix. Only Enterprise
-        customers are permitted to purge by Tag, Host or Prefix.
-
-        **NB:** Cache-Tag, host, and prefix purging each have a rate limit of 30,000
-        purge API calls in every 24 hour period. You may purge up to 30 tags, hosts, or
-        prefixes in one API call. This rate limit can be raised for customers who need
-        to purge at higher volume.
+        specifying the host, the associated Cache-Tag, or a Prefix.
 
         Flex purge with tags:
 
@@ -296,6 +281,11 @@ class CacheResource(SyncAPIResource):
         ```
         {"prefixes": ["www.example.com/foo", "images.example.com/bar/baz"]}
         ```
+
+        ### Availability and limits
+
+        please refer to
+        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
           hosts: For more information purging by hostnames, please refer to
@@ -348,10 +338,6 @@ class CacheResource(SyncAPIResource):
         **hostname**. The port number can be omitted if it is the default port (80 for
         http, 443 for https), but must be included otherwise.
 
-        **NB:** For Zones on Free/Pro/Business plan, you may purge up to 30 URLs in one
-        API call. For Zones on Enterprise plan, you may purge up to 500 URLs in one API
-        call.
-
         Single file purge example with files:
 
         ```
@@ -378,13 +364,7 @@ class CacheResource(SyncAPIResource):
         ### Purge Cached Content by Tag, Host or Prefix
 
         Granularly removes one or more files from Cloudflare's cache either by
-        specifying the host, the associated Cache-Tag, or a Prefix. Only Enterprise
-        customers are permitted to purge by Tag, Host or Prefix.
-
-        **NB:** Cache-Tag, host, and prefix purging each have a rate limit of 30,000
-        purge API calls in every 24 hour period. You may purge up to 30 tags, hosts, or
-        prefixes in one API call. This rate limit can be raised for customers who need
-        to purge at higher volume.
+        specifying the host, the associated Cache-Tag, or a Prefix.
 
         Flex purge with tags:
 
@@ -403,6 +383,11 @@ class CacheResource(SyncAPIResource):
         ```
         {"prefixes": ["www.example.com/foo", "images.example.com/bar/baz"]}
         ```
+
+        ### Availability and limits
+
+        please refer to
+        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
           prefixes: For more information on purging by prefixes, please refer to
@@ -455,10 +440,6 @@ class CacheResource(SyncAPIResource):
         **hostname**. The port number can be omitted if it is the default port (80 for
         http, 443 for https), but must be included otherwise.
 
-        **NB:** For Zones on Free/Pro/Business plan, you may purge up to 30 URLs in one
-        API call. For Zones on Enterprise plan, you may purge up to 500 URLs in one API
-        call.
-
         Single file purge example with files:
 
         ```
@@ -485,13 +466,7 @@ class CacheResource(SyncAPIResource):
         ### Purge Cached Content by Tag, Host or Prefix
 
         Granularly removes one or more files from Cloudflare's cache either by
-        specifying the host, the associated Cache-Tag, or a Prefix. Only Enterprise
-        customers are permitted to purge by Tag, Host or Prefix.
-
-        **NB:** Cache-Tag, host, and prefix purging each have a rate limit of 30,000
-        purge API calls in every 24 hour period. You may purge up to 30 tags, hosts, or
-        prefixes in one API call. This rate limit can be raised for customers who need
-        to purge at higher volume.
+        specifying the host, the associated Cache-Tag, or a Prefix.
 
         Flex purge with tags:
 
@@ -510,6 +485,11 @@ class CacheResource(SyncAPIResource):
         ```
         {"prefixes": ["www.example.com/foo", "images.example.com/bar/baz"]}
         ```
+
+        ### Availability and limits
+
+        please refer to
+        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
           purge_everything: For more information, please refer to
@@ -562,10 +542,6 @@ class CacheResource(SyncAPIResource):
         **hostname**. The port number can be omitted if it is the default port (80 for
         http, 443 for https), but must be included otherwise.
 
-        **NB:** For Zones on Free/Pro/Business plan, you may purge up to 30 URLs in one
-        API call. For Zones on Enterprise plan, you may purge up to 500 URLs in one API
-        call.
-
         Single file purge example with files:
 
         ```
@@ -592,13 +568,7 @@ class CacheResource(SyncAPIResource):
         ### Purge Cached Content by Tag, Host or Prefix
 
         Granularly removes one or more files from Cloudflare's cache either by
-        specifying the host, the associated Cache-Tag, or a Prefix. Only Enterprise
-        customers are permitted to purge by Tag, Host or Prefix.
-
-        **NB:** Cache-Tag, host, and prefix purging each have a rate limit of 30,000
-        purge API calls in every 24 hour period. You may purge up to 30 tags, hosts, or
-        prefixes in one API call. This rate limit can be raised for customers who need
-        to purge at higher volume.
+        specifying the host, the associated Cache-Tag, or a Prefix.
 
         Flex purge with tags:
 
@@ -617,6 +587,11 @@ class CacheResource(SyncAPIResource):
         ```
         {"prefixes": ["www.example.com/foo", "images.example.com/bar/baz"]}
         ```
+
+        ### Availability and limits
+
+        please refer to
+        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
           files: For more information on purging files, please refer to
@@ -669,10 +644,6 @@ class CacheResource(SyncAPIResource):
         **hostname**. The port number can be omitted if it is the default port (80 for
         http, 443 for https), but must be included otherwise.
 
-        **NB:** For Zones on Free/Pro/Business plan, you may purge up to 30 URLs in one
-        API call. For Zones on Enterprise plan, you may purge up to 500 URLs in one API
-        call.
-
         Single file purge example with files:
 
         ```
@@ -699,13 +670,7 @@ class CacheResource(SyncAPIResource):
         ### Purge Cached Content by Tag, Host or Prefix
 
         Granularly removes one or more files from Cloudflare's cache either by
-        specifying the host, the associated Cache-Tag, or a Prefix. Only Enterprise
-        customers are permitted to purge by Tag, Host or Prefix.
-
-        **NB:** Cache-Tag, host, and prefix purging each have a rate limit of 30,000
-        purge API calls in every 24 hour period. You may purge up to 30 tags, hosts, or
-        prefixes in one API call. This rate limit can be raised for customers who need
-        to purge at higher volume.
+        specifying the host, the associated Cache-Tag, or a Prefix.
 
         Flex purge with tags:
 
@@ -724,6 +689,11 @@ class CacheResource(SyncAPIResource):
         ```
         {"prefixes": ["www.example.com/foo", "images.example.com/bar/baz"]}
         ```
+
+        ### Availability and limits
+
+        please refer to
+        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
           files: For more information on purging files with URL and headers, please refer to
@@ -856,10 +826,6 @@ class AsyncCacheResource(AsyncAPIResource):
         **hostname**. The port number can be omitted if it is the default port (80 for
         http, 443 for https), but must be included otherwise.
 
-        **NB:** For Zones on Free/Pro/Business plan, you may purge up to 30 URLs in one
-        API call. For Zones on Enterprise plan, you may purge up to 500 URLs in one API
-        call.
-
         Single file purge example with files:
 
         ```
@@ -886,13 +852,7 @@ class AsyncCacheResource(AsyncAPIResource):
         ### Purge Cached Content by Tag, Host or Prefix
 
         Granularly removes one or more files from Cloudflare's cache either by
-        specifying the host, the associated Cache-Tag, or a Prefix. Only Enterprise
-        customers are permitted to purge by Tag, Host or Prefix.
-
-        **NB:** Cache-Tag, host, and prefix purging each have a rate limit of 30,000
-        purge API calls in every 24 hour period. You may purge up to 30 tags, hosts, or
-        prefixes in one API call. This rate limit can be raised for customers who need
-        to purge at higher volume.
+        specifying the host, the associated Cache-Tag, or a Prefix.
 
         Flex purge with tags:
 
@@ -912,9 +872,14 @@ class AsyncCacheResource(AsyncAPIResource):
         {"prefixes": ["www.example.com/foo", "images.example.com/bar/baz"]}
         ```
 
+        ### Availability and limits
+
+        please refer to
+        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
+
         Args:
           tags: For more information on cache tags and purging by tags, please refer to
-              [purge by cache-tags documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-tags/#purge-cache-by-cache-tags-enterprise-only).
+              [purge by cache-tags documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-tags/).
 
           extra_headers: Send extra headers
 
@@ -963,10 +928,6 @@ class AsyncCacheResource(AsyncAPIResource):
         **hostname**. The port number can be omitted if it is the default port (80 for
         http, 443 for https), but must be included otherwise.
 
-        **NB:** For Zones on Free/Pro/Business plan, you may purge up to 30 URLs in one
-        API call. For Zones on Enterprise plan, you may purge up to 500 URLs in one API
-        call.
-
         Single file purge example with files:
 
         ```
@@ -993,13 +954,7 @@ class AsyncCacheResource(AsyncAPIResource):
         ### Purge Cached Content by Tag, Host or Prefix
 
         Granularly removes one or more files from Cloudflare's cache either by
-        specifying the host, the associated Cache-Tag, or a Prefix. Only Enterprise
-        customers are permitted to purge by Tag, Host or Prefix.
-
-        **NB:** Cache-Tag, host, and prefix purging each have a rate limit of 30,000
-        purge API calls in every 24 hour period. You may purge up to 30 tags, hosts, or
-        prefixes in one API call. This rate limit can be raised for customers who need
-        to purge at higher volume.
+        specifying the host, the associated Cache-Tag, or a Prefix.
 
         Flex purge with tags:
 
@@ -1018,6 +973,11 @@ class AsyncCacheResource(AsyncAPIResource):
         ```
         {"prefixes": ["www.example.com/foo", "images.example.com/bar/baz"]}
         ```
+
+        ### Availability and limits
+
+        please refer to
+        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
           hosts: For more information purging by hostnames, please refer to
@@ -1070,10 +1030,6 @@ class AsyncCacheResource(AsyncAPIResource):
         **hostname**. The port number can be omitted if it is the default port (80 for
         http, 443 for https), but must be included otherwise.
 
-        **NB:** For Zones on Free/Pro/Business plan, you may purge up to 30 URLs in one
-        API call. For Zones on Enterprise plan, you may purge up to 500 URLs in one API
-        call.
-
         Single file purge example with files:
 
         ```
@@ -1100,13 +1056,7 @@ class AsyncCacheResource(AsyncAPIResource):
         ### Purge Cached Content by Tag, Host or Prefix
 
         Granularly removes one or more files from Cloudflare's cache either by
-        specifying the host, the associated Cache-Tag, or a Prefix. Only Enterprise
-        customers are permitted to purge by Tag, Host or Prefix.
-
-        **NB:** Cache-Tag, host, and prefix purging each have a rate limit of 30,000
-        purge API calls in every 24 hour period. You may purge up to 30 tags, hosts, or
-        prefixes in one API call. This rate limit can be raised for customers who need
-        to purge at higher volume.
+        specifying the host, the associated Cache-Tag, or a Prefix.
 
         Flex purge with tags:
 
@@ -1125,6 +1075,11 @@ class AsyncCacheResource(AsyncAPIResource):
         ```
         {"prefixes": ["www.example.com/foo", "images.example.com/bar/baz"]}
         ```
+
+        ### Availability and limits
+
+        please refer to
+        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
           prefixes: For more information on purging by prefixes, please refer to
@@ -1177,10 +1132,6 @@ class AsyncCacheResource(AsyncAPIResource):
         **hostname**. The port number can be omitted if it is the default port (80 for
         http, 443 for https), but must be included otherwise.
 
-        **NB:** For Zones on Free/Pro/Business plan, you may purge up to 30 URLs in one
-        API call. For Zones on Enterprise plan, you may purge up to 500 URLs in one API
-        call.
-
         Single file purge example with files:
 
         ```
@@ -1207,13 +1158,7 @@ class AsyncCacheResource(AsyncAPIResource):
         ### Purge Cached Content by Tag, Host or Prefix
 
         Granularly removes one or more files from Cloudflare's cache either by
-        specifying the host, the associated Cache-Tag, or a Prefix. Only Enterprise
-        customers are permitted to purge by Tag, Host or Prefix.
-
-        **NB:** Cache-Tag, host, and prefix purging each have a rate limit of 30,000
-        purge API calls in every 24 hour period. You may purge up to 30 tags, hosts, or
-        prefixes in one API call. This rate limit can be raised for customers who need
-        to purge at higher volume.
+        specifying the host, the associated Cache-Tag, or a Prefix.
 
         Flex purge with tags:
 
@@ -1232,6 +1177,11 @@ class AsyncCacheResource(AsyncAPIResource):
         ```
         {"prefixes": ["www.example.com/foo", "images.example.com/bar/baz"]}
         ```
+
+        ### Availability and limits
+
+        please refer to
+        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
           purge_everything: For more information, please refer to
@@ -1284,10 +1234,6 @@ class AsyncCacheResource(AsyncAPIResource):
         **hostname**. The port number can be omitted if it is the default port (80 for
         http, 443 for https), but must be included otherwise.
 
-        **NB:** For Zones on Free/Pro/Business plan, you may purge up to 30 URLs in one
-        API call. For Zones on Enterprise plan, you may purge up to 500 URLs in one API
-        call.
-
         Single file purge example with files:
 
         ```
@@ -1314,13 +1260,7 @@ class AsyncCacheResource(AsyncAPIResource):
         ### Purge Cached Content by Tag, Host or Prefix
 
         Granularly removes one or more files from Cloudflare's cache either by
-        specifying the host, the associated Cache-Tag, or a Prefix. Only Enterprise
-        customers are permitted to purge by Tag, Host or Prefix.
-
-        **NB:** Cache-Tag, host, and prefix purging each have a rate limit of 30,000
-        purge API calls in every 24 hour period. You may purge up to 30 tags, hosts, or
-        prefixes in one API call. This rate limit can be raised for customers who need
-        to purge at higher volume.
+        specifying the host, the associated Cache-Tag, or a Prefix.
 
         Flex purge with tags:
 
@@ -1339,6 +1279,11 @@ class AsyncCacheResource(AsyncAPIResource):
         ```
         {"prefixes": ["www.example.com/foo", "images.example.com/bar/baz"]}
         ```
+
+        ### Availability and limits
+
+        please refer to
+        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
           files: For more information on purging files, please refer to
@@ -1391,10 +1336,6 @@ class AsyncCacheResource(AsyncAPIResource):
         **hostname**. The port number can be omitted if it is the default port (80 for
         http, 443 for https), but must be included otherwise.
 
-        **NB:** For Zones on Free/Pro/Business plan, you may purge up to 30 URLs in one
-        API call. For Zones on Enterprise plan, you may purge up to 500 URLs in one API
-        call.
-
         Single file purge example with files:
 
         ```
@@ -1421,13 +1362,7 @@ class AsyncCacheResource(AsyncAPIResource):
         ### Purge Cached Content by Tag, Host or Prefix
 
         Granularly removes one or more files from Cloudflare's cache either by
-        specifying the host, the associated Cache-Tag, or a Prefix. Only Enterprise
-        customers are permitted to purge by Tag, Host or Prefix.
-
-        **NB:** Cache-Tag, host, and prefix purging each have a rate limit of 30,000
-        purge API calls in every 24 hour period. You may purge up to 30 tags, hosts, or
-        prefixes in one API call. This rate limit can be raised for customers who need
-        to purge at higher volume.
+        specifying the host, the associated Cache-Tag, or a Prefix.
 
         Flex purge with tags:
 
@@ -1446,6 +1381,11 @@ class AsyncCacheResource(AsyncAPIResource):
         ```
         {"prefixes": ["www.example.com/foo", "images.example.com/bar/baz"]}
         ```
+
+        ### Availability and limits
+
+        please refer to
+        [purge cache availability and limits documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/#availability-and-limits).
 
         Args:
           files: For more information on purging files with URL and headers, please refer to
