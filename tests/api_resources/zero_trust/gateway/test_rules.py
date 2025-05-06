@@ -114,6 +114,7 @@ class TestRules:
                 "quarantine": {"file_types": ["exe"]},
                 "redirect": {
                     "target_uri": "https://example.com",
+                    "include_context": True,
                     "preserve_path_and_query": True,
                 },
                 "resolve_dns_internally": {
@@ -269,6 +270,7 @@ class TestRules:
                 "quarantine": {"file_types": ["exe"]},
                 "redirect": {
                     "target_uri": "https://example.com",
+                    "include_context": True,
                     "preserve_path_and_query": True,
                 },
                 "resolve_dns_internally": {
@@ -619,6 +621,7 @@ class TestAsyncRules:
                 "quarantine": {"file_types": ["exe"]},
                 "redirect": {
                     "target_uri": "https://example.com",
+                    "include_context": True,
                     "preserve_path_and_query": True,
                 },
                 "resolve_dns_internally": {
@@ -774,6 +777,7 @@ class TestAsyncRules:
                 "quarantine": {"file_types": ["exe"]},
                 "redirect": {
                     "target_uri": "https://example.com",
+                    "include_context": True,
                     "preserve_path_and_query": True,
                 },
                 "resolve_dns_internally": {
