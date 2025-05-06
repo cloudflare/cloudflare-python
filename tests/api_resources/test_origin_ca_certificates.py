@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from cloudflare.types.origin_ca_certificates import (
     OriginCACertificate,
     OriginCACertificateDeleteResponse,
@@ -66,7 +66,19 @@ class TestOriginCACertificates:
         origin_ca_certificate = client.origin_ca_certificates.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncSinglePage[OriginCACertificate], origin_ca_certificate, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[OriginCACertificate], origin_ca_certificate, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate auth errors on test suite")
+    @parametrize
+    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
+        origin_ca_certificate = client.origin_ca_certificates.list(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            limit=10,
+            offset=10,
+            page=1,
+            per_page=5,
+        )
+        assert_matches_type(SyncV4PagePaginationArray[OriginCACertificate], origin_ca_certificate, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate auth errors on test suite")
     @parametrize
@@ -78,7 +90,7 @@ class TestOriginCACertificates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         origin_ca_certificate = response.parse()
-        assert_matches_type(SyncSinglePage[OriginCACertificate], origin_ca_certificate, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[OriginCACertificate], origin_ca_certificate, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate auth errors on test suite")
     @parametrize
@@ -90,7 +102,9 @@ class TestOriginCACertificates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             origin_ca_certificate = response.parse()
-            assert_matches_type(SyncSinglePage[OriginCACertificate], origin_ca_certificate, path=["response"])
+            assert_matches_type(
+                SyncV4PagePaginationArray[OriginCACertificate], origin_ca_certificate, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
@@ -227,7 +241,19 @@ class TestAsyncOriginCACertificates:
         origin_ca_certificate = await async_client.origin_ca_certificates.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncSinglePage[OriginCACertificate], origin_ca_certificate, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[OriginCACertificate], origin_ca_certificate, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate auth errors on test suite")
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        origin_ca_certificate = await async_client.origin_ca_certificates.list(
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            limit=10,
+            offset=10,
+            page=1,
+            per_page=5,
+        )
+        assert_matches_type(AsyncV4PagePaginationArray[OriginCACertificate], origin_ca_certificate, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate auth errors on test suite")
     @parametrize
@@ -239,7 +265,7 @@ class TestAsyncOriginCACertificates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         origin_ca_certificate = await response.parse()
-        assert_matches_type(AsyncSinglePage[OriginCACertificate], origin_ca_certificate, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[OriginCACertificate], origin_ca_certificate, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate auth errors on test suite")
     @parametrize
@@ -251,7 +277,9 @@ class TestAsyncOriginCACertificates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             origin_ca_certificate = await response.parse()
-            assert_matches_type(AsyncSinglePage[OriginCACertificate], origin_ca_certificate, path=["response"])
+            assert_matches_type(
+                AsyncV4PagePaginationArray[OriginCACertificate], origin_ca_certificate, path=["response"]
+            )
 
         assert cast(Any, response.is_closed) is True
 
