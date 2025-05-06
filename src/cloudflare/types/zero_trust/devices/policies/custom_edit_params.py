@@ -60,6 +60,20 @@ class CustomEditParams(TypedDict, total=False):
     Both 'exclude' and 'include' cannot be set in the same request.
     """
 
+    lan_allow_minutes: float
+    """The amount of time in minutes a user is allowed access to their LAN.
+
+    A value of 0 will allow LAN access until the next WARP reconnection, such as a
+    reboot or a laptop waking from sleep. Note that this field is omitted from the
+    response if null or unset.
+    """
+
+    lan_allow_subnet_size: float
+    """The size of the subnet for the local access network.
+
+    Note that this field is omitted from the response if null or unset.
+    """
+
     match: str
     """The wirefilter expression to match devices.
 

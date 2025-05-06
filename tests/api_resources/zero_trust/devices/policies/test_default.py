@@ -47,6 +47,8 @@ class TestDefault:
                     "description": "Include testing domains in the tunnel",
                 }
             ],
+            lan_allow_minutes=30,
+            lan_allow_subnet_size=24,
             register_interface_ip_with_dns=True,
             service_mode_v2={
                 "mode": "proxy",
@@ -161,6 +163,8 @@ class TestAsyncDefault:
                     "description": "Include testing domains in the tunnel",
                 }
             ],
+            lan_allow_minutes=30,
+            lan_allow_subnet_size=24,
             register_interface_ip_with_dns=True,
             service_mode_v2={
                 "mode": "proxy",
