@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Iterable, Optional
+from typing import Dict, List, Iterable
 from typing_extensions import Literal, Required, TypedDict
 
 from .dns_resolver_settings_v4_param import DNSResolverSettingsV4Param
@@ -206,7 +206,7 @@ class RuleSettingParam(TypedDict, total=False):
     Keys are header names, pointing to an array with its header value(s).
     """
 
-    allow_child_bypass: Optional[bool]
+    allow_child_bypass: bool
     """Set by parent MSP accounts to enable their children to bypass this rule."""
 
     audit_ssh: AuditSSH
@@ -230,7 +230,7 @@ class RuleSettingParam(TypedDict, total=False):
     (if enabled).
     """
 
-    bypass_parent_rule: Optional[bool]
+    bypass_parent_rule: bool
     """Set by children MSP accounts to bypass their parent's rules."""
 
     check_session: CheckSession
