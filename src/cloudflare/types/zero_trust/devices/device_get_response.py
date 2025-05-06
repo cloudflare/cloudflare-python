@@ -9,7 +9,7 @@ __all__ = ["DeviceGetResponse", "LastSeenUser"]
 
 class LastSeenUser(BaseModel):
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     email: Optional[str] = None
     """The contact email address of the user."""

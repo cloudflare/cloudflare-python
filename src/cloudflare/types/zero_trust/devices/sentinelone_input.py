@@ -10,7 +10,7 @@ __all__ = ["SentineloneInput"]
 
 class SentineloneInput(BaseModel):
     operating_system: Literal["windows", "linux", "mac"]
-    """Operating system"""
+    """Operating system."""
 
     path: str
     """File path."""

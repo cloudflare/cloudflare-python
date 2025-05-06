@@ -277,7 +277,7 @@ class RegistrationsResource(SyncAPIResource):
         Revokes a list of WARP registrations.
 
         Args:
-          id: A list of registration IDs to revoke
+          id: A list of registration IDs to revoke.
 
           extra_headers: Send extra headers
 
@@ -318,7 +318,7 @@ class RegistrationsResource(SyncAPIResource):
         Unrevokes a list of WARP registrations.
 
         Args:
-          id: A list of registration IDs to unrevoke
+          id: A list of registration IDs to unrevoke.
 
           extra_headers: Send extra headers
 
@@ -591,7 +591,7 @@ class AsyncRegistrationsResource(AsyncAPIResource):
         Revokes a list of WARP registrations.
 
         Args:
-          id: A list of registration IDs to revoke
+          id: A list of registration IDs to revoke.
 
           extra_headers: Send extra headers
 
@@ -632,7 +632,7 @@ class AsyncRegistrationsResource(AsyncAPIResource):
         Unrevokes a list of WARP registrations.
 
         Args:
-          id: A list of registration IDs to unrevoke
+          id: A list of registration IDs to unrevoke.
 
           extra_headers: Send extra headers
 

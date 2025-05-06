@@ -11,7 +11,7 @@ __all__ = ["Device", "User"]
 
 class User(BaseModel):
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     email: Optional[str] = None
     """The contact email address of the user."""

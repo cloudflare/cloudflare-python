@@ -5362,19 +5362,10 @@ Methods:
 
 ##### Certificates
 
-Types:
-
-```python
-from cloudflare.types.zero_trust.devices.policies.default import (
-    CertificateEditResponse,
-    CertificateGetResponse,
-)
-```
-
 Methods:
 
-- <code title="patch /zones/{zone_id}/devices/policy/certificates">client.zero_trust.devices.policies.default.certificates.<a href="./src/cloudflare/resources/zero_trust/devices/policies/default/certificates.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/policies/default/certificate_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/policies/default/certificate_edit_response.py">Optional[CertificateEditResponse]</a></code>
-- <code title="get /zones/{zone_id}/devices/policy/certificates">client.zero_trust.devices.policies.default.certificates.<a href="./src/cloudflare/resources/zero_trust/devices/policies/default/certificates.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zero_trust/devices/policies/default/certificate_get_response.py">Optional[CertificateGetResponse]</a></code>
+- <code title="patch /zones/{zone_id}/devices/policy/certificates">client.zero_trust.devices.policies.default.certificates.<a href="./src/cloudflare/resources/zero_trust/devices/policies/default/certificates.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/policies/default/certificate_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/device_policy_certificates.py">Optional[DevicePolicyCertificates]</a></code>
+- <code title="get /zones/{zone_id}/devices/policy/certificates">client.zero_trust.devices.policies.default.certificates.<a href="./src/cloudflare/resources/zero_trust/devices/policies/default/certificates.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zero_trust/devices/device_policy_certificates.py">Optional[DevicePolicyCertificates]</a></code>
 
 #### Custom
 
@@ -5507,7 +5498,7 @@ from cloudflare.types.zero_trust.devices import OverrideCodeListResponse, Overri
 
 Methods:
 
-- <code title="get /accounts/{account_id}/devices/{device_id}/override_codes">client.zero_trust.devices.override_codes.<a href="./src/cloudflare/resources/zero_trust/devices/override_codes.py">list</a>(device_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/override_code_list_response.py">Optional[OverrideCodeListResponse]</a></code>
+- <code title="get /accounts/{account_id}/devices/{device_id}/override_codes">client.zero_trust.devices.override_codes.<a href="./src/cloudflare/resources/zero_trust/devices/override_codes.py">list</a>(device_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/override_code_list_response.py">SyncSinglePage[object]</a></code>
 - <code title="get /accounts/{account_id}/devices/registrations/{registration_id}/override_codes">client.zero_trust.devices.override_codes.<a href="./src/cloudflare/resources/zero_trust/devices/override_codes.py">get</a>(registration_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/override_code_get_response.py">OverrideCodeGetResponse</a></code>
 
 ## IdentityProviders

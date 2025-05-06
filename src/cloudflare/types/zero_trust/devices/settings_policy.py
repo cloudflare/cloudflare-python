@@ -20,10 +20,10 @@ class ServiceModeV2(BaseModel):
 
 class TargetTest(BaseModel):
     id: Optional[str] = None
-    """The id of the DEX test targeting this policy"""
+    """The id of the DEX test targeting this policy."""
 
     name: Optional[str] = None
-    """The name of the DEX test targeting this policy"""
+    """The name of the DEX test targeting this policy."""
 
 
 class SettingsPolicy(BaseModel):
@@ -93,7 +93,7 @@ class SettingsPolicy(BaseModel):
 
     Available values: "identity.email", "identity.groups.id",
     "identity.groups.name", "identity.groups.email", "identity.service_token_uuid",
-    "identity.saml_attributes", "network", "os.name", "os.version"
+    "identity.saml_attributes", "network", "os.name", "os.version".
     """
 
     name: Optional[str] = None

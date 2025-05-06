@@ -10,4 +10,4 @@ class ClientCertificateInput(BaseModel):
     """UUID of Cloudflare managed certificate."""
 
     cn: str
-    """Common Name that is protected by the certificate"""
+    """Common Name that is protected by the certificate."""

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Optional, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -19,8 +19,7 @@ from ......_response import (
 from ......_wrappers import ResultWrapper
 from ......_base_client import make_request_options
 from ......types.zero_trust.devices.policies.default import certificate_edit_params
-from ......types.zero_trust.devices.policies.default.certificate_get_response import CertificateGetResponse
-from ......types.zero_trust.devices.policies.default.certificate_edit_response import CertificateEditResponse
+from ......types.zero_trust.devices.device_policy_certificates import DevicePolicyCertificates
 
 __all__ = ["CertificatesResource", "AsyncCertificatesResource"]
 
@@ -56,7 +55,7 @@ class CertificatesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CertificateEditResponse]:
+    ) -> Optional[DevicePolicyCertificates]:
         """
         Enable Zero Trust Clients to provision a certificate, containing a x509 subject,
         and referenced by Access device posture policies when the client visits MTLS
@@ -76,22 +75,17 @@ class CertificatesResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            Optional[CertificateEditResponse],
-            self._patch(
-                f"/zones/{zone_id}/devices/policy/certificates",
-                body=maybe_transform({"enabled": enabled}, certificate_edit_params.CertificateEditParams),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[CertificateEditResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[CertificateEditResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._patch(
+            f"/zones/{zone_id}/devices/policy/certificates",
+            body=maybe_transform({"enabled": enabled}, certificate_edit_params.CertificateEditParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[DevicePolicyCertificates]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[DevicePolicyCertificates]], ResultWrapper[DevicePolicyCertificates]),
         )
 
     def get(
@@ -104,9 +98,9 @@ class CertificatesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CertificateGetResponse]:
+    ) -> Optional[DevicePolicyCertificates]:
         """
-        Fetches device certificate provisioning
+        Fetches device certificate provisioning.
 
         Args:
           extra_headers: Send extra headers
@@ -119,21 +113,16 @@ class CertificatesResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            Optional[CertificateGetResponse],
-            self._get(
-                f"/zones/{zone_id}/devices/policy/certificates",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[CertificateGetResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[CertificateGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._get(
+            f"/zones/{zone_id}/devices/policy/certificates",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[DevicePolicyCertificates]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[DevicePolicyCertificates]], ResultWrapper[DevicePolicyCertificates]),
         )
 
 
@@ -168,7 +157,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CertificateEditResponse]:
+    ) -> Optional[DevicePolicyCertificates]:
         """
         Enable Zero Trust Clients to provision a certificate, containing a x509 subject,
         and referenced by Access device posture policies when the client visits MTLS
@@ -188,22 +177,17 @@ class AsyncCertificatesResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            Optional[CertificateEditResponse],
-            await self._patch(
-                f"/zones/{zone_id}/devices/policy/certificates",
-                body=await async_maybe_transform({"enabled": enabled}, certificate_edit_params.CertificateEditParams),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[CertificateEditResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[CertificateEditResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._patch(
+            f"/zones/{zone_id}/devices/policy/certificates",
+            body=await async_maybe_transform({"enabled": enabled}, certificate_edit_params.CertificateEditParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[DevicePolicyCertificates]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[DevicePolicyCertificates]], ResultWrapper[DevicePolicyCertificates]),
         )
 
     async def get(
@@ -216,9 +200,9 @@ class AsyncCertificatesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CertificateGetResponse]:
+    ) -> Optional[DevicePolicyCertificates]:
         """
-        Fetches device certificate provisioning
+        Fetches device certificate provisioning.
 
         Args:
           extra_headers: Send extra headers
@@ -231,21 +215,16 @@ class AsyncCertificatesResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            Optional[CertificateGetResponse],
-            await self._get(
-                f"/zones/{zone_id}/devices/policy/certificates",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[CertificateGetResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[CertificateGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._get(
+            f"/zones/{zone_id}/devices/policy/certificates",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[DevicePolicyCertificates]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[DevicePolicyCertificates]], ResultWrapper[DevicePolicyCertificates]),
         )
 
 

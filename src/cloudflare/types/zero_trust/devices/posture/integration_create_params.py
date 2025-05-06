@@ -113,13 +113,13 @@ class ConfigTeamsDevicesTaniumConfigRequest(TypedDict, total=False):
     access_client_id: str
     """
     If present, this id will be passed in the `CF-Access-Client-ID` header when
-    hitting the `api_url`
+    hitting the `api_url`.
     """
 
     access_client_secret: str
     """
     If present, this secret will be passed in the `CF-Access-Client-Secret` header
-    when hitting the `api_url`
+    when hitting the `api_url`.
     """
 
 
@@ -135,13 +135,13 @@ class ConfigTeamsDevicesCustomS2sConfigRequest(TypedDict, total=False):
     access_client_id: Required[str]
     """
     This id will be passed in the `CF-Access-Client-ID` header when hitting the
-    `api_url`
+    `api_url`.
     """
 
     access_client_secret: Required[str]
     """
     This secret will be passed in the `CF-Access-Client-Secret` header when hitting
-    the `api_url`
+    the `api_url`.
     """
 
     api_url: Required[str]

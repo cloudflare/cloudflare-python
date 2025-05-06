@@ -10,7 +10,7 @@ __all__ = ["DomainJoinedInput"]
 
 class DomainJoinedInput(BaseModel):
     operating_system: Literal["windows"]
-    """Operating System"""
+    """Operating System."""
 
     domain: Optional[str] = None
-    """Domain"""
+    """Domain."""
