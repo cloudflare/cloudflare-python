@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, cast
 
 import httpx
 
@@ -53,7 +53,6 @@ class RoutesResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        id: str,
         pattern: str,
         script: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -62,14 +61,12 @@ class RoutesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RouteCreateResponse]:
+    ) -> RouteCreateResponse:
         """
         Creates a route that maps a URL pattern to a Worker.
 
         Args:
           zone_id: Identifier.
-
-          id: Identifier.
 
           pattern: Pattern to match incoming requests against.
               [Learn more](https://developers.cloudflare.com/workers/configuration/routing/routes/#matching-behavior).
@@ -90,7 +87,6 @@ class RoutesResource(SyncAPIResource):
             f"/zones/{zone_id}/workers/routes",
             body=maybe_transform(
                 {
-                    "id": id,
                     "pattern": pattern,
                     "script": script,
                 },
@@ -101,9 +97,9 @@ class RoutesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[RouteCreateResponse]]._unwrapper,
+                post_parser=ResultWrapper[RouteCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[RouteCreateResponse]], ResultWrapper[RouteCreateResponse]),
+            cast_to=cast(Type[RouteCreateResponse], ResultWrapper[RouteCreateResponse]),
         )
 
     def update(
@@ -111,7 +107,6 @@ class RoutesResource(SyncAPIResource):
         route_id: str,
         *,
         zone_id: str,
-        id: str,
         pattern: str,
         script: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -120,7 +115,7 @@ class RoutesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RouteUpdateResponse]:
+    ) -> RouteUpdateResponse:
         """
         Updates the URL pattern or Worker associated with a route.
 
@@ -128,8 +123,6 @@ class RoutesResource(SyncAPIResource):
           zone_id: Identifier.
 
           route_id: Identifier.
-
-          id: Identifier.
 
           pattern: Pattern to match incoming requests against.
               [Learn more](https://developers.cloudflare.com/workers/configuration/routing/routes/#matching-behavior).
@@ -152,7 +145,6 @@ class RoutesResource(SyncAPIResource):
             f"/zones/{zone_id}/workers/routes/{route_id}",
             body=maybe_transform(
                 {
-                    "id": id,
                     "pattern": pattern,
                     "script": script,
                 },
@@ -163,9 +155,9 @@ class RoutesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[RouteUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[RouteUpdateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[RouteUpdateResponse]], ResultWrapper[RouteUpdateResponse]),
+            cast_to=cast(Type[RouteUpdateResponse], ResultWrapper[RouteUpdateResponse]),
         )
 
     def list(
@@ -215,7 +207,7 @@ class RoutesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RouteDeleteResponse]:
+    ) -> RouteDeleteResponse:
         """
         Deletes a route.
 
@@ -243,9 +235,9 @@ class RoutesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[RouteDeleteResponse]]._unwrapper,
+                post_parser=ResultWrapper[RouteDeleteResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[RouteDeleteResponse]], ResultWrapper[RouteDeleteResponse]),
+            cast_to=cast(Type[RouteDeleteResponse], ResultWrapper[RouteDeleteResponse]),
         )
 
     def get(
@@ -259,7 +251,7 @@ class RoutesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RouteGetResponse]:
+    ) -> RouteGetResponse:
         """
         Returns information about a route, including URL pattern and Worker.
 
@@ -287,9 +279,9 @@ class RoutesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[RouteGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[RouteGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[RouteGetResponse]], ResultWrapper[RouteGetResponse]),
+            cast_to=cast(Type[RouteGetResponse], ResultWrapper[RouteGetResponse]),
         )
 
 
@@ -317,7 +309,6 @@ class AsyncRoutesResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        id: str,
         pattern: str,
         script: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -326,14 +317,12 @@ class AsyncRoutesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RouteCreateResponse]:
+    ) -> RouteCreateResponse:
         """
         Creates a route that maps a URL pattern to a Worker.
 
         Args:
           zone_id: Identifier.
-
-          id: Identifier.
 
           pattern: Pattern to match incoming requests against.
               [Learn more](https://developers.cloudflare.com/workers/configuration/routing/routes/#matching-behavior).
@@ -354,7 +343,6 @@ class AsyncRoutesResource(AsyncAPIResource):
             f"/zones/{zone_id}/workers/routes",
             body=await async_maybe_transform(
                 {
-                    "id": id,
                     "pattern": pattern,
                     "script": script,
                 },
@@ -365,9 +353,9 @@ class AsyncRoutesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[RouteCreateResponse]]._unwrapper,
+                post_parser=ResultWrapper[RouteCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[RouteCreateResponse]], ResultWrapper[RouteCreateResponse]),
+            cast_to=cast(Type[RouteCreateResponse], ResultWrapper[RouteCreateResponse]),
         )
 
     async def update(
@@ -375,7 +363,6 @@ class AsyncRoutesResource(AsyncAPIResource):
         route_id: str,
         *,
         zone_id: str,
-        id: str,
         pattern: str,
         script: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -384,7 +371,7 @@ class AsyncRoutesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RouteUpdateResponse]:
+    ) -> RouteUpdateResponse:
         """
         Updates the URL pattern or Worker associated with a route.
 
@@ -392,8 +379,6 @@ class AsyncRoutesResource(AsyncAPIResource):
           zone_id: Identifier.
 
           route_id: Identifier.
-
-          id: Identifier.
 
           pattern: Pattern to match incoming requests against.
               [Learn more](https://developers.cloudflare.com/workers/configuration/routing/routes/#matching-behavior).
@@ -416,7 +401,6 @@ class AsyncRoutesResource(AsyncAPIResource):
             f"/zones/{zone_id}/workers/routes/{route_id}",
             body=await async_maybe_transform(
                 {
-                    "id": id,
                     "pattern": pattern,
                     "script": script,
                 },
@@ -427,9 +411,9 @@ class AsyncRoutesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[RouteUpdateResponse]]._unwrapper,
+                post_parser=ResultWrapper[RouteUpdateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[RouteUpdateResponse]], ResultWrapper[RouteUpdateResponse]),
+            cast_to=cast(Type[RouteUpdateResponse], ResultWrapper[RouteUpdateResponse]),
         )
 
     def list(
@@ -479,7 +463,7 @@ class AsyncRoutesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RouteDeleteResponse]:
+    ) -> RouteDeleteResponse:
         """
         Deletes a route.
 
@@ -507,9 +491,9 @@ class AsyncRoutesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[RouteDeleteResponse]]._unwrapper,
+                post_parser=ResultWrapper[RouteDeleteResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[RouteDeleteResponse]], ResultWrapper[RouteDeleteResponse]),
+            cast_to=cast(Type[RouteDeleteResponse], ResultWrapper[RouteDeleteResponse]),
         )
 
     async def get(
@@ -523,7 +507,7 @@ class AsyncRoutesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[RouteGetResponse]:
+    ) -> RouteGetResponse:
         """
         Returns information about a route, including URL pattern and Worker.
 
@@ -551,9 +535,9 @@ class AsyncRoutesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[RouteGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[RouteGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[RouteGetResponse]], ResultWrapper[RouteGetResponse]),
+            cast_to=cast(Type[RouteGetResponse], ResultWrapper[RouteGetResponse]),
         )
 
 
