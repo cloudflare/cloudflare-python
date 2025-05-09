@@ -9,7 +9,7 @@ __all__ = ["UARuleListParams"]
 
 class UARuleListParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Defines an identifier."""
 
     description: str
     """A string to search for in the description of existing rules."""

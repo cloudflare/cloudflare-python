@@ -24,7 +24,7 @@ class TestPriority:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         priority = client.cloudforce_one.requests.priority.create(
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             labels=["DoS", "CVE"],
             priority=1,
             requirement="DoS attacks carried out by CVEs",
@@ -35,7 +35,7 @@ class TestPriority:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.cloudforce_one.requests.priority.with_raw_response.create(
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             labels=["DoS", "CVE"],
             priority=1,
             requirement="DoS attacks carried out by CVEs",
@@ -50,7 +50,7 @@ class TestPriority:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.cloudforce_one.requests.priority.with_streaming_response.create(
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             labels=["DoS", "CVE"],
             priority=1,
             requirement="DoS attacks carried out by CVEs",
@@ -66,9 +66,9 @@ class TestPriority:
 
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.cloudforce_one.requests.priority.with_raw_response.create(
-                account_identifier="",
+                account_id="",
                 labels=["DoS", "CVE"],
                 priority=1,
                 requirement="DoS attacks carried out by CVEs",
@@ -78,8 +78,8 @@ class TestPriority:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         priority = client.cloudforce_one.requests.priority.update(
-            priority_identifer="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            priority_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             labels=["DoS", "CVE"],
             priority=1,
             requirement="DoS attacks carried out by CVEs",
@@ -90,8 +90,8 @@ class TestPriority:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.cloudforce_one.requests.priority.with_raw_response.update(
-            priority_identifer="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            priority_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             labels=["DoS", "CVE"],
             priority=1,
             requirement="DoS attacks carried out by CVEs",
@@ -106,8 +106,8 @@ class TestPriority:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.cloudforce_one.requests.priority.with_streaming_response.update(
-            priority_identifer="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            priority_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             labels=["DoS", "CVE"],
             priority=1,
             requirement="DoS attacks carried out by CVEs",
@@ -123,20 +123,20 @@ class TestPriority:
 
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.cloudforce_one.requests.priority.with_raw_response.update(
-                priority_identifer="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                account_identifier="",
+                priority_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="",
                 labels=["DoS", "CVE"],
                 priority=1,
                 requirement="DoS attacks carried out by CVEs",
                 tlp="clear",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `priority_identifer` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `priority_id` but received ''"):
             client.cloudforce_one.requests.priority.with_raw_response.update(
-                priority_identifer="",
-                account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                priority_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 labels=["DoS", "CVE"],
                 priority=1,
                 requirement="DoS attacks carried out by CVEs",
@@ -146,16 +146,16 @@ class TestPriority:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         priority = client.cloudforce_one.requests.priority.delete(
-            priority_identifer="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            priority_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(PriorityDeleteResponse, priority, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.cloudforce_one.requests.priority.with_raw_response.delete(
-            priority_identifer="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            priority_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -166,8 +166,8 @@ class TestPriority:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.cloudforce_one.requests.priority.with_streaming_response.delete(
-            priority_identifer="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            priority_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -179,31 +179,31 @@ class TestPriority:
 
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.cloudforce_one.requests.priority.with_raw_response.delete(
-                priority_identifer="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                account_identifier="",
+                priority_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `priority_identifer` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `priority_id` but received ''"):
             client.cloudforce_one.requests.priority.with_raw_response.delete(
-                priority_identifer="",
-                account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                priority_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         priority = client.cloudforce_one.requests.priority.get(
-            priority_identifer="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            priority_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Item], priority, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.cloudforce_one.requests.priority.with_raw_response.get(
-            priority_identifer="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            priority_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -214,8 +214,8 @@ class TestPriority:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.cloudforce_one.requests.priority.with_streaming_response.get(
-            priority_identifer="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            priority_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -227,29 +227,29 @@ class TestPriority:
 
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.cloudforce_one.requests.priority.with_raw_response.get(
-                priority_identifer="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                account_identifier="",
+                priority_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `priority_identifer` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `priority_id` but received ''"):
             client.cloudforce_one.requests.priority.with_raw_response.get(
-                priority_identifer="",
-                account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                priority_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_quota(self, client: Cloudflare) -> None:
         priority = client.cloudforce_one.requests.priority.quota(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Quota], priority, path=["response"])
 
     @parametrize
     def test_raw_response_quota(self, client: Cloudflare) -> None:
         response = client.cloudforce_one.requests.priority.with_raw_response.quota(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -260,7 +260,7 @@ class TestPriority:
     @parametrize
     def test_streaming_response_quota(self, client: Cloudflare) -> None:
         with client.cloudforce_one.requests.priority.with_streaming_response.quota(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -272,9 +272,9 @@ class TestPriority:
 
     @parametrize
     def test_path_params_quota(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.cloudforce_one.requests.priority.with_raw_response.quota(
-                "",
+                account_id="",
             )
 
 
@@ -284,7 +284,7 @@ class TestAsyncPriority:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         priority = await async_client.cloudforce_one.requests.priority.create(
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             labels=["DoS", "CVE"],
             priority=1,
             requirement="DoS attacks carried out by CVEs",
@@ -295,7 +295,7 @@ class TestAsyncPriority:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cloudforce_one.requests.priority.with_raw_response.create(
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             labels=["DoS", "CVE"],
             priority=1,
             requirement="DoS attacks carried out by CVEs",
@@ -310,7 +310,7 @@ class TestAsyncPriority:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cloudforce_one.requests.priority.with_streaming_response.create(
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             labels=["DoS", "CVE"],
             priority=1,
             requirement="DoS attacks carried out by CVEs",
@@ -326,9 +326,9 @@ class TestAsyncPriority:
 
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.cloudforce_one.requests.priority.with_raw_response.create(
-                account_identifier="",
+                account_id="",
                 labels=["DoS", "CVE"],
                 priority=1,
                 requirement="DoS attacks carried out by CVEs",
@@ -338,8 +338,8 @@ class TestAsyncPriority:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         priority = await async_client.cloudforce_one.requests.priority.update(
-            priority_identifer="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            priority_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             labels=["DoS", "CVE"],
             priority=1,
             requirement="DoS attacks carried out by CVEs",
@@ -350,8 +350,8 @@ class TestAsyncPriority:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cloudforce_one.requests.priority.with_raw_response.update(
-            priority_identifer="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            priority_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             labels=["DoS", "CVE"],
             priority=1,
             requirement="DoS attacks carried out by CVEs",
@@ -366,8 +366,8 @@ class TestAsyncPriority:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cloudforce_one.requests.priority.with_streaming_response.update(
-            priority_identifer="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            priority_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             labels=["DoS", "CVE"],
             priority=1,
             requirement="DoS attacks carried out by CVEs",
@@ -383,20 +383,20 @@ class TestAsyncPriority:
 
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.cloudforce_one.requests.priority.with_raw_response.update(
-                priority_identifer="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                account_identifier="",
+                priority_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="",
                 labels=["DoS", "CVE"],
                 priority=1,
                 requirement="DoS attacks carried out by CVEs",
                 tlp="clear",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `priority_identifer` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `priority_id` but received ''"):
             await async_client.cloudforce_one.requests.priority.with_raw_response.update(
-                priority_identifer="",
-                account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                priority_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 labels=["DoS", "CVE"],
                 priority=1,
                 requirement="DoS attacks carried out by CVEs",
@@ -406,16 +406,16 @@ class TestAsyncPriority:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         priority = await async_client.cloudforce_one.requests.priority.delete(
-            priority_identifer="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            priority_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(PriorityDeleteResponse, priority, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cloudforce_one.requests.priority.with_raw_response.delete(
-            priority_identifer="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            priority_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -426,8 +426,8 @@ class TestAsyncPriority:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cloudforce_one.requests.priority.with_streaming_response.delete(
-            priority_identifer="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            priority_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -439,31 +439,31 @@ class TestAsyncPriority:
 
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.cloudforce_one.requests.priority.with_raw_response.delete(
-                priority_identifer="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                account_identifier="",
+                priority_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `priority_identifer` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `priority_id` but received ''"):
             await async_client.cloudforce_one.requests.priority.with_raw_response.delete(
-                priority_identifer="",
-                account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                priority_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         priority = await async_client.cloudforce_one.requests.priority.get(
-            priority_identifer="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            priority_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Item], priority, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cloudforce_one.requests.priority.with_raw_response.get(
-            priority_identifer="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            priority_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -474,8 +474,8 @@ class TestAsyncPriority:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cloudforce_one.requests.priority.with_streaming_response.get(
-            priority_identifer="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            priority_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -487,29 +487,29 @@ class TestAsyncPriority:
 
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.cloudforce_one.requests.priority.with_raw_response.get(
-                priority_identifer="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                account_identifier="",
+                priority_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `priority_identifer` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `priority_id` but received ''"):
             await async_client.cloudforce_one.requests.priority.with_raw_response.get(
-                priority_identifer="",
-                account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                priority_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_quota(self, async_client: AsyncCloudflare) -> None:
         priority = await async_client.cloudforce_one.requests.priority.quota(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Quota], priority, path=["response"])
 
     @parametrize
     async def test_raw_response_quota(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cloudforce_one.requests.priority.with_raw_response.quota(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -520,7 +520,7 @@ class TestAsyncPriority:
     @parametrize
     async def test_streaming_response_quota(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cloudforce_one.requests.priority.with_streaming_response.quota(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -532,7 +532,7 @@ class TestAsyncPriority:
 
     @parametrize
     async def test_path_params_quota(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.cloudforce_one.requests.priority.with_raw_response.quota(
-                "",
+                account_id="",
             )

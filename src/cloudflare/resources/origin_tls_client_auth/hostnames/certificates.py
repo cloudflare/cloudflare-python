@@ -7,10 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -70,7 +67,7 @@ class CertificatesResource(SyncAPIResource):
         hostname certificates per zone are allowed.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           certificate: The hostname certificate.
 
@@ -120,7 +117,7 @@ class CertificatesResource(SyncAPIResource):
         List Certificates
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -157,9 +154,9 @@ class CertificatesResource(SyncAPIResource):
         Delete Hostname Client Certificate
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          certificate_id: Identifier
+          certificate_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -201,9 +198,9 @@ class CertificatesResource(SyncAPIResource):
         Get the certificate by ID to be used for client authentication on a hostname.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          certificate_id: Identifier
+          certificate_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -269,7 +266,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
         hostname certificates per zone are allowed.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           certificate: The hostname certificate.
 
@@ -319,7 +316,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
         List Certificates
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -356,9 +353,9 @@ class AsyncCertificatesResource(AsyncAPIResource):
         Delete Hostname Client Certificate
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          certificate_id: Identifier
+          certificate_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -400,9 +397,9 @@ class AsyncCertificatesResource(AsyncAPIResource):
         Get the certificate by ID to be used for client authentication on a hostname.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          certificate_id: Identifier
+          certificate_id: Identifier.
 
           extra_headers: Send extra headers
 

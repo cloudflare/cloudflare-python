@@ -8,11 +8,11 @@ __all__ = ["AssetUpdateParams"]
 
 
 class AssetUpdateParams(TypedDict, total=False):
-    account_identifier: Required[str]
-    """Identifier"""
+    account_id: Required[str]
+    """Identifier."""
 
-    request_identifier: Required[str]
-    """UUID"""
+    request_id: Required[str]
+    """UUID."""
 
     source: str
-    """Asset file to upload"""
+    """Asset file to upload."""

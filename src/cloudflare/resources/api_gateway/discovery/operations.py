@@ -8,10 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -62,7 +59,7 @@ class OperationsResource(SyncAPIResource):
         method: List[str] | NotGiven = NOT_GIVEN,
         order: Literal["host", "method", "endpoint", "traffic_stats.requests", "traffic_stats.last_updated"]
         | NotGiven = NOT_GIVEN,
-        origin: Literal["ML", "SessionIdentifier"] | NotGiven = NOT_GIVEN,
+        origin: Literal["ML", "SessionIdentifier", "LabelDiscovery"] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         state: Literal["review", "saved", "ignored"] | NotGiven = NOT_GIVEN,
@@ -77,7 +74,7 @@ class OperationsResource(SyncAPIResource):
         Retrieve the most up to date view of discovered operations
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           diff: When `true`, only return API Discovery results that are not saved into API
               Shield Endpoint Management
@@ -165,7 +162,7 @@ class OperationsResource(SyncAPIResource):
         Update the `state` on one or more discovered operations
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -207,9 +204,9 @@ class OperationsResource(SyncAPIResource):
         Update the `state` on a discovered operation
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          operation_id: UUID
+          operation_id: UUID.
 
           state: Mark state of operation in API Discovery
 
@@ -273,7 +270,7 @@ class AsyncOperationsResource(AsyncAPIResource):
         method: List[str] | NotGiven = NOT_GIVEN,
         order: Literal["host", "method", "endpoint", "traffic_stats.requests", "traffic_stats.last_updated"]
         | NotGiven = NOT_GIVEN,
-        origin: Literal["ML", "SessionIdentifier"] | NotGiven = NOT_GIVEN,
+        origin: Literal["ML", "SessionIdentifier", "LabelDiscovery"] | NotGiven = NOT_GIVEN,
         page: int | NotGiven = NOT_GIVEN,
         per_page: int | NotGiven = NOT_GIVEN,
         state: Literal["review", "saved", "ignored"] | NotGiven = NOT_GIVEN,
@@ -288,7 +285,7 @@ class AsyncOperationsResource(AsyncAPIResource):
         Retrieve the most up to date view of discovered operations
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           diff: When `true`, only return API Discovery results that are not saved into API
               Shield Endpoint Management
@@ -376,7 +373,7 @@ class AsyncOperationsResource(AsyncAPIResource):
         Update the `state` on one or more discovered operations
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -418,9 +415,9 @@ class AsyncOperationsResource(AsyncAPIResource):
         Update the `state` on a discovered operation
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          operation_id: UUID
+          operation_id: UUID.
 
           state: Mark state of operation in API Discovery
 

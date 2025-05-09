@@ -9,7 +9,7 @@ __all__ = ["DNSGetParams"]
 
 class DNSGetParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     subdomain: str
     """Domain of your zone."""

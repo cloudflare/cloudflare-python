@@ -41,7 +41,8 @@ class TestSettings:
                 "bindings": [
                     {
                         "name": "MY_ENV_VAR",
-                        "type": "ai",
+                        "text": "my_data",
+                        "type": "plain_text",
                     }
                 ],
                 "compatibility_date": "2021-01-01",
@@ -225,7 +226,8 @@ class TestAsyncSettings:
                 "bindings": [
                     {
                         "name": "MY_ENV_VAR",
-                        "type": "ai",
+                        "text": "my_data",
+                        "type": "plain_text",
                     }
                 ],
                 "compatibility_date": "2021-01-01",

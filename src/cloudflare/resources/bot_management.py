@@ -8,11 +8,7 @@ from typing_extensions import Literal, overload
 import httpx
 
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import (
-    required_args,
-    maybe_transform,
-    async_maybe_transform,
-)
+from .._utils import required_args, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -56,6 +52,7 @@ class BotManagementResource(SyncAPIResource):
         *,
         zone_id: str,
         ai_bots_protection: Literal["block", "disabled"] | NotGiven = NOT_GIVEN,
+        crawler_protection: Literal["enabled", "disabled"] | NotGiven = NOT_GIVEN,
         enable_js: bool | NotGiven = NOT_GIVEN,
         fight_mode: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -129,9 +126,11 @@ class BotManagementResource(SyncAPIResource):
         ```
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           ai_bots_protection: Enable rule to block AI Scrapers and Crawlers.
+
+          crawler_protection: Enable rule to punish AI Scrapers and Crawlers via a link maze.
 
           enable_js: Use lightweight, invisible JavaScript detections to improve Bot Management.
               [Learn more about JavaScript Detections](https://developers.cloudflare.com/bots/reference/javascript-detections/).
@@ -154,6 +153,7 @@ class BotManagementResource(SyncAPIResource):
         *,
         zone_id: str,
         ai_bots_protection: Literal["block", "disabled"] | NotGiven = NOT_GIVEN,
+        crawler_protection: Literal["enabled", "disabled"] | NotGiven = NOT_GIVEN,
         enable_js: bool | NotGiven = NOT_GIVEN,
         optimize_wordpress: bool | NotGiven = NOT_GIVEN,
         sbfm_definitely_automated: Literal["allow", "block", "managed_challenge"] | NotGiven = NOT_GIVEN,
@@ -230,9 +230,11 @@ class BotManagementResource(SyncAPIResource):
         ```
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           ai_bots_protection: Enable rule to block AI Scrapers and Crawlers.
+
+          crawler_protection: Enable rule to punish AI Scrapers and Crawlers via a link maze.
 
           enable_js: Use lightweight, invisible JavaScript detections to improve Bot Management.
               [Learn more about JavaScript Detections](https://developers.cloudflare.com/bots/reference/javascript-detections/).
@@ -263,6 +265,7 @@ class BotManagementResource(SyncAPIResource):
         *,
         zone_id: str,
         ai_bots_protection: Literal["block", "disabled"] | NotGiven = NOT_GIVEN,
+        crawler_protection: Literal["enabled", "disabled"] | NotGiven = NOT_GIVEN,
         enable_js: bool | NotGiven = NOT_GIVEN,
         optimize_wordpress: bool | NotGiven = NOT_GIVEN,
         sbfm_definitely_automated: Literal["allow", "block", "managed_challenge"] | NotGiven = NOT_GIVEN,
@@ -340,9 +343,11 @@ class BotManagementResource(SyncAPIResource):
         ```
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           ai_bots_protection: Enable rule to block AI Scrapers and Crawlers.
+
+          crawler_protection: Enable rule to punish AI Scrapers and Crawlers via a link maze.
 
           enable_js: Use lightweight, invisible JavaScript detections to improve Bot Management.
               [Learn more about JavaScript Detections](https://developers.cloudflare.com/bots/reference/javascript-detections/).
@@ -376,6 +381,7 @@ class BotManagementResource(SyncAPIResource):
         zone_id: str,
         ai_bots_protection: Literal["block", "disabled"] | NotGiven = NOT_GIVEN,
         auto_update_model: bool | NotGiven = NOT_GIVEN,
+        crawler_protection: Literal["enabled", "disabled"] | NotGiven = NOT_GIVEN,
         enable_js: bool | NotGiven = NOT_GIVEN,
         suppress_session_score: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -449,13 +455,15 @@ class BotManagementResource(SyncAPIResource):
         ```
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           ai_bots_protection: Enable rule to block AI Scrapers and Crawlers.
 
           auto_update_model: Automatically update to the newest bot detection models created by Cloudflare as
               they are released.
               [Learn more.](https://developers.cloudflare.com/bots/reference/machine-learning-models#model-versions-and-release-notes)
+
+          crawler_protection: Enable rule to punish AI Scrapers and Crawlers via a link maze.
 
           enable_js: Use lightweight, invisible JavaScript detections to improve Bot Management.
               [Learn more about JavaScript Detections](https://developers.cloudflare.com/bots/reference/javascript-detections/).
@@ -479,6 +487,7 @@ class BotManagementResource(SyncAPIResource):
         *,
         zone_id: str,
         ai_bots_protection: Literal["block", "disabled"] | NotGiven = NOT_GIVEN,
+        crawler_protection: Literal["enabled", "disabled"] | NotGiven = NOT_GIVEN,
         enable_js: bool | NotGiven = NOT_GIVEN,
         fight_mode: bool | NotGiven = NOT_GIVEN,
         optimize_wordpress: bool | NotGiven = NOT_GIVEN,
@@ -504,6 +513,7 @@ class BotManagementResource(SyncAPIResource):
                 body=maybe_transform(
                     {
                         "ai_bots_protection": ai_bots_protection,
+                        "crawler_protection": crawler_protection,
                         "enable_js": enable_js,
                         "fight_mode": fight_mode,
                         "optimize_wordpress": optimize_wordpress,
@@ -544,7 +554,7 @@ class BotManagementResource(SyncAPIResource):
         Retrieve a zone's Bot Management Config
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -600,6 +610,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
         *,
         zone_id: str,
         ai_bots_protection: Literal["block", "disabled"] | NotGiven = NOT_GIVEN,
+        crawler_protection: Literal["enabled", "disabled"] | NotGiven = NOT_GIVEN,
         enable_js: bool | NotGiven = NOT_GIVEN,
         fight_mode: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -673,9 +684,11 @@ class AsyncBotManagementResource(AsyncAPIResource):
         ```
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           ai_bots_protection: Enable rule to block AI Scrapers and Crawlers.
+
+          crawler_protection: Enable rule to punish AI Scrapers and Crawlers via a link maze.
 
           enable_js: Use lightweight, invisible JavaScript detections to improve Bot Management.
               [Learn more about JavaScript Detections](https://developers.cloudflare.com/bots/reference/javascript-detections/).
@@ -698,6 +711,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
         *,
         zone_id: str,
         ai_bots_protection: Literal["block", "disabled"] | NotGiven = NOT_GIVEN,
+        crawler_protection: Literal["enabled", "disabled"] | NotGiven = NOT_GIVEN,
         enable_js: bool | NotGiven = NOT_GIVEN,
         optimize_wordpress: bool | NotGiven = NOT_GIVEN,
         sbfm_definitely_automated: Literal["allow", "block", "managed_challenge"] | NotGiven = NOT_GIVEN,
@@ -774,9 +788,11 @@ class AsyncBotManagementResource(AsyncAPIResource):
         ```
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           ai_bots_protection: Enable rule to block AI Scrapers and Crawlers.
+
+          crawler_protection: Enable rule to punish AI Scrapers and Crawlers via a link maze.
 
           enable_js: Use lightweight, invisible JavaScript detections to improve Bot Management.
               [Learn more about JavaScript Detections](https://developers.cloudflare.com/bots/reference/javascript-detections/).
@@ -807,6 +823,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
         *,
         zone_id: str,
         ai_bots_protection: Literal["block", "disabled"] | NotGiven = NOT_GIVEN,
+        crawler_protection: Literal["enabled", "disabled"] | NotGiven = NOT_GIVEN,
         enable_js: bool | NotGiven = NOT_GIVEN,
         optimize_wordpress: bool | NotGiven = NOT_GIVEN,
         sbfm_definitely_automated: Literal["allow", "block", "managed_challenge"] | NotGiven = NOT_GIVEN,
@@ -884,9 +901,11 @@ class AsyncBotManagementResource(AsyncAPIResource):
         ```
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           ai_bots_protection: Enable rule to block AI Scrapers and Crawlers.
+
+          crawler_protection: Enable rule to punish AI Scrapers and Crawlers via a link maze.
 
           enable_js: Use lightweight, invisible JavaScript detections to improve Bot Management.
               [Learn more about JavaScript Detections](https://developers.cloudflare.com/bots/reference/javascript-detections/).
@@ -920,6 +939,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
         zone_id: str,
         ai_bots_protection: Literal["block", "disabled"] | NotGiven = NOT_GIVEN,
         auto_update_model: bool | NotGiven = NOT_GIVEN,
+        crawler_protection: Literal["enabled", "disabled"] | NotGiven = NOT_GIVEN,
         enable_js: bool | NotGiven = NOT_GIVEN,
         suppress_session_score: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -993,13 +1013,15 @@ class AsyncBotManagementResource(AsyncAPIResource):
         ```
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           ai_bots_protection: Enable rule to block AI Scrapers and Crawlers.
 
           auto_update_model: Automatically update to the newest bot detection models created by Cloudflare as
               they are released.
               [Learn more.](https://developers.cloudflare.com/bots/reference/machine-learning-models#model-versions-and-release-notes)
+
+          crawler_protection: Enable rule to punish AI Scrapers and Crawlers via a link maze.
 
           enable_js: Use lightweight, invisible JavaScript detections to improve Bot Management.
               [Learn more about JavaScript Detections](https://developers.cloudflare.com/bots/reference/javascript-detections/).
@@ -1023,6 +1045,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
         *,
         zone_id: str,
         ai_bots_protection: Literal["block", "disabled"] | NotGiven = NOT_GIVEN,
+        crawler_protection: Literal["enabled", "disabled"] | NotGiven = NOT_GIVEN,
         enable_js: bool | NotGiven = NOT_GIVEN,
         fight_mode: bool | NotGiven = NOT_GIVEN,
         optimize_wordpress: bool | NotGiven = NOT_GIVEN,
@@ -1048,6 +1071,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
                 body=await async_maybe_transform(
                     {
                         "ai_bots_protection": ai_bots_protection,
+                        "crawler_protection": crawler_protection,
                         "enable_js": enable_js,
                         "fight_mode": fight_mode,
                         "optimize_wordpress": optimize_wordpress,
@@ -1088,7 +1112,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
         Retrieve a zone's Bot Management Config
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 

@@ -61,7 +61,7 @@ class SeatsResource(SyncAPIResource):
         are set to false.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -122,7 +122,7 @@ class AsyncSeatsResource(AsyncAPIResource):
         are set to false.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 

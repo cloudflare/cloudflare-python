@@ -93,7 +93,7 @@ class PackagesResource(SyncAPIResource):
         [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           direction: The direction used to sort returned packages.
 
@@ -160,9 +160,9 @@ class PackagesResource(SyncAPIResource):
         [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
-          package_id: Identifier
+          package_id: Defines a package identifier.
 
           extra_headers: Send extra headers
 
@@ -242,7 +242,7 @@ class AsyncPackagesResource(AsyncAPIResource):
         [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           direction: The direction used to sort returned packages.
 
@@ -309,9 +309,9 @@ class AsyncPackagesResource(AsyncAPIResource):
         [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
-          package_id: Identifier
+          package_id: Defines a package identifier.
 
           extra_headers: Send extra headers
 

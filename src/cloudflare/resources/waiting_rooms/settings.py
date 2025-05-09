@@ -7,10 +7,7 @@ from typing import Type, cast
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -65,7 +62,7 @@ class SettingsResource(SyncAPIResource):
         Update zone-level Waiting Room settings
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           search_engine_crawler_bypass: Whether to allow verified search engine crawlers to bypass all waiting rooms on
               this zone. Verified search engine crawlers will not be tracked or counted by the
@@ -113,7 +110,7 @@ class SettingsResource(SyncAPIResource):
         Patch zone-level Waiting Room settings
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           search_engine_crawler_bypass: Whether to allow verified search engine crawlers to bypass all waiting rooms on
               this zone. Verified search engine crawlers will not be tracked or counted by the
@@ -159,7 +156,7 @@ class SettingsResource(SyncAPIResource):
         Get zone-level Waiting Room settings
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -220,7 +217,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         Update zone-level Waiting Room settings
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           search_engine_crawler_bypass: Whether to allow verified search engine crawlers to bypass all waiting rooms on
               this zone. Verified search engine crawlers will not be tracked or counted by the
@@ -268,7 +265,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         Patch zone-level Waiting Room settings
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           search_engine_crawler_bypass: Whether to allow verified search engine crawlers to bypass all waiting rooms on
               this zone. Verified search engine crawlers will not be tracked or counted by the
@@ -314,7 +311,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         Get zone-level Waiting Room settings
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 

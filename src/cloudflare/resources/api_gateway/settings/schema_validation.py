@@ -8,10 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -64,7 +61,7 @@ class SchemaValidationResource(SyncAPIResource):
         Updates zone level schema validation settings on the zone
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           validation_default_mitigation_action: The default mitigation action used when there is no mitigation action defined on
               the operation
@@ -126,7 +123,7 @@ class SchemaValidationResource(SyncAPIResource):
         Updates zone level schema validation settings on the zone
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           validation_default_mitigation_action: The default mitigation action used when there is no mitigation action defined on
               the operation Mitigation actions are as follows:
@@ -187,7 +184,7 @@ class SchemaValidationResource(SyncAPIResource):
         Retrieves zone level schema validation settings currently set on the zone
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -245,7 +242,7 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
         Updates zone level schema validation settings on the zone
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           validation_default_mitigation_action: The default mitigation action used when there is no mitigation action defined on
               the operation
@@ -307,7 +304,7 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
         Updates zone level schema validation settings on the zone
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           validation_default_mitigation_action: The default mitigation action used when there is no mitigation action defined on
               the operation Mitigation actions are as follows:
@@ -368,7 +365,7 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
         Retrieves zone level schema validation settings currently set on the zone
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 

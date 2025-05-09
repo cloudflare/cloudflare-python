@@ -9,7 +9,7 @@ __all__ = ["DNSSECEditParams"]
 
 class DNSSECEditParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     dnssec_multi_signer: bool
     """

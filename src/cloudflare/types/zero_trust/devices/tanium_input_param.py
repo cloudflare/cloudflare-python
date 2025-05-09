@@ -23,7 +23,7 @@ class TaniumInputParam(TypedDict, total=False):
     """For more details on risk level, refer to the Tanium documentation."""
 
     score_operator: Annotated[Literal["<", "<=", ">", ">=", "=="], PropertyInfo(alias="scoreOperator")]
-    """Score Operator"""
+    """Score Operator."""
 
     total_score: float
     """For more details on total score, refer to the Tanium documentation."""

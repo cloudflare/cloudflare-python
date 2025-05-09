@@ -9,7 +9,7 @@ __all__ = ["EdgeCreateParams"]
 
 class EdgeCreateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     fields: str
     """Comma-separated list of fields."""

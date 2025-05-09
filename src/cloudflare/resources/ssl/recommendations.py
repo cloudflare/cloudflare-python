@@ -57,7 +57,7 @@ class RecommendationsResource(SyncAPIResource):
         Retrieve the SSL/TLS Recommender's recommendation for a zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -117,7 +117,7 @@ class AsyncRecommendationsResource(AsyncAPIResource):
         Retrieve the SSL/TLS Recommender's recommendation for a zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 

@@ -1,6 +1,5 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-
 from ..._models import BaseModel
 
 __all__ = ["RouteGetResponse"]
@@ -8,9 +7,13 @@ __all__ = ["RouteGetResponse"]
 
 class RouteGetResponse(BaseModel):
     id: str
-    """Identifier"""
+    """Identifier."""
 
     pattern: str
+    """Pattern to match incoming requests against.
+
+    [Learn more](https://developers.cloudflare.com/workers/configuration/routing/routes/#matching-behavior).
+    """
 
     script: str
-    """Name of the script, used in URLs and route configuration."""
+    """Name of the script to run if the route matches."""

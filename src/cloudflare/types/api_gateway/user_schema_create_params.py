@@ -11,7 +11,7 @@ __all__ = ["UserSchemaCreateParams"]
 
 class UserSchemaCreateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     file: Required[FileTypes]
     """Schema file bytes"""

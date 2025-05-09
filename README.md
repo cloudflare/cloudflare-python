@@ -151,17 +151,16 @@ from cloudflare import Cloudflare
 
 client = Cloudflare()
 
-account = client.accounts.create(
-    name="name",
-    type="standard",
-    unit={"id": "f267e341f3dd4697bd3b9f71dd96247f"},
+zone = client.zones.create(
+    account={"id": "023e105f4ecef8ad9ca31a8372d0c353"},
+    name="example.com",
 )
-print(account.unit)
+print(zone.account)
 ```
 
 ## File uploads
 
-Request parameters that correspond to file uploads can be passed as `bytes`, a [`PathLike`](https://docs.python.org/3/library/os.html#os.PathLike) instance or a tuple of `(filename, contents, media type)`.
+Request parameters that correspond to file uploads can be passed as `bytes`, or a [`PathLike`](https://docs.python.org/3/library/os.html#os.PathLike) instance or a tuple of `(filename, contents, media type)`.
 
 ```python
 from pathlib import Path

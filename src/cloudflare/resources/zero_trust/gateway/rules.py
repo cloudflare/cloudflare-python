@@ -8,10 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -72,17 +69,18 @@ class RulesResource(SyncAPIResource):
             "egress",
             "resolve",
             "quarantine",
+            "redirect",
         ],
         name: str,
         description: str | NotGiven = NOT_GIVEN,
         device_posture: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        expiration: rule_create_params.Expiration | NotGiven = NOT_GIVEN,
+        expiration: Optional[rule_create_params.Expiration] | NotGiven = NOT_GIVEN,
         filters: List[GatewayFilter] | NotGiven = NOT_GIVEN,
         identity: str | NotGiven = NOT_GIVEN,
         precedence: int | NotGiven = NOT_GIVEN,
         rule_settings: RuleSettingParam | NotGiven = NOT_GIVEN,
-        schedule: ScheduleParam | NotGiven = NOT_GIVEN,
+        schedule: Optional[ScheduleParam] | NotGiven = NOT_GIVEN,
         traffic: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -187,17 +185,18 @@ class RulesResource(SyncAPIResource):
             "egress",
             "resolve",
             "quarantine",
+            "redirect",
         ],
         name: str,
         description: str | NotGiven = NOT_GIVEN,
         device_posture: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        expiration: rule_update_params.Expiration | NotGiven = NOT_GIVEN,
+        expiration: Optional[rule_update_params.Expiration] | NotGiven = NOT_GIVEN,
         filters: List[GatewayFilter] | NotGiven = NOT_GIVEN,
         identity: str | NotGiven = NOT_GIVEN,
         precedence: int | NotGiven = NOT_GIVEN,
         rule_settings: RuleSettingParam | NotGiven = NOT_GIVEN,
-        schedule: ScheduleParam | NotGiven = NOT_GIVEN,
+        schedule: Optional[ScheduleParam] | NotGiven = NOT_GIVEN,
         traffic: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -490,17 +489,18 @@ class AsyncRulesResource(AsyncAPIResource):
             "egress",
             "resolve",
             "quarantine",
+            "redirect",
         ],
         name: str,
         description: str | NotGiven = NOT_GIVEN,
         device_posture: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        expiration: rule_create_params.Expiration | NotGiven = NOT_GIVEN,
+        expiration: Optional[rule_create_params.Expiration] | NotGiven = NOT_GIVEN,
         filters: List[GatewayFilter] | NotGiven = NOT_GIVEN,
         identity: str | NotGiven = NOT_GIVEN,
         precedence: int | NotGiven = NOT_GIVEN,
         rule_settings: RuleSettingParam | NotGiven = NOT_GIVEN,
-        schedule: ScheduleParam | NotGiven = NOT_GIVEN,
+        schedule: Optional[ScheduleParam] | NotGiven = NOT_GIVEN,
         traffic: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -605,17 +605,18 @@ class AsyncRulesResource(AsyncAPIResource):
             "egress",
             "resolve",
             "quarantine",
+            "redirect",
         ],
         name: str,
         description: str | NotGiven = NOT_GIVEN,
         device_posture: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
-        expiration: rule_update_params.Expiration | NotGiven = NOT_GIVEN,
+        expiration: Optional[rule_update_params.Expiration] | NotGiven = NOT_GIVEN,
         filters: List[GatewayFilter] | NotGiven = NOT_GIVEN,
         identity: str | NotGiven = NOT_GIVEN,
         precedence: int | NotGiven = NOT_GIVEN,
         rule_settings: RuleSettingParam | NotGiven = NOT_GIVEN,
-        schedule: ScheduleParam | NotGiven = NOT_GIVEN,
+        schedule: Optional[ScheduleParam] | NotGiven = NOT_GIVEN,
         traffic: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

@@ -9,34 +9,35 @@ __all__ = ["GroupListParams"]
 
 class GroupListParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Defines an identifier of a schema."""
 
     direction: Literal["asc", "desc"]
-    """The direction used to sort returned rule groups."""
+    """Defines the direction used to sort returned rule groups."""
 
     match: Literal["any", "all"]
-    """When set to `all`, all the search requirements must match.
+    """Defines the condition for search requirements.
 
-    When set to `any`, only one of the search requirements has to match.
+    When set to `all`, all the search requirements must match. When set to `any`,
+    only one of the search requirements has to match.
     """
 
     mode: Literal["on", "off"]
-    """The state of the rules contained in the rule group.
+    """Defines the state of the rules contained in the rule group.
 
     When `on`, the rules in the group are configurable/usable.
     """
 
     name: str
-    """The name of the rule group."""
+    """Defines the name of the rule group."""
 
     order: Literal["mode", "rules_count"]
-    """The field used to sort returned rule groups."""
+    """Defines the field used to sort returned rule groups."""
 
     page: float
-    """The page number of paginated results."""
+    """Defines the page number of paginated results."""
 
     per_page: float
-    """The number of rule groups per page."""
+    """Defines the number of rule groups per page."""
 
     rules_count: float
-    """The number of rules in the current rule group."""
+    """Defines the number of rules in the current rule group."""

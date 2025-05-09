@@ -58,12 +58,12 @@ class CustomProfileEntryCustomEntry(BaseModel):
 
 class CustomProfileEntryPredefinedEntryConfidence(BaseModel):
     ai_context_available: bool
-    """Indicates whether this entry has AI remote service validation"""
+    """Indicates whether this entry has AI remote service validation."""
 
     available: bool
     """
     Indicates whether this entry has any form of validation that is not an AI remote
-    service
+    service.
     """
 
 
@@ -99,6 +99,12 @@ class CustomProfileEntryIntegrationEntry(BaseModel):
 
 class CustomProfileEntryExactDataEntry(BaseModel):
     id: str
+
+    case_sensitive: bool
+    """
+    Only applies to custom word lists. Determines if the words should be matched in
+    a case-sensitive manner Cannot be set to false if secret is true
+    """
 
     created_at: datetime
 
@@ -142,7 +148,7 @@ CustomProfileEntry: TypeAlias = Union[
 
 class CustomProfile(BaseModel):
     id: str
-    """The id of the profile (uuid)"""
+    """The id of the profile (uuid)."""
 
     allowed_match_count: int
     """Related DLP policies will trigger when the match count exceeds the number set."""
@@ -154,26 +160,26 @@ class CustomProfile(BaseModel):
     """
 
     created_at: datetime
-    """When the profile was created"""
+    """When the profile was created."""
 
     entries: List[CustomProfileEntry]
 
     name: str
-    """The name of the profile"""
+    """The name of the profile."""
 
     ocr_enabled: bool
 
     type: Literal["custom"]
 
     updated_at: datetime
-    """When the profile was lasted updated"""
+    """When the profile was lasted updated."""
 
     ai_context_enabled: Optional[bool] = None
 
     confidence_threshold: Optional[Literal["low", "medium", "high", "very_high"]] = None
 
     description: Optional[str] = None
-    """The description of the profile"""
+    """The description of the profile."""
 
 
 class PredefinedProfileEntryCustomEntry(BaseModel):
@@ -196,12 +202,12 @@ class PredefinedProfileEntryCustomEntry(BaseModel):
 
 class PredefinedProfileEntryPredefinedEntryConfidence(BaseModel):
     ai_context_available: bool
-    """Indicates whether this entry has AI remote service validation"""
+    """Indicates whether this entry has AI remote service validation."""
 
     available: bool
     """
     Indicates whether this entry has any form of validation that is not an AI remote
-    service
+    service.
     """
 
 
@@ -237,6 +243,12 @@ class PredefinedProfileEntryIntegrationEntry(BaseModel):
 
 class PredefinedProfileEntryExactDataEntry(BaseModel):
     id: str
+
+    case_sensitive: bool
+    """
+    Only applies to custom word lists. Determines if the words should be matched in
+    a case-sensitive manner Cannot be set to false if secret is true
+    """
 
     created_at: datetime
 
@@ -280,14 +292,14 @@ PredefinedProfileEntry: TypeAlias = Union[
 
 class PredefinedProfile(BaseModel):
     id: str
-    """The id of the predefined profile (uuid)"""
+    """The id of the predefined profile (uuid)."""
 
     allowed_match_count: int
 
     entries: List[PredefinedProfileEntry]
 
     name: str
-    """The name of the predefined profile"""
+    """The name of the predefined profile."""
 
     type: Literal["predefined"]
 
@@ -304,7 +316,7 @@ class PredefinedProfile(BaseModel):
     ocr_enabled: Optional[bool] = None
 
     open_access: Optional[bool] = None
-    """Whether this profile can be accessed by anyone"""
+    """Whether this profile can be accessed by anyone."""
 
 
 class IntegrationProfileEntryCustomEntry(BaseModel):
@@ -327,12 +339,12 @@ class IntegrationProfileEntryCustomEntry(BaseModel):
 
 class IntegrationProfileEntryPredefinedEntryConfidence(BaseModel):
     ai_context_available: bool
-    """Indicates whether this entry has AI remote service validation"""
+    """Indicates whether this entry has AI remote service validation."""
 
     available: bool
     """
     Indicates whether this entry has any form of validation that is not an AI remote
-    service
+    service.
     """
 
 
@@ -368,6 +380,12 @@ class IntegrationProfileEntryIntegrationEntry(BaseModel):
 
 class IntegrationProfileEntryExactDataEntry(BaseModel):
     id: str
+
+    case_sensitive: bool
+    """
+    Only applies to custom word lists. Determines if the words should be matched in
+    a case-sensitive manner Cannot be set to false if secret is true
+    """
 
     created_at: datetime
 
@@ -423,7 +441,7 @@ class IntegrationProfile(BaseModel):
     updated_at: datetime
 
     description: Optional[str] = None
-    """The description of the profile"""
+    """The description of the profile."""
 
 
 CustomCreateResponse: TypeAlias = Union[CustomProfile, PredefinedProfile, IntegrationProfile, List[Profile]]

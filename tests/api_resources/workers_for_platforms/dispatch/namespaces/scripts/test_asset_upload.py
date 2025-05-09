@@ -25,15 +25,6 @@ class TestAssetUpload:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
-        )
-        assert_matches_type(Optional[AssetUploadCreateResponse], asset_upload, path=["response"])
-
-    @parametrize
-    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
-        asset_upload = client.workers_for_platforms.dispatch.namespaces.scripts.asset_upload.create(
-            script_name="this-is_my_script-01",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            dispatch_namespace="my-dispatch-namespace",
             manifest={
                 "foo": {
                     "hash": "hash",
@@ -49,6 +40,12 @@ class TestAssetUpload:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
+            manifest={
+                "foo": {
+                    "hash": "hash",
+                    "size": 0,
+                }
+            },
         )
 
         assert response.is_closed is True
@@ -62,6 +59,12 @@ class TestAssetUpload:
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
+            manifest={
+                "foo": {
+                    "hash": "hash",
+                    "size": 0,
+                }
+            },
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -78,6 +81,12 @@ class TestAssetUpload:
                 script_name="this-is_my_script-01",
                 account_id="",
                 dispatch_namespace="my-dispatch-namespace",
+                manifest={
+                    "foo": {
+                        "hash": "hash",
+                        "size": 0,
+                    }
+                },
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dispatch_namespace` but received ''"):
@@ -85,6 +94,12 @@ class TestAssetUpload:
                 script_name="this-is_my_script-01",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="",
+                manifest={
+                    "foo": {
+                        "hash": "hash",
+                        "size": 0,
+                    }
+                },
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
@@ -92,6 +107,12 @@ class TestAssetUpload:
                 script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="my-dispatch-namespace",
+                manifest={
+                    "foo": {
+                        "hash": "hash",
+                        "size": 0,
+                    }
+                },
             )
 
 
@@ -100,15 +121,6 @@ class TestAsyncAssetUpload:
 
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
-        asset_upload = await async_client.workers_for_platforms.dispatch.namespaces.scripts.asset_upload.create(
-            script_name="this-is_my_script-01",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            dispatch_namespace="my-dispatch-namespace",
-        )
-        assert_matches_type(Optional[AssetUploadCreateResponse], asset_upload, path=["response"])
-
-    @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         asset_upload = await async_client.workers_for_platforms.dispatch.namespaces.scripts.asset_upload.create(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -129,6 +141,12 @@ class TestAsyncAssetUpload:
                 script_name="this-is_my_script-01",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="my-dispatch-namespace",
+                manifest={
+                    "foo": {
+                        "hash": "hash",
+                        "size": 0,
+                    }
+                },
             )
         )
 
@@ -144,6 +162,12 @@ class TestAsyncAssetUpload:
                 script_name="this-is_my_script-01",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="my-dispatch-namespace",
+                manifest={
+                    "foo": {
+                        "hash": "hash",
+                        "size": 0,
+                    }
+                },
             )
         ) as response:
             assert not response.is_closed
@@ -161,6 +185,12 @@ class TestAsyncAssetUpload:
                 script_name="this-is_my_script-01",
                 account_id="",
                 dispatch_namespace="my-dispatch-namespace",
+                manifest={
+                    "foo": {
+                        "hash": "hash",
+                        "size": 0,
+                    }
+                },
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dispatch_namespace` but received ''"):
@@ -168,6 +198,12 @@ class TestAsyncAssetUpload:
                 script_name="this-is_my_script-01",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="",
+                manifest={
+                    "foo": {
+                        "hash": "hash",
+                        "size": 0,
+                    }
+                },
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
@@ -175,4 +211,10 @@ class TestAsyncAssetUpload:
                 script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="my-dispatch-namespace",
+                manifest={
+                    "foo": {
+                        "hash": "hash",
+                        "size": 0,
+                    }
+                },
             )

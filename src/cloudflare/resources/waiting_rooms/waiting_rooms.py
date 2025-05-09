@@ -24,10 +24,7 @@ from .rules import (
     AsyncRulesResourceWithStreamingResponse,
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ..._utils import maybe_transform, async_maybe_transform
 from .settings import (
     SettingsResource,
     AsyncSettingsResource,
@@ -194,7 +191,7 @@ class WaitingRoomsResource(SyncAPIResource):
         Creates a new waiting room.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           host: The host name to which the waiting room will be applied (no wildcards). Please
               do not include the scheme (http:// or https://). The host and path combination
@@ -302,7 +299,7 @@ class WaitingRoomsResource(SyncAPIResource):
               11. `refreshIntervalSeconds`: Integer indicating the number of seconds after
                   `lastUpdated` until the user is able to make another attempt to leave the
                   waiting room and be let into the origin website. When the `queueingMethod`
-                  is `reject`, there is no specified refresh time — it will always be
+                  is `reject`, there is no specified refresh time —\\__it will always be
                   **zero**.
               12. `queueingMethod`: The queueing method currently used by the waiting room. It
                   is either **fifo**, **random**, **passthrough**, or **reject**.
@@ -338,6 +335,11 @@ class WaitingRoomsResource(SyncAPIResource):
               23. `shuffleAtEventStart`: Valid only when `isEventActive` is **true**. Boolean
                   indicating if the users in the prequeue are shuffled randomly when the event
                   starts.
+              24. `turnstile`: Empty when turnstile isn't enabled. String displaying an html
+                  tag to display the Turnstile widget. Please add the `{{{turnstile}}}` tag to
+                  the `custom_html` template to ensure the Turnstile widget appears.
+              25. `infiniteQueue`: Boolean indicating whether the response is for a user in
+                  the infinite queue.
 
               An example cURL to a waiting room could be:
 
@@ -406,7 +408,7 @@ class WaitingRoomsResource(SyncAPIResource):
                   		"timeUntilEventEndFormatted": "15 minutes",
                   		"shuffleAtEventStart": true
                   	}
-                  }.
+                  }
 
           path: Sets the path within the host to enable the waiting room on. The waiting room
               will be enabled for all subpaths as well. If there are two waiting rooms on the
@@ -592,7 +594,7 @@ class WaitingRoomsResource(SyncAPIResource):
         Updates a configured waiting room.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           host: The host name to which the waiting room will be applied (no wildcards). Please
               do not include the scheme (http:// or https://). The host and path combination
@@ -700,7 +702,7 @@ class WaitingRoomsResource(SyncAPIResource):
               11. `refreshIntervalSeconds`: Integer indicating the number of seconds after
                   `lastUpdated` until the user is able to make another attempt to leave the
                   waiting room and be let into the origin website. When the `queueingMethod`
-                  is `reject`, there is no specified refresh time — it will always be
+                  is `reject`, there is no specified refresh time —\\__it will always be
                   **zero**.
               12. `queueingMethod`: The queueing method currently used by the waiting room. It
                   is either **fifo**, **random**, **passthrough**, or **reject**.
@@ -736,6 +738,11 @@ class WaitingRoomsResource(SyncAPIResource):
               23. `shuffleAtEventStart`: Valid only when `isEventActive` is **true**. Boolean
                   indicating if the users in the prequeue are shuffled randomly when the event
                   starts.
+              24. `turnstile`: Empty when turnstile isn't enabled. String displaying an html
+                  tag to display the Turnstile widget. Please add the `{{{turnstile}}}` tag to
+                  the `custom_html` template to ensure the Turnstile widget appears.
+              25. `infiniteQueue`: Boolean indicating whether the response is for a user in
+                  the infinite queue.
 
               An example cURL to a waiting room could be:
 
@@ -804,7 +811,7 @@ class WaitingRoomsResource(SyncAPIResource):
                   		"timeUntilEventEndFormatted": "15 minutes",
                   		"shuffleAtEventStart": true
                   	}
-                  }.
+                  }
 
           path: Sets the path within the host to enable the waiting room on. The waiting room
               will be enabled for all subpaths as well. If there are two waiting rooms on the
@@ -995,7 +1002,7 @@ class WaitingRoomsResource(SyncAPIResource):
         Deletes a waiting room.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -1099,7 +1106,7 @@ class WaitingRoomsResource(SyncAPIResource):
         Patches a configured waiting room.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           host: The host name to which the waiting room will be applied (no wildcards). Please
               do not include the scheme (http:// or https://). The host and path combination
@@ -1207,7 +1214,7 @@ class WaitingRoomsResource(SyncAPIResource):
               11. `refreshIntervalSeconds`: Integer indicating the number of seconds after
                   `lastUpdated` until the user is able to make another attempt to leave the
                   waiting room and be let into the origin website. When the `queueingMethod`
-                  is `reject`, there is no specified refresh time — it will always be
+                  is `reject`, there is no specified refresh time —\\__it will always be
                   **zero**.
               12. `queueingMethod`: The queueing method currently used by the waiting room. It
                   is either **fifo**, **random**, **passthrough**, or **reject**.
@@ -1243,6 +1250,11 @@ class WaitingRoomsResource(SyncAPIResource):
               23. `shuffleAtEventStart`: Valid only when `isEventActive` is **true**. Boolean
                   indicating if the users in the prequeue are shuffled randomly when the event
                   starts.
+              24. `turnstile`: Empty when turnstile isn't enabled. String displaying an html
+                  tag to display the Turnstile widget. Please add the `{{{turnstile}}}` tag to
+                  the `custom_html` template to ensure the Turnstile widget appears.
+              25. `infiniteQueue`: Boolean indicating whether the response is for a user in
+                  the infinite queue.
 
               An example cURL to a waiting room could be:
 
@@ -1311,7 +1323,7 @@ class WaitingRoomsResource(SyncAPIResource):
                   		"timeUntilEventEndFormatted": "15 minutes",
                   		"shuffleAtEventStart": true
                   	}
-                  }.
+                  }
 
           path: Sets the path within the host to enable the waiting room on. The waiting room
               will be enabled for all subpaths as well. If there are two waiting rooms on the
@@ -1437,7 +1449,7 @@ class WaitingRoomsResource(SyncAPIResource):
         Fetches a single configured waiting room.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -1581,7 +1593,7 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
         Creates a new waiting room.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           host: The host name to which the waiting room will be applied (no wildcards). Please
               do not include the scheme (http:// or https://). The host and path combination
@@ -1689,7 +1701,7 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
               11. `refreshIntervalSeconds`: Integer indicating the number of seconds after
                   `lastUpdated` until the user is able to make another attempt to leave the
                   waiting room and be let into the origin website. When the `queueingMethod`
-                  is `reject`, there is no specified refresh time — it will always be
+                  is `reject`, there is no specified refresh time —\\__it will always be
                   **zero**.
               12. `queueingMethod`: The queueing method currently used by the waiting room. It
                   is either **fifo**, **random**, **passthrough**, or **reject**.
@@ -1725,6 +1737,11 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
               23. `shuffleAtEventStart`: Valid only when `isEventActive` is **true**. Boolean
                   indicating if the users in the prequeue are shuffled randomly when the event
                   starts.
+              24. `turnstile`: Empty when turnstile isn't enabled. String displaying an html
+                  tag to display the Turnstile widget. Please add the `{{{turnstile}}}` tag to
+                  the `custom_html` template to ensure the Turnstile widget appears.
+              25. `infiniteQueue`: Boolean indicating whether the response is for a user in
+                  the infinite queue.
 
               An example cURL to a waiting room could be:
 
@@ -1793,7 +1810,7 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
                   		"timeUntilEventEndFormatted": "15 minutes",
                   		"shuffleAtEventStart": true
                   	}
-                  }.
+                  }
 
           path: Sets the path within the host to enable the waiting room on. The waiting room
               will be enabled for all subpaths as well. If there are two waiting rooms on the
@@ -1979,7 +1996,7 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
         Updates a configured waiting room.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           host: The host name to which the waiting room will be applied (no wildcards). Please
               do not include the scheme (http:// or https://). The host and path combination
@@ -2087,7 +2104,7 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
               11. `refreshIntervalSeconds`: Integer indicating the number of seconds after
                   `lastUpdated` until the user is able to make another attempt to leave the
                   waiting room and be let into the origin website. When the `queueingMethod`
-                  is `reject`, there is no specified refresh time — it will always be
+                  is `reject`, there is no specified refresh time —\\__it will always be
                   **zero**.
               12. `queueingMethod`: The queueing method currently used by the waiting room. It
                   is either **fifo**, **random**, **passthrough**, or **reject**.
@@ -2123,6 +2140,11 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
               23. `shuffleAtEventStart`: Valid only when `isEventActive` is **true**. Boolean
                   indicating if the users in the prequeue are shuffled randomly when the event
                   starts.
+              24. `turnstile`: Empty when turnstile isn't enabled. String displaying an html
+                  tag to display the Turnstile widget. Please add the `{{{turnstile}}}` tag to
+                  the `custom_html` template to ensure the Turnstile widget appears.
+              25. `infiniteQueue`: Boolean indicating whether the response is for a user in
+                  the infinite queue.
 
               An example cURL to a waiting room could be:
 
@@ -2191,7 +2213,7 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
                   		"timeUntilEventEndFormatted": "15 minutes",
                   		"shuffleAtEventStart": true
                   	}
-                  }.
+                  }
 
           path: Sets the path within the host to enable the waiting room on. The waiting room
               will be enabled for all subpaths as well. If there are two waiting rooms on the
@@ -2382,7 +2404,7 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
         Deletes a waiting room.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -2486,7 +2508,7 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
         Patches a configured waiting room.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           host: The host name to which the waiting room will be applied (no wildcards). Please
               do not include the scheme (http:// or https://). The host and path combination
@@ -2594,7 +2616,7 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
               11. `refreshIntervalSeconds`: Integer indicating the number of seconds after
                   `lastUpdated` until the user is able to make another attempt to leave the
                   waiting room and be let into the origin website. When the `queueingMethod`
-                  is `reject`, there is no specified refresh time — it will always be
+                  is `reject`, there is no specified refresh time —\\__it will always be
                   **zero**.
               12. `queueingMethod`: The queueing method currently used by the waiting room. It
                   is either **fifo**, **random**, **passthrough**, or **reject**.
@@ -2630,6 +2652,11 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
               23. `shuffleAtEventStart`: Valid only when `isEventActive` is **true**. Boolean
                   indicating if the users in the prequeue are shuffled randomly when the event
                   starts.
+              24. `turnstile`: Empty when turnstile isn't enabled. String displaying an html
+                  tag to display the Turnstile widget. Please add the `{{{turnstile}}}` tag to
+                  the `custom_html` template to ensure the Turnstile widget appears.
+              25. `infiniteQueue`: Boolean indicating whether the response is for a user in
+                  the infinite queue.
 
               An example cURL to a waiting room could be:
 
@@ -2698,7 +2725,7 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
                   		"timeUntilEventEndFormatted": "15 minutes",
                   		"shuffleAtEventStart": true
                   	}
-                  }.
+                  }
 
           path: Sets the path within the host to enable the waiting room on. The waiting room
               will be enabled for all subpaths as well. If there are two waiting rooms on the
@@ -2824,7 +2851,7 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
         Fetches a single configured waiting room.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 

@@ -7,10 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -66,7 +63,7 @@ class EdgeResource(SyncAPIResource):
         Creates a new Instant Logs job for a zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           fields: Comma-separated list of fields.
 
@@ -121,7 +118,7 @@ class EdgeResource(SyncAPIResource):
         Lists Instant Logs jobs for a zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -181,7 +178,7 @@ class AsyncEdgeResource(AsyncAPIResource):
         Creates a new Instant Logs job for a zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           fields: Comma-separated list of fields.
 
@@ -236,7 +233,7 @@ class AsyncEdgeResource(AsyncAPIResource):
         Lists Instant Logs jobs for a zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 

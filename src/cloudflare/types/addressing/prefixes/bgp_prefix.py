@@ -55,6 +55,9 @@ class BGPPrefix(BaseModel):
     asn: Optional[int] = None
     """Autonomous System Number (ASN) the prefix will be advertised under."""
 
+    asn_prepend_count: Optional[int] = None
+    """Number of times to prepend the Cloudflare ASN to the BGP AS-Path attribute"""
+
     bgp_signal_opts: Optional[BGPSignalOpts] = None
 
     cidr: Optional[str] = None
@@ -65,3 +68,10 @@ class BGPPrefix(BaseModel):
     modified_at: Optional[datetime] = None
 
     on_demand: Optional[OnDemand] = None
+
+    withdraw_if_no_route: Optional[bool] = None
+    """
+    Controls whether the BGP prefix is automatically withdrawn when prefix is
+    withdrawn from Magic routing table (for Magic Transit customers using Direct
+    CNI)
+    """

@@ -8,10 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ...types.r2 import temporary_credential_create_params
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -70,19 +67,19 @@ class TemporaryCredentialsResource(SyncAPIResource):
         to prefixes or objects.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket: Name of the R2 bucket
+          bucket: Name of the R2 bucket.
 
-          parent_access_key_id: The parent access key id to use for signing
+          parent_access_key_id: The parent access key id to use for signing.
 
-          permission: Permissions allowed on the credentials
+          permission: Permissions allowed on the credentials.
 
-          ttl_seconds: How long the credentials will live for in seconds
+          ttl_seconds: How long the credentials will live for in seconds.
 
-          objects: Optional object paths to scope the credentials to
+          objects: Optional object paths to scope the credentials to.
 
-          prefixes: Optional prefix paths to scope the credentials to
+          prefixes: Optional prefix paths to scope the credentials to.
 
           extra_headers: Send extra headers
 
@@ -160,19 +157,19 @@ class AsyncTemporaryCredentialsResource(AsyncAPIResource):
         to prefixes or objects.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          bucket: Name of the R2 bucket
+          bucket: Name of the R2 bucket.
 
-          parent_access_key_id: The parent access key id to use for signing
+          parent_access_key_id: The parent access key id to use for signing.
 
-          permission: Permissions allowed on the credentials
+          permission: Permissions allowed on the credentials.
 
-          ttl_seconds: How long the credentials will live for in seconds
+          ttl_seconds: How long the credentials will live for in seconds.
 
-          objects: Optional object paths to scope the credentials to
+          objects: Optional object paths to scope the credentials to.
 
-          prefixes: Optional prefix paths to scope the credentials to
+          prefixes: Optional prefix paths to scope the credentials to.
 
           extra_headers: Send extra headers
 

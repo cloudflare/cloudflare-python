@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Dict, Type, Optional, cast
 
 import httpx
 
@@ -46,11 +46,8 @@ from .settings import (
     SettingsResourceWithStreamingResponse,
     AsyncSettingsResourceWithStreamingResponse,
 )
-from ......_types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
-from ......_utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ......_types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, FileTypes
+from ......_utils import maybe_transform, async_maybe_transform
 from ......_compat import cached_property
 from .asset_upload import (
     AssetUploadResource,
@@ -127,6 +124,7 @@ class ScriptsResource(SyncAPIResource):
         account_id: str,
         dispatch_namespace: str,
         metadata: script_update_params.Metadata,
+        files: Dict[str, FileTypes] = {},
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -141,7 +139,7 @@ class ScriptsResource(SyncAPIResource):
         https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -166,6 +164,7 @@ class ScriptsResource(SyncAPIResource):
         return self._put(
             f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}",
             body=maybe_transform({"metadata": metadata}, script_update_params.ScriptUpdateParams),
+            files=files,
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -196,7 +195,7 @@ class ScriptsResource(SyncAPIResource):
         response body on a successful delete.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -250,7 +249,7 @@ class ScriptsResource(SyncAPIResource):
         Fetch information about a script uploaded to a Workers for Platforms namespace.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -334,6 +333,7 @@ class AsyncScriptsResource(AsyncAPIResource):
         account_id: str,
         dispatch_namespace: str,
         metadata: script_update_params.Metadata,
+        files: Dict[str, FileTypes] = {},
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -348,7 +348,7 @@ class AsyncScriptsResource(AsyncAPIResource):
         https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -373,6 +373,7 @@ class AsyncScriptsResource(AsyncAPIResource):
         return await self._put(
             f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}",
             body=await async_maybe_transform({"metadata": metadata}, script_update_params.ScriptUpdateParams),
+            files=files,
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -403,7 +404,7 @@ class AsyncScriptsResource(AsyncAPIResource):
         response body on a successful delete.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -457,7 +458,7 @@ class AsyncScriptsResource(AsyncAPIResource):
         Fetch information about a script uploaded to a Workers for Platforms namespace.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 

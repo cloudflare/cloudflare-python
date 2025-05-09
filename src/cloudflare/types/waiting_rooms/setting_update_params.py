@@ -9,7 +9,7 @@ __all__ = ["SettingUpdateParams"]
 
 class SettingUpdateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     search_engine_crawler_bypass: bool
     """

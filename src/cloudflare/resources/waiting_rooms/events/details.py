@@ -61,7 +61,7 @@ class DetailsResource(SyncAPIResource):
         waiting room will be displayed with their current values.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -129,7 +129,7 @@ class AsyncDetailsResource(AsyncAPIResource):
         waiting room will be displayed with their current values.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 

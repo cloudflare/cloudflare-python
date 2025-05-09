@@ -8,10 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from .prioritize import (
     PrioritizeResource,
@@ -90,7 +87,7 @@ class CustomCertificatesResource(SyncAPIResource):
         Upload a new SSL certificate for a zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           certificate: The zone's SSL certificate or certificate and the intermediate(s).
 
@@ -177,7 +174,7 @@ class CustomCertificatesResource(SyncAPIResource):
         'legacy_custom' certificates will always supercede 'sni_custom' certificates.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           match: Whether to match all search requirements or at least one (any).
 
@@ -234,9 +231,9 @@ class CustomCertificatesResource(SyncAPIResource):
         Remove a SSL certificate from a zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          custom_certificate_id: Identifier
+          custom_certificate_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -290,9 +287,9 @@ class CustomCertificatesResource(SyncAPIResource):
         being returned, and the previous one being deleted.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          custom_certificate_id: Identifier
+          custom_certificate_id: Identifier.
 
           bundle_method: A ubiquitous bundle has the highest probability of being verified everywhere,
               even by clients using outdated or unusual trust stores. An optimal bundle uses
@@ -373,9 +370,9 @@ class CustomCertificatesResource(SyncAPIResource):
         SSL Configuration Details
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          custom_certificate_id: Identifier
+          custom_certificate_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -449,7 +446,7 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
         Upload a new SSL certificate for a zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           certificate: The zone's SSL certificate or certificate and the intermediate(s).
 
@@ -536,7 +533,7 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
         'legacy_custom' certificates will always supercede 'sni_custom' certificates.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           match: Whether to match all search requirements or at least one (any).
 
@@ -593,9 +590,9 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
         Remove a SSL certificate from a zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          custom_certificate_id: Identifier
+          custom_certificate_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -649,9 +646,9 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
         being returned, and the previous one being deleted.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          custom_certificate_id: Identifier
+          custom_certificate_id: Identifier.
 
           bundle_method: A ubiquitous bundle has the highest probability of being verified everywhere,
               even by clients using outdated or unusual trust stores. An optimal bundle uses
@@ -732,9 +729,9 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
         SSL Configuration Details
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          custom_certificate_id: Identifier
+          custom_certificate_id: Identifier.
 
           extra_headers: Send extra headers
 

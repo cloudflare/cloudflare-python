@@ -59,7 +59,7 @@ class MetricsResource(SyncAPIResource):
         Account-Level Metrics may not immediately reflect the latest data.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
           extra_headers: Send extra headers
 
@@ -121,7 +121,7 @@ class AsyncMetricsResource(AsyncAPIResource):
         Account-Level Metrics may not immediately reflect the latest data.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
           extra_headers: Send extra headers
 

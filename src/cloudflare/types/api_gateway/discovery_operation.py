@@ -25,7 +25,7 @@ class Features(BaseModel):
 
 class DiscoveryOperation(BaseModel):
     id: str
-    """UUID"""
+    """UUID."""
 
     endpoint: str
     """
@@ -43,7 +43,7 @@ class DiscoveryOperation(BaseModel):
     method: Literal["GET", "POST", "HEAD", "OPTIONS", "PUT", "DELETE", "CONNECT", "PATCH", "TRACE"]
     """The HTTP method used to access the endpoint."""
 
-    origin: List[Literal["ML", "SessionIdentifier"]]
+    origin: List[Literal["ML", "SessionIdentifier", "LabelDiscovery"]]
     """API discovery engine(s) that discovered this operation"""
 
     state: Literal["review", "saved", "ignored"]

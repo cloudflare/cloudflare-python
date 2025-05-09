@@ -7,10 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -66,7 +63,7 @@ class AnalyzeResource(SyncAPIResource):
         of the certificate.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           bundle_method: A ubiquitous bundle has the highest probability of being verified everywhere,
               even by clients using outdated or unusual trust stores. An optimal bundle uses
@@ -143,7 +140,7 @@ class AsyncAnalyzeResource(AsyncAPIResource):
         of the certificate.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           bundle_method: A ubiquitous bundle has the highest probability of being verified everywhere,
               even by clients using outdated or unusual trust stores. An optimal bundle uses

@@ -9,7 +9,7 @@ __all__ = ["GroupListParams"]
 
 class GroupListParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     cf_resource_id: str
     """

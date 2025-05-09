@@ -68,6 +68,9 @@ class GRETunnelHealthCheck(BaseModel):
 
 
 class GRETunnel(BaseModel):
+    id: str
+    """Identifier"""
+
     cloudflare_gre_endpoint: str
     """The IP address assigned to the Cloudflare side of the GRE tunnel."""
 
@@ -87,9 +90,6 @@ class GRETunnel(BaseModel):
     The name cannot contain spaces or special characters, must be 15 characters or
     less, and cannot share a name with another GRE tunnel.
     """
-
-    id: Optional[str] = None
-    """Tunnel identifier tag."""
 
     created_on: Optional[datetime] = None
     """The date and time the tunnel was created."""

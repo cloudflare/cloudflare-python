@@ -17,22 +17,22 @@ class CrowdstrikeInputParam(TypedDict, total=False):
     """For more details on last seen, please refer to the Crowdstrike documentation."""
 
     operator: Literal["<", "<=", ">", ">=", "=="]
-    """operator"""
+    """Operator."""
 
     os: str
-    """Os Version"""
+    """Os Version."""
 
     overall: str
-    """overall"""
+    """Overall."""
 
     sensor_config: str
-    """SensorConfig"""
+    """SensorConfig."""
 
     state: Literal["online", "offline", "unknown"]
     """For more details on state, please refer to the Crowdstrike documentation."""
 
     version: str
-    """Version"""
+    """Version."""
 
     version_operator: Annotated[Literal["<", "<=", ">", ">=", "=="], PropertyInfo(alias="versionOperator")]
-    """Version Operator"""
+    """Version Operator."""

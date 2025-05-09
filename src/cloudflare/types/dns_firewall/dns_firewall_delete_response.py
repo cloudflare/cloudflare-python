@@ -9,4 +9,4 @@ __all__ = ["DNSFirewallDeleteResponse"]
 
 class DNSFirewallDeleteResponse(BaseModel):
     id: Optional[str] = None
-    """Identifier"""
+    """Identifier."""

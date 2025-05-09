@@ -22,14 +22,6 @@ class TestUpload:
         upload = client.workers.scripts.assets.upload.create(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(Optional[UploadCreateResponse], upload, path=["response"])
-
-    @parametrize
-    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
-        upload = client.workers.scripts.assets.upload.create(
-            script_name="this-is_my_script-01",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             manifest={
                 "foo": {
                     "hash": "hash",
@@ -44,6 +36,12 @@ class TestUpload:
         response = client.workers.scripts.assets.upload.with_raw_response.create(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            manifest={
+                "foo": {
+                    "hash": "hash",
+                    "size": 0,
+                }
+            },
         )
 
         assert response.is_closed is True
@@ -56,6 +54,12 @@ class TestUpload:
         with client.workers.scripts.assets.upload.with_streaming_response.create(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            manifest={
+                "foo": {
+                    "hash": "hash",
+                    "size": 0,
+                }
+            },
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -71,12 +75,24 @@ class TestUpload:
             client.workers.scripts.assets.upload.with_raw_response.create(
                 script_name="this-is_my_script-01",
                 account_id="",
+                manifest={
+                    "foo": {
+                        "hash": "hash",
+                        "size": 0,
+                    }
+                },
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             client.workers.scripts.assets.upload.with_raw_response.create(
                 script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                manifest={
+                    "foo": {
+                        "hash": "hash",
+                        "size": 0,
+                    }
+                },
             )
 
 
@@ -85,14 +101,6 @@ class TestAsyncUpload:
 
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
-        upload = await async_client.workers.scripts.assets.upload.create(
-            script_name="this-is_my_script-01",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(Optional[UploadCreateResponse], upload, path=["response"])
-
-    @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         upload = await async_client.workers.scripts.assets.upload.create(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -110,6 +118,12 @@ class TestAsyncUpload:
         response = await async_client.workers.scripts.assets.upload.with_raw_response.create(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            manifest={
+                "foo": {
+                    "hash": "hash",
+                    "size": 0,
+                }
+            },
         )
 
         assert response.is_closed is True
@@ -122,6 +136,12 @@ class TestAsyncUpload:
         async with async_client.workers.scripts.assets.upload.with_streaming_response.create(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            manifest={
+                "foo": {
+                    "hash": "hash",
+                    "size": 0,
+                }
+            },
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -137,10 +157,22 @@ class TestAsyncUpload:
             await async_client.workers.scripts.assets.upload.with_raw_response.create(
                 script_name="this-is_my_script-01",
                 account_id="",
+                manifest={
+                    "foo": {
+                        "hash": "hash",
+                        "size": 0,
+                    }
+                },
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             await async_client.workers.scripts.assets.upload.with_raw_response.create(
                 script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                manifest={
+                    "foo": {
+                        "hash": "hash",
+                        "size": 0,
+                    }
+                },
             )

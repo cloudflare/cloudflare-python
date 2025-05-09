@@ -13,7 +13,7 @@ __all__ = ["SecurityTXTUpdateParams"]
 
 class SecurityTXTUpdateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     acknowledgments: List[str]
 

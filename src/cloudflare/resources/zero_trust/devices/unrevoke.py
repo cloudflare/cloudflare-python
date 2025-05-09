@@ -7,10 +7,7 @@ from typing import Any, List, Optional, cast
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -59,10 +56,13 @@ class UnrevokeResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[UnrevokeCreateResponse]:
         """
-        Unrevokes a list of devices.
+        Unrevokes a list of registrations.
+
+        **Deprecated**: please use POST
+        /accounts/{account_id}/devices/registrations/unrevoke instead.
 
         Args:
-          body: A list of device ids to unrevoke.
+          body: A list of Registration IDs to unrevoke.
 
           extra_headers: Send extra headers
 
@@ -126,10 +126,13 @@ class AsyncUnrevokeResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[UnrevokeCreateResponse]:
         """
-        Unrevokes a list of devices.
+        Unrevokes a list of registrations.
+
+        **Deprecated**: please use POST
+        /accounts/{account_id}/devices/registrations/unrevoke instead.
 
         Args:
-          body: A list of device ids to unrevoke.
+          body: A list of Registration IDs to unrevoke.
 
           extra_headers: Send extra headers
 

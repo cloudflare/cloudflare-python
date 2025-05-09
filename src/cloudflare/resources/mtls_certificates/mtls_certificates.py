@@ -7,10 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -80,7 +77,7 @@ class MTLSCertificatesResource(SyncAPIResource):
         Upload a certificate that you want to use with mTLS-enabled Cloudflare services.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           ca: Indicates whether the certificate is a CA or leaf certificate.
 
@@ -136,7 +133,7 @@ class MTLSCertificatesResource(SyncAPIResource):
         Lists all mTLS certificates.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -174,9 +171,9 @@ class MTLSCertificatesResource(SyncAPIResource):
         Cloudflare services.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          mtls_certificate_id: Identifier
+          mtls_certificate_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -220,9 +217,9 @@ class MTLSCertificatesResource(SyncAPIResource):
         Fetches a single mTLS certificate.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          mtls_certificate_id: Identifier
+          mtls_certificate_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -294,7 +291,7 @@ class AsyncMTLSCertificatesResource(AsyncAPIResource):
         Upload a certificate that you want to use with mTLS-enabled Cloudflare services.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           ca: Indicates whether the certificate is a CA or leaf certificate.
 
@@ -350,7 +347,7 @@ class AsyncMTLSCertificatesResource(AsyncAPIResource):
         Lists all mTLS certificates.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -388,9 +385,9 @@ class AsyncMTLSCertificatesResource(AsyncAPIResource):
         Cloudflare services.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          mtls_certificate_id: Identifier
+          mtls_certificate_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -434,9 +431,9 @@ class AsyncMTLSCertificatesResource(AsyncAPIResource):
         Fetches a single mTLS certificate.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          mtls_certificate_id: Identifier
+          mtls_certificate_id: Identifier.
 
           extra_headers: Send extra headers
 

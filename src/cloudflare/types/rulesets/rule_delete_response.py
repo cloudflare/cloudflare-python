@@ -53,7 +53,7 @@ class RuleRulesetsChallengeRuleRatelimit(BaseModel):
     incremented.
     """
 
-    period: Literal[10, 60, 600, 3600]
+    period: int
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: Optional[str] = None
@@ -146,7 +146,7 @@ class RuleRulesetsJSChallengeRuleRatelimit(BaseModel):
     incremented.
     """
 
-    period: Literal[10, 60, 600, 3600]
+    period: int
     """Period in seconds over which the counter is being incremented."""
 
     counting_expression: Optional[str] = None

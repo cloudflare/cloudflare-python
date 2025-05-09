@@ -23,11 +23,16 @@ from .policies import (
     PoliciesResourceWithStreamingResponse,
     AsyncPoliciesResourceWithStreamingResponse,
 )
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import (
-    maybe_transform,
-    async_maybe_transform,
+from .settings import (
+    SettingsResource,
+    AsyncSettingsResource,
+    SettingsResourceWithRawResponse,
+    AsyncSettingsResourceWithRawResponse,
+    SettingsResourceWithStreamingResponse,
+    AsyncSettingsResourceWithStreamingResponse,
 )
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -94,6 +99,10 @@ class ApplicationsResource(SyncAPIResource):
         return PolicyTestsResource(self._client)
 
     @cached_property
+    def settings(self) -> SettingsResource:
+        return SettingsResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> ApplicationsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -121,6 +130,7 @@ class ApplicationsResource(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allow_iframe: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
@@ -137,6 +147,7 @@ class ApplicationsResource(SyncAPIResource):
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
+        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -168,6 +179,8 @@ class ApplicationsResource(SyncAPIResource):
               session. When set to false this application will always require direct IdP
               authentication. This setting always overrides the organization setting for WARP
               authentication.
+
+          allow_iframe: Enables loading application content in an iFrame.
 
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
@@ -211,6 +224,14 @@ class ApplicationsResource(SyncAPIResource):
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
+
+          read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
+              name. This works as an alternative to the (CF-Access-Client-Id,
+              CF-Access-Client-Secret) pair of headers. The header value will be interpreted
+              as a json object similar to: { "cf-access-client-id":
+              "88bf3b6d86161464f6509f7219099e57.access.example.com",
+              "cf-access-client-secret":
+              "bdd31cbc4dec990953e39163fbbb194c93313ca9f0a6e420346af9d326b1d2a5" }
 
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
@@ -320,6 +341,7 @@ class ApplicationsResource(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allow_iframe: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
@@ -336,6 +358,7 @@ class ApplicationsResource(SyncAPIResource):
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.BrowserSSHApplicationPolicy] | NotGiven = NOT_GIVEN,
+        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.BrowserSSHApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -367,6 +390,8 @@ class ApplicationsResource(SyncAPIResource):
               session. When set to false this application will always require direct IdP
               authentication. This setting always overrides the organization setting for WARP
               authentication.
+
+          allow_iframe: Enables loading application content in an iFrame.
 
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
@@ -410,6 +435,14 @@ class ApplicationsResource(SyncAPIResource):
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
+
+          read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
+              name. This works as an alternative to the (CF-Access-Client-Id,
+              CF-Access-Client-Secret) pair of headers. The header value will be interpreted
+              as a json object similar to: { "cf-access-client-id":
+              "88bf3b6d86161464f6509f7219099e57.access.example.com",
+              "cf-access-client-secret":
+              "bdd31cbc4dec990953e39163fbbb194c93313ca9f0a6e420346af9d326b1d2a5" }
 
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
@@ -451,6 +484,7 @@ class ApplicationsResource(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allow_iframe: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
@@ -467,6 +501,7 @@ class ApplicationsResource(SyncAPIResource):
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.BrowserVNCApplicationPolicy] | NotGiven = NOT_GIVEN,
+        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.BrowserVNCApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -498,6 +533,8 @@ class ApplicationsResource(SyncAPIResource):
               session. When set to false this application will always require direct IdP
               authentication. This setting always overrides the organization setting for WARP
               authentication.
+
+          allow_iframe: Enables loading application content in an iFrame.
 
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
@@ -541,6 +578,14 @@ class ApplicationsResource(SyncAPIResource):
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
+
+          read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
+              name. This works as an alternative to the (CF-Access-Client-Id,
+              CF-Access-Client-Secret) pair of headers. The header value will be interpreted
+              as a json object similar to: { "cf-access-client-id":
+              "88bf3b6d86161464f6509f7219099e57.access.example.com",
+              "cf-access-client-secret":
+              "bdd31cbc4dec990953e39163fbbb194c93313ca9f0a6e420346af9d326b1d2a5" }
 
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
@@ -904,6 +949,7 @@ class ApplicationsResource(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allow_iframe: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
@@ -920,6 +966,7 @@ class ApplicationsResource(SyncAPIResource):
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.BrowserRdpApplicationPolicy] | NotGiven = NOT_GIVEN,
+        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.BrowserRdpApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -951,6 +998,8 @@ class ApplicationsResource(SyncAPIResource):
               session. When set to false this application will always require direct IdP
               authentication. This setting always overrides the organization setting for WARP
               authentication.
+
+          allow_iframe: Enables loading application content in an iFrame.
 
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
@@ -995,6 +1044,14 @@ class ApplicationsResource(SyncAPIResource):
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
+          read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
+              name. This works as an alternative to the (CF-Access-Client-Id,
+              CF-Access-Client-Secret) pair of headers. The header value will be interpreted
+              as a json object similar to: { "cf-access-client-id":
+              "88bf3b6d86161464f6509f7219099e57.access.example.com",
+              "cf-access-client-secret":
+              "bdd31cbc4dec990953e39163fbbb194c93313ca9f0a6e420346af9d326b1d2a5" }
+
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
 
@@ -1034,6 +1091,7 @@ class ApplicationsResource(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allow_iframe: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
@@ -1052,6 +1110,7 @@ class ApplicationsResource(SyncAPIResource):
         policies: List[application_create_params.SelfHostedApplicationPolicy]
         | Iterable[application_create_params.InfrastructureApplicationPolicy]
         | NotGiven = NOT_GIVEN,
+        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -1096,6 +1155,7 @@ class ApplicationsResource(SyncAPIResource):
                         "domain": domain,
                         "type": type,
                         "allow_authenticate_via_warp": allow_authenticate_via_warp,
+                        "allow_iframe": allow_iframe,
                         "allowed_idps": allowed_idps,
                         "app_launcher_visible": app_launcher_visible,
                         "auto_redirect_to_identity": auto_redirect_to_identity,
@@ -1112,6 +1172,7 @@ class ApplicationsResource(SyncAPIResource):
                         "options_preflight_bypass": options_preflight_bypass,
                         "path_cookie_attribute": path_cookie_attribute,
                         "policies": policies,
+                        "read_service_tokens_from_header": read_service_tokens_from_header,
                         "same_site_cookie_attribute": same_site_cookie_attribute,
                         "scim_config": scim_config,
                         "self_hosted_domains": self_hosted_domains,
@@ -1153,6 +1214,7 @@ class ApplicationsResource(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allow_iframe: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
@@ -1169,6 +1231,7 @@ class ApplicationsResource(SyncAPIResource):
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
+        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -1187,7 +1250,7 @@ class ApplicationsResource(SyncAPIResource):
         Updates an Access application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           domain: The primary hostname and path secured by Access. This domain will be displayed
               if the app is visible in the App Launcher.
@@ -1202,6 +1265,8 @@ class ApplicationsResource(SyncAPIResource):
               session. When set to false this application will always require direct IdP
               authentication. This setting always overrides the organization setting for WARP
               authentication.
+
+          allow_iframe: Enables loading application content in an iFrame.
 
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
@@ -1245,6 +1310,14 @@ class ApplicationsResource(SyncAPIResource):
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
+
+          read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
+              name. This works as an alternative to the (CF-Access-Client-Id,
+              CF-Access-Client-Secret) pair of headers. The header value will be interpreted
+              as a json object similar to: { "cf-access-client-id":
+              "88bf3b6d86161464f6509f7219099e57.access.example.com",
+              "cf-access-client-secret":
+              "bdd31cbc4dec990953e39163fbbb194c93313ca9f0a6e420346af9d326b1d2a5" }
 
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
@@ -1306,7 +1379,7 @@ class ApplicationsResource(SyncAPIResource):
         Updates an Access application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -1358,6 +1431,7 @@ class ApplicationsResource(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allow_iframe: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
@@ -1374,6 +1448,7 @@ class ApplicationsResource(SyncAPIResource):
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.BrowserSSHApplicationPolicy] | NotGiven = NOT_GIVEN,
+        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.BrowserSSHApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -1392,7 +1467,7 @@ class ApplicationsResource(SyncAPIResource):
         Updates an Access application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           domain: The primary hostname and path secured by Access. This domain will be displayed
               if the app is visible in the App Launcher.
@@ -1407,6 +1482,8 @@ class ApplicationsResource(SyncAPIResource):
               session. When set to false this application will always require direct IdP
               authentication. This setting always overrides the organization setting for WARP
               authentication.
+
+          allow_iframe: Enables loading application content in an iFrame.
 
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
@@ -1450,6 +1527,14 @@ class ApplicationsResource(SyncAPIResource):
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
+
+          read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
+              name. This works as an alternative to the (CF-Access-Client-Id,
+              CF-Access-Client-Secret) pair of headers. The header value will be interpreted
+              as a json object similar to: { "cf-access-client-id":
+              "88bf3b6d86161464f6509f7219099e57.access.example.com",
+              "cf-access-client-secret":
+              "bdd31cbc4dec990953e39163fbbb194c93313ca9f0a6e420346af9d326b1d2a5" }
 
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
@@ -1492,6 +1577,7 @@ class ApplicationsResource(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allow_iframe: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
@@ -1508,6 +1594,7 @@ class ApplicationsResource(SyncAPIResource):
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.BrowserVNCApplicationPolicy] | NotGiven = NOT_GIVEN,
+        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.BrowserVNCApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -1526,7 +1613,7 @@ class ApplicationsResource(SyncAPIResource):
         Updates an Access application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           domain: The primary hostname and path secured by Access. This domain will be displayed
               if the app is visible in the App Launcher.
@@ -1541,6 +1628,8 @@ class ApplicationsResource(SyncAPIResource):
               session. When set to false this application will always require direct IdP
               authentication. This setting always overrides the organization setting for WARP
               authentication.
+
+          allow_iframe: Enables loading application content in an iFrame.
 
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
@@ -1584,6 +1673,14 @@ class ApplicationsResource(SyncAPIResource):
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
+
+          read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
+              name. This works as an alternative to the (CF-Access-Client-Id,
+              CF-Access-Client-Secret) pair of headers. The header value will be interpreted
+              as a json object similar to: { "cf-access-client-id":
+              "88bf3b6d86161464f6509f7219099e57.access.example.com",
+              "cf-access-client-secret":
+              "bdd31cbc4dec990953e39163fbbb194c93313ca9f0a6e420346af9d326b1d2a5" }
 
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
@@ -1646,7 +1743,7 @@ class ApplicationsResource(SyncAPIResource):
         Updates an Access application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           type: The application type.
 
@@ -1725,7 +1822,7 @@ class ApplicationsResource(SyncAPIResource):
         Updates an Access application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           type: The application type.
 
@@ -1804,7 +1901,7 @@ class ApplicationsResource(SyncAPIResource):
         Updates an Access application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           type: The application type.
 
@@ -1876,7 +1973,7 @@ class ApplicationsResource(SyncAPIResource):
         Updates an Access application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -1930,7 +2027,7 @@ class ApplicationsResource(SyncAPIResource):
         Updates an Access application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           type: The application type.
 
@@ -1963,6 +2060,7 @@ class ApplicationsResource(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allow_iframe: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
@@ -1979,6 +2077,7 @@ class ApplicationsResource(SyncAPIResource):
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.BrowserRdpApplicationPolicy] | NotGiven = NOT_GIVEN,
+        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.BrowserRdpApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -1997,7 +2096,7 @@ class ApplicationsResource(SyncAPIResource):
         Updates an Access application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           domain: The primary hostname and path secured by Access. This domain will be displayed
               if the app is visible in the App Launcher.
@@ -2012,6 +2111,8 @@ class ApplicationsResource(SyncAPIResource):
               session. When set to false this application will always require direct IdP
               authentication. This setting always overrides the organization setting for WARP
               authentication.
+
+          allow_iframe: Enables loading application content in an iFrame.
 
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
@@ -2056,6 +2157,14 @@ class ApplicationsResource(SyncAPIResource):
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
+          read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
+              name. This works as an alternative to the (CF-Access-Client-Id,
+              CF-Access-Client-Secret) pair of headers. The header value will be interpreted
+              as a json object similar to: { "cf-access-client-id":
+              "88bf3b6d86161464f6509f7219099e57.access.example.com",
+              "cf-access-client-secret":
+              "bdd31cbc4dec990953e39163fbbb194c93313ca9f0a6e420346af9d326b1d2a5" }
+
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
 
@@ -2096,6 +2205,7 @@ class ApplicationsResource(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allow_iframe: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
@@ -2114,6 +2224,7 @@ class ApplicationsResource(SyncAPIResource):
         policies: List[application_update_params.SelfHostedApplicationPolicy]
         | Iterable[application_update_params.InfrastructureApplicationPolicy]
         | NotGiven = NOT_GIVEN,
+        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -2160,6 +2271,7 @@ class ApplicationsResource(SyncAPIResource):
                         "domain": domain,
                         "type": type,
                         "allow_authenticate_via_warp": allow_authenticate_via_warp,
+                        "allow_iframe": allow_iframe,
                         "allowed_idps": allowed_idps,
                         "app_launcher_visible": app_launcher_visible,
                         "auto_redirect_to_identity": auto_redirect_to_identity,
@@ -2176,6 +2288,7 @@ class ApplicationsResource(SyncAPIResource):
                         "options_preflight_bypass": options_preflight_bypass,
                         "path_cookie_attribute": path_cookie_attribute,
                         "policies": policies,
+                        "read_service_tokens_from_header": read_service_tokens_from_header,
                         "same_site_cookie_attribute": same_site_cookie_attribute,
                         "scim_config": scim_config,
                         "self_hosted_domains": self_hosted_domains,
@@ -2297,7 +2410,7 @@ class ApplicationsResource(SyncAPIResource):
         Deletes an application from Access.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -2354,7 +2467,7 @@ class ApplicationsResource(SyncAPIResource):
         Fetches information about an Access application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -2416,7 +2529,7 @@ class ApplicationsResource(SyncAPIResource):
         Revokes all tokens issued for an application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -2475,6 +2588,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
         return AsyncPolicyTestsResource(self._client)
 
     @cached_property
+    def settings(self) -> AsyncSettingsResource:
+        return AsyncSettingsResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AsyncApplicationsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -2502,6 +2619,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allow_iframe: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
@@ -2518,6 +2636,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
+        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -2549,6 +2668,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
               session. When set to false this application will always require direct IdP
               authentication. This setting always overrides the organization setting for WARP
               authentication.
+
+          allow_iframe: Enables loading application content in an iFrame.
 
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
@@ -2592,6 +2713,14 @@ class AsyncApplicationsResource(AsyncAPIResource):
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
+
+          read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
+              name. This works as an alternative to the (CF-Access-Client-Id,
+              CF-Access-Client-Secret) pair of headers. The header value will be interpreted
+              as a json object similar to: { "cf-access-client-id":
+              "88bf3b6d86161464f6509f7219099e57.access.example.com",
+              "cf-access-client-secret":
+              "bdd31cbc4dec990953e39163fbbb194c93313ca9f0a6e420346af9d326b1d2a5" }
 
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
@@ -2701,6 +2830,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allow_iframe: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
@@ -2717,6 +2847,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.BrowserSSHApplicationPolicy] | NotGiven = NOT_GIVEN,
+        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.BrowserSSHApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -2748,6 +2879,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
               session. When set to false this application will always require direct IdP
               authentication. This setting always overrides the organization setting for WARP
               authentication.
+
+          allow_iframe: Enables loading application content in an iFrame.
 
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
@@ -2791,6 +2924,14 @@ class AsyncApplicationsResource(AsyncAPIResource):
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
+
+          read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
+              name. This works as an alternative to the (CF-Access-Client-Id,
+              CF-Access-Client-Secret) pair of headers. The header value will be interpreted
+              as a json object similar to: { "cf-access-client-id":
+              "88bf3b6d86161464f6509f7219099e57.access.example.com",
+              "cf-access-client-secret":
+              "bdd31cbc4dec990953e39163fbbb194c93313ca9f0a6e420346af9d326b1d2a5" }
 
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
@@ -2832,6 +2973,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allow_iframe: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
@@ -2848,6 +2990,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.BrowserVNCApplicationPolicy] | NotGiven = NOT_GIVEN,
+        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.BrowserVNCApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -2879,6 +3022,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
               session. When set to false this application will always require direct IdP
               authentication. This setting always overrides the organization setting for WARP
               authentication.
+
+          allow_iframe: Enables loading application content in an iFrame.
 
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
@@ -2922,6 +3067,14 @@ class AsyncApplicationsResource(AsyncAPIResource):
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
+
+          read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
+              name. This works as an alternative to the (CF-Access-Client-Id,
+              CF-Access-Client-Secret) pair of headers. The header value will be interpreted
+              as a json object similar to: { "cf-access-client-id":
+              "88bf3b6d86161464f6509f7219099e57.access.example.com",
+              "cf-access-client-secret":
+              "bdd31cbc4dec990953e39163fbbb194c93313ca9f0a6e420346af9d326b1d2a5" }
 
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
@@ -3285,6 +3438,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allow_iframe: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
@@ -3301,6 +3455,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.BrowserRdpApplicationPolicy] | NotGiven = NOT_GIVEN,
+        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.BrowserRdpApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -3332,6 +3487,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
               session. When set to false this application will always require direct IdP
               authentication. This setting always overrides the organization setting for WARP
               authentication.
+
+          allow_iframe: Enables loading application content in an iFrame.
 
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
@@ -3376,6 +3533,14 @@ class AsyncApplicationsResource(AsyncAPIResource):
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
+          read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
+              name. This works as an alternative to the (CF-Access-Client-Id,
+              CF-Access-Client-Secret) pair of headers. The header value will be interpreted
+              as a json object similar to: { "cf-access-client-id":
+              "88bf3b6d86161464f6509f7219099e57.access.example.com",
+              "cf-access-client-secret":
+              "bdd31cbc4dec990953e39163fbbb194c93313ca9f0a6e420346af9d326b1d2a5" }
+
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
 
@@ -3415,6 +3580,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allow_iframe: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
@@ -3433,6 +3599,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         policies: List[application_create_params.SelfHostedApplicationPolicy]
         | Iterable[application_create_params.InfrastructureApplicationPolicy]
         | NotGiven = NOT_GIVEN,
+        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -3477,6 +3644,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
                         "domain": domain,
                         "type": type,
                         "allow_authenticate_via_warp": allow_authenticate_via_warp,
+                        "allow_iframe": allow_iframe,
                         "allowed_idps": allowed_idps,
                         "app_launcher_visible": app_launcher_visible,
                         "auto_redirect_to_identity": auto_redirect_to_identity,
@@ -3493,6 +3661,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
                         "options_preflight_bypass": options_preflight_bypass,
                         "path_cookie_attribute": path_cookie_attribute,
                         "policies": policies,
+                        "read_service_tokens_from_header": read_service_tokens_from_header,
                         "same_site_cookie_attribute": same_site_cookie_attribute,
                         "scim_config": scim_config,
                         "self_hosted_domains": self_hosted_domains,
@@ -3534,6 +3703,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allow_iframe: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
@@ -3550,6 +3720,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
+        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -3568,7 +3739,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         Updates an Access application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           domain: The primary hostname and path secured by Access. This domain will be displayed
               if the app is visible in the App Launcher.
@@ -3583,6 +3754,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
               session. When set to false this application will always require direct IdP
               authentication. This setting always overrides the organization setting for WARP
               authentication.
+
+          allow_iframe: Enables loading application content in an iFrame.
 
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
@@ -3626,6 +3799,14 @@ class AsyncApplicationsResource(AsyncAPIResource):
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
+
+          read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
+              name. This works as an alternative to the (CF-Access-Client-Id,
+              CF-Access-Client-Secret) pair of headers. The header value will be interpreted
+              as a json object similar to: { "cf-access-client-id":
+              "88bf3b6d86161464f6509f7219099e57.access.example.com",
+              "cf-access-client-secret":
+              "bdd31cbc4dec990953e39163fbbb194c93313ca9f0a6e420346af9d326b1d2a5" }
 
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
@@ -3687,7 +3868,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         Updates an Access application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -3739,6 +3920,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allow_iframe: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
@@ -3755,6 +3937,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.BrowserSSHApplicationPolicy] | NotGiven = NOT_GIVEN,
+        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.BrowserSSHApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -3773,7 +3956,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         Updates an Access application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           domain: The primary hostname and path secured by Access. This domain will be displayed
               if the app is visible in the App Launcher.
@@ -3788,6 +3971,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
               session. When set to false this application will always require direct IdP
               authentication. This setting always overrides the organization setting for WARP
               authentication.
+
+          allow_iframe: Enables loading application content in an iFrame.
 
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
@@ -3831,6 +4016,14 @@ class AsyncApplicationsResource(AsyncAPIResource):
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
+
+          read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
+              name. This works as an alternative to the (CF-Access-Client-Id,
+              CF-Access-Client-Secret) pair of headers. The header value will be interpreted
+              as a json object similar to: { "cf-access-client-id":
+              "88bf3b6d86161464f6509f7219099e57.access.example.com",
+              "cf-access-client-secret":
+              "bdd31cbc4dec990953e39163fbbb194c93313ca9f0a6e420346af9d326b1d2a5" }
 
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
@@ -3873,6 +4066,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allow_iframe: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
@@ -3889,6 +4083,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.BrowserVNCApplicationPolicy] | NotGiven = NOT_GIVEN,
+        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.BrowserVNCApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -3907,7 +4102,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         Updates an Access application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           domain: The primary hostname and path secured by Access. This domain will be displayed
               if the app is visible in the App Launcher.
@@ -3922,6 +4117,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
               session. When set to false this application will always require direct IdP
               authentication. This setting always overrides the organization setting for WARP
               authentication.
+
+          allow_iframe: Enables loading application content in an iFrame.
 
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
@@ -3965,6 +4162,14 @@ class AsyncApplicationsResource(AsyncAPIResource):
           policies: The policies that Access applies to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
+
+          read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
+              name. This works as an alternative to the (CF-Access-Client-Id,
+              CF-Access-Client-Secret) pair of headers. The header value will be interpreted
+              as a json object similar to: { "cf-access-client-id":
+              "88bf3b6d86161464f6509f7219099e57.access.example.com",
+              "cf-access-client-secret":
+              "bdd31cbc4dec990953e39163fbbb194c93313ca9f0a6e420346af9d326b1d2a5" }
 
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
@@ -4027,7 +4232,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         Updates an Access application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           type: The application type.
 
@@ -4106,7 +4311,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         Updates an Access application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           type: The application type.
 
@@ -4185,7 +4390,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         Updates an Access application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           type: The application type.
 
@@ -4257,7 +4462,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         Updates an Access application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -4311,7 +4516,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         Updates an Access application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           type: The application type.
 
@@ -4344,6 +4549,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allow_iframe: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
@@ -4360,6 +4566,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.BrowserRdpApplicationPolicy] | NotGiven = NOT_GIVEN,
+        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.BrowserRdpApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -4378,7 +4585,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         Updates an Access application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           domain: The primary hostname and path secured by Access. This domain will be displayed
               if the app is visible in the App Launcher.
@@ -4393,6 +4600,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
               session. When set to false this application will always require direct IdP
               authentication. This setting always overrides the organization setting for WARP
               authentication.
+
+          allow_iframe: Enables loading application content in an iFrame.
 
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
@@ -4437,6 +4646,14 @@ class AsyncApplicationsResource(AsyncAPIResource):
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
+          read_service_tokens_from_header: Allows matching Access Service Tokens passed HTTP in a single header with this
+              name. This works as an alternative to the (CF-Access-Client-Id,
+              CF-Access-Client-Secret) pair of headers. The header value will be interpreted
+              as a json object similar to: { "cf-access-client-id":
+              "88bf3b6d86161464f6509f7219099e57.access.example.com",
+              "cf-access-client-secret":
+              "bdd31cbc4dec990953e39163fbbb194c93313ca9f0a6e420346af9d326b1d2a5" }
+
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
 
@@ -4477,6 +4694,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allow_iframe: bool | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
@@ -4495,6 +4713,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         policies: List[application_update_params.SelfHostedApplicationPolicy]
         | Iterable[application_update_params.InfrastructureApplicationPolicy]
         | NotGiven = NOT_GIVEN,
+        read_service_tokens_from_header: str | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
@@ -4541,6 +4760,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
                         "domain": domain,
                         "type": type,
                         "allow_authenticate_via_warp": allow_authenticate_via_warp,
+                        "allow_iframe": allow_iframe,
                         "allowed_idps": allowed_idps,
                         "app_launcher_visible": app_launcher_visible,
                         "auto_redirect_to_identity": auto_redirect_to_identity,
@@ -4557,6 +4777,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
                         "options_preflight_bypass": options_preflight_bypass,
                         "path_cookie_attribute": path_cookie_attribute,
                         "policies": policies,
+                        "read_service_tokens_from_header": read_service_tokens_from_header,
                         "same_site_cookie_attribute": same_site_cookie_attribute,
                         "scim_config": scim_config,
                         "self_hosted_domains": self_hosted_domains,
@@ -4678,7 +4899,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         Deletes an application from Access.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -4735,7 +4956,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         Fetches information about an Access application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -4797,7 +5018,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         Revokes all tokens issued for an application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -4877,6 +5098,10 @@ class ApplicationsResourceWithRawResponse:
     def policy_tests(self) -> PolicyTestsResourceWithRawResponse:
         return PolicyTestsResourceWithRawResponse(self._applications.policy_tests)
 
+    @cached_property
+    def settings(self) -> SettingsResourceWithRawResponse:
+        return SettingsResourceWithRawResponse(self._applications.settings)
+
 
 class AsyncApplicationsResourceWithRawResponse:
     def __init__(self, applications: AsyncApplicationsResource) -> None:
@@ -4916,6 +5141,10 @@ class AsyncApplicationsResourceWithRawResponse:
     @cached_property
     def policy_tests(self) -> AsyncPolicyTestsResourceWithRawResponse:
         return AsyncPolicyTestsResourceWithRawResponse(self._applications.policy_tests)
+
+    @cached_property
+    def settings(self) -> AsyncSettingsResourceWithRawResponse:
+        return AsyncSettingsResourceWithRawResponse(self._applications.settings)
 
 
 class ApplicationsResourceWithStreamingResponse:
@@ -4957,6 +5186,10 @@ class ApplicationsResourceWithStreamingResponse:
     def policy_tests(self) -> PolicyTestsResourceWithStreamingResponse:
         return PolicyTestsResourceWithStreamingResponse(self._applications.policy_tests)
 
+    @cached_property
+    def settings(self) -> SettingsResourceWithStreamingResponse:
+        return SettingsResourceWithStreamingResponse(self._applications.settings)
+
 
 class AsyncApplicationsResourceWithStreamingResponse:
     def __init__(self, applications: AsyncApplicationsResource) -> None:
@@ -4996,3 +5229,7 @@ class AsyncApplicationsResourceWithStreamingResponse:
     @cached_property
     def policy_tests(self) -> AsyncPolicyTestsResourceWithStreamingResponse:
         return AsyncPolicyTestsResourceWithStreamingResponse(self._applications.policy_tests)
+
+    @cached_property
+    def settings(self) -> AsyncSettingsResourceWithStreamingResponse:
+        return AsyncSettingsResourceWithStreamingResponse(self._applications.settings)

@@ -14,10 +14,10 @@ __all__ = ["OverrideUpdateParams"]
 
 class OverrideUpdateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Defines an identifier."""
 
     id: Required[str]
-    """Identifier"""
+    """Defines an identifier."""
 
     rewrite_action: Required[RewriteActionParam]
     """

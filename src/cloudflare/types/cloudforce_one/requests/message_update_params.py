@@ -8,11 +8,11 @@ __all__ = ["MessageUpdateParams"]
 
 
 class MessageUpdateParams(TypedDict, total=False):
-    account_identifier: Required[str]
-    """Identifier"""
+    account_id: Required[str]
+    """Identifier."""
 
-    request_identifier: Required[str]
-    """UUID"""
+    request_id: Required[str]
+    """UUID."""
 
     content: str
-    """Content of message"""
+    """Content of message."""

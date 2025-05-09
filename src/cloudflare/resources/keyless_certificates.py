@@ -7,10 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -73,7 +70,7 @@ class KeylessCertificatesResource(SyncAPIResource):
         Create Keyless SSL Configuration
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           certificate: The zone's SSL certificate or SSL certificate and intermediate(s).
 
@@ -139,7 +136,7 @@ class KeylessCertificatesResource(SyncAPIResource):
         List all Keyless SSL configurations for a given zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -176,9 +173,9 @@ class KeylessCertificatesResource(SyncAPIResource):
         Delete Keyless SSL Configuration
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          keyless_certificate_id: Identifier
+          keyless_certificate_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -231,9 +228,9 @@ class KeylessCertificatesResource(SyncAPIResource):
         following: host,name,port.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          keyless_certificate_id: Identifier
+          keyless_certificate_id: Identifier.
 
           enabled: Whether or not the Keyless SSL is on or off.
 
@@ -298,9 +295,9 @@ class KeylessCertificatesResource(SyncAPIResource):
         Get details for one Keyless SSL configuration.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          keyless_certificate_id: Identifier
+          keyless_certificate_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -370,7 +367,7 @@ class AsyncKeylessCertificatesResource(AsyncAPIResource):
         Create Keyless SSL Configuration
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           certificate: The zone's SSL certificate or SSL certificate and intermediate(s).
 
@@ -436,7 +433,7 @@ class AsyncKeylessCertificatesResource(AsyncAPIResource):
         List all Keyless SSL configurations for a given zone.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -473,9 +470,9 @@ class AsyncKeylessCertificatesResource(AsyncAPIResource):
         Delete Keyless SSL Configuration
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          keyless_certificate_id: Identifier
+          keyless_certificate_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -528,9 +525,9 @@ class AsyncKeylessCertificatesResource(AsyncAPIResource):
         following: host,name,port.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          keyless_certificate_id: Identifier
+          keyless_certificate_id: Identifier.
 
           enabled: Whether or not the Keyless SSL is on or off.
 
@@ -595,9 +592,9 @@ class AsyncKeylessCertificatesResource(AsyncAPIResource):
         Get details for one Keyless SSL configuration.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
-          keyless_certificate_id: Identifier
+          keyless_certificate_id: Identifier.
 
           extra_headers: Send extra headers
 

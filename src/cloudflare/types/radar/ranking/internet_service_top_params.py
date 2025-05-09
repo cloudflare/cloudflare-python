@@ -13,7 +13,7 @@ __all__ = ["InternetServiceTopParams"]
 
 class InternetServiceTopParams(TypedDict, total=False):
     date: Annotated[List[Union[str, datetime.date]], PropertyInfo(format="iso8601")]
-    """Array of dates to filter the results."""
+    """Filters results by the specified array of dates."""
 
     format: Literal["JSON", "CSV"]
     """Format in which results will be returned."""

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Any, cast
 
 import httpx
 
@@ -78,7 +78,9 @@ class WorkflowResource(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper[Workflow]._unwrapper,
             ),
-            cast_to=cast(Type[Workflow], ResultWrapper[Workflow]),
+            cast_to=cast(
+                Any, ResultWrapper[Workflow]
+            ),  # Enum types cannot be passed in as arguments in the type system
         )
 
 
@@ -138,7 +140,9 @@ class AsyncWorkflowResource(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper[Workflow]._unwrapper,
             ),
-            cast_to=cast(Type[Workflow], ResultWrapper[Workflow]),
+            cast_to=cast(
+                Any, ResultWrapper[Workflow]
+            ),  # Enum types cannot be passed in as arguments in the type system
         )
 
 

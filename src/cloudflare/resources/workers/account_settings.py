@@ -7,10 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -65,7 +62,7 @@ class AccountSettingsResource(SyncAPIResource):
         Creates Worker account settings for an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -111,7 +108,7 @@ class AccountSettingsResource(SyncAPIResource):
         Fetches Worker account settings for an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -173,7 +170,7 @@ class AsyncAccountSettingsResource(AsyncAPIResource):
         Creates Worker account settings for an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -219,7 +216,7 @@ class AsyncAccountSettingsResource(AsyncAPIResource):
         Fetches Worker account settings for an account.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 

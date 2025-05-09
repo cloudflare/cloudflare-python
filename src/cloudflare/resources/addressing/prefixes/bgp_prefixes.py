@@ -7,10 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -149,7 +146,9 @@ class BGPPrefixesResource(SyncAPIResource):
         *,
         account_id: str,
         prefix_id: str,
+        asn_prepend_count: int | NotGiven = NOT_GIVEN,
         on_demand: bgp_prefix_edit_params.OnDemand | NotGiven = NOT_GIVEN,
+        withdraw_if_no_route: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -168,6 +167,12 @@ class BGPPrefixesResource(SyncAPIResource):
 
           bgp_prefix_id: Identifier of BGP Prefix.
 
+          asn_prepend_count: Number of times to prepend the Cloudflare ASN to the BGP AS-Path attribute
+
+          withdraw_if_no_route: Controls whether the BGP prefix is automatically withdrawn when prefix is
+              withdrawn from Magic routing table (for Magic Transit customers using Direct
+              CNI)
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -184,7 +189,14 @@ class BGPPrefixesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `bgp_prefix_id` but received {bgp_prefix_id!r}")
         return self._patch(
             f"/accounts/{account_id}/addressing/prefixes/{prefix_id}/bgp/prefixes/{bgp_prefix_id}",
-            body=maybe_transform({"on_demand": on_demand}, bgp_prefix_edit_params.BGPPrefixEditParams),
+            body=maybe_transform(
+                {
+                    "asn_prepend_count": asn_prepend_count,
+                    "on_demand": on_demand,
+                    "withdraw_if_no_route": withdraw_if_no_route,
+                },
+                bgp_prefix_edit_params.BGPPrefixEditParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -366,7 +378,9 @@ class AsyncBGPPrefixesResource(AsyncAPIResource):
         *,
         account_id: str,
         prefix_id: str,
+        asn_prepend_count: int | NotGiven = NOT_GIVEN,
         on_demand: bgp_prefix_edit_params.OnDemand | NotGiven = NOT_GIVEN,
+        withdraw_if_no_route: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -385,6 +399,12 @@ class AsyncBGPPrefixesResource(AsyncAPIResource):
 
           bgp_prefix_id: Identifier of BGP Prefix.
 
+          asn_prepend_count: Number of times to prepend the Cloudflare ASN to the BGP AS-Path attribute
+
+          withdraw_if_no_route: Controls whether the BGP prefix is automatically withdrawn when prefix is
+              withdrawn from Magic routing table (for Magic Transit customers using Direct
+              CNI)
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -401,7 +421,14 @@ class AsyncBGPPrefixesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `bgp_prefix_id` but received {bgp_prefix_id!r}")
         return await self._patch(
             f"/accounts/{account_id}/addressing/prefixes/{prefix_id}/bgp/prefixes/{bgp_prefix_id}",
-            body=await async_maybe_transform({"on_demand": on_demand}, bgp_prefix_edit_params.BGPPrefixEditParams),
+            body=await async_maybe_transform(
+                {
+                    "asn_prepend_count": asn_prepend_count,
+                    "on_demand": on_demand,
+                    "withdraw_if_no_route": withdraw_if_no_route,
+                },
+                bgp_prefix_edit_params.BGPPrefixEditParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

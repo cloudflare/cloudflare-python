@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Any, cast
 
 import httpx
 
@@ -46,7 +46,7 @@ class BulkOperationsResource(SyncAPIResource):
         self,
         operation_id: str,
         *,
-        account_identifier: str,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -62,7 +62,7 @@ class BulkOperationsResource(SyncAPIResource):
         property will contain a message describing the error.
 
         Args:
-          account_identifier: Identifier
+          account_id: Defines an identifier.
 
           operation_id: The unique operation ID of the asynchronous action.
 
@@ -74,20 +74,25 @@ class BulkOperationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not operation_id:
             raise ValueError(f"Expected a non-empty value for `operation_id` but received {operation_id!r}")
-        return self._get(
-            f"/accounts/{account_identifier}/rules/lists/bulk_operations/{operation_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[BulkOperationGetResponse]._unwrapper,
+        return cast(
+            BulkOperationGetResponse,
+            self._get(
+                f"/accounts/{account_id}/rules/lists/bulk_operations/{operation_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[BulkOperationGetResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[BulkOperationGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[BulkOperationGetResponse], ResultWrapper[BulkOperationGetResponse]),
         )
 
 
@@ -115,7 +120,7 @@ class AsyncBulkOperationsResource(AsyncAPIResource):
         self,
         operation_id: str,
         *,
-        account_identifier: str,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -131,7 +136,7 @@ class AsyncBulkOperationsResource(AsyncAPIResource):
         property will contain a message describing the error.
 
         Args:
-          account_identifier: Identifier
+          account_id: Defines an identifier.
 
           operation_id: The unique operation ID of the asynchronous action.
 
@@ -143,20 +148,25 @@ class AsyncBulkOperationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not operation_id:
             raise ValueError(f"Expected a non-empty value for `operation_id` but received {operation_id!r}")
-        return await self._get(
-            f"/accounts/{account_identifier}/rules/lists/bulk_operations/{operation_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[BulkOperationGetResponse]._unwrapper,
+        return cast(
+            BulkOperationGetResponse,
+            await self._get(
+                f"/accounts/{account_id}/rules/lists/bulk_operations/{operation_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[BulkOperationGetResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[BulkOperationGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[BulkOperationGetResponse], ResultWrapper[BulkOperationGetResponse]),
         )
 
 

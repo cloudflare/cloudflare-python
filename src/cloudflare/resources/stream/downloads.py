@@ -7,10 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -64,7 +61,7 @@ class DownloadsResource(SyncAPIResource):
         Creates a download for a video when a video is ready to view.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           identifier: A Cloudflare-generated unique identifier for a media item.
 
@@ -109,7 +106,7 @@ class DownloadsResource(SyncAPIResource):
         Delete the downloads for a video.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           identifier: A Cloudflare-generated unique identifier for a media item.
 
@@ -153,7 +150,7 @@ class DownloadsResource(SyncAPIResource):
         Lists the downloads created for a video.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           identifier: A Cloudflare-generated unique identifier for a media item.
 
@@ -219,7 +216,7 @@ class AsyncDownloadsResource(AsyncAPIResource):
         Creates a download for a video when a video is ready to view.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           identifier: A Cloudflare-generated unique identifier for a media item.
 
@@ -264,7 +261,7 @@ class AsyncDownloadsResource(AsyncAPIResource):
         Delete the downloads for a video.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           identifier: A Cloudflare-generated unique identifier for a media item.
 
@@ -308,7 +305,7 @@ class AsyncDownloadsResource(AsyncAPIResource):
         Lists the downloads created for a video.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           identifier: A Cloudflare-generated unique identifier for a media item.
 

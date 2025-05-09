@@ -7,10 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -64,7 +61,7 @@ class RetentionResource(SyncAPIResource):
         Updates log retention flag for Logpull API.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           flag: The log retention flag for Logpull API.
 
@@ -106,7 +103,7 @@ class RetentionResource(SyncAPIResource):
         Gets log retention flag for Logpull API.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -167,7 +164,7 @@ class AsyncRetentionResource(AsyncAPIResource):
         Updates log retention flag for Logpull API.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           flag: The log retention flag for Logpull API.
 
@@ -209,7 +206,7 @@ class AsyncRetentionResource(AsyncAPIResource):
         Gets log retention flag for Logpull API.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 

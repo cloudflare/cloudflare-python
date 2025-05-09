@@ -34,6 +34,12 @@ class OriginParam(TypedDict, total=False):
     name: str
     """A human-identifiable name for the origin."""
 
+    port: int
+    """The port for upstream connections.
+
+    A value of 0 means the default port for the protocol will be used.
+    """
+
     virtual_network_id: str
     """The virtual network subnet ID the origin belongs in.
 

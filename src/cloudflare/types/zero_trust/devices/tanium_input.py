@@ -24,7 +24,7 @@ class TaniumInput(BaseModel):
     """For more details on risk level, refer to the Tanium documentation."""
 
     score_operator: Optional[Literal["<", "<=", ">", ">=", "=="]] = FieldInfo(alias="scoreOperator", default=None)
-    """Score Operator"""
+    """Score Operator."""
 
     total_score: Optional[float] = None
     """For more details on total score, refer to the Tanium documentation."""

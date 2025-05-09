@@ -9,7 +9,7 @@ __all__ = ["TestListParams"]
 
 class TestListParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     page: int
 

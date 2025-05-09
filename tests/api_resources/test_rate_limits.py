@@ -44,7 +44,7 @@ class TestRateLimits:
             rate_limit = client.rate_limits.create(
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 action={
-                    "mode": "simulate",
+                    "mode": "challenge",
                     "response": {
                         "body": "<error>This request has been rate-limited.</error>",
                         "content_type": "text/xml",
@@ -55,7 +55,7 @@ class TestRateLimits:
                     "headers": [
                         {
                             "name": "Cf-Cache-Status",
-                            "op": "eq",
+                            "op": "ne",
                             "value": "HIT",
                         }
                     ],
@@ -251,7 +251,7 @@ class TestRateLimits:
                 rate_limit_id="372e67954025e0ba6aaa6d586b9e0b59",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 action={
-                    "mode": "simulate",
+                    "mode": "challenge",
                     "response": {
                         "body": "<error>This request has been rate-limited.</error>",
                         "content_type": "text/xml",
@@ -262,7 +262,7 @@ class TestRateLimits:
                     "headers": [
                         {
                             "name": "Cf-Cache-Status",
-                            "op": "eq",
+                            "op": "ne",
                             "value": "HIT",
                         }
                     ],
@@ -419,7 +419,7 @@ class TestAsyncRateLimits:
             rate_limit = await async_client.rate_limits.create(
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 action={
-                    "mode": "simulate",
+                    "mode": "challenge",
                     "response": {
                         "body": "<error>This request has been rate-limited.</error>",
                         "content_type": "text/xml",
@@ -430,7 +430,7 @@ class TestAsyncRateLimits:
                     "headers": [
                         {
                             "name": "Cf-Cache-Status",
-                            "op": "eq",
+                            "op": "ne",
                             "value": "HIT",
                         }
                     ],
@@ -626,7 +626,7 @@ class TestAsyncRateLimits:
                 rate_limit_id="372e67954025e0ba6aaa6d586b9e0b59",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 action={
-                    "mode": "simulate",
+                    "mode": "challenge",
                     "response": {
                         "body": "<error>This request has been rate-limited.</error>",
                         "content_type": "text/xml",
@@ -637,7 +637,7 @@ class TestAsyncRateLimits:
                     "headers": [
                         {
                             "name": "Cf-Cache-Status",
-                            "op": "eq",
+                            "op": "ne",
                             "value": "HIT",
                         }
                     ],

@@ -70,7 +70,7 @@ __all__ = [
 
 class ARecord(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     comment: str
     """Comments or notes about the DNS record.
@@ -127,7 +127,7 @@ class ARecordSettings(TypedDict, total=False):
 
 class AAAARecord(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     comment: str
     """Comments or notes about the DNS record.
@@ -184,7 +184,7 @@ class AAAARecordSettings(TypedDict, total=False):
 
 class CAARecord(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     comment: str
     """Comments or notes about the DNS record.
@@ -252,7 +252,7 @@ class CAARecordSettings(TypedDict, total=False):
 
 class CERTRecord(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     comment: str
     """Comments or notes about the DNS record.
@@ -323,7 +323,7 @@ class CERTRecordSettings(TypedDict, total=False):
 
 class CNAMERecord(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     comment: str
     """Comments or notes about the DNS record.
@@ -388,7 +388,7 @@ class CNAMERecordSettings(TypedDict, total=False):
 
 class DNSKEYRecord(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     comment: str
     """Comments or notes about the DNS record.
@@ -459,7 +459,7 @@ class DNSKEYRecordSettings(TypedDict, total=False):
 
 class DSRecord(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     comment: str
     """Comments or notes about the DNS record.
@@ -530,7 +530,7 @@ class DSRecordSettings(TypedDict, total=False):
 
 class HTTPSRecord(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     comment: str
     """Comments or notes about the DNS record.
@@ -598,7 +598,7 @@ class HTTPSRecordSettings(TypedDict, total=False):
 
 class LOCRecord(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     comment: str
     """Comments or notes about the DNS record.
@@ -693,7 +693,7 @@ class LOCRecordSettings(TypedDict, total=False):
 
 class MXRecord(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     comment: str
     """Comments or notes about the DNS record.
@@ -756,7 +756,7 @@ class MXRecordSettings(TypedDict, total=False):
 
 class NAPTRRecord(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     comment: str
     """Comments or notes about the DNS record.
@@ -833,7 +833,7 @@ class NAPTRRecordSettings(TypedDict, total=False):
 
 class NSRecord(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     comment: str
     """Comments or notes about the DNS record.
@@ -890,7 +890,7 @@ class NSRecordSettings(TypedDict, total=False):
 
 class DNSRecordsOpenpgpkeyRecord(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     comment: str
     """Comments or notes about the DNS record.
@@ -947,7 +947,7 @@ class DNSRecordsOpenpgpkeyRecordSettings(TypedDict, total=False):
 
 class PTRRecord(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     comment: str
     """Comments or notes about the DNS record.
@@ -1004,7 +1004,7 @@ class PTRRecordSettings(TypedDict, total=False):
 
 class SMIMEARecord(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     comment: str
     """Comments or notes about the DNS record.
@@ -1075,7 +1075,7 @@ class SMIMEARecordSettings(TypedDict, total=False):
 
 class SRVRecord(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     comment: str
     """Comments or notes about the DNS record.
@@ -1149,7 +1149,7 @@ class SRVRecordSettings(TypedDict, total=False):
 
 class SSHFPRecord(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     comment: str
     """Comments or notes about the DNS record.
@@ -1217,7 +1217,7 @@ class SSHFPRecordSettings(TypedDict, total=False):
 
 class SVCBRecord(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     comment: str
     """Comments or notes about the DNS record.
@@ -1285,7 +1285,7 @@ class SVCBRecordSettings(TypedDict, total=False):
 
 class TLSARecord(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     comment: str
     """Comments or notes about the DNS record.
@@ -1356,7 +1356,7 @@ class TLSARecordSettings(TypedDict, total=False):
 
 class TXTRecord(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     comment: str
     """Comments or notes about the DNS record.
@@ -1421,7 +1421,7 @@ class TXTRecordSettings(TypedDict, total=False):
 
 class URIRecord(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     comment: str
     """Comments or notes about the DNS record.

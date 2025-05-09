@@ -19,7 +19,7 @@ class Account(BaseModel):
 
 class User(BaseModel):
     id: Optional[str] = None
-    """UUID"""
+    """UUID."""
 
     email: Optional[str] = None
     """The contact email address of the user."""
@@ -30,7 +30,11 @@ class User(BaseModel):
 
 class DeviceGetResponse(BaseModel):
     id: Optional[str] = None
-    """Device ID."""
+    """Registration ID.
+
+    Equal to Device ID except for accounts which enabled
+    [multi-user mode](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/warp/deployment/mdm-deployment/windows-multiuser/).
+    """
 
     account: Optional[Account] = None
 

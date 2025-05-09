@@ -7,10 +7,7 @@ from typing import Type, cast
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from .detections import (
     DetectionsResource,
@@ -75,12 +72,12 @@ class LeakedCredentialChecksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LeakedCredentialCheckCreateResponse:
         """
-        Updates the current status of Leaked Credential Checks
+        Updates the current status of Leaked Credential Checks.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
-          enabled: Whether or not Leaked Credential Checks are enabled
+          enabled: Determines whether or not Leaked Credential Checks are enabled.
 
           extra_headers: Send extra headers
 
@@ -119,10 +116,10 @@ class LeakedCredentialChecksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LeakedCredentialCheckGetResponse:
         """
-        Retrieves the current status of Leaked Credential Checks
+        Retrieves the current status of Leaked Credential Checks.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           extra_headers: Send extra headers
 
@@ -184,12 +181,12 @@ class AsyncLeakedCredentialChecksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LeakedCredentialCheckCreateResponse:
         """
-        Updates the current status of Leaked Credential Checks
+        Updates the current status of Leaked Credential Checks.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
-          enabled: Whether or not Leaked Credential Checks are enabled
+          enabled: Determines whether or not Leaked Credential Checks are enabled.
 
           extra_headers: Send extra headers
 
@@ -228,10 +225,10 @@ class AsyncLeakedCredentialChecksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LeakedCredentialCheckGetResponse:
         """
-        Retrieves the current status of Leaked Credential Checks
+        Retrieves the current status of Leaked Credential Checks.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           extra_headers: Send extra headers
 

@@ -15,10 +15,7 @@ from .settings import (
     AsyncSettingsResourceWithStreamingResponse,
 )
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -150,7 +147,7 @@ class CertificatesResource(SyncAPIResource):
         Updates a configured mTLS certificate.
 
         Args:
-          certificate_id: UUID
+          certificate_id: UUID.
 
           associated_hostnames: The hostnames of the applications that will use this certificate.
 
@@ -267,7 +264,7 @@ class CertificatesResource(SyncAPIResource):
         Deletes an mTLS certificate.
 
         Args:
-          certificate_id: UUID
+          certificate_id: UUID.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -324,7 +321,7 @@ class CertificatesResource(SyncAPIResource):
         Fetches a single mTLS certificate.
 
         Args:
-          certificate_id: UUID
+          certificate_id: UUID.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -477,7 +474,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
         Updates a configured mTLS certificate.
 
         Args:
-          certificate_id: UUID
+          certificate_id: UUID.
 
           associated_hostnames: The hostnames of the applications that will use this certificate.
 
@@ -594,7 +591,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
         Deletes an mTLS certificate.
 
         Args:
-          certificate_id: UUID
+          certificate_id: UUID.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -651,7 +648,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
         Fetches a single mTLS certificate.
 
         Args:
-          certificate_id: UUID
+          certificate_id: UUID.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 

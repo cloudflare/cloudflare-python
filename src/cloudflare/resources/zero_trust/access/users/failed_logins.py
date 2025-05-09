@@ -56,9 +56,9 @@ class FailedLoginsResource(SyncAPIResource):
         Get all failed login attempts for a single user.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          user_id: UUID
+          user_id: UUID.
 
           extra_headers: Send extra headers
 
@@ -118,9 +118,9 @@ class AsyncFailedLoginsResource(AsyncAPIResource):
         Get all failed login attempts for a single user.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          user_id: UUID
+          user_id: UUID.
 
           extra_headers: Send extra headers
 

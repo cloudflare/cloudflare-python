@@ -9,6 +9,8 @@ __all__ = ["WhoisGetResponse"]
 
 
 class WhoisGetResponse(BaseModel):
+    dnssec: bool
+
     domain: str
 
     extension: str
@@ -84,8 +86,6 @@ class WhoisGetResponse(BaseModel):
     created_date: Optional[datetime] = None
 
     created_date_raw: Optional[str] = None
-
-    dnssec: Optional[bool] = None
 
     expiration_date: Optional[datetime] = None
 

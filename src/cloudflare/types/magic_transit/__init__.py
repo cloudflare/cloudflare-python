@@ -10,9 +10,11 @@ from .scope_param import ScopeParam as ScopeParam
 from .health_check import HealthCheck as HealthCheck
 from .psk_metadata import PSKMetadata as PSKMetadata
 from .site_location import SiteLocation as SiteLocation
+from .app_edit_params import AppEditParams as AppEditParams
 from .site_edit_params import SiteEditParams as SiteEditParams
 from .site_list_params import SiteListParams as SiteListParams
 from .app_create_params import AppCreateParams as AppCreateParams
+from .app_edit_response import AppEditResponse as AppEditResponse
 from .app_list_response import AppListResponse as AppListResponse
 from .app_update_params import AppUpdateParams as AppUpdateParams
 from .health_check_rate import HealthCheckRate as HealthCheckRate

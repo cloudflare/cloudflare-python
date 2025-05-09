@@ -11,6 +11,12 @@ __all__ = ["Script", "Placement"]
 
 
 class Placement(BaseModel):
+    last_analyzed_at: Optional[datetime] = None
+    """
+    The last time the script was analyzed for
+    [Smart Placement](https://developers.cloudflare.com/workers/configuration/smart-placement).
+    """
+
     mode: Optional[Literal["smart"]] = None
     """
     Enables

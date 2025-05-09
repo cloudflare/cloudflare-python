@@ -75,7 +75,7 @@ class TestOverrides:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="023e105f4ecef8ad9ca31a8372d0c353",
             rewrite_action={},
-            rules={"100015": "challenge"},
+            rules={"100015": "disable"},
             urls=["shop.example.com/*"],
         )
         assert_matches_type(Override, override, path=["response"])
@@ -94,7 +94,7 @@ class TestOverrides:
                 "disable": "challenge",
                 "simulate": "challenge",
             },
-            rules={"100015": "challenge"},
+            rules={"100015": "disable"},
             urls=["shop.example.com/*"],
         )
         assert_matches_type(Override, override, path=["response"])
@@ -107,7 +107,7 @@ class TestOverrides:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="023e105f4ecef8ad9ca31a8372d0c353",
             rewrite_action={},
-            rules={"100015": "challenge"},
+            rules={"100015": "disable"},
             urls=["shop.example.com/*"],
         )
 
@@ -124,7 +124,7 @@ class TestOverrides:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="023e105f4ecef8ad9ca31a8372d0c353",
             rewrite_action={},
-            rules={"100015": "challenge"},
+            rules={"100015": "disable"},
             urls=["shop.example.com/*"],
         ) as response:
             assert not response.is_closed
@@ -144,7 +144,7 @@ class TestOverrides:
                 zone_id="",
                 id="023e105f4ecef8ad9ca31a8372d0c353",
                 rewrite_action={},
-                rules={"100015": "challenge"},
+                rules={"100015": "disable"},
                 urls=["shop.example.com/*"],
             )
 
@@ -154,7 +154,7 @@ class TestOverrides:
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="023e105f4ecef8ad9ca31a8372d0c353",
                 rewrite_action={},
-                rules={"100015": "challenge"},
+                rules={"100015": "disable"},
                 urls=["shop.example.com/*"],
             )
 
@@ -359,7 +359,7 @@ class TestAsyncOverrides:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="023e105f4ecef8ad9ca31a8372d0c353",
             rewrite_action={},
-            rules={"100015": "challenge"},
+            rules={"100015": "disable"},
             urls=["shop.example.com/*"],
         )
         assert_matches_type(Override, override, path=["response"])
@@ -378,7 +378,7 @@ class TestAsyncOverrides:
                 "disable": "challenge",
                 "simulate": "challenge",
             },
-            rules={"100015": "challenge"},
+            rules={"100015": "disable"},
             urls=["shop.example.com/*"],
         )
         assert_matches_type(Override, override, path=["response"])
@@ -391,7 +391,7 @@ class TestAsyncOverrides:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="023e105f4ecef8ad9ca31a8372d0c353",
             rewrite_action={},
-            rules={"100015": "challenge"},
+            rules={"100015": "disable"},
             urls=["shop.example.com/*"],
         )
 
@@ -408,7 +408,7 @@ class TestAsyncOverrides:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="023e105f4ecef8ad9ca31a8372d0c353",
             rewrite_action={},
-            rules={"100015": "challenge"},
+            rules={"100015": "disable"},
             urls=["shop.example.com/*"],
         ) as response:
             assert not response.is_closed
@@ -428,7 +428,7 @@ class TestAsyncOverrides:
                 zone_id="",
                 id="023e105f4ecef8ad9ca31a8372d0c353",
                 rewrite_action={},
-                rules={"100015": "challenge"},
+                rules={"100015": "disable"},
                 urls=["shop.example.com/*"],
             )
 
@@ -438,7 +438,7 @@ class TestAsyncOverrides:
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="023e105f4ecef8ad9ca31a8372d0c353",
                 rewrite_action={},
-                rules={"100015": "challenge"},
+                rules={"100015": "disable"},
                 urls=["shop.example.com/*"],
             )
 

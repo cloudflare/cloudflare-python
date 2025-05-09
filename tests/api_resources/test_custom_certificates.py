@@ -39,7 +39,7 @@ class TestCustomCertificates:
             bundle_method="ubiquitous",
             geo_restrictions={"label": "us"},
             policy="(country: US) or (region: EU)",
-            type="legacy_custom",
+            type="sni_custom",
         )
         assert_matches_type(Optional[CustomCertificate], custom_certificate, path=["response"])
 
@@ -308,7 +308,7 @@ class TestAsyncCustomCertificates:
             bundle_method="ubiquitous",
             geo_restrictions={"label": "us"},
             policy="(country: US) or (region: EU)",
-            type="legacy_custom",
+            type="sni_custom",
         )
         assert_matches_type(Optional[CustomCertificate], custom_certificate, path=["response"])
 

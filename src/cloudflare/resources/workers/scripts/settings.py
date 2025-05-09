@@ -7,10 +7,7 @@ from typing import Type, Iterable, Optional, cast
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -69,7 +66,7 @@ class SettingsResource(SyncAPIResource):
         Including but not limited to Logpush and Tail Consumers.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -129,7 +126,7 @@ class SettingsResource(SyncAPIResource):
         Includes Logpush and Tail Consumers.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -199,7 +196,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         Including but not limited to Logpush and Tail Consumers.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 
@@ -259,7 +256,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         Includes Logpush and Tail Consumers.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           script_name: Name of the script, used in URLs and route configuration.
 

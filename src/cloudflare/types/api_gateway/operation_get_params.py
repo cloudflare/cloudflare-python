@@ -10,7 +10,7 @@ __all__ = ["OperationGetParams"]
 
 class OperationGetParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     feature: List[Literal["thresholds", "parameter_schemas", "schema_info"]]
     """Add feature(s) to the results.

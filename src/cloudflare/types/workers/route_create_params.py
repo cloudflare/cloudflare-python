@@ -9,9 +9,13 @@ __all__ = ["RouteCreateParams"]
 
 class RouteCreateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     pattern: Required[str]
+    """Pattern to match incoming requests against.
 
-    script: str
-    """Name of the script, used in URLs and route configuration."""
+    [Learn more](https://developers.cloudflare.com/workers/configuration/routing/routes/#matching-behavior).
+    """
+
+    script: Required[str]
+    """Name of the script to run if the route matches."""

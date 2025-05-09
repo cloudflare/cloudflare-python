@@ -9,7 +9,7 @@ __all__ = ["OverrideListParams"]
 
 class OverrideListParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Defines an identifier."""
 
     page: float
     """The page number of paginated results."""

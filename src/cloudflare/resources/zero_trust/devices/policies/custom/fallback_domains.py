@@ -64,8 +64,6 @@ class FallbackDomainsResource(SyncAPIResource):
         specified device settings profile.
 
         Args:
-          policy_id: Device ID.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -107,8 +105,6 @@ class FallbackDomainsResource(SyncAPIResource):
         instead.
 
         Args:
-          policy_id: Device ID.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -171,8 +167,6 @@ class AsyncFallbackDomainsResource(AsyncAPIResource):
         specified device settings profile.
 
         Args:
-          policy_id: Device ID.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -214,8 +208,6 @@ class AsyncFallbackDomainsResource(AsyncAPIResource):
         instead.
 
         Args:
-          policy_id: Device ID.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

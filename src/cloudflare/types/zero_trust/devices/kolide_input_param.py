@@ -14,7 +14,7 @@ class KolideInputParam(TypedDict, total=False):
     """Posture Integration ID."""
 
     count_operator: Required[Annotated[Literal["<", "<=", ">", ">=", "=="], PropertyInfo(alias="countOperator")]]
-    """Count Operator"""
+    """Count Operator."""
 
     issue_count: Required[str]
     """The Number of Issues."""

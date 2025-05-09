@@ -8,10 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -54,8 +51,8 @@ class PriorityResource(SyncAPIResource):
 
     def create(
         self,
-        account_identifier: str,
         *,
+        account_id: str,
         labels: List[Label],
         priority: int,
         requirement: str,
@@ -71,15 +68,15 @@ class PriorityResource(SyncAPIResource):
         Create a New Priority Intelligence Requirement
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier.
 
-          labels: List of labels
+          labels: List of labels.
 
-          priority: Priority
+          priority: Priority.
 
-          requirement: Requirement
+          requirement: Requirement.
 
-          tlp: The CISA defined Traffic Light Protocol (TLP)
+          tlp: The CISA defined Traffic Light Protocol (TLP).
 
           extra_headers: Send extra headers
 
@@ -89,10 +86,10 @@ class PriorityResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_identifier}/cloudforce-one/requests/priority/new",
+            f"/accounts/{account_id}/cloudforce-one/requests/priority/new",
             body=maybe_transform(
                 {
                     "labels": labels,
@@ -114,9 +111,9 @@ class PriorityResource(SyncAPIResource):
 
     def update(
         self,
-        priority_identifer: str,
+        priority_id: str,
         *,
-        account_identifier: str,
+        account_id: str,
         labels: List[Label],
         priority: int,
         requirement: str,
@@ -132,17 +129,17 @@ class PriorityResource(SyncAPIResource):
         Update a Priority Intelligence Requirement
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier.
 
-          priority_identifer: UUID
+          priority_id: UUID.
 
-          labels: List of labels
+          labels: List of labels.
 
-          priority: Priority
+          priority: Priority.
 
-          requirement: Requirement
+          requirement: Requirement.
 
-          tlp: The CISA defined Traffic Light Protocol (TLP)
+          tlp: The CISA defined Traffic Light Protocol (TLP).
 
           extra_headers: Send extra headers
 
@@ -152,12 +149,12 @@ class PriorityResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not priority_identifer:
-            raise ValueError(f"Expected a non-empty value for `priority_identifer` but received {priority_identifer!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not priority_id:
+            raise ValueError(f"Expected a non-empty value for `priority_id` but received {priority_id!r}")
         return self._put(
-            f"/accounts/{account_identifier}/cloudforce-one/requests/priority/{priority_identifer}",
+            f"/accounts/{account_id}/cloudforce-one/requests/priority/{priority_id}",
             body=maybe_transform(
                 {
                     "labels": labels,
@@ -179,9 +176,9 @@ class PriorityResource(SyncAPIResource):
 
     def delete(
         self,
-        priority_identifer: str,
+        priority_id: str,
         *,
-        account_identifier: str,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -193,9 +190,9 @@ class PriorityResource(SyncAPIResource):
         Delete a Priority Intelligence Requirement
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier.
 
-          priority_identifer: UUID
+          priority_id: UUID.
 
           extra_headers: Send extra headers
 
@@ -205,12 +202,12 @@ class PriorityResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not priority_identifer:
-            raise ValueError(f"Expected a non-empty value for `priority_identifer` but received {priority_identifer!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not priority_id:
+            raise ValueError(f"Expected a non-empty value for `priority_id` but received {priority_id!r}")
         return self._delete(
-            f"/accounts/{account_identifier}/cloudforce-one/requests/priority/{priority_identifer}",
+            f"/accounts/{account_id}/cloudforce-one/requests/priority/{priority_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -219,9 +216,9 @@ class PriorityResource(SyncAPIResource):
 
     def get(
         self,
-        priority_identifer: str,
+        priority_id: str,
         *,
-        account_identifier: str,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -233,9 +230,9 @@ class PriorityResource(SyncAPIResource):
         Get a Priority Intelligence Requirement
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier.
 
-          priority_identifer: UUID
+          priority_id: UUID.
 
           extra_headers: Send extra headers
 
@@ -245,12 +242,12 @@ class PriorityResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not priority_identifer:
-            raise ValueError(f"Expected a non-empty value for `priority_identifer` but received {priority_identifer!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not priority_id:
+            raise ValueError(f"Expected a non-empty value for `priority_id` but received {priority_id!r}")
         return self._get(
-            f"/accounts/{account_identifier}/cloudforce-one/requests/priority/{priority_identifer}",
+            f"/accounts/{account_id}/cloudforce-one/requests/priority/{priority_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -263,8 +260,8 @@ class PriorityResource(SyncAPIResource):
 
     def quota(
         self,
-        account_identifier: str,
         *,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -276,7 +273,7 @@ class PriorityResource(SyncAPIResource):
         Get Priority Intelligence Requirement Quota
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -286,10 +283,10 @@ class PriorityResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
-            f"/accounts/{account_identifier}/cloudforce-one/requests/priority/quota",
+            f"/accounts/{account_id}/cloudforce-one/requests/priority/quota",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -323,8 +320,8 @@ class AsyncPriorityResource(AsyncAPIResource):
 
     async def create(
         self,
-        account_identifier: str,
         *,
+        account_id: str,
         labels: List[Label],
         priority: int,
         requirement: str,
@@ -340,15 +337,15 @@ class AsyncPriorityResource(AsyncAPIResource):
         Create a New Priority Intelligence Requirement
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier.
 
-          labels: List of labels
+          labels: List of labels.
 
-          priority: Priority
+          priority: Priority.
 
-          requirement: Requirement
+          requirement: Requirement.
 
-          tlp: The CISA defined Traffic Light Protocol (TLP)
+          tlp: The CISA defined Traffic Light Protocol (TLP).
 
           extra_headers: Send extra headers
 
@@ -358,10 +355,10 @@ class AsyncPriorityResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_identifier}/cloudforce-one/requests/priority/new",
+            f"/accounts/{account_id}/cloudforce-one/requests/priority/new",
             body=await async_maybe_transform(
                 {
                     "labels": labels,
@@ -383,9 +380,9 @@ class AsyncPriorityResource(AsyncAPIResource):
 
     async def update(
         self,
-        priority_identifer: str,
+        priority_id: str,
         *,
-        account_identifier: str,
+        account_id: str,
         labels: List[Label],
         priority: int,
         requirement: str,
@@ -401,17 +398,17 @@ class AsyncPriorityResource(AsyncAPIResource):
         Update a Priority Intelligence Requirement
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier.
 
-          priority_identifer: UUID
+          priority_id: UUID.
 
-          labels: List of labels
+          labels: List of labels.
 
-          priority: Priority
+          priority: Priority.
 
-          requirement: Requirement
+          requirement: Requirement.
 
-          tlp: The CISA defined Traffic Light Protocol (TLP)
+          tlp: The CISA defined Traffic Light Protocol (TLP).
 
           extra_headers: Send extra headers
 
@@ -421,12 +418,12 @@ class AsyncPriorityResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not priority_identifer:
-            raise ValueError(f"Expected a non-empty value for `priority_identifer` but received {priority_identifer!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not priority_id:
+            raise ValueError(f"Expected a non-empty value for `priority_id` but received {priority_id!r}")
         return await self._put(
-            f"/accounts/{account_identifier}/cloudforce-one/requests/priority/{priority_identifer}",
+            f"/accounts/{account_id}/cloudforce-one/requests/priority/{priority_id}",
             body=await async_maybe_transform(
                 {
                     "labels": labels,
@@ -448,9 +445,9 @@ class AsyncPriorityResource(AsyncAPIResource):
 
     async def delete(
         self,
-        priority_identifer: str,
+        priority_id: str,
         *,
-        account_identifier: str,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -462,9 +459,9 @@ class AsyncPriorityResource(AsyncAPIResource):
         Delete a Priority Intelligence Requirement
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier.
 
-          priority_identifer: UUID
+          priority_id: UUID.
 
           extra_headers: Send extra headers
 
@@ -474,12 +471,12 @@ class AsyncPriorityResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not priority_identifer:
-            raise ValueError(f"Expected a non-empty value for `priority_identifer` but received {priority_identifer!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not priority_id:
+            raise ValueError(f"Expected a non-empty value for `priority_id` but received {priority_id!r}")
         return await self._delete(
-            f"/accounts/{account_identifier}/cloudforce-one/requests/priority/{priority_identifer}",
+            f"/accounts/{account_id}/cloudforce-one/requests/priority/{priority_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -488,9 +485,9 @@ class AsyncPriorityResource(AsyncAPIResource):
 
     async def get(
         self,
-        priority_identifer: str,
+        priority_id: str,
         *,
-        account_identifier: str,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -502,9 +499,9 @@ class AsyncPriorityResource(AsyncAPIResource):
         Get a Priority Intelligence Requirement
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier.
 
-          priority_identifer: UUID
+          priority_id: UUID.
 
           extra_headers: Send extra headers
 
@@ -514,12 +511,12 @@ class AsyncPriorityResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not priority_identifer:
-            raise ValueError(f"Expected a non-empty value for `priority_identifer` but received {priority_identifer!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not priority_id:
+            raise ValueError(f"Expected a non-empty value for `priority_id` but received {priority_id!r}")
         return await self._get(
-            f"/accounts/{account_identifier}/cloudforce-one/requests/priority/{priority_identifer}",
+            f"/accounts/{account_id}/cloudforce-one/requests/priority/{priority_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -532,8 +529,8 @@ class AsyncPriorityResource(AsyncAPIResource):
 
     async def quota(
         self,
-        account_identifier: str,
         *,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -545,7 +542,7 @@ class AsyncPriorityResource(AsyncAPIResource):
         Get Priority Intelligence Requirement Quota
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -555,10 +552,10 @@ class AsyncPriorityResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
-            f"/accounts/{account_identifier}/cloudforce-one/requests/priority/quota",
+            f"/accounts/{account_id}/cloudforce-one/requests/priority/quota",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

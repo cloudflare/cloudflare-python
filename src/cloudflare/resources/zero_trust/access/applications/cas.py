@@ -61,7 +61,7 @@ class CAsResource(SyncAPIResource):
         Generates a new short-lived certificate CA and public key.
 
         Args:
-          app_id: UUID
+          app_id: UUID.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -167,7 +167,7 @@ class CAsResource(SyncAPIResource):
         Deletes a short-lived certificate CA.
 
         Args:
-          app_id: UUID
+          app_id: UUID.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -224,7 +224,7 @@ class CAsResource(SyncAPIResource):
         Fetches a short-lived certificate CA and its public key.
 
         Args:
-          app_id: UUID
+          app_id: UUID.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -302,7 +302,7 @@ class AsyncCAsResource(AsyncAPIResource):
         Generates a new short-lived certificate CA and public key.
 
         Args:
-          app_id: UUID
+          app_id: UUID.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -408,7 +408,7 @@ class AsyncCAsResource(AsyncAPIResource):
         Deletes a short-lived certificate CA.
 
         Args:
-          app_id: UUID
+          app_id: UUID.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -465,7 +465,7 @@ class AsyncCAsResource(AsyncAPIResource):
         Fetches a short-lived certificate CA and its public key.
 
         Args:
-          app_id: UUID
+          app_id: UUID.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 

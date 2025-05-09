@@ -9,10 +9,7 @@ from typing_extensions import Literal
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -76,7 +73,7 @@ class DomainResource(SyncAPIResource):
         Args:
           domain: Domain name.
 
-          date: Array of dates to filter the results.
+          date: Filters results by the specified array of dates.
 
           format: Format in which results will be returned.
 
@@ -86,7 +83,7 @@ class DomainResource(SyncAPIResource):
 
           name: Array of names used to label the series in the response.
 
-          ranking_type: Ranking type.
+          ranking_type: The ranking type.
 
           extra_headers: Send extra headers
 
@@ -169,7 +166,7 @@ class AsyncDomainResource(AsyncAPIResource):
         Args:
           domain: Domain name.
 
-          date: Array of dates to filter the results.
+          date: Filters results by the specified array of dates.
 
           format: Format in which results will be returned.
 
@@ -179,7 +176,7 @@ class AsyncDomainResource(AsyncAPIResource):
 
           name: Array of names used to label the series in the response.
 
-          ranking_type: Ranking type.
+          ranking_type: The ranking type.
 
           extra_headers: Send extra headers
 

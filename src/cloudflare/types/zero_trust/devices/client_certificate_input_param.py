@@ -12,4 +12,4 @@ class ClientCertificateInputParam(TypedDict, total=False):
     """UUID of Cloudflare managed certificate."""
 
     cn: Required[str]
-    """Common Name that is protected by the certificate"""
+    """Common Name that is protected by the certificate."""

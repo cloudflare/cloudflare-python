@@ -8,8 +8,8 @@ __all__ = ["MessageCreateParams"]
 
 
 class MessageCreateParams(TypedDict, total=False):
-    account_identifier: Required[str]
-    """Identifier"""
+    account_id: Required[str]
+    """Identifier."""
 
     content: str
-    """Content of message"""
+    """Content of message."""

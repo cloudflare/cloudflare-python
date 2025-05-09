@@ -15,9 +15,6 @@ class WANCreateParams(TypedDict, total=False):
 
     physport: Required[int]
 
-    vlan_tag: Required[int]
-    """VLAN port number."""
-
     name: str
 
     priority: int
@@ -27,3 +24,6 @@ class WANCreateParams(TypedDict, total=False):
 
     Submit secondary_address when site is in high availability mode.
     """
+
+    vlan_tag: int
+    """VLAN ID. Use zero for untagged."""

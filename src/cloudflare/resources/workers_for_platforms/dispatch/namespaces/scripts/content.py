@@ -7,11 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ......_types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ......_utils import (
-    maybe_transform,
-    strip_not_given,
-    async_maybe_transform,
-)
+from ......_utils import maybe_transform, strip_not_given, async_maybe_transform
 from ......_compat import cached_property
 from ......_resource import SyncAPIResource, AsyncAPIResource
 from ......_response import (
@@ -77,7 +73,7 @@ class ContentResource(SyncAPIResource):
         Put script content for a script uploaded to a Workers for Platforms namespace.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -143,7 +139,7 @@ class ContentResource(SyncAPIResource):
         namespace.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -213,7 +209,7 @@ class AsyncContentResource(AsyncAPIResource):
         Put script content for a script uploaded to a Workers for Platforms namespace.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 
@@ -279,7 +275,7 @@ class AsyncContentResource(AsyncAPIResource):
         namespace.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           dispatch_namespace: Name of the Workers for Platforms dispatch namespace.
 

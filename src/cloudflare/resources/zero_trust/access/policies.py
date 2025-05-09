@@ -7,10 +7,7 @@ from typing import Type, Iterable, Optional, cast
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -81,7 +78,7 @@ class PoliciesResource(SyncAPIResource):
         Creates a new Access reusable policy.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           decision: The action Access will take if a user matches this policy. Infrastructure
               application policies can only use the Allow action.
@@ -179,7 +176,7 @@ class PoliciesResource(SyncAPIResource):
         Updates a Access reusable policy.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           policy_id: The UUID of the policy
 
@@ -269,7 +266,7 @@ class PoliciesResource(SyncAPIResource):
         Lists Access reusable policies.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -306,7 +303,7 @@ class PoliciesResource(SyncAPIResource):
         Deletes an Access reusable policy.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           policy_id: The UUID of the policy
 
@@ -350,7 +347,7 @@ class PoliciesResource(SyncAPIResource):
         Fetches a single Access reusable policy.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           policy_id: The UUID of the policy
 
@@ -425,7 +422,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         Creates a new Access reusable policy.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           decision: The action Access will take if a user matches this policy. Infrastructure
               application policies can only use the Allow action.
@@ -523,7 +520,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         Updates a Access reusable policy.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           policy_id: The UUID of the policy
 
@@ -613,7 +610,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         Lists Access reusable policies.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -650,7 +647,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         Deletes an Access reusable policy.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           policy_id: The UUID of the policy
 
@@ -694,7 +691,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         Fetches a single Access reusable policy.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           policy_id: The UUID of the policy
 

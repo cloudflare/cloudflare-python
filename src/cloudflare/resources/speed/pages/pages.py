@@ -17,10 +17,7 @@ from .tests import (
     AsyncTestsResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -78,7 +75,7 @@ class PagesResource(SyncAPIResource):
         Lists all webpages which have been tested.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -143,7 +140,7 @@ class PagesResource(SyncAPIResource):
         Lists the core web vital metrics trend over time for a specific page.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           url: A URL.
 
@@ -230,7 +227,7 @@ class AsyncPagesResource(AsyncAPIResource):
         Lists all webpages which have been tested.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -295,7 +292,7 @@ class AsyncPagesResource(AsyncAPIResource):
         Lists the core web vital metrics trend over time for a specific page.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           url: A URL.
 

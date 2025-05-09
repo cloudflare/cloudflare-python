@@ -122,7 +122,7 @@ class TestCustom:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
             enabled=True,
-            min_tls="1.0",
+            min_tls="1.2",
             jurisdiction="default",
         )
         assert_matches_type(CustomUpdateResponse, custom, path=["response"])
@@ -496,7 +496,7 @@ class TestAsyncCustom:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket_name="example-bucket",
             enabled=True,
-            min_tls="1.0",
+            min_tls="1.2",
             jurisdiction="default",
         )
         assert_matches_type(CustomUpdateResponse, custom, path=["response"])

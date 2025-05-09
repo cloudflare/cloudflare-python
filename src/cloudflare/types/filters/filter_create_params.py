@@ -9,7 +9,7 @@ __all__ = ["FilterCreateParams"]
 
 class FilterCreateParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Defines an identifier."""
 
     expression: Required[str]
     """The filter expression.

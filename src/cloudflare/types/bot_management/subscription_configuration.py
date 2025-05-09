@@ -45,6 +45,9 @@ class SubscriptionConfiguration(BaseModel):
     [Learn more.](https://developers.cloudflare.com/bots/reference/machine-learning-models#model-versions-and-release-notes)
     """
 
+    crawler_protection: Optional[Literal["enabled", "disabled"]] = None
+    """Enable rule to punish AI Scrapers and Crawlers via a link maze."""
+
     enable_js: Optional[bool] = None
     """Use lightweight, invisible JavaScript detections to improve Bot Management.
 

@@ -61,7 +61,7 @@ class UserPolicyChecksResource(SyncAPIResource):
         Tests if a specific user has permission to access an application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -139,7 +139,7 @@ class AsyncUserPolicyChecksResource(AsyncAPIResource):
         Tests if a specific user has permission to access an application.
 
         Args:
-          app_id: Identifier
+          app_id: Identifier.
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 

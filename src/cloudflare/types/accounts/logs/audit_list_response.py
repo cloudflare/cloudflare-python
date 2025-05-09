@@ -54,7 +54,7 @@ class Actor(BaseModel):
     token_name: Optional[str] = None
     """Filters by the API token name when the actor context is an api_token."""
 
-    type: Optional[Literal["user", "account", "cloudflare-admin"]] = None
+    type: Optional[Literal["account", "cloudflare_admin", "system", "user"]] = None
     """The type of actor."""
 
 

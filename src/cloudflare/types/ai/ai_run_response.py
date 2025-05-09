@@ -21,6 +21,7 @@ __all__ = [
     "Translation",
     "Summarization",
     "ImageToText",
+    "ImageTextToText",
 ]
 
 
@@ -124,7 +125,7 @@ class UnionMember7Usage(BaseModel):
 
 
 class UnionMember7(BaseModel):
-    response: Optional[str] = None
+    response: str
     """The generated text response from the model"""
 
     tool_calls: Optional[List[UnionMember7ToolCall]] = None
@@ -148,6 +149,10 @@ class ImageToText(BaseModel):
     description: Optional[str] = None
 
 
+class ImageTextToText(BaseModel):
+    description: Optional[str] = None
+
+
 AIRunResponse: TypeAlias = Union[
     List[TextClassification],
     object,
@@ -160,4 +165,5 @@ AIRunResponse: TypeAlias = Union[
     Translation,
     Summarization,
     ImageToText,
+    ImageTextToText,
 ]

@@ -9,4 +9,4 @@ __all__ = ["Identifier"]
 
 class Identifier(BaseModel):
     id: Optional[str] = None
-    """Identifier"""
+    """Identifier."""

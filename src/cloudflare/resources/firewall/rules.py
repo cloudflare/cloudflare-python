@@ -8,10 +8,7 @@ from typing import Type, cast
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -76,7 +73,7 @@ class RulesResource(SyncAPIResource):
         Create one or more firewall rules.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           action: The action to perform when the threshold of matched traffic within the
               configured period is exceeded.
@@ -129,7 +126,7 @@ class RulesResource(SyncAPIResource):
         Updates an existing firewall rule.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           rule_id: The unique identifier of the firewall rule.
 
@@ -193,7 +190,7 @@ class RulesResource(SyncAPIResource):
         optional parameters.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           id: The unique identifier of the firewall rule.
 
@@ -259,7 +256,7 @@ class RulesResource(SyncAPIResource):
         Deletes an existing firewall rule.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           rule_id: The unique identifier of the firewall rule.
 
@@ -305,7 +302,7 @@ class RulesResource(SyncAPIResource):
         Deletes existing firewall rules.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           extra_headers: Send extra headers
 
@@ -346,7 +343,7 @@ class RulesResource(SyncAPIResource):
         Updates the priority of existing firewall rules.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           extra_headers: Send extra headers
 
@@ -388,7 +385,7 @@ class RulesResource(SyncAPIResource):
         Updates one or more existing firewall rules.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           extra_headers: Send extra headers
 
@@ -430,7 +427,7 @@ class RulesResource(SyncAPIResource):
         Updates the priority of an existing firewall rule.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           rule_id: The unique identifier of the firewall rule.
 
@@ -475,7 +472,7 @@ class RulesResource(SyncAPIResource):
         Fetches the details of a firewall rule.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           rule_id: The unique identifier of the firewall rule.
 
@@ -544,7 +541,7 @@ class AsyncRulesResource(AsyncAPIResource):
         Create one or more firewall rules.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           action: The action to perform when the threshold of matched traffic within the
               configured period is exceeded.
@@ -597,7 +594,7 @@ class AsyncRulesResource(AsyncAPIResource):
         Updates an existing firewall rule.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           rule_id: The unique identifier of the firewall rule.
 
@@ -661,7 +658,7 @@ class AsyncRulesResource(AsyncAPIResource):
         optional parameters.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           id: The unique identifier of the firewall rule.
 
@@ -727,7 +724,7 @@ class AsyncRulesResource(AsyncAPIResource):
         Deletes an existing firewall rule.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           rule_id: The unique identifier of the firewall rule.
 
@@ -773,7 +770,7 @@ class AsyncRulesResource(AsyncAPIResource):
         Deletes existing firewall rules.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           extra_headers: Send extra headers
 
@@ -814,7 +811,7 @@ class AsyncRulesResource(AsyncAPIResource):
         Updates the priority of existing firewall rules.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           extra_headers: Send extra headers
 
@@ -856,7 +853,7 @@ class AsyncRulesResource(AsyncAPIResource):
         Updates one or more existing firewall rules.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           extra_headers: Send extra headers
 
@@ -898,7 +895,7 @@ class AsyncRulesResource(AsyncAPIResource):
         Updates the priority of an existing firewall rule.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           rule_id: The unique identifier of the firewall rule.
 
@@ -943,7 +940,7 @@ class AsyncRulesResource(AsyncAPIResource):
         Fetches the details of a firewall rule.
 
         Args:
-          zone_id: Identifier
+          zone_id: Defines an identifier.
 
           rule_id: The unique identifier of the firewall rule.
 

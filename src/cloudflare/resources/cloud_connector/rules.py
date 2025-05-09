@@ -61,9 +61,7 @@ class RulesResource(SyncAPIResource):
         Put Rules
 
         Args:
-          zone_id: Identifier
-
-          rules: List of Cloud Connector rules
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -101,7 +99,7 @@ class RulesResource(SyncAPIResource):
         Rules
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -159,9 +157,7 @@ class AsyncRulesResource(AsyncAPIResource):
         Put Rules
 
         Args:
-          zone_id: Identifier
-
-          rules: List of Cloud Connector rules
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -199,7 +195,7 @@ class AsyncRulesResource(AsyncAPIResource):
         Rules
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 

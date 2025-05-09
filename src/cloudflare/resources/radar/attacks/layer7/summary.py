@@ -9,10 +9,7 @@ from typing_extensions import Literal
 import httpx
 
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -24,12 +21,16 @@ from ....._response import (
 from ....._wrappers import ResultWrapper
 from ....._base_client import make_request_options
 from .....types.radar.attacks.layer7 import (
+    summary_industry_params,
+    summary_vertical_params,
     summary_ip_version_params,
     summary_http_method_params,
     summary_http_version_params,
     summary_managed_rules_params,
     summary_mitigation_product_params,
 )
+from .....types.radar.attacks.layer7.summary_industry_response import SummaryIndustryResponse
+from .....types.radar.attacks.layer7.summary_vertical_response import SummaryVerticalResponse
 from .....types.radar.attacks.layer7.summary_ip_version_response import SummaryIPVersionResponse
 from .....types.radar.attacks.layer7.summary_http_method_response import SummaryHTTPMethodResponse
 from .....types.radar.attacks.layer7.summary_http_version_response import SummaryHTTPVersionResponse
@@ -90,19 +91,20 @@ class SummaryResource(SyncAPIResource):
         Retrieves the distribution of layer 7 attacks by HTTP method.
 
         Args:
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
+          asn: Filters results by Autonomous System. Specify one or more Autonomous System
+              Numbers (ASNs) as a comma-separated list. Prefix with `-` to exclude ASNs from
+              results. For example, `-174, 3356` excludes results from AS174, but includes
+              results from AS3356.
 
-          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
-              exclude continents from results. For example, `-EU,NA` excludes results from EU,
-              but includes results from NA.
+          continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude continents from results. For example, `-EU,NA`
+              excludes results from EU, but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: Filters results by the specified date range. For example, use `7d` and
-              `7dcontrol` to compare this week with the previous week. Use this parameter or
-              set specific start and end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
 
           date_start: Start of the date range.
 
@@ -113,15 +115,14 @@ class SummaryResource(SyncAPIResource):
           ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
           limit_per_group: Limits the number of objects per group to the top items within the specified
-              time range. If there are more items than the limit, the response will include
-              the count of items, with any remaining items grouped together under an "other"
-              category.
+              time range. When item count exceeds the limit, extra items appear grouped under
+              an "other" category.
 
-          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
-              locations from results. For example, `-US,PT` excludes results from the US, but
-              includes results from PT.
+          location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude locations from results. For example, `-US,PT`
+              excludes results from the US, but includes results from PT.
 
-          mitigation_product: Array of L7 mitigation products.
+          mitigation_product: Filters the results by layer 7 mitigation product.
 
           name: Array of names used to label the series in the response.
 
@@ -242,19 +243,20 @@ class SummaryResource(SyncAPIResource):
         Retrieves the distribution of layer 7 attacks by HTTP version.
 
         Args:
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
+          asn: Filters results by Autonomous System. Specify one or more Autonomous System
+              Numbers (ASNs) as a comma-separated list. Prefix with `-` to exclude ASNs from
+              results. For example, `-174, 3356` excludes results from AS174, but includes
+              results from AS3356.
 
-          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
-              exclude continents from results. For example, `-EU,NA` excludes results from EU,
-              but includes results from NA.
+          continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude continents from results. For example, `-EU,NA`
+              excludes results from EU, but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: Filters results by the specified date range. For example, use `7d` and
-              `7dcontrol` to compare this week with the previous week. Use this parameter or
-              set specific start and end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
 
           date_start: Start of the date range.
 
@@ -264,11 +266,11 @@ class SummaryResource(SyncAPIResource):
 
           ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
-          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
-              locations from results. For example, `-US,PT` excludes results from the US, but
-              includes results from PT.
+          location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude locations from results. For example, `-US,PT`
+              excludes results from the US, but includes results from PT.
 
-          mitigation_product: Array of L7 mitigation products.
+          mitigation_product: Filters the results by layer 7 mitigation product.
 
           name: Array of names used to label the series in the response.
 
@@ -306,6 +308,163 @@ class SummaryResource(SyncAPIResource):
                 post_parser=ResultWrapper[SummaryHTTPVersionResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryHTTPVersionResponse], ResultWrapper[SummaryHTTPVersionResponse]),
+        )
+
+    def industry(
+        self,
+        *,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        http_method: List[
+            Literal[
+                "GET",
+                "POST",
+                "DELETE",
+                "PUT",
+                "HEAD",
+                "PURGE",
+                "OPTIONS",
+                "PROPFIND",
+                "MKCOL",
+                "PATCH",
+                "ACL",
+                "BCOPY",
+                "BDELETE",
+                "BMOVE",
+                "BPROPFIND",
+                "BPROPPATCH",
+                "CHECKIN",
+                "CHECKOUT",
+                "CONNECT",
+                "COPY",
+                "LABEL",
+                "LOCK",
+                "MERGE",
+                "MKACTIVITY",
+                "MKWORKSPACE",
+                "MOVE",
+                "NOTIFY",
+                "ORDERPATCH",
+                "POLL",
+                "PROPPATCH",
+                "REPORT",
+                "SEARCH",
+                "SUBSCRIBE",
+                "TRACE",
+                "UNCHECKOUT",
+                "UNLOCK",
+                "UNSUBSCRIBE",
+                "UPDATE",
+                "VERSIONCONTROL",
+                "BASELINECONTROL",
+                "XMSENUMATTS",
+                "RPC_OUT_DATA",
+                "RPC_IN_DATA",
+                "JSON",
+                "COOK",
+                "TRACK",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        limit_per_group: int | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        mitigation_product: List[
+            Literal[
+                "DDOS", "WAF", "BOT_MANAGEMENT", "ACCESS_RULES", "IP_REPUTATION", "API_SHIELD", "DATA_LOSS_PREVENTION"
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SummaryIndustryResponse:
+        """
+        Retrieves the distribution of layer 7 attacks by targeted industry.
+
+        Args:
+          asn: Filters results by Autonomous System. Specify one or more Autonomous System
+              Numbers (ASNs) as a comma-separated list. Prefix with `-` to exclude ASNs from
+              results. For example, `-174, 3356` excludes results from AS174, but includes
+              results from AS3356.
+
+          continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude continents from results. For example, `-EU,NA`
+              excludes results from EU, but includes results from NA.
+
+          date_end: End of the date range (inclusive).
+
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
+
+          date_start: Start of the date range.
+
+          format: Format in which results will be returned.
+
+          http_method: Filters results by HTTP method.
+
+          http_version: Filters results by HTTP version.
+
+          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
+
+          limit_per_group: Limits the number of objects per group to the top items within the specified
+              time range. When item count exceeds the limit, extra items appear grouped under
+              an "other" category.
+
+          location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude locations from results. For example, `-US,PT`
+              excludes results from the US, but includes results from PT.
+
+          mitigation_product: Filters the results by layer 7 mitigation product.
+
+          name: Array of names used to label the series in the response.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            "/radar/attacks/layer7/summary/industry",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "asn": asn,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "http_method": http_method,
+                        "http_version": http_version,
+                        "ip_version": ip_version,
+                        "limit_per_group": limit_per_group,
+                        "location": location,
+                        "mitigation_product": mitigation_product,
+                        "name": name,
+                    },
+                    summary_industry_params.SummaryIndustryParams,
+                ),
+                post_parser=ResultWrapper[SummaryIndustryResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[SummaryIndustryResponse], ResultWrapper[SummaryIndustryResponse]),
         )
 
     def ip_version(
@@ -388,19 +547,20 @@ class SummaryResource(SyncAPIResource):
         Retrieves the distribution of layer 7 attacks by IP version.
 
         Args:
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
+          asn: Filters results by Autonomous System. Specify one or more Autonomous System
+              Numbers (ASNs) as a comma-separated list. Prefix with `-` to exclude ASNs from
+              results. For example, `-174, 3356` excludes results from AS174, but includes
+              results from AS3356.
 
-          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
-              exclude continents from results. For example, `-EU,NA` excludes results from EU,
-              but includes results from NA.
+          continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude continents from results. For example, `-EU,NA`
+              excludes results from EU, but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: Filters results by the specified date range. For example, use `7d` and
-              `7dcontrol` to compare this week with the previous week. Use this parameter or
-              set specific start and end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
 
           date_start: Start of the date range.
 
@@ -410,11 +570,11 @@ class SummaryResource(SyncAPIResource):
 
           http_version: Filters results by HTTP version.
 
-          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
-              locations from results. For example, `-US,PT` excludes results from the US, but
-              includes results from PT.
+          location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude locations from results. For example, `-US,PT`
+              excludes results from the US, but includes results from PT.
 
-          mitigation_product: Array of L7 mitigation products.
+          mitigation_product: Filters the results by layer 7 mitigation product.
 
           name: Array of names used to label the series in the response.
 
@@ -536,19 +696,20 @@ class SummaryResource(SyncAPIResource):
         Retrieves the distribution of layer 7 attacks by managed rules.
 
         Args:
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
+          asn: Filters results by Autonomous System. Specify one or more Autonomous System
+              Numbers (ASNs) as a comma-separated list. Prefix with `-` to exclude ASNs from
+              results. For example, `-174, 3356` excludes results from AS174, but includes
+              results from AS3356.
 
-          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
-              exclude continents from results. For example, `-EU,NA` excludes results from EU,
-              but includes results from NA.
+          continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude continents from results. For example, `-EU,NA`
+              excludes results from EU, but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: Filters results by the specified date range. For example, use `7d` and
-              `7dcontrol` to compare this week with the previous week. Use this parameter or
-              set specific start and end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
 
           date_start: Start of the date range.
 
@@ -561,15 +722,14 @@ class SummaryResource(SyncAPIResource):
           ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
           limit_per_group: Limits the number of objects per group to the top items within the specified
-              time range. If there are more items than the limit, the response will include
-              the count of items, with any remaining items grouped together under an "other"
-              category.
+              time range. When item count exceeds the limit, extra items appear grouped under
+              an "other" category.
 
-          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
-              locations from results. For example, `-US,PT` excludes results from the US, but
-              includes results from PT.
+          location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude locations from results. For example, `-US,PT`
+              excludes results from the US, but includes results from PT.
 
-          mitigation_product: Array of L7 mitigation products.
+          mitigation_product: Filters the results by layer 7 mitigation product.
 
           name: Array of names used to label the series in the response.
 
@@ -687,19 +847,20 @@ class SummaryResource(SyncAPIResource):
         Retrieves the distribution of layer 7 attacks by mitigation product.
 
         Args:
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
+          asn: Filters results by Autonomous System. Specify one or more Autonomous System
+              Numbers (ASNs) as a comma-separated list. Prefix with `-` to exclude ASNs from
+              results. For example, `-174, 3356` excludes results from AS174, but includes
+              results from AS3356.
 
-          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
-              exclude continents from results. For example, `-EU,NA` excludes results from EU,
-              but includes results from NA.
+          continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude continents from results. For example, `-EU,NA`
+              excludes results from EU, but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: Filters results by the specified date range. For example, use `7d` and
-              `7dcontrol` to compare this week with the previous week. Use this parameter or
-              set specific start and end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
 
           date_start: Start of the date range.
 
@@ -712,13 +873,12 @@ class SummaryResource(SyncAPIResource):
           ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
           limit_per_group: Limits the number of objects per group to the top items within the specified
-              time range. If there are more items than the limit, the response will include
-              the count of items, with any remaining items grouped together under an "other"
-              category.
+              time range. When item count exceeds the limit, extra items appear grouped under
+              an "other" category.
 
-          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
-              locations from results. For example, `-US,PT` excludes results from the US, but
-              includes results from PT.
+          location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude locations from results. For example, `-US,PT`
+              excludes results from the US, but includes results from PT.
 
           name: Array of names used to label the series in the response.
 
@@ -757,6 +917,163 @@ class SummaryResource(SyncAPIResource):
                 post_parser=ResultWrapper[SummaryMitigationProductResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryMitigationProductResponse], ResultWrapper[SummaryMitigationProductResponse]),
+        )
+
+    def vertical(
+        self,
+        *,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        http_method: List[
+            Literal[
+                "GET",
+                "POST",
+                "DELETE",
+                "PUT",
+                "HEAD",
+                "PURGE",
+                "OPTIONS",
+                "PROPFIND",
+                "MKCOL",
+                "PATCH",
+                "ACL",
+                "BCOPY",
+                "BDELETE",
+                "BMOVE",
+                "BPROPFIND",
+                "BPROPPATCH",
+                "CHECKIN",
+                "CHECKOUT",
+                "CONNECT",
+                "COPY",
+                "LABEL",
+                "LOCK",
+                "MERGE",
+                "MKACTIVITY",
+                "MKWORKSPACE",
+                "MOVE",
+                "NOTIFY",
+                "ORDERPATCH",
+                "POLL",
+                "PROPPATCH",
+                "REPORT",
+                "SEARCH",
+                "SUBSCRIBE",
+                "TRACE",
+                "UNCHECKOUT",
+                "UNLOCK",
+                "UNSUBSCRIBE",
+                "UPDATE",
+                "VERSIONCONTROL",
+                "BASELINECONTROL",
+                "XMSENUMATTS",
+                "RPC_OUT_DATA",
+                "RPC_IN_DATA",
+                "JSON",
+                "COOK",
+                "TRACK",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        limit_per_group: int | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        mitigation_product: List[
+            Literal[
+                "DDOS", "WAF", "BOT_MANAGEMENT", "ACCESS_RULES", "IP_REPUTATION", "API_SHIELD", "DATA_LOSS_PREVENTION"
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SummaryVerticalResponse:
+        """
+        Retrieves the distribution of layer 7 attacks by targeted vertical.
+
+        Args:
+          asn: Filters results by Autonomous System. Specify one or more Autonomous System
+              Numbers (ASNs) as a comma-separated list. Prefix with `-` to exclude ASNs from
+              results. For example, `-174, 3356` excludes results from AS174, but includes
+              results from AS3356.
+
+          continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude continents from results. For example, `-EU,NA`
+              excludes results from EU, but includes results from NA.
+
+          date_end: End of the date range (inclusive).
+
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
+
+          date_start: Start of the date range.
+
+          format: Format in which results will be returned.
+
+          http_method: Filters results by HTTP method.
+
+          http_version: Filters results by HTTP version.
+
+          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
+
+          limit_per_group: Limits the number of objects per group to the top items within the specified
+              time range. When item count exceeds the limit, extra items appear grouped under
+              an "other" category.
+
+          location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude locations from results. For example, `-US,PT`
+              excludes results from the US, but includes results from PT.
+
+          mitigation_product: Filters the results by layer 7 mitigation product.
+
+          name: Array of names used to label the series in the response.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            "/radar/attacks/layer7/summary/vertical",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "asn": asn,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "http_method": http_method,
+                        "http_version": http_version,
+                        "ip_version": ip_version,
+                        "limit_per_group": limit_per_group,
+                        "location": location,
+                        "mitigation_product": mitigation_product,
+                        "name": name,
+                    },
+                    summary_vertical_params.SummaryVerticalParams,
+                ),
+                post_parser=ResultWrapper[SummaryVerticalResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[SummaryVerticalResponse], ResultWrapper[SummaryVerticalResponse]),
         )
 
 
@@ -811,19 +1128,20 @@ class AsyncSummaryResource(AsyncAPIResource):
         Retrieves the distribution of layer 7 attacks by HTTP method.
 
         Args:
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
+          asn: Filters results by Autonomous System. Specify one or more Autonomous System
+              Numbers (ASNs) as a comma-separated list. Prefix with `-` to exclude ASNs from
+              results. For example, `-174, 3356` excludes results from AS174, but includes
+              results from AS3356.
 
-          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
-              exclude continents from results. For example, `-EU,NA` excludes results from EU,
-              but includes results from NA.
+          continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude continents from results. For example, `-EU,NA`
+              excludes results from EU, but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: Filters results by the specified date range. For example, use `7d` and
-              `7dcontrol` to compare this week with the previous week. Use this parameter or
-              set specific start and end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
 
           date_start: Start of the date range.
 
@@ -834,15 +1152,14 @@ class AsyncSummaryResource(AsyncAPIResource):
           ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
           limit_per_group: Limits the number of objects per group to the top items within the specified
-              time range. If there are more items than the limit, the response will include
-              the count of items, with any remaining items grouped together under an "other"
-              category.
+              time range. When item count exceeds the limit, extra items appear grouped under
+              an "other" category.
 
-          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
-              locations from results. For example, `-US,PT` excludes results from the US, but
-              includes results from PT.
+          location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude locations from results. For example, `-US,PT`
+              excludes results from the US, but includes results from PT.
 
-          mitigation_product: Array of L7 mitigation products.
+          mitigation_product: Filters the results by layer 7 mitigation product.
 
           name: Array of names used to label the series in the response.
 
@@ -963,19 +1280,20 @@ class AsyncSummaryResource(AsyncAPIResource):
         Retrieves the distribution of layer 7 attacks by HTTP version.
 
         Args:
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
+          asn: Filters results by Autonomous System. Specify one or more Autonomous System
+              Numbers (ASNs) as a comma-separated list. Prefix with `-` to exclude ASNs from
+              results. For example, `-174, 3356` excludes results from AS174, but includes
+              results from AS3356.
 
-          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
-              exclude continents from results. For example, `-EU,NA` excludes results from EU,
-              but includes results from NA.
+          continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude continents from results. For example, `-EU,NA`
+              excludes results from EU, but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: Filters results by the specified date range. For example, use `7d` and
-              `7dcontrol` to compare this week with the previous week. Use this parameter or
-              set specific start and end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
 
           date_start: Start of the date range.
 
@@ -985,11 +1303,11 @@ class AsyncSummaryResource(AsyncAPIResource):
 
           ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
-          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
-              locations from results. For example, `-US,PT` excludes results from the US, but
-              includes results from PT.
+          location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude locations from results. For example, `-US,PT`
+              excludes results from the US, but includes results from PT.
 
-          mitigation_product: Array of L7 mitigation products.
+          mitigation_product: Filters the results by layer 7 mitigation product.
 
           name: Array of names used to label the series in the response.
 
@@ -1027,6 +1345,163 @@ class AsyncSummaryResource(AsyncAPIResource):
                 post_parser=ResultWrapper[SummaryHTTPVersionResponse]._unwrapper,
             ),
             cast_to=cast(Type[SummaryHTTPVersionResponse], ResultWrapper[SummaryHTTPVersionResponse]),
+        )
+
+    async def industry(
+        self,
+        *,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        http_method: List[
+            Literal[
+                "GET",
+                "POST",
+                "DELETE",
+                "PUT",
+                "HEAD",
+                "PURGE",
+                "OPTIONS",
+                "PROPFIND",
+                "MKCOL",
+                "PATCH",
+                "ACL",
+                "BCOPY",
+                "BDELETE",
+                "BMOVE",
+                "BPROPFIND",
+                "BPROPPATCH",
+                "CHECKIN",
+                "CHECKOUT",
+                "CONNECT",
+                "COPY",
+                "LABEL",
+                "LOCK",
+                "MERGE",
+                "MKACTIVITY",
+                "MKWORKSPACE",
+                "MOVE",
+                "NOTIFY",
+                "ORDERPATCH",
+                "POLL",
+                "PROPPATCH",
+                "REPORT",
+                "SEARCH",
+                "SUBSCRIBE",
+                "TRACE",
+                "UNCHECKOUT",
+                "UNLOCK",
+                "UNSUBSCRIBE",
+                "UPDATE",
+                "VERSIONCONTROL",
+                "BASELINECONTROL",
+                "XMSENUMATTS",
+                "RPC_OUT_DATA",
+                "RPC_IN_DATA",
+                "JSON",
+                "COOK",
+                "TRACK",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        limit_per_group: int | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        mitigation_product: List[
+            Literal[
+                "DDOS", "WAF", "BOT_MANAGEMENT", "ACCESS_RULES", "IP_REPUTATION", "API_SHIELD", "DATA_LOSS_PREVENTION"
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SummaryIndustryResponse:
+        """
+        Retrieves the distribution of layer 7 attacks by targeted industry.
+
+        Args:
+          asn: Filters results by Autonomous System. Specify one or more Autonomous System
+              Numbers (ASNs) as a comma-separated list. Prefix with `-` to exclude ASNs from
+              results. For example, `-174, 3356` excludes results from AS174, but includes
+              results from AS3356.
+
+          continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude continents from results. For example, `-EU,NA`
+              excludes results from EU, but includes results from NA.
+
+          date_end: End of the date range (inclusive).
+
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
+
+          date_start: Start of the date range.
+
+          format: Format in which results will be returned.
+
+          http_method: Filters results by HTTP method.
+
+          http_version: Filters results by HTTP version.
+
+          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
+
+          limit_per_group: Limits the number of objects per group to the top items within the specified
+              time range. When item count exceeds the limit, extra items appear grouped under
+              an "other" category.
+
+          location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude locations from results. For example, `-US,PT`
+              excludes results from the US, but includes results from PT.
+
+          mitigation_product: Filters the results by layer 7 mitigation product.
+
+          name: Array of names used to label the series in the response.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            "/radar/attacks/layer7/summary/industry",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "asn": asn,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "http_method": http_method,
+                        "http_version": http_version,
+                        "ip_version": ip_version,
+                        "limit_per_group": limit_per_group,
+                        "location": location,
+                        "mitigation_product": mitigation_product,
+                        "name": name,
+                    },
+                    summary_industry_params.SummaryIndustryParams,
+                ),
+                post_parser=ResultWrapper[SummaryIndustryResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[SummaryIndustryResponse], ResultWrapper[SummaryIndustryResponse]),
         )
 
     async def ip_version(
@@ -1109,19 +1584,20 @@ class AsyncSummaryResource(AsyncAPIResource):
         Retrieves the distribution of layer 7 attacks by IP version.
 
         Args:
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
+          asn: Filters results by Autonomous System. Specify one or more Autonomous System
+              Numbers (ASNs) as a comma-separated list. Prefix with `-` to exclude ASNs from
+              results. For example, `-174, 3356` excludes results from AS174, but includes
+              results from AS3356.
 
-          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
-              exclude continents from results. For example, `-EU,NA` excludes results from EU,
-              but includes results from NA.
+          continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude continents from results. For example, `-EU,NA`
+              excludes results from EU, but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: Filters results by the specified date range. For example, use `7d` and
-              `7dcontrol` to compare this week with the previous week. Use this parameter or
-              set specific start and end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
 
           date_start: Start of the date range.
 
@@ -1131,11 +1607,11 @@ class AsyncSummaryResource(AsyncAPIResource):
 
           http_version: Filters results by HTTP version.
 
-          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
-              locations from results. For example, `-US,PT` excludes results from the US, but
-              includes results from PT.
+          location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude locations from results. For example, `-US,PT`
+              excludes results from the US, but includes results from PT.
 
-          mitigation_product: Array of L7 mitigation products.
+          mitigation_product: Filters the results by layer 7 mitigation product.
 
           name: Array of names used to label the series in the response.
 
@@ -1257,19 +1733,20 @@ class AsyncSummaryResource(AsyncAPIResource):
         Retrieves the distribution of layer 7 attacks by managed rules.
 
         Args:
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
+          asn: Filters results by Autonomous System. Specify one or more Autonomous System
+              Numbers (ASNs) as a comma-separated list. Prefix with `-` to exclude ASNs from
+              results. For example, `-174, 3356` excludes results from AS174, but includes
+              results from AS3356.
 
-          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
-              exclude continents from results. For example, `-EU,NA` excludes results from EU,
-              but includes results from NA.
+          continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude continents from results. For example, `-EU,NA`
+              excludes results from EU, but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: Filters results by the specified date range. For example, use `7d` and
-              `7dcontrol` to compare this week with the previous week. Use this parameter or
-              set specific start and end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
 
           date_start: Start of the date range.
 
@@ -1282,15 +1759,14 @@ class AsyncSummaryResource(AsyncAPIResource):
           ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
           limit_per_group: Limits the number of objects per group to the top items within the specified
-              time range. If there are more items than the limit, the response will include
-              the count of items, with any remaining items grouped together under an "other"
-              category.
+              time range. When item count exceeds the limit, extra items appear grouped under
+              an "other" category.
 
-          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
-              locations from results. For example, `-US,PT` excludes results from the US, but
-              includes results from PT.
+          location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude locations from results. For example, `-US,PT`
+              excludes results from the US, but includes results from PT.
 
-          mitigation_product: Array of L7 mitigation products.
+          mitigation_product: Filters the results by layer 7 mitigation product.
 
           name: Array of names used to label the series in the response.
 
@@ -1408,19 +1884,20 @@ class AsyncSummaryResource(AsyncAPIResource):
         Retrieves the distribution of layer 7 attacks by mitigation product.
 
         Args:
-          asn: Comma-separated list of Autonomous System Numbers (ASNs). Prefix with `-` to
-              exclude ASNs from results. For example, `-174, 3356` excludes results from
-              AS174, but includes results from AS3356.
+          asn: Filters results by Autonomous System. Specify one or more Autonomous System
+              Numbers (ASNs) as a comma-separated list. Prefix with `-` to exclude ASNs from
+              results. For example, `-174, 3356` excludes results from AS174, but includes
+              results from AS3356.
 
-          continent: Comma-separated list of continents (alpha-2 continent codes). Prefix with `-` to
-              exclude continents from results. For example, `-EU,NA` excludes results from EU,
-              but includes results from NA.
+          continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude continents from results. For example, `-EU,NA`
+              excludes results from EU, but includes results from NA.
 
           date_end: End of the date range (inclusive).
 
-          date_range: Filters results by the specified date range. For example, use `7d` and
-              `7dcontrol` to compare this week with the previous week. Use this parameter or
-              set specific start and end dates (`dateStart` and `dateEnd` parameters).
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
 
           date_start: Start of the date range.
 
@@ -1433,13 +1910,12 @@ class AsyncSummaryResource(AsyncAPIResource):
           ip_version: Filters results by IP version (Ipv4 vs. IPv6).
 
           limit_per_group: Limits the number of objects per group to the top items within the specified
-              time range. If there are more items than the limit, the response will include
-              the count of items, with any remaining items grouped together under an "other"
-              category.
+              time range. When item count exceeds the limit, extra items appear grouped under
+              an "other" category.
 
-          location: Comma-separated list of locations (alpha-2 codes). Prefix with `-` to exclude
-              locations from results. For example, `-US,PT` excludes results from the US, but
-              includes results from PT.
+          location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude locations from results. For example, `-US,PT`
+              excludes results from the US, but includes results from PT.
 
           name: Array of names used to label the series in the response.
 
@@ -1480,6 +1956,163 @@ class AsyncSummaryResource(AsyncAPIResource):
             cast_to=cast(Type[SummaryMitigationProductResponse], ResultWrapper[SummaryMitigationProductResponse]),
         )
 
+    async def vertical(
+        self,
+        *,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        http_method: List[
+            Literal[
+                "GET",
+                "POST",
+                "DELETE",
+                "PUT",
+                "HEAD",
+                "PURGE",
+                "OPTIONS",
+                "PROPFIND",
+                "MKCOL",
+                "PATCH",
+                "ACL",
+                "BCOPY",
+                "BDELETE",
+                "BMOVE",
+                "BPROPFIND",
+                "BPROPPATCH",
+                "CHECKIN",
+                "CHECKOUT",
+                "CONNECT",
+                "COPY",
+                "LABEL",
+                "LOCK",
+                "MERGE",
+                "MKACTIVITY",
+                "MKWORKSPACE",
+                "MOVE",
+                "NOTIFY",
+                "ORDERPATCH",
+                "POLL",
+                "PROPPATCH",
+                "REPORT",
+                "SEARCH",
+                "SUBSCRIBE",
+                "TRACE",
+                "UNCHECKOUT",
+                "UNLOCK",
+                "UNSUBSCRIBE",
+                "UPDATE",
+                "VERSIONCONTROL",
+                "BASELINECONTROL",
+                "XMSENUMATTS",
+                "RPC_OUT_DATA",
+                "RPC_IN_DATA",
+                "JSON",
+                "COOK",
+                "TRACK",
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
+        limit_per_group: int | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        mitigation_product: List[
+            Literal[
+                "DDOS", "WAF", "BOT_MANAGEMENT", "ACCESS_RULES", "IP_REPUTATION", "API_SHIELD", "DATA_LOSS_PREVENTION"
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SummaryVerticalResponse:
+        """
+        Retrieves the distribution of layer 7 attacks by targeted vertical.
+
+        Args:
+          asn: Filters results by Autonomous System. Specify one or more Autonomous System
+              Numbers (ASNs) as a comma-separated list. Prefix with `-` to exclude ASNs from
+              results. For example, `-174, 3356` excludes results from AS174, but includes
+              results from AS3356.
+
+          continent: Filters results by continent. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude continents from results. For example, `-EU,NA`
+              excludes results from EU, but includes results from NA.
+
+          date_end: End of the date range (inclusive).
+
+          date_range: Filters results by date range. For example, use `7d` and `7dcontrol` to compare
+              this week with the previous week. Use this parameter or set specific start and
+              end dates (`dateStart` and `dateEnd` parameters).
+
+          date_start: Start of the date range.
+
+          format: Format in which results will be returned.
+
+          http_method: Filters results by HTTP method.
+
+          http_version: Filters results by HTTP version.
+
+          ip_version: Filters results by IP version (Ipv4 vs. IPv6).
+
+          limit_per_group: Limits the number of objects per group to the top items within the specified
+              time range. When item count exceeds the limit, extra items appear grouped under
+              an "other" category.
+
+          location: Filters results by location. Specify a comma-separated list of alpha-2 codes.
+              Prefix with `-` to exclude locations from results. For example, `-US,PT`
+              excludes results from the US, but includes results from PT.
+
+          mitigation_product: Filters the results by layer 7 mitigation product.
+
+          name: Array of names used to label the series in the response.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            "/radar/attacks/layer7/summary/vertical",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "asn": asn,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "http_method": http_method,
+                        "http_version": http_version,
+                        "ip_version": ip_version,
+                        "limit_per_group": limit_per_group,
+                        "location": location,
+                        "mitigation_product": mitigation_product,
+                        "name": name,
+                    },
+                    summary_vertical_params.SummaryVerticalParams,
+                ),
+                post_parser=ResultWrapper[SummaryVerticalResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[SummaryVerticalResponse], ResultWrapper[SummaryVerticalResponse]),
+        )
+
 
 class SummaryResourceWithRawResponse:
     def __init__(self, summary: SummaryResource) -> None:
@@ -1491,6 +2124,9 @@ class SummaryResourceWithRawResponse:
         self.http_version = to_raw_response_wrapper(
             summary.http_version,
         )
+        self.industry = to_raw_response_wrapper(
+            summary.industry,
+        )
         self.ip_version = to_raw_response_wrapper(
             summary.ip_version,
         )
@@ -1499,6 +2135,9 @@ class SummaryResourceWithRawResponse:
         )
         self.mitigation_product = to_raw_response_wrapper(
             summary.mitigation_product,
+        )
+        self.vertical = to_raw_response_wrapper(
+            summary.vertical,
         )
 
 
@@ -1512,6 +2151,9 @@ class AsyncSummaryResourceWithRawResponse:
         self.http_version = async_to_raw_response_wrapper(
             summary.http_version,
         )
+        self.industry = async_to_raw_response_wrapper(
+            summary.industry,
+        )
         self.ip_version = async_to_raw_response_wrapper(
             summary.ip_version,
         )
@@ -1520,6 +2162,9 @@ class AsyncSummaryResourceWithRawResponse:
         )
         self.mitigation_product = async_to_raw_response_wrapper(
             summary.mitigation_product,
+        )
+        self.vertical = async_to_raw_response_wrapper(
+            summary.vertical,
         )
 
 
@@ -1533,6 +2178,9 @@ class SummaryResourceWithStreamingResponse:
         self.http_version = to_streamed_response_wrapper(
             summary.http_version,
         )
+        self.industry = to_streamed_response_wrapper(
+            summary.industry,
+        )
         self.ip_version = to_streamed_response_wrapper(
             summary.ip_version,
         )
@@ -1541,6 +2189,9 @@ class SummaryResourceWithStreamingResponse:
         )
         self.mitigation_product = to_streamed_response_wrapper(
             summary.mitigation_product,
+        )
+        self.vertical = to_streamed_response_wrapper(
+            summary.vertical,
         )
 
 
@@ -1554,6 +2205,9 @@ class AsyncSummaryResourceWithStreamingResponse:
         self.http_version = async_to_streamed_response_wrapper(
             summary.http_version,
         )
+        self.industry = async_to_streamed_response_wrapper(
+            summary.industry,
+        )
         self.ip_version = async_to_streamed_response_wrapper(
             summary.ip_version,
         )
@@ -1562,4 +2216,7 @@ class AsyncSummaryResourceWithStreamingResponse:
         )
         self.mitigation_product = async_to_streamed_response_wrapper(
             summary.mitigation_product,
+        )
+        self.vertical = async_to_streamed_response_wrapper(
+            summary.vertical,
         )

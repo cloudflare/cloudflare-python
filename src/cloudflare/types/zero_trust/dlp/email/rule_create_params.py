@@ -14,7 +14,7 @@ class RuleCreateParams(TypedDict, total=False):
     action: Required[Action]
 
     conditions: Required[Iterable[Condition]]
-    """Rule is triggered if all conditions match"""
+    """Rule is triggered if all conditions match."""
 
     enabled: Required[bool]
 

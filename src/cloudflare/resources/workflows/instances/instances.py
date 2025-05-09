@@ -8,6 +8,14 @@ from typing_extensions import Literal
 
 import httpx
 
+from .events import (
+    EventsResource,
+    AsyncEventsResource,
+    EventsResourceWithRawResponse,
+    AsyncEventsResourceWithRawResponse,
+    EventsResourceWithStreamingResponse,
+    AsyncEventsResourceWithStreamingResponse,
+)
 from .status import (
     StatusResource,
     AsyncStatusResource,
@@ -17,10 +25,7 @@ from .status import (
     AsyncStatusResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -45,6 +50,10 @@ class InstancesResource(SyncAPIResource):
     @cached_property
     def status(self) -> StatusResource:
         return StatusResource(self._client)
+
+    @cached_property
+    def events(self) -> EventsResource:
+        return EventsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> InstancesResourceWithRawResponse:
@@ -124,7 +133,7 @@ class InstancesResource(SyncAPIResource):
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         status: Literal[
-            "queued", "running", "paused", "errored", "terminated", "complete", "waitingForPause", "waiting", "unknown"
+            "queued", "running", "paused", "errored", "terminated", "complete", "waitingForPause", "waiting"
         ]
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -266,6 +275,10 @@ class AsyncInstancesResource(AsyncAPIResource):
         return AsyncStatusResource(self._client)
 
     @cached_property
+    def events(self) -> AsyncEventsResource:
+        return AsyncEventsResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AsyncInstancesResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -343,7 +356,7 @@ class AsyncInstancesResource(AsyncAPIResource):
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         status: Literal[
-            "queued", "running", "paused", "errored", "terminated", "complete", "waitingForPause", "waiting", "unknown"
+            "queued", "running", "paused", "errored", "terminated", "complete", "waitingForPause", "waiting"
         ]
         | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -500,6 +513,10 @@ class InstancesResourceWithRawResponse:
     def status(self) -> StatusResourceWithRawResponse:
         return StatusResourceWithRawResponse(self._instances.status)
 
+    @cached_property
+    def events(self) -> EventsResourceWithRawResponse:
+        return EventsResourceWithRawResponse(self._instances.events)
+
 
 class AsyncInstancesResourceWithRawResponse:
     def __init__(self, instances: AsyncInstancesResource) -> None:
@@ -521,6 +538,10 @@ class AsyncInstancesResourceWithRawResponse:
     @cached_property
     def status(self) -> AsyncStatusResourceWithRawResponse:
         return AsyncStatusResourceWithRawResponse(self._instances.status)
+
+    @cached_property
+    def events(self) -> AsyncEventsResourceWithRawResponse:
+        return AsyncEventsResourceWithRawResponse(self._instances.events)
 
 
 class InstancesResourceWithStreamingResponse:
@@ -544,6 +565,10 @@ class InstancesResourceWithStreamingResponse:
     def status(self) -> StatusResourceWithStreamingResponse:
         return StatusResourceWithStreamingResponse(self._instances.status)
 
+    @cached_property
+    def events(self) -> EventsResourceWithStreamingResponse:
+        return EventsResourceWithStreamingResponse(self._instances.events)
+
 
 class AsyncInstancesResourceWithStreamingResponse:
     def __init__(self, instances: AsyncInstancesResource) -> None:
@@ -565,3 +590,7 @@ class AsyncInstancesResourceWithStreamingResponse:
     @cached_property
     def status(self) -> AsyncStatusResourceWithStreamingResponse:
         return AsyncStatusResourceWithStreamingResponse(self._instances.status)
+
+    @cached_property
+    def events(self) -> AsyncEventsResourceWithStreamingResponse:
+        return AsyncEventsResourceWithStreamingResponse(self._instances.events)

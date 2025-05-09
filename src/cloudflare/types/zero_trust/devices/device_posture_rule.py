@@ -47,6 +47,7 @@ class DevicePostureRule(BaseModel):
             "gateway",
             "warp",
             "disk_encryption",
+            "serial_number",
             "sentinelone",
             "carbonblack",
             "firewall",

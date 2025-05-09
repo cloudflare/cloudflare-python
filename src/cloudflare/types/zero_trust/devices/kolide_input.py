@@ -14,7 +14,7 @@ class KolideInput(BaseModel):
     """Posture Integration ID."""
 
     count_operator: Literal["<", "<=", ">", ">=", "=="] = FieldInfo(alias="countOperator")
-    """Count Operator"""
+    """Count Operator."""
 
     issue_count: str
     """The Number of Issues."""

@@ -7,10 +7,7 @@ from typing import Type, Optional, cast
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -55,6 +52,7 @@ class ConfigsResource(SyncAPIResource):
         name: str,
         origin: config_create_params.Origin,
         caching: config_create_params.Caching | NotGiven = NOT_GIVEN,
+        mtls: config_create_params.MTLS | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -85,6 +83,7 @@ class ConfigsResource(SyncAPIResource):
                     "name": name,
                     "origin": origin,
                     "caching": caching,
+                    "mtls": mtls,
                 },
                 config_create_params.ConfigCreateParams,
             ),
@@ -106,6 +105,7 @@ class ConfigsResource(SyncAPIResource):
         name: str,
         origin: config_update_params.Origin,
         caching: config_update_params.Caching | NotGiven = NOT_GIVEN,
+        mtls: config_update_params.MTLS | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -140,6 +140,7 @@ class ConfigsResource(SyncAPIResource):
                     "name": name,
                     "origin": origin,
                     "caching": caching,
+                    "mtls": mtls,
                 },
                 config_update_params.ConfigUpdateParams,
             ),
@@ -239,6 +240,7 @@ class ConfigsResource(SyncAPIResource):
         *,
         account_id: str,
         caching: config_edit_params.Caching | NotGiven = NOT_GIVEN,
+        mtls: config_edit_params.MTLS | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         origin: config_edit_params.Origin | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -275,6 +277,7 @@ class ConfigsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "caching": caching,
+                    "mtls": mtls,
                     "name": name,
                     "origin": origin,
                 },
@@ -362,6 +365,7 @@ class AsyncConfigsResource(AsyncAPIResource):
         name: str,
         origin: config_create_params.Origin,
         caching: config_create_params.Caching | NotGiven = NOT_GIVEN,
+        mtls: config_create_params.MTLS | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -392,6 +396,7 @@ class AsyncConfigsResource(AsyncAPIResource):
                     "name": name,
                     "origin": origin,
                     "caching": caching,
+                    "mtls": mtls,
                 },
                 config_create_params.ConfigCreateParams,
             ),
@@ -413,6 +418,7 @@ class AsyncConfigsResource(AsyncAPIResource):
         name: str,
         origin: config_update_params.Origin,
         caching: config_update_params.Caching | NotGiven = NOT_GIVEN,
+        mtls: config_update_params.MTLS | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -447,6 +453,7 @@ class AsyncConfigsResource(AsyncAPIResource):
                     "name": name,
                     "origin": origin,
                     "caching": caching,
+                    "mtls": mtls,
                 },
                 config_update_params.ConfigUpdateParams,
             ),
@@ -546,6 +553,7 @@ class AsyncConfigsResource(AsyncAPIResource):
         *,
         account_id: str,
         caching: config_edit_params.Caching | NotGiven = NOT_GIVEN,
+        mtls: config_edit_params.MTLS | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         origin: config_edit_params.Origin | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -582,6 +590,7 @@ class AsyncConfigsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "caching": caching,
+                    "mtls": mtls,
                     "name": name,
                     "origin": origin,
                 },

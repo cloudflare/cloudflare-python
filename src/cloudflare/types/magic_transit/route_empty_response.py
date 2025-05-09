@@ -10,6 +10,9 @@ __all__ = ["RouteEmptyResponse", "DeletedRoute"]
 
 
 class DeletedRoute(BaseModel):
+    id: str
+    """Identifier"""
+
     nexthop: str
     """The next-hop IP Address for the static route."""
 
@@ -18,9 +21,6 @@ class DeletedRoute(BaseModel):
 
     priority: int
     """Priority of the static route."""
-
-    id: Optional[str] = None
-    """Identifier"""
 
     created_on: Optional[datetime] = None
     """When the route was created."""

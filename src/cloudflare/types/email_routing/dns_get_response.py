@@ -5,17 +5,52 @@ from typing_extensions import Literal, TypeAlias
 
 from ..._models import BaseModel
 from .dns_record import DNSRecord
-from ..shared.response_info import ResponseInfo
 
 __all__ = [
     "DNSGetResponse",
     "EmailEmailRoutingDNSQueryResponse",
+    "EmailEmailRoutingDNSQueryResponseError",
+    "EmailEmailRoutingDNSQueryResponseErrorSource",
+    "EmailEmailRoutingDNSQueryResponseMessage",
+    "EmailEmailRoutingDNSQueryResponseMessageSource",
     "EmailEmailRoutingDNSQueryResponseResult",
     "EmailEmailRoutingDNSQueryResponseResultError",
     "EmailEmailRoutingDNSQueryResponseResultInfo",
     "EmailDNSSettingsResponseCollection",
+    "EmailDNSSettingsResponseCollectionError",
+    "EmailDNSSettingsResponseCollectionErrorSource",
+    "EmailDNSSettingsResponseCollectionMessage",
+    "EmailDNSSettingsResponseCollectionMessageSource",
     "EmailDNSSettingsResponseCollectionResultInfo",
 ]
+
+
+class EmailEmailRoutingDNSQueryResponseErrorSource(BaseModel):
+    pointer: Optional[str] = None
+
+
+class EmailEmailRoutingDNSQueryResponseError(BaseModel):
+    code: int
+
+    message: str
+
+    documentation_url: Optional[str] = None
+
+    source: Optional[EmailEmailRoutingDNSQueryResponseErrorSource] = None
+
+
+class EmailEmailRoutingDNSQueryResponseMessageSource(BaseModel):
+    pointer: Optional[str] = None
+
+
+class EmailEmailRoutingDNSQueryResponseMessage(BaseModel):
+    code: int
+
+    message: str
+
+    documentation_url: Optional[str] = None
+
+    source: Optional[EmailEmailRoutingDNSQueryResponseMessageSource] = None
 
 
 class EmailEmailRoutingDNSQueryResponseResultError(BaseModel):
@@ -33,52 +68,80 @@ class EmailEmailRoutingDNSQueryResponseResult(BaseModel):
 
 class EmailEmailRoutingDNSQueryResponseResultInfo(BaseModel):
     count: Optional[float] = None
-    """Total number of results for the requested service"""
+    """Total number of results for the requested service."""
 
     page: Optional[float] = None
-    """Current page within paginated list of results"""
+    """Current page within paginated list of results."""
 
     per_page: Optional[float] = None
-    """Number of results per page of results"""
+    """Number of results per page of results."""
 
     total_count: Optional[float] = None
-    """Total results available without any search parameters"""
+    """Total results available without any search parameters."""
 
 
 class EmailEmailRoutingDNSQueryResponse(BaseModel):
-    errors: List[ResponseInfo]
+    errors: List[EmailEmailRoutingDNSQueryResponseError]
 
-    messages: List[ResponseInfo]
+    messages: List[EmailEmailRoutingDNSQueryResponseMessage]
 
     success: Literal[True]
-    """Whether the API call was successful"""
+    """Whether the API call was successful."""
 
     result: Optional[EmailEmailRoutingDNSQueryResponseResult] = None
 
     result_info: Optional[EmailEmailRoutingDNSQueryResponseResultInfo] = None
 
 
+class EmailDNSSettingsResponseCollectionErrorSource(BaseModel):
+    pointer: Optional[str] = None
+
+
+class EmailDNSSettingsResponseCollectionError(BaseModel):
+    code: int
+
+    message: str
+
+    documentation_url: Optional[str] = None
+
+    source: Optional[EmailDNSSettingsResponseCollectionErrorSource] = None
+
+
+class EmailDNSSettingsResponseCollectionMessageSource(BaseModel):
+    pointer: Optional[str] = None
+
+
+class EmailDNSSettingsResponseCollectionMessage(BaseModel):
+    code: int
+
+    message: str
+
+    documentation_url: Optional[str] = None
+
+    source: Optional[EmailDNSSettingsResponseCollectionMessageSource] = None
+
+
 class EmailDNSSettingsResponseCollectionResultInfo(BaseModel):
     count: Optional[float] = None
-    """Total number of results for the requested service"""
+    """Total number of results for the requested service."""
 
     page: Optional[float] = None
-    """Current page within paginated list of results"""
+    """Current page within paginated list of results."""
 
     per_page: Optional[float] = None
-    """Number of results per page of results"""
+    """Number of results per page of results."""
 
     total_count: Optional[float] = None
-    """Total results available without any search parameters"""
+    """Total results available without any search parameters."""
 
 
 class EmailDNSSettingsResponseCollection(BaseModel):
-    errors: List[ResponseInfo]
+    errors: List[EmailDNSSettingsResponseCollectionError]
 
-    messages: List[ResponseInfo]
+    messages: List[EmailDNSSettingsResponseCollectionMessage]
 
     success: Literal[True]
-    """Whether the API call was successful"""
+    """Whether the API call was successful."""
 
     result: Optional[List[DNSRecord]] = None
 

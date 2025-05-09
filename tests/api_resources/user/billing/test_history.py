@@ -29,7 +29,7 @@ class TestHistory:
         history = client.user.billing.history.list(
             action="subscription",
             occurred_at=parse_datetime("2014-03-01T12:21:59.3456Z"),
-            order="type",
+            order="occurred_at",
             page=1,
             per_page=5,
             type="charge",
@@ -70,7 +70,7 @@ class TestAsyncHistory:
         history = await async_client.user.billing.history.list(
             action="subscription",
             occurred_at=parse_datetime("2014-03-01T12:21:59.3456Z"),
-            order="type",
+            order="occurred_at",
             page=1,
             per_page=5,
             type="charge",

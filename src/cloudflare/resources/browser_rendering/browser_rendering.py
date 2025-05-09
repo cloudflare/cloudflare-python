@@ -10,6 +10,22 @@ from .pdf import (
     PDFResourceWithStreamingResponse,
     AsyncPDFResourceWithStreamingResponse,
 )
+from .json import (
+    JsonResource,
+    AsyncJsonResource,
+    JsonResourceWithRawResponse,
+    AsyncJsonResourceWithRawResponse,
+    JsonResourceWithStreamingResponse,
+    AsyncJsonResourceWithStreamingResponse,
+)
+from .links import (
+    LinksResource,
+    AsyncLinksResource,
+    LinksResourceWithRawResponse,
+    AsyncLinksResourceWithRawResponse,
+    LinksResourceWithStreamingResponse,
+    AsyncLinksResourceWithStreamingResponse,
+)
 from .scrape import (
     ScrapeResource,
     AsyncScrapeResource,
@@ -25,6 +41,14 @@ from .content import (
     AsyncContentResourceWithRawResponse,
     ContentResourceWithStreamingResponse,
     AsyncContentResourceWithStreamingResponse,
+)
+from .markdown import (
+    MarkdownResource,
+    AsyncMarkdownResource,
+    MarkdownResourceWithRawResponse,
+    AsyncMarkdownResourceWithRawResponse,
+    MarkdownResourceWithStreamingResponse,
+    AsyncMarkdownResourceWithStreamingResponse,
 )
 from .snapshot import (
     SnapshotResource,
@@ -70,6 +94,18 @@ class BrowserRenderingResource(SyncAPIResource):
         return SnapshotResource(self._client)
 
     @cached_property
+    def json(self) -> JsonResource:
+        return JsonResource(self._client)
+
+    @cached_property
+    def links(self) -> LinksResource:
+        return LinksResource(self._client)
+
+    @cached_property
+    def markdown(self) -> MarkdownResource:
+        return MarkdownResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> BrowserRenderingResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -109,6 +145,18 @@ class AsyncBrowserRenderingResource(AsyncAPIResource):
     @cached_property
     def snapshot(self) -> AsyncSnapshotResource:
         return AsyncSnapshotResource(self._client)
+
+    @cached_property
+    def json(self) -> AsyncJsonResource:
+        return AsyncJsonResource(self._client)
+
+    @cached_property
+    def links(self) -> AsyncLinksResource:
+        return AsyncLinksResource(self._client)
+
+    @cached_property
+    def markdown(self) -> AsyncMarkdownResource:
+        return AsyncMarkdownResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncBrowserRenderingResourceWithRawResponse:
@@ -154,6 +202,18 @@ class BrowserRenderingResourceWithRawResponse:
     def snapshot(self) -> SnapshotResourceWithRawResponse:
         return SnapshotResourceWithRawResponse(self._browser_rendering.snapshot)
 
+    @cached_property
+    def json(self) -> JsonResourceWithRawResponse:
+        return JsonResourceWithRawResponse(self._browser_rendering.json)
+
+    @cached_property
+    def links(self) -> LinksResourceWithRawResponse:
+        return LinksResourceWithRawResponse(self._browser_rendering.links)
+
+    @cached_property
+    def markdown(self) -> MarkdownResourceWithRawResponse:
+        return MarkdownResourceWithRawResponse(self._browser_rendering.markdown)
+
 
 class AsyncBrowserRenderingResourceWithRawResponse:
     def __init__(self, browser_rendering: AsyncBrowserRenderingResource) -> None:
@@ -178,6 +238,18 @@ class AsyncBrowserRenderingResourceWithRawResponse:
     @cached_property
     def snapshot(self) -> AsyncSnapshotResourceWithRawResponse:
         return AsyncSnapshotResourceWithRawResponse(self._browser_rendering.snapshot)
+
+    @cached_property
+    def json(self) -> AsyncJsonResourceWithRawResponse:
+        return AsyncJsonResourceWithRawResponse(self._browser_rendering.json)
+
+    @cached_property
+    def links(self) -> AsyncLinksResourceWithRawResponse:
+        return AsyncLinksResourceWithRawResponse(self._browser_rendering.links)
+
+    @cached_property
+    def markdown(self) -> AsyncMarkdownResourceWithRawResponse:
+        return AsyncMarkdownResourceWithRawResponse(self._browser_rendering.markdown)
 
 
 class BrowserRenderingResourceWithStreamingResponse:
@@ -204,6 +276,18 @@ class BrowserRenderingResourceWithStreamingResponse:
     def snapshot(self) -> SnapshotResourceWithStreamingResponse:
         return SnapshotResourceWithStreamingResponse(self._browser_rendering.snapshot)
 
+    @cached_property
+    def json(self) -> JsonResourceWithStreamingResponse:
+        return JsonResourceWithStreamingResponse(self._browser_rendering.json)
+
+    @cached_property
+    def links(self) -> LinksResourceWithStreamingResponse:
+        return LinksResourceWithStreamingResponse(self._browser_rendering.links)
+
+    @cached_property
+    def markdown(self) -> MarkdownResourceWithStreamingResponse:
+        return MarkdownResourceWithStreamingResponse(self._browser_rendering.markdown)
+
 
 class AsyncBrowserRenderingResourceWithStreamingResponse:
     def __init__(self, browser_rendering: AsyncBrowserRenderingResource) -> None:
@@ -228,3 +312,15 @@ class AsyncBrowserRenderingResourceWithStreamingResponse:
     @cached_property
     def snapshot(self) -> AsyncSnapshotResourceWithStreamingResponse:
         return AsyncSnapshotResourceWithStreamingResponse(self._browser_rendering.snapshot)
+
+    @cached_property
+    def json(self) -> AsyncJsonResourceWithStreamingResponse:
+        return AsyncJsonResourceWithStreamingResponse(self._browser_rendering.json)
+
+    @cached_property
+    def links(self) -> AsyncLinksResourceWithStreamingResponse:
+        return AsyncLinksResourceWithStreamingResponse(self._browser_rendering.links)
+
+    @cached_property
+    def markdown(self) -> AsyncMarkdownResourceWithStreamingResponse:
+        return AsyncMarkdownResourceWithStreamingResponse(self._browser_rendering.markdown)

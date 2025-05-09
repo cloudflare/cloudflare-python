@@ -77,7 +77,7 @@ class StatusesResource(SyncAPIResource):
            presented to the users.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -159,7 +159,7 @@ class AsyncStatusesResource(AsyncAPIResource):
            presented to the users.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 

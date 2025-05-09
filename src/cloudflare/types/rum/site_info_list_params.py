@@ -9,7 +9,7 @@ __all__ = ["SiteInfoListParams"]
 
 class SiteInfoListParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     order_by: Literal["host", "created"]
     """The property used to sort the list of results."""

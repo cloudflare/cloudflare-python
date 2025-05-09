@@ -26,7 +26,6 @@ from .group_list_params import GroupListParams as GroupListParams
 from .key_update_params import KeyUpdateParams as KeyUpdateParams
 from .tag_create_params import TagCreateParams as TagCreateParams
 from .tag_update_params import TagUpdateParams as TagUpdateParams
-from .application_policy import ApplicationPolicy as ApplicationPolicy
 from .cors_headers_param import CORSHeadersParam as CORSHeadersParam
 from .group_get_response import GroupGetResponse as GroupGetResponse
 from .user_list_response import UserListResponse as UserListResponse

@@ -8,10 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
+from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -64,7 +61,7 @@ class DNSSECResource(SyncAPIResource):
         Delete DNSSEC.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -106,7 +103,7 @@ class DNSSECResource(SyncAPIResource):
         Enable or disable DNSSEC.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           dnssec_multi_signer: If true, multi-signer DNSSEC is enabled on the zone, allowing multiple providers
               to serve a DNSSEC-signed zone at the same time. This is required for DNSKEY
@@ -172,7 +169,7 @@ class DNSSECResource(SyncAPIResource):
         Details about DNSSEC status and configuration.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -232,7 +229,7 @@ class AsyncDNSSECResource(AsyncAPIResource):
         Delete DNSSEC.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -274,7 +271,7 @@ class AsyncDNSSECResource(AsyncAPIResource):
         Enable or disable DNSSEC.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           dnssec_multi_signer: If true, multi-signer DNSSEC is enabled on the zone, allowing multiple providers
               to serve a DNSSEC-signed zone at the same time. This is required for DNSKEY
@@ -340,7 +337,7 @@ class AsyncDNSSECResource(AsyncAPIResource):
         Details about DNSSEC status and configuration.
 
         Args:
-          zone_id: Identifier
+          zone_id: Identifier.
 
           extra_headers: Send extra headers
 

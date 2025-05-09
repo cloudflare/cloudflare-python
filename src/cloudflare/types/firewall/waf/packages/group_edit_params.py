@@ -9,13 +9,13 @@ __all__ = ["GroupEditParams"]
 
 class GroupEditParams(TypedDict, total=False):
     zone_id: Required[str]
-    """Identifier"""
+    """Defines an identifier of a schema."""
 
     package_id: Required[str]
-    """The unique identifier of a WAF package."""
+    """Defines the unique identifier of a WAF package."""
 
     mode: Literal["on", "off"]
-    """The state of the rules contained in the rule group.
+    """Defines the state of the rules contained in the rule group.
 
     When `on`, the rules in the group are configurable/usable.
     """

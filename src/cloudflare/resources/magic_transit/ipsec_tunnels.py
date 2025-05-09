@@ -7,12 +7,7 @@ from typing import Type, cast
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
-    is_given,
-    maybe_transform,
-    strip_not_given,
-    async_maybe_transform,
-)
+from ..._utils import is_given, maybe_transform, strip_not_given, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -80,7 +75,7 @@ class IPSECTunnelsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> IPSECTunnelCreateResponse:
-        """Creates new IPsec tunnels associated with an account.
+        """Creates a new IPsec tunnel associated with an account.
 
         Use `?validate_only=true`
         as an optional query parameter to only run validation without persisting
@@ -557,7 +552,7 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> IPSECTunnelCreateResponse:
-        """Creates new IPsec tunnels associated with an account.
+        """Creates a new IPsec tunnel associated with an account.
 
         Use `?validate_only=true`
         as an optional query parameter to only run validation without persisting

@@ -19,7 +19,7 @@ class InterconnectGRE(BaseModel):
 
 class Interconnect(BaseModel):
     id: Optional[str] = None
-    """Tunnel identifier tag."""
+    """Identifier"""
 
     colo_name: Optional[str] = None
     """The name of the interconnect. The name cannot share a name with other tunnels."""

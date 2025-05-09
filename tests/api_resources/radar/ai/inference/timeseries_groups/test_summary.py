@@ -29,7 +29,7 @@ class TestSummary:
     @parametrize
     def test_method_model_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.ai.inference.timeseries_groups.summary.model(
-            agg_interval="15m",
+            agg_interval="1h",
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
@@ -67,7 +67,7 @@ class TestSummary:
     @parametrize
     def test_method_task_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.ai.inference.timeseries_groups.summary.task(
-            agg_interval="15m",
+            agg_interval="1h",
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
@@ -109,7 +109,7 @@ class TestAsyncSummary:
     @parametrize
     async def test_method_model_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.ai.inference.timeseries_groups.summary.model(
-            agg_interval="15m",
+            agg_interval="1h",
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
@@ -149,7 +149,7 @@ class TestAsyncSummary:
     @parametrize
     async def test_method_task_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.ai.inference.timeseries_groups.summary.task(
-            agg_interval="15m",
+            agg_interval="1h",
             date_end=[parse_datetime("2019-12-27T18:11:19.117Z")],
             date_range=["7d"],
             date_start=[parse_datetime("2019-12-27T18:11:19.117Z")],
