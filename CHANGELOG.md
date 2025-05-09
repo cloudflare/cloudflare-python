@@ -1,5 +1,83 @@
 # Changelog
 
+## 4.2.0 (2025-05-09)
+
+Full Changelog: [v4.1.0...v4.2.0](https://github.com/cloudflare/cloudflare-python/compare/v4.1.0...v4.2.0)
+
+### Features
+
+* **access_settings:** add CRUD support ([5c405ce](https://github.com/cloudflare/cloudflare-python/commit/5c405cef8664b45d6d85b3676db276e5712469b9))
+* **api:** api update ([03e79c1](https://github.com/cloudflare/cloudflare-python/commit/03e79c10da77b35afe7915ccb9eb560339841cae))
+* **api:** api update ([edfddf3](https://github.com/cloudflare/cloudflare-python/commit/edfddf31cf1cbc233e90341c3786bbcd873a72ea))
+* **api:** api update ([be32215](https://github.com/cloudflare/cloudflare-python/commit/be32215fc9f229ae6f61ab072bb4ebb3de4109f7))
+* **api:** api update ([5901900](https://github.com/cloudflare/cloudflare-python/commit/59019001da4fe85b326000e37df0e5cb61375945))
+* **api:** api update ([ba166b3](https://github.com/cloudflare/cloudflare-python/commit/ba166b369840ade49924dff938115976e3867a5c))
+* **api:** api update ([d487232](https://github.com/cloudflare/cloudflare-python/commit/d487232e264c310345b3ea85822e550af252c0a4))
+* **api:** api update ([17cb705](https://github.com/cloudflare/cloudflare-python/commit/17cb705744d081357d5f9c418ec3dfb45df60110))
+* **api:** api update ([5ad6267](https://github.com/cloudflare/cloudflare-python/commit/5ad6267fc27d8b5bdba1b5dc570528517ab58b9f))
+* **api:** api update ([f5d07b9](https://github.com/cloudflare/cloudflare-python/commit/f5d07b9dc10febfd488f5955b750820681b6ca33))
+* **api:** api update ([ef764d4](https://github.com/cloudflare/cloudflare-python/commit/ef764d481e5d0f305e887218feb8ccbcdfe2d220))
+* **api:** api update ([f381a98](https://github.com/cloudflare/cloudflare-python/commit/f381a9801f7adedb2738da815b891db8dcd3d26a))
+* **api:** api update ([a45728a](https://github.com/cloudflare/cloudflare-python/commit/a45728adfa9f6048f93f97fe99c63fae8e2847d3))
+* **api:** api update ([4f2fe11](https://github.com/cloudflare/cloudflare-python/commit/4f2fe11cd2be909af128e9d1d8278a96ff4a9456))
+* **api:** api update ([7e458e7](https://github.com/cloudflare/cloudflare-python/commit/7e458e7669fb07b0987b7253ef7e010a52164e90))
+* **api:** api update ([07074f1](https://github.com/cloudflare/cloudflare-python/commit/07074f15880e4ad944381ee7556740d34cb4de4d))
+* **api:** api update ([04834e7](https://github.com/cloudflare/cloudflare-python/commit/04834e7b5f2c48f81df53ae502d57de5846b2fd0))
+* **api:** api update ([ecc0b17](https://github.com/cloudflare/cloudflare-python/commit/ecc0b17e46459f45715591ab8a9c42fa53f58ae5))
+* **api:** api update ([6750cf3](https://github.com/cloudflare/cloudflare-python/commit/6750cf364f95deae9cbfcf7755a5f470d11d82fb))
+* **api:** api update ([0b00d97](https://github.com/cloudflare/cloudflare-python/commit/0b00d971c8df169d5c3985a70bd05f345339adea))
+* **api:** api update ([0e950d6](https://github.com/cloudflare/cloudflare-python/commit/0e950d65a750fb3741d8728c980e804d658c0306))
+* **api:** api update ([23d7f1c](https://github.com/cloudflare/cloudflare-python/commit/23d7f1ca8fda9c31fb1a5ce80ca815d01752e3d7))
+* **api:** api update ([0c6f4a1](https://github.com/cloudflare/cloudflare-python/commit/0c6f4a1c252af1b1da345bea53d0d85939950b23))
+* **api:** api update ([20295df](https://github.com/cloudflare/cloudflare-python/commit/20295df8880c0b22da4ba89d845fcb3d99490021))
+* **api:** api update ([ba2b47a](https://github.com/cloudflare/cloudflare-python/commit/ba2b47ac123e37d4043fe2d74a510ad3202bac7f))
+* **api:** api update ([676ac08](https://github.com/cloudflare/cloudflare-python/commit/676ac089f6b52fc9d26785684e88b74ae74dceb9))
+* **api:** api update ([9ca549e](https://github.com/cloudflare/cloudflare-python/commit/9ca549e242e8e5f537b951c4c24189491928e9f4))
+* **api:** api update ([71efbfa](https://github.com/cloudflare/cloudflare-python/commit/71efbfaf56891305d123d4078f48101fb0c608fe))
+* **api:** api update ([af68ef6](https://github.com/cloudflare/cloudflare-python/commit/af68ef6ac477d9305391318ea5e033f6e111c00e))
+* **api:** api update ([e749879](https://github.com/cloudflare/cloudflare-python/commit/e749879ab0abb0e2383c07efb2f0f546682d9ce7))
+* **api:** api update ([b2cfa5d](https://github.com/cloudflare/cloudflare-python/commit/b2cfa5d06466c1a5903d4b159828abdc36b3d0e9))
+* **api:** api update ([d61b25a](https://github.com/cloudflare/cloudflare-python/commit/d61b25a7e26214012fe5ba727f61a2d877bca5b6))
+* **api:** api update ([5cbdb5e](https://github.com/cloudflare/cloudflare-python/commit/5cbdb5e773b35acf782cfd9dce7a9e329a76e3fa))
+* **api:** api update ([563ea64](https://github.com/cloudflare/cloudflare-python/commit/563ea64e06093ecd8067b9b19b76cd0e0b2f3e0a))
+* **api:** api update ([be46746](https://github.com/cloudflare/cloudflare-python/commit/be4674648edd2531fe08164f8367ac63ee385f7e))
+* **api:** api update ([6834a83](https://github.com/cloudflare/cloudflare-python/commit/6834a831237c3031f51387e06881c23e41343dd6))
+* **api:** api update ([e9809cf](https://github.com/cloudflare/cloudflare-python/commit/e9809cfbae5a4d4217a40739e2d15551d8fa872d))
+* **api:** api update ([fff82c3](https://github.com/cloudflare/cloudflare-python/commit/fff82c307f3da3f65131679f6ae9de77289fe954))
+* **api:** api update ([885373e](https://github.com/cloudflare/cloudflare-python/commit/885373e61028d0368bf3fb963f7afa0cdbe9c6ee))
+* **api:** api update ([7d76f9d](https://github.com/cloudflare/cloudflare-python/commit/7d76f9d101f9a8e9d7c6951fcdad2b6e72a8a614))
+* **api:** api update ([204b88a](https://github.com/cloudflare/cloudflare-python/commit/204b88ab272a6dcd70a00c7c8941af2d9e77146d))
+* **api:** api update ([8aef594](https://github.com/cloudflare/cloudflare-python/commit/8aef5949b2f1a426ecb54d4af52dcd806b886f65))
+* **api:** api update ([e7719ca](https://github.com/cloudflare/cloudflare-python/commit/e7719ca1b9d50b7a77c9ecd003851bfb4dc61748))
+* **api:** api update ([786e044](https://github.com/cloudflare/cloudflare-python/commit/786e044ffd87428608a43d6ff467a4eef731c467))
+* **api:** api update ([1f8dd7c](https://github.com/cloudflare/cloudflare-python/commit/1f8dd7cf49675f5455e5c53e44fa9f1a1280bd43))
+* **api:** update path placeholders ([d2d1c24](https://github.com/cloudflare/cloudflare-python/commit/d2d1c246d0c650e565057f1b98c40054aa693f12))
+* **schema_validation:** add mapped endpoints ([7b3a51b](https://github.com/cloudflare/cloudflare-python/commit/7b3a51bc157feccbaee5b22dff61469849bcbf3f))
+* **threat_events:** add list support ([4beeff9](https://github.com/cloudflare/cloudflare-python/commit/4beeff9c87058ce7cb972b2f3826d127775d21eb))
+
+
+### Bug Fixes
+
+* **api:** fix path placeholders ([c8a0db8](https://github.com/cloudflare/cloudflare-python/commit/c8a0db8796322dc391619b9a76c8ce3f551eba2a))
+* **package:** support direct resource imports ([7e46269](https://github.com/cloudflare/cloudflare-python/commit/7e4626961b5c2a425cdee53a2062dcc1fe14f7cd))
+* **pydantic v1:** more robust ModelField.annotation check ([012add4](https://github.com/cloudflare/cloudflare-python/commit/012add4d67ec2fbb2b743ff4cec3297b0077ec2d))
+* **urlscanner:** don't unwwrap scan response ([5fe7ea9](https://github.com/cloudflare/cloudflare-python/commit/5fe7ea9b5b31ace57ed670a65c4b276fba5eee18))
+
+
+### Chores
+
+* broadly detect json family of content-type headers ([1c2fb5a](https://github.com/cloudflare/cloudflare-python/commit/1c2fb5a49f8efc69902f0a3dd447b9c911334b6b))
+* **ci:** add timeout thresholds for CI jobs ([b38f0ac](https://github.com/cloudflare/cloudflare-python/commit/b38f0ace9ae9a04890c306198335fc44a403d1a3))
+* **ci:** only use depot for staging repos ([8fea9cb](https://github.com/cloudflare/cloudflare-python/commit/8fea9cb064f975e3cabb5f5f8b77c9528fdad40b))
+* **ci:** run on more branches and use depot runners ([67ee23a](https://github.com/cloudflare/cloudflare-python/commit/67ee23a7ac47ea2392068c99a4196b866344bd29))
+* **internal:** avoid errors for isinstance checks on proxies ([7b734a1](https://github.com/cloudflare/cloudflare-python/commit/7b734a186d2ca69066a75956fcc47ccbe02df0b1))
+* **internal:** codegen related update ([b1fdd11](https://github.com/cloudflare/cloudflare-python/commit/b1fdd1187e9179cb3fd7c92779140d9b6bdc08fd))
+* **internal:** fix list file params ([128fbe6](https://github.com/cloudflare/cloudflare-python/commit/128fbe63aa61e7c7e8834d00cf96135c7cc8a438))
+* **internal:** import reformatting ([af978d0](https://github.com/cloudflare/cloudflare-python/commit/af978d029886113c779ad80865bfa320d82b9a7b))
+* **internal:** minor formatting changes ([8ca04ea](https://github.com/cloudflare/cloudflare-python/commit/8ca04ea4ae308de10743146ec8c6ba89e2916004))
+* **internal:** refactor retries to not use recursion ([baedf67](https://github.com/cloudflare/cloudflare-python/commit/baedf673e48f103406cd609410a71e139efef5d7))
+* **internal:** update models test ([dfa191a](https://github.com/cloudflare/cloudflare-python/commit/dfa191a224bf9fa426afbf1b4c3652b75a48e6e1))
+
 ## 4.1.0 (2025-03-18)
 
 Full Changelog: [v4.0.0...v4.1.0](https://github.com/cloudflare/cloudflare-python/compare/v4.0.0...v4.1.0)
