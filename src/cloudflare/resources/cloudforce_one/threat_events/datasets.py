@@ -62,12 +62,12 @@ class DatasetsResource(SyncAPIResource):
         Creates a dataset
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
           is_public: If true, then anyone can search the dataset. If false, then its limited to the
               account.
 
-          name: Used to describe the dataset within the account context
+          name: Used to describe the dataset within the account context.
 
           extra_headers: Send extra headers
 
@@ -107,7 +107,7 @@ class DatasetsResource(SyncAPIResource):
         Lists all datasets in an account
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
           extra_headers: Send extra headers
 
@@ -143,14 +143,14 @@ class DatasetsResource(SyncAPIResource):
         Updates an existing dataset
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          dataset_id: Dataset ID
+          dataset_id: Dataset ID.
 
           is_public: If true, then anyone can search the dataset. If false, then its limited to the
               account.
 
-          name: Used to describe the dataset within the account context
+          name: Used to describe the dataset within the account context.
 
           extra_headers: Send extra headers
 
@@ -193,9 +193,9 @@ class DatasetsResource(SyncAPIResource):
         Reads a dataset
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          dataset_id: Dataset ID
+          dataset_id: Dataset ID.
 
           extra_headers: Send extra headers
 
@@ -232,11 +232,11 @@ class DatasetsResource(SyncAPIResource):
         Reads data for a raw event
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          dataset_id: Dataset ID
+          dataset_id: Dataset ID.
 
-          event_id: Event ID
+          event_id: Event ID.
 
           extra_headers: Send extra headers
 
@@ -296,12 +296,12 @@ class AsyncDatasetsResource(AsyncAPIResource):
         Creates a dataset
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
           is_public: If true, then anyone can search the dataset. If false, then its limited to the
               account.
 
-          name: Used to describe the dataset within the account context
+          name: Used to describe the dataset within the account context.
 
           extra_headers: Send extra headers
 
@@ -341,7 +341,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         Lists all datasets in an account
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
           extra_headers: Send extra headers
 
@@ -377,14 +377,14 @@ class AsyncDatasetsResource(AsyncAPIResource):
         Updates an existing dataset
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          dataset_id: Dataset ID
+          dataset_id: Dataset ID.
 
           is_public: If true, then anyone can search the dataset. If false, then its limited to the
               account.
 
-          name: Used to describe the dataset within the account context
+          name: Used to describe the dataset within the account context.
 
           extra_headers: Send extra headers
 
@@ -427,9 +427,9 @@ class AsyncDatasetsResource(AsyncAPIResource):
         Reads a dataset
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          dataset_id: Dataset ID
+          dataset_id: Dataset ID.
 
           extra_headers: Send extra headers
 
@@ -466,11 +466,11 @@ class AsyncDatasetsResource(AsyncAPIResource):
         Reads data for a raw event
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          dataset_id: Dataset ID
+          dataset_id: Dataset ID.
 
-          event_id: Event ID
+          event_id: Event ID.
 
           extra_headers: Send extra headers
 

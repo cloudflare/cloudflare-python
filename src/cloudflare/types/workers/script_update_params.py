@@ -42,6 +42,7 @@ __all__ = [
     "MetadataMigrations",
     "MetadataMigrationsWorkersMultipleStepMigrations",
     "MetadataObservability",
+    "MetadataObservabilityLogs",
     "MetadataPlacement",
 ]
 
@@ -179,14 +180,14 @@ class MetadataBindingWorkersBindingKindDispatchNamespace(TypedDict, total=False)
 
 
 class MetadataBindingWorkersBindingKindDurableObjectNamespace(TypedDict, total=False):
-    class_name: Required[str]
-    """The exported class name of the Durable Object."""
-
     name: Required[str]
     """A JavaScript variable name for the binding."""
 
     type: Required[Literal["durable_object_namespace"]]
     """The kind of resource that the binding provides."""
+
+    class_name: str
+    """The exported class name of the Durable Object."""
 
     environment: str
     """The environment of the script_name to bind to."""
@@ -439,6 +440,21 @@ class MetadataMigrationsWorkersMultipleStepMigrations(TypedDict, total=False):
 MetadataMigrations: TypeAlias = Union[SingleStepMigrationParam, MetadataMigrationsWorkersMultipleStepMigrations]
 
 
+class MetadataObservabilityLogs(TypedDict, total=False):
+    enabled: Required[bool]
+    """Whether logs are enabled for the Worker."""
+
+    invocation_logs: Required[bool]
+    """
+    Whether
+    [invocation logs](https://developers.cloudflare.com/workers/observability/logs/workers-logs/#invocation-logs)
+    are enabled for the Worker.
+    """
+
+    head_sampling_rate: Optional[float]
+    """The sampling rate for logs. From 0 to 1 (1 = 100%, 0.1 = 10%). Default is 1."""
+
+
 class MetadataObservability(TypedDict, total=False):
     enabled: Required[bool]
     """Whether observability is enabled for the Worker."""
@@ -448,6 +464,9 @@ class MetadataObservability(TypedDict, total=False):
 
     From 0 to 1 (1 = 100%, 0.1 = 10%). Default is 1.
     """
+
+    logs: Optional[MetadataObservabilityLogs]
+    """Log settings for the Worker."""
 
 
 class MetadataPlacement(TypedDict, total=False):

@@ -247,7 +247,7 @@ class ApplicationsResource(SyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h.
+              s, m, h. Note: unsupported for infrastructure type applications.
 
           skip_interstitial: Enables automatic authentication through cloudflared.
 
@@ -458,7 +458,7 @@ class ApplicationsResource(SyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h.
+              s, m, h. Note: unsupported for infrastructure type applications.
 
           skip_interstitial: Enables automatic authentication through cloudflared.
 
@@ -601,7 +601,7 @@ class ApplicationsResource(SyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h.
+              s, m, h. Note: unsupported for infrastructure type applications.
 
           skip_interstitial: Enables automatic authentication through cloudflared.
 
@@ -678,7 +678,7 @@ class ApplicationsResource(SyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h.
+              s, m, h. Note: unsupported for infrastructure type applications.
 
           skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
@@ -754,7 +754,7 @@ class ApplicationsResource(SyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h.
+              s, m, h. Note: unsupported for infrastructure type applications.
 
           skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
@@ -830,7 +830,7 @@ class ApplicationsResource(SyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h.
+              s, m, h. Note: unsupported for infrastructure type applications.
 
           skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
@@ -1066,7 +1066,7 @@ class ApplicationsResource(SyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h.
+              s, m, h. Note: unsupported for infrastructure type applications.
 
           skip_interstitial: Enables automatic authentication through cloudflared.
 
@@ -1333,7 +1333,7 @@ class ApplicationsResource(SyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h.
+              s, m, h. Note: unsupported for infrastructure type applications.
 
           skip_interstitial: Enables automatic authentication through cloudflared.
 
@@ -1550,7 +1550,7 @@ class ApplicationsResource(SyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h.
+              s, m, h. Note: unsupported for infrastructure type applications.
 
           skip_interstitial: Enables automatic authentication through cloudflared.
 
@@ -1696,7 +1696,7 @@ class ApplicationsResource(SyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h.
+              s, m, h. Note: unsupported for infrastructure type applications.
 
           skip_interstitial: Enables automatic authentication through cloudflared.
 
@@ -1776,7 +1776,7 @@ class ApplicationsResource(SyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h.
+              s, m, h. Note: unsupported for infrastructure type applications.
 
           skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
@@ -1855,7 +1855,7 @@ class ApplicationsResource(SyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h.
+              s, m, h. Note: unsupported for infrastructure type applications.
 
           skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
@@ -1934,7 +1934,7 @@ class ApplicationsResource(SyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h.
+              s, m, h. Note: unsupported for infrastructure type applications.
 
           skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
@@ -2179,7 +2179,7 @@ class ApplicationsResource(SyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h.
+              s, m, h. Note: unsupported for infrastructure type applications.
 
           skip_interstitial: Enables automatic authentication through cloudflared.
 
@@ -2736,7 +2736,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h.
+              s, m, h. Note: unsupported for infrastructure type applications.
 
           skip_interstitial: Enables automatic authentication through cloudflared.
 
@@ -2947,7 +2947,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h.
+              s, m, h. Note: unsupported for infrastructure type applications.
 
           skip_interstitial: Enables automatic authentication through cloudflared.
 
@@ -3090,7 +3090,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h.
+              s, m, h. Note: unsupported for infrastructure type applications.
 
           skip_interstitial: Enables automatic authentication through cloudflared.
 
@@ -3167,7 +3167,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h.
+              s, m, h. Note: unsupported for infrastructure type applications.
 
           skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
@@ -3243,7 +3243,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h.
+              s, m, h. Note: unsupported for infrastructure type applications.
 
           skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
@@ -3319,7 +3319,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h.
+              s, m, h. Note: unsupported for infrastructure type applications.
 
           skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
@@ -3555,7 +3555,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h.
+              s, m, h. Note: unsupported for infrastructure type applications.
 
           skip_interstitial: Enables automatic authentication through cloudflared.
 
@@ -3822,7 +3822,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h.
+              s, m, h. Note: unsupported for infrastructure type applications.
 
           skip_interstitial: Enables automatic authentication through cloudflared.
 
@@ -4039,7 +4039,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h.
+              s, m, h. Note: unsupported for infrastructure type applications.
 
           skip_interstitial: Enables automatic authentication through cloudflared.
 
@@ -4185,7 +4185,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h.
+              s, m, h. Note: unsupported for infrastructure type applications.
 
           skip_interstitial: Enables automatic authentication through cloudflared.
 
@@ -4265,7 +4265,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h.
+              s, m, h. Note: unsupported for infrastructure type applications.
 
           skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
@@ -4344,7 +4344,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h.
+              s, m, h. Note: unsupported for infrastructure type applications.
 
           skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
@@ -4423,7 +4423,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h.
+              s, m, h. Note: unsupported for infrastructure type applications.
 
           skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
@@ -4668,7 +4668,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
-              s, m, h.
+              s, m, h. Note: unsupported for infrastructure type applications.
 
           skip_interstitial: Enables automatic authentication through cloudflared.
 

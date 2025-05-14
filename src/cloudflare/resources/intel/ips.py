@@ -60,10 +60,10 @@ class IPsResource(SyncAPIResource):
         """
         Gets the geolocation, ASN, infrastructure type of the ASN, and any security
         threat categories of an IP address. **Must provide ip query parameters.** For
-        example, `/intel/ip?ipv4=1.1.1.1` or `/intel/ip?ipv6=2001:db8::1`
+        example, `/intel/ip?ipv4=1.1.1.1` or `/intel/ip?ipv6=2001:db8::1`.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -131,10 +131,10 @@ class AsyncIPsResource(AsyncAPIResource):
         """
         Gets the geolocation, ASN, infrastructure type of the ASN, and any security
         threat categories of an IP address. **Must provide ip query parameters.** For
-        example, `/intel/ip?ipv4=1.1.1.1` or `/intel/ip?ipv6=2001:db8::1`
+        example, `/intel/ip?ipv4=1.1.1.1` or `/intel/ip?ipv6=2001:db8::1`.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 

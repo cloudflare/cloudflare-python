@@ -68,6 +68,7 @@ class TestDNSSEC:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             dnssec_multi_signer=False,
             dnssec_presigned=True,
+            dnssec_use_nsec3=False,
             status="active",
         )
         assert_matches_type(Optional[DNSSEC], dnssec, path=["response"])
@@ -196,6 +197,7 @@ class TestAsyncDNSSEC:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             dnssec_multi_signer=False,
             dnssec_presigned=True,
+            dnssec_use_nsec3=False,
             status="active",
         )
         assert_matches_type(Optional[DNSSEC], dnssec, path=["response"])

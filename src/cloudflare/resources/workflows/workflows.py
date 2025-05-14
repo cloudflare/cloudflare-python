@@ -127,6 +127,7 @@ class WorkflowsResource(SyncAPIResource):
         account_id: str,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
+        search: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -138,6 +139,8 @@ class WorkflowsResource(SyncAPIResource):
         List all Workflows
 
         Args:
+          search: Filter workflows by name.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -160,6 +163,7 @@ class WorkflowsResource(SyncAPIResource):
                     {
                         "page": page,
                         "per_page": per_page,
+                        "search": search,
                     },
                     workflow_list_params.WorkflowListParams,
                 ),
@@ -333,6 +337,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         account_id: str,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
+        search: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -344,6 +349,8 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         List all Workflows
 
         Args:
+          search: Filter workflows by name.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -366,6 +373,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
                     {
                         "page": page,
                         "per_page": per_page,
+                        "search": search,
                     },
                     workflow_list_params.WorkflowListParams,
                 ),

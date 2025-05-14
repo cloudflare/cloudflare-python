@@ -231,7 +231,7 @@ class ThreatEventsResource(SyncAPIResource):
         endpoint.
 
         Args:
-          path_account_id: Account ID
+          path_account_id: Account ID.
 
           extra_headers: Send extra headers
 
@@ -293,7 +293,7 @@ class ThreatEventsResource(SyncAPIResource):
         endpoint.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
           extra_headers: Send extra headers
 
@@ -345,9 +345,9 @@ class ThreatEventsResource(SyncAPIResource):
         endpoint.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          event_id: Event UUID
+          event_id: Event UUID.
 
           extra_headers: Send extra headers
 
@@ -388,7 +388,7 @@ class ThreatEventsResource(SyncAPIResource):
         endpoint.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
           extra_headers: Send extra headers
 
@@ -439,9 +439,9 @@ class ThreatEventsResource(SyncAPIResource):
         Updates an event
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          event_id: Event UUID
+          event_id: Event UUID.
 
           extra_headers: Send extra headers
 
@@ -492,9 +492,9 @@ class ThreatEventsResource(SyncAPIResource):
         Reads an event
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          event_id: Event UUID
+          event_id: Event UUID.
 
           extra_headers: Send extra headers
 
@@ -615,7 +615,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         endpoint.
 
         Args:
-          path_account_id: Account ID
+          path_account_id: Account ID.
 
           extra_headers: Send extra headers
 
@@ -677,7 +677,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         endpoint.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
           extra_headers: Send extra headers
 
@@ -729,9 +729,9 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         endpoint.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          event_id: Event UUID
+          event_id: Event UUID.
 
           extra_headers: Send extra headers
 
@@ -772,7 +772,7 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         endpoint.
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
           extra_headers: Send extra headers
 
@@ -823,9 +823,9 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         Updates an event
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          event_id: Event UUID
+          event_id: Event UUID.
 
           extra_headers: Send extra headers
 
@@ -876,9 +876,9 @@ class AsyncThreatEventsResource(AsyncAPIResource):
         Reads an event
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          event_id: Event UUID
+          event_id: Event UUID.
 
           extra_headers: Send extra headers
 

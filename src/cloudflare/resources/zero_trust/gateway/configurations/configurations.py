@@ -18,6 +18,14 @@ from ....._response import (
 )
 from ....._wrappers import ResultWrapper
 from ....._base_client import make_request_options
+from .custom_certificate import (
+    CustomCertificateResource,
+    AsyncCustomCertificateResource,
+    CustomCertificateResourceWithRawResponse,
+    AsyncCustomCertificateResourceWithRawResponse,
+    CustomCertificateResourceWithStreamingResponse,
+    AsyncCustomCertificateResourceWithStreamingResponse,
+)
 from .....types.zero_trust.gateway import (
     configuration_edit_params,
     configuration_update_params,
@@ -31,6 +39,10 @@ __all__ = ["ConfigurationsResource", "AsyncConfigurationsResource"]
 
 
 class ConfigurationsResource(SyncAPIResource):
+    @cached_property
+    def custom_certificate(self) -> CustomCertificateResource:
+        return CustomCertificateResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> ConfigurationsResourceWithRawResponse:
         """
@@ -176,6 +188,10 @@ class ConfigurationsResource(SyncAPIResource):
 
 
 class AsyncConfigurationsResource(AsyncAPIResource):
+    @cached_property
+    def custom_certificate(self) -> AsyncCustomCertificateResource:
+        return AsyncCustomCertificateResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AsyncConfigurationsResourceWithRawResponse:
         """
@@ -336,6 +352,10 @@ class ConfigurationsResourceWithRawResponse:
             configurations.get,
         )
 
+    @cached_property
+    def custom_certificate(self) -> CustomCertificateResourceWithRawResponse:
+        return CustomCertificateResourceWithRawResponse(self._configurations.custom_certificate)
+
 
 class AsyncConfigurationsResourceWithRawResponse:
     def __init__(self, configurations: AsyncConfigurationsResource) -> None:
@@ -350,6 +370,10 @@ class AsyncConfigurationsResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             configurations.get,
         )
+
+    @cached_property
+    def custom_certificate(self) -> AsyncCustomCertificateResourceWithRawResponse:
+        return AsyncCustomCertificateResourceWithRawResponse(self._configurations.custom_certificate)
 
 
 class ConfigurationsResourceWithStreamingResponse:
@@ -366,6 +390,10 @@ class ConfigurationsResourceWithStreamingResponse:
             configurations.get,
         )
 
+    @cached_property
+    def custom_certificate(self) -> CustomCertificateResourceWithStreamingResponse:
+        return CustomCertificateResourceWithStreamingResponse(self._configurations.custom_certificate)
+
 
 class AsyncConfigurationsResourceWithStreamingResponse:
     def __init__(self, configurations: AsyncConfigurationsResource) -> None:
@@ -380,3 +408,7 @@ class AsyncConfigurationsResourceWithStreamingResponse:
         self.get = async_to_streamed_response_wrapper(
             configurations.get,
         )
+
+    @cached_property
+    def custom_certificate(self) -> AsyncCustomCertificateResourceWithStreamingResponse:
+        return AsyncCustomCertificateResourceWithStreamingResponse(self._configurations.custom_certificate)

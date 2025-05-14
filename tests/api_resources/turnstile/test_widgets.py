@@ -113,6 +113,7 @@ class TestWidgets:
             clearance_level="interactive",
             ephemeral_id=False,
             offlabel=False,
+            region="world",
         )
         assert_matches_type(Optional[Widget], widget, path=["response"])
 
@@ -466,6 +467,7 @@ class TestAsyncWidgets:
             clearance_level="interactive",
             ephemeral_id=False,
             offlabel=False,
+            region="world",
         )
         assert_matches_type(Optional[Widget], widget, path=["response"])
 

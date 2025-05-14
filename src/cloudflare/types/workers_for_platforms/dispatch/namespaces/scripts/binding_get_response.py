@@ -117,14 +117,14 @@ class WorkersBindingKindDispatchNamespace(BaseModel):
 
 
 class WorkersBindingKindDurableObjectNamespace(BaseModel):
-    class_name: str
-    """The exported class name of the Durable Object."""
-
     name: str
     """A JavaScript variable name for the binding."""
 
     type: Literal["durable_object_namespace"]
     """The kind of resource that the binding provides."""
+
+    class_name: Optional[str] = None
+    """The exported class name of the Durable Object."""
 
     environment: Optional[str] = None
     """The environment of the script_name to bind to."""

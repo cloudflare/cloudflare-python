@@ -277,7 +277,7 @@ class SelfHostedApplication(TypedDict, total=False):
     """The amount of time that tokens issued for this application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h.
+    ms, s, m, h. Note: unsupported for infrastructure type applications.
     """
 
     skip_interstitial: bool
@@ -825,7 +825,7 @@ class BrowserSSHApplication(TypedDict, total=False):
     """The amount of time that tokens issued for this application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h.
+    ms, s, m, h. Note: unsupported for infrastructure type applications.
     """
 
     skip_interstitial: bool
@@ -1172,7 +1172,7 @@ class BrowserVNCApplication(TypedDict, total=False):
     """The amount of time that tokens issued for this application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h.
+    ms, s, m, h. Note: unsupported for infrastructure type applications.
     """
 
     skip_interstitial: bool
@@ -1425,7 +1425,7 @@ class AppLauncherApplication(TypedDict, total=False):
     """The amount of time that tokens issued for this application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h.
+    ms, s, m, h. Note: unsupported for infrastructure type applications.
     """
 
     skip_app_launcher_login_page: bool
@@ -1656,7 +1656,7 @@ class DeviceEnrollmentPermissionsApplication(TypedDict, total=False):
     """The amount of time that tokens issued for this application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h.
+    ms, s, m, h. Note: unsupported for infrastructure type applications.
     """
 
     skip_app_launcher_login_page: bool
@@ -1889,7 +1889,7 @@ class BrowserIsolationPermissionsApplication(TypedDict, total=False):
     """The amount of time that tokens issued for this application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h.
+    ms, s, m, h. Note: unsupported for infrastructure type applications.
     """
 
     skip_app_launcher_login_page: bool
@@ -2424,7 +2424,7 @@ class BrowserRdpApplication(TypedDict, total=False):
     """The amount of time that tokens issued for this application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h.
+    ms, s, m, h. Note: unsupported for infrastructure type applications.
     """
 
     skip_interstitial: bool

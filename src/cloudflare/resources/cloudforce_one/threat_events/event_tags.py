@@ -62,9 +62,9 @@ class EventTagsResource(SyncAPIResource):
         Adds a tag to an event
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          event_id: Event UUID
+          event_id: Event UUID.
 
           extra_headers: Send extra headers
 
@@ -105,9 +105,9 @@ class EventTagsResource(SyncAPIResource):
         Removes a tag from an event
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          event_id: Event UUID
+          event_id: Event UUID.
 
           extra_headers: Send extra headers
 
@@ -169,9 +169,9 @@ class AsyncEventTagsResource(AsyncAPIResource):
         Adds a tag to an event
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          event_id: Event UUID
+          event_id: Event UUID.
 
           extra_headers: Send extra headers
 
@@ -212,9 +212,9 @@ class AsyncEventTagsResource(AsyncAPIResource):
         Removes a tag from an event
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          event_id: Event UUID
+          event_id: Event UUID.
 
           extra_headers: Send extra headers
 

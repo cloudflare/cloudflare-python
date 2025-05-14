@@ -8,12 +8,12 @@ from ..._models import BaseModel
 __all__ = [
     "ScrapeCreateResponse",
     "ScrapeCreateResponseItem",
-    "ScrapeCreateResponseItemResult",
-    "ScrapeCreateResponseItemResultAttribute",
+    "ScrapeCreateResponseItemResults",
+    "ScrapeCreateResponseItemResultsAttribute",
 ]
 
 
-class ScrapeCreateResponseItemResultAttribute(BaseModel):
+class ScrapeCreateResponseItemResultsAttribute(BaseModel):
     name: str
     """Attribute name"""
 
@@ -21,8 +21,8 @@ class ScrapeCreateResponseItemResultAttribute(BaseModel):
     """Attribute value"""
 
 
-class ScrapeCreateResponseItemResult(BaseModel):
-    attributes: List[ScrapeCreateResponseItemResultAttribute]
+class ScrapeCreateResponseItemResults(BaseModel):
+    attributes: List[ScrapeCreateResponseItemResultsAttribute]
 
     height: float
     """Element height"""
@@ -44,7 +44,7 @@ class ScrapeCreateResponseItemResult(BaseModel):
 
 
 class ScrapeCreateResponseItem(BaseModel):
-    result: ScrapeCreateResponseItemResult
+    results: ScrapeCreateResponseItemResults
 
     selector: str
     """Selector"""

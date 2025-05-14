@@ -61,7 +61,7 @@ class DomainHistoryResource(SyncAPIResource):
         assigned to a domain.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -124,7 +124,7 @@ class AsyncDomainHistoryResource(AsyncAPIResource):
         assigned to a domain.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 

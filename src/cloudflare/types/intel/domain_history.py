@@ -5,11 +5,17 @@ from datetime import date
 
 from ..._models import BaseModel
 
-__all__ = ["DomainHistory", "Categorization"]
+__all__ = ["DomainHistory", "Categorization", "CategorizationCategory"]
+
+
+class CategorizationCategory(BaseModel):
+    id: Optional[int] = None
+
+    name: Optional[str] = None
 
 
 class Categorization(BaseModel):
-    categories: Optional[List[object]] = None
+    categories: Optional[List[CategorizationCategory]] = None
 
     end: Optional[date] = None
 

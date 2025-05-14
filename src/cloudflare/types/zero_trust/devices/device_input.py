@@ -46,7 +46,7 @@ class TeamsDevicesCarbonblackInputRequest(BaseModel):
 
 class TeamsDevicesAccessSerialNumberListInputRequest(BaseModel):
     id: str
-    """UUID of Access List"""
+    """UUID of Access List."""
 
 
 class TeamsDevicesApplicationInputRequest(BaseModel):

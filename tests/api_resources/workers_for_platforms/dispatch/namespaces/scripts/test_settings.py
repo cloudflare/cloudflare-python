@@ -72,6 +72,11 @@ class TestSettings:
                 "observability": {
                     "enabled": True,
                     "head_sampling_rate": 0.1,
+                    "logs": {
+                        "enabled": True,
+                        "invocation_logs": True,
+                        "head_sampling_rate": 0.1,
+                    },
                 },
                 "placement": {"mode": "smart"},
                 "tags": ["my-tag"],
@@ -257,6 +262,11 @@ class TestAsyncSettings:
                 "observability": {
                     "enabled": True,
                     "head_sampling_rate": 0.1,
+                    "logs": {
+                        "enabled": True,
+                        "invocation_logs": True,
+                        "head_sampling_rate": 0.1,
+                    },
                 },
                 "placement": {"mode": "smart"},
                 "tags": ["my-tag"],

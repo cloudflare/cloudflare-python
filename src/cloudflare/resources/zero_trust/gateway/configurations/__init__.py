@@ -8,8 +8,22 @@ from .configurations import (
     ConfigurationsResourceWithStreamingResponse,
     AsyncConfigurationsResourceWithStreamingResponse,
 )
+from .custom_certificate import (
+    CustomCertificateResource,
+    AsyncCustomCertificateResource,
+    CustomCertificateResourceWithRawResponse,
+    AsyncCustomCertificateResourceWithRawResponse,
+    CustomCertificateResourceWithStreamingResponse,
+    AsyncCustomCertificateResourceWithStreamingResponse,
+)
 
 __all__ = [
+    "CustomCertificateResource",
+    "AsyncCustomCertificateResource",
+    "CustomCertificateResourceWithRawResponse",
+    "AsyncCustomCertificateResourceWithRawResponse",
+    "CustomCertificateResourceWithStreamingResponse",
+    "AsyncCustomCertificateResourceWithStreamingResponse",
     "ConfigurationsResource",
     "AsyncConfigurationsResource",
     "ConfigurationsResourceWithRawResponse",

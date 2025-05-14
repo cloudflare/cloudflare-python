@@ -11,7 +11,7 @@ __all__ = ["DatasetCreateParams"]
 
 class DatasetCreateParams(TypedDict, total=False):
     account_id: Required[float]
-    """Account ID"""
+    """Account ID."""
 
     is_public: Required[Annotated[bool, PropertyInfo(alias="isPublic")]]
     """If true, then anyone can search the dataset.
@@ -20,4 +20,4 @@ class DatasetCreateParams(TypedDict, total=False):
     """
 
     name: Required[str]
-    """Used to describe the dataset within the account context"""
+    """Used to describe the dataset within the account context."""

@@ -2105,7 +2105,7 @@ class SkipRuleActionParameters(TypedDict, total=False):
     phases: List[Phase]
     """A list of phases to skip the execution of.
 
-    This option is incompatible with the rulesets options.
+    This option is incompatible with the rulesets option.
     """
 
     products: List[Literal["bic", "hot", "rateLimit", "securityLevel", "uaBlock", "waf", "zoneLockdown"]]
@@ -2120,8 +2120,7 @@ class SkipRuleActionParameters(TypedDict, total=False):
     ruleset: Literal["current"]
     """A ruleset to skip the execution of.
 
-    This option is incompatible with the rulesets, rules. It can be incompatible
-    with phases options base on the phase of the ruleset.
+    This option is incompatible with the rulesets option.
     """
 
     rulesets: List[str]

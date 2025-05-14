@@ -63,7 +63,7 @@ class DNSResource(SyncAPIResource):
         Gets a list of all the domains that have resolved to a specific IP address.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           page: Requested page within paginated list of results.
 
@@ -140,7 +140,7 @@ class AsyncDNSResource(AsyncAPIResource):
         Gets a list of all the domains that have resolved to a specific IP address.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           page: Requested page within paginated list of results.
 

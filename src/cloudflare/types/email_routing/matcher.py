@@ -9,7 +9,7 @@ __all__ = ["Matcher"]
 
 
 class Matcher(BaseModel):
-    type: Literal["literal"]
+    type: Literal["all", "literal"]
     """Type of matcher."""
 
     field: Optional[Literal["to"]] = None

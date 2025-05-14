@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Optional
 from typing_extensions import Literal, Required, TypedDict
 
 from .tls_settings_param import TLSSettingsParam
@@ -42,28 +41,28 @@ class Sandbox(TypedDict, total=False):
 
 
 class GatewayConfigurationSettingsParam(TypedDict, total=False):
-    activity_log: Optional[ActivityLogSettingsParam]
+    activity_log: ActivityLogSettingsParam
     """Activity log settings."""
 
     antivirus: AntiVirusSettingsParam
     """Anti-virus settings."""
 
-    block_page: Optional[BlockPageSettingsParam]
+    block_page: BlockPageSettingsParam
     """Block page layout settings."""
 
-    body_scanning: Optional[BodyScanningSettingsParam]
+    body_scanning: BodyScanningSettingsParam
     """DLP body scanning settings."""
 
-    browser_isolation: Optional[BrowserIsolationSettingsParam]
+    browser_isolation: BrowserIsolationSettingsParam
     """Browser isolation settings."""
 
-    certificate: Optional[Certificate]
+    certificate: Certificate
     """Certificate settings for Gateway TLS interception.
 
     If not specified, the Cloudflare Root CA will be used.
     """
 
-    custom_certificate: Optional[CustomCertificateSettingsParam]
+    custom_certificate: CustomCertificateSettingsParam
     """Custom certificate settings for BYO-PKI.
 
     (deprecated and replaced by `certificate`)
@@ -72,17 +71,17 @@ class GatewayConfigurationSettingsParam(TypedDict, total=False):
     extended_email_matching: ExtendedEmailMatchingParam
     """Extended e-mail matching settings."""
 
-    fips: Optional[FipsSettingsParam]
+    fips: FipsSettingsParam
     """FIPS settings."""
 
-    host_selector: Optional[HostSelector]
+    host_selector: HostSelector
     """Setting to enable host selector in egress policies."""
 
-    protocol_detection: Optional[ProtocolDetectionParam]
+    protocol_detection: ProtocolDetectionParam
     """Protocol Detection settings."""
 
-    sandbox: Optional[Sandbox]
+    sandbox: Sandbox
     """Sandbox settings."""
 
-    tls_decrypt: Optional[TLSSettingsParam]
+    tls_decrypt: TLSSettingsParam
     """TLS interception settings."""

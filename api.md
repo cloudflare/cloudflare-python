@@ -2563,13 +2563,13 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.kv import Namespace, NamespaceUpdateResponse, NamespaceDeleteResponse
+from cloudflare.types.kv import Namespace, NamespaceDeleteResponse
 ```
 
 Methods:
 
 - <code title="post /accounts/{account_id}/storage/kv/namespaces">client.kv.namespaces.<a href="./src/cloudflare/resources/kv/namespaces/namespaces.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/kv/namespace_create_params.py">params</a>) -> <a href="./src/cloudflare/types/kv/namespace.py">Optional[Namespace]</a></code>
-- <code title="put /accounts/{account_id}/storage/kv/namespaces/{namespace_id}">client.kv.namespaces.<a href="./src/cloudflare/resources/kv/namespaces/namespaces.py">update</a>(namespace_id, \*, account_id, \*\*<a href="src/cloudflare/types/kv/namespace_update_params.py">params</a>) -> <a href="./src/cloudflare/types/kv/namespace_update_response.py">Optional[NamespaceUpdateResponse]</a></code>
+- <code title="put /accounts/{account_id}/storage/kv/namespaces/{namespace_id}">client.kv.namespaces.<a href="./src/cloudflare/resources/kv/namespaces/namespaces.py">update</a>(namespace_id, \*, account_id, \*\*<a href="src/cloudflare/types/kv/namespace_update_params.py">params</a>) -> <a href="./src/cloudflare/types/kv/namespace.py">Namespace</a></code>
 - <code title="get /accounts/{account_id}/storage/kv/namespaces">client.kv.namespaces.<a href="./src/cloudflare/resources/kv/namespaces/namespaces.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/kv/namespace_list_params.py">params</a>) -> <a href="./src/cloudflare/types/kv/namespace.py">SyncV4PagePaginationArray[Namespace]</a></code>
 - <code title="delete /accounts/{account_id}/storage/kv/namespaces/{namespace_id}">client.kv.namespaces.<a href="./src/cloudflare/resources/kv/namespaces/namespaces.py">delete</a>(namespace_id, \*, account_id) -> <a href="./src/cloudflare/types/kv/namespace_delete_response.py">Optional[NamespaceDeleteResponse]</a></code>
 - <code title="get /accounts/{account_id}/storage/kv/namespaces/{namespace_id}">client.kv.namespaces.<a href="./src/cloudflare/resources/kv/namespaces/namespaces.py">get</a>(namespace_id, \*, account_id) -> <a href="./src/cloudflare/types/kv/namespace.py">Optional[Namespace]</a></code>
@@ -5285,8 +5285,24 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.devices import SchemaData, SchemaHTTP
+from cloudflare.types.zero_trust.devices import (
+    SchemaData,
+    SchemaHTTP,
+    DEXTestCreateResponse,
+    DEXTestUpdateResponse,
+    DEXTestListResponse,
+    DEXTestDeleteResponse,
+    DEXTestGetResponse,
+)
 ```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/devices/dex_tests">client.zero_trust.devices.dex_tests.<a href="./src/cloudflare/resources/zero_trust/devices/dex_tests.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/dex_test_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/dex_test_create_response.py">Optional[DEXTestCreateResponse]</a></code>
+- <code title="put /accounts/{account_id}/devices/dex_tests/{dex_test_id}">client.zero_trust.devices.dex_tests.<a href="./src/cloudflare/resources/zero_trust/devices/dex_tests.py">update</a>(dex_test_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/devices/dex_test_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/devices/dex_test_update_response.py">Optional[DEXTestUpdateResponse]</a></code>
+- <code title="get /accounts/{account_id}/devices/dex_tests">client.zero_trust.devices.dex_tests.<a href="./src/cloudflare/resources/zero_trust/devices/dex_tests.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/dex_test_list_response.py">SyncSinglePage[DEXTestListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/devices/dex_tests/{dex_test_id}">client.zero_trust.devices.dex_tests.<a href="./src/cloudflare/resources/zero_trust/devices/dex_tests.py">delete</a>(dex_test_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/dex_test_delete_response.py">Optional[DEXTestDeleteResponse]</a></code>
+- <code title="get /accounts/{account_id}/devices/dex_tests/{dex_test_id}">client.zero_trust.devices.dex_tests.<a href="./src/cloudflare/resources/zero_trust/devices/dex_tests.py">get</a>(dex_test_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/devices/dex_test_get_response.py">Optional[DEXTestGetResponse]</a></code>
 
 ### Networks
 
@@ -6637,6 +6653,12 @@ Methods:
 - <code title="put /accounts/{account_id}/gateway/configuration">client.zero_trust.gateway.configurations.<a href="./src/cloudflare/resources/zero_trust/gateway/configurations/configurations.py">update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/gateway/configuration_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/gateway/configuration_update_response.py">Optional[ConfigurationUpdateResponse]</a></code>
 - <code title="patch /accounts/{account_id}/gateway/configuration">client.zero_trust.gateway.configurations.<a href="./src/cloudflare/resources/zero_trust/gateway/configurations/configurations.py">edit</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/gateway/configuration_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/gateway/configuration_edit_response.py">Optional[ConfigurationEditResponse]</a></code>
 - <code title="get /accounts/{account_id}/gateway/configuration">client.zero_trust.gateway.configurations.<a href="./src/cloudflare/resources/zero_trust/gateway/configurations/configurations.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/gateway/configuration_get_response.py">Optional[ConfigurationGetResponse]</a></code>
+
+#### CustomCertificate
+
+Methods:
+
+- <code title="get /accounts/{account_id}/gateway/configuration/custom_certificate">client.zero_trust.gateway.configurations.custom_certificate.<a href="./src/cloudflare/resources/zero_trust/gateway/configurations/custom_certificate.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/gateway/custom_certificate_settings.py">CustomCertificateSettings</a></code>
 
 ### Lists
 

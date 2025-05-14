@@ -64,7 +64,7 @@ class ConfigsResource(SyncAPIResource):
         Creates and returns a new Hyperdrive configuration.
 
         Args:
-          account_id: Identifier
+          account_id: Define configurations using a unique string identifier.
 
           extra_headers: Send extra headers
 
@@ -117,9 +117,9 @@ class ConfigsResource(SyncAPIResource):
         Updates and returns the specified Hyperdrive configuration.
 
         Args:
-          account_id: Identifier
+          account_id: Define configurations using a unique string identifier.
 
-          hyperdrive_id: Identifier
+          hyperdrive_id: Define configurations using a unique string identifier.
 
           extra_headers: Send extra headers
 
@@ -166,10 +166,10 @@ class ConfigsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncSinglePage[Hyperdrive]:
         """
-        Returns a list of Hyperdrives
+        Returns a list of Hyperdrives.
 
         Args:
-          account_id: Identifier
+          account_id: Define configurations using a unique string identifier.
 
           extra_headers: Send extra headers
 
@@ -206,9 +206,9 @@ class ConfigsResource(SyncAPIResource):
         Deletes the specified Hyperdrive.
 
         Args:
-          account_id: Identifier
+          account_id: Define configurations using a unique string identifier.
 
-          hyperdrive_id: Identifier
+          hyperdrive_id: Define configurations using a unique string identifier.
 
           extra_headers: Send extra headers
 
@@ -256,9 +256,9 @@ class ConfigsResource(SyncAPIResource):
         settings are not kept if caching is disabled.
 
         Args:
-          account_id: Identifier
+          account_id: Define configurations using a unique string identifier.
 
-          hyperdrive_id: Identifier
+          hyperdrive_id: Define configurations using a unique string identifier.
 
           extra_headers: Send extra headers
 
@@ -309,9 +309,9 @@ class ConfigsResource(SyncAPIResource):
         Returns the specified Hyperdrive configuration.
 
         Args:
-          account_id: Identifier
+          account_id: Define configurations using a unique string identifier.
 
-          hyperdrive_id: Identifier
+          hyperdrive_id: Define configurations using a unique string identifier.
 
           extra_headers: Send extra headers
 
@@ -377,7 +377,7 @@ class AsyncConfigsResource(AsyncAPIResource):
         Creates and returns a new Hyperdrive configuration.
 
         Args:
-          account_id: Identifier
+          account_id: Define configurations using a unique string identifier.
 
           extra_headers: Send extra headers
 
@@ -430,9 +430,9 @@ class AsyncConfigsResource(AsyncAPIResource):
         Updates and returns the specified Hyperdrive configuration.
 
         Args:
-          account_id: Identifier
+          account_id: Define configurations using a unique string identifier.
 
-          hyperdrive_id: Identifier
+          hyperdrive_id: Define configurations using a unique string identifier.
 
           extra_headers: Send extra headers
 
@@ -479,10 +479,10 @@ class AsyncConfigsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[Hyperdrive, AsyncSinglePage[Hyperdrive]]:
         """
-        Returns a list of Hyperdrives
+        Returns a list of Hyperdrives.
 
         Args:
-          account_id: Identifier
+          account_id: Define configurations using a unique string identifier.
 
           extra_headers: Send extra headers
 
@@ -519,9 +519,9 @@ class AsyncConfigsResource(AsyncAPIResource):
         Deletes the specified Hyperdrive.
 
         Args:
-          account_id: Identifier
+          account_id: Define configurations using a unique string identifier.
 
-          hyperdrive_id: Identifier
+          hyperdrive_id: Define configurations using a unique string identifier.
 
           extra_headers: Send extra headers
 
@@ -569,9 +569,9 @@ class AsyncConfigsResource(AsyncAPIResource):
         settings are not kept if caching is disabled.
 
         Args:
-          account_id: Identifier
+          account_id: Define configurations using a unique string identifier.
 
-          hyperdrive_id: Identifier
+          hyperdrive_id: Define configurations using a unique string identifier.
 
           extra_headers: Send extra headers
 
@@ -622,9 +622,9 @@ class AsyncConfigsResource(AsyncAPIResource):
         Returns the specified Hyperdrive configuration.
 
         Args:
-          account_id: Identifier
+          account_id: Define configurations using a unique string identifier.
 
-          hyperdrive_id: Identifier
+          hyperdrive_id: Define configurations using a unique string identifier.
 
           extra_headers: Send extra headers
 

@@ -64,9 +64,9 @@ class InsightsResource(SyncAPIResource):
         Adds an insight to an event
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          event_id: Event UUID
+          event_id: Event UUID.
 
           extra_headers: Send extra headers
 
@@ -108,11 +108,11 @@ class InsightsResource(SyncAPIResource):
         Deletes an event insight
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          event_id: Event UUID
+          event_id: Event UUID.
 
-          insight_id: Insight UUID
+          insight_id: Insight UUID.
 
           extra_headers: Send extra headers
 
@@ -156,11 +156,11 @@ class InsightsResource(SyncAPIResource):
         Updates an event insight
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          event_id: Event UUID
+          event_id: Event UUID.
 
-          insight_id: Insight UUID
+          insight_id: Insight UUID.
 
           extra_headers: Send extra headers
 
@@ -204,11 +204,11 @@ class InsightsResource(SyncAPIResource):
         Reads an event insight
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          event_id: Event UUID
+          event_id: Event UUID.
 
-          insight_id: Insight UUID
+          insight_id: Insight UUID.
 
           extra_headers: Send extra headers
 
@@ -272,9 +272,9 @@ class AsyncInsightsResource(AsyncAPIResource):
         Adds an insight to an event
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          event_id: Event UUID
+          event_id: Event UUID.
 
           extra_headers: Send extra headers
 
@@ -316,11 +316,11 @@ class AsyncInsightsResource(AsyncAPIResource):
         Deletes an event insight
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          event_id: Event UUID
+          event_id: Event UUID.
 
-          insight_id: Insight UUID
+          insight_id: Insight UUID.
 
           extra_headers: Send extra headers
 
@@ -364,11 +364,11 @@ class AsyncInsightsResource(AsyncAPIResource):
         Updates an event insight
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          event_id: Event UUID
+          event_id: Event UUID.
 
-          insight_id: Insight UUID
+          insight_id: Insight UUID.
 
           extra_headers: Send extra headers
 
@@ -412,11 +412,11 @@ class AsyncInsightsResource(AsyncAPIResource):
         Reads an event insight
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          event_id: Event UUID
+          event_id: Event UUID.
 
-          insight_id: Insight UUID
+          insight_id: Insight UUID.
 
           extra_headers: Send extra headers
 

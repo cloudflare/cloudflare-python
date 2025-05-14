@@ -68,7 +68,7 @@ class WidgetsResource(SyncAPIResource):
         clearance_level: Literal["no_clearance", "jschallenge", "managed", "interactive"] | NotGiven = NOT_GIVEN,
         ephemeral_id: bool | NotGiven = NOT_GIVEN,
         offlabel: bool | NotGiven = NOT_GIVEN,
-        region: Literal["world"] | NotGiven = NOT_GIVEN,
+        region: Literal["world", "china"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -106,7 +106,7 @@ class WidgetsResource(SyncAPIResource):
 
           offlabel: Do not show any Cloudflare branding on the widget (ENT only).
 
-          region: Region where this widget can be used.
+          region: Region where this widget can be used. This cannot be changed after creation.
 
           extra_headers: Send extra headers
 
@@ -164,6 +164,7 @@ class WidgetsResource(SyncAPIResource):
         clearance_level: Literal["no_clearance", "jschallenge", "managed", "interactive"] | NotGiven = NOT_GIVEN,
         ephemeral_id: bool | NotGiven = NOT_GIVEN,
         offlabel: bool | NotGiven = NOT_GIVEN,
+        region: Literal["world", "china"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -195,6 +196,8 @@ class WidgetsResource(SyncAPIResource):
 
           offlabel: Do not show any Cloudflare branding on the widget (ENT only).
 
+          region: Region where this widget can be used. This cannot be changed after creation.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -218,6 +221,7 @@ class WidgetsResource(SyncAPIResource):
                     "clearance_level": clearance_level,
                     "ephemeral_id": ephemeral_id,
                     "offlabel": offlabel,
+                    "region": region,
                 },
                 widget_update_params.WidgetUpdateParams,
             ),
@@ -471,7 +475,7 @@ class AsyncWidgetsResource(AsyncAPIResource):
         clearance_level: Literal["no_clearance", "jschallenge", "managed", "interactive"] | NotGiven = NOT_GIVEN,
         ephemeral_id: bool | NotGiven = NOT_GIVEN,
         offlabel: bool | NotGiven = NOT_GIVEN,
-        region: Literal["world"] | NotGiven = NOT_GIVEN,
+        region: Literal["world", "china"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -509,7 +513,7 @@ class AsyncWidgetsResource(AsyncAPIResource):
 
           offlabel: Do not show any Cloudflare branding on the widget (ENT only).
 
-          region: Region where this widget can be used.
+          region: Region where this widget can be used. This cannot be changed after creation.
 
           extra_headers: Send extra headers
 
@@ -567,6 +571,7 @@ class AsyncWidgetsResource(AsyncAPIResource):
         clearance_level: Literal["no_clearance", "jschallenge", "managed", "interactive"] | NotGiven = NOT_GIVEN,
         ephemeral_id: bool | NotGiven = NOT_GIVEN,
         offlabel: bool | NotGiven = NOT_GIVEN,
+        region: Literal["world", "china"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -598,6 +603,8 @@ class AsyncWidgetsResource(AsyncAPIResource):
 
           offlabel: Do not show any Cloudflare branding on the widget (ENT only).
 
+          region: Region where this widget can be used. This cannot be changed after creation.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -621,6 +628,7 @@ class AsyncWidgetsResource(AsyncAPIResource):
                     "clearance_level": clearance_level,
                     "ephemeral_id": ephemeral_id,
                     "offlabel": offlabel,
+                    "region": region,
                 },
                 widget_update_params.WidgetUpdateParams,
             ),

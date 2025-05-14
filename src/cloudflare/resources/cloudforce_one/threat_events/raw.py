@@ -62,11 +62,11 @@ class RawResource(SyncAPIResource):
         Updates a raw event
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          event_id: Event UUID
+          event_id: Event UUID.
 
-          raw_id: Raw Event UUID
+          raw_id: Raw Event UUID.
 
           extra_headers: Send extra headers
 
@@ -113,11 +113,11 @@ class RawResource(SyncAPIResource):
         Reads data for a raw event
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          event_id: Event UUID
+          event_id: Event UUID.
 
-          raw_id: Raw Event UUID
+          raw_id: Raw Event UUID.
 
           extra_headers: Send extra headers
 
@@ -180,11 +180,11 @@ class AsyncRawResource(AsyncAPIResource):
         Updates a raw event
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          event_id: Event UUID
+          event_id: Event UUID.
 
-          raw_id: Raw Event UUID
+          raw_id: Raw Event UUID.
 
           extra_headers: Send extra headers
 
@@ -231,11 +231,11 @@ class AsyncRawResource(AsyncAPIResource):
         Reads data for a raw event
 
         Args:
-          account_id: Account ID
+          account_id: Account ID.
 
-          event_id: Event UUID
+          event_id: Event UUID.
 
-          raw_id: Raw Event UUID
+          raw_id: Raw Event UUID.
 
           extra_headers: Send extra headers
 

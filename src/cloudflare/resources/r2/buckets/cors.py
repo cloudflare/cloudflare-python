@@ -67,7 +67,7 @@ class CORSResource(SyncAPIResource):
 
           bucket_name: Name of the bucket.
 
-          jurisdiction: The bucket jurisdiction.
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 
@@ -119,7 +119,7 @@ class CORSResource(SyncAPIResource):
 
           bucket_name: Name of the bucket.
 
-          jurisdiction: The bucket jurisdiction.
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 
@@ -170,7 +170,7 @@ class CORSResource(SyncAPIResource):
 
           bucket_name: Name of the bucket.
 
-          jurisdiction: The bucket jurisdiction.
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 
@@ -243,7 +243,7 @@ class AsyncCORSResource(AsyncAPIResource):
 
           bucket_name: Name of the bucket.
 
-          jurisdiction: The bucket jurisdiction.
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 
@@ -295,7 +295,7 @@ class AsyncCORSResource(AsyncAPIResource):
 
           bucket_name: Name of the bucket.
 
-          jurisdiction: The bucket jurisdiction.
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 
@@ -346,7 +346,7 @@ class AsyncCORSResource(AsyncAPIResource):
 
           bucket_name: Name of the bucket.
 
-          jurisdiction: The bucket jurisdiction.
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 

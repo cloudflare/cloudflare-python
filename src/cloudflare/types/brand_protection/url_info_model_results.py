@@ -14,4 +14,4 @@ class URLInfoModelResults(BaseModel):
     """Name of the model."""
 
     ai_model_score: Optional[float] = FieldInfo(alias="model_score", default=None)
-    """Score output by the model for this submission."""
+    """This is the score that is outputted by the model for this submission."""

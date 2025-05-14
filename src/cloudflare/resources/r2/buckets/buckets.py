@@ -157,7 +157,7 @@ class BucketsResource(SyncAPIResource):
 
           storage_class: Storage class for newly uploaded objects, unless specified otherwise.
 
-          jurisdiction: Creates the bucket in the provided jurisdiction.
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 
@@ -231,7 +231,7 @@ class BucketsResource(SyncAPIResource):
 
           start_after: Bucket name to start searching after. Buckets are ordered lexicographically.
 
-          jurisdiction: Lists buckets in the provided jurisdiction.
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 
@@ -291,7 +291,7 @@ class BucketsResource(SyncAPIResource):
 
           bucket_name: Name of the bucket.
 
-          jurisdiction: The bucket jurisdiction.
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 
@@ -345,7 +345,7 @@ class BucketsResource(SyncAPIResource):
 
           storage_class: Storage class for newly uploaded objects, unless specified otherwise.
 
-          jurisdiction: The bucket jurisdiction.
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 
@@ -401,7 +401,7 @@ class BucketsResource(SyncAPIResource):
 
           bucket_name: Name of the bucket.
 
-          jurisdiction: The bucket jurisdiction.
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 
@@ -507,7 +507,7 @@ class AsyncBucketsResource(AsyncAPIResource):
 
           storage_class: Storage class for newly uploaded objects, unless specified otherwise.
 
-          jurisdiction: Creates the bucket in the provided jurisdiction.
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 
@@ -581,7 +581,7 @@ class AsyncBucketsResource(AsyncAPIResource):
 
           start_after: Bucket name to start searching after. Buckets are ordered lexicographically.
 
-          jurisdiction: Lists buckets in the provided jurisdiction.
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 
@@ -641,7 +641,7 @@ class AsyncBucketsResource(AsyncAPIResource):
 
           bucket_name: Name of the bucket.
 
-          jurisdiction: The bucket jurisdiction.
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 
@@ -695,7 +695,7 @@ class AsyncBucketsResource(AsyncAPIResource):
 
           storage_class: Storage class for newly uploaded objects, unless specified otherwise.
 
-          jurisdiction: The bucket jurisdiction.
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 
@@ -751,7 +751,7 @@ class AsyncBucketsResource(AsyncAPIResource):
 
           bucket_name: Name of the bucket.
 
-          jurisdiction: The bucket jurisdiction.
+          jurisdiction: Jurisdiction where objects in this bucket are guaranteed to be stored.
 
           extra_headers: Send extra headers
 

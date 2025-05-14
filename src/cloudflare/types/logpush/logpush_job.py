@@ -58,7 +58,7 @@ class LogpushJob(BaseModel):
     enabled: Optional[bool] = None
     """Flag that indicates if the job is enabled."""
 
-    error_message: Optional[datetime] = None
+    error_message: Optional[str] = None
     """If not null, the job is currently failing.
 
     Failures are usually repetitive (example: no permissions to write to destination

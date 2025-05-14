@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
+from typing import Dict, List, Union, Iterable, Optional
 from datetime import datetime
 from typing_extensions import Required, Annotated, TypedDict
 
@@ -13,7 +13,7 @@ __all__ = ["ThreatEventBulkCreateParams", "Data", "DataRaw"]
 
 class ThreatEventBulkCreateParams(TypedDict, total=False):
     account_id: Required[float]
-    """Account ID"""
+    """Account ID."""
 
     data: Required[Iterable[Data]]
 
@@ -21,7 +21,7 @@ class ThreatEventBulkCreateParams(TypedDict, total=False):
 
 
 class DataRaw(TypedDict, total=False):
-    data: object
+    data: Required[Optional[Dict[str, object]]]
 
     source: str
 

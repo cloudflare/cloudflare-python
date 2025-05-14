@@ -72,7 +72,7 @@ class DomainsResource(SyncAPIResource):
         Gets security details and statistics about a domain.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -138,7 +138,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         Gets security details and statistics about a domain.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
           extra_headers: Send extra headers
 

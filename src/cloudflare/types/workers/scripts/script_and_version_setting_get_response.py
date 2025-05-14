@@ -42,6 +42,7 @@ __all__ = [
     "Migrations",
     "MigrationsWorkersMultipleStepMigrations",
     "Observability",
+    "ObservabilityLogs",
     "Placement",
 ]
 
@@ -126,14 +127,14 @@ class BindingWorkersBindingKindDispatchNamespace(BaseModel):
 
 
 class BindingWorkersBindingKindDurableObjectNamespace(BaseModel):
-    class_name: str
-    """The exported class name of the Durable Object."""
-
     name: str
     """A JavaScript variable name for the binding."""
 
     type: Literal["durable_object_namespace"]
     """The kind of resource that the binding provides."""
+
+    class_name: Optional[str] = None
+    """The exported class name of the Durable Object."""
 
     environment: Optional[str] = None
     """The environment of the script_name to bind to."""
@@ -379,6 +380,21 @@ class MigrationsWorkersMultipleStepMigrations(BaseModel):
 Migrations: TypeAlias = Union[SingleStepMigration, MigrationsWorkersMultipleStepMigrations]
 
 
+class ObservabilityLogs(BaseModel):
+    enabled: bool
+    """Whether logs are enabled for the Worker."""
+
+    invocation_logs: bool
+    """
+    Whether
+    [invocation logs](https://developers.cloudflare.com/workers/observability/logs/workers-logs/#invocation-logs)
+    are enabled for the Worker.
+    """
+
+    head_sampling_rate: Optional[float] = None
+    """The sampling rate for logs. From 0 to 1 (1 = 100%, 0.1 = 10%). Default is 1."""
+
+
 class Observability(BaseModel):
     enabled: bool
     """Whether observability is enabled for the Worker."""
@@ -388,6 +404,9 @@ class Observability(BaseModel):
 
     From 0 to 1 (1 = 100%, 0.1 = 10%). Default is 1.
     """
+
+    logs: Optional[ObservabilityLogs] = None
+    """Log settings for the Worker."""
 
 
 class Placement(BaseModel):

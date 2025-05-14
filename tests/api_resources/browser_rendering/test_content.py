@@ -28,6 +28,7 @@ class TestContent:
         content = client.browser_rendering.content.create(
             account_id="account_id",
             cache_ttl=86400,
+            action_timeout=300000,
             add_script_tag=[
                 {
                     "id": "id",
@@ -146,6 +147,7 @@ class TestAsyncContent:
         content = await async_client.browser_rendering.content.create(
             account_id="account_id",
             cache_ttl=86400,
+            action_timeout=300000,
             add_script_tag=[
                 {
                     "id": "id",
